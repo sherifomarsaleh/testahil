@@ -18,6 +18,14 @@ os.environ.setdefault('OMP_THREAD_LIMIT', '1')
 HERE = os.path.dirname(os.path.abspath(__file__))
 FILINGS = os.path.join(HERE, 'filings')
 TEXT = os.path.join(HERE, 'text')
+# OCR PRESERVES THE COLUMN GAP, AND WITHOUT THAT THE COLUMNS MERGE.
+# Egyptian statements print thousand separators as SPACES, and tesseract's default
+# output collapses runs of whitespace, so "311 099 090 775" and "249 527 138 687" in
+# two adjacent columns come out separated by a single space and parse as ONE number of
+# 311,099,090,775,249,527,138,687. It is not always visible: the merge only happens when
+# the second column's leading group is exactly three digits, so most lines survive and
+# the balance sheet's TOTAL - the one line that would have caught it - does not.
+# -c preserve_interword_spaces=1 keeps the gap and the columns stay apart.
 MIN_CHARS = 200
 
 
@@ -43,7 +51,8 @@ def ocr_page(pdf, p, dpi=200):
                 if os.path.exists(c)), None)
     if png is None:
         return ''
-    r = subprocess.run(['tesseract', png, 'stdout', '-l', 'eng', '--psm', '6'],
+    r = subprocess.run(['tesseract', png, 'stdout', '-l', 'eng', '--psm', '6',
+                        '-c', 'preserve_interword_spaces=1'],
                        capture_output=True, text=True)
     os.remove(png)
     return r.stdout or ''

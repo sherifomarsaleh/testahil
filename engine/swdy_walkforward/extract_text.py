@@ -58,7 +58,11 @@ def ocr(pdf, npages, dpi=200):
         if png is None:
             out.append(f'\n=== page {p} — RENDER FAILED ===\n')
             continue
-        r = subprocess.run(['tesseract', png, 'stdout', '-l', 'eng', '--psm', '6'],
+        r = subprocess.run([# The column gap is preserved, or two adjacent columns of space-separated
+        # figures merge into one number that parses cleanly and is wrong by twelve
+        # orders of magnitude. See fill_pages.py for the measured case.
+        'tesseract', png, 'stdout', '-l', 'eng', '--psm', '6',
+                        '-c', 'preserve_interword_spaces=1'],
                            capture_output=True, text=True)
         out.append(f'\n=== page {p} ===\n' + (r.stdout or ''))
         os.remove(png)

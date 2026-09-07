@@ -1,0 +1,86 @@
+{
+ "ticker": "SCEM",
+ "started_at": "2026-09-07",
+ "start_value": 53.1169974189689,
+ "start_spot": 79.0,
+ "start_gap": -0.3276329440636848,
+ "audit_after": "the lever serving [R-TERM-01] \u2014 the only lever THIS run applies, so the audit point is where that rule finishes moving the answer. Declared before the lever was applied. [R-GAP-01]'s eight-heading review then runs on what it leaves, in either direction, because the trigger has been two-sided since 02-Sep-2026 and this central sits ABOVE the price.",
+ "levers": [
+  {
+   "name": "the historicals rebuilt from the company's own audited statements",
+   "rule": "SIGCM clause 1",
+   "before": 53.1169974189689,
+   "after": 72.58943911297973,
+   "why": "The first two editions took revenue, profit and the balance sheet from Global Cement, cemnet, Daily News Egypt, Arab Finance and an aggregator's carry of S&P Global Market Intelligence while SIX AUDITED PDFs SAT ONE CLICK FROM THE COMPANY'S OWN HOMEPAGE, no authentication and no portal. Every error ran the same way and every one understated the company: equity EGP 6,020.3mn filed against 5,240.0mn used, cash 4,762.3mn against 3,850.0mn, FY2025 depreciation 122.6mn against 418.1mn, operating profit 3,304.1mn against an EBIT of 2,640.0mn. A reviewed 31-March-2026 balance sheet carrying EGP 5,802.0mn of cash and ONE QUARTER'S PROFIT OF EGP 1,114.5mn against a full prior year of 2,284.5mn had never been opened. The cost stack was worse than the balance sheet: the old model built it from four industry rules of thumb summing to EGP 2,553.7mn against a DISCLOSED materials line of EGP 3,592.5mn, and assumed a fixed cost 2.17x the company's actual one.",
+   "evidence": "commit 0c5d3014, 04-09-2026; engine/scem_study/filings_extract.py, whose assertions are the footings the filings themselves print",
+   "move": 0.36659530169634413
+  },
+  {
+   "name": "re-struck on the latest known price",
+   "rule": "R-GAP-01",
+   "before": 72.58943911297973,
+   "after": 88.48522205972965,
+   "why": "The study was struck against the 06-August close of EGP 79.00 and the shares had risen 27.2 per cent in the month since. A fair value published against a month-old price is a comparison a reader cannot use, whatever the fair value is worth.",
+   "evidence": "commit 2c919615; EGX close of 02-09-2026, EGP 100.50",
+   "move": 0.218982032937455
+  },
+  {
+   "name": "five construction standards applied together",
+   "rule": "R-MACRO-01 / R-COC-01 / R-LENS-03 / R-BRIDGE-01 / R-ANCHOR-01",
+   "before": 88.48522205972965,
+   "after": 123.27165156625448,
+   "why": "[R-MACRO-01] the study carried an inflation ladder two points a year below the house one and a terminal growth of 5 per cent against a terminal rate built on 7 \u2014 a perpetual real decline nothing disclosed (+9.3%). [R-COC-01] the cost of debt sat 81bp BELOW the sovereign that taxes the company, and the discount factors compounded in whole-year steps from t=0 so the FY2030 rate entered no factor at all (net +1.8%). [R-LENS-03] the typed 48/21/23/8 blend retired and normalised earnings dropped as a lens for this class; the central IS the cash-flow read. [R-BRIDGE-01], [R-ANCHOR-01] and [R-ENF-05] records committed. THE INTERNAL SPLIT OF THIS LEVER IS NOT FULLY RECOVERABLE FROM THE REPOSITORY \u2014 five rules moved in one commit and only three carry a measured percentage in its message \u2014 and saying so is the point of this rule: it is recorded as one lever because that is what the evidence supports, not because the rules are one piece of evidence.",
+   "evidence": "commit 104639d8, 04-09-2026",
+   "move": 0.3931326462970637
+  },
+  {
+   "name": "the terminal built on the disclosed SCALAR life of the dominant class",
+   "rule": "R-TERM-01",
+   "before": 123.27165156625448,
+   "after": 116.92808,
+   "why": "The delivered edition took a 25.89-year life: note 3/2's disclosed rates resolved at the MIDPOINT of two ranges and then cost-weighted as an ARITHMETIC MEAN OF LIVES. The midpoint half is small \u2014 measured across the whole disclosed span the weighted life runs 24.71 to 27.45 years. THE AVERAGING IS THE LARGE HALF: an arithmetic mean of lives is not the quantity that turns a capital base into an annual charge, the charge-reproducing average is the harmonic one at 20.73 years, and the two disagree by 25 per cent on the SAME disclosed table with nothing in the note saying which is meant. Route one of the disclosed-life rule needs no average at all: machinery is 69.5 per cent of note 4's gross cost and note 3/2 states its rate as a SCALAR 5 per cent, so the disclosed life of the class that dominates the replacement-cost base is 20 years \u2014 the construction ARCC's own precedent adopted. THE VALIDATION THE OLD FIGURE CARRIED WAS TWO ERRORS CANCELLING: it claimed the implied rate 'reproduces the filed FY2025 charge to within 1.2 per cent, 121.3 against 122.6'; the 121.3 is an arithmetic-mean rate that UNDERSTATES the disclosed rates' own product of 151.5mn, and the 122.6 is depreciation AND intangible amortisation against a filed fixed-asset charge of 99.2mn. An understated rate was compared with an overstated total and they agreed.",
+   "evidence": "engine/scem_study/useful_lives.json, route 1; note 3/2 at printed page 8 of the FY2025 audited statements, cross-checked against the IDENTICAL table in the FY2022, FY2023 and FY2024 filings, each stating the rates are \"consistent with preceeding year\"",
+   "move": -0.05146010040146998
+  }
+ ],
+ "value": 116.92808,
+ "cumulative_move": 1.201330754404487,
+ "rules": {
+  "SIGCM clause 1": {
+   "levers": [
+    "the historicals rebuilt from the company's own audited statements"
+   ],
+   "first_before": 53.1169974189689,
+   "last_after": 72.58943911297973,
+   "move": 0.36659530169634413
+  },
+  "R-GAP-01": {
+   "levers": [
+    "re-struck on the latest known price"
+   ],
+   "first_before": 72.58943911297973,
+   "last_after": 88.48522205972965,
+   "move": 0.218982032937455
+  },
+  "R-MACRO-01 / R-COC-01 / R-LENS-03 / R-BRIDGE-01 / R-ANCHOR-01": {
+   "levers": [
+    "five construction standards applied together"
+   ],
+   "first_before": 88.48522205972965,
+   "last_after": 123.27165156625448,
+   "move": 0.3931326462970637
+  },
+  "R-TERM-01": {
+   "levers": [
+    "the terminal built on the disclosed SCALAR life of the dominant class"
+   ],
+   "first_before": 123.27165156625448,
+   "last_after": 116.92808,
+   "move": -0.05146010040146998
+  }
+ },
+ "distinct_rules": 4,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
+ "_run": "produced by the SCEM FUNDAMENTAL walk-forward of 07-09-2026 [R-FCAL-01] \u2014 not the price-engine walk-forward and not the technical one",
+ "_start_note": "the start is the 06-08-2026 DELIVERED edition's own committed central of EGP 53.1170, which is also the frozen fair-value baseline in engine/fv_movement.json (base 53.12) \u2014 the two agree, which is the check that the route below starts where the reader's number actually was"
+}

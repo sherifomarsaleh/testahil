@@ -1,13 +1,38 @@
 """GBCO study — master computation. Outputs study_numbers.json + backtest tables."""
 import json
+import os
 import numpy as np
 import pandas as pd
 import primitives as m
 
-df = m.load_ohlc('GB_AUTO_Stock_Price_History.csv')
+# THE EXCHANGE LIBRARY, NOT A STUDY-LOCAL COPY. The study-local extract stops at 7 July
+# 2026 while engine/raw_ohlc/EG/GBCO.csv — the persistent library every cone in this
+# repository is struck on — carries sessions to 23 August 2026. A study struck against its
+# own stale copy is audited against its own past [R-GAP-01 AMENDED].
+df = m.load_ohlc(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                              'raw_ohlc', 'EG', 'GBCO.csv'))
 close = df['Price'].values
-spot = float(close[-1])
-spot_date = str(df['Date'].iloc[-1].date())
+mc_anchor = float(close[-1])                 # the cone is struck on real sessions
+mc_anchor_date = str(df['Date'].iloc[-1].date())
+
+# THE LATEST KNOWN PRICE [R-GAP-01 AMENDED], read from the committed supplied-price files
+# and never typed. A cone needs a SESSION SERIES and can only be anchored on the exchange
+# library; a fair value is put against the latest price the repository knows, which on this
+# name is a hand-supplied close four days newer than the library's last session. The two are
+# different clocks and both are published with their own dates.
+import glob as _glob
+_px, _pxd = None, None
+for _f in sorted(_glob.glob(os.path.join(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__))), 'prices', 'SUPPLIED_*.json'))):
+    _d = json.load(open(_f, encoding='utf-8'))
+    _r = (_d.get('prices') or {}).get('GBCO')
+    if not _r:
+        continue
+    _dt = _r.get('date')
+    if _px is None or (_dt or '') > (_pxd or ''):
+        _px, _pxd = float(_r['price']), _dt
+spot = _px if _px is not None else mc_anchor
+spot_date = _pxd if _px is not None else mc_anchor_date
 N = len(df)
 
 # ---------------- Step 0 backtest (secular drift, adopted config) ----------
@@ -164,44 +189,87 @@ for i, y in enumerate(yrs):
     rows.append(dict(year=y, rev=r, gp=gp, ebitda=ebitda, ebit=op, dna=dna,
                      nopat=nopat, capex=capex[i], dwc=dwc, fcff=fcff, wc=wc))
     wc_prev = wc; prev_rev = r
-# ===== WACC — bottom-up, sourced (house rule §3.5-G, rebuilt 09-07-2026) =====
-# Every input below is sourced; see Cost_of_Capital_Reference.md for the Egypt cache and
-# the Fundamental Driver Ledger (S2) for the correction history on the ERP figure.
-from wacc_builder import WaccInputs, build_wacc
-_wacc_inputs = WaccInputs(
-    rf=0.2255,
-    rf_source="investing.com, Egypt 10Y local-currency govt bond yield, 3-Jul-2026",
-    erp_rating=0.1394, erp_cds=0.0941,
-    erp_source="Damodaran ORIGINAL file (ctryprem.html), Egypt row, 'Last updated January 2026'",
-    beta=1.0,
-    beta_source="assumed_1.0 -- n=5 annual GBCO-vs-EGX30 regression gave beta=-0.15, R2=0.008 (unusable); "
-                 "higher-frequency EGX30 data inaccessible via available tools; house rule default applied",
-    kd_pretax_local=0.207,
-    kd_source="CBE weighted-average EGP bank lending rate, <12mo tenor, Feb-2026 (CEIC/TradingEconomics "
-               "quoting CBE); cross-checked against CBE overnight lending-rate ceiling 20.0% held since Apr-2026",
-    kd_pretax_fx=None, pct_debt_local_ccy=1.0,
-    debt_currency_evidence="5 separately disclosed GB Corp/GB Capital financing facilities found, all EGP-"
-                            "denominated; zero USD facilities found in any search",
-    tax_rate=0.28,
-    market_cap=31.25*1085.5, total_debt=38041.4,
-    weights_source="market cap = spot x shares; total debt = FY25 disclosed consolidated borrowings",
-)
-_wr = build_wacc(_wacc_inputs)
-WACC = _wr.wacc_cds       # primary: CDS-based ERP (more current than the rating-based figure)
-WACC_RATING = _wr.wacc_rating   # alternative, shown alongside in the study as "standard practice" per Damodaran
-TG = 0.115                # terminal growth unchanged; WACC-TG spread widens slightly (10.5pt -> 11.4pt vs prior)
-KE_CDS, KE_RATING = _wr.ke_cds, _wr.ke_rating
-KD_AFTERTAX = _wr.kd_aftertax
-WE, WD = _wr.we, _wr.wd
+# ===== COST OF CAPITAL — v2, through the ONE sanctioned module [R-COC-01/R-COC-02] =====
+# REBUILT 07-09-2026. What this replaces, and why it is a rebuild and not a patch: the
+# delivered edition passed a RAW local government-bond yield of 22.55% into the cost of
+# equity AND added a country-risk-loaded equity premium on top of it, which charges Egypt's
+# sovereign risk twice — the systemic v1 defect [L-004] was found on this very study and the
+# study itself was never re-issued on the fix. It also discounted five explicit years and a
+# perpetuity alike at one crisis-level rate, asserting that Egypt's cost of capital never
+# normalises, against the central bank's own published disinflation path. The module cannot
+# express either error.
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+import cost_of_capital as _COC
+import macro_path as _MP
+
+_beta = _COC.BetaRecord(
+    beta=0.8906822450333004, tier=1,
+    source=("engine/beta_regression.own_stock_beta('GBCO','EG','EGX') — weekly W-THU, "
+            "Dimson-corrected, 2021-09-09 to 2026-07-16, regressed on the PUBLISHED EGX30 "
+            "index of the exchange GBCO is listed on"),
+    r2=0.24301638425722683, se=0.20405704188114288, n=251,
+    index_file="raw_indices/EG/EGX30.csv", index_asof="2026-07-22", conforming=True)
+
+# THE BORROWINGS THAT ACTUALLY BEAR THE INTEREST. GB Corp contains a LENDER, and GB Capital's
+# cost of funds is booked inside that segment's COST OF REVENUE rather than in the group
+# finance-cost line. The group's expensed finance charge over group borrowings therefore
+# reads 14.1%, and over TOTAL liabilities 7.1%, against an Egyptian policy corridor above 24%
+# throughout the period. Both are the denominator error this method names; the rate below is
+# computed on the whole interest actually incurred over the borrowings that actually bear it.
+_book = _COC.DebtBook(
+    gross_debt=42476.0,
+    pct_local_currency=1.0,
+    currency_source=("GB Corp FY2025 audited consolidated statements, notes 26 (loans) and 38 "
+                     "(bonds), and the segmented balance sheet in the 2Q26 earnings release as "
+                     "at 30 June 2026; every disclosed facility is EGP-denominated."),
+    kd_local_pretax=0.2653,
+    kd_source=("GB Corp's own FY2025 effective borrowing rate, computed independently from the "
+               "filings on the borrowings that actually bear the interest."),
+    effective_rates=(0.2906, 0.2653), effective_rate_periods=("FY2024", "FY2025"),
+    interest_bearing_note=(
+        "interest expense per audited note 7 (FY25 EGP 4,287.1mn, FY24 2,882.4mn) PLUS GB "
+        "Capital's COST OF FUNDS, which GB Corp books inside that segment's cost of revenue "
+        "and not in the group finance-cost line (FY25 3,756.9mn, FY24 2,192.3mn, 4Q25 release "
+        "Table 13), over AVERAGE interest-bearing borrowings — loans, overdrafts and bonds, "
+        "FY25 average 30,325.1mn, FY24 average 17,463.2mn. Customer balances, trade payables "
+        "and lease liabilities are excluded because they bear no interest."))
+
+_ERP = {"rating": 0.1394, "market": 0.0941}   # Damodaran country-risk file, Egypt row
+_SCHED = {b: _COC.schedule("EG", _beta, _book, market_cap=spot*SH, tax_rate=TAX, years=5,
+                           erp_basis=b, erp_explicit=_ERP[b], build_date=spot_date,
+                           allow_stale_sovereign=True)
+          for b in ("rating", "market")}
+_sch = _SCHED["market"]          # CENTRAL: the market (CDS) basis, per [R-COC-01]
+WACC = _sch.wacc_exp
+WACC_RATING = _SCHED["rating"].wacc_exp
+KE_CDS, KE_RATING = _sch.ke_exp, _SCHED["rating"].ke_exp
+KD_AFTERTAX = _sch.kd_aftertax
+WE, WD = _sch.weight_equity, _sch.weight_debt
+
+# GROWTH IS STORED AS (real, inflation-path id) AND RECOMPUTES TO ITS NOMINAL [R-MACRO-01].
+# The delivered edition typed a nominal 11.5% against a discount rate that never normalised;
+# a typed nominal rate is unfalsifiable — nobody can tell whether it meant inflation plus four
+# points or minus three.
+_PATH = _MP.load("EG")
+TG_REAL = 0.0
+TG = _PATH.terminal_inflation + TG_REAL
 for i, rw in enumerate(rows):
-    rw['df'] = 1 / (1 + WACC) ** (i + 1)
+    rw['wacc_y'] = _sch.forward_wacc[i]
+    rw['df'] = _sch.discount_factors[i]
     rw['pv'] = rw['fcff'] * rw['df']
 pv_sum = sum(rw['pv'] for rw in rows)
-tv = rows[-1]['fcff'] * (1 + TG) / (WACC - TG)
-pv_tv = tv * rows[-1]['df']
+tv = rows[-1]['fcff'] * (1 + TG) / (_sch.wacc_terminal - TG)
+pv_tv = tv * _sch.terminal_discount_factor
 ev_auto = pv_sum + pv_tv
-auto_nd = 15210.0
-auto_nci = 800.4
+# THE BRIDGE STANDS ON THE LATEST DISCLOSED BALANCE SHEET [R-BRIDGE-01]. The delivered
+# edition stood on 31-Dec-2025 while GB Corp's reviewed 30-June-2026 consolidated statements
+# and its 2Q26 earnings release (13 August 2026) were both published and on its own IR site.
+# Auto-leg net debt on the COMPANY'S OWN definition (short- and long-term debt plus lease
+# obligations and due-to-related-parties, less cash), as at 30 June 2026:
+#   20,943.0 + 1,790.1 + 1,333.3 + 2.3 - 9,445.0
+auto_nd = 20943.0 + 1790.1 + 1333.3 + 2.3 - 9445.0
+auto_nci = 590.7        # GB Auto segment "Total NCI", 2Q26 release Table 12, 30-Jun-2026
 auto_eq = ev_auto - auto_nd - auto_nci
 # GB Capital operating leg
 cap_book = 9500.0   # adjusted operating equity, from company's adjusted-ROAE basis
@@ -246,15 +314,25 @@ def sotp_case(gpm_shift, wacc, tg, cap_m, assoc_m, d):
         fcff = op*(1-TAX)+dna-capex[i]-(r*wc_pct[i]-wcp)
         wcp = r*wc_pct[i]
         rws.append(fcff)
-    pvs = sum(f/(1+wacc)**(i+1) for i, f in enumerate(rws))
-    tv_ = rws[-1]*(1+tg)/(wacc-tg)/(1+wacc)**5
+    _shift = wacc - WACC                      # move the WHOLE ladder, never one rate
+    _fwd = [r + _shift for r in _sch.forward_wacc]
+    _fac, _c = [], 1.0
+    for r in _fwd:
+        _c /= (1 + r)
+        _fac.append(_c)
+    pvs = sum(f*_fac[i] for i, f in enumerate(rws))
+    tv_ = rws[-1]*(1+tg)/((_sch.wacc_terminal + _shift)-tg)*_fac[-1]
     ae = pvs+tv_-auto_nd-auto_nci
     return (ae + cap_book*cap_m + assoc*assoc_m)*(1-d)/SH
-sotp_bear = sotp_case(-0.012, WACC+0.020, 0.105, 0.80, 0.80, 0.18)
-sotp_bull = sotp_case(+0.010, WACC-0.015, 0.125, 1.25, 1.20, 0.04)
-dcf_lens = dict(bear=sotp_case(-0.012, WACC+0.020, 0.105, 0.80, 0.80, 0.0),
+# Bear and bull terminal growth are REAL rates on the house path, never typed nominals
+# [R-MACRO-01]: -0.5% and +0.5% real against the path's 7.0% terminal inflation.
+TG_BEAR = _PATH.terminal_inflation - 0.005
+TG_BULL = _PATH.terminal_inflation + 0.005
+sotp_bear = sotp_case(-0.012, WACC+0.020, TG_BEAR, 0.80, 0.80, 0.18)
+sotp_bull = sotp_case(+0.010, WACC-0.015, TG_BULL, 1.25, 1.20, 0.04)
+dcf_lens = dict(bear=sotp_case(-0.012, WACC+0.020, TG_BEAR, 0.80, 0.80, 0.0),
                 base=prediscount_ps,
-                bull=sotp_case(+0.010, WACC-0.015, 0.125, 1.25, 1.20, 0.0))
+                bull=sotp_case(+0.010, WACC-0.015, TG_BULL, 1.25, 1.20, 0.0))
 weights = dict(sotp=0.40, prediscount=0.15, relative=0.20, normalized=0.25)
 central = (weights['sotp']*sotp_ps + weights['prediscount']*prediscount_ps
            + weights['relative']*rel['base'] + weights['normalized']*norm['base'])
@@ -278,6 +356,13 @@ exp2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
 roce, ce = 0.213, 28513.0
 
 out = dict(
+    # THE ANSWER, WHERE THE SHARED READER LOOKS. Until this rebuild the study's central sat
+    # at lenses.central.base and scripts/check_valuation_gap.py reads a top-level `central`,
+    # so GBCO read as UNREADABLE — and an unreadable answer is not a clean answer [R-ENF-04];
+    # it is held exactly as a breaching one is. The figure is unchanged in meaning: it is the
+    # same published central the document and assets/data.js carry.
+    central=central,
+    central_bear=central_bear, central_full=central_bull,
     spot=spot, spot_date=spot_date, shares=SH, mktcap=spot*SH,
     step0=dict(nonoverlap=summ, monthly=summ21, zerodrift=summ0,
                pit_hist=pit_hist, n_rows=len(res)),
@@ -290,15 +375,25 @@ out = dict(
     dcf=dict(rows=rows, pv_sum=pv_sum, tv=tv, pv_tv=pv_tv, ev=ev_auto,
              tv_pct=pv_tv/ev_auto, wacc=WACC, tg=TG,
              auto_nd=auto_nd, auto_nci=auto_nci, auto_eq=auto_eq,
-             wacc_build=dict(rf=_wacc_inputs.rf, erp_rating=_wacc_inputs.erp_rating,
-                             erp_cds=_wacc_inputs.erp_cds, beta=_wacc_inputs.beta,
+             wacc_terminal=_sch.wacc_terminal,
+             forward_wacc=list(_sch.forward_wacc),
+             discount_factors=list(_sch.discount_factors),
+             terminal_discount_factor=_sch.terminal_discount_factor,
+             wacc_build=dict(rf_observed=_sch.rf_observed, default_spread=_sch.default_spread,
+                             rf_star=_sch.rf_star, erp_rating=_ERP["rating"],
+                             erp_cds=_ERP["market"], beta=_sch.beta,
                              ke_cds=KE_CDS, ke_rating=KE_RATING,
-                             kd_pretax=_wacc_inputs.kd_pretax_local, kd_aftertax=KD_AFTERTAX,
+                             kd_pretax=_sch.kd_pretax, kd_aftertax=KD_AFTERTAX,
                              we=WE, wd=WD, wacc_cds=WACC, wacc_rating=WACC_RATING,
-                             rf_source=_wacc_inputs.rf_source, erp_source=_wacc_inputs.erp_source,
-                             kd_source=_wacc_inputs.kd_source,
-                             debt_currency_evidence=_wacc_inputs.debt_currency_evidence,
-                             beta_source=_wacc_inputs.beta_source)),
+                             rf_source=("engine/macro_paths/EG.json — Egypt 10-year EGP "
+                                        "government bond yield, market quote 6 August 2026, "
+                                        "NORMALISED by Egypt's own default spread so country "
+                                        "risk is counted exactly once"),
+                             erp_source=("Damodaran country-risk file, Egypt row, read for "
+                                         "this sovereign and never borrowed from a neighbour"),
+                             kd_source=_book.kd_source,
+                             debt_currency_evidence=_book.currency_source,
+                             beta_source=_beta.source)),
     sotp=dict(auto_eq=auto_eq, cap_val=cap_val, assoc=assoc, total=sotp_sum,
               disc=disc, eq=sotp_eq, ps=sotp_ps, prediscount_ps=prediscount_ps,
               bear=sotp_bear, bull=sotp_bull,
@@ -311,6 +406,69 @@ out = dict(
     forecast=fc, gpm=gpm, sens=dict(grid_margin=grid_margin, grid_disc=grid_disc, table=sens),
     experts=dict(e1=exp1, e2=exp2, e3=exp3, e3_roce=roce, e3_ce=ce),
     cap_hist=cap_hist,
+    cost_of_capital_record=dict(
+        _rule="[R-COC-01] built through engine/cost_of_capital.py; [R-COC-02] Ke reproduces "
+              "from rf* + beta x ERP under a NAMED construction",
+        central_basis="market",
+        beta_source="own_stock_regression",
+        beta_source_note=_beta.source,
+        **_sch.as_record()),
+    cost_of_capital_rating_basis=_SCHED["rating"].as_record(),
+    macro=dict(path="EG", path_asof=_PATH.as_of,
+               terminal_inflation=_PATH.terminal_inflation,
+               terminal_growth_real=TG_REAL, terminal_growth_nominal=TG,
+               anchor_staleness_accepted=(
+                   "The house Egyptian path's sovereign quote and FX spot are both anchored "
+                   "6 August 2026 and this study is struck on the latest close the repository "
+                   "holds, 23 August 2026 — 17 days. Refreshing a house macro path is a "
+                   "house-level act and not a step of one name's rebuild; the staleness is "
+                   "DISCLOSED rather than switched off, on the shape [R-COC-01] already uses "
+                   "for a deliberately-accepted stale sovereign quote."),
+               inflation_inputs=dict(
+                   _declared="EVERY inflation-class input this study registers, with the "
+                             "mapping that derives it from the house ladder [R-MACRO-01 "
+                             "AMENDED]. Declared even though it is nearly empty.",
+                   terminal_growth=dict(mapping="terminal_flat", real=TG_REAL,
+                                        nominal=TG, source="engine/macro_paths/EG.json"),
+                   note=("The auto leg is built from UNITS x ASP with segment-specific volume "
+                         "and price growth read off the company's own disclosed volumes, so no "
+                         "domestic CPI series escalates any line in this model. The ASP growth "
+                         "rates are company drivers, not an inflation path, and are registered "
+                         "as such in the forecast block."))),
+    forecast_anchor=dict(
+        rate_name="GB Auto gross margin",
+        latest_reviewed_period=("1H2026 — GB Corp's own 2Q/1H26 earnings release, 13 August "
+                                "2026, Table 11 income statement BY SEGMENT, and the reviewed "
+                                "consolidated statements to 30 June 2026"),
+        latest_reviewed_date="2026-06-30",
+        latest_reviewed_rate=5722.1 / 40021.5,
+        first_forecast_rate=gpm[0],
+        forecast_path=list(gpm),
+        note=("REBUILT 07-09-2026 ON A FILING. The superseded record anchored on 1Q26 at a "
+              "12.4% auto gross margin taken from a figure the study asserted and held no "
+              "document for — this directory carried NO filings at all until this run. The "
+              "anchor is now GB Auto's OWN segment gross margin for the half already filed: "
+              "revenue 40,021.5 and gross profit 5,722.1, a margin of 14.30%. The forecast "
+              "opens at 13.80%, which is 3.5% relatively BELOW it — inside the 5% materiality "
+              "line this house already applies to a contested judgement, so no mechanism is "
+              "owed. THE RECORD IS PRINTED WHETHER OR NOT IT FIRES. The path then RISES to "
+              "14.50% and terminates there, against a filed record of 24.37% (FY23), 19.24% "
+              "(FY24) and 14.82% (FY25) on the auto leg — so the whole forecast path sits "
+              "BELOW every filed full year and the direction against the LATEST reviewed "
+              "period, which is what this rule measures, is a mild recovery. The rise from "
+              "the opening year is 5.1% relative, also inside the line."),
+        provenance=("Every figure above is read from GB Corp's own documents committed to "
+                    "engine/gbco_study/src/ in this run, by PDF text layer, and the segment "
+                    "table foots: 39,627.0 + 8,847.4 = 48,474.4 revenue and 5,722.1 + 1,762.2 "
+                    "- 62.4 = 7,421.9 gross profit, both as printed.")),
+    valuation_gap=dict(
+        central=central, spot=spot, spot_date=spot_date,
+        gap=central/spot - 1.0,
+        price_note=("GBCO carries NO price in engine/prices/SUPPLIED_07-09-2026.json or in "
+                    "SUPPLIED_03-09-2026.json. The latest price the repository holds is the "
+                    "exchange library close of EGP 29.51 on 23 August 2026, which is what this "
+                    "study is struck on, with its date and its age stated. Nothing was "
+                    "substituted and nobody was asked [R-IND-01].")),
 )
 res.to_csv('backtest_rows.csv', index=False)
 np.save('fan.npy', np.array([fan[p] for p in [5, 25, 50, 75, 95]]))

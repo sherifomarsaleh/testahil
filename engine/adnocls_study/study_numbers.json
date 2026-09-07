@@ -15,7 +15,7 @@
   "spot_usd": 1.6773315180394828,
   "spot": 6.16,
   "spot_date": "2026-08-07",
-  "central": 5.605378969448954,
+  "central": 5.351958040528197,
   "latest_known_price": {
    "value": 6.85,
    "date": "2026-09-03",
@@ -26,7 +26,7 @@
   "shares_mn": 7398.498764,
   "shares_wavg_mn": 7393.482,
   "mktcap_usd000": 12409735.163033357,
-  "ev_usd000": 14431064.163033357,
+  "ev_usd000": 14271350.163033357,
   "klass": "asset-heavy marine logistics and shipping operating company",
   "sector": "Marine transportation and energy logistics"
  },
@@ -1307,6 +1307,348 @@
    "value": 272134,
    "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, three months ended 31 March 2026 (reviewed) \u2014 non-controlling interests",
    "date": "2026-03-31",
+   "layer": "Company"
+  },
+  "h1_26_rev": {
+   "value": 3666674,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026)",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev": {
+   "value": 2438936,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 prior-period comparative, as presented in the reviewed statements",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc": {
+   "value": 2317664,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc": {
+   "value": 1900726,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 direct costs, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_gp": {
+   "value": 1349010,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 gross profit",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_gp": {
+   "value": 538210,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 gross profit, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ga": {
+   "value": 133051,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ecl": {
+   "value": 48212,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 provision for expected credit losses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_oth_inc": {
+   "value": 34413,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 other income",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_oth_exp": {
+   "value": 27933,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 other expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_op": {
+   "value": 1174227,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating profit",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_op": {
+   "value": 462585,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating profit, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_jv": {
+   "value": 38520,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 share of profit from joint ventures and associates",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_fin_inc": {
+   "value": 5763,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 finance income",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_fin_cost": {
+   "value": 18636,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 finance costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_pbt": {
+   "value": 1199874,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 profit before income tax",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_tax": {
+   "value": 27398,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 current tax expense",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dtax_cr": {
+   "value": 456,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 deferred tax credit",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_pat": {
+   "value": 1172932,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 profit for the period",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_pat": {
+   "value": 420388,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 profit for the period, prior-period comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_npa": {
+   "value": 1119717,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 attributable to equity holders of the Company",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_npa": {
+   "value": 409301,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 attributable to equity holders, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_nci_profit": {
+   "value": 53215,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 profit attributable to non-controlling interests",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dep_ppe": {
+   "value": 205640,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 depreciation on property, plant and equipment",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dep_ip": {
+   "value": 2724,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 depreciation on investment properties",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dep_rou": {
+   "value": 48445,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 depreciation on right-of-use assets",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_amort": {
+   "value": 5312,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 amortisation of intangible assets",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_impair": {
+   "value": 14880,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 impairment losses on property, plant and equipment",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_capex": {
+   "value": 547217,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 purchase of property, plant and equipment",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ppe_additions": {
+   "value": 463814,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 note 4, additions to property, plant and equipment",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ppe_cost": {
+   "value": 8453284,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 note 4, gross cost of property, plant and equipment at 30 June 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ocf": {
+   "value": 1164364,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 net cash generated from operating activities",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_wc": {
+   "value": -302614,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 working capital movements in the cash flow statement, the sum of inventories, trade and other receivables, due from related parties, trade and other payables and due to related parties",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_cash": {
+   "value": 542682,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 cash and cash equivalents",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ppe": {
+   "value": 7041588,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 property, plant and equipment",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_rou": {
+   "value": 242860,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 right-of-use assets",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_intang": {
+   "value": 16192,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 intangible assets",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ip": {
+   "value": 87199,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 investment properties",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_jv_bv": {
+   "value": 522768,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 investment in joint ventures and associates",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_gw": {
+   "value": 51368,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 goodwill",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ta": {
+   "value": 10808133,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 total assets",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_tl": {
+   "value": 2657251,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 total liabilities",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_teq": {
+   "value": 8150882,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 total equity",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_eqp": {
+   "value": 5883066,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 equity attributable to owners of the Company",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_hybrid": {
+   "value": 1978619,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 hybrid equity instrument",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_nci": {
+   "value": 289197,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 non-controlling interests",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_inventories": {
+   "value": 180525,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 inventories",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_receivables": {
+   "value": 1098718,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 trade and other receivables",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_due_from": {
+   "value": 842940,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 due from related parties",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_payables": {
+   "value": 990496,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 trade and other payables",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_due_to": {
+   "value": 413670,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 due to related parties",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_shldr_loan": {
+   "value": 125000,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 shareholder loan, current",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_borrowings": {
+   "value": 431353,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 loans and other borrowings (non-current 317,248 and current 114,105)",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_leases": {
+   "value": 243647,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 lease liabilities (non-current 153,001 and current 90,646)",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_pcp": {
+   "value": 304297,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 purchase consideration payable on the staged acquisition, carried against the investment reserve",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_netdebt": {
+   "value": 257318,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 net debt of USD 257 million. FOOTED RATHER THAN TAKEN: the stated definition names the shareholder loan and lease liabilities less cash and omits loans and other borrowings, and only including them reproduces the published figure \u2014 125,000 + 243,647 + 431,353 \u2212 542,682 = 257,318",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_fcf": {
+   "value": 598095,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 free cash flow, earnings before interest, tax, depreciation and amortisation less working capital movements less income tax expense less capital expenditure; footed as 1,474,868 \u2212 302,614 \u2212 26,942 \u2212 547,217",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "q1_26_shldr_loan": {
@@ -2893,6 +3235,438 @@
    "date": "2026-03-31",
    "layer": "Company"
   },
+  "h1_26_rev_offshore_contracting": {
+   "value": 667002,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev_offshore_contracting": {
+   "value": 658901,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_offshore_contracting": {
+   "value": 210970,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_offshore_contracting": {
+   "value": 314926,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc_offshore_contracting": {
+   "value": 463361,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc_offshore_contracting": {
+   "value": 391335,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_da_offshore_contracting": {
+   "value": 82570,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, depreciation and amortisation in direct costs plus in general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_rev_offshore_services": {
+   "value": 371157,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev_offshore_services": {
+   "value": 284551,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_offshore_services": {
+   "value": 89262,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_offshore_services": {
+   "value": 76914,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc_offshore_services": {
+   "value": 307140,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc_offshore_services": {
+   "value": 230107,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_da_offshore_services": {
+   "value": 34608,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, depreciation and amortisation in direct costs plus in general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_rev_offshore_projects": {
+   "value": 1884,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev_offshore_projects": {
+   "value": 349490,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_offshore_projects": {
+   "value": -16959,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_offshore_projects": {
+   "value": 28173,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc_offshore_projects": {
+   "value": 20173,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc_offshore_projects": {
+   "value": 324613,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_da_offshore_projects": {
+   "value": 1753,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, depreciation and amortisation in direct costs plus in general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_rev_tankers": {
+   "value": 2102006,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev_tankers": {
+   "value": 797040,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_tankers": {
+   "value": 994166,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_tankers": {
+   "value": 203856,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc_tankers": {
+   "value": 1152141,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc_tankers": {
+   "value": 670056,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_da_tankers": {
+   "value": 82901,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, depreciation and amortisation in direct costs plus in general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_rev_gas_carriers": {
+   "value": 186656,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev_gas_carriers": {
+   "value": 82006,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_gas_carriers": {
+   "value": 92694,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_gas_carriers": {
+   "value": 71442,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc_gas_carriers": {
+   "value": 125911,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc_gas_carriers": {
+   "value": 61041,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_da_gas_carriers": {
+   "value": 29448,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, depreciation and amortisation in direct costs plus in general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_rev_dry_bulk_and_containers": {
+   "value": 149038,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev_dry_bulk_and_containers": {
+   "value": 101759,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_dry_bulk_and_containers": {
+   "value": 52852,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_dry_bulk_and_containers": {
+   "value": 15123,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc_dry_bulk_and_containers": {
+   "value": 99862,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc_dry_bulk_and_containers": {
+   "value": 92224,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_da_dry_bulk_and_containers": {
+   "value": 13526,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, depreciation and amortisation in direct costs plus in general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_rev_services": {
+   "value": 188931,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_rev_services": {
+   "value": 165189,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_services": {
+   "value": 52035,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_services": {
+   "value": 32918,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_dc_services": {
+   "value": 149076,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_dc_services": {
+   "value": 131350,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, direct costs, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "h1_26_da_services": {
+   "value": 17315,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, depreciation and amortisation in direct costs plus in general and administrative expenses",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_26_ebitda_group": {
+   "value": 1474868,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 operating segments note, group earnings before interest, tax, depreciation and amortisation. FOOTED against the definition the management discussion states: profit before income tax 1,199,874 plus finance costs 18,636 less finance income 5,763 plus depreciation and amortisation 262,121",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "h1_25_ebitda_group": {
+   "value": 743859,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 the same note, comparative",
+   "date": "2025-06-30",
+   "layer": "Company"
+  },
+  "q2_26_ebitda_group": {
+   "value": 1106000,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 second-quarter earnings before interest, tax, depreciation and amortisation",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "q2_26_rev_group": {
+   "value": 2583999,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 three-month column of the statement of comprehensive income",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tce_vlcc_q2_26_actual": {
+   "value": 291145,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 tanker fleet time-charter equivalent by class, second quarter 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tce_lr2_q2_26_actual": {
+   "value": 129568,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same slide",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tce_lr1_q2_26_actual": {
+   "value": 80206,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same slide",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tce_mr_q2_26_actual": {
+   "value": 36229,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same slide",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
+  "tce_vlcc_q3_26": {
+   "value": 159518,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 third quarter 2026 to the presentation date, on 78% of available vessel days contracted",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tce_lr2_q3_26": {
+   "value": 107917,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 third quarter 2026 to date, 58% of days",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tce_lr1_q3_26": {
+   "value": 89721,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 third quarter 2026 to date, 62% of days",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "tce_mr_q3_26": {
+   "value": 30441,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 third quarter 2026 to date, 65% of days",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "cover_vlcc_q3_26": {
+   "value": 0.78,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 contracted vessel days divided by total available vessel days for the third quarter",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "cover_lr2_q3_26": {
+   "value": 0.58,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same measure",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "cover_lr1_q3_26": {
+   "value": 0.62,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same measure",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "cover_mr_q3_26": {
+   "value": 0.65,
+   "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 the same measure",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_rev_group": {
+   "value": 0.25,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised full-year 2026 guidance: mid 20 per cent revenue growth. Recorded to be scored against this model's own build and used as an input to nothing",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_ebitda_group": {
+   "value": 0.65,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised full-year 2026 guidance: mid 60 per cent growth in earnings before interest, tax, depreciation and amortisation",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_np_group": {
+   "value": 1.1,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised full-year 2026 guidance: high 110 per cent net profit growth",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_rev_shipping": {
+   "value": 0.85,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised 2026 segment guidance: mid 80 per cent Shipping revenue growth",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_rev_il": {
+   "value": -0.25,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised 2026 segment guidance: a mid 20 per cent reduction in Integrated Logistics revenue",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "g26h_rev_services": {
+   "value": 0.05,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 raised 2026 segment guidance: mid single-digit Services revenue growth",
+   "date": "2026-08-11",
+   "layer": "Company"
+  },
+  "contracted_revenue_h126": {
+   "value": 25000000,
+   "source": "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026) \u2014 forward-contracted revenue of about USD 25 billion at 30 June 2026",
+   "date": "2026-06-30",
+   "layer": "Company"
+  },
   "rf_observed": {
    "value": 0.0448,
    "source": "UAE Ministry of Finance dirham Treasury Bond auction, July 2026 \u2014 the tranche maturing January 2031 cleared at a 4.48% yield to maturity (Emirates News Agency report of the Ministry's auction result)",
@@ -3614,9 +4388,9 @@
    "layer": "Company"
   },
   "dep_rate_ppe": {
-   "value": 0.058,
-   "source": "Depreciation charged on property, plant and equipment in the first quarter of 2026, annualised, over the average balance for that quarter. The first quarter is the better forward basis than the 2025 full year, whose average balance is distorted by the fleet acquired at the start of that year",
-   "date": "2026-03-31",
+   "value": 0.0591,
+   "source": "Depreciation charged on property, plant and equipment in the six months to 30 June 2026, annualised, over the average balance for that half. The half replaces the first quarter as the basis: the quarter is a shorter window on the same fleet and the half is the latest reviewed period. It stays a better forward basis than the 2025 full year, whose average balance is distorted by the fleet acquired at the start of that year",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "life_tankers": {
@@ -3632,9 +4406,9 @@
    "layer": "Company"
   },
   "other_dna_run_rate": {
-   "value": 109836,
-   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, three months ended 31 March 2026 (reviewed) \u2014 depreciation on right-of-use assets and investment properties plus amortisation of intangibles in the first quarter, annualised",
-   "date": "2026-03-31",
+   "value": 112962,
+   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026) \u2014 depreciation on right-of-use assets and investment properties plus amortisation of intangibles in the six months to 30 June 2026, annualised",
+   "date": "2026-06-30",
    "layer": "Company"
   },
   "dso_days_reported": {
@@ -3697,12 +4471,6 @@
    "date": "2025-12-31",
    "layer": "Company"
   },
-  "jv_bv_q126": {
-   "value": 493120,
-   "source": "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, three months ended 31 March 2026 (reviewed) \u2014 investment in joint ventures and associates",
-   "date": "2026-03-31",
-   "layer": "Company"
-  },
   "gross_ppe_ex_cwip_fy25": {
    "value": 7595070,
    "source": "ADNOC L&S plc, Consolidated Financial Statements FY2025 (PwC-audited, signed 10 Feb 2026) \u2014 note 11, gross cost of property, plant and equipment at 31 December 2025 of USD 8,167,686 thousand LESS capital work in progress of USD 572,616 thousand, which is not depreciated. Buildings 148,743, vessels and marine equipment 7,279,939, plant 5,305, equipment and vehicles 114,636, furniture and office equipment 46,447",
@@ -3713,12 +4481,6 @@
    "value": 25.0,
    "source": "ADNOC L&S plc, Consolidated Financial Statements FY2025 (PwC-audited, signed 10 Feb 2026) \u2014 the accounting-policies note states the estimated useful lives directly: tankers 25 years, dry-bulk and containers 25 years, gas carriers 25-40 years, offshore vessels 20-25 years, jack-up barges 40 years, plant 20 years, buildings and port infrastructure 7-50 years. TWENTY-FIVE IS THE STATED LIFE FOR THE MAJORITY VESSEL TYPES and the bottom of the gas-carrier range; the note does not split the USD 7,279,939 thousand vessel line by type, so a gross-cost-weighted blend across vessel classes cannot be computed from this disclosure and is NOT invented. Using the longer end instead would lengthen the life and raise the value, and that alternative is priced in the sensitivity rather than chosen silently",
    "date": "2025-12-31",
-   "layer": "Company"
-  },
-  "q1_26_fcf": {
-   "value": 130000,
-   "source": "ADNOC L&S plc, Management Discussion and Analysis Q1 2026 \u2014 free cash flow of USD 130 million in the first quarter of 2026, already reflected in net debt at the valuation date",
-   "date": "2026-03-31",
    "layer": "Company"
   },
   "nci_share": {
@@ -4843,60 +5605,60 @@
    0.3978307077543124
   ],
   "dna": [
-   575610.361604,
-   662168.442703386,
-   703756.2163003006,
-   727830.471982846,
-   733973.0915993047
+   587328.84023241,
+   675012.9332162503,
+   716839.3371625203,
+   740820.7037703039,
+   746550.3244474971
   ],
   "dep_ppe": [
-   463028.461604,
-   547334.904703386,
-   586626.0075403006,
-   608357.6590476461,
-   612110.8224054007
+   471542.79023241,
+   556911.1622162503,
+   596375.5307425204,
+   617947.6212219038,
+   621219.7802481292
   ],
   "ppe": [
-   9096149.538396,
-   9793814.633692615,
-   10452188.626152314,
-   10543830.967104668,
-   10581720.144699268
+   9087635.20976759,
+   9775724.04755134,
+   10424348.516808819,
+   10506400.895586915,
+   10535181.115338786
   ],
   "ebit": [
-   1510331.5262776737,
-   1856238.63503771,
-   1802949.097099738,
-   1584336.823465575,
-   1324658.5847457368
+   1498613.0476492636,
+   1843394.1445248455,
+   1789865.9762375182,
+   1571346.5916781172,
+   1312081.3518975442
   ],
   "ebit_margin": [
-   0.3018289267808718,
-   0.3244587690581969,
-   0.31385459622212825,
-   0.2880468758623567,
-   0.2559903592068769
+   0.29948707284590514,
+   0.3222136333831176,
+   0.3115771067344092,
+   0.28568513331639966,
+   0.25355980812623347
   ],
   "tax": [
-   49616.40658533528,
-   56796.20126464124,
-   59345.71244977493,
-   59215.870181683866,
-   59436.91441300348
+   49080.079991360675,
+   56208.33981380388,
+   58746.929461548025,
+   58621.3385030906,
+   58861.28470295366
   ],
   "tax_rate": [
-   0.03285133477125957,
-   0.03059746747674359,
-   0.03291591123966822,
-   0.037375808795603954,
-   0.04486961025086488
+   0.03275033543071581,
+   0.030491764325470492,
+   0.03282197116514841,
+   0.03730643437517246,
+   0.04486100242018372
   ],
   "nopat": [
-   1460715.1196923384,
-   1799442.4337730687,
-   1743603.3846499631,
-   1525120.953283891,
-   1265221.6703327333
+   1449532.967657903,
+   1787185.8047110417,
+   1731119.0467759701,
+   1512725.2531750265,
+   1253220.0671945906
   ],
   "capex": [
    1375000,
@@ -4920,11 +5682,11 @@
    -89523.88049276988
   ],
   "fcff": [
-   215375.4072683847,
-   1060025.5436494418,
-   1205566.3604397888,
-   1621508.8078817714,
-   1438718.642424808
+   215911.7338623593,
+   1060613.4051002793,
+   1206165.1434280158,
+   1622103.3395603646,
+   1439294.2721348575
   ],
   "opcost": [
    2917990.446855004,
@@ -5121,48 +5883,48 @@
    2289542.576896292
   ],
   "ebit": [
-   1510331.5262776737,
-   1910568.1378880227,
-   1918300.9521962379,
-   1757519.9988790122,
-   1555569.4852969875
+   1498613.0476492636,
+   1897723.6473751583,
+   1905217.8313340181,
+   1744529.7670915544,
+   1542992.252448795
   ],
   "nopat": [
-   1460715.1196923384,
-   1853228.6415948784,
-   1857801.721195498,
-   1696572.296943194,
-   1493823.4618784715
+   1449532.967657903,
+   1840972.0125328512,
+   1845317.383321505,
+   1684176.5968343294,
+   1481821.8587403288
   ],
   "fcff": [
-   215375.4072683847,
-   1094216.2019589571,
-   1297755.1724717023,
-   1772101.5675088558,
-   1646499.2146178344
+   215911.7338623593,
+   1094804.0634097941,
+   1298353.9554599288,
+   1772696.0991874486,
+   1647074.8443278843
   ]
  },
  "fin": {
   "net_debt": [
-   2361586.7366661523,
-   1891876.3238344095,
-   1270187.4339588592,
-   219138.1122062691,
-   -683848.3915595862
+   2245267.253846378,
+   1828981.787538337,
+   1254975.8010728094,
+   242364.67843965982,
+   -640848.0270527308
   ],
   "gross_debt": [
-   2716674,
-   3056931.7366661523,
-   2587221.3238344095,
-   1965532.4339588592,
-   914483.112206269
+   2556960,
+   2940612.253846378,
+   2524326.787538337,
+   1950320.8010728094,
+   937709.6784396598
   ],
   "interest": [
-   154699.6671533374,
-   174075.476915054,
-   147328.04806509727,
-   111926.27945514428,
-   52074.791850497306
+   202975.3196524589,
+   233430.21095300908,
+   200384.84630493188,
+   154819.39022221434,
+   74436.80062358988
   ],
   "fin_income": [
    25380.0925,
@@ -5172,60 +5934,60 @@
    25380.0925
   ],
   "pbt": [
-   1381011.9516243364,
-   1707543.250622656,
-   1681001.1415346407,
-   1497790.6365104308,
-   1297963.8853952396
+   1321017.8204968048,
+   1635344.0260718365,
+   1614861.2224325864,
+   1441907.2939559028,
+   1263024.6437739544
   ],
   "tax": [
-   45368.08594592161,
-   52246.49907605974,
-   55331.68436853519,
-   55981.136446059805,
-   58239.133657382656
+   43263.77673122348,
+   49864.52463404851,
+   53002.92847839866,
+   53792.419837048394,
+   56660.551601095045
   ],
   "pat": [
-   1335643.8656784147,
-   1655296.7515465962,
-   1625669.4571661055,
-   1441809.500064371,
-   1239724.751737857
+   1277754.0437655812,
+   1585479.501437788,
+   1561858.2939541878,
+   1388114.8741188543,
+   1206364.0921728592
   ],
   "nci": [
-   117536.66017970048,
-   145666.11413610046,
-   143058.91223061728,
-   126879.23600566463,
-   109095.77815293141
+   112442.35585137115,
+   139522.19612652532,
+   137443.52986796852,
+   122154.10892245917,
+   106160.04011121161
   ],
   "npa": [
-   1218107.2054987142,
-   1509630.6374104957,
-   1482610.5449354881,
-   1314930.2640587064,
-   1130628.9735849255
+   1165311.6879142101,
+   1445957.3053112626,
+   1424414.7640862192,
+   1265960.765196395,
+   1100204.0520616476
   ],
   "eps": [
-   0.15153815797795195,
-   0.19094121003092943,
-   0.18728910528145196,
-   0.16462501000678767,
-   0.13971437659956681
+   0.1444021809008996,
+   0.18233495974552583,
+   0.1794232148210195,
+   0.1580061673977182,
+   0.13560206645479514
   ],
   "eps_pre_coupon": [
-   0.1646424828001383,
-   0.20404553485311572,
-   0.20039343010363828,
-   0.17772933482897402,
-   0.15281870142175313
+   0.15750650572308592,
+   0.19543928456771215,
+   0.19252753964320582,
+   0.17111049221990451,
+   0.14870639127698146
   ],
   "npa_ordinary": [
-   1121154.8744987142,
-   1412678.3064104957,
-   1385658.2139354881,
-   1217977.9330587063,
-   1033676.6425849255
+   1068359.3569142101,
+   1349004.9743112626,
+   1327462.4330862192,
+   1169008.434196395,
+   1003251.7210616476
   ],
   "dps": [
    341000.0,
@@ -5236,41 +5998,41 @@
   ],
   "hybrid_coupon": 96952.331,
   "nd_ebitda": [
-   1.1321440690106679,
-   0.7512194277707249,
-   0.5067158980231329,
-   0.09477606254428468,
-   -0.33218588804273713
+   1.0763805391177523,
+   0.7262454921222887,
+   0.5006475210165764,
+   0.10482142832690473,
+   -0.31129805026147866
   ],
   "payout": [
-   0.2799425193945788,
-   0.2371772214521106,
-   0.2535746837119377,
-   0.3002061293969701,
-   0.36659915934735815
+   0.29262557265717937,
+   0.24762141916972072,
+   0.2639347116295712,
+   0.311818609116816,
+   0.3767370520707509
   ]
  },
  "fin_sustained": {
   "net_debt": [
-   2361586.7366661523,
-   1857685.6655248944,
-   1142036.2206888294,
-   -66246.59290042723,
-   -1191802.1625065042
+   2245267.253846378,
+   1794791.1292288222,
+   1126126.4945127675,
+   -46385.09633863688,
+   -1158236.8390880493
   ],
   "gross_debt": [
-   2716674,
-   3056931.7366661523,
-   2553030.6655248944,
-   1837381.2206888294,
-   629098.4070995727
+   2556960,
+   2940612.253846378,
+   2490136.129228822,
+   1821471.4945127675,
+   648959.9036613631
   ],
   "interest": [
-   154699.6671533374,
-   174075.476915054,
-   145381.07781388736,
-   104628.77153252643,
-   35823.69993050276
+   202975.3196524589,
+   233430.21095300908,
+   197670.74057019147,
+   144591.1390231255,
+   51515.41044337576
   ],
   "fin_income": [
    25380.0925,
@@ -5280,60 +6042,60 @@
    25380.0925
   ],
   "pbt": [
-   1381011.9516243364,
-   1761872.7534729687,
-   1798299.9668823506,
-   1678271.3198464857,
-   1545125.8778664847
+   1321017.8204968048,
+   1689673.5289221492,
+   1732927.1832638266,
+   1625318.720568429,
+   1516856.934505419
   ],
   "tax": [
-   45368.08594592161,
-   52876.88735793016,
-   56714.64896083142,
-   58199.49715205335,
-   61331.479912055715
+   43263.77673122348,
+   50529.87311863612,
+   54483.59391948551,
+   56228.984632495216,
+   60134.285013976594
   ],
   "pat": [
-   1335643.8656784147,
-   1708995.8661150385,
-   1741585.3179215193,
-   1620071.8226944325,
-   1483794.397954429
+   1277754.0437655812,
+   1639143.655803513,
+   1678443.589344341,
+   1569089.7359359337,
+   1456722.6494914426
   ],
   "nci": [
-   117536.66017970048,
-   150391.63621812337,
-   153259.5079770937,
-   142566.32039711004,
-   130573.90701998975
+   112442.35585137115,
+   144244.64171070914,
+   147703.035862302,
+   138079.89676236216,
+   128191.59315524694
   ],
   "npa": [
-   1218107.2054987142,
-   1558604.2298969151,
-   1588325.8099444257,
-   1477505.5022973225,
-   1353220.4909344392
+   1165311.6879142101,
+   1494899.014092804,
+   1530740.5534820391,
+   1431009.8391735714,
+   1328531.0563361957
   ],
   "eps": [
-   0.15153815797795195,
-   0.19756060594469474,
-   0.2015778506581941,
-   0.18659909467240704,
-   0.16980041492299142
+   0.1444021809008996,
+   0.1889500461762602,
+   0.19379448023410376,
+   0.18031462202371348,
+   0.16646332784819476
   ],
   "eps_pre_coupon": [
-   0.1646424828001383,
-   0.21066493076688106,
-   0.21468217548038043,
-   0.19970341949459336,
-   0.18290473974517776
+   0.15750650572308592,
+   0.2020543709984465,
+   0.20689880505629007,
+   0.19341894684589983,
+   0.17956765267038108
   ],
   "npa_ordinary": [
-   1121154.8744987142,
-   1461651.8988969151,
-   1491373.4789444257,
-   1380553.1712973225,
-   1256268.1599344392
+   1068359.3569142101,
+   1397946.683092804,
+   1433788.2224820391,
+   1334057.5081735714,
+   1231578.7253361957
   ],
   "dps": [
    341000.0,
@@ -5344,105 +6106,105 @@
   ],
   "hybrid_coupon": 96952.331,
   "nd_ebitda": [
-   1.1321440690106679,
-   0.7220660208818808,
-   0.43554970288602124,
-   -0.026654829440394597,
-   -0.5205416027345136
+   1.0763805391177523,
+   0.6976194697772922,
+   0.42948205250554367,
+   -0.018663402559298478,
+   -0.5058813279018192
   ],
   "payout": [
-   0.2799425193945788,
-   0.2297247711330035,
-   0.23669734360934064,
-   0.2671733705128114,
-   0.30629718809813766
+   0.29262557265717937,
+   0.2395145067489971,
+   0.24560171163219346,
+   0.27585423537547016,
+   0.3119894181420706
   ]
  },
  "fcst_bs": [
   {
-   "ppe": 9096149.538396,
+   "ppe": 9087635.20976759,
    "nwc": 792365.0740279537,
    "cash": 695345,
-   "gross_debt": 2716674,
-   "net_debt": 2361586.7366661523,
-   "equity_parent": 5854056.874498714,
+   "gross_debt": 2556960,
+   "net_debt": 2245267.253846378,
+   "equity_parent": 5801261.35691421,
    "hybrid": 1978619,
-   "nci": 272134,
-   "jv": 493120,
+   "nci": 289197,
+   "jv": 522768,
    "intangibles": 19434,
    "goodwill": 51368,
-   "bvps": 0.7912492873532248,
-   "roe": 0.22293407570214546,
-   "invested_capital": 9959316.612423955,
-   "roic": 0.14666820792403962
+   "bvps": 0.7841133102761725,
+   "roe": 0.2143069763036393,
+   "invested_capital": 9950802.283795543,
+   "roic": 0.14566995969947122
   },
   {
-   "ppe": 9793814.633692615,
+   "ppe": 9775724.04755134,
    "nwc": 948950.4068549664,
    "cash": 695345,
-   "gross_debt": 3056931.7366661523,
-   "net_debt": 1891876.3238344095,
-   "equity_parent": 6908685.180909209,
+   "gross_debt": 2940612.253846378,
+   "net_debt": 1828981.787538337,
+   "equity_parent": 6792216.3312254725,
    "hybrid": 1978619,
-   "nci": 272134,
-   "jv": 493120,
+   "nci": 289197,
+   "jv": 522768,
    "intangibles": 19434,
    "goodwill": 51368,
-   "bvps": 0.9337955443779823,
-   "roe": 0.2365683848904278,
-   "invested_capital": 10813567.040547581,
-   "roic": 0.16640599970626788
+   "bvps": 0.9180533170155264,
+   "roe": 0.22963590218975652,
+   "invested_capital": 10795476.454406306,
+   "roic": 0.16554950698647303
   },
   {
-   "ppe": 10452188.626152314,
+   "ppe": 10424348.516808819,
    "nwc": 945743.6473654411,
    "cash": 695345,
-   "gross_debt": 2587221.3238344095,
-   "net_debt": 1270187.4339588592,
-   "equity_parent": 7918390.894844696,
+   "gross_debt": 2524326.787538337,
+   "net_debt": 1254975.8010728094,
+   "equity_parent": 7743726.264311692,
    "hybrid": 1978619,
-   "nci": 272134,
-   "jv": 493120,
+   "nci": 289197,
+   "jv": 522768,
    "intangibles": 19434,
    "goodwill": 51368,
-   "bvps": 1.070269949002954,
-   "roe": 0.19998690737952562,
-   "invested_capital": 11468734.273517756,
-   "roic": 0.1520310213025064
+   "bvps": 1.0466618311800655,
+   "roe": 0.19598519390459676,
+   "invested_capital": 11440894.16417426,
+   "roic": 0.15130976844421432
   },
   {
-   "ppe": 10543830.967104668,
+   "ppe": 10506400.895586915,
    "nwc": 877186.2647504068,
    "cash": 695345,
-   "gross_debt": 1965532.4339588592,
-   "net_debt": 219138.1122062691,
-   "equity_parent": 8741618.702903401,
+   "gross_debt": 1950320.8010728094,
+   "net_debt": 242364.67843965982,
+   "equity_parent": 8517984.573508088,
    "hybrid": 1978619,
-   "nci": 272134,
-   "jv": 493120,
+   "nci": 289197,
+   "jv": 522768,
    "intangibles": 19434,
    "goodwill": 51368,
-   "bvps": 1.1815395233204369,
-   "roe": 0.1578546826571388,
-   "invested_capital": 11491819.231855074,
-   "roic": 0.1327136219699914
+   "bvps": 1.1513125628884795,
+   "roe": 0.15569834906326788,
+   "invested_capital": 11454389.160337321,
+   "roic": 0.13206511774657376
   },
   {
-   "ppe": 10581720.144699268,
+   "ppe": 10535181.115338786,
    "nwc": 787662.384257637,
    "cash": 695345,
-   "gross_debt": 914483.112206269,
-   "net_debt": -683848.3915595862,
-   "equity_parent": 9360807.714238327,
+   "gross_debt": 937709.6784396598,
+   "net_debt": -640848.0270527308,
+   "equity_parent": 9106748.663319735,
    "hybrid": 1978619,
-   "nci": 272134,
-   "jv": 493120,
+   "nci": 289197,
+   "jv": 522768,
    "intangibles": 19434,
    "goodwill": 51368,
-   "bvps": 1.2652306924462342,
-   "roe": 0.1249146327162307,
-   "invested_capital": 11440184.528956905,
-   "roic": 0.11059451594773305
+   "bvps": 1.2308914218695048,
+   "roe": 0.12484773951218876,
+   "invested_capital": 11393645.499596423,
+   "roic": 0.10999289623667695
   }
  ],
  "guidance_check": {
@@ -5490,39 +6252,39 @@
   "ke_blume": 0.09265055999999999,
   "ke_beta1": 0.07420299999999999,
   "kd_method1": 0.0445,
-  "kd_method2": 0.05694450904059059,
+  "kd_method2": 0.07938149977021888,
   "kd_method3": 0.0733,
-  "kd": 0.05694450904059059,
-  "wacc_ex_hybrid": 0.09082094077385551,
-  "kd_balance_weighted": 0.05694450904059059,
-  "kd_retired_average": 0.05824816968019686,
+  "kd": 0.07938149977021888,
+  "wacc_ex_hybrid": 0.09298811899733131,
+  "kd_balance_weighted": 0.07938149977021888,
+  "kd_retired_average": 0.06572716659007295,
   "kd_construction": "balance-weighted across the instruments actually outstanding; the average of three constructions is retired because it reproduces from no set of facility lines",
   "kd_bank_mid": 0.0733,
   "kd_other_mid": 0.06334999999999999,
   "kd_thirdparty": 0.068325,
   "kd_lease": 0.06465748410759811,
-  "kd_after_tax": 0.05181950322693744,
+  "kd_after_tax": 0.07223716479089919,
   "tax_stat": 0.09,
-  "we": 0.8004439128736124,
-  "wd": 0.0719326113922813,
-  "wacc": 0.08548360695382588,
+  "we": 0.81705595154195,
+  "wd": 0.05267193478718745,
+  "wacc": 0.08725769375914355,
   "rf_terminal": 0.039751,
   "ke_term": 0.09347684,
-  "kd_term": 0.056095509040590595,
-  "wacc_term": 0.0851633595751722,
+  "kd_term": 0.0785324997702189,
+  "wacc_term": 0.08694683408773118,
   "kh": 0.049,
   "kh_term": 0.052251000000000006,
-  "wh": 0.12762347573410635,
+  "wh": 0.13027211367086255,
   "hybrid_cap": 1978619,
   "wacc_glide": [
-   0.08541955747809514,
-   0.08535550800236441,
-   0.08529145852663367,
-   0.08522740905090294,
-   0.0851633595751722
+   0.08719552182486108,
+   0.08713334989057861,
+   0.08707117795629613,
+   0.08700900602201365,
+   0.08694683408773118
   ],
   "mktcap": 12409735.163033357,
-  "debt": 1115212,
+  "debt": 800000,
   "spot_usd": 1.6773315180394828,
   "kd_evidence": [
    [
@@ -5558,378 +6320,378 @@
   ]
  },
  "dcf": {
-  "wacc": 0.08548360695382588,
-  "wacc_term": 0.0851633595751722,
+  "wacc": 0.08725769375914355,
+  "wacc_term": 0.08694683408773118,
   "g": 0.02,
   "glide": [
-   0.08541955747809514,
-   0.08535550800236441,
-   0.08529145852663367,
-   0.08522740905090294,
-   0.0851633595751722
+   0.08719552182486108,
+   0.08713334989057861,
+   0.08707117795629613,
+   0.08700900602201365,
+   0.08694683408773118
   ],
   "df": [
-   0.9403765010523882,
-   0.8664225630394458,
-   0.7983316889047304,
-   0.7356353905610621,
-   0.6779029019640453
+   0.9590608712678924,
+   0.8821924848174542,
+   0.8115314826725369,
+   0.7465729153821768,
+   0.6868532038264518
   ],
   "fcff": [
-   85375.4072683847,
-   1060025.5436494418,
-   1205566.3604397888,
-   1621508.8078817714,
-   1438718.642424808
+   -382183.2661376407,
+   1060613.4051002793,
+   1206165.1434280158,
+   1622103.3395603646,
+   1439294.2721348575
   ],
   "pv": [
-   80285.02676296624,
-   918430.0484160313,
-   962441.8286166255,
-   1192839.265184309,
-   975311.5428095489
+   -366537.0162059745,
+   935665.1752761165,
+   978840.9871940708,
+   1211018.4192667466,
+   988583.8820648878
   ],
-  "pv_explicit": 4129307.7117894813,
-  "roic_terminal": 0.11059451594773305,
-  "reinvest": 0.18084079331250022,
-  "nopat_t1": 1290526.103739388,
-  "tv": 16223017.754772868,
-  "pv_tv": 10997630.81457476,
-  "tv_share": 0.7270229065456538,
+  "pv_explicit": 3747571.4475958473,
+  "roic_terminal": 0.10999289623667695,
+  "reinvest": 0.18182992433406833,
+  "nopat_t1": 1278284.4685384824,
+  "tv": 15622159.20436454,
+  "pv_tv": 10730130.100204676,
+  "tv_share": 0.7411487289455013,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 15126938.52636424,
-  "jv": 493120,
-  "ev": 15620058.52636424,
-  "net_debt": 3999948,
-  "deferred": 301462,
+  "ev_ops": 14477701.547800524,
+  "jv": 522768,
+  "ev": 15000469.547800524,
+  "net_debt": 3840234,
+  "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 327696.80894567654,
-  "nci_book": 272134,
+  "nci": 378355.371400873,
+  "nci_book": 289197,
   "nci_navig8": 251985,
-  "nci_other_bv": 20149,
-  "equity": 11292413.717418564,
-  "fv_usd": 1.5263114961059099,
-  "fv_aed": 5.605378969448954,
-  "ic_terminal": 11440184.528956905
+  "nci_other_bv": 37212,
+  "equity": 10781880.176399652,
+  "fv_usd": 1.457306478019931,
+  "fv_aed": 5.351958040528197,
+  "ic_terminal": 11393645.499596423
  },
  "dcf_beta_alt": {
-  "wacc": 0.06937640216609622,
-  "wacc_term": 0.06905615478744255,
+  "wacc": 0.07081620757521713,
+  "wacc_term": 0.07050534790380476,
   "g": 0.02,
   "glide": [
-   0.0693123526903655,
-   0.06924830321463475,
-   0.06918425373890402,
-   0.06912020426317328,
-   0.06905615478744255
+   0.07075403564093466,
+   0.07069186370665219,
+   0.0706296917723697,
+   0.07056751983808723,
+   0.07050534790380476
   ],
   "df": [
-   0.9509803913481971,
-   0.88939153654874,
-   0.8318412223511201,
-   0.7780614556100514,
-   0.7278022320209654
+   0.966396036372503,
+   0.9025902494737513,
+   0.8430461591062003,
+   0.7874759354119977,
+   0.7356113978823019
   ],
   "fcff": [
-   85375.4072683847,
-   1060025.5436494418,
-   1205566.3604397888,
-   1621508.8078817714,
-   1438718.642424808
+   -382183.2661376407,
+   1060613.4051002793,
+   1206165.1434280158,
+   1622103.3395603646,
+   1439294.2721348575
   ],
   "pv": [
-   81190.3382156002,
-   942777.7470472906,
-   1002839.794893625,
-   1261633.50334501,
-   1047102.6392069483
+   -369340.3935633134,
+   957299.317904666,
+   1016852.8914147678,
+   1277367.3446552234,
+   1058761.2714891129
   ],
-  "pv_explicit": 4335544.022708475,
-  "roic_terminal": 0.11059451594773305,
-  "reinvest": 0.18084079331250022,
-  "nopat_t1": 1290526.103739388,
-  "tv": 21549718.764734425,
-  "pv_tv": 15683933.416397795,
-  "tv_share": 0.7834337067040833,
+  "pv_explicit": 3940940.4319004565,
+  "roic_terminal": 0.10999289623667695,
+  "reinvest": 0.18182992433406833,
+  "nopat_t1": 1278284.4685384824,
+  "tv": 20707789.249144588,
+  "pv_tv": 15232885.796615353,
+  "tv_share": 0.7944624935611762,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 20019477.43910627,
-  "jv": 493120,
-  "ev": 20512597.43910627,
-  "net_debt": 3999948,
-  "deferred": 301462,
+  "ev_ops": 19173826.22851581,
+  "jv": 522768,
+  "ev": 19696594.22851581,
+  "net_debt": 3840234,
+  "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 359574.55835093226,
-  "nci_book": 272134,
+  "nci": 431530.8637554009,
+  "nci_book": 289197,
   "nci_navig8": 251985,
-  "nci_other_bv": 20149,
-  "equity": 16153074.880755339,
-  "fv_usd": 2.1832908804896762,
-  "fv_aed": 8.018135758598335,
-  "ic_terminal": 11440184.528956905
+  "nci_other_bv": 37212,
+  "equity": 15424829.36476041,
+  "fv_usd": 2.084859355497273,
+  "fv_aed": 7.6566459830637355,
+  "ic_terminal": 11393645.499596423
  },
  "dcf_sustained": {
-  "wacc": 0.08548360695382588,
-  "wacc_term": 0.0851633595751722,
+  "wacc": 0.08725769375914355,
+  "wacc_term": 0.08694683408773118,
   "g": 0.02,
   "glide": [
-   0.08541955747809514,
-   0.08535550800236441,
-   0.08529145852663367,
-   0.08522740905090294,
-   0.0851633595751722
+   0.08719552182486108,
+   0.08713334989057861,
+   0.08707117795629613,
+   0.08700900602201365,
+   0.08694683408773118
   ],
   "df": [
-   0.9403765010523882,
-   0.8664225630394458,
-   0.7983316889047304,
-   0.7356353905610621,
-   0.6779029019640453
+   0.9590608712678924,
+   0.8821924848174542,
+   0.8115314826725369,
+   0.7465729153821768,
+   0.6868532038264518
   ],
   "fcff": [
-   85375.4072683847,
-   1094216.2019589571,
-   1297755.1724717023,
-   1772101.5675088558,
-   1646499.2146178344
+   -382183.2661376407,
+   1094804.0634097941,
+   1298353.9554599288,
+   1772696.0991874486,
+   1647074.8443278843
   ],
   "pv": [
-   80285.02676296624,
-   948053.6062205675,
-   1036039.0786241838,
-   1303620.6287282475,
-   1116166.5956709515
+   -366537.0162059745,
+   965827.9170877319,
+   1053655.110508149,
+   1323446.8948569861,
+   1131298.6337685615
   ],
-  "pv_explicit": 4484164.936006917,
-  "roic_terminal": 0.12963313470967347,
-  "reinvest": 0.15428154263793764,
-  "nopat_t1": 1523699.931116041,
-  "tv": 19775241.23414157,
-  "pv_tv": 13405693.41966362,
-  "tv_share": 0.7493459787743052,
+  "pv_explicit": 4107691.5400154544,
+  "roic_terminal": 0.12911308251106857,
+  "reinvest": 0.15490297041189027,
+  "nopat_t1": 1511458.2959151354,
+  "tv": 19079750.874407265,
+  "pv_tv": 13104988.016297175,
+  "tv_share": 0.7613566483604822,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 17889858.355670534,
-  "jv": 493120,
-  "ev": 18382978.355670534,
-  "net_debt": 3999948,
-  "deferred": 301462,
+  "ev_ops": 17212679.556312628,
+  "jv": 522768,
+  "ev": 17735447.556312628,
+  "net_debt": 3840234,
+  "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 345698.8458259669,
-  "nci_book": 272134,
+  "nci": 409324.26853826456,
+  "nci_book": 289197,
   "nci_navig8": 251985,
-  "nci_other_bv": 20149,
-  "equity": 14037331.509844568,
-  "fv_usd": 1.8973215996396655,
-  "fv_aed": 6.967913574676671,
-  "ic_terminal": 11523469.40636775
+  "nci_other_bv": 37212,
+  "equity": 13485889.287774364,
+  "fv_usd": 1.822787259679586,
+  "fv_aed": 6.694186211173279,
+  "ic_terminal": 11476930.377007268
  },
  "dcf_bear": {
-  "wacc": 0.10566828904261197,
-  "wacc_term": 0.1053480416639583,
+  "wacc": 0.10786127930134369,
+  "wacc_term": 0.10755041962993132,
   "g": 0.02,
   "glide": [
-   0.10560423956688124,
-   0.1055401900911505,
-   0.10547614061541977,
-   0.10541209113968902,
-   0.1053480416639583
+   0.10779910736706122,
+   0.10773693543277875,
+   0.10767476349849626,
+   0.1076125915642138,
+   0.10755041962993132
   ],
   "df": [
-   0.9274707638151999,
-   0.8389299386200795,
-   0.7588856129930097,
-   0.6865182849688142,
-   0.6210878918601509
+   0.9501003860699673,
+   0.857694959587833,
+   0.774320213705038,
+   0.6990893924485931,
+   0.6312032211429089
   ],
   "fcff": [
-   -51947.386893484974,
-   918935.0981241702,
-   1035769.3076803056,
-   1477215.5416968507,
-   1270948.960517381
+   -519502.8017768366,
+   919532.0566630517,
+   1036382.0440392438,
+   1477827.0100635733,
+   1271542.7159929576
   ],
   "pv": [
-   -48179.682600304215,
-   770922.1654651468,
-   786030.425978314,
-   1014135.4802149998,
-   789371.0105495903
+   -493579.81253260217,
+   788678.0101793332,
+   802491.5658205315,
+   1033133.1866094643,
+   802601.8581555579
   ],
-  "pv_explicit": 3312279.3996077464,
-  "roic_terminal": 0.09522225680138235,
-  "reinvest": 0.2100349295618633,
-  "nopat_t1": 1150107.8494376475,
-  "tv": 10645177.212966276,
-  "pv_tv": 6611590.673678941,
-  "tv_share": 0.6662310796950254,
+  "pv_explicit": 2933324.8082322846,
+  "roic_terminal": 0.09455915242265989,
+  "reinvest": 0.21150781799105103,
+  "nopat_t1": 1137480.7424561137,
+  "tv": 10244321.80226529,
+  "pv_tv": 6466248.920014381,
+  "tv_share": 0.6879300175690576,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 9923870.073286688,
-  "jv": 493120,
-  "ev": 10416990.073286688,
-  "net_debt": 3999948,
-  "deferred": 301462,
+  "ev_ops": 9399573.728246666,
+  "jv": 522768,
+  "ev": 9922341.728246666,
+  "net_debt": 3840234,
+  "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 293795.77816314576,
-  "nci_book": 272134,
+  "nci": 320854.3539868993,
+  "nci_book": 289197,
   "nci_navig8": 251985,
-  "nci_other_bv": 20149,
-  "equity": 6123246.295123542,
-  "fv_usd": 0.8276336173655056,
-  "fv_aed": 3.039484459774819,
-  "ic_terminal": 11841314.762018742
+  "nci_other_bv": 37212,
+  "equity": 5761253.374259767,
+  "fv_usd": 0.7787057290991483,
+  "fv_aed": 2.8597967901166217,
+  "ic_terminal": 11793434.796261435
  },
  "dcf_bull": {
-  "wacc": 0.06530282302689548,
-  "wacc_term": 0.06498257564824181,
+  "wacc": 0.06665808727942743,
+  "wacc_term": 0.06634722760801505,
   "g": 0.02,
   "glide": [
-   0.06523877355116475,
-   0.06517472407543401,
-   0.06511067459970328,
-   0.06504662512397254,
-   0.06498257564824181
+   0.06659591534514496,
+   0.06653374341086248,
+   0.06647157147658,
+   0.06640939954229752,
+   0.06634722760801505
   ],
   "df": [
-   0.9537065724318627,
-   0.8953522374084448,
-   0.8406189692399261,
-   0.7892790319316556,
-   0.7411191976086849
+   0.9682779497146289,
+   0.9078737130416489,
+   0.8512873079070032,
+   0.7982743853086585,
+   0.7486064244751813
   ],
   "fcff": [
-   154036.80434931954,
-   1139118.4309894564,
-   1313512.0898275094,
-   1731303.6308810029,
-   1574548.626426778
+   -313523.4983180431,
+   1139701.7438962716,
+   1314103.89613038,
+   1731889.6942155317,
+   1575115.193254064
   ],
   "pv": [
-   146905.912704347,
-   1019912.2358596069,
-   1104163.179034982,
-   1366481.6537615184,
-   1166928.2146132707
+   -303577.89013875264,
+   1034705.2539911504,
+   1118679.9680469355,
+   1382523.181072304,
+   1179141.3529584592
   ],
-  "pv_explicit": 4804391.195973725,
-  "roic_terminal": 0.12354797128381165,
-  "reinvest": 0.1618804403842168,
-  "nopat_t1": 1419028.6877344213,
-  "tv": 26439475.323655054,
-  "pv_tv": 19594802.73706186,
-  "tv_share": 0.8030922165232368,
+  "pv_explicit": 4411471.865930096,
+  "roic_terminal": 0.12299996297221906,
+  "reinvest": 0.16260167496568456,
+  "nopat_t1": 1406979.78842383,
+  "tv": 25421208.106512472,
+  "pv_tv": 19030479.706455797,
+  "tv_share": 0.8118129434612982,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 24399193.933035582,
-  "jv": 493120,
-  "ev": 24892313.933035582,
-  "net_debt": 3999948,
-  "deferred": 301462,
+  "ev_ops": 23441951.572385892,
+  "jv": 522768,
+  "ev": 23964719.572385892,
+  "net_debt": 3840234,
+  "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 388110.9700892082,
-  "nci_book": 272134,
+  "nci": 479860.0036360228,
+  "nci_book": 289197,
   "nci_navig8": 251985,
-  "nci_other_bv": 20149,
-  "equity": 20504254.962946374,
-  "fv_usd": 2.77140749995351,
-  "fv_aed": 10.177994043579265,
-  "ic_terminal": 11260440.631778697
+  "nci_other_bv": 37212,
+  "equity": 19644625.56874987,
+  "fv_usd": 2.655217794228433,
+  "fv_aed": 9.75128734930392,
+  "ic_terminal": 11214572.070616629
  },
  "dcf_hybrid_pv": {
-  "wacc": 0.08548360695382588,
-  "wacc_term": 0.0851633595751722,
+  "wacc": 0.08725769375914355,
+  "wacc_term": 0.08694683408773118,
   "g": 0.02,
   "glide": [
-   0.08541955747809514,
-   0.08535550800236441,
-   0.08529145852663367,
-   0.08522740905090294,
-   0.0851633595751722
+   0.08719552182486108,
+   0.08713334989057861,
+   0.08707117795629613,
+   0.08700900602201365,
+   0.08694683408773118
   ],
   "df": [
-   0.9403765010523882,
-   0.8664225630394458,
-   0.7983316889047304,
-   0.7356353905610621,
-   0.6779029019640453
+   0.9590608712678924,
+   0.8821924848174542,
+   0.8115314826725369,
+   0.7465729153821768,
+   0.6868532038264518
   ],
   "fcff": [
-   85375.4072683847,
-   1060025.5436494418,
-   1205566.3604397888,
-   1621508.8078817714,
-   1438718.642424808
+   -382183.2661376407,
+   1060613.4051002793,
+   1206165.1434280158,
+   1622103.3395603646,
+   1439294.2721348575
   ],
   "pv": [
-   80285.02676296624,
-   918430.0484160313,
-   962441.8286166255,
-   1192839.265184309,
-   975311.5428095489
+   -366537.0162059745,
+   935665.1752761165,
+   978840.9871940708,
+   1211018.4192667466,
+   988583.8820648878
   ],
-  "pv_explicit": 4129307.7117894813,
-  "roic_terminal": 0.11059451594773305,
-  "reinvest": 0.18084079331250022,
-  "nopat_t1": 1290526.103739388,
-  "tv": 16223017.754772868,
-  "pv_tv": 10997630.81457476,
-  "tv_share": 0.7270229065456538,
+  "pv_explicit": 3747571.4475958473,
+  "roic_terminal": 0.10999289623667695,
+  "reinvest": 0.18182992433406833,
+  "nopat_t1": 1278284.4685384824,
+  "tv": 15622159.20436454,
+  "pv_tv": 10730130.100204676,
+  "tv_share": 0.7411487289455013,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 15126938.52636424,
-  "jv": 493120,
-  "ev": 15620058.52636424,
-  "net_debt": 3999948,
-  "deferred": 301462,
+  "ev_ops": 14477701.547800524,
+  "jv": 522768,
+  "ev": 15000469.547800524,
+  "net_debt": 3840234,
+  "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 327696.80894567654,
-  "nci_book": 272134,
+  "nci": 378355.371400873,
+  "nci_book": 289197,
   "nci_navig8": 251985,
-  "nci_other_bv": 20149,
-  "equity": 12132604.97708944,
-  "fv_usd": 1.6398738938938398,
-  "fv_aed": 6.022436875325126,
-  "ic_terminal": 11440184.528956905
+  "nci_other_bv": 37212,
+  "equity": 11645423.141518692,
+  "fv_usd": 1.5740251519921307,
+  "fv_aed": 5.7806073706911,
+  "ic_terminal": 11393645.499596423
  },
  "lenses": {
   "dcf": {
-   "bear": 3.039484459774819,
-   "base": 5.605378969448954,
-   "bull": 10.177994043579265,
-   "tv_share": 0.7270229065456538
+   "bear": 2.8597967901166217,
+   "base": 5.351958040528197,
+   "bull": 9.75128734930392,
+   "tv_share": 0.7411487289455013
   },
   "dcf_beta_alt": {
-   "bear": 3.039484459774819,
-   "base": 8.018135758598335,
-   "bull": 10.177994043579265,
-   "tv_share": 0.7834337067040833
+   "bear": 2.8597967901166217,
+   "base": 7.6566459830637355,
+   "bull": 9.75128734930392,
+   "tv_share": 0.7944624935611762
   },
   "relative": {
-   "bear": 6.920189426696049,
-   "base": 8.640060670705397,
-   "bull": 10.75717613643172
+   "bear": 6.979027844196224,
+   "base": 8.580798609863454,
+   "bull": 10.797446542308235
   },
   "normalized": {
-   "bear": 7.805373089210587,
-   "base": 8.924305976495708,
-   "bull": 12.02943307692741
+   "bear": 7.859927910811682,
+   "base": 8.797792250126715,
+   "bull": 12.063546755286609
   },
   "book": {
-   "bear": 2.4069164968963834,
-   "base": 3.661976429240195,
-   "bull": 5.412678623096806
+   "bear": 2.374942182452551,
+   "base": 3.5938958170060644,
+   "bull": 5.294196738984585
   },
   "central": {
-   "bear": 3.039484459774819,
-   "base": 5.605378969448954,
-   "bull": 10.177994043579265
+   "bear": 2.8597967901166217,
+   "base": 5.351958040528197,
+   "bull": 9.75128734930392
   },
   "central_beta_alt": {
-   "bear": 3.039484459774819,
-   "base": 8.018135758598335,
-   "bull": 10.177994043579265
+   "bear": 2.8597967901166217,
+   "base": 7.6566459830637355,
+   "bull": 9.75128734930392
   }
  },
  "lens_weights": {
@@ -5938,25 +6700,25 @@
   "normalized": 0.2,
   "book": 0.15
  },
- "retired_blend": 6.736324415141102,
- "central": 5.605378969448954,
- "central_beta_alt": 8.018135758598335,
+ "retired_blend": 6.584625691253395,
+ "central": 5.351958040528197,
+ "central_beta_alt": 7.6566459830637355,
  "spot": 6.16,
  "beta_framing": {
   "primary": {
    "beta": 1.1032,
    "label": "the published index of its own exchange",
    "ke": 0.09432584,
-   "wacc": 0.08548360695382588,
-   "fv": 5.605378969448954,
-   "central": 5.605378969448954
+   "wacc": 0.08725769375914355,
+   "fv": 5.351958040528197,
+   "central": 5.351958040528197
   },
   "alternative": {
    "beta": 0.69,
    "label": "an equal-weight composite of the same exchange's names",
    "ke": 0.07420299999999999,
-   "fv": 8.018135758598335,
-   "central": 8.018135758598335
+   "fv": 7.6566459830637355,
+   "central": 7.6566459830637355
   },
   "ci90": [
    0.5855,
@@ -6013,102 +6775,102 @@
    }
   ],
   "ebitda_26": 2085941.8878816736,
-  "npa_26": 1218107.2054987142,
+  "npa_26": 1165311.6879142101,
   "ev": 23161672.94047174,
-  "value_ev_ebitda": 9.567710256413662,
-  "npa_ord_26": 1121154.8744987142,
-  "value_pe": 6.475544970719444,
-  "bear": 6.920189426696049,
-  "bull": 10.75717613643172,
-  "own_ev_ebitda_ttm": 9.527838424948127,
-  "own_ev_bridge": 16681817.163033357,
-  "own_ev_ebitda_26_bridge": 7.997258821037513,
-  "own_ev_ebitda_26": 6.918248416636604,
+  "value_ev_ebitda": 9.61373674589351,
+  "npa_ord_26": 1068359.3569142101,
+  "value_pe": 6.170609625793324,
+  "bear": 6.979027844196224,
+  "bull": 10.797446542308235,
+  "own_ev_ebitda_ttm": 9.422390263328818,
+  "own_ev_bridge": 16539166.163033357,
+  "own_ev_ebitda_26_bridge": 7.928871968638251,
+  "own_ev_ebitda_26": 6.8416815664631345,
   "own_pe_ttm": 15.96707080090961,
   "own_pb": 1.7596169033787148,
   "own_dy": 0.02747842685763232,
-  "base": 8.640060670705397,
+  "base": 8.580798609863454,
   "weight_ev_ebitda": 0.7
  },
  "norm": {
   "norm_ebitda": 2296370.6501632542,
-  "norm_npa": 1234229.194097666,
+  "norm_npa": 1183417.383913947,
   "pe": 11.6357,
   "ev": 25498210.788217727,
-  "base": 8.924305976495708,
-  "eps": 0.16682157197933756,
-  "value_pe": 7.128637472256219,
-  "bear": 7.805373089210587,
-  "bull": 12.02943307692741
+  "base": 8.797792250126715,
+  "eps": 0.15995371786399168,
+  "value_pe": 6.83515958675405,
+  "bear": 7.859927910811682,
+  "bull": 12.063546755286609
  },
  "book": {
-  "roe_sustainable": 0.1884517366690937,
+  "roe_sustainable": 0.18409483219468983,
   "ke": 0.09432584,
   "g": 0.02,
-  "pb_fair": 1.4539694147524966,
+  "pb_fair": 1.426938348376521,
   "method": "residual income",
   "fade": 0.1,
   "roe_path": [
-   0.19151759173756222,
-   0.20447860474438087,
-   0.17499239837195044,
-   0.13933093794793094,
-   0.11042600960733803
+   0.18415983890139517,
+   0.19861042530544237,
+   0.1714242456120977,
+   0.13724002715761494,
+   0.11016574171005249
   ],
   "detail": [
    {
     "year": "FY2026",
     "opening_book": 5073.902,
-    "roe": 0.19151759173756222,
-    "residual_income": 493.14142352472044,
+    "roe": 0.18415983890139517,
+    "residual_income": 455.8089066937868,
     "discount_factor": 0.9138046123447108,
-    "pv": 450.634907355126
+    "pv": 416.5202812845823
    },
    {
     "year": "FY2027",
-    "opening_book": 5854.056874498714,
-    "roe": 0.20447860474438087,
-    "residual_income": 644.8405496968825,
+    "opening_book": 5801.26135691421,
+    "roe": 0.19861042530544237,
+    "residual_income": 604.9821348542864,
     "discount_factor": 0.8350388695424672,
-    "pv": 538.4669236540279
+    "pv": 505.1835979821118
    },
    {
     "year": "FY2028",
-    "opening_book": 6908.685180909209,
-    "roe": 0.17499239837195044,
-    "residual_income": 557.2998564192417,
+    "opening_book": 6792.2163312254725,
+    "roe": 0.1714242456120977,
+    "residual_income": 523.6690497099357,
     "discount_factor": 0.7630623704750198,
-    "pv": 425.25454950465473
+    "pv": 399.5921464160645
    },
    {
     "year": "FY2029",
-    "opening_book": 7918.390894844696,
-    "roe": 0.13933093794793094,
-    "residual_income": 356.36795781249015,
+    "opening_book": 7743.726264311692,
+    "roe": 0.13724002715761494,
+    "residual_income": 332.31571820401035,
     "discount_factor": 0.6972899136467615,
-    "pv": 248.491782529544
+    "pv": 231.7203984499359
    },
    {
     "year": "FY2030",
-    "opening_book": 8741.6187029034,
-    "roe": 0.11042600960733803,
-    "residual_income": 140.7415437594231,
+    "opening_book": 8517.984573508087,
+    "roe": 0.11016574171005249,
+    "residual_income": 134.9240384121115,
     "discount_factor": 0.6371867392318558,
-    "pv": 89.67864534252435
+    "pv": 85.97180807980699
    }
   ],
-  "pv_terminal": 550.8695130656458,
+  "pv_terminal": 527.2551074918255,
   "vessel_sale_price": 111000,
   "vessel_sale_book": 83000,
   "vessel_value_to_book": 1.3373493975903614,
   "bvps_usd": 0.6858015608097221,
   "bvps_aed": 2.5186062320737044,
-  "equity_value": 7377.2983214515225,
-  "base": 3.661976429240195,
+  "equity_value": 7240.145339704327,
+  "base": 3.5938958170060644,
   "ke_bear": 0.1195427,
   "ke_bull": 0.06911385,
-  "bear": 2.4069164968963834,
-  "bull": 5.412678623096806
+  "bear": 2.374942182452551,
+  "bull": 5.294196738984585
  },
  "peers": [
   {
@@ -6176,13 +6938,13 @@
    }
   ],
   "ev_ops": 23997547.19822884,
-  "jv": 493120,
-  "ev": 24490667.19822884,
-  "net_debt": 2021329,
+  "jv": 522768,
+  "ev": 24520315.19822884,
+  "net_debt": 1861615,
   "hybrid": 1978619,
-  "nci": 272134,
-  "equity": 20218585.19822884,
-  "fv_aed": 10.03619200449128,
+  "nci": 289197,
+  "equity": 20390884.19822884,
+  "fv_aed": 10.121718554901609,
   "contracted_multiple": 12.26,
   "spot_multiple": 8.530000000000001,
   "spot_weight": 0.31
@@ -6191,37 +6953,37 @@
   "e1": {
    "method_short": "mid-cycle earnings power",
    "ebitda": 2296370.6501632542,
-   "dna": 680667.7168379675,
-   "ebit": 1615702.9333252867,
-   "tax": 57716.183011405716,
-   "interest": 128020.85268782606,
+   "dna": 693310.4277657963,
+   "ebit": 1603060.2223974578,
+   "tax": 57143.168079710544,
+   "interest": 173209.31355124083,
    "fin_income": 25380.0925,
-   "pat": 1455345.990126055,
-   "ord_earnings": 1230323.211994962,
-   "eps_usd": 0.1662936294564963,
+   "pat": 1398087.8332665064,
+   "ord_earnings": 1178103.7729390538,
+   "eps_usd": 0.1592355166255528,
    "pe": 12.0,
-   "base": 7.328560250147793,
+   "base": 7.0175092176881115,
    "rng": [
-    5.496420187610844,
-    9.16070031268474
+    5.263131913266084,
+    8.77188652211014
    ],
    "falsifier": "Two consecutive years in which group earnings before interest, tax, depreciation and amortisation fall below USD 1.4 billion would show the mid-cycle level used here is set too high."
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "fcff": 1108238.952332839,
-   "interest_after_tax": 116498.97594592172,
+   "fcff": 1108817.5788171752,
+   "interest_after_tax": 157620.47533162916,
    "hybrid_coupon": 96952.331,
-   "fcfe": 917883.5295619172,
+   "fcfe": 877340.6566605461,
    "ke": 0.09432584,
    "g": 0.02,
-   "value": 12596442.90805399,
-   "base": 6.252678827889344,
+   "value": 12040058.609411709,
+   "base": 5.97649829425105,
    "ke_lo": 0.1195427,
    "ke_hi": 0.06911385,
    "rng": [
-    4.200913202800493,
-    10.586555511464752
+    4.015359061599026,
+    10.118947845850059
    ],
    "falsifier": "A year in which free cash flow to the firm falls below the ordinary distribution plus the perpetual coupon, without a matching fall in capital expenditure, would break the annuity this rests on."
   },
@@ -6229,32 +6991,32 @@
    "method_short": "cash returns against the cost of capital",
    "ic0": 7432478,
    "ep": [
-    609356.8128671804,
-    875059.7191100531,
-    763214.6117546995,
-    542758.7948835747,
-    287273.4325801416
+    581248.9093206852,
+    845197.4262684115,
+    732813.0074676799,
+    513241.6716242591,
+    259036.83739056182
    ],
    "spread": [
-    0.061184600970213734,
-    0.080922392752442,
-    0.06654741434868051,
-    0.047230015016165514,
-    0.025110908993907166
+    0.05841226594032767,
+    0.07829181322732948,
+    0.06405207468507076,
+    0.044807423987430206,
+    0.022735202477533398
    ],
-   "pv_ep": 2534510.7938771616,
-   "pv_ep_term": 3048313.7267679875,
-   "ev": 13015302.520645149,
-   "equity": 9236340.520645149,
-   "base": 4.584776134196474,
+   "pv_ep": 2458873.342260547,
+   "pv_ep_term": 2710788.1915128944,
+   "ev": 12602139.53377344,
+   "equity": 8995476.53377344,
+   "base": 4.465214988077135,
    "rng": [
-    3.3249715800163426,
-    5.5674579408290406
+    3.304199756413809,
+    5.369616241845866
    ],
    "falsifier": "A return on invested capital that settles below the cost of capital for two consecutive years would remove the premium to invested capital this method rests on entirely."
   }
  },
- "panel_centre": 6.05533840407787,
+ "panel_centre": 5.8197408333387655,
  "sens": {
   "betas": [
    0.69,
@@ -6271,53 +7033,53 @@
   ],
   "grid_beta_g": [
    [
-    7.347689414158981,
-    7.6538046285963945,
-    8.018135758598335,
-    8.460503842511894
+    7.046527665567469,
+    7.325959295814066,
+    7.6566459830637355,
+    8.05548301304577
    ],
    [
-    6.214376836811512,
-    6.404146285774652,
-    6.623608748974647,
-    6.881289793985491
+    5.956970312610694,
+    6.128503550338727,
+    6.325804810834956,
+    6.556050299904659
    ],
    [
-    5.351641415753465,
-    5.470831964800543,
-    5.605378969448954,
-    5.759111119380354
+    5.126792246613999,
+    5.232885636750486,
+    5.351958040528197,
+    5.487152236871757
    ],
    [
-    4.519378801751275,
-    4.584639620778216,
-    4.6561749319775725,
-    4.7353334306307735
+    4.3252920419788765,
+    4.381437927288581,
+    4.442495354149389,
+    4.50949088015338
    ],
    [
-    3.7977253536711144,
-    3.827039684051177,
-    3.857735918410984,
-    3.890072041379242
+    3.6297694060031542,
+    3.652704176771086,
+    3.6762428997524017,
+    3.7004953173716846
    ]
   ],
   "anchor": {
-   "0.8": 4.697022565963811,
-   "0.9": 5.151200767706382,
-   "1.0": 5.605378969448954,
-   "1.1": 6.059557171191526,
-   "1.2": 6.5137353729340965
+   "0.8": 4.457139260098143,
+   "0.9": 4.90454865031317,
+   "1.0": 5.351958040528197,
+   "1.1": 5.799367430743224,
+   "1.2": 6.246776820958248
   },
   "capex": {
-   "0.9": 5.985731492766608,
-   "1.0": 5.605378969448954,
-   "1.1": 5.225026446131299,
-   "1.2": 4.844673922813643
+   "0.9": 5.733607284924499,
+   "1.0": 5.351958040528197,
+   "1.1": 4.970308796131891,
+   "1.2": 4.5886595517355895
   },
   "tax": {
-   "0.05": 5.520761762977124,
-   "0.09": 5.114650357299365,
-   "0.15": 4.505483248782724
+   "0.05": 5.267765751698431,
+   "0.09": 4.868850919342003,
+   "0.15": 4.270478670807354
   },
   "market_cross_check": {
    "vlcc_1y_tc": 76900,
@@ -6933,19 +7695,19 @@
   }
  },
  "bridge": {
-  "ev": 15620058.52636424,
-  "ev_ops": 15126938.52636424,
-  "jv": 493120,
-  "net_debt_company": 419867,
-  "deferred": 301462,
-  "net_debt": 2021329,
+  "ev": 15000469.547800524,
+  "ev_ops": 14477701.547800524,
+  "jv": 522768,
+  "net_debt_company": 257318,
+  "deferred": 304297,
+  "net_debt": 1861615,
   "hybrid": 1978619,
-  "hybrid_pv_coupon": 1138427.7403291247,
-  "nci": 272134,
-  "equity": 11292413.717418564,
-  "tv_share": 0.7270229065456538,
-  "pv_explicit": 4129307.7117894813,
-  "pv_tv": 10997630.81457476
+  "hybrid_pv_coupon": 1115076.0348809604,
+  "nci": 289197,
+  "equity": 10781880.176399652,
+  "tv_share": 0.7411487289455013,
+  "pv_explicit": 3747571.4475958473,
+  "pv_tv": 10730130.100204676
  },
  "macro_record": {
   "market": "AE",
@@ -7029,9 +7791,9 @@
    "choice": "how the market is measured for the beta regression",
    "adopted": "the published index of the exchange this company is listed on",
    "alternative": "an equal-weight composite of the same exchange's names",
-   "fv_adopted": 5.605378969448954,
-   "fv_alternative": 8.018135758598335,
-   "effect": 0.4304359798507203,
+   "fv_adopted": 5.351958040528197,
+   "fv_alternative": 7.6566459830637355,
+   "effect": 0.43062518896506224,
    "direction": "the adopted side is LOWER",
    "note": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
   },
@@ -7039,9 +7801,9 @@
    "choice": "the charter-rate path through the forecast",
    "adopted": "reversion toward the mid-cycle rate",
    "alternative": "today's strength sustained, the company's own guidance path",
-   "fv_adopted": 5.605378969448954,
-   "fv_alternative": 6.967913574676671,
-   "effect": 0.24307626882213518,
+   "fv_adopted": 5.351958040528197,
+   "fv_alternative": 6.694186211173279,
+   "effect": 0.25079198313606643,
    "direction": "the adopted side is LOWER",
    "note": "an independent one-year time charter fixed in early 2026 priced a very large crude carrier well below the spot rate of the moment, and a crude tanker order book near a quarter of the trading fleet is the supply reason why. A forward market that will not pay spot for a year of time is saying it does not expect spot to hold. GUIDANCE IS SCORED AND NEVER CONSUMED, so the sustained path is published as the alternative rather than adopted."
   },
@@ -7049,9 +7811,9 @@
    "choice": "how the perpetual capital securities are deducted",
    "adopted": "at carrying value",
    "alternative": "at the present value of their perpetual coupon",
-   "fv_adopted": 5.605378969448954,
-   "fv_alternative": 6.022436875325126,
-   "effect": 0.07440315956320999,
+   "fv_adopted": 5.351958040528197,
+   "fv_alternative": 5.7806073706911,
+   "effect": 0.08009205732124891,
    "direction": "the adopted side is LOWER",
    "note": "the securities rank ahead of the ordinary shares whichever way they are classified, so they are deducted in both framings and only the AMOUNT is contested. Carrying value is what the balance sheet states; the present value of the coupon is what the claim is worth at the terminal cost of capital. Both are published and the deduction is weighted in the cost of capital in both."
   },
@@ -7059,9 +7821,9 @@
    "choice": "the tax relief on shipping earnings",
    "adopted": "the reliefs as currently legislated and disclosed",
    "alternative": "the whole group taxed at the 9 per cent statutory rate",
-   "fv_adopted": 5.605378969448954,
-   "fv_alternative": 5.114650357299365,
-   "effect": 0.08754601871242089,
+   "fv_adopted": 5.351958040528197,
+   "fv_alternative": 4.868850919342003,
+   "effect": 0.09026735963320726,
    "direction": "the adopted side is HIGHER",
    "note": "most of the shipping income is relieved under the regime as it stands. The alternative is the downside case for a global minimum tax reaching those earnings, and it is a scenario about the law rather than about the business \u2014 which is why the sensitivity centred on it does NOT reproduce the base case and says so in its own docstring."
   },
@@ -7069,9 +7831,9 @@
    "choice": "the day-rate anchor the reversion path converges to",
    "adopted": "the mid-cycle average as computed",
    "alternative": "that anchor 10 per cent lower",
-   "fv_adopted": 5.605378969448954,
-   "fv_alternative": 5.151200767706382,
-   "effect": 0.08102542294071162,
+   "fv_adopted": 5.351958040528197,
+   "fv_alternative": 4.90454865031317,
+   "effect": 0.08359732771202202,
    "direction": "the adopted side is HIGHER",
    "note": "the anchor is the single quantity the whole reversion path hangs on, and a ten per cent move in it is well inside the span the disclosed quarterly rates have printed."
   }
@@ -7110,15 +7872,15 @@
   "lines": [
    {
     "label": "Enterprise value of the operations",
-    "value": 15126938.52636424
+    "value": 14477701.547800524
    },
    {
     "label": "plus joint ventures and associates at carrying value",
-    "value": 493120.0
+    "value": 522768.0
    },
    {
     "label": "less net debt, including the committed acquisition and the deferred purchase consideration",
-    "value": -2021329.0
+    "value": -1861615.0
    },
    {
     "label": "less perpetual capital securities at carrying value",
@@ -7126,12 +7888,12 @@
    },
    {
     "label": "less non-controlling interests",
-    "value": -327696.8089456763
+    "value": -378355.37140087225
    }
   ],
-  "equity_value": 11292413.717418564,
+  "equity_value": 10781880.176399652,
   "shares_mn": 7398498.7639999995,
-  "per_share": 1.5263114961059099,
+  "per_share": 1.457306478019931,
   "units": {
    "currency": "USD",
    "scale": "thousands",
@@ -7149,11 +7911,11 @@
   "cash_note": "THE CASH IS NOT ADDED AT FACE ANYWHERE. It sits inside the net-debt figure deducted once, and the operating rate is weighted on the gross capital structure \u2014 equity, drawn debt AND the perpetual securities \u2014 so no tranche is deducted from value without also being allowed to price it. The company is net DEBT rather than net cash, so the negative-debt-weight trap does not arise here; the construction is stated anyway because a reader cannot tell from the number which way it was done.",
   "nci": {
    "basis": "value_share",
-   "value": 327696.8089456763,
-   "deduction": 327696.8089456763,
-   "book": 272134.0,
-   "profit_share": 272134.0,
-   "proportional": 272134.0,
+   "value": 378355.37140087225,
+   "deduction": 378355.37140087225,
+   "book": 289197.0,
+   "profit_share": 289197.0,
+   "proportional": 289197.0,
    "proxy": "the contracted slice at its CONTRACTED PRICE and the rest at its share of value, whichever is higher. The Navig8 minority is subject to a disclosed purchase arrangement at a stated price, so its claim is that price and not a share of anything; the remaining minorities have no such arrangement and are worth their share of the value the model capitalises, floored at book.",
    "proxy_source": "the Navig8 acquisition disclosure and the non-controlling interests line of the 31 March 2026 statement of financial position",
    "framings_note": "book, profit share and proportional are the same figure here because the disclosure gives one carrying amount; the adopted deduction differs from all three, and differs UPWARD, because the model capitalises 100 per cent of subsidiary cash flow and a minority's claim on that is worth its share of the VALUE rather than its historical cost.",
@@ -7171,7 +7933,7 @@
   "hybrid": {
    "treatment": "deducted_at_carrying_value_and_weighted_in_the_cost_of_capital",
    "carrying_value": 1978619.0,
-   "pv_of_coupon": 1138427.7403291247,
+   "pv_of_coupon": 1115076.0348809604,
    "note": "THE TWO HALVES OF ONE TREATMENT. The perpetual capital securities rank ahead of the ordinary shares, so they are deducted here; a claim deducted from enterprise value must also be WEIGHTED in the cost of capital at its own cost, or the model subtracts a cheap tranche of capital without letting it price the value. The present value of the perpetual coupon is published beside the carrying value as the alternative deduction, because which of the two a reader prefers is a judgement and the study does not hide it inside one number."
   }
  },
@@ -7179,10 +7941,10 @@
   "class": "marine logistics and shipping, chartered fleet on global day rates",
   "primary": {
    "kind": "dcf",
-   "value": 5.605378969448954,
+   "value": 5.351958040528197,
    "range": {
-    "low": 3.039484459774819,
-    "high": 10.177994043579265
+    "low": 2.8597967901166217,
+    "high": 9.75128734930392
    },
    "range_note": "the cash-flow lens at the beta regression's OWN 90 per cent confidence bounds, with the rate anchor and capital expenditure moving with them",
    "range_basis": {
@@ -7198,12 +7960,12 @@
   "cross_checks": [
    {
     "kind": "sotp",
-    "value": 10.03619200449128,
+    "value": 10.121718554901609,
     "note": "the three legs summed on their own multiples \u2014 a contracted-fleet multiple where the leg earns under long-term contracts and a blend of contracted and spot where it does not, weighted by the company's own disclosed share of earnings exposed to spot rates. It is a cross-check rather than the answer because the legs share one balance sheet, one crew pool and one management."
    },
    {
     "kind": "relative_multiple",
-    "value": 8.640060670705397,
+    "value": 8.580798609863454,
     "present_value": false,
     "multiple": 11.1037,
     "construction": {
@@ -7217,7 +7979,7 @@
       {
        "name": "ev_ebitda",
        "weight": 0.7,
-       "value": 9.567710256413662,
+       "value": 9.61373674589351,
        "multiple": 11.1037,
        "metric": 2085941.8878816736,
        "metric_name": "FY2026 forecast EBITDA, USD thousands",
@@ -7226,9 +7988,9 @@
       {
        "name": "earnings",
        "weight": 0.30000000000000004,
-       "value": 6.475544970719444,
+       "value": 6.170609625793324,
        "multiple": 11.6357,
-       "metric": 1121154.8744987142,
+       "metric": 1068359.3569142101,
        "metric_name": "FY2026 forecast profit after the perpetual coupon, attributable to ordinary shares, USD thousands",
        "basis": "the earnings multiple applied to profit AFTER the hybrid coupon, because the coupon is not available to ordinary shareholders and applying a multiple before it values earnings the ordinary share does not receive"
       }
@@ -7237,7 +7999,7 @@
     "circularity": {
      "spot": 1.6773315180394828,
      "shares": 7398498.7639999995,
-     "net_debt": 2021329.0,
+     "net_debt": 1861615.0,
      "metric_value": 2085941.8878816736,
      "basis": "USD thousands; spot is the AED close converted at the peg, shares are thousands"
     },
@@ -7245,15 +8007,15 @@
    },
    {
     "kind": "book_value",
-    "value": 3.661976429240195,
+    "value": 3.5938958170060644,
     "note": "the DISCLOSED floor. Published as a floor and NEVER weighted into a central \u2014 which the retired blend did, at 15 per cent."
    }
   ],
   "envelope": {
-   "low": 3.039484459774819,
-   "high": 10.177994043579265
+   "low": 2.8597967901166217,
+   "high": 9.75128734930392
   },
-  "central": 5.605378969448954,
+  "central": 5.351958040528197,
   "retired": {
    "blend": {
     "dcf": 0.4,
@@ -7261,11 +8023,11 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "blend_value": 6.736324415141102,
-   "why": "40/25/20/15 across four reads, and two of the four weights are forbidden outright rather than merely unevidenced. BOOK VALUE carried 15 per cent and book value is a disclosed floor that is never weighted into an answer; NORMALISED EARNINGS carried 20 and the registry does not permit it for this class. The weights had cleared no out-of-sample test. Retiring the blend moves the published answer from AED 6.74 to AED 5.61, which is a LARGE move and is the point: the blend was averaging a cash-flow reading well below the market with three accounting readings well above it, and publishing the average told a reader neither thing.",
+   "blend_value": 6.584625691253395,
+   "why": "40/25/20/15 across four reads, and two of the four weights are forbidden outright rather than merely unevidenced. BOOK VALUE carried 15 per cent and book value is a disclosed floor that is never weighted into an answer; NORMALISED EARNINGS carried 20 and the registry does not permit it for this class. The weights had cleared no out-of-sample test. Retiring the blend moves the published answer from AED 6.58 to AED 5.35, which is a LARGE move and is the point: the blend was averaging a cash-flow reading well below the market with three accounting readings well above it, and publishing the average told a reader neither thing.",
    "normalised_earnings": {
-    "value": 8.924305976495708,
-    "why": "dropped as a lens for this class. Day rates are cyclical enough that a normalised year is a judgement about where the cycle sits rather than a reading of the business, and the cash-flow lens already carries that judgement explicitly in its rate path. It read AED 8.92 and carried 20 per cent of the retired blend."
+    "value": 8.797792250126715,
+    "why": "dropped as a lens for this class. Day rates are cyclical enough that a normalised year is a judgement about where the cycle sits rather than a reading of the business, and the cash-flow lens already carries that judgement explicitly in its rate path. It read AED 8.80 and carried 20 per cent of the retired blend."
    }
   }
  },
@@ -7306,15 +8068,15 @@
   "erp_basis": "rating",
   "beta": 1.1032,
   "ke_exp": 0.09432584,
-  "kd_pretax": 0.05694450904059059,
-  "kd_aftertax": 0.05181950322693744,
-  "weight_equity": 0.8004439128736124,
-  "weight_debt": 0.0719326113922813,
-  "wacc_exp": 0.08548360695382588,
+  "kd_pretax": 0.07938149977021888,
+  "kd_aftertax": 0.07223716479089919,
+  "weight_equity": 0.81705595154195,
+  "weight_debt": 0.05267193478718745,
+  "wacc_exp": 0.08725769375914355,
   "other_tranches": [
    {
     "name": "perpetual_capital_securities",
-    "weight": 0.12762347573410635,
+    "weight": 0.13027211367086255,
     "rate": 0.049,
     "basis": "placed with a third-party investor at SOFR + 1.25%, disclosed in the perpetual capital securities note; carried at its coupon because it pays a coupon rather than a taxed interest charge"
    }
@@ -7324,14 +8086,14 @@
   "erp_terminal": 0.0487,
   "ke_terminal": 0.09347684,
   "ke_terminal_construction": "same_beta",
-  "kd_terminal_pretax": 0.056095509040590595,
-  "kd_terminal_aftertax": 0.05104691322693744,
-  "weight_debt_terminal": 0.0719326113922813,
-  "wacc_terminal": 0.0851633595751722,
+  "kd_terminal_pretax": 0.0785324997702189,
+  "kd_terminal_aftertax": 0.0714645747908992,
+  "weight_debt_terminal": 0.05267193478718745,
+  "wacc_terminal": 0.08694683408773118,
   "other_tranches_terminal": [
    {
     "name": "perpetual_capital_securities",
-    "weight": 0.12762347573410635,
+    "weight": 0.13027211367086255,
     "rate": 0.052251000000000006,
     "basis": "the same tranche repriced off the terminal risk-free rate at the same disclosed margin"
    }
@@ -7344,38 +8106,38 @@
    1.0
   ],
   "forward_wacc": [
-   0.08541955747809514,
-   0.08535550800236441,
-   0.08529145852663367,
-   0.08522740905090294,
-   0.0851633595751722
+   0.08719552182486108,
+   0.08713334989057861,
+   0.08707117795629613,
+   0.08700900602201365,
+   0.08694683408773118
   ],
   "discount_factors": [
-   0.9403765010523882,
-   0.8664225630394458,
-   0.7983316889047304,
-   0.7356353905610621,
-   0.6779029019640453
+   0.9590608712678924,
+   0.8821924848174542,
+   0.8115314826725369,
+   0.7465729153821768,
+   0.6868532038264518
   ],
-  "terminal_discount_factor": 0.6779029019640453,
+  "terminal_discount_factor": 0.6868532038264518,
   "discounting_convention": {
    "kind": "stub_then_annual",
    "cumulative_years": [
-    0.75,
-    1.75,
-    2.75,
-    3.75,
-    4.75
+    0.5,
+    1.5,
+    2.5,
+    3.5,
+    4.5
    ],
    "rate_edges": [
     0.0,
-    0.75,
-    1.75,
-    2.75,
-    3.75,
-    4.75
+    0.5,
+    1.5,
+    2.5,
+    3.5,
+    4.5
    ],
-   "note": "FY2026 is discounted over the 0.75 of the year still unearned at the 31 March 2026 valuation date and every later year over a whole year; the terminal is brought home on the SAME cumulative factor as the last explicit year, so a dollar arriving on that date has one price of time whether it is called a forecast cash flow or a terminal value."
+   "note": "FY2026 is discounted over the 0.50 of the year still unearned at the 31 March 2026 valuation date and every later year over a whole year; the terminal is brought home on the SAME cumulative factor as the last explicit year, so a dollar arriving on that date has one price of time whether it is called a forecast cash flow or a terminal value."
   },
   "kd_integrity": {
    "currency_composition": "the drawn book is entirely US-dollar denominated, which under the peg IS the local currency for this purpose: a shareholder facility, third-party bank borrowings and lease liabilities, no other-currency tranche disclosed",
@@ -7405,9 +8167,9 @@
      "note": "the implied borrowing rate computed independently from the audited FY2025 lease interest over the average lease liability"
     }
    ],
-   "adopted": 0.05694450904059059,
+   "adopted": 0.07938149977021888,
    "above_sovereign": true,
-   "retired_average": 0.05824816968019686,
+   "retired_average": 0.06572716659007295,
    "retired_note": "the average of the balance-weighted rate, the marginal drawdown rate and one range mid-point, which reproduces from no set of facility lines and is retired"
   },
   "sensitivity": {
@@ -8584,6 +9346,291 @@
    "check": "four fields complete: q1_26_nci",
    "passed": true,
    "detail": "q1_26_nci"
+  },
+  {
+   "check": "four fields complete: h1_26_rev",
+   "passed": true,
+   "detail": "h1_26_rev"
+  },
+  {
+   "check": "four fields complete: h1_25_rev",
+   "passed": true,
+   "detail": "h1_25_rev"
+  },
+  {
+   "check": "four fields complete: h1_26_dc",
+   "passed": true,
+   "detail": "h1_26_dc"
+  },
+  {
+   "check": "four fields complete: h1_25_dc",
+   "passed": true,
+   "detail": "h1_25_dc"
+  },
+  {
+   "check": "four fields complete: h1_26_gp",
+   "passed": true,
+   "detail": "h1_26_gp"
+  },
+  {
+   "check": "four fields complete: h1_25_gp",
+   "passed": true,
+   "detail": "h1_25_gp"
+  },
+  {
+   "check": "four fields complete: h1_26_ga",
+   "passed": true,
+   "detail": "h1_26_ga"
+  },
+  {
+   "check": "four fields complete: h1_26_ecl",
+   "passed": true,
+   "detail": "h1_26_ecl"
+  },
+  {
+   "check": "four fields complete: h1_26_oth_inc",
+   "passed": true,
+   "detail": "h1_26_oth_inc"
+  },
+  {
+   "check": "four fields complete: h1_26_oth_exp",
+   "passed": true,
+   "detail": "h1_26_oth_exp"
+  },
+  {
+   "check": "four fields complete: h1_26_op",
+   "passed": true,
+   "detail": "h1_26_op"
+  },
+  {
+   "check": "four fields complete: h1_25_op",
+   "passed": true,
+   "detail": "h1_25_op"
+  },
+  {
+   "check": "four fields complete: h1_26_jv",
+   "passed": true,
+   "detail": "h1_26_jv"
+  },
+  {
+   "check": "four fields complete: h1_26_fin_inc",
+   "passed": true,
+   "detail": "h1_26_fin_inc"
+  },
+  {
+   "check": "four fields complete: h1_26_fin_cost",
+   "passed": true,
+   "detail": "h1_26_fin_cost"
+  },
+  {
+   "check": "four fields complete: h1_26_pbt",
+   "passed": true,
+   "detail": "h1_26_pbt"
+  },
+  {
+   "check": "four fields complete: h1_26_tax",
+   "passed": true,
+   "detail": "h1_26_tax"
+  },
+  {
+   "check": "four fields complete: h1_26_dtax_cr",
+   "passed": true,
+   "detail": "h1_26_dtax_cr"
+  },
+  {
+   "check": "four fields complete: h1_26_pat",
+   "passed": true,
+   "detail": "h1_26_pat"
+  },
+  {
+   "check": "four fields complete: h1_25_pat",
+   "passed": true,
+   "detail": "h1_25_pat"
+  },
+  {
+   "check": "four fields complete: h1_26_npa",
+   "passed": true,
+   "detail": "h1_26_npa"
+  },
+  {
+   "check": "four fields complete: h1_25_npa",
+   "passed": true,
+   "detail": "h1_25_npa"
+  },
+  {
+   "check": "four fields complete: h1_26_nci_profit",
+   "passed": true,
+   "detail": "h1_26_nci_profit"
+  },
+  {
+   "check": "four fields complete: h1_26_dep_ppe",
+   "passed": true,
+   "detail": "h1_26_dep_ppe"
+  },
+  {
+   "check": "four fields complete: h1_26_dep_ip",
+   "passed": true,
+   "detail": "h1_26_dep_ip"
+  },
+  {
+   "check": "four fields complete: h1_26_dep_rou",
+   "passed": true,
+   "detail": "h1_26_dep_rou"
+  },
+  {
+   "check": "four fields complete: h1_26_amort",
+   "passed": true,
+   "detail": "h1_26_amort"
+  },
+  {
+   "check": "four fields complete: h1_26_impair",
+   "passed": true,
+   "detail": "h1_26_impair"
+  },
+  {
+   "check": "four fields complete: h1_26_capex",
+   "passed": true,
+   "detail": "h1_26_capex"
+  },
+  {
+   "check": "four fields complete: h1_26_ppe_additions",
+   "passed": true,
+   "detail": "h1_26_ppe_additions"
+  },
+  {
+   "check": "four fields complete: h1_26_ppe_cost",
+   "passed": true,
+   "detail": "h1_26_ppe_cost"
+  },
+  {
+   "check": "four fields complete: h1_26_ocf",
+   "passed": true,
+   "detail": "h1_26_ocf"
+  },
+  {
+   "check": "four fields complete: h1_26_wc",
+   "passed": true,
+   "detail": "h1_26_wc"
+  },
+  {
+   "check": "four fields complete: h1_26_cash",
+   "passed": true,
+   "detail": "h1_26_cash"
+  },
+  {
+   "check": "four fields complete: h1_26_ppe",
+   "passed": true,
+   "detail": "h1_26_ppe"
+  },
+  {
+   "check": "four fields complete: h1_26_rou",
+   "passed": true,
+   "detail": "h1_26_rou"
+  },
+  {
+   "check": "four fields complete: h1_26_intang",
+   "passed": true,
+   "detail": "h1_26_intang"
+  },
+  {
+   "check": "four fields complete: h1_26_ip",
+   "passed": true,
+   "detail": "h1_26_ip"
+  },
+  {
+   "check": "four fields complete: h1_26_jv_bv",
+   "passed": true,
+   "detail": "h1_26_jv_bv"
+  },
+  {
+   "check": "four fields complete: h1_26_gw",
+   "passed": true,
+   "detail": "h1_26_gw"
+  },
+  {
+   "check": "four fields complete: h1_26_ta",
+   "passed": true,
+   "detail": "h1_26_ta"
+  },
+  {
+   "check": "four fields complete: h1_26_tl",
+   "passed": true,
+   "detail": "h1_26_tl"
+  },
+  {
+   "check": "four fields complete: h1_26_teq",
+   "passed": true,
+   "detail": "h1_26_teq"
+  },
+  {
+   "check": "four fields complete: h1_26_eqp",
+   "passed": true,
+   "detail": "h1_26_eqp"
+  },
+  {
+   "check": "four fields complete: h1_26_hybrid",
+   "passed": true,
+   "detail": "h1_26_hybrid"
+  },
+  {
+   "check": "four fields complete: h1_26_nci",
+   "passed": true,
+   "detail": "h1_26_nci"
+  },
+  {
+   "check": "four fields complete: h1_26_inventories",
+   "passed": true,
+   "detail": "h1_26_inventories"
+  },
+  {
+   "check": "four fields complete: h1_26_receivables",
+   "passed": true,
+   "detail": "h1_26_receivables"
+  },
+  {
+   "check": "four fields complete: h1_26_due_from",
+   "passed": true,
+   "detail": "h1_26_due_from"
+  },
+  {
+   "check": "four fields complete: h1_26_payables",
+   "passed": true,
+   "detail": "h1_26_payables"
+  },
+  {
+   "check": "four fields complete: h1_26_due_to",
+   "passed": true,
+   "detail": "h1_26_due_to"
+  },
+  {
+   "check": "four fields complete: h1_26_shldr_loan",
+   "passed": true,
+   "detail": "h1_26_shldr_loan"
+  },
+  {
+   "check": "four fields complete: h1_26_borrowings",
+   "passed": true,
+   "detail": "h1_26_borrowings"
+  },
+  {
+   "check": "four fields complete: h1_26_leases",
+   "passed": true,
+   "detail": "h1_26_leases"
+  },
+  {
+   "check": "four fields complete: h1_26_pcp",
+   "passed": true,
+   "detail": "h1_26_pcp"
+  },
+  {
+   "check": "four fields complete: h1_26_netdebt",
+   "passed": true,
+   "detail": "h1_26_netdebt"
+  },
+  {
+   "check": "four fields complete: h1_26_fcf",
+   "passed": true,
+   "detail": "h1_26_fcf"
   },
   {
    "check": "four fields complete: q1_26_shldr_loan",
@@ -9906,6 +10953,366 @@
    "detail": "q1_26_netdebt"
   },
   {
+   "check": "four fields complete: h1_26_rev_offshore_contracting",
+   "passed": true,
+   "detail": "h1_26_rev_offshore_contracting"
+  },
+  {
+   "check": "four fields complete: h1_25_rev_offshore_contracting",
+   "passed": true,
+   "detail": "h1_25_rev_offshore_contracting"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_offshore_contracting",
+   "passed": true,
+   "detail": "h1_26_ebitda_offshore_contracting"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_offshore_contracting",
+   "passed": true,
+   "detail": "h1_25_ebitda_offshore_contracting"
+  },
+  {
+   "check": "four fields complete: h1_26_dc_offshore_contracting",
+   "passed": true,
+   "detail": "h1_26_dc_offshore_contracting"
+  },
+  {
+   "check": "four fields complete: h1_25_dc_offshore_contracting",
+   "passed": true,
+   "detail": "h1_25_dc_offshore_contracting"
+  },
+  {
+   "check": "four fields complete: h1_26_da_offshore_contracting",
+   "passed": true,
+   "detail": "h1_26_da_offshore_contracting"
+  },
+  {
+   "check": "four fields complete: h1_26_rev_offshore_services",
+   "passed": true,
+   "detail": "h1_26_rev_offshore_services"
+  },
+  {
+   "check": "four fields complete: h1_25_rev_offshore_services",
+   "passed": true,
+   "detail": "h1_25_rev_offshore_services"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_offshore_services",
+   "passed": true,
+   "detail": "h1_26_ebitda_offshore_services"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_offshore_services",
+   "passed": true,
+   "detail": "h1_25_ebitda_offshore_services"
+  },
+  {
+   "check": "four fields complete: h1_26_dc_offshore_services",
+   "passed": true,
+   "detail": "h1_26_dc_offshore_services"
+  },
+  {
+   "check": "four fields complete: h1_25_dc_offshore_services",
+   "passed": true,
+   "detail": "h1_25_dc_offshore_services"
+  },
+  {
+   "check": "four fields complete: h1_26_da_offshore_services",
+   "passed": true,
+   "detail": "h1_26_da_offshore_services"
+  },
+  {
+   "check": "four fields complete: h1_26_rev_offshore_projects",
+   "passed": true,
+   "detail": "h1_26_rev_offshore_projects"
+  },
+  {
+   "check": "four fields complete: h1_25_rev_offshore_projects",
+   "passed": true,
+   "detail": "h1_25_rev_offshore_projects"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_offshore_projects",
+   "passed": true,
+   "detail": "h1_26_ebitda_offshore_projects"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_offshore_projects",
+   "passed": true,
+   "detail": "h1_25_ebitda_offshore_projects"
+  },
+  {
+   "check": "four fields complete: h1_26_dc_offshore_projects",
+   "passed": true,
+   "detail": "h1_26_dc_offshore_projects"
+  },
+  {
+   "check": "four fields complete: h1_25_dc_offshore_projects",
+   "passed": true,
+   "detail": "h1_25_dc_offshore_projects"
+  },
+  {
+   "check": "four fields complete: h1_26_da_offshore_projects",
+   "passed": true,
+   "detail": "h1_26_da_offshore_projects"
+  },
+  {
+   "check": "four fields complete: h1_26_rev_tankers",
+   "passed": true,
+   "detail": "h1_26_rev_tankers"
+  },
+  {
+   "check": "four fields complete: h1_25_rev_tankers",
+   "passed": true,
+   "detail": "h1_25_rev_tankers"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_tankers",
+   "passed": true,
+   "detail": "h1_26_ebitda_tankers"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_tankers",
+   "passed": true,
+   "detail": "h1_25_ebitda_tankers"
+  },
+  {
+   "check": "four fields complete: h1_26_dc_tankers",
+   "passed": true,
+   "detail": "h1_26_dc_tankers"
+  },
+  {
+   "check": "four fields complete: h1_25_dc_tankers",
+   "passed": true,
+   "detail": "h1_25_dc_tankers"
+  },
+  {
+   "check": "four fields complete: h1_26_da_tankers",
+   "passed": true,
+   "detail": "h1_26_da_tankers"
+  },
+  {
+   "check": "four fields complete: h1_26_rev_gas_carriers",
+   "passed": true,
+   "detail": "h1_26_rev_gas_carriers"
+  },
+  {
+   "check": "four fields complete: h1_25_rev_gas_carriers",
+   "passed": true,
+   "detail": "h1_25_rev_gas_carriers"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_gas_carriers",
+   "passed": true,
+   "detail": "h1_26_ebitda_gas_carriers"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_gas_carriers",
+   "passed": true,
+   "detail": "h1_25_ebitda_gas_carriers"
+  },
+  {
+   "check": "four fields complete: h1_26_dc_gas_carriers",
+   "passed": true,
+   "detail": "h1_26_dc_gas_carriers"
+  },
+  {
+   "check": "four fields complete: h1_25_dc_gas_carriers",
+   "passed": true,
+   "detail": "h1_25_dc_gas_carriers"
+  },
+  {
+   "check": "four fields complete: h1_26_da_gas_carriers",
+   "passed": true,
+   "detail": "h1_26_da_gas_carriers"
+  },
+  {
+   "check": "four fields complete: h1_26_rev_dry_bulk_and_containers",
+   "passed": true,
+   "detail": "h1_26_rev_dry_bulk_and_containers"
+  },
+  {
+   "check": "four fields complete: h1_25_rev_dry_bulk_and_containers",
+   "passed": true,
+   "detail": "h1_25_rev_dry_bulk_and_containers"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_dry_bulk_and_containers",
+   "passed": true,
+   "detail": "h1_26_ebitda_dry_bulk_and_containers"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_dry_bulk_and_containers",
+   "passed": true,
+   "detail": "h1_25_ebitda_dry_bulk_and_containers"
+  },
+  {
+   "check": "four fields complete: h1_26_dc_dry_bulk_and_containers",
+   "passed": true,
+   "detail": "h1_26_dc_dry_bulk_and_containers"
+  },
+  {
+   "check": "four fields complete: h1_25_dc_dry_bulk_and_containers",
+   "passed": true,
+   "detail": "h1_25_dc_dry_bulk_and_containers"
+  },
+  {
+   "check": "four fields complete: h1_26_da_dry_bulk_and_containers",
+   "passed": true,
+   "detail": "h1_26_da_dry_bulk_and_containers"
+  },
+  {
+   "check": "four fields complete: h1_26_rev_services",
+   "passed": true,
+   "detail": "h1_26_rev_services"
+  },
+  {
+   "check": "four fields complete: h1_25_rev_services",
+   "passed": true,
+   "detail": "h1_25_rev_services"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_services",
+   "passed": true,
+   "detail": "h1_26_ebitda_services"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_services",
+   "passed": true,
+   "detail": "h1_25_ebitda_services"
+  },
+  {
+   "check": "four fields complete: h1_26_dc_services",
+   "passed": true,
+   "detail": "h1_26_dc_services"
+  },
+  {
+   "check": "four fields complete: h1_25_dc_services",
+   "passed": true,
+   "detail": "h1_25_dc_services"
+  },
+  {
+   "check": "four fields complete: h1_26_da_services",
+   "passed": true,
+   "detail": "h1_26_da_services"
+  },
+  {
+   "check": "four fields complete: h1_26_ebitda_group",
+   "passed": true,
+   "detail": "h1_26_ebitda_group"
+  },
+  {
+   "check": "four fields complete: h1_25_ebitda_group",
+   "passed": true,
+   "detail": "h1_25_ebitda_group"
+  },
+  {
+   "check": "four fields complete: q2_26_ebitda_group",
+   "passed": true,
+   "detail": "q2_26_ebitda_group"
+  },
+  {
+   "check": "four fields complete: q2_26_rev_group",
+   "passed": true,
+   "detail": "q2_26_rev_group"
+  },
+  {
+   "check": "four fields complete: tce_vlcc_q2_26_actual",
+   "passed": true,
+   "detail": "tce_vlcc_q2_26_actual"
+  },
+  {
+   "check": "four fields complete: tce_lr2_q2_26_actual",
+   "passed": true,
+   "detail": "tce_lr2_q2_26_actual"
+  },
+  {
+   "check": "four fields complete: tce_lr1_q2_26_actual",
+   "passed": true,
+   "detail": "tce_lr1_q2_26_actual"
+  },
+  {
+   "check": "four fields complete: tce_mr_q2_26_actual",
+   "passed": true,
+   "detail": "tce_mr_q2_26_actual"
+  },
+  {
+   "check": "four fields complete: tce_vlcc_q3_26",
+   "passed": true,
+   "detail": "tce_vlcc_q3_26"
+  },
+  {
+   "check": "four fields complete: tce_lr2_q3_26",
+   "passed": true,
+   "detail": "tce_lr2_q3_26"
+  },
+  {
+   "check": "four fields complete: tce_lr1_q3_26",
+   "passed": true,
+   "detail": "tce_lr1_q3_26"
+  },
+  {
+   "check": "four fields complete: tce_mr_q3_26",
+   "passed": true,
+   "detail": "tce_mr_q3_26"
+  },
+  {
+   "check": "four fields complete: cover_vlcc_q3_26",
+   "passed": true,
+   "detail": "cover_vlcc_q3_26"
+  },
+  {
+   "check": "four fields complete: cover_lr2_q3_26",
+   "passed": true,
+   "detail": "cover_lr2_q3_26"
+  },
+  {
+   "check": "four fields complete: cover_lr1_q3_26",
+   "passed": true,
+   "detail": "cover_lr1_q3_26"
+  },
+  {
+   "check": "four fields complete: cover_mr_q3_26",
+   "passed": true,
+   "detail": "cover_mr_q3_26"
+  },
+  {
+   "check": "four fields complete: g26h_rev_group",
+   "passed": true,
+   "detail": "g26h_rev_group"
+  },
+  {
+   "check": "four fields complete: g26h_ebitda_group",
+   "passed": true,
+   "detail": "g26h_ebitda_group"
+  },
+  {
+   "check": "four fields complete: g26h_np_group",
+   "passed": true,
+   "detail": "g26h_np_group"
+  },
+  {
+   "check": "four fields complete: g26h_rev_shipping",
+   "passed": true,
+   "detail": "g26h_rev_shipping"
+  },
+  {
+   "check": "four fields complete: g26h_rev_il",
+   "passed": true,
+   "detail": "g26h_rev_il"
+  },
+  {
+   "check": "four fields complete: g26h_rev_services",
+   "passed": true,
+   "detail": "g26h_rev_services"
+  },
+  {
+   "check": "four fields complete: contracted_revenue_h126",
+   "passed": true,
+   "detail": "contracted_revenue_h126"
+  },
+  {
    "check": "four fields complete: rf_observed",
    "passed": true,
    "detail": "rf_observed"
@@ -10571,11 +11978,6 @@
    "detail": "nci_navig8"
   },
   {
-   "check": "four fields complete: jv_bv_q126",
-   "passed": true,
-   "detail": "jv_bv_q126"
-  },
-  {
    "check": "four fields complete: gross_ppe_ex_cwip_fy25",
    "passed": true,
    "detail": "gross_ppe_ex_cwip_fy25"
@@ -10584,11 +11986,6 @@
    "check": "four fields complete: vessel_life_years",
    "passed": true,
    "detail": "vessel_life_years"
-  },
-  {
-   "check": "four fields complete: q1_26_fcf",
-   "passed": true,
-   "detail": "q1_26_fcf"
   },
   {
    "check": "four fields complete: nci_share",
@@ -10691,6 +12088,56 @@
    "detail": ""
   },
   {
+   "check": "the superseded quarter still reconciles on its own sheet",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the balance sheet at 30 June 2026 foots",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "equity at 30 June 2026 foots to its three components",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the half-year income statement foots from revenue to profit",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the half-year profit foots from operating profit",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the half-year earnings before interest, tax, depreciation and amortisation reproduce from the definition the company states",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the segment note foots to the group half-year revenue",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the segment note foots to the group half-year earnings, one-offs aside",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the segment note foots to the group half-year direct costs",
+   "passed": true,
+   "detail": ""
+  },
+  {
+   "check": "the disclosed net debt reproduces from the balance-sheet lines it names",
+   "passed": true,
+   "detail": ""
+  },
+  {
    "check": "the tanker unit build reproduces reported segment earnings for 2025",
    "passed": true,
    "detail": ""
@@ -10698,7 +12145,7 @@
   {
    "check": "cost of debt sits above the local government bond yield",
    "passed": true,
-   "detail": "kd 0.0569 vs rf 0.0448"
+   "detail": "kd 0.0794 vs rf 0.0448"
   },
   {
    "check": "country risk is charged once",
@@ -10713,7 +12160,7 @@
   {
    "check": "the sensitivity grid is centred on the value it brackets",
    "passed": true,
-   "detail": "grid centre 5.6054 vs base 5.6054 \u2014 every cost-of-capital construction must carry the same three tranches"
+   "detail": "grid centre 5.3520 vs base 5.3520 \u2014 every cost-of-capital construction must carry the same three tranches"
   },
   {
    "check": "the terminal value share is computed, not asserted",
@@ -10783,7 +12230,7 @@
   {
    "check": "the external-reader scrub is MEASURED on the delivered documents, not attested",
    "passed": true,
-   "detail": "51 patterns scanned across 424,224 characters of delivered text, 0 hits; column audit and figure canvases clean"
+   "detail": "51 patterns scanned across 424,296 characters of delivered text, 0 hits; column audit and figure canvases clean"
   },
   {
    "check": "the three standing gates are called in this study's own code [R-ENF-02]",

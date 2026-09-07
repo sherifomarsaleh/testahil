@@ -58,10 +58,11 @@ BS_LABELS = {
     'cash':           [r'^\s*Cash & Cash Equivalents', r'^\s*Cash and cash equivalents'],
     'total_ca':       [r'^\s*Total Current Assets'],
     'total_assets':   [r'^\s*Total Assets'],
-    'st_debt':        [r'^\s*Bank Overdraft', r'^\s*Banks? (overdraft|facilities)'],
+    'st_debt':        [r'^\s*Bank Overdraft', r'^\s*Banks? (overdraft|facilities)',
+                       r'^\s*Short[- ]?term loans'],
     'payables':       [r'^\s*Accounts Payable', r'^\s*Trade (and other )?payables'],
     'total_cl':       [r'^\s*Total Current Liabilities'],
-    'lt_debt':        [r'^\s*Long ?Term Loans?', r'^\s*Long ?term (bank )?(loans|borrowings)'],
+    'lt_debt':        [r'^\s*Long[- ]?[Tt]erm Loans?', r'^\s*Long[- ]?term (bank )?(loans|borrowings)'],
     'total_ltl':      [r'^\s*Total Long ?term Liabilities'],
     'capital':        [r'^\s*Issued and Paid( |-)?(up )?Capital'],
     'parent_equity':  [r"^\s*Total Parent'?s? Shareholders'? Equity",
@@ -132,7 +133,12 @@ def header_columns(lines, want_year):
         for m in HDR.finditer(ln):
             g = m.group(0)
             cols.append((m.start(), g))
-        if len(cols) >= 2 and any(str(want_year) in c[1] for c in cols):
+        # A BALANCE SHEET IS DATED, NOT PERIODIC, and its columns are headed
+        # "31-12-16" rather than "FY-2016". A matcher requiring the four-digit year
+        # finds no column on every release from FY2016 to FY2018 and reports those
+        # years as carrying no balance sheet at all.
+        yr4, yr2 = str(want_year), str(want_year)[-2:]
+        if len(cols) >= 2 and any(yr4 in c[1] or re.search(r'-%s$' % yr2, c[1]) for c in cols):
             return ln, cols
     return None, []
 

@@ -127,11 +127,27 @@ INP = dict(
     # ---- WHAT THE ASSETS COST TO RUN AND TO REPLACE --------------------------------
     gross_fixed_fy25=I(3140.855154, "Note 4, gross cost of fixed assets at 31-Dec-2025, "
         "footing across five classes " + "audited statements for the year ended 31 December 2025, read from the company's own website; committed with its footings in filings_extract.py", "2025-12-31", "Company"),
-    dep_rate_disclosed=I(0.038626, "The weighted depreciation rate implied by note 3/2's "
-        "disclosed rates on note 4's own gross-cost mix: buildings 2-2.5%, machinery 5%, "
-        "vehicles and tools 20%, furniture 10-25%. It reproduces the filed FY2025 charge "
-        "to within 1.2% (121.3 against 122.6), which is what makes it a sourced forward "
-        "rule rather than an assumption", "2025-12-31", "Company"),
+    dep_rate_disclosed=I(0.038626, "The BOOK depreciation rate carried forward on gross "
+        "cost, being note 3/2's disclosed rates at the midpoint of the two ranges, "
+        "cost-weighted as an arithmetic mean of lives on note 4's own mix. It is used ONLY "
+        "for the forward book charge, which is what a rate is for. IT IS NOT THE TERMINAL'S "
+        "USEFUL LIFE and revision 3 used its reciprocal as one: 1/0.038626 = 25.89 years, "
+        "justified on the grounds that it 'reproduces the filed FY2025 charge to within 1.2% "
+        "(121.3 against 122.6)'. THAT VALIDATION WAS TWO ERRORS CANCELLING - the 121.3 is an "
+        "arithmetic-mean rate that understates the disclosed rates' own product of 151.5mn, "
+        "and the 122.6 includes intangible amortisation against a filed FIXED-ASSET charge of "
+        "99.2mn. See useful_lives.json", "2025-12-31", "Company"),
+    useful_life_disclosed=I(20.0, "THE DISCLOSED USEFUL LIFE behind the terminal maintenance "
+        "charge [R-TERM-01], route one: note 3/2, printed page 8 of the audited statements "
+        "for the year ended 31 December 2025, states MACHINERY at a SCALAR 5% - a 20-year "
+        "life - and note 4 shows machinery is EGP 2,182.6mn of a EGP 3,140.9mn gross cost, "
+        "69.5%, the class that dominates the capacity-based replacement cost this study "
+        "capitalises. No average across the two disclosed RANGES is required, which matters "
+        "because the two ordinary ways of blending disagree by a quarter (25.9 years on a "
+        "cost-weighted mean of lives, 20.7 on the charge-reproducing harmonic mean). The "
+        "FY2022, FY2023 and FY2024 filings carry the identical table. Read by the fundamental "
+        "walk-forward of 07-09-2026 into useful_lives.json, route and cross-check recorded "
+        "there", "2025-12-31", "Company"),
     capex_run_rate=I(303.211, "Capex on the company's own cash-flow statements: FY2023 "
         "120.827, FY2024 526.408, FY2025 262.397, average 303.211. Revision 2 assumed "
         "4.5-5.0% of revenue, which is 435-484mn and rising", "2025-12-31", "Company"),
@@ -616,7 +632,19 @@ def build_dcf(bu=None, life=None, repl_usd_t=None, conv=None, df_over=None):
     df_l = df_ if df_over is None else df_over
     conv = _CONV_DEFAULT if conv is None else conv
     repl = V["repl_usd_t"] if repl_usd_t is None else repl_usd_t
-    life_ = (1.0 / V["dep_rate_disclosed"]) if life is None else life
+    # [R-TERM-01] THE LIFE IS THE DISCLOSED SCALAR OF THE DOMINANT CLASS, route one
+    # of the disclosed-life rule, read into useful_lives.json by the fundamental
+    # walk-forward of 07-09-2026. Machinery is 69.5% of note 4's gross cost and
+    # note 3/2 states its rate as a SCALAR 5%, so no average is needed at all.
+    # WHAT THIS REPLACES, and why it was not a disclosed life: the 04-09 edition
+    # used 1/dep_rate_disclosed = 25.89 years, which resolves TWO disclosed RANGES
+    # at their midpoints and then takes an ARITHMETIC MEAN OF LIVES. The midpoint
+    # half is small (24.71 to 27.45 across the whole disclosed span); the averaging
+    # half is not — the average that turns a capital base into an annual charge is
+    # the HARMONIC one, 1/(cost-weighted rate) = 20.73 years, and the two disagree
+    # by 25% on the same table. dep_rate_disclosed still drives the forward BOOK
+    # depreciation roll, which is what it is a rate for.
+    life_ = V["useful_life_disclosed"] if life is None else life
     ic_repl_pre = V['cap_cement_mt'] * 1e6 * repl * V['fx'] / 1e6
     gross_fa, dna_f, capex = [], [], []
     _g = V['gross_fixed_fy25']
@@ -675,10 +703,13 @@ def build_dcf(bu=None, life=None, repl_usd_t=None, conv=None, df_over=None):
         useful_life_source=(
             "Note 3/2 of the audited statements for the year ended 31 December 2025, printed "
             "page 8: straight-line depreciation at 2-2.5 per cent on buildings and utilities, "
-            "5 per cent on machinery, 20 per cent on motor vehicles and tools, 10-25 per cent "
-            "on furniture and office equipment. Weighted on note 4's own gross-cost mix that "
-            "is a " + format(_life, ".1f") + "-year life, and it reproduces the filed FY2025 "
-            "charge to within 1.2 per cent. The FY2024 filing carries the identical table."),
+            "5 PER CENT ON MACHINERY, 20 per cent on motor vehicles and tools, 10-25 per cent "
+            "on furniture and office equipment. Machinery is EGP 2,182.6mn of note 4's EGP "
+            "3,140.9mn gross cost - 69.5 per cent - and its rate is disclosed as a SCALAR, so "
+            "the life of the class that dominates the replacement-cost base is "
+            + format(_life, ".1f") + " years and no average across the ranges is needed. The "
+            "FY2022, FY2023 and FY2024 filings carry the IDENTICAL table, each stating the "
+            "rates are consistent with the preceding year."),
         maintenance_basis='disclosed_life',
         working_capital=V['rev_fy25'] * V['wc_pct_drev'])
     _term = TV.build(_tin)
@@ -828,7 +859,53 @@ _HIST_MGN = [FIL['derived'][y]['ebitda_margin'] for y in HIST]
 _mgn_fc0 = BU[1]['mgn']
 _UTIL23 = (V['rev_fy23'] / 2118.0) * cf / V['cap_clinker_mt']   # the filed year's own kilns
 _mgn_lo = min(_HIST_MGN)
-_range_lo = float(reval(mgn_shift=_mgn_lo - _mgn_fc0))
+
+
+# THE SANCTIONED TERMINAL REFUSES THIS COMPANY'S WORST FILED MARGIN, AND THAT IS A
+# FINDING RATHER THAN A BUG [R-TERM-01]. At the DISCLOSED 20-year machinery life the
+# terminal maintenance charge is large enough that at the FY2023 margin terminal free
+# cash flow turns NEGATIVE, and terminal_value.build() refuses outright: a going
+# concern that consumes cash for ever is a liquidation and must be valued as one.
+# Revision 3 never met this because its 25.9-year life charged a fifth less
+# maintenance, so the refusal is NEW INFORMATION THE CORRECTION PRODUCED rather than an
+# obstacle to it. The bound is therefore published as what it is - THE MARGIN AT WHICH
+# THE GOING-CONCERN READING STOPS - solved to a basis point on the refusal itself and
+# never on a value; below it this model does not produce a smaller number, it produces
+# a different question, and the disclosed book value is what stands there.
+def _lowest_going_concern_margin(lo, hi, tol=1e-5):
+    """The lowest forecast margin at which the sanctioned module still builds a
+    terminal. Bisection ON THE REFUSAL, never on a number."""
+    def ok(m):
+        try:
+            reval(mgn_shift=m - _mgn_fc0)
+            return True
+        except TV.TerminalRefused:
+            return False
+    if ok(lo):
+        return lo, True
+    while hi - lo > tol:
+        mid = 0.5 * (lo + hi)
+        if ok(mid):
+            hi = mid
+        else:
+            lo = mid
+    return hi, False
+
+
+_mgn_floor, _lo_is_filed = _lowest_going_concern_margin(_mgn_lo, _mgn_fc0)
+_range_lo = float(reval(mgn_shift=_mgn_floor - _mgn_fc0))
+_MGN_RANGE_NOTE = (
+    "the low bound is the company's own worst filed EBITDA margin, and the sanctioned "
+    "terminal builds at it"
+    if _lo_is_filed else
+    "THE LOW BOUND IS NOT THE COMPANY'S WORST FILED MARGIN of {:.1f} per cent. At that "
+    "margin the sanctioned terminal REFUSES: on the disclosed 20-year machinery life "
+    "terminal free cash flow turns negative, and a going concern consuming cash for "
+    "ever is a liquidation, not a lower discounted cash flow. The bound published is "
+    "{:.2f} per cent, the lowest margin at which the going-concern reading survives, "
+    "solved to a basis point on the refusal itself. Below it the disclosed book value "
+    "is the floor."
+    .format(100 * _mgn_lo, 100 * _mgn_floor))
 
 # ---------------------------------------------------------------- [R-ENF-05]
 # EVERY CONTESTED JUDGEMENT WORTH MORE THAN 5 PER CENT OF VALUE, BOTH WAYS, THROUGH THE
@@ -862,17 +939,20 @@ _judge('kiln utilisation through the forecast',
        'contest first.')
 
 _judge('the depreciable life behind the terminal maintenance charge',
-       'the weighted %.1f-year life implied by note 3/2\'s disclosed rates on note 4\'s '
-       'own gross-cost mix' % (1.0 / V['dep_rate_disclosed']),
-       'the 20-year MACHINERY life alone, note 3/2',
-       build_dcf(life=20.0)['fv'],
+       'the %.1f-year MACHINERY life, note 3/2, disclosed as a scalar for the class that '
+       'is 69.5%% of gross cost' % V['useful_life_disclosed'],
+       'the weighted %.1f-year life across all five classes' % (1.0 / V['dep_rate_disclosed']),
+       build_dcf(life=1.0 / V['dep_rate_disclosed'])['fv'],
        'note 3/2 discloses 2-2.5%% on buildings and utilities, 5%% on machinery, 20%% on '
-       'vehicles and tools and 10-25%% on furniture. Weighted on note 4\'s own cost mix '
-       'that is a %.1f-year life and it reproduces the filed FY2025 charge to within 1.2 '
-       'per cent, which is what makes it sourced. Machinery alone is 20 years and is the '
-       'part that actually wears out; the buildings carry most of the weighting and last '
-       'far longer. Both are the company\'s own disclosure and the choice between them is '
-       'a judgement.' % (1.0 / V['dep_rate_disclosed']))
+       'vehicles and tools and 10-25%% on furniture. TWO OF THE FIVE CLASSES ARE RANGES, '
+       'so any single blended life has to resolve them by choosing a point inside, and '
+       'the two ordinary ways of blending disagree by a quarter on the same table: a '
+       'cost-weighted mean of LIVES gives %.1f years and the charge-reproducing harmonic '
+       'mean gives %.1f. Machinery needs neither - it is 69.5 per cent of gross cost and '
+       'its rate is disclosed as a scalar - so it is adopted. The blend is published '
+       'beside it because a reader may reasonably prefer a whole-plant average, and the '
+       'buildings that carry most of its weighting genuinely do last longer than the '
+       'kilns.' % (1.0 / V['dep_rate_disclosed'], 20.73))
 
 _judge('replacement cost per annual tonne of cement capacity',
        'USD %.0f per tonne' % V['repl_usd_t'],
@@ -985,6 +1065,24 @@ COC_RECORD = dict(
     rf_terminal=V['rf_term'], erp_terminal=V['erp_term'], ke_terminal=ke_term,
     kd_terminal_pretax=V['kd_term'], kd_terminal_aftertax=V['kd_term'] * (1 - TAX),
     weight_debt_terminal=V['wd_term'], wacc_terminal=wacc_term,
+    # [R-COC-02] THE CONSTRUCTION IS NAMED AND THE TAX RATE IS STATED. Two right
+    # answers a hundred basis points apart are indistinguishable from a typing
+    # error until the record says which arithmetic produced them, and a rate
+    # SOLVED out of the answer it explains is the reverse-engineered construction
+    # this house prohibits outright - so it is declared here, not solved.
+    beta_source='tier3_fallback',
+    beta_source_note=(
+        'the tier-1 own-stock regression against EGX30 FAILS the usability gate on '
+        'R-squared (0.038 against the 0.05 floor; n and standard error both pass), '
+        'and tier 2 is unavailable because no Egyptian listed cement peer carries an '
+        'OHLC series in the engine library. beta_result.json carries the diagnostics '
+        'that triggered the fallback, which is what the protocol requires of one.'),
+    ke_terminal_construction='relevered',
+    ke_terminal_tax_rate=TAX,
+    ke_terminal_construction_note=(
+        'the terminal carries a 20 per cent debt weight against 0.5 per cent in the '
+        'explicit window, so the equity beta is re-levered by Hamada at the statutory '
+        'rate for the terminal structure rather than carried across unchanged.'),
     glide_fractions=[float(g) for g in glide], forward_wacc=[float(f) for f in fwd],
     discount_factors=[float(d) for d in df_],
     terminal_discount_factor=float(df_[-1]),
@@ -1337,7 +1435,7 @@ say(f"  the central IS the cash-flow lens; no weights are carried")
 
 OUT = dict(
     meta=dict(ticker="SCEM", company="Sinai Cement Company S.A.E.", market="EGX",
-              market_code="EG", currency="EGP", asof="2026-09-04", spot_date="2026-09-02", revision=3,
+              market_code="EG", currency="EGP", asof="2026-09-07", spot_date="2026-09-02", revision=4,
               spot=V['spot'], shares_mn=V['shares_mn'], mktcap=mktcap,
               # the central belongs where a checker outside this study can read it:
               # [R-GAP-01]'s gate held this study as "no readable answer" while the

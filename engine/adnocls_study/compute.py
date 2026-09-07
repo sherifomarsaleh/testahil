@@ -30,6 +30,14 @@ IP26 = "ADNOC L&S plc, Investor Presentation April 2026"
 IPFY25 = "ADNOC L&S plc, FY2025 Investor Presentation"
 CALL25 = "ADNOC L&S plc, FY2025 earnings call transcript"
 CALLQ126 = "ADNOC L&S plc, Q1 2026 earnings call transcript"
+# The half-year filed 11 August 2026. The delivered edition of this study ended its
+# information set at the first quarter and these four documents had been public for
+# twenty-seven days; every figure below is read from them and footed against the
+# statements' own columns before it is used.
+FSH126 = "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026)"
+MDAH126 = "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026)"
+ERH126 = "ADNOC L&S plc, First Half 2026 Earnings Release (11 Aug 2026)"
+IPH126 = "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026)"
 
 INPUTS = {}
 
@@ -326,6 +334,87 @@ IN('q1_26_eqp', 5073902, Q126 + " — equity attributable to owners", '2026-03-3
 IN('q1_26_hybrid', 1978619, Q126 + " — hybrid equity instrument", '2026-03-31', 'Company')
 IN('q1_26_nci', 272134, Q126 + " — non-controlling interests", '2026-03-31', 'Company')
 
+# ------------------------------------------------------------------ H1 2026 ----
+# THE LATEST REVIEWED PERIOD. Every line below is the reviewed six months to 30 June
+# 2026 as filed, with the prior-period comparative beside it exactly as the statements
+# present it. The statements' own comparative is used and NOT the management discussion's:
+# the discussion re-presents Q1, Q2 and Q3 2025 Tankers revenue and direct costs "for
+# analytical consistency, with no impact on Gross Profit, Net Profit or EBITDA", which
+# carries H1 2025 revenue to 2,507 against the 2,438,936 the reviewed statements report.
+# The two differ by 68,104 on revenue and by the same amount on direct cost, so gross
+# profit, earnings and every margin are identical either way. The basis break is
+# registered rather than reconciled away, and the model runs on the statements.
+IN('h1_26_rev', 3666674, FSH126, '2026-06-30', 'Company')
+IN('h1_25_rev', 2438936, FSH126 + " — prior-period comparative, as presented in the reviewed statements", '2025-06-30', 'Company')
+IN('h1_26_dc', 2317664, FSH126 + " — direct costs", '2026-06-30', 'Company')
+IN('h1_25_dc', 1900726, FSH126 + " — direct costs, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_gp', 1349010, FSH126 + " — gross profit", '2026-06-30', 'Company')
+IN('h1_25_gp', 538210, FSH126 + " — gross profit, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_ga', 133051, FSH126 + " — general and administrative expenses", '2026-06-30', 'Company')
+IN('h1_26_ecl', 48212, FSH126 + " — provision for expected credit losses", '2026-06-30', 'Company')
+IN('h1_26_oth_inc', 34413, FSH126 + " — other income", '2026-06-30', 'Company')
+IN('h1_26_oth_exp', 27933, FSH126 + " — other expenses", '2026-06-30', 'Company')
+IN('h1_26_op', 1174227, FSH126 + " — operating profit", '2026-06-30', 'Company')
+IN('h1_25_op', 462585, FSH126 + " — operating profit, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_jv', 38520, FSH126 + " — share of profit from joint ventures and associates", '2026-06-30', 'Company')
+IN('h1_26_fin_inc', 5763, FSH126 + " — finance income", '2026-06-30', 'Company')
+IN('h1_26_fin_cost', 18636, FSH126 + " — finance costs", '2026-06-30', 'Company')
+IN('h1_26_pbt', 1199874, FSH126 + " — profit before income tax", '2026-06-30', 'Company')
+IN('h1_26_tax', 27398, FSH126 + " — current tax expense", '2026-06-30', 'Company')
+IN('h1_26_dtax_cr', 456, FSH126 + " — deferred tax credit", '2026-06-30', 'Company')
+IN('h1_26_pat', 1172932, FSH126 + " — profit for the period", '2026-06-30', 'Company')
+IN('h1_25_pat', 420388, FSH126 + " — profit for the period, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_npa', 1119717, FSH126 + " — attributable to equity holders of the Company", '2026-06-30', 'Company')
+IN('h1_25_npa', 409301, FSH126 + " — attributable to equity holders, comparative", '2025-06-30', 'Company')
+IN('h1_26_nci_profit', 53215, FSH126 + " — profit attributable to non-controlling interests", '2026-06-30', 'Company')
+IN('h1_26_dep_ppe', 205640, FSH126 + " — depreciation on property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_dep_ip', 2724, FSH126 + " — depreciation on investment properties", '2026-06-30', 'Company')
+IN('h1_26_dep_rou', 48445, FSH126 + " — depreciation on right-of-use assets", '2026-06-30', 'Company')
+IN('h1_26_amort', 5312, FSH126 + " — amortisation of intangible assets", '2026-06-30', 'Company')
+IN('h1_26_impair', 14880, FSH126 + " — impairment losses on property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_capex', 547217, FSH126 + " — purchase of property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_ppe_additions', 463814, FSH126 + " — note 4, additions to property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_ppe_cost', 8453284, FSH126 + " — note 4, gross cost of property, plant and equipment at 30 June 2026", '2026-06-30', 'Company')
+IN('h1_26_ocf', 1164364, FSH126 + " — net cash generated from operating activities", '2026-06-30', 'Company')
+IN('h1_26_wc', -302614, FSH126 + " — working capital movements in the cash flow statement, "
+   "the sum of inventories, trade and other receivables, due from related parties, trade "
+   "and other payables and due to related parties", '2026-06-30', 'Company')
+
+# ------------------------------------- balance sheet at 30 June 2026 (reviewed) ----
+IN('h1_26_cash', 542682, FSH126 + " — cash and cash equivalents", '2026-06-30', 'Company')
+IN('h1_26_ppe', 7041588, FSH126 + " — property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_rou', 242860, FSH126 + " — right-of-use assets", '2026-06-30', 'Company')
+IN('h1_26_intang', 16192, FSH126 + " — intangible assets", '2026-06-30', 'Company')
+IN('h1_26_ip', 87199, FSH126 + " — investment properties", '2026-06-30', 'Company')
+IN('h1_26_jv_bv', 522768, FSH126 + " — investment in joint ventures and associates", '2026-06-30', 'Company')
+IN('h1_26_gw', 51368, FSH126 + " — goodwill", '2026-06-30', 'Company')
+IN('h1_26_ta', 10808133, FSH126 + " — total assets", '2026-06-30', 'Company')
+IN('h1_26_tl', 2657251, FSH126 + " — total liabilities", '2026-06-30', 'Company')
+IN('h1_26_teq', 8150882, FSH126 + " — total equity", '2026-06-30', 'Company')
+IN('h1_26_eqp', 5883066, FSH126 + " — equity attributable to owners of the Company", '2026-06-30', 'Company')
+IN('h1_26_hybrid', 1978619, FSH126 + " — hybrid equity instrument", '2026-06-30', 'Company')
+IN('h1_26_nci', 289197, FSH126 + " — non-controlling interests", '2026-06-30', 'Company')
+IN('h1_26_inventories', 180525, FSH126 + " — inventories", '2026-06-30', 'Company')
+IN('h1_26_receivables', 1098718, FSH126 + " — trade and other receivables", '2026-06-30', 'Company')
+IN('h1_26_due_from', 842940, FSH126 + " — due from related parties", '2026-06-30', 'Company')
+IN('h1_26_payables', 990496, FSH126 + " — trade and other payables", '2026-06-30', 'Company')
+IN('h1_26_due_to', 413670, FSH126 + " — due to related parties", '2026-06-30', 'Company')
+IN('h1_26_shldr_loan', 125000, FSH126 + " — shareholder loan, current", '2026-06-30', 'Company')
+IN('h1_26_borrowings', 431353, FSH126 + " — loans and other borrowings (non-current 317,248 "
+   "and current 114,105)", '2026-06-30', 'Company')
+IN('h1_26_leases', 243647, FSH126 + " — lease liabilities (non-current 153,001 and current "
+   "90,646)", '2026-06-30', 'Company')
+IN('h1_26_pcp', 304297, FSH126 + " — purchase consideration payable on the staged "
+   "acquisition, carried against the investment reserve", '2026-06-30', 'Company')
+IN('h1_26_netdebt', 257318, MDAH126 + " — net debt of USD 257 million. FOOTED RATHER THAN "
+   "TAKEN: the stated definition names the shareholder loan and lease liabilities less "
+   "cash and omits loans and other borrowings, and only including them reproduces the "
+   "published figure — 125,000 + 243,647 + 431,353 − 542,682 = 257,318", '2026-06-30', 'Company')
+IN('h1_26_fcf', 598095, MDAH126 + " — free cash flow, earnings before interest, tax, "
+   "depreciation and amortisation less working capital movements less income tax expense "
+   "less capital expenditure; footed as 1,474,868 − 302,614 − 26,942 − 547,217",
+   '2026-06-30', 'Company')
+
 # ------------------------------------------- debt structure at the valuation date ----
 IN('q1_26_shldr_loan', 500000, Q126 + " — related-party note: unsecured revolving credit "
    "facility with the parent, closing balance after the January 2026 conversion, "
@@ -618,6 +707,81 @@ IN('q1_26_ebitda_group', 368000, MDAQ126 + " — group earnings before interest,
 IN('q1_26_netdebt', 419867, MDAQ126 + " — net debt of USD 420 million, reconciled here to "
    "the shareholder facility, third-party borrowings and lease liabilities less cash",
    '2026-03-31', 'Company')
+
+# ------------------------------ H1 2026 segment actuals, from the statements' own note ----
+# NOT from the management discussion. The operating-segments note carries revenue, direct
+# costs, the depreciation and amortisation inside each of them, and earnings before
+# interest, tax, depreciation and amortisation, for both halves, to the dollar; the
+# discussion rounds to millions and re-presents the prior-year Tankers split. The note's
+# own columns foot to the group income statement, and that is what is used.
+H1_SEG = {   # revenue26, revenue25, ebitda26, ebitda25, directcost26, directcost25, d&a26
+    'Offshore Contracting':    (667002, 658901, 210970, 314926, 463361, 391335, 82570),
+    'Offshore Services':       (371157, 284551,  89262,  76914, 307140, 230107, 34608),
+    'Offshore Projects':       (  1884, 349490, -16959,  28173,  20173, 324613,  1753),
+    'Tankers':                 (2102006, 797040, 994166, 203856, 1152141, 670056, 82901),
+    'Gas Carriers':            (186656,  82006,  92694,  71442, 125911,  61041, 29448),
+    'Dry-Bulk and Containers': (149038, 101759,  52852,  15123,  99862,  92224, 13526),
+    'Services':                (188931, 165189,  52035,  32918, 149076, 131350, 17315),
+}
+for _s, (_r26, _r25, _e26, _e25, _c26, _c25, _da26) in H1_SEG.items():
+    _k = _s.lower().replace(' ', '_').replace('-', '_')
+    IN(f'h1_26_rev_{_k}', _r26, FSH126 + " — operating segments note", '2026-06-30', 'Company')
+    IN(f'h1_25_rev_{_k}', _r25, FSH126 + " — operating segments note, comparative", '2025-06-30', 'Company')
+    IN(f'h1_26_ebitda_{_k}', _e26, FSH126 + " — operating segments note", '2026-06-30', 'Company')
+    IN(f'h1_25_ebitda_{_k}', _e25, FSH126 + " — operating segments note, comparative", '2025-06-30', 'Company')
+    IN(f'h1_26_dc_{_k}', _c26, FSH126 + " — operating segments note, direct costs", '2026-06-30', 'Company')
+    IN(f'h1_25_dc_{_k}', _c25, FSH126 + " — operating segments note, direct costs, comparative", '2025-06-30', 'Company')
+    IN(f'h1_26_da_{_k}', _da26, FSH126 + " — operating segments note, depreciation and "
+       "amortisation in direct costs plus in general and administrative expenses",
+       '2026-06-30', 'Company')
+IN('h1_26_ebitda_group', 1474868, FSH126 + " — operating segments note, group earnings "
+   "before interest, tax, depreciation and amortisation. FOOTED against the definition the "
+   "management discussion states: profit before income tax 1,199,874 plus finance costs "
+   "18,636 less finance income 5,763 plus depreciation and amortisation 262,121",
+   '2026-06-30', 'Company')
+IN('h1_25_ebitda_group', 743859, FSH126 + " — the same note, comparative", '2025-06-30', 'Company')
+IN('q2_26_ebitda_group', 1106000, MDAH126 + " — second-quarter earnings before interest, "
+   "tax, depreciation and amortisation", '2026-06-30', 'Company')
+IN('q2_26_rev_group', 2583999, FSH126 + " — three-month column of the statement of "
+   "comprehensive income", '2026-06-30', 'Company')
+
+# ----------------------------------------- the disclosed rate path, extended ----
+# Second-quarter rates were an ESTIMATE in the delivered edition, taken off the May
+# earnings call. They are now published, and the published Handysize series belongs to the
+# dry-bulk fleet rather than the two small product tankers, which is why the tanker
+# Handysize proxy is left where it was.
+IN('tce_vlcc_q2_26_actual', 291145, IPH126 + " — tanker fleet time-charter equivalent by "
+   "class, second quarter 2026", '2026-06-30', 'Company')
+IN('tce_lr2_q2_26_actual', 129568, IPH126 + " — the same slide", '2026-06-30', 'Company')
+IN('tce_lr1_q2_26_actual', 80206, IPH126 + " — the same slide", '2026-06-30', 'Company')
+IN('tce_mr_q2_26_actual', 36229, IPH126 + " — the same slide", '2026-06-30', 'Company')
+IN('tce_vlcc_q3_26', 159518, IPH126 + " — third quarter 2026 to the presentation date, on "
+   "78% of available vessel days contracted", '2026-08-11', 'Company')
+IN('tce_lr2_q3_26', 107917, IPH126 + " — third quarter 2026 to date, 58% of days", '2026-08-11', 'Company')
+IN('tce_lr1_q3_26', 89721, IPH126 + " — third quarter 2026 to date, 62% of days", '2026-08-11', 'Company')
+IN('tce_mr_q3_26', 30441, IPH126 + " — third quarter 2026 to date, 65% of days", '2026-08-11', 'Company')
+IN('cover_vlcc_q3_26', 0.78, IPH126 + " — contracted vessel days divided by total available "
+   "vessel days for the third quarter", '2026-08-11', 'Company')
+IN('cover_lr2_q3_26', 0.58, IPH126 + " — the same measure", '2026-08-11', 'Company')
+IN('cover_lr1_q3_26', 0.62, IPH126 + " — the same measure", '2026-08-11', 'Company')
+IN('cover_mr_q3_26', 0.65, IPH126 + " — the same measure", '2026-08-11', 'Company')
+
+# --------------------------------------------- guidance, SCORED and never consumed ----
+IN('g26h_rev_group', 0.25, MDAH126 + " — raised full-year 2026 guidance: mid 20 per cent "
+   "revenue growth. Recorded to be scored against this model's own build and used as an "
+   "input to nothing", '2026-08-11', 'Company')
+IN('g26h_ebitda_group', 0.65, MDAH126 + " — raised full-year 2026 guidance: mid 60 per cent "
+   "growth in earnings before interest, tax, depreciation and amortisation", '2026-08-11', 'Company')
+IN('g26h_np_group', 1.10, MDAH126 + " — raised full-year 2026 guidance: high 110 per cent "
+   "net profit growth", '2026-08-11', 'Company')
+IN('g26h_rev_shipping', 0.85, MDAH126 + " — raised 2026 segment guidance: mid 80 per cent "
+   "Shipping revenue growth", '2026-08-11', 'Company')
+IN('g26h_rev_il', -0.25, MDAH126 + " — raised 2026 segment guidance: a mid 20 per cent "
+   "reduction in Integrated Logistics revenue", '2026-08-11', 'Company')
+IN('g26h_rev_services', 0.05, MDAH126 + " — raised 2026 segment guidance: mid single-digit "
+   "Services revenue growth", '2026-08-11', 'Company')
+IN('contracted_revenue_h126', 25000000, MDAH126 + " — forward-contracted revenue of about "
+   "USD 25 billion at 30 June 2026", '2026-06-30', 'Company')
 
 # ============================================================================
 # COST OF CAPITAL INPUTS
@@ -1208,13 +1372,15 @@ for _i, _y in enumerate(YF):
         "delivered, so spending falls back toward the stated USD 100-150 million a year of "
         "maintenance capital expenditure plus continuing fleet renewal"),
        '2026-04-30' if _i < 3 else '2026-08-09', 'Company')
-DEP_RATE = IN('dep_rate_ppe', round(V['q1_26_dep_ppe'] * 4 /
-              ((V['ppe_fy25'] + V['q1_26_ppe']) / 2), 4),
-              "Depreciation charged on property, plant and equipment in the first quarter "
-              "of 2026, annualised, over the average balance for that quarter. The first "
-              "quarter is the better forward basis than the 2025 full year, whose average "
-              "balance is distorted by the fleet acquired at the start of that year",
-              '2026-03-31', 'Company')
+DEP_RATE = IN('dep_rate_ppe', round(V['h1_26_dep_ppe'] * 2 /
+              ((V['ppe_fy25'] + V['h1_26_ppe']) / 2), 4),
+              "Depreciation charged on property, plant and equipment in the six months to "
+              "30 June 2026, annualised, over the average balance for that half. The half "
+              "replaces the first quarter as the basis: the quarter is a shorter window on "
+              "the same fleet and the half is the latest reviewed period. It stays a "
+              "better forward basis than the 2025 full year, whose average balance is "
+              "distorted by the fleet acquired at the start of that year",
+              '2026-06-30', 'Company')
 IN('life_tankers', 25, FS25 + " — accounting policies: tankers are depreciated straight "
    "line over 25 years, dry-bulk and containers 25, gas carriers 25 to 40, offshore vessels "
    "20 to 25 and jack-up barges 40, with dry-docking components over 2 to 5",
@@ -1226,10 +1392,10 @@ IN('dep_rate_realised_fy25', 0.0675, FS25 + " — depreciation charged on proper
    "2 to 5 years. The rate used is the more conservative of the two available forward "
    "bases and is sensitised", '2025-12-31', 'Company')
 OTHER_DNA25 = IN('other_dna_run_rate',
-                 (V['q1_26_dep_rou'] + V['q1_26_dep_ip'] + V['q1_26_amort']) * 4,
-                 Q126 + " — depreciation on right-of-use assets and investment properties "
-                 "plus amortisation of intangibles in the first quarter, annualised",
-                 '2026-03-31', 'Company')
+                 (V['h1_26_dep_rou'] + V['h1_26_dep_ip'] + V['h1_26_amort']) * 2,
+                 FSH126 + " — depreciation on right-of-use assets and investment properties "
+                 "plus amortisation of intangibles in the six months to 30 June 2026, "
+                 "annualised", '2026-06-30', 'Company')
 opcost_25 = V['rev_fy25'] - ebitda_op[2]
 # Receivables were calibrated on 2025 revenue, which carries a 2.72x gross-up from
 # charter-equivalent revenue, and then applied to forecast revenue built at 1.60x. The
@@ -1328,7 +1494,7 @@ IN('lease_open_fy25', 170274, FS25 + " — lease liabilities note, opening balan
    '2025-01-01', 'Company')
 IN('lease_close_fy25', 223153, FS25 + " — lease liabilities note, closing balance",
    '2025-12-31', 'Company')
-debt_now = V['q1_26_shldr_loan'] + V['q1_26_borrowings'] + V['q1_26_leases']
+debt_now = V['h1_26_shldr_loan'] + V['h1_26_borrowings'] + V['h1_26_leases']
 kd_m2 = (V['q1_26_shldr_loan'] * kd_m1 + V['q1_26_borrowings'] * kd_thirdparty
          + V['q1_26_leases'] * kd_lease) / debt_now
 kd_m3 = kd_bank_mid
@@ -1365,7 +1531,7 @@ kd_retired_average = (kd_m1 + kd_m2 + kd_m3) / 3
 # subtracted a cheap tranche of capital from value without letting it price that value.
 # Two independent reviews reached the same conclusion; it is adopted here.
 kh = V['sofr'] + V['hybrid_margin']            # the perpetual's own coupon rate
-hybrid_cap = V['q1_26_hybrid']
+hybrid_cap = V['h1_26_hybrid']
 cap_total = mktcap + debt_now + hybrid_cap
 we = mktcap / cap_total
 wd = debt_now / cap_total
@@ -1414,11 +1580,15 @@ wacc_blk = dict(
 # ============================================================================
 # DISCOUNTED CASH FLOW — both paths, identical machinery
 # ============================================================================
-NETDEBT_CO = V['q1_26_netdebt']
-DEFERRED = V['q1_26_pcp']
+# [R-BRIDGE-01] THE BRIDGE STANDS ON THE LATEST DISCLOSED SHEET, WHICH IS NOW 30 JUNE
+# 2026. The delivered edition stood on the reviewed 31 March 2026 sheet and net debt of
+# 419,867; the half-year filed on 11 August reports 257,318, the company having generated
+# 598,095 of free cash flow in the half and repaid 275,000 of the parent facility net.
+NETDEBT_CO = V['h1_26_netdebt']
+DEFERRED = V['h1_26_pcp']
 NETDEBT = NETDEBT_CO + DEFERRED + ACQ_COST   # the August purchase is committed and funded
-HYBRID = V['q1_26_hybrid']
-NCI_BV = V['q1_26_nci']
+HYBRID = V['h1_26_hybrid']
+NCI_BV = V['h1_26_nci']
 # Minorities take 8.8% of profit but hold only 5.1% of book equity, so book understates
 # their claim on VALUE. But the dominant minority is already priced elsewhere: 251,985 of
 # the 264,512 arose on the Navig8 combination (equity statement), and that 20% is
@@ -1429,9 +1599,7 @@ NCI_NAVIG8 = IN('nci_navig8', 251985, FS25 + " — statement of changes in equit
                 "non-controlling interests arising on business combinations, being the 20% "
                 "of the acquired tanker business", '2025-12-31', 'Company')
 NCI_OTHER_BV = NCI_BV - NCI_NAVIG8
-JV_BV = 493120
-IN('jv_bv_q126', JV_BV, Q126 + " — investment in joint ventures and associates",
-   '2026-03-31', 'Company')
+JV_BV = V['h1_26_jv_bv']
 # [R-TERM-01] THE TERMINAL IS BUILT ON A DISCLOSED ASSET LIFE, NOT ON THE RECIPROCAL OF
 # THE GROWTH RATE. This study charged the reinvestment identity rr = g/ROIC, which
 # substitutes to a charge of g x IC every year for ever and therefore an implied
@@ -1460,10 +1628,8 @@ VESSEL_LIFE = IN('vessel_life_years', 25.0,
     "the longer end instead would lengthen the life and raise the value, and that "
     "alternative is priced in the sensitivity rather than chosen silently",
     '2025-12-31', 'Company')
-STUB = 0.75      # the valuation date is 31 March 2026; three quarters of 2026 remain
-Q1_FCF = IN('q1_26_fcf', 130000, MDAQ126 + " — free cash flow of USD 130 million in the "
-            "first quarter of 2026, already reflected in net debt at the valuation date",
-            '2026-03-31', 'Company')
+STUB = 0.50      # the valuation date is 30 June 2026; half of 2026 remains
+BASE_FCF = V['h1_26_fcf']   # already inside the balance-sheet net debt at that date
 
 
 def nci_deduction(equity_pre):
@@ -1482,9 +1648,9 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
         cum *= (1 + r) ** (STUB if i == 0 else 1.0)     # the factors compound year on year
         df.append(1.0 / cum)
     fcff = list(path['fcff'])
-    # the valuation date is 31 March 2026, so the first quarter's free cash flow is already
+    # the valuation date is 30 June 2026, so the first half's free cash flow is already
     # inside the balance-sheet net debt and is removed rather than discounted a second time
-    fcff[0] -= Q1_FCF
+    fcff[0] -= BASE_FCF
     pv = [c * d for c, d in zip(fcff, df)]
     pv_expl = sum(pv)
     ic_end = path['ppe'][4] + path['nwc'][4] + V['intang_fy25'] + V['gw_fy25']
@@ -2057,8 +2223,35 @@ A('reported earnings bridge to operating earnings FY2025',
   abs(ebitda_op[2] + V['assoc_fy25'] + V['bargain_fy25'] + V['prevheld_fy25']
       - ebitda_rep[2]) < 2)
 A('net debt at the valuation date reconciles to the disclosed figure',
+  abs((V['h1_26_shldr_loan'] + V['h1_26_borrowings'] + V['h1_26_leases']
+       - V['h1_26_cash']) - V['h1_26_netdebt']) < 1)
+A('the superseded quarter still reconciles on its own sheet',
   abs((V['q1_26_shldr_loan'] + V['q1_26_borrowings'] + V['q1_26_leases']
        - V['q1_26_cash']) - V['q1_26_netdebt']) < 1)
+A('the balance sheet at 30 June 2026 foots',
+  abs(V['h1_26_ta'] - (V['h1_26_tl'] + V['h1_26_teq'])) < 1)
+A('equity at 30 June 2026 foots to its three components',
+  abs(V['h1_26_teq'] - (V['h1_26_eqp'] + V['h1_26_hybrid'] + V['h1_26_nci'])) < 1)
+A('the half-year income statement foots from revenue to profit',
+  abs((V['h1_26_rev'] - V['h1_26_dc'] - V['h1_26_ga'] - V['h1_26_ecl']
+       + V['h1_26_oth_inc'] - V['h1_26_oth_exp']) - V['h1_26_op']) < 1)
+A('the half-year profit foots from operating profit',
+  abs((V['h1_26_op'] + V['h1_26_jv'] + V['h1_26_fin_inc'] - V['h1_26_fin_cost']
+       + V['h1_26_dtax_cr'] - V['h1_26_tax']) - V['h1_26_pat']) < 1)
+A('the half-year earnings before interest, tax, depreciation and amortisation '
+  'reproduce from the definition the company states',
+  abs((V['h1_26_pbt'] + V['h1_26_fin_cost'] - V['h1_26_fin_inc'] + V['h1_26_dep_ppe']
+       + V['h1_26_dep_ip'] + V['h1_26_dep_rou'] + V['h1_26_amort'])
+      - V['h1_26_ebitda_group']) < 1)
+A('the segment note foots to the group half-year revenue',
+  abs(sum(_v[0] for _v in H1_SEG.values()) - V['h1_26_rev']) < 1)
+A('the segment note foots to the group half-year earnings, one-offs aside',
+  abs(sum(_v[2] for _v in H1_SEG.values()) - 152 - V['h1_26_ebitda_group']) < 1)
+A('the segment note foots to the group half-year direct costs',
+  abs(sum(_v[4] for _v in H1_SEG.values()) - V['h1_26_dc']) < 1)
+A('the disclosed net debt reproduces from the balance-sheet lines it names',
+  abs((V['h1_26_shldr_loan'] + V['h1_26_leases'] + V['h1_26_borrowings']
+       - V['h1_26_cash']) - 257318) < 1)
 A('the tanker unit build reproduces reported segment earnings for 2025',
   abs((tce_rev_25 - vessel_days_25 * opex_day_25 / 1000.0)
       - V['seg_ebitda_tankers_fy25']) < 1)

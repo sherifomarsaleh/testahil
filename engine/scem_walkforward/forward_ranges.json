@@ -1,0 +1,957 @@
+{
+ "_rule": "[R-FCAL-01] years 3-5 as RANGES from this record's own driver-error distribution, never as points. [AMENDED 07-09-2026] the band declares its basis, its count and its orientation.",
+ "basis": "span",
+ "basis_reason": "four, three and two observations at horizons one, two and three. A percentile on two observations is not a percentile, and calling a span one would be the free parameter the promotion rule forbids.",
+ "orientation": "actual_over_forecast",
+ "orientation_reason": "MULTIPLY a point projection by the band. A band above 1.0 means the method forecast BELOW the outturn, which is the direction every driver in this record ran except finance expense.",
+ "horizons_available": [
+  1,
+  2,
+  3
+ ],
+ "horizons_not_available": {
+  "4": "NO BAND. Five sourceable fiscal years give a longest resolved horizon of three; the study's FY2029 must say so rather than borrow the three-year band.",
+  "5": "NO BAND, same reason, for FY2030."
+ },
+ "bands": {
+  "capex": {
+   "1": {
+    "low": 0.4232017221462857,
+    "high": 3.456914817376219,
+    "central": 1.3034121483761179,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 1.0952396843721435
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 1.801282302474465
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 3.456914817376219
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 0.4232017221462857
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 1.4750067865316756,
+    "high": 7.295145000949318,
+    "central": 2.793865192009716,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 2.026694989616833
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 7.295145000949318
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 1.4750067865316756
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 3.3970577195226297,
+    "high": 8.243502335136146,
+    "central": 5.291847809931523,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 8.243502335136146
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 3.3970577195226297
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "cogs_maintenance": {
+   "1": {
+    "low": 0.9387254274217327,
+    "high": 2.1209133216578127,
+    "central": 1.233203195522311,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 0.9725888687735047
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 0.9387254274217327
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 2.1209133216578127
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 1.1943944291090294
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 0.9379189637252924,
+    "high": 2.554045342500525,
+    "central": 1.774487577502573,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 0.9379189637252924
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 2.332517818413854
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 2.554045342500525
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 2.3405769846455104,
+    "high": 3.0654505191265438,
+    "central": 2.678604661505169,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 2.3405769846455104
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 3.0654505191265438
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "cogs_wages": {
+   "1": {
+    "low": 1.0115866954737789,
+    "high": 1.2135074998360444,
+    "central": 1.1039093964537174,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 1.0273986930928407
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 1.0115866954737789
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 1.1774680667042474
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 1.2135074998360444
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 1.0676761907922483,
+    "high": 1.4406202548375429,
+    "central": 1.289936296382547,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 1.0676761907922483
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 1.3954546103166872
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 1.4406202548375429
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 1.4791880484422988,
+    "high": 1.8632869865507706,
+    "central": 1.6601662089453473,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 1.4791880484422988
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 1.8632869865507706
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "dna": {
+   "1": {
+    "low": 0.9381963804282955,
+    "high": 1.1033087861986492,
+    "central": 0.9981597373526959,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 0.971100052949946
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 0.9381963804282955
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 0.9875188256774894
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 1.1033087861986492
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 0.9137059672100037,
+    "high": 1.253429626229093,
+    "central": 1.0283670283557067,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 0.9137059672100037
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 0.9495941153524716
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 1.253429626229093
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 0.9281888634144808,
+    "high": 1.2460951502928945,
+    "central": 1.0754588050021527,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 0.9281888634144808
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 1.2460951502928945
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "ebitda": {
+   "1": {
+    "low": 1.6763786318028624,
+    "high": 12.91015592381442,
+    "central": 4.4228116343087756,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 12.91015592381442
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 3.9975299488358798
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 1.6763786318028624
+     }
+    ],
+    "publishable": false
+   },
+   "2": {
+    "low": 6.635362524347831,
+    "high": 29.17295466904573,
+    "central": 13.913056103368666,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 29.17295466904573
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 6.635362524347831
+     }
+    ],
+    "publishable": false
+   },
+   "3": {
+    "low": 36.454646506454694,
+    "high": 36.454646506454694,
+    "central": 36.454646506454694,
+    "n": 1,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 36.454646506454694
+     }
+    ],
+    "publishable": false
+   }
+  },
+  "finance_expense": {
+   "1": {
+    "low": 0.4044066072439494,
+    "high": 1.5374864365043734,
+    "central": 0.808212332644017,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 1.1634184124999147
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 1.5374864365043734
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 0.5898429922367211
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 0.4044066072439494
+     }
+    ],
+    "publishable": false
+   },
+   "2": {
+    "low": 0.08653185657101348,
+    "high": 1.7429906631604382,
+    "central": 0.5468820190920917,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 1.7429906631604382
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 1.084450793683316
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 0.08653185657101348
+     }
+    ],
+    "publishable": false
+   },
+   "3": {
+    "low": 0.15909240555945417,
+    "high": 1.2294011596905363,
+    "central": 0.4422537596140366,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 1.2294011596905363
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 0.15909240555945417
+     }
+    ],
+    "publishable": false
+   }
+  },
+  "ga": {
+   "1": {
+    "low": 0.8635689098611821,
+    "high": 1.733883624280289,
+    "central": 1.270526780235358,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 1.2289825027832522
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 1.4160306410987658
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 1.733883624280289
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 0.8635689098611821
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 1.5096450853326078,
+    "high": 2.87644493273721,
+    "central": 1.9800777224473531,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 1.7877870666563942
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 2.87644493273721
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 1.5096450853326078
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 2.7332202768157616,
+    "high": 3.647291120986705,
+    "central": 3.157348578686071,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 3.647291120986705
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 2.7332202768157616
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "interest_income": {
+   "1": {
+    "low": 0.3401658594421764,
+    "high": 3.352460162532434,
+    "central": 1.576311131107564,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 0.3401658594421764
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 1.8563342735049404
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 2.916468141171137
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 3.352460162532434
+     }
+    ],
+    "publishable": false
+   },
+   "2": {
+    "low": 0.18128144725782666,
+    "high": 16.688459505045962,
+    "central": 2.89060795189536,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 0.18128144725782666
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 7.983585307233666
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 16.688459505045962
+     }
+    ],
+    "publishable": false
+   },
+   "3": {
+    "low": 0.7796418562423252,
+    "high": 45.68324893525069,
+    "central": 5.967962214949009,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 0.7796418562423252
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 45.68324893525069
+     }
+    ],
+    "publishable": false
+   }
+  },
+  "materials": {
+   "1": {
+    "low": 0.7618702038406534,
+    "high": 1.6468897807759317,
+    "central": 1.1579979564386216,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 1.6468897807759317
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 1.4899970648288754
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 0.7618702038406534
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 0.961834244517226
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 0.7345097988687568,
+    "high": 2.4995023133553027,
+    "central": 1.3420339165508688,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 2.4995023133553027
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 1.3165560042305682
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 0.7345097988687568
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 1.3792131007421942,
+    "high": 2.2104420201975006,
+    "central": 1.7460442699678134,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 2.2104420201975006
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 1.3792131007421942
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "pat": {
+   "1": {
+    "low": 1.5267975709361519,
+    "high": 1.5267975709361519,
+    "central": 1.5267975709361519,
+    "n": 1,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 1.5267975709361519
+     }
+    ],
+    "publishable": false
+   },
+   "2": {
+    "low": 28.433128126229317,
+    "high": 28.433128126229317,
+    "central": 28.433128126229317,
+    "n": 1,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 28.433128126229317
+     }
+    ],
+    "publishable": false
+   }
+  },
+  "revenue": {
+   "1": {
+    "low": 1.1408630703194047,
+    "high": 1.5866044123301655,
+    "central": 1.3159019795752536,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 1.4435072223029801
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 1.5866044123301655
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 1.1408630703194047
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 1.1475537061309222
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 1.3122691277217016,
+    "high": 2.3328736315322884,
+    "central": 1.859215568703279,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 2.3328736315322884
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 2.099302950499914
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 1.3122691277217016
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 2.623855635022748,
+    "high": 3.0893657852650054,
+    "central": 2.8471125415610214,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 3.0893657852650054
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 2.623855635022748
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "transport": {
+   "1": {
+    "low": 0.6408571637416548,
+    "high": 3.9041746883372106,
+    "central": 1.1322027763487204,
+    "n": 4,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2022",
+      "multiplier": 0.6408571637416548
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 3.9041746883372106
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 0.6975449762935804
+     },
+     {
+      "origin": "FY2024",
+      "target": "FY2025",
+      "multiplier": 0.9415299986416552
+     }
+    ],
+    "publishable": true
+   },
+   "2": {
+    "low": 0.6582983200458613,
+    "high": 3.1584528129293252,
+    "central": 1.7434001272995618,
+    "n": 3,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2023",
+      "multiplier": 2.5485554100276318
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 3.1584528129293252
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2025",
+      "multiplier": 0.6582983200458613
+     }
+    ],
+    "publishable": true
+   },
+   "3": {
+    "low": 2.0635304958290757,
+    "high": 3.2389209988530867,
+    "central": 2.585268313872762,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2021",
+      "target": "FY2024",
+      "multiplier": 2.0635304958290757
+     },
+     {
+      "origin": "FY2022",
+      "target": "FY2025",
+      "multiplier": 3.2389209988530867
+     }
+    ],
+    "publishable": true
+   }
+  },
+  "working_capital": {
+   "1": {
+    "low": 0.8126909584757916,
+    "high": 3.2867812205996363,
+    "central": 1.6343614595521245,
+    "n": 2,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2022",
+      "target": "FY2023",
+      "multiplier": 3.2867812205996363
+     },
+     {
+      "origin": "FY2023",
+      "target": "FY2024",
+      "multiplier": 0.8126909584757916
+     }
+    ],
+    "publishable": false
+   },
+   "2": {
+    "low": 3.0979126008550106,
+    "high": 3.0979126008550106,
+    "central": 3.0979126008550106,
+    "n": 1,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "observations": [
+     {
+      "origin": "FY2022",
+      "target": "FY2024",
+      "multiplier": 3.0979126008550106
+     }
+    ],
+    "publishable": false
+   }
+  }
+ },
+ "caveat": "Every band here rests on between two and four observations of a company that went from a loss of EGP 345mn to a profit of EGP 3.07bn in three years while its currency lost most of its value. The bands are wide because the record is thin and the period was extreme, and narrowing them would be inventing precision this panel cannot carry."
+}

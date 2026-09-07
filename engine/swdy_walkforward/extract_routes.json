@@ -573,6 +573,13 @@
   "sha256": "5de5c7233abc6e98",
   "text_layer_chars": 31310
  },
+ "2016Q4__Elsewedy-Electric-FY-2016-FS.Eng.pdf": {
+  "chars": 96647,
+  "pages": 45,
+  "route": "ocr_200dpi",
+  "sha256": "ac1d6cc6eb818d52",
+  "text_layer_chars": 45
+ },
  "2016Q4__RAP-Sheet-Investors-FY-2016.pdf": {
   "chars": 18369,
   "pages": 4,
@@ -748,6 +755,13 @@
   "sha256": "b5ea17e398468ccb",
   "text_layer_chars": 30962
  },
+ "2018Q4__Elsewedy_Electric_FY-2018_Cons.ENG.pdf": {
+  "chars": 88919,
+  "pages": 39,
+  "route": "ocr_200dpi",
+  "sha256": "2b1f392eb0184aa7",
+  "text_layer_chars": 39
+ },
  "2018Q4__RAP-Investors-FY-2018.pdf": {
   "chars": 14947,
   "pages": 4,
@@ -839,6 +853,13 @@
   "sha256": "8af4193b8809df62",
   "text_layer_chars": 30056
  },
+ "2019Q4__Elsewedy-Electric-Consolidated-English-31-12-2019.pdf": {
+  "chars": 107722,
+  "pages": 45,
+  "route": "ocr_200dpi",
+  "sha256": "eaf9be517c9b7e05",
+  "text_layer_chars": 45
+ },
  "2019Q4__RAP-Sheet-Investors-FY-2019.pdf": {
   "chars": 20187,
   "pages": 4,
@@ -922,6 +943,13 @@
   "route": "text_layer",
   "sha256": "7363e58a8cbd2b3d",
   "text_layer_chars": 10046
+ },
+ "2020Q4__EE-Cons.-English-FY-2020.pdf": {
+  "chars": 112746,
+  "pages": 46,
+  "route": "ocr_200dpi",
+  "sha256": "80c6349dd45c7dec",
+  "text_layer_chars": 46
  },
  "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.pdf": {
   "chars": 34538,
@@ -1014,12 +1042,26 @@
   "sha256": "983073625b22dc90",
   "text_layer_chars": 9197
  },
+ "2021Q4__EE-Cons.-English-FY-2021.pdf": {
+  "chars": 145409,
+  "pages": 59,
+  "route": "ocr_200dpi",
+  "sha256": "c920f50b52b60eb4",
+  "text_layer_chars": 59
+ },
  "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.pdf": {
   "chars": 43020,
   "pages": 11,
   "route": "text_layer",
   "sha256": "97645e3cf470019c",
   "text_layer_chars": 43020
+ },
+ "2021Q4__RAP-Sheet-Investors-FY-2021-Final.pdf": {
+  "chars": 10142,
+  "pages": 4,
+  "route": "ocr_200dpi",
+  "sha256": "fd73424747aad7ca",
+  "text_layer_chars": 4
  },
  "2021Q4__Segment-Analysis-FY-2021-Final.pdf": {
   "chars": 13444,
@@ -1069,6 +1111,13 @@
   "route": "text_layer",
   "sha256": "3e5aed95ef2a0f29",
   "text_layer_chars": 45647
+ },
+ "2022Q4__EE-Consolidated-FS-FY2022-Eng.-.pdf": {
+  "chars": 138991,
+  "pages": 59,
+  "route": "ocr_200dpi",
+  "sha256": "6c37a4c17d28b615",
+  "text_layer_chars": 59
  },
  "2022Q4__Elsewedy-Electric-ER-FY2022-En-.pdf": {
   "chars": 46327,

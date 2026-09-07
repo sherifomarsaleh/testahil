@@ -1,0 +1,2191 @@
+{
+ "cells": [
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "revenue",
+   "projected": 1623.2978919645288,
+   "actual": 2343.242231,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.36707572343565176,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "materials",
+   "projected": 1069.8691111981123,
+   "actual": 1761.956506,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.4988885277515237,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "cogs_wages",
+   "projected": 40.718167427355,
+   "actual": 41.833792,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.027030066997311798,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "cogs_maintenance",
+   "projected": 81.10059505356,
+   "actual": 78.877536,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.027793825892354126,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "transport",
+   "projected": 188.7623777094358,
+   "actual": 120.969722,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.44494868036889246,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "ga",
+   "projected": 84.96197933129999,
+   "actual": 104.416786,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.20618659352832205,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "dna",
+   "projected": 93.31785815963799,
+   "actual": 90.620977,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.029325774856090354,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "finance_expense",
+   "projected": 158.114423,
+   "actual": 183.953231,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.15136257882615026,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "interest_income",
+   "projected": 38.466788,
+   "actual": 13.085088,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 1.0783219584295918,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "capex",
+   "projected": 55.672623874064996,
+   "actual": 60.974867,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.0909732291531528,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "working_capital",
+   "projected": -64.77842562092388,
+   "actual": 171.333031,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.3780848633963867,
+   "scale": "signed_relative",
+   "why_not_log": "the working_capital is not strictly positive in both legs (projected -64.8, actual 171.3), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "ebitda",
+   "projected": -110.23158464275409,
+   "actual": -24.076911,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -3.578310923803892,
+   "scale": "signed_relative",
+   "why_not_log": "the ebitda is not strictly positive in both legs (projected -110.2, actual -24.1), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 1,
+   "year": 2022,
+   "driver": "pat",
+   "projected": -323.1970778023921,
+   "actual": -319.80097,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -0.010619441843444271,
+   "scale": "signed_relative",
+   "why_not_log": "the pat is not strictly positive in both legs (projected -323.2, actual -319.8), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "revenue",
+   "projected": 1836.9919806522905,
+   "actual": 4285.470153,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.8471008259195971,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "materials",
+   "projected": 1210.7087598321548,
+   "actual": 3026.169346,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.9160916373982861,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "cogs_wages",
+   "projected": 43.6036603620945,
+   "actual": 46.55459,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.06548450242388341,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "cogs_maintenance",
+   "projected": 86.84778872203051,
+   "actual": 81.456188,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.0640917263249285,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "transport",
+   "projected": 213.61142389056297,
+   "actual": 544.40055,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.9355266927737381,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "ga",
+   "projected": 90.98280999661254,
+   "actual": 162.657891,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.5809785794226011,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "dna",
+   "projected": 95.46826892939762,
+   "actual": 87.229927,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.0902464581791399,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "finance_expense",
+   "projected": 158.114423,
+   "actual": 275.591963,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.5556024097595881,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "interest_income",
+   "projected": 38.466788,
+   "actual": 6.973315,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 1.7077044981849565,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "capex",
+   "projected": 59.617864364900605,
+   "actual": 120.827227,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.7064063823521993,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "working_capital",
+   "projected": -73.30598343900166,
+   "actual": 649.119306,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.1129314484431645,
+   "scale": "signed_relative",
+   "why_not_log": "the working_capital is not strictly positive in both legs (projected -73.3, actual 649.1), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "ebitda",
+   "projected": -95.87983666850369,
+   "actual": 283.556319,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.338133309836427,
+   "scale": "signed_relative",
+   "why_not_log": "the ebitda is not strictly positive in both legs (projected -95.9, actual 283.6), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 2,
+   "year": 2023,
+   "driver": "pat",
+   "projected": -310.99574059790126,
+   "actual": -117.581612,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.644935167225818,
+   "scale": "signed_relative",
+   "why_not_log": "the pat is not strictly positive in both legs (projected -311.0, actual -117.6), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "revenue",
+   "projected": 2080.6897913024586,
+   "actual": 6428.011851,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.1279658223564528,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "materials",
+   "projected": 1371.323001599998,
+   "actual": 3031.229986,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.7931925046696408,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "cogs_wages",
+   "projected": 46.70431665044304,
+   "actual": 69.084467,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.39149332131388226,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "cogs_maintenance",
+   "projected": 93.0235349780541,
+   "actual": 217.728745,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.8503974736099145,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "transport",
+   "projected": 241.94940080078905,
+   "actual": 499.269967,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.7244183487923912,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "ga",
+   "projected": 97.45259761547166,
+   "actual": 355.437994,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.2939847334245658,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "dna",
+   "projected": 97.77106855835628,
+   "actual": 90.750017,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.07452005029220052,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "finance_expense",
+   "projected": 158.114423,
+   "actual": 194.386055,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.20652718878830686,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "interest_income",
+   "projected": 38.466788,
+   "actual": 29.990318,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.24892062340780333,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "capex",
+   "projected": 63.857290699888686,
+   "actual": 526.407725,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -2.109425294289044,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "working_capital",
+   "projected": -83.0308531498094,
+   "actual": 693.576909,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.1197139813514314,
+   "scale": "signed_relative",
+   "why_not_log": "the working_capital is not strictly positive in both legs (projected -83.0, actual 693.6), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "ebitda",
+   "projected": -77.297351361564,
+   "actual": 1585.462553,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.0487538171212576,
+   "scale": "signed_relative",
+   "why_not_log": "the ebitda is not strictly positive in both legs (projected -77.3, actual 1585.5), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2021",
+   "h": 3,
+   "year": 2024,
+   "driver": "pat",
+   "projected": -294.7160549199203,
+   "actual": 3072.361811,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.0959249180434238,
+   "scale": "signed_relative",
+   "why_not_log": "the pat is not strictly positive in both legs (projected -294.7, actual 3072.4), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "revenue",
+   "projected": 2701.0325445308367,
+   "actual": 4285.470153,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.4615961428791036,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "materials",
+   "projected": 2030.9901391299402,
+   "actual": 3026.169346,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.398774150041921,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "cogs_wages",
+   "projected": 46.02135457920001,
+   "actual": 46.55459,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.011520083763740105,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "cogs_maintenance",
+   "projected": 86.77317735360002,
+   "actual": 81.456188,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.06323225209540582,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "transport",
+   "projected": 139.44062278418704,
+   "actual": 544.40055,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.3620464135377892,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "ga",
+   "projected": 114.86890627860001,
+   "actual": 162.657891,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.3478576342314476,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "dna",
+   "projected": 92.97619221274199,
+   "actual": 87.229927,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.06379599109106947,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "finance_expense",
+   "projected": 179.24838649411794,
+   "actual": 275.591963,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.43014889887385027,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "interest_income",
+   "projected": 3.75649746897885,
+   "actual": 6.973315,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.6186037224063112,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "capex",
+   "projected": 67.07845118670001,
+   "actual": 120.827227,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.5884988015362151,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "working_capital",
+   "projected": 197.49391956230525,
+   "actual": 649.119306,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.1899087334768634,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "ebitda",
+   "projected": 21.96381830500934,
+   "actual": 283.556319,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -2.558014282540412,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 1,
+   "year": 2023,
+   "driver": "pat",
+   "projected": -246.5042629328717,
+   "actual": -117.581612,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.0964524872551644,
+   "scale": "signed_relative",
+   "why_not_log": "the pat is not strictly positive in both legs (projected -246.5, actual -117.6), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "revenue",
+   "projected": 3061.9743803386145,
+   "actual": 6428.011851,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.7416053612956006,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "materials",
+   "projected": 2302.393499600144,
+   "actual": 3031.229986,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.27501923929291694,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "cogs_wages",
+   "projected": 49.50678186825571,
+   "actual": 69.084467,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.33322024771584813,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "cogs_maintenance",
+   "projected": 93.34494394047489,
+   "actual": 217.728745,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.8469482929015464,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "transport",
+   "projected": 158.07422069318466,
+   "actual": 499.269967,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.1500822915360833,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "ga",
+   "projected": 123.56850289560977,
+   "actual": 355.437994,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.0565551332955214,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "dna",
+   "projected": 95.56716446827947,
+   "actual": 90.750017,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 0.05172063268095214,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "finance_expense",
+   "projected": 179.24838649411794,
+   "actual": 194.386055,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.08107367790256907,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "interest_income",
+   "projected": 3.75649746897885,
+   "actual": 29.990318,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -2.0773875971834643,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "capex",
+   "projected": 72.15863768732473,
+   "actual": 526.407725,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.9872090585351687,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "working_capital",
+   "projected": 223.8852409227348,
+   "actual": 693.576909,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.130728530123198,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "ebitda",
+   "projected": 54.346999506439154,
+   "actual": 1585.462553,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -3.3732420701125614,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 2,
+   "year": 2024,
+   "driver": "pat",
+   "projected": -216.7120539869794,
+   "actual": 3072.361811,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.0705359808897128,
+   "scale": "signed_relative",
+   "why_not_log": "the pat is not strictly positive in both legs (projected -216.7, actual 3072.4), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "revenue",
+   "projected": 3464.0433591999813,
+   "actual": 9089.149688,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.9646448524276231,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "materials",
+   "projected": 2604.721634435455,
+   "actual": 3592.466202,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.32151311968017293,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "cogs_wages",
+   "projected": 52.99478218478366,
+   "actual": 98.744488,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.6223421251398829,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "cogs_maintenance",
+   "projected": 99.92156196580105,
+   "actual": 306.304604,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.1201945468822265,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "transport",
+   "projected": 178.8310045861272,
+   "actual": 579.219496,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.1752402492937395,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "ga",
+   "projected": 132.27452176711992,
+   "actual": 361.535405,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.0054805026060858,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "dna",
+   "projected": 98.35436400759008,
+   "actual": 122.558896,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -0.22001478205067262,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "finance_expense",
+   "projected": 179.24838649411794,
+   "actual": 28.517057,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": 1.8382700785334756,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "interest_income",
+   "projected": 3.75649746897885,
+   "actual": 171.609009,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -3.821731686620037,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "capex",
+   "projected": 77.24257450558518,
+   "actual": 262.397484,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -1.2229096803566246,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "working_capital",
+   "projected": 253.28369401821118,
+   "actual": -52.153007,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": 5.856550150947407,
+   "scale": "signed_relative",
+   "why_not_log": "the working_capital is not strictly positive in both legs (projected 253.3, actual -52.2), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "ebitda",
+   "projected": 94.78092575628784,
+   "actual": 3455.205144,
+   "era": "E1",
+   "leg": "as_known",
+   "log_error": -3.596068926501867,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2022",
+   "h": 3,
+   "year": 2025,
+   "driver": "pat",
+   "projected": -179.06532727644134,
+   "actual": 2284.539004,
+   "era": "E1",
+   "leg": "as_known",
+   "rel_error": -1.0783813832737876,
+   "scale": "signed_relative",
+   "why_not_log": "the pat is not strictly positive in both legs (projected -179.1, actual 2284.5), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "revenue",
+   "projected": 5634.341244125261,
+   "actual": 6428.011851,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.13178505519403644,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "materials",
+   "projected": 3978.6698189787553,
+   "actual": 3031.229986,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.2719790739714648,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "cogs_wages",
+   "projected": 58.67205145815,
+   "actual": 69.084467,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.1633664269689292,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "cogs_maintenance",
+   "projected": 102.65801189358001,
+   "actual": 217.728745,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.7518468080137731,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "transport",
+   "projected": 715.7530825508647,
+   "actual": 499.269967,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.36018828522416635,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "ga",
+   "projected": 204.99530015893504,
+   "actual": 355.437994,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.550363762080895,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "dna",
+   "projected": 91.896999470102,
+   "actual": 90.750017,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.012559718411371011,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "finance_expense",
+   "projected": 329.55558946776,
+   "actual": 194.386055,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.5278988923502276,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "interest_income",
+   "projected": 10.283094670788032,
+   "actual": 29.990318,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -1.0703733435006444,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "capex",
+   "projected": 152.27674177969502,
+   "actual": 526.407725,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -1.2403765200157748,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "working_capital",
+   "projected": 853.4325400897889,
+   "actual": 693.576909,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.20740436657612604,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "ebitda",
+   "projected": 396.61055033789114,
+   "actual": 1585.462553,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -1.3856766575893102,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 1,
+   "year": 2024,
+   "driver": "pat",
+   "projected": -14.558943929182831,
+   "actual": 3072.361811,
+   "era": "E2",
+   "leg": "as_known",
+   "rel_error": -1.004738681452509,
+   "scale": "signed_relative",
+   "why_not_log": "the pat is not strictly positive in both legs (projected -14.6, actual 3072.4), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "revenue",
+   "projected": 6926.284781064798,
+   "actual": 9089.149688,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.271757797322722,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "materials",
+   "projected": 4890.971104174346,
+   "actual": 3592.466202,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.30855194258754526,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "cogs_wages",
+   "projected": 68.54303739546916,
+   "actual": 98.744488,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.3650737533753556,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "cogs_maintenance",
+   "projected": 119.9291958145559,
+   "actual": 306.304604,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.9376785109768454,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "transport",
+   "projected": 879.873878395509,
+   "actual": 579.219496,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.41809707646984673,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "ga",
+   "projected": 239.48370945767422,
+   "actual": 361.535405,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.4118745803738512,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "dna",
+   "projected": 97.7788408980845,
+   "actual": 122.558896,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.2258834952205694,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "finance_expense",
+   "projected": 329.55558946776,
+   "actual": 28.517057,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 2.447242648786272,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "interest_income",
+   "projected": 10.283094670788032,
+   "actual": 171.609009,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -2.8147174329372175,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "capex",
+   "projected": 177.89578081671087,
+   "actual": 262.397484,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.38866259081962257,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "working_capital",
+   "projected": 1049.1229689456068,
+   "actual": -52.153007,
+   "era": "E2",
+   "leg": "as_known",
+   "rel_error": 21.11625080305737,
+   "scale": "signed_relative",
+   "why_not_log": "the working_capital is not strictly positive in both legs (projected 1049.1, actual -52.2), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "ebitda",
+   "projected": 520.7259032677497,
+   "actual": 3455.205144,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -1.8924133044751061,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2023",
+   "h": 2,
+   "year": 2025,
+   "driver": "pat",
+   "projected": 80.34778986883727,
+   "actual": 2284.539004,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -3.3475549486720375,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "revenue",
+   "projected": 7920.456915820405,
+   "actual": 9089.149688,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.13763246458582215,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "materials",
+   "projected": 3735.0159057844407,
+   "actual": 3592.466202,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.03891314615894379,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "cogs_wages",
+   "projected": 81.37113945595001,
+   "actual": 98.744488,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.19351492650002683,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "cogs_maintenance",
+   "projected": 256.45180229825,
+   "actual": 306.304604,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.17763930305667266,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "transport",
+   "projected": 615.1896347813025,
+   "actual": 579.219496,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.06024906878854342,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "ga",
+   "projected": 418.6526412329,
+   "actual": 361.535405,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.14668158161344344,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "dna",
+   "projected": 111.08304178585,
+   "actual": 122.558896,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.09831365231504403,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "finance_expense",
+   "projected": 70.51580386963785,
+   "actual": 28.517057,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.905334453581681,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "interest_income",
+   "projected": 51.188977849140876,
+   "actual": 171.609009,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -1.209694453189577,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "capex",
+   "projected": 620.0293388912501,
+   "actual": 262.397484,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": 0.8599063291025518,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "working_capital",
+   "projected": 854.6104383251533,
+   "actual": -52.153007,
+   "era": "E2",
+   "leg": "as_known",
+   "rel_error": 17.38659949799545,
+   "scale": "signed_relative",
+   "why_not_log": "the working_capital is not strictly positive in both legs (projected 854.6, actual -52.2), so a log ratio is undefined"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "ebitda",
+   "projected": 2061.11261409011,
+   "actual": 3455.205144,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.5166358905086963,
+   "scale": "log"
+  },
+  {
+   "origin": "FY2024",
+   "h": 1,
+   "year": 2025,
+   "driver": "pat",
+   "projected": 1496.2946283699164,
+   "actual": 2284.539004,
+   "era": "E2",
+   "leg": "as_known",
+   "log_error": -0.4231724509367628,
+   "scale": "log"
+  }
+ ],
+ "log_scale": {
+  "capex": {
+   "n": 9,
+   "bias": -0.8305061364394722,
+   "mae": 1.0215964317955948,
+   "share_over": 0.1111111111111111,
+   "share_under": 0.8888888888888888,
+   "by_era": {
+    "E1": -1.117570407703734,
+    "E2": -0.25637759391094855
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.2649855554006477,
+    "2": -1.0274260105689967,
+    "3": -1.6661674873228343
+   },
+   "ci": {
+    "lo": -1.4632093165720963,
+    "hi": -0.40835414711626344,
+    "by_block": {
+     "2": [
+      -1.4382267255278773,
+      -0.40835414711626344
+     ],
+     "3": [
+      -1.4632093165720963,
+      -0.5491773379603501
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "cogs_maintenance": {
+   "n": 9,
+   "bias": -0.5032874590142544,
+   "mae": 0.5377580821948519,
+   "share_over": 0.3333333333333333,
+   "share_under": 0.6666666666666667,
+   "by_era": {
+    "E1": -0.44373708484683316,
+    "E2": -0.6223882073490971
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.20961500827067145,
+    "2": -0.5735116925178211,
+    "3": -0.9852960102460705
+   },
+   "ci": {
+    "lo": -0.8359278132704507,
+    "hi": -0.24496210130797694,
+    "by_block": {
+     "2": [
+      -0.8270988588431075,
+      -0.24496210130797694
+     ],
+     "3": [
+      -0.8359278132704507,
+      -0.3422511671994684
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "cogs_wages": {
+   "n": 9,
+   "bias": -0.24144949491098444,
+   "mae": 0.24144949491098444,
+   "share_over": 0.0,
+   "share_under": 1.0,
+   "by_era": {
+    "E1": -0.24184839122575807,
+    "E2": -0.24065170228143717
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.09885787605750199,
+    "2": -0.25459283450502906,
+    "3": -0.5069177232268826
+   },
+   "ci": {
+    "lo": -0.37986537829606504,
+    "hi": -0.14589720760197805,
+    "by_block": {
+     "2": [
+      -0.37986537829606504,
+      -0.14589720760197805
+     ],
+     "3": [
+      -0.36318300750975624,
+      -0.18432788020525814
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "dna": {
+   "n": 9,
+   "bias": -0.024671478230606964,
+   "mae": 0.09626450612190106,
+   "share_over": 0.6666666666666666,
+   "share_under": 0.33333333333333337,
+   "by_era": {
+    "E1": 0.014932354174796625,
+    "E2": -0.10387914304141414
+   },
+   "era_sign_flips": true,
+   "by_horizon": {
+    "1": 0.0018419580108717006,
+    "2": -0.02797213478682579,
+    "3": -0.07274736587923605
+   },
+   "ci": {
+    "lo": -0.11360128318645463,
+    "hi": 0.06852745180191905,
+    "by_block": {
+     "2": [
+      -0.10735735890656405,
+      0.06509293667551175
+     ],
+     "3": [
+      -0.11360128318645463,
+      0.06852745180191905
+     ]
+    },
+    "same_sign_across_blocks": false
+   }
+  },
+  "ebitda": {
+   "n": 6,
+   "bias": -2.2203418552879923,
+   "mae": 2.2203418552879923,
+   "share_over": 0.0,
+   "share_under": 1.0,
+   "by_era": {
+    "E1": -3.1757750930516138,
+    "E2": -1.2649086175243707
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -1.4867756102128062,
+    "2": -2.6328276872938337,
+    "3": -3.596068926501867
+   },
+   "ci": {
+    "lo": -3.311646390980305,
+    "hi": -1.2649086175243707,
+    "by_block": {
+     "2": [
+      -3.311646390980305,
+      -1.3493647253386702
+     ],
+     "3": [
+      -3.1757750930516138,
+      -1.2649086175243707
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "finance_expense": {
+   "n": 9,
+   "bias": 0.47711459101124354,
+   "mae": 0.7937178697113466,
+   "share_over": 0.4444444444444444,
+   "share_under": 0.5555555555555556,
+   "by_era": {
+    "E1": 0.0689258873971685,
+    "E2": 1.2934919982393935
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": 0.212930467057977,
+    "2": 0.6035221870413716,
+    "3": 0.8158714448725843
+   },
+   "ci": {
+    "lo": -0.3354736502410928,
+    "hi": 1.3235465035912317,
+    "by_block": {
+     "2": [
+      -0.3059146154929928,
+      1.220885914986592
+     ],
+     "3": [
+      -0.3354736502410928,
+      1.3235465035912317
+     ]
+    },
+    "same_sign_across_blocks": false
+   }
+  },
+  "ga": {
+   "n": 9,
+   "bias": -0.5896222152610942,
+   "mae": 0.6222181222863038,
+   "share_over": 0.1111111111111111,
+   "share_under": 0.8888888888888888,
+   "by_era": {
+    "E1": -0.7485071960847574,
+    "E2": -0.2718522536137676
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.2394316020568053,
+    "2": -0.6831360976973246,
+    "3": -1.1497326180153258
+   },
+   "ci": {
+    "lo": -0.9101378571541433,
+    "hi": -0.395312604004825,
+    "by_block": {
+     "2": [
+      -0.9101378571541433,
+      -0.395312604004825
+     ],
+     "3": [
+      -0.8674098080040138,
+      -0.4282149409734689
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "interest_income": {
+   "n": 9,
+   "bias": -0.9530623506461,
+   "mae": 1.6274950350955117,
+   "share_over": 0.3333333333333333,
+   "share_under": 0.6666666666666667,
+   "by_era": {
+    "E1": -0.5804626543645769,
+    "E2": -1.6982617432091462
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.4550873901667352,
+    "2": -1.061466843978575,
+    "3": -1.786405531606117
+   },
+   "ci": {
+    "lo": -2.3548931218413176,
+    "hi": 0.44600713306214956,
+    "by_block": {
+     "2": [
+      -2.3086793970747004,
+      0.3803116298440341
+     ],
+     "3": [
+      -2.3548931218413176,
+      0.44600713306214956
+     ]
+    },
+    "same_sign_across_blocks": false
+   }
+  },
+  "materials": {
+   "n": 9,
+   "bias": -0.287115001790723,
+   "mae": 0.42476926017249056,
+   "share_over": 0.3333333333333333,
+   "share_under": 0.6666666666666667,
+   "by_era": {
+    "E1": -0.5339131964724102,
+    "E2": 0.2064813875726513
+   },
+   "era_sign_flips": true,
+   "by_horizon": {
+    "1": -0.146692614415759,
+    "2": -0.2941863113678859,
+    "3": -0.5573528121749068
+   },
+   "ci": {
+    "lo": -0.6537034704048199,
+    "hi": 0.10159278227047586,
+    "by_block": {
+     "2": [
+      -0.6476505509222971,
+      0.044878843976220155
+     ],
+     "3": [
+      -0.6537034704048199,
+      0.10159278227047586
+     ]
+    },
+    "same_sign_across_blocks": false
+   }
+  },
+  "pat": {
+   "n": 2,
+   "bias": -1.8853636998044,
+   "mae": 1.8853636998044,
+   "share_over": 0.0,
+   "share_under": 1.0,
+   "by_era": {
+    "E2": -1.8853636998044
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.4231724509367628,
+    "2": -3.3475549486720375,
+    "3": null
+   },
+   "ci": null
+  },
+  "revenue": {
+   "n": 9,
+   "bias": -0.5612404494907345,
+   "mae": 0.5612404494907345,
+   "share_over": 0.0,
+   "share_under": 1.0,
+   "by_era": {
+    "E1": -0.7516647880523383,
+    "E2": -0.18039177236752688
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.27452234652365354,
+    "2": -0.62015466151264,
+    "3": -1.046305337392038
+   },
+   "ci": {
+    "lo": -0.8328307969376118,
+    "hi": -0.3532178961116728,
+    "by_block": {
+     "2": [
+      -0.8328307969376118,
+      -0.3532178961116728
+     ],
+     "3": [
+      -0.7912163927309508,
+      -0.36113299897860984
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "transport": {
+   "n": 9,
+   "bias": -0.4515367650091436,
+   "mae": 0.7367552340872434,
+   "share_over": 0.4444444444444444,
+   "share_under": 0.5555555555555556,
+   "by_era": {
+    "E1": -0.8170608859274747,
+    "E2": 0.2795114768275188
+   },
+   "era_sign_flips": true,
+   "by_horizon": {
+    "1": -0.12416509478904675,
+    "2": -0.5558373026133249,
+    "3": -0.9498292990430653
+   },
+   "ci": {
+    "lo": -1.105100829259755,
+    "hi": 0.03159313464478944,
+    "by_block": {
+     "2": [
+      -1.0341581800635598,
+      0.03159313464478944
+     ],
+     "3": [
+      -1.105100829259755,
+      0.0049582950314559626
+     ]
+    },
+    "same_sign_across_blocks": false
+   }
+  },
+  "working_capital": {
+   "n": 3,
+   "bias": -0.704410965674645,
+   "mae": 0.8426805433920626,
+   "share_over": 0.3333333333333333,
+   "share_under": 0.6666666666666667,
+   "by_era": {
+    "E1": -1.1603186318000307,
+    "E2": 0.20740436657612604
+   },
+   "era_sign_flips": true,
+   "by_horizon": {
+    "1": -0.4912521834503687,
+    "2": -1.130728530123198,
+    "3": null
+   },
+   "ci": {
+    "lo": -1.1701819990256415,
+    "hi": -0.6846842312234234,
+    "by_block": {
+     "2": [
+      -1.1701819990256415,
+      -0.6846842312234234
+     ],
+     "3": [
+      -0.704410965674645,
+      -0.704410965674645
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  }
+ },
+ "signed_relative": {
+  "ebitda": {
+   "n": 3,
+   "bias": -1.9883993502538588,
+   "mae": 1.9883993502538588,
+   "share_over": 0.0,
+   "share_under": 1.0,
+   "by_era": {
+    "E1": -1.9883993502538588
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -3.578310923803892,
+    "2": -1.338133309836427,
+    "3": -1.0487538171212576
+   },
+   "ci": {
+    "lo": -2.8315850524814032,
+    "hi": -1.2416734789313706,
+    "by_block": {
+     "2": [
+      -2.8315850524814032,
+      -1.2416734789313706
+     ],
+     "3": [
+      -1.9883993502538588,
+      -1.9883993502538588
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "pat": {
+   "n": 7,
+   "bias": -1.0002268657119802,
+   "mae": 1.0002268657119802,
+   "share_over": 0.0,
+   "share_under": 1.0,
+   "by_era": {
+    "E1": -0.9994748964218919,
+    "E2": -1.004738681452509
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": -0.7039368701837058,
+    "2": -1.3577355740577652,
+    "3": -1.0871531506586058
+   },
+   "ci": {
+    "lo": -1.2503541370158369,
+    "hi": -0.8451078592245914,
+    "by_block": {
+     "2": [
+      -1.2503541370158369,
+      -0.8488102172767987
+     ],
+     "3": [
+      -1.249308732276932,
+      -0.8451078592245914
+     ]
+    },
+    "same_sign_across_blocks": true
+   }
+  },
+  "working_capital": {
+   "n": 6,
+   "bias": 6.791445026468208,
+   "mae": 7.995021790865202,
+   "share_over": 0.5,
+   "share_under": 0.5,
+   "by_era": {
+    "E1": 0.561454964439106,
+    "E2": 19.25142515052641
+   },
+   "era_sign_flips": false,
+   "by_horizon": {
+    "1": 8.004257317299533,
+    "2": 10.001659677307103,
+    "3": 2.368418084797988
+   },
+   "ci": {
+    "lo": -1.2035767643969943,
+    "hi": 17.329750259351737,
+    "by_block": {
+     "2": [
+      -1.2024463422456162,
+      17.329750259351737
+     ],
+     "3": [
+      -1.2035767643969943,
+      14.786466817333407
+     ]
+    },
+    "same_sign_across_blocks": false
+   }
+  }
+ },
+ "skill_vs_freeze": {
+  "1": {
+   "n": 45,
+   "model_mae": 0.4422088091868277,
+   "benchmark_mae": 0.5425555221788684,
+   "skill": 0.18495197060948654
+  },
+  "2": {
+   "n": 32,
+   "model_mae": 0.8338355283920854,
+   "benchmark_mae": 0.957843377515889,
+   "skill": 0.12946568513676082
+  },
+  "3": {
+   "n": 20,
+   "model_mae": 1.006659349226737,
+   "benchmark_mae": 1.1473669509603301,
+   "skill": 0.12263522286032624
+  }
+ },
+ "skill_vs_trend": {
+  "1": {
+   "n": 30,
+   "model_mae": 0.44182304516934806,
+   "benchmark_mae": 0.5803424253240893,
+   "skill": 0.23868560027708774
+  },
+  "2": {
+   "n": 20,
+   "model_mae": 0.8595180680604759,
+   "benchmark_mae": 1.1177647676616025,
+   "skill": 0.23103850387178193
+  },
+  "3": {
+   "n": 10,
+   "model_mae": 1.231234162359054,
+   "benchmark_mae": 1.548678616734,
+   "skill": 0.20497761830301697
+  }
+ },
+ "benchmark_freeze": {
+  "revenue": {
+   "mae": 0.837600647564646,
+   "n": 9,
+   "undefined": 0
+  },
+  "materials": {
+   "mae": 0.5634751998646348,
+   "n": 9,
+   "undefined": 0
+  },
+  "cogs_wages": {
+   "mae": 0.4282998450977022,
+   "n": 9,
+   "undefined": 0
+  },
+  "cogs_maintenance": {
+   "mae": 0.6901378092009723,
+   "n": 9,
+   "undefined": 0
+  },
+  "transport": {
+   "mae": 0.8199102443971307,
+   "n": 9,
+   "undefined": 0
+  },
+  "ga": {
+   "mae": 0.7764725654478117,
+   "n": 9,
+   "undefined": 0
+  },
+  "dna": {
+   "mae": 0.12008137105407596,
+   "n": 9,
+   "undefined": 0
+  },
+  "finance_expense": {
+   "mae": 0.8637681910620199,
+   "n": 9,
+   "undefined": 0
+  },
+  "interest_income": {
+   "mae": 1.4970813675205907,
+   "n": 9,
+   "undefined": 0
+  },
+  "capex": {
+   "mae": 1.172071061391984,
+   "n": 9,
+   "undefined": 0
+  },
+  "working_capital": {
+   "mae": 0.9321686141304045,
+   "n": 3,
+   "undefined": 0
+  },
+  "ebitda": {
+   "mae": 1.666817567261984,
+   "n": 3,
+   "undefined": 3
+  },
+  "pat": {
+   "mae": 0.29628233017284333,
+   "n": 1,
+   "undefined": 1
+  }
+ },
+ "benchmark_trend": {
+  "revenue": {
+   "mae": 0.14729176035070055,
+   "n": 6,
+   "undefined": 3
+  },
+  "materials": {
+   "mae": 0.613508431291007,
+   "n": 6,
+   "undefined": 3
+  },
+  "cogs_wages": {
+   "mae": 0.3209452621696414,
+   "n": 6,
+   "undefined": 3
+  },
+  "cogs_maintenance": {
+   "mae": 0.7343600235716877,
+   "n": 6,
+   "undefined": 3
+  },
+  "transport": {
+   "mae": 1.409554371199975,
+   "n": 6,
+   "undefined": 3
+  },
+  "ga": {
+   "mae": 0.3793723055841191,
+   "n": 6,
+   "undefined": 3
+  },
+  "dna": {
+   "mae": 0.18699394090155017,
+   "n": 6,
+   "undefined": 3
+  },
+  "finance_expense": {
+   "mae": 1.3762981080777623,
+   "n": 6,
+   "undefined": 3
+  },
+  "interest_income": {
+   "mae": 3.04908036452386,
+   "n": 6,
+   "undefined": 3
+  },
+  "capex": {
+   "mae": 0.991321145712153,
+   "n": 6,
+   "undefined": 3
+  },
+  "working_capital": {
+   "mae": null,
+   "n": 0,
+   "undefined": 3
+  },
+  "ebitda": {
+   "mae": null,
+   "n": 0,
+   "undefined": 6
+  },
+  "pat": {
+   "mae": null,
+   "n": 0,
+   "undefined": 2
+  }
+ },
+ "macro_split": {
+  "capex": {
+   "mae_as_known": 1.0215964317955948,
+   "mae_perfect_inflation": 0.833467569348186,
+   "mae_perfect_both": 0.833467569348186,
+   "macro_share_inflation": 0.1841518397991531,
+   "macro_share_both": 0.1841518397991531
+  },
+  "cogs_maintenance": {
+   "mae_as_known": 0.5377580821948519,
+   "mae_perfect_inflation": 0.4680861272432929,
+   "mae_perfect_both": 0.4680861272432929,
+   "macro_share_inflation": 0.12956003314202902,
+   "macro_share_both": 0.12956003314202902
+  },
+  "cogs_wages": {
+   "mae_as_known": 0.24144949491098444,
+   "mae_perfect_inflation": 0.15917481343050519,
+   "mae_perfect_both": 0.15917481343050519,
+   "macro_share_inflation": 0.3407531728770507,
+   "macro_share_both": 0.3407531728770507
+  },
+  "dna": {
+   "mae_as_known": 0.09626450612190106,
+   "mae_perfect_inflation": 0.0963478208811985,
+   "mae_perfect_both": 0.0963478208811985,
+   "macro_share_inflation": -0.0008654774501407897,
+   "macro_share_both": -0.0008654774501407897
+  },
+  "ebitda": {
+   "mae_as_known": 2.2203418552879923,
+   "mae_perfect_inflation": 2.076241580163089,
+   "mae_perfect_both": 2.3441707883326885,
+   "macro_share_inflation": 0.06490003995633027,
+   "macro_share_both": -0.055770210677145854
+  },
+  "finance_expense": {
+   "mae_as_known": 0.7937178697113466,
+   "mae_perfect_inflation": 0.7937178697113466,
+   "mae_perfect_both": 0.7937178697113466,
+   "macro_share_inflation": 0.0,
+   "macro_share_both": 0.0
+  },
+  "ga": {
+   "mae_as_known": 0.6222181222863038,
+   "mae_perfect_inflation": 0.4340892598388948,
+   "mae_perfect_both": 0.4340892598388948,
+   "macro_share_inflation": 0.302351949757009,
+   "macro_share_both": 0.302351949757009
+  },
+  "interest_income": {
+   "mae_as_known": 1.6274950350955117,
+   "mae_perfect_inflation": 1.6274950350955117,
+   "mae_perfect_both": 1.6274950350955117,
+   "macro_share_inflation": 0.0,
+   "macro_share_both": 0.0
+  },
+  "materials": {
+   "mae_as_known": 0.42476926017249056,
+   "mae_perfect_inflation": 0.26436386754810154,
+   "mae_perfect_both": 0.26035213106001187,
+   "macro_share_inflation": 0.37762947478650294,
+   "macro_share_both": 0.38707398234446644
+  },
+  "pat": {
+   "mae_as_known": 1.8853636998044,
+   "mae_perfect_inflation": 1.9009177706769929,
+   "mae_perfect_both": 2.058150775894417,
+   "macro_share_inflation": -0.00824990471292432,
+   "macro_share_both": -0.09164654867808425
+  },
+  "revenue": {
+   "mae_as_known": 0.5612404494907345,
+   "mae_perfect_inflation": 0.3763872994024704,
+   "mae_perfect_both": 0.4021440336674347,
+   "macro_share_inflation": 0.3293653375411528,
+   "macro_share_both": 0.28347282518154693
+  },
+  "transport": {
+   "mae_as_known": 0.7367552340872434,
+   "mae_perfect_inflation": 0.5682229762942179,
+   "mae_perfect_both": 0.584375965678616,
+   "macro_share_inflation": 0.22874931862794018,
+   "macro_share_both": 0.20682481963960267
+  },
+  "working_capital": {
+   "mae_as_known": 0.8426805433920626,
+   "mae_perfect_inflation": 0.6845330422717355,
+   "mae_perfect_both": 0.6988143339925067,
+   "macro_share_inflation": 0.1876719503736636,
+   "macro_share_both": 0.17072449403002435
+  }
+ }
+}

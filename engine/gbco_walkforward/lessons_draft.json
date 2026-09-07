@@ -1,0 +1,71 @@
+{
+ "ticker": "GBCO",
+ "run_dir": "gbco_walkforward",
+ "drafts": [
+  {
+   "proposed_id": "DRAFT-GBCO-01",
+   "ticker": "GBCO",
+   "headline": "Gross profit forecasts run about 26% too low for GBCO.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.228 log (about 26% too low), average miss 0.306, wrong in the same direction in 77% of cases, and the sign holds across every bootstrap block tested (n=35).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-GBCO-02",
+   "ticker": "GBCO",
+   "headline": "Operating profit forecasts run about 46% too low for GBCO.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.379 log (about 46% too low), average miss 0.436, wrong in the same direction in 89% of cases, and the sign holds across every bootstrap block tested (n=35).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-GBCO-03",
+   "ticker": "GBCO",
+   "headline": "The finance cost forecast loses to assuming no change.",
+   "plain": "At 5 of 5 horizons, simply carrying last year's number forward beat the model. A method that cannot beat 'no change' has not earned the precision it displays, and should be published as a range or not at all.",
+   "evidence": "Negative skill against the freeze benchmark at horizons h1, h2, h3, h4, h5, worst -0.485.",
+   "scope": "UNSCOPED",
+   "why_scope": "Losing to a naive benchmark usually points at the method, which would make it ALL \u2014 but confirm it is not this company's series being unusually persistent.",
+   "overturned_by": "A later run where the model beats the freeze benchmark at a majority of horizons.",
+   "origin": "walk_forward_fundamental",
+   "rule": "beaten_by_naive",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-GBCO-04",
+   "ticker": "GBCO",
+   "headline": "The gross margin forecast loses to assuming no change.",
+   "plain": "At 4 of 5 horizons, simply carrying last year's number forward beat the model. A method that cannot beat 'no change' has not earned the precision it displays, and should be published as a range or not at all.",
+   "evidence": "Negative skill against the freeze benchmark at horizons h1, h2, h3, h4, worst -0.200.",
+   "scope": "UNSCOPED",
+   "why_scope": "Losing to a naive benchmark usually points at the method, which would make it ALL \u2014 but confirm it is not this company's series being unusually persistent.",
+   "overturned_by": "A later run where the model beats the freeze benchmark at a majority of horizons.",
+   "origin": "walk_forward_fundamental",
+   "rule": "beaten_by_naive",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-GBCO-05",
+   "ticker": "GBCO",
+   "headline": "The revenue bias changes direction between regimes.",
+   "plain": "It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.",
+   "evidence": "By era: post-float 2017-2021 +0.093; devaluation cycle 2022-2025 -0.078.",
+   "scope": "UNSCOPED",
+   "why_scope": "A sign that flips with the regime is usually about the market or the period, not the company \u2014 but say which.",
+   "overturned_by": "A longer record in which one sign dominates across all regimes.",
+   "origin": "walk_forward_fundamental",
+   "rule": "era_flip",
+   "confirmed": false
+  }
+ ]
+}
