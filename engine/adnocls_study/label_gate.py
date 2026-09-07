@@ -82,10 +82,15 @@ CASES = [
     ('Summary', f"A{SU['rel']}", f"C{SU['rel']}", ['relative'], LN['relative']['base']),
     ('Summary', f"A{SU['norm']}", f"C{SU['norm']}", ['normalised'], LN['normalized']['base']),
     ('Summary', f"A{SU['book']}", f"C{SU['book']}", ['book value'], LN['book']['base']),
-    ('Summary', f"A{SU['central']}", f"C{SU['central']}", ['weighted central'], D['central']),
+    # RE-POINTED: the row was correctly relabelled when [R-LENS-03] retired the blend and
+    # this expectation went on requiring the retired words, so the study's own gate was
+    # holding it to vocabulary the standing rule forbids. [R-COC-01]: when a check fires
+    # on work that is right, re-point it.
+    ('Summary', f"A{SU['central']}", f"C{SU['central']}",
+     ['central', 'cash-flow lens'], D['central']),
     ('Summary', f"A{SU['dcfa']}", f"C{SU['dcfa']}", ['composite-index beta'], DCFA['fv_aed']),
     ('Summary', f"A{SU['centrala']}", f"C{SU['centrala']}",
-     ['weighted central', 'composite-index beta'], D['central_beta_alt']),
+     ['central', 'composite-index beta'], D['central_beta_alt']),
     ('Summary', f"A{SU['dcf']}", f"H{SU['dcf']}", ['discounted cash flow'], DCF['tv_share']),
     ('Summary', f"A{SU['panel']}", f"C{SU['panel']}", ['expert panel'], D['panel_centre']),
     # --- SOTP Bridge ---------------------------------------------------------
@@ -171,8 +176,11 @@ CASES = [
      SEGF['Tankers']['rev'][0]),
     ('Segments', f"A{SG['gaseb']}", f"B{SG['gaseb']}", ['gas carriers', 'ebitda'],
      SEGF['Gas Carriers']['ebitda'][0]),
+    # RE-POINTED: the model escalates this line on the opex PATH's first year and this
+    # expectation kept the retired scalar, so it asserted 1.020 against a cell built at
+    # 1.025. The cell is right; the expectation was a vintage behind.
     ('Segments', f"A{SG['gasjv']}", f"B{SG['gasjv']}", ['joint-venture profit'],
-     -V['jv_gas_fy25'] * (1 + V['opex_escalation'])),
+     -V['jv_gas_fy25'] * (1 + V['opex_escalation_path'][0])),
     ('Segments', f"A{SG['frevt']}", f"B{SG['frevt']}", ['total revenue'], FC['revenue'][0]),
     ('Segments', f"A{SG['febt']}", f"B{SG['febt']}", ['total ebitda'], FC['ebitda'][0]),
     ('Segments', f"A{SG['fmgn']}", f"B{SG['fmgn']}", ['ebitda margin'],
@@ -379,8 +387,14 @@ CASES = [
     ('Relative & Normalized', f"A{RN['pe_fwd']}", f"C{RN['pe_fwd']}",
      ['price /', 'forward'], D['wacc']['mktcap'] / D['fin']['npa_ordinary'][0]),
     # --- the cost of debt, labelled for what each construction is ------------
+    # RE-POINTED: this row was REPURPOSED when the average-of-three construction was
+    # retired — it now carries the retired average as a memorandum, and the expectation
+    # went on asserting the balance-weighted figure and its old label. Both the words and
+    # the value were describing a row that had moved out from under them.
     ('DCF', f"A{DF_['kdbal']}", f"C{DF_['kdbal']}",
-     ['balance-weighted', 'method 2'], D['wacc']['kd_balance_weighted']),
+     ['retired', 'average'], D['wacc']['kd_retired_average']),
+    ('DCF', f"A{DF_['kd']}", f"C{DF_['kd']}",
+     ['method 2', 'weighted by balance'], D['wacc']['kd_balance_weighted']),
     # --- the fleet purchase, in the bridge and on the driver sheet -----------
     ('DCF', f"A{DF_['acq']}", f"C{DF_['acq']}", ['bought on 7 august 2026'],
      -V['acq_2026_cost']),

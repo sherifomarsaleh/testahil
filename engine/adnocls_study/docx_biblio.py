@@ -1135,9 +1135,11 @@ NEG = [
      "comparator's earnings are struck on the same definition as the subject's, which is "
      "why the comparison lens is presented as evidence about relative pricing rather than "
      "as an independent valuation. It is the largest block of non-company data behind the "
-     "study, and the two lenses that use it carry "
-     f"{(LW['relative'] + LW['normalized']) * 100:.0f}% of the weighted central between "
-     f"them."),
+     "study, and the two lenses that use it — the relative multiple and normalised "
+     "earnings — carry NONE of the answer: the central is the cash-flow lens alone and "
+     "those two are published beside it as cross-checks. That is a deliberate change of "
+     "architecture rather than a change of view, and it is why a block of data the study "
+     "cannot fully verify does not reach the number a reader acts on."),
     ('The Annual Report and Accounts for 2023 as a separate volume',
      fdate('2026-08-09'),
      "Not obtained from the investor pages. It costs the study nothing: the 2023 audited "

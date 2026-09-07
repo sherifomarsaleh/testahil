@@ -3633,7 +3633,8 @@ for rw, lab, basis, val, xp, isf in _fv:
     else:
         put(ws, f'C{rw}', val, BLUE, PX)
 band(ws, FV['central'], 3)
-put(ws, f"A{FV['central']}", 'Weighted central', bold=True, fmt=None)
+# [R-LENS-03] the central IS the class primary, not an average of the rows above it.
+put(ws, f"A{FV['central']}", 'Central — the cash-flow lens', bold=True, fmt=None)
 putf(ws, f"C{FV['central']}", f"=Summary!$C${SU['central']}", CENTRAL, PX, bold=True,
      green=True)
 band(ws, FV['cb'], 3)
@@ -3654,7 +3655,9 @@ for rw, lab, basis, fml, xp, fmt in [
          'explicit window, market-value weights', f"=DCF!$C${DF_['wacc']}", W_EXP, PCT2),
         (FV['fv'], 'Fair value per share — published-index beta (AED)',
          'the primary reading', f"=DCF!$C${DF_['fvaed']}", DC['fv_aed'], PX),
-        (FV['cen'], 'Weighted central — published-index beta (AED)', 'all four lenses',
+        (FV['cen'], 'Central — published-index beta (AED)',
+         'the cash-flow lens alone; the other reads are cross-checks published beside '
+         'it and never averaged into it',
          f"=Summary!$C${SU['central']}", CENTRAL, PX),
         (FV['betaa'], 'Beta — the same regression against an equal-weight composite of the '
          'same exchange\'s names (alternative)',
@@ -3670,8 +3673,9 @@ for rw, lab, basis, fml, xp, fmt in [
          'explicit window, market-value weights', f"=DCF!$C${DF_['wacca']}", W_EXP_A, PCT2),
         (FV['fva'], 'Fair value per share — composite-index beta (AED)',
          'the alternative reading', f"=DCF!$C${DF_['fvaeda']}", DA['fv_aed'], PX),
-        (FV['cena'], 'Weighted central — composite-index beta (AED)',
-         'all four lenses, the discounted-cash-flow leg swapped',
+        (FV['cena'], 'Central — composite-index beta (AED)',
+         'the same cash-flow lens with the composite beta in place of the published-'
+         'index one; nothing else moves',
          f"=Summary!$C${SU['centrala']}", CENTRAL_A, PX),
         (FV['cilo'], 'Beta — lower bound of the 90% confidence interval on the primary '
          'regression', 'the bull-case beta; the bear and bull cases take the two ends of '

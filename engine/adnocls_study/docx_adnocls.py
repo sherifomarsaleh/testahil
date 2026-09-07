@@ -1502,11 +1502,19 @@ caption(f"The two constructions disagree by a wide margin — AED "
 # ---- 1.5 synthesis -----------------------------------------------------------
 H2('1.5  Synthesis — four lenses, one field')
 figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
-       f"Figure 1 — the four lenses, both measurements of the market and the two weighted "
-       f"centrals, against the market price of AED {p2(SPOT)}. Each bar is that lens's "
+       f"Figure 1 — the four lenses, both measurements of the market and the two "
+       f"centrals, against the market price of AED {p2(SPOT)}. Each central is the "
+       f"CASH-FLOW LENS on its own regressor rather than an average of the bars beside "
+       f"it. Each bar is that lens's "
        f"bear-to-bull span; the brass tick is its base case. The two cash-flow rows are the "
        f"same model with the beta regressed on two different market series.")
-rows = [['Lens', 'Bear', 'Base', 'Bull', 'Weight', 'Contribution']]
+# [R-LENS-03] THE COLUMN IS A ROLE AND THE FIGURE BESIDE IT IS A RETIRED WEIGHT. Headed
+# 'Weight' and 'Contribution' this table told a reader the central was assembled from
+# the rows above it, which stopped being true when the blend was retired — and the
+# caption then asserted the contributions add to the central, a claim a reader can test
+# on the page and find false.
+rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role in this study',
+         'Weight in the RETIRED blend']]
 lensnames = [('dcf', 'Cash-flow model — published index'),
              ('relative', 'Relative multiples'),
              ('normalized', 'Normalised earnings power'),
@@ -1539,9 +1547,13 @@ rows.append(['MEMO — the retired blend at its typed weights',
              '—', p2(D['retired_blend']), '—',
              'RETIRED: two of its four weights are forbidden outright', '100%'])
 table(rows, [2.42, 0.86, 0.86, 0.86, 0.86, 1.14], size=8.5, band_rows={5, 7})
-caption(f"Contributions are shown to three decimals so that the four of them add to the "
-        f"central exactly; rounded to the nearest fil they would come up one fil "
-        f"short of it, which is a display artefact rather than an arithmetic one. The two "
+caption(f"THE LAST COLUMN DOES NOT BUILD THE CENTRAL AND IS PRINTED SO THAT A READER CAN "
+        f"SEE WHAT WAS RETIRED. The central is the cash-flow lens on its own; the other "
+        f"three reads are cross-checks published beside it, and the memo row at the foot "
+        f"shows where the retired blend of those weights would have landed. Two of its "
+        f"four weights were forbidden outright rather than merely unevidenced — book "
+        f"value is a disclosed floor that is never weighted, and normalised earnings is "
+        f"not a lens for a fleet whose day rates are this cyclical. The two "
         f"composite rows have no bear and bull of their own: only their base case was "
         f"re-run on the composite beta, so the low and high cells are left empty rather "
         f"than filled with the primary construction's bounds. An earlier edition filled "
@@ -3023,8 +3035,9 @@ P(f"One further change has been made since the corrections above, and it comes f
   f"from [{PRIOR_CI_LO:.3f}, {PRIOR_CI_HI:.3f}] to [{IN['beta_ci_lo']:.3f}, "
   f"{IN['beta_ci_hi']:.3f}].")
 P(f"Two consequences, both of which make this document say LESS than the last one rather "
-  f"than more. The cash-flow lens falls to AED {p2(LN['dcf']['base'])} and the weighted "
-  f"central to AED {p2(D['central'])}, because a higher beta discounts harder. And the "
+  f"than more. The cash-flow lens falls to AED {p2(LN['dcf']['base'])} and the central "
+  f"with it — they are the same number, the central being that lens rather than a blend "
+  f"of several — because a higher beta discounts harder. And the "
   f"bear and bull cases widen, because they are taken from that interval directly rather "
   f"than chosen: the published range on the cash-flow lens is now AED "
   f"{p2(LN['dcf']['bear'])} to AED {p2(LN['dcf']['bull'])}. An interval that widens on "

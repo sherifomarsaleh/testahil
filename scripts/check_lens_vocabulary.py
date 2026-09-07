@@ -270,7 +270,13 @@ def main(argv):
         return 2
 
     if prune:
-        keep = {tk: outstanding[tk] for tk in outstanding if tk in dirty}
+        # THE RATCHET IS A LIST AND THIS BRANCH TREATED IT AS A DICT, so the first
+        # prune this gate ever ran crashed. It had never been exercised: the list only
+        # ever grew until a study was actually re-issued, and the exemplar is the first
+        # one to come off. A CODE PATH THAT HAS NEVER RUN IS NOT A TESTED PATH, which is
+        # the same species as a check nobody has seen fail. The shape is kept as it is
+        # committed rather than rewritten, because other readers hold the list form.
+        keep = [tk for tk in outstanding if tk in dirty]
         json.dump({"_": ("Delivered documents still printing the retired weighted "
                          "blend as the study's own central. Each clears when that "
                          "study is re-issued. THE LIST MAY ONLY SHORTEN "
