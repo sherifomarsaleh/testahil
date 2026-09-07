@@ -1325,6 +1325,17 @@ jobs:
       - name: Ratchet-shape module — negative control
         run: python3 scripts/check_ratchet_shape_negative_control.py
 
+      # [R-STD-02]. The stamp enumerates what a study DOES, so it is a conformance claim
+      # and not a build timestamp — and six studies write it from the LIVE constant, so a
+      # rebuild re-asserts conformance to whatever standard is current with nobody
+      # deciding. Latent rather than live: every study reads 2026.09.01 against a live
+      # 2026.09.07, and the next rebuild of any of them creates the over-claim.
+      - name: A study does not claim a standard it is listed as not meeting
+        run: python3 scripts/check_standard_claim.py
+
+      - name: Standard-claim gate — negative control
+        run: python3 scripts/check_standard_claim_negative_control.py
+
       # [R-COC-02]. check_cost_of_capital enforces the CONSTRUCTION thoroughly and never
       # reproduced Ke, so a cost of equity typed 300bp high passed everything here. The
       # book runs two terminal constructions and no record said which.
