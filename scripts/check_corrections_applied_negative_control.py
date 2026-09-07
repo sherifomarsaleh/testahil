@@ -155,6 +155,56 @@ def empty_population(tmp):
     return "REFUSED"
 
 
+
+def silent_with_a_run(tmp):
+    """A study with a walk-forward run whose numbers file says nothing either way.
+
+    THE CONDITION THIS FILE'S TARGET PROMISED TO REFUSE AND DID NOT: its opening
+    paragraph has said since it was written that silence and "none adopted" are the
+    same file to a reader and different facts about the work, while the code skipped
+    a silent study with a `continue`. PHDC was in exactly that state when the clause
+    was finally implemented."""
+    p = _nums(tmp, "egch")
+    o = json.load(open(p))
+    removed = 0
+
+    def walk(x):
+        nonlocal removed
+        if isinstance(x, dict):
+            for k in list(x):
+                if k in ("adopted_correction", "adopted_corrections",
+                         "corrections_adopted"):
+                    del x[k]
+                    removed += 1
+                else:
+                    walk(x[k])
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+    walk(o)
+    assert removed, "MUTATION DID NOT LAND: nothing removed"
+    json.dump(o, open(p, "w"))
+    a, d = cca.claims(json.load(open(p)))
+    assert not a and not d, "MUTATION DID NOT LAND: the study still makes a claim"
+    return "SILENT"
+
+
+def unknown_record_shape(tmp):
+    """A run this file has no named adapter for. Must be REPORTED, never read as
+    having adopted nothing — the [R-ENF-04] shape the adapters were written for."""
+    src = os.path.join(tmp, "engine", "arcc_walkforward", "corrections_log.json")
+    d = os.path.join(tmp, "engine", "newco_walkforward")
+    os.makedirs(d, exist_ok=True)
+    shutil.copy(src, os.path.join(d, "corrections_log.json"))
+    sd = os.path.join(tmp, "engine", "newco_study")
+    os.makedirs(sd, exist_ok=True)
+    json.dump({"walkforward": {"adopted_correction": {"driver": "x", "factor": 1.01}}},
+              open(os.path.join(sd, "study_numbers.json"), "w"))
+    assert "NEWCO" not in cca.ADAPTERS, "MUTATION DID NOT LAND: NEWCO has an adapter"
+    return "UNKNOWN RECORD SHAPE"
+
+
+
 RED = [
     ("a claimed factor that does not reproduce from the run's bias", wrong_factor),
     ("a correction the run never adopted", unadopted_driver),
@@ -162,6 +212,8 @@ RED = [
     ("a study declaring none while its run adopted one", silent_while_run_adopted),
     ("a numbers file that will not parse", unparseable),
     ("an emptied population", empty_population),
+    ("a study with a run that says nothing either way", silent_with_a_run),
+    ("a run whose record matches no named adapter", unknown_record_shape),
 ]
 
 
@@ -191,13 +243,47 @@ def clean_declared_none(tmp):
     return None
 
 
+
+def clean_silent_without_a_run(tmp):
+    """A study with NO walk-forward and a numbers file silent on corrections.
+
+    EIGHTEEN OF THE BOOK'S STUDIES ARE IN THIS STATE and every one is correct: a
+    study with no run has nothing to declare, and a silence clause that fired on it
+    would be a false claim about what this gate checks."""
+    tk = "savola"
+    p = _nums(tmp, tk)
+    assert os.path.exists(p), "FIXTURE: no %s numbers file in the sandbox" % tk
+    a, d = cca.claims(json.load(open(p)))
+    assert not a and not d, "FIXTURE IS NOT THE REAL CASE: %s makes a claim" % tk
+    assert not os.path.isdir(os.path.join(tmp, "engine", "%s_walkforward" % tk)), \
+        "FIXTURE IS NOT THE REAL CASE: %s has a run" % tk
+    return None
+
+
+def clean_phdc_conformed(tmp):
+    """PHDC declaring both numbers: six shifts APPLIED inside the test, zero
+    PROMOTED. Two quantities under two names, which is the point — writing either
+    alone under a name that could mean the other is the defect the declaration was
+    written to avoid."""
+    o = json.load(open(_nums(tmp, "phdc")))
+    wf = o.get("walkforward", {})
+    assert wf.get("corrections_applied_in_walkforward") == 6, \
+        "FIXTURE IS NOT THE REAL CASE: PHDC's applied count moved"
+    assert wf.get("corrections_adopted") == 0, \
+        "FIXTURE IS NOT THE REAL CASE: PHDC no longer declares zero adopted"
+    return None
+
+
+
 CLEAN = [
     ("the records exactly as they ship", clean_untouched),
     ("a study using the word for editorial corrections", clean_editorial_word),
     ("a study declaring none whose run adopted none", clean_declared_none),
+    ("a study with NO run that says nothing", clean_silent_without_a_run),
+    ("PHDC declaring six applied and zero adopted", clean_phdc_conformed),
 ]
 
-EXPECTED_RED, EXPECTED_CLEAN = 6, 3
+EXPECTED_RED, EXPECTED_CLEAN = 8, 5
 assert len(RED) == EXPECTED_RED and len(CLEAN) == EXPECTED_CLEAN, (
     "CASE COUNT CHANGED — update the declared constants deliberately.")
 

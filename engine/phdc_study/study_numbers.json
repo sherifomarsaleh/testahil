@@ -6812,6 +6812,9 @@
   ]
  },
  "walkforward": {
+  "corrections_applied_in_walkforward": 6,
+  "corrections_adopted": 0,
+  "corrections_note": "The expanding-window rule applied six half-strength shifts inside the test itself, at the 2023 and 2024 origins, on four drivers \u2014 units sold, average selling price, units delivered and the finance charge \u2014 each on a sign-stability reason. NONE was promoted into the live drivers and the forward model carries no correction. The finance-cost candidate passed a bias test and failed the consistency clause, which is what exposed the interest-bearing-denominator defect; it is carried as a watch flag and acted on by nobody.",
   "origins": 10,
   "horizons": "1-5y",
   "revenue_bias": 0.105,

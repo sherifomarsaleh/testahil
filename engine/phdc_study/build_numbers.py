@@ -22,6 +22,26 @@ IN.assert_balance_sheet_foots()
 BS26_FOOT = IN.assert_balance_sheet_1q26_foots()
 
 
+
+def _phdc_corrections_applied():
+    """How many half-strength shifts this run APPLIED inside its own test, from its
+    own committed log. Computed rather than typed.
+
+    NOT the number promoted into the live drivers, which is zero. The log is a
+    per-origin record whose every entry carries an `applied` shift with the reason it
+    was or was not taken, so this count is a fact about the file rather than a memory
+    of it — and the first reading of that file, taken off its opening entries, said
+    zero, because the applications all sit at the last two origins."""
+    import json as _json
+    import os as _os
+    p = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),
+                      "phdc_walkforward", "corrections_log.json")
+    rec = _json.load(open(p, encoding="utf-8"))
+    return sum(1 for e in rec.get("log", [])
+               for v in (e.get("corrections") or {}).values()
+               if v.get("applied"))
+
+
 def main():
     W = json.load(open(os.path.join(HERE, "wacc_result.json")))
     peers = json.load(open(os.path.join(HERE, "peers.json")))
@@ -373,6 +393,32 @@ def main():
                        for n, pp, t in ST.verify()],
         },
         "walkforward": {
+            # THE CORRECTIONS POSITION IS STATED RATHER THAN LEFT SILENT, AND IT IS
+            # COMPUTED FROM THIS RUN'S OWN LOG RATHER THAN TYPED. Silence and "none
+            # adopted" are the same file to a reader and different facts about the
+            # work: four of the five completed runs declare their position and this
+            # one did not, so nothing outside the study could tell "we looked and
+            # promoted nothing" from "nobody asked".
+            #
+            # TWO NUMBERS, BECAUSE ONE WOULD BE THE WRONG ONE. A correction the
+            # expanding-window rule APPLIED at a past origin is not a correction
+            # PROMOTED into the live drivers, and the first count is six while the
+            # second is zero. Writing either alone under a name that could mean the
+            # other is the reciprocal mistake in another costume — a plausible figure
+            # whose meaning is not part of it.
+            "corrections_applied_in_walkforward":
+                _phdc_corrections_applied(),
+            "corrections_adopted": 0,
+            "corrections_note": (
+                "The expanding-window rule applied six half-strength shifts inside "
+                "the test itself, at the 2023 and 2024 origins, on four drivers — "
+                "units sold, average selling price, units delivered and the finance "
+                "charge — each on a sign-stability reason. NONE was promoted into "
+                "the live drivers and the forward model carries no correction. The "
+                "finance-cost candidate passed a bias test and failed the "
+                "consistency clause, which is what exposed the "
+                "interest-bearing-denominator defect; it is carried as a watch flag "
+                "and acted on by nobody."),
             "origins": 10, "horizons": "1-5y",
             "revenue_bias": 0.105, "revenue_mae": 0.425,
             "net_profit_bias": 1.116, "net_profit_mae": 1.117,

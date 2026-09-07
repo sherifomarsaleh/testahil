@@ -2921,3 +2921,57 @@ tables pulled out of the delivered documents at run time rather than transcribed
 built a reader for.** The record half of [R-FCAL-01]'s range clause has been measured,
 scored and bootstrapped all week. The document half — the only half a reader ever sees —
 had no instrument at all.
+
+---
+
+## 07-09-2026, later still — a docstring promising a check the code skipped, for the second time in a week
+
+Following the far-year finding into the neighbouring question — *a run adopts a
+correction; does the study carry it?* — turned up two defects in `check_corrections_applied`,
+a gate five days old.
+
+**One.** Its opening paragraph says, in terms: *"A study claiming NO correction must say
+so explicitly rather than be silent, because silence and 'none adopted' are the same file
+to a reader and different facts about the work."* The code read:
+
+```python
+if not adopted and not declared_none:
+    continue          # this study makes no claim either way
+```
+
+**PHDC was in exactly that state** — a completed run, and no corrections key anywhere in
+its numbers file. Four of the five declare; it did not, and nothing could tell "we looked
+and promoted nothing" from "nobody asked". This is the second instance in a week of the
+defect [R-ENF-07] recorded of `check_artefact_currency`: *a comment asserting a check that
+does not exist is worse than no comment, because it stops the next reader looking.* The
+rule was already written. What is new is only that it recurred, which is evidence for it.
+It is not itself gateable — whether a docstring describes the code is a semantic claim, and
+saying so is more honest than a check that pretends to test it.
+
+**Two, and the more serious one.** `run_adoptions` looked for `candidates` and `adopted`.
+The five records carry **five shapes** — `candidates` / `adopted` / `policy`+`flags` /
+`log` / `adopted`+`watch_flags` — and it returned an empty dict for the three it did not
+recognise. It was right on all five today, and **on two of them by not finding a key
+rather than by reading one.** The day a run promotes a correction in the `log` shape, that
+reader reports the run adopted nothing. Replaced by one named adapter per run; an unknown
+shape is now REPORTED, never read as nothing. The precedent was already in the sibling
+gate, which had to learn it after a census reported "twelve candidates, one adopted" while
+missing four applied corrections in another run.
+
+### PHDC conformed rather than ratcheted, and the first attempt at it was wrong
+
+Its generator was to hand and reproduces its committed numbers file byte for byte, so the
+declaration is computed from the run's own log rather than typed, and moves no valued
+figure.
+
+**The first version wrote `corrections_adopted: 6`.** I had read the log's opening entries,
+seen every candidate at `applied: 0.0`, and generalised — the applications all sit at the
+last two origins. Six half-strength shifts, at 2023 and 2024, on four drivers (units sold,
+ASP, units delivered, the finance charge), each on a sign-stability reason. **But applied
+inside the test is not promoted into the live drivers, and the second number is zero.**
+Writing either alone under a name that could mean the other is the reciprocal mistake in
+another costume — a plausible figure whose meaning is not part of it. Both are now
+declared, under names that say which is which.
+
+Twelfth instance today of a first-attempt measurement being wrong, and the second of the
+night caught by a fixture rather than by a reader.
