@@ -204,8 +204,25 @@ def supplied_price(ticker):
     files = sorted(glob.glob(os.path.join(ENGINE, 'prices', 'SUPPLIED_*.json')))
     if not files:
         return None, None, 'no supplied price file'
+    # THE NEWEST FILE IS NOT THE NEWEST PRICE, AND THIS LOOP USED TO ASSUME IT WAS.
+    # A supplied file is a record of WHEN SOMEBODY SUPPLIED a set of closes, and each
+    # close inside it carries its OWN date -- so a name added to today's file with
+    # last month's close would override a fresher close sitting in an older file, and
+    # the gate would then measure the gap against a price it had itself made stale.
+    # That is not hypothetical: on 7 September 2026 a close of 23 August was supplied
+    # for GBCO -- read off the live site, correctly, as a fact about the PAGE -- into
+    # a file whose other entry was that day's, and it displaced a 3 September close
+    # this repository already held. engine/prices/gap_today.py has always merged on
+    # each price's own date for exactly this reason; this reader did not, so two
+    # readers of one fact disagreed [R-ENF-03] and the stricter-looking one was wrong.
+    #
+    # The ENGINE-relative read is KEPT rather than replaced by an import of that
+    # merger: this gate's negative control repoints ENGINE at a temp tree and
+    # substitutes prices there, so a reader that reached past ENGINE into the real
+    # repository would stop testing what the control injects.
     best = (None, None, 'ticker not in the supplied prices')
-    for fp in files:                       # oldest first, so the newest file wins
+    best_key = None
+    for fp in files:                       # oldest first, so a tie goes to the newest file
         try:
             doc = json.load(open(fp, encoding='utf-8'))
         except Exception as e:
@@ -218,8 +235,14 @@ def supplied_price(ticker):
             px = float(row['price'])
         except (KeyError, TypeError, ValueError):
             continue
-        best = (px, row.get('date') or doc.get('supplied_on'),
-                os.path.relpath(fp, ROOT))
+        when = row.get('date') or doc.get('supplied_on')
+        # An undated close cannot be ordered against a dated one, so it takes the
+        # weakest key rather than being dropped: it is still a price, and losing it
+        # would turn a datable-but-undated figure into no price at all [R-ENF-04].
+        key = str(when) if when else ''
+        if best_key is None or key >= best_key:
+            best_key = key
+            best = (px, when, os.path.relpath(fp, ROOT))
     return best
 
 

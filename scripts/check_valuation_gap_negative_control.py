@@ -152,6 +152,65 @@ EMPTY = {'breach_no_review': [], 'unreadable': [], 'exempt': {}}
 DECLARED_CASES = 27
 
 
+def price_date_beats_file_date():
+    """THE LATEST KNOWN PRICE IS THE LATEST CLOSE, NOT THE ONE IN THE NEWEST FILE.
+
+    A supplied file records WHEN SOMEBODY SUPPLIED a set of closes; each close inside
+    it carries its own date. supplied_price() used to keep whichever row it read last,
+    files in name order, so a name added to today's file with last month's close
+    displaced a fresher close held in an older file -- and the gate then measured the
+    gap against a price it had itself made stale, while reporting a date that made the
+    staleness look deliberate.
+
+    IT IS NOT HYPOTHETICAL. On 7 September 2026 a close of 23 August was supplied for
+    GBCO -- read off the live site, correct as a fact about the PAGE -- into a file
+    whose other row was that day's, and it displaced the 3 September close this
+    repository already held. engine/prices/gap_today.py had always merged on each
+    price's own date; this reader had not, so two readers of one fact disagreed
+    [R-ENF-03] and the one that looked stricter was wrong.
+
+    Both halves are asserted, because a fix that always preferred the OLDER date would
+    pass the first half alone.
+    """
+    tmp = tempfile.mkdtemp()
+    ok = True
+    try:
+        pdir = os.path.join(tmp, 'prices')
+        os.makedirs(pdir)
+        json.dump({'prices': {'TK': {'price': 28.98, 'date': '2026-09-03'}}},
+                  io.open(os.path.join(pdir, 'SUPPLIED_03-09-2026.json'), 'w',
+                          encoding='utf-8'))
+        json.dump({'prices': {'TK': {'price': 29.51, 'date': '2026-08-23'}}},
+                  io.open(os.path.join(pdir, 'SUPPLIED_07-09-2026.json'), 'w',
+                          encoding='utf-8'))
+        files = sorted(os.listdir(pdir))
+        assert files[-1].endswith('07-09-2026.json'), (
+            'FIXTURE DID NOT LAND: the file carrying the OLDER close is not the one a '
+            'name sort reads last, so this case would not exercise the defect')
+        gate.ENGINE = tmp
+        px, when, _src = gate.supplied_price('TK')
+        if not (abs(px - 28.98) < 1e-9 and when == '2026-09-03'):
+            ok = False
+            print('  [MISS] older close in the newer file was taken as latest: %r %r'
+                  % (px, when))
+        # and the other way round, so the fix is ordering by date rather than
+        # preferring the older file
+        json.dump({'prices': {'TK': {'price': 31.40, 'date': '2026-09-11'}}},
+                  io.open(os.path.join(pdir, 'SUPPLIED_07-09-2026.json'), 'w',
+                          encoding='utf-8'))
+        px2, when2, _ = gate.supplied_price('TK')
+        if not (abs(px2 - 31.40) < 1e-9 and when2 == '2026-09-11'):
+            ok = False
+            print('  [MISS] a genuinely newer close in the newer file was not taken: '
+                  '%r %r' % (px2, when2))
+    finally:
+        gate.ENGINE = REAL_ENGINE
+        shutil.rmtree(tmp, ignore_errors=True)
+    print('  [%s] the latest KNOWN price is the latest close, not the newest file'
+          % ('ok' if ok else 'MISS'))
+    return ok
+
+
 def main():
     print('valuation-gap gate — negative control')
     cases = [
@@ -277,6 +336,12 @@ def main():
     assert len(results) == DECLARED_CASES, (
         'declared %d cases, ran %d — a control that quietly loses a case reports '
         'clean for the wrong reason.' % (DECLARED_CASES, len(results)))
+    # A UNIT CASE ON THE PRICE RESOLVER, RUN AFTER THE COUNT so the sandboxed-study
+    # cases keep being counted against their own declared constant. It asserts on
+    # supplied_price() directly because the quantity it tests -- which of two closes
+    # is the LATEST -- is decided before any study is read, and routing it through a
+    # full run would prove only that some price reached the comparison.
+    results.append(price_date_beats_file_date())
     print()
     if all(results):
         print('negative control OK — the gate goes red on every injected defect, on both '

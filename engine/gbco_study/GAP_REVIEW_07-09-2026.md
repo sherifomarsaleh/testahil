@@ -4,9 +4,21 @@
 known price. The trigger is two-sided since 02-Sep-2026, and this one fires on the UPPER
 side, which is the side that gets no automatic hold and therefore needs this review most.
 
-- AUDITED CENTRAL: 44.3295  (EGP per share)
+**REWRITTEN 7 September 2026, second pass.** The study this reviewed published a weighted
+blend of four lenses and a single central of 44.3295. That construction is retired: the class
+primary is the answer, and on this name the answer has **two sides**, because GB Corp's
+largest component is carried two ways in its own disclosures. Every heading below stands;
+the header, heading 8 and the verdict are rewritten against the answer the study now
+publishes. **A REVIEW OF A DIFFERENT ANSWER IS NOT A REVIEW.**
+
+- AUDITED CENTRAL: 41.3484  (EGP per share — MNT-Halan at its reviewed carrying value)
+- AUDITED CENTRAL: 52.3453  (EGP per share — MNT-Halan at the June-2026 round price)
 - AUDITED SPOT: **EGP 28.98**, the supplied close of **3 September 2026** — the latest price this repository holds
-- AUDITED GAP: +53.0%
+- AUDITED GAP: +42.7%   (the nearer branch; the far branch is +80.6%)
+
+**A TWO-SIDED ANSWER IS AUDITED ON EVERY BRANCH.** Publishing two numbers instead of one is
+not a way to publish two unaudited numbers, so both are stated above and both are audited
+below.
 
 **The price, and why it is this one — including a correction to this run's own first
 answer.** GBCO carries no price in `engine/prices/SUPPLIED_07-09-2026.json`, and this run's
@@ -193,40 +205,77 @@ Two, and the second is new to this run and material.
 
 ## 8 · MULTIPLE CROSS-CHECK
 
-At EGP 44.3295 the equity value is **EGP 48,121mn**. Against FY2025 net profit of 2,880.0mn
-that is **16.7×**; against 1H2026 annualised (2,524.0mn) **19.1×**. The traded price implies
-**10.9×** and **12.5×** on the same two. An Egyptian auto assembler at 16.7× would be rich.
+| | equity value (EGP mn) | on FY2025 net profit of 2,880.0mn |
+|---|---:|---:|
+| carrying-value branch, EGP 41.3484 | 44,884 | **15.6×** |
+| round-price branch, EGP 52.3453 | 56,821 | **19.7×** |
+| the traded price, EGP 28.98 | 31,458 | **10.9×** |
 
-**It is not an assembler multiple, and the arithmetic says so.** Strip the associates at the
-study's own 10% complexity discount and the operating business is valued at EGP 48,001 −
-0.9 × 28,060.7 = **22,866mn**, or **7.9×** FY2025 group net profit and **3.4×** FY2025 group
-operating profit — a low multiple, not a high one. The whole of the premium over the traded
-price is the private mark on MNT-Halan and how far a reader believes it.
+An Egyptian auto assembler at 15.6× would be rich, and at 19.7× very rich. **Neither is an
+assembler multiple, and the arithmetic says why.** Take the operating businesses alone — the
+auto leg at its cash-flow value of EGP 26,997.5mn and the lender at the residual-income value
+of 1,655.7mn its own disclosed return supports — and they come to **EGP 28,653.2mn, or 9.95×
+FY2025 group net profit**. That is a low multiple, not a high one. Every point of premium
+over the traded price is the associate.
 
-**THE REVERSE READ.** The traded price of EGP 28.98 values the whole company at EGP
-31,458.2mn. Holding this study's operating value of 22,866mn, the market is paying **EGP
-8,592mn for the associates** — a 69.4% discount to the 27,670.7mn read-through, i.e. the
-market is marking GB Corp's MNT-Halan stake at roughly **USD 434mn against the USD 583mn the
-June 2026 round implies**. That is not an absurd belief. It is the ordinary discount a public
-market applies to an unlisted growth stake it cannot exit, and it is a **believable number** —
-which under [R-GAP-02]'s own standard is evidence AGAINST dissenting from the market, not for
-it.
+**THE REVERSE READ, AND IT IS HARSHER THAN THE FIRST PASS FOUND.** The traded price values
+the whole company at EGP 31,457.8mn. This study's operating businesses are worth 28,653.2mn
+of that — **91.1% of the entire market capitalisation, before a single pound of associate
+value.** What is left for the associates is **EGP 2,804.6mn, or 2.58 per share**:
+
+- against the June-2026 round read-through of 28,167.6mn, a discount of **90.0%**
+- against the **reviewed carrying value** of 16,230.5mn, a discount of **82.7%**
+
+The first pass of this review computed a 69.4% discount and called it *"the ordinary discount
+a public market applies to an unlisted growth stake it cannot exit"* and *"a believable
+number"*. **That conclusion does not survive the rebuild and it is withdrawn here rather than
+quietly dropped.** Two changes moved it: the conglomerate discount that was suppressing the
+whole sum came off, and the lender leg fell from a typed 9,500 to 1,655.7 — so the operating
+side is now worth more of the market capitalisation and less is left over for the associate.
+A discount of 90% to a private round is arguable. **A discount of 83% to a figure a reviewing
+accountant has signed a balance sheet on is a different claim**, and it is the one the market
+is making.
+
+**SO THE GAP IS ONE LINE, AND THE STUDY SAYS WHICH.** Either the market is marking a stake
+carried at EGP 14.95 per share at roughly EGP 2.58, or one of the two operating legs above is
+worth materially less than this study says. **Both are live and this review does not resolve
+them**, which is the honest state of it; what it does is stop the question being invisible.
+The place to look if the second is true is the auto leg's terminal, which carries 84% of that
+leg's enterprise value.
 
 ---
 
 ## Verdict
 
-**The answer is not changed by this review, and the answer is not the interesting part.**
-Four rule-driven corrections were applied in a declared order and the value moved 35.75 →
-73.71 → 43.96 → 44.33 (`rebuild_ledger.json`); two of the four pull in opposite directions
-and the running total is a contest rather than a landslide. The +53.0% premium is **almost
-entirely one line** — an unlisted associate marked at a private round price, on which the
-company's own auditors have issued a **qualified opinion**, and against which the market is
-applying a discount this review finds believable.
+**The answer changed, and what changed it was not the price.** Four rule-driven corrections
+were applied to this study in a declared order in the first pass (35.75 → 73.71 → 43.96 →
+44.33, `rebuild_ledger.json`). This second pass applies a further set, and each one is a rule
+that already bound rather than a lever anybody chose:
 
-**What would overturn it:** an audited MNT-Halan financial statement, or any subsequent round
-or transaction repricing the stake. Both would move 58% of this valuation.
+| what moved | the rule it serves |
+|---|---|
+| the four-lens weighted blend, retired | [R-LENS-03] — one class primary IS the central |
+| the typed 10% conglomerate discount, removed | the promotion rule — a free parameter with no out-of-sample evidence |
+| the lender at book × 1.0, replaced by residual income on its own operating equity | [R-LENS-03] — book is a floor and is never weighted |
+| the associate marked one way, now marked two ways | depth-bar standard 8 — the contested judgement is published both ways, never averaged |
+| the normalised-earnings lens, removed | the class row does not carry it — associate marks make these earnings unnormalisable |
+| the relative multiple's three typed multiples, replaced by the company's own trailing median | [R-LENS-03] — a multiple comes from peers or own history |
 
-**[R-GAP-02] does not hold this study** — that block is one-sided and fires only where the
-central sits BELOW the price. Publishing remains a separate, explicitly-requested step and
-nothing here asks for one.
+**A CORRECTION TO THIS RUN'S OWN COMMIT MESSAGE.** The commit that made these changes says
+the study "did not mention" the qualification on the associate. That is wrong and is recorded
+here rather than left standing: the FY2025 qualification was already a registered input in
+the study's own numbers file, dated 26 February 2026, and heading 7 of this review discusses
+it at length. What was genuinely absent is the **30 June 2026** review qualification with its
+own wording and its EGP 409.9mn figure, and the **42.93% from 44.01%** ownership pair the
+reviewed statements state for the same transaction the press release states as 41.61% from
+42.58%. Both are now in the record. The overstatement was mine and it is corrected where a
+reader of this study will see it.
+
+**What would overturn the whole thing:** an audited MNT-Halan financial statement, or any
+subsequent round or transaction repricing the interest. On the round-price branch that line
+is 50% of the answer; on the carrying-value branch, 36%.
+
+**[R-GAP-02] does not hold this study** — that block is one-sided and fires only where a
+branch sits BELOW the price, and every branch here sits above it. [R-GAP-02] clause three
+holds it, as it holds every study in the book, until Phase 1 acceptance closes. Publishing
+remains a separate, explicitly-requested step and nothing here asks for one.

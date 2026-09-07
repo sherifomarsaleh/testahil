@@ -184,6 +184,20 @@ def main():
     def m_circularity_wont_divide(r):
         r["cross_checks"][0]["circularity"]["metric_value"] = 0.0
 
+    # ---- THE NEGATION THE CLAUSE'S OWN COMMENT PROMISED [RE-POINTED 07-09-2026] ----
+    # The prose clause said in its own comment that a source saying "never the current
+    # price" is doing the right thing and that a check which cannot tell the difference
+    # is one people learn to write around. It could not tell the difference, and fired
+    # on a study DISCLAIMING the construction. Two cases hold the re-point in place: the
+    # honest disclaimer must stay GREEN (added among the clean cases below), and a
+    # negator sitting far from the phrase must still go RED -- otherwise "not a peer
+    # set; the multiple is taken from the current price" would read as clean, which is
+    # the widening the fix exists not to be.
+    def m_far_negator(r):
+        r["cross_checks"][0]["multiple_source"] = (
+            "not a peer set at all: the multiple here is simply the one taken "
+            "from the current price")
+
     for n, m in (("1 PHDC's architecture as shipped", m_phdc_as_shipped),
                  ("2 a typed weight on a cross-check", m_typed_weights),
                  ("3 central is not the primary", m_central_not_primary),
@@ -199,7 +213,9 @@ def main():
                  ("10b no circularity block: the check switched off",
                   m_no_circularity_block),
                  ("10c the adopted multiple is not committed", m_no_multiple),
-                 ("10d the circularity numbers do not divide", m_circularity_wont_divide)):
+                 ("10d the circularity numbers do not divide", m_circularity_wont_divide),
+                 ("10e a negator far from the phrase is not a disclaimer",
+                  m_far_negator)):
         case(n, broken(m), True, results)
 
     def b_norecord(tmp):
@@ -440,6 +456,20 @@ def main():
         rec["envelope"] = {"low": RANGE["low"], "high": RANGE["high"]}
         put_study(tmp, "NCL", rec); put_list(tmp, [])
 
+    def c_honest_disclaimer(tmp):
+        # THE CASE THE RE-POINT EXISTS FOR. A source note that names its own history
+        # AND says in terms that it is never a multiple from the current price is
+        # doing exactly what the rule asks, and the plain substring test condemned it.
+        # A study could only get past that by rewording an honest note or deleting it,
+        # which is the writing-around the clause's own comment warned of.
+        rec = json.loads(json.dumps(GOOD))
+        rec["cross_checks"][0]["multiple_source"] = (
+            "the median of the company's OWN trailing price-to-earnings at its last "
+            "three year-end closes. Never a multiple from the current price.")
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+
+    case("clean: a source note DISCLAIMING the current price",
+         c_honest_disclaimer, False, results)
     case("clean: range from a business crux on filed evidence",
          c_business_crux, False, results)
     case("clean: a framing [R-COC-01] requires both ways",
