@@ -64,30 +64,30 @@ const TICKERS = {
     name: "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
     nameAr: "\u0634\u0631\u0643\u0629 \u0628\u062a\u0631\u0648\u0644 \u0623\u0628\u0648\u0638\u0628\u064a \u0627\u0644\u0648\u0637\u0646\u064a\u0629 \u0644\u0644\u062a\u0648\u0632\u064a\u0639",
     code: "ADX:ADNOCDIST",
-    spot: 4.07,
-    spotDate: "close 07 Aug 2026",
+    spot: 4.03,
+    spotDate: "close 07 Sep 2026",
     fairAsof: "2026-08-07",
     ccy: "AED",
     fair: { bear: 3.36, base: 4.41, full: 5.17 },   // 9 Aug 2026 - TWO centres, never one. The contested judgement (inventory movements on a regulated fuel margin) is carried both ways; weighting both frames inside one number would average them. Frame A, inventory normalised to zero from FY2027, gives a weighted centre of 4.41; Frame B, the FY2024-FY2025 average carried through, gives 4.58. `base` carries the CONSERVATIVE reading. Field 3.36 to 5.17 across the weighted readings: cash flow 4.78 / 5.1, normalised earnings power 4.01, relative multiples 4.95, book value and sustainable return 3.36. Built BOTTOM UP from four disclosed legs, each on its own physical driver: retail fuel is SERVICE STATIONS x LITRES PER STATION, corporate and aviation are SEPARATE legs on their own volumes and their own realised prices, non-fuel is TRANSACTIONS x CONVERSION x BASKET. THE CRUX IS THROUGHPUT: the network grew 11.3% year on year while retail volume grew 1.0%, so litres per station FELL 9.3% - retail growth is network-led, not organic. The cost of capital is FLAT at 7.44%, because the sliding schedule does not apply to a pegged currency already at its norm; the risk-free rate strips only the 4bp the bond actually carries over comparable US Treasuries, not a 42bp ratings lookup. Terminal value is 74.9% of enterprise value, a stated line of the bridge. Every perpetuity charges reinvestment at g/ROIC, the normalised lens included.
     dist: {
-      t20: { label:"1 month",   p5:3.72, p25:3.94, p50:4.07, p75:4.20, p95:4.45, resolve:"2026-09-07" },
-      t60: { label:"3 months",  p5:3.43, p25:3.82, p50:4.06, p75:4.30, p95:4.81, resolve:"2026-11-09" }
+      t20: { label:"1 month",   p5:3.71, p25:3.91, p50:4.03, p75:4.16, p95:4.39, resolve:"2026-10-07" },
+      t60: { label:"3 months",  p5:3.46, p25:3.82, p50:4.04, p75:4.27, p95:4.73, resolve:"2026-12-07" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-07" },
     touch: [ /* descending high -> low */
-      [4.88, 1, 7], [4.68, 2, 13], [4.48, 7, 26], [4.27, 26, 53], [3.87, 26, 53], [3.66, 5, 23]
+      [4.88, 1, 5], [4.68, 1, 10], [4.48, 4, 21], [4.27, 19, 46], [3.87, 31, 56], [3.66, 5, 23]
     ],
-    levels: { res:[4.15, 4.30, 4.40], sup:[4, 3.77, 3.65] },
+    levels: { res:[4.15, 4.30, 4.40], sup:[3.78, 3.65, 3.51] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day; fresh golden-cross",
-      summary: "The price closed 4.07 above a rising 20-day (4.00), a rising 50-day (3.94) and a rising 200-day (3.87). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.06 (~1.4%) points to an orderly tape. MACD (12\u00b726\u00b79) is positive and rising (+0.04 / +0.03 / +0.01). The 50-day crossed above the 200-day 23 sessions ago. Over the last year it has ranged 3.47\u20134.18; the last close sits 3% below that high and 17% above that low.",
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 4.03 above a rising 50-day (4.01) and a rising 200-day (3.92), but below a flat 20-day (4.06). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 0.05 (~1.2%) points to an orderly tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.00 / +0.01 / \u22120.01). Over the last year it has ranged 3.47\u20134.18; the last close sits 4% below that high and 16% above that low.",
       bull: "A daily close back above 4.15 would clear the nearest resistance; the next charted level above it is 4.40.",
-      bear: "A close below 4.00 would break the nearest support; the next charted level below it is 3.65."
+      bear: "A close below 3.78 would break the nearest support; the next charted level below it is 3.51."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-06" }
+      mc:   { data:"2026-09-07", computed:"2026-09-07" },
+      tech: { data:"2026-09-07", computed:"2026-09-07" }
     },
     files: {
       study: "files/ADNOCDIST_Valuation_Study_09-08-2026.pdf?v=0809a",
@@ -3226,7 +3226,7 @@ const BANDS = {
   ADCB: {mkt:"AE", n:58, hits:50, c50:0.5000, c80:0.8103, c90:0.8621, width:1.054, strength:"long", flag:null},
   ADIB: {mkt:"EG", n:57, hits:54, c50:0.6140, c80:0.8772, c90:0.9474, width:1.388, strength:"long", flag:null},
   ADIBUAE: {mkt:"AE", n:58, hits:50, c50:0.5345, c80:0.7586, c90:0.8621, width:1.140, strength:"long", flag:null},
-  ADNOCDIST: {mkt:"AE", n:30, hits:30, c50:0.6667, c80:0.9333, c90:1.0000, width:1.100, strength:"short", flag:null},
+  ADNOCDIST: {mkt:"AE", n:30, hits:29, c50:0.7000, c80:0.9333, c90:0.9667, width:1.096, strength:"short", flag:null},
   ADNOCDRILL: {mkt:"AE", n:15, hits:15, c50:0.6000, c80:1.0000, c90:1.0000, width:1.124, strength:"market-only", flag:null},
   ADNOCGAS: {mkt:"AE", n:9, hits:9, c50:0.4444, c80:1.0000, c90:1.0000, width:1.072, strength:"market-only", flag:null},
   ADNOCLS: {mkt:"AE", n:8, hits:7, c50:0.3750, c80:0.7500, c90:0.8750, width:1.177, strength:"market-only", flag:null},
@@ -3315,7 +3315,7 @@ const BANDS = {
 };
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
-  AE: {names:28, n:912, c90:0.9057, label:"UAE"},
+  AE: {names:28, n:912, c90:0.9046, label:"UAE"},
   EG: {names:37, n:1795, c90:0.9287, label:"Egyptian"},
   IN: {names:3, n:174, c90:0.8793, label:"Indian"},
   KR: {names:3, n:127, c90:0.8898, label:"Korean"},
@@ -3358,7 +3358,7 @@ const LEDGER = [
     note:"First coverage, 7-Aug-2026 — struck on the production chain: Step 0.0 gate -> YZ variance proxy -> fit_har_v3 -> har_forecast_v3 -> carry drift ln(1+rf_live)-ln(1+q) -> simulate_paths_v3, 50,000 paths, seed 42 (touch ladder off the stored 20,000-path subset; percentiles from the full 50,000). q_annual=0.0511. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65% CBUAE Base Rate. Horizons from horizons.resolve() on ADX's own calendar, not a session count. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0231 over 30 windows, -0.0344 over the last five years of origins, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.0408,-0.0053]). The cone is TOO WIDE, not mis-centred: 97% coverage against a 90% target and 67% against 50%, PIT mean 0.516 where 0.5 is centred, width 1.12x the carry-anchored benchmark. One of the least volatile names on its exchange while width is fitted across the whole UAE panel. Read the bands as an OUTER bound; a narrower name-level width is deliberately not published because it is untested out of sample.",
     p5:3.69, p25:3.92, p50:4.07, p75:4.22, p95:4.47,
     touch:[ [4.88,0], [4.68,2], [4.48,8], [4.27,31], [3.87,30], [3.66,6] ],
-    realized_close:null, realized_date:null
+    realized_close:4.03, realized_high:4.13, realized_low:3.97, in_90:true, in_50:true, realized_quantile:0.433, median_err:-0.0098, touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":false, "-10":false }
   },
   {
     instrument:"ADNOCDIST", asset_class:"equity",
@@ -8021,6 +8021,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 07-Sep-2026 single-name roll-forward: ADNOCDIST, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"ADNOCDIST", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:4.03, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-10-07", grade_basis:"projected", horizon_days:21,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.1975,
+    signal_z:0.3208, signal_alpha:0.001906,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.0516 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.321 (outside the 0.25 dead zone); tilt +0.19% at 1M and +0.62% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:3.71, p25:3.91, p50:4.03, p75:4.16, p95:4.39,
+    touch:{ "+5":25, "+10":6, "+15":2, "+20":1, "-5":22, "-10":4 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"ADNOCDIST", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:4.03, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-12-07", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.216,
+    signal_z:0.3208, signal_alpha:0.006137,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.0516 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.321 (outside the 0.25 dead zone); tilt +0.19% at 1M and +0.62% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:3.46, p25:3.82, p50:4.04, p75:4.27, p95:4.73,
+    touch:{ "+5":52, "+10":25, "+15":12, "+20":6, "-5":48, "-10":20 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -8445,7 +8474,7 @@ const PRICES = {
   ADCB: { px: 15.14, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ADIB: { px: 52.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ADIBUAE: { px: 22.66, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADNOCDIST: { px: 4.02, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  ADNOCDIST: { px: 4.03, date: "2026-09-07", src: "library" },
   ADNOCDRILL: { px: 5.85, date: "2026-09-07", src: "library" },
   ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ADNOCLS: { px: 6.85, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
