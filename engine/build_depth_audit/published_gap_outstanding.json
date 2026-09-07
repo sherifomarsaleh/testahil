@@ -18,10 +18,6 @@
    "reason": "+14.8% (fair 3.79 vs spot 3.3) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
    "magnitude": 0.148485
   },
-  "ADNOCLS": {
-   "reason": "+14.4% AS PUBLISHED. Its review GAP_REVIEW_04-09-2026.md audits 5.61 and the site publishes 7.05 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
-   "magnitude": 0.144481
-  },
   "AGTHIA": {
    "reason": "+30.4% (fair 4.37 vs spot 3.35) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
    "magnitude": 0.304478
@@ -69,10 +65,6 @@
   "DSCW": {
    "reason": "-55.1% (fair 0.88 vs spot 1.96) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
    "magnitude": -0.55102
-  },
-  "DU": {
-   "reason": "+13.0% AS PUBLISHED. Its review GAP_REVIEW_04-09-2026.md audits 16.5778 and the site publishes 13.9 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
-   "magnitude": 0.130081
   },
   "EFID": {
    "reason": "-16.6% (fair 27.68 vs spot 33.2) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
@@ -232,6 +224,12 @@
    "removed": [
     "ADNOCDRILL",
     "ELEC"
+   ]
+  },
+  {
+   "removed": [
+    "ADNOCLS",
+    "DU"
    ]
   }
  ]
