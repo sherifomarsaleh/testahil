@@ -477,6 +477,72 @@ def _field(text: str, key: str):
     return v[1:-1] if v.startswith('"') else v
 
 
+OUTCOME_FIELDS = ('realized_close', 'realized_high', 'realized_low', 'in_90',
+                  'in_50', 'realized_quantile', 'median_err', 'touch_hit')
+
+CANONICAL_NULL_OUTCOME = (
+    'realized_close:null, realized_high:null, realized_low:null, '
+    'in_90:null, in_50:null, realized_quantile:null, median_err:null, '
+    'touch_hit:null')
+
+
+def _normalise_outcome(t: str) -> str:
+    """Give an open row the canonical null outcome block, whatever shape it carries.
+
+    THE LINE BREAK WAS NOT THE ONLY THING DECIDING WHETHER A GRADE GOT WRITTEN.
+    The whitespace fix below let the writer reach a row that WRAPPED its outcome
+    block; it could still not reach a row that was SHORT OF THE FIELDS ALTOGETHER.
+    Measured on the shipped ledger 07-Sep-2026: of 267 open rows, 253 carry the
+    canonical eight fields and 14 do not — twelve emitted `realized_close, and
+    realized_date` (ADNOCDIST, ADNOCDRILL, ADNOCLS, BOROUGE, SAVOLA, RIYADHCABLE)
+    and two `realized_close, realized_quantile, median_err, touch_hit` (DU). Those
+    rows COMPUTE a grade and cannot RECORD one: ADNOCDIST's 1-month cone matured on
+    07-Sep-2026 having resolved inside both bands, and the sweep died on the write.
+
+    So a SCHEMA was deciding whether a resolved forecast entered the record, which
+    is the layout-decides-refresh family one level up ("A LAYOUT MUST NEVER DECIDE
+    WHETHER A FIELD GETS REFRESHED"), and the standing instruction on meeting a
+    defect of a species already seen is to CLOSE THE CLASS, NOT THE INSTANCE. This
+    normalises ANY degenerate shape rather than the two observed ones, so a row
+    emitted tomorrow in a ninth shape grades instead of raising.
+
+    IT ADDS PLACEHOLDERS AND EDITS NO PUBLISHED FORECAST. The frozen claim is the
+    percentiles, the touch ladder and the grade date; every field written here is
+    `null` on both sides, and `realized_date` — the one field dropped — is read by
+    nothing on the site (the ledger renders `realized_close`, `in_90`, `in_50`).
+    A row already carrying the canonical eight is returned UNTOUCHED, so the 253
+    rows the writer already reached come out byte-identical; that is asserted from
+    outside by scripts/check_grade_writer_layout.py.
+    """
+    # PRESENCE IS A NAME TEST, NOT A VALUE TEST. _field() parses a scalar, and the
+    # dominant open shape writes `touch_hit:{"+5":null, ...}` — an OBJECT — so a
+    # value-based test reports the field missing on 246 perfectly canonical rows and
+    # normalises what it should leave alone. The gate caught exactly that.
+    if all(re.search(r'\b' + f + r'\s*:', t) for f in OUTCOME_FIELDS):
+        return t
+
+    i = t.find('realized_close')
+    if i < 0:
+        raise SystemExit('row carries no realized_close field at all')
+
+    # The outcome region runs to `reanchor_from` where the row has one, else to the
+    # brace that closes the row. Bounding it on the row's own structure is what makes
+    # this general rather than a third hard-coded pattern.
+    tail = t[i:]
+    j = tail.find('reanchor_from')
+    if j < 0:
+        j = tail.rfind('}')
+        if j < 0:
+            raise SystemExit('row has no closing brace — cannot bound the outcome block')
+    region = tail[:j]
+    if 'p5:' in region or 'note:' in region or 'touch:' in region:
+        raise SystemExit('refusing to normalise: the outcome region would swallow '
+                         'a frozen field — the row is not shaped as expected')
+
+    sep = ',\n    ' if region.rstrip().endswith(',') else '\n  '
+    return t[:i] + CANONICAL_NULL_OUTCOME + sep + tail[j:]
+
+
 def apply_grade(src: str, row: dict, got: dict) -> str:
     """Rewrite exactly the outcome fields of the one row this grade belongs to.
 
@@ -503,6 +569,8 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
     t = src[a:b]
     if _field(t, 'realized_close') != 'null':
         raise SystemExit('refusing to regrade an already-graded row — graded rows are permanent')
+
+    t = _normalise_outcome(t)
 
     jb = lambda v: 'true' if v else 'false'
     rq = 'null' if got['realized_quantile'] is None else f"{got['realized_quantile']:.3f}"

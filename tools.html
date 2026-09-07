@@ -41,8 +41,8 @@
     </div>
 
     <div class="t-pane" id="pane-screener">
-      <p class="muted" style="max-width:66ch">Rank the whole coverage by <b>reachability</b> — can the study’s central fair value be reached in 3 months, given how much the name actually moves? <b>Big-win odds</b> is the share of the simulated 3-month paths that finish <b>more than 10% above the price the cone was struck at</b> at the check date.</p>
-      <p class="muted" style="max-width:66ch;font-size:var(--fs-small)"><b>Two prices, two jobs.</b> The gap to fair value is measured against the latest price we hold, and every row prints the date of that price — they are entered by hand, so some are days old and some are weeks. The odds columns stay on the price each cone was struck at, because that is the anchor the simulation was built on. Where the two differ, the date beside the price is the one to read.</p>
+      <p class="muted" style="max-width:100%">Rank the whole coverage by <b>reachability</b> — can the study’s central fair value be reached in 3 months, given how much the name actually moves? <b>Big-win odds</b> is the share of the simulated 3-month paths that finish <b>more than 10% above the price the cone was struck at</b> at the check date.</p>
+      <p class="muted" style="max-width:100%;font-size:var(--fs-small)"><b>Two prices, two jobs.</b> The gap to fair value is measured against the latest price we hold, and every row prints the date of that price — they are entered by hand, so some are days old and some are weeks. The odds columns stay on the price each cone was struck at, because that is the anchor the simulation was built on. Where the two differ, the date beside the price is the one to read.</p>
       <div class="t-filters">
         <select id="sc-mkt" class="t-chip"></select>
         <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="sc-reach"> only in reach</label>
@@ -69,9 +69,9 @@
     </div>
 
     <div class="t-pane" id="pane-funnel">
-      <p class="muted" style="max-width:70ch;margin-bottom:6px"><a href="/funnel.html"><b>How the funnel works →</b></a> the seven gates, what each is doing, and the strength of the evidence behind it.</p>
-      <p class="muted" style="max-width:70ch">How this site reads its own numbers, applied across the whole book: five conditions in the order the evidence supports, and for each name <b>the first condition it fails</b>. Conditions that eliminate come before ones that only cap or time, and every threshold here is one already written down elsewhere — the 10% gap trigger, the momentum dead zone, the record-strength cuts. Nothing new was chosen for this table.</p>
-      <p class="muted" style="max-width:70ch;font-size:var(--fs-small)"><b>Nothing is stopped for being old, or for being work in progress.</b> Every row prints the date of the price it was ranked on and the last session of the library its momentum and tape came from. Prices are entered by hand on a monthly rhythm and a fundamental rebuild takes days per name — so both are shown and neither drops a name, because a tool that dead-ends everything it has touched answers nothing on the day you ask it.</p>
+      <p class="muted" style="max-width:100%;margin-bottom:6px"><a href="/funnel.html"><b>How the funnel works →</b></a> the seven gates, what each is doing, and the strength of the evidence behind it.</p>
+      <p class="muted" style="max-width:100%">How this site reads its own numbers, applied across the whole book: five conditions in the order the evidence supports, and for each name <b>the first condition it fails</b>. Conditions that eliminate come before ones that only cap or time, and every threshold here is one already written down elsewhere — the 10% gap trigger, the momentum dead zone, the record-strength cuts. Nothing new was chosen for this table.</p>
+      <p class="muted" style="max-width:100%;font-size:var(--fs-small)"><b>Nothing is stopped for being old, or for being work in progress.</b> Every row prints the date of the price it was ranked on and the last session of the library its momentum and tape came from. Prices are entered by hand on a monthly rhythm and a fundamental rebuild takes days per name — so both are shown and neither drops a name, because a tool that dead-ends everything it has touched answers nothing on the day you ask it.</p>
       <div class="t-filters">
         <select id="fn-mkt" class="t-chip"></select>
         <label class="t-chip" style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="fn-clear"> only names meeting every condition</label>
@@ -95,7 +95,7 @@
     </div>
 
     <div class="t-pane" id="pane-compare">
-      <p class="muted" style="max-width:66ch">Any two covered names, line by line.</p>
+      <p class="muted" style="max-width:100%">Any two covered names, line by line.</p>
       <div style="display:grid;grid-template-columns:1fr 44px 1fr;gap:10px;align-items:center;max-width:640px;margin:8px 0 16px">
         <select id="cp-a" class="t-chip" style="width:100%"></select>
         <div style="text-align:center;font-weight:700;color:var(--muted)">vs</div>
@@ -105,7 +105,7 @@
     </div>
 
     <div class="t-pane" id="pane-odds">
-      <p class="muted" style="max-width:66ch">One stock, four plain buckets. Then — if you’ve already decided — size the position as a second step.</p>
+      <p class="muted" style="max-width:100%">One stock, four plain buckets. Then — if you’ve already decided — size the position as a second step.</p>
       <div class="t-filters">
         <select id="od-t" class="t-chip"></select>
         <span id="od-hz"></span>
@@ -134,7 +134,7 @@
     </div>
 
     <div class="t-pane" id="pane-portfolio">
-      <p class="muted" style="max-width:70ch">A mix of covered names and the odds of the whole mix — combined under one stated co-movement assumption (same-exchange pairs ρ≈0.55, cross-exchange ρ≈0.25, the same figures the current page publishes), on seeded draws mapped through each study’s own percentiles.</p>
+      <p class="muted" style="max-width:100%">A mix of covered names and the odds of the whole mix — combined under one stated co-movement assumption (same-exchange pairs ρ≈0.55, cross-exchange ρ≈0.25, the same figures the current page publishes), on seeded draws mapped through each study’s own percentiles.</p>
       <div class="grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:8px">
         <div class="t-card">
           <div class="t-kicker">The mix</div>

@@ -1340,6 +1340,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "ADNOCLS",
+   "name": "ADNOC Logistics & Services plc",
+   "code": "ADX:ADNOCLS",
+   "ccy": "AED",
+   "spot": 6.8,
+   "anchor_date": "2026-09-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 5.02,
+   "fv_base": 7.05,
+   "fv_full": 10.8,
+   "gap_base_pct": 3.7,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.074803,
+    "mu_h": 0.005865,
+    "G": {
+     "bear": -4.06,
+     "base": 0.48,
+     "full": 6.18
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0018,
+     "base": 0.3067,
+     "full": 0.0004
+    },
+    "p_touch": {
+     "bear": 0.0029,
+     "base": 0.5027,
+     "full": 0.0004
+    },
+    "required_cagr": {
+     "bear": -0.9738,
+     "base": 0.5423,
+     "full": 256.6191
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00108
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.133593,
+    "mu_h": 0.018937,
+    "G": {
+     "bear": -2.27,
+     "base": 0.27,
+     "full": 3.46
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0134,
+     "base": 0.4353,
+     "full": 0.0043
+    },
+    "p_touch": {
+     "bear": 0.0227,
+     "base": 0.733,
+     "full": 0.007
+    },
+    "required_cagr": {
+     "bear": -0.703,
+     "base": 0.1554,
+     "full": 5.363
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00404
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ALPHADHABI",
    "name": "Alpha Dhabi Holding",
    "code": "ADX:ALPHADHABI",
@@ -2996,98 +3088,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "ADNOCDIST",
-   "name": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
-   "code": "ADX:ADNOCDIST",
-   "ccy": "AED",
-   "spot": 4.07,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.36,
-   "fv_base": 4.41,
-   "fv_full": 5.17,
-   "gap_base_pct": 8.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.058191,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -3.29,
-     "base": 1.38,
-     "full": 4.11
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0044,
-     "base": 0.065,
-     "full": 0.0019
-    },
-    "p_touch": {
-     "bear": 0.0066,
-     "base": 0.1052,
-     "full": 0.003
-    },
-    "required_cagr": {
-     "bear": -0.8998,
-     "base": 1.619,
-     "full": 16.6504
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00141
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.109814,
-    "mu_h": -0.00246,
-    "G": {
-     "bear": -1.75,
-     "base": 0.73,
-     "full": 2.18
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0373,
-     "base": 0.1818,
-     "full": 0.0181
-    },
-    "p_touch": {
-     "bear": 0.0653,
-     "base": 0.3323,
-     "full": 0.0329
-    },
-    "required_cagr": {
-     "bear": -0.5355,
-     "base": 0.3784,
-     "full": 1.6037
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00059
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "EFID",
    "name": "Edita Food Industries",
    "code": "EGX:EFID",
@@ -3272,20 +3272,20 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "DU",
-   "name": "Emirates Integrated Telecommunications Company PJSC",
-   "code": "DFM:DU",
+   "ticker": "ADNOCDIST",
+   "name": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
+   "code": "ADX:ADNOCDIST",
    "ccy": "AED",
-   "spot": 12.3,
-   "anchor_date": "2026-08-07",
+   "spot": 4.03,
+   "anchor_date": "2026-09-07",
    "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
+   "fv_lag_days": 31,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 9.74,
-   "fv_base": 13.9,
-   "fv_full": 20.28,
-   "gap_base_pct": 13.0,
+   "fv_bear": 3.36,
+   "fv_base": 4.41,
+   "fv_full": 5.17,
+   "gap_base_pct": 9.4,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
@@ -3298,68 +3298,68 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.075453,
-    "mu_h": 0.008097,
+    "h_sessions": 21,
+    "sigma_h": 0.054657,
+    "mu_h": 0.0,
     "G": {
-     "bear": -3.09,
-     "base": 1.62,
-     "full": 6.63
+     "bear": -3.33,
+     "base": 1.65,
+     "full": 4.56
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0049,
-     "base": 0.0522,
-     "full": 0.0003
+     "bear": 0.0042,
+     "base": 0.042,
+     "full": 0.0012
     },
     "p_touch": {
-     "bear": 0.0078,
-     "base": 0.0807,
-     "full": 0.0003
+     "bear": 0.0065,
+     "base": 0.0669,
+     "full": 0.0023
     },
     "required_cagr": {
-     "bear": -0.9392,
-     "base": 3.3383,
-     "full": 402.6027
+     "bear": -0.8872,
+     "base": 1.9485,
+     "full": 18.8713
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.0005
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00142
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.135672,
-    "mu_h": 0.024891,
+    "h_sessions": 62,
+    "sigma_h": 0.101539,
+    "mu_h": 0.002478,
     "G": {
-     "bear": -1.72,
-     "base": 0.9,
-     "full": 3.69
+     "bear": -1.79,
+     "base": 0.89,
+     "full": 2.45
     },
     "band": "IN-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0282,
-     "base": 0.1922,
-     "full": 0.0035
+     "bear": 0.0323,
+     "base": 0.1523,
+     "full": 0.0131
     },
     "p_touch": {
-     "bear": 0.052,
-     "base": 0.3145,
-     "full": 0.0062
+     "bear": 0.0552,
+     "base": 0.2686,
+     "full": 0.0225
     },
     "required_cagr": {
-     "bear": -0.6068,
-     "base": 0.6309,
-     "full": 6.3901
+     "bear": -0.5168,
+     "base": 0.434,
+     "full": 1.7086
     },
     "hurdle_rf": 0.0365,
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00073
+    "selftest_max_dev": 0.00378
    },
    "market": "AE"
   },
@@ -3728,98 +3728,6 @@ const FV_OVERLAY = {
     "beats_cash": false,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00101
-   },
-   "market": "AE"
-  },
-  {
-   "ticker": "ADNOCLS",
-   "name": "ADNOC Logistics & Services plc",
-   "code": "ADX:ADNOCLS",
-   "ccy": "AED",
-   "spot": 6.16,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 5.02,
-   "fv_base": 7.05,
-   "fv_full": 10.8,
-   "gap_base_pct": 14.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.072117,
-    "mu_h": 0.006473,
-    "G": {
-     "bear": -2.84,
-     "base": 1.87,
-     "full": 7.79
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0068,
-     "base": 0.034,
-     "full": 0.0001
-    },
-    "p_touch": {
-     "bear": 0.0107,
-     "base": 0.0527,
-     "full": 0.0002
-    },
-    "required_cagr": {
-     "bear": -0.9142,
-     "base": 4.0501,
-     "full": 842.5611
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00106
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.136316,
-    "mu_h": 0.020884,
-    "G": {
-     "bear": -1.5,
-     "base": 0.99,
-     "full": 4.12
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0416,
-     "base": 0.1589,
-     "full": 0.0021
-    },
-    "p_touch": {
-     "bear": 0.0772,
-     "base": 0.263,
-     "full": 0.0036
-    },
-    "required_cagr": {
-     "bear": -0.5589,
-     "base": 0.7157,
-     "full": 8.4487
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00114
    },
    "market": "AE"
   },
@@ -4652,6 +4560,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "ADNOCDRILL",
+   "name": "ADNOC Drilling Company P.J.S.C.",
+   "code": "ADX:ADNOCDRILL",
+   "ccy": "AED",
+   "spot": 5.85,
+   "anchor_date": "2026-09-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.46,
+   "fv_base": 4.92,
+   "fv_full": 6.21,
+   "gap_base_pct": -15.9,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.077653,
+    "mu_h": 0.005115,
+    "G": {
+     "bear": -6.76,
+     "base": -2.23,
+     "full": 0.77
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.0158,
+     "full": 0.1967
+    },
+    "p_touch": {
+     "bear": 0.0003,
+     "base": 0.0247,
+     "full": 0.3181
+    },
+    "required_cagr": {
+     "bear": -0.9982,
+     "base": -0.8748,
+     "full": 1.0475
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00132
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.13458,
+    "mu_h": 0.01695,
+    "G": {
+     "bear": -3.9,
+     "base": -1.29,
+     "full": 0.44
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.002,
+     "base": 0.0615,
+     "full": 0.3447
+    },
+    "p_touch": {
+     "bear": 0.0032,
+     "base": 0.1121,
+     "full": 0.5858
+    },
+    "required_cagr": {
+     "bear": -0.8776,
+     "base": -0.4997,
+     "full": 0.2698
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00513
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "RAYA",
    "name": "Raya Holding",
    "code": "EGX:RAYA",
@@ -5112,98 +5112,6 @@ const FV_OVERLAY = {
    "market": "US"
   },
   {
-   "ticker": "ADNOCDRILL",
-   "name": "ADNOC Drilling Company P.J.S.C.",
-   "code": "ADX:ADNOCDRILL",
-   "ccy": "AED",
-   "spot": 5.94,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.46,
-   "fv_base": 4.92,
-   "fv_full": 6.21,
-   "gap_base_pct": -17.2,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.073568,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -7.35,
-     "base": -2.56,
-     "full": 0.6
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0002,
-     "base": 0.0109,
-     "full": 0.2291
-    },
-    "p_touch": {
-     "bear": 0.0002,
-     "base": 0.0167,
-     "full": 0.3869
-    },
-    "required_cagr": {
-     "bear": -0.9985,
-     "base": -0.8957,
-     "full": 0.7048
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00061
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.137258,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -3.94,
-     "base": -1.37,
-     "full": 0.32
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0022,
-     "base": 0.0657,
-     "full": 0.342
-    },
-    "p_touch": {
-     "bear": 0.0038,
-     "base": 0.1144,
-     "full": 0.6327
-    },
-    "required_cagr": {
-     "bear": -0.8849,
-     "base": -0.5293,
-     "full": 0.1946
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00099
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "ORWE",
    "name": "Oriental Weavers",
    "code": "EGX:ORWE",
@@ -5294,6 +5202,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00226
    },
    "market": "EG"
+  },
+  {
+   "ticker": "DU",
+   "name": "Emirates Integrated Telecommunications Company PJSC",
+   "code": "DFM:DU",
+   "ccy": "AED",
+   "spot": 11.38,
+   "anchor_date": "2026-09-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 9.74,
+   "fv_base": 13.9,
+   "fv_full": 20.28,
+   "gap_base_pct": 22.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.085729,
+    "mu_h": 0.004384,
+    "G": {
+     "bear": -1.82,
+     "base": 2.33,
+     "full": 6.74
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0298,
+     "base": 0.0161,
+     "full": 0.0002
+    },
+    "p_touch": {
+     "bear": 0.0468,
+     "base": 0.0248,
+     "full": 0.0004
+    },
+    "required_cagr": {
+     "bear": -0.8455,
+     "base": 10.0273,
+     "full": 1024.9076
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00134
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.14088,
+    "mu_h": 0.013962,
+    "G": {
+     "bear": -1.1,
+     "base": 1.42,
+     "full": 4.1
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0868,
+     "base": 0.0715,
+     "full": 0.0021
+    },
+    "p_touch": {
+     "bear": 0.157,
+     "base": 0.1194,
+     "full": 0.0033
+    },
+    "required_cagr": {
+     "bear": -0.4634,
+     "base": 1.2258,
+     "full": 9.0856
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00501
+   },
+   "market": "AE"
   },
   {
    "ticker": "LGES",

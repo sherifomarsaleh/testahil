@@ -114,6 +114,8 @@ on:
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
+      - 'engine/grade_ledger.py'
+      - 'scripts/check_grade_writer_layout.py'
       - 'scripts/check_site_data_reader.py'
       - 'scripts/check_site_data_reader_negative_control.py'
       - 'scripts/check_new_study_gauntlet.py'
@@ -259,6 +261,8 @@ on:
       - 'engine/source_integrity.py'
       - 'engine/table_footing.py'
       - 'engine/site_data.py'
+      - 'engine/grade_ledger.py'
+      - 'scripts/check_grade_writer_layout.py'
       - 'scripts/check_site_data_reader.py'
       - 'scripts/check_site_data_reader_negative_control.py'
       - 'scripts/check_new_study_gauntlet.py'
@@ -855,6 +859,18 @@ jobs:
       # JavaScript object literal takes the LAST, and the entry declared its levels twice.
       # Measured on 03-Sep-2026: forty-four files read the site's data and THIRTEEN did it
       # by regex. engine/site_data.py is the shared reader.
+      # THE GATE BACKSTOPPING THE GRADE WRITER RAN NOWHERE. check_grade_writer_layout.py
+      # exists because apply_grade() rewrites a matured row by matching literal patterns,
+      # and a row it cannot match is a row that CANNOT BE GRADED while looking exactly
+      # like a row nobody graded. It was written after that cost PHAR's resolved cone,
+      # then hardened on 07-Sep-2026 after it cost ADNOCDRILL's and BOROUGE's — and in
+      # all that time no workflow invoked it, so every regression it was built to catch
+      # would have reached main unchallenged. A GATE THAT NOTHING RUNS IS A DOCUMENT
+      # [R-ENF-01]: it asserts reach over every open row and byte-identity against the
+      # pre-fix writer on every row the old patterns already matched.
+      - name: Grade-writer layout gate
+        run: python3 scripts/check_grade_writer_layout.py
+
       - name: Site-data reader gate
         run: python3 scripts/check_site_data_reader.py
 

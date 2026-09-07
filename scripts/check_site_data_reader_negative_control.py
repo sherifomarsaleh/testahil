@@ -314,17 +314,54 @@ def main():
         src = open(dj, encoding='utf-8').read()
         j = src.index('\n];', src.index('const LEDGER'))
         row = _SD.read_list('LEDGER', dj)
-        dup = next(r for r in row if r.get('realized_close') in (None, ''))
-        cell = ('  {instrument:"%s", horizon_label:"%s", anchor_date:"%s", '
-                'realized_close:null}' % (dup['instrument'], dup['horizon_label'],
-                                          dup['anchor_date']))
-        open(dj, 'w', encoding='utf-8').write(src[:j] + ',\n' + cell + src[j:])
-        try:
-            _SD.assert_ledger_lifecycle(dj)
-            print('FAIL a DUPLICATE open row at the latest anchor did not fire')
+        # THE ROW DUPLICATED MUST BE A LATEST-ANCHOR ROW, AND PICKING THE FIRST OPEN
+        # ONE ONLY HAPPENED TO BE ONE. The invariant is "exactly one OPEN row at the
+        # LATEST anchor per (instrument, horizon)", so two open rows at an EARLIER
+        # anchor are legal — that is precisely what an aging 3-month tail is under
+        # the forecast lifecycle, where a fresh 3M demotes its predecessor and both
+        # stay open. This control took `next(open row)` and duplicated it, which
+        # fired only while no name in the book had reached that steady state.
+        #
+        # It went red on 07-Sep-2026 the first time one did: ADNOCLS's 1M graded at
+        # the monthly metronome and its cycle-2 pair was struck, so the first open
+        # row in the file became ADNOCLS 3 months at the 2026-08-07 anchor — an
+        # aging tail against a 2026-09-07 cycle-2 row. Duplicating it produced two
+        # open rows at a NON-latest anchor, the invariant correctly permitted them,
+        # and the control read that correct answer as a failure to fire. Nothing was
+        # wrong with assert_ledger_lifecycle, which passed 186 pairs on the live
+        # ledger in the same run.
+        #
+        # So the fixture is pinned to the condition under test rather than to file
+        # order, and the pin is ASSERTED rather than assumed: a control that cannot
+        # find a latest-anchor open row has not proved the gate is sound, it has
+        # failed to set up, and it says so instead of passing quietly [R-ENF-04].
+        latest = {}
+        for r in row:
+            k = (r['instrument'], r['horizon_label'])
+            if r['anchor_date'] > latest.get(k, ''):
+                latest[k] = r['anchor_date']
+        dup = next((r for r in row
+                    if r.get('realized_close') in (None, '')
+                    and r['anchor_date'] == latest[(r['instrument'], r['horizon_label'])]),
+                   None)
+        if dup is None:
+            print('FAIL no OPEN row sits at its own latest anchor — the fixture for '
+                  'the duplicate-row condition could not be built, so the condition '
+                  'was never injected')
             bad += 1
-        except RuntimeError:
-            print('PASS a duplicate open row at the latest anchor is REFUSED')
+        else:
+            cell = ('  {instrument:"%s", horizon_label:"%s", anchor_date:"%s", '
+                    'realized_close:null}' % (dup['instrument'], dup['horizon_label'],
+                                              dup['anchor_date']))
+            open(dj, 'w', encoding='utf-8').write(src[:j] + ',\n' + cell + src[j:])
+            try:
+                _SD.assert_ledger_lifecycle(dj)
+                print('FAIL a DUPLICATE open row at the latest anchor did not fire')
+                bad += 1
+            except RuntimeError:
+                print('PASS a duplicate open row at the latest anchor is REFUSED '
+                      '(%s %s @ %s)' % (dup['instrument'], dup['horizon_label'],
+                                        dup['anchor_date']))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
