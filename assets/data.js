@@ -8557,7 +8557,7 @@ const PRICES = {
   DEWA: { px: 2.7, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   DIB: { px: 7.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   DSCW: { px: 2.03, date: "2026-09-02", src: "SUPPLIED_03-09-2026.json" },
-  DU: { px: 11.36, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  DU: { px: 11.38, date: "2026-09-07", src: "library" },
   EAND: { px: 21.18, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   EFID: { px: 30.79, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   EFIH: { px: 22.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
