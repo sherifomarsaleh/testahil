@@ -63,8 +63,31 @@ def load(name):
     return out or None
 
 
-def main():
+def cuts_for(cells):
+    """Every admissible cut for one driver, and the ones where the sign flips.
+
+    Exposed so a GATE can hold an adopted correction to this exact arithmetic
+    instead of reimplementing it — a checker that models the measurement is
+    checking a different measurement [R-ENF-03].
+
+    Returns (cuts, flipped) where each is a list of (boundary, mean_before,
+    mean_after); `cuts` is empty where no boundary leaves MIN_SIDE cells on both
+    sides, which is a driver too thin to test rather than a stable one.
+    """
     mean = lambda v: sum(v) / len(v) if v else None
+    years = sorted({y for y, _ in cells})
+    cuts = []
+    for b in years[1:]:
+        pre = [e for y, e in cells if y < b]
+        post = [e for y, e in cells if y >= b]
+        if len(pre) < MIN_SIDE or len(post) < MIN_SIDE:
+            continue
+        cuts.append((b, mean(pre), mean(post)))
+    flipped = [(b, a, c) for b, a, c in cuts if (a > 0) != (c > 0)]
+    return cuts, flipped
+
+
+def main():
     flips, stable, thin, missing = [], [], [], []
     for name in sorted(RUNS):
         got = load(name)
@@ -72,19 +95,10 @@ def main():
             missing.append(name)
             continue
         for drv, cells in sorted(got.items()):
-            years = sorted({y for y, _ in cells})
-            cuts = []
-            for b in years[1:]:
-                pre = [e for y, e in cells if y < b]
-                post = [e for y, e in cells if y >= b]
-                if len(pre) < MIN_SIDE or len(post) < MIN_SIDE:
-                    continue
-                cuts.append((b, mean(pre), mean(post)))
+            cuts, flipped = cuts_for(cells)
             if not cuts:
                 thin.append((name, drv, len(cells)))
                 continue
-            signs = {(1 if a > 0 else -1, 1 if b > 0 else -1) for _, a, b in cuts}
-            flipped = [(b, a, c) for b, a, c in cuts if (a > 0) != (c > 0)]
             (flips if flipped else stable).append((name, drv, cuts, flipped))
 
     if not (flips or stable):

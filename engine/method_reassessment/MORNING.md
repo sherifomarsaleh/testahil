@@ -1895,3 +1895,53 @@ DISCLOSURE.** It satisfies the author, survives review, and is invisible to
 precisely the audience it was written for — which is [R-MACRO-01 AMENDED]'s finding
 about exemptions arriving from the other direction: there a true statement sat on
 the wrong object, here a true statement sat in the wrong place.
+
+## 07-09-2026 (3) — the boundary test now gates, and it agrees with the runs' own procedures
+
+**A correction to what I reported earlier.** I recorded that the book held twelve
+correction candidates, all in ARCC, with exactly one ADOPTED — so the boundary
+result "binds on what is adopted NEXT, not on anything already in the book." **That
+count read only ARCC's `disposition` field and missed PHDC entirely**, whose
+expanding-window rule applied a non-zero correction to four drivers, each with the
+stated reason *"sign stable across eras"* — precisely the claim the boundary test
+interrogates. Five subjects, not one.
+
+Tested at every cut the data admits:
+
+| run | driver | cuts | flips | the run's own verdict |
+|---|---|---|---|---|
+| ARCC | `mfg_dep` | 4 | **0** | ADOPTED — "the one candidate that survives both clauses" |
+| PHDC | `is.finance_cost` | 5 | **0** | "only one correction passed its own test" |
+| PHDC | `asp` | 5 | 4 | declined |
+| PHDC | `units_delivered` | 5 | 2 | declined |
+| PHDC | `units_sold` | 5 | 1 | declined — "no resolved cells" |
+
+**The agreement is exact and it runs the unusual way.** An instrument neither run
+used, applied at every admissible boundary rather than the one each chose, confirms
+precisely the two corrections those runs promoted and refuses precisely the three
+they declined. **That is evidence FOR the existing procedure**, which is not what
+this session has mostly been producing.
+
+**Scope, stated rather than overstated, because I nearly got this wrong.** My first
+reading was "three of PHDC's applied corrections fail the boundary test", which
+sounds like a published record resting on an unstable sign. It does not: `score.py`
+does not import `corrections` at all, so the scored record is the uncorrected one
+and the corrections are the adjusted-vs-raw test [R-FCAL-01] requires. **No
+delivered number turns on any of this.** The three are on the gate's ratchet with
+that measurement attached, because rebuilding PHDC's adjusted-vs-raw artefact under
+a cut-invariant rule moves that run's record and deserves its own measured pass.
+
+`scripts/check_correction_boundary.py` imports `boundary_sensitivity` rather than
+reimplementing the arithmetic [R-ENF-03], and `cuts_for()` was extracted for it with
+the census's output verified byte-identical afterwards. Negative-controlled on five
+red and three clean; **the fixtures are derived from the data rather than named by
+hand** — the first draft hardcoded `cogs`, which is not an ARCC candidate at all,
+and the landing assertion said so — and the thin-driver case **creates** its
+condition rather than hunting for one, because no ARCC driver is thin enough and the
+only run with thin drivers adopts nothing.
+
+THE GENERAL LESSON: **A COUNT TAKEN THROUGH ONE FIELD IS A COUNT OF THAT FIELD.**
+"Twelve candidates, one adopted" was true of ARCC's `disposition` column and false
+of the book, and it read as a fact about the programme because the field it came
+from was the obvious place to look. Where five records have five shapes, a census
+needs five readers or it is measuring the one it understands.

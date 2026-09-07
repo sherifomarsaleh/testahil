@@ -1216,6 +1216,16 @@ jobs:
       - name: Driver-coverage gate — negative control
         run: python3 scripts/check_driver_coverage_negative_control.py
 
+      # [R-ENF-01] 42 of 66 testable driver biases flip sign at some cut, so a
+      # correction adopted on a sign-stable reading at ONE boundary owes that sign
+      # at every cut the data admits. Assuming the market's boundary was every
+      # driver's break already cost one conclusion.
+      - name: A correction adopted on a sign holds it at every cut
+        run: python3 scripts/check_correction_boundary.py
+
+      - name: Correction-boundary gate — negative control
+        run: python3 scripts/check_correction_boundary_negative_control.py
+
       - name: A frozen escalator is declared, or it is a defect
         run: python3 scripts/check_frozen_escalator.py
 
