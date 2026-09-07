@@ -42,6 +42,26 @@ vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']), (
 _PANEL = [v for v in PF.numbers_from(HERE, files=['study_numbers.json']) if _spot and 0 < v < _spot * 5]
 vals += PF.ratios_against([_spot] if _spot else [], _PANEL)
 
+# A MARGIN IS A RATIO OF TWO COMMITTED FIGURES AND THE RATIO IS NOT ITSELF COMMITTED.
+# Every income statement in this study — the three reported years and the five forecast
+# years — prints a gross margin and a net margin beside its own revenue, and the
+# forecast's cost lines are quoted as a share of revenue in §1.2. Those are exactly the
+# ratios_against() shape the shared module documents, so the rendering set is WIDENED here
+# rather than the figures being deleted from the page.
+_SN = json.load(open('study_numbers.json'))
+_IS_ROWS = list(_SN['history']['income_statement'].values()) + _SN['group_forecast']['rows']
+for _row in _IS_ROWS:
+    _rev = _row.get('revenue')
+    if not _rev:
+        continue
+    vals += [v / _rev for v in _row.values() if isinstance(v, (int, float)) and v]
+# and the auto leg's own lines against the auto revenue of the same year
+for _row in _SN['dcf']['rows']:
+    _r = _row.get('rev')
+    if not _r:
+        continue
+    vals += [v / _r for v in _row.values() if isinstance(v, (int, float)) and v]
+
 RENDER = PF.rendering_set(vals)
 
 if __name__ == '__main__':

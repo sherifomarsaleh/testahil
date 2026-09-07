@@ -410,6 +410,9 @@ def main():
 
     # ---------------- 2. THE CONTESTED JUDGEMENTS -------------------------
     beta_wacc = M.wacc_at(B['beta'], M.wb['erp_cds'])
+    # the SUPERSEDED house default, priced so the beta fork can be measured against what
+    # this study used to carry rather than against what it now carries
+    unit_beta_wacc = M.wacc_at(1.0, M.wb['erp_cds'])
     anchor = N['forecast_anchor']
     flat_gpm = [anchor['latest_reviewed_rate']] * len(M.rows)
     flat_wc = [M.wcpct[0]] * len(M.rows)
@@ -472,18 +475,24 @@ def main():
                   "names this its second crux and the company's own quarterly prints "
                   'resolve it; the fork is whether the release is credited before it is '
                   'shown.')),
+        # THE FORK RUNS THE OTHER WAY NOW, AND THIS ENTRY DESCRIBED A STUDY THAT NO LONGER
+        # EXISTS [corrected 07-09-2026]. It named the typed nominal as ADOPTED and the house
+        # terminal as the alternative, while the rebuild had already taken the house
+        # terminal — so the record read as a defect the study still carried, and its own
+        # arithmetic said otherwise by returning a movement of exactly zero.
         dict(name='terminal growth',
-             adopted='a typed nominal 11.5% for ever',
-             alternative=("the house Egyptian terminal of 7.0% — terminal inflation with a "
-                          'stated real growth of zero'),
-             va=M.central(), vb=M.central(g=0.07),
-             pa=M.primary(), pb=M.primary(g=0.07),
+             adopted=('the house Egyptian terminal — terminal inflation with a stated '
+                      'REAL growth of zero, recomputed to its nominal rate'),
+             alternative='the superseded typed nominal 11.5% held for ever',
+             va=M.central(), vb=M.central(g=0.115),
+             pa=M.primary(), pb=M.primary(g=0.115),
              why=('a typed nominal rate is unfalsifiable: nobody can tell whether 11.5% '
-                  'meant inflation plus four points or minus three. Against a discount rate '
-                  'built off a 22.55% risk-free it is an 11.4-point spread and defensible '
-                  'on its face; against the sourced disinflation path it is real growth of '
-                  'several points a year in perpetuity, which nothing disclosed supports. '
-                  '75% of the auto leg sits in that terminal.')),
+                  'meant inflation plus four points or minus three. The adopted rate is '
+                  'STORED as a real rate on the house inflation path and recomputes to its '
+                  'nominal, so the claim it makes is legible and can be argued with. The '
+                  'alternative is what this study published before the rebuild and it is '
+                  'the HIGHER value, which is why the fork is recorded rather than treated '
+                  'as settled; most of the auto leg sits in that terminal.')),
         dict(name='the normalised earnings base',
              adopted=('mid-cycle group profit of EGP 4,200 mn — recovering volumes at the '
                       'top of the forecast margin path, on forward-scale revenue'),
@@ -499,8 +508,10 @@ def main():
                   'the company last actually earned is the sceptic\'s framing and is worth '
                   '8% of the answer.')),
         dict(name='the equity risk premium basis',
-             adopted='the credit-default-swap basis, giving a weighted cost of capital of 22.94%',
-             alternative='the credit-rating basis, giving 25.08%',
+             adopted=('the market (credit-default-swap) basis, giving a first-year weighted '
+                      'cost of capital of %.2f%%' % (N['cost_of_capital_record']['wacc_exp'] * 100)),
+             alternative=('the credit-rating basis, giving %.2f%%'
+                          % (N['cost_of_capital_rating_basis']['wacc_exp'] * 100)),
              va=M.central(), vb=M.central(w=M.wb['wacc_rating']),
              pa=M.primary(), pb=M.primary(w=M.wb['wacc_rating']),
              why=("both come from the same published country-risk file and the study prints "
@@ -531,18 +542,24 @@ def main():
                   'LOWER-value choice and the study says plainly that it does so; the fork '
                   'is recorded because the study also names a much steeper mark-specific '
                   'discount as the sceptic\'s reading, which runs the other way.')),
+        # SAME CORRECTION AS THE TERMINAL, SAME EVIDENCE: this entry named the assumed 1.00
+        # as adopted while the rebuild had already taken the conforming regression, and its
+        # own movement of zero was the arithmetic saying so [corrected 07-09-2026].
         dict(name='the equity beta',
-             adopted=('1.00, the house default, after an attempted five-annual-observation '
-                      'regression returned a negative slope with no explanatory power'),
-             alternative=('0.8907, the conforming weekly regression against the exchange\'s '
-                          'published index now committed in this directory'),
-             va=M.central(), vb=M.central(w=beta_wacc),
-             pa=M.primary(), pb=M.primary(w=beta_wacc),
+             adopted=('%.4f, the conforming weekly regression against the exchange\'s '
+                      'published index, committed in this directory'
+                      % N['cost_of_capital_record']['beta']),
+             alternative=('1.00, the house default this study carried before the rebuild, '
+                          'after an attempted five-annual-observation regression returned a '
+                          'negative slope with no explanatory power'),
+             va=M.central(), vb=M.central(w=unit_beta_wacc),
+             pa=M.primary(), pb=M.primary(w=unit_beta_wacc),
              why=('the study\'s own refusal to use an unusable regression was right, and a '
-                  'conforming tier-1 regression has since been produced on weekly data over '
-                  'nearly five years. It moves the cost of capital by 48 basis points and '
-                  'the answer by under 2%, so it is recorded rather than material — the '
-                  'beta was never what this valuation turned on.')),
+                  'conforming tier-1 regression has since replaced the default it fell back '
+                  'to. The fork is recorded rather than treated as settled because a beta '
+                  'is a judgement about which estimator to trust, not a fact; it moves this '
+                  'answer by little, which is itself worth saying — the beta was never '
+                  'what this valuation turned on.')),
     ]
 
     judgements = []

@@ -610,6 +610,8 @@
   "bear": 27.99327183553493,
   "bull": 90.71168353193565,
   "mnt_halan_stake": 0.4161,
+  "mnt_halan_stake_prior": 0.4258,
+  "mnt_halan_stake_source": "GB Corp's own press release of 9 June 2026 on MNT-Halan's Al Ahly Capital-led capital increase: the stake 'will be adjusted to 41.61%, compared to 42.58% prior to the transaction'",
   "mnt_halan_round_usd": 1400.0,
   "egp_usd": 47.5,
   "mnt_halan_value": 27670.650000000005,
@@ -755,13 +757,511 @@
    ]
   ]
  },
+ "disclosed_drivers": {
+  "_source": "GB Corp's own 4Q23 / 4Q24 / 4Q25 earnings releases, the segment volume and revenue tables, committed under engine/gbco_study/src/",
+  "pc_volume_units": {
+   "FY23": 26994,
+   "FY24": 42043,
+   "FY25": 56548
+  },
+  "pc_revenue": {
+   "FY23": 16544.3,
+   "FY24": 36533.4,
+   "FY25": 52827.3
+  },
+  "pc_asp": {
+   "FY23": 0.6128880491961176,
+   "FY24": 0.8689532145660396,
+   "FY25": 0.9342028011600765
+  },
+  "cv_volume_units": {
+   "FY25": 3404
+  },
+  "cv_revenue": {
+   "FY25": 5956.8
+  },
+  "lm_volume_units": {
+   "FY25": 33906
+  },
+  "lm_revenue": {
+   "FY25": 2203.8
+  },
+  "trading_revenue": {
+   "FY25": 4242.8
+  },
+  "auto_revenue_fy2025": 66358.3,
+  "growth": {
+   "pc_volume": [
+    0.12,
+    0.14,
+    0.1,
+    0.08,
+    0.06
+   ],
+   "pc_asp": [
+    0.06,
+    0.07,
+    0.07,
+    0.06,
+    0.06
+   ],
+   "cv_volume": [
+    0.25,
+    0.18,
+    0.12,
+    0.1,
+    0.08
+   ],
+   "cv_asp": [
+    0.05,
+    0.05,
+    0.05,
+    0.05,
+    0.05
+   ],
+   "lm_volume": [
+    0.3,
+    0.2,
+    0.15,
+    0.12,
+    0.1
+   ],
+   "lm_asp": [
+    0.05,
+    0.05,
+    0.05,
+    0.05,
+    0.05
+   ],
+   "trading": [
+    0.18,
+    0.15,
+    0.12,
+    0.1,
+    0.1
+   ]
+  },
+  "cost_stack": {
+   "gross_margin": [
+    0.138,
+    0.142,
+    0.145,
+    0.145,
+    0.145
+   ],
+   "gsa_pct": [
+    0.073,
+    0.072,
+    0.071,
+    0.07,
+    0.07
+   ],
+   "other_income_pct": 0.012,
+   "provisions_pct": -0.003,
+   "dna_pct": [
+    0.011,
+    0.011,
+    0.011,
+    0.011,
+    0.011
+   ],
+   "capex": [
+    3000,
+    2400,
+    2500,
+    2600,
+    2800
+   ],
+   "working_capital_pct": [
+    0.265,
+    0.25,
+    0.235,
+    0.225,
+    0.215
+   ],
+   "working_capital_fy2025": 31123.63507357789,
+   "tax_rate": 0.28
+  }
+ },
+ "history": {
+  "_source": "engine/gbco_walkforward/panel.json \u2014 GB Corp's own 4Q earnings releases, as originally reported, every year footed against its own arithmetic",
+  "years": [
+   "2023",
+   "2024",
+   "2025"
+  ],
+  "income_statement": {
+   "2023": {
+    "revenue": 28317.2,
+    "gross_profit": 6884.5,
+    "selling": -2550.4,
+    "admin": -880.4,
+    "other_income": 523.2,
+    "provisions": -268.9,
+    "operating_profit": 3977.0,
+    "associates": 1061.7,
+    "ebit": 4769.7,
+    "fx": -1499.2,
+    "finance_net": -965.8,
+    "ebt": 2304.7,
+    "tax": -493.2,
+    "npbmi": 1811.4,
+    "minority": 79.3,
+    "net_profit": 1890.8,
+    "seg_pc": 9545.2,
+    "seg_moto": 513.4,
+    "seg_cv": 1424.1,
+    "seg_tires": 1806.2,
+    "seg_capital": 4463.2,
+    "seg_after": 2496.5,
+    "seg_regional": 6423.0,
+    "seg_other": 1645.5
+   },
+   "2024": {
+    "revenue": 53969.5,
+    "gross_profit": 10514.6,
+    "selling": -3623.4,
+    "admin": -1220.2,
+    "other_income": 505.6,
+    "provisions": -355.7,
+    "operating_profit": 6176.6,
+    "associates": 867.6,
+    "ebit": 6688.5,
+    "fx": -291.6,
+    "finance_net": -2397.8,
+    "ebt": 3999.1,
+    "tax": -939.2,
+    "npbmi": 3059.9,
+    "minority": -131.8,
+    "net_profit": 2928.1
+   },
+   "2025": {
+    "revenue": 80229.8,
+    "gross_profit": 12431.1,
+    "selling": -5329.7,
+    "admin": -1217.6,
+    "other_income": 912.2,
+    "provisions": -165.1,
+    "operating_profit": 6631.0,
+    "associates": 974.8,
+    "ebit": 7605.7,
+    "fx": -37.1,
+    "finance_net": -3702.1,
+    "ebt": 3866.5,
+    "tax": -1086.1,
+    "npbmi": 2780.5,
+    "minority": 99.6,
+    "net_profit": 2880.0
+   }
+  },
+  "provenance": {
+   "2023": {
+    "source": "GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf",
+    "source_date": "2024-03-01",
+    "route": "PDF text layer (pymupdf) of GB Corp's own 4Q earnings release, the figures AS ORIGINALLY REPORTED at that origin",
+    "foots": true
+   },
+   "2024": {
+    "source": "GB_Corp_ER_4Q24-_E_-_Final.pdf",
+    "source_date": "2025-02-01",
+    "route": "PDF text layer (pymupdf) of GB Corp's own 4Q earnings release, the figures AS ORIGINALLY REPORTED at that origin",
+    "foots": true
+   },
+   "2025": {
+    "source": "GB_Corp_ER_4Q25-_E_-_Final.pdf",
+    "source_date": "2026-02-26",
+    "route": "PDF text layer (pymupdf) of GB Corp's own 4Q earnings release, the figures AS ORIGINALLY REPORTED at that origin",
+    "foots": true
+   }
+  }
+ },
+ "group_forecast": {
+  "_note": "the consolidated forecast income statement, computed here from the committed group drivers below so the delivered document and the delivered workbook print one arithmetic rather than two transcriptions",
+  "rows": [
+   {
+    "year": "FY26E",
+    "auto_revenue": 78549.56156000003,
+    "capital_revenue": 21377.35,
+    "eliminations": -1099.1960271600003,
+    "revenue": 98827.71553284004,
+    "gross_profit": 14638.942089848006,
+    "sga": -7906.217242627204,
+    "other_income": 1087.1048708612404,
+    "provisions": -296.48314659852014,
+    "operating_profit": 7523.346571483523,
+    "associates": 1250.0,
+    "ebit": 8773.346571483522,
+    "dna": 1424.0451771600003,
+    "ebitda": 10197.391748643522,
+    "finance_net": -4100.0,
+    "ebt": 4673.346571483522,
+    "tax": -1308.5370400153863,
+    "npbmi": 3364.809531468136,
+    "minority": -67.29619062936271,
+    "net_profit": 3297.5133408387733
+   },
+   {
+    "year": "FY27E",
+    "auto_revenue": 95736.34168908805,
+    "capital_revenue": 27790.555,
+    "eliminations": -1358.7958635799685,
+    "revenue": 122168.10082550808,
+    "gross_profit": 18603.00679713451,
+    "sga": -9651.279965215139,
+    "other_income": 1343.8491090805887,
+    "provisions": -366.50430247652423,
+    "operating_profit": 9929.071638523435,
+    "associates": 1430.0,
+    "ebit": 11359.071638523435,
+    "dna": 1693.0997585799685,
+    "ebitda": 13052.171397103404,
+    "finance_net": -3800.0,
+    "ebt": 7559.0716385234355,
+    "tax": -2116.540058786562,
+    "npbmi": 5442.531579736873,
+    "minority": -108.85063159473746,
+    "net_profit": 5333.680948142136
+   },
+   {
+    "year": "FY28E",
+    "auto_revenue": 112459.41558356663,
+    "capital_revenue": 34738.19375,
+    "eliminations": -1619.1737026692329,
+    "revenue": 145578.43563089738,
+    "gross_profit": 22652.513719083312,
+    "sga": -11355.117979209996,
+    "other_income": 1601.3627919398712,
+    "provisions": -436.73530689269217,
+    "operating_profit": 12462.023224920496,
+    "associates": 1630.0,
+    "ebit": 14092.023224920496,
+    "dna": 1967.0535714192329,
+    "ebitda": 16059.07679633973,
+    "finance_net": -3500.0,
+    "ebt": 10592.023224920496,
+    "tax": -2965.7665029777395,
+    "npbmi": 7626.2567219427565,
+    "minority": -152.52513443885513,
+    "net_profit": 7473.731587503901
+   },
+   {
+    "year": "FY29E",
+    "auto_revenue": 128713.64400173163,
+    "capital_revenue": 41685.8325,
+    "eliminations": -1874.394241519048,
+    "revenue": 168525.0822602126,
+    "gross_profit": 26375.651036947278,
+    "sga": -13060.693875166477,
+    "other_income": 1853.7759048623384,
+    "provisions": -505.5752467806378,
+    "operating_profit": 14663.157819862503,
+    "associates": 1830.0,
+    "ebit": 16493.157819862503,
+    "dna": 2245.850084019048,
+    "ebitda": 18739.007903881553,
+    "finance_net": -3300.0,
+    "ebt": 13193.157819862503,
+    "tax": -3694.0841895615013,
+    "npbmi": 9499.073630301002,
+    "minority": -189.98147260602005,
+    "net_profit": 9309.092157694982
+   },
+   {
+    "year": "FY30E",
+    "auto_revenue": 144761.09336547856,
+    "capital_revenue": 49189.282349999994,
+    "eliminations": -2133.454132870264,
+    "revenue": 191816.92158260828,
+    "gross_profit": 30204.767052020336,
+    "sga": -14769.902961860837,
+    "other_income": 2109.986137408691,
+    "provisions": -575.4507647478249,
+    "operating_profit": 16969.399462820365,
+    "associates": 2030.0,
+    "ebit": 18999.399462820365,
+    "dna": 2532.372027020264,
+    "ebitda": 21531.77148984063,
+    "finance_net": -3100.0,
+    "ebt": 15899.399462820365,
+    "tax": -4451.831849589703,
+    "npbmi": 11447.567613230662,
+    "minority": -228.95135226461323,
+    "net_profit": 11218.616260966048
+   }
+  ],
+  "drivers": {
+   "capital_revenue_fy2025": 14743.0,
+   "capital_growth": [
+    0.45,
+    0.3,
+    0.25,
+    0.2,
+    0.18
+   ],
+   "capital_gross_margin": [
+    0.188,
+    0.19,
+    0.192,
+    0.194,
+    0.196
+   ],
+   "eliminations_pct": [
+    0.011,
+    0.011,
+    0.011,
+    0.011,
+    0.011
+   ],
+   "group_opex_pct": [
+    0.08,
+    0.079,
+    0.078,
+    0.0775,
+    0.077
+   ],
+   "group_other_income_pct": [
+    0.011,
+    0.011,
+    0.011,
+    0.011,
+    0.011
+   ],
+   "group_provisions_pct": [
+    -0.003,
+    -0.003,
+    -0.003,
+    -0.003,
+    -0.003
+   ],
+   "associates_income": [
+    1250.0,
+    1430.0,
+    1630.0,
+    1830.0,
+    2030.0
+   ],
+   "net_finance_cost": [
+    -4100.0,
+    -3800.0,
+    -3500.0,
+    -3300.0,
+    -3100.0
+   ],
+   "minority_pct": [
+    -0.02,
+    -0.02,
+    -0.02,
+    -0.02,
+    -0.02
+   ],
+   "capital_dna": [
+    560.0,
+    640.0,
+    730.0,
+    830.0,
+    940.0
+   ],
+   "capital_loanbook_growth": [
+    0.35,
+    0.28,
+    0.24,
+    0.2,
+    0.18
+   ],
+   "rental_and_other_capex": [
+    700.0,
+    800.0,
+    900.0,
+    1000.0,
+    1100.0
+   ],
+   "auto_inventory_pct": [
+    0.36,
+    0.338,
+    0.32,
+    0.308,
+    0.296
+   ],
+   "auto_receivables_pct": [
+    0.08,
+    0.08,
+    0.08,
+    0.08,
+    0.08
+   ],
+   "auto_advances_pct": [
+    0.07,
+    0.069,
+    0.0675,
+    0.066,
+    0.0645
+   ],
+   "auto_payables_pct": [
+    0.245,
+    0.237,
+    0.2325,
+    0.229,
+    0.2255
+   ],
+   "net_new_borrowings": [
+    5500.0,
+    5200.0,
+    5600.0,
+    5800.0,
+    6100.0
+   ],
+   "dividend_payout": [
+    0.14,
+    0.15,
+    0.16,
+    0.18,
+    0.2
+   ]
+  }
+ },
+ "lens_inputs": {
+  "relative": {
+   "np_fy26e": 3300.0,
+   "eps_fy26e": 3.0400736987563337,
+   "pe": {
+    "bear": 8.0,
+    "base": 9.5,
+    "bull": 11.0
+   },
+   "basis": "FY2026E group net profit attributable, the model's own forecast build; the multiple is the judged range for an emerging-market auto distributor blended with a mid-teens-return lender"
+  },
+  "normalized": {
+   "pat": {
+    "bear": 3600.0,
+    "base": 4200.0,
+    "bull": 4800.0
+   },
+   "pe": {
+    "bear": 7.5,
+    "base": 8.5,
+    "bull": 9.5
+   },
+   "eps": {
+    "bear": 3.316444035006909,
+    "base": 3.8691847075080608,
+    "bull": 4.421925380009212
+   },
+   "basis": "mid-cycle group profit after tax, blending a recovering volume path with post-windfall margins, on a through-cycle multiple"
+  }
+ },
+ "edition": "2026-09-07",
  "experts": {
   "e1": {
    "base": 54.71535640227849,
    "rng": [
     26.593608243758183,
     92.52591720257436
-   ]
+   ],
+   "wrapper_discount": 0.08,
+   "mark_haircut": {
+    "0.75": 48.852390487953286,
+    "0.5": 42.98942457362809
+   }
   },
   "e2": {
    "base": 32.88807001381851,
@@ -771,7 +1271,22 @@
    ]
   },
   "e3": {
-   "base": 39.47383924458776
+   "base": 39.47383924458776,
+   "rng": [
+    33.01122984799632,
+    42.100555043758646
+   ],
+   "params": {
+    "ev_mult": 0.9,
+    "ev_mult_bull": 1.0,
+    "cap_mult": 0.9,
+    "assoc_mult": 0.85,
+    "assoc_mult_bear": 0.6
+   },
+   "ev_at_base": 25661.7,
+   "equity_at_base": 10447.300000000003,
+   "mark_lever": -6.462609396591439,
+   "roce_lever": 2.6267157991708885
   },
   "e3_roce": 0.213,
   "e3_ce": 28513.0
@@ -956,7 +1471,7 @@
   "terminal_inflation": 0.07,
   "terminal_growth_real": 0.0,
   "terminal_growth_nominal": 0.07,
-  "anchor_staleness_accepted": "The house Egyptian path's sovereign quote and FX spot are both anchored 6 August 2026 and this study is struck on the latest close the repository holds, 23 August 2026 \u2014 17 days. Refreshing a house macro path is a house-level act and not a step of one name's rebuild; the staleness is DISCLOSED rather than switched off, on the shape [R-COC-01] already uses for a deliberately-accepted stale sovereign quote.",
+  "anchor_staleness_accepted": "The house Egyptian path's sovereign quote and currency spot are both anchored 2026-08-06 and this study is struck against the latest known price, 2026-09-03 \u2014 28 days later. Refreshing a house macro path is a house-level act rather than a step of one name's rebuild, so the staleness is DISCLOSED and deliberately accepted rather than switched off, exactly as this house already treats a deliberately-accepted stale sovereign quote.",
   "inflation_inputs": {
    "_declared": "EVERY inflation-class input this study registers, with the mapping that derives it from the house ladder [R-MACRO-01 AMENDED]. Declared even though it is nearly empty.",
    "terminal_growth": {
@@ -1162,6 +1677,8 @@
   "spot": 28.98,
   "spot_date": "2026-09-03",
   "gap": 0.5296582610858449,
-  "price_note": "GBCO carries NO price in engine/prices/SUPPLIED_07-09-2026.json or in SUPPLIED_03-09-2026.json. The latest price the repository holds is the exchange library close of EGP 29.51 on 23 August 2026, which is what this study is struck on, with its date and its age stated. Nothing was substituted and nobody was asked [R-IND-01]."
+  "mc_anchor": 29.51,
+  "mc_anchor_date": "2026-08-23",
+  "price_note": "THIS NOTE WAS STALE AND IS REWRITTEN FROM THE RESOLVER BESIDE IT [07-09-2026]. It stated that no supplied price existed for GBCO and that the study was struck on the exchange library's own last close, and the resolver twelve lines above it had already found one \u2014 so a typed sentence contradicted the committed spot in the same file, which is the defect a computed figure exists to stop. The latest known price is read from the committed engine/prices/SUPPLIED_*.json files and never typed: 28.98 as at 2026-09-03. The cone is a different clock and is anchored on the last real session the exchange library holds, 29.51 on 2026-08-23; both are published with their own dates [R-GAP-01 AMENDED]."
  }
 }

@@ -3,7 +3,7 @@
  "as_of": "2026-09-06",
  "spot": 28.98,
  "spot_date": "close 2026-09-03, the Egyptian Exchange",
- "spot_source": "engine/gbco_study/SUPPLIED_03-09-2026.json — GB Corp, the close supplied by the principal",
+ "spot_source": "../../../tmp/SUPPLIED_03-09-2026.json — GB Corp, the close supplied by the principal",
  "published_central": 44.329496406267786,
  "published_spot": 28.98,
  "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A mark, a rate or a growth solved from a price and then used anywhere in the valuation is the reverse-engineered figure the protocol prohibits outright, arriving through a side door, and the prohibition is worth nothing if the side door is open. Nothing in this file is an input to anything: no builder in this study reads it, it is COMPUTED by diagnostics_gbco.py, and that script asserts the committed numbers file is byte-identical before and after it runs.",

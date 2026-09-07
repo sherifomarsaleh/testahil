@@ -1,10 +1,20 @@
 """Part 4: remaining sheets + sheet ordering."""
+import os as _os_pathfix
+# EVERY PATH IN THIS BUILDER IS RELATIVE, SO THE RUN'S DIRECTORY DECIDED WHERE ITS
+# INPUT WAS READ AND ITS OUTPUT WAS WRITTEN. Run from anywhere but this folder it
+# either crashed or, worse, wrote a deliverable into the caller's directory.
+_HERE = _os_pathfix.path.dirname(_os_pathfix.path.abspath(__file__))
+_os_pathfix.chdir(_HERE)
+import sys as _sys_pathfix
+_sys_pathfix.path.insert(0, _HERE)
+_sys_pathfix.path.insert(0, _os_pathfix.path.join(_HERE, '..'))
+
 import json
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-wb = load_workbook('GBCO_Valuation_Model_08072026_public.xlsx')
+wb = load_workbook('GBCO_Valuation_Model_07092026_public.xlsx')
 D = json.load(open('study_numbers.json'))
 A = json.load(open('_asm_rows.json')); SR = json.load(open('_seg_rows.json'))
 IS = json.load(open('_is_rows.json')); BSJ = json.load(open('_bs_rows.json'))
@@ -31,7 +41,7 @@ def put(ws, ad, v, font=BLACK, fmt=NUM0, bold=False, fill=None):
     if fill: c.fill = fill
 
 # ================= SOTP ======================================================
-ws = sheet('SOTP')
+ws = sheet('SOTP Bridge')
 title(ws, 'Sum-of-the-parts — split the legs (primary lens, §3.5-F5)',
       'Auto = FCFF DCF · captive lender = adjusted book × multiple · fintech associate = carrying value ≈ Jun-26 round. Links to DCF / Assumptions.', 7)
 rows = [
@@ -58,15 +68,21 @@ for a, b, c, bold in rows:
     r += 1
 ws.column_dimensions['B'].width = 56; ws.column_dimensions['C'].width = 16
 r += 1  # blank spacer row (row 18)
+_SO = D['sotp']
+_implied_auto = D['mktcap'] - _SO['cap_val'] - _SO['assoc']
 put(ws, f'A{r}',
-    "The market-implied read is now a genuine puzzle, not a sanity check: mkt cap − lender − associates at the "
-    "confirmed 41.61% stake implies a NEGATIVE value for the Auto leg (≈ −EGP 3.6bn) — impossible for a real, "
-    "profitable business. MNT-Halan alone is ≈82% of GB Corp's market cap pre-discount (≈73% after this study's "
-    "10% complexity discount). Either the market discounts this private mark far more steeply than this study's "
-    "10%, or GB Corp is meaningfully mispriced (see the study's §7).",
+    "The market-implied read is a genuine puzzle rather than a sanity check: market capitalisation less the lender "
+    "and the associates at the stake the company states leaves EGP %s mn for the Auto leg, which is impossible for a "
+    "profitable business turning over EGP %.1f bn. MNT-Halan alone is %.0f%% of market capitalisation before the "
+    "complexity discount and %.0f%% after it. Either the market discounts this private mark far more steeply than "
+    "this study's %.0f%%, or GB Corp is mispriced — the study's caveats section takes it up."
+    % (format(_implied_auto, ',.0f'), D['disclosed_drivers']['auto_revenue_fy2025'] / 1000.0,
+       _SO['mnt_halan_value'] / D['mktcap'] * 100,
+       _SO['mnt_halan_value'] * (1 - _SO['disc']) / D['mktcap'] * 100, _SO['disc'] * 100),
     SUB, None)
 r += 1  # no blank spacer here — the stake-sensitivity header sits immediately below (row 20)
-put(ws, f'A{r}', 'MNT-Halan stake sensitivity — now largely resolved: 41.61% is a confirmed, dated figure (9-Jun-2026)', BLACK, None, True, FILL_H)
+put(ws, f'A{r}', 'MNT-Halan stake sensitivity — the stake itself is a figure the company states; what is '
+                 'contested is the mark', BLACK, None, True, FILL_H)
 r += 1
 put(ws, f'A{r}', 'GB stake in MNT-Halan', bold=True); put(ws, f'B{r}', 'MNT-Halan value (EGP mn)', bold=True)
 put(ws, f'C{r}', 'SOTP fair value/sh (EGP)', bold=True)
@@ -115,8 +131,8 @@ for j, h in enumerate(['Bear', 'Base', 'Bull', 'Weight']):
     put(ws, f'{get_column_letter(2+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
 lens_rows = [
- ('Sum-of-the-parts (split legs)', L['sotp']['bear'], '=SOTP!C14', L['sotp']['bull'], '=Assumptions!B32'),
- ('Pre-discount NAV (DCF-anchored)', L['prediscount']['bear'], '=SOTP!C11', L['prediscount']['bull'], '=Assumptions!B33'),
+ ('Sum-of-the-parts (split legs)', L['sotp']['bear'], "='SOTP Bridge'!C14", L['sotp']['bull'], '=Assumptions!B32'),
+ ('Pre-discount NAV (DCF-anchored)', L['prediscount']['bear'], "='SOTP Bridge'!C11", L['prediscount']['bull'], '=Assumptions!B33'),
  ('Relative multiples', L['relative']['bear'], "='Relative & Normalized'!C6", L['relative']['bull'], '=Assumptions!B34'),
  ('Normalized earnings', L['normalized']['bear'], "='Relative & Normalized'!C9", L['normalized']['bull'], '=Assumptions!B35'),
 ]
@@ -232,7 +248,8 @@ for i, mm in enumerate(gm):
             f"=((DCF!$B${DCJ['EVR']}+$A{rr}*100*DCF!$B${DCJ['EVPP']}-Assumptions!$B$19-Assumptions!$B$20"
             f"+Assumptions!$B$21*Assumptions!$B$22+Assumptions!$B$23*Assumptions!$B$24)*(1-{col}$5))/Assumptions!$B$6",
             BLACK, PX)
-put(ws, 'A12', 'Bold-face cells near spot (31.25) show how much Auto-margin recovery the price already carries.', SUB, None)
+put(ws, 'A12', 'Every cell is the sum-of-the-parts fair value per share at that margin shift and that discount, '
+                'against a price of EGP %.2f on the Assumptions sheet.' % D['spot'], SUB, None)
 
 # ================= Per-Share & Ratios =======================================
 ws = sheet('Per-Share & Ratios')
@@ -266,7 +283,10 @@ r = prow(r, 'Revenue YoY', lambda c: (f"='Income Statement'!{c}{REVR}/'Income St
 put(ws, f'B{r-1}', None, BLACK, None)
 r = prow(r, 'EPS YoY', lambda c: (f"=('Income Statement'!{c}{NPR}/'Income Statement'!{chr(ord(c)-1)}{NPR})-1" if c != 'B' else None), PCT, allc)
 put(ws, f'B{r-1}', None, BLACK, None)
-put(ws, f'A{r+1}', 'Group net-debt/EBITDA blends the lender funding book; the Auto-leg discipline metric is Auto ND/EBITDA (2.39× FY25, 2.14× 1Q26, disclosed).', SUB, None)
+put(ws, f'A{r+1}', 'Group net debt against operating profit blends the lender\'s funding book, which is its raw '
+                   'material rather than its leverage; the operating-leg measure is the Auto segment\'s own net debt '
+                   'of EGP %s mn at 30 June 2026, which is what the valuation bridge deducts.'
+                   % format(D['dcf']['auto_nd'], ',.1f'), SUB, None)
 
 # ================= Peer & Sector ============================================
 ws = sheet('Peer & Sector')
@@ -288,9 +308,9 @@ put(ws, f'A{r}', 'Sector context: Egypt PC registrations ~210k in 2025 (+40% y/y
 put(ws, f'A{r+1}', 'Analyst context is deliberately not used as a model input (house rule: no rating, no target).', SUB, None)
 
 # ================= sheet order ==============================================
-order = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP', 'Segments',
+order = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP Bridge', 'Segments',
          'Relative & Normalized', 'DCF', 'Income Statement', 'Balance Sheet', 'Cash Flow',
          'Summary Financials', 'Monte Carlo', 'Sensitivity', 'Per-Share & Ratios', 'Peer & Sector']
 wb._sheets = [wb[n] for n in order]
-wb.save('GBCO_Valuation_Model_08072026_public.xlsx')
+wb.save('GBCO_Valuation_Model_07092026_public.xlsx')
 print('part4 ok — sheets:', wb.sheetnames)

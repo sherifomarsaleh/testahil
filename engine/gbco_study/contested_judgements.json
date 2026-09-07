@@ -55,15 +55,15 @@
   },
   {
    "name": "terminal growth",
-   "adopted": "a typed nominal 11.5% for ever",
-   "alternative": "the house Egyptian terminal of 7.0% — terminal inflation with a stated real growth of zero",
+   "adopted": "the house Egyptian terminal — terminal inflation with a stated REAL growth of zero, recomputed to its nominal rate",
+   "alternative": "the superseded typed nominal 11.5% held for ever",
    "value_adopted": 44.329496406267786,
-   "value_alternative": 44.329496406267786,
+   "value_alternative": 74.08555013343943,
    "value_adopted_primary_lens": 53.52589213266374,
-   "value_alternative_primary_lens": 53.52589213266374,
-   "moves_the_answer_by": 0.0,
-   "direction": "no difference",
-   "why": "a typed nominal rate is unfalsifiable: nobody can tell whether 11.5% meant inflation plus four points or minus three. Against a discount rate built off a 22.55% risk-free it is an 11.4-point spread and defensible on its face; against the sourced disinflation path it is real growth of several points a year in perpetuity, which nothing disclosed supports. 75% of the auto leg sits in that terminal."
+   "value_alternative_primary_lens": 106.03657518061371,
+   "moves_the_answer_by": 0.4016444998191473,
+   "direction": "the study took the lower value",
+   "why": "a typed nominal rate is unfalsifiable: nobody can tell whether 11.5% meant inflation plus four points or minus three. The adopted rate is STORED as a real rate on the house inflation path and recomputes to its nominal, so the claim it makes is legible and can be argued with. The alternative is what this study published before the rebuild and it is the HIGHER value, which is why the fork is recorded rather than treated as settled; most of the auto leg sits in that terminal."
   },
   {
    "name": "the normalised earnings base",
@@ -79,8 +79,8 @@
   },
   {
    "name": "the equity risk premium basis",
-   "adopted": "the credit-default-swap basis, giving a weighted cost of capital of 22.94%",
-   "alternative": "the credit-rating basis, giving 25.08%",
+   "adopted": "the market (credit-default-swap) basis, giving a first-year weighted cost of capital of 22.88%",
+   "alternative": "the credit-rating basis, giving 23.33%",
    "value_adopted": 44.329496406267786,
    "value_alternative": 42.98924880039788,
    "value_adopted_primary_lens": 53.52589213266374,
@@ -115,24 +115,24 @@
   },
   {
    "name": "the equity beta",
-   "adopted": "1.00, the house default, after an attempted five-annual-observation regression returned a negative slope with no explanatory power",
-   "alternative": "0.8907, the conforming weekly regression against the exchange's published index now committed in this directory",
+   "adopted": "0.8907, the conforming weekly regression against the exchange's published index, committed in this directory",
+   "alternative": "1.00, the house default this study carried before the rebuild, after an attempted five-annual-observation regression returned a negative slope with no explanatory power",
    "value_adopted": 44.329496406267786,
-   "value_alternative": 44.329496406267786,
+   "value_alternative": 43.04339827973841,
    "value_adopted_primary_lens": 53.52589213266374,
-   "value_alternative_primary_lens": 53.52589213266374,
-   "moves_the_answer_by": 0.0,
-   "direction": "no difference",
-   "why": "the study's own refusal to use an unusable regression was right, and a conforming tier-1 regression has since been produced on weekly data over nearly five years. It moves the cost of capital by 48 basis points and the answer by under 2%, so it is recorded rather than material — the beta was never what this valuation turned on."
+   "value_alternative_primary_lens": 51.25630720349426,
+   "moves_the_answer_by": 0.02987910290379588,
+   "direction": "the study took the higher value",
+   "why": "the study's own refusal to use an unusable regression was right, and a conforming tier-1 regression has since replaced the default it fell back to. The fork is recorded rather than treated as settled because a beta is a judgement about which estimator to trust, not a fact; it moves this answer by little, which is itself worth saying — the beta was never what this valuation turned on."
   }
  ],
  "sign_test": {
-  "material": 5,
+  "material": 6,
   "resolved_upward": 3,
-  "resolved_downward": 2,
+  "resolved_downward": 3,
   "two_sided_p": 1.0,
   "flagged": false,
-  "reading": "Of 5 material forks the study took the higher-value side on 3. Two-sided p = 1.0000, so this is NOT flagged at the 5% level and a study of this shape can honestly land this way — the associate mark, the margin anchor and the working-capital release are three readings of one thesis rather than three independent coin flips, and treating them as independent is what the binomial test does. WHAT THE COUNT DOES NOT SHOW, AND THE VALUES DO: every one of the three forks the study resolved DOWNWARD is small — 4.6%, 1.9% and 1.7% — while five of the six it resolved upward are worth 6.5% to 23.3%. The study is careful in the places where care is cheap."
+  "reading": "Of 6 material forks the study took the higher-value side on 3. Two-sided p = 1.0000, so this is NOT flagged at the 5% level and a study of this shape can honestly land this way — the associate mark, the margin anchor and the working-capital release are three readings of one thesis rather than three independent coin flips, and treating them as independent is what the binomial test does. WHAT THE COUNT DOES NOT SHOW, AND THE VALUES DO: every one of the three forks the study resolved DOWNWARD is small — 4.6%, 1.9% and 1.7% — while five of the six it resolved upward are worth 6.5% to 23.3%. The study is careful in the places where care is cheap."
  },
  "unvalued": [
   {

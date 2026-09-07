@@ -1,11 +1,22 @@
 """Part 2: Segments · DCF · Income Statement · Balance Sheet · Cash Flow (all formula-linked)."""
+import os as _os_pathfix
+# EVERY PATH IN THIS BUILDER IS RELATIVE, SO THE RUN'S DIRECTORY DECIDED WHERE ITS
+# INPUT WAS READ AND ITS OUTPUT WAS WRITTEN. Run from anywhere but this folder it
+# either crashed or, worse, wrote a deliverable into the caller's directory.
+_HERE = _os_pathfix.path.dirname(_os_pathfix.path.abspath(__file__))
+_os_pathfix.chdir(_HERE)
+import sys as _sys_pathfix
+_sys_pathfix.path.insert(0, _HERE)
+_sys_pathfix.path.insert(0, _os_pathfix.path.join(_HERE, '..'))
+
 import json
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-wb = load_workbook('GBCO_Valuation_Model_08072026_public.xlsx')
+wb = load_workbook('GBCO_Valuation_Model_07092026_public.xlsx')
 A = json.load(open('_asm_rows.json'))
+D = json.load(open('study_numbers.json'))
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
 FILL_T = PatternFill('solid', start_color='1C3A36'); FILL_H = PatternFill('solid', start_color='EAF0EE')
@@ -51,7 +62,7 @@ def srow(r, label, hist, ffml=None, fmt=NUM, font_hist=BLUE):
 r = 6
 r = srow(r, None, [], lambda j, c: None, NUM0)  # row 6 intentionally blank: an earlier version of this
     # script duplicated the 'PC volume (units)' row here (a leftover from a bug-fix that patched the
-    # SECOND call without removing the first); the delivered GBCO_Valuation_Model_08072026_public.xlsx
+    # SECOND call without removing the first); the delivered 08-07-2026 workbook
     # had this exact orphaned duplicate at row 6, cleared on 09-07-2026. This placeholder keeps every
     # subsequent row number identical to that verified file rather than shifting everything up by one.
 r = srow(r, 'PC volume (units)', [26994, 42043, 56548],
@@ -140,13 +151,29 @@ r = drow(r, '− Capex', lambda j, c: f"=-{ac('Auto capex (EGP mn)', ACOLS[j])}"
 r = drow(r, '− Increase in net working capital', lambda j, c: f"='Balance Sheet'!{FCOLS[j]}40*-1")  # placeholder row 40 fixed later
 DWC = DC['− Increase in net working capital']
 r = drow(r, 'FCFF', lambda j, c: f"=SUM({c}{DC['NOPAT = EBIT × (1 − tax)']}:{c}{DC['− Increase in net working capital']})", bold=True)
-r = drow(r, 'Discount factor', lambda j, c: f"=1/(1+Assumptions!$B$16)^{j+1}", '0.000')
+# ONE FORWARD RATE PER YEAR, NOT ONE RATE COMPOUNDED FIVE TIMES.
+# The superseded workbook discounted every explicit year AND the terminal at the first
+# year's rate, which asserts that this economy's cost of capital never normalises — while
+# the study it accompanies discounts on a schedule that glides to a norm-built terminal.
+# The workbook and the study published two different answers and nothing compared them.
+_SCH = D['cost_of_capital_record']
+r = drow(r, 'Cost of capital — this year’s forward rate',
+         lambda j, c: _SCH['forward_wacc'][j], PCT)
+FWD = DC['Cost of capital — this year’s forward rate']
+r = drow(r, 'Discount factor (cumulative on the schedule)',
+         lambda j, c: (f"=1/(1+{c}{FWD})" if j == 0
+                       else f"={get_column_letter(1+j)}{r}/(1+{c}{FWD})"), '0.000')
+DC['Discount factor'] = DC['Discount factor (cumulative on the schedule)']
 r = drow(r, 'PV of FCFF', lambda j, c: f"={c}{DC['FCFF']}*{c}{DC['Discount factor']}", bold=True)
 r += 1
 def dline(r, label, fml, fmt=NUM0, bold=False):
     put(ws, f'A{r}', label, BLACK, None, bold=bold); put(ws, f'B{r}', fml, BLACK, fmt, bold=bold); return r + 1
 r = dline(r, 'Σ PV of explicit FCFF (FY26–30E)', f"=SUM(B{DC['PV of FCFF']}:F{DC['PV of FCFF']})", bold=True); SPV = r-1
-r = dline(r, 'Terminal value (Gordon)', f"=F{DC['FCFF']}*(1+Assumptions!$B$17)/(Assumptions!$B$16-Assumptions!$B$17)"); TVR = r-1
+r = dline(r, 'Cost of capital — terminal (norm-built)', _SCH['wacc_terminal'], PCT); WTR = r-1
+r = dline(r, 'Terminal value (Gordon, on the TERMINAL rate)',
+          f"=F{DC['FCFF']}*(1+Assumptions!$B$17)/(B{WTR}-Assumptions!$B$17)"); TVR = r-1
+# the terminal comes home on the SAME cumulative factor as the last explicit year:
+# one date, one price of time.
 r = dline(r, 'PV of terminal value', f"=B{TVR}*F{DC['Discount factor']}"); PVT = r-1
 r = dline(r, 'Enterprise value — Auto leg', f"=B{SPV}+B{PVT}", bold=True); EVR = r-1
 r = dline(r, '% terminal of EV (device A-7)', f"=B{PVT}/B{EVR}", PCT, bold=True)
@@ -156,9 +183,9 @@ r = dline(r, 'Auto equity value', f"=B{EVR}-Assumptions!$B$19-Assumptions!$B$20"
 r += 1
 r = dline(r, 'EV sensitivity per +1pp Auto GPM (helper for Sensitivity)',
           f"=0.01*(1-Assumptions!$B$7)*(SUMPRODUCT(B{DC['Auto revenue']}:F{DC['Auto revenue']},B{DC['Discount factor']}:F{DC['Discount factor']})"
-          f"+F{DC['Auto revenue']}*(1+Assumptions!$B$17)/(Assumptions!$B$16-Assumptions!$B$17)*F{DC['Discount factor']})")
+          f"+F{DC['Auto revenue']}*(1+Assumptions!$B$17)/(B{WTR}-Assumptions!$B$17)*F{DC['Discount factor']})")
 EVPP = r-1
 put(ws, f'A{r+1}', 'WACC is built on the Assumptions sheet as Ke = rf + β × ERP (house rule §3.5-G) blended with after-tax Kd.', SUB, None)
 json.dump(dict(DC=DC, SPV=SPV, TVR=TVR, PVT=PVT, EVR=EVR, AEQ=AEQ, EVPP=EVPP), open('_dcf_rows.json', 'w'))
-wb.save('GBCO_Valuation_Model_08072026_public.xlsx')
+wb.save('GBCO_Valuation_Model_07092026_public.xlsx')
 print('part2a ok — segments+dcf; AUTOR', AUTOR, 'AEBITDA', AEBITDA)

@@ -5,6 +5,29 @@ import numpy as np
 import pandas as pd
 import primitives as m
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+import datetime as _datetime_mod
+
+# THE REPORTED HISTORY COMES FROM THE WALK-FORWARD PANEL, WHICH IS THE SOURCED RECORD.
+# engine/gbco_walkforward/panel.json carries GB Corp's own consolidated income statement
+# 2012-2025, four-field, every year asserted to foot against its own arithmetic. The
+# delivered document used to TYPE its three history columns into the builder, which is the
+# defect depth-bar standard 3 exists to stop, and two of those typed lines disagreed with
+# the filing (FY2023 operating profit was printed at 3,703 against a filed 3,977).
+_PANEL = json.load(open(os.path.join(HERE, '..', 'gbco_walkforward', 'panel.json'),
+                        encoding='utf-8'))
+HIST_YEARS = ['2023', '2024', '2025']
+HISTORY = dict(
+    _source="engine/gbco_walkforward/panel.json — GB Corp's own 4Q earnings releases, "
+            "as originally reported, every year footed against its own arithmetic",
+    years=HIST_YEARS,
+    income_statement={y: _PANEL['years'][y]['is'] for y in HIST_YEARS},
+    provenance={y: dict(source=_PANEL['years'][y]['source'],
+                        source_date=_PANEL['years'][y]['source_date'],
+                        route=_PANEL['years'][y]['route'],
+                        foots=_PANEL['years'][y]['foots'])
+                for y in HIST_YEARS})
+
 # THE EXCHANGE LIBRARY, NOT A STUDY-LOCAL COPY. The study-local extract stops at 7 July
 # 2026 while engine/raw_ohlc/EG/GBCO.csv — the persistent library every cone in this
 # repository is struck on — carries sessions to 23 August 2026. A study struck against its
@@ -166,6 +189,23 @@ for i, y in enumerate(yrs):
     fc[y] = dict(pc_vol=pv_, pc_asp=pa_, pc_rev=pv_*pa_/1,  # ASP in mn
                  cv_rev=cvv*cva, lm_rev=lmv*lma, tr_rev=trr)
     fc[y]['auto_rev'] = fc[y]['pc_rev'] + fc[y]['cv_rev'] + fc[y]['lm_rev'] + fc[y]['tr_rev']
+# ---- GROUP-LEVEL FORECAST DRIVERS ------------------------------------------------
+# THESE LIVED ONLY INSIDE THE WORKBOOK BUILDER AND THE DOCUMENT TYPED THE RESULT. The
+# consolidated forecast income statement a reader receives was transcribed by hand from an
+# Excel run, so the page and the model were two separate transcriptions of one arithmetic
+# and nothing compared them. The drivers move here, the group statement is computed here,
+# and both the document and the workbook read the same committed record.
+CAP_REV_FY25 = 14743.0          # GB Capital revenue, FY2025 earnings release, segment table
+cap_g = [0.45, 0.30, 0.25, 0.20, 0.18]
+cap_gm = [0.188, 0.190, 0.192, 0.194, 0.196]
+elim_pct = [0.011]*5
+grp_opex = [0.080, 0.079, 0.078, 0.0775, 0.077]
+grp_oth = [0.011]*5
+grp_prov = [-0.003]*5
+assoc_inc = [1250.0, 1430.0, 1630.0, 1830.0, 2030.0]
+fin_cost = [-4100.0, -3800.0, -3500.0, -3300.0, -3100.0]
+mi_pct = [-0.02]*5
+cap_dna = [560.0, 640.0, 730.0, 830.0, 940.0]
 gpm = [0.138, 0.142, 0.145, 0.145, 0.145]
 gsa = [0.073, 0.072, 0.071, 0.070, 0.070]
 oth = 0.012; prov = -0.003
@@ -252,6 +292,12 @@ WE, WD = _sch.weight_equity, _sch.weight_debt
 # a typed nominal rate is unfalsifiable — nobody can tell whether it meant inflation plus four
 # points or minus three.
 _PATH = _MP.load("EG")
+# THE ANCHOR DATE IS READ FROM THE PATH FILE, NEVER TYPED — it is the date the staleness
+# disclosure below is measured from, and a typed copy of it goes stale the day the path is
+# refreshed while the sentence quoting it does not.
+import json as _json_path
+_ANCHOR_DATE = _json_path.load(open(os.path.join(
+    HERE, '..', 'macro_paths', 'EG.json'), encoding='utf-8'))['fx']['spot']['date']
 TG_REAL = 0.0
 TG = _PATH.terminal_inflation + TG_REAL
 for i, rw in enumerate(rows):
@@ -282,10 +328,43 @@ cap_val = cap_book * cap_mult
 # current, dated, company-disclosed figure — not an estimate and not a stale prior-round number. It supersedes both
 # the original ~20% placeholder (unsourced, wrong) and the interim 42.58% correction (correct as of mid-2024/pre-this
 # transaction, but superseded by this more recent, confirmed print). Applying 41.61% to the June-2026 USD 1.4bn round
+# ---- THE CONSOLIDATED FORECAST, COMPUTED ONCE -------------------------------------
+GROUP = []
+_capr = CAP_REV_FY25
+for i, y in enumerate(yrs):
+    _capr *= (1 + cap_g[i])
+    _autor = fc[y]['auto_rev']
+    _elim = -(_autor + _capr) * elim_pct[i]
+    _rev = _autor + _capr + _elim
+    _agp = _autor * gpm[i]
+    _gp = _agp + _capr * cap_gm[i] + _elim * 0.2
+    _sga = -_rev * grp_opex[i]
+    _oth = _rev * grp_oth[i]
+    _prov = _rev * grp_prov[i]
+    _op = _gp + _sga + _oth + _prov
+    _assoc = assoc_inc[i]
+    _ebit = _op + _assoc
+    _dna = _autor * dna_pct[i] + cap_dna[i]
+    _ebt = _ebit + fin_cost[i]
+    _tax = -_ebt * TAX
+    _npbmi = _ebt + _tax
+    _mi = _npbmi * mi_pct[i]
+    GROUP.append(dict(year=y, auto_revenue=_autor, capital_revenue=_capr,
+                      eliminations=_elim, revenue=_rev, gross_profit=_gp,
+                      sga=_sga, other_income=_oth, provisions=_prov,
+                      operating_profit=_op, associates=_assoc, ebit=_ebit,
+                      dna=_dna, ebitda=_ebit + _dna, finance_net=fin_cost[i],
+                      ebt=_ebt, tax=_tax, npbmi=_npbmi, minority=_mi,
+                      net_profit=_npbmi + _mi))
+
 # still implies MNT-Halan alone is worth ~82% of GB Corp's spot market cap — a genuine, now-evidenced anomaly, not a
 # sourcing gap: either the market is discounting the private mark's read-through far more steeply than this study's
 # 10% complexity discount, or GB Corp is meaningfully undervalued. Flagged and discussed, not resolved away.
 mnt_halan_stake = 0.4161
+# THE SUPERSEDED STAKE IS COMMITTED TOO, because the document quotes it: the same press
+# release states the figure BEFORE the transaction, and a figure a reader sees must be read
+# from the record rather than typed into a builder.
+mnt_halan_stake_prior = 0.4258
 mnt_halan_round_usd = 1400.0
 egp_usd = 47.5
 mnt_halan_value = mnt_halan_stake * mnt_halan_round_usd * egp_usd
@@ -299,10 +378,26 @@ prediscount_ps = sotp_sum / SH
 # Relative lens
 np26 = 3300.0   # FY26E group NP (Auto ~1.65 + Capital ~1.65)
 eps26 = np26 / SH
-rel = dict(bear=eps26*8.0, base=eps26*9.5, bull=eps26*11.0)
+REL_PE = dict(bear=8.0, base=9.5, bull=11.0)
+rel = {k: eps26 * v for k, v in REL_PE.items()}
 # Normalized earnings
-norm_pat = 4200.0
-norm = dict(bear=(3600/SH)*7.5, base=(norm_pat/SH)*8.5, bull=(4800/SH)*9.5)
+NORM_PAT = dict(bear=3600.0, base=4200.0, bull=4800.0)
+NORM_PE = dict(bear=7.5, base=8.5, bull=9.5)
+norm_pat = NORM_PAT['base']
+norm = {k: (NORM_PAT[k] / SH) * NORM_PE[k] for k in NORM_PAT}
+# THE LENS INPUTS ARE COMMITTED, NOT LEFT INSIDE THIS SCRIPT. Depth-bar standard 3
+# forbids a financial numeral typed into a builder, and the delivered document printed
+# every one of these by hand because the numbers file did not carry them. A figure a
+# document prints must be READ from the record it claims to come from.
+LENS_INPUTS = dict(
+    relative=dict(np_fy26e=np26, eps_fy26e=eps26, pe=REL_PE,
+                  basis=("FY2026E group net profit attributable, the model's own forecast "
+                         "build; the multiple is the judged range for an emerging-market "
+                         "auto distributor blended with a mid-teens-return lender")),
+    normalized=dict(pat=NORM_PAT, pe=NORM_PE,
+                    eps=dict((k, NORM_PAT[k] / SH) for k in NORM_PAT),
+                    basis=("mid-cycle group profit after tax, blending a recovering volume "
+                           "path with post-windfall margins, on a through-cycle multiple")))
 # SOTP bear/bull (auto margin/multiple + discount + marks)
 def sotp_case(gpm_shift, wacc, tg, cap_m, assoc_m, d):
     rws = []
@@ -348,12 +443,34 @@ sens = [[sotp_case(mm, WACC, TG, 1.0, 1.0, dd) for dd in grid_disc] for mm in gr
 cap_hist = dict(FY23=dict(wc=4466.3, nd=2921.8, ce=10231.2, roce=0.359),
                 FY24=dict(wc=10783.9, nd=5292.0, ce=18731.3, roce=0.315),
                 FY25=dict(wc=18917.0, nd=15210.0, ce=28513.0, roce=0.213))
+EXP1_WRAPPER_DISCOUNT = 0.08
 exp1_sum = (auto_eq + cap_book*1.0 + assoc*1.0)
-exp1 = dict(base=exp1_sum*(1-0.08)/SH, rng=(sotp_bear*0.95, sotp_bull*1.02))
-exp3_ev = 28513.0*0.90
-exp3 = dict(base=(exp3_ev-auto_nd-auto_nci + cap_book*0.90 + assoc*0.85)/SH)
+exp1 = dict(base=exp1_sum*(1-EXP1_WRAPPER_DISCOUNT)/SH,
+            rng=(sotp_bear*0.95, sotp_bull*1.02),
+            wrapper_discount=EXP1_WRAPPER_DISCOUNT,
+            # his own stated sensitivity: what a heavier haircut on the private mark costs
+            mark_haircut=dict((h, (auto_eq + cap_book + mnt_halan_value*h + other_assoc)
+                               * (1-EXP1_WRAPPER_DISCOUNT)/SH) for h in (0.75, 0.50)))
+# EXPERT 3'S RANGE IS COMPUTED FROM HIS OWN TWO NAMED LEVERS, NOT TYPED. The delivered
+# edition printed "range approx 32-48" and two round-number sensitivities beside it, none
+# of which any model produced. His levers are stated in his own text: the haircut he puts
+# on the private mark, and a return-on-capital recovery that lifts the operating mark from
+# 0.9x capital employed to 1.0x. Both are evaluated here so the document reads them.
+ce = cap_hist['FY25']['ce']
+roce = cap_hist['FY25']['roce']
+EXP3 = dict(ev_mult=0.90, ev_mult_bull=1.00, cap_mult=0.90,
+            assoc_mult=0.85, assoc_mult_bear=0.60)
+def _exp3(ev_mult, assoc_mult):
+    return (ce*ev_mult - auto_nd - auto_nci + cap_book*EXP3['cap_mult']
+            + assoc*assoc_mult) / SH
+exp3 = dict(base=_exp3(EXP3['ev_mult'], EXP3['assoc_mult']),
+            rng=(_exp3(EXP3['ev_mult'], EXP3['assoc_mult_bear']),
+                 _exp3(EXP3['ev_mult_bull'], EXP3['assoc_mult'])),
+            params=EXP3, ev_at_base=ce*EXP3['ev_mult'],
+            equity_at_base=ce*EXP3['ev_mult'] - auto_nd - auto_nci)
+exp3['mark_lever'] = exp3['rng'][0] - exp3['base']
+exp3['roce_lever'] = exp3['rng'][1] - exp3['base']
 exp2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
-roce, ce = 0.213, 28513.0
 
 _AUD = ('GB Corp / GB Auto audited consolidated statement of income for the year, as '
         'reproduced in the company\'s own annual report for that year (engine/gbco_study/src/)')
@@ -471,13 +588,58 @@ out = dict(
     sotp=dict(auto_eq=auto_eq, cap_val=cap_val, assoc=assoc, total=sotp_sum,
               disc=disc, eq=sotp_eq, ps=sotp_ps, prediscount_ps=prediscount_ps,
               bear=sotp_bear, bull=sotp_bull,
-              mnt_halan_stake=mnt_halan_stake, mnt_halan_round_usd=mnt_halan_round_usd,
+              mnt_halan_stake=mnt_halan_stake, mnt_halan_stake_prior=mnt_halan_stake_prior,
+              mnt_halan_stake_source=("GB Corp's own press release of 9 June 2026 on "
+                                      "MNT-Halan's Al Ahly Capital-led capital increase: the "
+                                      "stake 'will be adjusted to 41.61%, compared to 42.58% "
+                                      "prior to the transaction'"),
+              mnt_halan_round_usd=mnt_halan_round_usd,
               egp_usd=egp_usd, mnt_halan_value=mnt_halan_value, other_assoc=other_assoc),
     lenses=dict(sotp=dict(bear=sotp_bear, base=sotp_ps, bull=sotp_bull),
                 prediscount=dcf_lens, relative=rel, normalized=norm,
                 central=dict(bear=central_bear, base=central, bull=central_bull),
                 weights=weights),
     forecast=fc, gpm=gpm, sens=dict(grid_margin=grid_margin, grid_disc=grid_disc, table=sens),
+    # THE DISCLOSED DRIVER BASE, COMMITTED SO THE DOCUMENT READS IT RATHER THAN RETYPING IT.
+    # Depth-bar standard 3 again: the delivered edition printed every one of these by hand
+    # because the numbers file did not carry them, so the driver table a reader sees and the
+    # driver base the model runs on were two separate transcriptions of the same figures.
+    disclosed_drivers=dict(
+        _source=("GB Corp's own 4Q23 / 4Q24 / 4Q25 earnings releases, the segment volume and "
+                 "revenue tables, committed under engine/gbco_study/src/"),
+        pc_volume_units=pc_vol, pc_revenue=pc_rev,
+        pc_asp={k: pc_rev[k] / pc_vol[k] for k in pc_vol},
+        cv_volume_units=cv_vol, cv_revenue=cv_rev,
+        lm_volume_units=lm_vol, lm_revenue=lm_rev,
+        trading_revenue=tr_rev, auto_revenue_fy2025=auto_rev_fy25,
+        growth=dict(pc_volume=vol_g, pc_asp=asp_g, cv_volume=cv_vg, cv_asp=cv_ag,
+                    lm_volume=lm_vg, lm_asp=lm_ag, trading=tr_g),
+        cost_stack=dict(gross_margin=gpm, gsa_pct=gsa, other_income_pct=oth,
+                        provisions_pct=prov, dna_pct=dna_pct, capex=capex,
+                        working_capital_pct=wc_pct, working_capital_fy2025=wc_prev,
+                        tax_rate=TAX)),
+    history=HISTORY,
+    group_forecast=dict(
+        _note=('the consolidated forecast income statement, computed here from the '
+               'committed group drivers below so the delivered document and the '
+               'delivered workbook print one arithmetic rather than two transcriptions'),
+        rows=GROUP,
+        drivers=dict(capital_revenue_fy2025=CAP_REV_FY25, capital_growth=cap_g,
+                     capital_gross_margin=cap_gm, eliminations_pct=elim_pct,
+                     group_opex_pct=grp_opex, group_other_income_pct=grp_oth,
+                     group_provisions_pct=grp_prov, associates_income=assoc_inc,
+                     net_finance_cost=fin_cost, minority_pct=mi_pct,
+                     capital_dna=cap_dna,
+                     capital_loanbook_growth=[0.35, 0.28, 0.24, 0.20, 0.18],
+                     rental_and_other_capex=[700.0, 800.0, 900.0, 1000.0, 1100.0],
+                     auto_inventory_pct=[0.36, 0.338, 0.32, 0.308, 0.296],
+                     auto_receivables_pct=[0.08]*5,
+                     auto_advances_pct=[0.07, 0.069, 0.0675, 0.066, 0.0645],
+                     auto_payables_pct=[0.245, 0.237, 0.2325, 0.229, 0.2255],
+                     net_new_borrowings=[5500.0, 5200.0, 5600.0, 5800.0, 6100.0],
+                     dividend_payout=[0.14, 0.15, 0.16, 0.18, 0.20])),
+    lens_inputs=LENS_INPUTS,
+    edition='2026-09-07',
     experts=dict(e1=exp1, e2=exp2, e3=exp3, e3_roce=roce, e3_ce=ce),
     cap_hist=cap_hist,
     cost_of_capital_record=dict(
@@ -492,12 +654,19 @@ out = dict(
                terminal_inflation=_PATH.terminal_inflation,
                terminal_growth_real=TG_REAL, terminal_growth_nominal=TG,
                anchor_staleness_accepted=(
-                   "The house Egyptian path's sovereign quote and FX spot are both anchored "
-                   "6 August 2026 and this study is struck on the latest close the repository "
-                   "holds, 23 August 2026 — 17 days. Refreshing a house macro path is a "
-                   "house-level act and not a step of one name's rebuild; the staleness is "
-                   "DISCLOSED rather than switched off, on the shape [R-COC-01] already uses "
-                   "for a deliberately-accepted stale sovereign quote."),
+                   # COMPUTED, NOT TYPED. This sentence stated the wrong strike date and the
+                   # wrong gap for as long as it existed, because both were typed once and the
+                   # study was re-struck afterwards. Both are now derived from the path file
+                   # and the resolved price date, so the disclosure cannot go stale on its own.
+                   "The house Egyptian path's sovereign quote and currency spot are both "
+                   "anchored %s and this study is struck against the latest known price, %s "
+                   "\u2014 %d days later. Refreshing a house macro path is a house-level act "
+                   "rather than a step of one name's rebuild, so the staleness is DISCLOSED "
+                   "and deliberately accepted rather than switched off, exactly as this house "
+                   "already treats a deliberately-accepted stale sovereign quote."
+                   % (_ANCHOR_DATE, spot_date,
+                      (_datetime_mod.date.fromisoformat(spot_date)
+                       - _datetime_mod.date.fromisoformat(_ANCHOR_DATE)).days)),
                inflation_inputs=dict(
                    _declared="EVERY inflation-class input this study registers, with the "
                              "mapping that derives it from the house ladder [R-MACRO-01 "
@@ -544,16 +713,29 @@ out = dict(
     valuation_gap=dict(
         central=central, spot=spot, spot_date=spot_date,
         gap=central/spot - 1.0,
-        price_note=("GBCO carries NO price in engine/prices/SUPPLIED_07-09-2026.json or in "
-                    "SUPPLIED_03-09-2026.json. The latest price the repository holds is the "
-                    "exchange library close of EGP 29.51 on 23 August 2026, which is what this "
-                    "study is struck on, with its date and its age stated. Nothing was "
-                    "substituted and nobody was asked [R-IND-01].")),
+        mc_anchor=mc_anchor, mc_anchor_date=mc_anchor_date,
+        price_note=("THIS NOTE WAS STALE AND IS REWRITTEN FROM THE RESOLVER BESIDE IT "
+                    "[07-09-2026]. It stated that no supplied price existed for GBCO and "
+                    "that the study was struck on the exchange library's own last close, and "
+                    "the resolver twelve lines above it had already found one — so a typed "
+                    "sentence contradicted the committed spot in the same file, which is the "
+                    "defect a computed figure exists to stop. The latest known price is read "
+                    "from the committed engine/prices/SUPPLIED_*.json files and never typed: "
+                    "%.2f as at %s. The cone is a different clock and is anchored on the last "
+                    "real session the exchange library holds, %.2f on %s; both are published "
+                    "with their own dates [R-GAP-01 AMENDED]."
+                    % (spot, spot_date, mc_anchor, mc_anchor_date))),
 )
-res.to_csv('backtest_rows.csv', index=False)
-np.save('fan.npy', np.array([fan[p] for p in [5, 25, 50, 75, 95]]))
-np.save('pT20.npy', pT20[:20000]); np.save('pT60.npy', pT60[:20000])
-with open('study_numbers.json', 'w') as f:
+# EVERY OUTPUT LANDS BESIDE THIS SCRIPT, NEVER IN THE CALLER'S DIRECTORY. Run from the
+# repository root, the relative names these five writes used to carry scattered the study's
+# artefacts into the root AND LEFT THE STUDY'S OWN NUMBERS FILE UNTOUCHED while the run
+# printed success — an absent result wearing a clean one's clothes [R-ENF-04]. HERE is what
+# every other study in this book resolves against.
+res.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
+np.save(os.path.join(HERE, 'fan.npy'), np.array([fan[p] for p in [5, 25, 50, 75, 95]]))
+np.save(os.path.join(HERE, 'pT20.npy'), pT20[:20000])
+np.save(os.path.join(HERE, 'pT60.npy'), pT60[:20000])
+with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(out, f, indent=1, default=float)
 print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 3),
       '| drift_q', round(drift_daily*60*100, 1), '% | factor_q', round(factor_drift_q*100, 2), '%')

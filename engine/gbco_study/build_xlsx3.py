@@ -1,10 +1,20 @@
 """Part 3: Income Statement · Balance Sheet · Cash Flow (clean-surplus construction)."""
+import os as _os_pathfix
+# EVERY PATH IN THIS BUILDER IS RELATIVE, SO THE RUN'S DIRECTORY DECIDED WHERE ITS
+# INPUT WAS READ AND ITS OUTPUT WAS WRITTEN. Run from anywhere but this folder it
+# either crashed or, worse, wrote a deliverable into the caller's directory.
+_HERE = _os_pathfix.path.dirname(_os_pathfix.path.abspath(__file__))
+_os_pathfix.chdir(_HERE)
+import sys as _sys_pathfix
+_sys_pathfix.path.insert(0, _HERE)
+_sys_pathfix.path.insert(0, _os_pathfix.path.join(_HERE, '..'))
+
 import json
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-wb = load_workbook('GBCO_Valuation_Model_08072026_public.xlsx')
+wb = load_workbook('GBCO_Valuation_Model_07092026_public.xlsx')
 A = json.load(open('_asm_rows.json')); SR = json.load(open('_seg_rows.json'))
 DCJ = json.load(open('_dcf_rows.json'))
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
@@ -227,5 +237,5 @@ for j, c in enumerate(FCOLS):
     bws[f'{c}{BS["Equity attributable to shareholders"]}'].font = GREEN
 put(ws, f'A{r+1}', 'Historical group cash-flow statements are published per segment (GB Auto CF in each release); the forecast is the consolidated clean-surplus build.', SUB, None)
 json.dump(dict(CF=CF, CLOSE=CLOSE, DIVR=DIVR), open('_cf_rows.json', 'w'))
-wb.save('GBCO_Valuation_Model_08072026_public.xlsx')
+wb.save('GBCO_Valuation_Model_07092026_public.xlsx')
 print('part3 ok — IS/BS/CF; NP row', NP, 'DNWC', DNWC, 'CLOSE', CLOSE)
