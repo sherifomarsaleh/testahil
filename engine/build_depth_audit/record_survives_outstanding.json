@@ -1,0 +1,6 @@
+{
+ "rule": "R-ENF-06 \u2014 a record a rebuild removes",
+ "note": "Two groups, NOT interchangeable: one excuses a record that does not survive a rebuild, the other a rebuild that cannot be attempted. Both may only SHORTEN. EMPTY AT ADOPTION: the exact test found zero records lost across 22 studies, and the two that looked lost were correct two-step builds whose own generators declare the order in capitals.",
+ "outstanding": {},
+ "unreadable": {}
+}

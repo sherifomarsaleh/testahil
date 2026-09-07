@@ -165,6 +165,8 @@ on:
       - 'scripts/check_output_sanity.py'
       - 'scripts/check_terminal_spread.py'
       - 'scripts/check_anchor_ordering.py'
+      - 'scripts/check_record_survives_rebuild.py'
+      - 'scripts/check_record_survives_rebuild_negative_control.py'
       - 'scripts/check_anchor_ordering_negative_control.py'
       - 'scripts/check_terminal_spread_negative_control.py'
       - 'scripts/check_output_sanity_negative_control.py'
@@ -304,6 +306,8 @@ on:
       - 'scripts/check_output_sanity.py'
       - 'scripts/check_terminal_spread.py'
       - 'scripts/check_anchor_ordering.py'
+      - 'scripts/check_record_survives_rebuild.py'
+      - 'scripts/check_record_survives_rebuild_negative_control.py'
       - 'scripts/check_anchor_ordering_negative_control.py'
       - 'scripts/check_terminal_spread_negative_control.py'
       - 'scripts/check_output_sanity_negative_control.py'
@@ -1143,6 +1147,16 @@ jobs:
 
       - name: The anchor ordering — negative control
         run: python3 scripts/check_anchor_ordering_negative_control.py
+
+      # [R-ENF-06]. SLOW BY CONSTRUCTION and that is the point: it rebuilds every study in
+      # a sandbox and diffs its committed records, because the cheap question — does the
+      # generator's SOURCE mention the key — answers a different one, and answered it
+      # wrongly by an order of magnitude the day this was written.
+      - name: A committed record survives its own rebuild
+        run: python3 scripts/check_record_survives_rebuild.py
+
+      - name: Record survival — negative control
+        run: python3 scripts/check_record_survives_rebuild_negative_control.py
 
       # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
       # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied

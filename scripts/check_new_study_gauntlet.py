@@ -146,6 +146,17 @@ ARTEFACT_GATES = {
                                 'from engine.mc_v3 import simulate_paths_v3\n'
                                 'def build():\n'
                                 '    json.dump({"central": 17.85}, open("study_numbers.json", "w"))\n')}),
+    'check_record_survives_rebuild.py': (
+        # An empty study has no generator, so there is no rebuild to attempt and refusing
+        # a bare directory would be a false claim [R-ENF-07]. Planted with the defect: a
+        # committed record no generator writes.
+        'a committed record that its own rebuild removes',
+        lambda: {'study_numbers.json': ('json', {'central': 1.23,
+                                                 'forecast_anchor': {'x': 1}}),
+                 'compute.py': ('text',
+                                'import json, os\n'
+                                'json.dump({"central": 1.23}, open(os.path.join('
+                                'os.path.dirname(__file__), "study_numbers.json"), "w"))\n')}),
     'check_anchor_ordering.py': (
         # An empty study commits neither date, so there is no ordering to violate and
         # refusing a bare directory would be a false claim [R-ENF-07]. Planted with the
