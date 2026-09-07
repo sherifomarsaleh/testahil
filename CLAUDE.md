@@ -131,6 +131,21 @@ diff-only summary leaves that copy silently behind.
   hard gate. A violation must not issue, not just warn. Also `assert_beta_provenance()`,
   which inspects the actual beta record rather than trusting a checklist boolean — that
   boolean was set `True` by every study while it regressed on a composite.
+- `engine/asset_base.py` — [R-ASSET-01]. The operating asset base's vintage: a developer's
+  landbank, a fleet, installed capacity. Scope is DERIVED from `LENS_REGISTRY`, and the test
+  is an ORDERING — the asset base may not be older than the information set the study says
+  it read — so there is no threshold to argue about. A class that does not resolve is RED,
+  never skipped.
+- `engine/ke_reproduction.py` — [R-COC-02]. Ke must reproduce from `rf* + beta x ERP`, and
+  the terminal under a construction NAMED from a closed list (`same_beta`, `relevered`). The
+  book runs both; until this existed nothing distinguished a relevered beta from a typo. A
+  relevered terminal must STATE its tax rate — the module can solve the implied one and
+  reports it so the fix is a single line, but never accepts it.
+- `engine/ratchet_shape.py` — [R-ENF-08]. A ratchet entry excuses the failure it RECORDED,
+  not every failure of its class. Use it in any new gate that carries a ratchet: `excused()`
+  compares the failure's SHAPE with live figures stripped, `worsened()` compares a recorded
+  MAGNITUDE where the message never changes. An entry with no signature behaves exactly as
+  before, so it binds forward and makes no existing list red.
 - `engine/adaptive_width.py` — the EG-only, history-gated per-stock cone-width overlay.
   Overlay only; never touches the pooled (ν, width_cal) fit, drift, or tail.
 - `engine/data_quality.py` — Step 0.0, mandatory before any calibration, fit or study.
