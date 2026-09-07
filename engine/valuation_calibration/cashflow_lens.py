@@ -38,7 +38,12 @@ import panel as P                # noqa: E402
 import terminal_value as TV      # noqa: E402
 
 BETA = 1.00              # declaration 2, carried forward unchanged
-HORIZONS = (1, 2, 3, 4, 5)   # the sealed explicit window
+HORIZONS = (1, 2, 3, 4, 5)
+# The shortest explicit window a terminal may be built on. THREE is not chosen here: it is
+# [R-FCAL-01]'s own LIGHT scope, the shortest window this house pre-registers for any run,
+# so a scorer refusing it would be refusing work the method licenses. Anything shorter and
+# the terminal carries the whole answer.
+MIN_EXPLICIT = 3   # the sealed explicit window
 INTENSITY_YEARS = 3      # median over the three fiscal years to the origin
 
 
@@ -257,18 +262,32 @@ MINORITY = {"AMOC": ["is.nci"], "ARCC": ["is.nci"], "EGCH": [], "PHDC": ["is.nci
 # EGCH's bank borrowings alone with the block's TOTAL debt (1000-1299), and it
 # REFUSED both — correctly, and the fix was to re-point it rather than widen the
 # tolerance [R-COC-01].
+# THE PAIR SAYS WHAT KIND OF EVIDENCE IT IS, because two different things are being asked
+# of it and only one of them is about units. (keys, block_item, kind):
+#
+#   "identical"  — both records read THE SAME FIGURE off the same statement, so they must
+#                  agree to the printing rounding as well as in scale. The tight band is
+#                  real evidence here and stays exactly as it was.
+#   "related"    — the two are the same QUANTITY IN THE SAME UNITS but not the same line
+#                  (a total against one of its components). The scale is still measurable
+#                  and the agreement is not, so requiring agreement would be testing a
+#                  claim the pair never made.
+#
+# CORRECTED 07-09-2026 ON A MEASUREMENT. AMOC was declared to share no quantity at all, on
+# the reasoning that its run exports no balance-sheet line — TRUE, and the wrong place to
+# look: its panel carries cost_stack.depreciation and its block carries dep, the same
+# quantity in the same units. Measured across the five shared years the ratio runs 1.0477
+# to 1.1664, so the unit is unambiguously 1e0 (the next power of ten is an order away) and
+# the two figures plainly differ, by 5 to 17 per cent, growing — which is exactly what a
+# cost-of-sales depreciation against a total depreciation looks like. [L-355] again: the
+# map was written looking for a balance-sheet line, and the answer was in a cost stack.
 SCALE_PAIR = {
-    # AMOC's panel is an income statement and a cost stack; its run exports no
-    # balance-sheet line, so NO quantity appears in both records and the unit
-    # cannot be measured. Declared unavailable rather than guessed. AMOC drops on
-    # the horizon clause first — its run projects three years against a declared
-    # window of five — so this costs no cell, and recording it is what keeps the
-    # second reason from disappearing behind the first.
-    "AMOC": None,
-    "ARCC": (["debt.total"], "debt"),
-    "EGCH": (["borrowings.bank", "borrowings.holdco", "borrowings.current"], "debt"),
-    "PHDC": (["bs.cash"], "cash"),
-    "TMGH": (["cash"], "cash"),
+    "AMOC": (["cost_stack.depreciation"], "dep", "related"),
+    "ARCC": (["debt.total"], "debt", "identical"),
+    "EGCH": (["borrowings.bank", "borrowings.holdco", "borrowings.current"], "debt",
+             "identical"),
+    "PHDC": (["bs.cash"], "cash", "identical"),
+    "TMGH": (["cash"], "cash", "identical"),
 }
 
 
@@ -332,7 +351,7 @@ def panel_scale(tk, panel, blk):
     if pair is None:
         return None, ("no quantity appears in both this run's panel and its "
                       "valuation-input block, so the unit cannot be measured")
-    keys, item = pair
+    keys, item, kind = pair
     ratios = []
     for y in sorted(set(panel) & set(blk)):
         a = _sum_actual(panel, y, keys)
@@ -348,11 +367,27 @@ def panel_scale(tk, panel, blk):
     if power is None:
         return None, "the measured unit ratio is not positive"
     scale = 10.0 ** power
-    # 2% either side, because the two records read the same figure off the same
-    # statement and any real difference is rounding in the panel's own printing.
-    if not (0.98 * scale <= lo and hi <= 1.02 * scale):
-        return None, ("the unit ratio is not a clean power of ten across the years "
-                      "both records cover — %.6g to %.6g against 1e%d" % (lo, hi, power))
+    if kind == "identical":
+        # 2% either side, because the two records read the same figure off the same
+        # statement and any real difference is rounding in the panel's own printing.
+        if not (0.98 * scale <= lo and hi <= 1.02 * scale):
+            return None, ("the unit ratio is not a clean power of ten across the years "
+                          "both records cover — %.6g to %.6g against 1e%d"
+                          % (lo, hi, power))
+        return scale, None
+    # A RELATED PAIR ANSWERS THE UNIT AND NOT THE AGREEMENT, and the band for the unit is
+    # DERIVED rather than chosen: sqrt(10) is the exact midpoint in log space between two
+    # adjacent powers of ten, so inside it no other power is closer and the unit is
+    # unambiguous, while outside it the reading is genuinely contested. That is arithmetic
+    # about the question rather than a tolerance somebody picked, which is the only kind of
+    # bound this house accepts. A pair that would need a wider band than this has not
+    # measured a unit at all — it has found two quantities that are not comparable.
+    root10 = 10.0 ** 0.5
+    if not (scale / root10 < lo and hi < scale * root10):
+        return None, ("a RELATED pair must still pin the unit: the ratio runs %.6g to "
+                      "%.6g, which straddles the midpoint between 1e%d and its "
+                      "neighbour, so no power of ten is unambiguous"
+                      % (lo, hi, power))
     return scale, None
 
 
@@ -530,11 +565,29 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     blk = block(tk)
     shares, price = cellinfo["shares"], cellinfo["price"]
 
+    # A RUN IS SCORED OVER THE WINDOW ITS OWN PRE-REGISTRATION DECLARES, NOT OVER ONE THIS
+    # SCORER IMPOSES. Corrected 07-09-2026 on a measurement, and the correction is the
+    # opposite of the obvious one: AMOC dropped ALL THREE of its origins because "the
+    # projection runs to horizon 3; the declared window is 5", which reads like a defect
+    # in AMOC and is not. [R-FCAL-01] sets scope BY SOURCEABLE HISTORY — FULL at eight or
+    # more fiscal years with horizons 1-5, LIGHT at five to seven with horizons 1-3 — and
+    # AMOC's run declares HORIZONS = [1, 2, 3] because it is a LIGHT-scope name. Extending
+    # its projector to five would be overriding a pre-registered scope to make a cell
+    # score, which is the selection this method forbids everywhere else.
+    #
+    # SO THE WINDOW IS THE INTERSECTION, AND ITS LENGTH IS RECORDED ON EVERY CELL. A cell
+    # built on three explicit years is not like-for-like with one built on five, and the
+    # honest handling is the one [R-FCAL-01] already uses for the driver scores: carry the
+    # scope with the figure so a pooled result can be read BY WINDOW rather than silently
+    # mixing two of them. A run whose projection reaches fewer than MIN_EXPLICIT years is
+    # still refused, because a terminal capitalising a one- or two-year path is a terminal
+    # doing all the work.
     proj = PROJECTORS[tk](origin)
     hs = [h for h in horizons if h in proj]
-    if len(hs) < len(horizons):
-        return None, ("the projection runs to horizon %d; the declared window is %d"
-                      % (max(proj) if proj else 0, max(horizons)))
+    if len(hs) < MIN_EXPLICIT:
+        return None, ("the projection runs to horizon %d and %d explicit years is the "
+                      "floor for a terminal to stand on"
+                      % (max(proj) if proj else 0, MIN_EXPLICIT))
     for h in hs:
         if proj[h].get("revenue") is None or proj[h].get("ebit") is None:
             return None, "the projection has no revenue or operating profit at h=%d" % h
