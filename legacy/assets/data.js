@@ -8140,35 +8140,6 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
-  },
-
-  // ---- 07-Sep-2026 single-name roll-forward: BOROUGE, struck on its own
-  //      latest library close. Append-only.
-  {
-    instrument:"BOROUGE", asset_class:"equity",
-    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:2.39, ccy:"AED",
-    horizon_label:"1 month", grade_date:"2026-10-07", grade_basis:"projected", horizon_days:21,
-    cycle_no:3, reanchor_from:"2026-09-07", anchor_vol:0.1922,
-    signal_z:-0.9766, signal_alpha:-0.005648,
-    note:"Cycle 3 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, off the monthly metronome — the prior cycle’s 1-month has not yet matured, so no cohort of that horizon is graded here. The previous cone was anchored 2026-09-07; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.067782 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0542 over 12 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.095,-0.020]). The cone is MIS-CENTRED: PIT mean 0.448 where 0.5 is centred, with 100% coverage against a 90% target and 92% against 50%. Read the bands as an OUTER bound. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.977 (outside the 0.25 dead zone); tilt -0.56% at 1M and -1.59% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
-    p5:2.19, p25:2.3, p50:2.37, p75:2.44, p95:2.57,
-    touch:{ "+5":19, "+10":4, "+15":1, "+20":1, "-5":26, "-10":5 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
-  },
-  {
-    instrument:"BOROUGE", asset_class:"equity",
-    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:2.39, ccy:"AED",
-    horizon_label:"3 months", grade_date:"2026-12-07", grade_basis:"projected", horizon_days:62,
-    cycle_no:3, reanchor_from:"2026-09-07", anchor_vol:0.1852,
-    signal_z:-0.9766, signal_alpha:-0.016013,
-    note:"Cycle 3 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, off the monthly metronome — the prior cycle’s 1-month has not yet matured, so no cohort of that horizon is graded here. The previous cone was anchored 2026-09-07; every still-open cohort on cycle 2 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.067782 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. NAME-LEVEL CALIBRATION: FAIL, robustly — skill -0.0542 over 12 scored windows, negative under every bootstrap block size {2,3,4} (block-2 CI [-0.095,-0.020]). The cone is MIS-CENTRED: PIT mean 0.448 where 0.5 is centred, with 100% coverage against a 90% target and 92% against 50%. Read the bands as an OUTER bound. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN, from this name’s own mom_combo z of -0.977 (outside the 0.25 dead zone); tilt -0.56% at 1M and -1.59% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
-    p5:2.04, p25:2.22, p50:2.34, p75:2.45, p95:2.67,
-    touch:{ "+5":35, "+10":14, "+15":6, "+20":3, "-5":54, "-10":22 },
-    realized_close:null, realized_high:null, realized_low:null,
-    in_90:null, in_50:null, realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
