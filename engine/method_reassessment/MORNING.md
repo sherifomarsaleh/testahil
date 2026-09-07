@@ -1970,3 +1970,42 @@ THE GENERAL LESSON: **A STABILITY CLAIM IS A CLAIM ABOUT A BOUNDARY SOMEBODY
 CHOSE.** Where that boundary was chosen for a different reason than the quantity
 being tested — a currency's year, applied to a depreciation schedule — the claim is
 partly about the chooser, and no amount of care inside the test will say so.
+
+### The rebuild attempt found a design error in the gate I built an hour ago
+
+Rebuilding PHDC's corrections under the amended cut-invariant rule — the ratchet
+debt I created this morning — **was reverted, and the reason is the useful part.**
+
+What the amended rule actually did was **not** what I expected. It dropped `asp`
+and `units_sold`, correctly. It also **corrected more, not less**: `is.finance_cost`
+went from two origins to four, `units_delivered` from one to three, and `is.sga`
+appeared at one. The old era test required two eras each carrying two or more
+resolved errors, which early origins do not have; the cut test needs only one
+admissible cut, which arrives sooner. Two effects in opposite directions, and the
+permissive one is larger.
+
+**Then the gate went red on a driver the amended rule had just adopted.** `is.sga`
+flips at **6 of 6 cuts** on the full record, and the rule applied it because at
+origin 2022's own expanding window there were two cuts and neither flipped. The
+log's own words: *"sign stable at every one of 2 cuts"* — which sounds strong and
+establishes very little, and is the [R-CAL-02] failure exactly: **a
+cautious-sounding claim is still a claim and gets audited like one.**
+
+**The defect is in my gate's scope, not in the run's rule.** The expanding window at
+2022 genuinely could not see the later flip, and point-in-time discipline is
+absolute — a method must be judged on what it knew. My `_phdc` adapter puts
+*applied-at-any-origin* in scope and then judges it against the **full panel**,
+which asks a question the method was never allowed to answer. An applied correction
+should be judged on **that origin's own window**, with the full-panel reading
+reported beside it as information.
+
+So the correction rule is unchanged, the ratchet stands, and the gate's scope is the
+next piece. The gate did its job in the only way that counts: **it went red on work
+I had just done and believed was right.**
+
+THE GENERAL LESSON: **A CHECK BUILT FROM A CENSUS INHERITS THE CENSUS'S VANTAGE.**
+`boundary_sensitivity` looks at the whole record, which is right for asking what a
+driver's history shows; a gate on a point-in-time method needs the vantage of the
+origin, and reusing the instrument imported its viewpoint along with its arithmetic.
+Where an instrument is borrowed, the arithmetic travels and so does the question it
+was written to answer.
