@@ -879,6 +879,43 @@
     "must_contain": "captive lender"
    },
    "recommendation": "Add the row. The captive lender is the reason and it is a lens reason rather than an industry one: a finance book is valued on its own spread and its own loss experience, not by discounting it alongside the cash flows of the vehicles it funds, and the protocol already names 'operating-co + captive lender -> split legs' as the pattern. That is a DIFFERENT LENS carrying part of the weight, which is exactly the test [R-LENS-03] sets — and it is the test SAVOLA fails, which is why these two escalations should not be answered together."
+  },
+  {
+   "key": "EGCH-FY2013-14-annual-legible-copy",
+   "opened": "2026-09-07",
+   "cls": "missing_data",
+   "question": "A LEGIBLE copy of Egyptian Chemical Industries' (KIMA / EGCH) annual report for the year ended 30 June 2014. The run HOLDS this filing — engine/egch_walkforward/filings/EGCH_FY2013-14_Annual.pdf — and its own record states why it cannot be used: every page is embedded as a 367 x 519 pixel image, roughly forty-five dots per inch across an A4 page. The prose and the larger income-statement blocks survive that resolution, which is why the run's panel carries FY2014 as a PARTIAL year; the numeric columns of the statement of financial position do not resolve to the digit at any magnification. So every field of the FY2014 valuation-input block is recorded missing WITH ITS REASON, and because three consecutive years of capex intensity are needed to each origin, that year drops the 2015 and 2016 origins from the mechanical valuation series.",
+   "routes": [
+    {
+     "route": "the run's own committed FY2014 block, opened rather than inferred from the filings directory listing",
+     "when": "2026-09-07",
+     "outcome": "ANSWERED THERE ALREADY. All seven fields carry missing:true with the resolution reason quoted above. The run did the work and recorded it correctly under [R-FCAL-01]'s clause that a missing item is RECORDED as missing, never omitted.",
+     "rerun": true
+    },
+    {
+     "route": "engine/egch_walkforward/filings/, every held PDF and the fiscal year each covers",
+     "when": "2026-09-07",
+     "outcome": "ten annuals, FY2008-09 to FY2020-21. The FY2013-14 edition IS present. An earlier reading of this same directory concluded a FY2014-15 report was MISSING, which was wrong twice over: this company's June year end means FY2013-14 is the report covering the 2014 origin, and the file is there.",
+     "rerun": true
+    },
+    {
+     "route": "OCR off the rendered pixels, which is the sanctioned route where a filing carries no usable text layer",
+     "when": "2026-09-07",
+     "outcome": "already attempted by the run and recorded as defeated by RESOLUTION rather than by extraction — at forty-five dots per inch the digits are not present in the image to be recovered. Arithmetic is the arbiter and there is nothing to foot.",
+     "rerun": false
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "The failure is in the SOURCE FILE rather than in any tool: a better scan cannot be produced from a worse one. Every route this environment admits has been run by the study and re-checked here. What is needed is a higher-resolution copy of a document the company published.",
+   "done_meanwhile": "Nothing is blocked and nothing was invented. The 2015 and 2016 origins are DROPPED with their stated reason, which is the correct output — [R-FCAL-01] says leave the year out and shorten the window rather than interpolate, and deriving capex across 2013 to 2015 would present a two-year change as one year's spending. The comparable gap on PHDC, where that company's own filing for the missing year IS legible, is being carried instead, so the recoverable cells are being recovered.",
+   "default_if_no_answer": "The two origins stay dropped and the mechanical series is scored on the cells that exist. The window shortens; nothing is fabricated.",
+   "default_date": "2026-12-31",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/egch_walkforward/valuation_inputs.json",
+    "must_contain": "FY2014_LEGIBLE_COPY_SUPPLIED"
+   },
+   "recommendation": "Supply a legible copy if one exists; otherwise accept the shortened window. Two cells are worth having and neither is worth inventing, and the cost of the absence is already visible in criterion 3's own drop list, which is where a reader would look."
   }
  ]
 }
