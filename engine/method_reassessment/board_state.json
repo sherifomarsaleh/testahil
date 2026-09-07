@@ -14,7 +14,7 @@
    "title": "It catches the errors that actually happen",
    "test": "Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.",
    "state": "IN FLIGHT",
-   "note": "Two of the three named errors were confirmed uncovered and priced. The asset-base one is now closed by a gate. A 14-lens census of every other way a fair value goes wrong is still running."
+   "note": "All three named errors are now caught. The asset-base and cost-of-equity gates were built today; the 14-lens census of every OTHER way a fair value goes wrong is still running and supplies the rest."
   },
   {
    "id": "P3",
@@ -52,13 +52,13 @@
   {
    "day": "1",
    "item": "Cost-of-equity reproduction gate",
-   "state": "NEXT",
-   "detail": "Ke must reproduce from rf* + beta x ERP, and the terminal Ke from its own anchors. Nothing checks this today."
+   "state": "DONE",
+   "detail": "BUILT. engine/ke_reproduction.py + check_ke_reproduction.py + a 14-case negative control, in the gauntlet, and the sanctioned module now emits the field so every future record declares it. NOTHING IN THE BOOK IS A WRONG NUMBER: all seven records reproduce exactly — five under the plain construction and two under a Hamada relevering at 22.50% — and what was outstanding is that no record SAID WHICH, so a relevered beta was indistinguishable from a typo."
   },
   {
    "day": "2",
    "item": "Close the census's confirmed gaps",
-   "state": "QUEUED",
+   "state": "NEXT",
    "detail": "Each one a gate or a listed reason. Ranked by value at risk, not by tidiness."
   },
   {
@@ -93,8 +93,8 @@
   },
   {
    "words": "creates wrong cost or high Ke and Kd",
-   "verdict": "PARTLY",
-   "by": "the construction is gated thoroughly; the LEVEL is not — no file reproduces Ke from its own inputs"
+   "verdict": "CAUGHT",
+   "by": "check_ke_reproduction — new since today. Ke must reproduce from rf* + beta x ERP, and the terminal under a construction named from a closed list. A Ke typed 300bp high is case one of its negative control."
   }
  ],
  "gauntlet": {

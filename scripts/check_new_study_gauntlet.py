@@ -108,6 +108,19 @@ DIRECTORY_GATES = [
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
 # planting one that should trip them. `plant` returns the files to create.
 ARTEFACT_GATES = {
+    'check_ke_reproduction.py': (
+        # An empty study commits no cost-of-capital record, so refusing a bare directory
+        # would be a false claim about what this gate checks [R-ENF-07]. Planted with a
+        # record whose Ke does NOT reproduce from its own inputs.
+        'a committed cost of equity that does not reproduce from its own inputs',
+        lambda: {'study_numbers.json': ('json', {
+            'cost_of_capital_record': {
+                'rf_star': 0.1955, 'beta': 0.9275220650537075, 'erp': 0.0941,
+                'ke_exp': 0.31277982632155385,
+                'rf_terminal': 0.125, 'erp_terminal': 0.07,
+                'ke_terminal': 0.189927, 'ke_terminal_construction': 'same_beta',
+                'weight_equity': 0.96, 'weight_debt': 0.04,
+                'weight_debt_terminal': 0.2}})}),
     'check_asset_base.py': (
         # A study with NO numbers file commits no class, so it is not in this gate's
         # scope and refusing an empty directory would be a FALSE CLAIM about what it
