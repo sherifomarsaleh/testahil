@@ -7429,6 +7429,12 @@
   "fx": 3.6725,
   "note": "every income-statement and balance-sheet figure committed here is in USD thousands, as filed. The share count is in millions, as its own key name says. A per-share figure is USD until it is multiplied by the peg."
  },
+ "latest_known": {
+  "price": 6.8,
+  "date": "2026-09-07",
+  "source": "SUPPLIED_07-09-2026.json",
+  "currency": "AED"
+ },
  "ground_up": {
   "ticker": "ADNOCLS",
   "lines": 7,
@@ -10777,7 +10783,7 @@
   {
    "check": "the external-reader scrub is MEASURED on the delivered documents, not attested",
    "passed": true,
-   "detail": "51 patterns scanned across 356,184 characters of delivered text, 0 hits; column audit and figure canvases clean"
+   "detail": "51 patterns scanned across 424,224 characters of delivered text, 0 hits; column audit and figure canvases clean"
   },
   {
    "check": "the three standing gates are called in this study's own code [R-ENF-02]",

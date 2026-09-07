@@ -10,6 +10,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))
 exec(open(os.path.join(HERE, 'docx_base.py')).read())   # doc, P, H1, H2, table, box, ...
 
+OUT_NAME = 'ADNOCLS_Valuation_Study_09-08-2026_public.docx'
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 M = D['meta']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -25,6 +26,12 @@ W, BR = D['wacc'], D['bridge']
 DCF, DCFA, DCFH = D['dcf'], D['dcf_beta_alt'], D['dcf_hybrid_pv']
 DCFS, DCFB, DCFU = D['dcf_sustained'], D['dcf_bear'], D['dcf_bull']
 LN, LW = D['lenses'], D['lens_weights']
+# THE TWO PRICES DO TWO DIFFERENT JOBS. SPOT is the close the model was struck
+# on — the date its weights, its fleet and its information set all belong to.
+# LKP is the latest close this house holds, and it is what a reader's own
+# comparison is made against. Publishing only the first hands a reader a
+# comparison against a quote that has since moved.
+LKP = D['latest_known']
 REL, NRM, BK, SOTP, PEERS = D['rel'], D['norm'], D['book'], D['sotp'], D['peers']
 EXP, PANEL = D['experts'], D['panel_centre']
 SN, STK, S0, BT, TC, BE = (D['sens'], D['strike'], D['step0'], D['backtest'],
@@ -498,12 +505,22 @@ WHY['Services'] = WHY['Services'].replace(_SERV_OLD, _SERV_NEW)
 
 
 # ============================ 1  MASTHEAD / READ FIRST =======================
-masthead()
+# THE EDITION DATE COMES OUT OF THE DELIVERED FILENAME, which is the one place it is
+# already a committed fact of this edition. Derived rather than typed so the masthead and
+# the file can never disagree, and never from the clock, which would restamp a delivered
+# document's account of when the work was done at every rebuild.
+_EDN = __import__('re').search(r'_(\d{2})-(\d{2})-(\d{4})_', OUT_NAME)
+assert _EDN, 'the delivered filename carries no edition date to read'
+EDITION = __import__('datetime').date(int(_EDN.group(3)), int(_EDN.group(2)),
+                                      int(_EDN.group(1))).strftime('%-d %B %Y')
+masthead(EDITION)
 H2('Independent Valuation Study — Educational Analysis')
 H1('ADNOC Logistics & Services plc (ADX: ADNOCLS)')
 P(f"Marine logistics and shipping group — integrated logistics, shipping and services "
   f"· {M['exchange']} · reports in US dollars, trades in UAE dirhams · "
-  f"analysis anchored on the closing price of AED {p2(SPOT)} on {M['price_date']}, with "
+  f"analysis anchored on the closing price of AED {p2(SPOT)} on {M['price_date']} "
+  f"and compared against the latest price held for it, AED {p2(LKP['price'])} on "
+  f"{LKP['date']}, with "
   f"the cash-flow model built at {M['valuation_date']}.",
   size=10, color=GREY)
 
@@ -2355,12 +2372,19 @@ P(f"This section answers a different question from the valuation. It does not as
   f"a fat-tailed shock and a drift anchored to the cost of carry — the local deposit rate "
   f"of {pc(STK['rf_live'], 2)} less the dividend yield of "
   f"{pc(STK['q_annual'], 2)}, which is a cost of money and not a directional view.")
+# WHAT A READER IS SHOWN IS THE BAND RECORD, AND THAT LIST IS EXHAUSTIVE. This paragraph
+# published a skill score against a random-walk benchmark in three places — the three-month
+# figure, the one-month figure and the pooled one. That comparison is RETIRED outright: it
+# never excluded a market, it disagreed with the band record on a large part of the book,
+# and where the two disagree it is coverage a reader can actually use. What survives is the
+# whole of what the record supports — how often the bands caught the close, over how many
+# resolved windows, and how wide those bands ran against a naive one, which is disclosed
+# beside the record and carries no threshold because a wider band is not automatically a
+# worse one.
 P(f"The widths are tested rather than assumed, and the test is worth stating in plain "
-  f"terms. Over the share's listed history the three-month distributions scored "
-  f"{sgn(BT3['skill_norm'], 2)} better than a random-walk benchmark anchored on the same "
-  f"cost of carry, across {n0(BT3['windows'])} independent non-overlapping windows with "
+  f"terms. Over {n0(BT3['windows'])} independent non-overlapping three-month windows with "
   f"origins from {BT3['first_origin']} to {BT3['last_origin']}, each one forecast using "
-  f"only data available before it. Outcomes fell across the distribution roughly evenly "
+  f"only data available before it, outcomes fell across the distribution roughly evenly "
   f"rather than bunching at one end: a uniformity test on where each outcome landed "
   f"returns p = {BT3['chi2_p']:.2f}, and a second test of the same thing returns p = "
   f"{BT3['ks_p']:.2f}. Coverage was {pc(BT3['cov50'], 0)} inside the 50% band, "
@@ -2368,10 +2392,9 @@ P(f"The widths are tested rather than assumed, and the test is worth stating in 
   f"to advertised at the wide bands, light at the narrow one on a sample of only "
   f"{n0(BT3['windows'])} windows. The one-month horizon has more windows and behaves "
   f"better: {n0(BT1['windows'])} of them, coverage {pc(BT1['cov50'], 0)} / "
-  f"{pc(BT1['cov80'], 0)} / {pc(BT1['cov90'], 0)}, uniformity p = {BT1['chi2_p']:.2f}, and "
-  f"a score {sgn(BT1['skill_norm'], 2)} against the benchmark — level with it rather than "
-  f"ahead of it. Pooling {n0(BTS['windows'])} three-month windows that start on staggered "
-  f"dates and therefore overlap one another gives {sgn(BTS['skill_norm'], 2)} and coverage "
+  f"{pc(BT1['cov80'], 0)} / {pc(BT1['cov90'], 0)}, uniformity p = {BT1['chi2_p']:.2f}. "
+  f"Pooling {n0(BTS['windows'])} three-month windows that start on staggered "
+  f"dates and therefore overlap one another gives coverage "
   f"of {pc(BTS['cov50'], 0)} / {pc(BTS['cov80'], 0)} / {pc(BTS['cov90'], 0)} — a larger "
   f"sample, but one whose windows are not independent of each other, so it corroborates "
   f"the picture rather than adding new evidence to it.")
@@ -3747,7 +3770,7 @@ P("This document is educational analysis and is not investment advice, an offer,
   "independent advice. No liability is accepted for any loss arising from use of this "
   "material.", size=9.2, color=GREY)
 
-out = os.path.join(HERE, 'ADNOCLS_Valuation_Study_09-08-2026_public.docx')
+out = os.path.join(HERE, OUT_NAME)   # ONE name, read by the masthead too
 doc.save(out)
 bad = [t for t in TBL if t[1] > 7.001]
 print(f"wrote {out} | {len(doc.paragraphs)} paragraphs | {len(doc.tables)} tables")

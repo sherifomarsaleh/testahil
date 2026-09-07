@@ -134,14 +134,34 @@ def box(lines, fill=F_CREAM):
         p.paragraph_format.space_after = Pt(5)
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
 
-def masthead():
+def masthead(edition=None):
+    """The banner, and the EDITION DATE a reader needs before anything else.
+
+    A reader receiving a valuation has to be able to tell how old it is without hunting,
+    and this masthead carried no date at all — the edition date lived only in the filename,
+    which is not something a printed page or a forwarded document carries with it.
+
+    THE DATE IS READ OUT OF THE FILE THIS BUILDER WRITES, never taken from the clock and
+    never typed: a builder stamping today's date restamps a delivered document's account of
+    when the work was done every time anything is rebuilt, which is the defect this
+    repository already had to correct once in a terminal-record generator. Passing None
+    prints no date rather than an invented one.
+    """
     t = doc.add_table(rows=1, cols=1)
     cell_margins(t, 90, 90, 160, 160)
     c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(7.0)
     p = c.paragraphs[0]
     r = p.add_run('Testahil · Independent Valuation Study — Educational Analysis')
     r.bold = True; r.font.size = Pt(11); r.font.color.rgb = WHITE
-    r2 = p.add_run('   Not investment advice')
+    # THE SECOND LINE IS ITS OWN PARAGRAPH. Appended to the title run the banner wrapped
+    # mid-date — "Edition of 9 / August 2026" — which a reader meets before anything else
+    # in the document. Caught by rendering the page and looking at it, which is a gate here
+    # rather than a formality and is the only thing that could have caught it.
+    p2_ = c.add_paragraph() if edition else p
+    if edition:
+        r3 = p2_.add_run('Edition of %s' % edition)
+        r3.font.size = Pt(9.5); r3.font.color.rgb = WHITE
+    r2 = p2_.add_run('   ·   Not investment advice' if edition else '   Not investment advice')
     r2.font.size = Pt(9.5); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
     doc.add_paragraph().paragraph_format.space_after = Pt(0)
 

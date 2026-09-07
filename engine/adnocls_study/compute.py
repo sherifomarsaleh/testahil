@@ -52,6 +52,27 @@ def IN(key, value, source, date, layer):
     return value
 
 
+
+# ---------------------------------------------------------------------------- latest price
+def _latest_known(ticker='ADNOCLS'):
+    """The freshest close this repository holds for this name, with its provenance.
+
+    Raises rather than defaulting: a study that cannot see a price is a study that must
+    stop and ask for one, which is what the standing question at the start of a study
+    exists for. An absent answer is not a clean one.
+    """
+    import sys as _s, os as _o
+    _s.path.insert(0, _o.path.join(_o.path.dirname(_o.path.abspath(__file__)),
+                                   '..', 'prices'))
+    import gap_today as _G
+    row = _G.latest_price_per_ticker().get(ticker)
+    if not row:
+        raise SystemExit('STOP: no supplied price is held for %s. Ask for the latest '
+                         'share price and its date before delivering [R-GAP-01].' % ticker)
+    return dict(price=float(row['price']), date=str(row['date']),
+                source=str(row['file']), currency='AED')
+
+
 # ---------------------------------------------------------------- market ----
 spot_aed = IN('spot_aed', 6.16, "ADX daily price history for ADNOCLS, last close in the "
               "series used throughout this study", '2026-08-07', 'Market')
@@ -3054,6 +3075,15 @@ OUT = dict(
                               'here is in USD thousands, as filed. The share count is in '
                               'millions, as its own key name says. A per-share figure is '
                               'USD until it is multiplied by the peg.'),
+    # [R-GAP-01 AMENDED] THE LATEST KNOWN PRICE, WITH ITS DATE AND THE FILE IT CAME FROM.
+    # This study is ANCHORED at the 7 August close — that is the date its information set
+    # ends, the date the fleet purchase was announced, and the date its market-value
+    # weights are a fact about — and it is DELIVERED against whatever the market has done
+    # since. Those are two different prices doing two different jobs, and publishing only
+    # the first leaves a reader comparing a valuation against a quote that has moved.
+    # READ FROM THE COMMITTED PRICE FILE rather than typed, so it cannot go stale silently
+    # and cannot be a figure that only ever existed in a conversation.
+    latest_known=_latest_known(),
     ground_up=GROUND_UP,
     # THE LINES THE ASSERTION WAS COMPUTED FROM, not only what it returned. Until this
     # was committed the study published share_by_level — the assertion's OUTPUT — and
