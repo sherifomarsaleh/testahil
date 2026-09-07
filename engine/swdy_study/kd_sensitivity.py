@@ -23,6 +23,23 @@ FCFF = F['fcff']
 NOPAT5 = F['nopat'][-1]
 ROIC_T = DCF['roic_term']
 ND, ASSOC, NCI_SH = DCF['nd'], DCF['assoc'], DCF['nci_share']
+# THE TERMINAL COMES FROM THE SANCTIONED MODULE HERE TOO [R-TERM-01], and the equity
+# carries the employees' statutory share and the anchor roll, because the bridge does.
+# This helper re-implemented all three and was the THIRD file in this study to do it -
+# the base case, the reverse read and this sensitivity each rebuilt the terminal inline
+# on the retired g x IC identity. A scenario that re-implements what it is testing grades
+# something other than what ships [R-ENF-03], and three copies of one construction is
+# three places for it to stop agreeing.
+import sys as _sys, importlib.util as _ilu
+_spec = _ilu.spec_from_file_location(
+    'engine_terminal_value',
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                 'terminal_value.py'))
+TV_MOD = _ilu.module_from_spec(_spec)
+_sys.modules['engine_terminal_value'] = TV_MOD
+_spec.loader.exec_module(TV_MOD)
+EMP_RATE = D['eps_reconciliation']['charged_at']
+TR_IN = DCF['terminal_record']['inputs']
 G = IN['g_term']
 KE_EXP, KE_TERM = W['ke_exp'], W['ke_term']
 WD_EXP, WD_TERM = W['wd_exp'], IN['wd_term']
@@ -45,10 +62,19 @@ def value(kd_path, kd_term, ke_exp=KE_EXP, ke_term=KE_TERM,
     df, c = [], 1.0
     for w in fwd:
         c /= (1 + w); df.append(c)
-    rr = min(G / ROIC_T, 0.95)
-    tv = NOPAT5 * (1 + G) * (1 - rr) / (wacc_term - G)
+    tv = TV_MOD.build(TV_MOD.TerminalInputs(
+        nopat=TR_IN['nopat'], wacc=max(wacc_term, G + 0.015),
+        inflation=TR_IN['inflation'], real_growth=TR_IN['real_growth'],
+        dna_book=TR_IN['dna_book'],
+        useful_life_years=TR_IN['useful_life_years'],
+        useful_life_source=TR_IN['useful_life_source'],
+        maintenance_basis=TR_IN['maintenance_basis'],
+        working_capital=TR_IN['working_capital'],
+        incremental_capital_per_unit_growth=TR_IN[
+            'incremental_capital_per_unit_growth'])).tv
     ev = sum(FCFF[i] * df[i] for i in range(5)) + tv * df[-1]
-    ps = ((ev - ND + ASSOC) * (1 - NCI_SH)) / SH
+    ps_dec = ((ev - ND + ASSOC) * (1 - NCI_SH) * (1 - EMP_RATE)) / SH
+    ps = ps_dec * DCF['roll'] - IN['dps_fy25']
     return dict(ps=ps, ev=ev, wacc_exp=wacc_exp, wacc_term=wacc_term,
                 tv_share=(tv * df[-1]) / ev)
 

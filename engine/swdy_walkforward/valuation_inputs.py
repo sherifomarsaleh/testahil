@@ -349,15 +349,28 @@ def build():
             prev = origins.get(y - 1) or prior.get(y - 1)
             prev_ppe = None
             if prev:
+                # The prior year's block now carries BOTH the descriptive keys and the
+                # canonical ones, and the canonical 'ppe' may be a MISSING record with no
+                # value. A reader that assumes a key implies a value crashes on exactly
+                # the years the block was written to make visible.
                 for k in ('ppe', 'ppe_or_fixed_assets'):
-                    if k in prev:
-                        prev_ppe = prev[k]['value']
+                    v = prev.get(k)
+                    if isinstance(v, dict) and isinstance(v.get('value'), (int, float)):
+                        prev_ppe = v['value']
                         break
             dna = (b.get('depreciation_and_amortisation') or {}).get('value')
             if prev_ppe is not None and ppe_key in b and dna:
                 b['capex'] = dict(value=b[ppe_key]['value'] - prev_ppe + dna,
                                   disclosed=False, derived=True,
                                   formula='capex = dPP&E + D&A',
+                                  identity='capex = dPPE + D&A',
+                                  source=('DERIVED from this run\'s own committed '
+                                          'property, plant and equipment and depreciation '
+                                          'for %d and %d: %s and %s'
+                                          % (y - 1, y, (b[ppe_key] or {}).get('source'),
+                                             (b.get('depreciation_and_amortisation') or {})
+                                             .get('source'))),
+                                  route='derived_from_committed_figures',
                                   note='DERIVED. The cash-flow statement for this year is '
                                        'not in the archive as a machine-readable filing; '
                                        'the identity is not an assumption and this label '
@@ -385,6 +398,59 @@ def build():
             miss.append(dict(item='property, plant and equipment',
                              reason='not disclosed in a machine-readable filing held for '
                                     'this year'))
+        # ---- THE CANONICAL SHAPE THE SHARED GATE READS -----------------------
+        # scripts/check_valuation_inputs.py names seven items and reads them by KEY:
+        # cash, debt, capex, ppe, dep, wc, shares. The descriptive names above are kept
+        # beside them, because a block that a reader can follow and a block a checker
+        # can read are two different requirements and neither replaces the other. A
+        # MISSING ITEM IS RECORDED AS MISSING WITH ITS REASON, never omitted - which is
+        # what the gate is actually testing and what a block quietly carrying six of
+        # seven would otherwise pass.
+        canon = {}
+        for key, src in (('cash', 'cash'), ('debt', 'interest_bearing_debt'),
+                         ('capex', 'capex'), ('ppe', 'ppe'), ('dep',
+                         'depreciation_and_amortisation')):
+            v = b.get(src)
+            if src == 'ppe' and v is None:
+                v = b.get('ppe_or_fixed_assets')
+            if v is None:
+                why = next((m['reason'] for m in miss
+                            if key in m['item'] or m['item'].split()[0] in key), None)
+                canon[key] = dict(missing=why or ('not disclosed in any machine-readable '
+                                                  'filing held for this year'))
+            else:
+                canon[key] = dict(v)
+                if key == 'capex' and v.get('derived'):
+                    canon[key]['identity'] = 'capex = dPPE + D&A'
+        wc_parts = {k: b[k] for k in ('inventories', 'receivables', 'payables') if k in b}
+        if wc_parts:
+            canon['wc'] = dict(
+                value=(wc_parts.get('inventories', {}).get('value', 0.0)
+                       + wc_parts.get('receivables', {}).get('value', 0.0)
+                       - wc_parts.get('payables', {}).get('value', 0.0)),
+                components={k: v['value'] for k, v in wc_parts.items()},
+                source='; '.join(sorted({str(v.get('source')) for v in wc_parts.values()})),
+                route='; '.join(sorted({str(v.get('route')) for v in wc_parts.values()})),
+                note='inventories plus trade and other receivables less trade and other '
+                     'payables, each line kept beside the total')
+            for _k in ('inventories', 'receivables', 'payables'):
+                if _k not in wc_parts:
+                    canon['wc'].setdefault('incomplete', []).append(_k)
+        else:
+            canon['wc'] = dict(missing='no working-capital line is disclosed in any '
+                                       'machine-readable filing held for this year')
+        sh = b.get('share_count') or {}
+        if sh.get('missing'):
+            canon['shares'] = dict(missing=sh.get('reason', 'no share count could be '
+                                                            'footed for this year'))
+        else:
+            canon['shares'] = dict(value=sh.get('shares'),
+                                   issued_capital=sh.get('issued_capital_egp'),
+                                   par_value=sh.get('par_value_egp'),
+                                   source=sh.get('source'), route=sh.get('route'),
+                                   footing=sh.get('footing'),
+                                   established_by=sh.get('established_by'))
+        b.update(canon)
         b['_missing'] = miss
         if 2014 <= y <= 2025:
             origins[y] = b

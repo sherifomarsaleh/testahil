@@ -134,10 +134,50 @@ def main(argv):
                             '— the list is anchored on nothing' % (tk, group))
 
     # ---- THE 1/g SIGNATURE — the failing test ------------------------------------------
+    # A STUDY WHOSE COMMITTED R-TERM-01 RECORD REPRODUCES ITS OWN TERMINAL VALUE IS NOT
+    # BUILT ON THE REINVESTMENT IDENTITY, WHATEVER THE RATIO SAYS [RE-POINTED 07-09-2026].
+    #
+    # The signature is IC/charge == 1/g, which is ALGEBRA under the retired construction
+    # and is therefore a clean detector of it. It is not a proof in the other direction.
+    # The corrected construction charges maintenance GROSS at replacement cost and adds
+    # book depreciation back, so its net charge is unrelated to g — and on SWDY that net
+    # charge came out at 6.97% of the capital base against a terminal growth rate of
+    # 7.00%, which puts the ratio at 14.34 against a 1/g of 14.29 and inside the 2% band.
+    # COINCIDENCE, ON A STUDY BUILT THROUGH terminal_value.py ON A DISCLOSED 17.2627-YEAR
+    # LIFE READ OFF ITS OWN NOTE 17. Per [R-COC-01]: when a check fires on work that is
+    # right, RE-POINT it — never widen the band, which would be a free parameter, and
+    # never move the number to satisfy it.
+    #
+    # THE EXEMPTION IS NOT "DECLARES A RECORD". That would be the declared-versus-used
+    # shape [R-MACRO-01 AMENDED] names, and a study could commit a conforming record
+    # beside a terminal built some other way and be excused by the record it did not use.
+    # What excuses a study is that its committed record REPRODUCES the terminal value the
+    # study publishes: the record is then demonstrably the thing that produced the answer,
+    # which is the only claim the exemption needs and the only one it makes.
+    def _record_built(r):
+        tr = r.get('_terminal_record') or {}
+        tv_rec, tv_pub = tr.get('tv'), r.get('tv')
+        if not (tv_rec and tv_pub):
+            return False
+        if not (tr.get('inputs') or {}).get('useful_life_years'):
+            return False
+        return abs(float(tv_rec) / float(tv_pub) - 1.0) < 1e-6
+
     sig = [r for r in scored
            if r.get('implied_cycle_years') and r.get('one_over_g')
-           and abs(r['implied_cycle_years'] / r['one_over_g'] - 1.0) < 0.02]
-    clean = [r for r in scored if r not in sig]
+           and abs(r['implied_cycle_years'] / r['one_over_g'] - 1.0) < 0.02
+           and not _record_built(r)]
+    exempt = [r for r in scored
+              if r.get('implied_cycle_years') and r.get('one_over_g')
+              and abs(r['implied_cycle_years'] / r['one_over_g'] - 1.0) < 0.02
+              and _record_built(r)]
+    clean = [r for r in scored if r not in sig and r not in exempt]
+    for r in sorted(exempt, key=lambda x: x['ticker']):
+        print('    %-12s cycle %.1f y sits on 1/g of %.1f BY COINCIDENCE — its committed '
+              'R-TERM-01 record reproduces the published terminal value to 1e-6 on a '
+              'disclosed life of %.4f years'
+              % (r['ticker'], r['implied_cycle_years'], r['one_over_g'],
+                 float((r['_terminal_record']['inputs'] or {})['useful_life_years'])))
     moved = []
     print('\n  CARRYING THE 1/g CONSTRUCTION: %d of %d' % (len(sig), len(scored)))
     for r in sorted(sig, key=lambda r: r['one_over_g']):

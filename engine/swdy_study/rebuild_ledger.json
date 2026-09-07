@@ -1,0 +1,86 @@
+{
+ "ticker": "SWDY",
+ "started_at": "the delivered edition of 05-08-2026 as it stood on 7 September 2026",
+ "start_value": 55.482176,
+ "start_spot": 105.2,
+ "start_gap": -0.47260288973384035,
+ "audit_after": "terminal flows on the last-explicit-year basis",
+ "levers": [
+  {
+   "name": "the disclosed useful life at full precision",
+   "rule": "R-TERM-01",
+   "before": 55.482176,
+   "after": 55.479725,
+   "why": "The life was registered as 17.26 and the identity resolves to 17.2627. A record storing a ROUNDED figure is its own failure: nothing about note 17 is uncertain to two decimal places, and the terminal is built on this number.",
+   "evidence": "swdy_study/useful_lives.json. Route one FAILS on this name \u2014 the policy note discloses five RANGES and no scalar, machinery (65% of the depreciable base) spanning 5 to 15 years. Route two gives 17.2627 from average depreciable gross cost over the year's own charge, corroborated twice: the same note a year earlier gives 17.9761, and the composite implied by charging every class at the LONG END of its own range gives 17.3041 \u2014 agreement to 0.24%.",
+   "move": -4.4176349536129145e-05
+  },
+  {
+   "name": "the strike moved to the latest known price",
+   "rule": "R-GAP-01",
+   "before": 55.479725,
+   "after": 56.264792,
+   "why": "The study was struck at EGP 105.20 of 5 August 2026. NO STUDY IS DELIVERED AGAINST A STALE PRICE: the latest committed close is EGP 130.00 of 3 September 2026, so the valuation date moves with it and the anchor roll lengthens from 217 days to 246. The market-value equity weight moves with the price too, which takes the explicit-window cost of capital from 26.63% to 26.94%.",
+   "evidence": "engine/prices/SUPPLIED_03-09-2026.json. The same file records that the figure first arrived as 90.50 and was CORRECTED to 130.00 on 6 September 2026 after disagreeing with this name's own price library on all 35 overlapping sessions after 14 June 2026.",
+   "move": 0.014150520753302143
+  },
+  {
+   "name": "terminal flows on the last-explicit-year basis",
+   "rule": "R-TERM-01",
+   "before": 56.264792,
+   "after": 52.69689,
+   "why": "THE MODULE GROWS THE FLOWS ONE YEAR ITSELF AND THIS STUDY HAD ALREADY GROWN THEM. terminal_value.TerminalInputs says so in its first sentence and warns in terms that a NOPAT handed in already grown by (1+g) overstates the terminal by exactly (1+g) \u2014 a year-seven flow discounted at the year-five factor. NOPAT, book depreciation and the working-capital base were all multiplied by 1.07 before being passed to a function that multiplies by 1.07 again. The terminal carries 84% of enterprise value here, so the error is the answer.",
+   "evidence": "The module's own note records that SIX OF EIGHT CALLERS read the field the other way on 4 September 2026; this study was one of them and was not corrected then. Terminal value 319,477 -> 298,577 EGP mn. THE CORRECTION LOWERS THE VALUE, moving it further from the traded price, which is the only direction that proves the discipline is not fitting to a quote.",
+   "move": -0.06341269332338417
+  },
+  {
+   "name": "the workbook publishes the answer the study publishes",
+   "rule": "depth-bar standard 3",
+   "before": 52.69689,
+   "after": 52.69689,
+   "why": "The delivered workbook published EGP 59.3132 where the delivered document published 55.4822, +6.9%, with ZERO formula errors \u2014 two builder defects pulling OPPOSITE ways, and the builder's own expected-value map holding the right figure for both cells. DCF!C25 still carried the g x IC reinvestment identity [R-TERM-01] retired, which compute.py computes and labels \"published unused, feeds nothing\" (-6.5% alone); SOTP Bridge!C12 carried no line for the employees' statutory share the model deducts at 12.19% (+14.4% alone). THE STUDY'S CENTRAL DOES NOT MOVE HERE; the workbook's published answer moves 59.3132 -> 52.6969.",
+   "evidence": "recalc.py named all 27 disagreeing cells in under a second and had simply not been run after the last rebuild. It now reports 594 formulas, 0 unresolvable, 594 cell-level agreements and 41 headline reconciliations passed. Two of its own headline addresses were ALREADY STALE and had been reporting as mismatches rather than being fixed \u2014 Summary C12 is EMPTY and read as 0.0000, which the tolerance turned into a difference rather than an error [L-066/L-067].",
+   "move": 0.0
+  }
+ ],
+ "value": 52.69689,
+ "cumulative_move": -0.05020145568912071,
+ "rules": {
+  "R-TERM-01": {
+   "levers": [
+    "the disclosed useful life at full precision",
+    "terminal flows on the last-explicit-year basis"
+   ],
+   "first_before": 55.482176,
+   "last_after": 52.69689,
+   "move": -0.05020145568912071
+  },
+  "R-GAP-01": {
+   "levers": [
+    "the strike moved to the latest known price"
+   ],
+   "first_before": 55.479725,
+   "last_after": 56.264792,
+   "move": 0.014150520753302143
+  },
+  "depth-bar standard 3": {
+   "levers": [
+    "the workbook publishes the answer the study publishes"
+   ],
+   "first_before": 52.69689,
+   "last_after": 52.69689,
+   "move": 0.0
+  }
+ },
+ "distinct_rules": 3,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked.",
+ "workbook_answer": {
+  "before": 59.31322,
+  "after": 52.69689,
+  "note": "the workbook is the artefact a reader receives; its own answer is tracked beside the study's"
+ },
+ "also_carried": [
+  "[L-294] applied to EVERY lens that produces a per-share equity value, not only to the cash-flow lens. The employees' statutory share was charged in the bridge, the currency alternative, the sensitivity helper and the scenarios, and NOT in the three cross-checks a reader is shown beside the central, so the same company was worth 12.19% more per share depending on which lens was reading it. Relative 80.58 -> 71.64, normalised 109.52 -> 97.90. THE CENTRAL IS UNMOVED: under [R-LENS-03] the class primary IS the central and the cross-checks are published beside it.",
+  "The terminal's own record is now COMMITTED beside the DCF block. Without it the workbook cannot build the sanctioned construction as live formulas and has to carry a number - which is how the retired g x IC formula survived in DCF!C25 while compute.py had already moved off it [R-ENF-06]."
+ ]
+}

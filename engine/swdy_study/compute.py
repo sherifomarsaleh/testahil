@@ -62,9 +62,25 @@ H126 = ("Reviewed condensed interim consolidated financial statements for the si
         "on 11 August 2026 (note 2-1), published on the company's own investor-relations "
         "portal at ir.elsewedyelectric.com")
 
+FY25 = ("Audited consolidated financial statements of El Sewedy Electric Company for the "
+        "financial year ended 31 December 2025, published on the company's own "
+        "investor-relations portal at ir.elsewedyelectric.com")
+FY24 = ("Audited consolidated financial statements of El Sewedy Electric Company for the "
+        "financial year ended 31 December 2024, published on the company's own "
+        "investor-relations portal at ir.elsewedyelectric.com")
+
 INP = dict(
     # ---- anchors --------------------------------------------------------
-    spot=I(105.20, "Uploaded EGX daily price history, last close", "2026-08-05", "Market"),
+    spot=I(130.00, "Closing price supplied by the principal for 3 September 2026. "
+           "RE-STRUCK: the study was struck at "
+           "EGP 105.20 of 5 August 2026 and a fair value delivered against a month-old "
+           "quote is a comparison a reader cannot use. The supplied file records that the "
+           "figure first arrived as 90.50 and was CORRECTED to 130.00 on 6 September 2026 "
+           "after it disagreed with this name's own price library on all 35 overlapping "
+           "sessions after 14 June 2026, including the 5 August close of 105.20 this "
+           "study was originally struck at. A fair value delivered against a month-old "
+           "quote is a comparison a reader cannot use",
+           "2026-09-03", "Market"),
     shares_mn=I(2140.777876, "Issued and paid-up capital note (29), audited FY2025 consolidated "
                 "financial statements and the Q1-2026 condensed interim statements: 2,140,777,876 "
                 "shares of EGP 1 par value, unchanged across both filings", "2026-05-13", "Company"),
@@ -749,17 +765,25 @@ INP = dict(
         "components to the 53,088.599198 subtotal, subtotal plus projects to the 62,004.509269 "
         "total, and the component charges to the 2,733.671862 total charge",
         "2026-03-01", "Company"),
-    asset_life_derived=I(17.26,
+    asset_life_derived=I(17.2627,
         "DERIVED BY IDENTITY, not chosen: the AVERAGE depreciable gross cost across the year "
         "((43,605.306327 opening + 50,775.950574 closing) / 2) over the year's own "
         "depreciation charge of 2,733.671862. The average is used rather than the closing "
         "balance because the base grew 16% in the year and a closing-cost ratio overstates "
-        "the life on a fast-growing base (that reading is 18.57 years). Per component the "
+        "the life on a fast-growing base (that reading is 18.5743 years). THE FIGURE IS "
+        "CARRIED AT FULL PRECISION: it was registered as 17.26 and a rounded record is "
+        "its own failure - the identity resolves to 17.2627 and nothing about the note "
+        "is uncertain to two decimal places. Per component the "
         "closing-cost readings are buildings 29.00y, machinery 18.72y, furniture 8.45y, "
         "vehicles 8.45y, leasehold improvements 13.13y, against disclosed ranges of 8-50, "
         "5-15, 4-17, 5-8 and 'over 3 years or the lease period' — the disclosed ranges are "
         "RANGES, and a life this desk picked from inside one would not be a disclosed life "
-        "(SIGCM clause 1), which is why the identity is used instead",
+        "(SIGCM clause 1), which is why the identity is used instead. CORROBORATED TWICE: "
+        "the same note read a year earlier gives 17.9761, and the composite implied by "
+        "charging every class at the LONG END of its own disclosed range is 17.3041, "
+        "agreement to 0.24% - the company depreciates at the top of every range it "
+        "discloses and the identity recovers that without anybody choosing a point. "
+        "The full record is in useful_lives.json beside this study.",
         "2026-03-01", "Company/derived"),
     asset_life_source=I("Audited FY2025 consolidated financial statements of El Sewedy Electric "
         "Company, note 17 (property, plant and equipment) read with the accounting-policies "
@@ -792,7 +816,7 @@ INP = dict(
     usd_g_term=I(0.035, "Terminal growth of the USD-denominated leg — real growth plus dollar "
                  "inflation, below the EGP terminal growth by the inflation differential",
                  "2026-08-05", "House"),
-    anchor_days=I(217, "Days from the DCF's construction date (31 Dec 2025, the audited "
+    anchor_days=I(246, "Days from the DCF's construction date (31 Dec 2025, the audited "
                   "balance-sheet date the bridge is built on) to the anchor date 5 Aug 2026. All "
                   "lens values are rolled to the anchor at the cost of equity, net of the EGP 1.85 "
                   "FY2025 dividend paid inside the window — added after external critique "
@@ -830,6 +854,55 @@ INP = dict(
                 "prior year) shows Electra at 20.37% (436,109,503 shares) and other shareholders at "
                 "11.57% (247,682,741): Electra placed exactly 32,111,668 shares into the free float "
                 "during the year", "2026-03-15", "Company"),
+    # ---- DISCLOSED PERCENTAGES, REGISTERED RATHER THAN LEFT IN PROSE -----------
+    # Every one of these was already ASSERTED in this study's bibliography, with its
+    # source, inside another input's justification text - and the prose-figure check
+    # could not reproduce any of them, because the model held the sentence and not the
+    # number. [R-ENF-01 EXTENDED] says in terms: if a figure is real and the model
+    # cannot produce it, THE MODEL IS WHAT IS MISSING. Registering them is that repair;
+    # widening the rendering set until they matched was tried first and was VACUOUS
+    # (3.6 million values, matching 400 of 400 random percentages), so it was reverted.
+    sh_sadek=I(0.2499, FY25 + ", note 40 (shareholders' structure) as at 31 December 2025: "
+               "Sadek Ahmed Sadek Elsewedy, 534,980,391 shares", "2026-03-01", "Company"),
+    sh_ahmed=I(0.2499, FY25 + ", note 40: Ahmed Ahmed Sadek Elsewedy, 534,980,391 shares",
+               "2026-03-01", "Company"),
+    sh_mohamed=I(0.1801, FY25 + ", note 40: Mohamed Ahmed Sadek Elsewedy, 385,602,690 "
+                 "shares", "2026-03-01", "Company"),
+    sh_electra_fy24=I(0.2037, FY24 + ", note 40 (prior-year column): Electra Investment "
+                      "Holding, 436,109,503 shares at 31 December 2024", "2025-03-01",
+                      "Company"),
+    sh_other_fy24=I(0.1157, FY24 + ", note 40 (prior-year column): other shareholders, "
+                    "247,682,741 shares at 31 December 2024", "2025-03-01", "Company"),
+    stake_insulators=I(0.2517, FY25 + ", note 20 (equity-accounted investees): Egyptian "
+                       "Company for Electrical Insulators, carrying value EGP 76.1mn",
+                       "2026-03-01", "Company"),
+    etr_q1_26=I(0.2575, "Q1-2026 reviewed interim consolidated statements at "
+                "ir.elsewedyelectric.com, income tax expense over profit before tax of "
+                "7,041.966803", "2026-05-01", "Company"),
+    etr_q1_25=I(0.2196, "Q1-2025 reviewed interim consolidated statements, the "
+                "comparative column of the Q1-2026 filing: income tax expense over "
+                "profit before tax", "2026-05-01", "Company"),
+    etr_h1_25=I(0.3085, "H1-2025 reviewed interim consolidated statements, the "
+                "comparative column of the H1-2026 filing: income tax expense over "
+                "profit before tax of 15,395.270255", "2026-08-01", "Company"),
+    nci_share_h1_26_profit=I(0.0681, H126 + ", profit attributable to non-controlling "
+                             "interests over total profit after tax for the half",
+                             "2026-08-01", "Company"),
+    nci_share_h1_26_equity=I(0.0747, H126 + ", non-controlling interests over total "
+                             "equity of 76,024.598402", "2026-08-01", "Company"),
+    emp_share_h1_25=I(0.1271, "H1-2025 comparative column of the H1-2026 reviewed "
+                      "statements, note 38: employees' share in profit 1,104.834367 over "
+                      "profit attributable to owners of 8,694.611825", "2026-08-01",
+                      "Company"),
+    export_share_fy25=I(0.4072, FY25 + ", note 5 (geographic disaggregation): revenue "
+                        "outside Egypt 114,461.030219 over total revenue "
+                        "281,049.081719", "2026-03-01", "Company"),
+    kd_egp_fy24=I(0.2868, FY24 + ", note 32 read with note 44-2: the disclosed weighted "
+                  "average interest rate on Egyptian-pound borrowings at 31 December "
+                  "2024", "2025-03-01", "Company"),
+    kd_egp_q1_26=I(0.2032, "Q1-2026 reviewed interim consolidated statements: the "
+                   "disclosed weighted average interest rate on Egyptian-pound "
+                   "borrowings", "2026-05-01", "Company"),
     electra_mto=I(dict(price_usd=1.05, shares_mn=427.7, value_usdmn=449.1, date='2024-07',
                        stake=0.1998),
                   "Electra Investment Holding's mandatory tender offer, concluded July 2024: "
@@ -1203,12 +1276,25 @@ say(f"[Terminal growth reconciliation] historical ROIC {hist_roic['FY23']:.1%} /
 # company's own accounts derive at 17.26; the two happened to be close, which is exactly
 # why the correction on this name is driven by the GROWTH RATE rather than by the life,
 # and why the ratio is a flag rather than an inference [L-289].
+# THE FLOWS HANDED IN ARE THE LAST EXPLICIT YEAR'S, NOT THE TERMINAL YEAR'S, AND THIS
+# STUDY HAD THEM THE OTHER WAY. terminal_value.TerminalInputs says so in its own first
+# sentence -- "Everything a terminal needs, IN THE LAST EXPLICIT YEAR'S money -- not the
+# terminal year's. The module grows the free cash flow one year itself" -- and warns in
+# terms that passing a NOPAT already grown by (1+g) overstates the terminal by exactly
+# (1+g), because tv = fcff x (1+g)/(W-g) already puts the first perpetuity year in the
+# numerator and values the terminal at the END of the last explicit year, which is where
+# this model discounts it (the year-five factor). The module's own note records that SIX
+# OF EIGHT CALLERS read the field the other way on 4 September 2026; this was one of
+# them and it was not corrected. Every flow below is now FY2030, the last explicit year:
+# NOPAT, book depreciation and the working-capital base, all previously grown by 1.07
+# before being handed to a function that grows them again. THE CORRECTION LOWERS THE
+# VALUE, which is the only direction that proves the discipline is not fitting to a price.
 _terminal = TV.build(TV.TerminalInputs(
-    nopat=nopat[-1] * (1 + V['g_term']),
+    nopat=nopat[-1],
     wacc=wacc_term,
     inflation=V['pi_term'],
     real_growth=V['g_term_real'],
-    dna_book=dna[-1] * (1 + V['g_term']),
+    dna_book=dna[-1],
     useful_life_years=V['asset_life_derived'],
     useful_life_source=V['asset_life_source'],
     # MAINTENANCE ON BOOK D&A ESCALATED OVER HALF THE DERIVED LIFE, not on the FY2025
@@ -1221,10 +1307,10 @@ _terminal = TV.build(TV.TerminalInputs(
     # to replacement cost, which is the module's own cross-check route made primary here
     # because the other one's base was stale.
     maintenance_basis='book_dna_escalated',
-    working_capital=nwc[-1] * (1 + V['g_term']),
+    working_capital=nwc[-1],
     incremental_capital_per_unit_growth=ic[-1]))
 rr_term = V['g_term'] / roic_term          # kept as the RECORD of the retired construction
-nopat_term = nopat[-1] * (1 + V['g_term'])
+nopat_term = nopat[-1] * (1 + V['g_term'])   # the FIRST PERPETUITY year, for the prose
 tv = _terminal.tv
 pv_tv = tv * df[-1]
 ev = pv_explicit + pv_tv
@@ -1353,7 +1439,7 @@ say(f"[Bridge] EV {ev:,.0f} - net financial debt {V['nd_fy25']:,.0f} + associate
     f"{nci_share:.1%} share of group profit = {nci_val:,.0f}; less the employees' statutory "
     f"share of profit at {emp_rate:.2%} = {emp_charge:,.0f} -> equity attributable to ORDINARY "
     f"SHAREHOLDERS {eq_attr:,.0f} = EGP {dcf_ps_dec:.2f}/share AT 31-DEC-2025; rolled "
-    f"{V['anchor_days']:.0f}/365 of a year to the 5-Aug-2026 anchor at the {ke_exp:.1%} cost of "
+    f"{V['anchor_days']:.0f}/365 of a year to the 3-Sep-2026 anchor at the {ke_exp:.1%} cost of "
     f"equity (x{ROLL:.4f}) less the EGP {V['dps_fy25']:.2f} dividend paid in the window = EGP "
     f"{dcf_ps:.2f}/share against a spot of {SPOT:.2f} ({dcf_ps/SPOT-1:+.0%}).")
 assert abs((ev - V['nd_fy25'] + assoc_val - nci_val - emp_charge) - eq_attr) < 1e-6, \
@@ -1400,12 +1486,13 @@ def _terminal_at(wt_, g_):
     """
     real_ = (1.0 + g_) / (1.0 + V['pi_term']) - 1.0
     return TV.build(TV.TerminalInputs(
-        nopat=nopat[-1] * (1 + g_), wacc=wt_, inflation=V['pi_term'], real_growth=real_,
-        dna_book=dna[-1] * (1 + g_),
+        # LAST EXPLICIT YEAR, not the terminal year — the module grows it itself.
+        nopat=nopat[-1], wacc=wt_, inflation=V['pi_term'], real_growth=real_,
+        dna_book=dna[-1],
         useful_life_years=V['asset_life_derived'],
         useful_life_source=V['asset_life_source'],
         maintenance_basis='book_dna_escalated',
-        working_capital=nwc[-1] * (1 + g_),
+        working_capital=nwc[-1],
         incremental_capital_per_unit_growth=ic[-1]))
 
 def _val_at(we_, wt_, g_=None):
@@ -1461,9 +1548,17 @@ ev_rel_fwd = V['ev_ebitda_just'] * ebitda_mid
 # enterprise value at the valuation date, not just the discounted forward multiple — an
 # accepted critique refinement; omitting them had overstated the lens slightly
 ev_rel = ev_rel_fwd * df_rel + pv[0] + pv[1]
+# [L-294] APPLIES TO EVERY LENS THAT PRODUCES A PER-SHARE EQUITY VALUE, not only to
+# the cash-flow lens. The employees' statutory share of distributable profits is a
+# claim AHEAD of ordinary shareholders and it does not become one only when a
+# discounted cash flow is the instrument. This study charged it in the bridge, in
+# the currency alternative, in the sensitivity helper and in the scenarios, and NOT
+# in the three cross-checks a reader is shown beside the central - so the same
+# company was worth 12.19% more per share depending on which lens was reading it.
 def _rel(mult):
     return to_anchor((((mult * ebitda_mid) * df_rel + pv[0] + pv[1]
-                       - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+                       - V['nd_fy25'] + assoc_val)
+                      * (1 - nci_share) * (1 - emp_rate)) / SH)
 rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(5.5), _rel(8.0)
 say(f"[Relative lens — forward EV discounted, interim flows included] {V['ev_ebitda_just']}x on "
     f"FY2027E EBITDA {ebitda_mid:,.0f} gives an enterprise value of {ev_rel_fwd:,.0f} AS AT "
@@ -1487,7 +1582,8 @@ norm_ebitda = norm_margin * norm_rev
 norm_ebit = norm_ebitda - V['dna_pct'] * norm_rev
 norm_interest = interest_path[0]
 norm_assoc = assoc_fc[0]
-norm_np = (norm_ebit - norm_interest + norm_assoc) * (1 - TAX) * (1 - nci_share)
+norm_np = ((norm_ebit - norm_interest + norm_assoc) * (1 - TAX)
+           * (1 - nci_share) * (1 - emp_rate))   # [L-294], as the bridge does
 norm_eps = norm_np / SH
 norm_ps = to_anchor(V['pe_just'] * norm_eps)
 norm_bear = to_anchor(7.0 * norm_eps)
@@ -1543,12 +1639,13 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
     _ic_end = _nwc[-1] + _ppe[-1] + V['intang_fy25']
     _real = (1.0 + g) / (1.0 + V['pi_term']) - 1.0
     _tv = TV.build(TV.TerminalInputs(
-        nopat=_nopat[-1] * (1 + g), wacc=_wt, inflation=V['pi_term'], real_growth=_real,
-        dna_book=_dna[-1] * (1 + g),
+        # LAST EXPLICIT YEAR, not the terminal year — the module grows it itself.
+        nopat=_nopat[-1], wacc=_wt, inflation=V['pi_term'], real_growth=_real,
+        dna_book=_dna[-1],
         useful_life_years=V['asset_life_derived'],
         useful_life_source=V['asset_life_source'],
         maintenance_basis='book_dna_escalated',
-        working_capital=_nwc[-1] * (1 + g),
+        working_capital=_nwc[-1],
         incremental_capital_per_unit_growth=_ic_end)).tv
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)
@@ -1714,7 +1811,7 @@ beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 
 OUT = dict(
     meta=dict(ticker='SWDY', company='Elsewedy Electric Company S.A.E.', market='EGX',
-              currency='EGP', asof='2026-08-05', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
+              currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
               ev_trailing=ev_trailing, klass='diversified industrial operating company'),
     inputs=INP,
     hist_is=hist_is,
@@ -1759,6 +1856,12 @@ OUT = dict(
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
              eq_attr=eq_attr, ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL,
              anchor_days=V['anchor_days'], roic_term=roic_term, rr_term=rr_term,
+             # THE TERMINAL'S OWN RECORD, committed rather than described. Without
+             # it the delivered workbook cannot build the sanctioned construction
+             # as live formulas and has to carry a number, which is how the
+             # retired g x IC formula survived in DCF!C25 while compute.py had
+             # already moved off it [R-ENF-06].
+             terminal_record=_terminal.record,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=nci_alt_ps, nci_alt=nci_alt,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps,
@@ -1895,6 +1998,35 @@ OUT = dict(
               nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic),
     step0=step0, strike=strike,
     assert_log=LOG,
+    # THE STALENESS IS DISCLOSED RATHER THAN SWITCHED OFF. Two standing rules govern
+    # this date from different directions: one requires delivery against the LATEST
+    # KNOWN price, the other pins the currency to a house path whose spot anchor carries
+    # its own date. This study is struck on 3 September 2026 against a house Egyptian
+    # path whose FX spot is anchored 6 August 2026 - twenty-eight days, past the
+    # fourteen-day bound the house already uses for a sovereign quote. Refreshing a house
+    # macro path is a house-level act and not a step of one name's rebuild, and striking
+    # this study against a month-old price to keep the two dates together would breach
+    # the other rule and hand a reader a comparison they cannot use. The gap is accepted
+    # deliberately and named, on the shape already used for a deliberately-accepted stale
+    # sovereign quote. WHAT IT COSTS: the currency path's first year is derived from a
+    # spot four weeks old, and the pound moved little over that window, so the effect is
+    # small - but it is an effect and it is not asserted to be zero.
+    macro_record=dict(
+        path='EG',
+        # The declaration is a MAPPING carrying a reason, not a bare string: the gate
+        # reads `reason` and an empty one has switched the check off rather than
+        # declared it.
+        anchor_staleness_accepted=dict(
+            accepted=True, anchor_date='2026-08-06', strike_date='2026-09-03',
+            days=28, bound_days=14,
+            reason=(
+            "Struck 3 September 2026 against a house Egyptian path whose FX spot anchor "
+            "is dated 6 August 2026, twenty-eight days earlier and past the fourteen-day "
+            "bound. Accepted deliberately: refreshing the house path is a house-level act "
+            "rather than a step of this name's rebuild, and re-striking this study onto "
+            "the anchor's own date would deliver it against a month-old price. The "
+            "staleness is disclosed, not switched off.")),
+    ),
 )
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(OUT, f, indent=1, default=float)

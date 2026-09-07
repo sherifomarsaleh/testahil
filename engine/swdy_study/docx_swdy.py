@@ -1008,6 +1008,37 @@ table(rows, [1.75, 1.75, 3.50], size=8.5)
 
 # =========================== 7 CAVEATS ========================================
 H1('7  Caveats and what would change our mind')
+
+# ---- YEARS THREE TO FIVE AS RANGES, from this company's own history -----------
+P("The far forecast years are published as RANGES rather than as points, and the range is "
+  "not an opinion about uncertainty. The method used to build this forecast was rebuilt at "
+  "twelve past year-ends of Elsewedy Electric's own history, projected forward from each, "
+  "and scored against what the company went on to report — 750 driver-years in all. The "
+  "bands below are that record's own error distribution applied to the point path: they say "
+  "how far this method has actually missed by, at this distance, on this company.")
+_FR = json.load(open(os.path.join(HERE, '..', 'swdy_walkforward', 'forward_ranges.json')))
+_bands = _FR['bands']
+_YRS = [('3', 'FY2028E', 2), ('4', 'FY2029E', 3), ('5', 'FY2030E', 4)]
+_rows = [['Year (horizon)', 'Low', 'Point', 'High', 'Basis (observations)']]
+for _drv, _lab, _fmt in (('A_revenue', 'Revenue (EGP mn)', 'rev'),
+                         ('A_gross_profit', 'Gross profit (EGP mn)', 'gp')):
+    for _h, _yl, _i in _YRS:
+        _b = _bands.get(_drv, {}).get(_h)
+        if not _b:
+            continue
+        _pt = F['rev'][_i] if _fmt == 'rev' else BU['gp'][_i]
+        _rows.append([f'{_yl} — {_lab}', n0(_pt * _b['low']), n0(_pt), n0(_pt * _b['high']),
+                      f"{_b['basis']} ({_b['count']})"])
+table(_rows, [2.30, 1.20, 1.20, 1.20, 1.10], size=8.5)
+P("The bands are wide and they are honest about why: the twelve years they are measured over "
+  "contain a currency that went from about seven to the pound to about forty-eight, and a "
+  "revenue line that grew sixteen and a half times. A method scored across that is not going "
+  "to produce a narrow band at five years, and a narrow one would be a claim this record "
+  "cannot support. Where nine or more observations exist the band is a tenth-to-ninetieth "
+  "percentile; below that it is the SPAN of the observations, which is a smaller claim and is "
+  "labelled as one. Each band multiplies the point: a low of 0.55 and a high of 2.60 means "
+  "the outturn has landed between 0.55 and 2.60 times what this method projected.")
+
 for head, body in [
     ("No order book, backlog or unit-volume figure is disclosed in the audited statements. ",
      f"All three audited financial statements and the Q1-2026 interim disclose segment revenue "
@@ -1021,7 +1052,7 @@ for head, body in [
      f"those releases become obtainable."),
     ("The valuation is dated, and the dating is now explicit. ",
      f"The cash-flow model is constructed at 31 December 2025 (the audited balance-sheet date); "
-     f"every lens value is rolled {DCF['anchor_days']:.0f}/365 of a year to the 5-Aug-2026 "
+     f"every lens value is rolled {DCF['anchor_days']:.0f}/365 of a year to the 3-Sep-2026 "
      f"anchor at the {pc(W['ke_exp'])} cost of equity less the EGP {p2(IN['dps_fy25'])} dividend "
      f"paid in the window — worth about +{p2(DCF['ps']-DCF['ps_dec']+IN['dps_fy25'])} gross on "
      f"the primary lens. An earlier revision omitted this roll and compared a 31-Dec-2025 value "
@@ -1044,8 +1075,10 @@ for head, body in [
      f"just over half its money on a hard-currency-linked basis. The alternative construction "
      f"gives EGP {p2(DCF['ccy_alt_ps'])}. We have chosen the conservative reading and shown the "
      f"other in full rather than splitting the difference silently."),
-    ("Terminal growth of 5% is roughly zero in real terms. ",
-     f"The terminal risk-free rate embeds 5% inflation, so a 5% nominal terminal growth rate "
+    (f"Terminal growth of {pc(IN['g_term'],0)} is EXACTLY zero in real terms. ",
+     f"The terminal rate embeds {pc(IN['pi_term'],0)} inflation and the terminal growth rate is "
+     f"DERIVED from it and a stated real growth of zero, so it is not a nominal figure somebody "
+     f"typed beside an inflation assumption. A {pc(IN['g_term'],0)} nominal terminal growth rate "
      f"assumes the company stops growing in real terms forever. For a business with a growing "
      f"hard-currency export franchise that is a conservative assumption, and the 6% and 7% columns "
      f"of the growth grid are not aggressive."),
