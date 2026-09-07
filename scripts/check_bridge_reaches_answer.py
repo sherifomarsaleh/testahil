@@ -86,6 +86,33 @@ def _dig(o, keys):
     return None
 
 
+def declared_fx(doc):
+    """The conversion a study DECLARES between the currency it reports in and the one it
+    lists in — or 1.0 where it declares none.
+
+    THE FIRST DRAFT HAD NO SUCH NOTION AND CONDEMNED THE EXEMPLAR FOR IT. ADNOC L&S reports
+    in USD and lists in AED, and commits all three facts: reporting_currency USD, listing
+    currency AED, fx 3.6725. Its bridge arrives at 1.5263 USD a share and the study
+    publishes 5.6054 AED, and 1.5263 x 3.6725 = 5.6054 TO SIX DECIMALS. The bridge is
+    correct, it reaches the answer, and this gate reported it as the largest disagreement in
+    the book.
+
+    Per [R-COC-01]: when a check fires on work that is right, RE-POINT it — never widen the
+    bound and never move the study. The conversion is not inferred and not guessed; it is
+    read from what the study DECLARES, which is the [R-COC-02] pattern of making a
+    construction declarable and then requiring the declaration. A study reporting and
+    listing in one currency declares nothing and is tested exactly as before.
+    """
+    m = doc.get("meta") or {}
+    rep, lst = m.get("reporting_currency"), m.get("listing_currency")
+    fx = m.get("fx")
+    if not (isinstance(rep, str) and isinstance(lst, str) and rep != lst):
+        return 1.0, None
+    if not isinstance(fx, (int, float)) or fx <= 0:
+        return 1.0, None
+    return float(fx), "%s->%s at %.4f" % (rep, lst, float(fx))
+
+
 def central_of(doc):
     lr = doc.get("lens_record") or {}
     c = lr.get("central")
@@ -136,16 +163,21 @@ def measure():
         read += 1
         if (doc.get(DECLARE_KEY) or "").strip():
             continue
-        tol = max(_half_unit(ps), _half_unit(cen))
-        if abs(ps - cen) <= tol:
+        fx, fx_note = declared_fx(doc)
+        ps_listed = ps * fx
+        tol = max(_half_unit(ps_listed), _half_unit(cen))
+        if abs(ps_listed - cen) <= tol:
             continue
+        ps = ps_listed          # report in the currency the answer is published in
         bad[tk] = {"per_share": ps, "central": cen,
                    "gap": (ps / cen - 1.0) if cen else None,
-                   "why": ("the equity bridge arrives at %.4f a share and the study "
+                   "fx": fx_note,
+                   "why": ("the equity bridge arrives at %.4f a share%s and the study "
                            "publishes %.4f (%+.1f%%), with no %s declaring what the bridge "
                            "serves. A bridge joined to nothing can be corrected without the "
-                           "answer moving" % (ps, cen, 100 * (ps / cen - 1.0) if cen else 0,
-                                              DECLARE_KEY))}
+                           "answer moving"
+                           % (ps, (" (converted %s)" % fx_note) if fx_note else "",
+                              cen, 100 * (ps / cen - 1.0) if cen else 0, DECLARE_KEY))}
     return bad, read
 
 

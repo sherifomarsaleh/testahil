@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Negative control for check_bridge_reaches_answer.py.
 
-NINE CONDITIONS, FIVE RED AND FOUR CLEAN. The clean half is the discrimination that
+ELEVEN CONDITIONS, FIVE RED AND SIX CLEAN, one of them INVERTED. The clean half is the discrimination that
 matters: five studies in this book have a bridge that reaches their published answer TO THE
 CENT, and a gate condemning them would be worse than no gate at all. A study committing one
 of the two figures and not the other is OUT OF SCOPE rather than in breach — a bridge with
@@ -24,14 +24,17 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ENGINE = os.path.join(ROOT, "engine")
-CASES = 9
+CASES = 11
 
 
 def real(tk):
     p = os.path.join(ENGINE, "%s_study" % tk.lower(), "study_numbers.json")
     d = json.load(open(p, encoding="utf-8"))
     return {"bridge_record": copy.deepcopy(d.get("bridge_record") or {}),
-            "lens_record": copy.deepcopy(d.get("lens_record") or {})}
+            "lens_record": copy.deepcopy(d.get("lens_record") or {}),
+            # META TRAVELS WITH THE FIXTURE, because the currency clause lives there and a
+            # fixture that dropped it would test the gate without the thing under test.
+            "meta": copy.deepcopy(d.get("meta") or {})}
 
 
 def build(tmp, docs, ratchet):
@@ -88,9 +91,16 @@ def main():
     ADN, TMGH, PHDC, ARCC = (real(t) for t in ("adnocls", "tmgh", "phdc", "arcc"))
 
     # ---------- RED ----------
-    case("1 ADNOCLS's own figures — the exemplar's bridge is 73% below its answer",
-         {"AAA": ADN}, {}, True,
-         lambda r_: (disagrees(ADN), "ADNOCLS's bridge agrees with its central"), r)
+    # INVERTED RATHER THAN DELETED, on the precedent [R-GAP-01] set when its trigger went
+    # two-sided: this case asserted the exemplar was RED, which was correct evidence for the
+    # first draft and is now wrong, because that draft had no notion of a study reporting in
+    # one currency and listing in another. Keeping the construction and flipping the
+    # expectation is the only way the re-pointing is tested where it matters; deleting it
+    # would leave the change untested exactly there.
+    case("1 the exemplar reconciles once its own declared conversion is read",
+         {"AAA": ADN}, {}, False,
+         lambda r_: (disagrees(ADN), "ADNOCLS's raw bridge figure equals its central, so "
+                                     "the fixture no longer carries the condition"), r)
 
     case("2 TMGH's own figures",
          {"BBB": TMGH}, {}, True,
@@ -106,11 +116,13 @@ def main():
          {"CCC": ONE, "DDD": ONE}, {}, True,
          lambda r_: ("lens_record" not in ONE, "a central survived"), r)
 
-    WORSE = copy.deepcopy(ADN)
-    WORSE["bridge_record"]["per_share"] = 0.5
+    # REBASED ON TMGH, which reports and lists in one currency, because the drift test must
+    # isolate DRIFT and the exemplar now reconciles through its declared conversion.
+    WORSE = copy.deepcopy(TMGH)
+    WORSE["bridge_record"]["per_share"] = 5.0
     case("5 a LISTED bridge that has drifted further from its answer",
-         {"EEE": WORSE}, {"EEE": {"gap": -0.728, "why": "seeded"}}, True,
-         lambda r_: (WORSE["bridge_record"]["per_share"] == 0.5,
+         {"EEE": WORSE}, {"EEE": {"gap": -0.290, "why": "seeded"}}, True,
+         lambda r_: (WORSE["bridge_record"]["per_share"] == 5.0,
                      "the per-share was not moved"), r)
 
     # ---------- CLEAN ----------
@@ -134,13 +146,35 @@ def main():
          {"III": OUT, "FFF": PHDC}, {}, False,
          lambda r_: ("bridge_record" not in OUT, "a bridge survived"), r)
 
+    # ---------- the currency clause, which the first draft did not have ----------
+    # ADNOC L&S reports in USD and lists in AED and commits all three facts. Its bridge
+    # arrives at 1.5263 USD and the study publishes 5.6054 AED — the same number, converted.
+    # The first draft of this gate called that the largest disagreement in the book. The
+    # case is here verbatim so the re-pointing cannot be quietly undone.
+    ADN_FX = copy.deepcopy(ADN)
+    case("10 the exemplar: a bridge in the REPORTING currency, published in the LISTING one",
+         {"JJJ": ADN_FX}, {}, False,
+         lambda r_: (((ADN_FX.get("meta") or {}).get("reporting_currency")
+                      != (ADN_FX.get("meta") or {}).get("listing_currency")
+                      and float((ADN_FX.get("meta") or {}).get("fx", 0)) > 0),
+                     "the fixture does not declare two currencies and a rate"), r)
+
+    # A DECLARED RATE THAT DOES NOT RECONCILE IS STILL A BREACH — the release is reading a
+    # declaration, not accepting any pair of numbers that carry one.
+    BAD_FX = copy.deepcopy(ADN)
+    BAD_FX["meta"]["fx"] = 1.5
+    case("11 two currencies declared and a rate that does NOT reconcile them",
+         {"KKK": BAD_FX}, {}, True,
+         lambda r_: (abs(float(BAD_FX["meta"]["fx"]) - 1.5) < 1e-9,
+                     "the rate was not moved"), r)
+
     print("cases run: %d (declared %d)" % (CASES, CASES))
     if r:
         for n, why in r:
             print("  FAIL  %s\n        %s" % (n, why))
         print("\nFAIL — the gate does not behave as the rule says.")
         return 1
-    print("OK — 5 red conditions fire, 4 clean conditions do not.")
+    print("OK — 6 red conditions fire, 5 clean conditions do not.")
     return 0
 
 

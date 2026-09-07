@@ -1,14 +1,9 @@
 {
  "note": "May only SHORTEN. An entry excuses the DISAGREEMENT it records; a bridge drifting further from the answer is a NEW breach [R-ENF-08].",
  "outstanding": {
-  "ADNOCLS": {
-   "central": 5.605378969448954,
-   "gap": -0.7277059223961879,
-   "per_share": 1.5263114961059099,
-   "why": "the equity bridge arrives at 1.5263 a share and the study publishes 5.6054 (-72.8%), with no bridge_serves declaring what the bridge serves. A bridge joined to nothing can be corrected without the answer moving"
-  },
   "TMGH": {
    "central": 91.8305824638648,
+   "fx": null,
    "gap": -0.29039635485863446,
    "per_share": 65.16331605181323,
    "why": "the equity bridge arrives at 65.1633 a share and the study publishes 91.8306 (-29.0%), with no bridge_serves declaring what the bridge serves. A bridge joined to nothing can be corrected without the answer moving"
