@@ -121,6 +121,20 @@ ARTEFACT_GATES = {
                 'ke_terminal': 0.189927, 'ke_terminal_construction': 'same_beta',
                 'weight_equity': 0.96, 'weight_debt': 0.04,
                 'weight_debt_terminal': 0.2}})}),
+    'check_terminal_basis.py': (
+        # An empty study directory contains no Python file calling TerminalInputs at all,
+        # so refusing a bare directory would be a false claim about what this gate checks
+        # [R-ENF-07]: it reads CALL SITES in the code rather than any committed record.
+        # Planted with the defect exactly as SCEM and PHAR carried it — a flow handed to
+        # the terminal already grown by (1+g), which the module's own contract says
+        # overstates the terminal by exactly that.
+        'a terminal fed a flow already grown by (1+g)',
+        lambda: {'compute.py': ('text',
+                                'import terminal_value as TV\n'
+                                't = TV.build(TV.TerminalInputs(\n'
+                                '    nopat=nopat[-1] * (1 + g_term),\n'
+                                '    dna_book=dna[-1] * (1 + g_term),\n'
+                                '    wacc=wacc_term, inflation=pi_term))\n')}),
     'check_asset_base_wired.py': (
         # An empty study commits no asset-base QUANTITY, so there is nothing that could be
         # registered-but-unread and refusing a bare directory would be a false claim about
