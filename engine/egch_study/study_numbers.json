@@ -229,7 +229,7 @@
   "implied_wacc_base": 0.1300292595239384,
   "implied_wacc_halt": 0.14264996521794682,
   "gates": {
-   "standard_version": "2026.09.01",
+   "standard_version": "2026.09.07",
    "beta": {
     "ticker": "EGCH",
     "market": "EG",
@@ -281,7 +281,7 @@
      "topdown": 0
     },
     "unit_share": 0.7470974569827978,
-    "standard_version": "2026.09.01"
+    "standard_version": "2026.09.07"
    }
   }
  },
@@ -598,7 +598,7 @@
   "what_it_changed": "Three things. The terminal inflation now equals the inflation terminal growth is set at (the previous edition discounted a 5%-growth perpetuity at a rate built on 7% inflation). The currency path is derived from the same inflation identity that carries the dollar debt. And years three to five of the forecast are published as ranges from the record's own error distribution, because on this company the method did not beat \"no change\" on the profit line."
  },
  "gates": {
-  "standard_version": "2026.09.01",
+  "standard_version": "2026.09.07",
   "beta": {
    "ticker": "EGCH",
    "market": "EG",
@@ -650,10 +650,10 @@
     "topdown": 0
    },
    "unit_share": 0.7470974569827978,
-   "standard_version": "2026.09.01"
+   "standard_version": "2026.09.07"
   }
  },
- "standard_version": "2026.09.01",
+ "standard_version": "2026.09.07",
  "cases": {
   "base": {
    "rows": [
@@ -927,6 +927,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 50811.72101180598,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -943,6 +944,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 213.92487759001696,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3056.069679857385,
      "dna_addback": 1703.218774579439,
      "net_capital_charge": 812.984192754212,
      "implied_cycle_years": null,
@@ -1245,6 +1248,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3030.714662797211,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 50811.72101180598,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -1261,6 +1265,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 212.1500263958048,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3030.714662797211,
      "dna_addback": 1703.218774579439,
      "net_capital_charge": 811.2093415599998,
      "implied_cycle_years": null,
@@ -1563,6 +1569,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 42784.43110157481,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -1579,6 +1586,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 213.92487759001696,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3056.069679857385,
      "dna_addback": 1434.142454946,
      "net_capital_charge": 718.3441628459511,
      "implied_cycle_years": null,
@@ -1881,6 +1890,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 28409.38283063925,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -1897,6 +1907,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 213.92487759001696,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3056.069679857385,
      "dna_addback": 952.28804,
      "net_capital_charge": 548.8654205172264,
      "implied_cycle_years": null,

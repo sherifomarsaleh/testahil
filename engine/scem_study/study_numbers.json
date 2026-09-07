@@ -1082,6 +1082,7 @@
     "maintenance_basis": "disclosed_life",
     "maintenance_capex": null,
     "working_capital": 727.1319750399999,
+    "working_capital_source": "",
     "incremental_capital_per_unit_growth": null,
     "floor_exemption": "",
     "floor_exemption_disclosure": ""
@@ -1098,6 +1099,8 @@
    "maintenance_escalator": null,
    "growth_capex": 0.0,
    "wc_charge": 50.8992382528,
+   "wc_basis": "supplied_unsourced",
+   "wc_level": 727.1319750399999,
    "dna_addback": 320.92836723288605,
    "net_capital_charge": 688.8033820199141,
    "implied_cycle_years": 36.038586116120904,

@@ -2743,6 +2743,7 @@
     "maintenance_basis": "book_dna_escalated",
     "maintenance_capex": null,
     "working_capital": -1297.4597584881228,
+    "working_capital_source": "",
     "incremental_capital_per_unit_growth": 10429.868529519312,
     "floor_exemption": "",
     "floor_exemption_disclosure": ""
@@ -2759,6 +2760,8 @@
    "maintenance_escalator": 1.1798042858954314,
    "growth_capex": 0.0,
    "wc_charge": -25.949195169762458,
+   "wc_basis": "supplied_unsourced",
+   "wc_level": -1297.4597584881228,
    "dna_addback": 2582.4184232844186,
    "net_capital_charge": 438.3807053120986,
    "implied_cycle_years": null,

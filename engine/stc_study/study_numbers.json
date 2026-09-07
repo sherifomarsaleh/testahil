@@ -11,7 +11,7 @@
  "two_clocks": "The valuation is struck against the latest known close, the Monte Carlo cone against the last session in the persistent price library. They are different dates because a cone must start where its own price series ends, and the study says so rather than publishing one number for both.",
  "shares": 4993.024,
  "mktcap": 218994.03264000002,
- "standard_version": "2026.09.01",
+ "standard_version": "2026.09.07",
  "ground_up": {
   "ticker": "STC",
   "lines": 13,
@@ -22,7 +22,7 @@
    "topdown": 0
   },
   "unit_share": 0,
-  "standard_version": "2026.09.01"
+  "standard_version": "2026.09.07"
  },
  "driver_lines": [
   {
@@ -929,6 +929,7 @@
    "maintenance_basis": "book_dna_escalated",
    "maintenance_capex": null,
    "working_capital": 13555.044,
+   "working_capital_source": "",
    "incremental_capital_per_unit_growth": null,
    "floor_exemption": "",
    "floor_exemption_disclosure": ""
@@ -945,6 +946,8 @@
   "maintenance_escalator": 1.3518892369664925,
   "growth_capex": 0.0,
   "wc_charge": 271.10088,
+  "wc_basis": "supplied_unsourced",
+  "wc_level": 13555.044,
   "dna_addback": 11436.603126024089,
   "net_capital_charge": 4295.51842750522,
   "implied_cycle_years": null,

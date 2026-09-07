@@ -413,7 +413,7 @@
   "shares_mn": 374.86744500000003,
   "mktcap": 28864.793265000004,
   "revision": 4,
-  "standard_version": "2026.09.01",
+  "standard_version": "2026.09.07",
   "klass": "single-asset cement operating company (net cash)",
   "sector": "Construction materials \u2014 cement",
   "basis": "audited consolidated financial statements FY2014-FY2025 and the reviewed H1-2026 interim accounts, all from the company's own investor-relations archive"
@@ -2346,6 +2346,7 @@
    "maintenance_basis": "disclosed_life",
    "maintenance_capex": null,
    "working_capital": 2272.087388705894,
+   "working_capital_source": "",
    "incremental_capital_per_unit_growth": 51190.921145,
    "floor_exemption": "",
    "floor_exemption_disclosure": ""
@@ -2362,6 +2363,8 @@
   "maintenance_escalator": null,
   "growth_capex": 0.0,
   "wc_charge": 159.0461172094126,
+  "wc_basis": "supplied_unsourced",
+  "wc_level": 2272.087388705894,
   "dna_addback": 643.4437880445657,
   "net_capital_charge": 2075.1483864148468,
   "implied_cycle_years": 24.66855935706871,
@@ -2888,7 +2891,7 @@
   "fv_on_old_bridge": 69.87215375937413,
   "seasonality_lift": 0.09769733232326838
  },
- "standard_version": "2026.09.01",
+ "standard_version": "2026.09.07",
  "experts": [
   {
    "label": "Expert 1",
@@ -3092,6 +3095,6 @@
   "==============================================================================",
   "\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five resolved cells the method's revenue error spans x0.49-x2.99 at three years (n=5), x0.81-x4.02 at four (n=4) and x0.91-x3.77 at five (n=3). Total VOLUME at five years spans only x0.90-x1.11, and profit before tax spans x0.51-x46.67 \u2014 tonnage is forecastable at five years and profit is not, which is why the delivered document publishes the far years as ranges and says so",
   "\n[External-reader scrub] CLEAN \u2014 39 terms scanned across 202,787 characters of delivered text, 0 hits; table column audit clean",
-  "\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study all called in this study's own code and all passed. Built to standard 2026.09.01"
+  "\n[Gates] assert_ground_up, assert_beta_provenance, assert_sigcm and assert_model_study all called in this study's own code and all passed. Built to standard 2026.09.07"
  ]
 }

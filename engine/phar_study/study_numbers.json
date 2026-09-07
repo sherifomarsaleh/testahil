@@ -2633,6 +2633,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 10966.738369083956,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 9563.148834369189,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -2649,6 +2650,8 @@
      "maintenance_escalator": 1.594953647154412,
      "growth_capex": 0.0,
      "wc_charge": 767.671685835877,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 10966.738369083956,
      "dna_addback": 452.70172947659023,
      "net_capital_charge": 1037.0082308610845,
      "implied_cycle_years": null,
@@ -2761,6 +2764,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 10966.738369083956,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 9563.148834369189,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -2777,6 +2781,8 @@
      "maintenance_escalator": 1.594953647154412,
      "growth_capex": 0.0,
      "wc_charge": 767.671685835877,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 10966.738369083956,
      "dna_addback": 452.70172947659023,
      "net_capital_charge": 1037.0082308610845,
      "implied_cycle_years": null,
