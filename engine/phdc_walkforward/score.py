@@ -106,7 +106,16 @@ def summarise(rows, field=None, h=None):
     robust = bool(boot) and all(
         (v["lo"] > 0 and v["hi"] > 0) or (v["lo"] < 0 and v["hi"] < 0)
         for v in boot.values())
-    return {"n": len(es),
+    # n IS THE CELLS THE SCORE TOOK; n_cells IS THE CELLS THAT EXIST. A record
+    # carrying only the first cannot show a reader that a driver was scored on
+    # half its history — one driver in this book publishes a bias computed on NONE
+    # of its fifty cells — and the coverage was recoverable only by running a
+    # census by hand. The pair carries no threshold and makes no judgement; it
+    # makes the fraction visible in the record that quotes the bias.
+    exists = sum(1 for r in rows
+                 if (field is None or r["field"] == field)
+                 and (h is None or r["h"] == h))
+    return {"n": len(es), "n_cells": exists,
             "bias": round(sum(es) / len(es), 4),
             "mae": round(sum(abs(e) for e in es) / len(es), 4),
             "median": round(st.median(es), 4),

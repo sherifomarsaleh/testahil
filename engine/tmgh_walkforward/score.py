@@ -308,7 +308,14 @@ def canonical(rows, scores):
                 for k, v in bs.items()}
 
     def summ(s, rs):
-        return {"n": s["n"], "bias": round(s["bias"], 4), "mae": round(s["mae"], 4),
+        # n IS THE CELLS THE SCORE TOOK; n_cells IS THE CELLS THAT EXIST. A record
+        # carrying only the first cannot show a reader that a driver was scored on
+        # half its history — EGCH publishes a bias for a driver scored on NONE of
+        # its fifty cells — and the coverage was recoverable only by running a
+        # census by hand. The pair carries no threshold and makes no judgement; it
+        # makes the fraction visible in the record that quotes the bias.
+        return {"n": s["n"], "n_cells": len(rs),
+                "bias": round(s["bias"], 4), "mae": round(s["mae"], 4),
                 "median": round(sorted(r["log_error"] for r in rs
                                        if r.get("log_error") is not None)[len(
                                            [r for r in rs

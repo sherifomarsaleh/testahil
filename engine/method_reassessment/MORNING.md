@@ -1857,3 +1857,41 @@ BEING CONSERVATIVE ABOUT.** Refusing to answer where the evidence is ambiguous i
 correct, and the reason attached to the refusal was false — so a reader was told
 something about PHDC's writer that would have survived review, discouraged the one
 check that resolves it, and left a run permanently unreadable for no reason.
+
+### Every published driver bias now states the coverage behind it
+
+**A driver scored on half its history publishes a bias that looks exactly like one
+scored on all of it.** The log score drops cells where either side is non-positive
+— correctly, and silently — and every run's record then printed `n`, the count
+taken, with the count that *exist* nowhere. The two agree on revenue and cost,
+which are always positive, and come apart on exactly the bottom-line drivers a
+valuation depends on.
+
+Now measurable off the record rather than by running a census by hand: **six of
+EGCH's fourteen drivers are scored on under half their cells — `net` 23/55, `pbt`
+23/55, `other_bucket` 23/55, `selling` 21/55, `tax_current` 21/55, and `urea_t` at
+3 of 55.** All 88 drivers across the five runs carry the pair, verified against
+each run's own committed cells; **everything else in all five `scores.json` came
+back byte-identical.**
+
+`scripts/check_driver_coverage.py` requires **the disclosure and never a level.**
+There is no threshold and there deliberately will not be one — a driver genuinely
+scored on few cells is a fact about that company's history, and a cutoff would be
+the free parameter the promotion rule forbids. What a record may not do is go quiet
+about it, which is [R-SIGCM-02]'s shape exactly: a coarser level is permitted,
+going quiet about it never is. Negative-controlled on six red and **three clean,
+the clean half being the one that matters** — a driver honestly scored on under
+half, and one scored on none, must both stay green, because a gate that failed on
+them would push a run to drop the disclosure or narrow the denominator.
+
+**I committed the very defect this field exists to close, while closing it.** The
+first cut put `n_cells` on the internal `drivers` block — and every census, and any
+reader, reads `by_driver`. The disclosure went into the working papers rather than
+onto the page, and it took a reader that returned "0 drivers carry the pair" on two
+runs to notice. Corrected to the block a reader actually reads.
+
+THE GENERAL LESSON: **A DISCLOSURE PUT WHERE THE PROCESS KEEPS ITS WORKING IS NOT A
+DISCLOSURE.** It satisfies the author, survives review, and is invisible to
+precisely the audience it was written for — which is [R-MACRO-01 AMENDED]'s finding
+about exemptions arriving from the other direction: there a true statement sat on
+the wrong object, here a true statement sat in the wrong place.

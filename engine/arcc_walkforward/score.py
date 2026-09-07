@@ -181,6 +181,9 @@ def run():
            "unscoreable": {}, "trend_fallbacks": sum(r["trend_fallbacks"] for r in rows)}
     for d in DRIVERS:
         out["drivers"][d] = agg(rows, "e", d)
+        if out["drivers"][d] is not None:
+            # The cells that EXIST for this driver, beside the count the score took.
+            out["drivers"][d]["n_cells"] = sum(1 for r in rows if d in r.get("e", {}))
         out["by_horizon"][d] = {h: agg(rows, "e", d, h=h) for h in B.HORIZONS}
         out["skill"][d] = {"vs_freeze": skill(rows, d, "ef"),
                            "vs_trend": skill(rows, d, "et"),
@@ -229,6 +232,10 @@ def harvest_shape(rows, out):
         b = out["bootstrap"].get(d) or {}
         by_driver[d] = {"bias": a["bias"], "mae": a["mae"], "over": a["share_over"],
                         "n": a["n"],
+                        # n is the cells the score TOOK; n_cells the cells that
+                        # EXIST. Only the pair shows a reader the coverage behind
+                        # a bias, and it carries no threshold.
+                        "n_cells": out["drivers"][d].get("n_cells"),
                         "robust_sign": bool(b) and all(v["robust_sign"] for v in b.values())}
         hs = {}
         for h in B.HORIZONS:

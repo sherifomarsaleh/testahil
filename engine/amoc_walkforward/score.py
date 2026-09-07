@@ -170,6 +170,14 @@ def main():
         if a is None:
             continue
         rec = {"overall": a,
+               # n IS THE CELLS THE SCORE TOOK; n_cells IS THE CELLS THAT EXIST.
+               # A record carrying only the first cannot show a reader that a
+               # driver was scored on half its history — one driver in this book
+               # publishes a bias computed on NONE of its fifty cells — and the
+               # coverage was recoverable only by running a census by hand. The
+               # pair carries no threshold and makes no judgement; it makes the
+               # fraction visible in the record that quotes the bias.
+               "n_cells": sum(1 for r in rows if d in r.get("e", {})),
                "by_h": {h: agg(rows, "e", d, h=h) for h in B.HORIZONS},
                "by_era": {e: agg(rows, "e", d, era=e) for e in sorted(set(ERA.values()))},
                "bootstrap": block_bootstrap(rows, d),
@@ -218,7 +226,13 @@ def main():
         a = rec["overall"]
         bs = rec["bootstrap"]
         robust = all(bs.get(L) and bs[L]["same_sign"] for L in (2, 3))
-        res["by_driver"][d] = {"n": a["n"], "bias": round(a["bias"], 4),
+        res["by_driver"][d] = {"n": a["n"], "n_cells": rec.get("n_cells"),
+                               # THE PAIR GOES WHERE THE READER LOOKS. The first
+                               # cut put n_cells on the internal `drivers` block
+                               # and every census reads THIS one — the disclosure
+                               # in the working papers and not on the page, which
+                               # is the defect this field exists to close.
+                               "bias": round(a["bias"], 4),
                                "mae": round(a["mae"], 4), "over": round(a["share_over"], 3),
                                "boot": {str(L): ({"lo": round(bs[L]["lo"], 4),
                                                   "hi": round(bs[L]["hi"], 4)} if bs.get(L) else None)

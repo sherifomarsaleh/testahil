@@ -2,6 +2,7 @@
  "by_driver": {
   "new_sales": {
    "n": 33,
+   "n_cells": 33,
    "bias": -0.8768,
    "mae": 1.022,
    "median": -0.7186,
@@ -24,6 +25,7 @@
   },
   "dev_revenue": {
    "n": 35,
+   "n_cells": 35,
    "bias": -0.0555,
    "mae": 0.276,
    "median": -0.1387,
@@ -46,6 +48,7 @@
   },
   "dev_cost": {
    "n": 35,
+   "n_cells": 35,
    "bias": -0.1046,
    "mae": 0.2885,
    "median": -0.1196,
@@ -68,6 +71,7 @@
   },
   "recurring_revenue": {
    "n": 40,
+   "n_cells": 40,
    "bias": -0.1124,
    "mae": 0.6978,
    "median": -0.0843,
@@ -90,6 +94,7 @@
   },
   "recurring_cost": {
    "n": 40,
+   "n_cells": 40,
    "bias": -0.044,
    "mae": 0.6103,
    "median": 0.0661,
@@ -112,6 +117,7 @@
   },
   "total_revenue": {
    "n": 35,
+   "n_cells": 35,
    "bias": -0.0901,
    "mae": 0.3651,
    "median": -0.1817,
@@ -134,6 +140,7 @@
   },
   "gross_profit": {
    "n": 35,
+   "n_cells": 35,
    "bias": -0.0791,
    "mae": 0.4212,
    "median": -0.1572,
@@ -156,6 +163,7 @@
   },
   "sga": {
    "n": 16,
+   "n_cells": 16,
    "bias": -0.1074,
    "mae": 0.4575,
    "median": -0.0508,
@@ -178,6 +186,7 @@
   },
   "da": {
    "n": 30,
+   "n_cells": 30,
    "bias": -0.3692,
    "mae": 0.5151,
    "median": -0.3247,
@@ -200,6 +209,7 @@
   },
   "finance_cost": {
    "n": 30,
+   "n_cells": 30,
    "bias": -1.2237,
    "mae": 1.2237,
    "median": -1.2106,
@@ -222,6 +232,7 @@
   },
   "net_profit": {
    "n": 34,
+   "n_cells": 34,
    "bias": 0.1876,
    "mae": 0.6577,
    "median": 0.2364,
@@ -244,6 +255,7 @@
   },
   "customer_advances": {
    "n": 11,
+   "n_cells": 13,
    "bias": 0.2295,
    "mae": 0.6272,
    "median": 0.3547,
@@ -266,6 +278,7 @@
   },
   "development_properties": {
    "n": 25,
+   "n_cells": 25,
    "bias": -0.5276,
    "mae": 0.5276,
    "median": -0.478,
@@ -288,6 +301,7 @@
   },
   "backlog": {
    "n": 35,
+   "n_cells": 35,
    "bias": -0.2838,
    "mae": 0.441,
    "median": -0.1882,
@@ -310,6 +324,7 @@
   },
   "ppe": {
    "n": 30,
+   "n_cells": 30,
    "bias": -0.6427,
    "mae": 0.8615,
    "median": -0.0974,
