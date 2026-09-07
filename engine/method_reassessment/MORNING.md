@@ -2851,3 +2851,73 @@ dominant hazard it looked like tonight.
 
 Register regenerated (276 lessons), gate and negative control green, `engine/lessons.py`
 returns it.
+
+---
+
+## 07-09-2026, later — the deferred reader-side question, answered with an instrument
+
+The previous entry left one thing open on purpose: *do the delivered documents publish
+their far years as ranges?* — noting that it wanted a real instrument rather than an
+ad-hoc regex, and that ARCC and TMGH returning nothing to a first grep proved nothing.
+**Both halves of that caution turned out to matter, and in opposite directions.**
+
+**TMGH does publish them.** Its Table 19 prints `84,517 – 193,380` in one cell per far
+year, with the tests behind each band beside it. The earlier grep looked for a `Low |
+High` column pair, which is PHDC's convention and not TMGH's. **ARCC does not**, and the
+regex was right about it for the wrong reason.
+
+### What the measurement is
+
+Five runs commit a band. Three print it and two print points:
+
+| | |
+|---|---|
+| PHDC | Table 4, `Revenue, years three to five (EGP mn) \| Low \| Point \| High` |
+| EGCH | A.4, rows `Revenue — low of the range` / `— high of the range`, with counts |
+| TMGH | Table 19, a range cell per far year, with the tests behind each |
+| ARCC | FY2028E/29E/30E as single figures, and **no sentence anywhere** about the method having been tested on its own history — while its band reaches h=3,4,5 on n=5,4,3 and was committed 01-09, **two days before that document was rebuilt on 03-09** |
+| AMOC | single figures; it states the principle in Section 7 and prints no range. Its record reaches h=3 only, so years four and five have no band at all and year three has one on two observations |
+
+PHDC's printed band reconciles to its committed one exactly, as a per-year ratio —
+`28,876 / 32,613.8 = 63,974 / 72,254.1 = 121,224 / 136,914.3 = 0.8854` for 2028, and a
+different but equally consistent factor for each of 2029 and 2030 — which is the band
+applied to the study's own revenue path rather than to the walk-forward's raw projection.
+That is the right construction, and it is also why **the gate cannot check it**: the
+committed figures never appear on the page.
+
+### The instrument, and the measurement that changed it
+
+`engine/range_disclosure.py` gains a detector — the module that already owns this subject
+and which, until tonight, nothing imported. Three shapes, named from what the book ships
+rather than from one study's convention.
+
+A first draft asked only that a range appear in a table *naming* a far year. It fired on
+**six studies with no walk-forward at all**: a period written with a dash (`2026–2027` in
+a watch list, `2028–2030` against a loan tranche), a multiple range in a lens table
+(`Range at 10× / 16×`), a charter-rate spread against a vessel class. Every one work that
+is right. Per [R-COC-01] it was **re-pointed, not widened** — the evidence must sit in a
+row *labelled* with a far year or a column *headed* by one. After re-pointing: **0 of 18
+non-run studies trip any shape, all three true positives survive.**
+
+One more instance of the night's own lesson, caught by a fixture rather than by the book:
+the year pattern was `\b`-bounded, and EGCH heads its columns `FY2028/29`, where no word
+boundary sits between the Y and the 2. A bounded pattern reads that document as carrying
+no forecast year at all **and condemns a study that conforms.** Eleventh instance today.
+
+### What it does not do, said plainly
+
+It does not check that a printed range reproduces the committed band — searching every
+numeric pair for a matching ratio is the coincidence the waterfall instrument already
+measured at 42.4% of all tables. So it **fails safe**: a wrong range passes, and no study
+doing right work is condemned. Reconciling the two needs each study to declare what it
+printed, on the `prose_figures` architecture, which is a re-issue on four studies.
+
+`scripts/check_forward_ranges.py`, ratcheted at two with their reasons, population-anchored
+both ways, EXCLUDED from the gauntlet on the precedent of the other run-anchored gates,
+negative-controlled on nineteen conditions — nine of them clean, carrying the three shipped
+tables pulled out of the delivered documents at run time rather than transcribed.
+
+**The general lesson: a rule that names two artefacts is enforced on whichever one somebody
+built a reader for.** The record half of [R-FCAL-01]'s range clause has been measured,
+scored and bootstrapped all week. The document half — the only half a reader ever sees —
+had no instrument at all.

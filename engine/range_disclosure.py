@@ -33,7 +33,7 @@ A count below MIN_MEANINGFUL returns a sentence saying the range cannot carry a
 probability at all, rather than quoting a number derived from two observations.
 """
 
-import json, os
+import json, os, re
 
 MIN_MEANINGFUL = 4
 _RECORD = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -92,6 +92,119 @@ def sentence(k, horizon=None):
                    "widest and narrowest we have been, which is narrower than a "
                    "confidence interval rather than wider."
                    % (n, round(100 * cov)))
+
+
+# ---------------------------------------------------------------------------
+# DOES THE DELIVERED DOCUMENT ACTUALLY CARRY THE RANGE?  [R-FCAL-01]
+#
+# The sentence above is what a range OWES its reader; this half asks the prior
+# question, which nothing had asked: whether the range reaches the reader at
+# all. [R-FCAL-01] requires every run's updated fundamental analysis to publish
+# YEARS 3-5 AS RANGES from that record's own driver-error distribution, NEVER as
+# points. Five runs commit a band; three of the five print it and two print
+# points, and the two that do not are exactly the two nobody was looking at.
+#
+# THE THREE SHAPES ARE READ OFF THE BOOK RATHER THAN INVENTED, which is [L-355]
+# applied to the instrument that measures it -- a matcher built from one study's
+# convention silently finds nothing in the other two and reports that as a
+# result:
+#   A  COLUMN PAIR   a table whose header carries a low column and a high column
+#                    beside the point ("years three to five | Low | Point | High")
+#   B  ROW PAIR      row labels naming the low and the high of the range
+#                    ("Revenue - low of the range" / "- high of the range")
+#   C  DASH CELL     one cell carrying both ends ("84,517 - 193,380")
+#
+# AND THE TABLE MUST BE FORECAST-BEARING, which is arithmetic about the page
+# rather than a fourth word list: it names a calendar year at least two beyond
+# the study's own date, so a range over reported history or over a price library
+# cannot satisfy it.
+#
+# WHAT THIS DELIBERATELY DOES NOT CHECK, stated rather than discovered later: it
+# does not verify that the printed range REPRODUCES the run's committed band. A
+# study applies a multiplier band to its own point path, so the committed figures
+# never appear on the page, and searching every numeric pair for a matching ratio
+# is the coincidence the waterfall instrument already measured at 42.4% of all
+# tables -- with several thousand committed numbers some pair lands in any band.
+# Reconciling the printed range to the record needs the study to DECLARE what it
+# printed, on the prose_figures architecture, and that is a re-issue on four
+# studies rather than something done in passing. This tells a published range
+# from no range at all, which is the breach actually found, and says so.
+# ---------------------------------------------------------------------------
+
+_LOW = re.compile(r"\blow\b", re.I)
+_HIGH = re.compile(r"\bhigh\b", re.I)
+_RANGE_ROW = re.compile(r"\b(low|high)\b[^|]{0,24}\bof the range\b", re.I)
+_NUM = r"[0-9][0-9,]*(?:\.[0-9]+)?"
+_DASH_CELL = re.compile(r"^\(?%s\)?\s*[\u2013\u2014]\s*\(?%s\)?$" % (_NUM, _NUM))
+# NOT \b...\b: EGCH heads its far-year columns "FY2028/29", where no word
+# boundary sits between the Y and the 2, so a bounded pattern reads that
+# document as carrying no forecast year at all and condemns a study that
+# conforms. Caught by a fixture rather than in the book [L-355].
+_YEAR = re.compile(r"(?<!\d)(20[2-9][0-9])(?!\d)")
+
+FAR_YEAR_OFFSET = 2   # year three of a five-year forecast struck in year Y is Y+2
+
+
+def _cells(table):
+    for row in table:
+        for cell in row:
+            yield cell
+
+
+def _is_year(tok):
+    return bool(_YEAR.fullmatch(tok.strip()))
+
+
+def _far(text, study_year):
+    return any(int(y) >= study_year + FAR_YEAR_OFFSET for y in _YEAR.findall(text))
+
+
+def far_year_range_shapes(tables, study_year):
+    """Which of the three shapes a document's TABLES carry, as a sorted list.
+
+    `tables` is a list of tables, each a list of rows, each a list of cell
+    strings. `study_year` is the calendar year the study itself is dated in.
+
+    THE RANGE MUST BE POSITIONED AT A FAR YEAR, not merely printed in a table
+    that mentions one somewhere, AND THAT CLAUSE WAS REACHED BY MEASUREMENT
+    RATHER THAN BY PREFERENCE. A first draft asked only that the table name a
+    far year, and on the book as it stands it fired on six studies that have no
+    walk-forward at all, in three legible kinds: a PERIOD written with a dash
+    ("2026-2027" in a watch-list, "2028-2030" against a loan tranche), a
+    multiple range in a lens table ("Range at 10x / 16x"), and a charter-rate
+    spread in a vessel table. Not one of those is a far forecast year published
+    as a range, and every one sat in a table that happened to carry a year. Per
+    [R-COC-01]: WHEN A CHECK FIRES ON WORK THAT IS RIGHT, RE-POINT IT -- never
+    widen it and never move what is measured to satisfy it. So the low/high
+    evidence must sit in a row LABELLED with a far year or a column HEADED by
+    one, which is structural rather than a fourth word list, and a dash cell
+    whose two operands are both calendar years is a period rather than a range."""
+    found = set()
+    for tb in tables:
+        if not tb:
+            continue
+        header = tb[0]
+        far_cols = {j for j, c in enumerate(header) if _far(c, study_year)}
+        far_rows = {i for i, row in enumerate(tb) if row and _far(row[0], study_year)}
+        if not far_cols and not far_rows:
+            continue
+        if far_rows and (any(_LOW.search(c) for c in header)
+                         and any(_HIGH.search(c) for c in header)):
+            found.add("A")
+        if far_cols and any(_RANGE_ROW.search(row[0]) for row in tb if row):
+            found.add("B")
+        for i, row in enumerate(tb):
+            for j, cell in enumerate(row):
+                if i not in far_rows and j not in far_cols:
+                    continue
+                t = cell.strip()
+                if not _DASH_CELL.match(t):
+                    continue
+                parts = re.split(r"[\u2013\u2014]", t)
+                if len(parts) == 2 and all(_is_year(x) for x in parts):
+                    continue          # a period, not a range
+                found.add("C")
+    return sorted(found)
 
 
 def audit(k):

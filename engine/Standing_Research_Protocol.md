@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-07g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -4062,6 +4062,88 @@ same measurement.** RGBA is a container that can hold transparency and almost al
 none, so asking whether the container exists answers a question nobody had. Where a check
 can read either a declaration or the quantity, read the quantity — which is this
 protocol's own rule about inflation inputs, arriving somewhere nobody had connected to it.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] A run's far-year ranges are checked on the page a reader receives
+
+[R-FCAL-01] says every fundamental walk-forward produces two documents, and of the first
+— the updated fundamental analysis — that it publishes **years three to five as ranges
+from this record's own driver-error distribution, never as points**. All five completed
+runs commit that band. **Nothing had ever asked whether it reaches the document**, and
+the two questions are not the same one: the training record is internal by that same
+rule's own instruction, so a band can be computed, committed, scored and never printed,
+and every instrument in this repository reports the run complete.
+
+**Measured: three of the five print it and two print points.**
+
+| | what the delivered study does |
+|---|---|
+| PHDC | Table 4 — "Revenue, years three to five (EGP mn) \| Low \| Point \| High" |
+| EGCH | A.4 — rows "Revenue — low of the range" / "— high of the range", with the tested cases behind each band |
+| TMGH | Table 19 — "84,517 – 193,380" per far year, with the tests behind the range |
+| ARCC | FY2028E/29E/30E as single figures, and **not one sentence anywhere about the method having been tested on this company's own history** — while its own band reaches horizons three, four and five on five, four and three observations and was committed on 01-09-2026, **two days before that document was rebuilt** |
+| AMOC | FY2028E/29E/30E as single figures. It states the principle in Section 7 in plain words — the far forecast years support a range and never a point — and prints none; its record reaches horizon three only, so years four and five have no band to publish and year three has one on two observations |
+
+### The three shapes are read off the book rather than invented
+
+A matcher built from PHDC's convention finds nothing in EGCH or TMGH and reports that as
+a result, which is [L-355] landing on the instrument rather than on the work. So all
+three are named in code, from what the book actually ships: a **column pair** (low and
+high columns beside the point), a **row pair** (labels naming the low and the high of the
+range), and a **dash cell** carrying both ends. The detector lives in
+`engine/range_disclosure.py` — the module that already owns this subject and which until
+now nothing imported.
+
+### The architecture was decided by measurement, and the measurement changed it
+
+A first draft asked only that a range appear in a table naming a far year. Run over the
+book it fired on **six studies that have no walk-forward at all**, in three legible
+kinds: a period written with a dash ("2026–2027" in a watch list, "2028–2030" against a
+loan tranche), a multiple range in a lens table ("Range at 10× / 16×"), and a
+charter-rate spread against a vessel class. Every one was work that is right. Per
+[R-COC-01] it was **re-pointed rather than widened**: the low/high evidence must sit in a
+row *labelled* with a far year or a column *headed* by one, which is structural rather
+than a fourth word list, and a dash cell whose two operands are both calendar years is a
+period rather than a range. After re-pointing, **0 of 18 non-run studies trip any shape
+and all three true positives survive**.
+
+The year pattern is deliberately not `\b`-bounded, and a fixture caught that before the
+book did: EGCH heads its far-year columns "FY2028/29", where no word boundary sits
+between the Y and the 2, so a bounded pattern reads that document as carrying no forecast
+year at all and condemns a study that conforms.
+
+### What it deliberately does not check
+
+It does not verify that the printed range **reproduces** the run's committed band. A
+study applies a multiplier band to its own point path, so the committed figures never
+appear on the page, and searching every numeric pair for a matching ratio is the
+coincidence the waterfall instrument already measured at 42.4% of all tables — with
+several thousand committed numbers some pair lands in any band. Reconciling printed to
+committed needs the study to *declare* what it printed, on the `prose_figures`
+architecture, and that is a re-issue on four studies rather than something done in
+passing. This tells a published range from **no range at all**, which is the breach
+actually found, and it **fails safe**: a study printing a wrong range passes, and no
+study doing right work is condemned.
+
+Enforced from outside per [R-ENF-01] by `scripts/check_forward_ranges.py`. Ratcheted
+[R-ENF-02] at two with their reasons — rebuilding a delivered study is a re-issue and is
+not done in passing — and the list may only ever shorten. Population-anchored [R-ENF-04]
+both ways, off the run directories on disk: zero runs committing a band fails, and so
+does zero documents *read* across present runs, because a reader that stopped reading is
+indistinguishable from a book that prints every range. **Excluded** from the new-study
+gauntlet [R-ENF-07] with its reason, on the precedent of the other run-anchored gates: a
+new empty study has no run behind it, so there is correctly no band whose absence could
+be refused. Negative-controlled on nineteen conditions, ten red and nine clean, every
+mutation asserting that it landed — the clean half carrying **the three shipped tables
+pulled out of the delivered documents at run time rather than transcribed**, and the
+three false-positive kinds that must stay silent.
+
+**The general lesson, which is not about ranges: a rule that names two artefacts is
+enforced on whichever one somebody built a reader for.** The record half of this rule has
+been measured, scored, bootstrapped and cross-examined all week; the document half — the
+only half a reader ever sees — had no instrument at all, because the record is where the
+work happens and the page is where it lands. Where a rule requires that something be
+*published*, check the publication, not the thing that was supposed to be published.
 
 
 ## [R-FCAL-01 AMENDED 07-09-2026] A published band declares its basis and its count, and a span is not a percentile

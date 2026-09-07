@@ -1289,6 +1289,19 @@ jobs:
       - name: Figure-opacity gate — negative control
         run: python3 scripts/check_figure_opacity_negative_control.py
 
+      # [R-FCAL-01] requires every run's updated fundamental analysis to publish years
+      # three to five as RANGES from its own driver-error distribution, never as points.
+      # All five runs commit that band; nothing had ever asked whether it reaches the
+      # page. Three print it, two print points. The three renderings are read off the
+      # book rather than invented, and the evidence must sit AT a far year — a first
+      # draft asking only that the table name one fired on six studies with no run at
+      # all, every one of them work that is right.
+      - name: A run that computes a far-year band prints it
+        run: python3 scripts/check_forward_ranges.py
+
+      - name: Far-year range gate — negative control
+        run: python3 scripts/check_forward_ranges_negative_control.py
+
       - name: A frozen escalator is declared, or it is a defect
         run: python3 scripts/check_frozen_escalator.py
 

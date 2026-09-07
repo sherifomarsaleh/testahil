@@ -282,6 +282,13 @@ EXCLUDED = {
                               'does exist',
     'check_walkforward_actuation.py': 'anchors on walk-forward runs, not on study '
                                       'directories',
+    # ADDED 07-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    'check_forward_ranges.py': 'anchors on the WALK-FORWARD run directories that '
+                               'commit a band, not on study directories. A new '
+                               'empty study has no run behind it, so there is '
+                               'correctly no band whose absence from a document '
+                               'could be refused; it reads study directories only '
+                               'to find the document a run already owes',
 }
 
 
