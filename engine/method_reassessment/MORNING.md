@@ -1439,3 +1439,38 @@ was not answered here.
 prices remain a month stale, so every gap figure computed here is against 6 August
 rather than 6 September. That is a real limitation on anything [R-GAP-01] touches,
 and the fix is the roll-forward, not a copy.
+
+### Merging main in: the single-line digest nearly cost two standing rules
+
+PR 394's CI came back green and the PR was `dirty` — main had moved **94 commits**
+ahead with five conflicting files. Merged the base in rather than rebasing.
+
+**The digest is a single line**, so git treated the whole 265KB document as ONE
+conflict region. Taking either side wholesale — the obvious move, and the one I
+started with — silently drops the other side's standing rules. My side uniquely
+carried `[R-MACRO-01 AMENDED 06-09-2026]` and `[R-ENF-01 EXTENDED 05-Sep-2026]`;
+main uniquely carried `[R-GAP-02 AMENDED]` (a publish that moves no fair value is
+exempt from the method hold) and its second amendment. **I caught it by checking
+whether four named rules survived, not by reading the diff** — the file is one
+line and there is no diff to read.
+
+An add/add conflict has no merge base, so the two sides were diffed against **each
+other** at sentence granularity (a character-level diff on 265KB does not finish)
+and merged as a union: equal takes either, delete keeps ours, insert keeps theirs,
+replace keeps ours plus any of theirs it lacks. All five rule blocks verified
+present by name afterwards.
+
+**Stamped 2026-09-06c rather than either side's.** The merged text is content
+neither branch had alone, and carrying main's "b" would certify a copy that has
+moved — which is exactly what [R-DOC-01]'s stamp exists to prevent.
+
+`check_protocol_sync` and `check_protocol_text` both green; the two derived HTML
+pages regenerated from their builders rather than hand-merged; the escalation
+register resolved as a union (main's twelve entries, including its own better
+resolution of the OHLC one, plus this branch's). **105 of 105 gates green on the
+merged tree.**
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT MERGING: A DOCUMENT WITH NO LINE BREAKS HAS
+NO MERGE GRANULARITY. Every prose safeguard in this house assumes a reviewer can
+see what changed; a single-line file defeats that completely, and the only thing
+that caught it was asking whether specific named rules were still there.
