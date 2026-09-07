@@ -16,6 +16,14 @@ to its own arithmetic downstream, which is where a broken font map is actually c
 """
 import os, subprocess, json, sys, hashlib
 
+# TESSERACT IS RUN SINGLE-THREADED, AND THAT IS NOT A TUNING CHOICE.
+# Measured on this box: one 1654x2340 page of the FY2023 filing takes MORE THAN 110
+# SECONDS under the default OpenMP settings and 2.0 SECONDS with OMP_THREAD_LIMIT=1 -
+# a factor of fifty-five, on four cores. At the default the whole archive is three days
+# of work and the honest conclusion would have been "the OCR route is not affordable",
+# which is a claim about the operator rather than about the documents [R-IND-01].
+os.environ.setdefault('OMP_THREAD_LIMIT', '1')
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 FILINGS = os.path.join(HERE, 'filings')
 TEXT = os.path.join(HERE, 'text')
@@ -36,7 +44,7 @@ def text_layer(pdf):
     return r.stdout or ''
 
 
-def ocr(pdf, npages, dpi=300):
+def ocr(pdf, npages, dpi=200):
     out = []
     tmp = os.path.join(TEXT, '.ocrtmp')
     for p in range(1, npages + 1):
@@ -80,7 +88,7 @@ def main(only=None, ocr_pass=True):
         else:
             if not ocr_pass:
                 continue
-            route, body = 'ocr_300dpi', ocr(pdf, np_)
+            route, body = 'ocr_200dpi', ocr(pdf, np_)
         open(dst, 'w', encoding='utf-8').write(body)
         routes[n] = dict(route=route, pages=np_, chars=len(body),
                          text_layer_chars=len(t),

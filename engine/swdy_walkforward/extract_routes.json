@@ -13,12 +13,40 @@
   "sha256": "f035955566cafe50",
   "text_layer_chars": 92445
  },
+ "2007Q3__Consolidated-Financial-Statement-for-the-period-of-Jan-Sep-07.pdf": {
+  "chars": 37367,
+  "pages": 29,
+  "route": "ocr_300dpi",
+  "sha256": "ddbbf16f435fcc2e",
+  "text_layer_chars": 29
+ },
+ "2007Q4__Consolildated-Financial-Statement-for-the-year-ending-Dec-07.pdf": {
+  "chars": 63695,
+  "pages": 31,
+  "route": "ocr_300dpi",
+  "sha256": "5009ba7a40078e6d",
+  "text_layer_chars": 31
+ },
  "2008Q1__Elsewedy-Cables-Audited-Consolidated-Results-for-Q1-08.pdf": {
   "chars": 3975,
   "pages": 2,
   "route": "text_layer",
   "sha256": "23f7fab8e5ab0555",
   "text_layer_chars": 3975
+ },
+ "2008Q4__Consolidated-Financial-Statement-for-the-year-ended-Dec-08-and-Auditor-Report.pdf": {
+  "chars": 63698,
+  "pages": 34,
+  "route": "ocr_200dpi",
+  "sha256": "3a53d1f3ed0a8fdc",
+  "text_layer_chars": 34
+ },
+ "2009Q4__Year-End-2009-consolidated.pdf": {
+  "chars": 68607,
+  "pages": 36,
+  "route": "ocr_200dpi",
+  "sha256": "c2729ed24138da8a",
+  "text_layer_chars": 36
  },
  "2010Q2__Elsewedy-Electric-reports-second-quarter-2010-results.pdf": {
   "chars": 22303,
@@ -40,6 +68,13 @@
   "route": "text_layer",
   "sha256": "fda206949d61796d",
   "text_layer_chars": 19824
+ },
+ "2010Q4__Year-End-2010-Consolidated.pdf": {
+  "chars": 74588,
+  "pages": 37,
+  "route": "ocr_200dpi",
+  "sha256": "8614095b9313db8d",
+  "text_layer_chars": 37
  },
  "2011Q1__Q1-2011-Earnings-Press-release.pdf": {
   "chars": 21538,
