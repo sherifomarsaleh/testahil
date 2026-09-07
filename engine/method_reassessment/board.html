@@ -104,18 +104,18 @@
 <p style="font-size:1.05rem">A framework that works on all 90 existing stocks and every new one, that catches the errors that actually happen, and that works a red gate until it is green.</p>
 <div class="countdown">
 <div class="cd"><div class="n">7</div><div class="l">days to 14 Sep</div></div>
-<div class="cd"><div class="n">3 / 9</div><div class="l">build steps done</div></div>
-<div class="cd"><div class="n">66</div><div class="l">gates, 63 negative controls</div></div>
+<div class="cd"><div class="n">4 / 9</div><div class="l">build steps done</div></div>
+<div class="cd"><div class="n">67</div><div class="l">gates, 64 negative controls</div></div>
 <div class="cd"><div class="n">24 / 90</div><div class="l">names a gate can open</div></div>
 </div>
-<div class="stamp"><span>branch claude/arcc-fundamental-calibration-ebhtjk</span><span>head bcbc17a3</span><span>built 2026-09-07</span></div>
+<div class="stamp"><span>branch claude/arcc-fundamental-calibration-ebhtjk</span><span>head 2b750401</span><span>built 2026-09-07 07:47 UTC</span></div>
 </header>
 <section><div class="sec-head"><h2>The three things it has to do</h2><p>Each carries the test that says it holds. A property with no test is not delivered.</p></div><div class="props">
 <div class="prop"><div class="top"><span class="pid">P1</span><h3>It reaches all 90 names, and every new one</h3><span class="chip c-queued">QUEUED</span></div>
 <p>Today the gates look only inside engine/*_study/. The 66 names outside it are invisible rather than passing — which reads exactly like clean.</p>
 <div class="test"><b>Test —</b> A gate run reports 90 examined and 0 unaccounted. A ticker added to data.js with no record makes the build red.</div></div>
 <div class="prop"><div class="top"><span class="pid">P2</span><h3>It catches the errors that actually happen</h3><span class="chip c-flight">IN FLIGHT</span></div>
-<p>Two of the three named errors are confirmed uncovered and priced. A 14-lens census of every other way a fair value goes wrong is running.</p>
+<p>Two of the three named errors were confirmed uncovered and priced. The asset-base one is now closed by a gate. A 14-lens census of every other way a fair value goes wrong is still running.</p>
 <div class="test"><b>Test —</b> Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.</div></div>
 <div class="prop"><div class="top"><span class="pid">P3</span><h3>A red gate is worked until it is green</h3><span class="chip c-queued">QUEUED</span></div>
 <p>This does not exist today. It is why 47 ratchet entries accumulated on five studies — a gate goes red and a person has to read it.</p>
@@ -123,18 +123,18 @@
 </div></section>
 <section><div class="sec-head"><h2>Your three errors, today</h2><p>Measured against the gate set, not asserted.</p></div><div class="tbl-scroll"><table><thead><tr><th>The error</th><th>Caught?</th><th>By what</th></tr></thead><tbody>
 <tr><td style="color:var(--ink)">&ldquo;erroneous fair values that are 60% of the current prices in a wrong way&rdquo;</td><td><span class="chip c-done">CAUGHT</span></td><td>check_valuation_gap audits any gap over 10%; check_publish_block holds the study from publishing</td></tr>
-<tr><td style="color:var(--ink)">&ldquo;current landbank of a developer but does not account for new land added&rdquo;</td><td><span class="chip c-blocked">UNCOVERED</span></td><td>zero gates and zero governing documents mention it in any spelling</td></tr>
+<tr><td style="color:var(--ink)">&ldquo;current landbank of a developer but does not account for new land added&rdquo;</td><td><span class="chip c-done">CAUGHT</span></td><td>check_asset_base — new since today. Binds on every new and rebuilt study; the 11 existing in-scope studies are on the ratchet WITH their measurements, PHDC named with its 21-month-stale land base.</td></tr>
 <tr><td style="color:var(--ink)">&ldquo;creates wrong cost or high Ke and Kd&rdquo;</td><td><span class="chip c-next">PARTLY</span></td><td>the construction is gated thoroughly; the LEVEL is not — no file reproduces Ke from its own inputs</td></tr>
 </tbody></table></div>
-<p class="note"><strong>Landbank, measured live at build time:</strong> 0 gate file(s) mention it in any of 5 spellings — the only hits in the tree are fixtures in <span class='mono'>check_lens_design_negative_control.py</span>. A hit inside a negative control is a fixture reproducing a defect, not a check for it.</p>
+<p class="note"><strong>Landbank, measured live at build time:</strong> 2 gate file(s) mention it in any of 5 spellings. A hit inside a negative control is a fixture reproducing a defect, not a check for it.</p>
 <p class="note"><strong>Cost of equity, measured live at build time:</strong> 0 gate file(s) reproduce it from its own inputs, searched under 5 spellings (<span class='mono'>ke_exp</span>, <span class='mono'>cost_of_equity</span>, <span class='mono'>ke_terminal</span>, <span class='mono'>capm</span>, <span class='mono'>rf_star +</span>).</p>
 </section>
 <section><div class="sec-head"><h2>The build queue</h2><p>One session a day, the rate you set. Ordered by value at risk closed, not by tidiness.</p></div><div class="tbl-scroll"><table><thead><tr><th>Day</th><th>Step</th><th>State</th></tr></thead><tbody>
 <tr><td class="day">done</td><td class="qitem">Correct the Phase 1 date — criterion 3 named the wrong score<span>The 2027 date was the maturity of the gap-closure clauses, reported as the whole of Phase 1. Four of six clauses do not wait on a clock.</span></td><td><span class="chip c-done">DONE</span></td></tr>
 <tr><td class="day">done</td><td class="qitem">Prove the gates bind on new work<span>check_new_study_gauntlet: 38 of 38 gates refuse a new study, every exclusion carrying a stated reason.</span></td><td><span class="chip c-done">DONE</span></td></tr>
 <tr><td class="day">done</td><td class="qitem">Locate and price the named errors<span>Stale asset base and the Ke level, both confirmed uncovered, both priced on committed numbers.</span></td><td><span class="chip c-done">DONE</span></td></tr>
-<tr><td class="day">1</td><td class="qitem">Asset-base freshness gate<span>The quantity, its date, its source — and a refusal when a newer disclosure exists. Shared instrument over every study, not a rule per developer.</span></td><td><span class="chip c-next">NEXT</span></td></tr>
-<tr><td class="day">1</td><td class="qitem">Cost-of-equity reproduction gate<span>Ke must reproduce from rf* + beta x ERP, and the terminal Ke from its own anchors. Nothing checks this today.</span></td><td><span class="chip c-queued">QUEUED</span></td></tr>
+<tr><td class="day">1</td><td class="qitem">Asset-base freshness gate<span>BUILT. engine/asset_base.py + check_asset_base.py + a 15-case negative control, and it is in the new-study gauntlet. Scope is DERIVED from the lens registry — 7 asset-based classes, 11 studies in scope — never a typed list. The test is an ORDERING, not a threshold: the asset base may not be older than the information set the study says it read.</span></td><td><span class="chip c-done">DONE</span></td></tr>
+<tr><td class="day">1</td><td class="qitem">Cost-of-equity reproduction gate<span>Ke must reproduce from rf* + beta x ERP, and the terminal Ke from its own anchors. Nothing checks this today.</span></td><td><span class="chip c-next">NEXT</span></td></tr>
 <tr><td class="day">2</td><td class="qitem">Close the census's confirmed gaps<span>Each one a gate or a listed reason. Ranked by value at risk, not by tidiness.</span></td><td><span class="chip c-queued">QUEUED</span></td></tr>
 <tr><td class="day">3</td><td class="qitem">Bring all 90 names into gate scope<span>A minimal record per name and the population anchored on data.js, so a run that examined 24 of 90 fails.</span></td><td><span class="chip c-queued">QUEUED</span></td></tr>
 <tr><td class="day">4</td><td class="qitem">The repair loop<span>One failure at a time, the gate as its oracle, bounded, escalating on exhaustion. Forbidden from editing a gate, moving a value toward the price, or inventing an input.</span></td><td><span class="chip c-queued">QUEUED</span></td></tr>

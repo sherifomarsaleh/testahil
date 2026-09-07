@@ -228,8 +228,9 @@ def render(st, m):
     A('<div class="cd"><div class="n">%s / %s</div><div class="l">names a gate can open</div></div>'
       % (m["with_study"], m["published"] if m["published"] else "?"))
     A("</div>")
-    A('<div class="stamp"><span>branch %s</span><span>head %s</span><span>built %s</span></div>'
-      % (esc(m["branch"]), esc(m["head"]), m["today"].isoformat()))
+    A('<div class="stamp"><span>branch %s</span><span>head %s</span>'
+      '<span>built %s</span></div>'
+      % (esc(m["branch"]), esc(m["head"]), esc(m["built_at"])))
     A("</header>")
 
     # ---- the three properties
@@ -352,6 +353,10 @@ def main(argv=None):
         "land_real": land_real, "land_fixture": land_fix, "land_spellings": len(LAND),
         "ke_real": ke_real, "ke_fixture": ke_fix, "ke_spellings": len(KE),
         "head": head(), "branch": branch(),
+        # A DATE ALONE CANNOT SAY WHETHER THIS IS THIS MORNING'S BOARD OR THIS EVENING'S,
+        # which is the whole question somebody opening it is asking.
+        "built_at": dt.datetime.now().strftime("%Y-%m-%d %H:%M UTC%z") or
+                    dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
     }
     # AN EMPTY POPULATION IS NOT A CLEAN ONE [R-ENF-04]: a board reporting 0 published
     # names would read as a tidy page rather than as a broken reader.

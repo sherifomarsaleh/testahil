@@ -1,56 +1,105 @@
 {
-  "target": "2026-09-14",
-  "goal": "A framework that works on all 90 existing stocks and every new one, that catches the errors that actually happen, and that works a red gate until it is green.",
-  "properties": [
-    {
-      "id": "P1",
-      "title": "It reaches all 90 names, and every new one",
-      "test": "A gate run reports 90 examined and 0 unaccounted. A ticker added to data.js with no record makes the build red.",
-      "state": "QUEUED",
-      "note": "Today the gates look only inside engine/*_study/. The 66 names outside it are invisible rather than passing — which reads exactly like clean."
-    },
-    {
-      "id": "P2",
-      "title": "It catches the errors that actually happen",
-      "test": "Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.",
-      "state": "IN FLIGHT",
-      "note": "Two of the three named errors are confirmed uncovered and priced. A 14-lens census of every other way a fair value goes wrong is running."
-    },
-    {
-      "id": "P3",
-      "title": "A red gate is worked until it is green",
-      "test": "Run against studies with defects deliberately planted, it fixes the fixable, escalates the rest, and leaves every gate, control and ratchet byte-identical.",
-      "state": "QUEUED",
-      "note": "This does not exist today. It is why 47 ratchet entries accumulated on five studies — a gate goes red and a person has to read it."
-    }
-  ],
-  "queue": [
-    {"day": "done", "item": "Correct the Phase 1 date — criterion 3 named the wrong score", "state": "DONE",
-     "detail": "The 2027 date was the maturity of the gap-closure clauses, reported as the whole of Phase 1. Four of six clauses do not wait on a clock."},
-    {"day": "done", "item": "Prove the gates bind on new work", "state": "DONE",
-     "detail": "check_new_study_gauntlet: 38 of 38 gates refuse a new study, every exclusion carrying a stated reason."},
-    {"day": "done", "item": "Locate and price the named errors", "state": "DONE",
-     "detail": "Stale asset base and the Ke level, both confirmed uncovered, both priced on committed numbers."},
-    {"day": "1", "item": "Asset-base freshness gate", "state": "NEXT",
-     "detail": "The quantity, its date, its source — and a refusal when a newer disclosure exists. Shared instrument over every study, not a rule per developer."},
-    {"day": "1", "item": "Cost-of-equity reproduction gate", "state": "QUEUED",
-     "detail": "Ke must reproduce from rf* + beta x ERP, and the terminal Ke from its own anchors. Nothing checks this today."},
-    {"day": "2", "item": "Close the census's confirmed gaps", "state": "QUEUED",
-     "detail": "Each one a gate or a listed reason. Ranked by value at risk, not by tidiness."},
-    {"day": "3", "item": "Bring all 90 names into gate scope", "state": "QUEUED",
-     "detail": "A minimal record per name and the population anchored on data.js, so a run that examined 24 of 90 fails."},
-    {"day": "4", "item": "The repair loop", "state": "QUEUED",
-     "detail": "One failure at a time, the gate as its oracle, bounded, escalating on exhaustion. Forbidden from editing a gate, moving a value toward the price, or inventing an input."},
-    {"day": "5", "item": "The injection harness", "state": "QUEUED",
-     "detail": "Each named error planted in a copy of a real study; a gate must catch it and name it. Runs in minutes and can be read without trusting me."}
-  ],
-  "errors": [
-    {"words": "erroneous fair values that are 60% of the current prices in a wrong way",
-     "verdict": "CAUGHT", "by": "check_valuation_gap audits any gap over 10%; check_publish_block holds the study from publishing"},
-    {"words": "current landbank of a developer but does not account for new land added",
-     "verdict": "UNCOVERED", "by": "zero gates and zero governing documents mention it in any spelling"},
-    {"words": "creates wrong cost or high Ke and Kd",
-     "verdict": "PARTLY", "by": "the construction is gated thoroughly; the LEVEL is not — no file reproduces Ke from its own inputs"}
-  ],
-  "gauntlet": {"passed": 38, "of": 38, "when": "2026-09-07"}
+ "target": "2026-09-14",
+ "goal": "A framework that works on all 90 existing stocks and every new one, that catches the errors that actually happen, and that works a red gate until it is green.",
+ "properties": [
+  {
+   "id": "P1",
+   "title": "It reaches all 90 names, and every new one",
+   "test": "A gate run reports 90 examined and 0 unaccounted. A ticker added to data.js with no record makes the build red.",
+   "state": "QUEUED",
+   "note": "Today the gates look only inside engine/*_study/. The 66 names outside it are invisible rather than passing — which reads exactly like clean."
+  },
+  {
+   "id": "P2",
+   "title": "It catches the errors that actually happen",
+   "test": "Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.",
+   "state": "IN FLIGHT",
+   "note": "Two of the three named errors were confirmed uncovered and priced. The asset-base one is now closed by a gate. A 14-lens census of every other way a fair value goes wrong is still running."
+  },
+  {
+   "id": "P3",
+   "title": "A red gate is worked until it is green",
+   "test": "Run against studies with defects deliberately planted, it fixes the fixable, escalates the rest, and leaves every gate, control and ratchet byte-identical.",
+   "state": "QUEUED",
+   "note": "This does not exist today. It is why 47 ratchet entries accumulated on five studies — a gate goes red and a person has to read it."
+  }
+ ],
+ "queue": [
+  {
+   "day": "done",
+   "item": "Correct the Phase 1 date — criterion 3 named the wrong score",
+   "state": "DONE",
+   "detail": "The 2027 date was the maturity of the gap-closure clauses, reported as the whole of Phase 1. Four of six clauses do not wait on a clock."
+  },
+  {
+   "day": "done",
+   "item": "Prove the gates bind on new work",
+   "state": "DONE",
+   "detail": "check_new_study_gauntlet: 38 of 38 gates refuse a new study, every exclusion carrying a stated reason."
+  },
+  {
+   "day": "done",
+   "item": "Locate and price the named errors",
+   "state": "DONE",
+   "detail": "Stale asset base and the Ke level, both confirmed uncovered, both priced on committed numbers."
+  },
+  {
+   "day": "1",
+   "item": "Asset-base freshness gate",
+   "state": "DONE",
+   "detail": "BUILT. engine/asset_base.py + check_asset_base.py + a 15-case negative control, and it is in the new-study gauntlet. Scope is DERIVED from the lens registry — 7 asset-based classes, 11 studies in scope — never a typed list. The test is an ORDERING, not a threshold: the asset base may not be older than the information set the study says it read."
+  },
+  {
+   "day": "1",
+   "item": "Cost-of-equity reproduction gate",
+   "state": "NEXT",
+   "detail": "Ke must reproduce from rf* + beta x ERP, and the terminal Ke from its own anchors. Nothing checks this today."
+  },
+  {
+   "day": "2",
+   "item": "Close the census's confirmed gaps",
+   "state": "QUEUED",
+   "detail": "Each one a gate or a listed reason. Ranked by value at risk, not by tidiness."
+  },
+  {
+   "day": "3",
+   "item": "Bring all 90 names into gate scope",
+   "state": "QUEUED",
+   "detail": "A minimal record per name and the population anchored on data.js, so a run that examined 24 of 90 fails."
+  },
+  {
+   "day": "4",
+   "item": "The repair loop",
+   "state": "QUEUED",
+   "detail": "One failure at a time, the gate as its oracle, bounded, escalating on exhaustion. Forbidden from editing a gate, moving a value toward the price, or inventing an input."
+  },
+  {
+   "day": "5",
+   "item": "The injection harness",
+   "state": "QUEUED",
+   "detail": "Each named error planted in a copy of a real study; a gate must catch it and name it. Runs in minutes and can be read without trusting me."
+  }
+ ],
+ "errors": [
+  {
+   "words": "erroneous fair values that are 60% of the current prices in a wrong way",
+   "verdict": "CAUGHT",
+   "by": "check_valuation_gap audits any gap over 10%; check_publish_block holds the study from publishing"
+  },
+  {
+   "words": "current landbank of a developer but does not account for new land added",
+   "verdict": "CAUGHT",
+   "by": "check_asset_base — new since today. Binds on every new and rebuilt study; the 11 existing in-scope studies are on the ratchet WITH their measurements, PHDC named with its 21-month-stale land base."
+  },
+  {
+   "words": "creates wrong cost or high Ke and Kd",
+   "verdict": "PARTLY",
+   "by": "the construction is gated thoroughly; the LEVEL is not — no file reproduces Ke from its own inputs"
+  }
+ ],
+ "gauntlet": {
+  "passed": 38,
+  "of": 38,
+  "when": "2026-09-07"
+ }
 }

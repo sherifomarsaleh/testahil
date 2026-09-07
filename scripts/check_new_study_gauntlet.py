@@ -108,6 +108,16 @@ DIRECTORY_GATES = [
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
 # planting one that should trip them. `plant` returns the files to create.
 ARTEFACT_GATES = {
+    'check_asset_base.py': (
+        # A study with NO numbers file commits no class, so it is not in this gate's
+        # scope and refusing an empty directory would be a FALSE CLAIM about what it
+        # checks [R-ENF-07]. Planted with the minimum that puts it in scope: a class
+        # the registry calls asset-based, an information set, and no asset_base_record.
+        'a study valued on a physical asset base that never states the vintage of it',
+        lambda: {'study_numbers.json': ('json', {
+            'meta': {'class': 'real-estate developer, off-plan, '
+                              'percentage-of-completion',
+                     'information_set_ends': '1Q2026'}})}),
     'check_delivered_vocabulary.py': (
         'a delivered document naming a standing rule',
         lambda: {'%s_Valuation_Study_03-09-2026.docx' % TICKER: ('docx', 'Adopted under '
