@@ -167,6 +167,8 @@ on:
       - 'scripts/check_anchor_ordering.py'
       - 'scripts/check_record_survives_rebuild.py'
       - 'scripts/check_ground_up.py'
+      - 'scripts/check_bridge_reaches_answer.py'
+      - 'scripts/check_bridge_reaches_answer_negative_control.py'
       - 'scripts/check_ground_up_negative_control.py'
       - 'scripts/check_record_survives_rebuild_negative_control.py'
       - 'scripts/check_anchor_ordering_negative_control.py'
@@ -310,6 +312,8 @@ on:
       - 'scripts/check_anchor_ordering.py'
       - 'scripts/check_record_survives_rebuild.py'
       - 'scripts/check_ground_up.py'
+      - 'scripts/check_bridge_reaches_answer.py'
+      - 'scripts/check_bridge_reaches_answer_negative_control.py'
       - 'scripts/check_ground_up_negative_control.py'
       - 'scripts/check_record_survives_rebuild_negative_control.py'
       - 'scripts/check_anchor_ordering_negative_control.py'
@@ -1169,6 +1173,15 @@ jobs:
 
       - name: The ground-up clause — negative control
         run: python3 scripts/check_ground_up_negative_control.py
+
+      # [R-BRIDGE-01]. The bridge was internally perfect and joined to nothing: every
+      # defect that rule was founded on can be corrected inside a bridge that feeds no
+      # published figure, and the gate reports the correction while the answer never moves.
+      - name: The bridge reaches the published answer
+        run: python3 scripts/check_bridge_reaches_answer.py
+
+      - name: The bridge and the answer — negative control
+        run: python3 scripts/check_bridge_reaches_answer_negative_control.py
 
       # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
       # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied

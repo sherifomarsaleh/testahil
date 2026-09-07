@@ -146,6 +146,15 @@ ARTEFACT_GATES = {
                                 'from engine.mc_v3 import simulate_paths_v3\n'
                                 'def build():\n'
                                 '    json.dump({"central": 17.85}, open("study_numbers.json", "w"))\n')}),
+    'check_bridge_reaches_answer.py': (
+        # An empty study commits neither figure, so there is no disagreement possible and
+        # refusing a bare directory would be a false claim [R-ENF-07]. Planted with the
+        # defect as it stands on the exemplar: a bridge arriving somewhere the published
+        # answer is not.
+        'an equity bridge that does not reach the answer the study publishes',
+        lambda: {'study_numbers.json': ('json', {
+            'bridge_record': {'per_share': 1.5263},
+            'lens_record': {'central': 5.6054}})}),
     'check_ground_up.py': (
         # An empty study commits no driver lines and no summary, so it is in the unreadable
         # group by construction — which IS a refusal, and the right one. Planted with the
