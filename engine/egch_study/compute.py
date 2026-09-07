@@ -879,10 +879,13 @@ DRIVER_LINES = [
                    gap_note="A small residual line the filings disclose in total only; grown on domestic inflation."),
 ]
 GROUND_UP = _rp.assert_ground_up(DRIVER_LINES, ticker='EGCH')
-D['gates'] = dict(standard_version=_rp.STANDARD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
+# [R-STD-02] FROZEN, NOT READ FROM THE LIVE CONSTANT — a rebuild may not upgrade a
+# study's conformance claim. This is the version this study was built to.
+_STD_VERSION = "2026.09.01"
+D['gates'] = dict(standard_version=_STD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
 
 out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
-           walkforward=WALKFORWARD, gates=D['gates'], standard_version=_rp.STANDARD_VERSION,
+           walkforward=WALKFORWARD, gates=D['gates'], standard_version=_STD_VERSION,
            cases={k: dict(rows=v['rows'], terminal=v['terminal'], bridge=v['bridge'])
                   for k, v in CASES.items()},
            wacc=WACC, spot=_V('spot_price'), spot_date=_V('spot_price_date'))

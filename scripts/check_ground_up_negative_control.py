@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Negative control for check_ground_up.py.
 
-TEN CONDITIONS, SIX RED AND FOUR CLEAN. The clean half carries the two things a correct
+ELEVEN CONDITIONS, SEVEN RED AND FOUR CLEAN. The clean half carries the two things a correct
 study looks like and the two the first draft got wrong: STC's real driver lines must PASS
 when the assertion is actually run, and a record NESTED under `gates/` must be found rather
 than reported absent — the first draft read only the top level and told AMOC and EGCH they
@@ -24,7 +24,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ENGINE = os.path.join(ROOT, "engine")
-CASES = 10
+CASES = 11
 
 
 def real_lines():
@@ -119,6 +119,14 @@ def main():
          lambda r_: (all(x["level"] == "topdown" and not x["gap_note"] for x in nogap),
                      "the gap notes survived"), r)
 
+    nocost = copy.deepcopy(L)
+    for x in nocost:
+        x["cost_basis"] = None
+    case("4b a line that names how revenue was built and nothing about cost",
+         {"HHH": {"driver_lines": nocost}}, {}, {}, True,
+         lambda r_: (all(not x.get("cost_basis") for x in nocost),
+                     "the cost bases survived"), r)
+
     case("4 a record that is only the assertion's OUTPUT, nested under gates/",
          {"DDD": SUMMARY}, {}, {}, True,
          lambda r_: ("share_by_level" in json.dumps(SUMMARY)
@@ -160,7 +168,7 @@ def main():
             print("  FAIL  %s\n        %s" % (n, why))
         print("\nFAIL — the gate does not behave as the rule says.")
         return 1
-    print("OK — 6 red conditions fire, 4 clean conditions do not.")
+    print("OK — 7 red conditions fire, 4 clean conditions do not.")
     return 0
 
 

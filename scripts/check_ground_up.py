@@ -176,8 +176,35 @@ def measure():
             rp.assert_ground_up(lines, ticker=tk)
         except AssertionError as exc:
             failing[tk] = str(exc)
+            continue
         except Exception as exc:
             unreadable[tk] = "the assertion could not run: %s" % exc
+            continue
+        # MARGIN IS AN OUTPUT OR THE COST SIDE IS NOT BUILT, and cost_basis was DECLARED on
+        # DriverLine and inspected by nothing. The standing rule is explicit: "a
+        # contribution or gross margin set as an INPUT is a QC FAIL wherever the filings
+        # disclose enough to build cost PER UNIT instead". A line that names how its revenue
+        # was built and says nothing about its cost has left the margin somewhere nobody can
+        # point at, and an absent basis looks identical from outside to a margin typed in.
+        #
+        # IT IS CHECKED HERE AND NOT INSIDE THE ASSERTION, and that was decided by trying
+        # the other way first. Put into assert_ground_up() it fired at BUILD time and made
+        # EGCH's generator refuse — a real finding on one of its lines, and a rule that
+        # stops an existing study being rebuilt at all, which is the permanently-red check
+        # [R-ENF-02] forbids and worse: the only ways out would be to invent a cost basis
+        # (SIGCM clause 1 prohibits it) or to delete the line. In the gate it is ratcheted,
+        # countable and binds forward, which is what a new requirement on delivered work
+        # gets.
+        #
+        # THE FIELD DOES NOT HAVE TO SAY THE COST IS PER-UNIT: "held flat, the segment note
+        # discloses no cost split" is a perfectly good answer and is the one most of the
+        # book would give. What it may not be is ABSENT.
+        missing = [l.name for l in lines if not (l.cost_basis or "").strip()]
+        if missing:
+            failing[tk] = ("GROUND-UP COST FAIL — %s: %d line(s) name how revenue was built "
+                           "and nothing about how cost was: %s. Margin is an OUTPUT or the "
+                           "cost side is not built."
+                           % (tk, len(missing), ", ".join(missing[:4])))
     return failing, unreadable, ran
 
 

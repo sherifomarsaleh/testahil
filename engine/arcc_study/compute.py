@@ -2336,7 +2336,14 @@ say(f"\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five
 # ---- the four standing gates, called in the study's own code [R-ENF-02] -----
 sys.path.insert(0, os.path.join(HERE, '..'))
 import research_protocol as RP
-STD_VERSION = RP.STANDARD_VERSION
+# [R-STD-02] FROZEN, NOT READ FROM THE LIVE CONSTANT. A stamp taken from
+# RP.STANDARD_VERSION re-asserts every requirement of whatever version the code
+# holds today, on every rebuild, with nobody deciding — which is exactly what
+# happened on 07-09-2026 when conforming an unrelated record shape restamped this
+# study from 2026.09.01 to 2026.09.07 while it is ratcheted against two of that
+# version's requirements. The claim is the version this study was BUILT to, and it
+# moves when the study is brought to a newer standard, not when it is rebuilt.
+STD_VERSION = "2026.09.01"
 
 _cem_exp_t, _clk_exp_t = 629.5, 1300.5
 _exp_share = V['rev_exp_goods_fy25'] / V['rev_fy25']

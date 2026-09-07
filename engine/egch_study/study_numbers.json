@@ -229,7 +229,7 @@
   "implied_wacc_base": 0.1300292595239384,
   "implied_wacc_halt": 0.14264996521794682,
   "gates": {
-   "standard_version": "2026.09.07",
+   "standard_version": "2026.09.01",
    "beta": {
     "ticker": "EGCH",
     "market": "EG",
@@ -598,7 +598,7 @@
   "what_it_changed": "Three things. The terminal inflation now equals the inflation terminal growth is set at (the previous edition discounted a 5%-growth perpetuity at a rate built on 7% inflation). The currency path is derived from the same inflation identity that carries the dollar debt. And years three to five of the forecast are published as ranges from the record's own error distribution, because on this company the method did not beat \"no change\" on the profit line."
  },
  "gates": {
-  "standard_version": "2026.09.07",
+  "standard_version": "2026.09.01",
   "beta": {
    "ticker": "EGCH",
    "market": "EG",
@@ -653,7 +653,7 @@
    "standard_version": "2026.09.07"
   }
  },
- "standard_version": "2026.09.07",
+ "standard_version": "2026.09.01",
  "cases": {
   "base": {
    "rows": [

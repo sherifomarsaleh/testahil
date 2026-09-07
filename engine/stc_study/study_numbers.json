@@ -11,7 +11,7 @@
  "two_clocks": "The valuation is struck against the latest known close, the Monte Carlo cone against the last session in the persistent price library. They are different dates because a cone must start where its own price series ends, and the study says so rather than publishing one number for both.",
  "shares": 4993.024,
  "mktcap": 218994.03264000002,
- "standard_version": "2026.09.07",
+ "standard_version": "2026.09.01",
  "ground_up": {
   "ticker": "STC",
   "lines": 13,

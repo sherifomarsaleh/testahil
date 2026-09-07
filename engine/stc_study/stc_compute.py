@@ -1273,6 +1273,11 @@ import inspect as _inspect
 import band_record as BR
 import mc_v3 as MC3
 
+# [R-STD-02] FROZEN, NOT READ FROM THE LIVE CONSTANT — a rebuild may not upgrade a
+# study's conformance claim. This is the version this study was built to.
+_STD_VERSION = "2026.09.01"
+
+
 _BREC = BR.resolve('STC', BR.by_key())
 assert _BREC.market == 'SA' and _BREC.n == _BREC.hits + (_BREC.n - _BREC.hits)
 
@@ -1343,7 +1348,7 @@ out = dict(
     # by the module that owns those sentences rather than re-worded here.
     # THE STANDARD THIS STUDY WAS BUILT TO [R-STD-01]. Without it a book-wide
     # re-issue is open-ended and nobody can tell which names are current.
-    standard_version=_RP.STANDARD_VERSION,
+    standard_version=_STD_VERSION,
     ground_up=GROUND_UP,
     driver_lines=[vars(l) for l in DRIVER_LINES],
     band_record=BAND,
