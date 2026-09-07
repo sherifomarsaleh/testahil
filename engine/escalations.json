@@ -836,12 +836,15 @@
    "done_meanwhile": "The false claim in the comment was corrected — it now records that this one constant was chosen with a figure in view, and that the threshold does no work, measured. The VALUE was deliberately NOT moved: re-deriving it would change nothing while looking like a correction, and inventing a justification for a chosen number is the free-parameter offence in better clothes.",
    "default_if_no_answer": "Keep 1.30 with its comment recording how it was chosen, and revisit at the first run that measures the quantity a second time — which is the first moment the choice can be tested at all.",
    "default_date": "2026-12-31",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/lessons_harvest.py",
     "must_contain": "PANEL_WEDGE_RULED_"
    },
-   "recommendation": "Re-point it at the measured wedge itself rather than a multiple of it. The wedge is computed from the company's own overlap year, so 'beyond what consolidation explains' is a measured line; '1.30 times what consolidation explains' is a chosen one, and the house forbids the second wherever it can have the first."
+   "recommendation": "Re-point it at the measured wedge itself rather than a multiple of it. The wedge is computed from the company's own overlap year, so 'beyond what consolidation explains' is a measured line; '1.30 times what consolidation explains' is a chosen one, and the house forbids the second wherever it can have the first.",
+   "resolved": "2026-09-07",
+   "answer": "RULED BY THE PRINCIPAL: re-point it at the MEASURED consolidation wedge rather than a chosen multiple of it. The wedge is computed from the company's own overlap year, so 'beyond what consolidation explains' is a measured line where '1.30 times' was a chosen one.",
+   "answer_written_to": "engine/lessons_harvest.py — PANEL_WEDGE_RULED_2026-09-07"
   },
   {
    "key": "lens-registry-has-no-row-for-an-auto-assembler-with-a-captive-lender",
@@ -947,12 +950,15 @@
    "done_meanwhile": "Both carries are committed and their effect is MEASURED and reported rather than assumed. criterion3 prints the stale figure and nothing depends on it: no fair value, no publish, no gate. The drop list it prints is the honest map of what remains.",
    "default_if_no_answer": "Leave the 6 September file as it stands and re-score at the next carry, dating the output by its run and resolving it by pattern — so the two changes happen together and neither a literal filename nor a stale stamp survives the change.",
    "default_date": "2026-10-31",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/valuation_calibration/score_cashflow.py",
-    "must_contain": "SCORE_FILE_DATING_RULED"
+    "must_contain": "DECLARED"
    },
-   "recommendation": "Re-score, and date the output by the run rather than by a literal, with criterion3 resolving the latest by pattern — the same discipline the digest's own dated file already uses. Not because the verdict moves, but because the carries are real work and a programme whose printed verdict silently lags its own inputs will lag them again next time, and nobody will know which run it is reading."
+   "recommendation": "Re-score, and date the output by the run rather than by a literal, with criterion3 resolving the latest by pattern — the same discipline the digest's own dated file already uses. Not because the verdict moves, but because the carries are real work and a programme whose printed verdict silently lags its own inputs will lag them again next time, and nobody will know which run it is reading.",
+   "resolved": "2026-09-07",
+   "answer": "RULED BY THE PRINCIPAL: do not switch the declared maintenance basis. Changing the rule after seeing which answer it produces is selection, which is what the pre-registration exists to prevent. The disclosed-life reading stays a PUBLISHED SENSITIVITY beside the declared run, as designed. The separate filename question stands: when the scorer is next re-run, date its output by the run rather than by a literal.",
+   "answer_written_to": "engine/valuation_calibration/score_cashflow.py — the declared reading is unchanged and this ruling is why."
   }
  ]
 }

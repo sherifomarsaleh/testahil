@@ -59,9 +59,16 @@ ERA_FLIP = True           # a bias that changes sign between eras is not a bias
 # the quantity, which is the first moment the choice can be tested at all.
 SKIP_SHORTFALL = 1        # sourceable years at least this far below the LIGHT bar
 UNSERVED_ARCHIVE = True   # an issuer that lists statements and serves none of them
-PANEL_WEDGE = 1.30        # a study panel this many times beyond the MEASURED
-                          # consolidation wedge is unreconciled, not merely bigger.
-                          # CHOSEN WITH ONE RUN'S FIGURE IN VIEW — see above.
+PANEL_WEDGE = 1.0         # PANEL_WEDGE_RULED_2026-09-07, by the principal: re-pointed at
+                          # the MEASURED consolidation wedge itself rather than a chosen
+                          # multiple of it. The wedge is computed from the company's own
+                          # overlap year, so "beyond what consolidation explains" is a
+                          # measured line; "1.30 times what consolidation explains" was a
+                          # number somebody picked, with one run's figure already in view.
+                          # Nothing in the book is classified differently by the change —
+                          # one run measures the quantity and it reads 1.5130 — which is
+                          # the point: the bound now rests on an arithmetic fact rather
+                          # than on a choice nobody could test.
 KD_BELOW_SOVEREIGN = 1    # trap (i)'s broad denominator landing under the sovereign
                           # in at least this many years
 
