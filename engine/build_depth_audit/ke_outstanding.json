@@ -14,10 +14,6 @@
    "reason": "reproduces exactly under 'relevered' at an implied 22.50% — beta 0.927522 unlevers to 0.900090 at a debt weight of 0.0378 and relevers to 1.074483 at a terminal 0.20. Declare ke_terminal_construction and relevering_tax_rate; the rate must be STATED, never solved out of the answer it explains.",
    "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'relevered' at an implied tax rate of 22.50%, which the record does not state — declare it, do not let it be solved out of the answer"
   },
-  "SCEM": {
-   "reason": "reproduces exactly under 'relevered' at an implied 22.50% — beta 1.000000 unlevers to 0.995949 and relevers to 1.188914 at a terminal debt weight of 0.20. Same fix as ARCC.",
-   "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'relevered' at an implied tax rate of 22.50%, which the record does not state — declare it, do not let it be solved out of the answer"
-  },
   "FERTIGLOBE": {
    "reason": "UNREADABLE rather than clean: commits a cost-of-capital record carrying no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all.",
    "signature": "record carries no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all; record carries no market-value weights; the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']"
@@ -36,6 +32,11 @@
   {
    "removed": [
     "ADNOCLS"
+   ]
+  },
+  {
+   "removed": [
+    "SCEM"
    ]
   }
  ]

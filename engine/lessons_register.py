@@ -6591,6 +6591,46 @@ LESSONS = [
       "across every bootstrap block tested (n=9).",
       "A later run of the same name where the sign no longer holds "
       "across bootstrap blocks."),
+
+    L("L-367", "STOCK", "SCEM",
+      "Cogs wages forecasts run about 27% too low for SCEM.",
+      "The method misses this driver in the same direction almost "
+      "every time, not at random. That is a fixable defect rather "
+      "than noise — find what is wired wrong before adding any "
+      "correction factor.",
+      "SCEM walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.241 log (about 27% too low), average miss 0.241, wrong "
+      "in the same direction in 100% of cases, and the sign holds "
+      "across every bootstrap block tested (n=9).",
+      "A later run of the same name where the sign no longer holds "
+      "across bootstrap blocks."),
+
+    L("L-368", "CLASS", "cement and heavy industrial",
+      "Revenue forecasts run about 1.8 times too low for SCEM.",
+      "The method misses this driver in the same direction almost "
+      "every time, not at random. That is a fixable defect rather "
+      "than noise — find what is wired wrong before adding any "
+      "correction factor.",
+      "SCEM walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.561 log (about 1.8 times too low), average miss 0.561, "
+      "wrong in the same direction in 100% of cases, and the sign "
+      "holds across every bootstrap block tested (n=9).",
+      "A later run of the same name where the sign no longer holds "
+      "across bootstrap blocks."),
+
+    L("L-369", "ALL", None,
+      "The finance expense error is the company, not the currency.",
+      "Re-running every forecast with perfect foresight of inflation "
+      "barely improves it. So devaluation is not the explanation, and "
+      "looking for a macro fix would waste the effort.",
+      "SCEM walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Average miss 0.794 as known, 0.794 with perfect foresight of "
+      "inflation — the macro share is only 0.0%.",
+      "A market or period where the same decomposition puts most of "
+      "the error on the macro path."),
 ]
 
 

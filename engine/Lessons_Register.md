@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**287 lessons**, of which 252 bind on every study, 26 on a class of company, and 9 on a single name.
+**290 lessons**, of which 253 bind on every study, 27 on a class of company, and 10 on a single name.
 
-By how they were learned: 53 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
+By how they were learned: 56 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2599,6 +2599,16 @@ The method misses this driver in the same direction almost every time, not at ra
 
 > **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
 
+### L-369 · The finance expense error is the company, not the currency.
+
+Re-running every forecast with perfect foresight of inflation barely improves it. So devaluation is not the explanation, and looking for a macro fix would waste the effort.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, SCEM walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 0.794 as known, 0.794 with perfect foresight of inflation — the macro share is only 0.0%.
+
+> **What would overturn it.** A market or period where the same decomposition puts most of the error on the macro path.
+
 
 ---
 
@@ -2743,6 +2753,16 @@ A company that has been spending a third of what replacing its plant at today's 
 > **What it cost, or how we know.** Sinai Cement's own cash-flow statements average EGP 303.2mn a year of capital spending against a current-cost maintenance requirement of EGP 958.8mn on the disclosed life — 3.2x apart, on a plant whose note 4 shows 59.7 per cent of cost written down, machinery 68.4 per cent, and EGP 379.4mn fully depreciated AND STILL IN USE. Replacement cost is 7.9x the book cost because the plant was built in pre-devaluation pounds. Charging the recent run rate flat while utilisation climbs from 71.0 to 79.1 per cent was worth EGP 5.16 a share, against the value.
 
 > **What would overturn it.** A genuinely young plant, where net book value is a large fraction of cost and the gap between recent spend and replacement maintenance is the ordinary under-spend of an asset not yet needing renewal.
+
+### L-368 · Revenue forecasts run about 1.8 times too low for SCEM.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every cement and heavy industrial  ·  *Learned from:* fundamental walk-forward test, SCEM walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.561 log (about 1.8 times too low), average miss 0.561, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=9).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
 
 
 ## Petrochemical
@@ -3011,6 +3031,19 @@ The company files accounts for a year before it publishes the results release th
 > **What it cost, or how we know.** Units sold stop at FY2023 and new sales at FY2024 while revenue runs to FY2025. Every affected cell records the lag rather than filling it.
 
 > **What would overturn it.** The company publishing a full-year results release for the latest filed year.
+
+
+## SCEM
+
+### L-367 · Cogs wages forecasts run about 27% too low for SCEM.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** SCEM only  ·  *Learned from:* fundamental walk-forward test, SCEM walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.241 log (about 27% too low), average miss 0.241, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=9).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
 
 
 ---
