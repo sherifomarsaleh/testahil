@@ -45,9 +45,19 @@ def _cell(o, h, y, d, setting, p, a):
         rec["scored_on"] = "magnitude"
     if pp > 0 and aa > 0:
         rec["log_error"] = math.log(pp / aa)
+        rec["dropped"] = None
     else:
         rec["sign_case"] = True
         rec["rel_error"] = (p - a) / abs(a) if a else None
+        rec["log_error"] = None
+        rec["dropped"] = "not_projected" if (p is None or a is None) else "non_positive"
+    # `dropped` IS PRESENT ON EVERY ROW, INCLUDING THE SCOREABLE ONES, and that is
+    # the point rather than tidiness. A file whose rows carry the key can EXPRESS a
+    # drop, so a file with none means none occurred; a file where the key appears
+    # only when a drop happens cannot be told apart from one that discards them.
+    # The pooled census read this run and its sibling as UNMEASURABLE for exactly
+    # that reason, on a stated ground that was true of the file and false of the
+    # writer. THE SCHEMA IS THE DECLARATION [R-ENF-06 species].
     return rec
 
 
@@ -103,7 +113,10 @@ def block_bootstrap(rows, key="log_error", seed=42):
     origins = sorted({r["origin"] for r in rows})
     by = defaultdict(list)
     for r in rows:
-        if key in r:
+        # `is not None`, NEVER key-presence: since 07-09-2026 every row carries the
+        # key so the FILE can declare that it records its drops, which means the key
+        # being there says nothing about whether the cell was scored.
+        if r.get(key) is not None:
             by[r["origin"]].append(r[key])
     if len(origins) < 2:
         return {}
@@ -132,7 +145,7 @@ def block_bootstrap(rows, key="log_error", seed=42):
 
 
 def summarise(rows, label):
-    logs = [r["log_error"] for r in rows if "log_error" in r]
+    logs = [r["log_error"] for r in rows if r.get("log_error") is not None]
     signs = [r for r in rows if r.get("sign_case")]
     if not logs:
         return None
@@ -145,7 +158,8 @@ def summarise(rows, label):
               and all(v["ci_lo"] > 0 or v["ci_hi"] < 0 for v in bs.values()))
     by_era = {}
     for name, _, _ in ERAS:
-        e = [r["log_error"] for r in rows if r.get("era") == name and "log_error" in r]
+        e = [r["log_error"] for r in rows
+             if r.get("era") == name and r.get("log_error") is not None]
         if e:
             by_era[name] = {"n": len(e), "bias": sum(e) / len(e)}
     return {"label": label, "n": len(logs), "n_sign_cases": len(signs),
@@ -296,9 +310,10 @@ def canonical(rows, scores):
     def summ(s, rs):
         return {"n": s["n"], "bias": round(s["bias"], 4), "mae": round(s["mae"], 4),
                 "median": round(sorted(r["log_error"] for r in rs
-                                       if "log_error" in r)[len(
-                                           [r for r in rs if "log_error" in r]) // 2], 4)
-                if any("log_error" in r for r in rs) else None,
+                                       if r.get("log_error") is not None)[len(
+                                           [r for r in rs
+                                            if r.get("log_error") is not None]) // 2], 4)
+                if any(r.get("log_error") is not None for r in rs) else None,
                 "over": round(s["share_over"], 3), "boot": boot(rs),
                 "robust_sign": bool(s["robust_sign"])}
 

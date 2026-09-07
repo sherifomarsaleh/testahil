@@ -48,9 +48,14 @@ RUNS = [
       "claims_provision", "other_revenues", "pbt", "income_tax", "npat", "majority"]),
     ("ARCC", "arcc_walkforward", "module",
      ["revenue", "cogs", "gross_profit", "pbt", "tax", "pat", "majority"]),
-    # TMGH and PHDC expose no module-level cells(), so they are read from the
-    # per-cell files their own scoring passes now write. Same data, different
-    # route -- and a route that cannot be taken is REPORTED, never skipped.
+    # TMGH and PHDC are read from the per-cell files their own scoring passes
+    # write, rather than by re-running their builders. THE COMMENT THAT STOOD HERE
+    # SAID THEY "EXPOSE NO MODULE-LEVEL cells()" AND BOTH DO -- checked by calling
+    # PHDC's directly. It was a claim about the code that nobody had tested, in a
+    # comment, which is the defect this repository keeps finding in its own files:
+    # a comment asserting a property the code does not have stops the next reader
+    # looking. The file route is used because it is cheap and, since both writers
+    # declare their drops by schema, sufficient -- not because the other is absent.
     ("TMGH", "tmgh_walkforward", "cells_file",
      ["total_revenue", "dev_revenue", "dev_cost", "gross_profit", "net_profit",
       "finance_cost", "new_sales", "ppe", "da"]),
@@ -66,7 +71,12 @@ def cells_from_file(d, drivers):
     The file records every cell the run built, with log_error null where the log
     score could not take it, so the two counts come straight off it. PHDC nests
     its rows by setting and names its fields differently; both shapes are read as
-    they are rather than renamed."""
+    they are rather than renamed.
+
+    Since 07-09-2026 every writer carries `dropped` on every row, so a file DECLARES
+    whether it records its drops instead of leaving a reader to infer it from an
+    absence -- which is what produced a false unmeasurable on the one run in the
+    book that drops nothing at all."""
     path = os.path.join(ENG, d, "error_cells.json")
     if not os.path.exists(path):
         raise RuntimeError("no per-cell file at %s/error_cells.json" % d)
@@ -79,14 +89,26 @@ def cells_from_file(d, drivers):
         dk, ek, pk, ak = "driver", "log_error", "projected", "actual"
     # A FILE THAT CANNOT EXPRESS A DROP CANNOT ANSWER THIS QUESTION, and reading
     # one anyway returns 100% taken on every driver — a false clean of exactly the
-    # shape this whole file is about. TMGH's and PHDC's writers emit only the cells
-    # their score TOOK, so the count of dropped cells is unrecoverable from them.
-    # Detected rather than assumed: a file that records at least one unscoreable
-    # cell can express a drop; one that records none cannot be told apart from a
-    # run with nothing to drop, so it is REPORTED UNMEASURABLE [R-ENF-04].
-    if not any(r.get(ek) is None for r in rows):
-        raise RuntimeError("this run's per-cell file records only the cells its score "
-                           "TOOK, so the dropped count is unrecoverable from it")
+    # shape this whole file is about.
+    #
+    # THE CAPABILITY IS READ OFF THE SCHEMA, NOT INFERRED FROM THE CONTENT
+    # [corrected 07-09-2026]. The test here was "does any row carry a null error",
+    # which is right in general and cost a real answer: PHDC was reported UNMEASURABLE
+    # on the stated ground that its writer "emits only the cells its score TOOK",
+    # and that ground was FALSE — measured by running the writer, it returns 403 rows,
+    # 403 scoreable, ZERO sign cases, and it has always emitted an unscoreable cell
+    # when one occurs. The file recorded no drop BECAUSE THE RUN DROPS NOTHING, and
+    # an absence cannot be disambiguated by inspecting it harder. A FALSE
+    # UNMEASURABLE IS AN ABSENT ANSWER WEARING THE COSTUME OF A CAREFUL ONE.
+    #
+    # Both writers now carry `dropped` on EVERY row, including the scoreable ones,
+    # so the KEY's presence is the declaration and its value is the fact — the
+    # [R-ENF-06] shape applied to a per-cell dump. A file whose rows carry the key
+    # can express a drop; one whose rows do not still cannot, and is still refused.
+    if not any("dropped" in r for r in rows) and not any(r.get(ek) is None for r in rows):
+        raise RuntimeError("this run's per-cell file neither records a dropped cell nor "
+                           "declares that it would — the dropped count is unrecoverable "
+                           "from it")
     # A 100% row from THIS route means "no cell was dropped among the cells this
     # file records", which is a weaker statement than the module route's. It is
     # true where the run's own scorer handles signs before scoring — TMGH's does,

@@ -331,5 +331,86 @@
   "bias_all": 0.06547428760479486,
   "bias_taken": 0.06547428760479486,
   "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "is.revenue",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": 0.24659331559094286,
+  "bias_taken": 0.24659331559094286,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "is.cogs",
+  "cells": 40,
+  "taken": 40,
+  "bias_all": -0.10026799675183706,
+  "bias_taken": -0.10026799675183706,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "is.gross_profit",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": 0.8896757253430767,
+  "bias_taken": 0.8896757253430767,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "is.sga",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": 0.02058510285028284,
+  "bias_taken": 0.02058510285028284,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "is.finance_cost",
+  "cells": 32,
+  "taken": 32,
+  "bias_all": -0.5889918419041024,
+  "bias_taken": -0.5889918419041024,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "is.npbt",
+  "cells": 31,
+  "taken": 31,
+  "bias_all": 2.344783557027392,
+  "bias_taken": 2.344783557027392,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "is.npat_mi",
+  "cells": 31,
+  "taken": 31,
+  "bias_all": 2.322992817761209,
+  "bias_taken": 2.322992817761209,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "new_sales",
+  "cells": 35,
+  "taken": 35,
+  "bias_all": -0.1967030345544836,
+  "bias_taken": -0.1967030345544836,
+  "factor": 1.0
+ },
+ {
+  "name": "PHDC",
+  "driver": "units_delivered",
+  "cells": 30,
+  "taken": 30,
+  "bias_all": 0.488154816983004,
+  "bias_taken": 0.488154816983004,
+  "factor": 1.0
  }
 ]

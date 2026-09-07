@@ -1818,3 +1818,42 @@ wrong, because the defect was in an operation neither half performs. The
 instrument's finer reading, that one side reproduced perfectly and the other did
 not, is what pointed at the join rather than at either end; **a measurement that
 splits its own result is worth more than one that reports a verdict.**
+
+### The false unmeasurable closed: the schema is the declaration
+
+`scoring_blindspot` reported PHDC NOT MEASURED because its per-cell file records
+no dropped cell, on the stated ground that its writer *"emits only the cells its
+score TOOK"*. **Measured by running the writer: 403 rows, 403 scoreable, zero sign
+cases — and it has always emitted an unscoreable cell when one occurs.** The file
+recorded no drop because **the run drops nothing.** A false unmeasurable is an
+absent answer wearing the costume of a careful one.
+
+The detection rule — *a file with no null error cannot be told apart from a run
+with nothing to drop* — is right in general, and **an absence cannot be
+disambiguated by inspecting it harder.** So the writers now declare instead: TMGH
+and PHDC carry `dropped` on **every** row, including the scoreable ones, so the
+key's presence is the declaration and its value is the fact. That is [R-ENF-06]'s
+shape applied to a per-cell dump, and it needs no new metadata field.
+
+**Adding the key broke seven filters that tested key-presence**, which is exactly
+why the two writers had differed in the first place — `"log_error" in r` was doing
+the work `is not None` should have done, in `summarise`, the era split, the median,
+the skill pairing and the block bootstrap. All seven re-pointed; **both runs'
+`scores.json` came back byte-identical**, which is the only thing that makes the
+change safe to keep.
+
+PHDC now measures at 9 drivers, all 100% taken, and the census reads **13 of 46**
+drivers losing cells rather than 13 of 37 — the same finding on a population that
+is now complete rather than quietly nine drivers short.
+
+Also corrected in the same pass: the adapter's comment claiming *"TMGH and PHDC
+expose no module-level `cells()`"*. **Both do** — I called PHDC's directly. It was
+a claim about the code that nobody had tested, sitting in a comment, which is the
+defect this repository keeps finding in its own files and which [R-ENF-07] names:
+a comment asserting a property the code does not have stops the next reader looking.
+
+THE GENERAL LESSON: **A CONSERVATIVE RULE STILL HAS TO BE RIGHT ABOUT WHAT IT IS
+BEING CONSERVATIVE ABOUT.** Refusing to answer where the evidence is ambiguous is
+correct, and the reason attached to the refusal was false — so a reader was told
+something about PHDC's writer that would have survived review, discouraged the one
+check that resolves it, and left a run permanently unreadable for no reason.
