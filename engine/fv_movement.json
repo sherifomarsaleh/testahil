@@ -675,7 +675,40 @@
     "unrecoverable": null
    },
    "ccy": "EGP",
-   "editions": [],
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": null,
+      "bear": 32.99747064299512,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 32.99747064299512
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 49.6788791915817
+       }
+      ],
+      "full": 49.6788791915817
+     },
+     "lessons": [],
+     "origins": "2019-2024",
+     "scope": "light",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -43.1,
+      "full": -32.0
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -43.1,
+      "full": -32.0
+     }
+    }
+   ],
    "exchange": "EGX",
    "market": "EG",
    "ticker": "PHAR",
