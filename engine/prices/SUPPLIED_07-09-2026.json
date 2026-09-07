@@ -1,9 +1,9 @@
 {
- "_": "Price supplied by the principal in conversation on 7 September 2026 and written here because a figure that arrives in a conversation binds nothing: the container is rebuilt from the repository and a session that cannot see it will ask again [R-IND-01]. ONE NAME, not a book-wide file \u2014 this is the price the ADNOCLS rebuild is struck against under [R-GAP-01 AMENDED], supplied in answer to the standing instruction that a study asks for the latest share price and date before it starts. It does not supersede the 03-09-2026 file for any other name.",
+ "_": "Price supplied by the principal in conversation on 7 September 2026 and written here because a figure that arrives in a conversation binds nothing: the container is rebuilt from the repository and a session that cannot see it will ask again [R-IND-01]. TWO NAMES, not a book-wide file — this is the price the ADNOCLS rebuild is struck against under [R-GAP-01 AMENDED], supplied in answer to the standing instruction that a study asks for the latest share price and date before it starts. It does not supersede the 03-09-2026 file for any other name.",
  "supplied": "2026-09-07",
  "by": "the principal",
- "source_file": "supplied in conversation \u2014 no file",
- "count": 1,
+ "source_file": "supplied in conversation — no file",
+ "count": 2,
  "prices": {
   "ADNOCLS": {
    "exchange": "ADX",
@@ -12,6 +12,14 @@
    "price": 6.8,
    "date": "2026-09-07",
    "note": "stated as the close at end of day 7 September 2026"
+  },
+  "GBCO": {
+   "exchange": "EGX",
+   "currency": "EGP",
+   "company": "GB Corp (Ghabbour)",
+   "price": 29.51,
+   "date": "2026-08-23",
+   "note": "supplied by the principal as THE LATEST PRICE RECORDED ON THE LIVE SITE for GBCO, read off testahil.com/GBCO/study/ on 7 September 2026, where it is printed as 'close 23 Aug 2026'. IT DOES NOT SUPERSEDE THE REPOSITORY'S OWN FIGURE and it is not meant to: the 03-09-2026 supplied file carries EGP 28.98 at 2026-09-03, eleven days LATER, and gap_today merges every supplied file on each price's OWN date, so the newer one still governs the strike. It is written here because it is a dated fact the principal supplied and because it measures something no other figure in this repository does — the PAGE is eleven days behind the repository, which is [R-GAP-03]'s subject read from the reader's side."
   }
  }
 }

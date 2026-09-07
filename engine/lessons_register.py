@@ -148,6 +148,33 @@ CLASSES = (
     # exclude it: a contractor's reported earnings are an accident of
     # completion timing, so normalising them normalises noise.
     "diversified industrial with a contracting arm",
+    # GB Corp assembles and distributes vehicles AND owns a regulated non-bank lender
+    # that funds the customers who buy them, AND holds a large minority stake in an
+    # unlisted fintech. That is not the contracting row above: those legs differ by
+    # CONTRACT STRUCTURE inside one manufacturing business, and both are valued by
+    # discounting cash flows. Here the legs differ by WHAT A VALUATION OF THEM EVEN IS.
+    # An assembler is worth the present value of volumes times prices less a cost stack.
+    # A lender is worth its own equity times what it earns on that equity against what
+    # that equity costs — a residual-income question, which is why the register carries a
+    # separate "bank" row at all. And a minority stake in a private company is worth what
+    # the last observed transaction in it says, which is not a forecast of anything.
+    #
+    # WHAT MAKES IT A CLASS RATHER THAN AN INDUSTRY, which is the test [R-LENS-03]
+    # applies: three different lenses carry the weight and NO EXISTING ROW ADMITS THEM
+    # TOGETHER. "holding company" stores the right SHAPE — sum of the parts primary — and
+    # forbids the cash-flow lens the operating leg requires, because a holding company IS
+    # its stakes and does not run a factory. "bank" stores residual income and makes a
+    # dividend discount the primary, which values the lender and says nothing about the
+    # assembler. This is the case L-337's own falsifier named: a blocked name needing a
+    # LENS the registry does not hold, rather than a subject filed under the wrong name.
+    #
+    # NORMALISED EARNINGS POWER IS EXCLUDED, on the developer and contractor rows'
+    # reasoning and with this issuer's own numbers behind it: the group's reported
+    # earnings carry "Investment Gains from Associates" that ran 451.6, 294.6 and 131.6
+    # across three consecutive quarters, and a revaluation on deconsolidating an associate
+    # that the company itself strips out of its own return measure. Normalising earnings
+    # that swing on associate marks normalises noise.
+    "automotive assembler and distributor with a captive lender",
 )
 
 

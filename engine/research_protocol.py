@@ -1034,6 +1034,26 @@ LENS_REGISTRY = {
     # completion timing, so normalising them normalises noise.
     "diversified industrial with a contracting arm":
         ("dcf", ("ev_ebitda_own_history", "relative_multiple", "sotp", "book_value")),
+    # THE PRIMARY IS THE SUM OF THE PARTS AND THE CASH-FLOW LENS IS ONE OF THE PARTS.
+    # That is not a contradiction and it is what `sotp` has always meant here -- "each
+    # part on its own present-value lens", per LENS_KINDS. A group DCF is structurally
+    # incapable of being the primary on this class: the largest single component of GB
+    # Corp's value is a 41.61% stake in an unlisted company it does not consolidate, so a
+    # discounted cash flow of the reporting entity cannot see it at all, whatever drivers
+    # it is given. A lens that cannot reach the asset cannot be the answer.
+    #
+    # RESIDUAL INCOME IS HERE AND IT IS THE POINT. A captive lender is not valued by
+    # discounting a margin off revenue; it is worth its own equity scaled by what it earns
+    # on that equity against what that equity costs, which is the "bank" row's lens
+    # arriving as a PART rather than as a whole. Carrying it at book times one is the
+    # weighting of book value this rule forbids outright, wearing a leg's clothes.
+    #
+    # BOOK VALUE remains a DISCLOSED FLOOR, never weighted; the relative multiple is here
+    # on the ordinary terms. NORMALISED EARNINGS is deliberately absent -- see the class's
+    # own note in lessons_register.CLASSES, where the associate marks that make this
+    # issuer's reported earnings unnormalisable are quoted from its own releases.
+    "automotive assembler and distributor with a captive lender":
+        ("sotp", ("dcf", "residual_income", "relative_multiple", "book_value")),
 }
 
 # RNAV may be a class PRIMARY only where the disclosure supports it. Where land
@@ -1236,11 +1256,38 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
             # appearing at all -- a source that says "never the current price" is
             # doing the right thing, and a check that cannot tell the difference
             # is one people learn to write around
-            circular = any(t in src for t in (
-                "from the current price", "from the price", "from spot",
-                "implied by the current price", "implied by the price",
-                "at the current price", "the multiple the shares trade at",
-                "today's multiple", "the market's own multiple"))
+            # ---- THE CLAUSE'S OWN COMMENT PROMISED A NEGATION IT DID NOT IMPLEMENT
+            # [RE-POINTED 07-09-2026, on a study whose source note was correct].
+            # The comment above says a source that says "never the current price" is
+            # doing the right thing and that a check which cannot tell the difference
+            # is one people learn to write around. IT COULD NOT TELL THE DIFFERENCE:
+            # a plain substring test fired on the sentence "never a multiple from the
+            # current price", which is a study DISCLAIMING the construction, and the
+            # only ways past it were to reword an honest note or to delete it. Per
+            # [R-COC-01] the check is RE-POINTED rather than widened or switched off:
+            # a hit is circular only if no negator sits immediately before it.
+            #
+            # THE WINDOW IS SHORT AND THAT IS THE WHOLE SAFEGUARD. A negator anywhere
+            # in a long source field would let "the multiple is the traded one; this
+            # is not a peer set" read as clean, so the negator must sit within the
+            # 24 characters before the phrase -- the span an ordinary "never a
+            # multiple " or "rather than one taken " occupies -- and the arithmetic
+            # clause below is unchanged and remains the binding test either way.
+            _NEG = ("never", "not ", "rather than", "no ", "avoid")
+            circular = False
+            for t in ("from the current price", "from the price", "from spot",
+                      "implied by the current price", "implied by the price",
+                      "at the current price", "the multiple the shares trade at",
+                      "today's multiple", "the market's own multiple"):
+                j = src.find(t)
+                while j >= 0:
+                    lead = src[max(0, j - 24):j]
+                    if not any(n in lead for n in _NEG):
+                        circular = True
+                        break
+                    j = src.find(t, j + 1)
+                if circular:
+                    break
             if not src:
                 fails.append("the relative multiple names no source for its multiple")
             elif circular:

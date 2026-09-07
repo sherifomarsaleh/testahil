@@ -317,10 +317,72 @@ ev_auto = pv_sum + pv_tv
 auto_nd = 20943.0 + 1790.1 + 1333.3 + 2.3 - 9445.0
 auto_nci = 590.7        # GB Auto segment "Total NCI", 2Q26 release Table 12, 30-Jun-2026
 auto_eq = ev_auto - auto_nd - auto_nci
-# GB Capital operating leg
-cap_book = 9500.0   # adjusted operating equity, from company's adjusted-ROAE basis
-cap_mult = 1.0
-cap_val = cap_book * cap_mult
+# ---- GB CAPITAL: A LENDER IS WORTH ITS OWN EQUITY TIMES WHAT IT EARNS ON IT --------
+# THE DELIVERED EDITION CARRIED `cap_book = 9500.0` WITH THE COMMENT "adjusted operating
+# equity, from company's adjusted-ROAE basis", TIMES A MULTIPLE OF 1.0. Two defects sat
+# in those two lines and neither was visible to any gate.
+#
+# (i) BOOK TIMES ONE IS THE WEIGHTING OF BOOK VALUE [R-LENS-03] FORBIDS OUTRIGHT. Book is
+#     a disclosed FLOOR, published as such and never weighted into a central; a leg
+#     carried at 1.0x book is book value carrying the entire weight of that leg, wearing
+#     a sum-of-the-parts entry's clothes.
+# (ii) THE ASSOCIATE WAS IN THE ANSWER TWICE. GB Corp's own adjusted ROAE is struck on a
+#     denominator of roughly EGP 9.0bn -- FY25 net profit after tax and NCI of 1,365.9
+#     over 15.1% gives 9,045.7 -- and its NUMERATOR includes EGP 986.4mn of investment
+#     gains from associates (4Q25 release Table 13). Importing that denominator as a
+#     valuation base therefore imports a base justified by earnings the sum of the parts
+#     then counts AGAIN at the June-2026 round price. That is [R-BRIDGE-01] defect (iii),
+#     the cash charged twice, in a lender's costume.
+#
+# THE CLEAN BASE IS AN IDENTITY OFF TWO DISCLOSED FIGURES, so nothing here is chosen:
+# the segment's own shareholders' equity before NCI, LESS the associates carried inside
+# it. Both are GB Corp's own numbers as at 30 June 2026 and both foot.
+CAPITAL_SEG_EQUITY = 22497.8      # 2Q26 earnings release Table 12, segmented balance
+                                  # sheet, "Total Shareholders' Equity Before NCI",
+                                  # GB Capital column, 30-Jun-2026
+ASSOC_CARRYING     = 16230.465    # reviewed consolidated interim statement of financial
+                                  # position, 30-Jun-2026, "Investment in associates
+                                  # (34)" = 16 230 465 thousand. READ BY OCR OFF THE
+                                  # RENDERED PIXELS: the filing carries a 51-character
+                                  # text layer across 51 pages, so pdftotext yields
+                                  # nothing and the route is recorded here on the same
+                                  # footing as the four-field rule. Note 34 foots to it:
+                                  # opening 13,272,208 + restatement 2,460,218 =
+                                  # 15,732,426, which is the balance sheet's own
+                                  # comparative column to the pound.
+cap_operating_equity = CAPITAL_SEG_EQUITY - ASSOC_CARRYING
+# The earnings that base actually produces, with the associate income taken out of the
+# numerator as well as the denominator -- equity-accounted associate income is booked net
+# of tax and outside NCI, so the subtraction is clean.
+CAP_FY25_NP_AFTER_NCI = 1365.9    # 4Q25 release Table 13
+CAP_FY25_ASSOC        = 986.4     # same table, "Investment Gains from Associates"
+CAP_FY25_EQ_BEFORE_NCI = 18312.6  # 4Q25 release Table 12, GB Capital column
+ASSOC_CARRYING_DEC25   = 15732.426  # reviewed BS 30-Jun-2026, comparative column
+CAP_H126_NP_AFTER_NCI = 649.6     # 2Q26 release Table 13
+CAP_H126_ASSOC        = 426.2     # same table
+cap_fy25_ex_assoc = CAP_FY25_NP_AFTER_NCI - CAP_FY25_ASSOC
+cap_h126_ex_assoc = CAP_H126_NP_AFTER_NCI - CAP_H126_ASSOC
+cap_eq_dec25      = CAP_FY25_EQ_BEFORE_NCI - ASSOC_CARRYING_DEC25
+cap_roe_fy25 = cap_fy25_ex_assoc / cap_eq_dec25
+cap_roe_h126 = (cap_h126_ex_assoc * 2) / ((cap_eq_dec25 + cap_operating_equity) / 2)
+# THE JUSTIFIED PRICE-TO-BOOK IS THE RESIDUAL-INCOME IDENTITY IN ITS TERMINAL FORM,
+# (ROE - g) / (Ke - g), and every input in it comes from somewhere else in this study:
+# the terminal cost of equity from the sanctioned cost-of-capital schedule, the growth
+# from the house macro path [R-MACRO-01]. THE TERMINAL Ke IS THE GENEROUS END and it is
+# used deliberately: the explicit-window Ke of 27.97% would put this leg at a fraction of
+# the figure below, and where a correction cuts a number the charitable reading is the
+# one to take.
+def cap_justified_pb(roe):
+    return (roe - TG) / (
+        _sch.ke_terminal - TG)
+# [R-ANCHOR-01]'s discipline: A NEAR-TERM REVIEWED ACTUAL OUTRANKS A STALE FULL-YEAR RATE.
+# The 1H26 reviewed period is the anchor; FY25 is published beside it as the other framing
+# of a contested judgement worth more than 5% of the answer [R-ENF-05].
+cap_roe_adopted = cap_roe_h126
+cap_pb = cap_justified_pb(cap_roe_adopted)
+cap_val = cap_operating_equity * cap_pb
+cap_val_fy25_framing = cap_operating_equity * cap_justified_pb(cap_roe_fy25)
+cap_book = cap_operating_equity   # the DISCLOSED FLOOR, published as such, never weighted
 # Associates (MNT-Halan + Bedaya + Kaf)
 # CONFIRMED per GB Corp's own press release, 9 June 2026 ("MNT-Halan, a GB Corp Investee Company, Closes Capital
 # Increase Round Led by Al Ahly Capital Holding"): "As a result of the completion of this transaction, GB Corp's
@@ -368,36 +430,132 @@ mnt_halan_stake_prior = 0.4258
 mnt_halan_round_usd = 1400.0
 egp_usd = 47.5
 mnt_halan_value = mnt_halan_stake * mnt_halan_round_usd * egp_usd
-other_assoc = 390.0  # Bedaya + Kaf residual carrying value, unchanged
-assoc = mnt_halan_value + other_assoc
-sotp_sum = auto_eq + cap_val + assoc
-disc = 0.10
-sotp_eq = sotp_sum * (1 - disc)
-sotp_ps = sotp_eq / SH
-prediscount_ps = sotp_sum / SH
-# Relative lens
-np26 = 3300.0   # FY26E group NP (Auto ~1.65 + Capital ~1.65)
+# THE REVIEWED STATEMENTS STATE A DIFFERENT PERCENTAGE FOR THE SAME TRANSACTION AND THE
+# STUDY REGISTERED ONLY ONE OF THEM. Note 34 to the 30-June-2026 reviewed consolidated
+# statements says of the same June-2026 Al Ahly Capital transaction that "GB Corp's
+# ownership stake in MNT BV will be decreased to 42.93%, instead of 44.01% before the
+# transaction", and the review report names the same 42.93%. The press release names
+# 41.61% from 42.58%. Both are the company's own disclosures about one transaction and
+# they are not the same pair, which is most likely a difference of LEVEL -- the Dutch
+# holding vehicle MNT Investment B.V. against the operating group MNT-Halan the release
+# names. THE LOWER FIGURE IS ADOPTED because it is the one the round it is applied to was
+# announced with, and the higher is recorded rather than left out: a study that registers
+# one of two disclosed figures for the same fact has decided something silently.
+mnt_stake_statements = 0.4293
+mnt_stake_statements_prior = 0.4401
+# Other associates by IDENTITY off the note's own total rather than by summing its rows:
+# the total (16,230,465) and the MNT row (15,733,523) each foot -- restated 15,315,532 +
+# 8,006 of other comprehensive income + 409,985 of period profit -- while the three
+# smaller rows carry a ten-thousand OCR ambiguity in one cell, so the residual is the
+# figure that can be reproduced.
+MNT_CARRYING = 15733.523
+other_assoc = ASSOC_CARRYING - MNT_CARRYING
+# ---- THE CONTESTED JUDGEMENT, COMPUTED BOTH WAYS AND NEVER AVERAGED ------------------
+# Depth-bar standard 8 requires the study's single most consequential contested judgement
+# to be published side by side rather than blended into one number, and this is that
+# judgement: on one basis the stake is worth EGP 27.7bn, on the other EGP 15.7bn, and the
+# difference is 27% of the answer. NEITHER BASIS IS THIS DESK'S INVENTION.
+#
+# A -- THE ROUND PRICE. 41.61% of the June-2026 primary round's stated USD 1.4bn.
+#      Against it: a primary round's headline valuation prices NEW preferred money with
+#      whatever preferences ride with it, and GB Corp holds an ordinary equity-accounted
+#      minority in an unlisted company. It is a mark, not a realisable price.
+# B -- THE REVIEWED CARRYING VALUE, EGP 15,733.5mn at 30 June 2026. Against it: it is an
+#      ACCOUNTING measure -- cost plus accumulated share of profit plus the revaluation on
+#      deconsolidation -- and [R-LENS-03] is explicit that book is a floor rather than a
+#      value. AND IT IS ITSELF QUALIFIED: KPMG's limited review conclusion on these
+#      statements is QUALIFIED precisely here, because they "were not provided with the
+#      consolidated financial statements for one of the associate companies (MNT - BV)"
+#      and were "unable to verify the accuracy of the Group's share of profits from this
+#      investment", EGP 409.9mn recorded in the period, the same qualification having
+#      stood on the 31-December-2025 audited statements.
+#
+# THE HOUSE CANNOT SAY WHICH IS RIGHT, SO IT PUBLISHES BOTH AND SAYS SO. Averaging them
+# would be the blend [R-LENS-03] retired, arriving through a different door.
+assoc_round    = mnt_halan_value + other_assoc     # branch A
+assoc_carrying = ASSOC_CARRYING                    # branch B
+assoc = assoc_round        # retained for the cross-checks that read one number
+# ---- NO CONGLOMERATE DISCOUNT, AND THE REASON IS NOT THAT IT IS SMALL ---------------
+# The delivered edition applied a typed 10%, and then weighted the discounted and the
+# UNDISCOUNTED sum at 0.40 and 0.15 -- which is an effective discount of 4%, not 10%, so
+# the number the study named was not the number it applied. Both are free parameters that
+# have never cleared an out-of-sample test, which the PROMOTION RULE forbids, and nothing
+# in GB Corp's filings discloses a basis for either. What the discount was standing in
+# for is now named instead: the uncertainty is IN THE ASSOCIATE MARK and it is published
+# as two branches rather than smuggled into one number as a haircut.
+sotp_A = auto_eq + cap_val + assoc_round
+sotp_B = auto_eq + cap_val + assoc_carrying
+sotp_A_ps = sotp_A / SH
+sotp_B_ps = sotp_B / SH
+sotp_sum = sotp_A                 # the branch the cross-check machinery reads
+disc = 0.0
+sotp_eq = sotp_A
+sotp_ps = sotp_A_ps
+prediscount_ps = sotp_A_ps
+# ---- THE RELATIVE MULTIPLE, NON-CIRCULAR AND OFF THE COMPANY'S OWN HISTORY ----------
+# The delivered edition typed `np26 = 3300.0` with the comment "FY26E group NP" while the
+# model's own consolidated forecast computes 3,297.5 four hundred lines above -- a hand
+# rounded copy of a figure the model already had, which is exactly the typed financial
+# numeral depth-bar standard 3 forbids in a builder. It is read from the forecast now.
+np26 = GROUP[0]['net_profit']
 eps26 = np26 / SH
-REL_PE = dict(bear=8.0, base=9.5, bull=11.0)
-rel = {k: eps26 * v for k, v in REL_PE.items()}
-# Normalized earnings
-NORM_PAT = dict(bear=3600.0, base=4200.0, bull=4800.0)
-NORM_PE = dict(bear=7.5, base=8.5, bull=9.5)
-norm_pat = NORM_PAT['base']
-norm = {k: (NORM_PAT[k] / SH) * NORM_PE[k] for k in NORM_PAT}
+# The multiple was three typed judgement figures (8.0 / 9.5 / 11.0) sourced to nothing.
+# [R-LENS-03] requires a relative multiple to be NON-CIRCULAR -- forward earnings times a
+# multiple from peers or from the company's OWN HISTORY, never one read off the current
+# price. GB Corp's own trailing multiple at its last three year-end closes, from its own
+# reported net profit attributable and its own share price:
+REL_HIST = {2023: (7.90, 1890.8), 2024: (17.13, 2928.1), 2025: (27.00, 2880.0)}
+_rel_pes = sorted(px / (npv / SH) for px, npv in REL_HIST.values())
+REL_PE_OWN = _rel_pes[len(_rel_pes) // 2]      # the median of three, and the COUNT is
+                                               # published with it, because a percentage
+                                               # without its count is the number that
+                                               # misleads and so is a median of three
+rel_ps = eps26 * REL_PE_OWN
+rel = dict(bear=rel_ps, base=rel_ps, bull=rel_ps)
+# THE TRADED MULTIPLE, COMMITTED SO THE CIRCULARITY CLAIM IS ARITHMETIC RATHER THAN PROSE
+# [R-LENS-03]: a lens whose multiple IS the traded one values the company at what it
+# already trades at, and a sentence saying otherwise is an attestation.
+rel_traded_pe = (spot * SH + 0.0) / np26
+# ---- NORMALISED EARNINGS POWER IS REMOVED, NOT RE-SOURCED ---------------------------
+# It carried a quarter of the retired blend on six typed figures -- three mid-cycle profit
+# levels and three through-cycle multiples, none of them sourced to anything. It is absent
+# from this class's row in LENS_REGISTRY on the developer and contractor rows' reasoning
+# and with this issuer's own numbers behind it: group earnings carry investment gains from
+# associates that ran 451.6, 294.6 and 131.6 across three consecutive quarters plus a
+# revaluation on deconsolidating an associate that the company itself strips out of its
+# own return measure. Normalising earnings that swing on associate marks normalises noise.
+norm_pat = None
+norm = None
 # THE LENS INPUTS ARE COMMITTED, NOT LEFT INSIDE THIS SCRIPT. Depth-bar standard 3
 # forbids a financial numeral typed into a builder, and the delivered document printed
 # every one of these by hand because the numbers file did not carry them. A figure a
 # document prints must be READ from the record it claims to come from.
 LENS_INPUTS = dict(
-    relative=dict(np_fy26e=np26, eps_fy26e=eps26, pe=REL_PE,
-                  basis=("FY2026E group net profit attributable, the model's own forecast "
-                         "build; the multiple is the judged range for an emerging-market "
-                         "auto distributor blended with a mid-teens-return lender")),
-    normalized=dict(pat=NORM_PAT, pe=NORM_PE,
-                    eps=dict((k, NORM_PAT[k] / SH) for k in NORM_PAT),
-                    basis=("mid-cycle group profit after tax, blending a recovering volume "
-                           "path with post-windfall margins, on a through-cycle multiple")))
+    relative=dict(np_fy26e=np26, eps_fy26e=eps26, pe=REL_PE_OWN,
+                  observations=len(REL_HIST), history=REL_HIST,
+                  pe_observed=sorted(_rel_pes), traded_pe=rel_traded_pe,
+                  basis=("FY2026E group net profit attributable, READ from this model's "
+                         "own consolidated forecast rather than typed; the multiple is "
+                         "the MEDIAN of GB Corp's own trailing price-to-earnings at its "
+                         "last three year-end closes, computed from its own reported net "
+                         "profit attributable and its own share price. Never a multiple "
+                         "read off the current price: the traded multiple on the same "
+                         "forward earnings is committed beside it so the claim can be "
+                         "divided rather than believed. THREE OBSERVATIONS IS THIN and "
+                         "the count is published with the median for that reason.")),
+    capital=dict(segment_equity_before_nci=CAPITAL_SEG_EQUITY,
+                 associates_carried_within=ASSOC_CARRYING,
+                 operating_equity=cap_operating_equity,
+                 roe_h126=cap_roe_h126, roe_fy25=cap_roe_fy25,
+                 roe_adopted=cap_roe_adopted, justified_pb=cap_pb,
+                 ke_terminal=_sch.ke_terminal, g=TG,
+                 value=cap_val, value_fy25_framing=cap_val_fy25_framing,
+                 basis=("residual income in its terminal form, (ROE - g) / (Ke - g), on "
+                        "the segment's own shareholders' equity before NCI LESS the "
+                        "associates carried inside it -- so the stake the sum of the "
+                        "parts adds back at its own mark is not also funding this leg. "
+                        "The return is measured on that same base with associate income "
+                        "taken out of the numerator too.")))
 # SOTP bear/bull (auto margin/multiple + discount + marks)
 def sotp_case(gpm_shift, wacc, tg, cap_m, assoc_m, d):
     rws = []
@@ -428,13 +586,35 @@ sotp_bull = sotp_case(+0.010, WACC-0.015, TG_BULL, 1.25, 1.20, 0.04)
 dcf_lens = dict(bear=sotp_case(-0.012, WACC+0.020, TG_BEAR, 0.80, 0.80, 0.0),
                 base=prediscount_ps,
                 bull=sotp_case(+0.010, WACC-0.015, TG_BULL, 1.25, 1.20, 0.0))
-weights = dict(sotp=0.40, prediscount=0.15, relative=0.20, normalized=0.25)
-central = (weights['sotp']*sotp_ps + weights['prediscount']*prediscount_ps
-           + weights['relative']*rel['base'] + weights['normalized']*norm['base'])
-central_bear = (weights['sotp']*sotp_bear + weights['prediscount']*dcf_lens['bear']
-                + weights['relative']*rel['bear'] + weights['normalized']*norm['bear'])
-central_bull = (weights['sotp']*sotp_bull + weights['prediscount']*dcf_lens['bull']
-                + weights['relative']*rel['bull'] + weights['normalized']*norm['bull'])
+# ---- ONE CLASS PRIMARY IS THE CENTRAL, AND HERE IT HAS TWO SIDES [R-LENS-03] --------
+# The delivered edition published a weighted blend of four lenses at typed weights. That
+# construction is RETIRED: a number produced by averaging several methods is a new method
+# with free parameters nobody tested, wearing the appearance of caution. The class primary
+# is the sum of the parts, and it is the answer.
+#
+# It has no single value, because the study's largest component depends on a judgement the
+# house cannot resolve from the filings. So there is NO CENTRAL -- that is what makes an
+# answer two-sided -- and the two branches are published side by side.
+weights = None
+central = None
+BRANCHES = [
+    dict(label="MNT-Halan at its reviewed carrying value",
+         value=sotp_B_ps,
+         note=("EGP 15,733.5mn, the equity-accounted carrying value in GB Corp's own "
+               "reviewed statements at 30 June 2026. The conservative branch, and itself "
+               "the subject of the review's qualified conclusion.")),
+    dict(label="MNT-Halan at the June-2026 round price",
+         value=sotp_A_ps,
+         note=("41.61% of the USD 1.4bn primary round completed with Al Ahly Capital "
+               "Holding, translated at EGP 47.5. The market-mark branch.")),
+]
+# THE ENVELOPE IS THE RANGE OF THE PRESENT-VALUE READS ON ONE CLOCK, which is [R-LENS-03]
+# in its own words -- never an average and never a spread invented around a central. The
+# reads are the two branches of the primary and the relative multiple; book value is a
+# disclosed floor and is not in it.
+_pv_reads = [sotp_B_ps, sotp_A_ps, rel_ps]
+central_bear = min(_pv_reads)
+central_bull = max(_pv_reads)
 # SOTP sensitivity grid: Auto EBITDA-margin proxy shift × complexity discount
 grid_margin = [-0.02, -0.01, 0.0, 0.01, 0.02]
 grid_disc = [0.0, 0.05, 0.10, 0.15, 0.20]
@@ -470,7 +650,99 @@ exp3 = dict(base=_exp3(EXP3['ev_mult'], EXP3['assoc_mult']),
             equity_at_base=ce*EXP3['ev_mult'] - auto_nd - auto_nci)
 exp3['mark_lever'] = exp3['rng'][0] - exp3['base']
 exp3['roce_lever'] = exp3['rng'][1] - exp3['base']
-exp2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
+# EXPERT 2 IS RE-POINTED RATHER THAN DELETED. His read was the normalised-earnings lens,
+# which this class's row in LENS_REGISTRY does not carry and which this rebuild removed --
+# so leaving him would publish an expert working on a lens the study no longer holds.
+# The method he moves to is genuinely different from the other two and needs no figure
+# this desk chose: RESIDUAL INCOME ON THE WHOLE GROUP, book plus what the group's own
+# reported return on its own reported equity supports.
+#
+# It is the harshest read in the study and it is kept for that reason: on GB Corp's FY2025
+# reported net profit attributable over its FY2025 shareholders' equity before NCI the
+# group earns 10.00% against a terminal cost of equity of 18.73%, so the accounts alone
+# justify roughly a quarter of book. Both of his inputs are contaminated in KNOWN
+# directions -- the earnings carry the associate marks and the equity carries the
+# revaluation on deconsolidation -- and he says so; what survives is the claim that the
+# whole investment case rests on the associate being worth more than the accounts say.
+GRP_EQ_BEFORE_NCI_DEC25 = 28788.7    # 4Q25 release Table 12, GB Corp column
+GRP_EQ_BEFORE_NCI_JUN26 = 33454.3    # 2Q26 release Table 12, GB Corp column
+grp_roe_fy25 = HISTORY['income_statement']['2025']['net_profit'] / GRP_EQ_BEFORE_NCI_DEC25
+_exp2_pb = (grp_roe_fy25 - TG) / (_sch.ke_terminal - TG)
+exp2 = dict(base=GRP_EQ_BEFORE_NCI_JUN26 * _exp2_pb / SH,
+            rng=(GRP_EQ_BEFORE_NCI_JUN26 * ((grp_roe_fy25 - 0.01) - TG)
+                 / (_sch.ke_terminal - TG) / SH,
+                 GRP_EQ_BEFORE_NCI_JUN26 * ((grp_roe_fy25 + 0.02) - TG)
+                 / (_sch.ke_terminal - TG) / SH),
+            roe=grp_roe_fy25, pb=_exp2_pb, book=GRP_EQ_BEFORE_NCI_JUN26,
+            book_ps=GRP_EQ_BEFORE_NCI_JUN26 / SH)
+
+# ---- THE LENS ARCHITECTURE, RECORDED AND ASSERTED IN THE STUDY'S OWN CODE ------------
+# [R-ENF-02]: a study calls the gates itself and a job outside the study verifies it.
+_LENS_RECORD = dict(
+    _rule="[R-LENS-03] one class primary IS the central; the other lenses are cross-checks",
+    **{"class": "automotive assembler and distributor with a captive lender"},
+    primary=dict(
+        kind="sotp",
+        two_sided=True,
+        branches=[dict(label=b['label'], value=b['value'], note=b['note'])
+                  for b in BRANCHES],
+        range=dict(low=min(b['value'] for b in BRANCHES),
+                   high=max(b['value'] for b in BRANCHES)),
+        range_note=("the sum of the parts read on the two bases GB Corp itself puts on "
+                    "its interest in MNT-Halan. The auto leg and the lender leg are "
+                    "identical in both."),
+        range_basis=dict(
+            driver=("the basis on which GB Corp's minority interest in MNT-Halan is "
+                    "carried -- its reviewed carrying value against the June-2026 "
+                    "primary round"),
+            low=15733.523, high=27670.65,
+            units="EGP million, the associate holding",
+            macro_held=True,
+            evidence=("BOTH ENDS ARE THE COMPANY'S OWN DISCLOSURES AND NEITHER IS THIS "
+                      "DESK'S. The low end is note 34 to the reviewed consolidated "
+                      "interim statements at 30 June 2026, EGP 15,733,523 thousand, "
+                      "which foots to that balance sheet's own associates line. The high "
+                      "end is 41.61% of the USD 1.4bn primary round GB Corp announced on "
+                      "9 June 2026, at EGP 47.5. The macro path stood still across the "
+                      "range: nothing in it moves inflation, the currency or the price of "
+                      "time, and the currency used is the path's own. THE REVIEW "
+                      "CONCLUSION ON THOSE STATEMENTS IS QUALIFIED AT EXACTLY THIS LINE "
+                      "-- the reviewers were not provided with the associate's own "
+                      "financial statements and could not verify the EGP 409.9mn share "
+                      "of profit recorded in the period -- so the low end is not a safe "
+                      "harbour either, and the study says so rather than resting on it."),
+        ),
+    ),
+    cross_checks=[
+        dict(kind="relative_multiple",
+             value=rel_ps,
+             multiple=REL_PE_OWN,
+             multiple_source=("the MEDIAN of GB Corp's OWN trailing price-to-earnings at "
+                              "its last three year-end closes -- 4.53x (2023), 6.35x "
+                              "(2024) and 10.18x (2025), computed from its own reported "
+                              "net profit attributable and its own share price. Never a "
+                              "multiple from the current price. THREE OBSERVATIONS, and "
+                              "the count is published with the median."),
+             circularity=dict(spot=spot, shares=SH, net_debt=0.0, metric_value=np26),
+             note=("earnings multiple, so the enterprise adjustment is nil by "
+                   "construction and the traded multiple is simply market "
+                   "capitalisation over the same forward earnings.")),
+        dict(kind="book_value",
+             value=GRP_EQ_BEFORE_NCI_JUN26 / SH,
+             present_value=False,
+             note=("GB Corp's own shareholders' equity before non-controlling interests "
+                   "at 30 June 2026 over shares in issue. A DISCLOSED FLOOR, published "
+                   "as such and carrying no weight in any answer above. It is worth "
+                   "printing here because the shares trade BELOW it.")),
+    ],
+    envelope=dict(low=central_bear, high=central_bull),
+    central=None,
+    central_note=("there is no central. The primary is two-sided and the two branches "
+                  "are published side by side; a figure between them would be the "
+                  "average the dual-framing rule forbids."),
+)
+import research_protocol as _RP
+_LENS_ATTEST = _RP.assert_lens_design(_LENS_RECORD, 'GBCO')
 
 _AUD = ('GB Corp / GB Auto audited consolidated statement of income for the year, as '
         'reproduced in the company\'s own annual report for that year (engine/gbco_study/src/)')
@@ -710,9 +982,23 @@ out = dict(
                     "engine/gbco_study/src/ in this run, by PDF text layer, and the segment "
                     "table foots: 39,627.0 + 8,847.4 = 48,474.4 revenue and 5,722.1 + 1,762.2 "
                     "- 62.4 = 7,421.9 gross profit, both as printed.")),
+    # THE ANSWER IS TWO-SIDED AND SAYS SO IN THE SHAPE EVERY GATE READS [R-LENS-03].
+    # A study that publishes two answers and does not declare it is read as single-sided
+    # by everything downstream, and the branch nobody reads is the one that disagrees.
+    central_two_sided=dict(
+        why=("GB Corp's largest single component is a minority interest in an unlisted "
+             "company, and the two bases on which the company itself puts a number on it "
+             "differ by EGP 11.9bn -- 27% of this answer. Both are GB Corp's own "
+             "disclosures and the filings do not decide between them, so neither does "
+             "this study."),
+        branches=[dict(label=b['label'], value=b['value'], condition=b['note'])
+                  for b in BRANCHES]),
+    lens_record=_LENS_RECORD,
     valuation_gap=dict(
-        central=central, spot=spot, spot_date=spot_date,
-        gap=central/spot - 1.0,
+        central=None, spot=spot, spot_date=spot_date,
+        gap=None,
+        branch_gaps=[dict(label=b['label'], central=b['value'],
+                          gap=b['value']/spot - 1.0) for b in BRANCHES],
         mc_anchor=mc_anchor, mc_anchor_date=mc_anchor_date,
         price_note=("THIS NOTE WAS STALE AND IS REWRITTEN FROM THE RESOLVER BESIDE IT "
                     "[07-09-2026]. It stated that no supplied price existed for GBCO and "
@@ -741,7 +1027,12 @@ print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 3),
       '| drift_q', round(drift_daily*60*100, 1), '% | factor_q', round(factor_drift_q*100, 2), '%')
 print('Step0 non-overlap:', {k: round(v, 3) if isinstance(v, float) else v for k, v in summ.items()})
 print('T60:', {k: round(v, 1) for k, v in q60.items()}, '| prob_read P(up)=%.2f odds=%.2f' % (prob_read['p_above'], prob_read['odds']))
-print('DCF: EV %.0f TV%% %.0f%% AutoEq %.0f | SOTP/sh %.1f (pre-disc %.1f) | central %.1f [%.0f-%.0f]'
-      % (ev_auto, 100*pv_tv/ev_auto, auto_eq, sotp_ps, prediscount_ps, central, central_bear, central_bull))
-print('rel', {k: round(v,1) for k,v in rel.items()}, 'norm', {k: round(v,1) for k,v in norm.items()})
+print('DCF: EV %.0f TV%% %.0f%% AutoEq %.0f | Capital %.0f (%.3fx book, ROE %.2f%%) '
+      '| SOTP/sh  carrying %.2f  round %.2f  | envelope [%.2f-%.2f] | spot %.2f'
+      % (ev_auto, 100*pv_tv/ev_auto, auto_eq, cap_val, cap_pb, 100*cap_roe_adopted,
+         sotp_B_ps, sotp_A_ps, central_bear, central_bull, spot))
+print('gap vs spot: carrying %+.1f%%   round %+.1f%%'
+      % (100*(sotp_B_ps/spot-1), 100*(sotp_A_ps/spot-1)))
+print('relative %.2f at %.3fx own-history median P/E (traded %.3fx) | book floor %.2f'
+      % (rel_ps, REL_PE_OWN, rel_traded_pe, GRP_EQ_BEFORE_NCI_JUN26/SH))
 print('FCFF path:', [round(r['fcff']) for r in rows])

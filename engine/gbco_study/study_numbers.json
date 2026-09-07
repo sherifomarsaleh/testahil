@@ -1,9 +1,9 @@
 {
  "adopted_corrections": [],
  "adopted_corrections_note": "the walk-forward on this name measured seven drivers over 225 cells and adopted NONE of them. Two drivers are robust at every block size and both are aggregates, which corrections may not be applied to; the one driver passing the cut-invariance clause at all six admissible boundaries (sga) has its block-2 bootstrap interval covering zero. Recorded in engine/gbco_walkforward/corrections_log.json; empty rather than absent.",
- "central": 44.329496406267786,
- "central_bear": 27.400479675581863,
- "central_full": 67.64860887942503,
+ "central": null,
+ "central_bear": 19.291145633198383,
+ "central_full": 52.345259974418816,
  "spot": 28.98,
  "spot_date": "2026-09-03",
  "shares": 1085.5,
@@ -600,55 +600,46 @@
  },
  "sotp": {
   "auto_eq": 26997.523233340526,
-  "cap_val": 9500.0,
-  "assoc": 28060.650000000005,
-  "total": 64558.17323334054,
-  "disc": 0.1,
-  "eq": 58102.35591000649,
-  "ps": 53.52589213266374,
-  "prediscount_ps": 59.473213480737485,
-  "bear": 27.99327183553493,
-  "bull": 90.71168353193565,
+  "cap_val": 1655.6644688910892,
+  "assoc": 28167.592000000004,
+  "total": 56820.77970223162,
+  "disc": 0.0,
+  "eq": 56820.77970223162,
+  "ps": 52.345259974418816,
+  "prediscount_ps": 52.345259974418816,
+  "bear": 26.10430427404253,
+  "bull": 87.25152617035111,
   "mnt_halan_stake": 0.4161,
   "mnt_halan_stake_prior": 0.4258,
   "mnt_halan_stake_source": "GB Corp's own press release of 9 June 2026 on MNT-Halan's Al Ahly Capital-led capital increase: the stake 'will be adjusted to 41.61%, compared to 42.58% prior to the transaction'",
   "mnt_halan_round_usd": 1400.0,
   "egp_usd": 47.5,
   "mnt_halan_value": 27670.650000000005,
-  "other_assoc": 390.0
+  "other_assoc": 496.9420000000009
  },
  "lenses": {
   "sotp": {
-   "bear": 27.99327183553493,
-   "base": 53.52589213266374,
-   "bull": 90.71168353193565
+   "bear": 26.10430427404253,
+   "base": 52.345259974418816,
+   "bull": 87.25152617035111
   },
   "prediscount": {
-   "bear": 34.13813638479869,
-   "base": 59.473213480737485,
-   "bull": 94.49133701243296
+   "bear": 31.83451740736894,
+   "base": 52.345259974418816,
+   "bull": 90.88700642744908
   },
   "relative": {
-   "bear": 24.32058959005067,
-   "base": 28.88070013818517,
-   "bull": 33.44081068631967
+   "bear": 19.291145633198383,
+   "base": 19.291145633198383,
+   "bull": 19.291145633198383
   },
-  "normalized": {
-   "bear": 24.873330262551818,
-   "base": 32.88807001381851,
-   "bull": 42.00829111008752
-  },
+  "normalized": null,
   "central": {
-   "bear": 27.400479675581863,
-   "base": 44.329496406267786,
-   "bull": 67.64860887942503
+   "bear": 19.291145633198383,
+   "base": null,
+   "bull": 52.345259974418816
   },
-  "weights": {
-   "sotp": 0.4,
-   "prediscount": 0.15,
-   "relative": 0.2,
-   "normalized": 0.25
-  }
+  "weights": null
  },
  "forecast": {
   "FY26E": {
@@ -721,39 +712,39 @@
   ],
   "table": [
    [
-    42.60774909337556,
-    40.477361638706775,
-    38.346974184038004,
-    36.216586729369226,
-    34.08619927470045
+    39.72822537158836,
+    37.741814103008934,
+    35.755402834429525,
+    33.7689915658501,
+    31.782580297270687
    ],
    [
-    51.04048128705651,
-    48.48845722270368,
-    45.93643315835085,
-    43.38440909399803,
-    40.83238502964521
+    48.16095756526931,
+    45.75290968700584,
+    43.34486180874238,
+    40.93681393047891,
+    38.528766052215445
    ],
    [
-    59.473213480737485,
-    56.499552806700606,
-    53.52589213266374,
-    50.55223145862686,
-    47.578570784589985
+    56.593689758950276,
+    53.76400527100276,
+    50.93432078305525,
+    48.10463629510773,
+    45.27495180716023
    ],
    [
-    67.90594567441842,
-    64.5106483906975,
-    61.11535110697658,
-    57.72005382325566,
-    54.32475653953474
+    65.02642195263124,
+    61.775100854999664,
+    58.52377975736811,
+    55.27245865973655,
+    52.02113756210498
    ],
    [
-    76.3386778680994,
-    72.52174397469443,
-    68.70481008128945,
-    64.88787618788449,
-    61.070942294479515
+    73.45915414631219,
+    69.78619643899658,
+    66.11323873168097,
+    62.440281024365355,
+    58.76732331704975
    ]
   ]
  },
@@ -1221,60 +1212,77 @@
  },
  "lens_inputs": {
   "relative": {
-   "np_fy26e": 3300.0,
-   "eps_fy26e": 3.0400736987563337,
-   "pe": {
-    "bear": 8.0,
-    "base": 9.5,
-    "bull": 11.0
+   "np_fy26e": 3297.5133408387733,
+   "eps_fy26e": 3.0377829026612373,
+   "pe": 6.350402991701103,
+   "observations": 3,
+   "history": {
+    "2023": [
+     7.9,
+     1890.8
+    ],
+    "2024": [
+     17.13,
+     2928.1
+    ],
+    "2025": [
+     27.0,
+     2880.0
+    ]
    },
-   "basis": "FY2026E group net profit attributable, the model's own forecast build; the multiple is the judged range for an emerging-market auto distributor blended with a mid-teens-return lender"
+   "pe_observed": [
+    4.535355405119526,
+    6.350402991701103,
+    10.176562500000001
+   ],
+   "traded_pe": 9.53985223058968,
+   "basis": "FY2026E group net profit attributable, READ from this model's own consolidated forecast rather than typed; the multiple is the MEDIAN of GB Corp's own trailing price-to-earnings at its last three year-end closes, computed from its own reported net profit attributable and its own share price. Never a multiple read off the current price: the traded multiple on the same forward earnings is committed beside it so the claim can be divided rather than believed. THREE OBSERVATIONS IS THIN and the count is published with the median for that reason."
   },
-  "normalized": {
-   "pat": {
-    "bear": 3600.0,
-    "base": 4200.0,
-    "bull": 4800.0
-   },
-   "pe": {
-    "bear": 7.5,
-    "base": 8.5,
-    "bull": 9.5
-   },
-   "eps": {
-    "bear": 3.316444035006909,
-    "base": 3.8691847075080608,
-    "bull": 4.421925380009212
-   },
-   "basis": "mid-cycle group profit after tax, blending a recovering volume path with post-windfall margins, on a through-cycle multiple"
+  "capital": {
+   "segment_equity_before_nci": 22497.8,
+   "associates_carried_within": 16230.465,
+   "operating_equity": 6267.334999999999,
+   "roe_h126": 0.10100017982462638,
+   "roe_fy25": 0.1470831036976577,
+   "roe_adopted": 0.10100017982462638,
+   "justified_pb": 0.2641736031169691,
+   "ke_terminal": 0.18734775715233104,
+   "g": 0.07,
+   "value": 1655.6644688910892,
+   "value_fy25_framing": 4116.871471909191,
+   "basis": "residual income in its terminal form, (ROE - g) / (Ke - g), on the segment's own shareholders' equity before NCI LESS the associates carried inside it -- so the stake the sum of the parts adds back at its own mark is not also funding this leg. The return is measured on that same base with associate income taken out of the numerator too."
   }
  },
  "edition": "2026-09-07",
  "experts": {
   "e1": {
-   "base": 54.71535640227849,
+   "base": 52.06619457823426,
    "rng": [
-    26.593608243758183,
-    92.52591720257436
+    24.799089060340403,
+    88.99655669375814
    ],
    "wrapper_discount": 0.08,
    "mark_haircut": {
-    "0.75": 48.852390487953286,
-    "0.5": 42.98942457362809
+    "0.75": 46.203228663909066,
+    "0.5": 40.34026274958387
    }
   },
   "e2": {
-   "base": 32.88807001381851,
+   "base": 7.889262980182801,
    "rng": [
-    24.873330262551818,
-    42.00829111008752
-   ]
+    5.262944885318393,
+    13.141899169911618
+   ],
+   "roe": 0.10003925151187792,
+   "pb": 0.2559848798207833,
+   "book": 33454.3,
+   "book_ps": 30.819253800092127
   },
   "e3": {
-   "base": 39.47383924458776,
+   "base": 36.877341962229394,
    "rng": [
-    33.01122984799632,
-    42.100555043758646
+    30.39010290188854,
+    39.50405776140028
    ],
    "params": {
     "ev_mult": 0.9,
@@ -1285,7 +1293,7 @@
    },
    "ev_at_base": 25661.7,
    "equity_at_base": 10447.300000000003,
-   "mark_lever": -6.462609396591439,
+   "mark_lever": -6.487239060340855,
    "roce_lever": 2.6267157991708885
   },
   "e3_roce": 0.213,
@@ -1672,11 +1680,99 @@
   "note": "REBUILT 07-09-2026 ON A FILING. The superseded record anchored on 1Q26 at a 12.4% auto gross margin taken from a figure the study asserted and held no document for \u2014 this directory carried NO filings at all until this run. The anchor is now GB Auto's OWN segment gross margin for the half already filed: revenue 40,021.5 and gross profit 5,722.1, a margin of 14.30%. The forecast opens at 13.80%, which is 3.5% relatively BELOW it \u2014 inside the 5% materiality line this house already applies to a contested judgement, so no mechanism is owed. THE RECORD IS PRINTED WHETHER OR NOT IT FIRES. The path then RISES to 14.50% and terminates there, against a filed record of 24.37% (FY23), 19.24% (FY24) and 14.82% (FY25) on the auto leg \u2014 so the whole forecast path sits BELOW every filed full year and the direction against the LATEST reviewed period, which is what this rule measures, is a mild recovery. The rise from the opening year is 5.1% relative, also inside the line.",
   "provenance": "Every figure above is read from GB Corp's own documents committed to engine/gbco_study/src/ in this run, by PDF text layer, and the segment table foots: 39,627.0 + 8,847.4 = 48,474.4 revenue and 5,722.1 + 1,762.2 - 62.4 = 7,421.9 gross profit, both as printed."
  },
+ "central_two_sided": {
+  "why": "GB Corp's largest single component is a minority interest in an unlisted company, and the two bases on which the company itself puts a number on it differ by EGP 11.9bn -- 27% of this answer. Both are GB Corp's own disclosures and the filings do not decide between them, so neither does this study.",
+  "branches": [
+   {
+    "label": "MNT-Halan at its reviewed carrying value",
+    "value": 41.348367298232716,
+    "condition": "EGP 15,733.5mn, the equity-accounted carrying value in GB Corp's own reviewed statements at 30 June 2026. The conservative branch, and itself the subject of the review's qualified conclusion."
+   },
+   {
+    "label": "MNT-Halan at the June-2026 round price",
+    "value": 52.345259974418816,
+    "condition": "41.61% of the USD 1.4bn primary round completed with Al Ahly Capital Holding, translated at EGP 47.5. The market-mark branch."
+   }
+  ]
+ },
+ "lens_record": {
+  "_rule": "[R-LENS-03] one class primary IS the central; the other lenses are cross-checks",
+  "class": "automotive assembler and distributor with a captive lender",
+  "primary": {
+   "kind": "sotp",
+   "two_sided": true,
+   "branches": [
+    {
+     "label": "MNT-Halan at its reviewed carrying value",
+     "value": 41.348367298232716,
+     "note": "EGP 15,733.5mn, the equity-accounted carrying value in GB Corp's own reviewed statements at 30 June 2026. The conservative branch, and itself the subject of the review's qualified conclusion."
+    },
+    {
+     "label": "MNT-Halan at the June-2026 round price",
+     "value": 52.345259974418816,
+     "note": "41.61% of the USD 1.4bn primary round completed with Al Ahly Capital Holding, translated at EGP 47.5. The market-mark branch."
+    }
+   ],
+   "range": {
+    "low": 41.348367298232716,
+    "high": 52.345259974418816
+   },
+   "range_note": "the sum of the parts read on the two bases GB Corp itself puts on its interest in MNT-Halan. The auto leg and the lender leg are identical in both.",
+   "range_basis": {
+    "driver": "the basis on which GB Corp's minority interest in MNT-Halan is carried -- its reviewed carrying value against the June-2026 primary round",
+    "low": 15733.523,
+    "high": 27670.65,
+    "units": "EGP million, the associate holding",
+    "macro_held": true,
+    "evidence": "BOTH ENDS ARE THE COMPANY'S OWN DISCLOSURES AND NEITHER IS THIS DESK'S. The low end is note 34 to the reviewed consolidated interim statements at 30 June 2026, EGP 15,733,523 thousand, which foots to that balance sheet's own associates line. The high end is 41.61% of the USD 1.4bn primary round GB Corp announced on 9 June 2026, at EGP 47.5. The macro path stood still across the range: nothing in it moves inflation, the currency or the price of time, and the currency used is the path's own. THE REVIEW CONCLUSION ON THOSE STATEMENTS IS QUALIFIED AT EXACTLY THIS LINE -- the reviewers were not provided with the associate's own financial statements and could not verify the EGP 409.9mn share of profit recorded in the period -- so the low end is not a safe harbour either, and the study says so rather than resting on it."
+   }
+  },
+  "cross_checks": [
+   {
+    "kind": "relative_multiple",
+    "value": 19.291145633198383,
+    "multiple": 6.350402991701103,
+    "multiple_source": "the MEDIAN of GB Corp's OWN trailing price-to-earnings at its last three year-end closes -- 4.53x (2023), 6.35x (2024) and 10.18x (2025), computed from its own reported net profit attributable and its own share price. Never a multiple from the current price. THREE OBSERVATIONS, and the count is published with the median.",
+    "circularity": {
+     "spot": 28.98,
+     "shares": 1085.5,
+     "net_debt": 0.0,
+     "metric_value": 3297.5133408387733
+    },
+    "note": "earnings multiple, so the enterprise adjustment is nil by construction and the traded multiple is simply market capitalisation over the same forward earnings.",
+    "_traded_multiple": 9.53985223058968
+   },
+   {
+    "kind": "book_value",
+    "value": 30.819253800092127,
+    "present_value": false,
+    "note": "GB Corp's own shareholders' equity before non-controlling interests at 30 June 2026 over shares in issue. A DISCLOSED FLOOR, published as such and carrying no weight in any answer above. It is worth printing here because the shares trade BELOW it."
+   }
+  ],
+  "envelope": {
+   "low": 19.291145633198383,
+   "high": 52.345259974418816
+  },
+  "central": null,
+  "central_note": "there is no central. The primary is two-sided and the two branches are published side by side; a figure between them would be the average the dual-framing rule forbids."
+ },
  "valuation_gap": {
-  "central": 44.329496406267786,
+  "central": null,
   "spot": 28.98,
   "spot_date": "2026-09-03",
-  "gap": 0.5296582610858449,
+  "gap": null,
+  "branch_gaps": [
+   {
+    "label": "MNT-Halan at its reviewed carrying value",
+    "central": 41.348367298232716,
+    "gap": 0.42678976184377904
+   },
+   {
+    "label": "MNT-Halan at the June-2026 round price",
+    "central": 52.345259974418816,
+    "gap": 0.8062546575023746
+   }
+  ],
   "mc_anchor": 29.51,
   "mc_anchor_date": "2026-08-23",
   "price_note": "THIS NOTE WAS STALE AND IS REWRITTEN FROM THE RESOLVER BESIDE IT [07-09-2026]. It stated that no supplied price existed for GBCO and that the study was struck on the exchange library's own last close, and the resolver twelve lines above it had already found one \u2014 so a typed sentence contradicted the committed spot in the same file, which is the defect a computed figure exists to stop. The latest known price is read from the committed engine/prices/SUPPLIED_*.json files and never typed: 28.98 as at 2026-09-03. The cone is a different clock and is anchored on the last real session the exchange library holds, 29.51 on 2026-08-23; both are published with their own dates [R-GAP-01 AMENDED]."
