@@ -1778,3 +1778,43 @@ CAN BE WRONG IN THE SAME WAY AS THE CHECK.** Both my sampled scan and the assert
 meant to guarantee it had landed shared one bug, because I wrote them minutes apart
 in the same frame of mind. The only thing that separated them was that one of them
 failed loudly.
+
+### TMGH traced: the skill was never a paired comparison at all
+
+I left this open a few hours ago as "which half is wrong is NOT decided", and the
+answer is neither of the two possibilities I had in mind. TMGH's construction was:
+
+```
+cell["skill_" + nm] = {"n": min(sh["n"], b["n"]),
+                       "model_mae": round(sh["mae"], 4),      # model over ITS OWN cells
+                       "bench_mae": round(b["mae"], 4),       # benchmark over ITS OWN
+                       "skill": round(1 - sh["mae"] / b["mae"], 4)}
+```
+
+**There is no intersection anywhere in it.** Each mean is over whatever cells its
+own setting happened to resolve, and the sample size printed beside them is
+`min()` of two counts — **a number belonging to neither sample.** That is the one
+thing a skill figure may not be, and this run's own siblings say so in their
+source: *"a model scored on a different sample from its benchmark is not being
+compared to it."*
+
+The cells were never the wrong half. What localised it was the instrument's own
+split reading — the model's mean absolute error reproduced **exactly in every
+block** while the benchmark's did not, which is only possible if the pairing is
+where the difference lives.
+
+Corrected to pair on shared cells, the construction the other four runs already
+use. **115 of 148 figures moved — HIGHER in 69, LOWER in 46**, median 0.0818, max
+2.8577; `by_driver`, `by_era` and `macro_split` came back **byte-identical**, so
+only the skill numbers were ever affected. The delivered training record quotes no
+skill figure, so no delivered document moves. **All five runs now rebuild: 310 of
+310.** The ratchet entry came off the same day it went on, and the gate goes red on
+a listed run that stops disagreeing, so the removal is forced rather than tidy.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT SKILL: **A WRONG ANSWER AND A WRONG QUESTION
+LOOK THE SAME FROM OUTSIDE.** I framed the open question as *which half is wrong,
+the published number or the cells* — a sensible binary, and both branches were
+wrong, because the defect was in an operation neither half performs. The
+instrument's finer reading, that one side reproduced perfectly and the other did
+not, is what pointed at the join rather than at either end; **a measurement that
+splits its own result is worth more than one that reports a verdict.**

@@ -241,6 +241,49 @@ def main():
 # canonical view is therefore emitted from the same cells everything else is
 # scored on, not assembled by hand.
 
+def paired_skill(rows, driver, horizon, bench):
+    """Skill on the cells the model and the benchmark BOTH resolve.
+
+    CORRECTED 07-09-2026. The construction this replaces divided the model's
+    mean absolute error over ITS OWN cells by the benchmark's over ITS OWN, and
+    reported n as min() of the two counts — a number belonging to neither sample.
+    Where the benchmark resolved fewer cells the two averages described different
+    sets, which is the one thing a skill number may not do, and which this run's
+    own siblings state in their source as the thing not to do: "a model scored on
+    a different sample from its benchmark is not being compared to it."
+
+    FOUND BY AN INSTRUMENT RATHER THAN BY READING: cells_reproduce.py asked
+    whether each run's committed per-cell file can rebuild the skill it publishes,
+    and this run rebuilt 33 of 148 while every other run rebuilt all of theirs.
+    The model's mean absolute error reproduced EXACTLY in every block, which is
+    what localised the defect to the pairing rather than to the cells.
+
+    THE DIRECTION IS NOT ONE-SIGNED and that is why nothing looked wrong: measured
+    across the affected blocks before the correction, 35 published figures
+    overstated the skill and 61 understated it, median absolute difference 0.077.
+    """
+    m, b = {}, {}
+    for r in rows:
+        if r["driver"] != driver or r["horizon"] != horizon:
+            continue
+        if r.get("log_error") is None:
+            continue
+        key = (r["origin"], r["horizon"])
+        if r["setting"] == "asknown":
+            m[key] = r["log_error"]
+        elif r["setting"] == bench:
+            b[key] = r["log_error"]
+    shared = [k for k in m if k in b]
+    if not shared:
+        return None
+    mm = sum(abs(m[k]) for k in shared) / len(shared)
+    bb = sum(abs(b[k]) for k in shared) / len(shared)
+    if not bb:
+        return None
+    return {"n": len(shared), "model_mae": round(mm, 4),
+            "bench_mae": round(bb, 4), "skill": round(1 - mm / bb, 4)}
+
+
 def canonical(rows, scores):
     from collections import defaultdict
 
@@ -284,13 +327,9 @@ def canonical(rows, scores):
                                 "over": round(sh["share_over"], 3),
                                 "robust_sign": bool(sh["robust_sign"])}}
             for nm in ("freeze", "trend"):
-                b = scores.get("%s|%s|h%d" % (nm, d, h))
-                if b and b["mae"]:
-                    cell["skill_" + nm] = {
-                        "n": min(sh["n"], b["n"]),
-                        "model_mae": round(sh["mae"], 4),
-                        "bench_mae": round(b["mae"], 4),
-                        "skill": round(1 - sh["mae"] / b["mae"], 4)}
+                sk = paired_skill(rows, d, h, nm)
+                if sk:
+                    cell["skill_" + nm] = sk
             hs[str(h)] = cell
         if hs:
             by_horizon[d] = hs

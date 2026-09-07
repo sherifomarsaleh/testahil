@@ -59,20 +59,18 @@ TOL = 5e-5          # half a unit in the fourth decimal, the place runs publish 
 # may only ever shorten. The reason is required and is the diagnosis owed, not an
 # excuse — an entry that cannot say what was measured is a silence with a filename.
 OUTSTANDING = {
-    "TMGH": (
-        "Measured 07-09-2026, and the direction of the defect is NOT yet "
-        "established, which is why this is a debt rather than a correction. The "
-        "MODEL's mean absolute error reproduces from the committed cells EXACTLY "
-        "in every block. The BENCHMARK's does not: on 66 blocks whose sample size "
-        "agrees to the cell it differs by around two per cent, and on a further 35 "
-        "the benchmark sample is SMALLER than the model's while the published "
-        "model_mae is the full-sample figure (149 of 149 blocks carry the summary "
-        "mae verbatim), so those pair two averages over different sets — which is "
-        "what this run's own sibling states in its source as the thing not to do. "
-        "Whether the published number or the committed cells are the wrong half is "
-        "NOT decided here: equal counts over different sets is possible, and "
-        "asserting a culprit before the pairing is traced would be the assertion "
-        "this instrument exists to catch."),
+    # EMPTY, AND THE ENTRY THAT WAS HERE CAME OFF THE SAME DAY IT WENT ON.
+    # TMGH was listed 07-09-2026 rebuilding 33 of its 148 published skill numbers,
+    # with the direction of the defect deliberately NOT asserted because equal
+    # counts over different sets is arithmetically possible and naming a culprit
+    # before tracing the pairing is the assertion this instrument exists to catch.
+    # Traced the same day: its skill divided the model's mean absolute error over
+    # ITS OWN cells by the benchmark's over ITS OWN, and reported n as min() of the
+    # two counts — a number belonging to neither sample. The cells were never the
+    # wrong half. Corrected in that run's score.py to pair on shared cells, the
+    # construction its four siblings already use; 115 of 148 figures moved, HIGHER
+    # in 69 and LOWER in 46, median 0.0818, and by_driver, by_era and macro_split
+    # came back byte-identical, so only the skill numbers were ever affected.
 }
 
 
