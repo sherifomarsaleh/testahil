@@ -1665,3 +1665,71 @@ What this does NOT change: the census's substantive finding stands unaltered —
 37 drivers lose cells, the omission is not one-signed (5 larger on the full sample,
 8 smaller), and **EGCH's `fx` is scored on NONE of its 50 cells while its bias over
 all of them is -5.743, appearing in no table this house publishes.**
+
+## 07-09-2026 (2) — three per-cell files could not rebuild a single skill number they sit beside
+
+The declaration fix turned out not to be the fix. Making AMOC record its dropped
+cells exposed something larger: **the per-cell dumps AMOC, ARCC and EGCH commit
+recorded only the MODEL's projection.** Every freeze and trend cell carried
+`projected: null`, and any benchmark cell the log score could not take was
+**silently skipped** — by the very branch whose docstring, which I wrote, said the
+opposite: *"written with log_error null and dropped=... rather than omitted,
+because a silently shorter sample is how an apparent improvement is
+manufactured."* **True of the model's cells, false of the benchmarks'.** A comment
+asserting a behaviour the code does not have is the [R-ENF-07] defect, arriving in
+my own file, in the sentence written to prevent it.
+
+Three defects, all fixed, **published scores byte-identical on all three runs**:
+
+- **Benchmark projections are retained** (`row["frz"]`, `row["trd"]`), so the file
+  can rebuild the number it sits beside. AMOC 873→945 rows, ARCC 3,194→3,250,
+  **EGCH 3,259→4,125 — 866 cells, over a fifth of its true count, were absent.**
+- **A dropped cell is written, not skipped.** ARCC was hiding 56, EGCH 866.
+- **The REASON is derived from a test, never asserted from the absence.** My first
+  cut labelled every missing error `non_positive`; on AMOC that was wrong on **63
+  of 72** — the trend benchmark cannot be formed *at all* at origin FY2021, which
+  is a different fact about a different thing. Now `not_projected` where there is
+  no projection, `non_positive` where there is one the logarithm cannot take.
+
+`engine/valuation_calibration/cells_reproduce.py` is the instrument: it reads each
+run's committed cells, applies that run's **own** published skill definition, and
+asks whether the answer comes back. **195 of 195 skill numbers now rebuild on AMOC,
+ARCC, EGCH and PHDC.** Before today none of the first three could rebuild one.
+
+**Two false results from my own probes, caught and named rather than published.**
+A throwaway version reported 22 of EGCH's 28 numbers as mismatches with the sample
+size agreeing *exactly* — the signature of a wrong probe, not a wrong run: the
+tolerance was 1e-9 against a figure published to four decimals. And it looked for a
+`drivers` key that ARCC does not use, found nothing, and printed **"0 reproduce, 0
+do not"** — a run never examined, reported in the words of a run that passed. Both
+are [R-ENF-04] verbatim. The committed instrument names every run's reader, reports
+a run whose scores expose no skill number, and **REFUSES on zero comparisons**.
+
+### What it then found in TMGH, and what is deliberately not concluded
+
+**TMGH's committed cells rebuild 33 of its 148 published skill numbers.** The
+mechanism is localised precisely and is not localised enough to blame anyone:
+
+- the **model's** mean absolute error reproduces **exactly, in every block**;
+- the **benchmark's** does not — on **66 blocks whose sample size agrees to the
+  cell** it differs by about two per cent;
+- on a further **35 blocks the benchmark sample is smaller than the model's**,
+  while `model_mae` is the full-sample figure in **149 of 149 blocks** (it is the
+  `summary` mae verbatim). Those pair two averages over **different sets** — which
+  is exactly what PHDC's own `skill()` states in its source as the thing not to do:
+  *"a model scored on a different sample from its benchmark is not being compared
+  to it."*
+
+**Whether the published number or the committed cells are the wrong half is NOT
+decided here,** and that restraint is the point: equal counts over different sets
+is arithmetically possible, so naming a culprit before tracing the pairing would be
+the assertion this instrument exists to catch. Held on the instrument's own ratchet
+with the measurement attached — allowed to disagree, may only shorten, and a run
+that stops disagreeing while still listed goes RED.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT SKILL NUMBERS: **A RECORD IS COMPLETE FOR
+THE QUESTION ITS AUTHOR HAD.** These dumps were written to answer "which origins
+carry the bias" and they answer it perfectly. The moment a different question
+arrived — can this file rebuild the number printed beside it — the answer was no,
+for three runs at once, and nothing anywhere said so, because a file recording one
+side of a comparison looks exactly like a file recording both.

@@ -45,6 +45,11 @@ def build_cells(beta=B.BETA_DEFAULT, foresight=False, foresight_cpi_only=False):
             row["ef"][d] = logerr(f.get(d), a.get(d))
             row["et"][d] = logerr(tr.get(d) if tr else None, a.get(d))
         row["proj"], row["act"] = p, a
+        # The BENCHMARK projections are retained, not only the errors they produce.
+        # Without them a per-cell file cannot reproduce a skill number, which is
+        # what a per-cell file is for; and a cell missing from the comparison
+        # cannot be told apart from one the benchmark could not form.
+        row["proj_freeze"], row["proj_trend"] = f, (tr or {})
         rows.append(row)
     return rows
 
@@ -112,6 +117,14 @@ def flatten_cells(rows, fore, fore_cpi):
     aggregated them away and wrote only the summaries, so a later question about
     WHICH origins carry the bias had no answer here at all. The projections and
     actuals are already in each row; this only writes them down.
+
+    A CELL THE LOG SCORE CANNOT TAKE IS WRITTEN, NOT SKIPPED — log_error null and
+    dropped="non_positive" — which ARCC and EGCH already did and this writer did
+    not. The omission was invisible today because AMOC currently has no such cell
+    and the pooled census reads this run through its live builder rather than
+    this file; the day one appears, a silently shorter sample is a sample nobody
+    can audit, and the difference between "none were dropped" and "drops are not
+    recorded" is exactly what this file has to be able to say. [R-ENF-04]
     """
     out = []
     settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
@@ -120,12 +133,27 @@ def flatten_cells(rows, fore, fore_cpi):
         for r in src:
             for d in DRIVERS:
                 le = r[key][d]
-                if le is None:
-                    continue
+                pj = ({"e": "proj", "ef": "proj_freeze", "et": "proj_trend"}[key]
+                      if name in ("freeze", "trend") else "proj")
+                proj = r.get(pj, {}).get(d)
+                act = r["act"].get(d)
+                # THE REASON A CELL WAS DROPPED IS DERIVED FROM A TEST, NEVER
+                # ASSERTED FROM THE ABSENCE. A first cut labelled every missing
+                # error "non_positive" and was wrong on 63 of 72 cells here: the
+                # trend benchmark cannot be formed at all at origin FY2021, which
+                # is a different fact about a different thing, and a label stating
+                # a mechanism the code never tested is the defect this repository
+                # keeps finding in other people's comments.
+                if le is not None:
+                    dropped = None
+                elif proj is None or act is None:
+                    dropped = "not_projected"
+                else:
+                    dropped = "non_positive"
                 out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
                             "driver": d, "setting": name,
-                            "projected": r["proj"].get(d) if key == "e" else None,
-                            "actual": r["act"].get(d), "era": r["era"], "log_error": le})
+                            "projected": proj, "actual": act,
+                            "era": r["era"], "log_error": le, "dropped": dropped})
     return out
 
 

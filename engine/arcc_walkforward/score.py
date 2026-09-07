@@ -57,6 +57,10 @@ def build_cells(w=B.W_DEFAULT, foresight=False, cpi_only=False):
             if row["e"][d] is None:
                 row["unscoreable"].append(d)
         row["proj"], row["act"], row["frz"] = p, a, f
+        # The TREND projection is retained too. Without both benchmarks'
+        # projections a per-cell file cannot reproduce a skill number, which
+        # is what a per-cell file is for.
+        row["trd"] = tr or {}
         rows.append(row)
     return rows
 
@@ -132,9 +136,20 @@ def flatten_cells(rows, fore, fore_cpi):
 
     build_cells() already computes every cell; the aggregates threw them away, so
     this run could not answer which origins carry the bias without being re-run.
-    A cell the log score cannot take is written with log_error null and
-    dropped="non_positive" rather than omitted, because a silently shorter sample
-    is how an apparent improvement is manufactured.
+    A cell the log score cannot take is written with log_error null and a REASON
+    rather than omitted, because a silently shorter sample is how an apparent
+    improvement is manufactured.
+
+    TWO CORRECTIONS, 07-09-2026, both to this function and both of a kind this
+    repository names in its own rules. (1) The sentence above was TRUE OF THE
+    MODEL'S CELLS AND FALSE OF THE BENCHMARKS' — a freeze or trend cell the log
+    score could not take was silently skipped by the very branch this docstring
+    described, which is a comment asserting a behaviour the code does not have.
+    (2) The reason was ASSERTED FROM AN ABSENCE rather than derived from a test,
+    so a cell the benchmark could not project at all was labelled non-positive;
+    on the sibling run that mislabelled 63 of 72 cells. The reason is now tested:
+    not_projected where there is no projection, non_positive where there is one
+    the logarithm cannot take.
     """
     out = []
     settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
@@ -143,16 +158,18 @@ def flatten_cells(rows, fore, fore_cpi):
         for r in src:
             for d in DRIVERS:
                 le = r[key][d]
-                dropped = None
-                if le is None:
-                    if key == "e":
-                        dropped = "non_positive"
-                    else:
-                        continue
+                src_key = {"e": "proj", "ef": "frz", "et": "trd"}[key]
+                proj = r.get(src_key, {}).get(d)
+                act = r["act"].get(d)
+                if le is not None:
+                    dropped = None
+                elif proj is None or act is None:
+                    dropped = "not_projected"
+                else:
+                    dropped = "non_positive"
                 out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
                             "driver": d, "setting": name,
-                            "projected": r["proj"].get(d) if key == "e" else None,
-                            "actual": r["act"].get(d), "era": r["era"],
+                            "projected": proj, "actual": act, "era": r["era"],
                             "log_error": le, "dropped": dropped})
     return out
 

@@ -56,6 +56,10 @@ def build_cells(**kw):
             row["sign"][d] = sign_hit(pv, av)
             row["excluded"][d] = (pv is not None and av is not None and (pv <= 0 or av <= 0))
         row["proj"], row["act"] = p, a
+        # Both benchmarks' projections are retained, not only the errors they
+        # produce: without them a per-cell file cannot reproduce a skill
+        # number, which is what a per-cell file is for.
+        row["frz"], row["trd"] = f, (tr or {})
         rows.append(row)
     return rows
 
@@ -122,9 +126,18 @@ def flatten_cells(rows, fore, fore_cpi):
 
     build_cells() already computes every cell and the aggregates threw them away,
     so a question about WHICH origins carry the bias had no answer in this run.
-    A cell the log score cannot take is written with log_error null and
-    dropped="non_positive" rather than omitted, because a silently shorter sample
-    is how an apparent improvement is manufactured.
+    A cell the log score cannot take is written with log_error null and a REASON
+    rather than omitted, because a silently shorter sample is how an apparent
+    improvement is manufactured.
+
+    TWO CORRECTIONS, 07-09-2026, both to this function. (1) The sentence above was
+    TRUE OF THE MODEL'S CELLS AND FALSE OF THE BENCHMARKS' — a freeze or trend cell
+    the log score could not take was silently skipped by the branch this docstring
+    described, a comment asserting a behaviour the code does not have. (2) The
+    reason was ASSERTED rather than derived: it is now tested, not_projected where
+    there is no projection and non_positive where there is one the logarithm
+    cannot take. The run's own `excluded` flag still records the same distinction
+    on the model's cells and the two must agree.
     """
     out = []
     settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
@@ -133,16 +146,21 @@ def flatten_cells(rows, fore, fore_cpi):
         for r in src:
             for d in DRIVERS:
                 le = r[key][d]
-                dropped = None
-                if le is None:
-                    if key == "e" and r["excluded"].get(d):
-                        dropped = "non_positive"
-                    else:
-                        continue
+                src_key = {"e": "proj", "ef": "frz", "et": "trd"}[key]
+                proj = r.get(src_key, {}).get(d)
+                act = r["act"].get(d)
+                if le is not None:
+                    dropped = None
+                elif proj is None or act is None:
+                    dropped = "not_projected"
+                else:
+                    dropped = "non_positive"
+                # The two routes to the same fact must agree on the model's cells.
+                if key == "e" and r["excluded"].get(d):
+                    assert dropped == "non_positive", (r["origin"], r["h"], d)
                 out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
                             "driver": d, "setting": name,
-                            "projected": r["proj"].get(d) if key == "e" else None,
-                            "actual": r["act"].get(d), "era": r["era"],
+                            "projected": proj, "actual": act, "era": r["era"],
                             "log_error": le, "dropped": dropped})
     return out
 
