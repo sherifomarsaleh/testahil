@@ -8106,7 +8106,7 @@
    "fv_alternative": 4.5613909296036885,
    "effect": 0.14556612207225106,
    "direction": "the adopted side is HIGHER",
-   "note": "WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS LARGE, so it is priced rather than decided. Its own column heading reads \"No. of Vessels Contracted\" rather than vessels in service, and a bullet on the same slide says five Das carriers were progressively moved to long-term contracts with the parent from June 2026 \u2014 so whether those four ships stop EARNING or merely stop being counted as contracted is not decidable from the page. The total row foots with both rows populated in the second quarter, which is consistent with two separate sets of ships and equally with one set counted twice. SIGCM clause 8: the coarser reading is kept, the finer one is published, and neither is invented."
+   "note": "WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS LARGE, so it is priced rather than decided. Its own column heading reads \"No. of Vessels Contracted\" rather than vessels in service, and a bullet on the same slide says five Das carriers were progressively moved to long-term contracts with the parent from June 2026 \u2014 so whether those four ships stop EARNING or merely stop being counted as contracted is not decidable from the page. The total row foots with both rows populated in the second quarter, which is consistent with two separate sets of ships and equally with one set counted twice. SIGCM clause 8: the coarser reading is kept, the finer one is published, and neither is invented. SETTLED ON EVIDENCE OUTSIDE THE PAGE, 7 September 2026, AND THE EVIDENCE WAS ALREADY IN THIS DIRECTORY. The first-quarter 2026 earnings call transcript this study holds describes THAT SAME CONTRACT MATRIX in management's own words: \"We are at a genuine inflection point for our gas carrier fleet. You can see the contract matrix here. Starting this month, May 2026, 5 Das LNG carriers are progressively commencing long-term contracts with ADNOC Gas, 4 on 15-year contracts and 1 on a 7-year contract ... These are vessels that until now have been earning at spot rates.\" The dates on that matrix are contract COMMENCEMENTS, and the alternative requires the company to be presenting a fleet-wide contraction of contracted vessel-years as an inflection point upward on the slide it is describing. THE ADOPTED SIDE IS THE EVIDENCED ONE AND THE ANSWER DOES NOT MOVE \u2014 it was already the adopted side. The alternative is RETAINED here rather than deleted, for two reasons: it remains a legitimate downside framing of a path the company has not disclosed vessel by vessel, and dropping a judgement from this list would shrink the population the sign test [R-ENF-05] is computed over, which is not a thing to do to a test of one's own leaning."
   },
   {
    "choice": "the earnings leverage of the tanker unit on its own fleet's rate",
@@ -12776,7 +12776,7 @@
   {
    "check": "the external-reader scrub is MEASURED on the delivered documents, not attested",
    "passed": true,
-   "detail": "51 patterns scanned across 475,000 characters of delivered text, 0 hits; column audit and figure canvases clean"
+   "detail": "51 patterns scanned across 475,086 characters of delivered text, 0 hits; column audit and figure canvases clean"
   },
   {
    "check": "the three standing gates are called in this study's own code [R-ENF-02]",

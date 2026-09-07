@@ -760,6 +760,51 @@
    "resolved": "2026-09-07",
    "resolution": "WITHDRAWN — the premise was mine and was wrong. Criterion 3 opens on the CONTEMPORANEOUS score, which needs no maturity; acceptance.py had summarised it as the gap-closure one and the 2027 date was read off that summary. Reading the forward half into Phase 1 is additionally CIRCULAR (Phase 2b's cohort requires Phase 2a closed, which requires Phase 1 done). No ruling from the principal was needed and none was owed: the plan's own text answered it. THIS IS THE [R-IND-01] FAILURE EXACTLY — a question composed where a command in the room would have finished the search — and it reached the principal as a DATE rather than as a question, which is worse.",
    "answer_written_to": "engine/method_reassessment/STATE.json, block PHASE1_GATE_RULING_07-09-2026; and engine/method_reassessment/acceptance.py, whose criterion-3 line is corrected in the same commit."
+  },
+  {
+   "key": "ADNOCLS-lng-contracted-vessel-years",
+   "opened": "2026-09-07",
+   "cls": "missing_data",
+   "question": "ADNOC L&S H1 2026 investor presentation, the gas-fleet contract table: the column heading reads 'No. of Vessels CONTRACTED' and the four LNG carriers' firm period ends June 2026, while a bullet on the same slide says five Das carriers moved ONTO long-term contracts from that same month. Read one way the consolidated vessel-year path falls from 12.0/18.0/26.25/30.0 to 10.0/13.0/17.5/20.75/20.0. Worth -14.6% of the central, AED 0.78 a share. The page does not settle it: its total row foots with both rows populated in Q2, which is consistent with two separate sets of ships AND with one set counted twice.",
+   "routes": [
+    {
+     "route": "all four H1 2026 filings — reviewed statements, MD&A, results release and investor presentation — read end to end from the text layer",
+     "when": "2026-09-07",
+     "outcome": "the contract table is the only disclosure of vessel counts by period; 'contracted' and 'in service' are never defined against each other.",
+     "rerun": true
+    },
+    {
+     "route": "the April 2026 (FY2025) presentation carrying the same table, compared row by row against the H1 edition",
+     "when": "2026-09-07",
+     "outcome": "same shape; the June-2026 firm period is new. The change is real, its MEANING is what was undecidable from the page.",
+     "rerun": true
+    },
+    {
+     "route": "the reviewed statements' own gas-segment note, for vessel days or utilisation that would discriminate",
+     "when": "2026-09-07",
+     "outcome": "revenue and profit only. No route from the statements to the count.",
+     "rerun": true
+    },
+    {
+     "route": "EVERY LIVE REF, not the checkout alone — git grep across all 260 refs for 'contracted vessel' / 'vessel-year' [R-IND-01]",
+     "when": "2026-09-07",
+     "outcome": "ANSWERED. The hit is engine/adnocls_study/CALL_Q1_2026.txt, the Q1 2026 earnings-call transcript ALREADY COMMITTED IN THIS STUDY'S OWN DIRECTORY, in which management describes THAT SAME MATRIX: 'We are at a genuine inflection point for our gas carrier fleet. You can see the contract matrix here. Starting this month, May 2026, 5 Das LNG carriers are progressively commencing long-term contracts with ADNOC Gas ... These are vessels that until now have been earning at spot rates.' The dates are COMMENCEMENTS. The alternative requires the company to present a fleet-wide contraction as an inflection point upward on the slide it is describing.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "IT WAS NOT. This entry is registered RESOLVED rather than asked, and that is the point of recording it: the question looked like one only the company or the principal could settle, and the answer was in the study's own directory in a document the study already holds. [R-IND-01]'s own lesson — where a question can be answered by a command available in the room, asking it is the cost of not having run the command. The command was a search of every live ref rather than the checkout.",
+   "done_meanwhile": "The APRIL composition was kept and the alternative published as a priced contested judgement at -14.6%, both framings side by side. Nothing was blocked and the study was completed and gated.",
+   "default_if_no_answer": "The April composition stands and the alternative stays published beside it; the next edition re-tests against the FY2026 filings.",
+   "default_date": "2027-03-31",
+   "status": "resolved",
+   "resolves_when": {
+    "file": "engine/adnocls_study/contested_judgements.json",
+    "must_contain": "SETTLED ON EVIDENCE OUTSIDE THE PAGE"
+   },
+   "resolved": "2026-09-07",
+   "answer": "COMMENCEMENTS. The adopted reading was already the right one, so no value moves: the central stands at AED 5.3385.",
+   "answer_written_to": "engine/adnocls_study/compute.py, in the contested-judgement note that generates contested_judgements.json, quoting the transcript. The alternative is RETAINED rather than deleted — it is still a legitimate downside framing of a path the company has not disclosed vessel by vessel, and dropping a judgement would shrink the population [R-ENF-05]'s sign test is computed over."
   }
  ]
 }
