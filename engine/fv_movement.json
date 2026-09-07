@@ -610,7 +610,30 @@
     "unrecoverable": null
    },
    "ccy": "EGP",
-   "editions": [],
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": 0.3357186228503667,
+      "bear": 0.1825753729383991,
+      "full": 0.9488142905842855
+     },
+     "lessons": [],
+     "origins": "none \u2014 walk-forward not run; insufficient sourceable history (4 years); 0 scoreable origins",
+     "scope": "skip",
+     "vs_baseline_pct": {
+      "base": -1.3,
+      "bear": 1.4,
+      "full": -0.1
+     },
+     "vs_previous_pct": {
+      "base": -1.3,
+      "bear": 1.4,
+      "full": -0.1
+     }
+    }
+   ],
    "exchange": "EGX",
    "market": "EG",
    "ticker": "ELEC",

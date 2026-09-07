@@ -1,0 +1,699 @@
+ADNOC Classification: Public
+
+
+
+
+         First Half 2026 Earnings
+         Management Discussion & Analysis Report
+         11 August 2026
+ADNOC Classification: Public
+
+
+
+
+       ADNOC Logistics & Services
+
+       MANAGEMENT DISCUSSION AND ANALYSIS OF FINANCIAL PERFORMANCE
+       AND RESULTS OF OPERATIONS
+
+
+
+
+       Table of Contents
+
+       Financial Highlights…………………………………………………………………………………….….…3
+
+       Segmental Results…………………………………………………………………………………….….….6
+
+       Free Cash Flow………...…………………………………………………………………………………...11
+
+       Outlook……………………………………………………………………………………………….……....12
+
+       Earnings Conference Call Details………………………………………………………………………….14
+
+
+
+
+                                              2
+ADNOC Classification: Public
+
+
+
+
+       MANAGEMENT DISCUSSION AND ANALYSIS OF FINANCIAL PERFORMANCE
+       AND RESULTS OF OPERATIONS
+
+       Financial Highlights
+       ADNOC Logistics & Services plc (“ADNOC L&S” or the “Company”) delivered record financial
+       performance in the first half of 2026, achieving strong growth in Revenue, EBITDA and net profit. The
+       results demonstrate resilience and operational strength underpinned by strong performance from
+       services supporting ADNOC and elevated Shipping charter rates amid heightened geopolitical
+       volatility.
+
+       The effectiveness of the Company’s strategy continues to be demonstrated through its diversified
+       business portfolio and extensive portfolio of long-term contracts across the majority of its operating
+       segments. During the first half of 2026, favorable shipping market conditions resulting from increased
+       geopolitical disruption more than offset softer performance in the Integrated Logistics segment. This
+       balanced business mix underpinned resilient financial performance despite varying market dynamics
+       across segments. Forward-contracted revenue stands at approximately USD 25 billion, significantly
+       enhancing earnings visibility and supporting long-term cash flow stability.
+
+
+       The Shipping and Services segments delivered solid contributions to the Company’s first-half financial
+       performance, underscoring the strength, diversification and resilience of ADNOC L&S’s operating
+       model.
+
+       Integrated Logistics: recorded softer financial performance during the period, reflecting pricing and
+       utilization pressures across Jack-Up Barges (JUBs) and Offshore Support Vessels (OSVs), together
+       with higher fleet operating expenditure. Activity levels on the Hail & Ghasha project were lower during
+       the first half, impacting on the overall earnings contribution. In addition, the absence of a large-scale
+       EPC project following the completion of the G-Island project in the fourth quarter of 2025 reduced
+       revenue contribution and moderated EBITDA contributions. Results also reflected the impact of an
+       Expected Credit Loss (ECL) provision recognized during the period.
+
+       Shipping: delivered a significantly stronger performance compared to the first half of 2025, benefiting
+       from services provided to ADNOC and favourable market conditions amid ongoing geopolitical volatility.
+       Earnings were supported by higher Tanker time charter equivalent (TCE) rates, improved Dry Bulk
+       TCE performance, and increased LNG carrier chartering activity. Performance was further enhanced
+       by contributions from fleet expansion initiatives, including two additional Handysize vessels and newly
+       delivered Das LNG carriers. In addition, contributions from the expanded AW Shipping fleet supported
+       earnings growth and reinforced the segment’s diversified revenue base.
+
+
+       Services: delivered improved year-on-year performance, supported by the reclassification of the ILSP
+       warehouse activities from Integrated Logistics to Services, which positively enhanced the segment’s
+       earnings profile. Results also benefited from stronger profit contributions from associates and joint
+       ventures, including “Integr8” the bunkering business of Navig8. These positive factors were partially
+       offset by lower volumes at Petroleum Port Operations (PPO) and the Borouge Container Terminal
+
+
+
+
+                                                           3
+ADNOC Classification: Public
+
+
+
+
+       (BCT). Despite these headwinds, the segment delivered solid profitability and outperformed on a
+       year‑on‑year basis.
+
+       Group Financial Performance
+
+       ADNOC L&S’s strategically timed and value-accretive acquisitions, combined with its forward-looking
+       growth strategy and disciplined operational execution, have materially expanded the Company’s global
+       footprint and enhanced the diversification of its earnings base. These initiatives continue to strengthen
+       the Company’s resilience amid geopolitical uncertainty while reinforcing its leadership position within
+       the global maritime logistics sector.
+
+       The Company remains well positioned for continued growth, supported by an active fleet expansion
+       program and a substantial pipeline of contracted assets. During H2 2026, ADNOC L&S is scheduled
+       to take delivery of one VLAC, six VLCCs and three VLGCs for deployment in the third quarter, followed
+       by a further one VLEC, one VLAC and two VLGCs, in the fourth quarter. In addition, the Company
+       recently announced the construction of four next-generation LNG carriers, contracted with leading
+       shipyards and scheduled for delivery in 2029. These investments are expected to further enhance
+       earnings visibility, strengthen cash flow generation, expand the Company’s presence across key global
+       shipping segments, and support sustainable long-term value creation for shareholders.
+
+       For the first half of 2026, revenue increased 46% year-on-year to USD 3,667 million, while EBITDA
+       rose 98% to USD 1,475 million, delivering a robust EBITDA margin of 40%. Net profit increased 179%
+       year-on-year to USD 1,173 million, driven by strong earnings growth within the Shipping segment,
+       improved operating leverage, and continued execution of the Company’s strategic growth initiatives.
+
+         USD Million                          Q2 26          Q2 25         YoY %          Q1 26         QoQ %           H1 26           H1 25    YoY %
+         Revenue                              2,584          1,303          98%           1,083          139%           3,667           2,507      46%
+         Direct Costs                        (1,516)         (994)          52%            (802)          89%          (2,318)      (1,969)        18%
+         EBITDA (1)                           1,106           400           176%            368          200%           1,475           744        98%
+         Margin                                43%            31%           12pp           34%            9pp            40%            30%        11pp
+         Net Profit                            951            236           303%            222          328%           1,173           420       179%
+         EPS ($ /share)                        0.12           0.03          301%           0.03          310%            0.15           0.06      174%
+         EPS (AED /share)                      0.46           0.11          301%           0.11          310%            0.56           0.20      174%
+         Capital expenditures                 (283)          (270)           5%            (264)           7%           (547)           (340)      61%
+         Free Cash Flow (2)                    468             62           654%            130          260%            598            265       126%
+
+
+         USD Million                          Q2 26          Q2 25         YoY %          Q1 26         QoQ %           H1 26           H1 25    YoY %
+         Total Equity                         8,151          6,200          31%           7,325           11%           8,151           6,200      31%
+         Net Debt (3)                          257           1,260          -80%            420          -39%            257            1,260     -80%
+         Net Debt / EBITDA                     0.06           0.79                         0.28                          0.09           0.85
+
+       (1)
+             EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+
+       (2)
+             Free Cash Flow is calculated as EBITDA less working capital adjustments less income tax expense less capital expenditure
+       (3)
+         Net Debt and Cash is calculated as debt and debt-like items consisting of shareholder loan and current and non-current lease liabilities less cash and
+       cash equivalents
+
+
+
+
+                                                                                     4
+ADNOC Classification: Public
+
+
+
+
+       Note: Q1, Q2 and Q3 2025 Tankers revenue and direct costs have been re-presented for analytical consistency, with no
+       impact on Gross Profit, Net Profit or EBITDA
+
+
+
+
+       H1 2026 financial highlights:
+
+       Revenue for H1 2026 was $3,667 million, up $1,160 million, (46%) against $2,507 million in H1 2025.
+
+       EBITDA for H1 2026 was $1,475 million, up $731 million, (98%) against $744 million in H1 2025.
+
+       Net Profit for H1 2026 was $1,173 million, up $753 million, (179%) against $420 million in H1 2025.
+
+       Total Shareholder Returns since IPO was 221% as of 30 June 2026.
+
+
+
+       Q2 2026 financial highlights:
+
+
+
+       Revenue for Q2 2026 was $2,584 million, up $1,281 million, (98%) against $1,303 million in Q2 2025;
+       and an increase of $1,501 million, (139%) against $1,083 million for Q1 2026.
+
+       EBITDA for Q2 2026 was $1,106 million, up $706 million, (176%) against $400 million in Q2 2025; and
+       an increase of $738 million, (200%) against $368 million for Q1 2026.
+
+       Net Profit for Q2 2026 was $951 million, up $715 million, (303%) against $236 million in Q2 2025; and
+       an increase of $729 million, (328%) against $222 million for Q1 2026.
+
+
+
+
+                                                                5
+ADNOC Classification: Public
+
+
+
+
+       Segmental Results
+       INTEGRATED LOGISTICS
+
+         USD Million                          Q2 26          Q2 25         YoY %          Q1 26         QoQ %           H1 26     H1 25   YoY %
+         Revenue                               559            665           -16%            481           16%           1,040     1,293   -20%
+         Offshore Contracting                  355            359            -1%            312           14%            667      659      1%
+         Offshore Services                     205            149           38%             166           24%            371      285     30%
+         Offshore Projects                      (2)           157          -101%             4           -149%                2   349     -99%
+         Direct Costs                         (440)          (465)           -5%           (350)          26%           (791)     (946)   -16%
+         Offshore Contracting                 (251)          (199)          26%            (212)          18%           (463)     (391)   18%
+         Offshore Services                    (177)          (119)          49%            (130)          37%           (307)     (230)   33%
+         Offshore Projects                     (12)          (147)          -92%            (8)           48%            (20)     (325)   -94%
+         EBITDA (1)                            132            238           -44%            151          -12%            283      420     -33%
+         Offshore Contracting                  105            183           -43%            106           -2%            211      315     -33%
+         Offshore Services                      41             42            -3%            48           -14%             89       77     16%
+         Offshore Projects                     (13)            13          -207%            (4)          -276%           (17)      28     -160%
+         Margin                                24%            36%          -12pp           31%            -8pp           27%      32%     -5pp
+         Offshore Contracting                  29%            51%           -22pp          34%            -5pp           32%      48%     -16pp
+         Offshore Services                     20%            28%           -8pp           29%            -9pp           24%      27%     -3pp
+         Offshore Projects                     N/A            8%             N/A            N/A           N/A            N/A       8%      N/A
+         Net Profit                             59            167           -64%            83           -28%            142      285     -50%
+         Offshore Contracting                   52            136           -62%            59           -13%            111      222     -50%
+         Offshore Services                      21             23           -10%            28           -26%             48       42     16%
+         Offshore Projects                     (13)             8          -252%            (4)          -205%           (17)      22     -178%
+       (1)
+             EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+
+       Offshore Contracting
+
+       Year-on-Year Performance
+
+       Revenue from Offshore Contracting remained broadly stable at $667 million in H1 2026, representing
+       a 1% increase compared to $659 million in H1 2025. For Q2 2026, revenue was $355 million, broadly
+       in line with $359 million in Q2 2025. Deployment of additional Jack-Up Barges (JUBs), were largely
+       offset by lower material handling volumes and softer JUB pricing and utilization.
+
+       EBITDA declined 33% to $211 million in H1 2026, compared to $315 million in H1 2025. EBITDA
+       declined 43% to $105 million for Q2 2026, from $183 million in Q2 2025, primarily reflecting the
+       recognition of an Expected Credit Loss (ECL) provision, alongside lower JUB utilization and rates and
+       reduced activity levels on the Hail & Ghasha.
+
+       Quarter-on-Quarter Performance
+
+       Revenue increased 14% quarter-on-quarter to $355 million in Q2 2026, from $312 million in Q1 2026,
+       primarily driven by higher chartered-in JUB activities.
+
+       EBITDA remained broadly stable at $105 million in Q2 2026, compared to $106 million in Q1 2026.
+       The modest decline of 2% was mainly attributable to the recognition of an Expected Credit Loss (ECL)
+       provision, partially offset by the higher revenue contribution during the quarter.
+
+
+
+
+                                                                                     6
+ADNOC Classification: Public
+
+
+
+
+       Offshore Services
+
+       Year-on-Year Performance
+
+       Revenue from Offshore Services increased 30% to $371 million in H1 2026, compared to $285 million
+       in H1 2025. Revenue increased 38% to $205 million for Q2 2026, from $149 million in Q2 2025, largely
+       driven by OSV fleet growth, improved utilization and higher chartering activity, in addition to higher
+       diesel sales volume and prices.
+
+       EBITDA increased 16% to $89 million in H1 2026, compared with $77 million in H1 2025, driven by the
+       same reasons supporting revenue. EBITDA was broadly flat at $41 million for Q2 2026 compared to
+       $42 million in Q2 2025.
+
+
+
+       Quarter-on-Quarter Performance
+
+       Revenue increased 24% to $205 million in Q2 2026 compared with $166 million in Q1 2026, reflecting
+       higher chartering activity and increased chartered-in OSVs, and higher diesel sales volumes and
+       prices.
+
+       EBITDA decreased 14% to $41 million in Q2 2026, compared with $48 million in Q1 2026, primarily
+       due to a one-time provision. This was partially offset by the increase in revenue and improved
+       operational activity.
+
+
+
+       Offshore Projects
+
+       Year-on-Year Performance
+
+       Revenue from Offshore Projects declined 99% to $2 million in H1 2026, compared to $349 million in
+       H1 2025. Revenue was negative $2 million for Q2 2026, compared to $157 million in Q2 2025, a decline
+       of 101%, following the completion of the Al Omairah Island (G-Island) EPC project in the fourth quarter
+       of 2025. Results were also affected by appropriate provisioning related to the Bu Haseer Project.
+
+       EBITDA was negative $17 million in H1 2026, compared with positive $28 million in H1 2025. EBITDA
+       was negative $13 million for Q2 2026, compared with positive $13 million in Q2 2025, reflecting
+       unplanned cost overruns and prudent provisioning related to the Bu Haseer Project, as well as the non-
+       recurrence of earnings from the Al Omairah Island (G-Island) project, following its completion in the
+       fourth quarter of 2025.
+
+
+
+       Quarter-on-Quarter Performance
+
+       Revenue declined to negative $2 million in Q2 2026, from $4 million in Q1 2026, reflecting the continued
+       absence of active EPC projects and the recognition of prudent provisioning related to the Bu Haseer
+       project.
+
+       EBITDA declined to negative $13 million in Q2 2026, compared with negative $4 million in Q1 2026,
+       primarily driven by project cost overruns and prudent provisioning related to the Bu Haseer project.
+
+
+
+
+                                                          7
+ADNOC Classification: Public
+
+
+
+
+       SHIPPING
+
+        USD Million                      Q2 26          Q2 25         YoY %          Q1 26         QoQ %           H1 26           H1 25   YoY %
+        Revenue                          1,925           557           245%            512          276%           2,438           1,049   132%
+        Tankers                          1,695           460           268%            407          316%           2,102           865     143%
+        Gas Carriers                       131            43           207%             56          135%            187             82     128%
+        Dry-Bulk and
+                                           100            55            83%             49          102%            149            102     46%
+        Containers
+        Direct Costs                      (998)         (464)          115%           (380)         162%          (1,378)          (892)   55%
+        Tankers                           (850)         (384)          122%           (302)         182%          (1,152)          (738)   56%
+        Gas Carriers                      (90)           (32)          181%            (35)         155%           (126)           (61)    106%
+        Dry-Bulk and
+                                          (57)           (48)           19%            (43)          34%           (100)           (92)     8%
+        Containers
+        EBITDA (1)                         943           147           541%            197          380%           1,140           290     292%
+        Tankers                            844           114           642%            151          460%            994            204     388%
+        Gas Carriers                       56             24           134%             37           52%             93             71     30%
+        Dry-Bulk and
+                                           44              9           363%             9           371%             53             15     249%
+        Containers
+        Margin                            49%            26%           23pp           38%            11pp           47%            28%     19pp
+        Tankers                           50%            25%           25pp           37%            13pp           47%            24%     24pp
+        Gas Carriers                      43%            56%           -13pp          66%           -23pp           50%            87%     -37pp
+        Dry-Bulk and
+                                          44%            17%           26pp           19%            25pp           35%            15%     21pp
+        Containers
+        Net Profit                         872            64          1258%            125          597%            997            126     693%
+        Tankers                            797            51          1467%            100          696%            897             76     1080%
+        Gas Carriers                       40             11           267%             23           75%             62             48     31%
+        Dry-Bulk and
+                                           35              3          1291%             2           1433%            38             2      1629%
+        Containers
+            (1)
+                  EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+            (2)
+                  EBITDA Q1 2025 normalized to remove US$25.9m of Other Income earned in the period related to early contract termination of LNGC
+                  coupled with sale of Medium Gas Carrier Yas
+
+                  Note: Q1, Q2 and Q3 2025 Tankers revenue and direct costs have been re-presented for analytical consistency, with no impact on Gross
+                  Profit, Net Profit or EBITDA
+
+
+
+       Tankers
+
+       Year-on-Year Performance
+
+       Revenue from Tankers increased 143% to $2,102 million in H1 2026, compared to $865 million in H1
+       2025. Revenue increased 268% to $1,695 million for Q2 2026, from $460 million in Q2 2025.
+       Performance was underpinned by strong performance from services supporting ADNOC and a
+       significant uplift in TCE rates amid heightened geopolitical tensions, which supported exceptionally
+       favourable Tanker market conditions.
+
+       EBITDA increased 388% to $994 million in H1 2026, compared to $204 million in H1 2025. EBITDA
+       increased 642% to $844 million for Q2 2026, from $114 million in Q2 2025. These were mainly driven
+       by services supporting ADNOC and substantially higher Tanker charter rates and gain on sale of VLCC
+       (Leicester).
+
+
+
+
+                                                                                 8
+ADNOC Classification: Public
+
+
+
+
+       Quarter-on-Quarter Performance
+
+       Revenue increased 316% quarter-on-quarter to $1,695 million in Q2 2026, from $407 million in Q1
+       2026, reflecting strong performance from services supporting ADNOC and a marked improvement in
+       TCE rates supported by geopolitical market dynamics.
+
+       EBITDA increased 460% to $844 million in Q2 2026, compared with $151 million in Q1 2026, driven
+       by the same reasons supporting revenue.
+
+
+
+       Gas Carriers
+
+       Year-on-Year Performance
+
+       Revenue from Gas Carriers increased 128% to $187 million in H1 2026, compared to $82 million in H1
+       2025. Revenue increased 207% to $131 million for Q2 2026, from $43 million in Q2 2025. Growth was
+       driven by the deployment of additional newbuild LNG carriers, a significant uplift in spot market rates
+       and higher chartering activity.
+
+       EBITDA increased 30% to $93 million in H1 2026, compared to $71 million in H1 2025. EBITDA
+       increased 134% to $56 million for Q2 2026, from $24 million in Q2 2025, driven by contributions from
+       additional LNG carriers, stronger spot rates and the share of profit from the newbuild VLECs under the
+       AW Shipping JV.
+
+       Quarter-on-Quarter Performance
+
+       Revenue increased 135% to $131 million in Q2 2026 from $56 million in Q1 2026, driven mainly by a
+       substantial uplift in spot market rates and higher chartering activity.
+
+       EBITDA increased 52% to $56 million in Q2 2026, compared with $37 million in Q1 2026, reflecting
+       higher spot rates and continued profit contribution from the VLECs under the AW Shipping JV.
+
+
+
+       Dry-Bulk and Containers
+
+       Year-on-Year Performance
+
+       Revenue from Dry-Bulk increased 46% to $149 million in H1 2026, compared to $102 million in H1
+       2025. Revenue increased 83% to $100 million for Q2 2026, from $55 million in Q2 2025, primarily due
+       to improved charter rates, stronger chartering activities performance and contributions from two
+       additional Handysize vessels acquired in 2025.
+
+       EBITDA increased to $53 million in H1 2026, compared to $15 million in H1 2025. EBITDA increased
+       to $44 million for Q2 2026, from $9 million in Q2 2025, driven by the same reasons supporting revenue.
+
+
+
+
+                                                          9
+ADNOC Classification: Public
+
+
+
+
+       Quarter-on-Quarter Performance
+
+       Revenue increased 102% to $100 million in Q2 2026 compared with $49 million in Q1 2026, primarily
+       due to higher charter rates and improved chartering activities performance.
+
+       Consequently, EBITDA increased to $44 million in Q2 2026, up from $9 million in Q1 2026, driven by
+       the same factors supporting revenue.
+
+
+
+
+       SERVICES
+
+         USD Million                          Q2 26          Q2 25         YoY %          Q1 26         QoQ %           H1 26   H1 25   YoY %
+         Revenue                               100             81           24%             89            13%            189    165     14%
+         Direct Costs                          (78)           (65)          19%            (71)            9%           (149)   (131)   13%
+         EBITDA (1)                             32             15           112%            20            56%             52     33     58%
+         Margin                                32%            18%           13pp           23%            9pp            28%    20%      8pp
+         Net Profit                             22              7           202%            11           106%             33     18     85%
+       (1)
+             EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization
+
+
+
+       Year-on-Year Performance
+
+       Revenue from Services increased 14% to $189 million in H1 2026, compared to $165 million in H1
+       2025. Revenue increased 24% to $100 million for Q2 2026, from $81 million in Q2 2025. The growth
+       was primarily driven by the inclusion of warehouse revenue following the reclassification of this activity
+       from the Integrated Logistics to the Services segment, partially offset by lower volumes at Petroleum
+       Port Operations (PPO) and the Borouge Container Terminal (BCT).
+
+       EBITDA increased 58% to $52 million in H1 2026, compared to $33 million in H1 2025. EBITDA
+       increased 112% to $32 million for Q2 2026, from $15 million in Q2 2025, driven by the same factors
+       affecting revenue, alongside stronger commercial pooling performance and higher profit share from
+       Integr8 (bunkering).
+
+
+
+       Quarter-on-Quarter Performance
+
+       Revenue increased 13% to $100 million in Q2 2026, from $89 million in Q1 2026. This growth was
+       mainly attributable to the stronger commercial pooling performance and the one-off recognition of
+       emergency measures support to Fertiglobe and AGT, partially offset by lower volumes across
+       Petroleum Port Operations (PPO) and the Borouge Container Terminal (BCT).
+
+       EBITDA increased 56% to $32 million in Q2 2026, compared to $20 million in Q1 2026. This
+       improvement was driven by stronger commercial pooling performance and margins at Integr8
+       (bunkering), partially offset by lower volumes across PPO and BCT.
+
+
+
+
+                                                                                     10
+ADNOC Classification: Public
+
+
+
+
+       Free Cash Flow
+         USD Million                       Q2 26          Q2 25         YoY %          Q1 26         QoQ %           H1 26     H1 25   YoY %
+         EBITDA (1)                        1,106           400           176%            368          200%           1,475     744     98%
+         Working Capital Adj.              (339)           (53)          539%            36             NA           (303)     (113)   168%
+         Income Tax                         (16)           (15)           7%             (11)          50%            (27)     (27)     1%
+         Operating Free Cash
+                                            751            332           126%            394           91%           1,145     604     89%
+         Flow
+         Capital Expenditure (2)           (283)          (270)           5%            (264)           7%           (547)     (340)   61%
+         Free Cash Flow                     468             62           654%            130          260%            598      265     126%
+
+       (1)   EBITDA is calculated as profit before income tax, finance costs, finance income, depreciation and amortization.
+       (2)   Refer to Note 4: Property, Plant and Equipment in Financial Statements for further details.
+
+
+       For H1 2026, Operating Free Cash Flow increased 89% ($541 million) to $1,145 million, driven
+       primarily by significantly higher EBITDA. In the second quarter, Operating Free Cash Flow was $751
+       million, up 126% year-on-year, partially offset by a working capital outflow.
+
+       Free Cash Flow was $598 million for H1 2026, up $333 million from $265 million in H1 2025, reflecting
+       substantially higher EBITDA. In the second quarter, Free Cash Flow was $468 million, compared to
+       $62 million in Q2 2025. The continued expansion of operating free cash flow, supported by stronger
+       profitability, positions the Company to pursue value accretive growth investments while reducing
+       reliance on debt financing. Solid and consistent free cash flow generation after dividends distribution
+       enables the Company to lower financing costs and supports a more efficient capital structure.
+
+       ADNOC L&S recorded capital expenditures of $547 million in H1 2026.
+
+       ADNOC L&S entered an unsecured senior corporate revolving credit facility (RCF) agreement with its
+       parent company, amounting to $2.0 billion, with the ability to upsize the facility by a further $600 million.
+       This facility replaces the unsecured senior corporate term facility and the revolving credit facility
+       established with its parent company in 2023, which amounted to $1.5 billion and $350 million,
+       respectively.
+
+       This structure enhances the Company’s funding flexibility while maintaining leverage within the target
+       Net Debt to EBITDA range of 2.0x to 2.5x.
+
+
+
+       The company added $464 million in property, plant and equipment in H1 2026 (refer Note 4 PPE
+       (Additions) in Financial Statements for further details).
+
+
+
+
+                                                                                  11
+ADNOC Classification: Public
+
+
+
+
+       Outlook
+       ADNOC L&S has raised its full-year 2026 financial guidance on Revenue, EBITDA and Net Profit,
+       incorporating continued strong shipping performance.
+
+
+       The company is updating the market on the sustained strong performance of its shipping segment.
+       The revised guidance assumes continued support from strong shipping markets. Full-year results are
+       highly dependent on regional dynamics.
+
+
+       The Offshore Contracting segment has been positively impacted by gradual improvements in
+       material handling volumes in the Integrated Logistics Services Platform (ILSP). Guidance reflects
+       further improvements in ILSP material handling volumes and maintains previous guidance
+       assumptions for our Jack-Up Barge fleet. The dividend policy remains unchanged and aligned with
+       the Company’s capital allocation framework.
+
+
+       Group 2026 Guidance
+        Metric                               Current 2026 Guidance             Previous Guidance
+
+        Revenue                         Mid 20% growth                   Low single-digit growth
+
+        EBITDA                          Mid 60% growth                   High 20% growth
+
+        Net Profit                      High 110% growth                 High 60% growth
+
+
+       2026 Revenue Guidance by Segment
+        Revenue                              Current 2026 Guidance             Previous Guidance
+
+        Integrated Logistics            Mid 20% reduction                Mid-to-high 20% reduction
+
+        Shipping                        Mid 80% growth                   Mid-to-high-teens growth
+
+        Services                        Mid single-digit growth          Low-to-mid single-digit growth
+
+
+       2026 EBITDA Guidance by Segment
+        EBITDA                               Current 2026 Guidance             Previous Guidance
+
+        Integrated Logistics            Mid 20% reduction                Mid-to-high 20% reduction
+
+        Shipping                        Low 190% growth                  Mid-to-high 50% growth
+
+        Services                        Low 20% growth                   Low-to-mid single-digit growth
+
+
+
+
+                                                        12
+ADNOC Classification: Public
+
+
+
+
+       ADNOC L&S confirms its positive medium-term outlook. Exact mid-term guidance parameters are
+       currently under review in light of ongoing 2026 performance and the company’s latest active expansion
+       announcements. The company retains significant financial capacity for investments beyond projects
+       that have already been announced. The board approved an interim cash dividend of $85.3 million,
+       equivalent to AED313.3 million, for 2Q 2026, allocated based on shareholdings at record date of 20
+       Aug 2026. Interim dividend distribution is aligned with the company's dividend policy, which assumes
+       progressive annual dividend increase per share of at least 5% per annum over the medium term.
+       ADNOC L&S targets a medium-term net debt-to-EBITDA ratio of 2.0–2.5x.
+
+
+
+
+                                                        13
+ADNOC Classification: Public
+
+
+
+
+       Earnings Conference Call Details
+
+       ADNOC L&S will host the earnings webcast and conference call followed by a Q&A session for
+       investors and analysts on Tuesday, August 11, 2026, at 3:00 pm UAE time / 12:00 pm UK time through
+       the following link.
+
+       The call will be hosted by Abdulkareem Al Masabi (CEO) and Hugh Baker (CFO).
+
+
+
+
+                                                       14
+ADNOC Classification: Public
+
+
+
+
+       About ADNOC Logistics & Services
+       ADNOC Logistics & Services, listed on the Abu Dhabi Securities Exchange (ADX symbol ADNOCLS /
+       ISIN “AEE01268A239”) is a global energy maritime logistics company based in Abu Dhabi. Through
+       its three business units; Integrated Logistics, Shipping and Services, ADNOC L&S delivers energy
+       products to more than 100 customers in over 50 countries.
+
+       To find out more, visit: www.adnocls.ae
+       For investors enquiries, please contact: IR@adnocls.ae
+
+
+
+
+                                                       15
+ADNOC Classification: Public
+
+
+
+
+       Cautionary Statement Regarding Forward-Looking Statements
+       This communication includes forward-looking statements which relate to, among other things, our plans,
+       objectives, goals, strategies, future operational performance, and anticipated developments in markets
+       in which we operate and in which we may operate in the future. These forward-looking statements
+       involve known and unknown risks and uncertainties, many of which are beyond our control and all of
+       which are based on management’s current beliefs and expectations about future events. Forward-
+       looking statements are sometimes identified by the use of forward-looking terminologies such as
+       “believes”, “expects”, “may”, “will”, “could”, “should”, “would”, “intends”, “estimates”, “plans”, “targets”,
+       or “anticipates” or the negative thereof, or other comparable terminologies. These forward-looking
+       statements and other statements contained in this communication regarding matters that are not
+       historical facts involve predictions and are based on the beliefs of our management, as well as the
+       assumptions made by, and information currently available to, our management. Although we believe
+       that the expectations reflected in such forward-looking statements are reasonable at this time, we
+       cannot assure you that such expectations will prove to be correct. Given these uncertainties, you are
+       cautioned not to place undue reliance on such forward-looking statements. Important factors that could
+       cause actual results to differ materially from our expectations include, but are not limited to: our ability
+       to enter into strategic alliances and third party transactions; failure to successfully implement our
+       operating initiatives and growth plans, including our cost savings initiatives, due to general economic
+       conditions, our reliance on information technology to manage our business; laws and regulations
+       pertaining to environmental protection, operational safety, the extent of our related party transactions
+       with other ADNOC Group companies; the introduction of new taxes in the UAE; failure to successfully
+       implement new policies, practices, systems and controls that we implemented in connection with or
+       following our IPO; any inadequacy of our insurance to cover losses that we may suffer; general
+       economic, financial and political conditions in Abu Dhabi and elsewhere in the UAE; instability and
+       unrest in regions in which we operate; the introduction of new laws and regulations in Abu Dhabi and
+       the UAE; and other risks and uncertainties detailed in our International Offering Memorandum dated
+       May 16th 2023 relating to our initial public offering and the listing of our shares on the Abu Dhabi
+       Securities Exchange, and from time to time in our other investor communications. Except as expressly
+       required by law, we disclaim any intent or obligation to update or revise these forward-looking
+       statements.
+
+       Absolute figures and percentages included in this document have been subject to rounding
+       adjustments.
+
+
+
+
+                                                            16
+
