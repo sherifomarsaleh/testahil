@@ -47,7 +47,9 @@ const STATIC = [
   // because its figures are computed from SCREEN/PRICES at load, so what a
   // crawler sees changes whenever a price is entered or a library lands — the
   // prose is the static part here, not the content.
-  ['funnel.html',   '0.6', 'weekly'],
+  /* funnel.html is a REDIRECT to tools.html#funnel since 07-Sep-2026 — the
+     explanation moved under the table it produces. A redirect does not belong
+     in a sitemap: it would advertise a url that serves no content. */
   ['savings.html',  '0.6', 'monthly'],
   ['record.html',   '0.9', 'weekly'],
   ['method.html',   '0.6', 'monthly'],
