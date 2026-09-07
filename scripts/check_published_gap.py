@@ -92,6 +92,25 @@ def load_ratchet():
     return json.load(open(RATCHET, encoding="utf-8"))
 
 
+
+def _gap_for_this_gate(sdir, plain):
+    """The gap THIS gate compares against, from the review in `sdir`.
+
+    THIS GATE'S QUESTION IS NOT THE OTHER GATE'S. check_valuation_gap audits a study
+    against the price it was STRUCK at; this audits what a READER sees on the site
+    against today's price. While a study has been rebuilt and its page is held those
+    are two different disagreements — [R-GAP-03] says so in its own text, "each honest
+    about a different thing" — and one AUDITED GAP line cannot be both. A review may
+    therefore state a second, separately-named AUDITED PUBLISHED GAP; it is preferred
+    here and ignored by the other gate, whose marker cannot match it.
+
+    Absence changes nothing: the plain marker is used exactly as before, and a review
+    carrying NEITHER returns None and is refused — an absent gap is not a satisfied one
+    [R-ENF-04].
+    """
+    pg = vg.audited_published_gap(sdir)
+    return pg if pg is not None else plain
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--prune", action="store_true")
@@ -147,11 +166,11 @@ def main(argv=None):
         elif not any(abs(v - base) <= max(0.005, abs(base) * 0.002) for v in (acs or [ac])):
             why = ("review %s audits %s; the site publishes %s"
                    % (name, ac, base))
-        elif ag is None:
+        elif _gap_for_this_gate(sdir, ag) is None:
             why = "review %s states no audited gap" % name
-        elif abs(ag - gap) > GAP_STALE:
+        elif abs(_gap_for_this_gate(sdir, ag) - gap) > GAP_STALE:
             why = ("review %s audited a gap of %+.1f%%; the site now shows %+.1f%%"
-                   % (name, ag * 100, gap * 100))
+                   % (name, _gap_for_this_gate(sdir, ag) * 100, gap * 100))
         else:
             audited.append(tk)
             continue

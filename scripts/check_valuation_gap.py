@@ -419,6 +419,45 @@ AUDIT_GAP_TOL = 0.05       # five percentage points of gap. NOT a new free param
                            # simply moved a little between build and delivery.
 
 
+# THE SAME REVIEW IS READ BY TWO GATES ASKING TWO DIFFERENT QUESTIONS, AND FOR ONE
+# DAY THEY SHARED ONE MARKER. This gate audits a study against the price it was STRUCK
+# at; [R-GAP-03]'s check_published_gap audits the number a READER sees on the site
+# against today's price. While a study has been rebuilt and its page is held, those are
+# two different gaps — [R-GAP-03] says so in its own text, "each honest about a
+# different thing" — so a review stating one of them is necessarily stale to the other
+# gate, and no amount of rewriting it fixes that. DU on 7 September 2026: the study
+# publishes 16.5778 against a strike of 11.36 (+45.9%, audited) while the site still
+# carries a superseded 13.9 against 11.38 (+22.1%), and one AUDITED GAP line cannot be
+# both.
+#
+# A review may therefore state a SECOND, separately-named gap for the published page.
+# The marker does not collide: AUDITED[ _]GAP cannot match "AUDITED PUBLISHED GAP",
+# because the words sit between. Absence is the old behaviour exactly, so every review
+# in the book is unaffected — and check_published_gap falls back to the plain marker
+# rather than treating a missing one as satisfied [R-ENF-04].
+PUBLISHED_GAP_RX = re.compile(
+    r'AUDITED[ _]PUBLISHED[ _]GAP\s*[:=]\s*([+-]?[0-9][0-9,]*\.?[0-9]*)\s*%', re.I)
+
+
+def _audited_published_gap(raw):
+    """The gap against the PUBLISHED page a review states it audited, or None."""
+    m = PUBLISHED_GAP_RX.search(raw)
+    if not m:
+        return None
+    try:
+        return float(m.group(1).replace(',', '')) / 100.0
+    except ValueError:
+        return None
+
+
+def audited_published_gap(sdir):
+    """Read that marker from the most recent review in a study directory."""
+    hits = sorted(glob.glob(os.path.join(sdir, REVIEW_GLOB)))
+    if not hits:
+        return None
+    return _audited_published_gap(open(hits[-1], encoding='utf-8').read())
+
+
 def _audited_centrals(raw):
     """EVERY audited-central line in a review, not just the first.
 
