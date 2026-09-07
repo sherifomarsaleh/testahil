@@ -654,7 +654,30 @@
     "unrecoverable": null
    },
    "ccy": "EGP",
-   "editions": [],
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": 44.329496406267786,
+      "bear": 27.400479675581863,
+      "full": 67.64860887942503
+     },
+     "lessons": [],
+     "origins": "2016-2023",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 24.2,
+      "bear": 17.6,
+      "full": 32.6
+     },
+     "vs_previous_pct": {
+      "base": 24.2,
+      "bear": 17.6,
+      "full": 32.6
+     }
+    }
+   ],
    "exchange": "EGX",
    "market": "EG",
    "ticker": "GBCO",
