@@ -2051,3 +2051,45 @@ THEM IS ABOUT THE METHOD.** "Is this driver's bias stable?" and "was applying th
 correction defensible?" run the same arithmetic over different windows, and a check
 that picks the wider window every time is not stricter — it is answering the
 question the method was never asked.
+
+### L-352 needs no gate, and the reason is arithmetic rather than a shrug
+
+The open item read *"L-352 has no obvious gate shape and may be a lesson that stays
+prose."* Measured rather than left as a hunch: **its gateable half is already bound,
+an order tighter than its own evidence could justify a threshold at.**
+
+L-352 says the gap between what a company charges and what it pays holds almost
+still while the rate both climb at moves enormously. A drifting spread **is** a
+drifting margin path, and [R-ANCHOR-01] clause two already refuses a forecast whose
+rate declines 5% relative from its own opening year without a named, sourced,
+like-for-like-measured mechanism. Solving for the spread drift that trips it over a
+five-year window:
+
+| base margin | drift that trips [R-ANCHOR-01] |
+|---|---|
+| 10% | 0.111% a year |
+| 20% | 0.251% a year |
+| 30% | 0.432% a year |
+| 50% | 1.021% a year |
+
+**Against L-352's own measured drift across 26 name-years: −0.37%, +0.61%, +0.97%.**
+At any margin below about half, the existing anchor gate fires well inside the range
+this lesson's evidence calls flat — so a new threshold could only be looser than
+what already binds, and a looser gate that duplicates a tighter one is the
+permanently-green check, which is [R-CAL-03]'s decorative test wearing a new hat.
+
+Its other half — *hold nothing still* — is L-353 and is already arithmetic in
+`check_frozen_escalator.py`, which tests **connectivity rather than magnitude**: a
+line whose value is identical when every inflation rate the run carries is doubled
+at source is wired to none of them. Zero is not a threshold, so no free parameter
+enters.
+
+**So L-352 stays prose, and that is a decision with a reason rather than an item
+nobody closed.** What remains in it is guidance about where to spend effort — get
+the rate right before the gap — which is exactly the kind of thing a register
+carries and a gate cannot.
+
+THE GENERAL LESSON: **BEFORE BUILDING A CHECK, SOLVE FOR WHAT THE EXISTING ONES
+ALREADY REFUSE.** "This lesson has no gate" was true and unhelpful; the useful
+question was what a gate for it would have to be tighter than, and the answer came
+out of arithmetic already in the protocol.
