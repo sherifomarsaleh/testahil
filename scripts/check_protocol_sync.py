@@ -22,6 +22,8 @@ HOW
 """
 import os
 import json
+import datetime as _dt
+import subprocess
 import re
 import sys
 
@@ -175,6 +177,54 @@ def duplicated_passages(path, window=DUP_WINDOW):
     return out
 
 
+def amendment_days(root=ROOT, paths=None):
+    """The day(s) the governing documents were last amended, as a witness OUTSIDE them.
+
+    [R-DOC-01 AMENDED 07-09-2026] THE STAMP NAMES THE DAY THE DOCUMENT WAS ACTUALLY
+    AMENDED, AND NOTHING HAD EVER ASKED WHEN THAT WAS. The rule says the digest is
+    named for the day of its LATEST AMENDMENT so the filename and the stamp "agree on
+    their face". A first draft of this check compared those two to each other and
+    PASSED — of course it did: both are typed by the same hand in the same edit and
+    they had never disagreed. On 07-09-2026 three amendments landed at 00:45, 01:02
+    and 01:25 UTC carrying 2026-09-06d, e and f under a filename dated 06-09-2026,
+    every one internally consistent and every one naming a day the edits were not made
+    on. TWO FIELDS THAT AGREE WITH EACH OTHER AND NOT WITH THE WORLD IS THE
+    SELF-ATTESTATION SHAPE [R-ENF-01] CLOSES EVERYWHERE ELSE, and the only witness
+    outside the document is when it was committed.
+
+    THE ZONE IS AMBIGUOUS AND THE AMBIGUITY IS ADMITTED RATHER THAN RESOLVED BY
+    PICKING ONE. The project's clock is Africa/Cairo and CI runs in UTC, so a commit
+    between 21:00 and midnight UTC falls on two different days depending on which is
+    meant, and choosing one here would be a free parameter the PROMOTION RULE forbids.
+    Both readings are returned; what the caller refuses is a stamp matching NEITHER.
+
+    Returns (days, when) or raises RuntimeError — an unanswerable check is not a
+    clean one [R-ENF-04].
+    """
+    paths = list(paths or (DIGEST, FULL))
+    log = subprocess.run(['git', 'log', '-1', '--format=%at', '--'] + paths,
+                         cwd=root, capture_output=True, text=True)
+    if log.returncode != 0:
+        raise RuntimeError('git could not say when the governing documents were last '
+                           'amended: %s' % log.stderr.strip()[:140])
+    dirty = subprocess.run(['git', 'status', '--porcelain', '--'] + paths,
+                           cwd=root, capture_output=True, text=True)
+    if dirty.returncode == 0 and dirty.stdout.strip():
+        base = _dt.datetime.now(_dt.timezone.utc)
+        when = 'the working tree (amended, not yet committed)'
+    else:
+        ts = log.stdout.strip()
+        if not ts.isdigit():
+            raise RuntimeError('no commit was found touching the governing documents, '
+                               'so the stamp cannot be checked against when they were '
+                               'amended. On a shallow clone, fetch full depth.')
+        base = _dt.datetime.fromtimestamp(int(ts), _dt.timezone.utc)
+        when = 'the last commit touching them'
+    days = sorted({base.date().isoformat(),
+                   (base + _dt.timedelta(hours=3)).date().isoformat()})
+    return days, when
+
+
 def main():
     full, digest = ids_in(FULL), ids_in(DIGEST)
     rf, rd = revision(FULL), revision(DIGEST)
@@ -187,6 +237,35 @@ def main():
         print(f'FAIL — revision stamps disagree: full protocol {rf}, digest {rd}. '
               f'Amend both in the same commit and bump both.')
         return 1
+    try:
+        allowed, when = amendment_days()
+    except RuntimeError as exc:
+        print('FAIL — %s An unanswerable check is not a clean one [R-ENF-04].' % exc)
+        return 1
+    if rd[:10] not in allowed:
+        print('FAIL — the documents are stamped %s and %s says they were amended on '
+              '%s (UTC or Africa/Cairo). [R-DOC-01] requires the stamp to name the '
+              'day of the amendment, the digest to be RENAMED to that day in the '
+              'SAME COMMIT as the first edit of it, the revision letters to restart '
+              'at "a", and the include line at the top of CLAUDE.md to move with the '
+              'rename — so a copy pasted into somebody else\'s project files declares '
+              'its own age on its face.' % (rd, when, ' or '.join(allowed)))
+        return 1
+    fname = os.path.basename(DIGEST)
+    m_fn = re.search(r'PROJECT_INSTRUCTIONS_(\d{2})-(\d{2})-(\d{4})\.md$', fname)
+    if not m_fn:
+        print('FAIL — the digest filename %r carries no DD-MM-YYYY date, so the rule '
+              'that it names its own amendment day cannot be checked [R-ENF-04].'
+              % fname)
+        return 1
+    fn_date = '%s-%s-%s' % (m_fn.group(3), m_fn.group(2), m_fn.group(1))
+    if rd[:10] != fn_date:
+        print('FAIL — the digest is named for %s and stamped %s. Rename engine/%s to '
+              'engine/PROJECT_INSTRUCTIONS_%s-%s-%s.md and move the CLAUDE.md include '
+              'line with it, in the same commit.'
+              % (fn_date, rd, fname, rd[8:10], rd[5:7], rd[0:4]))
+        return 1
+
     dupes = {os.path.basename(p): extra_stamps(p) for p in (FULL, DIGEST)}
     if any(dupes.values()):
         for name, extra in dupes.items():

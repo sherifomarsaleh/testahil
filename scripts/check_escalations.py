@@ -61,6 +61,9 @@ def main(argv=None) -> int:
 
     fails, ok = [], 0
     today = dt.date.today().isoformat()
+    # A run against a fixture must never read as a run against the record.
+    if getattr(E, "REGISTER_IS_OVERRIDDEN", False):
+        print("   register OVERRIDDEN by TESTAHIL_ESCALATIONS_REGISTER: %s" % E.REGISTER)
     print("[R-IND-01] escalation register — %d entr%s, checked against %d live refs"
           % (len(entries), "y" if len(entries) == 1 else "ies", len(E.live_refs())))
 

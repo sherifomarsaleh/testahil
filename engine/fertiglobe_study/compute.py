@@ -1504,7 +1504,13 @@ out = dict(
     meta=dict(ticker='FERTIGLB', company='Fertiglobe plc', market='AE',
               exchange='Abu Dhabi Securities Exchange',
               currency='USD', listing_currency='AED', fx=FX,
-              asof=str(datetime.date.today()), price_date='2026-08-07',
+              # A STUDY DATE IS A FACT ABOUT WHEN THE STUDY WAS STRUCK, NOT A CLOCK
+              # READING. date.today() made this file unreproducible: rebuilding it on
+              # any later day moved meta.asof, and docx_fertiglobe.py prints that value
+              # as "Study date" — so a rebuild changed what a delivered document says
+              # about when the work was done. Frozen to the date the delivered document
+              # already carries, so the generator reproduces its own output.
+              asof='2026-09-04', price_date='2026-08-07',
               spot_aed=SPOT_AED, spot_usd=SPOT_AED / FX, shares_mn=SHARES,
               mktcap_usd=MKTCAP_USD, mktcap_aed=SHARES * SPOT_AED,
               ev_trailing=ev_trailing, klass='operating company — nitrogen fertilisers',

@@ -2285,3 +2285,154 @@ CANNOT SEE.** The gauntlet's whole claim is that a new study cannot walk past th
 set — and the set is whatever has been declared to it. Adding an instrument without
 telling the system it exists leaves both the instrument and the claim weaker than
 before, and only the system-level check catches it.
+
+## 07-09-2026 — does a study's numbers file still reproduce from its own generators?
+
+Nothing in this repository had ever asked. `check_numbers_generators.py` says in its
+own docstring that it deliberately does not — running every study's model takes
+minutes and would fail for reasons unrelated to the defect it was built for. So the
+question was open by design, and the design had never been tested.
+
+**Measured**: a sandbox at HEAD, each study's own generators run in their declared
+order, the committed numbers file diffed against what came back.
+
+- **19 of 24 reproduce byte for byte.**
+- **3 differ, and all three differ the same way** — `engine/terminal_value.py` grew
+  five record fields after they last built (FERTIGLOBE 4 records, PHAR 2, SCEM 1).
+  The missing fields are `maintenance_age_basis`, `maintenance_age_years`,
+  `maintenance_escalator` and the two `average_age` inputs.
+- **2 cannot run at all**: GBCO's `compute.py` passes `rf=` to a v2 `WaccInputs` that
+  rejects it, and XPT's `compute_xpt.py` imports the retired `mc_v2`. Both are named
+  in the digest's open items as things a re-issue would have to rebuild rather than
+  patch — **confirmed live rather than remembered**, which is the point of running it.
+
+**Nothing valued had moved, and that is part of the finding rather than a mitigation
+of it.** The escalator is applied inside `build()` and always was, so every terminal
+in those studies was struck at current cost exactly as [R-TERM-01] requires. What was
+missing is the record *of* it — [R-ENF-06] one level up, and it matters for the same
+reason: a record that does not name the quantity a value was built from cannot be
+rebuilt or graded afterwards, and it looks complete while it cannot.
+
+**The probe was wrong twice before it was right**, and both are the standing failure
+shape. The first run reported two crashes that were *my own* missing PYTHONPATH, not
+the studies'. The second could not tell a generator that reproduced its file from one
+that never wrote it — every "REPRODUCES" would have read identically. Re-run with the
+path set and an mtime landing assertion: no study silently no-op'd, and the two
+crashes are real.
+
+**The cheap test finds exactly what the expensive one does.** A static walk of the
+committed records against the field set `terminal_value.build()` emits today names the
+same three studies, in under a second, with no model run — because the only thing that
+had drifted was a field set. That is now `scripts/check_terminal_record_shape.py`,
+negative-controlled on 10 conditions (7 red, 3 clean), classified ARTEFACT-conditional
+in the gauntlet, 35/35.
+
+**Conformed rather than ratcheted**, so the list starts empty: regenerating adds the
+fields, deletes nothing, and moved no valued figure in any of the three.
+
+**One of them needed its generator fixed first, and that is the more useful half.**
+FERTIGLOBE stamped `meta.asof` with `date.today()`, and `docx_fertiglobe.py` prints
+that value as "Study date" — so *rebuilding the study restamped a delivered document's
+account of when the work was done*. A study date is a fact about when the study was
+struck, not a clock reading. Frozen to `2026-09-04`, which is what the delivered
+document already prints (read out of its own `document.xml` rather than chosen), so
+the generator now reproduces its own output and no document changes.
+
+**The general lesson, which is not about terminals:** a module and the records it
+wrote are two different vintages, and only the module moves on its own. Every gate here
+points from a record back to the model and asks whether the figures came from it; none
+asked whether the record still has the shape the writer emits — a question answerable
+without running anything, which is why it was worth asking of all 24 at once.
+
+## 07-09-2026 — a negative control wrote its fixture into the record it protects
+
+CI on 7f524a0c came back with two gate failures, both the same cause and neither in
+the work that was pushed. `engine/escalations.json` on that head held ONE entry,
+called `NC-example`, and the thirteen real ones were gone — replaced by its own
+negative control's fixture, and committed.
+
+**The mechanism was the control's own design.** Every other negative control here
+copies what it tests into a temp sandbox. This one wrote the fixture into
+`engine/escalations.json` and copied a backup over it in a `finally`. A `finally`
+survives an exception; it does not survive a kill, a timeout, or the process going
+away. It is the only control in this repository shaped to mutate the artefact it
+exists to protect, and the artefact it protects is the register that stops a question
+being asked twice — so losing it costs precisely what [R-IND-01] was adopted to
+prevent.
+
+**It then failed in a way that reads as a finding about the work.** The fixture's
+`resolves_when` marker sat in the committed file, so the gate reported the escalation
+as already answered and went red — a true statement about a file that should not have
+existed, on a head whose actual changes were clean.
+
+**Closed at the mechanism, not the instance.** `engine/escalations.py` now reads
+`TESTAHIL_ESCALATIONS_REGISTER` where it is set, so the control points the READER at a
+temp file and the real one is never opened for writing; CI sets nothing and reads the
+real path; and where the override is in force the gate PRINTS it, so a run against a
+fixture can never read as a run against the record. The control asserts, on **every
+case rather than once**, that `engine/escalations.json` is byte-identical after the
+gate runs.
+
+**A second fragility surfaced while fixing the first, and it is the more interesting
+one.** The clean fixtures' `resolves_when` named `engine/escalations.json` itself, so
+they depended on the repository's own history never containing a string the control
+defines — and the moment the fixture leaked into a commit, two clean cases went red
+for a reason that had nothing to do with what they test. *A control whose cases can be
+poisoned by its own fixture escaping breaks exactly when something has gone wrong.*
+Re-pointed at a path that does not exist, which is also the honest shape of an open
+escalation: the artefact that would carry the answer has not been written yet.
+
+Register recovered from `f213fdc1^` (13 entries) and
+`PARTE-criterion-1-ratchet-clause` rewritten from the routes actually run, labelled as
+a rewrite rather than passed off as the original text — it was registered in that
+commit and never survived into it. 14 entries, 18 of 18 control conditions hold.
+
+**The general lesson, which is not about escalations:** a test that mutates production
+state and undoes it afterwards is correct exactly as often as it completes. The undo is
+the part that does not run when something goes wrong — which is the one occasion when
+the state matters. *Where a check needs different inputs, give it different inputs;
+never give it the real ones and a plan to put them back.*
+
+## 07-09-2026 — a document cannot witness its own age
+
+[R-DOC-01] says the digest is named for the day of its **latest amendment**, so that the
+filename and the revision stamp "agree on their face". While fixing something else I
+checked whether anything enforced it. Nothing did — `check_protocol_sync` resolves the
+digest **by pattern** and then never asks what the pattern matched.
+
+**A first draft of the fix compared the filename's date to the stamp's date, and passed.**
+Of course it did: both are typed by the same hand in the same edit, and they had never
+disagreed. That draft was measuring nothing.
+
+Measured against the world instead: three amendments landed today at 00:45, 01:02 and
+01:25 UTC carrying `2026-09-06d`, `e` and `f` under a filename dated `06-09-2026`. Every
+one internally consistent, every one naming a day the edits were not made on, and every
+check in the repository green through all three — including the sync gate whose own rule
+this is.
+
+**Two fields that agree with each other and not with the world is the self-attested
+boolean [R-ENF-01] closes everywhere else** — in the one place this document had not
+searched: itself.
+
+The only witness outside a document is when it was committed. The stamp is now held
+against the last commit touching either governing document, or against today where they
+sit amended in the working tree. **The zone is admitted rather than resolved by picking
+one:** the project's clock is Cairo and CI runs in UTC, so a commit in the last three
+hours of a UTC day falls on two different days depending on which is meant, and choosing
+one would be a free parameter. Both readings are accepted; what is refused is a stamp
+matching neither.
+
+Negative-controlled on six conditions against **real little repositories** rather than
+strings — a defect made of two fields agreeing with each other cannot be reproduced by
+text alone. The clean half includes a commit at 22:30 UTC where both days must be
+accepted, and an amendment sitting in the working tree, which is dated now rather than by
+a commit made years earlier.
+
+Digest renamed to `PROJECT_INSTRUCTIONS_07-09-2026.md`, both stamps at `2026-09-07a`, the
+CLAUDE.md include line moved with it, and the digest's one self-reference re-pointed —
+which `check_protocol_text` caught within the minute, working exactly as intended.
+
+**The general lesson, which is not about dates: a document cannot witness its own age.**
+Everything inside it was written at the same moment by the same hand, so any two fields in
+it will agree. The question a stamp exists to answer is about the world, and answering it
+needs something the author did not type.

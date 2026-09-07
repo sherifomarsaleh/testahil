@@ -347,6 +347,15 @@ jobs:
       # It also cost a local run its meaning: scripts/run_ci_gates.py reported 89 green
       # against a CI that had neither tool, because the local container has both. A
       # LOCAL RUNNER INHERITS THE DEVELOPER'S ENVIRONMENT AND CI DOES NOT.
+      # NO CHECK MODIFIES THE TREE IT CHECKS [R-ENF-01]. Recorded FIRST and compared
+      # LAST: on 07-09-2026 a negative control wrote its fixture into the real
+      # engine/escalations.json and its restore did not run, so thirteen live
+      # escalations were replaced by one called NC-example and committed. Every gate
+      # here reads the tree and reports faithfully on whatever it finds, so none of
+      # them can see the SUBJECT being replaced between a write and a read.
+      - name: Record the tracked tree before any check runs
+        run: python3 scripts/check_tree_unmodified.py --record
+
       - name: Install engine deps
         run: pip install numpy pandas scipy python-docx openpyxl matplotlib
 
@@ -1236,8 +1245,28 @@ jobs:
       - name: Corrections-applied gate — negative control
         run: python3 scripts/check_corrections_applied_negative_control.py
 
+      # Found by asking whether each study's committed numbers file still reproduces
+      # from its own generators — which nothing here had ever asked. Three of
+      # twenty-four did not, all three the same way: terminal_value.py grew five
+      # record fields after they last built. The cheap static test names exactly the
+      # same three as re-running all twenty-four models.
+      - name: Every committed terminal record carries the module's current field set
+        run: python3 scripts/check_terminal_record_shape.py
+
+      - name: Terminal-record-shape gate — negative control
+        run: python3 scripts/check_terminal_record_shape_negative_control.py
+
       - name: A frozen escalator is declared, or it is a defect
         run: python3 scripts/check_frozen_escalator.py
 
       - name: Frozen-escalator gate — negative control
         run: python3 scripts/check_frozen_escalator_negative_control.py
+
+      - name: Tree-unmodified gate — negative control
+        run: python3 scripts/check_tree_unmodified_negative_control.py
+
+      # LAST, DELIBERATELY: it asserts a property of everything that ran before it,
+      # so its result is only meaningful here. Run earlier it would pass on any
+      # repository at all.
+      - name: No check modified the tree it checks
+        run: python3 scripts/check_tree_unmodified.py

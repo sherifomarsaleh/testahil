@@ -43,7 +43,18 @@ import subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
-REGISTER = os.path.join(HERE, "escalations.json")
+# THE REGISTER PATH IS OVERRIDABLE AND THE OVERRIDE IS ANNOUNCED [ADDED 07-09-2026].
+# Its negative control used to write its FIXTURE INTO THIS FILE and restore it in a
+# `finally` — a control that mutates the thing it tests, which is the one shape no
+# other control in this repository has. On 07-09-2026 that restore did not happen and
+# the fixture was committed: thirteen real escalations were replaced by one called
+# NC-example, the register that exists so a question is never asked twice, and the
+# gate went red in CI on a self-referential marker the fixture carries. Pointing the
+# READER at another file weakens nothing (CI sets nothing and reads this path), while
+# writing the real file to test a reader risks the record itself.
+REGISTER = os.environ.get("TESTAHIL_ESCALATIONS_REGISTER") or os.path.join(
+    HERE, "escalations.json")
+REGISTER_IS_OVERRIDDEN = bool(os.environ.get("TESTAHIL_ESCALATIONS_REGISTER"))
 
 REF_WINDOW_DAYS = 14      # a branch idle longer than this is not work in flight
 MAX_REFS = 20             # caps the SEARCH, never the claim

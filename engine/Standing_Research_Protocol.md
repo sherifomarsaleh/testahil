@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-06f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3657,3 +3657,203 @@ describes this failure exactly and was not read as binding here, because the lev
 arrived by a different door — already-adopted rules rather than candidates for adoption.
 Where a guard names a FAILURE MODE rather than a procedure, ask which other procedures
 can produce it.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] A committed record carries the shape the module that writes it emits today
+
+Nothing in this repository had ever asked whether a study's committed numbers file still
+reproduces from its own generators. `scripts/check_numbers_generators.py` says in its own
+module docstring that it deliberately does not:
+
+> Not that the numbers file reproduces — running every study's model would take minutes
+> and would fail for reasons that have nothing to do with this defect.
+
+Both halves of that reasoning are measurable and neither had been measured. The first is
+true and cheap to establish. **The second is false.** Measured 07-09-2026, in a sandbox
+checkout at HEAD, each study's own generators run in their declared order and the
+committed file diffed against what came back:
+
+- **nineteen of twenty-four reproduce byte for byte;**
+- **three differ, and all three differ the same way** — `engine/terminal_value.py` grew
+  five record fields after those studies last built, so their committed terminal records
+  carry the old shape;
+- **two cannot run at all** — one passes a retired keyword into a v2 cost-of-capital
+  input, the other imports a retired engine module. Both are named in this protocol's own
+  open items as work a re-issue would have to rebuild rather than patch, and running them
+  turned a remembered claim into a measured one.
+
+Five failures, every one a real defect. None is noise.
+
+### Nothing valued had moved, and that is part of the finding
+
+The escalator those missing fields name is *applied* inside `build()` and always was, so
+every terminal in the three studies was struck at current cost exactly as [R-TERM-01]
+requires. What was missing is the record **of** it. That is [R-ENF-06] one level up and it
+matters for the same reason: a record that does not name the quantity a value was built
+from cannot be rebuilt, checked or graded afterwards — and it looks complete while it
+cannot.
+
+### Why every existing gate was blind
+
+A property of those gates rather than an oversight in them. `check_terminal_floor` tests
+the 1/g **signature**, a relationship between figures, which these records carry
+correctly. `check_artefact_currency` [R-ENF-06] asks whether an artefact declares the
+**answer** it was built against, and these declare it. The generators gate declines
+reproduction by design. The *shape* of a committed record was governed by nothing at all.
+
+### The cheap test finds exactly what the expensive one does
+
+A static walk of every committed record against the field set `terminal_value.build()`
+emits names the same three studies, in under a second, with no model run — because the
+only thing that had drifted was a field set.
+
+**The rule.** `scripts/check_terminal_record_shape.py` refuses a committed record missing
+any key the module emits *today*. Extra keys are **not** a defect and must not fire: a
+study may carry its own context beside the module's, and a gate refusing that would push
+studies to strip context to stay green. The standard is **learned by running `build()` on
+a canonical input**, never by parsing the dict literal and never from a copy of the key
+list kept in the gate — a check holding its own copy of a standard stops testing the
+standard the moment one of them moves ([R-ENF-02]'s own lesson), and a check that parses
+the emission path is checking a different file from the one that runs [R-ENF-03].
+
+A study with **no** terminal record is not a failing study — most of the book carries
+none, and demanding one would be a false claim about what this gate checks, which is why
+it is artefact-conditional in the new-study gauntlet [R-ENF-07].
+
+**Ratchet [R-ENF-02] empty at adoption**, because all three were conformed rather than
+listed: regenerating adds the fields, deletes nothing, and moved no valued figure in any
+of them.
+
+### One of them needed its generator fixed first, and that is the more useful half
+
+One study stamped its study date with the clock rather than with a fact, and its own
+document builder prints that value as "Study date" — so **rebuilding the study restamped a
+delivered document's account of when the work was done.** A study date is a fact about
+when the study was struck, not a clock reading. Frozen to the date the delivered document
+already carries, read out of that document rather than chosen, so the generator now
+reproduces its own output and no document changes.
+
+Read the population live — `python3 scripts/check_terminal_record_shape.py` — never from
+this document.
+
+**The general lesson, which is not about terminals: a module and the records it wrote are
+two different vintages, and only the module moves on its own.** Every instrument here
+points from a record back to the model and asks whether the figures came from it; none
+asked whether the record still has the shape its writer emits. That question needs nothing
+run, which is why it was worth asking of the whole book at once.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] No check modifies the tree it checks
+
+Adopted on a committed loss, and the loss was caused by a negative control.
+
+`scripts/check_escalations_negative_control.py` wrote its fixture into the real
+`engine/escalations.json` and copied a backup over it in a `finally`. A `finally` survives
+an exception; it does not survive a kill, a timeout, or the machine going away. On
+07-09-2026 one did not run, and **thirteen live escalations were replaced by a single
+fixture and committed.** The register is the artefact [R-IND-01] adopted so that a
+question is never asked twice — and the control that existed to protect it is what
+destroyed it.
+
+It then failed in a way that read as a finding about the work. The fixture's own resolving
+marker sat in the committed file, so the gate reported that escalation as already answered
+and went red: a true statement about a file that should not have existed, on a head whose
+actual changes were clean.
+
+### Why nothing saw it
+
+Every gate here reads the tree and reports faithfully on whatever it finds — so a gate
+reading a file that an earlier step had rewritten reports faithfully on the *rewritten
+file*. The damage was not a wrong answer anywhere. It was **the subject being replaced
+between the write and the read**, which no instrument inspecting content can distinguish
+from the content having always been that. What catches it is not another reader but the
+question no reader asks: *did running the checks change anything?*
+
+### Closed at the mechanism, then at the class
+
+The instance: `engine/escalations.py` now takes its register path from the environment, so
+the control points the **reader** at a temp file and the real one is never opened for
+writing; where the override is in force the gate prints it, so a run against a fixture can
+never read as a run against the record; and the control asserts, on **every case rather
+than once**, that the real file is byte-identical after the gate runs.
+
+The class, per [R-ENF-01] — *when a defect of this species is found again, close the
+class, not the instance.* A sweep of every negative control found all the others copying
+**from** the real tree **into** a sandbox, which is correct. But that is a fact about
+today, established by a person reading, and this rule exists so it stays a fact without
+anyone reading again.
+
+**The instrument.** `scripts/check_tree_unmodified.py`, in two halves: `--record` first,
+the comparison last. The question is *did anything change while the checks ran*, not *is
+the tree dirty*, and the difference is not pedantry — a local pre-commit run always
+carries uncommitted edits, so a gate keyed on dirtiness would be red every time anybody
+ran it, which is the permanently-red check [R-ENF-02] forbids and the surest way to make a
+real leak invisible. CI checks out clean, so there the two questions coincide; the
+operator's own tree is where they do not, and that is exactly where this has to keep
+working.
+
+It refuses a **tracked** file modified or deleted, and says nothing about untracked files
+— deliberately. A gate that renders a document, writes a scratch panel or leaves a build
+artefact has changed nothing that was committed, and refusing that would be a claim about
+tidiness rather than about the record. A missing baseline is a **failure, never a skip**
+[R-ENF-04]: comparing against nothing is the absent answer in a clean answer's clothes,
+and it is the state this gate enters if the recording step is ever dropped from the
+workflow.
+
+Excluded from the new-study gauntlet with its reason stated: its subject is *the run*
+rather than any study, and a planted study directory is untracked. Negative-controlled on
+nine conditions, five red and four clean — the clean half including edits made *before*
+the run, which it must not fire on.
+
+**The general lesson, which is not about escalations: a test that mutates production state
+and undoes it afterwards is correct exactly as often as it completes.** The undo is the
+part that does not run when something goes wrong, which is the one occasion the state
+matters. Where a check needs different inputs, give it different inputs; never give it the
+real ones and a plan to put them back.
+
+
+## [R-DOC-01 AMENDED 07-09-2026, third] The stamp names the day the document was actually amended
+
+This rule says the digest is named for the day of its **latest amendment**, so that the
+filename and the revision stamp "agree on their face". The gate resolved the digest by
+pattern — and then never asked what the pattern matched.
+
+A first draft of the fix compared those two fields **to each other**, and passed. Of
+course it did: both are typed by the same hand in the same edit, and they had never
+disagreed.
+
+Measured the same day: three amendments landed within forty minutes of each other carrying
+the *previous* day's revision letters under the *previous* day's filename. Every one was
+internally consistent. Every one named a day the edits were not made on. Every check in
+the repository was green through all three.
+
+**Two fields that agree with each other and not with the world is the self-attested
+boolean [R-ENF-01] closes everywhere else** — wearing the one costume this document had
+not searched: its own.
+
+The only witness outside a document is when it was committed. The stamp is therefore held
+against the last commit touching either governing document, or against today where they
+are amended in the working tree.
+
+**The zone is ambiguous and the ambiguity is admitted rather than resolved by picking
+one.** This project's clock is Cairo and CI runs in UTC, so a commit in the last three
+hours of a UTC day falls on two different days depending on which is meant, and choosing
+one here would be the free parameter the promotion rule forbids. Both readings are
+accepted; what is refused is a stamp matching **neither**. A band rather than a point,
+which is honest about what this fixes and what it does not.
+
+The rename and the moved include line are unchanged from the clause above. What is added
+is that a stamp cannot be typed for a day the work did not happen on.
+
+Negative-controlled on six conditions against **real little repositories** rather than
+strings — a defect made of two fields agreeing with each other cannot be reproduced by
+text alone. Three red: the defect exactly as it happened, a checkout that is not a
+repository, and no commit touching the documents. Three clean: a stamp matching the commit
+day, a commit in the disputed evening band where both days must be accepted, and an
+amendment sitting in the working tree, which is dated now rather than by a commit made
+years earlier.
+
+**The general lesson, which is not about dates: a document cannot witness its own age.**
+Everything inside it was written at the same moment by the same hand, so any two fields in
+it will agree. The question a stamp exists to answer is about the world, and answering it
+needs something the author did not type.

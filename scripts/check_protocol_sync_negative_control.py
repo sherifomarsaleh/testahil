@@ -17,6 +17,8 @@ red check [R-ENF-02] forbids.
 """
 import importlib.util
 import os
+import shutil
+import subprocess
 import sys
 import tempfile
 
@@ -129,6 +131,142 @@ assert len(RED) == EXPECTED_RED and len(CLEAN) == EXPECTED_CLEAN, (
     'constants deliberately; a control that silently shrinks reports clean.')
 
 
+# ---- THE AMENDMENT-DAY half [R-DOC-01 AMENDED 07-09-2026]. The witness is OUTSIDE
+# ---- the document, so these run against a real little repository rather than a
+# ---- string: the defect was two fields agreeing with each other and not with the
+# ---- world, and no fixture made of text alone can reproduce that.
+
+DAY_RED_EXPECTED, DAY_CLEAN_EXPECTED = 3, 3
+
+
+def _repo(commit_at=None, dirty=False):
+    """A repository whose governing documents were committed at a chosen instant."""
+    tmp = tempfile.mkdtemp(prefix='sync-nc-')
+    eng = os.path.join(tmp, 'engine')
+    os.makedirs(eng)
+    d = os.path.join(eng, 'PROJECT_INSTRUCTIONS_06-09-2026.md')
+    f = os.path.join(eng, 'Standing_Research_Protocol.md')
+    open(d, 'w').write(OPEN_D + BODY)
+    open(f, 'w').write('PROTOCOL REVISION 2026-09-06d — ' + BODY)
+    env = dict(os.environ)
+    subprocess.run(['git', 'init', '-q'], cwd=tmp, check=True)
+    subprocess.run(['git', 'config', 'user.email', 't@t'], cwd=tmp, check=True)
+    subprocess.run(['git', 'config', 'user.name', 't'], cwd=tmp, check=True)
+    subprocess.run(['git', 'add', '-A'], cwd=tmp, check=True)
+    if commit_at:
+        env['GIT_AUTHOR_DATE'] = env['GIT_COMMITTER_DATE'] = commit_at
+    subprocess.run(['git', 'commit', '-qm', 'amend'], cwd=tmp, check=True, env=env)
+    st = subprocess.run(['git', 'status', '--porcelain'], cwd=tmp,
+                        capture_output=True, text=True).stdout
+    assert st.strip() == '', 'fixture: the repository did not start clean'
+    if dirty:
+        open(d, 'a').write(' one more sentence, uncommitted.')
+        st = subprocess.run(['git', 'status', '--porcelain'], cwd=tmp,
+                            capture_output=True, text=True).stdout
+        assert st.strip(), 'MUTATION DID NOT LAND: git does not see the edit'
+    return tmp, d, f
+
+
+def _days(tmp, d, f):
+    return cps.amendment_days(root=tmp, paths=[d, f])
+
+
+def day_cases():
+    """(name, run) pairs; each returns (ok, detail)."""
+    out = []
+
+    def stamp_names_another_day():
+        """THE DEFECT AS IT HAPPENED: committed on the 7th, stamped the 6th."""
+        tmp, d, f = _repo(commit_at='2026-09-07T01:25:08+00:00')
+        try:
+            days, _ = _days(tmp, d, f)
+            assert '2026-09-07' in days, 'MUTATION DID NOT LAND: %r' % days
+            return ('2026-09-06' not in days,
+                    'stamped 2026-09-06f, amended on %s' % ' or '.join(days))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def not_a_repository():
+        """An unanswerable check is not a clean one [R-ENF-04]."""
+        tmp, d, f = _repo(commit_at='2026-09-07T01:25:08+00:00')
+        try:
+            shutil.rmtree(os.path.join(tmp, '.git'))
+            assert not os.path.exists(os.path.join(tmp, '.git')), 'MUTATION DID NOT LAND'
+            try:
+                _days(tmp, d, f)
+                return (False, 'it answered anyway')
+            except RuntimeError as exc:
+                return (True, str(exc)[:60])
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def no_commit_touching_them():
+        """A shallow clone, where the honest answer is a refusal."""
+        tmp = tempfile.mkdtemp(prefix='sync-nc-')
+        try:
+            subprocess.run(['git', 'init', '-q'], cwd=tmp, check=True)
+            subprocess.run(['git', 'config', 'user.email', 't@t'], cwd=tmp, check=True)
+            subprocess.run(['git', 'config', 'user.name', 't'], cwd=tmp, check=True)
+            open(os.path.join(tmp, 'README'), 'w').write('x')
+            subprocess.run(['git', 'add', '-A'], cwd=tmp, check=True)
+            subprocess.run(['git', 'commit', '-qm', 'root'], cwd=tmp, check=True)
+            miss = os.path.join(tmp, 'engine', 'nothing.md')
+            assert not os.path.exists(miss), 'MUTATION DID NOT LAND'
+            try:
+                _days(tmp, [miss], )
+                return (False, 'it answered anyway')
+            except TypeError:
+                pass
+            try:
+                cps.amendment_days(root=tmp, paths=[miss])
+                return (False, 'it answered anyway')
+            except RuntimeError as exc:
+                return (True, str(exc)[:60])
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def matches_utc():
+        tmp, d, f = _repo(commit_at='2026-09-07T01:25:08+00:00')
+        try:
+            days, _ = _days(tmp, d, f)
+            return ('2026-09-07' in days, ' or '.join(days))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def matches_cairo_across_midnight():
+        """22:30 UTC is the NEXT day in Cairo. BOTH readings must be accepted.
+
+        Choosing one zone here would be a free parameter, and this is the band where
+        the two disagree — the only place the choice would ever show.
+        """
+        tmp, d, f = _repo(commit_at='2026-09-06T22:30:00+00:00')
+        try:
+            days, _ = _days(tmp, d, f)
+            return (days == ['2026-09-06', '2026-09-07'], ' or '.join(days))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    def amended_in_the_working_tree():
+        """An amendment happening NOW is dated now, not by the last commit."""
+        tmp, d, f = _repo(commit_at='2020-01-01T00:00:00+00:00', dirty=True)
+        try:
+            days, when = _days(tmp, d, f)
+            return ('2020-01-01' not in days and 'working tree' in when,
+                    '%s (%s)' % (' or '.join(days), when))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    out.append(('a stamp naming a day the documents were not amended on',
+                stamp_names_another_day))
+    out.append(('not a git repository', not_a_repository))
+    out.append(('no commit touching the documents', no_commit_touching_them))
+    out.append(('a stamp matching the commit day in UTC', matches_utc))
+    out.append(('a commit at 22:30 UTC — both zone readings accepted',
+                matches_cairo_across_midnight))
+    out.append(('amended in the working tree', amended_in_the_working_tree))
+    return out
+
+
 def _run(text):
     fd, path = tempfile.mkstemp(suffix='.md')
     with os.fdopen(fd, 'w', encoding='utf-8') as fh:
@@ -206,9 +344,29 @@ for name, text in SPLICE_CLEAN:
 print(f"{s_caught}/{EXPECTED_SPLICE_RED} splices caught, "
       f"{s_passed}/{EXPECTED_SPLICE_CLEAN} clean cases passed")
 
+d_cases = day_cases()
+assert len(d_cases) == DAY_RED_EXPECTED + DAY_CLEAN_EXPECTED, (
+    'AMENDMENT-DAY CASE COUNT CHANGED — update the declared constants deliberately.')
+d_red = d_clean = 0
+for i, (name, run) in enumerate(d_cases):
+    ok, detail = run()
+    is_red_case = i < DAY_RED_EXPECTED
+    if is_red_case:
+        d_red += ok
+        print(f"  {'CAUGHT ' if ok else 'MISSED '} {name}  ({detail})")
+    else:
+        d_clean += ok
+        print(f"  {'PASSED ' if ok else 'FALSE+ '} {name}  ({detail})")
+print(f'{d_red}/{DAY_RED_EXPECTED} amendment-day defects caught, '
+      f'{d_clean}/{DAY_CLEAN_EXPECTED} clean cases passed')
+
 if (caught != EXPECTED_RED or passed != EXPECTED_CLEAN
-        or s_caught != EXPECTED_SPLICE_RED or s_passed != EXPECTED_SPLICE_CLEAN):
-    print('FAIL — the stamp or splice refusal does not do what [R-DOC-01] claims.')
+        or s_caught != EXPECTED_SPLICE_RED or s_passed != EXPECTED_SPLICE_CLEAN
+        or d_red != DAY_RED_EXPECTED or d_clean != DAY_CLEAN_EXPECTED):
+    print('FAIL — the stamp, splice or amendment-day refusal does not do what '
+          '[R-DOC-01] claims.')
     sys.exit(1)
-print('OK — a document stating two revisions is refused, and so is one repeating '
-      'a passage it was spliced with; one stamp and ordinary phrasing are not.')
+print('OK — a document stating two revisions is refused, so is one repeating a '
+      'passage it was spliced with, and so is a stamp naming a day the documents '
+      'were not amended on; one stamp, ordinary phrasing and both zone readings '
+      'are not.')

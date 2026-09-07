@@ -158,6 +158,17 @@ ARTEFACT_GATES = {
     # correction; this gate bites on the CLAIM, which is a study asserting one that
     # no walk-forward run adopted. Demanding it refuse an empty directory would be a
     # false statement about what it checks.
+    # ARTEFACT-CONDITIONAL, LISTED IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    # Eleven of twenty-four studies carry no terminal record at all and every one of
+    # them is legitimate, so an empty study directory is not a violation here and
+    # demanding that this gate refuse one would be a FALSE CLAIM about what it checks.
+    # It bites on a record that EXISTS and is short of the field set the module emits.
+    'check_terminal_record_shape.py': (
+        'a committed terminal record short of the field set terminal_value.py emits',
+        lambda: {'study_numbers.json': ('json', {
+            'dcf': {'terminal_record': {
+                'rule': 'R-TERM-01', 'fcff': 1.0, 'tv': 10.0,
+                'inputs': {'nopat': 1.0, 'wacc': 0.12, 'inflation': 0.05}}}})}),
     'check_corrections_applied.py': (
         'a committed numbers file claiming an adopted correction with no walk-forward '
         'run behind it',
@@ -214,6 +225,12 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
+    'check_tree_unmodified.py': 'its subject is THE RUN rather than any study — it asks '
+                                'whether the checks that ran modified the tracked tree, '
+                                'and a planted study directory is untracked, which this '
+                                'gate deliberately says nothing about. Demanding a nonzero '
+                                'exit would make it claim a check had rewritten a '
+                                'committed file when nothing had',
     'check_valuation_inputs.py': 'anchors on walk-forward run directories, not study '
                                  'directories',
     'check_calibration_deliverables.py': "anchors on the campaign queue's calibrated names",
