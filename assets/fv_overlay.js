@@ -2996,98 +2996,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "ADNOCDIST",
-   "name": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
-   "code": "ADX:ADNOCDIST",
-   "ccy": "AED",
-   "spot": 4.07,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 3.36,
-   "fv_base": 4.41,
-   "fv_full": 5.17,
-   "gap_base_pct": 8.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.058191,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -3.29,
-     "base": 1.38,
-     "full": 4.11
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0044,
-     "base": 0.065,
-     "full": 0.0019
-    },
-    "p_touch": {
-     "bear": 0.0066,
-     "base": 0.1052,
-     "full": 0.003
-    },
-    "required_cagr": {
-     "bear": -0.8998,
-     "base": 1.619,
-     "full": 16.6504
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00141
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.109814,
-    "mu_h": -0.00246,
-    "G": {
-     "bear": -1.75,
-     "base": 0.73,
-     "full": 2.18
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0373,
-     "base": 0.1818,
-     "full": 0.0181
-    },
-    "p_touch": {
-     "bear": 0.0653,
-     "base": 0.3323,
-     "full": 0.0329
-    },
-    "required_cagr": {
-     "bear": -0.5355,
-     "base": 0.3784,
-     "full": 1.6037
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00059
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "EFID",
    "name": "Edita Food Industries",
    "code": "EGX:EFID",
@@ -3270,6 +3178,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00315
    },
    "market": "EG"
+  },
+  {
+   "ticker": "ADNOCDIST",
+   "name": "Abu Dhabi National Oil Company for Distribution (ADNOC Distribution)",
+   "code": "ADX:ADNOCDIST",
+   "ccy": "AED",
+   "spot": 4.03,
+   "anchor_date": "2026-09-07",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 31,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 3.36,
+   "fv_base": 4.41,
+   "fv_full": 5.17,
+   "gap_base_pct": 9.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.054657,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -3.33,
+     "base": 1.65,
+     "full": 4.56
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0042,
+     "base": 0.042,
+     "full": 0.0012
+    },
+    "p_touch": {
+     "bear": 0.0065,
+     "base": 0.0669,
+     "full": 0.0023
+    },
+    "required_cagr": {
+     "bear": -0.8872,
+     "base": 1.9485,
+     "full": 18.8713
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00142
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.101539,
+    "mu_h": 0.002478,
+    "G": {
+     "bear": -1.79,
+     "base": 0.89,
+     "full": 2.45
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0323,
+     "base": 0.1523,
+     "full": 0.0131
+    },
+    "p_touch": {
+     "bear": 0.0552,
+     "base": 0.2686,
+     "full": 0.0225
+    },
+    "required_cagr": {
+     "bear": -0.5168,
+     "base": 0.434,
+     "full": 1.7086
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00378
+   },
+   "market": "AE"
   },
   {
    "ticker": "DU",

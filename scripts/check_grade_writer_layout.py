@@ -20,9 +20,11 @@ multi-line form. Per [R-ENF-01] the fix is checked from OUTSIDE the module.
 
 WHAT IT ASSERTS, BOTH WAYS
 --------------------------
-1. REACH — every open row is writable by apply_grade(), or is NAMED with the field
-   set it is actually missing. A row that cannot be graded is reported, never
-   silently skipped: an ungradable row looks exactly like a row nobody graded.
+1. REACH — EVERY open row is writable by apply_grade(), and a row that is not is a
+   FAILURE, not a note. It was a note until 07-Sep-2026, which cost ADNOCDIST's
+   matured 1-month grade: the row resolved inside both bands, computed correctly,
+   and could not be written because its emitter had omitted the null outcome
+   placeholders. An ungradable row looks exactly like a row nobody graded.
 2. BYTE-IDENTITY — on every row the OLD one-line patterns matched, the new
    whitespace-tolerant patterns must produce a byte-identical rewrite. This is the
    half that matters: a widened pattern that also changes existing output has not
@@ -105,11 +107,19 @@ def main() -> int:
         print('FAIL: the writer reached zero open rows')
         bad = True
     if unreachable:
-        # Reported, not fatal: these rows are short a FIELD, not a line break, and
-        # inventing the missing fields would edit a published forecast's structure.
-        # They are named here so the gap is visible rather than absent.
-        print('NOTE: the rows above are missing outcome FIELDS, not merely wrapped — '
-              'a schema gap, recorded rather than silently patched.')
+        # FATAL from 07-Sep-2026. This used to be a NOTE, on the reasoning that the
+        # rows were short a FIELD rather than a line break and that "inventing the
+        # missing fields would edit a published forecast's structure". That reasoning
+        # conflated two different things: the FROZEN CLAIM (percentiles, touch ladder,
+        # grade date) and the OUTCOME PLACEHOLDERS, which are null on both sides and
+        # read by nothing. What it actually bought was 14 open rows that could compute
+        # a grade and not record one — and it came due when ADNOCDIST's 1-month cone
+        # matured INSIDE BOTH BANDS on 07-Sep-2026 and the sweep died on the write.
+        # grade_ledger._normalise_outcome() now closes the class, so zero is the
+        # correct population and anything above it is a regression, not a known gap.
+        print(f'FAIL: {len(unreachable)} open row(s) the writer cannot reach — a grade '
+              f'that computes and cannot be recorded is a lost forecast, not a note.')
+        bad = True
     print('OK' if not bad else 'FAILED')
     return 1 if bad else 0
 
