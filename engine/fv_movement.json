@@ -616,6 +616,48 @@
    "ticker": "ELEC",
    "tier": "reissue"
   },
+  "GBCO": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 35.7,
+     "bear": 23.3,
+     "full": 51
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 29.51,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "GBCO",
+   "tier": "reissue"
+  },
+  "PHAR": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 61.21,
+     "bear": 58.04,
+     "full": 73.03
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 128,
+    "spot_date": "close 06 Sep 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "PHAR",
+   "tier": "reissue"
+  },
   "PHDC": {
    "baseline": {
     "built_to": "2026.08.23",
@@ -717,6 +759,48 @@
    "market": "EG",
    "ticker": "PHDC",
    "tier": "current"
+  },
+  "SCEM": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 53.12,
+     "bear": 46.84,
+     "full": 59.1
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 98.52,
+    "spot_date": "close 06 Sep 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "SCEM",
+   "tier": "reissue"
+  },
+  "SWDY": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 69.73,
+     "bear": 19.95,
+     "full": 138.73
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 136.2,
+    "spot_date": "close 06 Sep 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "SWDY",
+   "tier": "reissue"
   },
   "TMGH": {
    "baseline": {
