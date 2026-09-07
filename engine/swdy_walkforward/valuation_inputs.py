@@ -169,6 +169,16 @@ def aud_bs(fname, col):
             break
     scope = lines_all[start:stop]
 
+    # OCR PUTS A FULL STOP WHERE THE PAGE HAS A SPACE, and on a page of whole-EGP
+    # figures that is unambiguous. "52.733 931 099" is EGP 52,733,931,099 - a period
+    # followed by exactly three digits and then a separator cannot be a decimal here,
+    # because these statements print no decimals at all in these columns (the only
+    # decimal on the page is earnings per share, which carries two). Left alone the
+    # token parses as 52.733, drops below every magnitude filter, and the CURRENT half
+    # of loans and borrowings disappears - so the debt reads EGP 6.3bn against 59.1bn,
+    # a tenth of the real book, on a line whose neighbours are all perfect.
+    scope = [re.sub(r'(?<=\d)\.(?=\d{3}(?:[ ,]|$))', ' ', ln) for ln in scope]
+
     out, borrow = {}, []
     summed = {k: [] for k in AUD_BS_SUMMED}
     agg = {}

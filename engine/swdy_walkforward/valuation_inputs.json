@@ -937,28 +937,35 @@
   "2023": {
    "ppe": {
     "value": 18009166367.0,
-    "line": "Property, plant and equipment (17)(45-2) 27 543 762 675 18 009 166 367",
+    "line": "Property, plant and equipment                               (17)(45-2)                          27 543 762 675",
     "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "inventories": {
     "value": 30881822082.0,
-    "line": "Inventories (23)(45-5) 56 795 884 068 30 881 822 082",
+    "line": "Inventories                                             (23)(45-5)                      56 795 884 068        ",
     "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "cash": {
     "value": 25552044800.0,
-    "line": "Cash and cash equivalents (28) 38 180 002 322 25 552 044 800",
+    "line": "Cash and cash equivalents                                       (28)                              38 180 002 3",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "total_assets": {
+    "value": 151448654828.0,
+    "line": "Total assets                                                                                    249 527 138 68",
     "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "total_equity": {
     "value": 38108479528.0,
-    "line": "Total equity 59 526 685 256 38 108 479 528",
+    "line": "Total equity                                                                                               59 ",
     "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
@@ -966,7 +973,7 @@
    "payables": {
     "value": 31938122060.0,
     "lines": [
-     "Trade and other payables (33)(45-14) 54 808 185 042 31 938 122 060"
+     "Trade and other payables                               (33)(45-14)                      54 808 185 042        "
     ],
     "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
     "tier": "A_AUDITED",
@@ -976,8 +983,8 @@
    "interest_bearing_debt": {
     "value": 41766492071.0,
     "lines": [
-     "Loans and borrowings (32)(45-14) 6 349 010 708 6 815 681 966",
-     "Loans and borrowings (32)45-14) 52 733 931 099 34 950 810 105"
+     "Loans and borrowings                                       (32)(45-14)                           6 349 010 708",
+     "Loans and borrowings                                  (32)45-14)                      52 733 931 099          "
     ],
     "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
     "tier": "A_AUDITED",
@@ -985,6 +992,16 @@
     "note": "loans and borrowings, non-current plus current. Trade and other payables, contract liabilities, due to related parties and provisions are EXCLUDED: none of them bears interest, and dividing the finance charge by a total that includes them understates the borrowing rate by a multiple and manufactures a bias that looks exactly like evidence."
    },
    "_footing": [
+    {
+     "test": "non-current + current = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "equity + liabilities = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
     {
      "test": "balance-sheet cash = cash-flow statement's closing cash",
      "residual": 0.0,
@@ -994,13 +1011,6 @@
    "receivables": {
     "value": 2770746000.0,
     "line": "Trade receivables                                          2,770,746         1,517,208",
-    "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
-    "tier": "A_IR",
-    "route": "text_layer"
-   },
-   "total_assets": {
-    "value": 151448655000.0,
-    "line": "Total assets                                              151,448,655       114,024,028",
     "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
     "tier": "A_IR",
     "route": "text_layer"
@@ -1051,28 +1061,35 @@
   "2024": {
    "ppe": {
     "value": 27543762675.0,
-    "line": "Property, plant and equipment (17)(44-2) 35 961 076 614 27 543 762 675",
+    "line": "Property, plant and equipment                                (17)(44-2)                            35 961 076 ",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "inventories": {
     "value": 56795884068.0,
-    "line": "Inventories (23)\u00ab(44-5) 59 860 044 570 56 795 884 068",
+    "line": "Inventories                                                      (23)\u00ab(44-5)                             59 86",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "cash": {
     "value": 38180002322.0,
-    "line": "Cash and cash equivalents {28) Al 949 208 624 38 180 002 322",
+    "line": "Cash and cash equivalents                                           {28)                                  Al 9",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "total_assets": {
+    "value": 249527138687.0,
+    "line": "Total assets                                                                                                  ",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "total_equity": {
     "value": 59526685256.0,
-    "line": "Total equity 71 989 844 931 59 526 685 256",
+    "line": "Total equity                                                                                                 7",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
@@ -1080,8 +1097,8 @@
    "receivables": {
     "value": 88630426475.0,
     "lines": [
-     "Trade and other receivables (21),(44-14) 1 428 080 522 1 894 117 052",
-     "Trade and other receivables (26):(44-14) 116 259 797 169 86 736 309 423"
+     "Trade and other receivables                                 (21),(44-14)                            1 428 080 ",
+     "Trade and other receivables                                     (26):(44-14)                            116 25"
     ],
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
@@ -1091,7 +1108,7 @@
    "payables": {
     "value": 54808185042.0,
     "lines": [
-     "Trade and other payables (33)\u00ab(44-14) 68 895 662 044 54 808 185 042"
+     "Trade and other payables                                      (33)\u00ab(44-14)                            68 895 6"
     ],
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
@@ -1099,9 +1116,10 @@
     "note": "non-current and current halves summed"
    },
    "interest_bearing_debt": {
-    "value": 6349010708.0,
+    "value": 59082941807.0,
     "lines": [
-     "Loans and borrowings (32)*(44-14) 8 620 714 998 6 349 010 708"
+     "Loans and borrowings                                          (32)*(44-14)                               8 620",
+     "Loans and borrowings                                          (32)\u00ab(44-14)                            53 888 4"
     ],
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
@@ -1110,18 +1128,21 @@
    },
    "_footing": [
     {
+     "test": "non-current + current = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "equity + liabilities = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
      "test": "balance-sheet cash = cash-flow statement's closing cash",
      "residual": 0.0,
      "verdict": "PASS"
     }
    ],
-   "total_assets": {
-    "value": 249527139000.0,
-    "line": "Total assets                                                249,527,139          151,448,655",
-    "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
-    "tier": "A_IR",
-    "route": "text_layer"
-   },
    "issued_capital": {
     "value": 2140778000.0,
     "line": "Issued and Paid-up Capital                                    2,140,778            2,170,778",
@@ -1168,14 +1189,14 @@
   "2025": {
    "ppe": {
     "value": 35961076614.0,
-    "line": "Property, plant and equipment (17)(44-2) 35 961 076 614 27 543 762 675",
+    "line": "Property, plant and equipment                                (17)(44-2)                            35 961 076 ",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "inventories": {
     "value": 59860044570.0,
-    "line": "Inventories (23)\u00ab(44-5) 59 860 044 570 56 795 884 068",
+    "line": "Inventories                                                      (23)\u00ab(44-5)                             59 86",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
@@ -1188,21 +1209,21 @@
     "route": "text_layer",
     "superseded": {
      "value": 949208624.0,
-     "line": "Cash and cash equivalents {28) Al 949 208 624 38 180 002 322",
+     "line": "Cash and cash equivalents                                           {28)                                  Al 9",
      "route": "ocr_200dpi"
     },
     "note": "THE BALANCE-SHEET FIGURE WAS REFUSED AND REPLACED. The statement of financial position is on an image-only page and its OCR renders the leading digits of cash as letters; the figure carried here is the one the consolidated statement of cash flows states as its closing balance, which sits on a text-layer page and is the same quantity. Arithmetic is the arbiter, not the extractor."
    },
    "total_assets": {
-    "value": 3.1109909077524955e+23,
-    "line": "Total assets 311 099 090 775 249 527 138 687",
+    "value": 311099090775.0,
+    "line": "Total assets                                                                                                  ",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
    },
    "total_equity": {
     "value": 71989844931.0,
-    "line": "Total equity 71 989 844 931 59 526 685 256",
+    "line": "Total equity                                                                                                 7",
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
     "route": "ocr_200dpi"
@@ -1210,8 +1231,8 @@
    "receivables": {
     "value": 117687877691.0,
     "lines": [
-     "Trade and other receivables (21),(44-14) 1 428 080 522 1 894 117 052",
-     "Trade and other receivables (26):(44-14) 116 259 797 169 86 736 309 423"
+     "Trade and other receivables                                 (21),(44-14)                            1 428 080 ",
+     "Trade and other receivables                                     (26):(44-14)                            116 25"
     ],
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
@@ -1221,7 +1242,7 @@
    "payables": {
     "value": 68895662044.0,
     "lines": [
-     "Trade and other payables (33)\u00ab(44-14) 68 895 662 044 54 808 185 042"
+     "Trade and other payables                                      (33)\u00ab(44-14)                            68 895 6"
     ],
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
@@ -1231,8 +1252,8 @@
    "interest_bearing_debt": {
     "value": 62509211797.0,
     "lines": [
-     "Loans and borrowings (32)*(44-14) 8 620 714 998 6 349 010 708",
-     "Loans and borrowings (32)\u00ab(44-14) 53 888 496 799 52.733 931 099"
+     "Loans and borrowings                                          (32)*(44-14)                               8 620",
+     "Loans and borrowings                                          (32)\u00ab(44-14)                            53 888 4"
     ],
     "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
     "tier": "A_AUDITED",
@@ -1242,13 +1263,13 @@
    "_footing": [
     {
      "test": "non-current + current = total assets",
-     "residual": -4.952320428699092e+22,
-     "verdict": "FAIL"
+     "residual": 0.0,
+     "verdict": "PASS"
     },
     {
      "test": "equity + liabilities = total assets",
-     "residual": -7.198984493098758e+22,
-     "verdict": "FAIL"
+     "residual": 0.0,
+     "verdict": "PASS"
     },
     {
      "test": "balance-sheet cash = cash-flow statement's closing cash",
