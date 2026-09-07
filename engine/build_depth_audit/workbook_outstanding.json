@@ -1,6 +1,5 @@
 {
  "entries": {
-  "GBCO": "16 sheets \u2014 missing ['SOTP Bridge']; unexpected ['SOTP']",
   "SCEM": "16 sheets \u2014 missing ['SOTP Bridge', 'Segments']; unexpected ['EV Bridge', 'Unit Build']",
   "XPT": "no workbook in the study directory"
  },
