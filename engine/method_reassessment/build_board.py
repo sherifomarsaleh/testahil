@@ -122,7 +122,7 @@ def render(st, m):
    --done:#2E6F4E; --done-bg:#E8F2EC;
    --blocked:#A63D1C; --blocked-bg:#FBEBE4;
    --next:#8A6A1B; --next-bg:#F7F0DC;
-   --queued:#6A7280; --queued-bg:#EFEDE8;
+   --queued:#6A7280; --queued-bg:#EFEDE8; --today-bg:#F4EFE2;
    --serif:"Newsreader",Georgia,serif;
    --sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -134,7 +134,7 @@ def render(st, m):
    --done:#7BC49A; --done-bg:#16281F;
    --blocked:#E29271; --blocked-bg:#2E1D15;
    --next:#D9BC6B; --next-bg:#2B2415;
-   --queued:#8B929B; --queued-bg:#22262C;}}
+   --queued:#8B929B; --queued-bg:#22262C; --today-bg:#242017;}}
  :root[data-theme="dark"]{
    --ground:#111317; --panel:#171A1F; --ink:#E8E6E1; --ink-2:#BFC3C9;
    --muted:#8B929B; --rule:#2A2E35; --rule-2:#22262C;
@@ -142,7 +142,7 @@ def render(st, m):
    --done:#7BC49A; --done-bg:#16281F;
    --blocked:#E29271; --blocked-bg:#2E1D15;
    --next:#D9BC6B; --next-bg:#2B2415;
-   --queued:#8B929B; --queued-bg:#22262C;}
+   --queued:#8B929B; --queued-bg:#22262C; --today-bg:#242017;}
 
  body{background:var(--ground);color:var(--ink);font-family:var(--sans);
       font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
@@ -185,6 +185,15 @@ def render(st, m):
  .c-flight{background:var(--accent-soft);color:var(--accent);}
  .c-next{background:var(--next-bg);color:var(--next);}
  .c-queued{background:var(--queued-bg);color:var(--queued);}
+ table.gantt th.gcell,table.gantt td.gcell{width:26px;min-width:26px;text-align:center;
+   padding:4px 0;}
+ table.gantt th.gcell span{display:block;font-size:10px;opacity:.6;font-weight:400;}
+ table.gantt th.gcell.today,table.gantt td.gcell.today{background:var(--today-bg);}
+ table.gantt td.fam{font-size:11px;opacity:.75;max-width:210px;}
+ table.gantt .bar{display:block;height:12px;border-radius:3px;}
+ table.gantt .b-done{background:var(--done);}
+ table.gantt .b-next{background:var(--next);}
+ table.gantt .b-queued{background:var(--queued);opacity:.45;}
  .c-blocked{background:var(--blocked-bg);color:var(--blocked);}
 
  .tbl-scroll{overflow-x:auto;}
@@ -269,6 +278,47 @@ def render(st, m):
       "<span class='mono'>ke_terminal</span>, <span class='mono'>capm</span>, "
       "<span class='mono'>rf_star +</span>).</p>" % (len(m["ke_real"]), m["ke_spellings"]))
     A("</section>")
+
+    # ---- gantt
+    # DATA, NEVER TYPED POSITIONS. The first Gantt this project drew placed its bars and
+    # its header independently and the columns never corresponded to the days — the same
+    # defect as a number typed in prose. Here every bar's offset and width are COMPUTED
+    # from the row's own dates against the axis, so a re-dating is one edit to the data.
+    sched = st.get("schedule") or []
+    if sched:
+        days = sorted({d for r in sched
+                       for d in (r["start"], r["end"])})
+        d0 = dt.date.fromisoformat(days[0])
+        d1 = dt.date.fromisoformat(days[-1])
+        span = (d1 - d0).days + 1
+        A('<section><div class="sec-head"><h2>Delivery schedule</h2>'
+          "<p>%s</p></div>" % esc(st.get("schedule_note", "")))
+        A('<div class="tbl-scroll"><table class="gantt"><thead><tr>'
+          "<th>Work</th><th>Closes</th>")
+        for i in range(span):
+            d = d0 + dt.timedelta(days=i)
+            cls = " today" if d == m["today"] else ""
+            A('<th class="gcell%s">%s<span>%s</span></th>'
+              % (cls, d.strftime("%a")[:1], d.day))
+        A("</tr></thead><tbody>")
+        for r in sched:
+            s = dt.date.fromisoformat(r["start"])
+            e = dt.date.fromisoformat(r["end"])
+            A('<tr><td class="qitem">%s<span>%s</span></td><td class="fam">%s</td>'
+              % (esc(r["title"]), esc(r.get("detail", "")),
+                 esc(" · ".join(r.get("families", [])))))
+            for i in range(span):
+                d = d0 + dt.timedelta(days=i)
+                on = s <= d <= e
+                st_cls = {"DONE": "b-done", "NEXT": "b-next"}.get(r["state"], "b-queued")
+                A('<td class="gcell%s">%s</td>'
+                  % (" today" if d == m["today"] else "",
+                     ('<span class="bar %s"></span>' % st_cls) if on else ""))
+            A("</tr>")
+        A("</tbody></table></div>")
+        A('<p class="foot">Each row names the census FAMILIES it closes rather than a '
+          "percentage, so a slip shows as a family still open — not as a date that moved "
+          "quietly.</p></section>")
 
     # ---- queue
     A('<section><div class="sec-head"><h2>The build queue</h2>'

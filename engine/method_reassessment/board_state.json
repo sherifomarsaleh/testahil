@@ -7,27 +7,27 @@
    "title": "It reaches all 90 names, and every new one",
    "test": "A gate run reports 90 examined and 0 unaccounted. A ticker added to data.js with no record makes the build red.",
    "state": "DONE",
-   "note": "The gates already read the whole published book — that was more delivered than first specified. check_published_gap now computes every one of the 90 gaps from the site itself, and 58 of them exceed ten per cent."
+   "note": "The gates already read the whole published book \u2014 that was more delivered than first specified. check_published_gap now computes every one of the 90 gaps from the site itself, and 58 of them exceed ten per cent."
   },
   {
    "id": "P2",
    "title": "It catches the errors that actually happen",
    "test": "Every confirmed gap is closed by a gate or listed with a reason, and every closed gap has a negative control that re-plants the real defect.",
    "state": "IN FLIGHT",
-   "note": "All three named errors are gated, and the census then found the landbank gate was checking the wrong half — the vintage, not whether any arithmetic reads the quantity. Corrected. 40 verified gaps remain as the work list; three of the sharpest are closed."
+   "note": "All three named errors are gated, and the census then found the landbank gate was checking the wrong half \u2014 the vintage, not whether any arithmetic reads the quantity. Corrected. 40 verified gaps remain as the work list; three of the sharpest are closed."
   },
   {
    "id": "P3",
    "title": "A red gate is worked until it is green",
    "test": "Run against studies with defects deliberately planted, it fixes the fixable, escalates the rest, and leaves every gate, control and ratchet byte-identical.",
    "state": "DONE",
-   "note": "Built, including the fixing half — and it now says honestly how much it can ever fix. Latest sweep: 68 green, 0 red, 0 broken, and 136 known items of debt no gate was reporting because every one is allowed. Triaged by what each item NEEDS: 3.2% transcription (the only share a loop may close), 71% a figure out of a filing, 12% a judgement, 14% the principal's decision."
+   "note": "Built, including the fixing half \u2014 and it now says honestly how much it can ever fix. Latest sweep: 68 green, 0 red, 0 broken, and 136 known items of debt no gate was reporting because every one is allowed. Triaged by what each item NEEDS: 3.2% transcription (the only share a loop may close), 71% a figure out of a filing, 12% a judgement, 14% the principal's decision."
   }
  ],
  "queue": [
   {
    "day": "done",
-   "item": "Correct the Phase 1 date — criterion 3 named the wrong score",
+   "item": "Correct the Phase 1 date \u2014 criterion 3 named the wrong score",
    "state": "DONE",
    "detail": "The 2027 date was the maturity of the gap-closure clauses, reported as the whole of Phase 1. Four of six clauses do not wait on a clock."
   },
@@ -47,19 +47,19 @@
    "day": "1",
    "item": "Asset-base freshness gate",
    "state": "DONE",
-   "detail": "BUILT. engine/asset_base.py + check_asset_base.py + a 15-case negative control, and it is in the new-study gauntlet. Scope is DERIVED from the lens registry — 7 asset-based classes, 11 studies in scope — never a typed list. The test is an ORDERING, not a threshold: the asset base may not be older than the information set the study says it read."
+   "detail": "BUILT. engine/asset_base.py + check_asset_base.py + a 15-case negative control, and it is in the new-study gauntlet. Scope is DERIVED from the lens registry \u2014 7 asset-based classes, 11 studies in scope \u2014 never a typed list. The test is an ORDERING, not a threshold: the asset base may not be older than the information set the study says it read."
   },
   {
    "day": "1",
    "item": "Cost-of-equity reproduction gate",
    "state": "DONE",
-   "detail": "BUILT. engine/ke_reproduction.py + check_ke_reproduction.py + a 14-case negative control, in the gauntlet, and the sanctioned module now emits the field so every future record declares it. NOTHING IN THE BOOK IS A WRONG NUMBER: all seven records reproduce exactly — five under the plain construction and two under a Hamada relevering at 22.50% — and what was outstanding is that no record SAID WHICH, so a relevered beta was indistinguishable from a typo."
+   "detail": "BUILT. engine/ke_reproduction.py + check_ke_reproduction.py + a 14-case negative control, in the gauntlet, and the sanctioned module now emits the field so every future record declares it. NOTHING IN THE BOOK IS A WRONG NUMBER: all seven records reproduce exactly \u2014 five under the plain construction and two under a Hamada relevering at 22.50% \u2014 and what was outstanding is that no record SAID WHICH, so a relevered beta was indistinguishable from a typo."
   },
   {
    "day": "2",
    "item": "Close the census's confirmed gaps",
    "state": "IN FLIGHT",
-   "detail": "The census returned 14 lenses, 42 gap claims adversarially refuted, 40 surviving. Its first finding CORRECTED THIS SESSION: [R-ASSET-01] checks the asset base's VINTAGE and nothing checked that any arithmetic READS it — both developers register, commit and PRINT a land bank no calculation touches. Closed by [R-ASSET-02]. Two more verified and closed: the exemplar's own weights sum to 0.872 and its WACC reproduces from neither reading, and no record named where its beta came from."
+   "detail": "The census returned 14 lenses, 42 gap claims adversarially refuted, 40 surviving. Its first finding CORRECTED THIS SESSION: [R-ASSET-01] checks the asset base's VINTAGE and nothing checked that any arithmetic READS it \u2014 both developers register, commit and PRINT a land bank no calculation touches. Closed by [R-ASSET-02]. Two more verified and closed: the exemplar's own weights sum to 0.872 and its WACC reproduces from neither reading, and no record named where its beta came from."
   },
   {
    "day": "3",
@@ -71,7 +71,7 @@
    "day": "4",
    "item": "The repair loop",
    "state": "DONE",
-   "detail": "BUILT. scripts/repair_loop.py runs every gate, collects failures as ranked work orders, and ASSERTS its three prohibitions after every run. First run: 64 green, 3 red, 0 broken — and all three reds were its own author's debt."
+   "detail": "BUILT. scripts/repair_loop.py runs every gate, collects failures as ranked work orders, and ASSERTS its three prohibitions after every run. First run: 64 green, 3 red, 0 broken \u2014 and all three reds were its own author's debt."
   },
   {
    "day": "5",
@@ -89,7 +89,7 @@
    "day": "done",
    "item": "Triage the debt by what it actually needs",
    "state": "DONE",
-   "detail": "engine/debt_triage.py. A work list says WHAT is outstanding; this says whether anything could close it without a person, which is what decides how much a repair loop is ever worth. 0% unclassified — an unclassified item is an unanswered question, not a clean one."
+   "detail": "engine/debt_triage.py. A work list says WHAT is outstanding; this says whether anything could close it without a person, which is what decides how much a repair loop is ever worth. 0% unclassified \u2014 an unclassified item is an unanswered question, not a clean one."
   }
  ],
  "errors": [
@@ -101,17 +101,109 @@
   {
    "words": "current landbank of a developer but does not account for new land added",
    "verdict": "CAUGHT",
-   "by": "check_asset_base — new since today. Binds on every new and rebuilt study; the 11 existing in-scope studies are on the ratchet WITH their measurements, PHDC named with its 21-month-stale land base."
+   "by": "check_asset_base \u2014 new since today. Binds on every new and rebuilt study; the 11 existing in-scope studies are on the ratchet WITH their measurements, PHDC named with its 21-month-stale land base."
   },
   {
    "words": "creates wrong cost or high Ke and Kd",
    "verdict": "CAUGHT",
-   "by": "check_ke_reproduction — new since today. Ke must reproduce from rf* + beta x ERP, and the terminal under a construction named from a closed list. A Ke typed 300bp high is case one of its negative control."
+   "by": "check_ke_reproduction \u2014 new since today. Ke must reproduce from rf* + beta x ERP, and the terminal under a construction named from a closed list. A Ke typed 300bp high is case one of its negative control."
   }
  ],
  "gauntlet": {
   "passed": 38,
   "of": 38,
   "when": "2026-09-07"
- }
+ },
+ "schedule_note": "Dated from the measured rate rather than a wish: on 07-09-2026 six gates were built, negative-controlled and wired in one session, and the 40 census gaps fall into 15 FAMILIES that share a gate rather than 40 separate ones. Two families a day to the 14th. Every row names the census families it closes, so a slip is visible as a family still open rather than as a date that moved.",
+ "schedule": [
+  {
+   "start": "2026-09-07",
+   "end": "2026-09-07",
+   "title": "Reach, repair, proof",
+   "families": [
+    "asset-base-landbank",
+    "cost-of-capital-level (weights, beta provenance)",
+    "lens-architecture (the published page)"
+   ],
+   "state": "DONE",
+   "detail": "P1 and P3 closed. Six gates: asset-base vintage and wiring, Ke reproduction, lens independence, the reader-side gap, the retired blend on all 93 pages."
+  },
+  {
+   "start": "2026-09-08",
+   "end": "2026-09-08",
+   "title": "The answer audits itself",
+   "families": [
+    "output-sanity-implied-values",
+    "share-count-and-per-share"
+   ],
+   "state": "NEXT",
+   "detail": "A central below the study's own published book floor; a branch below net cash per share; an implied multiple contradicting the study's own relative lens; the divisor that 67 published values record nowhere. Closest in kind to the first error you named."
+  },
+  {
+   "start": "2026-09-09",
+   "end": "2026-09-09",
+   "title": "What the study read, and when",
+   "families": [
+    "base-year-and-latest-disclosure",
+    "macro-and-fx"
+   ],
+   "state": "QUEUED",
+   "detail": "'Latest disclosed period' is a field a study types about itself; a P&L anchor older than the same study's balance sheet; the derived-currency check that runs only when fx is present."
+  },
+  {
+   "start": "2026-09-10",
+   "end": "2026-09-10",
+   "title": "The terminal, end to end",
+   "families": [
+    "terminal-value",
+    "terminal-working-capital-charge"
+   ],
+   "state": "QUEUED",
+   "detail": "Terminal return never compared with terminal cost of capital \u2014 the ARCC defect found by hand and by nothing since; the maintenance_capex override that bypasses disclosed-life sourcing; the unsourced perpetual working-capital charge."
+  },
+  {
+   "start": "2026-09-11",
+   "end": "2026-09-11",
+   "title": "Enterprise to equity",
+   "families": [
+    "bridge-and-equity-value",
+    "working-capital-and-cash-conversion"
+   ],
+   "state": "QUEUED",
+   "detail": "Per-share currency and peg conversion; an omitted claim class in the bridge lines; the bridge never joined to the published answer; dWC entering free cash flow with the wrong sign."
+  },
+  {
+   "start": "2026-09-12",
+   "end": "2026-09-12",
+   "title": "Revenue and cost, built or asserted",
+   "families": [
+    "cost-drivers-and-margin",
+    "revenue-drivers"
+   ],
+   "state": "QUEUED",
+   "detail": "Gross margin held as an input; one blended domestic index on physically distinct cost lines; a globally-traded input escalated on the house domestic ladder; the ground-up build that is still a self-attested boolean."
+  },
+  {
+   "start": "2026-09-13",
+   "end": "2026-09-13",
+   "title": "Tax, minorities, and the other 66",
+   "families": [
+    "tax-minorities-statutory",
+    "coverage-of-the-other-66"
+   ],
+   "state": "QUEUED",
+   "detail": "Minority deducted at book while the record declares a value share; the forecast tax rate as a free input; the landbank rule enforced on zero uncovered developers."
+  },
+  {
+   "start": "2026-09-14",
+   "end": "2026-09-14",
+   "title": "Close, prove, and hand over",
+   "families": [
+    "lens-architecture-and-class (remainder)",
+    "cost-of-capital-level (remainder)"
+   ],
+   "state": "QUEUED",
+   "detail": "The class that is a self-declared string with no external referent. Then the whole set: full sweep, the injection catalogue re-run with every named error, the gauntlet on an empty study, the repair loop on planted defects, and the acceptance record written."
+  }
+ ]
 }

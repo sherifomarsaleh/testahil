@@ -47,7 +47,16 @@ ROOT = os.path.dirname(HERE)
 ENGINE = os.path.join(ROOT, "engine")
 
 LENS_MODULES = ("technicals", "ta_chart", "apply_technicals", "mc_v3", "strike_cohorts")
-IMPORT_RX = re.compile(r"^\s*(?:from\s+(%s)\s+import|import\s+(%s)\b)"
+# A PACKAGE PREFIX IS NOT AN ESCAPE. The first pattern required the module to be
+# imported bare — `from mc_v3 import`, `import technicals` — which is every form
+# the book happens to use today, and it is not the form the RULE is about: a
+# builder writing `from engine.mc_v3 import simulate_paths_v3` is taking the price
+# engine as an input in exactly the way [R-LENS-01] forbids, and this gate read it
+# as clean. Found by the new-study gauntlet refusing to accept the fixture built
+# for it, which is the harness doing its job. A check's scope is usually the shape
+# its matcher happened to need rather than the shape the rule meant [R-DOC-02].
+IMPORT_RX = re.compile(r"^\s*(?:from\s+(?:[\w.]+\.)?(%s)\s+import|"
+                       r"import\s+(?:[\w.]+\.)?(%s)\b)"
                        % ("|".join(LENS_MODULES), "|".join(LENS_MODULES)), re.M)
 # A generator writes its numbers file in several shapes across this book —
 #   json.dump(out, open(os.path.join(HERE, 'study_numbers.json'), 'w'))

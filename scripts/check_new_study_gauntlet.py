@@ -121,6 +121,31 @@ ARTEFACT_GATES = {
                 'ke_terminal': 0.189927, 'ke_terminal_construction': 'same_beta',
                 'weight_equity': 0.96, 'weight_debt': 0.04,
                 'weight_debt_terminal': 0.2}})}),
+    'check_asset_base_wired.py': (
+        # An empty study commits no asset-base QUANTITY, so there is nothing that could be
+        # registered-but-unread and refusing a bare directory would be a false claim about
+        # what this gate checks [R-ENF-07]. Planted with the defect exactly: the quantity
+        # committed, and no arithmetic anywhere that reads it.
+        'an asset base committed and read by no arithmetic',
+        lambda: {'study_numbers.json': ('json', {
+            'land_bank_sqm_mn': 33.0,
+            'asset_base_record': {'quantity': 'land_bank_sqm_mn', 'as_at': '2024-12-31'}}),
+            'compute.py': ('text',
+                           'CENTRAL = 17.85\n'
+                           '# the land bank is printed in the document and enters nothing\n'
+                           'def build():\n    return {"central": CENTRAL}\n')}),
+    'check_lens_independence.py': (
+        # An empty study has no builder, so no builder can be importing another lens and
+        # refusing a bare directory would be a false claim [R-ENF-07]. Planted with the
+        # breach: a builder that writes the committed numbers AND imports the price engine,
+        # with no declaration.
+        'a valuation builder importing the price engine',
+        lambda: {'study_numbers.json': ('json', {'central': 17.85}),
+                 'compute.py': ('text',
+                                'import json\n'
+                                'from engine.mc_v3 import simulate_paths_v3\n'
+                                'def build():\n'
+                                '    json.dump({"central": 17.85}, open("study_numbers.json", "w"))\n')}),
     'check_asset_base.py': (
         # A study with NO numbers file commits no class, so it is not in this gate's
         # scope and refusing an empty directory would be a FALSE CLAIM about what it
@@ -278,6 +303,9 @@ EXCLUDED = {
     'check_calibration_deliverables.py': "anchors on the campaign queue's calibrated names",
     'check_lens_vocabulary.py': 'reads delivered PDFs; an empty study has none',
     'check_published_lens_vocabulary.py': 'its subject is the reader-facing SITE — the ticker pages and the coverage grid. A study directory planted in a sandbox publishes no page, so demanding a nonzero exit would be a FALSE claim about what this gate checks',
+    'check_published_gap.py': 'its subject is the SITE — the gap a READER computes from assets/data.js. A planted study directory publishes no fair value, and the gate takes its population from the published names rather than from the directories',
+    'check_error_injection.py': 'its subject is THE SYSTEM\'s detection claim rather than any study: it copies the repository and plants named real errors of its own. Running it inside this sandbox is a harness inside a harness, and its own baseline step would be measuring this run rather than the book',
+    'check_standard_claim.py': 'its subject is the RELATION between a study\'s claimed standard version and the ratchets recording who does not meet it. A planted study is on no ratchet, so it conforms by construction — correctly, since a new study owes no debt — and plant() writes only inside the study directory, so the relation cannot be created from here. Refusing an empty directory would assert a debt that does not exist',
     'check_page_integrity.py': "its subject is the site's ticker pages; the only mention "
                                'of a study directory in it is a comment',
     'check_screen_block.py': 'its subject is the SCREEN block in assets/data.js. It reads '
