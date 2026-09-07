@@ -694,6 +694,9 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     else:
         ti.update(maintenance_basis="disclosed_capex", maintenance_capex=maint)
     try:
+        # TERMINAL-BASIS-EXCEPTION: ti is assembled above with nopat=last["nopat"],
+        # the LAST EXPLICIT YEAR and not grown. The splat is why no expression is
+        # visible at this line; the basis is set where the mapping is built.
         t = TV.build(TV.TerminalInputs(**ti))
     except TV.TerminalRefused as exc:
         return None, "terminal refused: %s" % str(exc)[:120]

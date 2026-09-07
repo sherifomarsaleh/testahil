@@ -1525,6 +1525,10 @@ def run_dcf(ebit, ebitda, label):
     # inputs were handed in already grown by (1+g) and the module grew them again. The
     # defect is rebuilt here through the same module so what it was worth is COMPUTED and
     # committed, never typed into a document; nothing downstream discounts it.
+    # TERMINAL-BASIS-EXCEPTION: deliberate. This rebuilds the SUPERSEDED pre-grown
+    # construction through the same module so what the defect was worth is COMPUTED
+    # rather than typed into a document. Nothing downstream discounts this terminal —
+    # it feeds the committed per_share_superseded_grown_basis and nothing else.
     _terminal_grown = TV.build(TV.TerminalInputs(
         nopat=nopat_term_grown, wacc=wacc_term, inflation=PI_TERM,
         real_growth=V['g_term_real'],
