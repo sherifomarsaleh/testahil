@@ -2197,3 +2197,47 @@ THE GENERAL LESSON: **A BEFORE-AND-AFTER NEEDS TWO PLACES, AND A `cd` MOVES BOTH
 The comparison was correct in structure and read one directory twice, which returns
 exactly what a clean result looks like. Where a probe reports no difference, the
 first thing to check is that it was looking at two things.
+
+### 31 of the 49 entries carry no reason, which is why the pile could not be sorted
+
+Reading the 49 individually: **18 carry a reason and 31 are bare** — listed with a
+ticker and nothing else. That is why the split into *"debt a re-issue should have
+cleared"* versus *"legitimate outstanding work"* could not be made: **most of the
+pile does not say what it is.**
+
+The 18 that do read usefully, and they are not one kind: `colwidth ARCC "declared
+0.76cm, needs 0.84cm"` is a minute's work; `walkforward_scope` on all five says *"a
+run exists and the study states no scope decision"*; `terminal PHDC` says its charge
+*"resolves and its charge does not, so the 1/g test has never run"*; `workbook_values
+AMOC` says its `recalc.py` refuses because it was written for the nine-sheet
+workbook. Some are trivial, some are real method debt, and **nothing distinguishes
+them from the 31 that say nothing at all.**
+
+This repository already has the rule, in my own words in a ratchet written this
+morning: *"the reason is required and is the diagnosis owed, not an excuse — an
+entry that cannot say what was measured is a silence with a filename."* Thirty-one
+entries on the five re-issued names are exactly that.
+
+**A book-wide count was attempted and is NOT established.** Two parsers returned
+106 entries with 36 bare and 49 with 31 bare, because the 41 lists have no common
+entry shape — some key by ticker, some by document path, some by list. That is the
+correction-boundary lesson arriving again: *five records, five shapes, a reader that
+guesses finds nothing.* **The figure I can defend is the one I read by hand: 18 and
+31, on the five.** The book-wide number needs each gate to report its own ratchet,
+which is a piece of work rather than a census.
+
+### The criterion-1 decision is registered rather than left in a message
+
+Reporting a decision in chat and leaving it there binds nothing — [R-IND-01]'s own
+complaint. Registered as `PARTE-criterion-1-ratchet-clause` with three routes run,
+what was done meanwhile, a recommendation and a **default that fires 21-09-2026:
+treat the clause as written and clear the 49 rather than amend it.** A programme
+that softens its acceptance test when the test fails has no acceptance test;
+clearing is work I can do without permission, amending the definition of done is
+not.
+
+Its `resolves_when` names the plan file and a marker, so the gate detects the ruling
+arriving rather than waiting for someone to close the entry — and writing it as
+prose **crashed `escalations.is_resolved` with an AttributeError three frames down**,
+where a broken record reads as a broken checker. The module now names a malformed
+field instead. 14 escalations shaped; the negative control's 18 conditions hold.

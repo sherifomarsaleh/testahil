@@ -135,6 +135,14 @@ def is_resolved(entry: dict) -> tuple:
     — which is exactly the failure of 3 September 2026.
     """
     rw = entry.get("resolves_when") or {}
+    if not isinstance(rw, dict):
+        # A PROSE `resolves_when` USED TO CRASH THIS FUNCTION rather than be
+        # reported. A malformed field is a defect in the entry and must be NAMED,
+        # never raised as an AttributeError three frames down where it reads as a
+        # broken checker rather than a broken record [R-ENF-04].
+        return False, ("resolves_when is %s, not an object naming a file and a "
+                       "marker — an escalation whose resolution cannot be detected "
+                       "is one nobody will ever close" % type(rw).__name__)
     path, marker = rw.get("file"), rw.get("must_contain")
     if not path or not marker:
         return False, "resolves_when names no file and marker"
