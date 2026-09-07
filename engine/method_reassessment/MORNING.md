@@ -3328,3 +3328,45 @@ last moved returns seventeen false positives**, and reverting one of them restor
 **Fixed at the source by the untracking**, verified rather than reasoned about: bytecode
 regenerated, `git status --porcelain engine/` returns 0 lines (33 under `--ignored`), and the
 guard fires — *"Nothing changed." → exit 0, no commit*.
+
+---
+
+## 07-09-2026 — criterion 2's decisive cell is priced, and the band cannot be priced end to end
+
+Straight at the Phase 1 blocker. Criterion 2 asks for forward drivers inside each name's own
+band **or a priced exception**; eleven cells sit outside and **no run commits one**. Ten rest
+on fewer than nine observations. **One rests on a figure its own run calls a percentile** —
+EGCH `cost_of_sales` at h=5, band `[0.1447, 0.8456]` forecast-over-actual on n=9 — and that
+is the one worth pricing.
+
+Priced through the study's own model in a sandbox copy, one quantity moved at the single line
+where cost of sales is assembled, baseline reproducing both published branches first
+(`4.0396` / `8.0388`) before anything else was believed.
+
+| year-5 cost of sales | base | halt |
+|---|---|---|
+| as published | 4.0396 | 8.0388 |
+| **near band edge, ×1.183** | **1.5902 (−60.6%)** | 5.5949 (−30.4%) |
+| ×1.301 | **0.0242 — equity reaches zero** | |
+| ×1.500 and beyond | **REFUSED** | |
+| far band edge, ×6.909 | **REFUSED** | |
+
+The refusal is `terminal_value`'s own: *a going concern that consumes cash for ever is not a
+terminal, it is a liquidation.*
+
+**The finding is about the criterion, not about EGCH.** Equity reaches zero at ×1.30 and the
+model stops returning a number by ×1.50, while the band runs to ×6.91 — so **roughly 88% of
+the band's width lies outside the domain where this study can produce a valuation at all**.
+"Price the exception" has no end-to-end answer for this cell.
+
+What is answerable is answered: **the near edge alone is worth −60.6% of the base branch.**
+That satisfies criterion 2 for this cell, and it says plainly that a band six times as wide
+as its own point is not an interval a forward driver can be held inside — the same conclusion
+the record-length work reached last night, arriving here as a hard refusal rather than a
+statistic.
+
+Registered rather than answered: **the criterion does not say what to do when a band edge is
+unevaluable.** That is a rule question.
+
+Record: `engine/method_reassessment/CRITERION2_PRICED_07-09-2026.md`. Nothing in the
+delivered study was touched.
