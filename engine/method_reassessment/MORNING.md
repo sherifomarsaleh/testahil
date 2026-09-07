@@ -2796,3 +2796,31 @@ the wrong way up. **The risk is prospective only.**
 
 The reader-side question — do the delivered documents publish far years as ranges — wants a
 real instrument rather than an ad-hoc regex, and is left for the next firing.
+
+### Third correction to the same figure: criterion 2 is NOT MET on **both** readings
+
+I classified each band by its **key names** — `p10`/`p90` meant a percentile, `low_factor`
+meant a factor. EGCH's decisive cell is keyed `low_factor`/`high_factor` and carries an
+explicit `basis` field reading **"p10-p90 of the full record, widened by the KIMA-2-era bias
+± MAE band where that is wider"**, on `n_full = 9`.
+
+So it *is* a percentile band, and I filed it as a factor. The strict reading has **one** cell
+outside, not zero:
+
+- **BROAD** (any published band): NOT MET — 11 cells outside.
+- **STRICT** (only a figure the run itself calls a p10–p90): **NOT MET — 1 cell outside.**
+
+I reported the strict reading as MET. It is not. The one cell is EGCH `cost_of_sales` at five
+years — a genuine p10–p90 on nine observations, band 0.145–0.846 in that run's
+forecast/actual orientation, i.e. the method **under**-forecast that line by roughly 2.5× and
+did so on every scored cell.
+
+**This is my own new rule landing on the instrument written to serve it.** The amendment I
+adopted an hour ago says a band must declare its basis — and EGCH already did, in a field my
+reader never opened. *Where a record declares its basis, read the declaration.* `criterion2.py`
+now reads `basis` where present and falls back to key-name inference only where it is absent.
+
+That makes three corrections to one figure in one firing — counts, orientation, and now
+basis — each found by pushing on the previous answer rather than by anything catching it. The
+instrument is stronger for it, and the record of what I told you and when should stand as it
+is.

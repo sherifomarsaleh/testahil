@@ -63,6 +63,30 @@ def _load(tk):
 # ---------------------------------------------------------------- named adapters
 # Each returns [(driver, horizon, low, high, point, family)] or raises.
 
+def _basis_of(v, fallback):
+    """The basis the run DECLARES, where it declares one; the key-name inference only
+    where it does not.
+
+    THE INSTRUMENT DID NOT READ THE FIELD THAT WAS SITTING THERE. A first version
+    classified each band by its KEY NAMES — p10/p90 meant a percentile, low_factor
+    meant a factor — and one run carries an explicit `basis` reading "p10-p90 of the
+    full record, widened by the era bias +/- MAE band where that is wider" on a cell
+    keyed low_factor/high_factor. So a genuine percentile band was filed as a factor,
+    and the STRICT reading of criterion 2 was reported as having ZERO cells outside
+    when it has ONE. That is this rule's own lesson landing on the instrument written
+    to enforce it: WHERE A RECORD DECLARES ITS BASIS, READ THE DECLARATION.
+    """
+    b = str(v.get('basis') or '')
+    if b:
+        low = b.lower()
+        if 'p10' in low or 'percentile' in low:
+            return 'percentile'
+        if 'span' in low:
+            return 'span'
+        return fallback
+    return fallback
+
+
 def _n_of(v):
     for k in ('n', 'n_full', 'n_kima2', 'n_observations'):
         if isinstance(v.get(k), (int, float)):
@@ -81,7 +105,7 @@ def _mult_band(o, key, lo_k, hi_k):
             if not isinstance(v, dict) or lo_k not in v:
                 continue
             out.append((drv, str(h), float(v[lo_k]), float(v[hi_k]), 1.0,
-                        'multiplier', _n_of(v), 'factor'))
+                        'multiplier', _n_of(v), _basis_of(v, 'factor')))
     return out
 
 
@@ -134,7 +158,7 @@ def adapt_arcc(o):
             if not isinstance(v, dict) or 'mult_low' not in v:
                 continue
             out.append((drv, str(h), float(v['mult_low']), float(v['mult_high']),
-                        1.0, 'multiplier', _n_of(v), 'factor'))
+                        1.0, 'multiplier', _n_of(v), _basis_of(v, 'factor')))
     return out
 
 
@@ -151,7 +175,7 @@ def adapt_phdc(o):
             if point is None:
                 continue
             out.append((drv, str(h), float(v['p10']), float(v['p90']),
-                        float(point), 'level', _n_of(v), 'percentile'))
+                        float(point), 'level', _n_of(v), _basis_of(v, 'percentile')))
     return out
 
 
@@ -168,7 +192,7 @@ def adapt_tmgh(o):
             if point is None:
                 continue
             out.append((drv, str(year), float(v['low']), float(v['high']),
-                        float(point), 'level', _n_of(v), 'span'))
+                        float(point), 'level', _n_of(v), _basis_of(v, 'span')))
     return out
 
 
