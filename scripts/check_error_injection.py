@@ -265,6 +265,92 @@ case("inflation-off-the-house-path",
      _m_inflation_off_path, _l_inflation_off_path)
 
 
+# ---- the errors found on 07-09-2026, each planted where it is NOT already excused ----
+# [R-PROOF-01]: an error is planted in a study that does not already carry that exact
+# defect on a ratchet, because a recorded and excused debt is one the house has knowingly
+# accepted and planting it proves nothing about detection.
+
+def _m_below_floor(repo, tk):
+    doc = _load(repo, tk)
+    lr = doc.setdefault("lens_record", {})
+    lr["central"] = 4.7459
+    lr.setdefault("primary", {})["value"] = 4.7459
+    cc = lr.setdefault("cross_checks", [])
+    cc[:] = [c for c in cc if c.get("kind") != "book_value"]
+    cc.append({"kind": "book_value", "value": 5.2046,
+               "note": "a disclosed FLOOR, published as such and never weighted"})
+    _save(repo, tk, doc)
+
+
+def _l_below_floor(repo, tk):
+    lr = (_load(repo, tk).get("lens_record") or {})
+    bv = [c for c in (lr.get("cross_checks") or []) if c.get("kind") == "book_value"]
+    return bool(bv) and lr.get("central") is not None and lr["central"] < bv[0]["value"]
+
+
+case("central-below-its-own-floor",
+     "the study publishes a fair value below the number it itself calls a floor",
+     "PHDC", "check_output_sanity.py", _m_below_floor, _l_below_floor)
+
+
+def _m_destroying_terminal(repo, tk):
+    doc = _load(repo, tk)
+    doc["roic_term"] = 0.1126
+    doc["wacc_terminal"] = 0.1834
+    doc["reinvestment_rate"] = 0.62
+    _save(repo, tk, doc)
+
+
+def _l_destroying_terminal(repo, tk):
+    d = _load(repo, tk)
+    return (d.get("roic_term") == 0.1126 and d.get("wacc_terminal") == 0.1834
+            and d.get("reinvestment_rate") == 0.62)
+
+
+case("terminal-reinvests-below-its-cost-of-capital",
+     "the model keeps investing for ever at a return below what the money costs",
+     "PHDC", "check_terminal_spread.py",
+     _m_destroying_terminal, _l_destroying_terminal)
+
+
+def _m_half_a_filing(repo, tk):
+    doc = _load(repo, tk)
+    doc.setdefault("bridge_record", {})["balance_sheet_date"] = "2026-06-30"
+    doc.setdefault("forecast_anchor", {})["latest_reviewed_date"] = "2025-12-31"
+    doc.pop("anchor_ordering_reason", None)
+    _save(repo, tk, doc)
+
+
+def _l_half_a_filing(repo, tk):
+    d = _load(repo, tk)
+    return ((d.get("bridge_record") or {}).get("balance_sheet_date") == "2026-06-30"
+            and (d.get("forecast_anchor") or {}).get("latest_reviewed_date")
+            == "2025-12-31")
+
+
+case("half-a-filing-read",
+     "the study takes the balance sheet out of a filing and not the income statement",
+     "TMGH", "check_anchor_ordering.py", _m_half_a_filing, _l_half_a_filing)
+
+
+def _m_revenue_asserted(repo, tk):
+    doc = _load(repo, tk)
+    doc["driver_lines"] = [{"name": "the whole company", "level": "topdown",
+                            "share_of_revenue": 1.0, "gap_note": None,
+                            "cost_basis": None}]
+    _save(repo, tk, doc)
+
+
+def _l_revenue_asserted(repo, tk):
+    L = _load(repo, tk).get("driver_lines") or []
+    return len(L) == 1 and L[0].get("level") == "topdown" and not L[0].get("gap_note")
+
+
+case("revenue-asserted-not-built",
+     "the top line is one growth rate on the whole company, with no unit behind it",
+     "STC", "check_ground_up.py", _m_revenue_asserted, _l_revenue_asserted)
+
+
 # ---------------------------------------------------------------- the harness
 
 def sandbox():
