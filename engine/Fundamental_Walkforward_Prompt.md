@@ -81,6 +81,22 @@ The delivered valuation study, rebuilt to carry this run's results. **The depth 
   forecasting method is any good, and a method that quietly walks a rate back toward a longer average
   is making an untested claim in the direction that always lowers value.
 
+- **[R-ASSET-01] The operating asset base is as at the latest disclosure the study read.**
+  Where the class carries an asset-based lens, commit an `asset_base_record` naming the quantity,
+  its unit and value, the date it is AS AT and the disclosure it came from, and clear
+  `python3 scripts/check_asset_base.py`. The test is an ordering rather than an age — as at, or
+  later than, the end of this run's own information set — because an asset base is restated when
+  the company discloses it, not on a clock. `not_restated_since` is the release and it must NAME
+  the later disclosures checked and give a reason. This matters most here: a run rebuilds the
+  drivers at every origin and can carry a stale physical base straight through all of them.
+
+- **[R-COC-02] The cost of equity reproduces from its own committed inputs.**
+  The cost-of-capital record declares `ke_terminal_construction` from the closed list
+  (`same_beta`, `relevered`), a relevered terminal states its tax rate, and
+  `python3 scripts/check_ke_reproduction.py` clears. Two right answers that differ by a hundred
+  basis points are indistinguishable from a typing error until the record says which arithmetic
+  produced them.
+
 - **[R-GAP-01] If the central fair value lands more than 10% from the latest known market price in EITHER direction, the study is not finished.** (The rule was one-sided at adoption and became TWO-SIDED on 02-Sep-2026: a gate that can only fire in one direction teaches the work to drift in the other, and it does so while looking rigorous. And per the 03-Sep-2026 amendment, the price it is measured against is the LATEST KNOWN one — a study audited against a month-old quote is audited against its own past.) Write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study's own directory covering all eight headings — LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK — and clear `python3 scripts/check_valuation_gap.py`. The answer does not have to change; it has to be audited. Errors in a DCF are not symmetric — nearly all of them push value DOWN — so a large discount is where the defects are, and every gate above checks the PROCESS while none of them looks at the ANSWER. Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
 - **No rating, no price target, no buy/sell language.** A range and the reasoning behind it.
 

@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-07h — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-07i — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 5 September 2026 (rev. 11) — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED] (a check somebody has to remember to run is run until the day it matters)
+Updated 7 September 2026 (rev. 12) — SIX STANDING RULES ADOPTED IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08]
+(rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
 (rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
 (rev. 9, 1 September 2026 — VALUATION-GAP AUDIT [R-GAP-01]: a central fair value more than 10% below the traded price is audited before it ships)
 (rev. 8, 24 August 2026 — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01], investor sessions)
@@ -4223,3 +4224,406 @@ of unit error, because both values are plausible.** A factor of 0.4 and a factor
 each an ordinary thing to read in a band; neither looks wrong on the page, and only the
 arithmetic behind them says which is meant. So the check is never "does this number look
 sensible" but "against what was it computed".
+
+## [R-ASSET-01] The operating asset base is as at the latest disclosure the study read (7-Sep-2026, per instruction — a study "takes into consideration current landbank of a developer but does not account for new land added to the developer landbank")
+
+**[R-BRIDGE-01] requires the bridge to stand on the latest disclosed balance sheet, and it is
+enforced from outside by `scripts/check_bridge.py`. Nothing said the same of the operating
+asset base** — the land, the fleet, the kilns, the keys, the installed capacity — which on an
+asset-based lens is the quantity the value actually rests on. The rule was written about one
+statement, and the thing that carries the identical claim sits beside it: disclosed by the
+same company, in the same filings, on the same day, and governed by nothing.
+
+**Measured before it was argued.** The word "landbank", in any of five spellings, occurred in
+zero gate files and in zero governing documents. The one occurrence anywhere in the tree was a
+fixture inside a negative control — a defect being reproduced, which is not the same thing as
+a check for it, and is the most misleading possible way for a term to be present.
+
+**What it cost, on the study that provoked the instruction.** PHDC commits
+`land_bank_sqm_mn = 33.0`, dated 2024-12-31 and sourced to the FY2024 earnings release, inside
+a study edition-dated 2026-09-02 whose information set ends 1Q2026 and whose bridge stands on
+the 31-March-2026 balance sheet — and prints it to the delivered workbook at
+`build_xlsx_phdc.py:336`. Every other input in that study is held to a freshness discipline.
+The single quantity a developer's value is built out of was the one nothing was holding.
+
+### The test is an ordering, not a threshold
+
+The asset base must be as at, or later than, the end of the information set the study claims to
+have read. A cutoff in days would be the free parameter the promotion rule forbids, and it is
+the wrong shape regardless: **an asset base is restated when the company discloses it, not on a
+clock.** A developer that acquired no land for two years and whose latest release says so is
+conforming at any age; one whose latest release restated the number while the model kept the
+old one is not, however recent the old one looks.
+
+**The release is real and cannot be switched off in silence.** A study may declare
+`not_restated_since` — but it must NAME the later disclosures it actually checked and give a
+REASON, and an empty reason has switched the check off rather than declared it. That is the
+same shape [R-COC-01 AMENDED] uses to re-point the cost-of-debt bound and [R-ENF-01 EXTENDED]
+uses for a table's declared exceptions, reused rather than minted.
+
+### Scope is derived from the registry by import, and a class that does not resolve is RED
+
+A study is in scope when the class it commits carries an asset-based lens in
+`research_protocol.LENS_REGISTRY` — the classes whose lens set names an RNAV, a replacement
+cost or an EV per tonne. The registry is IMPORTED rather than copied, per [R-ENF-03]: a check
+holding its own copy of a standard stops testing the standard the moment one of them moves.
+Read at adoption, seven classes resolve as asset-based and eleven studies fall in scope.
+
+**A class that resolves to nothing is red, never skipped, and that clause was earned rather
+than anticipated.** TMGH writes its class with an em dash where the registry uses a comma, so a
+gate that looked the class up and moved on when it missed would have SILENTLY EXEMPTED A
+DEVELOPER — [L-355] exactly, a reader that guesses a naming convention finding nothing and
+reporting that as a result. Punctuation is folded before lookup; WORDS are not, because folding
+words would let a study opt into a different class by rewording, which is the ring-renaming
+offence [R-ENF-01 EXTENDED] already refused on the sweep register.
+
+### What it deliberately does not do
+
+It does not ask whether the asset base is CORRECT, or large enough, or consistent with the
+lens — those are depth-bar and lens questions and a gate cannot make them. It asks only whether
+the vintage of the quantity is at least as new as the information set the study itself claims,
+which is arithmetic about two dates the study has already committed.
+
+**Enforced from outside per [R-ENF-01]:** the shared instrument is `engine/asset_base.py` and
+the gate is `scripts/check_asset_base.py`. Ratcheted [R-ENF-02] at eleven in
+`engine/build_depth_audit/asset_base_outstanding.json`, WITH THEIR MEASUREMENTS rather than
+bare names, so the debt is countable rather than remembered; the list may only ever SHORTEN.
+Population-anchored [R-ENF-04] three ways — zero study directories fails, zero asset-based
+classes resolved from the registry fails (the registry read broke, rather than the book holding
+no developers), and every ticker on the ratchet must resolve to a directory on disk. Listed in
+the new-study gauntlet [R-ENF-07] as ARTEFACT-conditional, because an empty directory commits
+no class and refusing one would be a false claim about what this gate checks; it is planted
+instead with the minimum that puts it in scope. Negative-controlled by
+`scripts/check_asset_base_negative_control.py` on fifteen conditions, eleven red and four
+clean, every mutation asserting that it landed.
+
+**The general lesson, which is not about land.** A rule written about one artefact does not
+cover the artefact beside it just because the failure is identical — [R-REBUILD-01] learned
+this of a guard and a procedure, and here it arrives one level down, between two disclosures in
+the same filing. Where a rule names a DOCUMENT, ask what other quantity carries the same claim;
+the bridge and the land bank are the same sentence about currency, and only one of them had
+ever been written down.
+
+
+## [R-COC-02] The cost of equity reproduces from its own committed inputs (7-Sep-2026, per instruction — "creates wrong cost or high Ke and Kd")
+
+**[R-COC-01] enforces the CONSTRUCTION of the cost of capital thoroughly** — the glide, the
+weights, the sovereign counted once, the three-assert Kd gate, the terminal brought home on the
+last explicit factor. Measured 07-09-2026: **nothing reproduced Ke.** A search of `scripts/`
+for `ke_exp`, `cost_of_equity`, `ke_terminal`, `capm` and `rf_star +` returned no match, and
+`scripts/check_cost_of_capital.py` reads `rf_star` exactly once — for the risk-free
+normalisation identity, never for the CAPM one. A cost of equity typed three hundred basis
+points high passed every check in this repository.
+
+**Priced on ARCC's own committed grid rather than asserted.** Three hundred basis points on the
+whole cost of capital is worth −3.1% of value; a beta of 0.80 against 1.15, both sitting inside
+that study's own confidence interval, is worth −16%; and its published 95% beta interval of
+0.2505 to 1.1457 spans a fair value from 102.54 to 59.35 against a published 66.53. **The input
+carrying the widest committed uncertainty in the model was the one whose arithmetic nothing
+reproduced.**
+
+### The first draft would have condemned two studies that are right
+
+That is recorded here rather than quietly fixed, because it is the more useful half. Requiring
+`ke_terminal = rf_terminal + beta x erp_terminal` — the arithmetic `engine/cost_of_capital.py`
+itself performs — reproduces ADNOCLS, PHDC, TMGH and STC to the basis point, and misses ARCC by
+102.87bp and SCEM by 132.24bp. Both resolve EXACTLY, to six decimals, as a Hamada relevering at
+22.50%: ARCC's beta of 0.927522 unlevers to 0.900090 at a debt weight of 0.0378 and relevers to
+1.074483 at a terminal weight of 0.20; SCEM's 1.000000 unlevers to 0.995949 and relevers to
+1.188914. Per [R-COC-01], **when a check fires on work that is right it is RE-POINTED, never
+widened**, and never satisfied by moving the number.
+
+**So the finding is not a wrong number — it is an UNDECLARED CONSTRUCTION.** The book runs two
+terminal constructions, the sanctioned module performs only one of them, and no record said
+which: not one occurrence of relever, unlever, Hamada or target structure appears in either
+governing document. A reader cannot tell 1.074483 from a typing error, and until this rule
+neither could any instrument in the repository.
+
+### The rule
+
+Ke reproduces under a construction the record NAMES, from a CLOSED list — `same_beta` or
+`relevered` — closed for [R-COC-01 AMENDED]'s reason, that an open list lets any study opt out
+by inventing one. A relevered terminal must STATE the tax rate it was relevered at. The module
+solves the implied rate and reports it inside the refusal so the fix is a single line, but it
+NEVER accepts it: **a rate solved out of the answer it explains is the reverse-engineered
+construction this house prohibits outright**, arriving through a side door.
+
+**Tolerance is float noise, not a chosen bound.** This is an identity, so a study that actually
+computed its Ke this way agrees to double precision; there is no rounding allowance to set and
+therefore no free parameter to argue about. A record storing rounded figures is its own failure
+and is reported as that, rather than absorbed by widening the tolerance until it passes.
+
+### The gate found a study the measurement before it missed
+
+The hand-written probe that produced the finding searched `cost_of_capital_record` alone and
+read six studies. The gate searches three spellings and reads seven — STC. [L-355] again, and
+this time caught by the instrument rather than by a person, which is the whole argument for
+moving a measurement into code even when a person has already run it.
+
+**Enforced from outside per [R-ENF-01]:** the shared instrument is `engine/ke_reproduction.py`
+and the gate is `scripts/check_ke_reproduction.py`. `engine/cost_of_capital.py` now EMITS
+`ke_terminal_construction`, so every record written from here on declares itself and the
+outstanding list is closed by declaration rather than by rebuild. Ratcheted [R-ENF-02] in
+`engine/build_depth_audit/ke_outstanding.json` at seven and already pruned to six, each entry
+naming WHAT THE RECORD REPRODUCES UNDER because the fix is one declared field and an entry that
+names its own fix is an entry somebody can close; FERTIGLOBE is listed UNREADABLE rather than
+clean, since a record carrying no `rf_star`, beta, ERP or `ke_exp` cannot be reproduced at all
+and an absent answer is not a clean one [R-ENF-04]. Listed in the new-study gauntlet
+[R-ENF-07] as ARTEFACT-conditional. Negative-controlled by
+`scripts/check_ke_reproduction_negative_control.py` on fourteen conditions, eleven red and
+three clean — the clean half carrying ARCC's relevered terminal EXACTLY as it stands, declared,
+which the first draft condemned.
+
+**The general lesson, which is not about discount rates.** A check that fires on correct work
+has usually found a construction nobody wrote down, not an error in the work. The instinct is
+to widen the bound until the honest cases pass, and that deletes the check; the repair is to
+make the construction DECLARABLE and then require the declaration, which leaves the check
+stronger than it found it and leaves the reader able to tell two right answers apart.
+
+
+## [R-GAP-03] The gap a reader sees is audited, not only the gap the study was struck at (7-Sep-2026)
+
+**The protocol already named this hole in its own words** — *"the gap a READER sees and the gap
+the gate reports are two different numbers, each honest about a different thing, and refreshing
+a spot moves the reader's and not the gate's"* — and gave it no instrument, saying instead that
+it *"closes when the campaign publishes the book together"*. **That is a plan, not a check.** It
+cannot go red, it cannot shorten, and nothing would notice if it grew. A number living in a
+status note is a number that rots [R-DOC-02], and so is a promise.
+
+**Two populations, and only one of them was ever audited.** [R-GAP-01] audits a STUDY against
+the price it was STRUCK at, reads each study's own committed numbers, and its subject is
+therefore the twenty-two names that commit an answer. The site publishes ninety. Measured
+07-09-2026 through a real JavaScript load of `assets/data.js` [R-ENF-03], every one of the
+ninety gaps is computable and fifty-eight of them exceed ten per cent either way, of which two
+are currently audited. Thirty-six have no study directory at all, which is the population
+`scripts/check_published_coverage.py` already tracks.
+
+### The rest is not a review going stale — it is a PAGE going stale
+
+SCEM publishes 53.12 on the site against a study central of 123.27, so a reader computes −46.1%
+where the study holds +25.1%. TMGH publishes 147.12 against 91.83, +50.4% against −6.1%. AMOC
+5.95 against 11.40, −56.1% against −15.8%. SWDY 69.73 against 55.48; ARCC 54.65 against 66.53;
+PHDC 15.89 against 17.85. **On SCEM and TMGH the SIGN is opposite** — the page tells a reader
+the company is expensive while the house holds it cheap, and the reader has no way to know.
+
+**Why, and it is nobody's carelessness.** [R-GAP-02] holds a study from publishing while its
+fair value disagrees with the market by more than ten per cent, adopted precisely to keep an
+UNAUDITED number away from a reader. Last week's rebuilds corrected these studies, and every
+corrected number now sits behind that hold — **so the hold is keeping the AUDITED number away
+from the reader and leaving the UNAUDITED one on the page.** Each rule is right and the joint
+condition belongs to neither, which is [R-MACRO-01 AMENDED 06-09-2026]'s own lesson about two
+rules governing one quantity from different directions, arriving where nobody looked.
+
+**Nothing here licenses a publish.** [R-GAP-02] stands unchanged, publishing to the live site
+remains a separate explicitly-requested step, and no fair value moves toward any price because
+of this rule. What is established is the COST of the hold, measured rather than asserted, in a
+list that can only shorten.
+
+### Enforcement
+
+`scripts/check_published_gap.py` takes its population from the site rather than from the study
+directories, and a run reading zero published names FAILS [R-ENF-04]. An unreadable answer
+fails rather than being skipped, for the reason it does everywhere else: unreadability would
+otherwise be the cheapest route past the check. **The trigger and the tolerance are borrowed,
+never minted** — ten per cent either way is [R-GAP-01]'s own audit trigger and the five-point
+staleness allowance on an audited gap is [R-GAP-01 AMENDED]'s, because inventing a second
+cutoff for the same question would be a free parameter and would let two gates disagree about
+what a large gap is. It IMPORTS [R-GAP-01]'s own review readers rather than modelling them
+[R-ENF-03]: a checker that models another checker's parser is checking a different file from
+the one that ships. Ratcheted [R-ENF-02] at fifty-six in
+`engine/build_depth_audit/published_gap_outstanding.json`, every entry carrying its measured
+gap, and the ratchet text SPLITS THE TWO KINDS OF DEBT because they are not the same debt: a
+name with no study directory is work not yet done, and a name whose study was rebuilt while the
+page was held is work done and not delivered.
+
+**The general lesson, which is not about prices: a gate protects the thing it takes as its
+subject, and every gate here took the study.** The artefact a reader actually receives — one
+number on one page — was checked for its technical read, its band record, its two-part stamps
+and its chart overlay, and never once for whether the valuation printed on it was the valuation
+this house currently holds. Where a rule exists to protect somebody, check the thing that
+reaches them.
+
+
+## [R-REPAIR-01] A red gate is worked until it is green (7-Sep-2026, per instruction — a framework "that if a study fails a gate, it has the ability to work until it fixes it")
+
+**Every other instrument in this repository answers "is something wrong?". Nothing answered
+"then fix it".** At twenty-four studies a person reads the output; at ninety they do not, and
+the evidence that they do not is already committed — forty-seven ratchet entries accumulated on
+five studies, each one a real defect somebody saw, recorded, and did not close. A ratchet is
+the right way to carry a known debt and the wrong way to discover you have stopped paying it
+down.
+
+### Three prohibitions, asserted after every run rather than promised
+
+Each of them would otherwise turn the framework into a machine for manufacturing green, and the
+assertion is made by comparing the working tree before a run against the tree after it.
+
+1. **It may not edit a gate, a negative control or a ratchet.** Passing a check by weakening it
+   is the defect wearing the fix's clothes, and it is the single most likely thing an automated
+   repairer does.
+2. **It may not move a fair value.** A price is evidence that a defect may exist, never a
+   target; a value adjusted to meet a quote is the reverse-engineered rate this house prohibits
+   outright, and [R-GAP-01] says so in terms about the human version of the same act.
+3. **It may not invent an input.** A missing figure is recorded as missing and escalated, with
+   SIGCM clauses 1 and 8 binding on the loop exactly as they bind on a person.
+
+### What it repairs is deliberately small
+
+It repairs only where the gate that failed NAMES the fix deterministically — where the check
+has already done the arithmetic and the repair is transcription. **A loop that guesses is worse
+than no loop, because its output looks like work.** Everything else becomes a ranked work order
+or an escalation with the gate's own words attached, which is the honest output and is the same
+discipline [R-IND-01] puts on a question.
+
+**And a fix goes into the GENERATOR, never into the artefact.** Writing a field straight into a
+committed numbers file makes the gate green and the next regeneration silently drops it — which
+`scripts/check_numbers_generators.py` would then catch as drift, correctly, one rebuild later
+and with nothing to say why. A repair that does not survive a rebuild is not a repair.
+
+**Its first run caught its own author twice**, which is the argument for it rather than an
+embarrassment beside it: `scripts/check_exemplar_debt.py` went red because three standards
+adopted that day had put the exemplar onto four new ratchets with nobody deciding to take that
+debt on, and `scripts/check_protocol_sync.py` went red because five rule identifiers were cited
+in code and defined in neither governing document — this rule among them.
+
+The loop is `scripts/repair_loop.py`. **Enforcement of the rule itself is prose and that is said
+plainly** [R-ENF-01]: whether an operator ran the loop is not a property of the repository a
+checker can read, and the loop's own three prohibitions are what is mechanically enforced.
+
+**The general lesson, which is not about repair: a system that only detects accumulates debt at
+exactly the rate it detects, and the debt is invisible because every individual entry is
+legitimate.** Nothing on those forty-seven entries was wrong to record; each was a correct
+decision to carry a known defect rather than fix it in passing. The failure is arithmetic
+rather than judgement — detection scales with instruments and repair scales with attention, and
+only one of those two grows when a book goes from twenty-four names to ninety.
+
+
+## [R-PROOF-01] Every error this house claims to catch is planted and caught (7-Sep-2026)
+
+**Sixty-eight gates is a number, not evidence.** The question anybody sensible asks — a
+principal, an investor, a reader — is not "how many checks do you have" but "if this specific
+thing went wrong, would you find out". That question has an answer only if somebody makes the
+specific thing go wrong.
+
+### How it differs from its two neighbours, since all three plant a defect
+
+`scripts/check_new_study_gauntlet.py` [R-ENF-07] asks whether a NEW STUDY can walk past the
+whole set — a property of the SYSTEM, which no gate inside it can see. A NEGATIVE CONTROL asks
+whether ONE GATE fires on its own condition — a property of that gate, and it lives beside it.
+**This asks whether a NAMED REAL-WORLD ERROR, described in the words somebody would actually
+use to complain about it, is caught by anything at all.** The three are not substitutes and the
+distinction is the whole design: the first two are indexed by the instrument, and this one is
+indexed by the complaint.
+
+**The catalogue is the specification and the harness is the proof.** A catalogued error that no
+gate catches is RED. So adding an error somebody has thought of is how the specification grows,
+and the build stays red until something catches it — which is the exact opposite of a wish
+list, where adding an item costs nothing and obliges nobody.
+
+### Three steps per case, and the first is what makes it evidence
+
+The gate must be GREEN on the unmutated sandbox, so that a red afterwards was caused by the
+error rather than by something already broken. The mutation must ASSERT THAT IT LANDED — this
+project has four times caught a control passing a fixture that never injected its condition,
+reporting green and proving only that nothing had changed. And the gate must go RED **and NAME
+its subject**, because a red run that cannot say which name it is about does not tell an
+operator what to do.
+
+**Nothing is written into the real tree.** The repository is copied once and every mutation and
+every restore happens inside the copy, so there is no undo that has to run — which is
+[R-ENF-01 EXTENDED]'s own finding after a negative control wrote its fixture into a live
+register and a `finally` did not survive.
+
+**Seeded with the principal's own three errors**, in their own words: a study that takes the
+current land bank of a developer and does not account for new land added to it; a study that
+creates a wrong or inflated cost of equity; a study that publishes an erroneous fair value at
+sixty per cent of the current price. **On its first run one of the three was caught by anything
+at all, and both misses were findings rather than harness noise** — which is the harness
+working rather than failing, and is the whole reason the first step of each case is to prove
+the gate green before the mutation lands.
+
+The cost-of-equity error was caught, by [R-COC-02]'s gate. The land-bank error was NOT, and the
+reason became [R-ENF-08] below: the study it was planted in sits on [R-ASSET-01]'s own ratchet,
+a ratchet entry was a TICKER, and the gate therefore skipped that study whole — **the very
+defect a rule was adopted on was undetectable on the study that provoked it.** The third case's
+fixture DID NOT LAND, which is the harness reporting its own failure rather than a clean result
+and is the failure mode this project keeps catching: a control that never injects its condition
+reports green and proves only that nothing has changed. Both were closed rather than argued
+with, and the catalogue's own discipline moved with them — **an error is planted on a study
+that does not already carry that exact defect on a ratchet**, because a recorded, excused debt
+is a defect the house has knowingly accepted and planting it proves nothing about detection.
+
+Read the catalogue live with `python3 scripts/check_error_injection.py` — never from this
+account, because both halves move as gates are added and errors are named.
+
+**The general lesson, which is not about injection: a claim about what a system detects is
+untested until somebody supplies the thing it is supposed to detect.** And the right index for
+the catalogue is the natural language of the complaint — what a person would actually say went
+wrong — rather than the internal name of the check, because a catalogue organised by instrument
+can only ever contain the errors somebody had already built an instrument for.
+
+
+## [R-ENF-08] A ratchet excuses the failure it recorded, not every failure of its class (7-Sep-2026)
+
+**Found by the injection harness on its first run, which is the argument for that harness.** A
+stale-asset-base error was planted in PHDC — the very study [R-ASSET-01] had been adopted on —
+the mutation landed, the gate ran, and the gate DID NOT GO RED. It was right not to, by its own
+construction: PHDC is on the asset-base ratchet, a ratchet entry was a TICKER, and the gate
+therefore skipped that study entirely.
+
+**So every ratchet in this repository was also a blind spot.** A study listed for one known
+defect was excused from its whole gate and could acquire a SECOND, DIFFERENT defect of the same
+class with nothing to catch it. That is not a defect in any ratchet — each was seeded correctly,
+each may only shorten, and [R-ENF-02] never said otherwise because nobody had asked. It is a
+property of what an ENTRY IS.
+
+**The fix is not to remove the ratchets.** [R-ENF-02] exists because a check that is red from
+the day it is written is one everybody learns to ignore, and that reasoning is untouched here.
+What changes is the GRANULARITY: an entry excuses ONE FAILURE, named, and a DIFFERENT failure on
+the same study is a NEW breach.
+
+### The comparison is on shape, not on text, and that was forced rather than chosen
+
+A gate's failure message carries live figures — a date, a gap in per cent, a basis-point
+difference — so an exact-string match would go red every time a price moved, which is the
+permanently-red check [R-ENF-02] forbids. Stripping the numbers leaves the CLAIM, which is the
+thing the ratchet was seeded against: *asset base as at DATE is behind the information set
+ending PERIOD* is one failure however the dates move, while *the record names no disclosure* is
+a different one and must go red. **The signature is readable rather than a hash**, deliberately:
+a reader has to be able to look at a stored signature and see which failure it names, because a
+ratchet entry nobody can read is an entry nobody can close.
+
+**A ratchet that records a MAGNITUDE needs a second test, because the shape of its message never
+changes.** `scripts/check_published_gap.py` is that case and the harness demonstrated it: a name
+breaching the gap trigger at +10.8% and the same name breaching it at −60% produce the identical
+sentence, so a fingerprint alone excuses both — which is exactly what happened when the second
+was planted and ignored. An entry that records a deviation excuses a deviation UP TO THAT SIZE,
+and **the tolerance is supplied by the caller and must be one the house already uses for that
+quantity**, since minting a second cutoff here would be the free parameter the promotion rule
+forbids.
+
+### What it deliberately does not do
+
+It does not require an entry to carry a signature. An entry with none behaves exactly as every
+ratchet in this repository did before — excusing the study — because retro-fitting signatures
+onto forty-seven ratchets is a re-issue, and a rule that made every existing list red is the
+permanently-red check this repository forbids. **It binds forward**: a ratchet whose entries
+carry signatures gets the finer check, and the ratchets of the rules adopted the same day carry
+them, each entry on the asset-base and cost-of-equity lists carrying a signature and each entry
+on the published-gap list carrying a magnitude.
+
+**Enforced from outside per [R-ENF-01]:** `engine/ratchet_shape.py` is the shared instrument and
+the gates call it rather than each implementing a comparison of its own [R-ENF-03] — the
+prose-figures architecture applied to exemptions, because twenty hand-rolled fingerprint
+routines would drift into twenty different notions of what counts as the same failure. Its live
+evidence is the injection harness [R-PROOF-01], which plants a materially worse breach on a
+LISTED name and requires the run to go red; the signature half is exercised by the gates that
+carry it. It has no negative control of its own, and that is stated rather than implied.
+
+**The general lesson, which is not about ratchets: an exemption is granted to a SUBJECT and is
+spent by a CLAIM, and nothing makes you notice the difference until somebody tries the second
+claim.** Every allowance in this repository — a ratchet entry, a declared exception, an accepted
+staleness, a named absence — was written down against one particular thing being wrong, and
+every one of them is keyed to the name of the work rather than to the fault. Where a list
+excuses work, ask whether it excuses the thing it recorded or everything that thing could ever
+do.
