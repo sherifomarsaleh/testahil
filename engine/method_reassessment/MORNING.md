@@ -2093,3 +2093,38 @@ THE GENERAL LESSON: **BEFORE BUILDING A CHECK, SOLVE FOR WHAT THE EXISTING ONES
 ALREADY REFUSE.** "This lesson has no gate" was true and unhelpful; the useful
 question was what a gate for it would have to be tighter than, and the answer came
 out of arithmetic already in the protocol.
+
+### An acceptance criterion named a gate that did not exist
+
+Part E criterion 1 lists seven gates that must be green with negative controls
+before the programme is complete. **Six are. The seventh,
+`check_corrections_applied`, had never been written** — while criterion 2 requires
+in terms that *"every claimed correction reconciles to its log"*.
+
+An acceptance criterion naming a check nobody wrote cannot be met, and nothing was
+counting it: **[R-ENF-01]'s own failure applied to the definition of done rather
+than to a study.** The programme has spent days building gates over the work while
+its own completion test carried a hole.
+
+Built and green. A study claiming a correction must name a run that ADOPTED it, on
+the same driver, at a factor reproducing from that run's own committed bias at the
+half strength [R-FCAL-01] fixes. Population: four studies make a claim either way —
+AMOC, EGCH and TMGH declare none, and **ARCC's `manufacturing depreciation` claims
+1.0298 against `exp(−bias/2) = 1.0298` from its own log.** A study declaring none
+while its run adopted one is a failure, because silence and "none adopted" are the
+same file to a reader and different facts about the work.
+
+**Matched on meaning rather than on the word, and that clause was earned in the
+first five minutes.** Searching for "correction" found SCEM carrying
+`corrections_applied: 69` — a count of *editorial* corrections in a revision note,
+on a study with no walk-forward run at all. A gate keying on the word would have
+opened with a spectacular false positive about a study that has done nothing wrong.
+The case is kept as a clean fixture, asserted against the real file.
+
+Negative-controlled on six red and three clean; CI now runs 115 steps.
+
+THE GENERAL LESSON: **A PLAN'S ACCEPTANCE CRITERIA ARE THE LEAST-CHECKED PROSE IN
+THE PROJECT.** Every rule here is enforced from outside by something; the document
+that says when the work is finished was enforced by nobody, and it named an
+instrument that did not exist for five days without anyone noticing — including on
+the days its own list was read aloud to decide what to do next.

@@ -1226,6 +1226,16 @@ jobs:
       - name: Correction-boundary gate — negative control
         run: python3 scripts/check_correction_boundary_negative_control.py
 
+      # Named in the programme's own Part E acceptance criteria and never built:
+      # six of the seven gates that criterion lists were green with negative
+      # controls and this one did not exist, while criterion 2 requires in terms
+      # that "every claimed correction reconciles to its log".
+      - name: Every claimed correction reconciles to the run that produced it
+        run: python3 scripts/check_corrections_applied.py
+
+      - name: Corrections-applied gate — negative control
+        run: python3 scripts/check_corrections_applied_negative_control.py
+
       - name: A frozen escalator is declared, or it is a defect
         run: python3 scripts/check_frozen_escalator.py
 
