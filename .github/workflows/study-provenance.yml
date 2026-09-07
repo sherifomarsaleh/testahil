@@ -1346,6 +1346,17 @@ jobs:
       - name: Lens-independence gate — negative control
         run: python3 scripts/check_lens_independence_negative_control.py
 
+      # [R-ASSET-02]. [R-ASSET-01] checks the asset base's VINTAGE and says so in its own
+      # docstring — "this gate makes no claim that a land bank of 33 million square metres
+      # is right or wrong". This checks that any arithmetic READS it. Both developers on
+      # the book register, commit and PRINT a land bank that no calculation touches, so
+      # new land raises the value by zero and exhausted land lowers it by zero.
+      - name: The asset base is read by arithmetic, not only recorded and printed
+        run: python3 scripts/check_asset_base_wired.py
+
+      - name: Asset-base wiring gate — negative control
+        run: python3 scripts/check_asset_base_wired_negative_control.py
+
       # [R-COC-02]. check_cost_of_capital enforces the CONSTRUCTION thoroughly and never
       # reproduced Ke, so a cost of equity typed 300bp high passed everything here. The
       # book runs two terminal constructions and no record said which.
