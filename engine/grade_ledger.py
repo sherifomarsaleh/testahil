@@ -525,16 +525,50 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
     # every row the old code already handled comes out BYTE-IDENTICAL (asserted by the
     # replay negative control in sweep(), and by scripts/check_grade_writer_layout.py).
     old_outcome = re.search(r'realized_close:null,\s+realized_high:null,\s+realized_low:null,', t)
-    if not old_outcome:
-        raise SystemExit('outcome block not in the expected shape')
-    t2 = t.replace(old_outcome.group(0), new_outcome)
 
-    old_stats = re.search(r'in_90:null,\s+in_50:null,\s+realized_quantile:null,\s+median_err:null,', t2)
-    if not old_stats:
-        raise SystemExit('stats block not in the expected shape')
-    t2 = t2.replace(old_stats.group(0),
-                    f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
-                    f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
+    # A ROW SHORT OF A FIELD IS NOT A ROW SHORT OF A LINE BREAK, AND UNTIL NOW ONLY
+    # THE SECOND WAS HANDLED. The widening above spans a newline, so it reaches any
+    # row that CARRIES the six outcome fields however it wraps them; it cannot reach
+    # a first-coverage row that never carried them. Measured on the shipped ledger
+    # 07-Sep-2026: 253 open rows carry the full outcome block and 14 do not --
+    # twelve written as `realized_close:null, realized_date:null` (ADNOCLS,
+    # ADNOCDRILL, ADNOCDIST, BOROUGE, SAVOLA, RIYADHCABLE, both horizons) and two
+    # as `realized_close:null, realized_quantile:null, median_err:null,
+    # touch_hit:null` (DU, both horizons). check_grade_writer_layout.py had NAMED
+    # all fourteen since 06-Sep-2026 and left them as a recorded schema gap; on
+    # 07-Sep-2026 ADNOCLS's 1-month cone matured INSIDE that gap and the metronome
+    # could not record a grade it had already computed correctly.
+    #
+    # Writing the fields is not inventing them. The frozen claim is p5..p95 and the
+    # touch ladder, and neither is touched here; the outcome fields ARE the grade,
+    # so a row that lacks them is a row waiting for exactly this write. Both short
+    # shapes are replaced by the SAME block the long shape produces, emitted on one
+    # line because these rows are written on one line, so a graded row comes out
+    # identical in content whichever shape it started in. Rows the old pattern
+    # already reached are untouched -- asserted byte-for-byte by
+    # scripts/check_grade_writer_layout.py, which fails if this branch moves them.
+    stats = (f"in_90:{jb(got['in_90'])}, in_50:{jb(got['in_50'])}, "
+             f"realized_quantile:{rq}, median_err:{got['median_err']:.4f},")
+    th_txt = 'touch_hit:{ ' + ', '.join(
+        f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL) + ' }'
+
+    if old_outcome:
+        t2 = t.replace(old_outcome.group(0), new_outcome)
+
+        old_stats = re.search(r'in_90:null,\s+in_50:null,\s+realized_quantile:null,\s+median_err:null,', t2)
+        if not old_stats:
+            raise SystemExit('stats block not in the expected shape')
+        t2 = t2.replace(old_stats.group(0), stats)
+        short_shape = False
+    else:
+        short = re.search(
+            r'realized_close:\s*null,\s*realized_date:\s*null'
+            r'|realized_close:\s*null,\s*realized_quantile:\s*null,'
+            r'\s*median_err:\s*null,\s*touch_hit:\s*null', t)
+        if not short:
+            raise SystemExit('outcome block not in the expected shape')
+        t2 = t.replace(short.group(0), f"{new_outcome} {stats} {th_txt}")
+        short_shape = True
 
     # A FIRST-COVERAGE ROW WRITES touch_hit:null, NOT AN EMPTY OBJECT, and this
     # matched only the object shape — so the twelve rows six names were published
@@ -544,11 +578,14 @@ def apply_grade(src: str, row: dict, got: dict) -> str:
     # missing is the null shape on the left-hand side. Both are accepted here and
     # both are replaced by the computed object, so a graded row comes out
     # identical whichever shape it started in.
-    old_th = re.search(r'touch_hit:(?:null|\{[^}]*\})', t2)
-    if not old_th:
-        raise SystemExit('touch_hit block not found')
-    th = ', '.join(f'"{k}":{jb(got["touch_hit"][k])}' for k, _ in REL)
-    t2 = t2.replace(old_th.group(0), 'touch_hit:{ ' + th + ' }')
+    # On the short shape the ladder was written with the outcome above, so there is
+    # no `touch_hit:null` left to find and looking for one would fail the write it
+    # has already done correctly.
+    if not short_shape:
+        old_th = re.search(r'touch_hit:(?:null|\{[^}]*\})', t2)
+        if not old_th:
+            raise SystemExit('touch_hit block not found')
+        t2 = t2.replace(old_th.group(0), th_txt)
 
     # A closure/suspension that pushed the graded session past the stored date is
     # ANNOTATED, never overwritten (STEP 3.3).
