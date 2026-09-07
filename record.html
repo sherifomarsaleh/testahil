@@ -23,7 +23,7 @@
 <main class="wrap">
   <section class="t-sec" style="margin-top:26px">
     <h1>Were we right?</h1>
-    <p class="muted" style="max-width:68ch">Every forecast is saved with its date. When the date arrives, the real price goes next to what we said — right or wrong, nothing deleted. The tally first; the rules below it.</p>
+    <p class="muted" style="max-width:100%">Every forecast is saved with its date. When the date arrives, the real price goes next to what we said — right or wrong, nothing deleted. The tally first; the rules below it.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:18px 0">
       <div class="t-stat"><div class="n" id="r-n">—</div><div class="d">resolved 3-month windows checked</div></div>
       <div class="t-stat"><div class="n hl" id="r-hits">—</div><div class="d" id="r-hitsd">inside the 90% band</div></div>
@@ -54,7 +54,7 @@
     <h2 style="margin-top:34px">The live ledger — forecasts awaiting their date</h2>
     <div id="r-filter" style="display:none;margin:10px 0" class="t-note">Showing <b id="r-fname"></b> only — <a id="r-showall" href="record.html">show every name</a></div>
     <div class="t-filters" id="p-controls"><button class="t-chip on" data-w="30" type="button">Next 30 days</button><button class="t-chip" data-w="all" type="button">All pending</button><span id="p-mkts" style="display:flex;gap:6px;flex-wrap:wrap"></span><span class="muted" style="font-size:var(--fs-caption)">showing <span id="p-count" class="num">…</span></span></div>
-    <p class="muted" style="font-size:var(--fs-small);max-width:68ch">Published cones whose check date hasn’t arrived yet. Each will be graded on the real close of its date — projected dates use the exchange’s own calendar.</p>
+    <p class="muted" style="font-size:var(--fs-small);max-width:100%">Published cones whose check date hasn’t arrived yet. Each will be graded on the real close of its date — projected dates use the exchange’s own calendar.</p>
     <div class="t-tablewrap">
       <table style="min-width:640px">
         <thead><tr><th>Name</th><th class="num">Anchored</th><th class="num">At price</th><th>Horizon</th><th class="num">90% band (p5–p95)</th><th class="num">Grades on</th><th></th></tr></thead>
