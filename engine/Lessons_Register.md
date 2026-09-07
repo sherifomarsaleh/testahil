@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**290 lessons**, of which 253 bind on every study, 27 on a class of company, and 10 on a single name.
+**296 lessons**, of which 257 bind on every study, 29 on a class of company, and 10 on a single name.
 
-By how they were learned: 56 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 192 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2609,6 +2609,46 @@ Re-running every forecast with perfect foresight of inflation barely improves it
 
 > **What would overturn it.** A market or period where the same decomposition puts most of the error on the macro path.
 
+### L-370 · D11 depreciation forecasts run about 2.5 times too low for SWDY.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.931 log (about 2.5 times too low), average miss 0.931, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=30).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
+
+### L-371 · D15 finance costs forecasts run about 2.4 times too low for SWDY.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.880 log (about 2.4 times too low), average miss 0.919, wrong in the same direction in 91% of cases, and the sign holds across every bootstrap block tested (n=45).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
+
+### L-374 · The A gross profit error is the company, not the currency.
+
+Re-running every forecast with perfect foresight of inflation barely improves it. So devaluation is not the explanation, and looking for a macro fix would waste the effort.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Average miss 0.563 as known, 0.563 with perfect foresight of inflation — the macro share is only -61.7%.
+
+> **What would overturn it.** A market or period where the same decomposition puts most of the error on the macro path.
+
+### L-375 · The A cost of revenue bias changes direction between regimes.
+
+It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** By era: pre-float +0.026; first float -0.024; second float -0.460.
+
+> **What would overturn it.** A longer record in which one sign dominates across all regimes.
+
 
 ---
 
@@ -2923,6 +2963,26 @@ Normalising earnings assumes there is a mid-cycle level to normalise TO. Where a
 > **What it cost, or how we know.** The lens read EGP 109.52 against a cash-flow lens of 55.48 — nearly double — and carried a fifth of a typed blend, which is what pulled the published central to 71.20 and showed a reader about two thirds of the disagreement this study holds. It is the same lens, at the same weight, in the same class of defect as the case that retired the blend on a developer.
 
 > **What would overturn it.** A contracting group whose reported earnings are shown to be stable enough through a cycle that a normalised figure means something — which the disclosure would have to support with a completion profile no issuer in this book currently publishes.
+
+### L-372 · D1 cable volume t forecasts run about 28% too high for SWDY.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every diversified industrial with a contracting arm  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias +0.250 log (about 28% too high), average miss 0.256, wrong in the same direction in 95% of cases, and the sign holds across every bootstrap block tested (n=20).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
+
+### L-373 · D5 contracting revenue forecasts run about 39% too low for SWDY.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every diversified industrial with a contracting arm  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.326 log (about 39% too low), average miss 0.390, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=45).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
 
 
 ---
