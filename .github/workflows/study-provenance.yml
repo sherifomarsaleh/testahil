@@ -163,6 +163,8 @@ on:
       - 'scripts/check_lens_vocabulary.py'
       - 'scripts/check_published_lens_vocabulary.py'
       - 'scripts/check_output_sanity.py'
+      - 'scripts/check_terminal_spread.py'
+      - 'scripts/check_terminal_spread_negative_control.py'
       - 'scripts/check_output_sanity_negative_control.py'
       - 'scripts/check_published_lens_vocabulary_negative_control.py'
       - 'scripts/check_lens_vocabulary_negative_control.py'
@@ -298,6 +300,8 @@ on:
       - 'scripts/check_lens_vocabulary.py'
       - 'scripts/check_published_lens_vocabulary.py'
       - 'scripts/check_output_sanity.py'
+      - 'scripts/check_terminal_spread.py'
+      - 'scripts/check_terminal_spread_negative_control.py'
       - 'scripts/check_output_sanity_negative_control.py'
       - 'scripts/check_published_lens_vocabulary_negative_control.py'
       - 'scripts/check_lens_vocabulary_negative_control.py'
@@ -1117,6 +1121,15 @@ jobs:
 
       - name: A study's own figures — negative control
         run: python3 scripts/check_output_sanity_negative_control.py
+
+      # [R-TERM-01]. The ARCC defect — a terminal reinvesting 62% of profit at a spread of
+      # -707bp in perpetuity — was found BY HAND, written into a rule as evidence, and
+      # never became an instrument.
+      - name: The spread a terminal reinvests at
+        run: python3 scripts/check_terminal_spread.py
+
+      - name: The terminal spread — negative control
+        run: python3 scripts/check_terminal_spread_negative_control.py
 
       # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
       # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied

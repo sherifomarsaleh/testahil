@@ -146,6 +146,14 @@ ARTEFACT_GATES = {
                                 'from engine.mc_v3 import simulate_paths_v3\n'
                                 'def build():\n'
                                 '    json.dump({"central": 17.85}, open("study_numbers.json", "w"))\n')}),
+    'check_terminal_spread.py': (
+        # An empty study commits no terminal that reinvests, so there is no spread to earn
+        # and refusing a bare directory would be a false claim about what this gate checks
+        # [R-ENF-07]. Planted with the defect as it was found on ARCC: a terminal return
+        # beneath the terminal cost of capital, reinvesting into it, declared nowhere.
+        'a terminal reinvesting below its own cost of capital',
+        lambda: {'study_numbers.json': ('json', {
+            'roic_term': 0.1126, 'wacc_terminal': 0.1834, 'reinvestment_rate': 0.62})}),
     'check_output_sanity.py': (
         # An empty study commits no lens record, so there is no relationship between its
         # own figures to contradict and refusing a bare directory would be a false claim

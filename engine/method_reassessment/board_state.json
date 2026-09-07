@@ -123,21 +123,23 @@
    "families": [
     "asset-base-landbank",
     "cost-of-capital-level (weights, beta provenance)",
-    "lens-architecture (the published page)"
+    "lens-architecture (the published page)",
+    "output-sanity (2 of 3 claims)",
+    "share-count (1 of 3 forms)"
    ],
    "state": "DONE",
-   "detail": "P1 and P3 closed. Six gates: asset-base vintage and wiring, Ke reproduction, lens independence, the reader-side gap, the retired blend on all 93 pages."
+   "detail": "P1 and P3 closed. Eight gates: asset-base vintage and wiring, Ke reproduction, weights and beta provenance, lens independence, the reader-side gap, the retired blend on all 93 pages, the relationship between a study's own figures, and the per-share gate's free escape."
   },
   {
    "start": "2026-09-08",
    "end": "2026-09-08",
-   "title": "The answer audits itself",
+   "title": "Finish the answer's own audit",
    "families": [
-    "output-sanity-implied-values",
-    "share-count-and-per-share"
+    "output-sanity (net cash per share)",
+    "share-count (the 67 with no divisor; a capital increase mid-period)"
    ],
    "state": "NEXT",
-   "detail": "A central below the study's own published book floor; a branch below net cash per share; an implied multiple contradicting the study's own relative lens; the divisor that 67 published values record nowhere. Closest in kind to the first error you named."
+   "detail": "Brought forward on the 7th: a central beneath the study's own published floor (AIRARABIA -8.8%, EGCH -50%), a cross-check that does not reproduce from its own operands (ADNOCLS the exemplar at 330x, a unit error its circularity block hid), and the per-share gate's twenty-one free passes. What remains: the envelope's low leg against net cash per share, which needs the money unit the circularity block must now declare; and tying the divisor to the DATE of the equity value it divides."
   },
   {
    "start": "2026-09-09",
