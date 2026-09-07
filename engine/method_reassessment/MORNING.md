@@ -3066,3 +3066,58 @@ declared exceptions — rather than a matcher:
 
 That is a real piece of work and not a passing one. **Three gaps recorded, one false
 positive identified with its reason, no gate adopted.**
+
+---
+
+## 07-09-2026, 04:15 firing — standard 8 finished as far as it can be, and two of my own probes killed
+
+Three questions were left open on standard 8 an hour ago. Two are now closed and the third
+turns out not to be cheaply answerable, which is itself the useful result.
+
+### Closed: the nominee is unambiguous
+
+`value_adopted` is **one constant per study** — the published central, repeated on every
+judgement — so relative delta is absolute delta over a constant and *every monotone metric
+picks the same judgement*. The largest-|Δ| reading is therefore not a proxy; it is "the
+judgement that moves the value most", exactly.
+
+I nearly recorded the opposite. A test comparing absolute against relative delta returned
+"different in **0 of 18**", which I was about to read as *the metric doesn't matter* — and
+it is a test that **could not have returned anything else**. Ran it, got a number, and the
+number was vacuous. Fifteenth first-attempt error of the day.
+
+Also checked, because 39 distinct field names appear across the five records: did my probe
+skip judgements written under one of the other spellings (`value_alternative_composite`,
+`..._primary_lens`, `..._frame_B`, …)? **No** — every judgement in all eighteen carries the
+strict pair, and the others are context beside it. The 11 of 18 stands.
+
+### Closed differently: ordering is not a nomination
+
+Standard 8 names "the study's **single most consequential** contested judgement" and
+nothing records which one that is. The largest-Δ judgement sits **first in only 10 of 18**
+records — as far down as #16 in one — so there is no implicit ordering convention either.
+This does *not* need an amendment, because the value-impact reading is unambiguous (above);
+what it means is that a reader cannot tell whether a study nominated on value impact or on
+something else, and no instrument should claim to know.
+
+### Not answerable cheaply: the workbook
+
+Standard 8 names "summary table, body, workbook, an expert's range". A workbook probe
+returned **3 of 18** with a clean placebo, and it is **worthless**: `data_only` returns
+*cached* values, and **not one formula cell in any workbook carries one** — ADNOCLS has
+2,161 formula cells, all `None`. It measured which studies happen to *hardcode* those two
+figures, which depth-bar standard 3 forbids anyway. Doing it properly means evaluating the
+workbooks, which is what each study's own `recalc.py` does through LibreOffice.
+**Recorded as unmeasured rather than reported at 3 of 18.** Sixteenth, and the third tonight
+caught by pushing on a suspicious number rather than by a control.
+
+### What the seven actually look like
+
+| | |
+|---|---|
+| ADNOCDRILL, AMR, EGCH, SCEM | print the **adopted** value and not the alternative — the shape standard 8 names |
+| ELEC | prints the alternative and not the adopted (its adopted figure is −0.71, a negative per-share value) |
+| GBCO, PHDC | print **neither** — PHDC's pair (17.15 vs 32.59) is on a lens the document does not publish at that precision, against a headline central of 17.85 |
+
+So the seven are not seven of one thing, and a gate treating them alike would be wrong
+about at least three of them. **No gate. Measurement recorded with its limits.**
