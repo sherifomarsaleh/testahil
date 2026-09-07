@@ -1,0 +1,122 @@
+{
+ "note": "May only SHORTEN. An entry excuses the claims and the RATIOS it records; a ratio that grows is a NEW breach [R-ENF-08].",
+ "outstanding": {
+  "ADNOCLS": {
+   "claims": {
+    "reproduce": {
+     "ratio": 330.713292487173,
+     "why": "the relative lens publishes 8.6401; its own committed operands give 2857.3829 (330.713x, against 0.0141 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "AIRARABIA": {
+   "claims": {
+    "floor": {
+     "ratio": 0.911868261386296,
+     "why": "the central 4.7459 sits BELOW a cross-check this study itself publishes as a floor (5.2046), and no below_floor_reason is declared"
+    },
+    "reproduce": {
+     "ratio": 0.8870994194161698,
+     "why": "the relative lens publishes 3.8124; its own committed operands give 3.3820 (0.887x, against 0.0221 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "AMOC": {
+   "claims": {
+    "reproduce": {
+     "ratio": 1.0723906497514708,
+     "why": "the relative lens publishes 12.5887; its own committed operands give 13.5000 (1.072x, against 0.0005 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "BOROUGE": {
+   "claims": {
+    "reproduce": {
+     "ratio": 0.2656922495599997,
+     "why": "the relative lens publishes 1.4599; its own committed operands give 0.3879 (0.266x, against 0.0000 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "DU": {
+   "claims": {
+    "reproduce": {
+     "ratio": 2.4014450332805004,
+     "why": "the relative lens publishes 8.9031; its own committed operands give 21.3803 (2.401x, against 0.0809 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "EGCH": {
+   "claims": {
+    "floor": {
+     "ratio": 0.49518103352070364,
+     "why": "the central 4.0396 sits BELOW a cross-check this study itself publishes as a floor (8.1578), and no below_floor_reason is declared"
+    },
+    "reproduce": {
+     "ratio": 0.8886068081582233,
+     "why": "the relative lens publishes 15.9877; its own committed operands give 14.2068 (0.889x, against 0.0121 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "FERTIGLOBE": {
+   "claims": {
+    "reproduce": {
+     "ratio": 0.3694627918640599,
+     "why": "the relative lens publishes 2.0622; its own committed operands give 0.7619 (0.369x, against 0.0072 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "MODON": {
+   "claims": {
+    "reproduce": {
+     "ratio": 1.0769488088018873,
+     "why": "the relative lens publishes 2.1954; its own committed operands give 2.3643 (1.077x, against 0.0146 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "PHAR": {
+   "claims": {
+    "reproduce": {
+     "ratio": 0.24949147398628826,
+     "why": "the relative lens publishes 48.6499; its own committed operands give 12.1377 (0.249x, against 0.0000 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "RIYADHCABLE": {
+   "claims": {
+    "reproduce": {
+     "ratio": 1.0507157253910688,
+     "why": "the relative lens publishes 86.3571; its own committed operands give 90.7368 (1.051x, against 0.4911 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "SCEM": {
+   "claims": {
+    "reproduce": {
+     "ratio": 1.0074080352541772,
+     "why": "the relative lens publishes 62.1083; its own committed operands give 62.5684 (1.007x, against 0.4457 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  },
+  "SWDY": {
+   "claims": {
+    "reproduce": {
+     "ratio": 1.5179307066986658,
+     "why": "the relative lens publishes 80.5790; its own committed operands give 122.3134 (1.518x, against 1.0147 allowed by their own printed precision), and no value_adjustment names the difference"
+    }
+   },
+   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
+  }
+ },
+ "rule": "R-LENS-03 \u2014 the relationship between a study's own figures"
+}

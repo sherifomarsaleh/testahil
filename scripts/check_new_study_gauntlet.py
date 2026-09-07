@@ -146,6 +146,20 @@ ARTEFACT_GATES = {
                                 'from engine.mc_v3 import simulate_paths_v3\n'
                                 'def build():\n'
                                 '    json.dump({"central": 17.85}, open("study_numbers.json", "w"))\n')}),
+    'check_output_sanity.py': (
+        # An empty study commits no lens record, so there is no relationship between its
+        # own figures to contradict and refusing a bare directory would be a false claim
+        # about what this gate checks [R-ENF-07]. Planted with the defect as it was found:
+        # a central published BENEATH a cross-check the study itself calls a floor.
+        'a central published beneath the study\'s own disclosed floor',
+        lambda: {'study_numbers.json': ('json', {
+            'lens_record': {
+                'class': 'refiner/petrochemical/cement',
+                'primary': {'kind': 'dcf', 'value': 4.7459},
+                'central': 4.7459,
+                'cross_checks': [{'kind': 'book_value', 'value': 5.2046,
+                                  'note': 'a disclosed FLOOR, published as such and '
+                                          'never weighted'}]}})}),
     'check_asset_base.py': (
         # A study with NO numbers file commits no class, so it is not in this gate's
         # scope and refusing an empty directory would be a FALSE CLAIM about what it

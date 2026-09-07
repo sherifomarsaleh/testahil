@@ -162,6 +162,8 @@ on:
       - 'engine/build_depth_audit/deliverables_outstanding.json'
       - 'scripts/check_lens_vocabulary.py'
       - 'scripts/check_published_lens_vocabulary.py'
+      - 'scripts/check_output_sanity.py'
+      - 'scripts/check_output_sanity_negative_control.py'
       - 'scripts/check_published_lens_vocabulary_negative_control.py'
       - 'scripts/check_lens_vocabulary_negative_control.py'
       - 'engine/build_depth_audit/lens_vocabulary_outstanding.json'
@@ -295,6 +297,8 @@ on:
       - 'engine/build_depth_audit/deliverables_outstanding.json'
       - 'scripts/check_lens_vocabulary.py'
       - 'scripts/check_published_lens_vocabulary.py'
+      - 'scripts/check_output_sanity.py'
+      - 'scripts/check_output_sanity_negative_control.py'
       - 'scripts/check_published_lens_vocabulary_negative_control.py'
       - 'scripts/check_lens_vocabulary_negative_control.py'
       - 'engine/build_depth_audit/lens_vocabulary_outstanding.json'
@@ -1104,6 +1108,15 @@ jobs:
 
       - name: Lens architecture on the page — negative control
         run: python3 scripts/check_published_lens_vocabulary_negative_control.py
+
+      # [R-LENS-03]. Every instrument here asks how a figure was BUILT; none asked whether
+      # a study's own published figures agree with each other — the question a reader asks
+      # first and the only one they can ask without the model.
+      - name: The relationship between a study's own figures
+        run: python3 scripts/check_output_sanity.py
+
+      - name: A study's own figures — negative control
+        run: python3 scripts/check_output_sanity_negative_control.py
 
       # [R-TERM-01]. The reinvestment identity rr = g/ROIC collapses to
       # TV = [NOPAT - g.IC]/(W-g), so it charges g x IC for ever and the implied
