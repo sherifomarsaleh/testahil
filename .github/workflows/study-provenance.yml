@@ -1319,6 +1319,12 @@ jobs:
       - name: Asset-base gate — negative control
         run: python3 scripts/check_asset_base_negative_control.py
 
+      # [R-ENF-08]'s module is a LIBRARY a gate calls rather than a gate, which is exactly
+      # the shape that goes unchecked — and it is the one thing here that decides whether a
+      # wrong thing is ALLOWED. A bug in it fails in the silent direction.
+      - name: Ratchet-shape module — negative control
+        run: python3 scripts/check_ratchet_shape_negative_control.py
+
       # [R-COC-02]. check_cost_of_capital enforces the CONSTRUCTION thoroughly and never
       # reproduced Ke, so a cost of equity typed 300bp high passed everything here. The
       # book runs two terminal constructions and no record said which.

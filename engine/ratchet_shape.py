@@ -63,7 +63,19 @@ def excused(entry, current):
     """
     if not isinstance(entry, dict):
         return True, None                      # a bare reason string: the old behaviour
+    if "signature" not in entry:
+        return True, None                      # predates this rule: the old behaviour
     sig = entry.get("signature")
+    if not isinstance(sig, str) or not sig.strip():
+        # AN ABSENT KEY AND AN EMPTY ONE ARE NOT THE SAME STATE, and this repository
+        # already settled that everywhere else: [R-COC-01 AMENDED] on a re-pointed cost of
+        # debt, [R-ASSET-01] on a not-restated declaration, [R-GAP-02] on a dissent — an
+        # EMPTY reason has switched the check off rather than declared it. A missing key is
+        # a ratchet that predates the rule; a blank one is somebody who started to fill it
+        # in and stopped, which is the cheapest possible route back to the old blindness.
+        return False, ("the ratchet entry carries an EMPTY signature. A missing signature "
+                       "is an entry predating [R-ENF-08] and is excused; a BLANK one has "
+                       "switched the check off rather than declared it")
     if not sig:
         return True, None
     want = fingerprint(sig)
