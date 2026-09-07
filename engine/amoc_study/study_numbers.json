@@ -188,6 +188,15 @@
    "normalised_earnings": 9.063922734908234
   }
  },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "LIGHT",
+  "sourceable_fiscal_years": 5,
+  "earliest_sourceable": "FY2021",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"The archive supports five sourceable fiscal years: FY2021 through FY2025\", all July-June. Five puts it in the LIGHT band",
+  "status": "run",
+  "note": "The fundamental walk-forward HAS been run on this name (engine/amoc_walkforward/, 01-09-2026): 4 origins, FY2021-FY2024, 189 scored cells on the as-known macro setting. NO correction was estimated from that record and the pre-registration ruled so before any error was computed \u2014 nine cells cannot support an expanding-window estimate and a confirmation sample both."
+ },
  "bridge_record": {
   "market": "EG",
   "balance_sheet_date": "2026-06-30",

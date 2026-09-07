@@ -2836,6 +2836,22 @@ OUT = dict(
     central=fv_central, spot=V['spot'],
     macro_record=MACRO_RECORD, cost_of_capital_record=COC_RECORD,
     lens_record=LENS_RECORD, bridge_record=BRIDGE_RECORD, forecast_anchor=FORECAST_ANCHOR,
+    # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+    # PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to
+    # be stated in the study; the run stated it in section 0 and it was never carried
+    # across, which is [R-ENF-01]'s founding observation — the rule was not disputed
+    # and not hard, it simply was not present where the gate reads. `sourceable` is a
+    # claim about the ARCHIVE and not about the panel, so the count is the one the
+    # pre-registration established and never the number of origins the run used.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='FULL',
+        sourceable_fiscal_years=12,
+        earliest_sourceable='FY2014',
+        basis=('this name\'s own walk-forward pre-registration, section 0: "The archive supports twelve sourceable fiscal years, FY2014 through FY2025". The run built origins FY2018-FY2024 on that archive'),
+        status='run',
+        note=("The fundamental walk-forward HAS been run on this name (engine/arcc_walkforward/, 01-09-2026): 7 origins, FY2018-FY2024, 650 scored cells on the as-known macro setting. Its one adopted correction, manufacturing depreciation, is stated in this study's own record and reconciles to that run's committed bias at half strength."),
+    ),
     # `central` and `spot` sit at the TOP of meta so the repo-level gap gate can
     # read this study's own answer. It could not before: the central lived only
     # under lenses.central, and [R-GAP-01]'s checker reported ARCC as

@@ -2241,3 +2241,47 @@ arriving rather than waiting for someone to close the entry — and writing it a
 prose **crashed `escalations.is_resolved` with an AttributeError three frames down**,
 where a broken record reads as a broken checker. The module now names a malformed
 field instead. 14 escalations shaped; the negative control's 18 conditions hold.
+
+### CI went red, and it went red on the rule I had just been enforcing
+
+`f213fdc1` failed: **"1 study-scoped gate on disk is named in none of the three
+lists: check_corrections_applied.py."** [R-ENF-07]'s new-study gauntlet requires
+every study-scoped gate to be classified — refuses an empty study, artefact-
+conditional, or excluded with a reason — **in the commit that adopts it**, because
+*a gate nobody listed is a gate the run never tested while still reporting clean.*
+
+I built that gate three commits ago to close an acceptance criterion and did not
+classify it. **The failure shape the gauntlet exists to close, occurring inside the
+work that was closing another one.** Classified as artefact-conditional — an empty
+directory carries no numbers file and so makes no claim, and the gate bites on the
+claim — with a planted offender that asserts a correction no run adopted. **34 of 34
+gates refuse a new study.**
+
+### Four of the five now state their walk-forward scope, and it was transcription
+
+`walkforward_scope` was on all five names' ratchets. The decision was not missing —
+**AMOC, ARCC, EGCH and TMGH each state it in their own run's pre-registration,
+section 0**, and it was never carried into the study's record where the gate reads:
+*"the rule was not disputed and not hard, it simply was not present."* Transcribed,
+not re-decided — AMOC LIGHT on 5 sourceable years, ARCC FULL on 12, EGCH FULL on 18,
+TMGH FULL on 16, each `basis` quoting its own pre-registration. **PHDC is left**: its
+pre-registration is dated 30-08-2026, one day before [R-FCAL-01] existed, and states
+no scope. Inventing one is what SIGCM forbids.
+
+**And regenerating TMGH's numbers surfaced that its committed file was already
+stale.** 60 leaves differ — driver scores, forward ranges, statement net-profit
+bands. Tested rather than assumed: checking out HEAD into a sandbox and running
+`build_numbers.py` **with no edit of mine** reproduces the same 60 differences, so
+the staleness predates today's work and my regeneration is the fix. That is
+[R-ENF-06]'s defect exactly — an artefact a builder reads moved and the file reading
+it was never rebuilt — and it was invisible because nothing compares a study's
+numbers to what its own generator would produce now.
+
+Everything else in all four files is byte-identical; eleven gates that read study
+numbers are green.
+
+THE GENERAL LESSON: **A GATE ADDED WITHOUT BEING CLASSIFIED IS A GATE THE SYSTEM
+CANNOT SEE.** The gauntlet's whole claim is that a new study cannot walk past the
+set — and the set is whatever has been declared to it. Adding an instrument without
+telling the system it exists leaves both the instrument and the claim weaker than
+before, and only the system-level check catches it.

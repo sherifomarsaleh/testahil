@@ -413,6 +413,28 @@ _BR = _CASE['bridge'] if _CASE else {}
 # sourced. The opening year was never the problem; the path away from it was, and
 # a record that captured only the opening year would have missed it. That is why
 # the committed record carries the whole path.
+# [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+# PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to be
+# stated in the study; the run stated it in section 0 and it was never carried across,
+# which is [R-ENF-01]'s founding observation — the rule was not disputed and not hard,
+# it simply was not present where the gate reads. `sourceable` is a claim about the
+# ARCHIVE and not about the panel, so the count is the one the pre-registration
+# established and never the number of origins the run happened to use.
+D['walkforward_scope'] = dict(
+    rule='R-FCAL-01',
+    scope='FULL',
+    sourceable_fiscal_years=18,
+    earliest_sourceable='FY2008',
+    basis=('this name\'s own walk-forward pre-registration, section 0: "The archive '
+           'supports eighteen sourceable fiscal years, FY2008 through FY2025". The run '
+           'built origins FY2012-FY2024 on that archive'),
+    status='run',
+    note=('The fundamental walk-forward HAS been run on this name '
+          '(engine/egch_walkforward/, 01-09-2026): 13 origins, FY2012-FY2024, 825 scored '
+          'cells on the as-known macro setting. No correction was adopted; every '
+          'candidate is a watch flag, which this study\'s own record states.'),
+)
+
 D['forecast_anchor'] = dict(
     rate_name='gross margin',
     latest_reviewed_period='FY2024/25, audited',

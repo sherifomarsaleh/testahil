@@ -388,6 +388,15 @@
   ],
   "note": "the forecast opens within a fifth of a point of the best year this company has filed, and rises from there. The filed record is FY2023 22.00%, FY2024 23.15%, FY2025 39.25%; the bear corner of the published range is that FY2023 margin, so the whole of the range is downside and the study says so."
  },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "FULL",
+  "sourceable_fiscal_years": 12,
+  "earliest_sourceable": "FY2014",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"The archive supports twelve sourceable fiscal years, FY2014 through FY2025\". The run built origins FY2018-FY2024 on that archive",
+  "status": "run",
+  "note": "The fundamental walk-forward HAS been run on this name (engine/arcc_walkforward/, 01-09-2026): 7 origins, FY2018-FY2024, 650 scored cells on the as-known macro setting. Its one adopted correction, manufacturing depreciation, is stated in this study's own record and reconciles to that run's committed bias at half strength."
+ },
  "meta": {
   "ticker": "ARCC",
   "company": "Arabian Cement Company S.A.E.",

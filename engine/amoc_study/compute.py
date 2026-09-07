@@ -2766,6 +2766,28 @@ OUT = dict(
               'probabilities beside them are computed from the cone\'s own percentiles '
               'and its own anchor, never from the study spot — those are two clocks.'),
     macro_record=MACRO_RECORD, forecast_anchor=FORECAST_ANCHOR, lens_record=LENS_RECORD,
+    # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+    # PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to
+    # be stated in the study; the run stated it in section 0 and it was never carried
+    # across, which is [R-ENF-01]'s founding observation. `sourceable` is a claim about
+    # the ARCHIVE and not about the panel, so the count is the one the pre-registration
+    # established and never the number of origins the run happened to use.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='LIGHT',
+        sourceable_fiscal_years=5,
+        earliest_sourceable='FY2021',
+        basis=('this name\'s own walk-forward pre-registration, section 0: "The archive '
+               'supports five sourceable fiscal years: FY2021 through FY2025", all '
+               'July-June. Five puts it in the LIGHT band'),
+        status='run',
+        note=('The fundamental walk-forward HAS been run on this name '
+              '(engine/amoc_walkforward/, 01-09-2026): 4 origins, FY2021-FY2024, 189 '
+              'scored cells on the as-known macro setting. NO correction was estimated '
+              'from that record and the pre-registration ruled so before any error was '
+              'computed — nine cells cannot support an expanding-window estimate and a '
+              'confirmation sample both.'),
+    ),
     bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,

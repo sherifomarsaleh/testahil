@@ -153,6 +153,16 @@ ARTEFACT_GATES = {
             ['Less increase in working capital', '440'],
             ['Free cash flow to the firm', '4,368'],
         ])}),
+    # ARTEFACT-CONDITIONAL, LISTED IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07].
+    # An empty study directory carries no numbers file and so makes no claim about a
+    # correction; this gate bites on the CLAIM, which is a study asserting one that
+    # no walk-forward run adopted. Demanding it refuse an empty directory would be a
+    # false statement about what it checks.
+    'check_corrections_applied.py': (
+        'a committed numbers file claiming an adopted correction with no walk-forward '
+        'run behind it',
+        lambda: {'study_numbers.json': ('json', {
+            'adopted_correction': {'driver': 'a_driver_no_run_adopted', 'factor': 1.05}})}),
     'check_artefact_currency.py': (
         'a builder-read JSON carrying a central and declaring no vintage',
         lambda: {'diagnostics.json': ('json', {'central': 12.34, 'note': 'no declaration'}),

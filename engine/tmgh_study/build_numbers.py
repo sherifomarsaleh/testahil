@@ -85,6 +85,27 @@ def build():
         # [R-ANCHOR-01] the rate this forecast is anchored on, the reviewed
         # actual it is anchored ON, and the whole explicit path
         "forecast_anchor": _forecast_anchor(),
+        # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN
+        # WALK-FORWARD PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule
+        # requires the decision to be stated in the study; the run stated it in
+        # section 0 and it was never carried across, which is [R-ENF-01]'s founding
+        # observation. `sourceable` is a claim about the ARCHIVE, not the panel, so
+        # the count is the pre-registration's and never the number of origins used.
+        "walkforward_scope": {
+            "rule": "R-FCAL-01",
+            "scope": "FULL",
+            "sourceable_fiscal_years": 16,
+            "earliest_sourceable": "FY2009",
+            "basis": ("this name's own walk-forward pre-registration, section 0: "
+                      "\"FULL run. The panel holds 16 sourceable fiscal years — "
+                      "FY2009 and FY2011-FY2025\". The run built origins 2015-2024 "
+                      "on that archive"),
+            "status": "run",
+            "note": ("The fundamental walk-forward HAS been run on this name "
+                     "(engine/tmgh_walkforward/, 01-09-2026): 10 origins, 2015-2024, "
+                     "466 scored cells on the as-known macro setting. Its adopted "
+                     "list is empty — every candidate is a watch flag."),
+        },
         "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
         "fair_value_range": {"low": lo, "high": hi,
                              "note": ("the envelope of four published cases — two ERP "
