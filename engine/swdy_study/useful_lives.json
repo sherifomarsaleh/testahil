@@ -1,0 +1,72 @@
+{
+  "_rule": "R-TERM-01 - a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source.",
+  "_source": "Elsewedy Electric Company (An Egyptian Joint Stock Company), audited consolidated financial statements for the financial year ended 31 December 2025: note 44-2 (significant accounting policies, property plant and equipment, 'The estimated useful lives of property, plant and equipment for current and comparative years are as follows') read together with note 17 (property, plant and equipment), the cost and accumulated-depreciation roll-forward.",
+  "_file": "engine/swdy_walkforward/filings/2025Q4__EE-Consolidated-En-FS-31-December-2025.pdf",
+  "_route": "TEXT LAYER for note 17 and note 44-2, both of which extract cleanly and FOOT (see _footing below). The filing is MIXED: pages 3, 4 and 5 carry one character each and were re-read by OCR off the rendered pixels at 200dpi (tesseract 5.3.4, eng, --psm 6) - that is where the statement of financial position comes from, and the per-page route is recorded in engine/swdy_walkforward/page_routes.json. Neither of the two notes below is on an OCR page.",
+  "_extracted": "2026-09-07",
+
+  "route_1_policy_note": {
+    "verdict": "FAILED - the policy note discloses RANGES, not a life",
+    "disclosed_ranges_years": {
+      "buildings_and_constructions": [8, 50],
+      "leasehold_improvements": "over 3 years or the lease period whichever is less",
+      "machinery_and_equipment": [5, 15],
+      "furniture_and_fixtures": [4, 17],
+      "vehicles": [5, 8]
+    },
+    "why_this_is_not_a_life": "FINDING A RANGE IS NOT FINDING A LIFE. Buildings span 8 to 50 years - a factor of six - and machinery, the dominant class at 65% of depreciable gross cost, spans 5 to 15. Picking a point inside a range is the choice R-TERM-01 exists to forbid, and the composite the ranges admit runs from 5.4451 years at every minimum to 17.3041 years at every maximum. A desk that picked the midpoints would have produced 11.64 years and called it disclosed.",
+    "note": "The note states these lives apply to 'current and comparative years', so they are not a 2025-only disclosure."
+  },
+
+  "route_2_identity": {
+    "verdict": "ADOPTED",
+    "formula": "average depreciable gross cost across the year / the year's own depreciation charge",
+    "adopted_years": 17.2627,
+    "derived": true,
+    "basis": "AVERAGE of opening and closing depreciable gross cost, not closing. The base grew 16.4% in the year (43,605,306,327 to 50,775,950,574) and a closing-cost ratio overstates the life on a growing base - that reading is 18.5743 years. The average basis is the one that answers 'over what life did the company actually charge this year'.",
+    "components_egp": {
+      "depreciable_gross_cost_31_12_2025": 50775950574,
+      "depreciable_gross_cost_31_12_2024": 43605306327,
+      "depreciation_charge_2025": 2733671862
+    },
+    "excluded_and_why": {
+      "land_31_12_2025": 2312648624,
+      "land_reason": "the policy note states land is not depreciated",
+      "projects_under_construction_31_12_2025": 8915910071,
+      "puc_reason": "the note states projects under construction are transferred to property, plant and equipment when finished and available for use - they are not in use and carry no charge, which the note's own zero depreciation row confirms"
+    },
+    "per_component_closing_cost_over_charge_years": {
+      "buildings_and_constructions": 29.00,
+      "machinery_and_equipment": 18.72,
+      "furniture_and_fixtures": 8.45,
+      "vehicles": 8.45,
+      "leasehold_improvements": 13.13
+    },
+    "the_tension_and_its_resolution": "Machinery reads 18.72 years against a disclosed range topping at 15, and vehicles 8.45 against a range topping at 8, so the derived figures sit ABOVE two of the five disclosed ranges and the discrepancy has to be explained rather than averaged away. It resolves exactly: the composite life implied by charging every class at the LONG END of its own disclosed range is 17.3041 years, against the identity's 17.2627 - agreement to 0.24%. The company depreciates at the top of every range it discloses, and the identity recovers that WITHOUT ANYBODY CHOOSING A POINT. At the short end the same composite is 5.4451 years and would imply a charge of EGP 9,325,033,738 against an actual 2,733,671,862, which the filings refute outright.",
+    "second_year_cross_check": {
+      "fy2024_average_cost_life_years": 17.9761,
+      "fy2024_components_egp": {
+        "depreciable_gross_cost_01_01_2024": 29005533544,
+        "depreciable_gross_cost_31_12_2024": 43605306327,
+        "depreciation_charge_2024": 2019646871
+      },
+      "reading": "Two independent years of the same note give 17.26 and 17.98 years. The identity is stable across a year in which the gross base grew by half and the currency moved sharply, which is what a real policy looks like and what a parsing artefact does not."
+    }
+  },
+
+  "_footing": {
+    "components_to_subtotal": "2,312,648,624 land + 13,357,135,195 buildings + 32,960,824,267 machinery + 2,464,375,061 furniture + 1,630,540,975 vehicles + 363,075,076 leasehold = 53,088,599,198, the subtotal the note prints",
+    "subtotal_to_total": "53,088,599,198 + 8,915,910,071 projects under construction = 62,004,509,269, the total the note prints",
+    "cost_roll_forward": "45,608,082,384 opening + 6,351,173,477 additions - 1,696,107,848 disposals + 3,434,541,895 transfers from projects - 237,195 transfer to investment property - 608,853,515 exchange movement = 53,088,599,198",
+    "charge_to_note_and_to_cash_flow": "460,515,584 + 1,760,913,546 + 291,595,783 + 192,986,364 + 27,660,585 = 2,733,671,862, which is the total note 17 prints, the figure note 17-1 splits by income-statement line, AND the depreciation line of the consolidated statement of cash flows",
+    "verdict": "every one of the five tests foots to the pound. ARITHMETIC IS THE ARBITER and it agrees with the extractor here."
+  },
+
+  "adopted_for_terminal": {
+    "years": 17.2627,
+    "basis": "derived by identity from the company's own note 17, average depreciable gross cost over the year's own charge",
+    "reasoning": "Route one is unavailable on this name: the policy note discloses five ranges and no scalar, and the dominant class spans a factor of three. Route two is the protocol's stated fallback and it is corroborated twice over - by a second fiscal year of the same note giving 17.98, and by the composite the disclosed ranges themselves imply at their long end giving 17.30. A terminal built on this life is built on what the company charges, not on what this desk would have picked.",
+    "what_would_overturn_it": "A later filing narrowing the disclosed ranges to a scalar or a dominant class, which would restore route one and take precedence. A restatement of note 17. Or a disclosed split of the machinery class showing the base is dominated by assets with a materially different life - management reviews lives at the end of each financial period and adjusts prospectively, which note 44-2 states in terms.",
+    "sensitivity": "The identity's two admissible readings are 17.2627 (average cost, adopted) and 18.5743 (closing cost). The disclosed ranges admit 5.4451 to 17.3041. The adopted figure sits at the top of that admissible band, 0.24% below its maximum, which is the direction the company's own charge points."
+  }
+}
