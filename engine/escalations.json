@@ -741,14 +741,17 @@
    "refs_searched": 2,
    "done_meanwhile": "Criterion 2's decisive cell priced end to end (-60.6% of EGCH's base branch at the nearest band edge; the far edge is unevaluable and terminal_value refuses it). Criterion 1's 47 entries are being classified into cheap declarations versus full re-issues so the remaining work carries a real number rather than 'weeks'.",
    "recommendation": "SPLIT: declare Phase 1 complete on criteria 1, 2, 5 and 6 and carry criterion 3 as an open dated commitment maturing 2027-06-11 — the same reasoning the price-only publish exemption already uses, that a change asserting no valuation is not held by a gate about valuations. NOT proposed: weakening criterion 3, scoring it early on a shorter horizon, or publishing past the gap block.",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/method_reassessment/STATE.json",
     "must_contain": "PHASE1_GATE_RULING_"
    },
    "answer_goes_to": "engine/method_reassessment/STATE.json, as a PHASE1_GATE_RULING_{DD-MM-YYYY} block, and into the Part E acceptance text the instrument prints — an answer living only in a conversation binds nothing, because the container is rebuilt from the repository [R-IND-01].",
    "default_if_no_answer": "NO CHANGE — Phase 1 stays one gate and their standing instruction holds. A default that overrode a standing instruction by silence would be the wrong way round; so the work continues on criteria 1 and 2 and the wait runs to 2027-06-11.",
-   "default_date": "2026-09-14"
+   "default_date": "2026-09-14",
+   "resolved": "2026-09-07",
+   "resolution": "WITHDRAWN — the premise was mine and was wrong. Criterion 3 opens on the CONTEMPORANEOUS score, which needs no maturity; acceptance.py had summarised it as the gap-closure one and the 2027 date was read off that summary. Reading the forward half into Phase 1 is additionally CIRCULAR (Phase 2b's cohort requires Phase 2a closed, which requires Phase 1 done). No ruling from the principal was needed and none was owed: the plan's own text answered it. THIS IS THE [R-IND-01] FAILURE EXACTLY — a question composed where a command in the room would have finished the search — and it reached the principal as a DATE rather than as a question, which is worse.",
+   "answer_written_to": "engine/method_reassessment/STATE.json, block PHASE1_GATE_RULING_07-09-2026; and engine/method_reassessment/acceptance.py, whose criterion-3 line is corrected in the same commit."
   }
  ]
 }
