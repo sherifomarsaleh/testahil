@@ -916,6 +916,43 @@
     "must_contain": "FY2014_LEGIBLE_COPY_SUPPLIED"
    },
    "recommendation": "Supply a legible copy if one exists; otherwise accept the shortened window. Two cells are worth having and neither is worth inventing, and the cost of the absence is already visible in criterion 3's own drop list, which is where a reader would look."
+  },
+  {
+   "key": "cashflow-score-file-restamp-and-rescore",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "Two joined questions about [R-VCAL-01] series (a). (1) score_cashflow.py writes to a HARDCODED filename, SCORES_cashflow_06-09-2026.json, so re-running it OVERWRITES a file whose own name states a date the contents would no longer be from — a stale stamp of exactly the kind this house refuses elsewhere. (2) Two valuation-input carries landed today (PHDC's FY2022, ARCC's FY2015-16) and the scorer has not been re-run, so criterion3's printed verdict still reads the 6 September file. Does the principal want the scorer re-run now, and the output dated by its run rather than by a literal?",
+   "routes": [
+    {
+     "route": "score_cashflow.py read end to end, and its pre-registration",
+     "when": "2026-09-07",
+     "outcome": "the scorer chooses NOTHING at run time — statistics, blocks, seed, eras and the four printed readings are all fixed in the sealed declaration. So re-running it is not a decision about the method; it is the method being applied to more data. The only thing in the way is the filename.",
+     "rerun": true
+    },
+    {
+     "route": "scripts/check_valuation_calibration.py, to see whether a NEW dated score file would satisfy the commit-topology rule",
+     "when": "2026-09-07",
+     "outcome": "it globs any file carrying a score marker and requires the pre-registration's introducing commit to be an ANCESTOR of each score file's. A new file written today satisfies that; the constraint is not what blocks this.",
+     "rerun": true
+    },
+    {
+     "route": "the two carries' own in-memory re-runs of cashflow_lens against the tree as it now stands, which is the question re-scoring would answer",
+     "when": "2026-09-07",
+     "outcome": "ANSWERED, and it is why this is not urgent. PHDC's carry takes 5 scored cells to 6 and populates a second era; ARCC's clears all three of its capex-intensity drops, which then land on TERMINAL refusals the sanctioned module is right to make. The series stays on ONE name, clause A's pooled mean moves +0.9842 to +1.0439 and still excludes zero at every block length, and CRITERION 3 REMAINS NOT MET. Re-scoring tonight would rewrite a dated artefact to print a verdict already known.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "Re-dating the output of a sealed, pre-registered calibration is a decision about that programme's own artefact discipline rather than a repair — and doing it unsupervised, to produce a verdict that does not change, is the shape of act this method distrusts. The arithmetic question is already answered; what is left is whose call the naming is.",
+   "done_meanwhile": "Both carries are committed and their effect is MEASURED and reported rather than assumed. criterion3 prints the stale figure and nothing depends on it: no fair value, no publish, no gate. The drop list it prints is the honest map of what remains.",
+   "default_if_no_answer": "Leave the 6 September file as it stands and re-score at the next carry, dating the output by its run and resolving it by pattern — so the two changes happen together and neither a literal filename nor a stale stamp survives the change.",
+   "default_date": "2026-10-31",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/valuation_calibration/score_cashflow.py",
+    "must_contain": "SCORE_FILE_DATING_RULED"
+   },
+   "recommendation": "Re-score, and date the output by the run rather than by a literal, with criterion3 resolving the latest by pattern — the same discipline the digest's own dated file already uses. Not because the verdict moves, but because the carries are real work and a programme whose printed verdict silently lags its own inputs will lag them again next time, and nobody will know which run it is reading."
   }
  ]
 }
