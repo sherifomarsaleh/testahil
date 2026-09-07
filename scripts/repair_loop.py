@@ -61,6 +61,11 @@ import subprocess
 import sys
 import time
 
+sys_engine = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine')
+if sys_engine not in sys.path:
+    sys.path.insert(0, sys_engine)
+import repairs                                # noqa: E402  [R-REPAIR-01]
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ENGINE = os.path.join(ROOT, "engine")
@@ -105,19 +110,36 @@ FAILHEAD_RX = re.compile(r"^\s*(FAIL|ERROR)\b", re.I)
 
 
 def failures(out):
-    """(subject, reason) pairs sitting under a FAIL heading, before any 'allowed' block."""
-    rows, in_fail = [], False
+    """Two kinds of work, and conflating them was a design error of the first draft.
+
+    A NEW breach sits under a FAIL heading and breaks the build. A RATCHETED failure sits
+    under "still outstanding, allowed for now" and does not — that is what a ratchet is
+    for, and [R-ENF-02]'s reasoning is untouched.
+
+    BUT A RATCHET SUPPRESSES THE BUILD, NOT THE WORK. The first draft read only the FAIL
+    block, so on a gate whose every failure was ratcheted it found nothing to do and
+    reported success — and the 47 ratchet entries that accumulated on five studies are
+    precisely the debt nobody closes. A repair loop that skips them is a repair loop
+    pointed away from the work.
+
+    Returns (subject, reason, ratcheted).
+    """
+    rows, mode = [], None
     for line in out.splitlines():
         if FAILHEAD_RX.match(line):
-            in_fail = True
+            mode = "new"
             continue
-        if in_fail and re.match(r"^\s*(still outstanding|\d+ listed|OK\b)", line, re.I):
-            in_fail = False
+        if re.match(r"^\s*still outstanding", line, re.I):
+            mode = "ratcheted"
             continue
-        if in_fail:
+        if re.match(r"^\s*(\d+ listed|OK\b|\s*$)", line, re.I) and mode:
+            if re.match(r"^\s*(\d+ listed|OK\b)", line, re.I):
+                mode = None
+            continue
+        if mode:
             m = TICKER_RX.match(line)
             if m:
-                rows.append((m.group(1), m.group(2).strip()))
+                rows.append((m.group(1), m.group(2).strip(), mode == "ratcheted"))
     return rows
 
 
@@ -175,19 +197,26 @@ def main(argv=None):
         tag = "green" if rc == 0 else ("BROKEN" if rc == TOOL_EXIT else "RED")
         if rc == 0:
             green.append(g)
+            # A GREEN GATE STILL CARRIES ITS RATCHET, and that debt is the work.
+            for subj, why, ratch in failures(out):
+                if ratch:
+                    orders.append({"gate": g, "subject": subj, "reason": why,
+                                   "ratcheted": True})
         elif rc == TOOL_EXIT:
             broken.append((g, out.strip().splitlines()[-1][:120] if out.strip() else "?"))
         else:
             fs = failures(out)
-            red.append((g, fs))
-            for subj, why in fs:
-                orders.append({"gate": g, "subject": subj, "reason": why})
+            red.append((g, [(a, b) for a, b, _ in fs]))
+            for subj, why, ratch in fs:
+                orders.append({"gate": g, "subject": subj, "reason": why,
+                               "ratcheted": ratch})
             if not fs:
                 # A gate that failed and named no subject is still a repair; it just needs
                 # a person. Recorded rather than dropped [R-ENF-04].
                 tail = [l for l in out.strip().splitlines() if l.strip()][-3:]
                 orders.append({"gate": g, "subject": "(gate-level)",
-                               "reason": " / ".join(l.strip() for l in tail)[:220]})
+                               "reason": " / ".join(l.strip() for l in tail)[:220],
+                               "ratcheted": False})
         print("  %-3d %-42s %-7s %5.1fs" % (i, g, tag, secs))
 
     print("\n  green %d · RED %d · BROKEN %d" % (len(green), len(red), len(broken)))
@@ -201,13 +230,37 @@ def main(argv=None):
         by_gate = {}
         for o in orders:
             by_gate.setdefault(o["gate"], []).append(o)
-        print("\nWORK ORDERS — %d, across %d gates:" % (len(orders), len(by_gate)))
+        n_new = sum(1 for o in orders if not o.get("ratcheted"))
+        print("\nWORK ORDERS — %d across %d gates: %d NEW (breaking the build), "
+              "%d ratcheted (known debt nobody has closed)"
+              % (len(orders), len(by_gate), n_new, len(orders) - n_new))
         for g in sorted(by_gate):
             print("\n  %s" % g)
             for o in by_gate[g][:8]:
-                print("     %-13s %s" % (o["subject"], o["reason"][:120]))
+                print("     %-13s %-9s %s"
+                      % (o["subject"], "ratchet" if o.get("ratcheted") else "NEW",
+                         o["reason"][:108]))
             if len(by_gate[g]) > 8:
                 print("     ... and %d more" % (len(by_gate[g]) - 8))
+
+    # ---- the repair half -------------------------------------------------------
+    if a.fix and orders:
+        print("\nREPAIRING — only where the gate itself has already solved the fix:")
+        repaired = []
+        for o in orders:
+            if o["subject"] == "(gate-level)":
+                continue
+            ok, note = repairs.attempt(
+                ROOT, o["gate"], o["subject"], o["reason"],
+                lambda g: run_gate(g, a.timeout)[:2])
+            print("   %-13s %-38s %s"
+                  % (o["subject"], o["gate"], note))
+            if ok:
+                repaired.append(o)
+                o["repaired"] = note
+        print("\n  %d of %d work order(s) repaired; the rest stand."
+              % (len(repaired), len([o for o in orders
+                                     if o["subject"] != "(gate-level)"])))
 
     if a.json:
         json.dump({"green": green, "broken": broken, "orders": orders},
