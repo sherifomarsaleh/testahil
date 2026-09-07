@@ -224,6 +224,50 @@ def check(rec):
 BETA_SOURCES = ("own_stock_regression", "peer_relevered", "tier3_fallback", "shrunk")
 
 
+# RE-POINTED 07-09-2026, ON THE EXEMPLAR, AND THE RE-POINTING IS THE FINDING. The clause
+# above was written from the census and was WRONG ABOUT ADNOCLS. Its weights do not sum to
+# one over TWO tranches because that company is financed by THREE: equity 0.800444, drawn
+# debt 0.071933 AND PERPETUAL CAPITAL SECURITIES AT 0.127635, which sum to 1.000000 exactly
+# and reproduce wacc_exp to ZERO — 0.0854836070 against a committed 0.0854836070, and the
+# terminal likewise. THE RECORD WAS RIGHT AND THE GATE COULD ONLY COUNT TO TWO. Per
+# [R-COC-01]: WHEN A CHECK FIRES ON WORK THAT IS RIGHT, RE-POINT IT — never widen the
+# tolerance and never move the number to satisfy it.
+#
+# WHY A DECLARED TRANCHE IS NOT THE OPEN LIST THIS HOUSE FORBIDS ELSEWHERE. A declared
+# MECHANISM (a reason a bound does not apply) is unfalsifiable text, which is why those
+# lists are closed. A declared TRANCHE carries a WEIGHT and a RATE, and adding one changes
+# the arithmetic the record must then satisfy in two places at once: the weights must still
+# sum to one, and the WACC must still reproduce over all of them. A study cannot buy itself
+# slack by inventing a tranche — an invented tranche has to be paid for out of the weights
+# of the real ones and out of the published WACC. THE ARITHMETIC IS THE CLOSURE.
+#
+# WHAT IS STILL REFUSED, AND IT IS THE THING THAT WAS ACTUALLY WRONG HERE: a record whose
+# weights do not sum to one AND WHICH DECLARES NOTHING TO ACCOUNT FOR THE REMAINDER. The
+# exemplar's hybrid weight was committed under `wh` in a different object; a reader of the
+# cost-of-capital record saw two weights and a gap, and so did every instrument.
+
+def other_tranches(rec):
+    """The tranches beyond equity and debt, as (name, weight, rate) — [] if none.
+
+    A tranche is (weight, rate) or it is not a tranche: a name with no rate cannot be
+    priced into a weighted average, and a weight with no name cannot be read by anyone.
+    """
+    out, bad = [], []
+    for i, tr in enumerate(rec.get("other_tranches") or []):
+        if not isinstance(tr, dict):
+            bad.append("tranche %d is not a record" % (i + 1))
+            continue
+        nm, w, r = tr.get("name"), tr.get("weight"), tr.get("rate")
+        if not str(nm or "").strip():
+            bad.append("tranche %d names nothing" % (i + 1))
+        if not isinstance(w, (int, float)) or not isinstance(r, (int, float)):
+            bad.append("tranche %r carries no weight and rate to be averaged over"
+                       % (nm or i + 1))
+            continue
+        out.append((str(nm), float(w), float(r)))
+    return out, bad
+
+
 def check_weights(rec):
     """Failures in the weights and the WACC they are supposed to build."""
     fails = []
@@ -231,17 +275,26 @@ def check_weights(rec):
     if not isinstance(we, (int, float)) or not isinstance(wd, (int, float)):
         return ["record carries no market-value weights"]
 
+    extra, bad = other_tranches(rec)
+    fails.extend(bad)
+
     # NET WEIGHTS ARE A LEGITIMATE CONSTRUCTION on a net-cash company — [R-BRIDGE-01]'s own
     # negative control keeps a clean case for exactly that — so a NEGATIVE debt weight is
     # not the defect. Weights that do not SUM TO ONE are, whatever their signs.
-    if abs((we + wd) - 1.0) > 1e-6:
-        fails.append("weight_equity %.6f + weight_debt %.6f = %.6f, not one — a weighted "
+    total = we + wd + sum(w for _, w, _ in extra)
+    if abs(total - 1.0) > 1e-6:
+        named = "".join(" + %s %.6f" % (n, w) for n, w, _ in extra)
+        fails.append("weight_equity %.6f + weight_debt %.6f%s = %.6f, not one — a weighted "
                      "average over weights that do not sum to one is not an average of "
-                     "anything" % (we, wd, we + wd))
+                     "anything%s" % (we, wd, named, total,
+                                     "" if extra else ". If this company is financed by a "
+                                     "tranche beyond equity and drawn debt, the record has "
+                                     "to declare it in other_tranches with its weight and "
+                                     "its rate, because a reader cannot price a gap"))
 
     wacc, ke, kd_at = rec.get("wacc_exp"), rec.get("ke_exp"), rec.get("kd_aftertax")
     if all(isinstance(x, (int, float)) for x in (wacc, ke, kd_at)):
-        want = we * ke + wd * kd_at
+        want = we * ke + wd * kd_at + sum(w * r for _, w, r in extra)
         if abs(want - wacc) > 1e-6:
             fails.append("wacc_exp %.6f does not reproduce from its own weights and rates "
                          "(%.6f, %+.1f bp)" % (wacc, want, (wacc - want) * 1e4))

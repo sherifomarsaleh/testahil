@@ -41,11 +41,13 @@
   "FERTIGLOBE": {
    "reason": "no asset_base_record; petrochemical.",
    "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
-  },
-  "ADNOCLS": {
-   "reason": "no asset_base_record; chartered fleet, replacement cost on an observed secondhand market.",
-   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
   }
  },
- "pruned_on": []
+ "pruned_on": [
+  {
+   "removed": [
+    "ADNOCLS"
+   ]
+  }
+ ]
 }

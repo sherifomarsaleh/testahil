@@ -26,7 +26,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 ENGINE = os.path.join(ROOT, "engine")
-CASES = 12
+CASES = 16
 
 
 def real(tk):
@@ -116,10 +116,71 @@ def main():
          {"BBB": EGCH}, {}, True,
          lambda r: (central_below_floor(EGCH), "EGCH is not below its floor"), results)
 
-    case("3 ADNOCLS's circularity block, exactly as it stands — the unit error",
-         {"CCC": ADN}, {}, True,
-         lambda r: (bool(rel(ADN).get("circularity")), "ADNOCLS has no circularity block"),
-         results)
+    # CORRECTED 07-09-2026. This case read the exemplar's live record and asserted it must
+    # go RED. That was true of the record as it stood — the operands mixed an AED spot with
+    # a share count in millions against USD thousands — and the study has since been
+    # corrected AND the gate re-pointed, so reading the live record now proves nothing. The
+    # CONSTRUCTIONS are kept as FROZEN FIXTURES and their expectations set from what each
+    # actually is, rather than the case being deleted: a control that reads whatever the
+    # book currently holds stops being a control the moment the book is fixed.
+    def unit_error():
+        """The exemplar's block as it stood: AED spot, shares in millions, USD thousands."""
+        lr = copy.deepcopy(ADN)
+        c = rel(lr)
+        c.pop("construction", None)
+        c["circularity"] = {"spot": 6.16, "shares": 7398.498764,
+                            "net_debt": 2021329.0, "metric_value": 2085941.8878816736}
+        return lr
+    UNIT = unit_error()
+    case("3 the exemplar's circularity block AS IT STOOD — three bases in one identity",
+         {"CCC": UNIT}, {}, True,
+         lambda r: (rel(UNIT)["circularity"]["shares"] < 1e5
+                    and "construction" not in rel(UNIT),
+                    "the unit error was not injected"), results)
+
+    # THE DECISIVE CLEAN CASE — the exemplar's record as it stands now: two declared routes
+    # weighting to one and reproducing the published figure. A control carrying only the red
+    # half proves the gate refuses a figure from nowhere and says nothing about whether it
+    # accepts the lens that legitimately has two routes.
+    case("13 the exemplar's DECLARED two-route construction — must stay green",
+         {"CCC": ADN}, {}, False,
+         lambda r: (len((rel(ADN).get("construction") or {}).get("routes") or []) == 2,
+                    "ADNOCLS declares no two-route construction"), results)
+
+    # THE ARITHMETIC IS THE CLOSURE. Declaring a route has to be paid for twice — the
+    # weights must sum to one and the routes must reproduce the published figure — so a
+    # study cannot buy slack by naming one. These three prove it cannot.
+    def route_weights_wrong():
+        lr = copy.deepcopy(ADN)
+        rel(lr)["construction"]["routes"][0]["weight"] = 0.9      # 0.9 + 0.3 = 1.2
+        return lr
+    RW = route_weights_wrong()
+    case("14 declared routes whose weights do not sum to one",
+         {"CCC": RW}, {}, True,
+         lambda r: (abs(sum(x["weight"] for x in rel(RW)["construction"]["routes"]) - 1.0)
+                    > 1e-6, "the weights were not moved"), results)
+
+    def route_value_wrong():
+        lr = copy.deepcopy(ADN)
+        rel(lr)["construction"]["routes"][0]["value"] = \
+            float(rel(ADN)["construction"]["routes"][0]["value"]) * 2.0
+        return lr
+    RV = route_value_wrong()
+    case("15 a declared route whose value no longer reaches the published figure",
+         {"CCC": RV}, {}, True,
+         lambda r: (rel(RV)["construction"]["routes"][0]["value"]
+                    > 1.9 * rel(ADN)["construction"]["routes"][0]["value"],
+                    "the route value was not moved"), results)
+
+    def route_unreadable():
+        lr = copy.deepcopy(ADN)
+        rel(lr)["construction"]["routes"][1].pop("value")
+        return lr
+    RU = route_unreadable()
+    case("16 a declared route with no value — a construction that cannot be read",
+         {"CCC": RU}, {}, True,
+         lambda r: ("value" not in rel(RU)["construction"]["routes"][1],
+                    "the route value was not removed"), results)
 
     def drifted():
         lr = copy.deepcopy(ARCC)

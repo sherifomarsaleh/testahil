@@ -28,7 +28,7 @@ for p in (ENGINE, ROOT):
 
 import ke_reproduction as kr                 # noqa: E402
 
-DECLARED_CASES = 20
+DECLARED_CASES = 24
 
 # ARCC's record, the fields this gate reads, exactly as committed.
 ARCC = {
@@ -130,10 +130,58 @@ case("a record with an explicit Ke and NO terminal — not this test's subject",
      False, lambda r: "ke_terminal" not in r)
 
 # ---- the weights and the beta's provenance, added 07-09-2026 ------------
-case("THE EXEMPLAR'S DEFECT — weights that do not sum to one",
+# CORRECTED 07-09-2026. This case was written as "THE EXEMPLAR'S DEFECT" and the exemplar
+# had no such defect: ADNOCLS is financed by THREE tranches and the third was committed in
+# a different object, so the record showed two weights and an unexplained gap. The
+# CONSTRUCTION is kept and its DESCRIPTION corrected rather than the case deleted — the
+# same treatment [R-GAP-01] gave its own one-sided case when the trigger went two-sided,
+# because deleting a case leaves the change untested exactly where it matters. What is red
+# here is a gap NOBODY ACCOUNTS FOR, which is what was actually wrong.
+case("a gap in the weights with nothing declared for the remainder",
      d(ARCC, weight_equity=0.800444, weight_debt=0.071933,
        ke_terminal_construction="relevered", relevering_tax_rate=0.225),
-     True, lambda r: abs(r["weight_equity"] + r["weight_debt"] - 1.0) > 1e-6)
+     True, lambda r: abs(r["weight_equity"] + r["weight_debt"] - 1.0) > 1e-6
+                     and not r.get("other_tranches"))
+
+# THE DECISIVE CLEAN CASE — the exemplar's real capital structure, figures exactly as they
+# stand in its committed record. Three tranches summing to one and a WACC reproducing to
+# zero. A control carrying only the red half would prove the gate refuses a gap and say
+# nothing about whether it accepts the company that has one legitimately.
+_ADN = {"rf_star": 0.0406, "beta": 1.1032, "erp": 0.0487,
+        "ke_exp": 0.09432584, "kd_aftertax": 0.05181950322693744,
+        "weight_equity": 0.8004439128736124, "weight_debt": 0.0719326113922813,
+        "other_tranches": [{"name": "perpetual_capital_securities",
+                            "weight": 0.12762347573410635, "rate": 0.049,
+                            "basis": "SOFR + 1.25%, disclosed"}],
+        "wacc_exp": 0.08548360695382588,
+        "rf_terminal": 0.039751, "erp_terminal": 0.0487, "ke_terminal": 0.09347684,
+        "ke_terminal_construction": "same_beta",
+        "beta_source": "own_stock_regression"}
+
+case("THE EXEMPLAR'S THREE TRANCHES, declared — must stay green",
+     dict(_ADN), False,
+     lambda r: len(r["other_tranches"]) == 1
+               and abs(r["weight_equity"] + r["weight_debt"]
+                       + r["other_tranches"][0]["weight"] - 1.0) < 1e-9)
+
+# THE ARITHMETIC IS THE CLOSURE, and this pair is what proves it. A declared tranche is not
+# the open list this house forbids elsewhere, because naming one has to be PAID FOR twice —
+# out of the weights of the real tranches and out of the published WACC. Invent a tranche
+# to make the weights sum and the WACC stops reproducing.
+case("a tranche invented to close the weights — the WACC no longer reproduces",
+     d(_ADN, other_tranches=[{"name": "goodwill_financing",
+                              "weight": 0.12762347573410635,
+                              "rate": 0.20, "basis": "asserted"}]),
+     True, lambda r: r["other_tranches"][0]["rate"] == 0.20)
+
+case("a tranche with a weight and no rate — it cannot be averaged over",
+     d(_ADN, other_tranches=[{"name": "perpetual_capital_securities",
+                              "weight": 0.12762347573410635}]),
+     True, lambda r: "rate" not in r["other_tranches"][0])
+
+case("a tranche that names nothing — a weight a reader cannot identify",
+     d(_ADN, other_tranches=[{"weight": 0.12762347573410635, "rate": 0.049}]),
+     True, lambda r: not r["other_tranches"][0].get("name"))
 
 case("a WACC that does not reproduce from its own weights and rates",
      d(ARCC, wacc_exp=0.35, ke_terminal_construction="relevered",

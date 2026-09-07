@@ -2559,6 +2559,24 @@ OUT = dict(
         # check when a bridge does not divide.
         shares_mn=float(shares_mn * 1000.0),
         per_share=float(dcf_own_beta['fv_usd']),
+        # AND THE RECORD NOW SAYS SO, WHICH THE COMMENT ABOVE COULD NOT. On 07-09-2026 a
+        # gate read this bridge's 1.5263 against the published 5.6054 and reported the
+        # exemplar as carrying the largest disagreement in the book. The figures are the
+        # SAME NUMBER — 1.5263 USD x the 3.6725 peg is 5.6054 AED to six decimals — and
+        # the generator's own comment above says the units plainly. A COMMENT IN A BUILDER
+        # IS NOT A DECLARATION A READER OR A CHECKER CAN USE, which is this repository's
+        # own lesson about conventions stated in prose beside a number. Declared here in
+        # the record instead, and the gate reads it.
+        units=dict(currency='USD', scale='thousands',
+                   shares=('thousands of shares — the field name says millions '
+                           'and the model carries millions, so it is multiplied '
+                           'to thousands here to match the equity value above'),
+                   per_share_currency='USD',
+                   published_currency='AED',
+                   fx=float(peg),
+                   note='per_share is in the REPORTING currency; the study publishes in '
+                        'the LISTING currency, and per_share x fx is the published '
+                        'central.'),
         cash_charged_once=True,
         # 'none': the cash is not added anywhere in this bridge — it sits inside the
         # net-debt figure deducted once. Registering it as added_at_face would
@@ -2663,9 +2681,62 @@ OUT = dict(
             dict(kind='relative_multiple', value=float(rel['base']),
                  present_value=False,
                  multiple=float(rel['blend_ev_ebitda']),
-                 circularity=dict(spot=float(spot_aed), shares=float(shares_mn),
+                 # THIS LENS IS TWO ROUTES AND THE RECORD NOW SAYS SO. A reader — or an
+                 # instrument — holding only the enterprise multiple above and the
+                 # operands beside it cannot reproduce the published figure, and until
+                 # this block existed the honest conclusion from the record was that the
+                 # figure came from nowhere. It is 70 per cent of an enterprise multiple
+                 # carried through the FULL bridge (net debt, the perpetual securities
+                 # and the minority) and 30 per cent of an earnings multiple on profit
+                 # AFTER the hybrid coupon, both converted at the peg. The weights sum to
+                 # one and the routes reproduce the published figure, which is what makes
+                 # this a declaration rather than an excuse.
+                 construction=dict(
+                     units=dict(currency='AED', operand_currency='USD',
+                                operand_scale='thousands', fx=float(peg)),
+                     routes=[
+                         dict(name='ev_ebitda', weight=float(W_EVEB),
+                              value=float(rel['value_ev_ebitda']),
+                              multiple=float(rel['blend_ev_ebitda']),
+                              metric=float(rel['ebitda_26']),
+                              metric_name='FY2026 forecast EBITDA, USD thousands',
+                              basis='enterprise value at the blended peer multiple, '
+                                    'carried to equity through the same bridge the '
+                                    'cash-flow lens uses — net debt, the perpetual '
+                                    'capital securities and the minority — then divided '
+                                    'by shares and converted at the peg'),
+                         dict(name='earnings', weight=float(1 - W_EVEB),
+                              value=float(rel['value_pe']),
+                              multiple=float(rel['blend_pe']),
+                              metric=float(rel['npa_ord_26']),
+                              metric_name='FY2026 forecast profit after the perpetual '
+                                          'coupon, attributable to ordinary shares, '
+                                          'USD thousands',
+                              basis='the earnings multiple applied to profit AFTER the '
+                                    'hybrid coupon, because the coupon is not available '
+                                    'to ordinary shareholders and applying a multiple '
+                                    'before it values earnings the ordinary share does '
+                                    'not receive'),
+                     ]),
+                 # ONE BASIS, AND IT WAS THREE. This block existed so
+                 # assert_lens_design could show the adopted multiple is not the
+                 # traded one, and it mixed an AED spot against a share count in
+                 # MILLIONS against net debt and EBITDA in USD THOUSANDS — so the
+                 # traded multiple it computed was 0.9909x, which is not a multiple,
+                 # and the circularity test compared 11.10x against a number that
+                 # meant nothing AND PASSED. Put on the reporting currency, where
+                 # net debt and the metric already sit: spot_usd x shares in
+                 # thousands reproduces meta.mktcap_usd000 exactly, plus net debt
+                 # reproduces meta.ev_usd000 exactly, and the traded multiple comes
+                 # out at 6.92x. NOTHING VALUED MOVES — this is a cross-check's own
+                 # diagnostic, and under [R-LENS-03] a cross-check is published
+                 # beside the answer and never averaged into it.
+                 circularity=dict(spot=float(spot_usd),
+                                  shares=float(shares_mn * 1000.0),
                                   net_debt=float(NETDEBT),
-                                  metric_value=float(BASE['ebitda'][0])),
+                                  metric_value=float(BASE['ebitda'][0]),
+                                  basis='USD thousands; spot is the AED close '
+                                        'converted at the peg, shares are thousands'),
                  multiple_source=(
                      'a blend of %.2fx on the contracted book and %.2fx on the '
                      'spot-exposed book, both taken from the listed peer set — Nakilat '
@@ -2706,12 +2777,74 @@ OUT = dict(
                     % (norm['base'], 100 * RETIRED_W['normalized'])),
         ),
     ),
+    # [R-ASSET-01] THE OPERATING ASSET BASE, WITH THE DATE IT WAS TRUE ON. On a chartered
+    # fleet valued with replacement cost beside the cash-flow lens, the fleet IS the asset
+    # base, and until this record existed the study held every figure below and stated the
+    # vintage of none of them in a form anything outside the study could read — which is
+    # the sweep-register lesson exactly: five real checks passing on facts written where
+    # no checker could point at them. Nothing here is new research; it is a copy out of
+    # the study's own four-field register.
+    asset_base_record=dict(
+        quantity='owned vessels',
+        unit='vessels',
+        value=int(sum(FLEET.values()) + V['jub_owned'] + V['osv_owned']
+                  + V['gas_owned'] + INPUTS['acq_2026_vlcc']['value']
+                  + INPUTS['acq_2026_gas']['value']),
+        as_at='2026-08-07',
+        disclosure='the 7 August 2026 announcement of the purchase of eleven vessels — six '
+                   'very large crude carriers and five gas carriers — which is the latest '
+                   'disclosure moving this fleet and is the anchor date of this study, on '
+                   'the owned fleet disclosed at 31 December 2025 in the 1Q2026 investor '
+                   'presentation, less the 2017-built very large crude carrier sold in '
+                   'January 2026 per the FY2025 earnings release',
+        # THE COMPONENTS FOOT TO THE VALUE, signs and all: a reader adding this column
+        # reaches 156. A deduction printed as a positive magnitude beside additions is the
+        # mixed sign convention this house refuses on a page, and a record is no different.
+        components=dict(
+            tankers_owned_31dec2025=int(sum(FLEET_FY25.values())),
+            less_vlcc_sold_jan2026=-int(INPUTS['vlcc_sold_jan26']['value']),
+            jack_up_barges_owned=int(V['jub_owned']),
+            offshore_support_vessels_owned=int(V['osv_owned']),
+            gas_carriers_owned=int(V['gas_owned']),
+            acquired_aug2026_vlcc=int(INPUTS['acq_2026_vlcc']['value']),
+            acquired_aug2026_gas=int(INPUTS['acq_2026_gas']['value']),
+        ),
+        note='THE BASE IS NEWER THAN THE INFORMATION SET AND THAT IS THE POINT OF THE '
+             'ORDERING. The statements this study reads end at 31 March 2026; the fleet '
+             'is carried to 7 August 2026 because the company disclosed a movement in it '
+             'after that date and the price this value is compared against already '
+             'contains it. The first edition omitted that purchase, which valued a fleet '
+             'the market was not pricing.',
+    ),
+    # The reading this study claims, stated once so the asset base can be ordered against
+    # it rather than against an assumption about what a study of this date must have read.
+    information_set_ends='1Q2026',
     cost_of_capital_record=dict(
         market='AE', regime=_PATH.regime, years=5,
         rf_observed=V['rf_observed'], default_spread=V['sov_spread'], rf_star=rf_star,
         erp=V['erp_total'], erp_basis='rating', beta=V['beta'],
         ke_exp=ke, kd_pretax=kd, kd_aftertax=kd * (1 - tax_stat),
         weight_equity=we, weight_debt=wd, wacc_exp=wacc,
+        # THE THIRD TRANCHE IS DECLARED HERE BECAUSE THIS COMPANY HAS THREE. Equity and
+        # drawn debt sum to 0.872377, and the remaining 0.127635 is the perpetual capital
+        # securities — real, priced at their own coupon, and carried in this model since
+        # the first edition. Until 07-09-2026 the weight lived in a different object and
+        # the cost-of-capital record showed two weights and an unexplained gap, so a
+        # gate reading it reported the exemplar as the largest weights defect in the book.
+        # The arithmetic was never wrong: the three weights sum to one exactly and
+        # reproduce wacc_exp to zero. WHAT WAS MISSING WAS THE DECLARATION, which is this
+        # repository's own standing lesson about a convention stated anywhere but in the
+        # record a reader and a checker actually hold.
+        other_tranches=[dict(
+            name='perpetual_capital_securities', weight=float(wh), rate=float(kh),
+            basis='placed with a third-party investor at SOFR + 1.25%, disclosed in the '
+                  'perpetual capital securities note; carried at its coupon because it '
+                  'pays a coupon rather than a taxed interest charge',
+        )],
+        # [R-COC-02]: WHERE THE BETA CAME FROM, on the closed list. A reader of a record
+        # carrying 1.1032 cannot otherwise tell a measured regression from a priced
+        # tier-3 fallback from a number somebody typed.
+        beta_source='own_stock_regression',
         rf_terminal=V['rf_terminal'], erp_terminal=V['erp_total'], ke_terminal=ke_term,
         # [R-COC-02]: the record NAMES the construction its terminal cost of equity was
         # built under. This study carries the beta straight through to the terminal; two
@@ -2720,6 +2853,11 @@ OUT = dict(
         ke_terminal_construction='same_beta',
         kd_terminal_pretax=kd_term, kd_terminal_aftertax=kd_term * (1 - tax_stat),
         weight_debt_terminal=wd, wacc_terminal=wacc_term,
+        other_tranches_terminal=[dict(
+            name='perpetual_capital_securities', weight=float(wh), rate=float(kh_term),
+            basis='the same tranche repriced off the terminal risk-free rate at the same '
+                  'disclosed margin',
+        )],
         glide_fractions=[(i + 1) / 5.0 for i in range(5)],
         forward_wacc=[float(x) for x in wacc_glide],
         discount_factors=[float(x) for x in dcf_own_beta['df']],

@@ -7132,6 +7132,15 @@
   "equity_value": 11292413.717418564,
   "shares_mn": 7398498.7639999995,
   "per_share": 1.5263114961059099,
+  "units": {
+   "currency": "USD",
+   "scale": "thousands",
+   "shares": "thousands of shares \u2014 the field name says millions and the model carries millions, so it is multiplied to thousands here to match the equity value above",
+   "per_share_currency": "USD",
+   "published_currency": "AED",
+   "fx": 3.6725,
+   "note": "per_share is in the REPORTING currency; the study publishes in the LISTING currency, and per_share x fx is the published central."
+  },
   "cash_charged_once": true,
   "cash": {
    "treatment": "none",
@@ -7197,11 +7206,40 @@
     "value": 8.640060670705397,
     "present_value": false,
     "multiple": 11.1037,
+    "construction": {
+     "units": {
+      "currency": "AED",
+      "operand_currency": "USD",
+      "operand_scale": "thousands",
+      "fx": 3.6725
+     },
+     "routes": [
+      {
+       "name": "ev_ebitda",
+       "weight": 0.7,
+       "value": 9.567710256413662,
+       "multiple": 11.1037,
+       "metric": 2085941.8878816736,
+       "metric_name": "FY2026 forecast EBITDA, USD thousands",
+       "basis": "enterprise value at the blended peer multiple, carried to equity through the same bridge the cash-flow lens uses \u2014 net debt, the perpetual capital securities and the minority \u2014 then divided by shares and converted at the peg"
+      },
+      {
+       "name": "earnings",
+       "weight": 0.30000000000000004,
+       "value": 6.475544970719444,
+       "multiple": 11.6357,
+       "metric": 1121154.8744987142,
+       "metric_name": "FY2026 forecast profit after the perpetual coupon, attributable to ordinary shares, USD thousands",
+       "basis": "the earnings multiple applied to profit AFTER the hybrid coupon, because the coupon is not available to ordinary shareholders and applying a multiple before it values earnings the ordinary share does not receive"
+      }
+     ]
+    },
     "circularity": {
-     "spot": 6.16,
-     "shares": 7398.498764,
+     "spot": 1.6773315180394828,
+     "shares": 7398498.7639999995,
      "net_debt": 2021329.0,
-     "metric_value": 2085941.8878816736
+     "metric_value": 2085941.8878816736,
+     "basis": "USD thousands; spot is the AED close converted at the peg, shares are thousands"
     },
     "multiple_source": "a blend of 12.26x on the contracted book and 8.53x on the spot-exposed book, both taken from the listed peer set \u2014 Nakilat for long-term contracted gas shipping and the spot tanker names for the exposed half \u2014 and weighted by the company's OWN disclosed spot share of 31 per cent. It is not read off this company's price: the traded enterprise value over the same forecast EBITDA is committed beside it in the circularity block."
    },
@@ -7231,6 +7269,24 @@
    }
   }
  },
+ "asset_base_record": {
+  "quantity": "owned vessels",
+  "unit": "vessels",
+  "value": 156,
+  "as_at": "2026-08-07",
+  "disclosure": "the 7 August 2026 announcement of the purchase of eleven vessels \u2014 six very large crude carriers and five gas carriers \u2014 which is the latest disclosure moving this fleet and is the anchor date of this study, on the owned fleet disclosed at 31 December 2025 in the 1Q2026 investor presentation, less the 2017-built very large crude carrier sold in January 2026 per the FY2025 earnings release",
+  "components": {
+   "tankers_owned_31dec2025": 53,
+   "less_vlcc_sold_jan2026": -1,
+   "jack_up_barges_owned": 33,
+   "offshore_support_vessels_owned": 40,
+   "gas_carriers_owned": 20,
+   "acquired_aug2026_vlcc": 6,
+   "acquired_aug2026_gas": 5
+  },
+  "note": "THE BASE IS NEWER THAN THE INFORMATION SET AND THAT IS THE POINT OF THE ORDERING. The statements this study reads end at 31 March 2026; the fleet is carried to 7 August 2026 because the company disclosed a movement in it after that date and the price this value is compared against already contains it. The first edition omitted that purchase, which valued a fleet the market was not pricing."
+ },
+ "information_set_ends": "1Q2026",
  "cost_of_capital_record": {
   "market": "AE",
   "regime": "pegged",
@@ -7247,6 +7303,15 @@
   "weight_equity": 0.8004439128736124,
   "weight_debt": 0.0719326113922813,
   "wacc_exp": 0.08548360695382588,
+  "other_tranches": [
+   {
+    "name": "perpetual_capital_securities",
+    "weight": 0.12762347573410635,
+    "rate": 0.049,
+    "basis": "placed with a third-party investor at SOFR + 1.25%, disclosed in the perpetual capital securities note; carried at its coupon because it pays a coupon rather than a taxed interest charge"
+   }
+  ],
+  "beta_source": "own_stock_regression",
   "rf_terminal": 0.039751,
   "erp_terminal": 0.0487,
   "ke_terminal": 0.09347684,
@@ -7255,6 +7320,14 @@
   "kd_terminal_aftertax": 0.05104691322693744,
   "weight_debt_terminal": 0.0719326113922813,
   "wacc_terminal": 0.0851633595751722,
+  "other_tranches_terminal": [
+   {
+    "name": "perpetual_capital_securities",
+    "weight": 0.12762347573410635,
+    "rate": 0.052251000000000006,
+    "basis": "the same tranche repriced off the terminal risk-free rate at the same disclosed margin"
+   }
+  ],
   "glide_fractions": [
    0.2,
    0.4,
@@ -7350,7 +7423,7 @@
    "topdown": 0
   },
   "unit_share": 0.5220918589567931,
-  "standard_version": "2026.09.01"
+  "standard_version": "2026.09.07"
  },
  "assert_log": [
   {

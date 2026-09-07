@@ -159,23 +159,102 @@ def floors(lr):
     return out
 
 
+# RE-POINTED 07-09-2026 ON THE EXEMPLAR, TWICE, AND BOTH RE-POINTINGS ARE THE SAME LESSON.
+# The identity above — value = (multiple x metric - net debt) / shares — is what a simple
+# relative lens does, and this gate condemned ADNOCLS at 330.7x for two reasons that were
+# both the INSTRUMENT rather than the study.
+#
+#   (i) UNITS. The operands are USD thousands and the published figure is AED per share, so
+#       the comparison crossed a currency and a scale. That is the identical defect this
+#       repository found in check_bridge_reaches_answer the same morning, where the
+#       exemplar's bridge was reported as the largest disagreement in the book and the two
+#       figures were the same number either side of a 3.6725 peg.
+#
+#  (ii) CONSTRUCTION. Even in one currency it does not reproduce, because THIS RELATIVE LENS
+#       IS NOT ONE ROUTE. It is 70 per cent of an enterprise multiple carried through the
+#       full bridge — net debt, the perpetual securities and the minority — and 30 per cent
+#       of an earnings multiple on profit after the hybrid coupon. Both routes are ordinary,
+#       both are published, and NEITHER is the single-operand identity.
+#
+# WHY A DECLARED CONSTRUCTION IS NOT A WAY OUT. Same argument as the capital-structure
+# tranches: a declared ROUTE carries a weight and a value, so declaring one has to be paid
+# for twice — the weights must sum to one, and the weighted routes must still reproduce the
+# published figure. A study cannot buy slack by naming a route. THE ARITHMETIC IS THE
+# CLOSURE, and what is still refused is a published figure that reproduces from nothing.
+
+def _fx_of(c):
+    """The conversion between the operands' currency and the published one, or 1.0.
+
+    A study reporting in one currency and publishing in another is ordinary — a pegged
+    market makes it near-universal — and a gate that cannot read the declaration reports
+    the peg as an error.
+    """
+    u = c.get("units") or (c.get("construction") or {}).get("units") or {}
+    if not isinstance(u, dict):
+        return 1.0
+    op, pub, fx = u.get("operand_currency"), u.get("currency"), u.get("fx")
+    if isinstance(op, str) and isinstance(pub, str) and op != pub \
+            and isinstance(fx, (int, float)) and fx > 0:
+        return float(fx)
+    return 1.0
+
+
+def _from_routes(c):
+    """(reproduced, tolerance, failures) for a declared multi-route construction."""
+    con = c.get("construction") or {}
+    routes = con.get("routes")
+    if not isinstance(routes, list) or not routes:
+        return None
+    bad, tot_w, acc, tol = [], 0.0, 0.0, 0.0
+    for i, r in enumerate(routes):
+        if not isinstance(r, dict):
+            bad.append("route %d is not a record" % (i + 1))
+            continue
+        nm, w, v = r.get("name"), r.get("weight"), r.get("value")
+        if not str(nm or "").strip():
+            bad.append("route %d names nothing" % (i + 1))
+        if not isinstance(w, (int, float)) or not isinstance(v, (int, float)):
+            bad.append("route %r carries no weight and value to be blended"
+                       % (nm or i + 1))
+            continue
+        tot_w += float(w)
+        acc += float(w) * float(v)
+        tol += abs(float(w)) * _half_unit(float(v))
+    if abs(tot_w - 1.0) > 1e-6:
+        bad.append("the declared route weights sum to %.6f, not one — a blend over "
+                   "weights that do not sum to one is not a blend of anything" % tot_w)
+    return (acc, max(tol, 1e-9), bad)
+
+
 def reproduction(lr):
-    """(committed, reproduced, declared_adjustment) for the relative-multiple lens."""
+    """(committed, reproduced, declared_adjustment, tolerance) for the relative lens."""
     for c in (lr.get("cross_checks") or []):
         if not isinstance(c, dict) or c.get("kind") != "relative_multiple":
             continue
+        val = c.get("value")
+        if not isinstance(val, (int, float)):
+            return None
+
+        routed = _from_routes(c)
+        if routed is not None:
+            rep, tol, bad = routed
+            if bad:
+                return (float(val), float("nan"), None, 0.0, bad)
+            return (float(val), rep, c.get("value_adjustment"), tol, [])
+
         circ = c.get("circularity") or {}
-        mult, val = c.get("multiple"), c.get("value")
-        if not isinstance(val, (int, float)) or not isinstance(mult, (int, float)):
+        mult = c.get("multiple")
+        if not isinstance(mult, (int, float)):
             return None
         try:
             m, mv = float(mult), float(circ["metric_value"])
             nd, sh = float(circ["net_debt"]), float(circ["shares"])
-            rep = (m * mv - nd) / sh
-            tol = reproduction_tolerance(m, mv, nd, sh)
+            fx = _fx_of(c)
+            rep = (m * mv - nd) / sh * fx
+            tol = reproduction_tolerance(m, mv, nd, sh) * fx
         except (KeyError, TypeError, ValueError, ZeroDivisionError):
             return None
-        return (float(val), rep, c.get("value_adjustment"), tol)
+        return (float(val), rep, c.get("value_adjustment"), tol, [])
     return None
 
 
@@ -212,8 +291,17 @@ def measure():
 
         rp = reproduction(lr)
         if rp:
-            val, rep, declared, tol = rp
-            if val and abs(rep - val) > tol and not declared:
+            val, rep, declared, tol, broken = rp
+            if broken:
+                # A DECLARED CONSTRUCTION THAT CANNOT BE READ IS NOT A CONSTRUCTION. It
+                # fails on its own terms rather than falling back to the simple identity,
+                # because falling back would let a study switch the check off by declaring
+                # a route badly [R-ENF-04].
+                bad["reproduce"] = {
+                    "committed": val, "reproduced": None, "ratio": None,
+                    "why": ("the relative lens declares a construction that cannot be "
+                            "read: %s" % "; ".join(broken))}
+            elif val and abs(rep - val) > tol and not declared:
                 bad["reproduce"] = {
                     "committed": val, "reproduced": rep, "ratio": (rep / val),
                     "why": ("the relative lens publishes %.4f; its own committed operands "

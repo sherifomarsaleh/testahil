@@ -25,13 +25,14 @@
   "STC": {
    "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction. FOUND BY THE GATE AND NOT BY THE MEASUREMENT THAT PRECEDED IT: the hand-written probe looked for cost_of_capital_record alone and reported six studies; the gate searches three spellings and reads seven. L-355 exactly, caught by the instrument rather than by a person.",
    "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
-  },
-  "ADNOCLS": {
-   "reason": "ADDED 07-09-2026 when [R-COC-02] was extended to the WEIGHTS. Its committed weight_equity 0.800444 and weight_debt 0.071933 SUM TO 0.872377, not one, and its wacc_exp of 8.5484% reproduces from neither the raw weights (7.9230%, -62.5bp) nor the renormalised ones (9.0821%). This is THE EXEMPLAR — the document every new study is built by copying — so the construction propagates looking exactly like the house standard. Fixing it is a re-issue of a delivered study, not a declaration.",
-   "signature": "weight_equity 0.800444 + weight_debt 0.071933 = 0.872377, not one — a weighted average over weights that do not sum to one is not an average of anything; wacc_exp 0.085484 does not reproduce from its own weights and rates (0.079230, +62.5 bp); the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']"
   }
  },
  "pruned_on": [
+  {
+   "removed": [
+    "ADNOCLS"
+   ]
+  },
   {
    "removed": [
     "ADNOCLS"

@@ -2,15 +2,95 @@
  "ticker": "ADNOCLS",
  "started_at": "2026-09-07",
  "start_value": 5.605379,
- "start_spot": 6.85,
+ "start_spot": 6.8,
+ "start_gap": -0.17567955882352937,
  "audit_after": "the cost-of-capital lever. THIS REBUILD IS MOSTLY RECORD-SHAPE AND THAT IS THE REASON THE AUDIT POINT SITS WHERE IT DOES. Of the exemplar's outstanding entries, nine close by committing a record the sanctioned modules already emit \u2014 the driver lines, the asset base, the anchor ordering, the rebuild ledger itself \u2014 and NONE OF THOSE CAN MOVE THE CENTRAL, because under [R-LENS-03] the class primary IS the central and a record commit does not touch the cash-flow lens. The circularity-block unit correction feeds a CROSS-CHECK, which by the same rule is published beside the answer and never averaged into it. So exactly one lever has a route to the number: rebuilding the cost of capital through cost_of_capital.py, which moves the discount rate and therefore the DCF. The place to stop and look is after that lever and BEFORE the document is rebuilt \u2014 because once a figure is written into a delivered document the next reader takes it as settled, and because the terminal is STOPPED (TERMINAL_EVIDENCE_05-09-2026.md, three independent disclosure gaps), so the single largest construction in this study is NOT among the levers and cannot offset whatever the discount rate does.",
- "levers": [],
- "note": "Declared 07-09-2026 BEFORE any lever was applied, per [R-REBUILD-01]. The start spot is the LATEST KNOWN price of 6.85 (03-09-2026) rather than the 6.16 this study was struck at: the committed central of 5.6054 sat 9.0% below the struck price and sits 18.2% below the latest, so this study acquired a gap breach WITHOUT ANY LEVER MOVING, which is [R-GAP-01 AMENDED]'s own finding and is recorded here as the starting condition rather than discovered at the end.",
+ "levers": [
+  {
+   "name": "relative-lens circularity block put on one basis",
+   "rule": "R-LENS-03",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "The non-circularity block compared an AED spot with a share count in millions against an equity value in USD thousands, so the traded multiple it published was 0.9909x \u2014 a number in no units at all. Put on one basis it is 6.92x. This feeds a CROSS-CHECK, which under [R-LENS-03] is published beside the central and never averaged into it, so the central does not move.",
+   "evidence": "lens_record.cross_checks[1].circularity now carries spot 1.6773 USD, shares 7,398,499 thousand and a basis field naming the units",
+   "move": 0.0
+  },
+  {
+   "name": "the bridge declares its currency, scale and peg",
+   "rule": "R-BRIDGE-01",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "The bridge divides USD thousands by a share count the field name calls millions, and converts to dirhams at the peg only at the per-share step. The generator said so IN A COMMENT and a gate reading the record reported the exemplar as carrying the largest bridge disagreement in the book \u2014 1.5263 against a published 5.6054, which are the same number either side of the 3.6725 peg. A comment in a builder is not a declaration a reader or a checker can use.",
+   "evidence": "bridge_record.units: currency USD, scale thousands, per_share USD, published AED, fx 3.6725",
+   "move": 0.0
+  },
+  {
+   "name": "the third tranche of the capital structure is declared",
+   "rule": "R-COC-02",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "Equity 0.800444 and drawn debt 0.071933 sum to 0.872377, and the remaining 0.127635 is the perpetual capital securities \u2014 real, priced at their own disclosed coupon and in this model since the first edition, but committed in a different object. The three weights sum to one EXACTLY and reproduce the published WACC to zero, so no rate and no value moves; what was missing was the declaration. The gate was re-pointed rather than the number changed [R-COC-01].",
+   "evidence": "cost_of_capital_record.other_tranches + beta_source; check_ke_reproduction now reproduces ADNOCLS and it is off that ratchet",
+   "move": 0.0
+  },
+  {
+   "name": "the fleet is committed with the date it was true on",
+   "rule": "R-ASSET-01",
+   "before": 5.605379,
+   "after": 5.605379,
+   "why": "On a chartered fleet valued with replacement cost beside the cash-flow lens the fleet IS the asset base. The study already held it at three sourced vintages \u2014 53 owned tankers at 31 December 2025, one very large crude carrier sold in January 2026, eleven vessels bought on 7 August 2026 \u2014 and stated the vintage of none of them where anything outside the study could read it. 156 owned vessels as at 7 August 2026, components footing to the total, against an information set ending 1Q2026.",
+   "evidence": "asset_base_record + information_set_ends; off the asset-base ratchet",
+   "move": 0.0
+  }
+ ],
+ "value": 5.605379,
+ "cumulative_move": 0.0,
+ "rules": {
+  "R-LENS-03": {
+   "levers": [
+    "relative-lens circularity block put on one basis"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
+  },
+  "R-BRIDGE-01": {
+   "levers": [
+    "the bridge declares its currency, scale and peg"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
+  },
+  "R-COC-02": {
+   "levers": [
+    "the third tranche of the capital structure is declared"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
+  },
+  "R-ASSET-01": {
+   "levers": [
+    "the fleet is committed with the date it was true on"
+   ],
+   "first_before": 5.605379,
+   "last_after": 5.605379,
+   "move": 0.0
+  }
+ },
+ "distinct_rules": 4,
+ "note": "Declared 07-09-2026 BEFORE any lever was applied, per [R-REBUILD-01]. The start spot is the LATEST KNOWN price of 6.80 (07-09-2026, supplied by the principal and committed to engine/prices/SUPPLIED_07-09-2026.json) rather than the 6.16 this study was struck at: the committed central of 5.6054 sat 9.0% below the struck price and sits 17.6% below the latest, so this study acquired a gap breach WITHOUT ANY LEVER MOVING, which is [R-GAP-01 AMENDED]'s own finding and is recorded here as the starting condition rather than discovered at the end.",
  "stopped": [
   {
    "lever": "the terminal on a disclosed asset life",
    "rule": "R-TERM-01",
    "why": "STOPPED, not deferred. TERMINAL_EVIDENCE_05-09-2026.md records three independent reasons the accounts yield no usable life: dry-docking is capitalised and amortised over two to five years while the vessel line is not split by component; one vessel class prints its age as an unfilled placeholder; and 97.85% of depreciable net book value sits in a single column spanning six disclosed lives from 2 to 40 years. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE (SIGCM clause 1), so this rebuild does not touch the terminal and the ratchet entry stands."
   }
- ]
+ ],
+ "audit": {
+  "reached": "the declared audit point \u2014 after the cost-of-capital lever and before the document is rebuilt.",
+  "finding": "EVERY LEVER SO FAR HAS MOVED THE RECORD AND NONE HAS MOVED THE ANSWER. The central is 5.605379 after four levers exactly as it was before the first, and that is the honest result rather than a disappointing one: four standing rules were breached by this study, all four are now met, and not one of them was a wrong number. The cost-of-capital lever was expected to be the only one with a route to the central and it turned out to have none either \u2014 the weights were already right and only undeclared.",
+  "consequence": "The gap is therefore unchanged by the rebuild and is entirely the price moving: 5.6054 against 6.80 is -17.6%, past [R-GAP-01]'s ten per cent trigger, so this study owes its eight-heading review before any file is staged, and [R-GAP-02] holds it from publishing either way. THE REVIEW IS NOT A FORMALITY HERE: the largest single construction in this study, the terminal, is STOPPED for want of a disclosed asset life, so the one place a defect of this size would most likely sit is the one place this rebuild could not look."
+ }
 }

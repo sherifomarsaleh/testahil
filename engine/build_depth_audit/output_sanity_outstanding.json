@@ -1,15 +1,6 @@
 {
  "note": "May only SHORTEN. An entry excuses the claims and the RATIOS it records; a ratio that grows is a NEW breach [R-ENF-08].",
  "outstanding": {
-  "ADNOCLS": {
-   "claims": {
-    "reproduce": {
-     "ratio": 330.713292487173,
-     "why": "the relative lens publishes 8.6401; its own committed operands give 2857.3829 (330.713x, against 0.0141 allowed by their own printed precision), and no value_adjustment names the difference"
-    }
-   },
-   "reason": "measured on adoption day; the fix is the study's own record, at its next re-issue"
-  },
   "AIRARABIA": {
    "claims": {
     "floor": {
