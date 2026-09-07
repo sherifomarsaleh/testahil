@@ -1945,3 +1945,28 @@ THE GENERAL LESSON: **A COUNT TAKEN THROUGH ONE FIELD IS A COUNT OF THAT FIELD.*
 of the book, and it read as a fact about the programme because the field it came
 from was the obvious place to look. Where five records have five shapes, a census
 needs five readers or it is measuring the one it understands.
+
+### [R-FCAL-01] amended: "across eras" named a boundary chosen for the market
+
+The gate landed an hour ago enforces cut-invariance while both governing documents
+still said the sign must hold *"across eras"* — **a rule stating one thing while
+its own gate enforces another**, which is the defect I closed in the revision stamp
+this morning, arriving in a rule I had just written the enforcement for.
+
+Amended in both documents in one commit, stamps to `2026-09-06f`. **Every era label
+in this book is the year its currency moved** — the right cut for a currency and
+not every driver's break — so the clause was satisfiable by a bias stable at one
+line and unstable at four others, with nothing saying which kind a given correction
+was. The sign must now hold at every cut the data admits.
+
+**The amendment changes no verdict this book has reached, and that is the strongest
+evidence for it.** Applied to all five corrections ever applied or adopted here, the
+cut-invariant test confirms exactly the two each run promoted and refuses exactly
+the three they declined. A rule change that overturned a pile of past conclusions
+would be a rule change fitted to a grievance; one that reproduces every existing
+verdict while making the reasoning honest is the other kind.
+
+THE GENERAL LESSON: **A STABILITY CLAIM IS A CLAIM ABOUT A BOUNDARY SOMEBODY
+CHOSE.** Where that boundary was chosen for a different reason than the quantity
+being tested — a currency's year, applied to a depreciation schedule — the claim is
+partly about the chooser, and no amount of care inside the test will say so.

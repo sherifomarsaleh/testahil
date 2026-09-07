@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-06e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-06f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1619,6 +1619,44 @@ number at all five horizons and to the trend line at four of five, and the study
 correct for it. The average of two opposite regimes is a number that was never true in
 either.
 
+**[R-FCAL-01 AMENDED 07-09-2026] "ACROSS ERAS" NAMES A BOUNDARY, AND THE BOUNDARY WAS
+CHOSEN FOR THE MARKET RATHER THAN FOR THE DRIVER.** Every era label in this book is the
+year its currency moved, which is the right cut for a currency and is not every driver's
+break. The clause above was therefore satisfiable by a bias that is stable at one line and
+unstable at four others, and nothing said which kind a given correction was. **THE SIGN
+MUST NOW HOLD AT EVERY CUT THE DATA ADMITS** — every boundary leaving at least five cells
+on each side — and a bias whose sign depends on where the line was drawn is reported,
+never corrected for, exactly as this clause always said of the era cut.
+
+MEASURED RATHER THAN ARGUED, AND IT COST A CONCLUSION BEFORE IT WAS WRITTEN: 42 of 66
+testable driver biases in this book flip sign at some cut, and TMGH's depreciation reads
+as a textbook correctable bias at the market's boundary while flipping at its own, one
+year later — that run's stated "one correctable driver" was withdrawn on it. **WHAT THE
+AMENDMENT DOES NOT DO IS CHANGE ANY VERDICT THIS BOOK HAS REACHED**, and that is the
+strongest evidence for it: applied to all five corrections the book has ever applied or
+adopted, the cut-invariant test confirms exactly the two each run promoted (ARCC's
+`mfg_dep`, 0 flips of 4; PHDC's `is.finance_cost`, 0 of 5) and refuses exactly the three
+those runs declined (`asp` 4 of 5, `units_delivered` 2 of 5, `units_sold` 1 of 5). An
+instrument neither run used, agreeing with both.
+
+It does NOT choose a boundary, in either direction: picking the cut that makes a bias look
+stable is the selection this method forbids, and picking the one that makes it look
+unstable is the same offence facing the other way. It reports every cut. Nor does it make
+a sign-stable driver correctable — that still needs both clauses below, of which this is
+one half of the first. A driver too thin to cut at all is reported UNTESTABLE and never
+counted stable, because an absence of contrary evidence is not evidence [R-ENF-04].
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: `scripts/check_correction_boundary.py` reads each
+run's own corrections record through a NAMED per-run adapter — five records carry five
+shapes and a reader that guesses is a reader that silently finds nothing, which is exactly
+how a census of this book once reported "twelve candidates, one adopted" while missing four
+applied corrections in another run — and re-runs `boundary_sensitivity.cuts_for()` rather
+than reimplementing the arithmetic [R-ENF-03]. Ratcheted [R-ENF-02] on the three PHDC
+candidates with their measurement, because rebuilding that run's adjusted-versus-raw
+artefact under the amended rule moves its record and is its own measured pass; the list may
+only SHORTEN and an entry that stops flipping goes RED. Negative-controlled on five red and
+three clean, the fixtures DERIVED from the data rather than named by hand.
+
 **THE MACRO SPLIT IS THE CHECK THAT THE DECOMPOSITION MEASURES WHAT IT CLAIMS**: volume
 drivers carry no inflation term and must come back at a zero macro share by
 construction. On PHDC, across four devaluations, macro explained 21.5% of the revenue
@@ -1628,7 +1666,8 @@ decomposition earned the right to say so.
 ### Corrections — the two-clause promotion test, and why the second clause exists
 
 Expanding window only. Corrections at HALF STRENGTH by default, applied only where the
-bias holds its sign across eras, reset after a structural break. Aggregates are rebuilt
+bias holds its sign AT EVERY CUT THE DATA ADMITS (amended 07-09-2026, above;
+the era boundary alone is not the test), reset after a structural break. Aggregates are rebuilt
 from adjusted drivers and tested adjusted-against-raw on the origins that carried a
 correction, reported by origin.
 
