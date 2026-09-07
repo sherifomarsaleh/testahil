@@ -81,8 +81,13 @@ def _skip(rundir):
             and not str(k).startswith("scoreable")]
     if not isinstance(need, (int, float)) or not have or max(have) >= need:
         return None
-    if os.path.exists(os.path.join(rundir, "scores.json")):
-        return None
+    # THE OPT-OUT IS CLOSED BY THE CALL SITE RATHER THAN HERE, and saying so is worth a
+    # line: a first draft of this function ended with a clause refusing a skip that sat
+    # beside a scores.json, which reads like a protection and CANNOT EVER FIRE — audit()
+    # consults _skip() only where scores.json is absent, so a run holding a scored record
+    # is never offered to it at all. A clause asserting a check that cannot run is worse
+    # than no clause, because it stops the next reader looking for the real one. The real
+    # one is the `if scores is None` above.
     return "%s; %d sourceable year(s) against the %d a LIGHT scope needs" % (
         words, max(have), need)
 
