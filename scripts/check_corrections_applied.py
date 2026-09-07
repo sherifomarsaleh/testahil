@@ -143,6 +143,12 @@ ADAPTERS = {
     "TMGH": _adopt_listed,
     "AMOC": _adopt_amoc,
     "PHDC": _adopt_phdc,
+    # SCEM's run of 07-09-2026 keeps the same top-level `adopted` list EGCH and TMGH do,
+    # deliberately: a run that invents a sixth record shape makes this gate report
+    # UNKNOWN RECORD SHAPE, which is the correct behaviour and is nobody's idea of a
+    # result. Empty, and pre-registered empty — nine cells admit no era boundary, so
+    # nothing from that run could be promoted whatever its biases turned out to be.
+    "SCEM": _adopt_listed,
 }
 
 

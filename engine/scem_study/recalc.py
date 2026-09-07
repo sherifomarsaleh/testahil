@@ -17,7 +17,25 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'SCEM_Valuation_Model_04092026_public.xlsx')
+
+# THE CHECK OPENS THE FILE A READER RECEIVES, RESOLVED BY DATE RATHER THAN BY NAME.
+# L-066/L-067: two of ARCC's gates opened a SUPERSEDED workbook while the delivered file
+# was a later edition, and both reported clean; re-pointed, five driver assertions failed
+# immediately. THE SAME DEFECT WAS LIVE HERE on 07-09-2026 — this file named the
+# 04-09-2026 workbook while the 07-09-2026 edition was the delivered one, so the driver
+# test reported 51 green drivers against a workbook nobody ships. A check that opens a
+# delivered file BY NAME does not move with the re-issue, so it is globbed and the newest
+# is taken, and an empty glob RAISES rather than skipping [R-ENF-04].
+def _latest_workbook(here):
+    import glob as _g
+    fs = [f for f in _g.glob(os.path.join(here, 'SCEM_Valuation_Model_*_public.xlsx'))
+          if not os.path.basename(f).startswith('~$')]
+    if not fs:
+        raise SystemExit('no delivered SCEM workbook found — an empty result is not a '
+                         'clean result [R-ENF-04]')
+    return max(fs, key=lambda f: os.path.basename(f))
+
+XLSX = _latest_workbook(HERE)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

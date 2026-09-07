@@ -12,7 +12,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 | in the campaign queue | 90 |
 | excluded (metals — no issuer, no statements, no drivers) | 3 |
 | baselines frozen | 10 |
-| fair values re-derived | 6 |
+| fair values re-derived | 7 |
 | live study standard | 2026.09.07 |
 
 
@@ -25,6 +25,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 | 3 | EGCH | EGP | full | 3.6400 | 4.0396 / 8.0388 (two-sided) | n/a | n/a | -48.0% | (study carries no stamp) → 2026.09.07 | L-326, L-330, L-331, L-332, L-333 |
 | 4 | ELEC | EGP | skip | 0.3400 | 0.3357 | -1.3% | +1.4% | -0.1% | (study carries no stamp) → 2026.09.07 | — |
 | 7 | PHDC | EGP | full | unrecoverable | 17.8478 | n/a | n/a | n/a | 2026.08.23 → 2026.09.07 | L-073 |
+| 8 | SCEM | EGP | light | 53.1200 | 116.9281 | +120.1% | -53.9% | +97.8% | (study carries no stamp) → 2026.09.07 | — |
 | 10 | TMGH | EGP | full | 147.1200 | 91.8306 | -37.6% | -23.8% | -35.1% | (study carries no stamp) → 2026.09.07 | — |
 
 Percentages are the delivered edition against the **frozen pre-campaign baseline**, captured before the run touched `assets/data.js`. Where a name carries more than one edition, `vs_previous_pct` in the JSON holds the edition-on-edition move.

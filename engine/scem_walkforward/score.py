@@ -184,6 +184,55 @@ def macro_split(cs):
     return out
 
 
+
+
+# ---------------------------------------------------------------------------
+# THE SHARED HARVESTER'S OWN SHAPE, EMITTED BESIDE THIS RUN'S RICHER ONE.
+# engine/lessons_harvest.py reads by_driver / by_horizon / by_era / macro_split with
+# its own field names, and its selection rules are fixed in that module AHEAD of any
+# run so they cannot be tuned after seeing these numbers. A run that emits a shape of
+# its own making is a run the shared instrument reads as EMPTY — and reports that as a
+# result, which is [L-355] exactly: on its first call against this run the harvester
+# returned "0 candidate lessons" from a panel carrying eleven biases past its own
+# threshold. THE RUN ADAPTS TO THE SHARED INSTRUMENT, never the other way round.
+# ---------------------------------------------------------------------------
+def canonical(cs):
+    logs = summarise(cs, 'log')
+    out_driver, out_era, out_h = {}, {}, {}
+    for k, v in logs.items():
+        ci = v['ci']
+        out_driver[k] = dict(
+            bias=v['bias'], mae=v['mae'], n=v['n'], over=v['share_over'],
+            robust_sign=bool(ci and ci['same_sign_across_blocks']))
+        out_era[k] = {e: dict(bias=b) for e, b in v['by_era'].items()}
+    # per-driver, per-horizon skill against the freeze benchmark, on the cells both score
+    for c in cs:
+        if c.get('scale') != 'log':
+            continue
+        o, h, k, av = c['origin'], c['h'], c['driver'], c['actual']
+        pv = BU.freeze(o)[h].get(k)
+        if pv is None or pv <= 0 or av <= 0:
+            continue
+        cell = out_h.setdefault(k, {}).setdefault(str(h), {'m': [], 'b': []})
+        cell['m'].append(abs(c['log_error']))
+        cell['b'].append(abs(math.log(pv / av)))
+    for k, hs in out_h.items():
+        for h, v in list(hs.items()):
+            bm = sum(v['b']) / len(v['b']) if v['b'] else 0.0
+            mm = sum(v['m']) / len(v['m']) if v['m'] else 0.0
+            hs[h] = dict(n=len(v['m']),
+                         skill_freeze=dict(skill=(1 - mm / bm) if bm else 0.0))
+    ms = macro_split(cs)
+    out_macro = {k: dict(macro_share=v['macro_share_inflation'],
+                         as_known_mae=v['mae_as_known'],
+                         perfect_mae=v['mae_perfect_inflation'])
+                 for k, v in ms.items()
+                 if v['mae_as_known'] is not None
+                 and v['macro_share_inflation'] is not None}
+    return dict(by_driver=out_driver, by_horizon=out_h, by_era=out_era,
+                macro_split=out_macro)
+
+
 if __name__ == '__main__':
     P.verify()
     cs = cells()
@@ -194,7 +243,8 @@ if __name__ == '__main__':
                skill_vs_trend=skill_by_horizon(cs, 'trend'),
                benchmark_freeze=benchmark_mae(cs, 'freeze'),
                benchmark_trend=benchmark_mae(cs, 'trend'),
-               macro_split=macro_split(cs))
+               macro_split_detail=macro_split(cs))
+    rec.update(canonical(cs))
     json.dump(rec, open(os.path.join(HERE, 'scores.json'), 'w'), indent=1)
     json.dump(cs, open(os.path.join(HERE, 'error_cells.json'), 'w'), indent=1)
 
@@ -220,7 +270,7 @@ if __name__ == '__main__':
             'h%s n=%d skill %+0.3f' % (h, v['n'], v['skill']) for h, v in sorted(sk.items()))))
     print('\nMACRO vs COMPANY  (share of the miss that perfect foresight removes)\n')
     print('%-18s %10s %10s %10s' % ('driver', 'as known', 'infl PF', 'share'))
-    for k, v in sorted(rec['macro_split'].items(),
+    for k, v in sorted(rec['macro_split_detail'].items(),
                        key=lambda kv: -(kv[1]['macro_share_inflation'] or -9)):
         if v['mae_as_known'] is None:
             continue

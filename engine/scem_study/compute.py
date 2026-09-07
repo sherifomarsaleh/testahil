@@ -137,6 +137,16 @@ INP = dict(
         "arithmetic-mean rate that understates the disclosed rates' own product of 151.5mn, "
         "and the 122.6 includes intangible amortisation against a filed FIXED-ASSET charge of "
         "99.2mn. See useful_lives.json", "2025-12-31", "Company"),
+    vicat_stake=I(0.776, "Vicat's holding through Vicat Egypt Cement Industries, from the "
+        "Financial Regulatory Authority filing of the July 2025 mandatory tender offer for "
+        "the remaining 58,416,664 shares (22.4%) at EGP 41.00 a share. REGISTERED rather "
+        "than typed: it is quoted in nine places across the two delivered documents and a "
+        "figure a reader sees must be computed, not typed, even when its source is an "
+        "external filing rather than this model", "2025-07-28", "Company"),
+    free_float=I(0.224, "The public float, being one less Vicat's holding. DERIVED: "
+        "1 - vicat_stake, and it is the share count the same tender offer names "
+        "(58,416,664 of 260,812,477 = 22.4%), which is the check that the two figures are "
+        "one fact and not two", "2025-07-28", "Company"),
     useful_life_disclosed=I(20.0, "THE DISCLOSED USEFUL LIFE behind the terminal maintenance "
         "charge [R-TERM-01], route one: note 3/2, printed page 8 of the audited statements "
         "for the year ended 31 December 2025, states MACHINERY at a SCALAR 5% - a 20-year "
@@ -1078,7 +1088,7 @@ COC_RECORD = dict(
         'OHLC series in the engine library. beta_result.json carries the diagnostics '
         'that triggered the fallback, which is what the protocol requires of one.'),
     ke_terminal_construction='relevered',
-    ke_terminal_tax_rate=TAX,
+    relevering_tax_rate=TAX,
     ke_terminal_construction_note=(
         'the terminal carries a 20 per cent debt weight against 0.5 per cent in the '
         'explicit window, so the equity beta is re-levered by Hamada at the statutory '
@@ -1238,7 +1248,10 @@ LENS_RECORD = dict(
                    'the company has ever filed, the macro path held still',
         range_basis=dict(
             driver='the EBITDA margin, across its own audited span',
-            low=float(_mgn_lo), high=float(_mgn_fc0), macro_held=True,
+            low=float(_mgn_floor), high=float(_mgn_fc0), macro_held=True,
+            filed_minimum=float(_mgn_lo),
+            floor_is_filed_minimum=bool(_lo_is_filed),
+            floor_note=_MGN_RANGE_NOTE,
             evidence=(
                 'Sinai Cement filed an EBITDA margin of %.2f per cent in FY2023, %.2f in '
                 'FY2024 and %.2f in FY2025, every one audited. THE FORECAST OPENS AT %.2f '
@@ -1250,12 +1263,19 @@ LENS_RECORD = dict(
                 '%.1f) against a fixed cost that escalates only with the house inflation '
                 'ladder. What the range prices is that mechanism failing. The FY2023 '
                 'corner carries a plant at %.1f per cent utilisation through a currency '
-                'collapse; it is the company\'s own filed record and it is used as the '
-                'floor without adjustment.'
+                'collapse. IT IS NOT USED AS THE FLOOR WITHOUT ADJUSTMENT, and that is a '
+                'finding of the 07-09-2026 rebuild: on the DISCLOSED 20-year machinery '
+                'life the terminal maintenance charge is large enough that at the FY2023 '
+                'margin terminal free cash flow turns NEGATIVE and the sanctioned module '
+                'refuses to build a terminal at all, because a going concern consuming '
+                'cash for ever is a liquidation. The floor published is %.2f per cent, '
+                'the lowest margin at which the going-concern reading survives, solved to '
+                'a basis point ON THE REFUSAL ITSELF rather than on a value. Below it the '
+                'disclosed book value is the floor, not a smaller discounted cash flow.'
                 % (100 * _HIST_MGN[0], 100 * _HIST_MGN[1], 100 * _HIST_MGN[2],
                    100 * _mgn_fc0, 100 * BU[5]['mgn'],
                    100 * V['kiln_util'][1], 100 * V['kiln_util'][5],
-                   100 * _UTIL23))),
+                   100 * _UTIL23, 100 * _mgn_floor))),
         note='the cash-flow lens on the company\'s own tonnes and prices, discounted on '
              'the glide from the house macro path, with the terminal built by the '
              'sanctioned module on the DISCLOSED asset life'),
@@ -1547,6 +1567,56 @@ OUT = dict(
                            revival_mt=V['egy_revival_mt'],
                            scem_share_of_capacity=V['cap_cement_mt']/V['egy_capacity_mt'],
                            revival_pct_of_consumption=V['egy_revival_mt']/V['egy_cons_mt'])),
+    # ---------------------------------------------------------------- [R-FCAL-01]
+    # THE SCOPE DECISION, DECIDED FIRST AND STATED IN THE STUDY.
+    walkforward_scope=dict(
+        scope='LIGHT',
+        sourceable_fiscal_years=5,
+        status='run',
+        basis=('The company publishes exactly six documents on its own website and they '
+               'are all it publishes: five audited annual filings and one reviewed '
+               'interim. FY2021 to FY2025 are sourceable from them. THE SIXTH IS ARABIC '
+               'and its figures are Eastern Arabic numerals which no OCR route available '
+               'here reads, so FY2020 cannot be obtained and the window is shortened '
+               'rather than filled from a vendor — a fabricated cell corrupts the very '
+               'error the run scores. Every source attempt, including that failure, is '
+               'logged in engine/scem_walkforward/fetch_attempts.json.'),
+        note=('Five origins, FY2021 to FY2025, horizons one to three, nine resolved '
+              'driver-cells. Run 07-09-2026; record at engine/scem_walkforward. Three of '
+              'the six filings had never been downloaded before that run, and opening the '
+              'two English ones is what took this name from SKIP to LIGHT.'),
+    ),
+    # WHAT THE FUNDAMENTAL WALK-FORWARD OF 07-09-2026 DID TO THIS STUDY'S DRIVERS.
+    # SILENCE AND "NONE ADOPTED" ARE THE SAME FILE TO A READER AND DIFFERENT FACTS ABOUT
+    # THE WORK, so this study says which. Nothing was promoted, and that was pre-registered
+    # before any error was computed rather than concluded after seeing the numbers.
+    walkforward_record=dict(
+        which='the FUNDAMENTAL walk-forward [R-FCAL-01] — the driver model rebuilt at five '
+              'past origins and scored against what the company reported. NOT the '
+              'price-engine walk-forward in backtest_5y.py and NOT the technical one',
+        run='engine/scem_walkforward', date='2026-09-07',
+        scope='light', scope_reason='five sourceable fiscal years, FY2021-FY2025',
+        origins='FY2021-FY2025, horizons 1-3, 9 resolved driver-cells',
+        corrections_adopted=0,
+        adopted_corrections=[],
+        watch_flags=11,
+        refused_as_aggregates=2,
+        why_none_adopted=(
+            'Nine cells spread over four target years admit ZERO boundaries leaving five '
+            'cells on each side, so under [R-FCAL-01 AMENDED 07-09-2026] every driver here '
+            'is UNTESTABLE for stability rather than stable — an absence of contrary '
+            'evidence is not evidence. Four candidates DO improve the out-of-sample error '
+            'under an expanding-window half-strength factor and none of them is promoted. '
+            'This was stated in PRE_REGISTRATION_07-09-2026.md before a single error was '
+            'computed.'),
+        skill_vs_freeze=[0.185, 0.129, 0.123],
+        skill_vs_trend=[0.239, 0.231, 0.205],
+        skill_note='the method beat both naive benchmarks at every horizon tested',
+        direction='eleven of thirteen drivers came in BELOW what the company reported',
+        forward_ranges='engine/scem_walkforward/forward_ranges.json — basis span, '
+                       'orientation actual-over-forecast, counted per cell; horizons four '
+                       'and five carry NO band and the document says so',
+    ),
     revision_notes=dict(
         prior_central=62.81, prior_dcf=54.49, prior_net_cash=5307.05,
         prior_fy26_margin=0.305, prior_fy25_margin=0.280,

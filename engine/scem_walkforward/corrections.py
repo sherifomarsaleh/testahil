@@ -176,6 +176,12 @@ if __name__ == '__main__':
                  '%.3f' % av['mae_adjusted'] if av else '-',
                  ('yes' if av['improves'] else 'no') if av else '-',
                  verdict[:44]))
+    # THE SHARED GATE READS A RUN'S DECISION THROUGH A NAMED PER-RUN ADAPTER
+    # [R-FCAL-01 AMENDED], because five records carried five shapes and a reader that
+    # guesses silently finds nothing. `adopted` is the shape scripts/check_corrections_
+    # applied.py's _adopt_listed reads, and it is EMPTY here rather than absent: silence
+    # and 'none adopted' are the same file to a reader and different facts about the work.
+    log['adopted'] = []
     log['promoted'] = []
     log['summary'] = ("%d candidates measured, 0 promoted, %d recorded as watch flags, "
                       "%d refused as aggregates. Nothing from this run enters the live "

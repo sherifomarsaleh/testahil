@@ -72,7 +72,7 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Sinai Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · SCEM · Egyptian pounds · issued 4 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
+P('Egyptian Exchange · SCEM · Egyptian pounds · issued 7 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
   space_after=10)
 rich([(f'A single-plant cement producer, sitting on net cash worth '
        f'{pc(D["dcf"]["net_cash"] / (SPOT * SH), 0)} of its market '

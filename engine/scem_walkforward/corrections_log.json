@@ -432,6 +432,7 @@
    "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 3 cells"
   }
  },
+ "adopted": [],
  "promoted": [],
  "summary": "13 candidates measured, 0 promoted, 11 recorded as watch flags, 2 refused as aggregates. Nothing from this run enters the live drivers.",
  "guidance_ledger": {

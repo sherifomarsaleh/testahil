@@ -212,7 +212,10 @@ inp(19, 'Dollar-linked share of the materials line', 'usdsh', IN['materials_usd_
 inp(20, 'Gross fixed assets (note 4)', 'grossfa', IN['gross_fixed_fy25'], NUM0,
     'EGP mn, 31-Dec-2025')
 inp(21, 'Weighted depreciation rate (note 3/2 on note 4)', 'deprate',
-    IN['dep_rate_disclosed'], PCT, 'straight-line')
+    IN['dep_rate_disclosed'], PCT, 'BOOK charge only — not the terminal life')
+inp(25, 'Disclosed useful life, machinery (note 3/2)', 'life',
+    IN['useful_life_disclosed'], NUM1,
+    'years; 5% on machinery, 69.5% of note 4 gross cost')
 inp(22, 'Capex run rate (cash-flow statements)', 'capexrr', IN['capex_run_rate'], NUM0,
     'EGP mn/yr')
 inp(23, 'Cash, reviewed sheet 31-Mar-2026', 'cashm26', IN['cash_mar26'], NUM0, 'EGP mn')
@@ -306,8 +309,9 @@ inp(88, 'MEMO — the retired four-lens blend', 'blend', LR['retired']['blend_va
 # the terminal charges, on a plant 59.7 per cent written down whose machinery is 68.4 per
 # cent gone. The charge glides from one to the other so the step at the boundary is zero.
 inp(89, 'Maintenance at current cost (replacement base / disclosed life)', 'maintcc',
-    DCF['ic_repl'] / (1.0 / IN['dep_rate_disclosed']), NUM0,
-    'Replacement capital over the note 3/2 life — the SAME charge the terminal makes')
+    DCF['ic_repl'] / IN['useful_life_disclosed'], NUM0,
+    'Replacement capital over the note 3/2 MACHINERY life — the SAME charge the terminal '
+    'makes')
 for _i, _w in enumerate(D['conv_weights']):
     inp(105 + _i, f'Capital-charge convergence weight, FY{2026+_i}', f'conv{_i}', _w, PCT,
         'the share of the way from the company\'s own spend to current-cost maintenance')
@@ -509,8 +513,8 @@ TB = [('Replacement-cost invested capital (EGP mn)', 'B22',
       # year for ever, which is an implied replacement cycle of 1/g — a fact about the
       # currency and not about the plant. The life comes from note 3/2 of the audited
       # accounts weighted on note 4's own gross-cost mix.
-      ('Disclosed weighted asset life (years)', 'B23b', f"=1/{A['deprate']}",
-       1.0 / IN['dep_rate_disclosed'], NUM1),
+      ('Disclosed useful life, machinery (years)', 'B23b', f"={A['life']}",
+       IN['useful_life_disclosed'], NUM1),
       ('Maintenance at current cost  (invested capital / life)', 'B25',
        "=B22/B23b", DCF['term_maintenance'], NUM0),
       ('Book depreciation added back', 'B25b', f"=DCF!F8*(1+{A['g']})",

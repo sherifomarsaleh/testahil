@@ -886,3 +886,88 @@ split: **the model carries no inflation term at all**, so the attribution is aft
 are disclosed from FY2019 and in the annual-report business reviews before that, but an
 exogenous Egyptian market-size series dated at every origin was not obtained from company
 documents inside this run.
+
+
+---
+
+## SCEM — Sinai Cement Company S.A.E. (EGX) · fundamental walk-forward, 07-09-2026
+
+**Class:** cement and heavy industrial · **Scope:** LIGHT — five sourceable fiscal years
+(FY2021–FY2025), five origins, horizons 1–3, **nine resolved driver-cells** ·
+**Central:** EGP 123.27 → **116.93** against a spot of 100.50.
+
+**THE ARCHIVE IS THE SCOPE DECISION.** Sinai Cement publishes exactly six documents on its
+own website. Three of them had never been downloaded before this run; opening the two
+English ones (FY2022 and FY2023 audited) took the span from three sourceable years to five
+and the scope from SKIP to LIGHT. The sixth is Arabic and its figures are Eastern Arabic
+numerals that no OCR route available here reads, so **FY2020 is left out and the window
+shortened rather than filled from a vendor**.
+
+**THE DISCLOSURE GAP THAT DECIDES EVERY DRIVER ON THIS NAME: NO PHYSICAL VOLUME IS
+DISCLOSED ANYWHERE.** Not a tonne, not a capacity, not a utilisation, in any of the six
+filings, in any year. The finest sourced level for this issuer is the **cost-note line**,
+so revenue is `derived` and never `unit` under [R-SIGCM-02], and the tonnage the delivered
+study's model runs on is an industry-ring driver from a plant register and the trade press.
+The next study of this class should expect the same and check before assuming a unit build
+is available.
+
+| driver | mechanical rule at the origin | what it scored |
+|---|---|---|
+| revenue | revenue_t x point-in-time Egypt real GDP growth x point-in-time CPI, from the IMF WEO edition that EXISTED at that year-end | bias -0.561, n=9, outturn 1.75x the forecast |
+| materials, fuel, power, packing | the same volume and price legs — variable in both | bias -0.287, n=9, outturn 1.33x the forecast; **era sign FLIPS** |
+| cost-of-sales wages | escalated at CPI alone; fixed in real terms | bias -0.241, n=9, outturn 1.27x the forecast |
+| cost-of-sales maintenance | escalated at CPI alone | bias -0.503, n=9, outturn 1.65x the forecast |
+| transfer and loading (haulage) | volume x price; variable | bias -0.452, n=9, outturn 1.57x the forecast; **era sign FLIPS** |
+| general and administrative | CPI alone; overhead fixed in real terms | bias -0.590, n=9, outturn 1.80x the forecast |
+| depreciation and amortisation | PP&E roll-forward at the DISCLOSED weighted rate on gross cost | bias -0.025, n=9, outturn 1.02x the forecast; **era sign FLIPS** |
+| finance expense | the origin's own realised rate ON THE BORROWINGS THAT BEAR IT x debt held flat | bias +0.477, n=9, outturn 0.62x the forecast |
+| interest income | the origin's own realised deposit rate x the modelled cash balance | bias -0.953, n=9, outturn 2.59x the forecast |
+| capital expenditure | the disclosed cash-flow run rate held flat in real terms | bias -0.831, n=9, outturn 2.29x the forecast |
+| working capital | the origin's own working capital as a share of revenue | bias -0.704, n=3, outturn 2.02x the forecast; **era sign FLIPS** |
+| EBITDA | REBUILT from the drivers above, never forecast | bias -2.220, n=6, outturn 9.21x the forecast |
+| net profit after tax | rebuilt; tax by the regime known at the origin, 22.5% on positive profit | bias -1.885, n=2, outturn 6.59x the forecast |
+
+**THE SKILL VERDICT IS POSITIVE AND IT IS THE FIRST THING TO READ.** Against FREEZE
+(every line flat at last actual): +0.185 / +0.129 / +0.123 at horizons one, two and three.
+Against TREND (trailing CAGR): +0.239 / +0.231 / +0.205. The method beat both at every horizon
+tested — which PHDC's run did not, on net profit, at any horizon. The margin is a tenth to
+a quarter of the naive error and it rests on nine cells from one company.
+
+**TRAP (i), MEASURED ON THIS NAME AND WORTH CARRYING TO THE NEXT.** Finance expense over
+the borrowings that actually bear it runs 7.97–12.64 per cent across FY2022–FY2025; over
+total liabilities it runs 1.35–7.34 per cent. A factor of 1.7x to 5.9x, and the broad
+denominator would have implied this company borrowed at 1.35 per cent in an economy whose
+policy rate was 19.5.
+
+**THE DRIVER THAT IS MIS-SPECIFIED, AND IT IS THE VOLUME ANCHOR.** Egypt's real GDP growth
+contributed between +0.04 and +0.16 of log revenue growth in every cell while revenue
+compounded at 58 per cent nominal. Real GDP is not cement demand: domestic consumption rose
+13.4 per cent in 2025 against GDP around 4, and the quota regime that capped output since
+2021 was lifted permanently in July 2025. **This is L-058 on a second name.** The fix is an
+Egyptian cement-consumption series at each origin's own vintage, which this run did not
+have and did not invent.
+
+**CORRECTIONS: NONE PROMOTED, 11 WATCH FLAGS, 2 REFUSED AS AGGREGATES — AND THAT WAS
+PRE-REGISTERED.** Nine cells over four target years admit **zero** boundaries leaving five
+on each side, so under [R-FCAL-01 AMENDED 07-09-2026] every driver here is UNTESTABLE for
+stability rather than stable. Four candidates improve the out-of-sample error and none is
+promoted; four make it worse, which is L-061's signature. Run through the shared instrument
+`boundary_sensitivity.cuts_for()`, never reimplemented.
+
+**MACRO/COMPANY SPLIT: about a third macro, two thirds company** on the drivers that carry
+an inflation term. The split's own check passes — depreciation, finance expense and
+interest income carry no inflation term and return zero to within a tenth of a point.
+
+**THE LEVER THIS RUN APPLIED TO THE DELIVERED STUDY:** the terminal's useful life, from a
+25.89-year figure (two disclosed RANGES resolved at their midpoints, then an ARITHMETIC
+mean of the five classes' lives) to the **disclosed SCALAR 20-year machinery life** —
+machinery being 69.5 per cent of note 4's gross cost. Worth −5.1 per cent. **The validation
+the old figure carried was two errors cancelling**: an arithmetic-mean rate understating
+the disclosed rates' own product, compared against a total that included intangible
+amortisation. Recorded because the next name of this class will meet the same table shape:
+note 3/2 discloses RATES, two of five classes as RANGES, and the two ordinary ways of
+blending them disagree by a quarter.
+
+**GUIDANCE LEDGER: EMPTY, and that is a finding.** This issuer publishes no forward
+guidance, no results presentation and no earnings call, so no driver here can have
+inherited a management lean.
