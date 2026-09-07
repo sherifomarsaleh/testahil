@@ -1,0 +1,84 @@
+{
+ "ticker": "ELEC",
+ "run_dir": "elec_walkforward",
+ "drafts": [
+  {
+   "proposed_id": "DRAFT-ELEC-01",
+   "ticker": "ELEC",
+   "headline": "The forecasting method could not be tested on ELEC at all.",
+   "plain": "A walk-forward needs an origin to project from and a later actual to score against. Where the archive is too short there is no test to run, and saying so is the result \u2014 not a gap to be filled by stretching the window.",
+   "evidence": "4 sourceable fiscal years on the best available basis against a bar of 5, and 0 scoreable origins: the last sourceable actual is FY2023, so the last possible origin is FY2022 at h=1, and FY2022 needs five years of history to it (FY2018-FY2022) which do not exist on any basis in hand.",
+   "scope": "STOCK",
+   "why_scope": "A short archive is a fact about one issuer, not about a class or a method. File narrow and widen only if a second name shows the same thing for the same reason.",
+   "overturned_by": "A filing archive that becomes reachable, or filings supplied directly, taking the sourceable span to five years or more on one basis.",
+   "origin": "walk_forward_fundamental",
+   "rule": "skip_insufficient_history",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-ELEC-02",
+   "ticker": "ELEC",
+   "headline": "An index of filings is not an archive of filings.",
+   "plain": "A company can list its statements on its own website and serve none of them. The list looks like evidence the documents exist and are obtainable; only fetching each one tells you which. Record the outcome per file, not per page.",
+   "evidence": "61 statement files listed; 19 on the live host and 0 of those fetchable; 42 on a host whose DNS does not resolve; the index's last period is 2025-09-30 while the last statement on the basis the study models is FY2020.",
+   "scope": "ALL",
+   "why_scope": "This is about how a source is checked rather than about any company: the same wrong inference \u2014 a listing read as an obtainable document \u2014 is available on every name in the book.",
+   "overturned_by": "An index whose listings are shown to be reliably fetchable, making the per-file probe redundant.",
+   "origin": "walk_forward_fundamental",
+   "rule": "unserved_archive",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-ELEC-03",
+   "ticker": "ELEC",
+   "headline": "A study's historicals can be unverifiable and still pass every gate.",
+   "plain": "Where a company stops publishing on the basis a study models, the study's history quietly becomes a vendor's account of it. Every arithmetic check still passes, because the numbers are internally consistent \u2014 they are simply nobody's filed numbers. The test is to measure the study's panel against the filings that DO exist and against the wedge between the two bases, rather than to assume the difference is the consolidation.",
+   "evidence": "At the one year existing on both bases the group is 1.73x the parent on revenue and 2.04x on net profit. The study's FY2023 revenue is 1.79x the parent \u2014 consistent with a consolidated figure \u2014 while its net profit is 3.09x, 1.51 times beyond what the measured wedge delivers.",
+   "scope": "ALL",
+   "why_scope": "The failure is in how a panel is checked, not in what industry it belongs to. Any issuer can change reporting basis or stop publishing.",
+   "overturned_by": "A study whose vendor panel is later reconciled line by line to filings on the same basis, showing the check adds nothing.",
+   "origin": "walk_forward_fundamental",
+   "rule": "panel_unreconciled",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-ELEC-04",
+   "ticker": "ELEC",
+   "headline": "Check that a \"filed record\" was filed before reasoning from it.",
+   "plain": "A review can reach the right conclusion about a study and still take its benchmark from the study's own inputs. Calling a number the company's own record makes it read as external evidence when it is the thing under test, and the argument then runs in a circle nobody can see.",
+   "evidence": "A review described a terminal-margin range of 25.33%-30.68% as the company's own filed record; it is the study's committed hist_is, and two of its three years have no filing at all. The filed range on the basis that can be checked is 1.43%-17.49%, which puts the forecast of 12.30% INSIDE it rather than at half the lowest filed year, and puts the price's reverse read at 1.6 times the highest filed margin.",
+   "scope": "ALL",
+   "why_scope": "It is a rule about where a benchmark comes from, and it binds on every review this house writes.",
+   "overturned_by": "A house convention that tags every committed historical with whether it came from a filing, making the confusion impossible to make.",
+   "origin": "walk_forward_fundamental",
+   "rule": "filed_record_that_was_not_filed",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-ELEC-05",
+   "ticker": "ELEC",
+   "headline": "The accounting-policies note usually gives a range, not a life.",
+   "plain": "[R-TERM-01] needs one disclosed useful life and the policy note rarely supplies one. Reading a span and picking a point inside it is the choice the rule exists to forbid, so the honest output is the derived identity and a band.",
+   "evidence": "Route (1) gave spans only (10-50, 4-25, 5-20, 5-20, 5, 5-10); no dominant class, no weighting. Route (2) \u2014 depreciable gross cost over the annual charge \u2014 gives 24.13 years on the full base and 17.54 excluding the 27.3% of that base the note itself discloses as fully depreciated and still in use, with a prior-year control at 24.99.",
+   "scope": "ALL",
+   "why_scope": "It is about how a disclosure is read and it has now recurred across several unrelated names and industries.",
+   "overturned_by": "A run of filings that do disclose a scalar or a dominant class, making route (1) the normal case rather than the exception.",
+   "origin": "walk_forward_fundamental",
+   "rule": "useful_life_route_one_fails",
+   "confirmed": false
+  },
+  {
+   "proposed_id": "DRAFT-ELEC-06",
+   "ticker": "ELEC",
+   "headline": "A borrowing rate below the sovereign is the arithmetic failing, not the company borrowing cheaply.",
+   "plain": "Dividing the finance charge by a liabilities total that includes trade payables, related-party balances, tax and provisions understates the rate. The useful part is that the error announces itself: a corporate cannot fund below its own government, so a rate under the sovereign is a denominator problem and can be caught without knowing the right answer.",
+   "evidence": "On the borrowings that actually bear interest the rate runs 8.49%, 8.98%, 18.25%; on total liabilities 4.48%, 5.88%, 14.10% \u2014 understated by 3.09 to 4.15 points, and below the Egyptian sovereign in 2 of 3 years.",
+   "scope": "ALL",
+   "why_scope": "[R-COC-01] already refuses a cost of debt below its own sovereign; this adds that the same test catches the trap-(i) denominator, which is a method point rather than a company one.",
+   "overturned_by": "A jurisdiction where a corporate genuinely funds below its sovereign, which would make the check fire on work that is right.",
+   "origin": "walk_forward_fundamental",
+   "rule": "trap_i_below_sovereign",
+   "confirmed": false
+  }
+ ]
+}

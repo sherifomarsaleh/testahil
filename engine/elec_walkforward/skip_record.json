@@ -1,0 +1,95 @@
+{
+ "ticker": "ELEC",
+ "built": "2026-09-07",
+ "scope": "skip",
+ "scope_words": "walk-forward not run — insufficient sourceable history (4 years)",
+ "sourceable_years": {
+  "consolidated": 2,
+  "standalone": 4,
+  "required_for_light": 5,
+  "scoreable_origins": 0,
+  "why_zero_origins": "the last sourceable actual is FY2023, so the last possible origin is FY2022 at h=1, and FY2022 needs five years of history to it (FY2018-FY2022) which do not exist on any basis in hand"
+ },
+ "issuer_archive": {
+  "probed": "2026-09-07",
+  "index_http": 200,
+  "statement_files_listed": 61,
+  "on_live_host": 19,
+  "fetchable_on_live_host": 0,
+  "on_dead_host": 42,
+  "dead_host_resolves": false,
+  "index_last_period": "2025-09-30",
+  "consolidated_files_all_on_dead_host": true,
+  "last_consolidated_statement_issued": "FY2020"
+ },
+ "footing": {
+  "checks": 15,
+  "refusals": 0,
+  "route": "OCR/pixel off the rendered pages; no filing carries a usable text layer and three of four are truncated"
+ },
+ "consolidation_wedge_at_overlap": {
+  "year": "FY2020",
+  "revenue": 1.7342795770499955,
+  "operating_profit": 34.49377697796816,
+  "net_profit": 2.0410777592063236
+ },
+ "study_panel_vs_filed_FY2023": {
+  "revenue": 1.7855655972739783,
+  "ebitda": 3.1321184348797124,
+  "net_profit": 3.0881869494941774,
+  "revenue_consistent_with_wedge": true,
+  "profit_beyond_wedge_by": 1.5130177846311077
+ },
+ "claimed_filed_record": {
+  "claimed_range": [
+   0.253298689233717,
+   0.3068042959675745
+  ],
+  "claimed_source_in_audit": "this company's own reconstructed filed record",
+  "actual_source": "the study's own committed hist_is, which is vendor data; no filing exists for FY2024 or FY2025 at all",
+  "true_filed_range_standalone": [
+   0.014313423439544181,
+   0.1749037296530594
+  ],
+  "study_terminal_forecast": 0.123,
+  "terminal_inside_true_filed_range": true,
+  "premise_withdrawn": true,
+  "reverse_read_implied": 0.2717,
+  "reverse_read_over_highest_filed": 1.5534259934819374
+ },
+ "useful_life": {
+  "route_1_succeeded": false,
+  "route_1_outcome": "spans only (10-50, 4-25, 5-20, 5-20, 5, 5-10); no dominant class, no weighting",
+  "route_2_years_band": [
+   17.540529759385777,
+   24.130007403179754
+  ],
+  "route_2_prior_year_control": 24.988930314382152,
+  "fully_depreciated_share_of_base": 0.2730822885253504
+ },
+ "trap_i": {
+  "FY2021": {
+   "finance_cost": 43427339,
+   "rate_on_bearing_debt": 0.08489797403006945,
+   "rate_on_total_liabilities": 0.04482391445287441,
+   "understatement_pp": 4.007405957719504
+  },
+  "FY2022": {
+   "finance_cost": 84141987,
+   "rate_on_bearing_debt": 0.08976249732129041,
+   "rate_on_total_liabilities": 0.058836816886178846,
+   "understatement_pp": 3.092568043511156
+  },
+  "FY2023": {
+   "finance_cost": 308666911,
+   "rate_on_bearing_debt": 0.1825161827808407,
+   "rate_on_total_liabilities": 0.14099004537740617,
+   "understatement_pp": 4.152613740343453
+  }
+ },
+ "trap_i_broad_denominator_below_sovereign_years": 2,
+ "filings_truncated": 3,
+ "filings_held": 4,
+ "study_share_count_mn": 3313.540373,
+ "filed_share_count_mn": 3404.64321
+}

@@ -896,6 +896,32 @@ out = dict(
                            src='SAR 102.70 30-Jul-26 (sa.investing) x 150mn sh; FY25 NP 1,080.4 +32% '
                                '(maaal). EV/EBITDA ~12.5x derived, balance-sheet inputs unverified; '
                                'prior 18x was a stale mid-June cache')),
+
+    # [R-FCAL-01] — the scope decision, stated in the study as the rule requires.
+    # Recorded 07-09-2026 by the fundamental walk-forward run at
+    # engine/elec_walkforward/. The words are the rule's own and are not paraphrased.
+    walkforward_scope=dict(
+        scope='SKIP',
+        status='run',
+        sourceable_fiscal_years=4,
+        basis=('Four fiscal years are sourceable from ELEC\'s own audited statements on '
+               'a single reporting basis: FY2020-FY2023 standalone. The consolidated '
+               'basis this study models yields only FY2019-FY2020, because the company '
+               'has issued no consolidated statement since FY2020 while holding a 99.99% '
+               'subsidiary. FY2024 and FY2025 are unobtainable: re-probed 07-09-2026, '
+               'the issuer\'s index lists 61 statement files and serves none of the 19 '
+               'on its live host (HTTP 404, 19 of 19), the 42 consolidated ones sit on a '
+               'host whose DNS does not resolve, and the index carries no period after '
+               '30-09-2025. walk-forward not run - insufficient sourceable history '
+               '(4 years).'),
+        note=('walk-forward not run - insufficient sourceable history (4 years). There '
+              'are also ZERO scoreable origins by construction: the last sourceable '
+              'actual is FY2023, so the last possible origin is FY2022 at h=1, and an '
+              'origin needs five years of history to it. The run directory records what '
+              'was measured anyway - the filed record, the valuation-input block, the '
+              'basis-break register and the derived useful life - because these filings '
+              'are not obtainable from the issuer.'),
+    ),
 )
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(out, f, indent=1, default=float)

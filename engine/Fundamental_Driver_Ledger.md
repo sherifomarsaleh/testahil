@@ -689,3 +689,79 @@ them as decisions taken, never as findings.
 ### The most consequential contested judgement, both ways
 
 which lens is the answer: the cash-flow model is the central at 38.0806 against the enterprise multiple on this company's own trading history at 48.0753. Published side by side, never averaged.
+
+---
+
+## ELEC — Electro Cable Egypt (EGX) · fundamental walk-forward, 07-09-2026 · **SKIP**
+
+**Scope: SKIP — walk-forward not run — insufficient sourceable history (4 years).**
+Run directory `engine/elec_walkforward/`. No driver was projected and none was scored,
+so this entry records what the filings decided rather than what a forecast measured.
+
+**Class.** No registry row exists for a cable manufacturer and ELEC recorded no class.
+Run as the nearest pattern — *refiner, commodity pass-through on a thin spread* —
+adapted inside the ADNOCLS skeleton, because a cable maker buys copper at a quoted
+world price and sells cable at that price plus a conversion spread, which is the shape
+that row exists for. **No registry row was added**: [R-LENS-03] adds a class when a
+different LENS carries the weight, never when the industry differs, and a cable maker's
+lens set is identical to the refiner row's. Reasoning in `CLASS_DECISION_07-09-2026.md`.
+ELEC is the **third** independent name to meet this wall (after SAVOLA and EMPOWER) and
+is noted on that open escalation rather than resolved here.
+
+### What the archive decided
+
+| basis | years sourceable | note |
+|---|---:|---|
+| consolidated — **the basis this study models** | 2 (FY2019–FY2020) | the company has issued no consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5) |
+| standalone | 4 (FY2020–FY2023) | the parent entity only |
+
+Re-probed 07-09-2026 rather than taken from the record: the issuer's index returns HTTP
+200 and lists **61 statement files**; **19 of 19** on the live host return HTTP 404; the
+**42** consolidated ones sit on a host whose DNS does not resolve; the index carries no
+period after 30-09-2025. **Scoreable origins: zero**, by construction.
+
+### Driver decisions a same-class study should inherit
+
+1. **Interest is built from bank credit facilities + the long-term loan + the lease and
+   financing-arrangement liabilities (note 4/2), and from nothing else.** Trade payables,
+   related-party balances, tax liabilities, provisions, deferred tax and dividends
+   payable bear no interest. Measured on this company's own accounts, the broad
+   denominator understates the rate by **3.09 to 4.15 points** and puts it **below the
+   Egyptian sovereign in two of three years** — which is [R-COC-01]'s own refusal, and
+   is a way of catching trap (i) without knowing the right answer.
+
+2. **The useful life is DERIVED and is a band, not a point.** Route (1) failed: the
+   policy note discloses spans (10–50, 4–25, 5–20, 5–20, 5, 5–10) with no dominant class
+   and no weighting. Route (2) gives **24.13 years** on the full depreciable base and
+   **17.54** excluding the 27.3% of that base the note itself calls fully depreciated and
+   still in use, with a prior-year control at 24.99. `engine/elec_study/useful_lives.json`.
+
+3. **Capex is DISCLOSED, and the identity must not be used here.** These years carry
+   large disposals (FY2021 proceeds of 103.5mn on a book gain of 78.1mn), so
+   `capex = ΔPP&E + D&A` does not close. The cash-flow statement discloses the figure and
+   it reconciles exactly to note 3's own additions.
+
+4. **The consolidated/standalone wedge is measured, never assumed, and it is not a single
+   ratio.** At FY2020, the one year existing on both bases, the group is **1.73x** the
+   parent on revenue, **3.58x** on gross profit, **34.49x** on operating profit and
+   **2.04x** on net profit. Non-controlling interests are EGP 44, so this is not a
+   minority effect. **The two bases are not chained.**
+
+5. **The share count comes from the recital's par, and no count is carried back.** Note
+   13 of the FY2021 filing states issued capital of EGP 711,447,385 in 711,447,385 shares
+   of EGP 1, a 1:5 split ratified 24-01-2021 taking par to EGP 0.20 and the count to
+   3,557,236,925 — which the identity reproduces exactly. FY2020 is therefore recorded
+   **pre-split**.
+
+### The most consequential finding, and it corrects an earlier reading
+
+The 06-09-2026 audit's `[R-ANCHOR-01]` claim — that the study's terminal EBITDA margin of
+12.30% is "less than half of the lowest filed year" against a filed record of
+25.33%–30.68% — **does not survive the filings, and its premise is withdrawn.** That
+range is the study's own committed `hist_is`, which is vendor data, and two of its three
+years have no filing at all. The filed standalone range is **1.43%–17.49%**, which puts
+12.30% **inside** it; the price's reverse read of 27–28% sits at **1.6x** the highest
+margin the company has filed. **`fair{}` was not moved in either direction** — the study
+is not rebuilt, because this run establishes that its historical panel cannot be
+reconciled to anything the issuer has published, which is a SIGCM clause 1 condition
+rather than a disagreement with the market.
