@@ -108,6 +108,73 @@ def extra_stamps(path):
     return [(m.group(1), m.start()) for m in hits[1:]]
 
 
+# A PASSAGE THIS LONG DOES NOT RECUR BY ACCIDENT, AND THE THREE THAT DO ARE NAMED.
+# The window is 300 characters because that is roughly two sentences of this prose:
+# short enough to catch a spliced rule header (the shortest real one measured 106
+# chars of overlap) and long enough that ordinary house phrasing -- "READ THE
+# POPULATION LIVE", "THE GENERAL LESSON, WHICH IS NOT ABOUT" -- cannot reach it,
+# since those diverge within a clause. Measured on the repaired file: the whole
+# document carries exactly three repeats at 100 chars and NONE at 300.
+DUP_WINDOW = 300
+
+# Deliberate restatements, each a rule quoting another ON PURPOSE. Named with the
+# reason rather than tolerated by a length cutoff, because an allowance nobody has
+# to justify is where the next splice hides.
+DUP_ALLOWED = {
+    "that is the evidence to revisit this clause": (
+        "[R-GAP-02 AMENDED] and [R-MERGE-01] both state their own falsifier in the "
+        "same words, deliberately: each records the evidence that would reopen it."),
+    "a stale base year, an over-charged discount rate": (
+        "[R-GAP-01] and [R-GAP-02 AMENDED] both list the DCF errors that run one way; "
+        "the second rule's asymmetry is that list, so it restates it rather than "
+        "pointing at it."),
+    "the higher a market's inflation the more brutal the charge": (
+        "[R-TERM-01 CLAUSE TWO] QUOTES the sentence it is correcting, which is the "
+        "point of the clause."),
+}
+
+
+def duplicated_passages(path, window=DUP_WINDOW):
+    """Maximal passages appearing twice in one document.  [R-DOC-01]
+
+    A MERGE CAN SATISFY EVERY CHECK AND STILL PRODUCE A DOCUMENT NEITHER SIDE WROTE.
+    The 06-09-2026 union merge of the single-line digest duplicated the revision
+    stamp -- closed by extra_stamps() above -- and, found the day after, spliced
+    FIVE fragments into the body: a rule header repeated with a neighbouring rule's
+    sentence between the copies, a general lesson inserted into a different rule,
+    and a sentence left cut off mid-clause. 2,035 characters, every one of them
+    text that belonged somewhere else in the same file, and nothing could see it.
+
+    The full protocol took NO damage from the same merge, which is the whole
+    finding: it has line breaks, so git resolved it hunk by hunk. A single-line
+    file has no merge granularity, so the resolution is a splice and the splice is
+    invisible to a reader and to a diff alike.
+
+    Arithmetic about the file, not a word list: identical text is identical text.
+    """
+    s = open(path, encoding='utf-8').read()
+    seen, hits = {}, []
+    for i in range(len(s) - window + 1):
+        w = s[i:i + window]
+        if w in seen:
+            hits.append((seen[w], i))
+        else:
+            seen[w] = i
+    regions = []
+    for a, b in hits:
+        if regions and a == regions[-1][0] + regions[-1][2] and b == regions[-1][1] + regions[-1][2]:
+            regions[-1][2] += 1
+        else:
+            regions.append([a, b, 1])
+    out = []
+    for a, b, n in regions:
+        text = s[b:b + n + window - 1]
+        if any(k in text for k in DUP_ALLOWED):
+            continue
+        out.append((a, b, n + window - 1, text[:90]))
+    return out
+
+
 def main():
     full, digest = ids_in(FULL), ids_in(DIGEST)
     rf, rd = revision(FULL), revision(DIGEST)
@@ -129,7 +196,19 @@ def main():
                       f'none; the stamp exists so a pasted copy can declare its own '
                       f'age. Delete the superseded sentence and bump.')
         return 1
-    print(f'revision stamp: {rf} (both documents agree, one stamp each)')
+    spliced = {os.path.basename(p): duplicated_passages(p) for p in (FULL, DIGEST)}
+    if any(spliced.values()):
+        for name, regions in spliced.items():
+            for a, b, n, head in regions:
+                print(f'FAIL — {name} repeats {n} characters verbatim, at {a} and {b}. '
+                      f'A passage that long does not recur by accident; this is a merge '
+                      f'splice. Passage begins: {head!r}')
+        print('If a rule genuinely quotes another at this length, name it in '
+              'DUP_ALLOWED with its reason — an allowance nobody has to justify is '
+              'where the next splice hides.')
+        return 1
+    print(f'revision stamp: {rf} (both documents agree, one stamp each, no spliced '
+          f'passage over {DUP_WINDOW} characters)')
     code = ids_in_code()
 
     only_full = sorted(full - digest)

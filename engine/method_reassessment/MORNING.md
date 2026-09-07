@@ -1733,3 +1733,48 @@ carry the bias" and they answer it perfectly. The moment a different question
 arrived — can this file rebuild the number printed beside it — the answer was no,
 for three runs at once, and nothing anywhere said so, because a file recording one
 side of a comparison looks exactly like a file recording both.
+
+### The body took the same damage, and counting stamps could not see it
+
+Closing the stamp defect closed **one instance and left the class open.** Re-reading
+the digest's own text found the same union merge had spliced **five fragments into
+the body — 2,035 characters**: a rule header repeated with a neighbouring rule's
+sentence between the two copies (twice), a general lesson lifted out of one rule
+and inserted into another, and a sentence left **cut off mid-clause**, so a reader
+met `...however wrong the page is (` and then a rule title.
+
+Every character was text that belonged somewhere else in the same file. **Nothing
+was lost and nothing was invented — which is exactly why no gate, no diff and no
+reader caught it.**
+
+**The full protocol took no damage at all from the same merge**, and that is the
+finding rather than a detail: it has line breaks, so git resolved it hunk by hunk;
+the digest is one line, so the resolution was a splice. Yesterday I recorded that a
+single-line file has no merge granularity and framed the cost as reviewability.
+**The cost is correctness.**
+
+Repaired by removing exactly the five spliced spans, each verified as a duplicate of
+text surviving elsewhere and each join checked to read grammatically; rule-id sets
+unchanged at 39/39. Closed by `check_protocol_sync` refusing any passage of 300
+characters or more appearing twice — arithmetic about the file, not a word list. The
+window is measured rather than chosen: two sentences of this prose, short enough for
+the shortest real splice (106 characters of overlap) and long enough that house
+phrasing cannot reach it. **The three passages that do recur are named with their
+reasons**, because an allowance nobody has to justify is where the next splice hides.
+
+**Two of my own instruments failed first, and both failures are the record.** The
+first scan sampled windows at every tenth offset and reported **three splices where
+there were five** — two copies whose offsets differ by a non-multiple of the step
+are never both sampled, so it was structurally blind to most of what it was looking
+for **and printed a number rather than an error**. That is the third time today a
+probe of mine returned an answer that was absent rather than wrong. The negative
+control's landing assertion then reproduced the identical shortcut and had to be
+rewritten to scan every offset; and its clean fixtures were built from one padding
+sentence repeated three times, so they carried the very defect they existed to prove
+absent — the check flagged them, and was right to.
+
+THE GENERAL LESSON: **A CONTROL THAT PROVES A CHECK IS SOUND IS ITSELF A THING THAT
+CAN BE WRONG IN THE SAME WAY AS THE CHECK.** Both my sampled scan and the assertion
+meant to guarantee it had landed shared one bug, because I wrote them minutes apart
+in the same frame of mind. The only thing that separated them was that one of them
+failed loudly.

@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-06d — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-06e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -1080,7 +1080,42 @@ LESSON, WHICH IS NOT ABOUT STAMPS: A MERGE CAN SATISFY EVERY CHECK AND STILL PRO
 DOCUMENT NEITHER SIDE WROTE. Both stamps were real, both had been correct, and the union that
 kept them is exactly the resolution that saved two standing rules from being dropped the same
 day — so the safe merge and the defect are the SAME OPERATION, and the only thing that
-separates them is a check that counts. The
+separates them is a check that counts.
+
+**AND THE BODY TOOK THE SAME DAMAGE, WHICH THE STAMP CHECK COULD NOT SEE [07-09-2026].**
+Counting stamps closed one instance; the class was still open. Measured the day after on the
+repaired file, the same union merge had spliced **FIVE fragments into the digest's body —
+2,035 characters**: a rule header repeated with a neighbouring rule's sentence between the two
+copies (twice), a general lesson lifted out of one rule and inserted into another, and a
+sentence left **cut off mid-clause** so a reader met "...however wrong the page is (" and then
+a rule title. Every character of it was text that belonged somewhere else in the same file, so
+nothing was lost and nothing was invented — which is precisely why no gate, no diff and no
+reader caught it. **THE FULL PROTOCOL TOOK NO DAMAGE AT ALL FROM THE SAME MERGE**, and that is
+the finding rather than a detail: this document has line breaks, so git resolved it hunk by
+hunk; the digest is one line, so the resolution was a splice. A SINGLE-LINE FILE HAS NO MERGE
+GRANULARITY, AND WHAT IT LOSES IS NOT ONLY REVIEWABILITY BUT CORRECTNESS.
+
+`check_protocol_sync` now refuses any passage of 300 characters or more appearing twice in one
+document — arithmetic about the file rather than a word list, since identical text is identical
+text. THE WINDOW IS MEASURED, NOT CHOSEN: roughly two sentences of this prose, short enough to
+catch the shortest real splice (106 characters of overlap) and long enough that house phrasing
+cannot reach it, since "READ THE POPULATION LIVE" and "THE GENERAL LESSON, WHICH IS NOT ABOUT"
+diverge within a clause. **THE THREE PASSAGES THAT DO RECUR ARE NAMED WITH THEIR REASONS** —
+two rules stating the same falsifier on purpose, two listing the same one-way DCF errors, and
+[R-TERM-01 CLAUSE TWO] quoting the sentence it corrects — because an allowance nobody has to
+justify is where the next splice hides. Negative-controlled on three splice shapes (a header
+repeated with text between, a passage inserted far from its home, a back-to-back duplicate)
+and three clean cases, each mutation asserting that it LANDED first.
+
+**THE LANDING ASSERTION AND THE CLEAN FIXTURES EACH FAILED FIRST, AND BOTH FAILURES ARE THE
+RECORD.** The first measurement of this defect scanned windows at every tenth offset and
+reported THREE splices where there were five — two copies whose offsets differ by a
+non-multiple of the step are never both sampled, so the scan was structurally blind to most of
+what it was looking for, and it printed a number rather than an error. The landing assertion
+then reproduced the identical shortcut and had to be rewritten to scan every offset. And the
+clean fixtures were built with one padding sentence repeated three times, so they carried the
+very defect they existed to prove absent; the check flagged them and was right to. A CONTROL
+THAT PROVES A CHECK IS SOUND IS ITSELF A THING THAT CAN BE WRONG IN THE SAME WAY AS THE CHECK. The
 identifier also gives an amendment one obvious place to land, and lets a QC gate cite the rule it
 is testing rather than paraphrasing it.
 

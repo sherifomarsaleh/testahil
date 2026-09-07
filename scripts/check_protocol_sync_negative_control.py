@@ -63,6 +63,66 @@ CLEAN = [
      OPEN_D + BODY + ' [R-MACRO-01 AMENDED 06-09-2026] A PATH\'S ANCHOR CARRIES A DATE.'),
 ]
 
+# ---- the SPLICE half: a passage repeated verbatim, which is what the union merge
+# ---- of the single-line digest actually produced in the body the day after the
+# ---- stamp defect. Every fixture is built from the real shapes, not invented.
+LONG_A = ('[R-EXAMPLE-01] A RULE HEADER OF REALISTIC LENGTH, ADOPTED SOMEWHEN, per '
+          'instruction, whose sentence runs on for a while because every rule in this '
+          'document does, and which therefore comfortably exceeds the window this '
+          'check uses to decide that a passage did not recur by accident at all, at '
+          'something over four hundred characters rather than something just over the '
+          'window, because a fixture sitting on a boundary tests the boundary and not '
+          'the thing the boundary is for. ')
+LONG_B = ('The neighbouring rule says something else entirely, at similar length, so '
+          'that a fixture splicing one into the other reproduces the exact shape the '
+          'merge produced rather than a shorter thing that only resembles it, which '
+          'is what the first draft of this control did and proved nothing by. ')
+# THREE DIFFERENT SENTENCES, NOT ONE REPEATED THREE TIMES. The first draft wrote
+# this as a single sentence multiplied by three, which is itself a repeated passage
+# — so the CLEAN fixtures carried the very defect they were built to prove absent,
+# and the check flagged them. It was right to; the fixture was wrong.
+FILLER = ('Ordinary prose fills the gap between the two so a repeat is not merely '
+          'adjacent text. '
+          'A second sentence of unrelated wording carries the fixture past the '
+          'window without ever saying the same thing twice. '
+          'A third runs on differently again, at enough length that nothing in this '
+          'padding lands inside the window by accident. ')
+
+SPLICE_RED = [
+    # the shape of site A: a header duplicated with a neighbour's sentence between
+    ('a rule header repeated with text between the copies',
+     OPEN_D + BODY + LONG_A + LONG_B + LONG_A + BODY),
+    # the shape of site B: a whole lesson inserted into a different rule, far away
+    ('a passage spliced in far from its own home',
+     OPEN_D + LONG_A + FILLER + BODY + FILLER + LONG_A + BODY),
+    # immediately adjacent, the cheapest splice of all
+    ('a passage duplicated back to back',
+     OPEN_D + BODY + LONG_A + LONG_A + BODY),
+]
+
+SPLICE_CLEAN = [
+    ('no repeat at all', OPEN_D + LONG_A + FILLER + LONG_B + BODY),
+    # SHORTER than the window: house phrasing recurs and must not fire
+    ('a short recurring house phrase',
+     OPEN_D + 'READ THE POPULATION LIVE — never from this block. ' + LONG_A
+     + 'READ THE POPULATION LIVE — never from this block. ' + LONG_B),
+    # a named deliberate restatement must NOT fire even at full length
+    ('a named deliberate restatement',
+     OPEN_D + LONG_A + FILLER
+     + 'that is the evidence to revisit this clause, and it is written down so the '
+       'revisit does not depend on anyone remembering, which two rules in this '
+       'document both say in these words on purpose because each records the '
+       'evidence that would reopen it and neither points at the other. ' + FILLER
+     + 'that is the evidence to revisit this clause, and it is written down so the '
+       'revisit does not depend on anyone remembering, which two rules in this '
+       'document both say in these words on purpose because each records the '
+       'evidence that would reopen it and neither points at the other. '),
+]
+
+EXPECTED_SPLICE_RED, EXPECTED_SPLICE_CLEAN = 3, 3
+assert len(SPLICE_RED) == EXPECTED_SPLICE_RED and len(SPLICE_CLEAN) == EXPECTED_SPLICE_CLEAN, (
+    'SPLICE CASE COUNT CHANGED — update the declared constants deliberately.')
+
 EXPECTED_RED, EXPECTED_CLEAN = 4, 5
 assert len(RED) == EXPECTED_RED and len(CLEAN) == EXPECTED_CLEAN, (
     'CASE COUNT CHANGED — a case was added or deleted. Update the declared '
@@ -99,7 +159,56 @@ for name, text in CLEAN:
     print(f"  {'PASSED ' if ok else 'FALSE+ '} {name}")
 
 print(f"\n{caught}/{EXPECTED_RED} defects caught, {passed}/{EXPECTED_CLEAN} clean cases passed")
-if caught != EXPECTED_RED or passed != EXPECTED_CLEAN:
-    print('FAIL — the second-stamp refusal does not do what [R-DOC-01] claims.')
+
+
+def _splice(text):
+    fd, path = tempfile.mkstemp(suffix='.md')
+    with os.fdopen(fd, 'w', encoding='utf-8') as fh:
+        fh.write(text)
+    try:
+        return cps.duplicated_passages(path)
+    finally:
+        os.unlink(path)
+
+
+s_caught = s_passed = 0
+for name, text in SPLICE_RED:
+    # ASSERT THE MUTATION LANDED: the fixture must actually repeat a passage
+    # longer than the window, or a red result proves nothing about this check.
+    # EVERY offset, never a sample. A sampled scan only compares windows whose
+    # offsets share a remainder, so two copies at offsets differing by a
+    # non-multiple of the step are never both seen — which is exactly how the
+    # first measurement of this defect reported three splices where there were
+    # five, and it is not a bug this file may repeat while asserting a landing.
+    W = cps.DUP_WINDOW
+    seen = set()
+    landed = False
+    for i in range(len(text) - W + 1):
+        w = text[i:i + W]
+        if w in seen:
+            landed = True
+            break
+        seen.add(w)
+    assert landed, ('MUTATION DID NOT LAND: ' + name
+                    + f' — no {W}-character passage repeats in this fixture')
+    hits = _splice(text)
+    ok = bool(hits)
+    s_caught += ok
+    print(f"  {'CAUGHT ' if ok else 'MISSED '} {name}"
+          + (f'  ({hits[0][2]} chars)' if hits else ''))
+for name, text in SPLICE_CLEAN:
+    hits = _splice(text)
+    ok = not hits
+    s_passed += ok
+    print(f"  {'PASSED ' if ok else 'FALSE+ '} {name}"
+          + ('' if ok else f'  (flagged {hits[0][2]} chars: {hits[0][3]!r})'))
+
+print(f"{s_caught}/{EXPECTED_SPLICE_RED} splices caught, "
+      f"{s_passed}/{EXPECTED_SPLICE_CLEAN} clean cases passed")
+
+if (caught != EXPECTED_RED or passed != EXPECTED_CLEAN
+        or s_caught != EXPECTED_SPLICE_RED or s_passed != EXPECTED_SPLICE_CLEAN):
+    print('FAIL — the stamp or splice refusal does not do what [R-DOC-01] claims.')
     sys.exit(1)
-print('OK — a document stating two revisions is refused; one stamp is not.')
+print('OK — a document stating two revisions is refused, and so is one repeating '
+      'a passage it was spliced with; one stamp and ordinary phrasing are not.')
