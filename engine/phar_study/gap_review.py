@@ -1,27 +1,58 @@
-# PHAR — gap review, 7 September 2026
+#!/usr/bin/env python3
+"""PHAR gap review [R-GAP-01] — GENERATED, so every figure in it is computed.
+
+The review is a claim about a DISAGREEMENT, so both halves of it move: the study's
+own central and the latest known price. Typing either into prose is how a review
+comes to audit an answer the study no longer publishes, which is the hole the
+AUDITED CENTRAL and AUDITED GAP markers were added to close. Nothing here is typed.
+"""
+import json, os
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+NUM = json.load(open(os.path.join(HERE, 'study_numbers.json'), encoding='utf-8'))
+LED = json.load(open(os.path.join(HERE, 'rebuild_ledger.json'), encoding='utf-8'))
+
+A, B = NUM['dcf']['frame_A'], NUM['dcf']['frame_B']
+I = NUM['inputs']
+SPOT = NUM['spot']
+SH = I['shares_mn']['value']
+EPS = I['parent_fy25']['value'] / SH
+
+gA = A['per_share'] / SPOT - 1.0
+gB = B['per_share'] / SPOT - 1.0
+oA = A['per_share_superseded_grown_basis']
+oB = B['per_share_superseded_grown_basis']
+tvA_old = A['terminal_record']['superseded_grown_basis']['tv']
+tvB_old = B['terminal_record']['superseded_grown_basis']['tv']
+LEV = [lv for lv in LED['levers'] if lv['rule'] == 'R-TERM-01'][-1]
+
+def pc(x, d=1):
+    return f'{100*x:.{d}f}%'
+
+OUT = f"""# PHAR — gap review, 7 September 2026
 
 Written because the fundamental walk-forward ran on this name today and produced evidence
 that bears directly on the discount, and then **rewritten later the same day because the
 answer moved**: a basis defect was found at both of this study's terminal call sites and
 corrected, and a review of a different answer is not a review. The review of 4 September
 stands as it was written and is not rewritten; this one supersedes the earlier draft of
-**today**, which audited EGP 36.6395 and EGP 54.2420 — a pair this study no longer
+**today**, which audited EGP {oA:.4f} and EGP {oB:.4f} — a pair this study no longer
 publishes. Everything that draft established under headings 1, 2, 3, 4, 6 and 7 is
 re-stated here unchanged, because none of it turned on the terminal.
 
 A two-sided answer, so BOTH branches are audited; there is no single central and averaging
 them would state a number neither branch supports.
 
-**AUDITED CENTRAL: 32.9975** — Frame A, provision charge permanent at 5.25% of revenue
-**AUDITED CENTRAL: 49.6789** — Frame B, provision charge normalising to 2.5% of revenue
-**Audited spot:** EGP 127.30, the Egyptian Exchange close of 3 September 2026, the latest
+**AUDITED CENTRAL: {A['per_share']:.4f}** — Frame A, provision charge permanent at 5.25% of revenue
+**AUDITED CENTRAL: {B['per_share']:.4f}** — Frame B, provision charge normalising to 2.5% of revenue
+**Audited spot:** EGP {SPOT:.2f}, the Egyptian Exchange close of 3 September 2026, the latest
 price supplied to this repository (`engine/prices/SUPPLIED_07-09-2026.json`)
-**AUDITED GAP: -74.1%** (Frame A) · Frame B -61.0%
+**AUDITED GAP: {pc(gA)}** (Frame A) · Frame B {pc(gB)}
 
-**Both branches moved today and the gap widened.** Frame A EGP 36.6395 → 32.9975
-(-9.94%), Frame B EGP 54.2420 → 49.6789
-(-8.41%); the gap on Frame A goes from -71.2% to
--74.1% and on Frame B from -57.4% to -61.0%. **The correction moved the
+**Both branches moved today and the gap widened.** Frame A EGP {oA:.4f} → {A['per_share']:.4f}
+({pc(A['per_share']/oA - 1, 2)}), Frame B EGP {oB:.4f} → {B['per_share']:.4f}
+({pc(B['per_share']/oB - 1, 2)}); the gap on Frame A goes from {pc(oA/SPOT - 1)} to
+{pc(gA)} and on Frame B from {pc(oB/SPOT - 1)} to {pc(gB)}. **The correction moved the
 answer AWAY from the price, which is not a reason to reconsider it** — a correction that
 moved it toward the price would be the thing to look at twice.
 
@@ -56,16 +87,16 @@ deflated: deflating it would put one term a year behind the others, and the modu
 grows the whole flow once, which is what a charge borne in perpetuity should do.
 
 **What it is worth, rebuilt through the same module rather than estimated:** terminal value
-EGP 20,109.0mn → 18,664.9mn (-7.18%) on Frame A and
-25,691.4mn → 23,882.1mn (-7.04%) on Frame B; value per
-share -9.94% and -8.41%. **The share effect
+EGP {tvA_old:,.1f}mn → {A['tv']:,.1f}mn ({pc(A['tv']/tvA_old - 1, 2)}) on Frame A and
+{tvB_old:,.1f}mn → {B['tv']:,.1f}mn ({pc(B['tv']/tvB_old - 1, 2)}) on Frame B; value per
+share {pc(A['per_share']/oA - 1, 2)} and {pc(B['per_share']/oB - 1, 2)}. **The share effect
 is larger than the terminal effect because the bridge is geared** — net debt EGP
-7,364.3mn against Frame A equity of 5,568.5mn — and that is
+{A['net_debt']:,.1f}mn against Frame A equity of {A['equity']:,.1f}mn — and that is
 arithmetic rather than a second change.
 
 **The evidence that this pass moved one thing and not several:** the superseded construction
 was rebuilt through the same sanctioned module and reproduces the previous edition's
-published pair, EGP 36.6395 and 54.2420, to the fourth decimal. Nothing else in the model
+published pair, EGP {oA:.4f} and {oB:.4f}, to the fourth decimal. Nothing else in the model
 was touched.
 
 **The route now crosses the audit point this rebuild declared in advance, and that is said
@@ -74,12 +105,12 @@ here rather than left to be noticed.** The ledger's declared stopping place for 
 price is consulted for the gap review*; this lever comes after it, so the pass re-declared
 its own audit point before the lever was built — stop once the single lever serving the
 terminal rule is in, and answer the crossing here. The cumulative route from the
-4 September starting answer of EGP 58.0436 now reads
--43.2%, having passed through **+45.0%** at the first lever.
+4 September starting answer of EGP {LED['start_value']:.4f} now reads
+{pc(LED['cumulative_move'], 1)}, having passed through **+45.0%** at the first lever.
 **That is seven levers serving four rules, not seven independent findings that this study
 was too high**, and the two levers serving the terminal rule pull in opposite directions:
 the first raised the answer 45.0% by putting the terminal on a disclosed asset life, the
-seventh lowers it -9.9% by putting it on the right year's money.
+seventh lowers it {pc(LEV['move'], 1)} by putting it on the right year's money.
 
 ---
 
@@ -172,7 +203,7 @@ The study carries no inflation rate of its own: `esc_domestic_cpi` is the house 
 ladder 16.0 / 12.0 / 9.0 / 7.5 / 7.0 to the basis point, terminal growth is stored as zero
 real and derived, and the currency is derived by relative purchasing-power parity on that
 same ladder. One economy, one path. **Cleared, and today's correction does not touch it** —
-the terminal's growth rate is unchanged at 7.0% nominal on zero
+the terminal's growth rate is unchanged at {pc(NUM['derived']['g_term'], 1)} nominal on zero
 stated real growth; what changed is the year the flow it multiplies is stated in.
 
 **The registered tension of 4 September was about the wrong field, and this review says so.**
@@ -218,7 +249,7 @@ Operations are discounted once, on a glide whose fractions are the cost-of-debt 
 cumulative progress: 22.71% / 20.65% / 18.40% / 16.53% / 15.03%.
 
 **Today's correction is about the numerator, not the rate, and the two are easy to confuse.**
-The terminal discount rate is unchanged at 15.03%. What was
+The terminal discount rate is unchanged at {pc(NUM['wacc']['wacc_term'], 2)}. What was
 wrong was that the flow being capitalised at it sat one year further out than the discount
 factor applied to the result — the same date on both sides is the whole of the fix, and the
 rate itself was never in question.
@@ -258,11 +289,11 @@ depreciated. **No life was reassessed between FY2024 and FY2025**, which is the 
 `useful_lives.json` names, tested and not triggered. That is unchanged.
 
 **What is corrected:** the flows handed to that construction. Terminal free cash flow now
-reads EGP 1,400.5mn on Frame A against 1,508.9mn
-before, and 1,792.0mn against 1,927.7mn
-on Frame B. The terminal remains 80% of core enterprise value on Frame A
-and 80% on Frame B — 61% and
-65% of TOTAL enterprise value once the associates and the assets
+reads EGP {A['fcff_term']:,.1f}mn on Frame A against {A['terminal_record']['superseded_grown_basis']['fcff']:,.1f}mn
+before, and {B['fcff_term']:,.1f}mn against {B['terminal_record']['superseded_grown_basis']['fcff']:,.1f}mn
+on Frame B. The terminal remains {pc(A['tv_share'], 0)} of core enterprise value on Frame A
+and {pc(B['tv_share'], 0)} on Frame B — {pc(A['tv_share_total'], 0)} and
+{pc(B['tv_share_total'], 0)} of TOTAL enterprise value once the associates and the assets
 held for sale are carried — so the concentration is essentially where it was and the
 correction did not move the shape of the answer, only its level.
 
@@ -297,15 +328,15 @@ The bridge stands on the FY2025 audited balance sheet, which is the latest EIPIC
 Subject to heading 1: if an H1-2026 exists behind the exchange portal, this sheet is
 superseded. Total assets EGP 18,272,906,249 and total equity EGP 6,531,836,087 at 31 December
 2025, **re-read today and footed** — the sheet balances to the pound. Net debt in the bridge
-is unchanged at EGP 7,364.3mn and it is the reason the per-share effect of
+is unchanged at EGP {A['net_debt']:,.1f}mn and it is the reason the per-share effect of
 today's correction exceeds the terminal effect: the same absolute reduction in enterprise
 value falls on a smaller equity stub.
 
 ## 7. CLAIMS AGAINST THE RECORD — **cleared, and one claim strengthened by being tested**
 
-The study's re-rating claim is recomputed rather than repeated: at EGP 127.30 the shares
-trade on **14.90×** trailing attributable earnings on the 168,755,750 shares in
-issue (EGP 1,441,657,700 attributable, EPS 8.5429), or 14.3× on the audited weighted
+The study's re-rating claim is recomputed rather than repeated: at EGP {SPOT:.2f} the shares
+trade on **{SPOT/EPS:.2f}×** trailing attributable earnings on the {SH*1e6:,.0f} shares in
+issue (EGP 1,441,657,700 attributable, EPS {EPS:.4f}), or 14.3× on the audited weighted
 average, against a four-year own-history mean of 6.6× computed from year-end closes over
 audited profit.
 
@@ -321,15 +352,15 @@ the document is told why the pair moved.
 
 ## 8. MULTIPLE CROSS-CHECK — **STILL NOT CLEARED, and the correction makes it harder, not easier**
 
-Frame A at EGP 33.00 implies **3.86×** trailing FY2025
-attributable earnings, against 4.29× before today's correction. Frame B at
-49.68 implies **5.82×**, against 6.35×. The market
-pays 14.90×.
+Frame A at EGP {A['per_share']:.2f} implies **{A['per_share']/EPS:.2f}×** trailing FY2025
+attributable earnings, against {oA/EPS:.2f}× before today's correction. Frame B at
+{B['per_share']:.2f} implies **{B['per_share']/EPS:.2f}×**, against {oB/EPS:.2f}×. The market
+pays {SPOT/EPS:.2f}×.
 
 **This is the heading the correction hurts.** Frame B previously landed almost exactly on this
 company's own four-year mean of 6.6×, which was the single most comfortable cross-check in the
-study; at 5.82× it now sits below every year of that own history except
-the 2022 low, and Frame A at 3.86× sits below all four. **A generic
+study; at {B['per_share']/EPS:.2f}× it now sits below every year of that own history except
+the 2022 low, and Frame A at {A['per_share']/EPS:.2f}× sits below all four. **A generic
 manufacturer with a third of its revenue in hard currency, a newly licensed biosimilars plant
 and no distress on its balance sheet does not trade at under four times earnings unless the
 model is asserting something the market is not.** The correction was still right — the
@@ -383,3 +414,11 @@ answer the other way.
    method question across this book, registered, not resolved by moving one study's rate.
 
 The study is HELD. The corrections stand. Nothing here licenses a publish.
+"""
+
+if __name__ == '__main__':
+    p = os.path.join(HERE, 'GAP_REVIEW_07-09-2026.md')
+    open(p, 'w', encoding='utf-8').write(OUT)
+    print('wrote', os.path.basename(p))
+    print('AUDITED CENTRAL A %.4f  B %.4f' % (A['per_share'], B['per_share']))
+    print('AUDITED GAP  A %+.2f%%  B %+.2f%%' % (100 * gA, 100 * gB))

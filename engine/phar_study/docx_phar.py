@@ -994,6 +994,18 @@ rows += [
     ['The appendix income statement prints what the model computes',
      'its attributable-profit row printed retained earnings and its finance-cost row was a '
      'first-edition artefact. Both now come from the model rows the valuation uses'],
+    ['The terminal is fed the LAST forecast year\u2019s cash flow, not a year already grown',
+     f"the terminal formula grows the free cash flow one year itself and values the result at "
+     f"the end of the last forecast year, which is where the discount factor lands it. The "
+     f"profit, the depreciation and the working capital handed to it had already been grown "
+     f"once, so the terminal capitalised a flow a year further out than the factor it was "
+     f"discounted at. Correcting it lowers the terminal by "
+     f"{pc(A['tv'] / A['terminal_record']['superseded_grown_basis']['tv'] - 1, 1)} on Frame A "
+     f"and {pc(Bf['tv'] / Bf['terminal_record']['superseded_grown_basis']['tv'] - 1, 1)} on "
+     f"Frame B, and the value per share by "
+     f"{pc(A['per_share'] / A['per_share_superseded_grown_basis'] - 1, 1)} and "
+     f"{pc(Bf['per_share'] / Bf['per_share_superseded_grown_basis'] - 1, 1)} \u2014 the larger "
+     f"share effect is gearing, not a second change"],
     ['NET EFFECT ON THE CENTRE',
      f"a single EGP 79.64 becomes a PAIR: EGP {n2(LN['centre_A'])} on Frame A "
      f"({pc(LN['centre_A'] / 79.64 - 1, 0)}) and EGP {n2(LN['centre_B'])} on Frame B "

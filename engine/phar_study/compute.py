@@ -1466,8 +1466,28 @@ def run_dcf(ebit, ebitda, label):
     pv = [fcff[i] * df[i] for i in range(n)]
     pv_sum = sum(pv)
     roic_fy30 = nopat[-1] / ic_fy30
-    nopat_term = nopat[-1] * (1 + V['g_term']) - term_dep_catchup * (1 - TAX_FCFF)
-    # THE RETIRED FORM, kept in one line so the change is legible and priced: the
+    # [R-TERM-01] THE MODULE'S OWN CONTRACT: TerminalInputs takes the flows IN THE LAST
+    # EXPLICIT YEAR'S MONEY, "not the terminal year's. The module grows the free cash flow
+    # one year itself" — tv = fcff * (1+g) / (W-g) puts the first perpetuity year in the
+    # numerator and values the terminal at the END OF FY2030E, which is where df[-1]
+    # discounts it. In its own words: "Pass a NOPAT already grown by (1+g) and the terminal
+    # is overstated by exactly (1+g) — a year-seven flow discounted at the year-five
+    # factor." This call site did exactly that, on nopat, on dna_book and on
+    # working_capital, and the module grew all three a second time.
+    #
+    # WHAT EACH TERM IS DENOMINATED IN, ESTABLISHED RATHER THAN ASSUMED, because the fix is
+    # NOT "divide the old expression by (1+g)": nopat[-1] is FY2030E's own NOPAT and is
+    # already on the required basis, so the (1+g) is simply removed; term_dep_catchup is
+    # cip[-1] x dep_rate, a FY2030E closing construction balance at the annual depreciation
+    # rate, so it is ALREADY a FY2030E-money annual charge and is deducted at full value —
+    # deflating it by (1+g) would put it a year behind everything beside it, and the module
+    # grows it once with the rest of the flow, which is what a charge borne in perpetuity
+    # should do.
+    nopat_term = nopat[-1] - term_dep_catchup * (1 - TAX_FCFF)
+    # THE RETIRED FORM, kept in one line so the change is legible and priced. It is stated
+    # on the TERMINAL year, which is what that construction meant, so it is built from its
+    # own grown numerator and is untouched by the basis correction above — the retired
+    # diagnostic must keep pricing the construction the study retired, not a new one. The
     # reinvestment identity rr = g/ROIC charges g x IC every year for ever, so the
     # implied replacement cycle is 1/g — a fact about the growth rate rather than about
     # the asset. At the previous edition's 5% that was 20.0 years against a weighted
@@ -1478,12 +1498,16 @@ def run_dcf(ebit, ebitda, label):
     # study typed a rate BELOW inflation and so ran long in exactly the market the
     # clause says should run short.
     reinv_rate = V['g_term'] / roic_fy30
-    tv_retired = nopat_term * (1 - reinv_rate) / (wacc_term - V['g_term'])
+    nopat_term_grown = nopat[-1] * (1 + V['g_term']) - term_dep_catchup * (1 - TAX_FCFF)
+    tv_retired = nopat_term_grown * (1 - reinv_rate) / (wacc_term - V['g_term'])
     _inc_cap = ((ic_fy30 - ic_fy26) / (revenue[-1] - revenue[0])) * revenue[-1]
     _terminal = TV.build(TV.TerminalInputs(
         nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
         real_growth=V['g_term_real'],
-        dna_book=dna[-1] * (1 + V['g_term']),
+        # LAST EXPLICIT YEAR, per the contract quoted above: dna_book, working_capital and
+        # the capital behind incremental_capital_per_unit_growth all sit on the same basis
+        # as nopat, because the module grows the whole free cash flow once.
+        dna_book=dna[-1],
         useful_life_years=V['asset_life_weighted'],
         useful_life_source=INP['asset_life_weighted']['source'],
         # The cross-check basis, and the reason is structural rather than convenience:
@@ -1493,10 +1517,23 @@ def run_dcf(ebit, ebitda, label):
         # through five years of forecast capital spending at mixed vintages would be a
         # construction of ours rather than a figure the company discloses.
         maintenance_basis='book_dna_escalated',
-        working_capital=wc[-1] * (1 + V['g_term']),
+        working_capital=wc[-1],
         incremental_capital_per_unit_growth=_inc_cap))
     fcff_term = _terminal.fcff
     tv = _terminal.tv
+    # THE SUPERSEDED BASIS, PRICED RATHER THAN DESCRIBED. Until this edition all three flow
+    # inputs were handed in already grown by (1+g) and the module grew them again. The
+    # defect is rebuilt here through the same module so what it was worth is COMPUTED and
+    # committed, never typed into a document; nothing downstream discounts it.
+    _terminal_grown = TV.build(TV.TerminalInputs(
+        nopat=nopat_term_grown, wacc=wacc_term, inflation=PI_TERM,
+        real_growth=V['g_term_real'],
+        dna_book=dna[-1] * (1 + V['g_term']),
+        useful_life_years=V['asset_life_weighted'],
+        useful_life_source=INP['asset_life_weighted']['source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=wc[-1] * (1 + V['g_term']),
+        incremental_capital_per_unit_growth=_inc_cap))
     pv_tv = tv * df[-1]
     ev_core = pv_sum + pv_tv
     assoc_earnings = V['assoc_norm'] * V['assoc_multiple']
@@ -1504,18 +1541,21 @@ def run_dcf(ebit, ebitda, label):
     ev_total = ev_core + assoc_value + V['afs_fy25']
     equity = ev_total - net_debt - V['nci_bridge']
     ps = equity / V['shares_mn']
-    return dict(label=label, ebitda=ebitda, ebit=ebit, nopat=nopat, fcff=fcff, pv=pv,
+    # What the superseded basis was worth per share, on this frame, everything else held.
+    ps_superseded = ((ev_total - pv_tv + _terminal_grown.tv * df[-1]
+                      - net_debt - V['nci_bridge']) / V['shares_mn'])
+    return dict(label=label, per_share_superseded_grown_basis=ps_superseded, ebitda=ebitda, ebit=ebit, nopat=nopat, fcff=fcff, pv=pv,
                 pv_sum=pv_sum, nopat_term=nopat_term, reinvest_rate=reinv_rate,
                 roic_term=roic_fy30, term_dep_catchup=term_dep_catchup,
                 fcff_term=fcff_term, tv=tv, tv_retired=tv_retired,
                 terminal_record=dict(inputs=dict(
                     nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
                     real_growth=V['g_term_real'], nominal_growth=V['g_term'],
-                    dna_book=dna[-1] * (1 + V['g_term']),
+                    dna_book=dna[-1],
                     useful_life_years=V['asset_life_weighted'],
                     useful_life_source=INP['asset_life_weighted']['source'],
                     maintenance_basis='book_dna_escalated',
-                    working_capital=wc[-1] * (1 + V['g_term']),
+                    working_capital=wc[-1],
                     incremental_capital_per_unit_growth=_inc_cap),
                     outputs=dict(fcff=_terminal.fcff, tv=_terminal.tv,
                                  floor=_terminal.floor,
@@ -1528,7 +1568,11 @@ def run_dcf(ebit, ebitda, label):
                     record=_terminal.record,
                     retired_construction=dict(
                         form='NOPAT_term(1 - g/ROIC)/(W-g)', tv=tv_retired,
-                        implied_cycle_years=1.0 / V['g_term'])),
+                        implied_cycle_years=1.0 / V['g_term']),
+                    superseded_grown_basis=dict(
+                        form='every flow input handed in already grown by (1+g), then '
+                             'grown again inside the module',
+                        tv=_terminal_grown.tv, fcff=_terminal_grown.fcff)),
                 pv_tv=pv_tv, ev_core=ev_core,
                 tv_share=pv_tv / ev_core, assoc_value=assoc_value,
                 assoc_earnings_value=assoc_earnings,
@@ -1875,7 +1919,13 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     pvs = sum(fc[i] * d_[i] for i in range(n))
     ic_ = ppe_b_ + cip_b_ + wc_[-1] + V['intang_fy25']
     roic_ = ebit_[-1] * (1 - TAX_FCFF) / ic_
-    nt = (ebit_[-1] * (1 - TAX_FCFF) * (1 + g)
+    # [R-TERM-01], the same contract as the base DCF above and for the same reason: the
+    # module takes the LAST EXPLICIT YEAR'S flows and grows them itself, so a sensitivity
+    # harness that hands it a grown NOPAT grades a terminal a year further out than the
+    # factor it is discounted at. The parked-construction catch-up is cip_close_ x dr_rate,
+    # a FY2030E balance at the annual rate, so it is already on that basis and is deducted
+    # at full value rather than deflated.
+    nt = (ebit_[-1] * (1 - TAX_FCFF)
           - cip_close_ * dr_rate * (1 - TAX_FCFF))
     # The terminal is built through the sanctioned module here too. A sensitivity grid
     # that keeps the retired construction grades a model the study no longer publishes,
@@ -1887,11 +1937,11 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
         tv_ = TV.build(TV.TerminalInputs(
             nopat=nt, wacc=max(wt, g + 0.02), inflation=PI_TERM,
             real_growth=(1.0 + g) / (1.0 + PI_TERM) - 1.0,
-            dna_book=dna_[-1] * (1 + g),
+            dna_book=dna_[-1],
             useful_life_years=V['asset_life_weighted'],
             useful_life_source=INP['asset_life_weighted']['source'],
             maintenance_basis='book_dna_escalated',
-            working_capital=wc_[-1] * (1 + g),
+            working_capital=wc_[-1],
             incremental_capital_per_unit_growth=_inc_cap_base)).tv
     except TV.TerminalRefused:
         return float('nan')

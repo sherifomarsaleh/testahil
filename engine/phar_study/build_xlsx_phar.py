@@ -1370,7 +1370,13 @@ dcfrow('pv', 'PRESENT VALUE OF FREE CASH FLOW TO THE FIRM',
        fill=FILL_C)
 r += 1
 pv_sum_sheet = sum(fcff_sheet[j] * W['df'][j] for j in range(5))
-nopat_t_sheet = (FC['ebit_A'][-1] * (1 - TAX_FCFF) * (1 + DERIVED['g_term'])
+# [R-TERM-01] THE TERMINAL IS FED ON THE LAST EXPLICIT YEAR'S MONEY, because the terminal
+# formula two blocks below grows it once itself — B(ft)*(1+g)/(W-g) — and grows it at the
+# END of FY2030E, which is where the FY2030E discount factor lands it. Growing the NOPAT
+# here as well would value a year-seven flow at the year-five factor. The parked
+# construction's depreciation catch-up is a FY2030E balance at the annual rate, so it is
+# already on that basis and is deducted at full value rather than deflated.
+nopat_t_sheet = (FC['ebit_A'][-1] * (1 - TAX_FCFF)
                  - DCFD['frame_A']['term_dep_catchup'] * (1 - TAX_FCFF))
 # [R-TERM-01]: the terminal is the SANCTIONED construction, not the reinvestment
 # identity. The workbook must reproduce the model, and the model no longer builds
@@ -1411,9 +1417,10 @@ lbl(wd, r, 4, 'Construction still parked at FY2030E has never entered the deprec
     'perpetuity cannot capitalise profit on capital it never charges.', note=True)
 r += 1
 for key, label, formula, exp, fmt in (
-    ('nt', 'Terminal NOPAT = final-year NOPAT x (1 + growth), less the depreciation the '
-     'parked construction balance has never been charged',
-     f'=F{DR["nopat"]}*(1+Assumptions!{c("g")})'
+    ('nt', 'Terminal NOPAT, on FY2030E money = final-year NOPAT less the depreciation the '
+     'parked construction balance has never been charged. It is NOT grown here: the '
+     'terminal value row below grows the whole free cash flow one year',
+     f'=F{DR["nopat"]}'
      f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")})', nopat_t_sheet, MONEY),
     # THE SANCTIONED TERMINAL, ROW BY ROW, so a reader following the labels reaches the
     # figure the page prints. The retired reinvestment identity charged g x IC every
@@ -1503,7 +1510,7 @@ for j in range(5):
     col = get_column_letter(2 + j)
     f(wd, r, 2 + j, f'={col}{FB["fcff"]}*{col}{DR["df"]}', fcffB[j] * W['df'][j], fmt=MONEY)
 r += 1
-nopat_tB = (ebitB[-1] * (1 - TAX_FCFF) * (1 + DERIVED['g_term'])
+nopat_tB = (ebitB[-1] * (1 - TAX_FCFF)
             - DCFD['frame_B']['term_dep_catchup'] * (1 - TAX_FCFF))
 tvB = DCFD['frame_B']['terminal_record']['outputs']['tv']
 evB = sum(fcffB[j] * W['df'][j] for j in range(5)) + tvB * W['df'][-1]
@@ -1517,8 +1524,9 @@ r += 1
 # differ in the provision charge and in nothing else, so a construction that differed
 # between them would make the spread the construction rather than the judgement.
 FB['ntb'] = r
-lbl(wd, r, 1, 'Terminal NOPAT on Frame B, less the parked construction depreciation')
-f(wd, r, 2, f'=F{FB["nopat"]}*(1+Assumptions!{c("g")})'
+lbl(wd, r, 1, 'Terminal NOPAT on Frame B, on FY2030E money, less the parked construction '
+    'depreciation — not grown here, for the same reason as Frame A')
+f(wd, r, 2, f'=F{FB["nopat"]}'
   f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")})', nopat_tB, fmt=MONEY)
 r += 1
 FB['ftb'] = r
