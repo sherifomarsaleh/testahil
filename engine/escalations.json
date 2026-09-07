@@ -876,12 +876,15 @@
    "done_meanwhile": "Nothing is blocked on it. GBCO's rebuild, its walk-forward, its corrections log, its four-field register and its diagnostics were all completed and are committed; the study is red on [R-LENS-03] and carried on that rule's ratchet, which is the sanctioned way to hold a known debt rather than a permanently red build.",
    "default_if_no_answer": "GBCO stays on the lens ratchet with its blend, no row is invented, and the question is put again when the next captive-lender name reaches the queue — a second company of the shape is the evidence [R-LESSON-01] asks for before widening a scope, and the same argument applies to widening a registry.",
    "default_date": "2026-12-31",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/research_protocol.py",
     "must_contain": "captive lender"
    },
-   "recommendation": "Add the row. The captive lender is the reason and it is a lens reason rather than an industry one: a finance book is valued on its own spread and its own loss experience, not by discounting it alongside the cash flows of the vehicles it funds, and the protocol already names 'operating-co + captive lender -> split legs' as the pattern. That is a DIFFERENT LENS carrying part of the weight, which is exactly the test [R-LENS-03] sets — and it is the test SAVOLA fails, which is why these two escalations should not be answered together."
+   "recommendation": "Add the row. The captive lender is the reason and it is a lens reason rather than an industry one: a finance book is valued on its own spread and its own loss experience, not by discounting it alongside the cash flows of the vehicles it funds, and the protocol already names 'operating-co + captive lender -> split legs' as the pattern. That is a DIFFERENT LENS carrying part of the weight, which is exactly the test [R-LENS-03] sets — and it is the test SAVOLA fails, which is why these two escalations should not be answered together.",
+   "resolved": "2026-09-07",
+   "answer": "THE PRINCIPAL RULED: build a model for this company rather than adopting the holding-company lens, and fall back to that lens only if the bespoke one fails. It did not fail. The row is registered as 'automotive assembler and distributor with a captive lender' -> sotp primary, with dcf, residual_income, relative_multiple and book_value permitted beside it. THE PAYLOAD IS GENUINELY NEW AND THAT MATTERS: L-337 records that the other blocked names need a set the registry already stores under a different NAME, and its own falsifier is a name needing a LENS the registry does not hold. This is that name — no row combines a sum-of-the-parts primary with a cash-flow lens for an operating leg and residual income for a lender, and the lender is why. It does NOT answer the SAVOLA escalation, which the recommendation already said should not be answered with this one.",
+   "answer_written_to": "engine/research_protocol.py (LENS_REGISTRY, the row and its reasoning) and engine/lessons_register.py (CLASSES, why it is a class rather than an industry)"
   },
   {
    "key": "EGCH-FY2013-14-annual-legible-copy",

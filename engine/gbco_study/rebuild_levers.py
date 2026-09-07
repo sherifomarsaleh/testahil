@@ -65,13 +65,33 @@ def value(wacc_ladder, wacc_terminal, tg, auto_nd, auto_nci, spot):
     pv = sum(x * fac[i] for i, x in enumerate(rows))
     tv = rows[-1] * (1 + tg) / (wacc_terminal - tg) * fac[-1]
     auto_eq = pv + tv - auto_nd - auto_nci
-    assoc = 0.4161 * 1400.0 * 47.5 + 390.0
-    sotp_sum = auto_eq + 9500.0 + assoc
-    sotp_ps = sotp_sum * 0.90 / SH
-    pre_ps = sotp_sum / SH
-    rel = (3300.0 / SH) * 9.5
-    norm = (4200.0 / SH) * 8.5
-    return 0.40 * sotp_ps + 0.15 * pre_ps + 0.20 * rel + 0.25 * norm
+    return auto_eq
+
+
+# ---- THE SECOND PASS MOVES THINGS THE FIRST PASS'S value() HAD BAKED IN ---------------
+# The first four levers all moved the AUTO leg's cash-flow arithmetic, so everything
+# beside it -- the lender at book, the associate at one mark, the discount, the four
+# weights -- could sit inside value() as constants. The levers below move exactly those,
+# so they are parameters now. NOTHING ABOUT L1-L4 CHANGES: legs() with the delivered
+# arguments reproduces the old value() to the last decimal, which is asserted in main().
+DELIVERED = dict(cap=9500.0, other_assoc=390.0, disc=0.10,
+                 rel=(3300.0 / SH) * 9.5, norm=(4200.0 / SH) * 8.5,
+                 weights=(0.40, 0.15, 0.20, 0.25))
+
+
+def legs(auto_eq, cap, assoc, disc, rel, norm, weights):
+    """The answer the study publishes, given each leg and each lens.
+
+    weights=None means the blend is retired and the class primary IS the answer,
+    which is [R-LENS-03] and is lever L5.
+    """
+    sotp_sum = auto_eq + cap + assoc
+    sotp_ps = sotp_sum * (1.0 - disc) / SH
+    if weights is None:
+        return sotp_ps
+    w_sotp, w_pre, w_rel, w_norm = weights
+    return (w_sotp * sotp_ps + w_pre * sotp_sum / SH
+            + w_rel * rel + w_norm * norm)
 
 
 def build_schedule(erp_basis, erp, kd, gross_debt, build_date):
@@ -97,14 +117,23 @@ def main():
     levers, prev = [], None
 
     # L0 — as delivered: flat 22.94% for five years AND the perpetuity, typed nominal g=11.5%
-    v0 = value([0.2294387] * 5, 0.2294387, 0.115, OLD_ND, OLD_NCI, 31.25)
+    ASSOC_DELIVERED = 0.4161 * 1400.0 * 47.5 + DELIVERED["other_assoc"]
+
+    def delivered(auto_eq):
+        """The answer as the delivered edition constructed it, given the auto leg."""
+        return legs(auto_eq, DELIVERED["cap"], ASSOC_DELIVERED, DELIVERED["disc"],
+                    DELIVERED["rel"], DELIVERED["norm"], DELIVERED["weights"])
+
+    a0 = value([0.2294387] * 5, 0.2294387, 0.115, OLD_ND, OLD_NCI, 31.25)
+    v0 = delivered(a0)
     levers.append(("L0 · as delivered (08-07-2026 edition, restruck on the same drivers)",
                    "—", None, v0))
     prev = v0
 
     # L1 — the cost-of-capital schedule through the sanctioned module
     s = build_schedule("market", 0.0941, 0.2653, 42476.0, "2026-09-03")
-    v1 = value(list(s.forward_wacc), s.wacc_terminal, 0.115, OLD_ND, OLD_NCI, SPOT)
+    v1 = delivered(value(list(s.forward_wacc), s.wacc_terminal, 0.115,
+                         OLD_ND, OLD_NCI, SPOT))
     levers.append(("L1 · cost of capital rebuilt through engine/cost_of_capital.py — country "
                    "risk counted ONCE (rf* = 23.00% - 3.41%), a conforming tier-1 beta of "
                    "0.8907 in place of an assumed 1.0, Kd re-derived at 26.53% on the "
@@ -114,7 +143,8 @@ def main():
 
     # L2 — growth as a REAL rate on the house path
     tg = path.terminal_inflation + 0.0
-    v2 = value(list(s.forward_wacc), s.wacc_terminal, tg, OLD_ND, OLD_NCI, SPOT)
+    v2 = delivered(value(list(s.forward_wacc), s.wacc_terminal, tg,
+                         OLD_ND, OLD_NCI, SPOT))
     levers.append(("L2 · terminal growth stored as (real 0.0%, inflation path EG) and "
                    "recomputed to its nominal 7.00%, replacing a TYPED nominal 11.5% nobody "
                    "could falsify", "[R-MACRO-01]", prev, v2)); prev = v2
@@ -129,18 +159,78 @@ def main():
                    "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8", prev, prev))
 
     # L4 — the bridge onto the LATEST disclosed balance sheet
-    v4 = value(list(s.forward_wacc), s.wacc_terminal, tg, NEW_ND, NEW_NCI, SPOT)
+    auto_eq = value(list(s.forward_wacc), s.wacc_terminal, tg, NEW_ND, NEW_NCI, SPOT)
+    v4 = delivered(auto_eq)
     levers.append(("L4 · the enterprise-to-equity bridge moved from 31-Dec-2025 onto the "
                    "reviewed 30-June-2026 balance sheet, GB Corp's own segmented net debt for "
                    "the AUTO leg and that leg's own non-controlling interest",
                    "[R-BRIDGE-01]", prev, v4)); prev = v4
 
+    # ================= THE SECOND PASS, 7 September 2026 ==============================
+    # AUDIT POINT FOR THIS PASS, DECLARED IN ADVANCE and before any of it was applied:
+    # after L9, once the lens architecture is rebuilt and BEFORE the price is consulted
+    # again. Every lever below is a rule that ALREADY BOUND rather than a lever anybody
+    # chose, which is the distinction [R-REBUILD-01] exists to keep visible.
+    N = json.load(open(os.path.join(HERE, "study_numbers.json"), encoding="utf-8"))
+    CAP_NEW = N["lens_inputs"]["capital"]["value"]
+    OTHER_NEW = N["sotp"]["other_assoc"]
+    MNT_ROUND = N["sotp"]["mnt_halan_value"]
+    ASSOC_CARRY = N["lens_inputs"]["capital"]["associates_carried_within"]
+
+    # L5 — the blend retired: the class primary IS the answer
+    v5 = legs(auto_eq, DELIVERED["cap"], ASSOC_DELIVERED, DELIVERED["disc"],
+              None, None, None)
+    levers.append(("L5 · the four-lens weighted blend RETIRED and the class primary taken "
+                   "as the answer. A number produced by averaging several methods is a new "
+                   "method with free parameters nobody tested; the weights here were "
+                   "0.40/0.15/0.20/0.25 and two of the four lenses were the SAME "
+                   "sum-of-the-parts at two discount levels",
+                   "[R-LENS-03]", prev, v5)); prev = v5
+
+    # L6 — the typed conglomerate discount removed
+    v6 = legs(auto_eq, DELIVERED["cap"], ASSOC_DELIVERED, 0.0, None, None, None)
+    levers.append(("L6 · the TYPED 10% conglomerate discount removed. Nothing in the "
+                   "filings discloses a basis for it, and the blend above applied it at an "
+                   "EFFECTIVE 4% by weighting the discounted and undiscounted sums both — "
+                   "so the number the study named was not the number it applied. A free "
+                   "parameter that has never cleared an out-of-sample test",
+                   "the PROMOTION RULE", prev, v6)); prev = v6
+
+    # L7 — the lender from book x 1.0 to residual income on its own operating equity
+    v7 = legs(auto_eq, CAP_NEW, ASSOC_DELIVERED, 0.0, None, None, None)
+    levers.append(("L7 · GB Capital from a TYPED 9,500 at 1.0x book to residual income on "
+                   "its own operating equity — segment shareholders' equity before NCI less "
+                   "the associates carried inside it, 22,497.8 - 16,230.5 = 6,267.3, at the "
+                   "justified price-to-book its own disclosed return supports. Book times "
+                   "one is the weighting of book value this rule forbids outright, and the "
+                   "old base came from a ratio whose NUMERATOR held the associate income "
+                   "the sum of the parts counts again",
+                   "[R-LENS-03]", prev, v7)); prev = v7
+
+    # L8 — the other associates at the figure the note actually foots to
+    v8 = legs(auto_eq, CAP_NEW, MNT_ROUND + OTHER_NEW, 0.0, None, None, None)
+    levers.append(("L8 · the associates other than MNT-Halan from a TYPED 390.0 to 496.9, "
+                   "the residual of note 34's own total less its MNT row, both of which "
+                   "foot to the reviewed balance sheet",
+                   "SIGCM clause 1", prev, v8)); prev = v8
+
+    # L9 — the answer becomes two-sided
+    v9 = legs(auto_eq, CAP_NEW, ASSOC_CARRY, 0.0, None, None, None)
+    levers.append(("L9 · the associate marked BOTH WAYS and the answer published as two "
+                   "branches rather than one. This walk stays on the round-price branch, "
+                   "%.4f; the other branch, MNT-Halan at its reviewed carrying value of "
+                   "15,733.5, reads %.4f. Neither is averaged into the other."
+                   % (prev, v9),
+                   "depth-bar standard 8 — the contested judgement published both ways",
+                   prev, prev))
+
     led = RL.Ledger(ticker="GBCO",
                     started_at="the delivered 08-07-2026 edition, restruck on the same drivers",
                     start_value=v0, start_spot=SPOT,
-                    audit_after=("L4 — declared IN ADVANCE: the running total is looked at once "
-                                 "the four rule-driven corrections have landed and BEFORE the "
-                                 "price is consulted"))
+                    audit_after=("L4 and again at L9 — each declared IN ADVANCE of the pass "
+                                 "it closes: the running total is looked at once the pass's "
+                                 "rule-driven corrections have landed and BEFORE the price is "
+                                 "consulted"))
     for name, rule, a, b in levers[1:]:
         led.apply(name=name.split(" · ")[0], rule=rule, after=b,
                   why=name.split("· ", 1)[1], evidence="engine/gbco_study/compute.py")
@@ -158,11 +248,24 @@ def main():
     for rule, g in led.by_rule().items():
         print("    %-45s %+7.1f%%" % (rule[:45], 100 * g["move"]))
 
-    committed = json.load(open(os.path.join(HERE, "study_numbers.json")))["central"]
-    assert abs(led.value - committed) < 0.01, (
-        "the ledger's fully-levered answer %.4f does not reproduce the committed central "
+    # THE STUDY NO LONGER PUBLISHES A CENTRAL, AND THE ASSERTION GETS STRICTER RATHER
+    # THAN LOOSER. This line read study_numbers["central"], which is now None — so left
+    # alone it would not have weakened quietly, it would have raised on a subtraction,
+    # which is the better failure. What replaces it is a check against BOTH committed
+    # branches: the walk must reach the one it stayed on, AND the branch it names in L9
+    # must be the other one. A ledger that reproduced one number of two would be walkable
+    # and still wrong about the answer.
+    branches = {b["label"]: b["value"] for b in N["central_two_sided"]["branches"]}
+    walked = [v for k, v in branches.items() if "round" in k][0]
+    other = [v for k, v in branches.items() if "carrying" in k][0]
+    assert abs(led.value - walked) < 0.01, (
+        "the ledger's fully-levered answer %.4f does not reproduce the committed branch "
         "%.4f — a ledger that cannot be WALKED is refused [R-REBUILD-01]"
-        % (led.value, committed))
+        % (led.value, walked))
+    assert abs(v9 - other) < 0.01, (
+        "L9 names a second branch of %.4f and the study commits %.4f. A two-sided answer "
+        "whose ledger reaches one side is a ledger for half the study." % (v9, other))
+    committed = walked
     rec = led.record()
     RL.assert_rebuild(rec, "GBCO")
     json.dump(rec, open(os.path.join(HERE, "rebuild_ledger.json"), "w", encoding="utf-8"),
