@@ -249,30 +249,30 @@ const TICKERS = {
     name: "Emirates Integrated Telecommunications Company PJSC",
     nameAr: "شركة الإمارات للاتصالات المتكاملة",
     code: "DFM:DU",
-    spot: 12.30,
-    spotDate: "close 07 Aug 2026",
+    spot: 11.38,
+    spotDate: "close 07 Sep 2026",
     fairAsof: "2026-08-07",
     ccy: "AED",
     fair: { bear: 9.74, base: 13.90, full: 20.28 },   // 17 Aug 2026 — four lenses, one field, AED 9.74 to 20.28, weighted central 13.90 against a close of 12.30. du is the second operator in the UAE's two-player telecom market: 9,280 thousand mobile customers, 744 thousand fixed subscriptions, four disclosed segments, ZERO drawn borrowings in every year studied and a dividend paid out of essentially all of profit. THE COST SIDE IS BUILT PER UNIT, AND NO MARGIN IS AN INPUT. du discloses direct costs twice and never joins them up — three lines by nature on the face of the income statement, four by segment in the segment note — so the study RECOVERS the cross-tabulation and tests it: the residual mobile device cost must come out positive and must foot exactly to the disclosed devices line, and it does in all four disclosed periods. Mobile direct cost is then a three-line per-subscriber stack, each on its own driver: interconnect falling 4.1% like-for-like as termination rates ratchet down and traffic migrates to messaging apps, commission rising 3.0% as acquisition gets dearer, devices held flat because the line is small and lumpy. Every rate is anchored on the H1-2026 REVIEWED actual, not a stale full-year rate, and carrying it into the second half is shown conservative with numbers — three of four H2-2025 rates came in cheaper than H1. Contribution and group margins are therefore OUTPUTS, and they disagree informatively: group gross margin DECLINES 67.9% to 67.2% while not one segment margin declines. That is ICT mix dilution, not erosion, and a blended margin assumption cannot express it. THE MOST FRAGILE JUDGEMENT IS THE FLAT ARPU. The blended figure has barely moved, but that is two offsetting forces, not stability: a postpaid mix tailwind worth about +2.6% against per-leg erosion of about −2.4%. The mix shift came from a collapse in low-value visitor prepaid SIMs and the study's own subscriber path assumes prepaid RECOVERS — which removes the tailwind. Priced: AED 15.62, −17%. A prepaid/postpaid split is NOT built because it is NOT identified: solving for the implied leg ratio across all 21 available quarter pairs gives −45x to +17x, 9 of them negative. THE CONTESTED JUDGEMENT IS THE REQUIRED RETURN, computed both ways and never averaged: on du's own measured beta of 0.488 against the FTSE ADX General the cash-flow lens reads 18.89, but the terminal that implies values du at 10.1x forward EBITDA against the 7.6x the market pays today; refuse that re-rating and the same cash flows are worth 14.81. Terminal value is 83% of enterprise value and the study says so. The fiscal regime is NOT contested — du disclosed the 2027-2029 royalty extension itself on 24 July 2026, floor retained — so a post-2029 reversion is a priced tail at 16.11, not a coin-flip. Edition 4 follows a forensic critique and three challenge questions: the cost side was rebuilt from margins-as-inputs to cost-per-unit, the risk-free rate resolved against the critique (3.779% and 4.13% are the debut and second tap of the same Feb-2033 sukuk; the debut case is priced at +22.7% then rejected on staleness), and three previously unpriced findings priced.
     dist: {
-      t20: { label:"1 month",   p5:11.05, p25:11.90, p50:12.40, p75:12.92, p95:13.94, resolve:"2026-09-07" },
-      t60: { label:"3 months",  p5:10.24, p25:11.72, p50:12.61, p75:13.56, p95:15.55, resolve:"2026-11-09" }
+      t20: { label:"1 month",   p5:10.03, p25:10.91, p50:11.43, p75:11.98, p95:13.06, resolve:"2026-10-07" },
+      t60: { label:"3 months",  p5:9.28, p25:10.66, p50:11.54, p75:12.46, p95:14.32, resolve:"2026-12-07" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-07" },
     touch: [ /* descending high -> low */
-      [14.76, 2, 15], [14.14, 6, 25], [13.53, 15, 43], [12.92, 40, 67], [11.69, 31, 52], [11.07, 9, 26]
+      [14.76, 1, 6], [14.14, 2, 10], [13.53, 4, 17], [12.92, 10, 29], [11.69, 63, 79], [11.07, 58, 72]
     ],
-    levels: { res:[12.52, 12.80, 13], sup:[11.85, 10.62, 9.85] },
+    levels: { res:[11.60, 11.87, 12.46], sup:[11.14, 10.62, 9.85] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 12.30 above a rising 20-day (12.18), a rising 50-day (11.92) and a rising 200-day (10.60). Momentum is neutral: RSI(14) is ~58 and the daily ATR near 0.27 (~2.2%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+0.07 / +0.10 / \u22120.03). Over the last year it has ranged 9.05\u201312.80; the last close sits 4% below that high and 36% above that low.",
-      bull: "A daily close back above 12.52 would clear the nearest resistance; the next charted level above it is 13.00.",
-      bear: "A close below 11.85 would break the nearest support; the next charted level below it is 9.85."
+      trend: "Consolidating below the near-term moving averages, above a rising 200-day",
+      summary: "The price closed 11.38 below a falling 20-day (11.52) and a falling 50-day (11.89), but above a rising 200-day (10.81). Momentum is neutral: RSI(14) is ~46 and the daily ATR near 0.35 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is negative and still falling (\u22120.20 / \u22120.19 / \u22120.01). Over the last year it has ranged 9.05\u201312.80; the last close sits 11% below that high and 26% above that low.",
+      bull: "A daily close back above 11.60 would clear the nearest resistance; the next charted level above it is 12.46.",
+      bear: "A close below 11.14 would break the nearest support; the next charted level below it is 9.85."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-07" }
+      mc:   { data:"2026-09-07", computed:"2026-09-07" },
+      tech: { data:"2026-09-07", computed:"2026-09-07" }
     },
     files: {
       study: "files/DU_Valuation_Study_17-08-2026.pdf?v=0817d",
@@ -3377,7 +3377,8 @@ const LEDGER = [
     note:"First coverage, 17-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish. Production chain, no approximation: data-quality gate (3897 clean sessions, 0 drops or repairs, 250 sessions/yr over 15.6 years) → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, seed 42. Percentiles are the study's own p5–p95; the touch ladder is read off those same committed path arrays at ±5/10/15/20% and −5/−10%, and its ±10% pair reconciles to the study's separately published touch figures to within 0.6 percentage points. q_annual = 0.0537 — SOURCED, not defaulted: du paid AED 0.66 a share across the twelve months to the anchor (FY2025 final 0.40 plus the H1-2026 interim 0.26, both ex-dividend before 7 Aug), against rf_live 3.65%, so the carry drift is NEGATIVE. Horizon resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. Struck on the AE profile as it stood at the 2026-08-09 strike: nu=10.0, width_cal=0.979, signal OFF, width overlay inactive (EG-only). DISCLOSED DRIFT: the AE pooled fit was refit to nu=8.0 on 09-Aug-2026 when AIRARABIA joined the panel (19 names, 279 windows), cal unchanged at 0.979. That moves the published 90% cone halfwidth by 0.66% — inside the 5% materiality band — and these rows are NOT re-struck for it: re-striking a frozen cone would publish a forecast the study never made. The nu on the calibration chart is therefore the live 8.0 while these percentiles carry the strike-time 10.0, and nu is weakly identified in any case — the (nu, width_cal) pair is the fitted object, never either coordinate alone. NAME-LEVEL CALIBRATION: PARITY, and robustly so — scale-normalized CRPS skill -0.0074 against the carry-anchored random walk over 18 non-overlapping three-month windows (2022-01-27 to 2026-04-29), with block-bootstrap CI90 [-0.0694,+0.0461] / [-0.0677,+0.0509] / [-0.0636,+0.0552] at block sizes 2/3/4 — all three straddle zero, so the verdict does not flip with the block size and no single-name edge is claimed. THE HONEST WEAKNESS IS OVER-COVERAGE, NOT MIS-CENTRING: 94% of outcomes landed inside the 80% band and 100% inside the 90%, with the band running 1.53x the benchmark's width and a PIT mean of 0.571 — well centred, simply too wide for this share. Read the bands as generous. AND THE FULL HISTORY FAILS, which is disclosed rather than buried: across all 58 windows back to 2012-01-16 the skill is -0.0319, a robust FAIL at every block size. The production verdict is the post-break one above because AE's calibration sample excludes pre-2022 windows under the standing break filter (the January-2022 UAE workweek switch), which was adopted on out-of-sample evidence and applies to every AE name, not chosen for this one. The five-year set sits between them: 19 windows, skill -0.0115, PARITY at every block size. Governing market-level gate unchanged and PARITY: +0.0068, CI90 [-0.001,+0.014]. Nothing was tuned to make any of this pass.",
     p5:10.85, p25:11.71, p50:12.28, p75:12.89, p95:13.88,
     touch:{ "+5":41, "+10":15, "+15":5, "+20":2, "-5":41, "-10":13 },
-    realized_close:null, realized_quantile:null, median_err:null, touch_hit:null },
+    realized_close:11.38, realized_high:12.42, realized_low:10.82, in_90:true, in_50:false, realized_quantile:0.173, median_err:-0.0733, touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":true }
+  },
   {instrument:"DU", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:12.30, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63, cycle_no:1,
     anchor_vol:0.2809,
@@ -8077,6 +8078,35 @@ const LEDGER = [
     note:"Cycle 2 roll-forward, 2026-09-07 — struck on the 07-Sep-2026 close, the latest session in this name’s library, off the monthly metronome — the prior cycle’s 1-month has not yet matured, so no cohort of that horizon is graded here. The previous cone was anchored ?; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.0249105 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.603 (outside the 0.25 dead zone); tilt +0.49% at 1M and +1.53% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
     p5:5.64, p25:6.43, p50:6.93, p75:7.46, p95:8.51,
     touch:{ "+5":66, "+10":41, "+15":24, "+20":14, "-5":53, "-10":27 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 07-Sep-2026 single-name roll-forward: DU, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"DU", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:11.38, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-10-07", grade_basis:"projected", horizon_days:21,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.3103,
+    signal_z:0.6688, signal_alpha:0.006244,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.058 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.669 (outside the 0.25 dead zone); tilt +0.63% at 1M and +1.79% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:10.03, p25:10.91, p50:11.43, p75:11.98, p95:13.06,
+    touch:{ "+5":44, "+10":18, "+15":8, "+20":3, "-5":38, "-10":13 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"DU", asset_class:"equity",
+    anchor_date:"2026-09-07", run_date:"2026-09-07", anchor_price:11.38, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-12-07", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.2994,
+    signal_z:0.6688, signal_alpha:0.017732,
+    note:"Cycle 2 roll-forward, 07-Sep-2026 — struck on the 07-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.058 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.669 (outside the 0.25 dead zone); tilt +0.63% at 1M and +1.79% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:9.28, p25:10.66, p50:11.54, p75:12.46, p95:14.32,
+    touch:{ "+5":65, "+10":41, "+15":25, "+20":15, "-5":57, "-10":31 },
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
