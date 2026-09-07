@@ -65,6 +65,7 @@ sys_engine = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file
 if sys_engine not in sys.path:
     sys.path.insert(0, sys_engine)
 import repairs                                # noqa: E402  [R-REPAIR-01]
+import debt_triage                            # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -189,6 +190,8 @@ def main(argv=None):
     ap.add_argument("--only", default=None, help="run one gate by name")
     ap.add_argument("--timeout", type=int, default=900)
     ap.add_argument("--json", default=None, help="write the work list here")
+    ap.add_argument("--triage", action="store_true",
+                    help="classify the work list by what each item actually NEEDS")
     a = ap.parse_args(argv)
 
     gs = [a.only] if a.only else gates()
@@ -275,6 +278,34 @@ def main(argv=None):
         print("\n  %d of %d work order(s) repaired; the rest stand."
               % (len(repaired), len([o for o in orders
                                      if o["subject"] != "(gate-level)"])))
+
+    if a.triage and orders:
+        t = debt_triage.triage(orders)
+        total = sum(len(v) for v in t.values())
+        print("\nWHAT THE DEBT ACTUALLY NEEDS — %d item(s)" % total)
+        print("  The work list says WHAT is outstanding. This says whether anything could "
+              "close it\n  without a person, which is what decides how much a repair loop "
+              "is ever worth.")
+        order = ["TRANSCRIPTION", "DATA", "JUDGEMENT", "DECISION", "UNCLASSIFIED"]
+        for cls in order:
+            rows = t.get(cls) or []
+            if not rows:
+                continue
+            print("\n  %-14s %3d  (%4.1f%%)   %s"
+                  % (cls, len(rows), 100.0 * len(rows) / total, rows[0]["why"]))
+            seen = set()
+            for r in rows[:6]:
+                k = (r["gate"], r["subject"])
+                if k in seen:
+                    continue
+                seen.add(k)
+                print("      %-13s %s" % (r["subject"], r["gate"]))
+            if len(rows) > 6:
+                print("      ... and %d more" % (len(rows) - 6))
+        auto = len(t.get("TRANSCRIPTION") or [])
+        print("\n  A LOOP MAY ONLY EVER CLOSE THE TRANSCRIPTION SHARE: %d of %d (%.1f%%). "
+              "Everything\n  else needs a filing, a judgement, or the principal — and "
+              "engineering does not change that." % (auto, total, 100.0 * auto / total))
 
     if a.json:
         json.dump({"green": green, "broken": broken, "orders": orders},

@@ -21,7 +21,7 @@
    "title": "A red gate is worked until it is green",
    "test": "Run against studies with defects deliberately planted, it fixes the fixable, escalates the rest, and leaves every gate, control and ratchet byte-identical.",
    "state": "DONE",
-   "note": "Built, including the fixing half. It runs every gate, reads the RATCHETED debt as work as well as new breaches — a ratchet suppresses the build, not the work — repairs only where the gate itself has solved the fix, and reverts on any surprise. Latest sweep: 68 green, 0 red, 0 broken, and 136 known items of debt that no gate was reporting because every one of them is allowed."
+   "note": "Built, including the fixing half — and it now says honestly how much it can ever fix. Latest sweep: 68 green, 0 red, 0 broken, and 136 known items of debt no gate was reporting because every one is allowed. Triaged by what each item NEEDS: 3.2% transcription (the only share a loop may close), 71% a figure out of a filing, 12% a judgement, 14% the principal's decision."
   }
  ],
  "queue": [
@@ -84,6 +84,12 @@
    "item": "Wire the new gates into CI",
    "state": "DONE",
    "detail": "All four run in study-provenance.yml, before check_tree_unmodified which stays last. A check somebody has to remember to run is run until the day it matters."
+  },
+  {
+   "day": "done",
+   "item": "Triage the debt by what it actually needs",
+   "state": "DONE",
+   "detail": "engine/debt_triage.py. A work list says WHAT is outstanding; this says whether anything could close it without a person, which is what decides how much a repair loop is ever worth. 0% unclassified — an unclassified item is an unanswered question, not a clean one."
   }
  ],
  "errors": [
