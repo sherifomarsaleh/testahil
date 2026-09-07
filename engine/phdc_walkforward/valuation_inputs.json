@@ -88,7 +88,11 @@
    "pages": 71,
    "text_layer_characters": 0,
    "route_accepted": "ocr",
-   "statement_pages": {}
+   "statement_pages": {
+    "bs": 4,
+    "is": 5,
+    "cf": 7
+   }
   },
   "Palm Hills Developments-Consolidated Financials - 31 December 2023.pdf": {
    "pages": 68,
@@ -121,7 +125,160 @@
    }
   }
  },
- "point_in_time": "Every origin reads its OWN filing's own column, with one exception which is stated rather than glossed: the FY2022 annual statements are published in Arabic only, this run's own parser reports that filing unresolved, and FY2022 is therefore read from the COMPARATIVE column of the FY2023 filing — the same construction this run's panel.py already uses for that year. NOTHING IS CARRIED BACKWARD: no later share count, capital or balance is substituted into an earlier origin, and where a later filing restates a figure the restatement is named beside rather than swapped in. The share count MOVES across these origins — 2,172,320,000 then 2,308,949,726 then 3,078,599,635 then 3,117,599,635 — which is the vintage discipline clause (ii) demands and the opposite of carrying today's count back.",
+ "point_in_time": "Sourcing is PER STATEMENT rather than per origin, and every item names the filing and the column it was read from. FY2022's CASH-FLOW STATEMENT is read from its OWN filing's own column [corrected 07-09-2026]: this record previously carried that origin's depreciation and capital expenditure as NOT RECORDED and stated that FY2022 was read from the COMPARATIVE column of the FY2023 filing throughout, on the ground that the FY2022 annual statements are published in Arabic only and this run's own parser reports that filing unresolved. A PARSER REPORTING A FILE UNRESOLVED IS A FACT ABOUT THE PARSER: rendered at 400 dpi the FY2022 filing carries its own consolidated cash-flow statement on page 7, in Arabic with Arabic-Indic numerals, and every column of it foots, so those two figures are now committed at their own vintage. FY2022's BALANCE SHEET is still read from the FY2023 filing's comparative column and that stays a DECLARED later vintage; the FY2022 filing's own balance sheet on page 4 was read and reproduces the three property lines committed here to the pound, so the two documents do not disagree about what this record carries — which is recorded rather than assumed, and named in NOT_RECORDED. NOTHING IS CARRIED BACKWARD: no later share count, capital or balance is substituted into an earlier origin, and where a later filing restates a figure the restatement is named beside rather than swapped in. The share count MOVES across these origins — 2,172,320,000 then 2,308,949,726 then 3,078,599,635 then 3,117,599,635 — which is the vintage discipline clause (ii) demands and the opposite of carrying today's count back.",
+ "fy2022_cash_flow_statement_footing": {
+  "_": "Every row read off the FY2022 filing's own cash-flow statement, section by section and in BOTH columns, with the printed subtotal each section is made to reproduce. foot() asserts these at import, so the two figures this origin commits stand on arithmetic about the page rather than on confidence in the reading. The operating section's working-capital rows were NOT transcribed and are therefore NOT asserted; the operating subtotal is pinned instead by the whole-statement identity, which is how it was established.",
+  "sections": {
+   "adjustments to profit, to the printed operating profit before working-capital changes": {
+    "2022": {
+     "anchor": 1703490722,
+     "printed": 2407326927,
+     "rows": [
+      191362741,
+      5000000,
+      525873852,
+      9295477,
+      134566260,
+      -259784,
+      -4332346,
+      -80198954,
+      -7398824,
+      -70072217
+     ]
+    },
+    "2021": {
+     "anchor": 1024253371,
+     "printed": 1444057612,
+     "rows": [
+      185914384,
+      12052492,
+      333244231,
+      -390969,
+      -10908789,
+      -26095328,
+      -17448949,
+      -12959103,
+      -43603728
+     ]
+    }
+   },
+   "investing section, to its own printed net cash figure": {
+    "2022": {
+     "anchor": 0,
+     "printed": -346409666,
+     "rows": [
+      -66777704,
+      446074,
+      -164311304,
+      8011113,
+      -201416124,
+      167238,
+      7398824,
+      70072217
+     ]
+    },
+    "2021": {
+     "anchor": 0,
+     "printed": 73091760,
+     "rows": [
+      -57798248,
+      13036923,
+      -10367500,
+      -4517760,
+      77471546,
+      -1145045,
+      -318227,
+      167240,
+      12959103,
+      43603728
+     ]
+    }
+   },
+   "financing section, to its own printed net cash figure": {
+    "2022": {
+     "anchor": 0,
+     "printed": 1404142535,
+     "rows": [
+      80371579,
+      742231221,
+      -90146032,
+      -349059489,
+      -7906548,
+      -9640298,
+      -277246,
+      687264013,
+      -185000000,
+      1062179187,
+      -525873852
+     ]
+    },
+    "2021": {
+     "anchor": 0,
+     "printed": -1162629595,
+     "rows": [
+      8829173,
+      327184612,
+      -69839608,
+      -337843877,
+      -160813557,
+      -171455976,
+      787387,
+      -779316289,
+      491123000,
+      -471284460
+     ]
+    }
+   },
+   "the three sections, to the printed net cash flow for the year": {
+    "2022": {
+     "anchor": 0,
+     "printed": 151165853,
+     "rows": [
+      -906567016,
+      -346409666,
+      1404142535
+     ]
+    },
+    "2021": {
+     "anchor": 0,
+     "printed": -561298517,
+     "rows": [
+      528239318,
+      73091760,
+      -1162629595
+     ]
+    }
+   },
+   "the net flow, the opening cash and the expected-credit-loss effect, to the closing cash": {
+    "2022": {
+     "anchor": 1017868885,
+     "printed": 1165167798,
+     "rows": [
+      151165853,
+      -3866940
+     ]
+    },
+    "2021": {
+     "anchor": 1579149924,
+     "printed": 1017868885,
+     "rows": [
+      -561298517,
+      17478
+     ]
+    }
+   }
+  },
+  "prior_year_opening_cash_disagreement": {
+   "as at": "2020-12-31",
+   "committed by this run, from the FY2020 filing's own column": 1579250273,
+   "the FY2022 filing's comparative column, as its FY2021 opening cash": 1579149924,
+   "difference": 100349
+  },
+  "a_read_this_record_rejects": {
+   "FY2022 payments for purchase of fixed assets, as the FY2023 filing's comparative page returns it": -6644670007,
+   "why": "the FY2023 filing's comparative page returns this for FY2022's payments for purchase of fixed assets against 66,777,704 printed in the FY2022 filing's own column; it exceeds that year's whole investing section and is a failed extraction, not a restatement"
+  }
+ },
  "sources": {
   "FY2015": {
    "balance_sheet": {
@@ -263,7 +420,12 @@
     "column": "comparative",
     "page": 3
    },
-   "cash_flow": null,
+   "cash_flow": {
+    "filing_year": 2022,
+    "file": "بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf",
+    "column": "own",
+    "page": 7
+   },
    "capital_note": {
     "file": "Palm Hills Developments-Consolidated Financials - 31 December 2023.pdf",
     "page": 59,
@@ -1421,13 +1583,66 @@
      "Fixed assets (net) +13)": 2592279116,
      "Projects under construction «12)": 212133152,
      "Investment property cll)": 167262054
+    },
+    "confirmed_against_this_origin_s_own_filing": {
+     "why": "this figure is read from the FY2023 filing's COMPARATIVE column, which is a later vintage, so the question is whether the FY2022 filing's own balance sheet says the same thing. It was rendered at 400 dpi and read: it does, on every one of the three lines, to the pound. Nothing was restated between the two documents on what this record carries. That is recorded because a later filing agreeing with an earlier one is a FACT somebody checked, not something a reader may assume.",
+     "file": "بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf",
+     "page": 4,
+     "route": "rendered to pixels at 400 dpi and read off the render",
+     "as_printed_in_its_own_filing": {
+      "الاصول الثابته (بالصافى) — Fixed assets (net)": 2592279116,
+      "مشروعات تحت التنفيذ — Projects under construction": 212133152,
+      "استثمارات عقاريه — Investment property": 167262054
+     },
+     "also_confirmed_on_the_same_page": {
+      "نقدية بالصندوق ولدى البنوك — Cash and cash equivalents": 1165167798,
+      "إجمالي الاصول غير المتداوله — Total non-current assets": 23488367003,
+      "the prior year's three property lines, 31 December 2021": "2,718,635,212 + 7,640,536 + 170,828,879 = 2,897,104,627, which is the figure this record already carries for FY2021 from the FY2021 filing's own column — a second document, read independently, agreeing to the pound"
+     }
     }
    },
    "dep": {
-    "missing": "the same page and the same failure as capex above: the FY2023 cash-flow statement's depreciation add-back row does not resolve, and no other document carries FY2022's cash-flow statement."
+    "value": 191362741,
+    "units": "EGP",
+    "source": "the company's own consolidated financial statements for the year ended 31 December 2022 (بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf), from its own investor-relations archive at https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter, own column",
+    "route": "read off the RENDERED PAGE by OCR, at the lowest resolution whose reading FOOTS against the statement's own printed subtotals and reproduces the cash this run already committed; the filing carries no usable text layer, or one that does not foot",
+    "file": "بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf",
+    "page": 7,
+    "period": "FY2022",
+    "line": "إهلاكات واستهلاكات (٤١ ،٣٧ ،٣٦) — 'Depreciation and amortisation', the cash-flow statement's own add-back to profit",
+    "note": "the cash-flow statement's own add-back to profit — the charge the identity capex = dPPE + D&A needs. It is NOT the income statement's depreciation line, which this run's panel carries and which runs LOWER in every year read (FY2020: 125,124,182 in the cash-flow statement against EGP 105.2514 million on the income statement). The two are different measurements, no disclosure in these filings reconciles them, and inventing a reconciliation would be the fabrication this archive exists to refuse — so both are published and neither is adjusted to the other.",
+    "income_statement_line_egp_million_for_comparison": 173.6693,
+    "route_detail": "the FY2022 filing renders no text at all (0 characters across 71 pages) and is printed in Arabic with Arabic-Indic numerals. Its page 7 was rendered to pixels at 400 dpi and read off the render; the reading was then made to sum, section by section and in BOTH columns, against the statement's own printed subtotals, and the whole statement was made to roll from its opening cash to the closing cash the balance sheet states (CF2022_SECTIONS carries every row and foot() asserts them). The route is recorded on the same footing as the four fields, and arithmetic is the arbiter rather than the extractor's confidence.",
+    "income_statement_line_read_from_this_same_filing": 173669334,
+    "why_the_income_statement_line_is_not_what_is_committed": "THE INCOME STATEMENT'S DEPRECIATION LINE IS NOT THE CHARGE THIS IDENTITY NEEDS, and on this origin the two are visible on facing pages of ONE document: page 5 prints 'إهلاكات واستهلاكات' of 173,669,334 as an expense and page 7 adds back 191,362,741 to profit in the cash-flow statement, a difference of 17,693,407. The add-back is what capex = dPPE + D&A is written in terms of and is what is committed. The income-statement figure is the one this run's panel already carries for FY2022 (EGP 173.6693 million) and it reproduces here TO THE POUND from the filing's own column — which corroborates the panel's value and does not make it the right measurement for this record. No disclosure in this filing reconciles the two and none is invented.",
+    "vintage_note": "read from the FY2022 filing's OWN column. The figure this run's panel carries for the same year comes from the FY2023 filing's comparative column — the same value, a later vintage — and this record does not use it. A figure lifted from a later year's comparative is right in value and wrong in date, and the error is invisible afterwards."
    },
    "capex": {
-    "missing": "this origin has no readable cash-flow statement in either direction. Its own annual statements are published in Arabic only and this run's parser reports that filing unresolved; the FY2023 filing, whose comparative column would carry FY2022, has a cash-flow page that does not read at 150, 200 or 300 dpi under any gutter — its rows come back as noise ('panne for purchase of assets') while the cash rows on the same page tie to the pound. The balance sheet for this origin IS read, from the FY2023 filing's comparative column, and foots."
+    "value": 268193828,
+    "units": "EGP",
+    "source": "the company's own consolidated financial statements for the year ended 31 December 2022 (بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf), from its own investor-relations archive at https://ir.palmhillsdevelopments.com/en-us/financial/resultcenter, own column",
+    "route": "read off the RENDERED PAGE by OCR, at the lowest resolution whose reading FOOTS against the statement's own printed subtotals and reproduces the cash this run already committed; the filing carries no usable text layer, or one that does not foot",
+    "file": "بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf",
+    "page": 7,
+    "period": "FY2022",
+    "derived": false,
+    "disclosed": true,
+    "lines": {
+     "(مدفوعات) لشراء أصول ثابتة (٣٧) — '(Payments) for purchase of fixed assets'": 66777704,
+     "(مدفوعات) فى مشروعات تحت التنفيذ — '(Payments) in projects under construction'": 201416124
+    },
+    "printed_sign": "the investing rows are printed as negative figures on this page",
+    "disposal_proceeds_shown_separately": 446074,
+    "identity_cross_check": {
+     "identity": "capex = dPPE + D&A",
+     "value": 265932436,
+     "basis": "fixed assets net plus projects under construction plus investment property at both dates, and the cash-flow statement's depreciation add-back",
+     "difference_from_disclosed": -2261392,
+     "note": "the two are not the same measurement and the gap is not a defect. On a developer, land and projects move between investment property, projects under construction and works in process — development inventory — without cash, and revaluations and disposals move the property base without cash too, so the change in property is dominated by transfers this identity cannot see. The DISCLOSED cash figure is what is committed; the identity is reported beside it so a later rebuild can see both rather than assume they agree."
+    },
+    "route_detail": "as for this origin's depreciation: page 7 of the FY2022 filing rendered to pixels at 400 dpi and read off the render, with the investing section made to sum to its own printed net cash figure in BOTH columns before either row was recorded.",
+    "vintage_note": "read from the FY2022 filing's OWN column. The FY2023 filing's comparative page — the only other document carrying this year — reproduces the projects-under-construction row to the pound and returns a failed extraction for the fixed-asset row (CF_PRIOR_REJECTED).",
+    "why_this_cell_was_worth_reading": "the capital-expenditure intensity rule that rebuilds a value at a past origin needs three CONSECUTIVE fiscal years of it, so this single absence dropped two origins rather than one. It was recorded as missing on the ground that no readable cash-flow statement existed in either direction; one existed, in the origin's own filing, in Arabic."
    },
    "wc": {
     "value": 15567022665,
@@ -1492,7 +1707,7 @@
     "quote": "The issued capital after reducing the value of treasury shares in accordance with the decision of the extraordinary general assembly held on the end of Nov 2022 in the amount of 78 000 000 Egyptian pounds for 39 000 000 shares with a nominal value of 2 Egyptian pounds per share ... so the issued capital will be distributed over 3,001,594,889 shares. 6 003 189 778",
     "check": "issued capital 6003189778 / par 2 = 3001594889, matching the count the recital states and the EGP 6 003 189 778 the FY2023 balance sheet states as share capital at 31 December 2022",
     "chain": "6 162 499 270 less 81 309 492 (40 654 746 shares, March 2022) is 6 081 189 778 over 3 040 594 889 shares, less 78 000 000 (39 000 000 shares, November 2022) is 6 003 189 778 over 3 001 594 889 shares — every step at par 2, and the recital states both figures at both steps",
-    "vintage_note": "this origin is read from the FY2023 filing throughout, because the FY2022 annual statements are published in Arabic only and this run's own parser reports that filing unresolved. That is the ONE declared exception in this block and it is the same one this run's panel.py already makes; it is a LATER filing's account of THAT year, not a later year's count carried back"
+    "vintage_note": "this COUNT and this origin's BALANCE SHEET are read from the FY2023 filing — a LATER filing's account of THAT year, not a later year's count carried back. The sentence that used to stand here said the origin was read from the FY2023 filing THROUGHOUT and that is no longer true [corrected 07-09-2026]: its cash-flow items are read from the FY2022 filing's own column, and that filing's own balance sheet was read and reproduces the property lines to the pound. The capital note of the FY2022 filing itself was not read, so the count stays sourced where it is rather than being re-attributed to a document nobody opened"
    }
   },
   "FY2023": {
@@ -1943,6 +2158,9 @@
   "_": "What this block does NOT carry, named with its reason. A block quietly carrying five of six reads as complete [clause (i)].",
   "share counts from FY2021": "The capital note of each of the FY2021 to FY2025 filings states that year's own issued capital, par value and count, and those filings carry a text layer of ZERO characters, so the note has to be found and read by OCR page by page. Where it was not read, the count is NOT RECORDED and the issued CAPITAL from that year's own balance sheet is recorded instead, as a separate item: capital in currency is not a share count, and it becomes one only when divided by a par value read from the same document. Dividing by the EGP 2 par of an EARLIER year would be exactly the fabricated vintage clause (ii) forbids — plausible on the page and invisible in the pooled error afterwards.",
   "two cells screened out as truncated reads": "these statements are printed in EGP UNITS and every line on them runs to millions or more, so a cell coming back under EGP 10,000 is a truncated read rather than a small figure. Two did: the FY2023 filing's own column returned -657 for the non-current land purchase liabilities and -62 for treasury shares at cost. Both were dropped rather than recorded, and neither enters a committed item — they sit in the named-beside and informational fields. The screen is arithmetic about the page's own unit rather than a judgement about the figures.",
+  "FY2022's balance sheet, still read from the FY2023 filing's comparative": "This origin's cash-flow items were moved onto the FY2022 filing's own column on 07-09-2026 and its BALANCE SHEET was not. The reason is that re-sourcing a balance sheet means transcribing and re-footing every row of it — some sixty lines of Arabic-Indic numerals — and this pass read the property block, the cash line and the non-current total rather than the whole sheet. What was read AGREES TO THE POUND with what is committed, so nothing is wrong with the figures; what is outstanding is their PROVENANCE, and it is named here rather than implied by a source field nobody compares. Committing a whole sheet off a partial reading would be the opposite of what this block is for.",
+  "FY2021's capital expenditure, now corroborated and still not committed": "This block records FY2021 capex as not recorded because the FY2021 filing's own page returns 57,798 and 1.145 — truncated reads — and states that no later filing carries FY2021 as a comparative BECAUSE the FY2022 annual statements are published in Arabic only. That last clause was a conclusion drawn from the parser rather than from the document. The FY2022 filing DOES carry FY2021 as a comparative and it prints 57,798,248 and 1,145,045, which settles that the FY2021 figures were truncations of exactly these numbers. They are recorded in CF_PRIOR as corroboration and are NOT committed to FY2021 here: committing them is a decision about another origin — including whether that origin may stand on a later filing's comparative at all — and this pass's subject is FY2022. It is named so the next pass does not have to rediscover it.",
+  "the FY2020 closing cash the FY2022 filing's comparative disagrees with": "The FY2022 filing's comparative column opens FY2021 on cash of 1,579,149,924 against the 1,579,250,273 the FY2020 filing's own column closes on and this run committed — a difference of 100,349. Both statements foot internally, so it is two documents disagreeing about one balance rather than a reading error. Nothing is changed on the strength of it: a later filing restating an earlier balance is named beside, never swapped in, and the origins it touches are not this pass's subject. Carried in CF2022_PRIOR_YEAR_OPENING_DISAGREEMENT.",
   "engine/valuation_calibration/shares_phdc.json": "That archive carries five counts for this name and TWO OF THEM DO NOT FOOT against the capital they are recorded with. FY2018 and FY2019 are both recorded at 3,078,599,063 shares on issued capital of EGP 6,157,199,270, and 6,157,199,270 / 2 = 3,078,599,635; its own check string for those rows reads '= 3078599635, matching the stated count', so the record disagrees with itself. The non-footing count is the one printed in the filings' own opening capital sentence, which the same note's recital, the balance sheet and the bonus-share chain all contradict; and FY2019's capital is superseded within its own filing, which records a further increase to EGP 6,235,199,270 on 4 April 2019. This block records the footed figures. That archive is NOT edited here: it belongs to another instrument, this run changes nothing outside itself, and the disagreement is named rather than silently reconciled."
  }
 }

@@ -91,14 +91,31 @@ same way.  The sign is therefore taken from the identity the page itself supplie
 and the printed magnitude is checked against it; the assertion is on the
 magnitude, and which pages do this is recorded rather than smoothed away.
 
-POINT-IN-TIME [SIGCM, and the pre-registration's section 1].  Every origin reads
-its OWN filing's own column, with ONE exception which is stated rather than
-glossed: the FY2022 annual statements are published in Arabic only, this run's
-own parser could not resolve them, and FY2022 is therefore read from the
-COMPARATIVE column of the FY2023 filing — exactly as this run's `panel.py`
-already carries FY2022.  Nothing is carried BACKWARD: no later count, capital or
+POINT-IN-TIME [SIGCM, and the pre-registration's section 1].  Sourcing is PER
+STATEMENT rather than per origin and every item names the filing and the column
+it was read from.  Nothing is carried BACKWARD: no later count, capital or
 balance is substituted into an earlier origin, and where a later filing restates
 a figure the restatement is named beside rather than swapped in.
+
+A PARSER REPORTING A FILE UNRESOLVED IS A FACT ABOUT THE PARSER [corrected
+07-09-2026].  This module used to state that FY2022 was read from the FY2023
+filing's COMPARATIVE column throughout — because the FY2022 annual statements
+are published in Arabic only and this run's own parser could not resolve them —
+and it recorded that origin's depreciation and capital expenditure as NOT
+RECORDED on the same ground.  The document was readable the whole time.
+Rendered at 400 dpi its own consolidated cash-flow statement sits on page 7, in
+Arabic with Arabic-Indic numerals, and EVERY COLUMN OF IT FOOTS: the adjustments
+block to its own printed operating profit before working-capital changes, the
+investing and financing sections to their own printed subtotals, and those three
+subtotals with the opening cash and the expected-credit-loss effect to the
+closing cash the balance sheet states.  FY2022's cash-flow items are therefore
+committed AT THEIR OWN VINTAGE, which matters beyond one cell: the depreciation
+figure this run's panel carries for FY2022 comes out of the FY2023 filing's
+comparative column, right in value and WRONG IN DATE, and this record must not
+repeat that.  FY2022's balance sheet is still read from the FY2023 comparative
+and stays a declared later vintage; the FY2022 filing's own balance sheet was
+read and reproduces the property lines committed here to the pound, so the two
+documents do not disagree about what this record carries.
 """
 from __future__ import annotations
 
@@ -160,7 +177,7 @@ FILES = {
  2021: dict(file='PHD - Consolidated Financial Statements - 4Q  2021 - English.pdf', pages=73, text_chars=0, route='ocr',
      gutter='pooled', stmt_pages={'bs': 3, 'is': 4, 'cf': 6}, sha256_16='a3780a02e39cf830'),
  2022: dict(file='بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf', pages=71, text_chars=0, route='ocr',
-     gutter='fixed', stmt_pages={}, sha256_16='a24a0ced84775bed'),
+     gutter='fixed', stmt_pages={'bs': 4, 'is': 5, 'cf': 7}, sha256_16='a24a0ced84775bed'),
  2023: dict(file='Palm Hills Developments-Consolidated Financials - 31 December 2023.pdf', pages=68, text_chars=0, route='ocr',
      gutter='perrow', stmt_pages={'bs': 3, 'is': 4, 'cf': 6}, sha256_16='1112a14f12c1b89f'),
  2024: dict(file='Palm Hills FS Cons 31Dec 2024.pdf', pages=68, text_chars=0, route='ocr',
@@ -179,6 +196,23 @@ LABELS = {
  2019: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates (8d-11b-31)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties (25-42-61a)", "due_to_rp": "Due to related parties (25-48-61a)", "fixed": "Fixed assets (net)", "fvtpl": "Investments at fair value through profit and loss (11e)", "htm": "Held-to-maturity investments (11d", "infra": "Completion of infrastructure liabilities", "inv_prop": "Investment property (11f-32)", "inv_purch": "Land purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "joint share arrangement– long terms", "land_c": "Current portion of land purchase liabilities", "land_nc": "Land purchase liabilities", "loans_current": "Current portion of term loans", "loans_lt": "long-term- loans", "nci": "Non-controlling interest", "np_long": "Notes payable long term (49b)", "np_short": "Notes payable short term (49a)", "nr_long": "Notes receivable long term", "nr_short": "Notes receivable short term", "overdraft": "Bank- over draft", "provisions": "Provisions", "puc": "Projects under construction", "resid": "Other long-term liabilities – Residents’ Association", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers &contractors", "tax_payable": "Income tax payable (22a)", "tca": "Total current assets", "tcl": "Total current liabilities", "teal": "Total equity and non-current liabilities", "tle": "Total equity and non-current liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_equity": "Total shareholders' equity", "total_investment": "Total investment", "total_liabs": "Total current liabilities", "wc_printed": "Working capital", "wip": "Works in process", "capex_fixed": "Payments for purchase of fixed assets", "capex_puc": "Payments for projects under construction", "close": "Cash and cash equivalents as at December", "dep": "Administrative depreciation", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the period", "open": "Cash and cash equivalents at beginning of the year"},
  2020: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates b11 d8", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties", "due_to_rp": "Due to related parties", "fixed": "Fixed assets (net)", "fvtpl": "Investments at fair value through profit and loss e11)", "htm": "Held-to-maturity investments d", "infra": "Completion of infrastructure liabilities", "inv_prop": "Investment property f11", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "joint share arrangement– long terms", "land_c": "Current portion of land purchase liabilities a48", "land_nc": "Land purchase liabilities b", "loans_current": "Current portion of short term loans", "loans_lt": "long-term- loans", "nci": "Non-controlling interest", "np_long": "Notes payable long term b", "np_short": "Notes payable short term a", "nr_long": "Notes receivable long term", "nr_short": "Notes receivable short term", "overdraft": "Bank- overdraft", "provisions": "Provisions c)", "puc": "Projects under construction", "resid": "Other long-term liabilities – Residents’ Association", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers & Contractors", "tax_payable": "Income tax payable a", "tca": "Total current assets", "tcl": "Total current liabilities", "teal": "Total equity and non-current liabilities", "tle": "Total equity and non-current liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_equity": "Total shareholders' equity", "total_investment": "Total investment", "total_liabs": "Total current liabilities", "treasury": "Treasury shares", "wc_printed": "Working capital", "wip": "Works in process", "capex_fixed": "Payments for purchase of fixed assets", "capex_puc": "Payments for projects under construction", "close": "Cash and cash equivalents as at December", "dep": "Administrative depreciation", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the period", "open": "Cash and cash equivalents at beginning of the year"},
  2021: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates +b11+d8)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents +32)", "checks_liab": "liabilities for checks received from customers", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties «72 +27)", "due_to_rp": "Due to related parties {57 +72 +27)", "fin_amort": "Financial investments at amortized cost (47,33/5)", "fixed": "Fixed assets (net)", "fvtpl": "Investments at fair value through profit and loss (33/5)", "infra": "Completion of infrastructure liabilities 2n", "inv_prop": "Investment property cll)", "inv_purch": "Investments purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_c": "Current portion of land purchase liabilities +20)", "land_nc": "Land purchase liabilities — Long Term «20)", "lease_c": "Lease contract liabilities short term", "lease_nc": "Lease contract liabilities long term", "loans_current": "Current portion of Short-term loans Sl)", "loans_lt": "Loans long-term", "nci": "Non-controlling equites", "np_long": "Notes payable long term (b", "np_short": "Notes payable short term (a", "nr_long": "Notes receivable long term for undclivercd units", "nr_long_undel": "Notes receivable long term for undclivercd units", "nr_short": "Notes receivable short term +16)", "nr_short_undel": "Notes receivable short term for undelivered units", "overdraft": "Bank- overdraft {3}", "provisions": "Provisions", "puc": "Projects under construction My «12 ‘3", "resid": "Other long-term liabilities — Residents’ Association {63)", "rou": "Right of use asset", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (70«223)", "tca": "Total current assets", "tcl": "otal current liabilities", "teal": "Total equity and non-current liabilities", "tle": "Total equity and non-current liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_equity": "Total sharcholders' equity", "total_investment": "Total investment", "total_liabs": "otal current liabilities", "treasury": "Treasury shares In Cost +17)", "wip": "Works in process «14)", "capex_fixed": "Payments for purchase fixed assets", "capex_puc": "Payments for projects under construction +12)", "close": "Cash and cash equivalents as of December «32)", "dep": "Depreciation and amortization (40:36 +37)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the year", "open": "Cash and cash equivalents at beginning of the year"},
+ # THE FY2022 FILING PRINTS ITS STATEMENTS IN ARABIC, and the printed wording
+ # is recorded AS PRINTED with an English rendering beside it, because the
+ # rule this block serves asks what the page says and not what a reader of
+ # another language would have called it.  Only the cash-flow rows this
+ # record commits are listed: FY2022's BALANCE SHEET is still read from the
+ # FY2023 filing's comparative column and therefore carries that filing's
+ # English labels (see NOT_RECORDED).  The projects-under-construction row's
+ # own note reference is NOT reproduced: its first digit does not resolve
+ # cleanly between 2 and 3 at any resolution rendered, and a note number
+ # guessed is a citation invented.
+ 2022: {"dep": "إهلاكات واستهلاكات (٤١ ،٣٧ ،٣٦) — 'Depreciation and amortisation', the cash-flow statement's own add-back to profit",
+        "capex_fixed": "(مدفوعات) لشراء أصول ثابتة (٣٧) — '(Payments) for purchase of fixed assets'",
+        "capex_puc": "(مدفوعات) فى مشروعات تحت التنفيذ — '(Payments) in projects under construction'",
+        "disposal": "مقبوضات من بيع أصول ثابتة (٣٧) — 'Proceeds from sale of fixed assets'",
+        "open": "النقدية فى أول العام — 'Cash at the beginning of the year'",
+        "net": "صافى التدفقات النقدية خلال العام — 'Net cash flows during the year'",
+        "close": "النقدية فى ٣١ ديسمبر ٢٠٢٢ — 'Cash at 31 December 2022'"},
  2023: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments tn associates +b11«d8)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents", "checks_liab": "liabilities for checks received from customers", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties +47 «27)", "due_to_rp": "Due to related parties +27)", "fin_amort": "Financial investments at amortized cost (48:33/5)", "fixed": "Fixed assets (net) +13)", "fvtpl": "Investments at fair value through profit and loss (33/5)", "inv_prop": "Investment property cll)", "inv_purch": "Investments purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_c": "Current portion of land purchase liabilities (a57 «20)", "land_nc": "Land purchase liabilities Long Term (b57 «20)", "lease_c": "Lease contract liabilities short term (a56)", "lease_nc": "Lease contract liabilities long term", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term {52)", "nci": "Non-controlling equities", "np_long": "Notes payable long term (b", "np_short": "Notes payable short term (a", "nr_long": "Notes receivable long term +16)", "nr_long_undel": "Notes receivable long term for undelivered units «16)", "nr_short": "Notes receivable short term +16)", "nr_short_undel": "Notes receivable short term for undelivered units", "overdraft": "Bank- overdraft", "provisions": "Provisions (19,30¢)", "puc": "Projects under construction «12)", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use asset", "share_capital": "Share capital", "sukuk": "Partnership Sukuk", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_equity": "Total shareholders' equity", "total_liabs": "Total liabilities", "treasury": "Treasury shares In Cost +17)", "wip": "Works in process {44 «14)", "capex_fixed": "Payments for purchase of assets", "capex_puc": "Payments for work under construction", "close": "Cash and cash equivalents as of December", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the year", "open": "Cash and cash equivalents at beginning of the year"},
  2024: {"adv_cust": "Advances from customers G3", "adv_inv": "payee payments tax asset for investments acquisition", "ar": "Accounts receivable “3", "assoc": "Investments in associates «bl 1«d8)", "cash": "Cash and cash equivalents", "checks_liab": "liabilities for checks received from customers", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties +45 +27)", "due_to_rp": "Due from related parties +45 +27)", "fin_amort": "Financial investments at amortized cost (4633/5)", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_nc": "Land purchase liabilities Long Term _ +20)", "lease_c": "Lease contract liabilities short term (a54)", "lease_nc": "Lease contract liabilities long term {b54)", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term", "nci": "Non-controlling equities", "np_long": "Notes payable short term (a", "np_short": "Notes payable short term (a", "nr_long": "Noles receivable long term", "nr_long_undel": "Notes receivable long term for undelivered units ia", "nr_short": "Noles receivable long term", "nr_short_undel": "Notes receivable short term for undelivered units", "overdraft": "Bank- overdraft (RG", "puc": "Projects under construction oo.", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use assets (39,a28,", "share_capital": "Share capital", "sukuk": "Sukuk partnership", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_liabs": "Total liabilities", "treasury": "Treasury Shares", "wip": "Works in process +14)", "capex_fixed": "(Payments) for purchase of fixed assets", "capex_puc": "(Payments) for projects under construction", "close": "Cash and cash equivalents as of Dec", "dep": "Depreciation & amortization «37 +36)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the Year", "open": "Cash and cash equivalents at beginning of the Year"},
  2025: {"adv_cust": "Advances from customers", "adv_inv": "Advance payments for investments acquisition", "ar": "Accounts receivable", "assoc": "Investments in associates +b11+d8)", "banks_credit": "Banks credit balances", "cash": "Cash and cash equivalents +32)", "credit_facilities": "Credit facilities", "creditors": "Creditors & other credit balances", "debtors": "Debtors and other debit balances", "due_from_rp": "Due from related parties «45", "due_to_rp": "Due to related parties +56", "fin_amort": "Financial investments at amortized cost (46:33/5)", "fixed": "Fixed assets (net) «13)", "fvtpl": "Investments at fair value through profit and loss (33/5)", "inv_prop": "Investment property cll)", "inv_purch": "Investments purchase liabilities", "jsa_c": "Joint shares arrangement short term", "jsa_nc": "Joint shares arrangement long term", "land_c": "Current portion of land purchase liabilities (a55 «20)", "land_nc": "Land purchase liabilities Long Term (B55 «20)", "lease_c": "Lease contract liabilities short term (a54)", "lease_nc": "Lease contract liabilities long term (b54)", "loans_current": "Current portion of Short-term loans", "loans_lt": "Loans long-term", "nci": "Non-controlling equities", "np_long": "Notes payable long term", "np_short": "Notes payable short term (a51)", "nr_long": "Notes receivable long term +16)", "nr_long_undel": "Notes receivable long term for undelivered units +16)", "nr_short": "Notes receivable short term «16)", "nr_short_undel": "Notes receivable short term for undelivered units", "provisions": "Provisions", "puc": "Projects under construction «12)", "resid": "Other long-term liabilities Residents’ Association", "rou": "Right of use assets (39,a28)", "share_capital": "Share capital", "supp_adv": "Suppliers advance payments", "suppliers": "Suppliers And contractors", "tax_payable": "Income tax payable (69,a23)", "tca": "Total Current Assets", "tcl": "Total current liabilities", "teal": "Total non-current liabilities", "tle": "Total equity and liabilities", "tnca": "Total non-current assets", "tncl": "Total non-current liabilities", "total_assets": "Total Assets", "total_equity": "Total shareholders’ equity", "total_liabs": "Total liabilities", "wip": "Works in Progress +14)", "capex_fixed": "(Payments) for purchase of fixed assets", "capex_puc": "(Payments) from projects under construction", "close": "Cash and cash equivalents as of Dec", "dep": "Depreciation & amortization «36 «13)", "disposal": "Proceeds from sale of fixed assets", "net": "Net increase in cash and cash equivalents during the Year", "open": "Cash and cash equivalents at beginning of the Year"},
@@ -354,6 +388,21 @@ CF = {
       disposal=543372, net=204071883, open=1375178390),
  2021: dict(src=2021, column='own', page=6,
       dep=185914384, disposal=1303692),
+ # FY2022 IS READ FROM ITS OWN FILING'S OWN COLUMN [added 07-09-2026].  This
+ # block previously recorded FY2022's depreciation and capital expenditure as
+ # NOT RECORDED, on the ground that the FY2023 filing's comparative cash-flow
+ # page does not read and that this run's parser reports the Arabic FY2022
+ # annual statements unresolved.  The parser's failure was never evidence
+ # about the document: the FY2022 filing carries its own consolidated cash-flow
+ # statement on page 7, in Arabic with Arabic-Indic numerals, and it reads off
+ # the rendered pixels at 400 dpi.  Reading it removes the ONE cell that made
+ # this origin's capital-expenditure intensity unavailable, and it removes it
+ # from the RIGHT VINTAGE — the figures the panel carries for FY2022 come out
+ # of a LATER year's comparative column, which is right in value and wrong in
+ # date [R-FCAL-01, point-in-time].
+ 2022: dict(src=2022, column='own', page=7,
+      capex_fixed=-66777704, capex_puc=-201416124, close=1165167798,
+      dep=191362741, disposal=446074, net=151165853, open=1017868885),
  2023: dict(src=2024, column='comparative', page=5,
       capex_fixed=-177431038, capex_puc=-789968464, close=3189241596, dep=201037444,
       disposal=103916449, net=2020123987),
@@ -380,9 +429,42 @@ CF_PRIOR = {
  2019: {"dep": 85077314, "capex_fixed": -52297290, "capex_puc": -9581362},
  2020: {"dep": 102205593, "capex_fixed": -35631944, "capex_puc": -10129973},
  2021: {"dep": 125124182, "capex_fixed": -52719316, "capex_puc": -40528373},
- 2023: {"capex_fixed": -6644670007, "capex_puc": -201416124},
+ # The FY2022 filing's own comparative column, for FY2021.  Its depreciation
+ # add-back reproduces the FY2021 filing's own column TO THE POUND, which is
+ # the cross-filing corroboration this dict exists for, and it is the first
+ # such corroboration FY2021's figure has had.  Its two capital-expenditure
+ # rows are the figures the FY2021 filing's own page returns TRUNCATED
+ # (57,798 and 1.145 against 57,798,248 and 1,145,045 here), which settles
+ # that the FY2021 failure was a truncation and not a small figure — recorded
+ # here as corroboration, NOT committed to FY2021, because committing it is a
+ # decision about another origin and belongs to that origin's own pass.
+ 2022: {"dep": 185914384, "capex_fixed": -57798248, "capex_puc": -1145045},
+ 2023: {"capex_puc": -201416124},
  2024: {"dep": 201037444, "capex_fixed": -177431038, "capex_puc": -789968464},
  2025: {"dep": 270108689, "capex_fixed": -587649309, "capex_puc": -128296234},
+}
+
+# A READ THIS RECORD DOES NOT BELIEVE, KEPT RATHER THAN DELETED [added
+# 07-09-2026].  CF_PRIOR above is a corroboration structure: a figure in it is
+# asserted to agree with the same figure read from the other filing, so a
+# figure the run has REJECTED cannot sit in it without either breaking a true
+# check or, worse, being quietly dropped.  The FY2023 filing's comparative
+# cash-flow page is the page this block already described as coming back as
+# noise, and its purchase-of-fixed-assets row is the proof: it returns
+# 6,644,670,007 against the 66,777,704 the FY2022 filing's own column prints,
+# two orders of magnitude out and larger than that year's entire investing
+# section.  Its projects-under-construction row on the SAME page returns
+# 201,416,124, which the FY2022 filing reproduces to the pound — a page can
+# fail row by row, which is exactly why a row is corroborated rather than a
+# document trusted.  The rejected read is kept, named and excluded from the
+# cross-filing check rather than deleted, because deleting it would leave no
+# record that the figure was ever seen or why it was not used.
+CF_PRIOR_REJECTED = {
+ 2023: {"capex_fixed": (-6644670007,
+        "the FY2023 filing's comparative page returns this for FY2022's "
+        "payments for purchase of fixed assets against 66,777,704 printed in "
+        "the FY2022 filing's own column; it exceeds that year's whole "
+        "investing section and is a failed extraction, not a restatement")},
 }
 
 # The share count at each origin, recorded ONLY where the issued capital divided
@@ -488,7 +570,7 @@ SHARES = {
       "quote": "The issued capital after reducing the value of treasury shares in accordance with the decision of the extraordinary general assembly held on the end of Nov 2022 in the amount of 78 000 000 Egyptian pounds for 39 000 000 shares with a nominal value of 2 Egyptian pounds per share ... so the issued capital will be distributed over 3,001,594,889 shares. 6 003 189 778",
       "check": "issued capital 6003189778 / par 2 = 3001594889, matching the count the recital states and the EGP 6 003 189 778 the FY2023 balance sheet states as share capital at 31 December 2022",
       "chain": "6 162 499 270 less 81 309 492 (40 654 746 shares, March 2022) is 6 081 189 778 over 3 040 594 889 shares, less 78 000 000 (39 000 000 shares, November 2022) is 6 003 189 778 over 3 001 594 889 shares — every step at par 2, and the recital states both figures at both steps",
-      "vintage_note": "this origin is read from the FY2023 filing throughout, because the FY2022 annual statements are published in Arabic only and this run's own parser reports that filing unresolved. That is the ONE declared exception in this block and it is the same one this run's panel.py already makes; it is a LATER filing's account of THAT year, not a later year's count carried back"
+      "vintage_note": "this COUNT and this origin's BALANCE SHEET are read from the FY2023 filing — a LATER filing's account of THAT year, not a later year's count carried back. The sentence that used to stand here said the origin was read from the FY2023 filing THROUGHOUT and that is no longer true [corrected 07-09-2026]: its cash-flow items are read from the FY2022 filing's own column, and that filing's own balance sheet was read and reproduces the property lines to the pound. The capital note of the FY2022 filing itself was not read, so the count stays sourced where it is rather than being re-attributed to a document nobody opened"
     },
  2023: {
       "count": 2941594889,
@@ -667,11 +749,23 @@ CAP_NOTE = (
     "different rows.")
 
 POINT_IN_TIME = (
-    "Every origin reads its OWN filing's own column, with one exception which is "
-    "stated rather than glossed: the FY2022 annual statements are published in "
-    "Arabic only, this run's own parser reports that filing unresolved, and "
-    "FY2022 is therefore read from the COMPARATIVE column of the FY2023 filing — "
-    "the same construction this run's panel.py already uses for that year. "
+    "Sourcing is PER STATEMENT rather than per origin, and every item names the "
+    "filing and the column it was read from. FY2022's CASH-FLOW STATEMENT is "
+    "read from its OWN filing's own column [corrected 07-09-2026]: this record "
+    "previously carried that origin's depreciation and capital expenditure as "
+    "NOT RECORDED and stated that FY2022 was read from the COMPARATIVE column "
+    "of the FY2023 filing throughout, on the ground that the FY2022 annual "
+    "statements are published in Arabic only and this run's own parser reports "
+    "that filing unresolved. A PARSER REPORTING A FILE UNRESOLVED IS A FACT "
+    "ABOUT THE PARSER: rendered at 400 dpi the FY2022 filing carries its own "
+    "consolidated cash-flow statement on page 7, in Arabic with Arabic-Indic "
+    "numerals, and every column of it foots, so those two figures are now "
+    "committed at their own vintage. FY2022's BALANCE SHEET is still read from "
+    "the FY2023 filing's comparative column and that stays a DECLARED later "
+    "vintage; the FY2022 filing's own balance sheet on page 4 was read and "
+    "reproduces the three property lines committed here to the pound, so the "
+    "two documents do not disagree about what this record carries — which is "
+    "recorded rather than assumed, and named in NOT_RECORDED. "
     "NOTHING IS CARRIED BACKWARD: no later share count, capital or balance is "
     "substituted into an earlier origin, and where a later filing restates a "
     "figure the restatement is named beside rather than swapped in. The share "
@@ -702,6 +796,42 @@ NOT_RECORDED = {
         "recorded, and neither enters a committed item — they sit in the "
         "named-beside and informational fields. The screen is arithmetic about "
         "the page's own unit rather than a judgement about the figures."),
+    "FY2022's balance sheet, still read from the FY2023 filing's comparative": (
+        "This origin's cash-flow items were moved onto the FY2022 filing's own "
+        "column on 07-09-2026 and its BALANCE SHEET was not. The reason is that "
+        "re-sourcing a balance sheet means transcribing and re-footing every "
+        "row of it — some sixty lines of Arabic-Indic numerals — and this pass "
+        "read the property block, the cash line and the non-current total "
+        "rather than the whole sheet. What was read AGREES TO THE POUND with "
+        "what is committed, so nothing is wrong with the figures; what is "
+        "outstanding is their PROVENANCE, and it is named here rather than "
+        "implied by a source field nobody compares. Committing a whole sheet "
+        "off a partial reading would be the opposite of what this block is "
+        "for."),
+    "FY2021's capital expenditure, now corroborated and still not committed": (
+        "This block records FY2021 capex as not recorded because the FY2021 "
+        "filing's own page returns 57,798 and 1.145 — truncated reads — and "
+        "states that no later filing carries FY2021 as a comparative BECAUSE "
+        "the FY2022 annual statements are published in Arabic only. That last "
+        "clause was a conclusion drawn from the parser rather than from the "
+        "document. The FY2022 filing DOES carry FY2021 as a comparative and it "
+        "prints 57,798,248 and 1,145,045, which settles that the FY2021 "
+        "figures were truncations of exactly these numbers. They are recorded "
+        "in CF_PRIOR as corroboration and are NOT committed to FY2021 here: "
+        "committing them is a decision about another origin — including "
+        "whether that origin may stand on a later filing's comparative at all "
+        "— and this pass's subject is FY2022. It is named so the next pass "
+        "does not have to rediscover it."),
+    "the FY2020 closing cash the FY2022 filing's comparative disagrees with": (
+        "The FY2022 filing's comparative column opens FY2021 on cash of "
+        "1,579,149,924 against the 1,579,250,273 the FY2020 filing's own "
+        "column closes on and this run committed — a difference of 100,349. "
+        "Both statements foot internally, so it is two documents disagreeing "
+        "about one balance rather than a reading error. Nothing is changed on "
+        "the strength of it: a later filing restating an earlier balance is "
+        "named beside, never swapped in, and the origins it touches are not "
+        "this pass's subject. Carried in "
+        "CF2022_PRIOR_YEAR_OPENING_DISAGREEMENT."),
     "engine/valuation_calibration/shares_phdc.json": (
         "That archive carries five counts for this name and TWO OF THEM DO NOT "
         "FOOT against the capital they are recorded with. FY2018 and FY2019 are "
@@ -733,19 +863,16 @@ MISSING = {
         "No later filing carries FY2021 as a comparative, because the FY2022 "
         "annual statements are published in Arabic only. A figure is not "
         "recorded rather than a truncated one recorded with a caveat.")},
-    2022: {"capex": (
-        "this origin has no readable cash-flow statement in either direction. "
-        "Its own annual statements are published in Arabic only and this run's "
-        "parser reports that filing unresolved; the FY2023 filing, whose "
-        "comparative column would carry FY2022, has a cash-flow page that does "
-        "not read at 150, 200 or 300 dpi under any gutter — its rows come back "
-        "as noise ('panne for purchase of assets') while the cash rows on the "
-        "same page tie to the pound. The balance sheet for this origin IS read, "
-        "from the FY2023 filing's comparative column, and foots."),
-        "dep": (
-            "the same page and the same failure as capex above: the FY2023 "
-            "cash-flow statement's depreciation add-back row does not resolve, "
-            "and no other document carries FY2022's cash-flow statement.")},
+    # FY2022 CARRIED BOTH OF THESE UNTIL 07-09-2026 and no longer does. The
+    # entry read that this origin "has no readable cash-flow statement in
+    # either direction" — true of the FY2023 filing's comparative page, which
+    # returns noise, and NOT TRUE OF THE DOCUMENT IT WAS ACTUALLY ABOUT. The
+    # FY2022 annual statements are published in Arabic only and this run's own
+    # parser reports that filing unresolved; a parser reporting a file
+    # unresolved is a fact about the parser [R-ENF-04]. Rendered at 400 dpi
+    # that filing's own consolidated cash-flow statement on page 7 reads, and
+    # every column of it foots — so the figures are now committed from the
+    # RIGHT VINTAGE rather than from a later year's comparative.
     2025: {"capex": (
         "the FY2025 filing's own cash-flow page reads its cash rows exactly — "
         "opening 6,372,384,745 and closing 9,419,526,159, both reproducing this "
@@ -757,6 +884,157 @@ MISSING = {
         "whose figures the FY2025 comparative confirms to the pound — there is "
         "nothing to settle the reading against, and a truncated figure is not "
         "recorded.")},
+}
+
+# THE FY2022 CASH-FLOW STATEMENT, SECTION BY SECTION, BOTH COLUMNS [added
+# 07-09-2026].  This origin's two cash-flow figures are read off the rendered
+# pixels of a filing this run's own parser reports unresolved, so the reading
+# is not asserted on anybody's confidence in it: the rows are transcribed and
+# the sections are made to sum, here, at import.  ARITHMETIC IS THE ARBITER —
+# and it did arbitrate on the way in.  A first reading of the FY2021
+# comparative column left the investing section 500,000 short of its own
+# printed subtotal; the residual pointed at one row, the row was re-rendered,
+# and the right-of-use line is 4,517,760 and not 4,017,760 (the ٥ and the ٠ of
+# this font differ by a filled ring against a dot).  Nothing was reconciled by
+# judgement and no row was adjusted to make a total work.
+#
+# WHAT IS NOT HERE IS THE OPERATING SECTION'S WORKING-CAPITAL ROWS.  They were
+# not transcribed, so they are not asserted; the operating SUBTOTAL is pinned
+# instead by the whole-statement identity below, which is how it was
+# established in the first place.  Asserting rows that were not read would be
+# the fabrication this archive exists to refuse.
+CF2022_SECTIONS = {
+ "adjustments to profit, to the printed operating profit before working-capital changes": {
+   2022: {"anchor": 1703490722, "printed": 2407326927,
+          "rows": (191362741, 5000000, 525873852, 9295477, 134566260, -259784,
+                   -4332346, -80198954, -7398824, -70072217)},
+   2021: {"anchor": 1024253371, "printed": 1444057612,
+          "rows": (185914384, 12052492, 333244231, -390969, -10908789,
+                   -26095328, -17448949, -12959103, -43603728)}},
+ "investing section, to its own printed net cash figure": {
+   2022: {"anchor": 0, "printed": -346409666,
+          "rows": (-66777704, 446074, -164311304, 8011113, -201416124, 167238,
+                   7398824, 70072217)},
+   2021: {"anchor": 0, "printed": 73091760,
+          "rows": (-57798248, 13036923, -10367500, -4517760, 77471546,
+                   -1145045, -318227, 167240, 12959103, 43603728)}},
+ "financing section, to its own printed net cash figure": {
+   2022: {"anchor": 0, "printed": 1404142535,
+          "rows": (80371579, 742231221, -90146032, -349059489, -7906548,
+                   -9640298, -277246, 687264013, -185000000, 1062179187,
+                   -525873852)},
+   2021: {"anchor": 0, "printed": -1162629595,
+          "rows": (8829173, 327184612, -69839608, -337843877, -160813557,
+                   -171455976, 787387, -779316289, 491123000, -471284460)}},
+ "the three sections, to the printed net cash flow for the year": {
+   2022: {"anchor": 0, "printed": 151165853,
+          "rows": (-906567016, -346409666, 1404142535)},
+   2021: {"anchor": 0, "printed": -561298517,
+          "rows": (528239318, 73091760, -1162629595)}},
+ "the net flow, the opening cash and the expected-credit-loss effect, to the closing cash": {
+   2022: {"anchor": 1017868885, "printed": 1165167798,
+          "rows": (151165853, -3866940)},
+   2021: {"anchor": 1579149924, "printed": 1017868885,
+          "rows": (-561298517, 17478)}},
+}
+
+# THE ONE DISAGREEMENT THIS PAGE PRODUCED, RECORDED RATHER THAN SMOOTHED.  The
+# FY2022 filing's COMPARATIVE column opens FY2021 on cash of 1,579,149,924
+# while the FY2020 filing's own column closes FY2020 on 1,579,250,273 — the
+# figure this run committed — a difference of 100,349.  Both statements foot
+# internally on their own numbers, so this is two documents disagreeing about
+# one balance and not a reading error.  It is named here because the FY2021
+# and FY2020 origins are NOT this pass's subject and nothing about them is
+# changed on the strength of it; a later filing restating an earlier balance
+# is named beside, never swapped in.
+CF2022_PRIOR_YEAR_OPENING_DISAGREEMENT = {
+    "as at": "2020-12-31",
+    "committed by this run, from the FY2020 filing's own column": 1579250273,
+    "the FY2022 filing's comparative column, as its FY2021 opening cash": 1579149924,
+    "difference": 100349,
+}
+
+# EXTRA FIELDS CARRIED BY ONE ITEM AT ONE ORIGIN, keyed (year, item).  Used
+# where something is true of that cell and of no other, so the general notes
+# above stay general and the particular fact is not written into prose nobody
+# can point at.
+ITEM_EXTRA = {
+ (2022, "dep"): {
+  "route_detail": (
+   "the FY2022 filing renders no text at all (0 characters across 71 pages) "
+   "and is printed in Arabic with Arabic-Indic numerals. Its page 7 was "
+   "rendered to pixels at 400 dpi and read off the render; the reading was "
+   "then made to sum, section by section and in BOTH columns, against the "
+   "statement's own printed subtotals, and the whole statement was made to "
+   "roll from its opening cash to the closing cash the balance sheet states "
+   "(CF2022_SECTIONS carries every row and foot() asserts them). The route is "
+   "recorded on the same footing as the four fields, and arithmetic is the "
+   "arbiter rather than the extractor's confidence."),
+  "income_statement_line_read_from_this_same_filing": 173669334,
+  "why_the_income_statement_line_is_not_what_is_committed": (
+   "THE INCOME STATEMENT'S DEPRECIATION LINE IS NOT THE CHARGE THIS IDENTITY "
+   "NEEDS, and on this origin the two are visible on facing pages of ONE "
+   "document: page 5 prints 'إهلاكات واستهلاكات' of 173,669,334 as an expense "
+   "and page 7 adds back 191,362,741 to profit in the cash-flow statement, a "
+   "difference of 17,693,407. The add-back is what capex = dPPE + D&A is "
+   "written in terms of and is what is committed. The income-statement figure "
+   "is the one this run's panel already carries for FY2022 (EGP 173.6693 "
+   "million) and it reproduces here TO THE POUND from the filing's own "
+   "column — which corroborates the panel's value and does not make it the "
+   "right measurement for this record. No disclosure in this filing "
+   "reconciles the two and none is invented."),
+  "vintage_note": (
+   "read from the FY2022 filing's OWN column. The figure this run's panel "
+   "carries for the same year comes from the FY2023 filing's comparative "
+   "column — the same value, a later vintage — and this record does not use "
+   "it. A figure lifted from a later year's comparative is right in value and "
+   "wrong in date, and the error is invisible afterwards."),
+ },
+ (2022, "ppe"): {
+  "confirmed_against_this_origin_s_own_filing": {
+   "why": (
+    "this figure is read from the FY2023 filing's COMPARATIVE column, which is "
+    "a later vintage, so the question is whether the FY2022 filing's own "
+    "balance sheet says the same thing. It was rendered at 400 dpi and read: "
+    "it does, on every one of the three lines, to the pound. Nothing was "
+    "restated between the two documents on what this record carries. That is "
+    "recorded because a later filing agreeing with an earlier one is a FACT "
+    "somebody checked, not something a reader may assume."),
+   "file": "بالم هيلز للتعمير - القوائم المالية المجمعة - 31 ديسمبر 2022.pdf",
+   "page": 4,
+   "route": "rendered to pixels at 400 dpi and read off the render",
+   "as_printed_in_its_own_filing": {
+    "الاصول الثابته (بالصافى) — Fixed assets (net)": 2592279116,
+    "مشروعات تحت التنفيذ — Projects under construction": 212133152,
+    "استثمارات عقاريه — Investment property": 167262054},
+   "also_confirmed_on_the_same_page": {
+    "نقدية بالصندوق ولدى البنوك — Cash and cash equivalents": 1165167798,
+    "إجمالي الاصول غير المتداوله — Total non-current assets": 23488367003,
+    "the prior year's three property lines, 31 December 2021": (
+     "2,718,635,212 + 7,640,536 + 170,828,879 = 2,897,104,627, which is the "
+     "figure this record already carries for FY2021 from the FY2021 filing's "
+     "own column — a second document, read independently, agreeing to the "
+     "pound")},
+  },
+ },
+ (2022, "capex"): {
+  "route_detail": (
+   "as for this origin's depreciation: page 7 of the FY2022 filing rendered "
+   "to pixels at 400 dpi and read off the render, with the investing section "
+   "made to sum to its own printed net cash figure in BOTH columns before "
+   "either row was recorded."),
+  "vintage_note": (
+   "read from the FY2022 filing's OWN column. The FY2023 filing's "
+   "comparative page — the only other document carrying this year — "
+   "reproduces the projects-under-construction row to the pound and returns "
+   "a failed extraction for the fixed-asset row (CF_PRIOR_REJECTED)."),
+  "why_this_cell_was_worth_reading": (
+   "the capital-expenditure intensity rule that rebuilds a value at a past "
+   "origin needs three CONSECUTIVE fiscal years of it, so this single "
+   "absence dropped two origins rather than one. It was recorded as missing "
+   "on the ground that no readable cash-flow statement existed in either "
+   "direction; one existed, in the origin's own filing, in Arabic."),
+ },
 }
 
 # Where a page's own component rows do not sum exactly to its printed
@@ -869,6 +1147,11 @@ def foot():
         prev = CF.get(y - 1)
         if not prev or prev.get("column") != "own":
             continue
+        rejected = CF_PRIOR_REJECTED.get(y, {})
+        for k in rejected:
+            if k in CF_PRIOR[y]:
+                problems.append("FY%d: %s is recorded both as corroboration and "
+                                "as a rejected read" % (y - 1, k))
         for k, v in CF_PRIOR[y].items():
             if prev.get(k) is None:
                 continue
@@ -878,6 +1161,22 @@ def foot():
                     "where the FY%d filing's own column states %d — two "
                     "documents disagree about one figure"
                     % (y - 1, y, k, v, y - 1, prev[k]))
+
+    # THE FY2022 CASH-FLOW STATEMENT, read off the rendered pixels of a filing
+    # this run's parser reports unresolved, is made to sum section by section
+    # in BOTH its columns before either of its figures is committed.
+    for name, cols in CF2022_SECTIONS.items():
+        for col, d in sorted(cols.items()):
+            got = d["anchor"] + sum(d["rows"])
+            if abs(got - d["printed"]) > 1:
+                problems.append(
+                    "FY2022 cash-flow statement, %d column — %s: the rows read "
+                    "sum to %d against a printed %d" % (col, name, got, d["printed"]))
+    if CF.get(2022, {}).get("close") != CF2022_SECTIONS[
+            "the net flow, the opening cash and the expected-credit-loss effect, "
+            "to the closing cash"][2022]["printed"]:
+        problems.append("FY2022: the committed closing cash is not the figure "
+                        "the statement's own rows arrive at")
 
     for y, s in sorted(SHARES.items()):
         implied = s["issued_capital"] / s["par_value"]
@@ -958,7 +1257,8 @@ def build():
         if b and all(b.get(k) is not None for k in PPE_LINES):
             lines = {lab.get(k, k): b[k] for k in PPE_LINES}
             block["ppe"] = _rec(sum(lines.values()), y, "bs", "EGP", as_at=at,
-                                definition=PPE_DEFINITION, lines=lines)
+                                definition=PPE_DEFINITION, lines=lines,
+                                **ITEM_EXTRA.get((y, "ppe"), {}))
         elif b and any(b.get(k) is not None for k in PPE_LINES):
             block["ppe"] = _missing(
                 "this reading of the balance sheet does not recover %s, so a "
@@ -976,7 +1276,8 @@ def build():
                                 line=clab.get("dep", "Depreciation"),
                                 note=DEP_NOTE,
                                 income_statement_line_egp_million_for_comparison=(
-                                    PANEL_ADMIN_DEPR.get(y)))
+                                    PANEL_ADMIN_DEPR.get(y)),
+                                **ITEM_EXTRA.get((y, "dep"), {}))
         else:
             block["dep"] = _missing(miss.get("dep", "the cash-flow statement was "
                                              "not read"))
@@ -1012,6 +1313,7 @@ def build():
                               "cash-flow statement's depreciation add-back"),
                     "difference_from_disclosed": d_ppe + c["dep"] - sum(parts.values()),
                     "note": IDENTITY_NOTE}
+            rec.update(ITEM_EXTRA.get((y, "capex"), {}))
             block["capex"] = rec
         else:
             block["capex"] = _missing(miss.get("capex", "the cash-flow statement "
@@ -1132,6 +1434,27 @@ def document():
                                           "statement_pages": f["stmt_pages"]}
                               for f in FILES.values()},
         "point_in_time": POINT_IN_TIME,
+        "fy2022_cash_flow_statement_footing": {
+            "_": ("Every row read off the FY2022 filing's own cash-flow "
+                  "statement, section by section and in BOTH columns, with the "
+                  "printed subtotal each section is made to reproduce. foot() "
+                  "asserts these at import, so the two figures this origin "
+                  "commits stand on arithmetic about the page rather than on "
+                  "confidence in the reading. The operating section's "
+                  "working-capital rows were NOT transcribed and are therefore "
+                  "NOT asserted; the operating subtotal is pinned instead by "
+                  "the whole-statement identity, which is how it was "
+                  "established."),
+            "sections": {name: {str(col): d for col, d in cols.items()}
+                         for name, cols in CF2022_SECTIONS.items()},
+            "prior_year_opening_cash_disagreement":
+                CF2022_PRIOR_YEAR_OPENING_DISAGREEMENT,
+            "a_read_this_record_rejects": {
+                "FY2022 payments for purchase of fixed assets, as the FY2023 "
+                "filing's comparative page returns it":
+                    CF_PRIOR_REJECTED[2023]["capex_fixed"][0],
+                "why": CF_PRIOR_REJECTED[2023]["capex_fixed"][1]},
+        },
         "sources": {"FY%d" % y: {
             "balance_sheet": ({"filing_year": BS[y]["src"],
                                "file": FILES[BS[y]["src"]]["file"],
