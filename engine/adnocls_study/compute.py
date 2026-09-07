@@ -2713,6 +2713,11 @@ OUT = dict(
         ke_exp=ke, kd_pretax=kd, kd_aftertax=kd * (1 - tax_stat),
         weight_equity=we, weight_debt=wd, wacc_exp=wacc,
         rf_terminal=V['rf_terminal'], erp_terminal=V['erp_total'], ke_terminal=ke_term,
+        # [R-COC-02]: the record NAMES the construction its terminal cost of equity was
+        # built under. This study carries the beta straight through to the terminal; two
+        # studies in the book relever instead, and until this field existed nothing
+        # distinguished a relevered beta from a typo.
+        ke_terminal_construction='same_beta',
         kd_terminal_pretax=kd_term, kd_terminal_aftertax=kd_term * (1 - tax_stat),
         weight_debt_terminal=wd, wacc_terminal=wacc_term,
         glide_fractions=[(i + 1) / 5.0 for i in range(5)],

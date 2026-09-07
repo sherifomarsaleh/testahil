@@ -7250,6 +7250,7 @@
   "rf_terminal": 0.039751,
   "erp_terminal": 0.0487,
   "ke_terminal": 0.09347684,
+  "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.056095509040590595,
   "kd_terminal_aftertax": 0.05104691322693744,
   "weight_debt_terminal": 0.0719326113922813,

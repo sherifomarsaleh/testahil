@@ -49,3 +49,10 @@ engine/borouge_study/src/*.pdf
 
 # Day-0 refetch: primary documents re-fetched and sha256-verified against the walk-forward registers stay on disk for the session; the verified url+sha record is engine/method_reassessment/refetch_log.json. The base-year and latest-interim statements each study stands on are committed under the study directories explicitly.
 engine/*_walkforward/filings/
+
+# The framework build board is GENERATED and deliberately NOT committed: GitHub Pages
+# serves this whole tree, so an .html file here is served on the live site, and this
+# page carries internal vocabulary — gates, ratchets, held studies. Committed: the
+# generator (build_board.py) and its state (board_state.json). Rendered: to a scratch
+# path, and published from there as an artefact.
+engine/method_reassessment/board.html

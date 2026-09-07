@@ -332,7 +332,15 @@ def render(st, m):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default=os.path.join(HERE, "board.html"))
+    # NOT INSIDE THE REPOSITORY BY DEFAULT, and the reason is a finding rather than a
+    # preference: GitHub Pages publishes this whole tree (there is a .nojekyll), so an
+    # .html file committed anywhere under it is SERVED ON THE LIVE SITE. This board
+    # discusses held studies, ratchet debt and internal state — exactly the vocabulary
+    # depth-bar standard 4 keeps away from an outside reader — and check_page_integrity
+    # caught it sitting there. It is rendered to a scratch path and published as an
+    # artefact from there; the GENERATOR and its state are committed, the page is not.
+    ap.add_argument("--out", default=os.environ.get(
+        "TESTAHIL_BOARD_OUT", "/tmp/testahil_board.html"))
     ap.add_argument("--today", default=None)
     a = ap.parse_args(argv)
 

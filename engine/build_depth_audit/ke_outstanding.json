@@ -2,7 +2,6 @@
  "why": "[R-COC-02] with the ratchet of [R-ENF-02]. Every study carrying a cost-of-capital record on the day the rule was adopted (07-09-2026) predates it and declares no terminal construction. Each entry names WHAT THE RECORD ACTUALLY REPRODUCES UNDER, because the fix is a single declared field rather than a rebuild and an entry that names the fix is an entry somebody can close. NONE of these is a wrong number: all five reproduce exactly, three under same_beta and two under a Hamada relevering at 22.50%. What is outstanding is that the record does not SAY WHICH, so a reader cannot tell a relevered beta from a typo and neither could any instrument. The list may only ever get SHORTER (--prune).",
  "adopted": "2026-09-07",
  "outstanding": {
-  "ADNOCLS": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
   "PHDC": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
   "TMGH": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
   "ARCC": "reproduces exactly under 'relevered' at an implied 22.50% — beta 0.927522 unlevers to 0.900090 at a debt weight of 0.0378 and relevers to 1.074483 at a terminal 0.20. Declare ke_terminal_construction and relevering_tax_rate; the rate must be STATED, never solved out of the answer it explains.",
@@ -10,5 +9,11 @@
   "FERTIGLOBE": "UNREADABLE rather than clean: commits a cost-of-capital record carrying no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all.",
   "STC": "reproduces exactly under 'same_beta'; declare ke_terminal_construction. FOUND BY THE GATE AND NOT BY THE MEASUREMENT THAT PRECEDED IT: the hand-written probe looked for cost_of_capital_record alone and reported six studies; the gate searches three spellings and reads seven. L-355 exactly, caught by the instrument rather than by a person."
  },
- "pruned_on": []
+ "pruned_on": [
+  {
+   "removed": [
+    "ADNOCLS"
+   ]
+  }
+ ]
 }
