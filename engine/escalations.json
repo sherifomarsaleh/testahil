@@ -660,7 +660,7 @@
    "key": "PARTE-criterion-1-ratchet-clause",
    "opened": "2026-09-07",
    "cls": "instruction",
-   "question": "Part E criterion 1 accepts Phase 1 when every gate is green with its negative control AND the ratchets carry 'only names not yet re-issued'. Five names HAVE been re-issued and 49 ratchet entries still name them (PHDC 14, AMOC 12, TMGH 10, ARCC 7, EGCH 6). Every entry is real debt the gates still fire on — measured 07-09-2026 by running every prune-capable gate in a sandbox and diffing against the live ratchets; three stale ones were pruned and the rest survive. So the criterion as written cannot be met by the re-issues that have happened, and EITHER THE WORK OR THE CRITERION HAS TO MOVE. That is a decision about an acceptance test, which is the principal's.",
+   "question": "Part E criterion 1 accepts Phase 1 when every gate is green with its negative control AND the ratchets carry 'only names not yet re-issued'. Five names HAVE been re-issued and 45 ratchet entries still name them (PHDC 13, AMOC 11, TMGH 9, ARCC 7, EGCH 5). Every entry is real debt the gates still fire on — measured 07-09-2026 by running every prune-capable gate in a sandbox and diffing against the live ratchets; three stale ones were pruned and the rest survive. So the criterion as written cannot be met by the re-issues that have happened, and EITHER THE WORK OR THE CRITERION HAS TO MOVE. That is a decision about an acceptance test, which is the principal's.",
    "routes": [
     {
      "route": "read all 49 entries individually across the five names",
@@ -685,6 +685,12 @@
      "when": "2026-09-07",
      "outcome": "none — the criterion's wording admits neither reading, which is why it is a decision rather than a lookup",
      "rerun": false
+    },
+    {
+     "route": "re-read acceptance.py's own counter against the ratchet files it walks",
+     "when": "2026-09-07",
+     "outcome": "the count was 49 and the debt is 45: the walker could not tell a debt list from a record of the OPPOSITE, counting two conforming_at_adoption entries and two scope_widened.added ones. Corrected in the instrument, named rather than pattern-matched, and conservatively — ambiguous keys are still counted, because understating debt is the error that matters. IT HAD A CONSEQUENCE: pruning the output ratchet the same day removed AMOC and EGCH from its real list and the count did not move, because both stayed visible through scope_widened.added.",
+     "rerun": true
     }
    ],
    "refs_searched": 22,
@@ -697,7 +703,7 @@
     "file": "engine/method_reassessment/PLAN_02-09-2026.md",
     "must_contain": "CRITERION 1 RATCHET CLAUSE RULED"
    },
-   "note": "REWRITTEN 07-09-2026. The original entry was registered in f213fdc1 and never reached the commit: this register's own negative control wrote its fixture into the real file and the restore did not run, so thirteen live entries plus this one were replaced by a single case called NC-example. Recovered from f213fdc1^ and this entry rewritten from the routes actually run, recorded here rather than presented as the original text. The mechanism is closed — the gate now reads TESTAHIL_ESCALATIONS_REGISTER and the control asserts, every case, that engine/escalations.json is byte-identical after it runs."
+   "note": "REWRITTEN 07-09-2026. The original entry was registered in f213fdc1 and never reached the commit: this register's own negative control wrote its fixture into the real file and the restore did not run, so thirteen live entries plus this one were replaced by a single case called NC-example. Recovered from f213fdc1^ and this entry rewritten from the routes actually run, recorded here rather than presented as the original text. The mechanism is closed — the gate now reads TESTAHIL_ESCALATIONS_REGISTER and the control asserts, every case, that engine/escalations.json is byte-identical after it runs. [07-09-2026] The figure in this question was 49 when the entry was written and is 45 on a corrected count; the DECISION is unchanged and so is the default. The number is amended here rather than left wrong, because a register carrying a figure its own author knows to be wrong is worse than one carrying none."
   }
  ]
 }

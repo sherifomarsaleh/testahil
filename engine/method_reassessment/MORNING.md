@@ -2605,3 +2605,40 @@ not completed once. **CI runs the identical step list on a clean checkout on eve
 which is strictly the better test. From here I run the affected gates and the gauntlet
 locally and let CI be the full-suite authority, rather than continuing a ritual that never
 finishes and cannot be honestly claimed.
+
+## 07-09-2026 — the ratchet count was 49 and the debt is 45
+
+**Sixteen ratchet entries pruned**, across five lists: `output` (12), `coc`, `document`,
+`figaxes`, `waterfall` (1 each). Deletions only — a ratchet may only shorten. The twelve on
+`output_outstanding` all appear in that gate's own **conforming** list with real reverse
+reads and sign tests; they were debt paid and never pruned. STC came off two lists. The
+earlier sweep missed these because it covered only the five re-issued names.
+
+**Then the prune exposed a defect in the instrument that measures the programme's largest
+open item.** `acceptance.py` walks each ratchet file recursively — the right design, since
+the 44 files are heterogeneous (some list tickers, some are keyed by ticker, some by
+document path). What it could not do is tell a debt list from a record of the **opposite**:
+`conforming_at_adoption` names studies that were *clean* when a ratchet was seeded, and
+`scope_widened.added` records what a widened gate *found*.
+
+**Criterion 1 was reported at 49 and the genuine debt is 45** — two `conforming_at_adoption`
+and two `scope_widened.added`. The verdict does not change (still NOT MET) and neither does
+the escalation's decision, but the register no longer carries a figure I know to be wrong.
+
+**It was not a tidiness point.** Pruning the output ratchet this hour removed AMOC and EGCH
+from its real outstanding list **and the count did not move**, because both stayed visible
+through `scope_widened.added`. An instrument that cannot see debt being paid is worse than
+one that overstates by a constant.
+
+The exclusion is **named, not pattern-matched, and conservative**: ambiguous keys (`exempt`,
+`held_unregistered`, `reasons`, `aliases`) are still counted, because understating debt is
+the error that matters here.
+
+### And a correction to my own working, mid-measurement
+
+My first pass at this reported that only 5 of AMOC's 12 lists were real debt — an
+over-correction of the same kind I have been documenting all night. My classifier omitted
+debt groups spelled `unscored`, `signature` and `failing`. Printing the exact key path of
+every match gave 11 of 12. **I nearly reported a large correction to the programme's
+headline number on the strength of a bad probe**, which is the seventh instance today and
+the one that would have mattered most.

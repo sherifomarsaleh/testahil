@@ -59,15 +59,42 @@ def _ticker_of_key(k):
     return None
 
 
-def _entries(o):
+# KEYS THAT RECORD THE OPPOSITE OF DEBT [ADDED 07-09-2026].
+# The ratchet files are heterogeneous — 44 of them, some listing tickers, some keyed
+# BY ticker, some by document path — so _entries walks the whole structure rather than
+# trusting a key name, and that is the right design for the shapes it meets. What it
+# could not do is tell a debt list from a record of the OPPOSITE: `conforming_at_adoption`
+# names studies that were CLEAN when a ratchet was seeded, and `scope_widened.added`
+# records what a widened gate FOUND rather than what it still allows.
+#
+# MEASURED: the five re-issued names were reported carrying 49 ratchet entries and carry
+# 45. The four are two `conforming_at_adoption` and two `scope_widened.added`.
+#
+# IT HAD A CONCRETE CONSEQUENCE RATHER THAN BEING A TIDINESS POINT: pruning the output
+# ratchet on 07-09-2026 removed AMOC and EGCH from its real outstanding list, and THIS
+# COUNT DID NOT MOVE, because both remained visible through `scope_widened.added`. An
+# instrument that cannot see debt being paid is worse than one that overstates it by a
+# constant.
+#
+# NAMED RATHER THAN PATTERN-MATCHED, and conservatively: keys whose meaning is not
+# unambiguous (`exempt`, `held_unregistered`, `reasons`, `aliases`) are STILL COUNTED,
+# because understating debt is the error that matters here and an exclusion nobody can
+# justify is where the next miscount hides.
+NOT_DEBT = ("conforming_at_adoption", "scope_widened", "_examined_at_adoption",
+            "pruned", "pruned_on")
+
+
+def _entries(o, _top=None):
     out = set()
     if isinstance(o, dict):
         for k, v in o.items():
+            if k in NOT_DEBT:
+                continue
             t = _ticker_of_key(k)
             if t:
                 out.add(t)
             if isinstance(v, (dict, list)):
-                out |= _entries(v)
+                out |= _entries(v, k if _top is None else _top)
     elif isinstance(o, list):
         for v in o:
             if isinstance(v, str):
@@ -80,7 +107,7 @@ def _entries(o):
                         t = _ticker_of_key(v[kk])
                         if t:
                             out.add(t)
-                out |= _entries(v)
+                out |= _entries(v, _top)
     return out
 
 
