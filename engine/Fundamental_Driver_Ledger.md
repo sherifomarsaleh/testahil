@@ -765,3 +765,72 @@ margin the company has filed. **`fair{}` was not moved in either direction** —
 is not rebuilt, because this run establishes that its historical panel cannot be
 reconciled to anything the issuer has published, which is a SIGCM clause 1 condition
 rather than a disagreement with the market.
+
+---
+
+## PHAR — Egyptian International Pharmaceutical Industries (EIPICO) · EGX · generic and branded pharmaceutical manufacturer · fundamental walk-forward, 07-09-2026 · **LIGHT**
+
+**Scope: LIGHT.** Seven sourceable fiscal years, FY2019–FY2025, every one out of EIPICO's
+own annual reports from its own investor-relations page. Five origins FY2020–FY2024,
+horizons 1–3, twelve scoreable cells per driver, 150 scored cells. The window stops at
+FY2019 because the FY2019 annual report is a board report carrying operating KPIs and no
+financial statements, so FY2018 has units and no accounts and is left out rather than
+fabricated. The exchange and regulator disclosure portals were re-attempted on the day and
+neither resolves.
+
+### Drivers, and the mechanical rule each was scored under
+
+| driver | source of the level | rule at a historical origin |
+|---|---|---|
+| packs produced (thousand) | the company's own annual-report indicator table, every year but FY2020 | trailing compound growth CLIPPED to Egypt's population growth ±2pp — the exogenous anchor, so the volume driver is never the company's own trend alone |
+| revenue per pack | parent sales value ÷ packs, both from the same indicator table | trailing compound growth; on the macro legs, the origin's own inflation vintage or the realised path |
+| cost per pack | consolidated cost of sales ÷ the consolidation ratio ÷ packs | **the SAME escalator as price**, so the gross margin is an OUTPUT and the two cannot drift apart |
+| consolidation ratio | consolidated revenue ÷ parent sales value | held at the origin's own value; it has run 1.015–1.059 across the window (the EIACO ampoules subsidiary) |
+| marketing | consolidated income statement, FY2021 onward | trailing mean share of revenue (variable) |
+| administrative block (R&D + G&A + board) | same | escalated at inflation off the origin's own level (fixed) |
+| provisions and credit losses | same | trailing mean share of revenue |
+| **finance cost** | **long-term loans + long-term credit facilities + short-term loans + creditor banks, AND NOTHING ELSE** | the origin's own effective rate × average interest-bearing debt |
+| capex | consolidated cash-flow statement, FY2021 onward | trailing mean share of revenue; an INPUT, never solved out |
+| depreciation and amortisation | consolidated cash flow: depreciation + right-of-use + intangibles | roll-forward of PP&E **plus projects under construction** at the origin's own book rate |
+| interest-bearing debt | balance sheet | the funding identity, capex + dividends + ΔWC − net profit − D&A, two fixed-point iterations |
+| capital gains, FX result, other income | — | **SET TO ZERO at every origin.** A mechanical rule cannot forecast a currency result and inventing one is the judgement driver this exercise forbids |
+| tax | income tax + deferred tax + the takaful contribution | trailing mean effective rate on profit before tax |
+
+### Decisions a later study of this name or class should not have to rediscover
+
+- **THE INTEREST DENOMINATOR IS THE BORROWINGS, NOT THE LIABILITIES.** On FY2025 the same
+  finance charge gives 14.83% over average interest-bearing debt and 11.87% over total
+  liabilities — 296 basis points, because trade payables, other creditors, provisions and
+  tax payable are a quarter of this balance sheet.
+- **THREE COST-OF-DEBT FIGURES EXIST HERE AND THEY ARE NOT THE SAME QUANTITY**: the
+  finance-cost rate (14.83% FY2025), the interest rate on credit facilities the study
+  computes (14.17%, which excludes EGP 57.6mn of bank commissions — an interest rate is
+  computed on interest), and the all-in rate including EGP 551.1mn capitalised into
+  construction (20.30%). Capitalised interest is 43% of the expensed charge, which is a
+  named mechanism [R-COC-01 AMENDED] admits and the reason a trailing effective rate is
+  not the comparator for a marginal one on this book.
+- **CAPEX LANDS IN PROJECTS UNDER CONSTRUCTION AND STAYS THERE FOR YEARS.** EGP 866mn at
+  FY2022 became EGP 5,694mn at FY2024 and EGP 2,086mn was transferred into fixed assets in
+  FY2025 alone. Any depreciation roll-forward that charges capex on arrival over-charges;
+  this run's did, by +0.499 log, its only over-forecast driver and its worst against the
+  naive benchmark.
+- **THE DISCLOSED USEFUL LIFE IS A SCALAR TABLE, WHICH IS UNUSUAL.** Buildings 50,
+  production and service machines 15, transport and tools 5, furniture 10, land not
+  depreciated — no bands, so the gross-cost weighting to 13.7954 years is unambiguous.
+  The FY2025 report carries the identical table, so no life was reassessed.
+- **THE PACKS SERIES HAS A HOLE AND A REDEFINITION.** The condensed FY2020 report
+  publishes no packs figure at all, and the FY2024 figure was re-presented from 306,133 to
+  299,608 thousand between the FY2024 and FY2025 reports with no reconciliation. Score the
+  unit driver against each origin's own report.
+- **SIX PRINTED CELLS IN THESE FILINGS DO NOT FOOT**, and the largest — the FY2022 gross
+  profit, EGP 18.0mn low — is carried forward into the next year's comparative, so
+  checking one filing against the next confirms the wrong number. Only the statement's own
+  chain to profit before tax separates them.
+
+### What the run concluded
+
+No correction adopted; every candidate DECLINED, six of seven because a LIGHT run at three
+horizons cannot admit a single cut under the cut-invariance clause and untestable is never
+stable. Fair value unchanged at EGP 36.64 (Frame A) / 54.24 (Frame B). Far-year bands
+published for horizons one to three only, declared as SPANS over three to five
+observations rather than percentiles, oriented actual-over-forecast.
