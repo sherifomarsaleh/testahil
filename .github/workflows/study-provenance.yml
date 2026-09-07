@@ -1308,6 +1308,38 @@ jobs:
       - name: Frozen-escalator gate — negative control
         run: python3 scripts/check_frozen_escalator_negative_control.py
 
+      # [R-ASSET-01]. The rule [R-BRIDGE-01] makes about the BALANCE SHEET, applied to
+      # the OPERATING ASSET BASE — the land, the fleet, the kilns, the installed
+      # capacity — which on an asset-based lens is what the value actually rests on.
+      # "landbank" occurred in zero gates and zero governing documents until today, and
+      # a study shipped a land base dated 21 months behind its own information set.
+      - name: The operating asset base is as at the latest disclosure the study read
+        run: python3 scripts/check_asset_base.py
+
+      - name: Asset-base gate — negative control
+        run: python3 scripts/check_asset_base_negative_control.py
+
+      # [R-COC-02]. check_cost_of_capital enforces the CONSTRUCTION thoroughly and never
+      # reproduced Ke, so a cost of equity typed 300bp high passed everything here. The
+      # book runs two terminal constructions and no record said which.
+      - name: The cost of equity reproduces from its own inputs
+        run: python3 scripts/check_ke_reproduction.py
+
+      - name: Cost-of-equity reproduction gate — negative control
+        run: python3 scripts/check_ke_reproduction_negative_control.py
+
+      # [R-GAP-03]. [R-GAP-01] audits a STUDY against the price it was STRUCK at, which
+      # is the right question for whether an answer was audited before it shipped and is
+      # deliberately kept that way. This audits the number a READER sees on the site.
+      - name: The gap a reader sees is audited
+        run: python3 scripts/check_published_gap.py
+
+      # [R-PROOF-01]. Sixty-eight gates is a number, not evidence: every named error is
+      # planted in a REAL study, the gate is proved green on the unmutated copy first so
+      # a red afterwards was CAUSED by the error, and the mutation asserts it landed.
+      - name: Every named error is planted and caught
+        run: python3 scripts/check_error_injection.py
+
       - name: Tree-unmodified gate — negative control
         run: python3 scripts/check_tree_unmodified_negative_control.py
 
