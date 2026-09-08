@@ -209,7 +209,8 @@ P('Where every number came from. This register accompanies the valuation study a
 
 # ---------------------------------------------------- sourcing position
 H2('The sourcing position, stated at the top')
-P('Every historical figure in this study and in the walk-forward behind it comes from a '
+P('Every historical figure in this study, and in the historical testing behind it, comes '
+  'from a '
   'document GB Corp published itself, downloaded from the company’s own investor-relations '
   'portal and committed to this study’s directory. No data vendor, broker or press '
   'report is a source for any figure the company reported about itself.', size=9.5)
@@ -291,8 +292,8 @@ for layer in sorted(_by_layer, key=lambda x: _LAYER_ORDER.get(x, 9)):
     table(rows, [0.32, 1.35, 0.85, 0.55, 4.35, 0.85, 1.53], size=7.4)
 
 H2('The reported history behind the study’s own income statement')
-P('The three reported years the study prints come from the walk-forward panel, which holds '
-  'this company’s consolidated income statement as originally reported. Every year is '
+P('The three reported years the study prints are taken from a record of this company’s '
+  'consolidated income statement as it was originally reported, year by year. Every year is '
   'asserted to foot against its own arithmetic before it enters anything.', size=9.5)
 rows = [['Fiscal year', 'Revenue (EGP mn)', 'Profit attributable (EGP mn)', 'Source document',
          'Source date', 'Foots', 'Route']]
@@ -303,7 +304,7 @@ for y in D['history']['years']:
                  _p['source'], _p['source_date'], 'yes' if _p['foots'] else 'NO',
                  outward(_p['route'])])
 table(rows, [0.75, 1.15, 1.55, 2.45, 0.85, 0.5, 2.55], size=7.6)
-P('The panel behind the walk-forward runs from %s and every year in it foots; the three '
+P('That reported-history record runs from %s and every year in it foots; the three '
   'printed above are the ones this study’s own statements table carries.'
   % PANEL['_span'], size=9.2)
 
@@ -412,11 +413,11 @@ rows.append([
  'the refusal is printed in the study body rather than resolved by inventing a figure.'])
 rows.append([
  'Audited statements for the two earliest years of the intended window',
- 'The walk-forward targets as long a sourceable history as the filings support',
+ 'The study targets as long a run of sourceable history as the filings support',
  'The company’s own filings index does not reach those years, and the annual reports for '
  'them lay the statements out in a split form the text layer cannot attach to labels',
- 'The affected balance-sheet items are recorded as MISSING with that reason in the '
- 'walk-forward’s valuation-input block, and never estimated.'])
+ 'The affected balance-sheet items are recorded as MISSING with that reason, beside the '
+ 'figures they sit among, and never estimated.'])
 rows.append([
  'A usable beta from the first regression attempted on this name',
  'Every study needs the stock’s own beta against the published index of its exchange',
@@ -520,7 +521,7 @@ rows.append([
  'Aggregator restatements of revenue, profit and balance-sheet lines circulate for this '
  'name and differ in classification from the filings',
  'NONE of them is used. Every reported figure in this study comes from a document the '
- 'company published itself, which is a hard gate rather than a preference. Where an '
+ 'company published itself, which is a requirement rather than a preference. Where an '
  'aggregator and a filing disagree, the filing is right by definition of what is being '
  'measured.'])
 rows.append([
