@@ -1164,40 +1164,33 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
                           "is %s, not positive: a company consuming cash in its final "
                           "forecast year is not capitalised as a growing perpetuity"
                           % f"{last['fcff']:,.1f}")
-        # DECLARATION 5 — THE TERMINAL CONVERGES BEFORE IT CAPITALISES.
-        # [R-MACRO-01]: the explicit window runs until growth is within 2pp of
-        # terminal, and eleven of seventeen scoring cells broke it, two by more
-        # than twenty points. The window is NOT lengthened — every run declares
-        # its own horizons and extending a projector to make a cell score is the
-        # selection this method forbids — so the convergence happens here, on the
-        # ORIGIN'S OWN PUBLISHED inflation ladder, read rather than chosen.
-        # Where that ladder already sits at terminal the stub is EMPTY and this
-        # collapses to declaration 4 exactly.
-        cf, N = last["fcff"], max(hs)
-        pv_stub, k = 0.0, 0
-        try:
-            fwd = _fwd_cpi(origin)
-        except Exception:
-            fwd = None
-        if fwd is not None:
-            while k < STUB_CAP:
-                gk = fwd(N + k + 1)
-                if gk - g <= CONVERGE_PP:
-                    break
-                k += 1
-                cf = cf * (1 + gk)
-                pv_stub += cf * _dfactor(coc, N + k)
-            else:
-                return None, ("terminal refused: the origin's own published inflation "
-                              "path has not converged to within %.0fpp of terminal "
-                              "after %d further years, and this lens extrapolates no "
-                              "path it was not given" % (100 * CONVERGE_PP, STUB_CAP))
-        if cf <= 0:
-            return None, ("terminal refused: the converged year's free cash flow is "
-                          "%s, not positive" % f"{cf:,.1f}")
-        tv = cf * (1 + g) / (w_term - g)
-        pv_tv = tv * _dfactor(coc, N + k)
-        ev = pv + pv_stub + pv_tv
+        # DECLARATION 5 IS WITHDRAWN, AND THE PREMISE IT RESTED ON IS WRONG
+        # [08-09-2026, per instruction — "I did not write this year. It should
+        # not be adopted. Say we have been growing at 20% and we project that we
+        # grow at 20% per year each year for the next 5 years. That does not mean
+        # that we grow at a similar rate for perpetuity. Perpetuity is from the
+        # 6th year till infinity and during that time we either reach maturity in
+        # which case growth slows down or we shut down."].
+        #
+        # I READ A CLAUSE AS BINDING THAT THE PRINCIPAL DID NOT WRITE AND DOES NOT
+        # HOLD, AND BUILT A CONSTRUCTION ON IT. The clause said an explicit window
+        # runs until growth is within 2pp of terminal, and I measured eleven of
+        # seventeen cells against it and called them a defect. THEY ARE NOT. A
+        # step at the boundary between an explicit window and a perpetuity is the
+        # ORDINARY SHAPE OF THE TWO REGIMES, not a discontinuity to be smoothed:
+        # the explicit years are a forecast of a company as it is, and the
+        # perpetuity is a claim about a company that has either matured or ended.
+        # Forcing them to meet would make the window an artefact of the terminal.
+        #
+        # THE WITHDRAWAL COSTS NOTHING AND THAT IS ITSELF THE EVIDENCE: the stub
+        # came back EMPTY at every origin, because the published ladder converges
+        # inside five years everywhere the archive reaches. So no figure ever
+        # moved under it, and what the exercise actually found was the flat-rate
+        # inflation defect below — which stands on its own evidence and is a
+        # different claim entirely.
+        tv = last["fcff"] * (1 + g) / (w_term - g)
+        pv_tv = tv * _dfactor(coc, max(hs))
+        ev = pv + pv_tv
         equity = ev + cash - (debt or 0.0)
         per_share = equity / shares
         # A NEGATIVE EQUITY VALUE IS A REAL OUTPUT AND IS NOT A SCOREABLE ONE, and the
@@ -1215,34 +1208,26 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
                           "positive: a log ratio against the price does not exist "
                           "below zero and this series is scored on one"
                           % f"{per_share:,.3f}")
-        # THE EXPLICIT WINDOW MUST CARRY A POSITIVE PRESENT VALUE, and this
-        # refusal is added 08-09-2026 knowing exactly what it costs, which is
-        # the only reason it can be trusted.
+        # THE POSITIVE-EXPLICIT-PV REFUSAL IS WITHDRAWN [08-09-2026, per
+        # instruction — "It is OK to have the terminal value carry a high
+        # proportion of the overall equity value. THAT IS NORMAL."].
         #
-        # A cell whose five discounted forecast years sum to a NEGATIVE present
-        # value larger than the terminal is not a cheap company; it is a
-        # construction that has broken. Its terminal share prints as a negative
-        # percentage — on the cell that provoked this, MINUS 280% — which is not
-        # a share of anything, and the value it lands on (0.077 against a traded
-        # 9.81) is arithmetic rather than a reading.
+        # I ADDED IT THIS AFTERNOON AND IT WAS WRONG, and the way it was wrong is
+        # worth more than the refusal was. A negative present value across the
+        # explicit window is the ORDINARY SHAPE OF A DEVELOPER: land and
+        # construction are paid for during those five years and the value arrives
+        # after them, so the forecast window consumes cash and the terminal
+        # carries the equity. Three of the four cells this refused are exactly
+        # that company at three consecutive origins. Refusing them called a
+        # normal business model a broken construction.
         #
-        # WHY IT IS NOT RESULTS-SHOPPING, STATED SO A READER CAN CHECK RATHER
-        # THAN TRUST: this refusal makes the answer WORSE. With that one cell in,
-        # the pooled bias is +0.3692 and every bootstrap interval INCLUDES ZERO,
-        # which is criterion 3's clause A passing; with it refused the bias is
-        # +0.6175 and every interval EXCLUDES zero, which is clause A failing.
-        # A test that passes only because one cell of twenty-two returned a
-        # figure its own construction cannot support has not been passed, and
-        # reporting it as passed is the exact failure this whole programme was
-        # called to prevent. The refusal is placed at the SOURCE for the reason
-        # the one above it is: a downstream filter is one somebody later forgets.
-        if pv <= 0:
-            return None, ("terminal refused: the explicit window's present value "
-                          "is %s, not positive — the discounted forecast years "
-                          "destroy more than the whole enterprise is worth, so the "
-                          "terminal is carrying more than all of the value and its "
-                          "share prints negative. That is a broken construction "
-                          "rather than a cheap company." % f"{pv:,.0f}")
+        # WHAT IT COST IS RECORDED RATHER THAN QUIETLY REVERSED: the refusal was
+        # introduced BECAUSE it moved the pooled bias the wrong way, which was
+        # the honest direction at the time — with those cells in, clause A read
+        # as passing and I judged it was passing on a broken cell. The judgement
+        # about the cell was mine and it was wrong; the discipline that made me
+        # state the cost is what makes this reversible now.
+
         return ({"ticker": tk, "origin": origin, "fv": per_share, "price": price,
                  "log": math.log(per_share / price) if per_share > 0 and price > 0 else None,
                  "equity": equity, "ev": ev, "pv_explicit": pv, "pv_terminal": pv_tv,
