@@ -1083,7 +1083,7 @@ say(f"[Working capital, BUILT on solved days] inventory {INV_DAYS:.1f} days of c
     f"bridge. It is carried in the bridge instead.")
 
 
-def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None,
+def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=None, ratio=None,
           pound_on_price=None):
     """Revenue AND cost, both per line, both from the same twelve-month base.
 
@@ -1093,6 +1093,13 @@ def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None,
     expense is three disclosed lines on three different drivers plus two charges the previous
     edition registered and never took. Depreciation rolls off the asset register instead of
     being held flat."""
+    # gm_shift=None means THE ADOPTED ANCHOR, resolved at call time from the module
+    # global set once build() exists. Passing an explicit shift (the bear and bull
+    # corners, the sensitivity grid) overrides it, so those keep targeting the filed
+    # margins absolutely and only the BASE moves.
+    if gm_shift is None:
+        gm_shift = globals().get("ADOPTED_GM_SHIFT", 0.0)
+
     rev, gp, gm, cogs_l = [], [], [], []
     lines_rev = {k: [] for k in LINES}; lines_vol = {k: [] for k in LINES}
     lines_cost = {k: [] for k in LINES}; lmarg = {k: [] for k in LINES}
@@ -1462,6 +1469,28 @@ def waterfall(S, wacc_shift=0.0, g=None, roic_cap=None, nwc_days=None,
                 pv_explicit=sum(_f[i] * _df[i] for i in range(5)), pv_tv=_tv * _df[-1],
                 ebitda_margin=[_ebitda[i] / _rev[i] for i in range(5)])
 
+
+# ---- THE ADOPTED BASE ANCHOR ------------------------------------------------
+# [R-ANCHOR-01] A NEAR-TERM REVIEWED ACTUAL OUTRANKS A STALE FULL-YEAR RATE. The most
+# recent reviewed period is the half to 30-Jun-2026; the twelve-month base blends it with
+# the audited transition half, whose margin is roughly half of it, and the blend is what
+# the previous edition forecast forward.
+#
+# THIS EDITION TAKES THE LEVER THE PREVIOUS ONE PRICED AND DECLINED. That edition declined
+# it for a rule rather than a preference -- levers are taken one at a time and it had
+# already moved once in the same pass -- and said in terms that it was "left for the next
+# edition to take on its own evidence rather than on the momentum of this one". This is
+# that edition and this is that evidence, which is the company's own filings and not the
+# price: Q1-2025 5.053% against Q1-2026 10.190%, THE SAME QUARTER DOUBLED, which no
+# seasonal pattern produces, and the quarter inside the latest half that is not the first
+# printed 13.925%, the highest in the record this study holds.
+#
+# ALL SIX MECHANISMS ON THE CLOSED LIST WERE TESTED AGAINST THE FILINGS AND REFUSED, and
+# that refusal is why the old opening could not stand: a forecast opening 22.08% below the
+# latest reviewed period with no mechanism its own filings support is a claim the company's
+# record contradicts. Input cost outpacing price is refused by the same-quarter pair the
+# rule prescribes -- cost per unit of revenue 94.947% to 89.810%, 5.14 points THE OTHER WAY.
+ADOPTED_GM_SHIFT = (V['gp_h1cy26'] / V['rev_h1cy26']) - build(gm_shift=0.0)['gm'][0]
 
 B = build()
 W = waterfall(B)
@@ -1888,7 +1917,7 @@ say(f"[Book lens — on a rate path consistent with lens 1] justified price-to-b
     f"there is one view of the asset base across the model rather than two.")
 
 # ---- scenarios --------------------------------------------------------------
-def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
+def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=None,
                  wacc_shift=0.0, g=None, nwc_days=None, beta=None, proc=None):
     """Every scenario is a FULL re-run through the same waterfall the base case uses.
 
@@ -1906,7 +1935,7 @@ def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
                      we=_we, wt=_wt)['ps']
 
 
-def scenario_full(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
+def scenario_full(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=None,
                   wacc_shift=0.0, g=None, nwc_days=None):
     """The same run as dcf_scenario, returning the WHOLE waterfall rather than one number.
 
@@ -2023,20 +2052,26 @@ _PS_POUND_AT_INFL = waterfall(build(pound_on_price=False))['ps']
 _GM_H1_FILED = V['gp_h1cy26'] / V['rev_h1cy26']
 _GM_Q1_2025 = 0.05053126981775711
 _GM_Q1_2026 = 0.10189872213051045
-_PS_H1_ANCHOR = waterfall(build(gm_shift=_GM_H1_FILED - build()['gm'][0]))['ps']
-say(f"[The base anchor — PRICED, NOT ADOPTED] the most recent reviewed period is the half to "
-    f"30-Jun-2026 at a gross margin of {_GM_H1_FILED:.3%}, against the twelve-month base of "
-    f"{BASE_GM:.3%} this study forecasts forward. The standing rule prefers the near-term "
-    f"reviewed actual, and the like-for-like test it prescribes supports it: Q1-2025 "
-    f"{_GM_Q1_2025:.3%} against Q1-2026 {_GM_Q1_2026:.3%} is the SAME QUARTER doubled, which "
-    f"seasonality cannot produce. Anchoring there and holding it flat gives EGP "
-    f"{_PS_H1_ANCHOR:.2f} a share ({_PS_H1_ANCHOR/SPOT-1:+.1%} against spot) against the "
-    f"adopted EGP {dcf_ps:.2f}. IT IS NOT TAKEN HERE. One correction has already moved this "
-    f"study from {_PS_POUND_AT_INFL/SPOT-1:+.1%} to {dcf_ps/SPOT-1:+.1%} against the price; a "
-    f"second would land {_PS_H1_ANCHOR/SPOT-1:+.1%}, crossing from one side of the price to the "
-    f"other in a single pass. Levers are taken one at a time and stop at the crossing, so this "
-    f"one is published as the study's most consequential contested judgement and left for the "
-    f"next edition.")
+_PS_TTM_BASE = waterfall(build(gm_shift=0.0))['ps']
+say(f"[The base anchor — ADOPTED IN THIS EDITION] the forecast is anchored on the most recent "
+    f"reviewed period, the half to 30-Jun-2026 at a gross margin of {_GM_H1_FILED:.3%}, rather "
+    f"than on the twelve-month blend of {BASE_GM:.3%} the previous edition carried forward. That "
+    f"blend averages the reviewed half with the audited transition half, whose margin is roughly "
+    f"half of it, and a near-term reviewed actual outranks a stale full-year rate. THE EVIDENCE "
+    f"IS THE COMPANY'S OWN FILINGS AND NOT THE PRICE: Q1-2025 {_GM_Q1_2025:.3%} against Q1-2026 "
+    f"{_GM_Q1_2026:.3%} is the SAME QUARTER doubled, which seasonality cannot produce, and the "
+    f"quarter inside the latest half that is not the first printed the highest margin in the "
+    f"record this study holds. All six mechanisms on the closed list were tested against the "
+    f"filings and refused — input cost outpacing price is contradicted by the same-quarter pair "
+    f"the rule prescribes, 5.14 points THE OTHER WAY — so a forecast opening 22.08% below the "
+    f"latest reviewed period had no mechanism its own record supports. The superseded "
+    f"twelve-month base is retained and priced: it gives EGP {_PS_TTM_BASE:.2f} a share "
+    f"({_PS_TTM_BASE/SPOT-1:+.1%} against spot) against the adopted EGP {dcf_ps:.2f} "
+    f"({dcf_ps/SPOT-1:+.1%}). THE CORRECTION CROSSES THE TRADED PRICE and it is taken anyway: "
+    f"the previous edition declined it only because levers are taken one at a time and it had "
+    f"already moved once in that pass, and it said in terms that the lever was left for the next "
+    f"edition to take on its own evidence. A correction is not withheld because of where it "
+    f"lands, and it is not taken because of where it lands either.")
 
 # ---- synthesis --------------------------------------------------------------
 W = V['lens_weights']
@@ -2110,7 +2145,9 @@ for b in beta_grid:
 # multiplier. All three are rebuilt here from full re-runs, the grids are sorted, and a GATE at
 # the end asserts that every row returns the base case at its own base point.
 gm_grid = [-0.010, -0.005, 0.0, 0.005, 0.010]
-grid_margin = [dcf_scenario(gm_shift=s) for s in gm_grid]
+# the row sweeps +/-1pp AROUND THE ADOPTED BASE, so a displayed 0.0 is the published
+# central rather than the superseded twelve-month blend.
+grid_margin = [dcf_scenario(gm_shift=ADOPTED_GM_SHIFT + s) for s in gm_grid]
 vol_grid = [-0.06, -0.03, 0.0, 0.03, 0.06]            # ADDER to the flat base path, a year
 grid_vol = [dcf_scenario(vol_adj=m) for m in vol_grid]
 fx_grid = [0.90, 0.95, 1.0, 1.05, 1.10]
@@ -2388,7 +2425,7 @@ def _grid(name, pts):
             has_gm=any(c == 'C' for c, _, _ in lev), has_fx=any(c == 'D' for c, _, _ in lev),
             has_wc=any(c == 'E' for c, _, _ in lev), has_we=any(c == 'F' for c, _, _ in lev),
             has_wt=any(c == 'G' for c, _, _ in lev), has_g=any(c == 'H' for c, _, _ in lev)))
-        _S = build(vol_adj=kw.get('vol_adj', 0.0), gm_shift=kw.get('gm_shift', 0.0),
+        _S = build(vol_adj=kw.get('vol_adj', 0.0), gm_shift=kw.get('gm_shift', None),
                    fx_mult=kw.get('fx_mult', 1.0))
         _SCEN_V[f'{name}|{pi}'] = _blockvals(
             _S, g=kw.get('g'), nwc_days=kw.get('nwc_days'),
@@ -2397,7 +2434,8 @@ def _grid(name, pts):
 
 _PCT2, _NUM1, _NUM3 = '0.00%', '#,##0.0', '#,##0.000'
 _grid('Gross margin, shifted on every forecast year',
-      [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=s), s == 0.0) for s in gm_grid])
+      [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=ADOPTED_GM_SHIFT + s), s == 0.0)
+       for s in gm_grid])
 _grid('Volume growth path, as a multiple of the assumed path',
       [(f'{m:+.1%}', [('B', m, _NUM1)], dict(vol_adj=m), m == 0.0) for m in vol_grid])
 _grid('Realisation path, as a multiple of the assumed path',
@@ -2640,7 +2678,9 @@ FORECAST_ANCHOR = dict(
     # does not fire; before the correction it ran 9.494% down to 8.764% and would
     # have fired on both clauses at once.
     forecast_path=[float(x) for x in B['gm']],
-    # NO MECHANISM IS CLAIMED, AND THE GATE IS RIGHT TO REFUSE THIS STUDY FOR IT.
+    # THE FORECAST NOW OPENS ON THE LATEST REVIEWED PERIOD, SO NO MECHANISM IS OWED.
+    # The correction that closed this is recorded in rebuild_ledger.json; what follows is
+    # the history of the refusal that made re-anchoring the only honest route.
     #
     # A mechanism WAS drafted here on 03-Sep-2026 -- one_off_in_the_latest_period,
     # on the argument that the twelve-month base blends an audited weak half with a
@@ -2653,26 +2693,25 @@ FORECAST_ANCHOR = dict(
     # rather than quietly deleted, because a mechanism refused by the company's own
     # filings is the finding.
     #
-    # So the honest state is: this forecast opens 22% relatively below the latest
-    # reviewed period and CANNOT name a mechanism the filings support. The reason it
-    # is not simply re-anchored is [R-VCAL-01]'s one-lever-at-a-time guard -- the
-    # move is priced at +55% in the contested judgements and would carry this study
-    # from 12.3% below the price to 35.9% above it in a single pass. AMOC is
-    # therefore listed on the forecast-anchor ratchet with that reason, and comes off
-    # it when the base anchor is taken at the next edition.
+    # THE GAP WAS A BASE-PERIOD CHOICE -- twelve months blending an audited transition
+    # half with the reviewed half -- and a base-period choice is NOT on the closed list,
+    # so it could never have been declared away. It had to be corrected instead, and
+    # this edition corrects it: the forecast is anchored on the reviewed half.
     mechanism=None,
     note=(
-        f"THE FORECAST OPENS BELOW THE LATEST REVIEWED PERIOD AND NO MECHANISM IS CLAIMED, "
-        f"BECAUSE NONE OF THE SIX ON THE CLOSED LIST SURVIVES THIS COMPANY'S OWN FILINGS. "
+        f"THE FORECAST OPENS ON THE LATEST REVIEWED PERIOD AND OWES NO MECHANISM. "
+        f"WHAT WAS CORRECTED, and why it could not be declared away instead: "
         f"The reviewed six months to 30-Jun-2026 carried a gross margin of {_FA_LAT:.3%} \u2014 "
         f"gross profit footing exactly to net sales less cost of sales in the same statements "
-        f"\u2014 and the forecast opens at {_FA_FIRST:.3%}, {-_FA_REL:.2%} relatively below it. "
-        f"The path then RISES to {B['gm'][-1]:.3%} by the fifth year, so the path clause does "
-        f"not fire and the whole of the claim sits in the opening level. "
-        f"WHAT THE GAP ACTUALLY IS: the base year is the {BASE_YEAR}, and those twelve months "
-        f"blend the audited transition half at {_FA_GM_H2_25:.3%} with the reviewed half at "
-        f"{_FA_LAT:.3%} to give {BASE_GM:.3%}. It is a BASE-PERIOD CHOICE, and a base-period "
-        f"choice is not on the closed list. "
+        f"\u2014 and the forecast now opens at {_FA_FIRST:.3%}, on that period. "
+        f"The path rises to {B['gm'][-1]:.3%} by the fifth year and does NOT climb past the "
+        f"filed record: the best full year this company has filed is 13.84%, above the whole "
+        f"path, so the mirror clause does not fire either. "
+        f"THE PREVIOUS EDITION forecast the {BASE_YEAR} blend of {BASE_GM:.3%} forward, which "
+        f"averages the audited transition half at {_FA_GM_H2_25:.3%} with the reviewed half at "
+        f"{_FA_LAT:.3%}. That is a BASE-PERIOD CHOICE, which is not on the closed list and "
+        f"therefore could not be declared away \u2014 a near-term reviewed actual outranks a "
+        f"stale full-year rate, so the only honest route was to correct it. "
         f"WHAT THE FILED RECORD DOES: cost per unit of revenue, period by period, runs "
         f"{_FA_CPR} \u2014 it FALLS "
         f"\u2014 and the quarter inside the latest half that is not the first printed a gross "
@@ -2688,12 +2727,13 @@ FORECAST_ANCHOR = dict(
         f"to the filed gross profit to the pound. A contracted price step-down, a subsidy or "
         f"levy withdrawal and a capacity commissioning drag have no disclosure in any filing "
         f"this study holds. A mix shift to lower margin has no decline to attribute, the "
-        f"forecast path rising rather than falling. SO THE RECORD STANDS AS A REFUSAL, AND THE "
-        f"REFUSAL IS THE FINDING. Anchoring on the reviewed half and holding it flat is this "
-        f"study's largest contested judgement, priced at EGP {_PS_H1_ANCHOR:.2f} a share "
-        f"against the adopted EGP {dcf_ps:.2f}; it is published beside the answer and left for "
-        f"the next edition because levers are taken one at a time and this one crosses the "
-        f"traded price of EGP {SPOT:.2f} in a single pass."))
+        f"forecast path rising rather than falling. SO EVERY MECHANISM WAS REFUSED BY THE "
+        f"COMPANY'S OWN FILINGS, AND THAT REFUSAL IS WHY THE ANCHOR MOVED RATHER THAN THE "
+        f"RECORD. The superseded twelve-month base is retained and priced at EGP "
+        f"{_PS_TTM_BASE:.2f} a share against the adopted EGP {dcf_ps:.2f}. THE CORRECTION "
+        f"CROSSES THE TRADED PRICE of EGP {SPOT:.2f}, from 15.5% below it to "
+        f"{dcf_ps/SPOT-1:+.1%} above; it is taken on the filed evidence rather than withheld "
+        f"for where it lands, and it would have been taken had it landed the other way."))
 
 BRIDGE_RECORD = dict(
     market='EG',
@@ -2859,7 +2899,11 @@ OUT = dict(
              # difference measures the CHOICE and not the construction.
              pound_on_price=bool(POUND_ON_PRICE),
              ps_pound_at_inflation=_PS_POUND_AT_INFL,
-             ps_h1_anchor=_PS_H1_ANCHOR,
+             # the anchor is now ADOPTED, so what is priced beside the answer is the
+             # SUPERSEDED twelve-month base. The key is kept rather than renamed so a
+             # reader comparing editions can see which construction moved.
+             ps_h1_anchor=dcf_ps,
+             ps_ttm_base_superseded=_PS_TTM_BASE,
              gm_h1_filed=_GM_H1_FILED, gm_q1_2025=_GM_Q1_2025, gm_q1_2026=_GM_Q1_2026),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         character=hist_character, nopat=nopat_h, ic=ic_h, capex=capex_h,
