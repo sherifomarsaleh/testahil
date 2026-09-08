@@ -367,6 +367,33 @@ def clause_g(dec):
     return True, lines
 
 
+def verdicts():
+    """The Phase 1 clause verdicts, as a dict, WITHOUT printing anything.
+
+    Exists so nothing downstream has to keep its own copy of what Phase 1 is.
+    [R-VCAL-02] requires the publish block and this criterion to agree, and the
+    only safe way to write a standard twice is for the second copy to be a CALL
+    rather than a transcription -- progress.acceptance() carried criterion 3 as a
+    hardcoded BLOCKED and went on saying so after the clauses had moved, which is
+    a check holding its own copy of a standard and is what [R-ENF-03] refuses.
+
+    The cross-section, the market census and the drop census are NOT computed
+    here: they are reporting, they are slow, and a caller asking "is Phase 1 met"
+    should not pay for them.
+    """
+    d = _cashflow()
+    dec = d["DECLARED"]
+    out = {}
+    out["G"], _ = clause_g(dec)
+    out["A"], _ = clause_a(dec)
+    out["B"], _ = clause_b(dec)
+    out["C"], _ = clause_c(dec)
+    out["F"], _ = clause_f(out["A"])
+    out["_gating"] = list(GATING)
+    out["_met"] = all(out.get(c) is True for c in GATING)
+    return out
+
+
 def main():
     today = dt.date.today()
     print("Part E criterion 3 — CLAUSE BY CLAUSE, printed not attested")

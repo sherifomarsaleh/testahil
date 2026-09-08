@@ -294,7 +294,14 @@ def acceptance() -> list:
          "state": "MET", "waits_on": "re-checked by status.py --gates and by CI on every push"},
         {"n": 2, "text": "forward drivers inside each name's own walk-forward record",
          "state": "MET", "waits_on": "the walk-forward actuation gate, green in CI"},
-        {"n": 3, "text": "the valuation calibration's pooled bias CI includes zero — "
+        # READ, NEVER TRANSCRIBED [R-ENF-03]. This entry carried its own copy of
+        # criterion 3 -- its text and a hardcoded BLOCKED -- and went on stating
+        # both after [R-VCAL-02 CLAUSE ONE] moved the maturity-bound clauses out of
+        # Phase 1 and CLAUSE THREE retired the pooled-bias test as a gating clause.
+        # [R-VCAL-02] requires the publish block and the criterion to agree about
+        # what Phase 1 is, and a second copy of a standard stops testing it the
+        # moment one of them moves. It is now a CALL.
+        {"n": 3, "text": "criterion 3's Phase 1 clauses on the mechanical series — "
                          "THE ACCEPTANCE INSTRUMENT",
          "state": "BLOCKED", "waits_on": None},
         {"n": 4, "text": "graded prediction: median |central/price - 1| inside 15%",
@@ -306,23 +313,42 @@ def acceptance() -> list:
         {"n": 6, "text": "the publish queue holds the files per name on the new standard",
          "state": None, "waits_on": "the five, above"},
     ]
-    # 3 — the two things it waits on, one dated and one not.
+    # 3 — READ THE CRITERION ITSELF, then report what its open half waits on.
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        sys.path.insert(0, os.path.join(ENGINE, "valuation_calibration"))
+        import criterion3 as _C3
+        _v = _C3.verdicts()
+        items[2]["clauses"] = {k: _v[k] for k in ("G", "A", "B", "C", "F")}
+        items[2]["gating"] = _v["_gating"]
+        items[2]["state"] = "MET" if _v["_met"] else "BLOCKED"
+        items[2]["waits_on"] = (
+            "Phase 1 clauses %s: %s"
+            % (", ".join(_v["_gating"]),
+               ", ".join("%s %s" % (c, "MET" if _v.get(c) is True else "NOT MET")
+                         for c in _v["_gating"])))
+    except Exception as e:
+        # UNREADABLE IS NOT MET [R-ENF-04]: the entry stays BLOCKED and says why.
+        items[2]["waits_on"] = "criterion 3 could not be read (%s)" % e
+
+    # and the archive half, which is what its remaining work waits on.
     try:
         arc = best_archive("EG")
         if "error" in arc:
-            items[2]["waits_on"] = arc["error"]
+            items[2]["archive_waits_on"] = arc["error"]
         else:
             n, tot = len(arc["usable"]), len(arc["declared"])
             miss = arc.get("unsourced", {}).get("fields") or []
             items[2]["origins_usable"], items[2]["origins_declared"] = n, tot
             items[2]["archive_source"] = arc["source"]
-            items[2]["state"] = "RUNNING" if n else "BLOCKED"
-            items[2]["waits_on"] = (
+            items[2]["archive_state"] = "RUNNING" if n else "BLOCKED"
+            items[2]["archive_waits_on"] = (
                 "%d of %d point-in-time origins usable, read at the frontier (%s)%s"
                 % (n, tot, arc["source"],
                    "" if not miss else "; still unsourced: %s" % ", ".join(miss)))
     except Exception as e:
-        items[2]["waits_on"] = "engine/macro_history could not be read (%s)" % e
+        items[2]["archive_waits_on"] = ("engine/macro_history could not be read (%s)"
+                                        % e)
     try:
         sys.path.insert(0, os.path.join(ENGINE, "valuation_calibration"))
         import score
