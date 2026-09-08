@@ -1,0 +1,1173 @@
+"""JUFO — Juhayna Food Industries (EGX: JUFO.CA) — Step 2A four-ring Information Sweep.
+
+FIRST-BUILD study. This module runs BEFORE any forecast driver is set. Every mandatory
+category of every ring is closed by a dated finding or a dated negative search, and every
+negative search below was ACTUALLY RUN on the date recorded — none was written to clear a
+coverage check.
+
+PRIMARY-SOURCE RESULT, recorded rather than assumed
+---------------------------------------------------
+The company's own site was tried FIRST for every Company-ring figure and it WORKED.
+www.juhayna.com/investor-home/ is fully reachable from this environment, and every
+Company-ring number in this register was read off a PDF served by juhayna.com. Not one
+Company-ring figure comes from an aggregator, a broker or the press. The [R-SIGCM-03]
+fallback shelf (release / presentation / annual report standing in for a statement that
+could not be reached) was NOT needed and NOT used: every fiscal period carries its own
+audited or reviewed statement, downloaded from the company's own server.
+
+Two hosts were refused at this environment's proxy and are logged as such:
+  ir.juhayna.com          -> connect_rejected (502 to CONNECT). Not the live IR host;
+                             the live IR section is www.juhayna.com/investor-home/.
+  www.cbe.org.eg (all)    -> HTTP 200 "Request Rejected" WAF page on every path tried,
+                             including the MPC release and the inflation PDF. The CBE
+                             policy rate and CPI in the Country ring are therefore
+                             carried at REPUTABLE_PRESS provenance — reporting of the
+                             CBE's own published decision, one step removed from the
+                             central bank's own print. This is an EXTERNAL-context ring;
+                             no company-reported figure rests on it.
+
+ARITHMETIC IS THE ARBITER — every statement page re-added
+---------------------------------------------------------
+Four audited fiscal years (FY2022, FY2023, FY2024, FY2025) plus the FY2021 comparative
+column, plus the Q1-2026 and H1-2026 reviewed interims, were footed line by line against
+their own printed subtotals. Route per page is recorded in each finding's detail:
+
+  TEXT-LAYER route (pdftotext -layout): FY2025 profit or loss, FY2025 cash flow, all
+    FY2025 notes, Q1-2026 note 19/20. Every subtotal reproduced exactly.
+  RENDERED-PIXEL route (pdftoppm -r 300..400 -gray -png, then read off the pixels):
+    FY2025 statement of financial position, FY2024 balance sheet + profit or loss,
+    FY2024 notes 5/6/7/8, FY2022 balance sheet + profit or loss, H1-2026 balance sheet
+    + profit or loss, Q1-2026 profit or loss. These pages carry NO text layer at all
+    (pdftotext returns page-break characters only), so the extractor could not have
+    produced a clean-looking wrong number; the pixels are the only source. Every one of
+    these pages foots exactly on BOTH printed columns.
+
+Two arithmetic breaks were found and are recorded rather than smoothed (F31):
+  - FY2025 cash-flow "Change in cash & cash equivalents" prints (641 939 002); the three
+    printed section subtotals sum to (641 939 003). EGP 1.
+  - FY2025 cash-flow closing cash prints 1 091 756 742; the balance sheet prints
+    1 091 755 742 and the balance sheet's own current-assets subtotal foots to the
+    latter. EGP 1 000.
+Both immaterial; both disclosed because arithmetic, not the extractor, is the arbiter.
+
+MARGINS ARE OUTPUTS — and the honest limit on that
+---------------------------------------------------
+The audited cost-of-sales note (note 5, identical structure in FY2023, FY2024 and FY2025)
+collapses the entire cost stack into THREE lines: "Operating expenses and wages"
+(EGP 22.02bn = 95.3% of FY2025 COGS), "Changes in inventory" and "Depreciation". There is
+no raw-milk line, no packaging line, no energy line and no COGS labour line in any filing.
+Absolute volumes (tonnes / litres / units) are disclosed NOWHERE in any company document.
+Consequences, stated rather than hidden:
+  - revenue is built at SEGMENT level (5 IR segments), and the volume x price split
+    inside each segment is a FLAGGED GAP carried TOP_DOWN against a dated negative search;
+  - each physical cost driver gets its OWN escalator (raw milk on the Egyptian farm-gate
+    milk path; packaging on its imported board / LDPE / aluminium paths through the
+    model's own USD/EGP path, never a domestic CPI proxy) — but the WEIGHTS of those
+    drivers inside COGS are not disclosed, so the weight vector is TOP_DOWN against a
+    dated negative search and anchored only on the one company-sourced proxy that exists:
+    the input-side inventory mix in note 19;
+  - gross margin is never typed in. It is the output of that build, and the gate table
+    carries an explicit row saying so.
+
+Run:  python3 engine/jufo_study_pending/sweep.py
+"""
+import sys, os
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
+                            SourceType, DriverMode)
+
+SWEEP_DATE = "2026-09-08"
+R = SweepRegister("JUFO", AssetClass.STOCK, SWEEP_DATE)
+
+CO, IR, REG, PMD, PRESS, AGG = (SourceType.COMPANY_OFFICIAL, SourceType.COMPANY_IR,
+                                SourceType.REGULATOR_OFFICIAL, SourceType.PRIMARY_MARKET_DATA,
+                                SourceType.REPUTABLE_PRESS, SourceType.AGGREGATOR)
+
+# ---------------------------------------------------------------------------
+# PRIMARY ACCESS — the company's own site, tried FIRST, every attempt logged
+# ---------------------------------------------------------------------------
+R.record_primary_access("https://www.juhayna.com/", True, "2026-09-08",
+    "HTTP 200. Corporate site reachable; /investor-home/ linked from the masthead.")
+R.record_primary_access("https://www.juhayna.com/investor-home/", True, "2026-09-08",
+    "HTTP 200. Full IR index: financial-statements, annual-reports, earnings-releases, "
+    "ownership-profile, dividends, governance-highlights, external-auditors, "
+    "analyst-coverage, board-of-directors, stock-price-chart.")
+R.record_primary_access("https://www.juhayna.com/financial-statements/", True, "2026-09-08",
+    "HTTP 200. 233 statement PDFs back to 2010. FY2022/23/24/25 consolidated English "
+    "audited statements and the Q1-2026 and H1-2026 reviewed interims all downloaded "
+    "directly from juhayna.com. NO [R-SIGCM-03] fallback was needed for any period.")
+R.record_primary_access("https://www.juhayna.com/earnings-releases/", True, "2026-09-08",
+    "HTTP 200. 131 release PDFs. 4Q25/FY25 (12-Mar-2026), 1Q26 (25-May-2026) and "
+    "2Q26/1H26 (04-Aug-2026) English releases downloaded.")
+R.record_primary_access("https://www.juhayna.com/annual-reports/", True, "2026-09-08",
+    "HTTP 200. FY2024 and FY2025 annual reports downloaded (FY2025 = "
+    "/app/uploads/2026/07/Report-english.pdf).")
+R.record_primary_access("https://www.juhayna.com/ownership-profile/", True, "2026-09-08",
+    "HTTP 200. Shareholder table and share count read from the company's own page.")
+R.record_primary_access("https://ir.juhayna.com/", False, "2026-09-08",
+    "connect_rejected — gateway answered 502 to CONNECT. Logged for completeness; this "
+    "host is not the live IR channel, which is www.juhayna.com/investor-home/ and is up.")
+R.record_primary_access("https://juhayna.com.eg/", False, "2026-09-08",
+    "connect_rejected — gateway answered 502 to CONNECT. Speculative alternate host.")
+R.record_primary_access("https://www.cbe.org.eg/en/economic-research/statistics/"
+                        "overnight-deposit-and-lending-rate", False, "2026-09-08",
+    "NOT the company — the Country-ring primary source. Every cbe.org.eg path returned "
+    "HTTP 200 carrying a WAF 'Request Rejected' page (root, MPC release, CPI page, and "
+    "the inf_feb_2026_en.pdf direct link). Logged so the reader can see the CBE numbers "
+    "below are press reporting of the CBE's own decision, not the CBE's own print.")
+
+R.declare_study_year("2026", ["Q1-2026", "Q2-2026"])
+
+# ===========================================================================
+# RING 1 — GLOBAL
+# ===========================================================================
+f_fed = R.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.S,
+    "Fed on hold at 3.50-3.75% (29-Jul-2026) with THREE dissents wanting a HIKE; next "
+    "FOMC 15-16 Sep 2026. The global easing cycle has stalled, not resumed",
+    "Federal Reserve FOMC statement 29-Jul-2026 and July minutes, reported via CNBC/Schwab",
+    PRESS, "2026-07-29",
+    model_impact="Sets the external anchor for the EGP rate path. A stalled Fed removes "
+                 "the external cover for CBE cuts, so the Kd glide on JUFO's EGP 8.25bn "
+                 "of variable-rate borrowings (F28) must be flatter than a "
+                 "'rates-fall-from-here' default would make it.")
+
+f_fx = R.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.D,
+    "USD/EGP 51.05 at 08-Sep-2026, against the company's own audited closing rate of "
+    "47.74 at 31-Dec-2025 and 50.91 at 31-Dec-2024 — the pound APPRECIATED ~6.2% through "
+    "2025 and has given all of it back and more in 2026 (-6.9% from the FY25 close)",
+    "Live USD/EGP spot 08-Sep-2026, cross-read against JUFO FY2025 audited FS note on "
+    "significant exchange rates (avg 49.27 / close 47.74 for 2025; avg 45.6 / close 50.91 "
+    "for 2024)",
+    PMD, "2026-09-08",
+    model_impact="DRIVER UNLOCK for the imported-input escalator. This is the FX path "
+                 "through which imported packaging (liquid packaging board, LDPE, "
+                 "aluminium foil — F05) and imported concentrate inputs are escalated. "
+                 "Imported inputs escalate on their OWN USD commodity path times THIS "
+                 "series, never on Egyptian CPI. It also explains why FY2025 gross margin "
+                 "held up on a firm pound and why 1H26 margin slipped as it weakened.")
+
+f_gdt = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.S,
+    "Global dairy commodity prices FIRM into Sep-2026: GDT skim milk powder USD 3,665/t "
+    "(highest since Sep-2022, +5.3% at the latest auction) and whole milk powder USD "
+    "3,555/t, with SMP at an unusual premium to WMP. 2026 path was volatile — SMP USD "
+    "3,547/t in May, USD 3,135/t in July",
+    "Global Dairy Trade auction results reported by Cheese Reporter / eDairy News / "
+    "DairyNews, Jan-Sep 2026",
+    PRESS, "2026-09-02",
+    model_impact="Sets the world reference for the milk-solids leg of the raw-material "
+                 "escalator and the import-parity ceiling on the Egyptian farm-gate price "
+                 "(F14). Egypt imports ~150kt/yr of dairy product (F13), so a firm world "
+                 "powder price transmits directly into JUFO's third-party raw-milk cost, "
+                 "which is 80-85% of its intake (F41).")
+
+f_fcoj = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.B,
+    "FCOJ price COLLAPSED from ~USD 7,000/t at the late-2024 record to ~USD 2,850/t by "
+    "May-2026, roughly -50% in 2025 alone, on the Brazilian supply rebound; 2026/27 global "
+    "output now forecast -13.4% y/y and demand -3%",
+    "CEPEA / Rabobank / FreshFruitPortal / Citrus Industry Magazine coverage of the "
+    "2026/27 orange-juice balance; ICE FCOJ futures",
+    PRESS, "2026-06-01",
+    model_impact="BASE CHANGER for the Concentrates & Agriculture segment, and the single "
+                 "reason that segment fell -56% in FY2025 (EGP 3,152mn -> 1,401mn) and a "
+                 "further -16% in 1H26 while every other segment grew double digit. Modelled "
+                 "as an explicit dated price event with a dual frame (price-recovers / "
+                 "price-stays-low), NEVER smoothed into a segment growth glide. The company "
+                 "itself names the mechanism: 'lower global orange concentrate prices "
+                 "following the normalization of international supply conditions' (F41).")
+
+f_pack = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.D,
+    "Aseptic carton cost stack, published: liquid packaging board 50-60% of raw-material "
+    "cost, LDPE for coating/lamination 20-25%, aluminium foil 10-15%, energy and freight "
+    "10-15%; pulp swings added 15-20% to annual contract pricing over 2024-2026",
+    "Future Market Insights / IndexBox liquid-packaging-board and laminated-aseptic-"
+    "cartonboard market analyses, 2026 edition",
+    AGG, "2026-01-01",
+    model_impact="DRIVER UNLOCK for the packaging leg. JUFO discloses packaging as a "
+                 "separate INVENTORY line (EGP 1.42bn at FY25, EGP 1.53bn at Q1-26 — F27) "
+                 "but never as a cost line, so this external decomposition is what lets the "
+                 "packaging escalator be built from its own four physical inputs, each on "
+                 "its own USD path times the F02 USD/EGP path, instead of on a domestic "
+                 "CPI proxy. Weights inside COGS remain undisclosed — see NEG F44.")
+
+f_gdem = R.add(Ring.GLOBAL, "global sector demand", FindingClass.S,
+    "Global milk output growth slowing hard: +1% forecast for 2026 against +3.1% in 2025 "
+    "(Big-7 output peaked at +5.2% in Q4-2025), with a slight decline expected in 2027; "
+    "Q1-2026 total demand +4% y/y (domestic +2.8%, exports +10.6%) but described as brittle",
+    "Rabobank Global Dairy Quarterly Q2-2026, reported via AHDB / IndexBox / DairyReporter",
+    PRESS, "2026-06-30",
+    model_impact="Supports a FIRM, not falling, world milk-solids price through the "
+                 "explicit window — the F03 escalator is set on a tightening world balance, "
+                 "not a glut. This is the upside risk to JUFO's cost stack and the reason "
+                 "the raw-milk leg is NOT given a mean-reverting downward path.")
+
+f_redsea = R.add(Ring.GLOBAL, "trade / sanctions / supply chains", FindingClass.S,
+    "Red Sea / Bab el-Mandeb diversion persists into 2026: Suez transits still 50-60% "
+    "below the pre-2023 baseline, Asia-Europe rates 25-40% above pre-disruption levels, "
+    "Red Sea premium ~USD 800-1,500 per container plus USD 300-500 insurance/surcharges",
+    "GoFreight / Marine Insight / Middle East Insider maritime-disruption reviews 2026; "
+    "UNCTAD and Suez Canal Authority transit data cited therein",
+    PRESS, "2026-04-25",
+    model_impact="Raises the landed cost of every imported input (packaging laminate, "
+                 "aluminium foil, flavour and ingredient imports) ON TOP of the commodity "
+                 "path — carried as a freight adder inside the packaging escalator, not as "
+                 "a margin haircut. JUFO's own filings confirm the channel is live: it cites "
+                 "'geopolitical tensions and supply chain disruptions' as the reason it "
+                 "raised inventory 40% in 1H26 (F25, F39) and names the Advanced Cargo "
+                 "Information backlog on air shipments (F41).")
+
+# ===========================================================================
+# RING 2 — COUNTRY
+# ===========================================================================
+f_cbe = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
+    FindingClass.D,
+    "CBE held on 20-Aug-2026 for the FOURTH consecutive meeting: overnight deposit 19.00%, "
+    "overnight lending 20.00%, main operation and discount 19.50%, after a single 100bp cut "
+    "in Feb-2026. July-2026 urban headline inflation 14.9% (June 14.3%), core 14.7% "
+    "(June 14.3%), monthly headline and core both 0.0%. CBE target unchanged at 7% +/-2pp "
+    "on average in Q4-2026",
+    "CBE Monetary Policy Committee decision 20-Aug-2026 and CAPMAS July CPI, reported via "
+    "Bloomberg, Egypt SIS, Daily News Egypt and 1Arabia. CBE's own site was tried first and "
+    "refused (see primary-access log)",
+    PRESS, "2026-08-20",
+    model_impact="DRIVER UNLOCK. (a) Explicit-window risk-free rate = the 19.50% main "
+                 "operation rate. (b) The terminal rf is norm-built off the CBE's OWN "
+                 "published 7% medium-term target plus the standard EM real-rate "
+                 "convention — never a historical average. (c) JUFO's entire borrowing "
+                 "book prices at 'CBE corridor rate + spread' by the express words of "
+                 "audited note 24-1 (F28), so this rate IS the company's cost of debt "
+                 "base, not a proxy for it.")
+
+f_egp = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
+    FindingClass.S,
+    "EGP free-floating since the Mar-2024 reform; USD/EGP has round-tripped from 50.91 "
+    "(31-Dec-2024) to 47.74 (31-Dec-2025) and back to 51.05 (08-Sep-2026)",
+    "JUFO FY2025 audited FS exchange-rate table cross-read against live spot 08-Sep-2026",
+    PMD, "2026-09-08",
+    model_impact="Second-order devaluation risk sits on the COST side, not the revenue "
+                 "side: revenue is 93%+ domestic EGP (F29, F39) while packaging and part of the "
+                 "ingredient stack are imported. A further EGP slide therefore compresses "
+                 "gross margin mechanically, and this is the shape of the bear case rather "
+                 "than a revenue-growth haircut.")
+
+f_export = R.add(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+    FindingClass.D,
+    "Egypt's Export Burden Rebate Programme: EGP 45bn for FY2025/26 (EGP 38bn across "
+    "priority sectors, EGP 7bn flexible reserve), raised to EGP 48bn in the current fiscal "
+    "year (+55% on EGP 28bn); a third EGP 6bn arrears tranche opened 11-Aug-2026 for "
+    "pre-1-Jul-2024 shipments, after EGP 12.6bn cash was paid to ~2,500 exporters last year",
+    "Egyptian Ministry of Finance announcements (Minister Ahmed Kouchouk) reported via SIS, "
+    "Daily News Egypt, Business Today Egypt and EnterpriseAM",
+    PRESS, "2026-08-11",
+    model_impact="Sizes and dates the export-subsidy leg, which is a REAL line in JUFO's "
+                 "audited accounts: EGP 62.5mn of export support revenue inside other "
+                 "operating income in FY2025 (EGP 157.8mn in FY2024) and an EGP 270.5mn "
+                 "export-subsidy RECEIVABLE at 31-Dec-2025 (F30). The arrears schedule "
+                 "drives the collection timing of that receivable in the working-capital "
+                 "build, and the receipt is modelled as a dated cash item, not as margin.")
+
+f_tax = R.add(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+    FindingClass.C,
+    "Egyptian corporate income tax 22.5%, stated in the company's own audited effective-tax "
+    "reconciliation for both FY2025 and FY2024; Income Tax Law 91/2005 as amended and "
+    "Unified Tax Procedures Law 206/2020",
+    "JUFO FY2025 audited consolidated FS, note 28 effective-tax reconciliation "
+    "('Tax rate 22.5%'; 'Income tax calculated according to the tax rate (22.5%) "
+    "541 012 087 / 804 790 104')",
+    CO, "2026-03-12", model_impact="", is_fs_data=True, fiscal_period="FY2025",
+    detail="TEXT-LAYER route. Read from the filing itself rather than from a tax survey, "
+           "so the statutory rate used in the model is the one the auditor signed.")
+
+f_suez = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through",
+    FindingClass.S,
+    "Suez Canal receipts — a core Egyptian FX earner — remain ~40% below pre-disruption "
+    "levels, an estimated USD ~800mn/month of lost traffic revenue, while the IMF-anchored "
+    "float leaves the pound to absorb the shortfall",
+    "UNCTAD and Suez Canal Authority data reported in 2026 maritime-disruption reviews",
+    PRESS, "2026-04-25",
+    model_impact="The transmission belt from a fiscal/geopolitical event to THIS company's "
+                 "gross margin: weaker sovereign FX earnings -> weaker EGP -> dearer "
+                 "imported packaging. Modelled inside the F02 FX path that escalates the "
+                 "imported cost legs, and sensitised there — never as a separate 'country "
+                 "risk' haircut on the discount rate, which would double-count it.")
+
+# ===========================================================================
+# RING 3 — INDUSTRY
+# ===========================================================================
+f_mkt = R.add(Ring.INDUSTRY, "demand drivers & capacity/supply balance", FindingClass.S,
+    "Egypt dairy products market USD 4.84bn in 2026 growing at a 2.76% CAGR to USD 5.54bn "
+    "by 2031. Structural deficit: local milk output ~4.8Mt against total dairy consumption "
+    "~8.4Mt, national processing capacity ~3.5Mt/yr, and ~150kt/yr of dairy product "
+    "imported (powder and speciality cheese); Egyptian milk output forecast -0.7% in 2026",
+    "Mordor Intelligence Egypt Dairy Products Market 2026-2031; DairyNews Egyptian dairy "
+    "industry overview",
+    AGG, "2026-01-01",
+    model_impact="Caps the credible long-run VOLUME growth for the domestic legs and is "
+                 "the reason terminal growth is set on a low-single-digit real category "
+                 "path plus price, not on JUFO's own recent 23-25% nominal revenue growth. "
+                 "The local-supply deficit is also the mechanism that ties Egyptian "
+                 "farm-gate milk to the world powder price (F03).")
+
+f_milkprice = R.add(Ring.INDUSTRY, "pricing", FindingClass.S,
+    "Egyptian milk and cream ~EGP 39.4/kg in Jul-2026, against a fresh-milk monthly average "
+    "of ~EGP 20.9/kg in May-2023 — roughly a doubling in three years, i.e. a raw-material "
+    "path that has run close to, not below, headline CPI",
+    "Selina Wamucii Egypt milk & cream price series (Jul-2026); Statista Egypt fresh-milk "
+    "monthly average series",
+    AGG, "2026-07-31",
+    model_impact="The escalator for the RAW MILK leg of the cost stack, which is its own "
+                 "physical driver and is NOT escalated on domestic CPI or on the packaging "
+                 "path. Because JUFO buys 80-85% of its intake from third parties (F41), "
+                 "this series drives ~4/5 of the milk leg directly and the own-farm 15-20% "
+                 "only through feed.")
+
+f_entrant = R.add(Ring.INDUSTRY, "new entrants (named-competitor level)", FindingClass.S,
+    "Named entrants into JUFO's categories: DANONE launching HiPRO in Egypt in Jun-2026 "
+    "(premium/functional high-protein dairy); OBOURLAND's new processed-cheese factory "
+    "operational Dec-2025 with processed-cheese revenue guided +26% in Q1-2026",
+    "Mordor Intelligence Egypt dairy sector update citing Danone's HiPRO launch; Obourland "
+    "capacity reporting via Tracxn / Daily News Egypt",
+    AGG, "2026-06-01",
+    model_impact="Both land inside the explicit window and both attack the premium/"
+                 "functional end where JUFO is pushing (Greek yogurt +58%, Turkish Labneh, "
+                 "high-protein claims). Carried as a cap on the FERMENTED segment's price "
+                 "realisation and on the 42% Labneh share the company reports, rather than "
+                 "as a volume cut.")
+
+f_sub = R.add(Ring.INDUSTRY, "technology substitution", FindingClass.C,
+    "Plant-based substitution is real but immaterial to JUFO today: Egypt milk-substitutes "
+    "volume growth +10.6% in 2026 and the MEA dairy-alternatives market USD 382.3mn (2026) "
+    "-> USD 710.8mn (2031), against JUFO's own Nuts & Grains segment revenue of just "
+    "EGP 31mn in FY2025 (+29% y/y) = 0.10% of group revenue",
+    "Statista Egypt milk-substitutes outlook and Mordor MEA dairy-alternatives report, "
+    "cross-read against JUFO's own FY2025 annual report segment disclosure",
+    AGG, "2026-01-01", model_impact="")
+
+f_beyti = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)", FindingClass.S,
+    "BEYTI (Almarai 52% / PepsiCo 48% JV) commissioned an EGP 1bn expansion at Nubaria in "
+    "Nov-2025 — five new production lines taking the plant to 32 lines — including EGYPT'S "
+    "FIRST UHT MILK LINE IN PET BOTTLES; further Beyti investment discussed with the "
+    "Ministry of Agriculture in Jun-2026, including milk-collection-centre development",
+    "Almarai corporate announcement and Egyptian Deputy PM Kamel Al-Wazir inauguration, "
+    "reported via Zawya / Daily News Egypt / Almarai media centre",
+    PRESS, "2025-11-18",
+    model_impact="Direct capacity addition in JUFO's single largest category. JUFO's own "
+                 "1H26 release already shows PLAIN MILK share at 60%, DOWN 2pps y/y, and "
+                 "DRINKABLE YOGURT at 41%, DOWN 3pps (F39). This is the named mechanism "
+                 "behind those two declines, and it sets the DAIRY segment's realised-price "
+                 "ceiling and the bear case in the sensitivity grid. Beyti's milk-collection "
+                 "expansion also competes for the SAME third-party raw milk JUFO buys.")
+
+# ===========================================================================
+# RING 4 — COMPANY
+# ===========================================================================
+# ---- official financial statements: 4 audited years + FY2021 comparative --
+f_fs25pl = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2025 AUDITED consolidated profit or loss (KPMG Hazem Hassan, signed Cairo "
+    "12-Mar-2026, clean opinion with an emphasis of matter on a merged subsidiary's tax "
+    "exemption): net sales EGP 29,984,446,222; cost of sales (23,103,562,055); gross profit "
+    "6,880,884,167 (22.95%); results from operating activities 3,573,292,094; net finance "
+    "cost (1,168,793,931); profit before tax 2,404,498,163; net profit after tax "
+    "1,910,094,835; EPS EGP 1.38",
+    "Juhayna Food Industries FY2025 audited consolidated financial statements, printed "
+    "page 2, https://www.juhayna.com/app/uploads/2026/03/JFI-English-Cons-FS-YE-2025.pdf",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    url="https://www.juhayna.com/app/uploads/2026/03/JFI-English-Cons-FS-YE-2025.pdf",
+    detail="ROUTE: text layer (pdftotext -layout). FOOTS EXACTLY on both columns — "
+           "29,984,446,222 - 23,103,562,055 = 6,880,884,167; 6,880,884,167 + 325,638,100 "
+           "- 2,736,787,707 - 831,126,207 + 7,156,493 - 72,472,752 = 3,573,292,094; "
+           "3,573,292,094 - 1,168,793,931 = 2,404,498,163; less 395,997,704 current tax "
+           "and 98,405,624 deferred = 1,910,094,835.",
+    model_impact="THE historical base. FY2025 statutory gross margin is 22.95%, NOT the "
+                 "25.3% the earnings release headlines (see F28) — the study builds on this "
+                 "audited number and reports the ex-merger figure only as a reconciling item.")
+
+f_fs25bs = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2025 AUDITED consolidated statement of financial position: total assets "
+    "EGP 18,410,221,901 (non-current 8,864,383,244 / current 9,545,838,657); total equity "
+    "8,032,544,219 (issued and paid-up capital 1,176,756,353; retained earnings "
+    "6,595,203,300; NCI 1,114,421); total liabilities 10,377,677,682. Comparative 31-Dec-2024 "
+    "total assets 13,590,462,624, equity 6,339,324,470, liabilities 7,251,138,154",
+    "Juhayna FY2025 audited consolidated FS, printed page 1 (signed Deputy CFO Ibrahim "
+    "Badr, CFO Tarek Elwan, Chairman Ahmed Elwakil)",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="ROUTE: RENDERED PIXELS. This page carries NO text layer — pdftotext returns "
+           "only a page break — so it was rendered with pdftoppm -r 400 -gray -png and "
+           "read off the pixels. FOOTS EXACTLY on BOTH columns: non-current 8,864,383,244 "
+           "and current 9,545,838,657 sum to 18,410,221,901; equity 8,032,544,219 plus "
+           "liabilities 10,377,677,682 sum to the same 18,410,221,901; the FY2024 column "
+           "foots to 13,590,462,624 twice over and matches the FY2024 filing's own print "
+           "line for line (F16), so there was NO balance-sheet restatement for the merger.",
+    model_impact="Capital structure, the EV-to-equity bridge and the working-capital base.")
+
+f_fs24 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2024 AUDITED consolidated statements AS ORIGINALLY FILED: net sales "
+    "EGP 24,302,616,048; cost of sales (16,912,916,624); gross profit 7,389,699,424 "
+    "(30.41%); operating result 4,692,977,515; profit before tax 3,576,844,906; net profit "
+    "2,735,394,516; EPS as filed EGP 2.91. Balance sheet total assets 13,590,462,624, "
+    "equity 6,339,324,470",
+    "Juhayna FY2024 audited consolidated financial statements (English), printed pages 1-2, "
+    "https://www.juhayna.com/app/uploads/2025/11/1743085084_825_2594178_4q24consenglish-2.pdf",
+    CO, "2025-03-27", is_fs_data=True, fiscal_period="FY2024",
+    url="https://www.juhayna.com/app/uploads/2025/11/1743085084_825_2594178_4q24consenglish-2.pdf",
+    detail="ROUTE: RENDERED PIXELS (whole document is a scan; pdftotext yields 57 "
+           "characters for 57 pages). pdftoppm -r 350 -gray -png, read off the pixels. "
+           "Both statements foot exactly on both columns. TWO comparative changes were "
+           "found by comparing this filing with the FY2025 filing's FY2024 column, and "
+           "both are RECLASSIFICATIONS not restatements: G&A moves 644,978,687 -> "
+           "659,201,157 and other expenses 221,931,314 -> 207,708,844, an exactly "
+           "offsetting EGP 14,222,470; and the single 'current income tax 841,450,390' "
+           "line is split into 779,474,208 current plus 61,976,182 deferred, summing to "
+           "the same 841,450,390. Operating result, pre-tax and net profit are unchanged.",
+    model_impact="Second historical year, and the FY2024 30.41% gross margin is the PEAK "
+                 "the whole forward margin question is asked against.")
+
+f_fs23 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2023 AUDITED consolidated statements (comparative column of the FY2024 filing): net "
+    "sales EGP 15,536,190,159; cost of sales (11,926,060,448); gross profit 3,610,129,711 "
+    "(23.24%); operating result 1,801,929,607; profit before tax 1,364,671,789; net profit "
+    "1,021,460,218; EPS 0.98. Total assets 8,580,367,133; equity 4,249,768,585; total "
+    "liabilities 4,330,598,548",
+    "Juhayna FY2024 audited consolidated FS, 2023 comparative column, printed pages 1-2; "
+    "cross-checked against the FY2023 filing itself "
+    "(1712585140_765_2457689_jficondec2023-2.pdf) held in engine/jufo_study_pending/filings/",
+    CO, "2025-03-27", is_fs_data=True, fiscal_period="FY2023",
+    detail="ROUTE: RENDERED PIXELS. Foots exactly: 15,536,190,159 - 11,926,060,448 = "
+           "3,610,129,711; the operating build reaches 1,801,929,607 to the pound; "
+           "non-current 3,834,571,030 + current 4,745,796,103 = 8,580,367,133 = equity "
+           "4,249,768,585 + liabilities 4,330,598,548.",
+    model_impact="Third historical year. FY2023 GM 23.24% is almost exactly the FY2025 "
+                 "22.95% — evidence that FY2024's 30.41% is the outlier, not the norm.")
+
+f_fs22 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2022 AUDITED consolidated statements: net sales EGP 11,363,960,170; cost of sales "
+    "(8,458,554,544); gross profit 2,905,405,626 (25.57%); operating result 1,024,945,968; "
+    "profit before tax 903,441,537; net profit 637,998,948; EPS 0.68. Total assets "
+    "6,369,286,871; equity 3,410,732,172; total liabilities 2,958,554,699",
+    "Juhayna FY2022 audited consolidated financial statements (English), signed Cairo "
+    "29-Mar-2023, printed pages 1-2, "
+    "https://www.juhayna.com/app/uploads/2025/11/1680173860_953_2464944_juhaynacons.eng2022-2.pdf",
+    CO, "2023-03-29", is_fs_data=True, fiscal_period="FY2022",
+    url="https://www.juhayna.com/app/uploads/2025/11/1680173860_953_2464944_juhaynacons.eng2022-2.pdf",
+    detail="ROUTE: RENDERED PIXELS (whole document is a scan). Foots exactly on both "
+           "columns: 11,363,960,170 - 8,458,554,544 = 2,905,405,626; the operating build "
+           "reaches 1,024,945,968; non-current 3,558,366,745 + current 2,810,920,126 = "
+           "6,369,286,871 = equity 3,410,732,172 + liabilities 2,958,554,699.",
+    model_impact="Fourth audited year — clears the FS-depth target of 4, so no depth "
+                 "warning is carried into the build.")
+
+f_fs21 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2021 comparative column of the FY2022 audited filing: net sales EGP 8,805,974,252; "
+    "cost of sales (6,278,903,539); gross profit 2,527,070,713 (28.70%); operating result "
+    "833,920,574; net profit 526,389,118; EPS 0.56. Total assets 5,459,748,920; equity "
+    "3,168,316,284",
+    "Juhayna FY2022 audited consolidated FS, 31/12/2021 comparative column",
+    CO, "2023-03-29", is_fs_data=True, fiscal_period="FY2021",
+    detail="ROUTE: RENDERED PIXELS. Foots exactly: 8,805,974,252 - 6,278,903,539 = "
+           "2,527,070,713; operating build reaches 833,920,574; non-current 3,659,218,258 "
+           "+ current 1,800,530,662 = 5,459,748,920.",
+    model_impact="FIFTH audited year, giving a five-year margin history 28.70 / 25.57 / "
+                 "23.24 / 30.41 / 22.95 that shows gross margin is NOT stable and must be "
+                 "an output of a cost build rather than an assumed level.")
+
+f_q126 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "Q1-2026 REVIEWED interim consolidated statements: net sales EGP 8,599,713,155; cost of "
+    "sales (6,431,154,438); gross profit 2,168,558,717 (25.22%); operating result "
+    "1,214,989,484; net finance cost (378,713,783); profit before tax 836,275,701; net "
+    "profit 668,716,318; EPS 0.57. Q1-2025 comparative AS FILED: net sales 6,802,910,589, "
+    "cost of sales (5,675,202,925), gross profit 1,127,707,664 (16.58%)",
+    "Juhayna Q1-2026 reviewed consolidated interim financial statements (signed), "
+    "https://www.juhayna.com/app/uploads/2026/05/Consolidated-FS-Juhayna-Q1-2026-Signed-ENG.pdf",
+    CO, "2026-05-25", is_fs_data=True, fiscal_period="Q1-2026",
+    url="https://www.juhayna.com/app/uploads/2026/05/Consolidated-FS-Juhayna-Q1-2026-Signed-ENG.pdf",
+    detail="ROUTE: RENDERED PIXELS for the profit or loss page (no text layer); TEXT LAYER "
+           "for note 19/20 (page 43 is the only page in the file carrying text). Foots "
+           "exactly. NOTE THE TRAP: the Q1-2026 earnings release prints a Q1-2025 "
+           "comparative of cost of sales 4,924,072,814 / gross profit 1,878,837,775 under "
+           "the heading 'operational figures excluding merge'. The FILED comparative is "
+           "5,675,202,925 / 1,127,707,664. The gap of EGP 751,130,111 is merger accounting, "
+           "not trading. The study uses the FILED column.",
+    model_impact="Study-year Q1 actual, swept BEFORE the build. Q1-2026 gross margin of "
+                 "25.22% sits 227bp ABOVE the FY2025 audited full-year 22.95% and 864bp "
+                 "above the filed Q1-2025 — a margin path that any forecast starting from "
+                 "the FY2025 average would contradict on day one.")
+
+f_h126 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "Q2-2026 / H1-2026 REVIEWED interim consolidated statements. 3M to 30-Jun-2026: net "
+    "sales EGP 9,078,222,716; cost of sales (6,921,009,102); gross profit 2,157,213,614 "
+    "(23.76%); net profit 713,113,931. 6M to 30-Jun-2026: net sales 17,677,935,871; cost of "
+    "sales (13,352,163,540); gross profit 4,325,772,331 (24.47%); operating result "
+    "2,339,005,633; net finance cost (573,161,276); net profit 1,381,830,249; EPS 1.17. "
+    "Balance sheet at 30-Jun-2026: total assets EGP 22,390,458,295; equity 8,742,048,020; "
+    "total liabilities 13,648,410,275; inventory 8,168,868,744; cash 1,040,601,076",
+    "Juhayna H1-2026 reviewed consolidated interim financial statements, "
+    "https://www.juhayna.com/app/uploads/2026/08/FS-English-Consolidated.pdf",
+    CO, "2026-08-04", is_fs_data=True, fiscal_period="Q2-2026",
+    url="https://www.juhayna.com/app/uploads/2026/08/FS-English-Consolidated.pdf",
+    detail="ROUTE: RENDERED PIXELS (no text layer anywhere in the 60-page file). Both "
+           "statements foot exactly on all four columns: 17,677,935,871 - 13,352,163,540 = "
+           "4,325,772,331; the operating build reaches 2,339,005,633 to the pound; "
+           "non-current 9,941,761,187 + current 12,448,697,108 = 22,390,458,295 = equity "
+           "8,742,048,020 + liabilities 13,648,410,275. The 6M and 3M columns reconcile "
+           "exactly against the Q1-2026 filing (F09): 17,677,935,871 - 9,078,222,716 = "
+           "8,599,713,155.",
+    model_impact="Study-year Q2 actual, swept BEFORE the build. Q2 gross margin 23.76% is "
+                 "146bp BELOW Q1's 25.22%: the 2026 margin path is DECAYING within the "
+                 "year, which is the opposite of what an annualised Q1 would imply. Inventory "
+                 "at 8.17bn is +40% on FY25 and is the single biggest working-capital swing "
+                 "in the model.")
+
+# ---- regular disclosures: the notes the model is actually built from ------
+f_cogs = R.add(Ring.COMPANY, "regular disclosures", FindingClass.S,
+    "COST-STACK DISCLOSURE GAP, confirmed across three audited years. Note 5 'Cost of sales' "
+    "carries only THREE lines in FY2023, FY2024 and FY2025: 'Operating expenses and wages' "
+    "EGP 22,017,481,492 (FY25) / 16,500,683,681 (FY24) / 11,399,558,148 (FY23) — 95.3% of "
+    "FY2025 COGS in one undifferentiated line — plus 'Changes in inventory' 815,825,207 and "
+    "'Depreciation' 270,269,048, less a 13,692 write-down reversal",
+    "Juhayna FY2025 audited FS note 5 (text layer) and FY2024 audited FS note 5, printed "
+    "page 18 (rendered pixels) — identical three-line structure in both",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="Both years foot exactly (22,017,481,492 + 815,825,207 + 270,269,048 - 13,692 = "
+           "23,103,562,055; 16,500,683,681 + 183,905,840 + 228,327,103 = 16,912,916,624). "
+           "There is NO raw-milk line, NO packaging line, NO energy line and NO COGS "
+           "labour line in any filing. Contrast the discipline on the OTHER side of the "
+           "P&L: note 7 breaks selling and distribution into 9 named items and note 8 "
+           "breaks G&A into 15, both footing exactly in FY2023, FY2024 and FY2025.",
+    model_impact="Sets the honest ceiling on the ground-up build. Cost-per-unit CANNOT be "
+                 "read from the filings, so the cost stack is built from PHYSICAL DRIVERS "
+                 "with their own escalators (raw milk on F14; packaging on F05 x F02) while "
+                 "the WEIGHT of each driver inside COGS is TOP_DOWN against NEG F44, "
+                 "anchored on the only company-sourced proxy that exists — the input-side "
+                 "inventory mix in F27. Gross margin remains an OUTPUT of that build; it is "
+                 "never typed in.")
+
+f_inv = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "Inventory note 19 splits the input side by physical class — the only company-sourced "
+    "read on the cost mix that exists. 31-Dec-2025: raw materials EGP 1,685,638,677; "
+    "packaging and packing materials 1,422,590,941; finished goods 1,875,097,271; "
+    "consumables and misc supplies 752,291,463; goods in transit under L/C 80,125,869; "
+    "total 5,815,744,221. 31-Mar-2026: 2,134,612,693 / 1,530,292,409 / 2,669,272,451 / "
+    "263,872,851 / 105,496,249; total 6,703,546,652. 31-Dec-2024 total 4,177,070,922",
+    "Juhayna FY2025 audited FS note 19 and Q1-2026 reviewed FS note 19",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="Both foot exactly. Input-side mix excluding finished goods: FY2025 raw "
+           "materials 42.8% / packaging 36.1% / consumables 19.1% / in-transit 2.0%; "
+           "FY2024 37.4% / 32.7% / 20.0% / 9.9%; Q1-2026 52.9% / 37.9% / 6.5% / 2.6%. "
+           "This is an inventory mix, NOT a consumption mix, and is used as a proxy with "
+           "that caveat carried in the Driver Ledger row.",
+    model_impact="DRIVER UNLOCK for the cost-stack WEIGHTS in the absence of a COGS "
+                 "breakdown, and the reason the packaging leg is escalated separately from "
+                 "the milk leg at all. Also the base for DIO: 5,815,744,221 on COGS "
+                 "23,103,562,055 = 91.9 days at FY2025.")
+
+f_loans = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "Debt book, in full and by name (note 24-1 / note 25): term loans from COMMERCIAL "
+    "INTERNATIONAL BANK EGP 1,709,285,533 (current 167,209,185 / non-current 1,542,076,348) "
+    "and ATTIJARIWAFA BANK EGP 11,587,331, total 1,720,872,864 at 31-Dec-2025 (849,570,509 "
+    "at FY24); plus bank credit facilities of EGP 5,330,641,186 drawn against limits of "
+    "~EGP 5.5bn. ALL variable rate, priced at 'corridor rate from CBE + variable interest "
+    "rate', maturing in 4 to 5 years, secured on group promissory notes. At 30-Jun-2026 the "
+    "same book stands at 2,049,698,595 + 181,626,171 + 6,014,218,660 = EGP 8,245,543,426",
+    "Juhayna FY2025 audited FS notes 24-1, 24-2 and 25; H1-2026 reviewed FS balance sheet",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="CROSS-CHECK THAT CLOSES THE CURRENCY QUESTION: note 30's interest-rate "
+           "sensitivity states that 1% on variable-rate debt moves profit by exactly EGP "
+           "70,515,140. 1% of (1,720,872,864 + 5,330,641,186) = 70,515,140.5. The whole "
+           "book is therefore variable-rate and EGP-denominated, with no fixed or FX "
+           "tranche hiding in it. ONE LOOSE END, flagged not buried: note 24-2's borrowing "
+           "movement carries an 'FX differences (48,056,661)' line, so at least one draw "
+           "was FX-denominated during 2025 even though the closing book is EGP.",
+    model_impact="Kd is built from the named facilities at the CBE corridor plus spread "
+                 "(F08), never from a market average and never from finance cost divided "
+                 "by a liabilities base. No FX-denominated tranche needs a local-equivalent "
+                 "cost adjustment, subject to resolving the 24-2 FX line.")
+
+f_fxnote = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "Currency exposure, disclosed: the Group's transactional FX is in EUR, USD and CHF; "
+    "notional net exposure at 31-Dec-2025 is USD +647,074 and EUR -2,720,074 (2024: USD "
+    "+7,800,755 / EUR -747,117) built from receivables USD 13,084,997 / EUR 1,006,001, cash "
+    "USD 16,522,490 / EUR 1,555,354 and creditors USD (28,960,413) / EUR (5,281,429). A 10% "
+    "move is worth EGP 3,089,131 on USD and EGP (15,256,895) on EUR. Applied rates: USD avg "
+    "49.27 close 47.74 (2025), avg 45.60 close 50.91 (2024); EUR avg 55.67 close 56.10",
+    "Juhayna FY2025 audited FS, market-risk and currency-risk notes",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="Foots as printed. The net BALANCE-SHEET exposure is trivially small; the real "
+           "FX exposure is a FLOW exposure on imported purchases, which this note does not "
+           "size.",
+    model_impact="Confirms the currency split of the balance sheet: debt 100% EGP (F28), "
+                 "monetary FX exposure ~nil. So FX enters the model on the COST FLOW, "
+                 "through the imported-packaging escalator (F05 x F02), and NOT through a "
+                 "translation or a foreign-coupon adjustment.")
+
+f_wc = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "Asset-conversion cycle, from the filings. FY2025: trade receivables gross "
+    "EGP 1,117,763,513 less ECL 32,646,907 = 1,085,116,606 (DSO 13.2 days on revenue); "
+    "inventory 5,815,744,221 (DIO 91.9 days on COGS); suppliers 1,635,912,451 within "
+    "creditors and other credit balances of 2,343,539,038 (DPO 25.8 days on COGS) — cash "
+    "conversion cycle ~79 days. Also inside receivables: supplier advances 377,552,041, "
+    "export subsidy 270,492,189, Customs Authority 143,655,397. FY2025 capex EGP "
+    "2,979,726,835 against post-tax operating cash flow of 777,594,355",
+    "Juhayna FY2025 audited FS notes 19, 20, 27 and the consolidated statement of cash flows",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="Note 27 foots exactly to 2,343,539,038 across eleven items; note 20 to "
+           "2,033,905,286; the cash-flow statement's operating, investing and financing "
+           "sections each foot exactly to their printed subtotals (3,867,519,660 / "
+           "1,996,002,012 / 777,594,355; (3,708,873,743); 2,289,340,385).",
+    model_impact="Balance sheet and cash flow are PROJECTED from these ratios, not plugged. "
+                 "The FY2025 gap between EGP 2.98bn of capex and EGP 0.78bn of post-tax "
+                 "operating cash is the mechanical reason net debt tripled, and is the "
+                 "structure the forecast must reproduce.")
+
+f_arith = R.add(Ring.COMPANY, "regular disclosures", FindingClass.C,
+    "TWO arithmetic breaks inside the FY2025 audited statements, found by re-adding and "
+    "recorded rather than smoothed: (a) the cash-flow statement prints 'Change in cash & "
+    "cash equivalents (641 939 002)' where its own three section subtotals sum to "
+    "(641 939 003) — EGP 1; (b) the cash-flow statement's closing cash prints "
+    "1 091 756 742 where the balance sheet prints 1 091 755 742 and the balance sheet's own "
+    "current-assets subtotal foots to the latter — EGP 1,000. A third EGP 1 rounding sits "
+    "between note 28-4's tax total (494,403,328) and the segment note's (494,403,327)",
+    "Juhayna FY2025 audited consolidated FS — statement of cash flows, statement of "
+    "financial position, notes 11-3 and 28-4",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025", model_impact="",
+    detail="All three are immaterial. They are recorded because arithmetic is the arbiter "
+           "of whether a page was read correctly, and a page that does not foot must be "
+           "shown to have been re-read rather than accepted. The balance-sheet figure "
+           "(1,091,755,742) is the one carried, because it is the one that foots within "
+           "its own statement.")
+
+# ---- one-off base-resetting transactions ---------------------------------
+f_merger = R.add(Ring.COMPANY, "one-off base-resetting transactions", FindingClass.B,
+    "MERGER, completed 27-Feb-2025. The EGM of 26-Dec-2024 approved absorbing FOUR "
+    "industrial subsidiaries into the parent — International Company for Modern Food "
+    "Industries, Egyptian Company for Dairy Products, Egyptian Food Industries 'Egyfood' "
+    "and Al-Marwa Food Industries — on the 31-Dec-2023 book values. The four were dissolved "
+    "and closed on 27-Feb-2025. Equity effect: total adjustments arising from the merger "
+    "EGP 2,253,159,268, legal reserve of 742,112,963 and general reserve of 330,920,428 "
+    "closed to the merger reserve, investment cost of 1,449,362,233 written out, and "
+    "235,351,271 capitalised into share capital. Retained earnings now include an "
+    "EGP 2,338,053,452 NON-DISTRIBUTABLE merger reserve",
+    "Juhayna FY2025 audited consolidated FS, note 1 and the statement of changes in equity; "
+    "auditor's emphasis of matter on a merged subsidiary's 2009-2018 tax exemption "
+    "(Appeal Committee ruled against for 2009-2014; no provision made)",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="BASE CHANGER, modelled as an explicit dated event and DUAL-FRAMED, never "
+                 "smoothed into a growth glide. It is why FY2025 statutory COGS is EGP "
+                 "702,556,376 higher and statutory net profit EGP 342,760,602 lower than "
+                 "the company's own 'operational excluding merge' presentation (F45); why "
+                 "FY2024 EPS is restated from 2.91 to 2.32; and why EGP 2.34bn of retained "
+                 "earnings is not available for distribution, which binds the dividend "
+                 "capacity in the equity bridge. The unprovided tax exemption is carried as "
+                 "a named contingent downside, not as a probability-weighted expense.")
+
+f_bonus = R.add(Ring.COMPANY, "management & capital actions", FindingClass.B,
+    "BONUS ISSUE, ex-date 05-Nov-2025: one new share for every four held (EGP 0.25 bonus "
+    "per share). Issued and paid-up capital rises from EGP 941,405,082 to EGP 1,176,756,353 "
+    "at EGP 1.00 par — 1,176,756,353 shares — funded by capitalising EGP 235,351,271 of the "
+    "merger reserve. Cash dividend history: EGP 0.30 ex-07-Sep-2025, EGP 0.20 ex-01-Jun-2024, "
+    "EGP 0.15 ex-05-Jun-2023, EGP 0.35 ex-31-Oct-2022",
+    "Juhayna FY2025 audited FS note 22 and statement of changes in equity, cross-read "
+    "against the company's own IR dividends page (juhayna.com/dividends/)",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="Closes exactly: 941,405,082 x 0.25 = 235,351,270.5, and 941,405,082 x 1.25 = "
+           "1,176,756,352.5 -> 1,176,756,353. The weighted-average share count in note 36 "
+           "is 1,176,756,353 for BOTH FY2025 and FY2024, i.e. the bonus is applied "
+           "retrospectively, which is what restates FY2024 EPS from 2.91 to 2.32.",
+    model_impact="Fixes the per-share denominator at 1,176,756,353 for every year in the "
+                 "model, historical and forecast. Any EPS or per-share value taken from a "
+                 "pre-Nov-2025 source is on the wrong count by 25%.")
+
+f_eps = R.add(Ring.COMPANY, "management & capital actions", FindingClass.D,
+    "Employees' profit share and board remuneration are a REAL charge and were switched on "
+    "in FY2025: note 36 deducts EGP 264,517,998 of employees' profit share and EGP "
+    "13,000,000 of board remuneration from the EGP 1,909,608,115 attributable profit before "
+    "dividing by shares — EGP 277.5mn in total, against NIL in FY2024. Board attendance and "
+    "transport allowances were a further EGP 14,755,000. The FY2025 cash-flow statement "
+    "shows EGP 199,972,269 of dividends actually PAID to employees",
+    "Juhayna FY2025 audited FS notes 34-3 and 36, and the consolidated statement of cash flows",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    detail="Foots: 1,909,608,115 - 264,517,998 - 13,000,000 = 1,632,090,117; divided by "
+           "1,176,756,353 = 1.3869 -> the printed EPS of 1.38. FY2024: 2,735,294,169 / "
+           "1,176,756,353 = 2.3245 -> the printed 2.32.",
+    model_impact="A ~13.9% wedge between attributable profit and the profit that reaches "
+                 "shareholders, and it is a CASH item in financing. Modelled explicitly as "
+                 "its own driver rather than left inside a payout ratio, because it appears "
+                 "in FY2025 and not FY2024 and would otherwise look like a payout change.")
+
+# ---- ownership -----------------------------------------------------------
+f_own = R.add(Ring.COMPANY, "ownership / stake changes (named-transaction rule)",
+    FindingClass.D,
+    "Shareholder register from the company's own IR page: PHARON INVESTMENT 50.1%, BALADNA "
+    "QPSC 16.3%, RIMCO INVESTMENTS 10.9%, free float 22.7%. Total issued shares "
+    "1,176,756,353 at EGP 1.00 par; listed on EGX as JUFO.CA since 18-May-2010",
+    "Juhayna Ownership Profile page, https://www.juhayna.com/ownership-profile/ "
+    "(page dateModified 20-Jan-2026)",
+    CO, "2026-01-20",
+    detail="The share count on the company's own IR page equals the audited paid-up capital "
+           "to the pound (F19), so the two independent company sources agree exactly.",
+    model_impact="Fixes the free float at 22.7% and the share count at 1,176,756,353. "
+                 "Pharon's 50.1% means control is not contestable, which is why the Baladna "
+                 "dispute (F36) is a governance and liquidity issue rather than a takeover "
+                 "premium — no control premium is modelled.")
+
+f_baladna = R.add(Ring.COMPANY, "ownership / stake changes (named-transaction rule)",
+    FindingClass.S,
+    "THE NAMED TRANSACTION, searched specifically rather than estimated. Baladna QPSC "
+    "(Qatar) built its stake on the open market: 5.0% in Mar-2022 (~47.117mn shares for "
+    "~QAR 67.085mn), 10.1% later in 2022 (~QAR 139mn total), 15.03% on 04-Jul-2023 (a final "
+    "600,000 shares for >EGP 7.3mn), and 16.3% on the company's current IR register. The "
+    "stake is now IN DISPUTE: Juhayna blocked Baladna from board representation, the Cairo "
+    "Economic Court upheld the exclusion in May-2026 citing competition and anti-monopoly "
+    "grounds under the Companies Law bar on candidates in a competing business, and the FRA "
+    "had struck down a competitor clause in Juhayna's articles in Dec-2025",
+    "Baladna QPSC corporate announcements; Cairo Economic Court ruling reported by "
+    "EnterpriseAM (03-May-2026); Daily News Egypt, Mubasher, Billionaires Africa",
+    PRESS, "2026-05-03",
+    model_impact="A 16.3% holder that is a direct regional competitor, is locked out of the "
+                 "board, and has no exit route through a control transaction. Carried as (a) "
+                 "an overhang on the free float and therefore on the liquidity discount, and "
+                 "(b) a governance risk flag. It is NOT modelled as a bid, a premium or a "
+                 "forced sale, because no transaction price exists — only market purchases.")
+
+# ---- IR communications ---------------------------------------------------
+f_er25 = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.D,
+    "FY25 earnings release (12-Mar-2026) — the FIVE-SEGMENT revenue split the audited "
+    "statements do not carry. FY2025 vs FY2024, EGP mn: Dairy 15,310 vs 11,644 (+31%); "
+    "Fermented 6,929 vs 4,822 (+44%); Juice 6,254 vs 4,526 (+38%); Concentrates & Agri "
+    "1,401 vs 3,152 (-56%); 3rd-party distribution 90 vs 159 (-43%); total 29,984 vs 24,303 "
+    "(+23.4%). 4Q25 alone: 7,848 (+31%). Company states growth was 'double-digit VOLUME "
+    "growth across dairy, fermented and juice, supported by SINGLE-DIGIT PRICE adjustments "
+    "and record-high export sales of finished goods'. FY25 net debt EGP 5,960mn (+202% YTD)",
+    "Juhayna FY25 Earnings Release, 12-Mar-2026, "
+    "https://www.juhayna.com/app/uploads/2026/03/4Q25-Earnings-Release-English-Final-version.pdf",
+    IR, "2026-03-12", fiscal_period="FY2025",
+    url="https://www.juhayna.com/app/uploads/2026/03/4Q25-Earnings-Release-English-Final-version.pdf",
+    detail="The five segment revenues sum to the audited net sales of EGP 29,984mn exactly. "
+           "This is the finest revenue granularity that exists anywhere: the audited segment "
+           "note reports only THREE segments (Dairy 22,239,271,839; Concentrates & Juices "
+           "7,569,170,825; Other 176,003,558).",
+    model_impact="DRIVER UNLOCK. Revenue is built at FIVE-segment level rather than as one "
+                 "blended growth rate. The company's own 'double-digit volume / single-digit "
+                 "price' language is the ONLY volume-price split it publishes and is what "
+                 "lets the two be projected separately at all — but it is a direction, not a "
+                 "number, which is why the split itself stays TOP_DOWN against NEG F43.")
+
+f_er1q = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.D,
+    "1Q26 earnings release (25-May-2026). Revenue by segment, EGP mn, 1Q26 vs 1Q25: Dairy "
+    "3,993 vs 3,445 (+16%); Fermented 2,795 vs 1,789 (+56%); Juice 1,528 vs 1,174 (+30%); "
+    "Concentrates & Agri 208 vs 374 (-44%); 3rd-party distribution 76 vs 21 (+258%); total "
+    "8,600 vs 6,803 (+26%). Mix 1Q26: Dairy 47%, Fermented 32%, Juice 18%, C&A 2%, "
+    "distribution 1%. EBITDA EGP 1,380mn (16.0%); SG&A 11.3% of sales; net debt EGP 6,600mn "
+    "at 31-Mar-2026 (+11% YTD); EGP 580mn of capex in the quarter",
+    "Juhayna 1Q26 Earnings Release, 25-May-2026, "
+    "https://www.juhayna.com/app/uploads/2026/05/ER-1Q26-ENG-1.pdf",
+    IR, "2026-05-25", fiscal_period="Q1-2026",
+    url="https://www.juhayna.com/app/uploads/2026/05/ER-1Q26-ENG-1.pdf",
+    model_impact="Study-year Q1 operating anchors: segment mix, EBITDA, net debt and capex "
+                 "run-rate, none of which appear in the interim statements. Fermented at "
+                 "+56% is now 32% of revenue against 26% a year earlier — a mix shift that "
+                 "moves group margin on its own and must be modelled at segment level.")
+
+f_er2q = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.D,
+    "1H26 / 2Q26 earnings release (04-Aug-2026) — the NEWEST release, and its anchors "
+    "SUPERSEDE the FY25 release's wherever they overlap. Revenue by segment, EGP mn, 2Q26 "
+    "vs 2Q25 and 1H26 vs 1H25: Dairy 3,891/3,624 and 7,885/7,068 (+12%); Fermented "
+    "2,440/1,580 and 5,235/3,369 (+55%); Juice 2,033/1,541 and 3,561/2,715 (+31%); "
+    "Concentrates & Agri 579/568 and 787/942 (-16%); 3rd-party distribution 135/49 and "
+    "211/70 (+201%); total 9,078/7,362 and 17,678/14,165 (+25%). 2Q26 EBITDA EGP 1,294mn "
+    "(14.3%); 1H26 EBITDA 2,674mn (15.1%); SG&A 11.4% of sales. NET DEBT EGP 7,205mn at "
+    "30-Jun-2026, +21% YTD. Exports EGP 787mn / USD 15.1mn in 2Q26 and EGP 1,209mn / USD "
+    "23.8mn in 1H26 (1H25: USD 25.1mn), with 2Q26 finished-product export USD revenue +14% "
+    "y/y while concentrate exports fell. Inventory raised 40% deliberately against "
+    "geopolitical and supply-chain risk. Capex EGP 1.3bn in 1H26. FX GAINS of EGP 66mn in "
+    "1H26; finance costs ~EGP 573mn. Market shares 1H26 vs 1H25: plain milk 60% (-2pps), "
+    "flavoured milk 60% (+6pps), spoonable yogurt 32% (+2pps), drinkable yogurt 41% (-3pps), "
+    "juice 32% (+1pps). Tiba signed exclusive Egyptian distribution for GORILLA energy drink",
+    "Juhayna 1H26 Earnings Release, 04-Aug-2026, "
+    "https://www.juhayna.com/app/uploads/2026/08/2Q26-Earnings-Release-ENG.pdf",
+    IR, "2026-08-04", fiscal_period="Q2-2026",
+    url="https://www.juhayna.com/app/uploads/2026/08/2Q26-Earnings-Release-ENG.pdf",
+    detail="NET-DEBT DEFINITION, resolved by arithmetic. The release's EGP 7,205mn equals "
+           "loans 2,049,698,595 + 181,626,171 + bank credit facilities 6,014,218,660 less "
+           "cash 1,040,601,076 = 7,204,942,350 — i.e. borrowings less cash, EXCLUDING lease "
+           "liabilities and excluding the EGP 488mn of amortised-cost investments. The FY25 "
+           "figure of 5,960mn reconciles the same way (7,051,514,050 - 1,091,755,742 = "
+           "5,959,758,308). See F46 for the second, conflicting definition in the audited "
+           "notes.",
+    model_impact="These anchors SUPERSEDE the FY25 release's in the driver set: net debt, "
+                 "segment mix, export USD revenue, market shares and capex all take their "
+                 "1H26 values. Two of the five market shares are FALLING (plain milk -2pps, "
+                 "drinkable yogurt -3pps), which is the company's own evidence for the Beyti "
+                 "capacity effect in F17 and caps the Dairy price path.")
+
+f_call = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.C,
+    "1H26 results call held in English on Monday 10-Aug-2026 at 14:30 Cairo time, hosted by "
+    "Al Ahly Pharos, presented by CFO Tarek Elwan and Head of Investor Relations Karim "
+    "Ibrahim; no registration required, webinar link published in the release",
+    "Juhayna 1H26 Earnings Release, earnings-call invitation page",
+    IR, "2026-08-04", model_impact="",
+    detail="Recorded so the IR channel itself is on the register. Juhayna's IR site "
+           "publishes no separate slide deck: the earnings release PDF IS the presentation "
+           "(the archive still holds one release saved as '...pptx' converted to PDF), and "
+           "the site's own search returns nothing for 'presentation'. No transcript of the "
+           "10-Aug-2026 call is published on the site.")
+
+# ---- strategic plans & guidance -------------------------------------------
+f_ar = R.add(Ring.COMPANY, "strategic plans & guidance", FindingClass.D,
+    "FY2025 annual report — the operating asset base and the physical drivers, none of "
+    "which appear in the financial statements. 4 manufacturing facilities (El Marwa, El "
+    "Dawleya, El Masreya, EgyFood); 250+ SKUs; 4,700+ employees; DAIRY FARMING 8,000 head "
+    "of livestock on 10,000 feddans with 4.5GW of solar consumption and 1,500 new feddans "
+    "of citrus planted in 2025; DISTRIBUTION through wholly-owned Tiba — 40 distribution "
+    "centres, 1,000+ vehicles, 262,000+ points of sale, ~85% of routes re-optimised in "
+    "2025, distribution volume 104% of plan, third-party distribution revenue EGP 90mn. "
+    "SOURCING: 'Juhayna maintained procurement of 15 to 20 percent of its raw milk from its "
+    "own farms'. Capacity moves in 2025: Al Masreya production +21% with Bekhero 1-litre "
+    "filling +33% on a new TFA line; Al Dawleya capacity +22% with single-serve beverage "
+    "capacity +26% and pasteurisation +8%; Al Marwa citrus processing +145%/day on new "
+    "extractors; EgyFood dedicated Labneh line, Greek yogurt volumes +58%; spoonable yogurt "
+    "shelf life extended from 14 to 30 days",
+    "Juhayna Food Industries Annual Report 2025, "
+    "https://www.juhayna.com/app/uploads/2026/07/Report-english.pdf",
+    CO, "2026-07-01", fiscal_period="FY2025",
+    url="https://www.juhayna.com/app/uploads/2026/07/Report-english.pdf",
+    model_impact="THE SINGLE MOST IMPORTANT COST DISCLOSURE IN THE FILE SET: 80-85% of raw "
+                 "milk is bought from third parties, so ~4/5 of the milk leg escalates on "
+                 "the Egyptian farm-gate price path (F14) and only ~1/5 on own-farm cost. "
+                 "The distribution network (40 DCs, 1,000+ vehicles, 262k POS) is the "
+                 "physical driver behind note 7's vehicle expense of EGP 263.6mn and "
+                 "shipping/export of EGP 245.5mn, which is how the distribution cost leg is "
+                 "built rather than taken as a percentage of sales. Named line capacity "
+                 "additions set the volume ceiling per segment.")
+
+f_negguid = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
+    "read every page of the FY2025 annual report, the FY25, 1Q26 and 1H26 earnings "
+    "releases and the FY2025 audited statements, and grepped all fifteen extracted "
+    "documents for 'guidance', 'outlook for', 'we expect', 'we target', 'we aim', "
+    "'full-year target', 'capex plan/program/budget' and 'capital expenditure' — Juhayna "
+    "publishes NO numeric forward guidance of any kind: no revenue target, no margin "
+    "target, no capex budget, no volume target and no dividend policy. The only forward "
+    "quantities disclosed anywhere are backward-looking spends (EGP 580mn capex in 1Q26, "
+    "EGP 1.3bn in 1H26, an announced EGP 500mn wastewater-treatment investment) and "
+    "capital commitments of EGP 101,309,314 at 31-Dec-2025",
+    SWEEP_DATE)
+
+f_negvol = R.add_negative(Ring.COMPANY, "regular disclosures",
+    "searched every one of the fifteen extracted company documents (FY2021-FY2025 audited "
+    "statements, Q1-2026 and H1-2026 interims, seven earnings releases, two annual reports) "
+    "for absolute product volumes: regex over '[0-9,.]+ (thousand|mn|million|k)? "
+    "(tons?|tonnes?|litres?|liters?|units|packs)' and free-text 'volume of/grew/increased/"
+    "rose/up'. FIVE numeric hits exist in the entire corpus and EVERY ONE is an "
+    "energy or emissions figure, not a product volume (600,000 litres of diesel saved, "
+    "1,620 tons of CO2, 502k litres, 1,350 tons). Juhayna discloses volume only as "
+    "unattributed percentages ('double-digit volume growth', 'Greek yogurt volumes +58%', "
+    "'Al Masreya production volumes +21%'). NO absolute tonnage, litreage or unit count "
+    "for any product, segment or plant is published anywhere",
+    SWEEP_DATE)
+
+f_negcogs = R.add_negative(Ring.COMPANY, "regular disclosures",
+    "searched the FY2023, FY2024 and FY2025 audited statements and the Q1-2026 and H1-2026 "
+    "interims for any breakdown of cost of sales, and searched all fifteen documents for "
+    "'electricity', 'natural gas', 'energy cost', 'fuel', 'diesel' and 'utilities' with 60 "
+    "characters of context. Note 5 is three lines in every year and 95.3% of FY2025 COGS "
+    "sits in one line called 'Operating expenses and wages'. There is no raw-milk cost, no "
+    "packaging cost, no energy cost, no water cost and no production-labour line in any "
+    "filing; the single energy hit in the whole corpus is the phrase 'reduction in utility "
+    "consumption' with no number attached. Cost-per-unit therefore cannot be built from the "
+    "filings at any level",
+    SWEEP_DATE)
+
+# ---- the mixed-basis trap, the net-debt trap, the listing -----------------
+f_basis = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.S,
+    "MIXED-BASIS TRAP inside the company's own releases. The FY25 release prints an income "
+    "statement headed 'Income Statement (OPERATIONAL FIGURES EXCLUDING MERGE)': net sales "
+    "29,984,446,222 (= audited), cost of sales (22,401,005,679), gross profit 7,583,440,543 "
+    "(25.29%), net profit 2,252,855,437, EPS 1.91 — against audited COGS of 23,103,562,055, "
+    "gross profit 6,880,884,167 (22.95%), net profit 1,910,094,835 and EPS 1.38. The "
+    "differences are exactly EGP 702,556,376 at gross and EGP 342,760,602 at net. Worse, "
+    "the 1H26 release MIXES the two bases in one document: its charts show a 1H25 gross "
+    "margin of 25.7% (ex-merge, GP EGP 3,634mn) while its appendix table headed 'Income "
+    "Statement (Financial Statement)' shows the statutory 1H25 GP of EGP 2,941,923,571 "
+    "(20.77%)",
+    "Juhayna FY25 Earnings Release income-statement appendix and 1H26 Earnings Release "
+    "charts vs appendix, both read against the audited and reviewed statements",
+    IR, "2026-08-04",
+    model_impact="The historical base is the AUDITED figure in every year; the ex-merge "
+                 "presentation is carried only as a labelled reconciling item. Any margin "
+                 "path anchored on the release's headline 25.3% FY2025 gross margin would "
+                 "start 234bp above the audited base and would make the FY2026 forecast "
+                 "wrong from the first line.")
+
+f_netdebt = R.add(Ring.COMPANY, "regular disclosures", FindingClass.S,
+    "TWO CONFLICTING NET-DEBT DEFINITIONS, both the company's own, EGP 3.33bn apart at the "
+    "same date. The audited capital-management note defines net debt as TOTAL LIABILITIES "
+    "less cash: 10,377,677,682 - 1,091,755,742 = EGP 9,285,921,940, a 116% net debt to "
+    "equity ratio (FY2024: 5,439,893,555 and 86%). The earnings release defines it as "
+    "BORROWINGS less cash: EGP 5,960mn at FY2025 and EGP 7,205mn at 30-Jun-2026",
+    "Juhayna FY2025 audited FS capital-management note vs FY25 and 1H26 earnings releases",
+    CO, "2026-03-12", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="The EV-to-equity bridge uses the BORROWINGS-less-cash definition — EGP "
+                 "8,245,543,426 gross borrowings less EGP 1,040,601,076 cash at 30-Jun-2026 "
+                 "— plus lease liabilities of EGP 244,563,903 added SEPARATELY and named, "
+                 "because the company's own release excludes them. The audited note's "
+                 "'total liabilities less cash' number is NOT net debt in any valuation "
+                 "sense and is never used; it is recorded so a reader who meets it in the "
+                 "filing knows why the study's number differs.")
+
+f_listing = R.add(Ring.COMPANY, "listing & market data (beta regressor)", FindingClass.C,
+    "SINGLE listing — no dual-listing trap. JUFO.CA trades only on the Egyptian Exchange "
+    "(listed 18-May-2010), in EGP, ISIN EGS30611C014. Last local close EGP 26.88 on "
+    "23-Aug-2026 on 465.05k shares; EGX30 at 56,174.30 on 08-Sep-2026. The repo holds "
+    "engine/raw_ohlc/EG/JUFO.csv (3,706 rows) and engine/raw_indices/EG/EGX30.csv, so the "
+    "conforming regressor for beta exists and no composite is needed",
+    "Company IR ownership/stock pages; engine/raw_ohlc/EG/JUFO.csv and "
+    "engine/raw_indices/EG/EGX30.csv as held in this repo",
+    PMD, "2026-09-08", model_impact="",
+    detail="Checked explicitly against the dual-listing trap (Orascom Construction on ADX "
+           "and EGX). Juhayna has ONE listing, one currency and one index; the price "
+           "magnitude (EGP ~27) and the EGX30 level are consistent with an EGX filing. "
+           "Beta must still be produced by engine/beta_regression.own_stock_beta('JUFO', "
+           "'EG', 'EGX') and never by a study-local script.")
+
+f_ledger = R.add(Ring.COMPANY, "listing & market data (beta regressor)", FindingClass.C,
+    "NO same-class prior exists. engine/Fundamental_Driver_Ledger.md holds exactly one "
+    "entry (PHDC, real-estate developer) and engine/lessons.py registers fifteen classes, "
+    "none of which is a packaged-food, dairy or FMCG manufacturer. Every driver below is "
+    "therefore set from JUFO's own disclosure or from a dated negative search, with no "
+    "class prior to lean on",
+    "engine/Fundamental_Driver_Ledger.md and engine/lessons.py --class, read live "
+    "08-Sep-2026",
+    SourceType.SEARCH, "2026-09-08", model_impact="",
+    detail="Checked before setting any unsourced driver, as the standing rule requires. "
+           "The ALL-scope lessons that bind here are L-005 (margins are outputs), L-007 "
+           "(company site before any provider), L-008 (statements AND release), L-009 (one "
+           "escalator per cost driver) and L-010 (never divide one year's value by another "
+           "year's volume).")
+
+# ===========================================================================
+# DRIVER GATE TABLE — every driver, mode earned, mode cited
+# ===========================================================================
+# --- revenue, built at the finest sourced level (5 IR segments) ------------
+R.add_driver("Dairy segment revenue (EGP)", DriverMode.BOTTOM_UP,
+    "Segment revenue is disclosed quarterly by the company's own releases and annually in "
+    "the audited segment note; FY25 EGP 15,310mn, 1H26 EGP 7,885mn. Built at segment level "
+    "with the volume/price split flagged as a gap (that split is a separate TOP_DOWN row).",
+    [f_er25, f_er2q, f_fs25pl, f_ar])
+R.add_driver("Fermented segment revenue (EGP)", DriverMode.BOTTOM_UP,
+    "Disclosed segment revenue: FY25 EGP 6,929mn (+44%), 1H26 EGP 5,235mn (+55%). Growth "
+    "attached to named, dated product events in the company's own report — Turkish Labneh "
+    "entry taking ~42% of the soft-cheese category, Greek yogurt volumes +58%, EgyFood's "
+    "dedicated Labneh line, shelf life 14 -> 30 days — rather than to a growth rate.",
+    [f_er25, f_er2q, f_ar])
+R.add_driver("Juice segment revenue (EGP)", DriverMode.BOTTOM_UP,
+    "Disclosed segment revenue: FY25 EGP 6,254mn (+38%), 1H26 EGP 3,561mn (+31%), with "
+    "capacity additions named per plant (Bekhero 1-litre filling +33%, single-serve +26%).",
+    [f_er25, f_er2q, f_ar])
+R.add_driver("Concentrates & Agriculture revenue (EGP)", DriverMode.BOTTOM_UP,
+    "Disclosed segment revenue FY25 EGP 1,401mn (-56%) and 1H26 EGP 787mn (-16%), driven "
+    "explicitly by the FCOJ price collapse the company itself names. Modelled as export "
+    "volume times the external FCOJ price path, dual-framed on price recovery, NOT as a "
+    "segment growth glide.",
+    [f_er25, f_er2q, f_fcoj, f_ar])
+R.add_driver("3rd-party distribution revenue (EGP)", DriverMode.BOTTOM_UP,
+    "Tiba's own disclosed line: EGP 90mn in FY25, EGP 211mn in 1H26 (+201%), against a "
+    "disclosed network of 40 DCs, 1,000+ vehicles and 262k points of sale, plus the named "
+    "exclusive Gorilla energy-drink mandate signed in 2026.",
+    [f_er25, f_er2q, f_ar])
+R.add_driver("Export revenue and its currency split", DriverMode.BOTTOM_UP,
+    "Disclosed in BOTH currencies by the company: EGP 1,209mn / USD 23.8mn in 1H26 and EGP "
+    "787mn / USD 15.1mn in 2Q26, against USD 25.1mn in 1H25, with Saudi Arabia added as a "
+    "new market in 2025. Modelled in USD and translated on the model's own FX path, never "
+    "grown in EGP.",
+    [f_er2q, f_ar, f_fxnote, f_fx])
+
+R.add_driver("Volume x price split WITHIN each revenue segment", DriverMode.TOP_DOWN,
+    "FLAGGED GAP. No absolute volume is published in any company document — the negative "
+    "search covers all fifteen extracted documents and found only energy/emissions "
+    "numbers. The split is therefore set top-down from the company's own directional "
+    "language ('double-digit volume growth supported by single-digit price adjustments') "
+    "and sensitised, and NO price per unit is ever computed by dividing a disclosed value "
+    "by a volume from a different period.",
+    [f_negvol, f_er25])
+
+# --- cost stack: physical drivers, each with its own escalator -------------
+R.add_driver("Raw-milk input cost — physical driver and escalator",
+    DriverMode.BOTTOM_UP,
+    "The company discloses the sourcing split itself: 15-20% of raw milk from its own farms "
+    "(8,000 head on 10,000 feddans), so 80-85% is third-party purchased. The purchased "
+    "portion escalates on the EGYPTIAN FARM-GATE MILK PRICE path with the world powder "
+    "price as the import-parity ceiling; the own-farm portion escalates on feed, not on "
+    "milk. This leg gets its own escalator and shares none with packaging or labour.",
+    [f_ar, f_milkprice, f_gdt, f_inv])
+R.add_driver("Packaging cost — physical driver and escalator", DriverMode.BOTTOM_UP,
+    "Packaging is disclosed as its own inventory class in every filing (EGP 1.42bn at FY25, "
+    "EGP 1.53bn at Q1-26) and is IMPORTED — the company names trade-route and air-cargo "
+    "disruption as live risks and raised inventory 40% against them. Escalated on its four "
+    "published physical inputs (liquid packaging board 50-60%, LDPE 20-25%, aluminium foil "
+    "10-15%, energy/freight 10-15%), each on its own USD commodity path multiplied by the "
+    "model's own USD/EGP path plus a Red Sea freight adder. NEVER on Egyptian CPI.",
+    [f_inv, f_pack, f_fx, f_redsea, f_ar])
+R.add_driver("Cost-stack WEIGHTS inside COGS (milk / packaging / energy / labour shares)",
+    DriverMode.TOP_DOWN,
+    "FLAGGED GAP, and the reason it is flagged rather than assumed away: the audited "
+    "cost-of-sales note is three lines in FY2023, FY2024 and FY2025, with 95.3% of FY2025 "
+    "COGS in one line, and no energy figure exists anywhere in the corpus. Weights are set "
+    "top-down and anchored on the ONLY company-sourced proxy available — the input-side "
+    "inventory mix in note 19 (FY25 raw materials 42.8% / packaging 36.1% / consumables "
+    "19.1% / in-transit 2.0%) — with the inventory-versus-consumption caveat carried into "
+    "the Driver Ledger row and the weights sensitised.",
+    [f_negcogs, f_inv, f_cogs])
+R.add_driver("GROSS MARGIN — OUTPUT, never an input", DriverMode.BOTTOM_UP,
+    "Gross margin is not a driver and is never typed in. It falls out of segment revenue "
+    "minus the escalated cost stack, and is then checked against the five audited years "
+    "(FY21 28.70%, FY22 25.57%, FY23 23.24%, FY24 30.41%, FY25 22.95%) and the two "
+    "study-year quarters (Q1-26 25.22%, Q2-26 23.76%). A build that cannot reproduce the "
+    "Q2-below-Q1 decay inside 2026 is rejected and rebuilt, not calibrated.",
+    [f_fs25pl, f_fs24, f_fs23, f_fs22, f_fs21, f_q126, f_h126, f_cogs])
+
+# --- opex, below the line, capital ----------------------------------------
+R.add_driver("Selling & distribution cost", DriverMode.BOTTOM_UP,
+    "Note 7 discloses NINE named items for FY2023, FY2024 and FY2025, each footing exactly "
+    "(FY25: advertising 634.7mn, salaries 855.2mn, replaced items 250.0mn, depreciation "
+    "166.3mn, vehicles 263.6mn, shipping & export 245.5mn, rent 25.2mn, temporary labour "
+    "110.8mn, other 185.5mn). Vehicles and shipping are driven off the disclosed physical "
+    "fleet (1,000+ vehicles, 40 DCs, 262k POS), not off a percentage of sales.",
+    [f_cogs, f_ar, f_fs25pl])
+R.add_driver("General & administrative cost", DriverMode.BOTTOM_UP,
+    "Note 8 discloses FIFTEEN named items for FY2023-FY2025, footing exactly, including "
+    "software subscriptions (EGP 139.1mn), end-of-service (33.7mn) and R&D (16.0mn). Built "
+    "line by line with a fixed/variable split, not as a ratio.",
+    [f_cogs, f_fs25pl, f_fs24])
+R.add_driver("Employees' profit share and board remuneration", DriverMode.BOTTOM_UP,
+    "Note 36 discloses EGP 264,517,998 plus EGP 13,000,000 for FY2025 against NIL in FY2024, "
+    "and the cash-flow statement shows EGP 199,972,269 actually paid. Modelled as its own "
+    "cash driver, not folded into a payout ratio.",
+    [f_eps, f_wc])
+R.add_driver("Cost of debt (Kd) and the interest charge", DriverMode.BOTTOM_UP,
+    "Built from the NAMED facilities at their disclosed pricing — CIB and Attijariwafa term "
+    "loans plus ~EGP 5.5bn of bank credit facilities, all variable at 'CBE corridor rate + "
+    "spread', maturing 4-5 years — with the CBE main operation rate of 19.50% as the base. "
+    "Cross-checked against the filing's own 1% sensitivity of EGP 70,515,140, which "
+    "reproduces the EGP 7.05bn variable base exactly. Never finance cost over a liabilities "
+    "base [L-002].",
+    [f_loans, f_cbe])
+R.add_driver("Currency split of debt", DriverMode.BOTTOM_UP,
+    "100% EGP: the named lenders are Egyptian and Moroccan-Egyptian, the pricing is the CBE "
+    "corridor, and the 1% sensitivity reconciles the whole book. No FX tranche needs a "
+    "local-equivalent cost adjustment. The one open item — note 24-2's EGP 48,056,661 of FX "
+    "differences inside the borrowing movement — is carried as a named question, not "
+    "assumed away.",
+    [f_loans, f_fxnote])
+R.add_driver("Currency split of revenue", DriverMode.BOTTOM_UP,
+    "Exports are 6.8% of 1H26 revenue and are disclosed in USD by the company; the audited "
+    "segment note states the Group operates in ONE geographical sector, Egypt. Net monetary "
+    "FX exposure at FY2025 is USD +647,074 and EUR -2,720,074, i.e. immaterial. Revenue is "
+    "therefore ~93% EGP and FX enters the model on the COST side.",
+    [f_er2q, f_fxnote, f_fs25pl])
+R.add_driver("Capex and projects under construction", DriverMode.BOTTOM_UP,
+    "From the cash-flow statement and the releases: EGP 2,979,726,835 in FY2025 (FY2024 "
+    "2,356,922,136), EGP 580mn in 1Q26 and EGP 1.3bn in 1H26, with projects under "
+    "construction rising to EGP 3,803,734,916 at 30-Jun-2026 and capital commitments of "
+    "EGP 101,309,314 at 31-Dec-2025. Tied to the named plant capacity additions.",
+    [f_wc, f_er1q, f_er2q, f_h126, f_ar])
+R.add_driver("Working capital (DSO / DIO / DPO)", DriverMode.BOTTOM_UP,
+    "Projected from the disclosed ratios across FY2022-Q1-2026: DSO 13.2 days, DIO 91.9 "
+    "days, DPO 25.8 days at FY2025, with the deliberate 40% 1H26 inventory build modelled "
+    "as a dated event that unwinds, and the EGP 270.5mn export-subsidy receivable collected "
+    "on the published arrears schedule. No plugs.",
+    [f_wc, f_inv, f_h126, f_export])
+R.add_driver("Tax", DriverMode.BOTTOM_UP,
+    "Statutory 22.5% as stated in the company's own effective-tax reconciliation, with the "
+    "disputed 2009-2014 exemption of a merged subsidiary carried as a NAMED contingent "
+    "downside (the auditor's emphasis of matter; no provision made) rather than as a "
+    "probability-weighted expense.",
+    [f_tax, f_merger])
+R.add_driver("Share count and per-share figures", DriverMode.BOTTOM_UP,
+    "1,176,756,353 shares at EGP 1.00 par, from the audited capital note and the company's "
+    "own IR register, which agree to the pound. Applied retrospectively to every historical "
+    "year because the Nov-2025 bonus issue is.",
+    [f_bonus, f_own, f_fs25bs])
+R.add_driver("Risk-free rate — explicit window and terminal", DriverMode.BOTTOM_UP,
+    "Explicit window on the CBE main operation rate of 19.50% (held 20-Aug-2026). Terminal "
+    "norm-built off the CBE's OWN published 7% +/-2pp target plus the standard EM real-rate "
+    "convention. Never a historical average and never backed out of a price.",
+    [f_cbe])
+R.add_driver("Historical base — statutory vs 'excluding merge'", DriverMode.BOTTOM_UP,
+    "The audited figures are the base in every year. The FY25 release's ex-merge "
+    "presentation (GP 25.29%, net profit EGP 2,252,855,437) is carried only as a labelled "
+    "reconciling item, and the 1H26 release's mixing of the two bases inside one document "
+    "is the reason this is a gate row rather than a footnote.",
+    [f_fs25pl, f_basis, f_merger])
+R.add_driver("Net debt for the equity bridge", DriverMode.BOTTOM_UP,
+    "Borrowings less cash, the company's own release definition, reproduced exactly from "
+    "the filed balance sheet (EGP 7,204,942,350 at 30-Jun-2026), with lease liabilities of "
+    "EGP 244,563,903 added SEPARATELY and named. The audited capital-management note's "
+    "'total liabilities less cash' of EGP 9,285,921,940 is not used.",
+    [f_netdebt, f_loans, f_h126])
+R.add_driver("Terminal growth and long-run category volume", DriverMode.BOTTOM_UP,
+    "Capped by the external category path — Egypt dairy products USD 4.84bn (2026) growing "
+    "at 2.76% CAGR against a structural 4.8Mt supply / 8.4Mt consumption deficit — plus "
+    "price, not extrapolated from JUFO's own recent 23-25% nominal growth.",
+    [f_mkt, f_gdem, f_fs25pl])
+R.add_driver("Competitive share path (plain milk, drinkable yogurt)", DriverMode.BOTTOM_UP,
+    "The company publishes its own shares and two of five are FALLING (plain milk 60%, "
+    "-2pps; drinkable yogurt 41%, -3pps). Set against the named Beyti EGP 1bn / five-line "
+    "Nubaria expansion of Nov-2025 and Danone's Jun-2026 HiPRO entry, both dated and inside "
+    "the window.",
+    [f_er2q, f_beyti, f_entrant])
+
+R.add_driver("FY2026+ revenue path where no company guidance exists", DriverMode.TOP_DOWN,
+    "FLAGGED GAP. Juhayna publishes no numeric guidance of any kind — no revenue, margin, "
+    "capex, volume or dividend target — so nothing above the segment build can be anchored "
+    "on management's own forward numbers. The path is set from the disclosed run-rate and "
+    "the external category path and is sensitised, and no guidance figure is ever used as "
+    "an input [L-012].",
+    [f_negguid, f_mkt])
+R.add_driver("Energy and utilities cost", DriverMode.TOP_DOWN,
+    "FLAGGED GAP. No energy, electricity, gas, water or fuel cost figure appears in any "
+    "filing, release or annual report; the only hit in the whole corpus is a qualitative "
+    "'reduction in utility consumption'. Energy is therefore carried inside the top-down "
+    "cost-weight vector on the Egyptian regulated-tariff path and sensitised, and is NOT "
+    "escalated on the same index as the imported legs.",
+    [f_negcogs, f_negvol])
+
+# ===========================================================================
+# OUTPUT
+# ===========================================================================
+errors, warnings = R.validate()
+R.to_json(os.path.join(HERE, 'sweep_register.json'))
+print(R.qc_line())
+print(f"\nfindings: {len(R.findings)} | drivers: {len(R.drivers)}")
+
+n_ir = sum(1 for f in R.findings if f.source_type is SourceType.COMPANY_IR)
+n_co = sum(1 for f in R.findings if f.source_type is SourceType.COMPANY_OFFICIAL)
+fs_years = sorted({f.fiscal_period for f in R.findings
+                   if f.is_fs_data and f.fiscal_period.startswith("FY")})
+qtrs = sorted({f.fiscal_period for f in R.findings if f.fiscal_period.startswith("Q")})
+print(f"company-official findings: {n_co} | company-IR findings: {n_ir}")
+print(f"audited fiscal years swept: {fs_years}")
+print(f"study-year quarters swept: {qtrs}")
+print(f"primary-access attempts: {len(R.primary_access)} "
+      f"({sum(1 for p in R.primary_access if p.reachable)} reachable / "
+      f"{sum(1 for p in R.primary_access if not p.reachable)} refused)")
+
+if errors:
+    print(f"\nVALIDATOR ERRORS ({len(errors)}) — disclosed, not suppressed:")
+    for e in errors:
+        print(f"  ! {e}")
+else:
+    print("\nVALIDATOR ERRORS: none")
+if warnings:
+    print(f"\nVALIDATOR WARNINGS ({len(warnings)}):")
+    for w in warnings:
+        print(f"  - {w}")
+else:
+    print("VALIDATOR WARNINGS: none")
+
+for d in ("2026-09-08", "2026-09-22", "2026-10-08"):
+    fr = R.check_freshness(d)
+    print(f"freshness vs delivery {d}: {fr or 'OK'}")

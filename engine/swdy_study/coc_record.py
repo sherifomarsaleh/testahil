@@ -233,7 +233,49 @@ record = dict(
     # 6. both premium bases visible, one named central
     erp_basis='cds',
     erp_central=float(V['erp_cds']),
-    beta=dict(W['beta']),
+    beta_record=dict(W['beta']),
+
+    # ---- THE FLAT KEYS [R-COC-02] READS, so the cost of equity can be REPRODUCED
+    # from its own inputs rather than trusted. A cost of equity typed 300bp high
+    # would have passed every other check in this repository, and on this name the
+    # beta's own 90% interval spans a range worth far more than that.
+    beta=float(W['beta']['beta']),
+    rf_star_flat=float(W['rf_star']),
+    erp=float(V['erp_cds']),
+    ke_exp=float(W['ke_exp']),
+    ke_terminal=float(W['ke_term']),
+    erp_terminal=float(V['erp_term']),
+    ke_terminal_construction='same_beta',
+    ke_terminal_construction_note=(
+        "The terminal cost of equity is the terminal risk-free plus the SAME beta times "
+        "the terminal premium: {0:.4f} + {1:.6f} x {2:.4f} = {3:.6f}. No relevering — "
+        "the terminal debt weight of {4:.0%} differs from the explicit window's {5:.2%}, "
+        "so a relevered construction would be defensible and is NOT used, and saying so "
+        "is the point: a reader cannot tell a relevered beta from a typing error unless "
+        "the record names which construction produced the number."
+        .format(float(V['rf_term']), float(W['beta']['beta']), float(V['erp_term']),
+                float(W['ke_term']), float(V['wd_term']), float(W['wd_exp']))),
+    beta_source='own_stock_regression',
+    beta_source_note=(
+        "beta_regression.own_stock_beta() against {0} as at {1} — the published index of "
+        "the exchange this stock is listed on — giving {2:.4f} at an R-squared of {3:.3f} "
+        "over {4} weekly observations. IT REPLACES A COMPOSITE, and the composite was not "
+        "a weaker tier but a hard fail: a 31-name equal-weight basket of the covered EGX "
+        "library gave {5:.4f} at an R-squared of {6:.3f}, understating the beta by {7:.1f}% "
+        "and explaining less of the stock. The correction raises the cost of equity by "
+        "{8:.0f} basis points and LOWERS this study's central, away from a price it "
+        "already sits far below."
+        .format(W['beta']['index_file'], W['beta']['index_asof'], float(W['beta']['beta']),
+                float(W['beta']['r2']), int(W['beta']['n']),
+                float(W['beta']['withdrawn_composite']['beta']),
+                float(W['beta']['withdrawn_composite']['r2']),
+                100 * abs(float(W['beta']['delta_vs_withdrawn'])),
+                10000 * (float(W['beta']['beta']) - float(W['beta']['withdrawn_composite']['beta']))
+                * float(V['erp_cds']))),
+    weight_equity=float(W['we_exp']),
+    weight_debt=float(W['wd_exp']),
+    weight_debt_terminal=float(V['wd_term']),
+    kd_aftertax=float(W['kd_at']),
     weights=dict(equity=float(W['we_exp']), debt=float(W['wd_exp']),
                  basis='market_value_equity',
                  note=("Market-value equity weights, never book. The debt weight is struck on "

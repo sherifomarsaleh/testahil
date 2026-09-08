@@ -57,6 +57,20 @@ import terminal_value as TV          # [R-TERM-01] — verified by import, not b
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
+
+# THE BETA IS READ, NOT TYPED, AND THAT IS THE WHOLE CORRECTION. This input used to
+# carry a literal 1.009 with a source describing a regression against a 31-name
+# equal-weight composite of the covered EGX library. Two defects sat in one line:
+# the regressor was a COMPOSITE, which SIGCM clause 6 calls a hard fail rather than
+# a fallback, and the number was TYPED, so beta_reg.py could be re-run to any answer
+# at all and the model would go on discounting at the old one. Re-running it against
+# the published index of the exchange this stock is listed on moved the beta 21.4%
+# and moved the valuation by nothing, because nothing downstream was reading it.
+_BETA = json.load(open(os.path.join(HERE, 'beta_result.json'), encoding='utf-8'))
+assert _BETA.get('conforming'), 'beta_result.json is not a conforming regression'
+assert str(_BETA.get('index_file', '')).startswith('raw_indices/'), \
+    'the regressor is not a registered published index'
+
 H126 = ("Reviewed condensed interim consolidated financial statements for the six months "
         "ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board "
         "on 11 August 2026 (note 2-1), published on the company's own investor-relations "
@@ -668,11 +682,22 @@ INP = dict(
                        "the revenue is actually earned. Shown as an explicit alternative, not the "
                        "primary, because the standing house rule takes the country premium of the "
                        "listing and reporting currency", "2026-08-05", "House"),
-    beta=I(1.009, "Own-stock tier-1 regression: SWDY weekly log-returns against a 31-name "
-           "equal-weight EGX composite built from the full covered library, 5-year window. "
-           "R-squared 0.291, n = 258, standard error 0.098, 90% confidence interval [0.85, 1.17]. "
-           "Comfortably clears the usability gate and is NOT weak-instrument flagged (R-squared "
-           "well above 10%, interval span 0.32 against a 1.009 point estimate)", "2026-08-05", "House"),
+    beta=I(float(_BETA['beta']),
+           "Own-stock tier-1 weekly regression against %s as at %s — THE PUBLISHED INDEX OF "
+           "THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() "
+           "rather than hand-rolled. R-squared %.3f, n = %d, standard error %.4f, 90%% "
+           "confidence interval [%.3f, %.3f]; Dimson-corrected for thin trading, matched to "
+           "the exchange's own trading week (%s). Clears the usability gate and is not "
+           "weak-instrument flagged. WITHDRAWN AND KEPT FOR COMPARISON: the previous edition "
+           "regressed against a 31-name equal-weight composite of the covered library and got "
+           "%.4f at an R-squared of %.3f — %+.1f%% against the conforming figure, explaining "
+           "less of the stock. A constituent composite is a coverage artefact rather than a "
+           "market and SIGCM calls it a hard fail, not a tier."
+           % (_BETA['index_file'], _BETA['index_asof'], _BETA['r2'], _BETA['n'], _BETA['se'],
+              _BETA['ci90'][0], _BETA['ci90'][1], _BETA['week_rule'],
+              _BETA['withdrawn_composite']['beta'], _BETA['withdrawn_composite']['r2'],
+              100 * _BETA['delta_vs_withdrawn']),
+           str(_BETA['index_asof']), "House"),
     kd=I(0.095, "Marginal cost of debt, CURRENCY-BLENDED, rolled forward to the most recently "
          "disclosed rates. The audited FY2025 note (32) discloses 21.30% on Egyptian-pound "
          "financial liabilities and 5.29% blended on 'US dollars and foreign currencies' — a "

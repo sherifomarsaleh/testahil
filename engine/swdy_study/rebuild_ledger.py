@@ -24,7 +24,10 @@ L = RL.Ledger(
     started_at='the delivered edition of 05-08-2026 as it stood on 7 September 2026',
     start_value=55.482176,
     start_spot=105.20,
-    audit_after='terminal flows on the last-explicit-year basis')
+    audit_after='the beta re-derived against the published index of its own '
+                'exchange — DECLARED BEFORE THAT LEVER WAS BUILT: it is the last one '
+                'that moves the central, so the eight headings are run after it and '
+                'before any file is staged')
 
 L.apply(
     'the disclosed useful life at full precision', 'R-TERM-01', 55.479725,
@@ -84,6 +87,29 @@ L.apply(
              'reporting as mismatches rather than being fixed — Summary C12 is EMPTY and '
              'read as 0.0000, which the tolerance turned into a difference rather than an '
              'error [L-066/L-067].')
+
+L.apply(
+    'the beta re-derived against the published index of its own exchange', 'SIGCM-6',
+    43.510763,
+    why='The beta was regressed against an EQUAL-WEIGHT COMPOSITE of the 31 names that '
+        'happen to sit in the covered EGX library, and the study said so in its own '
+        'source field, calling it "the house pattern". It was the house pattern: every '
+        'study here once did it, each copying the last. A constituent composite is not a '
+        'weaker tier — it is a coverage artefact that changes whenever a stock is posted '
+        'and shares constituents with the panel it prices, which is why SIGCM clause 6 '
+        'calls it a hard fail. THE CORRECTION LOWERS THE VALUE AND WIDENS THE GAP, from '
+        '59.5% below the price to 66.5% below it, and that is the direction that shows '
+        'the discipline is not fitting.',
+    evidence='beta_regression.own_stock_beta("SWDY","EG","EGX") against '
+             'raw_indices/EG/EGX30.csv as at 2026-09-08: beta 1.2249, R-squared 0.368, '
+             'n 256, Dimson-corrected, conforming. The withdrawn composite gave 1.0087 at '
+             'an R-squared of 0.291 — 21.4% LOW and explaining less of the stock, the '
+             'FERTIGLB precedent again. Cost of equity 28.40% -> 30.44%, explicit cost of '
+             'capital 26.94% -> 28.84%, terminal 15.93% -> 17.22%. AND THE NUMBER WAS '
+             'TYPED: the input carried a literal 1.009 with a source describing the '
+             'composite, so re-running the regression to any answer at all would have '
+             'moved nothing. It now reads beta_result.json, which asserts the record is '
+             'conforming and its regressor registered.')
 
 rec = L.record()
 rec['workbook_answer'] = dict(before=59.313220, after=52.696890,

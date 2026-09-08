@@ -247,6 +247,41 @@ record = dict(
     erp_basis='cds',
     erp_central=float(W['erp_cds']),
     beta=float(W['beta']),
+
+    # ---- THE FLAT KEYS [R-COC-02] READS, so the cost of equity can be REPRODUCED
+    # from its own inputs rather than trusted. Until these existed the gate could
+    # not tell a measured regression from a tier-3 fallback from a number somebody
+    # typed, and a cost of equity 300bp high would have passed every check in the
+    # repository. They duplicate figures the record already carries in nested form;
+    # extra keys are not a defect and a record that hid its own arithmetic to look
+    # tidier would be the wrong trade.
+    erp=float(W['erp_cds']),
+    erp_terminal=float(W['erp_cds']),
+    ke_terminal_construction='same_beta',
+    ke_terminal_construction_note=(
+        "The terminal cost of equity is the DERIVED terminal risk-free plus the SAME "
+        "beta times the same premium: {0:.4f} + {1:.6f} x {2:.4f} = {3:.6f}. No "
+        "relevering, because this study's terminal debt weight is the explicit "
+        "window's — the capital structure is not assumed to change — so a relevered "
+        "beta here would be a second construction doing nothing, and a construction "
+        "that does nothing is a construction nobody can check."
+        .format(float(DR['rf_star_terminal']), float(W['beta']), float(W['erp_cds']),
+                float(DR['ke_terminal']))),
+    beta_source='own_stock_regression',
+    beta_source_note=(
+        "beta_regression.own_stock_beta() against the PUBLISHED INDEX OF THE EXCHANGE "
+        "THIS STOCK IS LISTED ON — EGX30, read from the registered series — replacing "
+        "this study's earlier 35-name equal-weight composite of covered names. A "
+        "constituent composite is a coverage artefact rather than a market: it changes "
+        "whenever a stock is posted and it shares constituents with the panel it "
+        "prices, which is why SIGCM calls it a hard fail and not a fallback. The "
+        "record's own beta_result.json carries the index file, its as-of date and the "
+        "conforming flag."),
+    weight_equity=float(W['we']),
+    weight_debt=float(W['wd']),
+    weight_debt_terminal=float(W['wd']),
+    kd_aftertax=float(W['kd_aftertax']),
+
     weights=dict(equity=float(W['we']), debt=float(W['wd']),
                  basis='market_value_equity',
                  note=("Market-value equity of EGP {0:,.0f}m against total debt of EGP "
