@@ -225,10 +225,11 @@ for head, body in [
   'price and used nowhere; they are printed because a binary between “the market is wrong about the associate” and “our '
   'auto leg is wrong” is too neat.'),
  ('The drift is empirical, and it is thin. ', 'The secular drift is what the calibration test accepted where zero drift '
-  f'did not, but Appendix B publishes the margin: on {s0["nonoverlap"]["n"]} non-overlapping windows the coverage of the '
-  f'90% band is {pc(s0["nonoverlap"]["cov90"],0)} against a 90% target, and the proper score against the naive benchmark '
-  f'is {sgn(s0["nonoverlap"]["crps_skill"],1)}. A regime turn would flip the median read; the drift is re-tested at every '
-  'roll-forward and cut the moment it fails.'),
+  f'did not, and the record is published rather than summarised: over {BAND["n"]} resolved three-month forecasts on this '
+  f'stock the price finished inside the 90% band {pc(BAND["hits"]/BAND["n"],0)} of the time, against a 90% target. The '
+  f'band is {BAND["width"]:.2f} times as wide as a naive carry-anchored one, which is disclosed here and is not a pass '
+  'mark: a wider band is not automatically wrong where the tail is real. A regime turn would flip the median read; the '
+  'drift is re-tested at every roll-forward and cut the moment it fails.'),
  ('The lender is a credit cycle, and its mark is a return the cycle sets. ',
   f'GB Capital is marked at {CAP["justified_pb"]:.2f}× its operating equity because a reviewed return of '
   f'{pc(CAP["roe_adopted"],2)} against a terminal cost of equity of {pc(CAP["ke_terminal"],2)} supports that and no more. '

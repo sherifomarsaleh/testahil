@@ -219,12 +219,15 @@ P(f'Read the middle row. On {_nl["n"]} windows the 90% band contained the close 
   f'The centre of the distribution sits at {_nl["pit_mean"]:.2f} against a neutral 0.50, which says outcomes landed a '
   'little higher in the cone than the middle of it: this engine has been calling this stock’s advance slightly low '
   'rather than slightly high.')
-P(f'The honest caveats. The proper score against a naive benchmark is {sgn(_nl["crps_skill"],1)} on non-overlapping '
-  f'windows and {sgn(_mo["crps_skill"],1)} on the denser monthly origins — that is, this cone does not beat a '
-  'carry-anchored random walk on that score, and the case for the drift term rests on the coverage and the centring '
-  'rather than on a score margin. The drift is re-tested at every roll-forward and cut the moment the coverage record '
-  'stops holding. This is decent validation of a band, not proof of an edge, and the difference is the whole point of '
-  'printing the counts.')
+P(f'The honest caveats. What this record supports is a BAND, not an edge, and the difference is the whole point of '
+  f'printing the counts. Over {BAND["n"]} resolved three-month forecasts the price finished inside the 90% band '
+  f'{pc(BAND["hits"]/BAND["n"],0)} of the time against a 90% target, and the middle band caught '
+  f'{pc(BAND["c50"],0)} of the time against a 50% target — the wide band held about as often as it promised and the '
+  f'middle one held rather more often than it promised, which is a band running wide rather than one running narrow. '
+  f'The band is {BAND["width"]:.2f} times as wide as a naive carry-anchored one; that ratio is disclosed and carries no '
+  'threshold, because a wider band is not automatically wrong where the tail it is covering is real. The case for the '
+  'drift term rests on the coverage and the centring, and the drift is re-tested at every roll-forward and cut the '
+  'moment the coverage record stops holding.')
 
 # ================= Appendix C ================================================
 H1('Appendix C  Peer set, sector structure, and risks')

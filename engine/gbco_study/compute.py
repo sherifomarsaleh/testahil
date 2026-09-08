@@ -116,8 +116,28 @@ for name, p, imp in discrete:
     incr += add
 logp = np.cumsum(incr, axis=1)
 paths = np.empty((n_paths, H + 1))
-paths[:, 0] = spot
-paths[:, 1:] = spot * np.exp(logp)
+# ---- THE CONE IS STRUCK ON THE SESSION SERIES, NOT ON THE SUPPLIED CLOSE -------------
+# `mc_anchor` is defined four hundred lines above with the comment "the cone is struck on
+# real sessions", and this block then seeded every path with `spot` — the hand-supplied
+# close of 3 September, which is not in the library and has no session behind it. THE
+# CODE'S OWN STATED CONVENTION AND THE CODE DISAGREED, and the document inherited the
+# disagreement: it told a reader four times that the cone was computed on the exchange
+# library's last session while the arithmetic ran from a different number, and section 3
+# printed BOTH — its probability table measured against one and the level-touch ladder's
+# "against the anchor" column against the other, in one section, two tables apart.
+#
+# TWO CLOCKS IS THE RULE AND IS NOT WHAT WENT WRONG. A fair value is delivered against the
+# LATEST KNOWN price [R-GAP-01 AMENDED]; a probability cone needs a session series and a
+# supplied close is not one. Both dates are published. What was wrong is that the cone was
+# not on its own clock at all.
+paths[:, 0] = mc_anchor
+paths[:, 1:] = mc_anchor * np.exp(logp)
+
+# ASSERTED RATHER THAN ASSUMED, because nothing about a wrong anchor looks wrong: every
+# percentile is a plausible price and the only witness is the number the paths started on.
+assert abs(paths[0, 0] - mc_anchor) < 1e-12 and float(paths[:, 0].min()) == \
+    float(paths[:, 0].max()) == mc_anchor, (
+    "the cone must start on the session anchor it says it starts on")
 
 pT20, pT60 = paths[:, 20], paths[:, 60]
 pcts = [5, 25, 50, 75, 95]
@@ -126,19 +146,19 @@ q60 = {p: float(np.percentile(pT60, p)) for p in pcts}
 run_max = paths.max(axis=1); run_min = paths.min(axis=1)
 run_max20 = paths[:, :21].max(axis=1); run_min20 = paths[:, :21].min(axis=1)
 levels = [40, 38, 36, 34, 32, 30, 28, 26]
-touch = {L: dict(t20=float(np.mean(run_max20 >= L) if L > spot else np.mean(run_min20 <= L)),
-                 t60=float(np.mean(run_max >= L) if L > spot else np.mean(run_min <= L)))
+touch = {L: dict(t20=float(np.mean(run_max20 >= L) if L > mc_anchor else np.mean(run_min20 <= L)),
+                 t60=float(np.mean(run_max >= L) if L > mc_anchor else np.mean(run_min <= L)))
          for L in levels}
 prob_read = dict(
-    p_above=float(np.mean(pT60 > spot)),
-    p_up10=float(np.mean(pT60 >= spot * 1.10)),
-    p_dn10=float(np.mean(pT60 <= spot * 0.90)),
+    p_above=float(np.mean(pT60 > mc_anchor)),
+    p_up10=float(np.mean(pT60 >= mc_anchor * 1.10)),
+    p_dn10=float(np.mean(pT60 <= mc_anchor * 0.90)),
     median=float(np.median(pT60)),
-    med_move=float(np.median(pT60) / spot - 1),
+    med_move=float(np.median(pT60) / mc_anchor - 1),
     band50=(q60[25], q60[75]),
-    band50_pct=((q60[25] / spot - 1), (q60[75] / spot - 1)),
-    touch_up10=float(np.mean(run_max >= spot * 1.10)),
-    touch_dn10=float(np.mean(run_min <= spot * 0.90)),
+    band50_pct=((q60[25] / mc_anchor - 1), (q60[75] / mc_anchor - 1)),
+    touch_up10=float(np.mean(run_max >= mc_anchor * 1.10)),
+    touch_dn10=float(np.mean(run_min <= mc_anchor * 0.90)),
 )
 prob_read['odds'] = prob_read['p_up10'] / prob_read['p_dn10']
 zones_edges = [0, 26, 30, 34, 38, 1e9]

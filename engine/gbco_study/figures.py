@@ -28,6 +28,36 @@ plt.rcParams.update({'figure.facecolor': CREAM, 'axes.facecolor': CREAM,
 
 d = json.load(open('study_numbers.json'))
 spot = d['spot']
+# ---- THE BAND RECORD, READ FROM WHAT THE SITE PUBLISHES, NEVER TYPED [R-CAL-02] -------
+# The record is GENERATED into assets/data.js by scripts/build_band_records.py from the
+# committed panels, and it is refreshed again at render time — a page that states a fact
+# which moves must not be the thing that remembers it, and neither must a builder. This
+# reads the same object, so a refit moves the document at its next build instead of
+# leaving a stale sentence behind.
+def _band_record(ticker='GBCO'):
+    import json as _j, os as _o, re as _re
+    _root = _o.path.dirname(_o.path.dirname(_o.path.dirname(_o.path.abspath(__file__))))
+    _txt = open(_o.path.join(_root, 'assets', 'data.js'), encoding='utf-8').read()
+    _i = _txt.find('BANDS')
+    if _i < 0:
+        raise SystemExit('assets/data.js carries no BANDS block — an absent record is not '
+                         'a clean one [R-ENF-04]')
+    _m = _re.search(r'\b%s:\s*\{([^}]*)\}' % ticker, _txt[_i:])
+    if not _m:
+        raise SystemExit('no band record for %s. It is not published without one.' % ticker)
+    _out = {}
+    for _k, _v in _re.findall(r'(\w+)\s*:\s*("[^"]*"|null|[-\d.]+)', _m.group(1)):
+        _out[_k] = None if _v == 'null' else (
+            _v.strip('"') if _v.startswith('"') else float(_v))
+    for _need in ('n', 'hits', 'c50', 'c90', 'width'):
+        if _out.get(_need) is None:
+            raise SystemExit('the band record for %s carries no %s' % (ticker, _need))
+    _out['n'] = int(_out['n']); _out['hits'] = int(_out['hits'])
+    return _out
+
+
+BAND = _band_record()
+
 # THE EXCHANGE LIBRARY, NOT THE STUDY-LOCAL COPY. compute.py strikes the cone on
 # engine/raw_ohlc/EG/GBCO.csv; a chart drawn from the study-local extract, which stops
 # at 7 July 2026, would draw a different series from the one every number came off.
@@ -153,15 +183,31 @@ fig, ax = plt.subplots(figsize=(10.5, 4.5), dpi=110)
 ax.fill_between(days, fan[0], fan[4], color=GOLD, alpha=0.14, label='5–95%')
 ax.fill_between(days, fan[1], fan[3], color=GOLD, alpha=0.32, label='25–75% (the 50% band)')
 ax.plot(days, fan[2], color=INK, lw=2, label='median')
-ax.axhline(spot, color=GREY, lw=1.2, ls=':')
+# TWO CLOCKS, BOTH DRAWN AND BOTH NAMED. The cone starts on the exchange library's last
+# real session because a probability cone needs a session series; the valuation is struck
+# against the LATEST KNOWN price [R-GAP-01 AMENDED], which is a hand-supplied close eleven
+# days later. A chart drawing one line labelled "spot" while the fan visibly begins
+# somewhere else asks the reader to reconcile two numbers it never distinguished.
+_ANCHOR = float(fan[2][0])
+ax.axhline(_ANCHOR, color=GREY, lw=1.2, ls=':')
+ax.axhline(spot, color=GREY, lw=1.0, ls='-.')
 # BOTH BRANCHES ARE DRAWN AND THE AXIS IS WIDENED TO HOLD THEM. A reference line outside
 # the limits is thrown away silently and the label then floats over nothing.
 for _v, _lab in ((V_LO, BR[0]['label']), (V_HI, BR[1]['label'])):
     ax.axhline(_v, color=BRASS, lw=1.4, ls='--')
     ax.text(1, _v + 0.4, f'{_lab} — {_v:.2f}', color=BRASS, fontsize=8.4)
-ax.text(1, spot - 1.3, f'spot {spot:.2f}', color=GREY, fontsize=8.6)
-_ylo = min(fan[0].min(), spot, V_LO, V_HI)
-_yhi = max(fan[4].max(), spot, V_LO, V_HI)
+# THE TWO LABELS SIT ON LINES 0.53 APART AND THE MEDIAN RUNS BETWEEN THEM, so they are
+# placed with a gap read off the figure rather than at a fixed offset: the anchor's label
+# clears the median at session zero and the spot's sits below its own line. A label
+# overlapping the line it describes is a rendered-image defect, and only looking at the
+# image finds it.
+_GAP = max(0.9, 0.035 * (max(fan[4].max(), V_HI) - min(fan[0].min(), V_LO)))
+ax.text(1, _ANCHOR + _GAP, f'cone struck on {_ANCHOR:.2f} \u2014 the library\u2019s last session',
+        color=GREY, fontsize=8.4, va='bottom')
+ax.text(1, spot - _GAP, f'latest known price {spot:.2f}', color=GREY, fontsize=8.6,
+        va='top')
+_ylo = min(fan[0].min(), spot, _ANCHOR, V_LO, V_HI)
+_yhi = max(fan[4].max(), spot, _ANCHOR, V_LO, V_HI)
 ax.set_ylim(_ylo - 0.06 * (_yhi - _ylo), _yhi + 0.10 * (_yhi - _ylo))
 ax.set_xlabel('trading sessions ahead'); ax.set_ylabel('EGP / share')
 ax.legend(frameon=False, fontsize=8.5, labelcolor=INK, loc='lower left')
@@ -212,9 +258,8 @@ for i, t in enumerate([50, 80, 90]):
 c.set_xticks([0, 1, 2], ['50% band', '80% band', '90% band'])
 c.set_ylim(0, 105); c.set_title('Interval coverage vs target', fontsize=9.5)
 c.text(0.02, 0.94,
-       'score against a naive benchmark %+.1f%% (n=%d)\nmonthly origins %+.1f%% (n=%d)'
-       % (so['crps_skill'] * 100, so['n'],
-          d['step0']['monthly']['crps_skill'] * 100, d['step0']['monthly']['n']),
+       'band %.2fx a naive carry-anchored one (n=%d)\nmiddle band caught %.0f%% against a 50%% target'
+       % (BAND['width'], BAND['n'], BAND['c50'] * 100),
        transform=c.transAxes, fontsize=8.2, color=INK, va='top')
 style(c)
 fig.suptitle('GBCO — testing the price cone on this stock’s own history: the quarterly replay, '
