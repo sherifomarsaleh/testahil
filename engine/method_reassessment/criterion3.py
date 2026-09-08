@@ -313,7 +313,29 @@ def _market_census():
 AUDIT_BAR = 0.10          # [R-GAP-01]'s own audit trigger, BORROWED never minted:
 #                           a second cutoff for the same question would be the free
 #                           parameter the PROMOTION RULE forbids.
-AUDIT_FILE = "EXPENSIVE_CALLS_AUDIT_08-09-2026.md"
+AUDIT_GLOB = "EXPENSIVE_CALLS_AUDIT_*.md"
+
+
+def _audit_path():
+    """Resolve the audit BY PATTERN, exactly one, or fail loudly.
+
+    It was a dated filename typed into this file. That is a second copy of a fact
+    that moves: the audit is re-issued on the day it is rewritten, and the clause
+    would then stop finding it and report that none is committed — a true sentence
+    about the wrong file. The digest resolver already works this way for the same
+    reason, and the rule is the same: exactly one file on the pattern, or say so.
+    TWO audits are refused rather than the newest taken, because a criterion that
+    silently picks among candidates is choosing its own evidence.
+    """
+    import glob as _g
+    hits = sorted(_g.glob(os.path.join(ENGINE, "valuation_calibration", AUDIT_GLOB)))
+    if len(hits) == 1:
+        return hits[0], None
+    if not hits:
+        return None, "no committed audit on %s" % AUDIT_GLOB
+    return None, ("%d audits match %s and a criterion may not choose among them: %s"
+                  % (len(hits), AUDIT_GLOB,
+                     ", ".join(os.path.basename(h) for h in hits)))
 
 
 def clause_g(dec):
@@ -337,10 +359,10 @@ def clause_g(dec):
                       "is not a run that found nothing [R-ENF-04]"]
     breach = [r for r in rows
               if r.get("price") and r["fv"] / r["price"] - 1.0 < -AUDIT_BAR]
-    p = os.path.join(ENGINE, "valuation_calibration", AUDIT_FILE)
-    if not os.path.exists(p):
-        return None, ["%d cell(s) call a company expensive by more than %.0f%% and "
-                      "no audit is committed" % (len(breach), 100 * AUDIT_BAR)]
+    p, why = _audit_path()
+    if p is None:
+        return None, ["%d cell(s) call a company expensive by more than %.0f%%: %s"
+                      % (len(breach), 100 * AUDIT_BAR, why)]
     try:
         txt = open(p, encoding="utf-8").read()
     except Exception as exc:
@@ -363,7 +385,7 @@ def clause_g(dec):
         lines.append("%d cell(s) are not named in the committed audit." % len(missing))
         return None, lines
     lines.append("every one is named in %s, with its cause established by "
-                 "measurement." % AUDIT_FILE)
+                 "measurement." % os.path.basename(p))
     return True, lines
 
 

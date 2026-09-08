@@ -30,7 +30,9 @@ sys.path.insert(0, os.path.join(ROOT, "engine", "valuation_calibration"))
 
 import criterion3 as C3   # noqa: E402
 
-REAL_AUDIT = os.path.join(ROOT, "engine", "valuation_calibration", C3.AUDIT_FILE)
+REAL_AUDIT = C3._audit_path()[0]
+assert REAL_AUDIT, "control cannot run: the audit does not resolve"
+AUDIT_NAME = os.path.basename(REAL_AUDIT)
 CASES = 9
 
 
@@ -42,22 +44,19 @@ def _cell(tk, origin, gap):
 
 def _run(cells, audit_text, tmp):
     """Run the clause with its audit pointed at a temp file, never the real one."""
-    p = os.path.join(tmp, C3.AUDIT_FILE)
+    p = os.path.join(tmp, AUDIT_NAME)
     if audit_text is None:
         if os.path.exists(p):
             os.remove(p)
     else:
         open(p, "w", encoding="utf-8").write(audit_text)
-    real_join = os.path.join
-    def fake_join(*a):
-        if a and a[-1] == C3.AUDIT_FILE:
-            return p
-        return real_join(*a)
-    C3.os.path.join = fake_join
+    real_resolver = C3._audit_path
+    C3._audit_path = lambda: ((p, None) if os.path.exists(p)
+                              else (None, "no committed audit on %s" % C3.AUDIT_GLOB))
     try:
         return C3.clause_g({"cells": cells})
     finally:
-        C3.os.path.join = real_join
+        C3._audit_path = real_resolver
 
 
 def main():
