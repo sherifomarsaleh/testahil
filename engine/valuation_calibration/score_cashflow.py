@@ -202,6 +202,50 @@ READINGS = (
     # stated principle applied consistently. STILL AN ATTRIBUTION, STILL NOT A LEVER.
     ("ARCC coherent — level rule applied consistently — ATTRIBUTION, NOT THE DECLARED RUN",
      dict(horizons=CL.HORIZONS, maintenance="gordon", arcc_unit_fix="coherent")),
+    # ---------------------------------------------------------------- LEVER 1
+    # THE COST-OF-CAPITAL GLIDE, the first of the six the pre-registration fixed in
+    # order before any score existed. It is EVALUATED here, which is not the same as
+    # promoted: the rule promotes a lever only while the stacked pooled bias moves
+    # TOWARD zero and stops the moment it would not. Printed either way, because a
+    # lever that is tried and rejected is evidence and a lever tried in silence is not.
+    ("LEVER 1 — the cost-of-capital glide (EVALUATED, promotion decided by the rule)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", glide=True)),
+    # ---------------------------------------------------------------- LEVER 2
+    # THE TERMINAL ANCHORS, on the CURRENT STACK — which is still empty, because
+    # lever 1 moved the bias away from zero and the rule promotes a lever only while
+    # it moves toward it. The reading taken of "promotion stops the moment it would"
+    # is that the STOP condition is the overshoot the rule names in its own next
+    # sentence — "stacking five individually-justified moves into an overshoot" —
+    # so a lever that simply points the wrong way is NOT promoted and the sequence
+    # continues. Recorded here because it is a reading, not a reading-off.
+    ("LEVER 2 — the terminal anchors (EVALUATED on an empty stack)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", terminal_anchor=True)),
+    # ---------------------------------------------------------------- LEVER 3
+    ("LEVER 3 — the rating-basis equity risk premium (EVALUATED on an empty stack)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", erp_basis="rating")),
+    # ---------------------------------------------------------------- LEVER 4
+    # THE COUNTRY-PREMIUM LAMBDA IS UNBUILDABLE AT THESE ORIGINS AND IS RECORDED AS
+    # THAT RATHER THAN SKIPPED [R-ENF-04]. Lambda scales the COUNTRY premium inside
+    # the equity premium, and the point-in-time archive holds only the TOTAL premium
+    # per vintage -- mature plus country, in one figure. Splitting it needs the
+    # mature-market premium at each vintage, which nothing in this repository holds:
+    # the Damodaran extract carries Egypt's rating, its default spread and both of
+    # its total premiums, and no US row. Backing the mature figure out of the total
+    # by subtracting the default spread ASSUMES the equity-to-bond scaling is 1.00,
+    # which is the very quantity lambda is an alternative to -- so it would assume
+    # the answer. Buildable only by sourcing the implied mature premium by year,
+    # which is a sourcing job and not a lever evaluation.
+    # ---------------------------------------------------------------- LEVER 5
+    # Lever 5 is evaluated ON THE CURRENT STACK, which after lever 3 is {3} and not
+    # empty. The rule says "one at a time on the current stack" and a lever measured
+    # against the declared run once something has been promoted is measuring the
+    # wrong difference. Both are printed: the stacked reading is the one the rule
+    # decides on, the empty-stack reading is kept because it isolates the lever.
+    ("LEVER 5 — point-in-time betas, Vasicek-shrunk, ON THE STACK {3}",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", pit_beta=True,
+          erp_basis="rating")),
+    ("LEVER 5 in isolation — same betas on an EMPTY stack (not the decision reading)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", pit_beta=True)),
 )
 
 

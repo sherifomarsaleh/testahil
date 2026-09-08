@@ -605,11 +605,119 @@ def intensities(tk, origin, panel, blk):
 
 
 # --------------------------------------------------------------- the discount rate
-def wacc_at(tk, origin, market, panel, blk, price, shares):
+# ---------------------------------------------------------------- LEVER 1
+# THE COST-OF-CAPITAL GLIDE. First of the six levers the pre-registration fixed in
+# order before any score existed, and it is evaluated here as that list requires:
+# ONE AT A TIME, on the current stack, promoted only while the pooled bias moves
+# toward zero. Off by default, so the declared run is unchanged by its existence.
+#
+# The construction is [R-COC-01]'s and nothing here chooses any of it. A transition
+# market does not hold a crisis rate for ever, so a single flat rate applied to five
+# explicit years AND a perpetuity asserts that it does -- which that rule forbids
+# outright in a delivered study, and which this lens has been doing since it was
+# built. What replaces it:
+#
+#   rf_terminal   = terminal inflation + the real-rate convention   [R-MACRO-01]
+#   ERP_terminal  = the house terminal premium
+#   the glide     = the origin's OWN forward inflation path's cumulative progress
+#                   from its first forecast year toward its terminal, so the
+#                   front-loading is inherited from the disinflation the origin
+#                   could actually see rather than being a second free parameter
+#   the terminal is brought home on the SAME cumulative factor as the last explicit
+#   year -- one date, one price of time
+#
+# POINT-IN-TIME IS PRESERVED AND THE ONE EXCEPTION IS NAMED: every rate, spread,
+# premium and inflation figure comes from the archive's own record of what was
+# published at that origin -- at origin 2021 that path expects 6-7% for ever,
+# because nobody saw 2022 coming, and that is the honest input. The real-rate
+# convention and the terminal ERP are CONVENTIONS rather than data: they are not
+# forecasts of anything and no vintage of them exists to read, so the house figures
+# are used at every origin and that is stated rather than left to be discovered.
+GLIDE_REAL_RATE = 0.055        # the house emerging-market terminal real convention
+GLIDE_ERP_TERMINAL = 0.07      # the house terminal equity risk premium
+
+
+def _glide_fractions(v, origin, hs):
+    """Cumulative progress of the origin's own forward inflation path, in [0, 1].
+
+    Returns None where the path cannot support one, which is a refusal rather than
+    a fallback: a glide invented where no disinflation was published would be this
+    lens forecasting the recovery instead of reading it.
+    """
+    fwd = (v.extras.get("cpi_annual") or {}).get("forward_path") or {}
+    if len(fwd) < 2:
+        return None
+    years = sorted(fwd, key=int)
+    p0, pT = float(fwd[years[0]]), float(fwd[years[-1]])
+    if abs(p0 - pT) < 1e-9:
+        return {h: 1.0 for h in hs}          # already at its terminal: flat, by the path
+    out = {}
+    for h in hs:
+        y = str(origin + h)
+        x = float(fwd[y]) if y in fwd else pT
+        f = (p0 - x) / (p0 - pT)
+        out[h] = min(1.0, max(0.0, f))
+    return out
+
+
+def _dfactor(coc, h):
+    """The CUMULATIVE discount factor to year h.
+
+    [R-COC-01]: one forward rate per explicit year, compounded, and the terminal
+    brought home on the SAME factor as the last explicit year -- one date, one price
+    of time. Without a schedule this is the flat rate compounded, which is exactly
+    what the declared run has always done, so the declared numbers do not move.
+    """
+    sched = coc.get("schedule")
+    if not sched:
+        return 1.0 / (1 + coc["wacc"]) ** h
+    f = 1.0
+    for k in range(1, h + 1):
+        f *= (1 + sched[k])
+    return 1.0 / f
+
+
+def wacc_at(tk, origin, market, panel, blk, price, shares, glide=False,
+            terminal_anchor=False, erp_basis=None, pit_beta=False):
     v = MH.origin(market, origin)
     need = v.require("sovereign_10y", "default_spread", "erp")
     rf = need["sovereign_10y"] - need["default_spread"]
-    ke = rf + BETA * need["erp"]
+
+    # ---------------------------------------------------------------- LEVER 5
+    # BETA SHRINKAGE. The declared run carries 1.00 everywhere, which is the FULL
+    # shrinkage limit -- all prior, no own history. This moves to the name's own
+    # point-in-time regression, Vasicek-shrunk toward that same prior on a weight
+    # measured from the market's own cross-sectional dispersion at that origin.
+    # Nothing about the strength of the pull is typed. See pit_betas.py.
+    beta, beta_rec = BETA, None
+    if pit_beta:
+        import pit_betas as PB
+        beta, beta_rec = PB.shrunk(tk, market, origin)
+    ke = rf + beta * need["erp"]
+
+    # ---------------------------------------------------------------- LEVER 3
+    # THE EQUITY-RISK-PREMIUM BASIS. The archive carries both at every origin and the
+    # declared run takes whichever the vintage names central — on this market, the
+    # swap basis. [R-COC-01] requires BOTH to be published and one named central, and
+    # it requires the OTHER half of the switch that is easy to forget: the risk-free
+    # is normalised by the sovereign's own default spread, so moving to the rating
+    # basis means STRIPPING THE RATING SPREAD TOO. Rating-to-rating, CDS-to-CDS —
+    # mixing them counts the sovereign on two different measuring sticks, which is
+    # the double-count that rule exists to stop, arriving through the side door.
+    if erp_basis:
+        e_alt = (v.extras.get("erp") or {}).get("erp_%s_basis" % erp_basis)
+        d_alt = (v.extras.get("default_spread") or {}).get(
+            "default_spread_%s_basis" % erp_basis)
+        if e_alt is None or d_alt is None:
+            return None, ("this origin publishes no %s-basis pair, and half a basis is "
+                          "the sovereign counted on two measuring sticks" % erp_basis)
+        rf = need["sovereign_10y"] - float(d_alt)
+        ke = rf + beta * float(e_alt)      # `beta`, never BETA: a stacked lever must
+        #                                    carry the one beneath it, and this line
+        #                                    silently reset it to the constant on the
+        #                                    first stacked run, which read as lever 5
+        #                                    doing nothing rather than as a bug.
+        need = dict(need, erp=float(e_alt), default_spread=float(d_alt))
     b = blk.get(origin) or {}
     debt = b.get("debt")
     if debt is None:
@@ -636,9 +744,92 @@ def wacc_at(tk, origin, market, panel, blk, price, shares):
     if e + d <= 0:
         return None, "no market-value weights at this origin"
     w = (e * ke + d * kd * (1 - tau)) / (e + d)
-    return ({"wacc": w, "ke": ke, "kd": kd, "kd_bound": bound, "tau": tau,
-             "we": e / (e + d), "wd": d / (e + d), "rf_star": rf,
-             "erp": need["erp"], "sovereign": sov, "equity_mv": e, "debt": d}, None)
+    out = {"wacc": w, "ke": ke, "kd": kd, "kd_bound": bound, "tau": tau,
+           "beta": beta, "beta_record": beta_rec,
+           "we": e / (e + d), "wd": d / (e + d), "rf_star": rf,
+           "erp": need["erp"], "sovereign": sov, "equity_mv": e, "debt": d}
+
+    # ---------------------------------------------------------------- LEVER 2
+    # THE TERMINAL ANCHORS. Distinct from lever 1 and evaluated separately because
+    # they are separate claims: the glide is about the EXPLICIT WINDOW sliding, this
+    # is about what the PERPETUITY's rate is anchored to. The declared run capitalises
+    # a perpetuity at the origin's own rate, so a name struck in a crisis year
+    # discounts cash flows in 2040 at a 2023 emergency rate — which is the defect
+    # [R-COC-01] exists to make inexpressible in a delivered study, present here.
+    #
+    # Anchored: rf_terminal = terminal inflation + the real-rate convention, and the
+    # terminal premium is the house terminal ERP. The explicit window is UNTOUCHED,
+    # which is what keeps this from being lever 1 in another costume. Where the
+    # origin's own published path gives a HIGHER terminal rate than its present one,
+    # the anchor is used anyway: this lever does not choose a direction, and refusing
+    # the cells where it points the inconvenient way would be selecting the answer.
+    if terminal_anchor and not glide:
+        infl_t = terminal_inflation(market, origin)
+        if infl_t is None:
+            out["terminal_anchor_flat"] = "no forward inflation path published here"
+        else:
+            rf_t = infl_t + GLIDE_REAL_RATE
+            ke_t = rf_t + beta * GLIDE_ERP_TERMINAL
+            sov_t = rf_t + need["default_spread"]
+            kd_t = max(kd + (sov_t - sov), sov_t)
+            out["wacc_terminal"] = (e * ke_t + d * kd_t * (1 - tau)) / (e + d)
+            out["rf_terminal"], out["ke_terminal"], out["kd_terminal"] = rf_t, ke_t, kd_t
+
+    if glide:
+        # A CELL THE GLIDE CANNOT BUILD IS FLAT, NOT DROPPED, AND THAT IS THE RULE'S
+        # OWN LANGUAGE RATHER THAN A CONVENIENCE. [R-COC-01]: a market already at its
+        # terminal "returns a FLAT schedule there and says so rather than
+        # manufacturing movement the peg forbids". An origin whose own published
+        # forward path shows no disinflation toward a lower terminal is, as far as
+        # that origin could see, already there -- Egypt in 2019 and 2021 expected
+        # 7% for ever, and nothing published then licensed a glide.
+        #
+        # IT IS ALSO THE ONLY HONEST WAY TO EVALUATE A LEVER: dropping the cells a
+        # lever cannot build would compare a 15-cell mean against a 9-cell mean and
+        # call the difference the lever, when most of it would be the sample. Every
+        # flat cell carries its reason and the count is printed.
+        out["glide_flat_reason"] = None
+        infl_t = terminal_inflation(market, origin)
+        fr = _glide_fractions(v, origin, HORIZONS) if infl_t is not None else None
+        if infl_t is None:
+            out["glide_flat_reason"] = "no forward inflation path published at this origin"
+            return (out, None)
+        if fr is None:
+            out["glide_flat_reason"] = ("the origin's published forward inflation path "
+                                        "carries fewer than two years")
+            return (out, None)
+        rf_t = infl_t + GLIDE_REAL_RATE
+        ke_t = rf_t + beta * GLIDE_ERP_TERMINAL
+        # THE TERMINAL SOVEREIGN, AND ITS SPREAD IS HELD RATHER THAN GLIDED. rf_t is
+        # a NORMALISED rate, so the quoted terminal sovereign is rf_t plus a default
+        # spread -- and a default spread is a credit judgement, not an inflation
+        # quantity, so nothing in the disinflation path licenses moving it. Holding
+        # it is the reading that assumes least.
+        sov_t = rf_t + need["default_spread"]
+        # Kd carries its own margin over the sovereign to the terminal and keeps the
+        # floor [R-COC-01] states outright: a same-currency corporate cannot borrow
+        # below its sovereign.
+        kd_t = max(kd + (sov_t - sov), sov_t)
+        sched = {h: (e * (ke + fr[h] * (ke_t - ke))
+                     + d * (kd + fr[h] * (kd_t - kd)) * (1 - tau)) / (e + d)
+                 for h in HORIZONS}
+        w_term = (e * ke_t + d * kd_t * (1 - tau)) / (e + d)
+        # [R-COC-01]'s refusal, raised as a drop rather than a warning: in a
+        # TRANSITION market the terminal rate may not exceed the explicit-window
+        # rate, because that asserts the economy ends worse than it starts and the
+        # disinflation path this glide is built from says the opposite.
+        if w_term > w:
+            out["glide_flat_reason"] = (
+                "the origin's own published path puts the terminal rate at %.4f against "
+                "an origin rate of %.4f, so it saw no normalisation to glide toward and "
+                "the schedule is flat, as it is for a market already at its terminal"
+                % (w_term, w))
+            return (out, None)
+        out["schedule"] = sched
+        out["wacc_terminal"] = w_term
+        out["glide_fractions"] = fr
+        out["ke_terminal"], out["kd_terminal"], out["rf_terminal"] = ke_t, kd_t, rf_t
+    return (out, None)
 
 
 def terminal_inflation(market, origin):
@@ -708,7 +899,8 @@ def study_life(tk):
 
 
 def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
-         arcc_unit_fix=False):
+         arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
+         pit_beta=False):
     panel, _src = P._panel(os.path.join(ENGINE, "%s_walkforward" % tk.lower()))
     blk = block(tk)
     shares, price = cellinfo["shares"], cellinfo["price"]
@@ -759,7 +951,9 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
         return None, ("this run projects no D&A and the block carries %d of %d "
                       "years for the intensity rule" % (counts["dep"], INTENSITY_YEARS))
 
-    coc, why = wacc_at(tk, origin, market, panel, blk, price, shares)
+    coc, why = wacc_at(tk, origin, market, panel, blk, price, shares, glide=glide,
+                       terminal_anchor=terminal_anchor, erp_basis=erp_basis,
+                       pit_beta=pit_beta)
     if coc is None:
         return None, why
     infl = terminal_inflation(market, origin)
@@ -791,7 +985,7 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
         wc_prev = wc_h
         nopat = ebit * (1 - tau)
         fcff = nopat + dna - capex - dwc
-        df = 1.0 / (1 + coc["wacc"]) ** h
+        df = _dfactor(coc, h)
         pv += fcff * df
         rows.append({"h": h, "revenue": rev, "ebit": ebit, "nopat": nopat,
                      "dna": dna, "capex": capex, "wc": wc_h, "dwc": dwc,
@@ -826,7 +1020,7 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
                           "forecast year is not capitalised as a growing perpetuity"
                           % f"{last['fcff']:,.1f}")
         tv = last["fcff"] * (1 + g) / (w_term - g)
-        pv_tv = tv / (1 + coc["wacc"]) ** max(hs)
+        pv_tv = tv * _dfactor(coc, max(hs))
         ev = pv + pv_tv
         equity = ev + cash - (debt or 0.0)
         per_share = equity / shares
@@ -902,7 +1096,7 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
     except TV.TerminalRefused as exc:
         return None, "terminal refused: %s" % str(exc)[:120]
 
-    pv_tv = t.tv / (1 + coc["wacc"]) ** max(hs)
+    pv_tv = t.tv * _dfactor(coc, max(hs))
     ev = pv + pv_tv
     equity = ev + cash - (debt or 0.0)
     per_share = equity / shares
@@ -923,7 +1117,8 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
 
 
 def run(market="EG", horizons=HORIZONS, maintenance="amount",
-        arcc_unit_fix=False):
+        arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
+        pit_beta=False):
     cells, names, declared, usable = P.build(market)
     rows, dropped = [], []
     for (tk, y), c in sorted(cells.items()):
@@ -934,7 +1129,9 @@ def run(market="EG", horizons=HORIZONS, maintenance="amount",
             continue
         try:
             r, why = cell(tk, y, market, c, horizons=horizons,
-                          maintenance=maintenance, arcc_unit_fix=arcc_unit_fix)
+                          maintenance=maintenance, arcc_unit_fix=arcc_unit_fix,
+                          glide=glide, terminal_anchor=terminal_anchor,
+                          erp_basis=erp_basis, pit_beta=pit_beta)
         except MH.VintageMissing as exc:
             r, why = None, str(exc)[:100]
         except Exception as exc:

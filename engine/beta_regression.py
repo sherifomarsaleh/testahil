@@ -53,11 +53,23 @@ def _ols(y, X):
 
 def own_stock_beta(ticker: str, market: str, exchange: str,
                    series_path: Optional[str] = None, years: int = 5,
-                   dimson: bool = True, root: Optional[str] = None) -> dict:
+                   dimson: bool = True, root: Optional[str] = None,
+                   asof: Optional[str] = None) -> dict:
     """Tier-1 own-stock weekly beta against the exchange's PUBLISHED index.
 
     Raises rather than falling back if the index is not registered or not present --
     the study must stop and ask, exactly as SIGCM requires for missing primary financials.
+
+    ASOF MAKES THE REGRESSION POINT-IN-TIME, and it is here rather than in a caller
+    for the reason this module exists at all: every study in this repository once
+    hand-rolled its own beta script and every one of them regressed against an
+    equal-weight composite, because each copied the last. A calibration that needs a
+    beta as it stood at a past origin needs the SAME resolver, the SAME week rule,
+    the SAME data-quality gate and the SAME usability gate as a beta struck today --
+    so the window moves and nothing else does. Both series are truncated at this date
+    BEFORE the window is measured, so the regression sees only what had printed by
+    then. Default None is unchanged behaviour: the window ends at the last
+    observation the library holds.
     """
     here = os.path.dirname(os.path.abspath(__file__))
     root = root or here
@@ -75,6 +87,13 @@ def own_stock_beta(ticker: str, market: str, exchange: str,
     i = i.set_index('Date').sort_index()['Price']
 
     rule = WEEK_END.get(market, 'W-FRI')
+    if asof is not None:
+        cutoff = pd.Timestamp(asof)
+        s, i = s[s.index <= cutoff], i[i.index <= cutoff]
+        if s.empty or i.empty:
+            raise ValueError('no %s or index observations at or before %s -- a window '
+                             'with nothing in it is not a short window'
+                             % (ticker, asof))
     cut = s.index.max() - pd.DateOffset(years=years)
     sy = _weekly_logret(s[s.index >= cut], rule)
     ix = _weekly_logret(i[i.index >= cut], rule)
@@ -107,5 +126,5 @@ def own_stock_beta(ticker: str, market: str, exchange: str,
         # provenance — a beta is not quotable without it
         index_file=os.path.relpath(idx_path, root), index_asof=str(i.index.max().date()),
         index_dq=i_dq, stock_dq=s_dq, week_rule=rule, interim_note=interim,
-        conforming=bool(interim is None),
+        conforming=bool(interim is None), asof=asof,
     )
