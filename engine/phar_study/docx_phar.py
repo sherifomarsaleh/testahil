@@ -1074,17 +1074,22 @@ rows += [
      f'report. The later filing is used. It affects a utilisation statistic, not a valuation '
      f'input',
      'a company explanation of the restatement'],
-    ['The beta composite contains the subject itself',
-     f'the {BETAJ["composite_names"]}-name equal-weighted local composite the beta is '
-     f'regressed against includes this company at about '
-     f'{100 / BETAJ["composite_names"]:.1f}% weight, which biases the coefficient toward one. '
-     f'Removing it gives {BETAJ["beta_ex_subject"]:.3f} rather than {BETAJ["beta"]:.3f}, which '
-     f'would RAISE the two centres by about EGP '
-     f'{(XBJ["beta_ex_subject_centre_A"] - LN["centre_A"]):,.2f} and EGP '
-     f'{(XBJ["beta_ex_subject_centre_B"] - LN["centre_B"]):,.2f} a share. The in-index '
-     f'coefficient is carried because it is the more conservative of the two and because it '
-     f'is what a real local index produces; both are published in the bibliography',
-     'a published local index that excludes the constituent under study'],
+    ['The market index explains little of this share\u2019s week-to-week movement',
+     f'the beta is regressed against the published index of the exchange the shares are '
+     f'listed on, and that index explains {BETAJ["r2"] * 100:.1f}% of the weekly variation '
+     f'over {BETAJ["n"]} observations. The coefficient is {BETAJ["beta"]:.3f} with a 90% '
+     f'range of {BETAJ["ci90"][0]:.3f} to {BETAJ["ci90"][1]:.3f}, and that range is wide '
+     f'enough to matter to the valuation. A previous edition regressed against an equal-'
+     f'weighted basket of {BETAJ["withdrawn_composite"]["composite_names"] if "composite_names" in BETAJ["withdrawn_composite"] else 36} '
+     f'local names, which fit better \u2014 '
+     f'{BETAJ["withdrawn_composite"]["r2"] * 100:.1f}% \u2014 and gave '
+     f'{BETAJ["withdrawn_composite"]["beta"]:.3f}. That basket is not a market: it changes '
+     f'whenever a share is added to it and it shares members with the very set it is used to '
+     f'price, so it tracks any one of them more closely than a real index does. A better fit '
+     f'against the wrong yardstick is not a reason to use the wrong yardstick. Both figures '
+     f'and their statistics are published in the bibliography',
+     'a longer price history, or a defensible set of listed peers whose own betas clear the '
+     'same usability test'],
     ['The pre-2020 portion of the price history is thin',
      'the price export carries 162–195 sessions a year before 2020 against roughly 245 real '
      'exchange sessions. It affects only the longest calibration window, not the live bands, '

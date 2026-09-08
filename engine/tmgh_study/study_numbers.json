@@ -6,14 +6,15 @@
   "market": "EG",
   "currency": "EGP",
   "edition_date": "2026-09-02",
-  "standard_version": "2026.09.01",
-  "spot": 97.8,
-  "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to",
+  "standard_version": "2026.09.07",
+  "spot": 96.6,
+  "spot_source": "Egyptian Exchange close for 2 September 2026, the latest price this repository holds for this name, read from the committed supplied price file through gap_today.latest_price_per_ticker(). SUPERSEDES the 23 August 2026 close of 97.80 the study was struck at: a fair value put against a price ten days old is a comparison a reader cannot use, however good the fair value is.",
+  "spot_date": "2026-09-02",
   "shares_mn": 2060.6538,
-  "market_cap": 201531.94164,
+  "market_cap": 199059.15708,
   "class": "real-estate developer, off-plan \u2014 point-in-time on handover",
-  "central": 91.8305824638648,
-  "gap_vs_spot": -0.06103698912203681,
+  "central": 91.97283407061008,
+  "gap_vs_spot": -0.047900268420185466,
   "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL \u2014 the four cases are never averaged. The figure is the median of the four cases on the adopted minority basis (its share of value), exposed only so [R-GAP-01]'s gate can read the answer; 2 of the four sit above the price and 2 below."
  },
  "inputs": {
@@ -1030,28 +1031,28 @@
   }
  },
  "wacc": {
-  "ke_rating": 0.37146228080560173,
-  "ke_cds": 0.33439189830564653,
+  "ke_rating": 0.3710320302096666,
+  "ke_cds": 0.33410146372115945,
   "rf_star_rating": 0.1663,
   "rf_star_cds": 0.19590000000000002,
   "kd_pretax": 0.255,
   "kd_aftertax": 0.19762500000000002,
-  "weight_equity": 0.9221790512278109,
-  "weight_debt": 0.07782094877218915,
-  "wacc_rating": 0.35793409868133236,
-  "wacc_cds": 0.3237485685188716,
+  "weight_equity": 0.9212884234116279,
+  "weight_debt": 0.07871157658837213,
+  "wacc_rating": 0.35738288947035624,
+  "wacc_cds": 0.32335918609446124,
   "warnings": [],
   "beta_record": {
    "ticker": "TMGH",
    "market": "EG",
    "exchange": "EGX",
-   "beta": 1.4717523730674444,
-   "r2": 0.3260974007269647,
-   "se": 0.18481225647980962,
-   "n": 251,
+   "beta": 1.4686659268986124,
+   "r2": 0.32523720520416977,
+   "se": 0.18326339438365372,
+   "n": 256,
    "ci90": [
-    1.1677362111581577,
-    1.7757685349767312
+    1.1671976431375022,
+    1.7701342106597227
    ],
    "usable": true,
    "gate_msg": "passes minimum usability gate",
@@ -1059,30 +1060,31 @@
    "frequency": "weekly",
    "weak": false,
    "warnings": [],
-   "window_years": 4.85,
+   "window_years": 4.94,
    "first_obs": "2021-09-09",
-   "last_obs": "2026-07-16",
-   "blume_crosscheck": 1.3145015820449628,
+   "last_obs": "2026-08-20",
+   "blume_crosscheck": 1.3124439512657415,
    "index_file": "raw_indices/EG/EGX30.csv",
-   "index_asof": "2026-07-22",
+   "index_asof": "2026-09-08",
    "index_dq": [],
    "stock_dq": [
     "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
    ],
    "week_rule": "W-THU",
    "interim_note": null,
-   "conforming": true
+   "conforming": true,
+   "asof": null
   },
   "inputs": {
    "rf_observed": 0.23,
    "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026, the same sourced quote this repository's current Egyptian editions carry. CROSS-CHECKS taken 1-Sep-2026: the Central Bank of Egypt held its policy rate at 19.00% at its August 2026 meeting with an overnight lending rate of 20.00% and an interbank rate of 19.51% (Trading Economics, Egypt interest rate); Investing.com's Egypt 10-year page quotes 22.880%, but its own timestamp reads 2-Feb-2026 and it is therefore recorded as a stale second reading rather than a refresh. A 10-year at 23.00% against a 19.00% policy rate implies a term premium of about four points, which is plausible for this curve. FLAGGED: the adopted quote is 26 days old at this build date. Section 1.9 prices the sensitivity of fair value to it.",
    "kd_local": 0.255,
    "kd_source": "Marginal, forward-looking, in the cash-flow currency: Egypt 10-year sovereign 23.00% plus a 250bp corporate spread, giving 25.50%. TMG's own facility pricing is NOT disclosed in any statement or release held (recorded as a GAP in the input register), so the company's own latest issue cannot be used. The result sits ABOVE the local sovereign, as a same-currency corporate must. TMG's borrowings are EGP-denominated bank facilities and loans; no foreign-currency tranche is disclosed separately, so no local-equivalent FX adjustment applies.",
-   "spot": 97.8,
-   "spot_source": "Egyptian Exchange close, 23 August 2026, from the same cleaned price history the probability distribution is fitted to",
+   "spot": 96.6,
+   "spot_source": "Egyptian Exchange close for 2 September 2026, the latest price this repository holds for this name, read from the committed supplied price file through gap_today.latest_price_per_ticker(). SUPERSEDES the 23 August 2026 close of 97.80 the study was struck at: a fair value put against a price ten days old is a comparison a reader cannot use, however good the fair value is.",
    "shares_mn": 2060.6538,
    "interest_bearing_debt": 17006.9,
-   "market_cap": 201531.94164,
+   "market_cap": 199059.15708,
    "damodaran": {
     "moodys_rating": "Caa1",
     "adj_default_spread": 0.0637,
@@ -1104,20 +1106,23 @@
     "rf_star": 0.19590000000000002,
     "erp": 0.0941,
     "erp_basis": "market",
-    "beta": 1.4717523730674444,
-    "ke_exp": 0.33439189830564653,
+    "beta": 1.4686659268986124,
+    "beta_source": "own_stock_regression",
+    "beta_tier": 1,
+    "ke_exp": 0.33410146372115945,
     "kd_pretax": 0.255,
     "kd_aftertax": 0.19762500000000002,
-    "weight_equity": 0.9221790512278109,
-    "weight_debt": 0.07782094877218917,
-    "wacc_exp": 0.3237485685188716,
+    "weight_equity": 0.9212884234116279,
+    "weight_debt": 0.07871157658837212,
+    "wacc_exp": 0.32335918609446124,
     "rf_terminal": 0.125,
     "erp_terminal": 0.07,
-    "ke_terminal": 0.2280226661147211,
+    "ke_terminal": 0.22780661488290288,
+    "ke_terminal_construction": "same_beta",
     "kd_terminal_pretax": 0.15,
     "kd_terminal_aftertax": 0.11624999999999999,
-    "weight_debt_terminal": 0.07782094877218917,
-    "wacc_terminal": 0.2193244111908764,
+    "weight_debt_terminal": 0.07871157658837212,
+    "wacc_terminal": 0.2190258178466077,
     "glide_fractions": [
      0.0,
      0.35714285714285704,
@@ -1131,30 +1136,30 @@
      1.0
     ],
     "forward_wacc": [
-     0.3237485685188716,
-     0.2864542266160162,
-     0.25661875309373183,
-     0.2342421479520186,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764
+     0.32335918609446124,
+     0.286097268863085,
+     0.25628773507798397,
+     0.23393058473915823,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077
     ],
     "discount_factors": [
-     0.7554304675236699,
-     0.5872190800840306,
-     0.4673009046206949,
-     0.3786136337963248,
-     0.31051099307242164,
-     0.2546582273122501,
-     0.20885190600222076,
-     0.17128493786017257,
-     0.14047527982555838,
-     0.11520746942838661
+     0.7556527437960597,
+     0.5875548934677854,
+     0.4676913393819872,
+     0.3790256479304733,
+     0.3109250373384354,
+     0.25506025613770855,
+     0.20923285824107396,
+     0.1716393985901635,
+     0.14080046220297623,
+     0.11550244477323565
     ],
-    "terminal_discount_factor": 0.11520746942838661,
+    "terminal_discount_factor": 0.11550244477323565,
     "kd_integrity": {
      "adopted_kd": 0.255,
      "effective_rates": [
@@ -1181,7 +1186,7 @@
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    },
    "rating": {
@@ -1193,20 +1198,23 @@
     "rf_star": 0.1663,
     "erp": 0.1394,
     "erp_basis": "rating",
-    "beta": 1.4717523730674444,
-    "ke_exp": 0.37146228080560173,
+    "beta": 1.4686659268986124,
+    "beta_source": "own_stock_regression",
+    "beta_tier": 1,
+    "ke_exp": 0.3710320302096666,
     "kd_pretax": 0.255,
     "kd_aftertax": 0.19762500000000002,
-    "weight_equity": 0.9221790512278109,
-    "weight_debt": 0.07782094877218917,
-    "wacc_exp": 0.35793409868133236,
+    "weight_equity": 0.9212884234116279,
+    "weight_debt": 0.07871157658837212,
+    "wacc_exp": 0.35738288947035624,
     "rf_terminal": 0.125,
     "erp_terminal": 0.07,
-    "ke_terminal": 0.2280226661147211,
+    "ke_terminal": 0.22780661488290288,
+    "ke_terminal_construction": "same_beta",
     "kd_terminal_pretax": 0.15,
     "kd_terminal_aftertax": 0.11624999999999999,
-    "weight_debt_terminal": 0.07782094877218917,
-    "wacc_terminal": 0.2193244111908764,
+    "weight_debt_terminal": 0.07871157658837212,
+    "wacc_terminal": 0.2190258178466077,
     "glide_fractions": [
      0.0,
      0.35714285714285704,
@@ -1220,30 +1228,30 @@
      1.0
     ],
     "forward_wacc": [
-     0.35793409868133236,
-     0.3084306388633124,
-     0.2688278710088964,
-     0.2391257951180844,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764,
-     0.2193244111908764
+     0.35738288947035624,
+     0.3079696496047318,
+     0.26843905771223214,
+     0.23879111379285753,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077,
+     0.2190258178466077
     ],
     "discount_factors": [
-     0.7364127618351167,
-     0.5628213983699348,
-     0.44357584762258784,
-     0.3579748314256638,
-     0.293584568749871,
-     0.24077642180815198,
-     0.19746707242004047,
-     0.16194793658496554,
-     0.13281775965331163,
-     0.10892733585444472
+     0.7367118060477356,
+     0.563248395152265,
+     0.44404844815181327,
+     0.358453046044423,
+     0.2940487730420881,
+     0.24121619799777594,
+     0.19787620119800334,
+     0.16232322425094237,
+     0.13315815126679112,
+     0.10923324946637565
     ],
-    "terminal_discount_factor": 0.10892733585444472,
+    "terminal_discount_factor": 0.10923324946637565,
     "kd_integrity": {
      "adopted_kd": 0.255,
      "effective_rates": [
@@ -1270,7 +1278,7 @@
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    }
   },
@@ -1283,20 +1291,23 @@
    "rf_star": 0.19590000000000002,
    "erp": 0.0941,
    "erp_basis": "market",
-   "beta": 1.4717523730674444,
-   "ke_exp": 0.33439189830564653,
+   "beta": 1.4686659268986124,
+   "beta_source": "own_stock_regression",
+   "beta_tier": 1,
+   "ke_exp": 0.33410146372115945,
    "kd_pretax": 0.255,
    "kd_aftertax": 0.19762500000000002,
-   "weight_equity": 0.9221790512278109,
-   "weight_debt": 0.07782094877218917,
-   "wacc_exp": 0.3237485685188716,
+   "weight_equity": 0.9212884234116279,
+   "weight_debt": 0.07871157658837212,
+   "wacc_exp": 0.32335918609446124,
    "rf_terminal": 0.125,
    "erp_terminal": 0.07,
-   "ke_terminal": 0.2280226661147211,
+   "ke_terminal": 0.22780661488290288,
+   "ke_terminal_construction": "same_beta",
    "kd_terminal_pretax": 0.15,
    "kd_terminal_aftertax": 0.11624999999999999,
-   "weight_debt_terminal": 0.07782094877218917,
-   "wacc_terminal": 0.2193244111908764,
+   "weight_debt_terminal": 0.07871157658837212,
+   "wacc_terminal": 0.2190258178466077,
    "glide_fractions": [
     0.0,
     0.35714285714285704,
@@ -1310,30 +1321,30 @@
     1.0
    ],
    "forward_wacc": [
-    0.3237485685188716,
-    0.2864542266160162,
-    0.25661875309373183,
-    0.2342421479520186,
-    0.2193244111908764,
-    0.2193244111908764,
-    0.2193244111908764,
-    0.2193244111908764,
-    0.2193244111908764,
-    0.2193244111908764
+    0.32335918609446124,
+    0.286097268863085,
+    0.25628773507798397,
+    0.23393058473915823,
+    0.2190258178466077,
+    0.2190258178466077,
+    0.2190258178466077,
+    0.2190258178466077,
+    0.2190258178466077,
+    0.2190258178466077
    ],
    "discount_factors": [
-    0.7554304675236699,
-    0.5872190800840306,
-    0.4673009046206949,
-    0.3786136337963248,
-    0.31051099307242164,
-    0.2546582273122501,
-    0.20885190600222076,
-    0.17128493786017257,
-    0.14047527982555838,
-    0.11520746942838661
+    0.7556527437960597,
+    0.5875548934677854,
+    0.4676913393819872,
+    0.3790256479304733,
+    0.3109250373384354,
+    0.25506025613770855,
+    0.20923285824107396,
+    0.1716393985901635,
+    0.14080046220297623,
+    0.11550244477323565
    ],
-   "terminal_discount_factor": 0.11520746942838661,
+   "terminal_discount_factor": 0.11550244477323565,
    "kd_integrity": {
     "adopted_kd": 0.255,
     "effective_rates": [
@@ -1360,7 +1371,7 @@
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
  },
@@ -1397,7 +1408,7 @@
  "valuation_cases": {
   "rating|capacity": {
    "mode": "capacity",
-   "wacc": 0.35793409868133236,
+   "wacc": 0.35738288947035624,
    "conversion_years": 14,
    "rows": [
     {
@@ -1452,9 +1463,9 @@
      "total_liabilities": 321113.5350849398,
      "total_equity": 186645.42517689627,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.7364127618351167,
-     "forward_wacc": 0.35793409868133236,
-     "pv": 18303.465007505907
+     "discount_factor": 0.7367118060477356,
+     "forward_wacc": 0.35738288947035624,
+     "pv": 18310.89772128415
     },
     {
      "year": 2027,
@@ -1508,9 +1519,9 @@
      "total_liabilities": 346963.3557362602,
      "total_equity": 212062.51946988207,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.5628213983699348,
-     "forward_wacc": 0.3084306388633124,
-     "pv": 20833.27642364998
+     "discount_factor": 0.563248395152265,
+     "forward_wacc": 0.3079696496047318,
+     "pv": 20849.0820451563
     },
     {
      "year": 2028,
@@ -1564,9 +1575,9 @@
      "total_liabilities": 387195.84171167295,
      "total_equity": 246421.36651864712,
      "balance_check": 5.820766091346741e-11,
-     "discount_factor": 0.44357584762258784,
-     "forward_wacc": 0.2688278710088964,
-     "pv": 20999.499257402003
+     "discount_factor": 0.44404844815181327,
+     "forward_wacc": 0.26843905771223214,
+     "pv": 21021.87282556562
     },
     {
      "year": 2029,
@@ -1620,9 +1631,9 @@
      "total_liabilities": 441362.50528352964,
      "total_equity": 292600.2410983789,
      "balance_check": -1.1641532182693481e-10,
-     "discount_factor": 0.3579748314256638,
-     "forward_wacc": 0.2391257951180844,
-     "pv": 20383.654439103426
+     "discount_factor": 0.358453046044423,
+     "forward_wacc": 0.23879111379285753,
+     "pv": 20410.88473766295
     },
     {
      "year": 2030,
@@ -1676,9 +1687,9 @@
      "total_liabilities": 509457.9984340974,
      "total_equity": 353682.68888604693,
      "balance_check": 5.820766091346741e-11,
-     "discount_factor": 0.293584568749871,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 19571.96393355994
+     "discount_factor": 0.2940487730420881,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 19602.910347752495
     },
     {
      "year": 2031,
@@ -1732,9 +1743,9 @@
      "total_liabilities": 591896.3997850885,
      "total_equity": 433116.16200357815,
      "balance_check": 0.0,
-     "discount_factor": 0.24077642180815198,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 18584.623882253498
+     "discount_factor": 0.24121619799777594,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 18618.568547661987
     },
     {
      "year": 2032,
@@ -1788,9 +1799,9 @@
      "total_liabilities": 689498.986486891,
      "total_equity": 534865.7745118248,
      "balance_check": -2.3283064365386963e-10,
-     "discount_factor": 0.19746707242004047,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 17587.368773942526
+     "discount_factor": 0.19787620119800334,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 17623.807753899448
     },
     {
      "year": 2033,
@@ -1844,9 +1855,9 @@
      "total_liabilities": 803492.7951547246,
      "total_equity": 663571.5742046268,
      "balance_check": 2.3283064365386963e-10,
-     "discount_factor": 0.16194793658496554,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 16648.176108150757
+     "discount_factor": 0.16232322425094237,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 16686.75551389157
     },
     {
      "year": 2034,
@@ -1900,9 +1911,9 @@
      "total_liabilities": 935519.5508007858,
      "total_equity": 824716.8321994767,
      "balance_check": 1.1641532182693481e-10,
-     "discount_factor": 0.13281775965331163,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 15787.33438977783
+     "discount_factor": 0.13315815126679112,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 15827.794914330449
     },
     {
      "year": 2035,
@@ -1956,12 +1967,12 @@
      "total_liabilities": 1087654.8004083838,
      "total_equity": 1024814.4219724596,
      "balance_check": 0.0,
-     "discount_factor": 0.10892733585444472,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 15003.823669527455
+     "discount_factor": 0.10923324946637565,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 15045.960694687541
     }
    ],
-   "pv_explicit": 183703.18588487332,
+   "pv_explicit": 183998.53510189248,
    "residual_book": 5265316.285040517,
    "residual_annual_cash": 30123.306628141756,
    "residual_collections": 311017.32747372385,
@@ -1972,11 +1983,11 @@
    "pv_excess_wip": 0.0,
    "closing_advances": 911073.7004083837,
    "closing_properties_under_development": 523701.1861971135,
-   "pv_residual_book": 14029.007608279586,
+   "pv_residual_book": 14084.37260100699,
    "terminal_recurring_fcff": 30714.4122825319,
-   "terminal_value_recurring": 220087.39817028074,
-   "pv_terminal_recurring": 23973.533937825072,
-   "enterprise_value": 221705.72743097798,
+   "terminal_value_recurring": 220528.37298391134,
+   "pv_terminal_recurring": 24089.030780565525,
+   "enterprise_value": 222171.938483465,
    "ratios": {
     "gm_dev_h1_26": 0.26578928756659914,
     "gm_dev_fy25": 0.2740800475130565,
@@ -2048,9 +2059,9 @@
       "total_liabilities": 321113.5350849398,
       "total_equity": 186645.42517689627,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.7364127618351167,
-      "forward_wacc": 0.35793409868133236,
-      "pv": 18303.465007505907
+      "discount_factor": 0.7367118060477356,
+      "forward_wacc": 0.35738288947035624,
+      "pv": 18310.89772128415
      },
      {
       "year": 2027,
@@ -2104,9 +2115,9 @@
       "total_liabilities": 346963.3557362602,
       "total_equity": 212062.51946988207,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.5628213983699348,
-      "forward_wacc": 0.3084306388633124,
-      "pv": 20833.27642364998
+      "discount_factor": 0.563248395152265,
+      "forward_wacc": 0.3079696496047318,
+      "pv": 20849.0820451563
      },
      {
       "year": 2028,
@@ -2160,9 +2171,9 @@
       "total_liabilities": 387195.84171167295,
       "total_equity": 246421.36651864712,
       "balance_check": 5.820766091346741e-11,
-      "discount_factor": 0.44357584762258784,
-      "forward_wacc": 0.2688278710088964,
-      "pv": 20999.499257402003
+      "discount_factor": 0.44404844815181327,
+      "forward_wacc": 0.26843905771223214,
+      "pv": 21021.87282556562
      },
      {
       "year": 2029,
@@ -2216,9 +2227,9 @@
       "total_liabilities": 441362.50528352964,
       "total_equity": 292600.2410983789,
       "balance_check": -1.1641532182693481e-10,
-      "discount_factor": 0.3579748314256638,
-      "forward_wacc": 0.2391257951180844,
-      "pv": 20383.654439103426
+      "discount_factor": 0.358453046044423,
+      "forward_wacc": 0.23879111379285753,
+      "pv": 20410.88473766295
      },
      {
       "year": 2030,
@@ -2272,9 +2283,9 @@
       "total_liabilities": 509457.9984340974,
       "total_equity": 353682.68888604693,
       "balance_check": 5.820766091346741e-11,
-      "discount_factor": 0.293584568749871,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 19571.96393355994
+      "discount_factor": 0.2940487730420881,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 19602.910347752495
      },
      {
       "year": 2031,
@@ -2328,9 +2339,9 @@
       "total_liabilities": 591896.3997850885,
       "total_equity": 433116.16200357815,
       "balance_check": 0.0,
-      "discount_factor": 0.24077642180815198,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 18584.623882253498
+      "discount_factor": 0.24121619799777594,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 18618.568547661987
      },
      {
       "year": 2032,
@@ -2384,9 +2395,9 @@
       "total_liabilities": 689498.986486891,
       "total_equity": 534865.7745118248,
       "balance_check": -2.3283064365386963e-10,
-      "discount_factor": 0.19746707242004047,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 17587.368773942526
+      "discount_factor": 0.19787620119800334,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 17623.807753899448
      },
      {
       "year": 2033,
@@ -2440,9 +2451,9 @@
       "total_liabilities": 803492.7951547246,
       "total_equity": 663571.5742046268,
       "balance_check": 2.3283064365386963e-10,
-      "discount_factor": 0.16194793658496554,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 16648.176108150757
+      "discount_factor": 0.16232322425094237,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 16686.75551389157
      },
      {
       "year": 2034,
@@ -2496,9 +2507,9 @@
       "total_liabilities": 935519.5508007858,
       "total_equity": 824716.8321994767,
       "balance_check": 1.1641532182693481e-10,
-      "discount_factor": 0.13281775965331163,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 15787.33438977783
+      "discount_factor": 0.13315815126679112,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 15827.794914330449
      },
      {
       "year": 2035,
@@ -2552,9 +2563,9 @@
       "total_liabilities": 1087654.8004083838,
       "total_equity": 1024814.4219724596,
       "balance_check": 0.0,
-      "discount_factor": 0.10892733585444472,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 15003.823669527455
+      "discount_factor": 0.10923324946637565,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 15045.960694687541
      }
     ],
     "ratios": {
@@ -2577,8 +2588,8 @@
     "closing_debt": 16493.0
    },
    "nci_profit_share": 0.20976266344357763,
-   "equity_after_nci_value_share": 244183.04257798282,
-   "per_share_nci_value_share": 118.49784887591638,
+   "equity_after_nci_value_share": 244551.45995837334,
+   "per_share_nci_value_share": 118.67663552139294,
    "nci_basis_adopted": "value share (filed profit share proxy)",
    "cash_and_deposits": 75773.4,
    "borrowings": 16493.0,
@@ -2587,18 +2598,18 @@
    "investment_property": 25228.0,
    "associates": 1496.6,
    "fvoci": 1802.8,
-   "equity_before_minority": 308999.62743097794,
+   "equity_before_minority": 309465.83848346496,
    "nci_book": 75652.8,
    "nci_share_of_equity": 0.45213466600049246,
-   "equity_after_nci_book": 233346.82743097795,
-   "equity_after_nci_proportional": 169290.1840881961,
-   "per_share_nci_book": 113.23921923759244,
-   "per_share_nci_proportional": 82.15362720714955,
+   "equity_after_nci_book": 233813.03848346497,
+   "equity_after_nci_proportional": 169545.60496218118,
+   "per_share_nci_book": 113.46546347739974,
+   "per_share_nci_proportional": 82.27757858315704,
    "shares_mn": 2060.6538
   },
   "rating|recovery": {
    "mode": "recovery",
-   "wacc": 0.35793409868133236,
+   "wacc": 0.35738288947035624,
    "conversion_years": 10,
    "rows": [
     {
@@ -2653,9 +2664,9 @@
      "total_liabilities": 321113.5350849398,
      "total_equity": 186645.42517689627,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.7364127618351167,
-     "forward_wacc": 0.35793409868133236,
-     "pv": 18303.465007505907
+     "discount_factor": 0.7367118060477356,
+     "forward_wacc": 0.35738288947035624,
+     "pv": 18310.89772128415
     },
     {
      "year": 2027,
@@ -2709,9 +2720,9 @@
      "total_liabilities": 333268.57342357445,
      "total_equity": 213821.05689730024,
      "balance_check": 5.820766091346741e-11,
-     "discount_factor": 0.5628213983699348,
-     "forward_wacc": 0.3084306388633124,
-     "pv": 8650.883933261692
+     "discount_factor": 0.563248395152265,
+     "forward_wacc": 0.3079696496047318,
+     "pv": 8657.44711585303
     },
     {
      "year": 2028,
@@ -2765,9 +2776,9 @@
      "total_liabilities": 345219.92568285926,
      "total_equity": 248829.9672209035,
      "balance_check": 0.0,
-     "discount_factor": 0.44357584762258784,
-     "forward_wacc": 0.2688278710088964,
-     "pv": 2553.8133792726608
+     "discount_factor": 0.44404844815181327,
+     "forward_wacc": 0.26843905771223214,
+     "pv": 2556.534297377323
     },
     {
      "year": 2029,
@@ -2821,9 +2832,9 @@
      "total_liabilities": 355667.84778123244,
      "total_equity": 291532.21035989106,
      "balance_check": 0.0,
-     "discount_factor": 0.3579748314256638,
-     "forward_wacc": 0.2391257951180844,
-     "pv": -1243.1267916335025
+     "discount_factor": 0.358453046044423,
+     "forward_wacc": 0.23879111379285753,
+     "pv": -1244.787470967753
     },
     {
      "year": 2030,
@@ -2877,9 +2888,9 @@
      "total_liabilities": 363677.21558927186,
      "total_equity": 341761.0260537332,
      "balance_check": 0.0,
-     "discount_factor": 0.293584568749871,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -3551.99875828562
+     "discount_factor": 0.2940487730420881,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -3557.615038039584
     },
     {
      "year": 2031,
@@ -2933,9 +2944,9 @@
      "total_liabilities": 368561.2007111701,
      "total_equity": 399379.1902044672,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.24077642180815198,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -4834.203353196029
+     "discount_factor": 0.24121619799777594,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -4843.032986573628
     },
     {
      "year": 2032,
@@ -2989,9 +3000,9 @@
      "total_liabilities": 369793.7539050457,
      "total_equity": 464312.30137394636,
      "balance_check": 1.1641532182693481e-10,
-     "discount_factor": 0.19746707242004047,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5423.950451881443
+     "discount_factor": 0.19787620119800334,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5435.188245569847
     },
     {
      "year": 2033,
@@ -3045,9 +3056,9 @@
      "total_liabilities": 366943.3942257421,
      "total_equity": 536568.1281411571,
      "balance_check": 0.0,
-     "discount_factor": 0.16194793658496554,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5567.692859900547
+     "discount_factor": 0.16232322425094237,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5580.595070958801
     },
     {
      "year": 2034,
@@ -3101,9 +3112,9 @@
      "total_liabilities": 359622.6095957418,
      "total_equity": 616248.4274723164,
      "balance_check": 0.0,
-     "discount_factor": 0.13281775965331163,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5438.10374443428
+     "discount_factor": 0.13315815126679112,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5452.0407729812805
     },
     {
      "year": 2035,
@@ -3157,12 +3168,12 @@
      "total_liabilities": 347448.53791214695,
      "total_equity": 703557.829095243,
      "balance_check": 0.0,
-     "discount_factor": 0.10892733585444472,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5151.389262582182
+     "discount_factor": 0.10923324946637565,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5165.856522645207
     }
    ],
-   "pv_explicit": -1702.3029018733423,
+   "pv_explicit": -1754.2369732216011,
    "residual_book": 4648283.224088633,
    "residual_annual_cash": 131995.16597102195,
    "residual_collections": 447741.5786176487,
@@ -3173,11 +3184,11 @@
    "pv_excess_wip": 0.0,
    "closing_advances": 170867.43791214694,
    "closing_properties_under_development": 776537.1423449712,
-   "pv_residual_book": 56530.98329433148,
+   "pv_residual_book": 56744.808569412126,
    "terminal_recurring_fcff": 30714.4122825319,
-   "terminal_value_recurring": 220087.39817028074,
-   "pv_terminal_recurring": 23973.533937825072,
-   "enterprise_value": 78802.21433028321,
+   "terminal_value_recurring": 220528.37298391134,
+   "pv_terminal_recurring": 24089.030780565525,
+   "enterprise_value": 79079.60237675605,
    "ratios": {
     "gm_dev_h1_26": 0.26578928756659914,
     "gm_dev_fy25": 0.2740800475130565,
@@ -3249,9 +3260,9 @@
       "total_liabilities": 321113.5350849398,
       "total_equity": 186645.42517689627,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.7364127618351167,
-      "forward_wacc": 0.35793409868133236,
-      "pv": 18303.465007505907
+      "discount_factor": 0.7367118060477356,
+      "forward_wacc": 0.35738288947035624,
+      "pv": 18310.89772128415
      },
      {
       "year": 2027,
@@ -3305,9 +3316,9 @@
       "total_liabilities": 333268.57342357445,
       "total_equity": 213821.05689730024,
       "balance_check": 5.820766091346741e-11,
-      "discount_factor": 0.5628213983699348,
-      "forward_wacc": 0.3084306388633124,
-      "pv": 8650.883933261692
+      "discount_factor": 0.563248395152265,
+      "forward_wacc": 0.3079696496047318,
+      "pv": 8657.44711585303
      },
      {
       "year": 2028,
@@ -3361,9 +3372,9 @@
       "total_liabilities": 345219.92568285926,
       "total_equity": 248829.9672209035,
       "balance_check": 0.0,
-      "discount_factor": 0.44357584762258784,
-      "forward_wacc": 0.2688278710088964,
-      "pv": 2553.8133792726608
+      "discount_factor": 0.44404844815181327,
+      "forward_wacc": 0.26843905771223214,
+      "pv": 2556.534297377323
      },
      {
       "year": 2029,
@@ -3417,9 +3428,9 @@
       "total_liabilities": 355667.84778123244,
       "total_equity": 291532.21035989106,
       "balance_check": 0.0,
-      "discount_factor": 0.3579748314256638,
-      "forward_wacc": 0.2391257951180844,
-      "pv": -1243.1267916335025
+      "discount_factor": 0.358453046044423,
+      "forward_wacc": 0.23879111379285753,
+      "pv": -1244.787470967753
      },
      {
       "year": 2030,
@@ -3473,9 +3484,9 @@
       "total_liabilities": 363677.21558927186,
       "total_equity": 341761.0260537332,
       "balance_check": 0.0,
-      "discount_factor": 0.293584568749871,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -3551.99875828562
+      "discount_factor": 0.2940487730420881,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -3557.615038039584
      },
      {
       "year": 2031,
@@ -3529,9 +3540,9 @@
       "total_liabilities": 368561.2007111701,
       "total_equity": 399379.1902044672,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.24077642180815198,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -4834.203353196029
+      "discount_factor": 0.24121619799777594,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -4843.032986573628
      },
      {
       "year": 2032,
@@ -3585,9 +3596,9 @@
       "total_liabilities": 369793.7539050457,
       "total_equity": 464312.30137394636,
       "balance_check": 1.1641532182693481e-10,
-      "discount_factor": 0.19746707242004047,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5423.950451881443
+      "discount_factor": 0.19787620119800334,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5435.188245569847
      },
      {
       "year": 2033,
@@ -3641,9 +3652,9 @@
       "total_liabilities": 366943.3942257421,
       "total_equity": 536568.1281411571,
       "balance_check": 0.0,
-      "discount_factor": 0.16194793658496554,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5567.692859900547
+      "discount_factor": 0.16232322425094237,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5580.595070958801
      },
      {
       "year": 2034,
@@ -3697,9 +3708,9 @@
       "total_liabilities": 359622.6095957418,
       "total_equity": 616248.4274723164,
       "balance_check": 0.0,
-      "discount_factor": 0.13281775965331163,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5438.10374443428
+      "discount_factor": 0.13315815126679112,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5452.0407729812805
      },
      {
       "year": 2035,
@@ -3753,9 +3764,9 @@
       "total_liabilities": 347448.53791214695,
       "total_equity": 703557.829095243,
       "balance_check": 0.0,
-      "discount_factor": 0.10892733585444472,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5151.389262582182
+      "discount_factor": 0.10923324946637565,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5165.856522645207
      }
     ],
     "ratios": {
@@ -3778,8 +3789,8 @@
     "closing_debt": 16493.0
    },
    "nci_profit_share": 0.20976266344357763,
-   "equity_after_nci_value_share": 131255.351000734,
-   "per_share_nci_value_share": 63.695974064510004,
+   "equity_after_nci_value_share": 131474.5533917713,
+   "per_share_nci_value_share": 63.80234923099227,
    "nci_basis_adopted": "value share (filed profit share proxy)",
    "cash_and_deposits": 75773.4,
    "borrowings": 16493.0,
@@ -3788,18 +3799,18 @@
    "investment_property": 25228.0,
    "associates": 1496.6,
    "fvoci": 1802.8,
-   "equity_before_minority": 166096.1143302832,
+   "equity_before_minority": 166373.50237675605,
    "nci_book": 75652.8,
    "nci_share_of_equity": 0.45213466600049246,
-   "equity_after_nci_book": 90443.31433028319,
-   "equity_after_nci_proportional": 90998.30315358099,
-   "per_share_nci_book": 43.890591583255365,
-   "per_share_nci_proportional": 44.1599181548987,
+   "equity_after_nci_book": 90720.70237675605,
+   "equity_after_nci_proportional": 91150.27444830931,
+   "per_share_nci_book": 44.02520325187862,
+   "per_share_nci_proportional": 44.23366722168921,
    "shares_mn": 2060.6538
   },
   "cds|capacity": {
    "mode": "capacity",
-   "wacc": 0.3237485685188716,
+   "wacc": 0.32335918609446124,
    "conversion_years": 14,
    "rows": [
     {
@@ -3854,9 +3865,9 @@
      "total_liabilities": 321113.5350849398,
      "total_equity": 186645.42517689627,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.7554304675236699,
-     "forward_wacc": 0.3237485685188716,
-     "pv": 18776.14816650773
+     "discount_factor": 0.7556527437960597,
+     "forward_wacc": 0.32335918609446124,
+     "pv": 18781.67282086536
     },
     {
      "year": 2027,
@@ -3910,9 +3921,9 @@
      "total_liabilities": 346963.3557362602,
      "total_equity": 212062.51946988207,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.5872190800840306,
-     "forward_wacc": 0.2864542266160162,
-     "pv": 21736.37578824077
+     "discount_factor": 0.5875548934677854,
+     "forward_wacc": 0.286097268863085,
+     "pv": 21748.806184581044
     },
     {
      "year": 2028,
@@ -3966,9 +3977,9 @@
      "total_liabilities": 387195.84171167295,
      "total_equity": 246421.36651864712,
      "balance_check": 5.820766091346741e-11,
-     "discount_factor": 0.4673009046206949,
-     "forward_wacc": 0.25661875309373183,
-     "pv": 22122.67654373043
+     "discount_factor": 0.4676913393819872,
+     "forward_wacc": 0.25628773507798397,
+     "pv": 22141.16026984799
     },
     {
      "year": 2029,
@@ -4022,9 +4033,9 @@
      "total_liabilities": 441362.50528352964,
      "total_equity": 292600.2410983789,
      "balance_check": -1.1641532182693481e-10,
-     "discount_factor": 0.3786136337963248,
-     "forward_wacc": 0.2342421479520186,
-     "pv": 21558.860567101456
+     "discount_factor": 0.3790256479304733,
+     "forward_wacc": 0.23393058473915823,
+     "pv": 21582.32130511218
     },
     {
      "year": 2030,
@@ -4078,9 +4089,9 @@
      "total_liabilities": 509457.9984340974,
      "total_equity": 353682.68888604693,
      "balance_check": 5.820766091346741e-11,
-     "discount_factor": 0.31051099307242164,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 20700.37258179288
+     "discount_factor": 0.3109250373384354,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 20727.97505243984
     },
     {
      "year": 2031,
@@ -4134,9 +4145,9 @@
      "total_liabilities": 591896.3997850885,
      "total_equity": 433116.16200357815,
      "balance_check": 0.0,
-     "discount_factor": 0.2546582273122501,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 19656.10809222245
+     "discount_factor": 0.25506025613770855,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 19687.139180959715
     },
     {
      "year": 2032,
@@ -4190,9 +4201,9 @@
      "total_liabilities": 689498.986486891,
      "total_equity": 534865.7745118248,
      "balance_check": -2.3283064365386963e-10,
-     "discount_factor": 0.20885190600222076,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 18601.35689958736
+     "discount_factor": 0.20923285824107396,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 18635.28634122976
     },
     {
      "year": 2033,
@@ -4246,9 +4257,9 @@
      "total_liabilities": 803492.7951547246,
      "total_equity": 663571.5742046268,
      "balance_check": 2.3283064365386963e-10,
-     "discount_factor": 0.17128493786017257,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 17608.015701229622
+     "discount_factor": 0.1716393985901635,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 17644.454107181256
     },
     {
      "year": 2034,
@@ -4302,9 +4313,9 @@
      "total_liabilities": 935519.5508007858,
      "total_equity": 824716.8321994767,
      "balance_check": 1.1641532182693481e-10,
-     "discount_factor": 0.14047527982555838,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 16697.54272239304
+     "discount_factor": 0.14080046220297623,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 16736.195406667786
     },
     {
      "year": 2035,
@@ -4358,12 +4369,12 @@
      "total_liabilities": 1087654.8004083838,
      "total_equity": 1024814.4219724596,
      "balance_check": 0.0,
-     "discount_factor": 0.11520746942838661,
-     "forward_wacc": 0.2193244111908764,
-     "pv": 15868.859209278595
+     "discount_factor": 0.11550244477323565,
+     "forward_wacc": 0.2190258178466077,
+     "pv": 15909.48958021585
     }
    ],
-   "pv_explicit": 193326.3162720843,
+   "pv_explicit": 193594.50024910076,
    "residual_book": 5265316.285040517,
    "residual_annual_cash": 30123.306628141756,
    "residual_collections": 311017.32747372385,
@@ -4374,11 +4385,11 @@
    "pv_excess_wip": 0.0,
    "closing_advances": 911073.7004083837,
    "closing_properties_under_development": 523701.1861971135,
-   "pv_residual_book": 14837.840772138223,
+   "pv_residual_book": 14892.713312664388,
    "terminal_recurring_fcff": 30714.4122825319,
-   "terminal_value_recurring": 220087.3981702807,
-   "pv_terminal_recurring": 25355.712196275766,
-   "enterprise_value": 233519.8692404983,
+   "terminal_value_recurring": 220528.37298391134,
+   "pv_terminal_recurring": 25471.56622150573,
+   "enterprise_value": 233958.77978327087,
    "ratios": {
     "gm_dev_h1_26": 0.26578928756659914,
     "gm_dev_fy25": 0.2740800475130565,
@@ -4450,9 +4461,9 @@
       "total_liabilities": 321113.5350849398,
       "total_equity": 186645.42517689627,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.7554304675236699,
-      "forward_wacc": 0.3237485685188716,
-      "pv": 18776.14816650773
+      "discount_factor": 0.7556527437960597,
+      "forward_wacc": 0.32335918609446124,
+      "pv": 18781.67282086536
      },
      {
       "year": 2027,
@@ -4506,9 +4517,9 @@
       "total_liabilities": 346963.3557362602,
       "total_equity": 212062.51946988207,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.5872190800840306,
-      "forward_wacc": 0.2864542266160162,
-      "pv": 21736.37578824077
+      "discount_factor": 0.5875548934677854,
+      "forward_wacc": 0.286097268863085,
+      "pv": 21748.806184581044
      },
      {
       "year": 2028,
@@ -4562,9 +4573,9 @@
       "total_liabilities": 387195.84171167295,
       "total_equity": 246421.36651864712,
       "balance_check": 5.820766091346741e-11,
-      "discount_factor": 0.4673009046206949,
-      "forward_wacc": 0.25661875309373183,
-      "pv": 22122.67654373043
+      "discount_factor": 0.4676913393819872,
+      "forward_wacc": 0.25628773507798397,
+      "pv": 22141.16026984799
      },
      {
       "year": 2029,
@@ -4618,9 +4629,9 @@
       "total_liabilities": 441362.50528352964,
       "total_equity": 292600.2410983789,
       "balance_check": -1.1641532182693481e-10,
-      "discount_factor": 0.3786136337963248,
-      "forward_wacc": 0.2342421479520186,
-      "pv": 21558.860567101456
+      "discount_factor": 0.3790256479304733,
+      "forward_wacc": 0.23393058473915823,
+      "pv": 21582.32130511218
      },
      {
       "year": 2030,
@@ -4674,9 +4685,9 @@
       "total_liabilities": 509457.9984340974,
       "total_equity": 353682.68888604693,
       "balance_check": 5.820766091346741e-11,
-      "discount_factor": 0.31051099307242164,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 20700.37258179288
+      "discount_factor": 0.3109250373384354,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 20727.97505243984
      },
      {
       "year": 2031,
@@ -4730,9 +4741,9 @@
       "total_liabilities": 591896.3997850885,
       "total_equity": 433116.16200357815,
       "balance_check": 0.0,
-      "discount_factor": 0.2546582273122501,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 19656.10809222245
+      "discount_factor": 0.25506025613770855,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 19687.139180959715
      },
      {
       "year": 2032,
@@ -4786,9 +4797,9 @@
       "total_liabilities": 689498.986486891,
       "total_equity": 534865.7745118248,
       "balance_check": -2.3283064365386963e-10,
-      "discount_factor": 0.20885190600222076,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 18601.35689958736
+      "discount_factor": 0.20923285824107396,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 18635.28634122976
      },
      {
       "year": 2033,
@@ -4842,9 +4853,9 @@
       "total_liabilities": 803492.7951547246,
       "total_equity": 663571.5742046268,
       "balance_check": 2.3283064365386963e-10,
-      "discount_factor": 0.17128493786017257,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 17608.015701229622
+      "discount_factor": 0.1716393985901635,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 17644.454107181256
      },
      {
       "year": 2034,
@@ -4898,9 +4909,9 @@
       "total_liabilities": 935519.5508007858,
       "total_equity": 824716.8321994767,
       "balance_check": 1.1641532182693481e-10,
-      "discount_factor": 0.14047527982555838,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 16697.54272239304
+      "discount_factor": 0.14080046220297623,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 16736.195406667786
      },
      {
       "year": 2035,
@@ -4954,9 +4965,9 @@
       "total_liabilities": 1087654.8004083838,
       "total_equity": 1024814.4219724596,
       "balance_check": 0.0,
-      "discount_factor": 0.11520746942838661,
-      "forward_wacc": 0.2193244111908764,
-      "pv": 15868.859209278595
+      "discount_factor": 0.11550244477323565,
+      "forward_wacc": 0.2190258178466077,
+      "pv": 15909.48958021585
      }
     ],
     "ratios": {
@@ -4979,8 +4990,8 @@
     "closing_debt": 16493.0
    },
    "nci_profit_share": 0.20976266344357763,
-   "equity_after_nci_value_share": 253519.01853523805,
-   "per_share_nci_value_share": 123.02843812737396,
+   "equity_after_nci_value_share": 253865.86203354516,
+   "per_share_nci_value_share": 123.19675533733282,
    "nci_basis_adopted": "value share (filed profit share proxy)",
    "cash_and_deposits": 75773.4,
    "borrowings": 16493.0,
@@ -4989,18 +5000,18 @@
    "investment_property": 25228.0,
    "associates": 1496.6,
    "fvoci": 1802.8,
-   "equity_before_minority": 320813.76924049825,
+   "equity_before_minority": 321252.6797832708,
    "nci_book": 75652.8,
    "nci_share_of_equity": 0.45213466600049246,
-   "equity_after_nci_book": 245160.96924049826,
-   "equity_after_nci_proportional": 175762.74283658652,
-   "per_share_nci_book": 118.97241993803047,
-   "per_share_nci_proportional": 85.29464912378126,
+   "equity_after_nci_book": 245599.87978327082,
+   "equity_after_nci_proportional": 176003.2067076985,
+   "per_share_nci_book": 119.18541570800045,
+   "per_share_nci_proportional": 85.41134212243634,
    "shares_mn": 2060.6538
   },
   "cds|recovery": {
    "mode": "recovery",
-   "wacc": 0.3237485685188716,
+   "wacc": 0.32335918609446124,
    "conversion_years": 10,
    "rows": [
     {
@@ -5055,9 +5066,9 @@
      "total_liabilities": 321113.5350849398,
      "total_equity": 186645.42517689627,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.7554304675236699,
-     "forward_wacc": 0.3237485685188716,
-     "pv": 18776.14816650773
+     "discount_factor": 0.7556527437960597,
+     "forward_wacc": 0.32335918609446124,
+     "pv": 18781.67282086536
     },
     {
      "year": 2027,
@@ -5111,9 +5122,9 @@
      "total_liabilities": 333268.57342357445,
      "total_equity": 213821.05689730024,
      "balance_check": 5.820766091346741e-11,
-     "discount_factor": 0.5872190800840306,
-     "forward_wacc": 0.2864542266160162,
-     "pv": 9025.890131250233
+     "discount_factor": 0.5875548934677854,
+     "forward_wacc": 0.286097268863085,
+     "pv": 9031.05177331735
     },
     {
      "year": 2028,
@@ -5167,9 +5178,9 @@
      "total_liabilities": 345219.92568285926,
      "total_equity": 248829.9672209035,
      "balance_check": 0.0,
-     "discount_factor": 0.4673009046206949,
-     "forward_wacc": 0.25661875309373183,
-     "pv": 2690.4064068473367
+     "discount_factor": 0.4676913393819872,
+     "forward_wacc": 0.25628773507798397,
+     "pv": 2692.654269354877
     },
     {
      "year": 2029,
@@ -5223,9 +5234,9 @@
      "total_liabilities": 355667.84778123244,
      "total_equity": 291532.21035989106,
      "balance_check": 0.0,
-     "discount_factor": 0.3786136337963248,
-     "forward_wacc": 0.2342421479520186,
-     "pv": -1314.79844539759
+     "discount_factor": 0.3790256479304733,
+     "forward_wacc": 0.23393058473915823,
+     "pv": -1316.229232603081
     },
     {
      "year": 2030,
@@ -5279,9 +5290,9 @@
      "total_liabilities": 363677.21558927186,
      "total_equity": 341761.0260537332,
      "balance_check": 0.0,
-     "discount_factor": 0.31051099307242164,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -3756.7868996784973
+     "discount_factor": 0.3109250373384354,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -3761.796307104162
     },
     {
      "year": 2031,
@@ -5335,9 +5346,9 @@
      "total_liabilities": 368561.2007111701,
      "total_equity": 399379.1902044672,
      "balance_check": -5.820766091346741e-11,
-     "discount_factor": 0.2546582273122501,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5112.9161532799035
+     "discount_factor": 0.25506025613770855,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5120.987911641947
     },
     {
      "year": 2032,
@@ -5391,9 +5402,9 @@
      "total_liabilities": 369793.7539050457,
      "total_equity": 464312.30137394636,
      "balance_check": 1.1641532182693481e-10,
-     "discount_factor": 0.20885190600222076,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5736.664731259168
+     "discount_factor": 0.20923285824107396,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5747.128582486363
     },
     {
      "year": 2033,
@@ -5447,9 +5458,9 @@
      "total_liabilities": 366943.3942257421,
      "total_equity": 536568.1281411571,
      "balance_check": 0.0,
-     "discount_factor": 0.17128493786017257,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5888.694512833485
+     "discount_factor": 0.1716393985901635,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5900.880703760655
     },
     {
      "year": 2034,
@@ -5503,9 +5514,9 @@
      "total_liabilities": 359622.6095957418,
      "total_equity": 616248.4274723164,
      "balance_check": 0.0,
-     "discount_factor": 0.14047527982555838,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5751.634022542218
+     "discount_factor": 0.14080046220297623,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5764.948322594229
     },
     {
      "year": 2035,
@@ -5559,12 +5570,12 @@
      "total_liabilities": 347448.53791214695,
      "total_equity": 703557.829095243,
      "balance_check": 0.0,
-     "discount_factor": 0.11520746942838661,
-     "forward_wacc": 0.2193244111908764,
-     "pv": -5448.389206688187
+     "discount_factor": 0.11550244477323565,
+     "forward_wacc": 0.2190258178466077,
+     "pv": -5462.339174455803
     }
    ],
-   "pv_explicit": -2517.439267073746,
+   "pv_explicit": -2568.931371108657,
    "residual_book": 4648283.224088633,
    "residual_annual_cash": 131995.16597102195,
    "residual_collections": 447741.5786176487,
@@ -5575,11 +5586,11 @@
    "pv_excess_wip": 0.0,
    "closing_advances": 170867.43791214694,
    "closing_properties_under_development": 776537.1423449712,
-   "pv_residual_book": 59790.23978279533,
+   "pv_residual_book": 60001.54852093699,
    "terminal_recurring_fcff": 30714.4122825319,
-   "terminal_value_recurring": 220087.3981702807,
-   "pv_terminal_recurring": 25355.712196275766,
-   "enterprise_value": 82628.51271199735,
+   "terminal_value_recurring": 220528.37298391134,
+   "pv_terminal_recurring": 25471.56622150573,
+   "enterprise_value": 82904.18337133406,
    "ratios": {
     "gm_dev_h1_26": 0.26578928756659914,
     "gm_dev_fy25": 0.2740800475130565,
@@ -5651,9 +5662,9 @@
       "total_liabilities": 321113.5350849398,
       "total_equity": 186645.42517689627,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.7554304675236699,
-      "forward_wacc": 0.3237485685188716,
-      "pv": 18776.14816650773
+      "discount_factor": 0.7556527437960597,
+      "forward_wacc": 0.32335918609446124,
+      "pv": 18781.67282086536
      },
      {
       "year": 2027,
@@ -5707,9 +5718,9 @@
       "total_liabilities": 333268.57342357445,
       "total_equity": 213821.05689730024,
       "balance_check": 5.820766091346741e-11,
-      "discount_factor": 0.5872190800840306,
-      "forward_wacc": 0.2864542266160162,
-      "pv": 9025.890131250233
+      "discount_factor": 0.5875548934677854,
+      "forward_wacc": 0.286097268863085,
+      "pv": 9031.05177331735
      },
      {
       "year": 2028,
@@ -5763,9 +5774,9 @@
       "total_liabilities": 345219.92568285926,
       "total_equity": 248829.9672209035,
       "balance_check": 0.0,
-      "discount_factor": 0.4673009046206949,
-      "forward_wacc": 0.25661875309373183,
-      "pv": 2690.4064068473367
+      "discount_factor": 0.4676913393819872,
+      "forward_wacc": 0.25628773507798397,
+      "pv": 2692.654269354877
      },
      {
       "year": 2029,
@@ -5819,9 +5830,9 @@
       "total_liabilities": 355667.84778123244,
       "total_equity": 291532.21035989106,
       "balance_check": 0.0,
-      "discount_factor": 0.3786136337963248,
-      "forward_wacc": 0.2342421479520186,
-      "pv": -1314.79844539759
+      "discount_factor": 0.3790256479304733,
+      "forward_wacc": 0.23393058473915823,
+      "pv": -1316.229232603081
      },
      {
       "year": 2030,
@@ -5875,9 +5886,9 @@
       "total_liabilities": 363677.21558927186,
       "total_equity": 341761.0260537332,
       "balance_check": 0.0,
-      "discount_factor": 0.31051099307242164,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -3756.7868996784973
+      "discount_factor": 0.3109250373384354,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -3761.796307104162
      },
      {
       "year": 2031,
@@ -5931,9 +5942,9 @@
       "total_liabilities": 368561.2007111701,
       "total_equity": 399379.1902044672,
       "balance_check": -5.820766091346741e-11,
-      "discount_factor": 0.2546582273122501,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5112.9161532799035
+      "discount_factor": 0.25506025613770855,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5120.987911641947
      },
      {
       "year": 2032,
@@ -5987,9 +5998,9 @@
       "total_liabilities": 369793.7539050457,
       "total_equity": 464312.30137394636,
       "balance_check": 1.1641532182693481e-10,
-      "discount_factor": 0.20885190600222076,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5736.664731259168
+      "discount_factor": 0.20923285824107396,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5747.128582486363
      },
      {
       "year": 2033,
@@ -6043,9 +6054,9 @@
       "total_liabilities": 366943.3942257421,
       "total_equity": 536568.1281411571,
       "balance_check": 0.0,
-      "discount_factor": 0.17128493786017257,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5888.694512833485
+      "discount_factor": 0.1716393985901635,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5900.880703760655
      },
      {
       "year": 2034,
@@ -6099,9 +6110,9 @@
       "total_liabilities": 359622.6095957418,
       "total_equity": 616248.4274723164,
       "balance_check": 0.0,
-      "discount_factor": 0.14047527982555838,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5751.634022542218
+      "discount_factor": 0.14080046220297623,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5764.948322594229
      },
      {
       "year": 2035,
@@ -6155,9 +6166,9 @@
       "total_liabilities": 347448.53791214695,
       "total_equity": 703557.829095243,
       "balance_check": 0.0,
-      "discount_factor": 0.11520746942838661,
-      "forward_wacc": 0.2193244111908764,
-      "pv": -5448.389206688187
+      "discount_factor": 0.11550244477323565,
+      "forward_wacc": 0.2190258178466077,
+      "pv": -5462.339174455803
      }
     ],
     "ratios": {
@@ -6180,8 +6191,8 @@
     "closing_debt": 16493.0
    },
    "nci_profit_share": 0.20976266344357763,
-   "equity_after_nci_value_share": 134279.03484276994,
-   "per_share_nci_value_share": 65.16331605181323,
+   "equity_after_nci_value_share": 134496.88009037095,
+   "per_share_nci_value_share": 65.26903261982723,
    "nci_basis_adopted": "value share (filed profit share proxy)",
    "cash_and_deposits": 75773.4,
    "borrowings": 16493.0,
@@ -6190,33 +6201,33 @@
    "investment_property": 25228.0,
    "associates": 1496.6,
    "fvoci": 1802.8,
-   "equity_before_minority": 169922.41271199734,
+   "equity_before_minority": 170198.08337133407,
    "nci_book": 75652.8,
    "nci_share_of_equity": 0.45213466600049246,
-   "equity_after_nci_book": 94269.61271199734,
-   "equity_after_nci_proportional": 93094.59939446059,
-   "per_share_nci_book": 45.74742866171763,
-   "per_share_nci_proportional": 45.17721482107309,
+   "equity_after_nci_book": 94545.28337133407,
+   "equity_after_nci_proportional": 93245.62979231197,
+   "per_share_nci_book": 45.88120691177434,
+   "per_share_nci_proportional": 45.25050728672229,
    "shares_mn": 2060.6538
   }
  },
  "per_share_nci_book": {
-  "rating|capacity": 113.23921923759244,
-  "rating|recovery": 43.890591583255365,
-  "cds|capacity": 118.97241993803047,
-  "cds|recovery": 45.74742866171763
+  "rating|capacity": 113.46546347739974,
+  "rating|recovery": 44.02520325187862,
+  "cds|capacity": 119.18541570800045,
+  "cds|recovery": 45.88120691177434
  },
  "per_share_nci_proportional": {
-  "rating|capacity": 82.15362720714955,
-  "rating|recovery": 44.1599181548987,
-  "cds|capacity": 85.29464912378126,
-  "cds|recovery": 45.17721482107309
+  "rating|capacity": 82.27757858315704,
+  "rating|recovery": 44.23366722168921,
+  "cds|capacity": 85.41134212243634,
+  "cds|recovery": 45.25050728672229
  },
  "per_share_nci_value_share": {
-  "rating|capacity": 118.49784887591638,
-  "rating|recovery": 63.695974064510004,
-  "cds|capacity": 123.02843812737396,
-  "cds|recovery": 65.16331605181323
+  "rating|capacity": 118.67663552139294,
+  "rating|recovery": 63.80234923099227,
+  "cds|capacity": 123.19675533733282,
+  "cds|recovery": 65.26903261982723
  },
  "cost_of_capital_record": {
   "market": "EG",
@@ -6227,20 +6238,23 @@
   "rf_star": 0.19590000000000002,
   "erp": 0.0941,
   "erp_basis": "market",
-  "beta": 1.4717523730674444,
-  "ke_exp": 0.33439189830564653,
+  "beta": 1.4686659268986124,
+  "beta_source": "own_stock_regression",
+  "beta_tier": 1,
+  "ke_exp": 0.33410146372115945,
   "kd_pretax": 0.255,
   "kd_aftertax": 0.19762500000000002,
-  "weight_equity": 0.9221790512278109,
-  "weight_debt": 0.07782094877218917,
-  "wacc_exp": 0.3237485685188716,
+  "weight_equity": 0.9212884234116279,
+  "weight_debt": 0.07871157658837212,
+  "wacc_exp": 0.32335918609446124,
   "rf_terminal": 0.125,
   "erp_terminal": 0.07,
-  "ke_terminal": 0.2280226661147211,
+  "ke_terminal": 0.22780661488290288,
+  "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.15,
   "kd_terminal_aftertax": 0.11624999999999999,
-  "weight_debt_terminal": 0.07782094877218917,
-  "wacc_terminal": 0.2193244111908764,
+  "weight_debt_terminal": 0.07871157658837212,
+  "wacc_terminal": 0.2190258178466077,
   "glide_fractions": [
    0.0,
    0.35714285714285704,
@@ -6254,30 +6268,30 @@
    1.0
   ],
   "forward_wacc": [
-   0.3237485685188716,
-   0.2864542266160162,
-   0.25661875309373183,
-   0.2342421479520186,
-   0.2193244111908764,
-   0.2193244111908764,
-   0.2193244111908764,
-   0.2193244111908764,
-   0.2193244111908764,
-   0.2193244111908764
+   0.32335918609446124,
+   0.286097268863085,
+   0.25628773507798397,
+   0.23393058473915823,
+   0.2190258178466077,
+   0.2190258178466077,
+   0.2190258178466077,
+   0.2190258178466077,
+   0.2190258178466077,
+   0.2190258178466077
   ],
   "discount_factors": [
-   0.7554304675236699,
-   0.5872190800840306,
-   0.4673009046206949,
-   0.3786136337963248,
-   0.31051099307242164,
-   0.2546582273122501,
-   0.20885190600222076,
-   0.17128493786017257,
-   0.14047527982555838,
-   0.11520746942838661
+   0.7556527437960597,
+   0.5875548934677854,
+   0.4676913393819872,
+   0.3790256479304733,
+   0.3109250373384354,
+   0.25506025613770855,
+   0.20923285824107396,
+   0.1716393985901635,
+   0.14080046220297623,
+   0.11550244477323565
   ],
-  "terminal_discount_factor": 0.11520746942838661,
+  "terminal_discount_factor": 0.11550244477323565,
   "kd_integrity": {
    "adopted_kd": 0.255,
    "effective_rates": [
@@ -6304,7 +6318,7 @@
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  },
  "macro_record": {
@@ -6358,21 +6372,28 @@
   },
   "explicit_years": 10,
   "growth_at_horizon_end": 0.07,
-  "note": "The explicit window ends at the terminal growth rate by construction: the recurring legs grow with prices and the development leg is a finite order book, so nothing is capitalised at a rate the model never reached."
+  "note": "The explicit window ends at the terminal growth rate by construction: the recurring legs grow with prices and the development leg is a finite order book, so nothing is capitalised at a rate the model never reached.",
+  "anchor_staleness_accepted": {
+   "accepted": true,
+   "anchor_date": "2026-08-06",
+   "strike_date": "2026-09-02",
+   "bound_days": 14,
+   "reason": "Re-struck onto the latest committed supplied price, EGP 96.60 for 2 September 2026, which is 27 days after the Egyptian path's own currency spot anchor. Accepted deliberately and for the reason the re-strike was made: the alternative is to hold this study at a close ten days older so the two dates agree, which buys a tidier record by giving a reader a comparison they cannot use. Refreshing the house path is a house-level act rather than a step of this name's rebuild, and the four other Egyptian studies struck in the same window carry the same gap. The staleness is disclosed, not switched off, and it moves the currency path by the difference between two spot readings four weeks apart rather than by any judgement of this desk's."
+  }
  },
  "lens_record": {
   "class": "real-estate developer, off-plan, point-in-time on handover",
   "primary": {
    "kind": "dcf",
    "range": {
-    "low": 63.695974064510004,
-    "high": 123.02843812737396
+    "low": 63.80234923099227,
+    "high": 123.19675533733282
    },
    "note": "four cases: two premium bases x two readings of the crux, on the cost-of-capital SCHEDULE rather than a flat rate. They are never averaged.",
    "range_basis": {
     "driver": "two readings of the crux crossed with the two published equity-risk-premium bases \u2014 four cases, never averaged",
-    "low": 63.695974064510004,
-    "high": 123.02843812737396,
+    "low": 63.80234923099227,
+    "high": 123.19675533733282,
     "units": "EGP per share, the four cases' own present values",
     "evidence": "the four cases this study computes and publishes side by side, per the dual-framing rule; the low and high are the lowest and highest of them.",
     "macro_held": true,
@@ -6394,22 +6415,22 @@
    }
   ],
   "envelope": {
-   "low": 63.695974064510004,
-   "high": 123.02843812737396
+   "low": 63.80234923099227,
+   "high": 123.19675533733282
   },
-  "central": 91.8305824638648,
+  "central": 91.97283407061008,
   "central_note": "this study publishes NO central. The figure exposed here is the median of the four cases, so the valuation-gap gate can read an answer; the cases themselves are published side by side and are never averaged into a headline."
  },
  "bridge_record": {
   "market": "EG",
-  "case": "the case nearest the published central of 91.83; the four cases share one bridge construction and differ only in the discount rate and the conversion period",
+  "case": "the case nearest the published central of 91.97; the four cases share one bridge construction and differ only in the discount rate and the conversion period",
   "balance_sheet_date": "2026-06-30",
   "latest_disclosed_date": "2026-06-30",
   "latest_disclosed_source": "TMG Holding interim consolidated financial statements for the three and six months ended 30 June 2026 (reviewed), taken from the company's own investor relations channel and registered line by line in inputs.BS; the walk-forward document register for this name records no later filing.",
   "lines": [
    {
     "label": "Enterprise value",
-    "value": 82628.51271199735
+    "value": 82904.18337133406
    },
    {
     "label": "plus cash and deposits",
@@ -6437,12 +6458,12 @@
    },
    {
     "label": "less minority interests at their share of value",
-    "value": -35643.377869227406
+    "value": -35701.20328096312
    }
   ],
   "nci": {
    "basis": "value_share",
-   "deduction": 35643.377869227406,
+   "deduction": 35701.20328096312,
    "applied_to": "equity_value",
    "proxy_source": "the minority's filed share of FY2025 profit after tax (20.98%) \u2014 the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
    "book": 75652.8,
@@ -6463,9 +6484,9 @@
    "deducted": false,
    "note": "no dividend declared after the balance-sheet date is deducted here"
   },
-  "equity_value": 134279.03484276994,
+  "equity_value": 134496.88009037095,
   "shares_mn": 2060.6538,
-  "per_share": 65.16331605181323
+  "per_share": 65.26903261982723
  },
  "forecast_anchor": {
   "rate_name": "group gross margin",
@@ -6498,8 +6519,8 @@
  },
  "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
  "fair_value_range": {
-  "low": 63.695974064510004,
-  "high": 123.02843812737396,
+  "low": 63.80234923099227,
+  "high": 123.19675533733282,
   "note": "the envelope of four published cases \u2014 two ERP bases x two readings of the crux \u2014 on the minority framed both ways. It is a range, not a target, and the cases are never averaged"
  },
  "statements": {
@@ -9278,7 +9299,7 @@
    }
   }
  },
- "central": 91.8305824638648,
- "standard_version": "2026.09.01",
- "spot": 97.8
+ "central": 91.97283407061008,
+ "standard_version": "2026.09.07",
+ "spot": 96.6
 }

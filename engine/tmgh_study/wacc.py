@@ -70,9 +70,14 @@ KD_SOURCE = (
     "separately, so no local-equivalent FX adjustment applies."
 )
 
-SPOT = 97.80
-SPOT_SOURCE = ("Egyptian Exchange close, 23 August 2026, from the same cleaned "
-               "price history the probability distribution is fitted to")
+SPOT = 96.60
+SPOT_DATE = "2026-09-02"
+SPOT_SOURCE = ("Egyptian Exchange close for 2 September 2026, the latest price this "
+               "repository holds for this name, read from the committed supplied price "
+               "file through gap_today.latest_price_per_ticker(). SUPERSEDES the 23 "
+               "August 2026 close of 97.80 the study was struck at: a fair value put "
+               "against a price ten days old is a comparison a reader cannot use, "
+               "however good the fair value is.")
 
 
 def beta_record():

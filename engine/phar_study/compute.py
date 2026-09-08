@@ -2403,6 +2403,32 @@ OUT = dict(
                  circularity=dict(spot=V['spot'], shares=V['shares_mn'],
                                   net_debt=net_debt,
                                   metric_value=V['np_fy25']),
+                 # WHY THE LENS DOES NOT REPRODUCE FROM ITS OWN CIRCULARITY BLOCK, in a
+                 # FIELD rather than in prose. The block exists to show the adopted
+                 # multiple is not the traded one, and the identity that reads it the
+                 # other way — (multiple x metric - net debt) / shares — assumes an
+                 # ENTERPRISE multiple applied to ONE metric. Neither holds here, and
+                 # both differences are real work rather than a gap to be widened away.
+                 value_adjustment=(
+                     "TWO REASONS, AND EACH ONE ALONE WOULD BREAK THE IDENTITY. (1) THIS "
+                     "IS AN EARNINGS MULTIPLE, NOT AN ENTERPRISE ONE: a multiple applied "
+                     "to attributable profit gives the EQUITY value directly, so "
+                     "deducting net debt from it charges the debt twice — the identity's "
+                     "deduction is right for an enterprise multiple and wrong for this "
+                     "lens. (2) THE PUBLISHED VALUE IS THE MEAN OF THE THREE LEGS' OWN "
+                     "VALUES, not one mean multiple applied to one metric: each leg is "
+                     "struck on the earnings of ITS OWN period — the justified multiple "
+                     "of %.3fx on forward earnings, the company's own four-year mean of "
+                     "%.3fx on trailing earnings, and the cost-of-equity-adjusted peer "
+                     "reference of %.3fx on trailing earnings — giving %.3f, %.3f and "
+                     "%.3f a share, whose mean is the published %.4f. Averaging the "
+                     "multiples first and applying that average to one period's earnings "
+                     "is a different lens and gives %.3f. The three leg values are "
+                     "committed above, so this reproduces from what the record already "
+                     "carries."
+                     % (tri[0][1], tri[1][1], tri[2][1], tri[0][2], tri[1][2], tri[2][2],
+                        rel_ps, (sum(m for _, m, _ in tri) / len(tri)) * V['np_fy25']
+                        / V['shares_mn'])),
                  multiple_source="three multiples applied to the earnings of their own "
                                  "periods — one justified by this model's own economics, "
                                  "one the company's own four-year mean of year-end close "

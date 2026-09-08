@@ -2178,7 +2178,8 @@
    "normalised_earnings": 4.289630624386951,
    "justified_price_to_book": 0.0,
    "book_value_floor": 8.15778582586335
-  }
+  },
+  "below_floor_reason": "Both published branches (EGP 4.0396 carried through, EGP 8.0388 stopped) sit below the disclosed book equity of EGP 8.1578 a share, and that is the finding rather than a contradiction. A book value floors a valuation only where the business earns at least what its capital costs. This one earns a sustainable 6.86% on equity against a cost of equity of 29.28%, so its own justified price-to-book comes out at 0.00x: the assets are worth less in this company's hands than they cost, and a floor built on the assumption that they are not is not a floor. The book figure is published because it is disclosed and a reader is entitled to it; the claim withdrawn is that it bounds the answer from below. The market pays 1.77x book, and that gap is the disagreement this study is publishing."
  },
  "bridge_record": {
   "market": "EG",

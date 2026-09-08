@@ -432,6 +432,29 @@ D['lens_record'] = {
         justified_price_to_book=float(L['book']['pb_justified']),
         book_value_floor=float(L['book']['book_per_share']),
     ),
+    # WHY BOTH ANSWERS SIT BELOW THE NUMBER THIS STUDY CALLS A FLOOR, in a FIELD and not
+    # in prose. The lens architecture names book value a disclosed floor, and on this
+    # company that label is the thing that is wrong: a book value floors a valuation only
+    # where the business earns at least what its capital costs, and this one does not.
+    # The book figure stays published because it is a DISCLOSED fact a reader is entitled
+    # to; what is withdrawn is the claim that it floors anything.
+    'below_floor_reason': (
+        "Both published branches (EGP {a:.4f} carried through, EGP {b:.4f} stopped) sit "
+        "below the disclosed book equity of EGP {bk:.4f} a share, and that is the finding "
+        "rather than a contradiction. A book value floors a valuation only where the "
+        "business earns at least what its capital costs. This one earns a sustainable "
+        "{roe:.2%} on equity against a cost of equity of {ke:.2%}, so its own justified "
+        "price-to-book comes out at {pbj:.2f}x: the assets are worth less in this "
+        "company's hands than they cost, and a floor built on the assumption that they "
+        "are not is not a floor. The book figure is published because it is disclosed and "
+        "a reader is entitled to it; the claim withdrawn is that it bounds the answer "
+        "from below. The market pays {pbm:.2f}x book, and that gap is the disagreement "
+        "this study is publishing."
+        .format(a=float(L['contested']['side_a']), b=float(L['contested']['side_b']),
+                bk=float(L['book']['book_per_share']),
+                roe=float(L['book']['roe_sustainable']), ke=float(L['book']['ke']),
+                pbj=float(L['book']['pb_justified']),
+                pbm=float(L['book']['pb_at_market']))),
 }
 
 _BR = _CASE['bridge'] if _CASE else {}

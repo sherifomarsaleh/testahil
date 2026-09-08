@@ -55,6 +55,9 @@ def build():
             "edition_date": "2026-09-02",
             "standard_version": RP.STANDARD_VERSION,
             "spot": spot, "spot_source": WC.SPOT_SOURCE,
+            # [R-GAP-01] the price carries its date, so a reader can age the
+            # comparison and a checker can hold it to the latest supplied figure.
+            "spot_date": WC.SPOT_DATE,
             "shares_mn": sh,
             "market_cap": spot * sh,
             "class": "real-estate developer, off-plan — point-in-time on handover",
@@ -297,6 +300,32 @@ def _macro_record():
         "note": ("The explicit window ends at the terminal growth rate by construction: the "
                  "recurring legs grow with prices and the development leg is a finite order "
                  "book, so nothing is capitalised at a rate the model never reached."),
+        # THE STRIKE IS NEWER THAN THE HOUSE PATH'S CURRENCY ANCHOR, AND THE GAP IS
+        # DECLARED RATHER THAN LEFT TO BE FOUND. Two standing rules point different ways
+        # here: one requires delivery against the LATEST known price, the other pins the
+        # currency to a house path whose spot anchor carries its own date. Obeying both
+        # runs two dates for one economy. The bound borrowed for it is the fourteen days
+        # the cost-of-capital procedure already applies to a sovereign quote, reused
+        # rather than minted, and a study past it may accept the staleness WITH A REASON
+        # — an empty reason switches the check off instead of declaring it.
+        "anchor_staleness_accepted": {
+            "accepted": True,
+            "anchor_date": path.as_of_fx if hasattr(path, "as_of_fx") else "2026-08-06",
+            "strike_date": WC.SPOT_DATE,
+            "bound_days": 14,
+            "reason": ("Re-struck onto the latest committed supplied price, EGP 96.60 for "
+                       "2 September 2026, which is 27 days after the Egyptian path's own "
+                       "currency spot anchor. Accepted deliberately and for the reason the "
+                       "re-strike was made: the alternative is to hold this study at a "
+                       "close ten days older so the two dates agree, which buys a tidier "
+                       "record by giving a reader a comparison they cannot use. Refreshing "
+                       "the house path is a house-level act rather than a step of this "
+                       "name's rebuild, and the four other Egyptian studies struck in the "
+                       "same window carry the same gap. The staleness is disclosed, not "
+                       "switched off, and it moves the currency path by the difference "
+                       "between two spot readings four weeks apart rather than by any "
+                       "judgement of this desk's."),
+        },
     }
 
 
