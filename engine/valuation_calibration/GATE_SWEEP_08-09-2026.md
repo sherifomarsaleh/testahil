@@ -21,12 +21,29 @@ run rather than defects in the book** — each is named below with the serial re
 settles it. The import checks passed on all nine named modules and `node --check` passed
 on `assets/data.js`.
 
-**The 159th, `check_new_study_gauntlet_negative_control`, was still running when this was
-written and is recorded as that rather than as a pass** [R-ENF-04] — it plants a weakened
-gate and re-runs the whole set inside a sandbox for every case, which is the most
-expensive check in the repository. Its subject, `check_new_study_gauntlet`, ran SERIALLY
-in an earlier batch on the same tree and was GREEN. **An unfinished run is not a green
-run, and this line says which it was.**
+**The 159th, `check_new_study_gauntlet_negative_control`, took three attempts and the
+first two were killed by the operator, not by the gate** — it plants a weakened gate and
+re-runs the whole set inside a sandbox for EVERY case, which is the most expensive check
+in the repository. Its subject, `check_new_study_gauntlet`, was GREEN both serially and
+in the parallel sweep.
+
+**AND IT FILLED THE DISK, WHICH IS THE THIRD OPERATOR ARTEFACT OF THE DAY AND THE ONLY
+ONE THAT COULD HAVE COST SOMETHING.** Each sandbox is a 1.4 GB copy of the repository;
+running the control several times over and killing the copies mid-flight orphaned eight
+of them, and `/tmp` reached zero bytes free. Writes then failed with ENOSPC while
+DELETES still succeeded, so clearing the orphans recovered 17 GB immediately.
+
+**THE REPOSITORY WAS UNTOUCHED AND THAT IS THE POINT WORTH RECORDING**, not a relief:
+zero tracked files modified or deleted, HEAD where it was, nothing unpushed. The gauntlet
+works entirely inside its own copies, so a disk filling and being cleared reached nothing
+committed — which is [R-ENF-01]'s own rule about a check that needs different inputs
+being GIVEN different inputs rather than handed the real ones with a plan to put them
+back. **A control that had sandboxed less politely would have taken the tree down with
+it.**
+
+**An unfinished run is not a green run**, and neither is one whose sandbox ran out of
+room — a check starved of disk reports on a partial copy, which is [R-ENF-04]'s absent
+answer wearing a clean one's clothes with a filesystem underneath it.
 
 ## A finding about the SWEEP rather than about the book
 
