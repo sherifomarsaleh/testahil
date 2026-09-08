@@ -1485,6 +1485,19 @@ jobs:
       - name: Every named error is planted and caught
         run: python3 scripts/check_error_injection.py
 
+      # THE CLAUSE ITSELF IS NOT RUN HERE AND THAT IS DELIBERATE. criterion3.py is an
+      # ADOPTION criterion measured on the mechanical series, so it goes red whenever a
+      # cell moves and a clause stops holding — which is the programme's own finding
+      # rather than a defect in a push, and wiring it here would be the permanently-red
+      # check [R-ENF-02] forbids. WHAT IS WIRED IS THE INSTRUMENT: the control proves
+      # clause G still behaves as [R-VCAL-02 CLAUSE THREE] says — that it fires on an
+      # unaudited expensive call, refuses an unreadable or absent audit, refuses an
+      # empty population, and STAYS SILENT on a cell far above its price, the bar being
+      # one-sided by instruction. That is a property of the check and never of the book,
+      # so it cannot be red for a reason outside anybody's control.
+      - name: The expensive-call bar behaves as the rule says — negative control
+        run: python3 scripts/check_clause_g_negative_control.py
+
       - name: Tree-unmodified gate — negative control
         run: python3 scripts/check_tree_unmodified_negative_control.py
 
