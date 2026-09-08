@@ -8653,7 +8653,7 @@ const PRICES = {
   ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ADNOCLS: { px: 6.8, date: "2026-09-07", src: "library" },
   AGTHIA: { px: 3.29, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  AIRARABIA: { px: 4.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AIRARABIA: { px: 4.97, date: "2026-09-08", src: "library" },
   ALDAR: { px: 7.6, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ALINMA: { px: 25.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ALPHADHABI: { px: 7.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },

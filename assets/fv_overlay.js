@@ -4100,6 +4100,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "AIRARABIA",
+   "name": "Air Arabia PJSC",
+   "code": "DFM:AIRARABIA",
+   "ccy": "AED",
+   "spot": 4.97,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.01,
+   "fv_base": 4.17,
+   "fv_full": 6.97,
+   "gap_base_pct": -16.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.091364,
+    "mu_h": 0.004016,
+    "G": {
+     "bear": -9.91,
+     "base": -1.92,
+     "full": 3.7
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0256,
+     "full": 0.0029
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.04,
+     "full": 0.0048
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.8783,
+     "full": 56.8784
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00112
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.154887,
+    "mu_h": 0.012,
+    "G": {
+     "bear": -5.84,
+     "base": -1.13,
+     "full": 2.18
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0004,
+     "base": 0.0859,
+     "full": 0.0208
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.1534,
+     "full": 0.0345
+    },
+    "required_cagr": {
+     "bear": -0.9732,
+     "base": -0.5044,
+     "full": 2.8682
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00506
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ARCC",
    "name": "Arabian Cement",
    "code": "EGX:ARCC",
@@ -4926,98 +5018,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00312
    },
    "market": "EG"
-  },
-  {
-   "ticker": "AIRARABIA",
-   "name": "Air Arabia PJSC",
-   "code": "DFM:AIRARABIA",
-   "ccy": "AED",
-   "spot": 5.24,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 2.01,
-   "fv_base": 4.17,
-   "fv_full": 6.97,
-   "gap_base_pct": -20.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.09733,
-    "mu_h": 0.007605,
-    "G": {
-     "bear": -9.84,
-     "base": -2.35,
-     "full": 2.93
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0132,
-     "full": 0.0075
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0201,
-     "full": 0.0116
-    },
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9355,
-     "full": 29.6774
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00076
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.169494,
-    "mu_h": 0.022642,
-    "G": {
-     "bear": -5.65,
-     "base": -1.35,
-     "full": 1.68
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.055,
-     "full": 0.0492
-    },
-    "p_touch": {
-     "bear": 0.0009,
-     "base": 0.1013,
-     "full": 0.0835
-    },
-    "required_cagr": {
-     "bear": -0.9783,
-     "base": -0.5989,
-     "full": 2.1304
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00133
-   },
-   "market": "AE"
   },
   {
    "ticker": "TSLA",

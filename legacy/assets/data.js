@@ -319,30 +319,30 @@ const TICKERS = {
     name: "Air Arabia PJSC",
     nameAr: "العربية للطيران",
     code: "DFM:AIRARABIA",
-    spot: 5.24,
-    spotDate: "close 07 Aug 2026",
+    spot: 4.97,
+    spotDate: "close 08 Sep 2026",
     fairAsof: "2026-08-07",   // the close the FAIR VALUE is struck on — not the publication date in the filename
     ccy: "AED",
     fair: { bear: 2.01, base: 4.17, full: 6.97 },   // Fair value clusters at AED 4.17 a share on the base framing and AED 4.42 with the joint-venture network capitalised, against a close of AED 5.24. The forecast is built BOTTOM-UP on the aircraft: volume is fleet-led on the CONSOLIDATED fleet (56 aircraft at Sharjah and Ras Al Khaimah growing to roughly 72 by FY2030, about 7 owned and 9 leased additions out of the 120-aircraft order) at a held ~85-86% load factor, revenue is passengers times a per-passenger fare and ancillary rate, and every cost class carries ITS OWN escalator - fuel as cost per passenger = intensity 1.937 times an effective jet price path, never a blended cost index. Margins are OUTPUTS: EBITDA eases from 24.3% actual to 21.1% in the fuel-spike year and recovers to 24.3%. TWO JUDGEMENTS ARE COMPUTED BOTH WAYS AND NEVER AVERAGED. The fuel path: the official energy-agency curve gives AED 4.35, the airline association's high-fuel assumption held gives AED 2.30 - a 2.05 per-share swing that dominates everything else. And the joint-venture network (Abu Dhabi, Egypt at a raised 49%, Fly Jinnah, Maroc and the new Saudi Dammam carrier): the audited carrying value contributes AED 0.08 a share, capitalising the AED 190mn profit share at 15x contributes AED 0.61. Leased aircraft are NOT free capacity - their gross right-of-use value is charged inside free cash flow, which is why terminal value carries 95% of enterprise value and the study says so rather than burying it. Cost of capital 8.01% gliding to 7.50%, with the sovereign spread netted OUT of the risk-free rate so country risk is charged once. The beta is the honest weak point and is published twice: 0.812 measured against the Abu Dhabi general index, the series this share is measured against because no Dubai general-index series is held for the purpose, and 1.086 against a Dubai index - the stronger fit on this share (R2 0.40 against 0.14), worth AED 3.51 on the cash-flow lens, published beside the adopted figure rather than hidden in a sensitivity table. Four lenses land between AED 3.43 and 5.17; the weighted central is AED 4.17, 20% below the market. The gap is not a mispricing claim so much as a list of things a buyer at 5.24 must believe: cheaper fuel from 2027, and five equity-accounted airlines worth far more than the balance sheet carries them at.
     dist: {
-      t20: { label:"1 month",   p5:4.55, p25:5.00, p50:5.28, p75:5.57, p95:6.14, resolve:"2026-09-07" },
-      t60: { label:"3 months",  p5:4.13, p25:4.89, p50:5.36, p75:5.87, p95:6.96, resolve:"2026-11-09" }
+      t20: { label:"1 month",   p5:4.34, p25:4.75, p50:4.99, p75:5.25, p95:5.75, resolve:"2026-10-08" },
+      t60: { label:"3 months",  p5:3.96, p25:4.61, p50:5.03, p75:5.48, p95:6.38, resolve:"2026-12-08" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-09-08" },
     touch: [ /* level, P(touch) 1-month %, 3-month % - descending */
-      [6.29, 5, 22], [6.03, 11, 33], [5.76, 23, 50], [5.50, 49, 71], [4.98, 41, 60], [4.72, 16, 36]
+      [6.29, 2, 10], [6.03, 3, 16], [5.76, 8, 26], [5.50, 18, 42], [4.98, 87, 93], [4.72, 40, 60]
     ],
-    levels: { res:[5.40, 5.62, 6.03], sup:[3.80, 3.68, 3.60] },
+    levels: { res:[5.05, 5.24, 5.62], sup:[4.84, 3.80, 3.60] },
     tech: {
-      trend: "Trading above the whole moving-average stack, on a rising 200-day",
-      summary: "The price closed 5.24 above a falling 20-day (5.09), a rising 50-day (5.20) and a rising 200-day (4.82). Momentum is neutral: RSI(14) is ~54 and the daily ATR near 0.15 (~2.9%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.02 / \u22120.06 / +0.04). Over the last year it has ranged 3.63\u20136.03; the last close sits 13% below that high and 44% above that low.",
-      bull: "A daily close back above 5.40 would clear the nearest resistance; the next charted level above it is 6.03.",
-      bear: "A close below 3.80 would break the nearest support; the next charted level below it is 3.60."
+      trend: "Mixed against the moving-average stack, above a rising 200-day",
+      summary: "The price closed 4.97 above a falling 20-day (4.96) and a rising 200-day (4.92), but below a falling 50-day (5.11). Momentum is neutral: RSI(14) is ~49 and the daily ATR near 0.11 (~2.3%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.05 / \u22120.06 / +0.01). Over the last year it has ranged 3.68\u20136.03; the last close sits 18% below that high and 35% above that low.",
+      bull: "A daily close back above 5.05 would clear the nearest resistance; the next charted level above it is 5.62.",
+      bear: "A close below 4.84 would break the nearest support; the next charted level below it is 3.60."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-07" }
+      mc:   { data:"2026-09-08", computed:"2026-09-08" },
+      tech: { data:"2026-09-08", computed:"2026-09-08" }
     },
     files: {
       study: "files/AIRARABIA_Valuation_Study_09-08-2026.pdf?v=0817a",
@@ -3231,7 +3231,7 @@ const BANDS = {
   ADNOCGAS: {mkt:"AE", n:9, hits:9, c50:0.4444, c80:1.0000, c90:1.0000, width:1.072, strength:"market-only", flag:null},
   ADNOCLS: {mkt:"AE", n:8, hits:7, c50:0.3750, c80:0.6250, c90:0.8750, width:1.182, strength:"market-only", flag:null},
   AGTHIA: {mkt:"AE", n:58, hits:56, c50:0.7586, c80:0.9138, c90:0.9655, width:1.555, strength:"long", flag:null},
-  AIRARABIA: {mkt:"AE", n:58, hits:50, c50:0.5690, c80:0.7931, c90:0.8621, width:1.142, strength:"long", flag:null},
+  AIRARABIA: {mkt:"AE", n:58, hits:50, c50:0.5690, c80:0.7931, c90:0.8621, width:1.141, strength:"long", flag:null},
   ALDAR: {mkt:"AE", n:58, hits:52, c50:0.5172, c80:0.7586, c90:0.8966, width:1.099, strength:"long", flag:null},
   ALINMA: {mkt:"SA", n:58, hits:50, c50:0.3793, c80:0.6724, c90:0.8621, width:1.063, strength:"long", flag:null},
   ALPHADHABI: {mkt:"AE", n:16, hits:16, c50:0.6875, c80:0.8750, c90:1.0000, width:1.012, strength:"market-only", flag:null},
@@ -5693,9 +5693,8 @@ const LEDGER = [
     note:"First coverage, 17-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile (the percentiles are from the full 50,000; the touch ladder is read off the stored first-20,000-path subset, which reproduces the stored plus/minus-10 per cent touch figures to the percentage point). q_annual = 0.0573 — SOURCED, not defaulted: the FY2025 dividend of 30 fils approved at the AGM of 12-Mar-2026 against the 7-Aug close. AE live fit nu=8.0, width_cal=0.979, no width overlay (exactly 1.0). rf_live 3.65% — the CBUAE base rate on the Fed schedule under the dirham peg. Horizon resolved by horizons.resolve() on the UAE's own realized calendar, not a session count — the 1-month calendar target 2026-09-07 is a trading Monday and grades as stored. Name-level calibration: PARITY, and ROBUSTLY so — scale-normalized CRPS skill +0.0028 against the carry-anchored random walk over 18 non-overlapping quarterly windows (2022-01-26 → 2026-04-28), with the bootstrap CI90 straddling zero at every block size: [-0.0217,+0.0136] at 2, [-0.0224,+0.0143] at 3, [-0.0260,+0.0153] at 4. No block-dependent sign flip, so no boundary flag. The raw (un-normalized) skill is -0.0043 and is reported alongside rather than only the flattering scale-normalized figure. Shape: coverage 56/83/89 per cent against the 50/80/90 bands, PIT mean 0.620, 90% band width ratio 1.13. 40 of 58 candidate windows were dropped by break filtering on the calibration sample. The MARKET-level gate is what carries the cone: the 19-name UAE panel scores +0.0068 over 279 windows, PARITY with the CI90 [-0.000,+0.014] straddling zero. The name ties the benchmark on its own tape and does not beat it; no single-name edge is claimed. One disclosure specific to this name: its cost-of-equity beta is measured against the FTSE Abu Dhabi general index (0.812) because no Dubai general-index series is registered for the purpose, even though the shares are Dubai-listed — an interim substitution; the Dubai-index regression (1.086, three times the explanatory power) is published in the study as a priced cross-check. That affects the FUNDAMENTAL value, not this cone. The price map is published as a map of dispersion around today's price, never as a forecast of value.",
     p5:4.47, p25:4.93, p50:5.23, p75:5.56, p95:6.14,
     touch:{ "+5":49, "+10":24, "+15":11, "+20":5, "-5":49, "-10":21 },
-    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null,
-    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null },
+    realized_close:4.98, realized_high:5.25, realized_low:4.73, in_90:true, in_50:true, realized_quantile:0.292, median_err:-0.0478,
+    touch_hit:{ "+5":false, "+10":false, "+15":false, "+20":false, "-5":true, "-10":false },
     reanchor_from:null },
   { instrument:"AIRARABIA", asset_class:"equity", anchor_date:"2026-08-07", run_date:"2026-08-17", anchor_price:5.24, ccy:"AED",
     horizon_label:"3 months", grade_date:"2026-11-09", grade_basis:"projected", horizon_days:63, cycle_no:1,
@@ -8197,6 +8196,34 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  // ---- 08-Sep-2026 single-name roll-forward: AIRARABIA, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"AIRARABIA", asset_class:"equity",
+    anchor_date:"2026-09-08", run_date:"2026-09-08", anchor_price:4.97, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-10-08", grade_basis:"projected", horizon_days:21,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.3299,
+    signal_z:0.5865, signal_alpha:0.005821,
+    note:"Cycle 2 roll-forward, 08-Sep-2026 — struck on the 08-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.06036 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.586 (outside the 0.25 dead zone); tilt +0.58% at 1M and +1.72% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:4.34, p25:4.75, p50:4.99, p75:5.25, p95:5.75,
+    touch:{ "+5":45, "+10":20, "+15":9, "+20":4, "-5":40, "-10":15 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"AIRARABIA", asset_class:"equity",
+    anchor_date:"2026-09-08", run_date:"2026-09-08", anchor_price:4.97, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-12-08", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.328,
+    signal_z:0.5865, signal_alpha:0.017037,
+    note:"Cycle 2 roll-forward, 08-Sep-2026 — struck on the 08-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.06036 (FLAGGED — house convention; the drift is a GROSS-OF-DIVIDEND price carry and overstates the centre by roughly the yield.) AE live fit nu=4.5, width_cal=0.965. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call UP, from this name’s own mom_combo z of +0.586 (outside the 0.25 dead zone); tilt +0.58% at 1M and +1.72% at 3M, applied through the engine’s per-market signal socket at the horizon’s own measured ic and capped at ic x sigma x z. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:3.96, p25:4.61, p50:5.03, p75:5.48, p95:6.38,
+    touch:{ "+5":67, "+10":44, "+15":28, "+20":18, "-5":60, "-10":35 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -8626,7 +8653,7 @@ const PRICES = {
   ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ADNOCLS: { px: 6.8, date: "2026-09-07", src: "library" },
   AGTHIA: { px: 3.29, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  AIRARABIA: { px: 4.97, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  AIRARABIA: { px: 4.97, date: "2026-09-08", src: "library" },
   ALDAR: { px: 7.6, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ALINMA: { px: 25.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   ALPHADHABI: { px: 7.3, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
