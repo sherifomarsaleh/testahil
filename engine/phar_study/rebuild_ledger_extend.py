@@ -55,6 +55,7 @@ AUDIT = ("the levers serving [R-MACRO-01] are complete — the house inflation l
 
 WF_LEVER = "the fundamental walk-forward ran and adopted no correction"
 TERM_LEVER = "the terminal fed on the last explicit year's money, not a year already grown"
+BETA_LEVER = "the beta re-derived against the published index of its own exchange"
 
 
 def build():
@@ -64,8 +65,17 @@ def build():
     # drift a committed record is checked against — running it twice added the same
     # lever twice, with a zero move, and the ledger still WALKED, so nothing would
     # have caught it. The append is now keyed on the lever's own name.
+    # THE TERMINAL LEVER'S OWN LANDING IS A HISTORICAL FACT AND IS READ BACK, NOT
+    # RECOMPUTED. It was applied on 7 September and it landed on EGP 32.9975 with the
+    # beta this study then carried. A later lever changed that beta, so recomputing
+    # this lever from today's model would silently re-date it and the sequence would
+    # describe an order that never happened. [R-REBUILD-01] records levers IN THE
+    # ORDER APPLIED, so the earlier lever keeps the answer it actually reached and the
+    # beta lever walks on from there.
+    _prior_term = [lv for lv in old["levers"] if lv["name"] == TERM_LEVER]
+    TERM_LANDED = _prior_term[0]["after"] if _prior_term else None
     old["levers"] = [lv for lv in old["levers"]
-                     if lv["name"] not in (WF_LEVER, TERM_LEVER)]
+                     if lv["name"] not in (WF_LEVER, TERM_LEVER, BETA_LEVER)]
     led = RL.Ledger(ticker=old["ticker"], started_at=old["started_at"],
                     start_value=old["start_value"], start_spot=old["start_spot"],
                     audit_after=AUDIT)
@@ -81,7 +91,14 @@ def build():
     # must walk from is a COMPUTED figure and not a remembered one; it reproduces the answer
     # the previous edition published, which is how this pass knows the correction is
     # isolated to the basis and moved nothing else.
-    before_term = A["per_share_superseded_grown_basis"]
+    # AND THE SAME APPLIES TO WHERE THIS PASS STARTED FROM. per_share_superseded_grown_basis
+    # is Frame A under the SUPERSEDED terminal construction as today's model computes it —
+    # which is a different number once a later lever has moved the discount rate. Comparing
+    # a recomputed quantity against a historical chain is exactly the vintage mismatch this
+    # ledger exists to make visible, so where the terminal lever has already been recorded
+    # its OWN opening value is what the earlier levers must reach.
+    before_term = (_prior_term[0]["before"] if _prior_term
+                   else A["per_share_superseded_grown_basis"])
     assert abs(before_term - led.value) < 1e-6, (
         "the ledger's last lever must reach the answer this pass started from: %r vs %r"
         % (led.value, before_term))
@@ -112,7 +129,7 @@ def build():
     led.apply(
         TERM_LEVER,
         "R-TERM-01",
-        central,
+        TERM_LANDED if TERM_LANDED is not None else central,
         why=("engine/terminal_value.py states the basis in its own contract and says what "
              "breaking it costs: 'Pass a NOPAT already grown by (1+g) and the terminal is "
              "overstated by exactly (1+g) — a year-seven flow discounted at the year-five "
@@ -138,6 +155,36 @@ def build():
                      Bf["per_share_superseded_grown_basis"], Bf["per_share"],
                      100 * (Bf["per_share"] / Bf["per_share_superseded_grown_basis"] - 1),
                      A["net_debt"], A["equity"])))
+    # EIGHTH LEVER — SIGCM clause 6. Two defects in one input line, and the second is
+    # why the first survived.
+    if abs(led.value - central) > 1e-9:
+        led.apply(
+            BETA_LEVER,
+            "SIGCM-6",
+            central,
+            why=("the beta was regressed against an EQUAL-WEIGHT COMPOSITE of 36 covered "
+                 "Egyptian names, and the study said so in its own source field. A "
+                 "constituent composite is not a weaker tier: it changes whenever a stock "
+                 "is posted and it shares constituents with the panel it prices, so it is "
+                 "a coverage artefact rather than a market, which is why SIGCM clause 6 "
+                 "calls it a hard fail. AND THE NUMBER WAS TYPED — the input carried a "
+                 "literal 0.629, so re-running the regression to any answer at all would "
+                 "have left the model discounting at the old one. Running it first and "
+                 "watching the valuation not move is how that was found. The correction "
+                 "moves both frames FURTHER BELOW a price they already sit far below."),
+            evidence=("beta_regression.own_stock_beta('PHAR','EG','EGX') against "
+                      "raw_indices/EG/EGX30.csv as at 2026-09-08: beta 0.6658, R-squared "
+                      "0.143, n 256, standard error 0.1355, 90%% interval [0.443, 0.889], "
+                      "Dimson-corrected and matched to the exchange's own trading week. "
+                      "THE WITHDRAWN COMPOSITE FIT BETTER — 0.6295 at an R-squared of "
+                      "0.235 — and that is recorded rather than left out: a basket sharing "
+                      "constituents with the panel it prices will track a member of that "
+                      "panel more closely than a blue-chip index does, and a better fit "
+                      "against the wrong regressor is not evidence for the wrong "
+                      "regressor. Frame A %.4f -> %.4f, Frame B %.4f -> %.4f."
+                      % (TERM_LANDED if TERM_LANDED is not None else central, central,
+                         49.678879191581700, NUM["central_two_sided"]["branches"][1]["value"])))
+
     assert abs(led.value - central) < 1e-9, (
         "the ledger's last lever must reach the answer the study publishes: %r vs %r"
         % (led.value, central))

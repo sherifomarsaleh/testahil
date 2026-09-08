@@ -42,6 +42,18 @@ def I(value, source, date, layer):
     return dict(value=value, source=source, date=date, layer=layer)
 
 
+# THE BETA IS READ, NOT TYPED. This input carried a literal 0.629 with a source
+# describing a regression against a 36-name equal-weight composite of the covered EGX
+# library. Two defects in one line: the regressor was a coverage artefact, which SIGCM
+# clause 6 calls a hard fail rather than a fallback, and the number was TYPED, so
+# re-running the regression to any answer at all would have left the model discounting
+# at the old one.
+_BETA = json.load(open(os.path.join(HERE, 'beta_result.json'), encoding='utf-8'))
+assert _BETA.get('conforming'), 'beta_result.json is not a conforming regression'
+assert str(_BETA.get('index_file', '')).startswith('raw_indices/'), \
+    'the regressor is not a registered published index'
+
+
 AUD25 = ("Audited consolidated financial statements for the year ended 31 December 2025, "
          "published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations "
          "-> Annual Reports)")
@@ -794,13 +806,22 @@ INP = dict(
     crp_cds=I(0.053164, "Egypt COUNTRY risk premium on the sovereign-CDS basis, 5.3164%, "
               "mid-year vintage, disclosure only — see the note above", "2026-07-02",
               "Country"),
-    beta=I(0.629, "Own-stock first-tier regression: weekly logarithmic returns of the company's "
-           "own shares against an equal-weighted composite of 36 Egyptian listed names built "
-           "from the full covered price library, five-year window. R-squared 0.235, n = 257, "
-           "standard error 0.071, 90% confidence interval [0.51, 0.75]. Clears every usability "
-           "test on every limb and is not weak-instrument flagged. A beta well below one is what "
-           "a defensive, price-regulated, domestically-consumed staple should produce",
-           "2026-08-09", "House"),
+    beta=I(float(_BETA['beta']),
+           "Own-stock first-tier weekly regression against %s as at %s — THE PUBLISHED INDEX OF "
+           "THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() "
+           "rather than hand-rolled. R-squared %.3f, n = %d, standard error %.4f, 90%% "
+           "confidence interval [%.3f, %.3f], Dimson-corrected and matched to the exchange's "
+           "own trading week (%s). Clears the usability gate. WITHDRAWN AND KEPT FOR "
+           "COMPARISON: the previous edition regressed against a 36-name equal-weight composite "
+           "of the covered library and got %.4f at an R-squared of %.3f. THE COMPOSITE FIT "
+           "BETTER, which is what a coverage artefact does — it shares constituents with the "
+           "panel it prices — and a better fit against the wrong regressor is not evidence for "
+           "the wrong regressor. A beta below one is still what a defensive, price-regulated, "
+           "domestically-consumed staple should produce."
+           % (_BETA['index_file'], _BETA['index_asof'], _BETA['r2'], _BETA['n'], _BETA['se'],
+              _BETA['ci90'][0], _BETA['ci90'][1], _BETA['week_rule'],
+              _BETA['withdrawn_composite']['beta'], _BETA['withdrawn_composite']['r2']),
+           str(_BETA['index_asof']), "House"),
     kd_egp=I(0.2481, "Marginal cost of local-currency debt: the ten-year sovereign yield of "
              "22.31% plus a 250 basis-point corporate credit spread. A same-currency corporate "
              "cannot borrow below its own sovereign, so this is floored at the sovereign yield "
