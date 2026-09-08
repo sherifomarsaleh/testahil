@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-06b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-08a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3530,3 +3530,99 @@ describes this failure exactly and was not read as binding here, because the lev
 arrived by a different door — already-adopted rules rather than candidates for adoption.
 Where a guard names a FAILURE MODE rather than a procedure, ask which other procedures
 can produce it.
+
+
+---
+
+## [R-STYLE-01] ANSWERS ARE SHORT AND THE WORDS ARE PLAIN
+
+*Adopted 08-Sep-2026, per instruction — "You keep answering me in lengthly complicated
+answers when i ask you something. That is not helpful at all"; and, the same hour, "I
+also want simple language".*
+
+**The rule was already written and it bound nothing.** "3-4 sentences max, no preamble,
+lead with the answer" sat at the END of `CLAUDE.md` and at the END of the digest, in
+those words, for weeks. The answers went on being long. Nobody disagreed with the rule;
+it simply was not present at the moment it bound — which is [R-ENF-01]'s failure applied
+to the operator instead of to a study, and it is the third time this project has met it.
+
+### Why it failed, which is structural and not a matter of anyone trying harder
+
+**(1) The digest was auto-loaded into every session.** `CLAUDE.md` carried
+`@engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md` as an include, so roughly 55,000
+characters of shouted clauses, nested qualifications and rule identifiers were read
+before every answer — before "what time is it" as much as before a study build. **A
+model writes in the register it has just read.** The document instructing brevity was
+itself the longest and most ornate thing in the room, so the instruction and the example
+pointed opposite ways, and the example won. This is not a criticism of the digest: it is
+long because the rules are many and each one carries the failure it was adopted from,
+and that is right for a document read deliberately before a study. It is wrong as the
+last thing read before an ordinary question.
+
+**(2) The rule was last.** A style rule at the bottom of a long file is read after the
+register is already set. Placement is not decoration; it is when the rule arrives
+relative to the thing it governs.
+
+### The fix is placement and load, not wording
+
+The cap is now the FIRST section of `CLAUDE.md`. The digest is referenced BY PATH and is
+no longer included: it is read in full, deliberately, before starting or re-issuing a
+study, a walk-forward run, a critique response, a roll-forward, a publish, or a rule
+amendment — and it is not read for a quick factual question. The literal path stays in
+`CLAUDE.md`, so [R-DOC-01]'s obligation to move that one non-globbable reference in the
+same commit as any rename is unaffected. Every gate resolves the digest by pattern, so
+nothing else moves with the name.
+
+### The cap
+
+**Four sentences.** No preamble, no summary of what was done, lead with the answer.
+Expand only on "expand", "in full" or "why". An answer that seems to need more needs
+FEWER WORDS, not more sentences — cut the reasoning, keep the conclusion.
+
+**The cap is on prose and not on work,** and the exceptions are named so that it cannot
+be used to withhold something. A table the user asked for (a QC gate, a gap review, a
+findings list), the verbatim digest text after an amendment, a delivered study document,
+and tool or gate output quoted as evidence are ARTEFACTS, not answers: emit the artefact,
+then say at most four sentences about it.
+
+**The failure mode is named in advance, because it is the one that will actually
+happen.** Either the operator decides something "counts as an artefact" to escape the
+cap, or — worse — gives a one-line answer that leaves out a finding the user needed. A
+SHORT ANSWER THAT OMITS A MATERIAL FINDING IS A BREACH OF THIS RULE, NOT COMPLIANCE WITH
+IT. The conclusion goes inside the four sentences and the workings are OFFERED; nothing
+is silently dropped to make a word count.
+
+### Plain language, which carries the same force and is the half that was missing
+
+Write the way you would say it out loud to a colleague. Short words. Short sentences.
+One idea per sentence. "We found", not "it was established that". "The number is wrong",
+not "the figure appears inconsistent with the underlying record". "Fair value is 30%
+under the market price", not "the central sits materially below the latest known spot".
+
+Banned in chat: em-dash pile-ups and nested clauses; SHOUTED phrases; this house's own
+register ("THE GENERAL LESSON, WHICH IS NOT ABOUT X", "stated rather than discovered
+later", "the shape of the thing"); and a rule identifier used as shorthand for an idea —
+say what the rule requires, in words, and put the `[R-XXX-NN]` tag after it only if it is
+needed at all. Keep a technical term only where it is the actual name of a thing here:
+fair value, beta, the cone, the ledger.
+
+**The delivered documents are not affected, and that limit is deliberate.** Study
+documents, protocol amendments and the digest keep their own voice and their own
+precision. A delivered document is read once, with care, by someone who needs the
+qualifications; a chat answer is read in a hurry by someone who wants the number. The
+eight depth-bar standards already govern the documents. This rule is about how the chat
+reads.
+
+### Enforcement is prose, and that is said plainly rather than dressed up
+
+Per [R-ENF-01], a rule that can be checked from outside must be. This one cannot: no
+script can read an answer that was never written to disk, and a gate that could would be
+grading a judgement rather than a fact. The honest backstop is PLACEMENT — the cap is
+the first thing read, before the register is set — and the user saying so when it slips.
+Recorded here so the next session inherits the reasoning and not only the instruction.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT STYLE: A DOCUMENT TEACHES BY ITS OWN SHAPE AS
+WELL AS BY ITS CONTENT, AND THE SHAPE WINS.** Everything loaded into a session is an
+example of how to write, whatever it happens to say about how to write. Where an
+instruction and the material carrying it disagree, the fix is to change what gets loaded
+— not to restate the instruction more firmly, which is what had been tried twice.
