@@ -74,6 +74,9 @@ STAKE_PRIOR = sotp['mnt_halan_stake_prior']
 import json as _json                                                 # noqa: E402
 import re as _re                                                     # noqa: E402
 _CJ = _json.load(open(_os.path.join(_HERE, 'contested_judgements.json'), encoding='utf-8'))
+CJ = _CJ                                   # the appendices read the same record
+LIVES = _json.load(open(_os.path.join(_HERE, 'useful_lives.json'), encoding='utf-8'))
+outward = _outward                         # one stripper, shared, never copied
 _STAKE_FORK = [j for j in _CJ['judgements']
                if j['name'] == 'the ownership percentage applied to the round'][0]
 _MODEL_SRC = open(_os.path.join(_HERE, 'compute.py'), encoding='utf-8').read()
@@ -261,7 +264,7 @@ rows = [
  ['SIMULATION — where price could go in 3 months (paths from the anchor)', '', '', ''],
  ['1 month', '50,000 paths · sixteen factors', f"p5 {q20['5']:.1f} · p50 {q20['50']:.1f} · p95 {q20['95']:.1f}", 'Median above the anchor'],
  ['3 months', 'same engine, longer horizon', f"p5 {q60['5']:.1f} · p50 {q60['50']:.1f} · p95 {q60['95']:.1f}", 'Wide, right-skewed'],
- ['EXPERT PANEL — three independent methods (Appendix D)', '', '', ''],
+ ['EXPERT PANEL — three independent methods (Appendix C)', '', '', ''],
  ['Expert 1 — split-legs net asset value', 'Marks each leg; argues the wrapper discount', f"EGP {E['e1']['base']:.2f}", 'Most bullish'],
  ['Expert 2 — residual income on the whole group', 'What the group’s own reported return justifies against book', f"EGP {E['e2']['base']:.2f}", 'Most conservative'],
  ['Expert 3 — cash returns (return on capital vs its cost)', 'Economic profit on capital employed', f"EGP {E['e3']['base']:.2f}", 'In between'],
@@ -277,8 +280,9 @@ rich([('Bottom line. ', dict(bold=True)),
        "separates them is the same one line. Strip the associate out and this is an operating group priced at about what "
        "it earns; put it back at either of the company's own two bases and the shares look cheap. The three-month "
        "distribution is indifferent either way: it prices the stock's own measured path, and its median sits above the "
-       "anchor only because that measured drift survived the calibration test in Appendix B, by a margin that appendix "
-       "states rather than flatters.", {})], size=9.8, space_after=8)
+       "anchor because that drift is what this stock's own history measures rather than what anybody hopes for. How "
+       "often the bands built around it have actually held is published at the end of \u00a73, with the count beside "
+       "the percentage.", {})], size=9.8, space_after=8)
 
 # ---------------- Company overview -------------------------------------------
 H2('Company overview — GB Corp at a glance')
@@ -474,8 +478,8 @@ P('A third note, and it is a refusal rather than a caveat. The house standard is
   'asset class rather than a scalar, and the identity route — recovering an implied life from the property, plant and '
   'equipment note — returns a span that depends on an undisclosed land split and produces per-class rates that '
   'contradict the disclosed bands. A life this desk chose would not be a disclosed life, so none was chosen; the terminal '
-  'is carried on the construction described above and the refusal is recorded rather than papered over. Appendix B states '
-  'what that leaves open.', size=9.6)
+  'is carried on the construction described above and the refusal is recorded rather than papered over. Appendix B\u2019s '
+  'research register carries that search among this study\u2019s negative results.', size=9.6)
 
 H2('1.3  Relative multiples — a cross-check, on the company’s own history')
 _r = LI['relative']

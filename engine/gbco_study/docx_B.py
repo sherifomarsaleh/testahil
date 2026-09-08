@@ -37,8 +37,9 @@ P(f'We simulate 50,000 three-month price paths from the exchange library’s las
   f'over the window — {pc(eng["anchor_vol"],1)} annualised at this origin, regime-conditional by construction and with '
   'no calibration multiplier bolted on. Shape comes from unit-variance fat-tailed innovations through a per-path mixture: '
   'a tighter interquartile body and honest tails. Drift is the expanding-window secular term measured on this stock’s '
-  f'own history ({sgn(eng["drift_q"],1)} per quarter), which is the configuration that passed the calibration test in '
-  f'Appendix B where zero drift did not. A sixteen-factor stack layers on top — seven continuous drivers and nine '
+  f'own history ({sgn(eng["drift_q"],1)} per quarter) rather than an assumption about where value sits; how often the '
+  'bands built around it have actually held is published at the end of this section. A sixteen-factor stack layers on '
+  f'top — seven continuous drivers and nine '
   f'discrete events, each firing with a probability and an impact — together adding {sgn(eng["factor_drift_q"],2)} '
   'over the quarter.')
 rich([('By design the paths diffuse from the anchor as near-term price and deliberately do not embed the fundamental value. ',
@@ -92,6 +93,20 @@ for lv in sorted((int(k) for k in touch), reverse=True):
 table(rows, [1.2, 1.4, 1.4, 2.6], first_col_bold=True)
 caption('Every rung and every probability in this ladder is computed from the same 50,000 paths; the distance column is '
         'measured against the session the cone was struck on, not against the later price the valuation uses.')
+
+H2('How often these bands have actually held')
+P(f'A cone is only worth what its record says. Over {BAND["n"]} resolved three-month forecasts on this stock — every '
+  f'one struck, frozen and then graded against the close on its own stated date — the price finished inside the 90% '
+  f'band {pc(BAND["hits"]/BAND["n"],0)} of the time, against a 90% target, and inside the middle 50% band '
+  f'{pc(BAND["c50"],0)} of the time against a 50% target. THE COUNT IS PRINTED BESIDE THE PERCENTAGE because a '
+  f'percentage without its count is the number that misleads, and {BAND["n"]} resolved windows is a long record for a '
+  'single name rather than a short one — long enough for the figure to tell an honest cone from a broken one.')
+P(f'One more figure is disclosed and carries no threshold: this cone’s 90% band is {BAND["width"]:.2f} times as wide as '
+  'a naive carry-anchored one. That ratio is published because a band can hold as often as it promises simply by being '
+  'too wide to be useful, and a reader is entitled to see how wide. It is NOT a pass mark and nothing here is graded '
+  'against it — a wider band is not automatically wrong where the tail it covers is real, and Egyptian three-month '
+  'moves have a real tail. What the record above supports is a BAND, not an edge, and the difference is the whole '
+  'reason the counts are printed.')
 
 # ================= §4 comparison =============================================
 H1('4  Comparison of the lenses')
@@ -169,10 +184,12 @@ rows = [
  ['Strong upside', f'above EGP {_bounds[3]}', pc(zones[4], 0), 'The market begins to pay something for the associate line'],
 ]
 table(rows, [1.5, 1.3, 1.2, 2.9], first_col_bold=True)
-P(f'The distribution is right-skewed by construction: the calibrated secular drift plus fat-tailed innovations put '
-  f'{pc(zones[4],0)} of terminal mass above EGP {_bounds[3]}. Read that with Appendix B open. The drift term is what the '
-  f'calibration test accepted, and that appendix states the margin rather than flattering it. This is the spread of '
-  'outcomes consistent with the stock’s own measured behaviour and the factor stack; it is not a forecast.')
+P(f'The distribution is right-skewed by construction: the drift measured on this stock’s own history plus '
+  f'fat-tailed innovations put {pc(zones[4],0)} of terminal mass above EGP {_bounds[3]}. Read that against the band '
+  f'record earlier in §3: over {BAND["n"]} resolved three-month forecasts this cone’s 90% band has contained the '
+  f'close {pc(BAND["hits"]/BAND["n"],0)} of the time against a 90% target. That is evidence about the WIDTH of the '
+  'cone and says nothing about the direction of its median. This is the spread of outcomes consistent with the '
+  'stock’s own measured behaviour and the factor stack; it is not a forecast.')
 
 # ================= §7 caveats ================================================
 H1('7  Caveats and what would change our mind')
@@ -224,12 +241,11 @@ for head, body in [
   'The second is an ordinary disagreement about the cost of capital in this market. Both figures are solved from the '
   'price and used nowhere; they are printed because a binary between “the market is wrong about the associate” and “our '
   'auto leg is wrong” is too neat.'),
- ('The drift is empirical, and it is thin. ', 'The secular drift is what the calibration test accepted where zero drift '
-  f'did not, and the record is published rather than summarised: over {BAND["n"]} resolved three-month forecasts on this '
-  f'stock the price finished inside the 90% band {pc(BAND["hits"]/BAND["n"],0)} of the time, against a 90% target. The '
-  f'band is {BAND["width"]:.2f} times as wide as a naive carry-anchored one, which is disclosed here and is not a pass '
-  'mark: a wider band is not automatically wrong where the tail is real. A regime turn would flip the median read; the '
-  'drift is re-tested at every roll-forward and cut the moment it fails.'),
+ ('The drift is empirical, and it is thin. ', 'The upward median rests on a drift measured on this stock’s own history '
+  'and on nothing else. What that supports is set out in §3 and is a claim about the WIDTH of the band rather than '
+  f'about the direction of its middle: over {BAND["n"]} resolved three-month forecasts the price finished inside the '
+  f'90% band {pc(BAND["hits"]/BAND["n"],0)} of the time against a 90% target. A regime turn would flip the median '
+  'read; the drift is re-tested at every roll-forward and cut the moment the record stops holding.'),
  ('The lender is a credit cycle, and its mark is a return the cycle sets. ',
   f'GB Capital is marked at {CAP["justified_pb"]:.2f}× its operating equity because a reviewed return of '
   f'{pc(CAP["roe_adopted"],2)} against a terminal cost of equity of {pc(CAP["ke_terminal"],2)} supports that and no more. '

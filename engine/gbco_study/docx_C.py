@@ -1,10 +1,22 @@
-"""Content part C: Appendices A–D, About, Disclosure, footer.
+"""Content part C: Appendices A–C, About, Disclosure, footer.
 
 REBUILT 07-09-2026. Appendix A's history now comes from the walk-forward panel — the
 company's own filed consolidated income statement, footed year by year — and its
 forecast from the committed group build, rather than from three columns typed into this
 file. Appendix A also now carries the far-year RANGES [R-FCAL-01] requires, which the
 superseded edition did not publish at all.
+
+THE CALIBRATION APPENDIX IS GONE [08-09-2026]. The model report's own skeleton says
+calibration evidence appears in section 3 as plain-language sentences with the statistics
+inline and that there is NO CALIBRATION APPENDIX; this study shipped four appendices where
+the model ships three, so every address after A pointed one letter past its subject and
+nine sections read as missing. Deleting it closes something worse than an address, and
+that is the reason it goes rather than being renamed: the appendix published TWO COVERAGE
+FIGURES FOR ONE BAND three sentences apart — its own replay RE-SCORED UNDER TODAY'S FIT
+beside the record of the forecasts AS THEY WERE ACTUALLY STRUCK — with nothing on the page
+saying they were different samples, so they read as one number and a typo of it. The
+re-scored replay is an internal diagnostic and reaches no reader; what survives into
+section 3 is the published band record alone. Peers move to B and the expert panel to C.
 """
 import json
 import os
@@ -16,10 +28,10 @@ from docx_A import (pc, sgn, n0, n1, paren, longdate, spot, SPOT_DATE, TA_CLOSE,
                     B_LO, B_HI, V_LO, V_HI, GAP_LO, GAP_HI, MARK_LO, MARK_HI,
                     EQ_LO, EQ_HI, REL, BOOK, CAP, PRICE_MARK, PRICE_ASSOC, PRICE_MNT_USD,
                     MNT_USD_AT_CARRYING, OPERATING_EQ, RATE_LO, RATE_HI,
-                    QUALIFICATION, SHARE_OF_PROFIT)
+                    QUALIFICATION, SHARE_OF_PROFIT, CJ)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-E = D['experts']; s0 = D['step0']; sotp = D['sotp']; dcf = D['dcf']
+E = D['experts']; sotp = D['sotp']; dcf = D['dcf']
 HIS = D['history']['income_statement']; PRV = D['history']['provenance']
 GF = D['group_forecast']['rows']; DRV = D['disclosed_drivers']
 COC = D['cost_of_capital_record']; MAC = D['macro']
@@ -198,60 +210,165 @@ caption('Table A4 — the bridge stands on the latest disclosed balance sheet, t
         'minority, because the lender’s borrowings are its raw material rather than its leverage.')
 
 # ================= Appendix B ================================================
-H1('Appendix B  Calibration — testing the price cone on this stock’s own history')
-_nl = s0['nonoverlap']; _mo = s0['monthly']; _zd = s0['zerodrift']
-P(f'Before any forecast we test the price cone on GB Corp’s own history. At {_nl["n"]} non-overlapping '
-  'three-month origins, using only the data available at each origin, the engine generates the three-month-ahead '
-  'distribution and the realised close is scored against it. What is published here is what a reader can use: how often '
-  'the bands actually held, with the count printed beside every percentage.')
-rows = [
- ['Configuration', 'Windows', '50% band held', '80% band held', '90% band held', 'Distribution centre'],
- ['Zero drift — non-overlapping', str(_zd['n']), pc(_zd['cov50'], 0), pc(_zd['cov80'], 0), pc(_zd['cov90'], 0), f"{_zd['pit_mean']:.2f}"],
- ['Secular drift — non-overlapping', str(_nl['n']), pc(_nl['cov50'], 0), pc(_nl['cov80'], 0), pc(_nl['cov90'], 0), f"{_nl['pit_mean']:.2f}"],
- ['Secular drift — monthly origins', str(_mo['n']), pc(_mo['cov50'], 0), pc(_mo['cov80'], 0), pc(_mo['cov90'], 0), f"{_mo['pit_mean']:.2f}"],
-]
-table(rows, [2.0, 0.8, 1.0, 1.0, 1.0, 1.2], first_col_bold=True, size=8.7)
-figure('figB1_calibration.png', 6.6, 'Figure B-1 — the calibration replay: the quarterly cone against what actually '
-       'happened, the distribution of where outcomes landed inside the cone, and coverage against target.')
-P(f'Read the middle row. On {_nl["n"]} windows the 90% band contained the close {pc(_nl["cov90"],0)} of the time against '
-  f'a 90% target, the 80% band {pc(_nl["cov80"],0)} against 80%, and the 50% band {pc(_nl["cov50"],0)} against 50% — '
-  'a cone that held about as often as it promised at the wide end and slightly more often than promised in the middle. '
-  f'The centre of the distribution sits at {_nl["pit_mean"]:.2f} against a neutral 0.50, which says outcomes landed a '
-  'little higher in the cone than the middle of it: this engine has been calling this stock’s advance slightly low '
-  'rather than slightly high.')
-P(f'The honest caveats. What this record supports is a BAND, not an edge, and the difference is the whole point of '
-  f'printing the counts. Over {BAND["n"]} resolved three-month forecasts the price finished inside the 90% band '
-  f'{pc(BAND["hits"]/BAND["n"],0)} of the time against a 90% target, and the middle band caught '
-  f'{pc(BAND["c50"],0)} of the time against a 50% target — the wide band held about as often as it promised and the '
-  f'middle one held rather more often than it promised, which is a band running wide rather than one running narrow. '
-  f'The band is {BAND["width"]:.2f} times as wide as a naive carry-anchored one; that ratio is disclosed and carries no '
-  'threshold, because a wider band is not automatically wrong where the tail it is covering is real. The case for the '
-  'drift term rests on the coverage and the centring, and the drift is re-tested at every roll-forward and cut the '
-  'moment the coverage record stops holding.')
+# The calibration appendix that used to stand here is deleted, not moved: the band record
+# belongs in section 3 as plain sentences with the statistics inline, and it is there.
+H1('Appendix B  Peer frame, risk register and the research register')
 
-# ================= Appendix C ================================================
-H1('Appendix C  Peer set, sector structure, and risks')
+H2('B.1  Peers and the sector frame')
 P('GB Corp has no clean single comparable — an auto assembler-distributor, a non-bank lender and a fintech '
   'associate in one wrapper, and that is why the class primary is a sum of the parts rather than a multiple. The peer '
   'set is therefore split by leg, and it is used for cross-checks only: no peer is a source for GB Corp’s own reported '
   'figures, and no peer multiple is applied to the group as a whole.')
 rows = [
- ['Leg', 'Closest peers', 'How they are typically valued'],
- ['Auto assembly and distribution', 'Gulf and regional auto distributors; listed consumer-durables names on this exchange', 'Enterprise value against operating profit; earnings multiples'],
- ['Non-bank consumer and corporate finance', 'Listed Egyptian finance companies with a comparable book', 'Price to book against the return on that book'],
- ['Fintech associate', 'Listed payments and financial-technology names on this exchange', 'Private marks; the last round is the only observable price'],
+ ['Leg', 'Closest peers', 'How they are typically valued', 'Caution'],
+ ['Auto assembly and distribution', 'Gulf and regional auto distributors; listed consumer-durables names on this exchange', 'Enterprise value against operating profit; earnings multiples', 'None of them assembles under the same localisation regime or carries a captive lender'],
+ ['Non-bank consumer and corporate finance', 'Listed Egyptian finance companies with a comparable book', 'Price to book against the return on that book', 'Funding mix and provisioning policy differ enough that the multiple travels badly'],
+ ['Fintech associate', 'Listed payments and financial-technology names on this exchange', 'Private marks; the last round is the only observable price', 'A listed comparator has a price and this holding has none — which is the whole subject of this study'],
 ]
-table(rows, [1.9, 3.1, 2.0], first_col_bold=True, size=8.9)
-P('Sector structure and principal risks. The Egyptian passenger-car market is in a policy-assisted recovery, with the '
-  'easing cycle restoring affordability, localisation incentives reshaping the assembled-versus-imported mix, and new '
-  'entrants resetting price points. Consumer and corporate finance is growing faster than banking credit off a low base, '
-  'with securitisation deepening as a funding market. The principal risks are a structurally higher working-capital '
-  'intensity; a renewed devaluation; regional conflict freezing the Iraq and Jordan lines; price competition from new '
-  'entrants; credit-cycle deterioration in the lending book; a private-market re-pricing of the associate stake; and '
-  'execution on the assembly ramp.')
+table(rows, [1.5, 2.1, 1.7, 1.8], first_col_bold=True, size=8.5)
+P('The absence of a single clean comparable is itself a finding rather than a gap in the research, and it is why the '
+  'relative multiple in §1.3 is taken from GB CORP’S OWN trailing rating at its own three year-end closes rather than '
+  'from a peer set at all. Sector structure: the Egyptian passenger-car market is in a policy-assisted recovery, with '
+  'the easing cycle restoring affordability, localisation incentives reshaping the assembled-versus-imported mix, and '
+  'new entrants resetting price points. Consumer and corporate finance is growing faster than banking credit off a low '
+  'base, with securitisation deepening as a funding market.', size=9.8)
 
-# ================= Appendix D ================================================
-H1('Appendix D  The expert valuation panel')
+H2('B.2  Risk register')
+P('Every risk below is either PRICED — the study can put a number on what it is worth and does — or NAMED AND NOT '
+  'PRICED, because the disclosure to price it does not exist. Nothing is left as an adjective. Where a risk is one of '
+  'the study’s own contested judgements, the figure is what moving that judgement to its other framing does to the '
+  'answer.', size=9.8)
+_J = {j['name']: j for j in CJ['judgements']}
+
+
+def _fork(name):
+    # A KEY THAT MOVES RAISES RATHER THAN DEFAULTING. The register is the study's own and
+    # a risk row silently losing its figure is worse than a build that stops.
+    if name not in _J:
+        raise KeyError('the judgements record no longer carries %r; it carries %r'
+                       % (name, sorted(_J)))
+    return _J[name]
+
+
+rows = [['Risk', 'Mechanism', 'What it is worth']]
+rows.append([
+ 'The basis on which the associate is marked',
+ 'GB Corp carries its MNT-Halan interest one way in its own reviewed balance sheet and announced a funding round that '
+ 'marks it another. Both are its own disclosures; the filings do not choose',
+ f'THE ANSWER ITSELF: EGP {(MARK_HI-MARK_LO)/SH:.2f} a share between the two published branches, '
+ f'{pc((MARK_HI-MARK_LO)/EQ_HI,1)} of the higher one'])
+rows.append([
+ 'The associate’s own accounts cannot be verified',
+ 'The reviewers of the 30 June 2026 statements were not provided with that company’s financial statements and could '
+ 'not verify the group’s share of its profits; the same qualification stood on the prior audited year',
+ 'NAMED AND NOT PRICED. A qualification says a figure could not be verified, not what it should have been — but it is '
+ 'why the lower branch is not a safe harbour'])
+_wc = _fork('working-capital intensity')
+rows.append([
+ 'Working-capital intensity does not release',
+ 'The auto leg’s free cash flow is a thin residual, so the glide in receivables, inventory and payables moves it '
+ 'directly',
+ f'PRICED: {pc(_wc["moves_the_carrying_branch_by"],1)} of the lower branch. Holding the first forecast year flat '
+ f'across the window gives EGP {_wc["value_alternative_carrying_branch"]:.2f} against EGP {V_LO:.2f}'])
+_erp = _fork('the equity risk premium basis')
+_bta = _fork('the equity beta')
+rows.append([
+ 'The cost of capital is higher than this study builds',
+ 'The premium basis and the beta are both estimates, and the whole ladder moves with either',
+ f'PRICED: {pc(_erp["moves_the_carrying_branch_by"],1)} on the premium basis and '
+ f'{pc(_bta["moves_the_carrying_branch_by"],1)} on the beta, each measured on the lower branch. §1.9 prices the '
+ f'whole grid'])
+_lend = _fork("the return anchoring GB Capital's justified price-to-book")
+rows.append([
+ 'The lender’s return is a credit cycle',
+ 'GB Capital is marked by the return it earns above the cost of that equity, and both move with the cycle',
+ f'PRICED: {pc(_lend["moves_the_carrying_branch_by"],1)} between the reviewed half and the full prior year — EGP '
+ f'{n0(CAP["value_fy25_framing"])} mn against EGP {n0(CAP["value"])} mn on that leg'])
+_gm = _fork('the Auto gross-margin path')
+rows.append([
+ 'The Auto margin does not hold where the reviewed half left it',
+ 'New entrants resetting price points, or the currency moving through imported assembly content',
+ f'PRICED: {pc(_gm["moves_the_carrying_branch_by"],1)} between the forecast path and the latest reviewed half held '
+ f'flat across the window'])
+rows.append([
+ 'Terminal-value dependency, on an asset life that could not be sourced',
+ f'{pc(dcf["tv_pct"],0)} of the auto leg’s enterprise value is terminal value, and the accounting-policy note '
+ 'discloses depreciation rate RANGES per class rather than a life',
+ 'NAMED AND NOT PRICED. A life this desk chose would not be a disclosed life, so none was chosen; B.3 records the '
+ 'search'])
+rows.append([
+ 'Regional exposure to Iraq and Jordan',
+ 'Conflict has already cut volumes in markets that are part of passenger-car revenue',
+ 'NAMED AND NOT PRICED. No sourced split of that revenue for the reviewed half exists in the documents this study '
+ 'holds'])
+rows.append([
+ 'The pound, on the round-price branch only',
+ 'The round is struck in dollars and translated; a step devaluation moves assembly costs, rates and the pound value of '
+ 'that mark at once',
+ 'NAMED AND NOT PRICED as a separate line. It moves the ROUND branch only — the carrying branch is a pound figure off '
+ 'a pound balance sheet and does not move with it at all'])
+table(rows, [1.75, 2.75, 2.6], first_col_bold=True, size=8.4)
+caption('Table B1 — the risk register. Every priced figure is the study’s own contested-judgement record read straight, '
+        'measured on the branch that gives the larger relative number so the register errs strict.')
+
+H2('B.3  The research register — layers, dated, negative results included')
+P('Research for this study proceeded in four layers: the global backdrop, the country, the industry and the company '
+  'itself. Figures GB CORP REPORTS ABOUT ITSELF come only from documents GB Corp published — its own audited and '
+  'reviewed statements, its own earnings releases and its own investor material — and never from a data vendor, a '
+  'broker or a press report. Where the company’s own document could not be obtained, the study says so below rather '
+  'than substituting a weaker source. The standalone source register that accompanies this study carries every input '
+  'with its value, its source, that source’s own date and the layer it belongs to.')
+_seen, _srcrows = set(), []
+for _y in HY:
+    _p = PRV[_y]
+    if _p['source'] not in _seen:
+        _seen.add(_p['source'])
+        _srcrows.append([_p['source'], 'Company', longdate(_p['source_date']),
+                         'the consolidated income statement as originally reported for FY%s' % _y])
+_bylayer = {}
+for _k, _v in D['inputs'].items():
+    _bylayer.setdefault(_v.get('layer', 'Unclassified'), []).append(_v)
+for _layer in sorted(_bylayer):
+    _items = _bylayer[_layer]
+    _dates = sorted({_i['date'] for _i in _items})
+    _srcrows.append(['GB Corp’s own reviewed statements, earnings releases and investor material',
+                     _layer, '%s to %s' % (longdate(_dates[0]), longdate(_dates[-1])),
+                     'the %d dated inputs the model consumes, each carried in the source register with its own '
+                     'four fields' % len(_items)])
+rows = [['Source', 'Layer', 'Date the source carries', 'What it provided']] + _srcrows
+table(rows, [2.6, 1.15, 1.35, 2.0], first_col_bold=False, size=8.2)
+P('Negative results. Each of these is a search that was actually run and did not find what it was looking for; each '
+  'shaped the model as much as the evidence did.', size=9.8, space_before=6)
+for _head, _body in [
+ ('No disclosed useful life for the operating asset base. ',
+  'A terminal is meant to rest on a life the company discloses. GB Corp’s accounting-policy note gives depreciation '
+  'rate RANGES by asset class and no single figure; recovering an implied life from the property, plant and equipment '
+  'note returns a span that depends on an undisclosed land split and produces per-class rates that contradict the '
+  'disclosed bands. Finding a range is not finding a life, and a derived life that contradicts the policy it '
+  'implements is not one either. No life was chosen and the refusal is printed in §1.2.'),
+ ('No audited financial statements for the associate that dominates this valuation. ',
+  'They were not available to this study and they were not available to GB Corp’s own reviewers either, who say so in '
+  'a qualified conclusion. That absence is the reason this study publishes two answers rather than one.'),
+ ('No sourced split of passenger-car revenue between the domestic and regional markets for the reviewed half. ',
+  'The regional exposure is named as a risk and a reader is entitled to its size. It is not disclosed in the documents '
+  'this study holds for that period, so the exposure is NAMED and NOT PRICED and no split was estimated.'),
+ ('No usable beta from the first regression attempted on this name. ',
+  'The first attempt used five annual observations and returned a negative slope with essentially no explanatory '
+  'power. It was refused rather than used. A conforming weekly regression against the exchange’s published index has '
+  'since been produced and is what this edition adopts; the superseded figure is recorded beside it in the source '
+  'register rather than deleted.'),
+ ('No terms for the second closing of the June-2026 round. ',
+  'Public reporting describes that close as an initial tranche of an ongoing round. Size and terms are undisclosed, so '
+  'neither a higher nor a lower mark has a number behind it and none was invented.'),
+ ('No audited statements for the two earliest years of the intended history window. ',
+  'The company’s own filings index does not reach those years, and the annual reports for them lay the statements out '
+  'in a form the text layer cannot attach to labels. The affected balance-sheet items are recorded as MISSING with '
+  'that reason rather than estimated, and the window was shortened instead.'),
+]:
+    bullet(_body, bold_head=_head)
+
+# ================= Appendix C ================================================
+H1('Appendix C  The expert valuation panel')
 P('Every study closes with a panel of standing expert personas, so that each accumulates a track record across studies '
   'and an update is a re-run rather than a re-training. For GB Corp we cast the industrial trio, adapted to what this '
   'group actually is: Expert 1 (the accountant — net asset value and the marks), Expert 2 (residual income — what '
@@ -266,7 +383,7 @@ P('One change since the last edition is worth naming, because it is a method bei
 
 _e1, _e2, _e3 = E['e1'], E['e2'], E['e3']
 
-H2('D.1  Expert 1 — the split-legs net asset value and the marks')
+H2('C.1  Expert 1 — the split-legs net asset value and the marks')
 P('Worldview. A group is worth the sum of its parts at realisable value, less a discount for the wrapper. Mark each leg '
   'to what it would fetch on its own; then argue only about the discount.', size=9.8)
 P('When it works and when it fails. Best where the legs are separable and independently markable; it fails hardest when '
@@ -288,10 +405,10 @@ _e1_sum = sotp['auto_eq'] + CAP['operating_equity'] + sotp['assoc']
 TR.waterfall(sotp['auto_eq'],
              [('Plus GB Capital at its operating book', CAP['operating_equity']),
               ('Plus associates', sotp['assoc'])],
-             _e1_sum, dp=0, what='D.1 Expert 1, sum before the discount')
+             _e1_sum, dp=0, what='C.1 Expert 1, sum before the discount')
 TR.waterfall(_e1_sum,
              [('Less wrapper discount', _e1_sum * _e1['wrapper_discount'])],
-             _e1['base'] * SH, dp=0, what='D.1 Expert 1, equity value')
+             _e1['base'] * SH, dp=0, what='C.1 Expert 1, equity value')
 P(f"Sensitivity — the swing is the mark, not the ownership. Marking MNT-Halan at three quarters of the round’s "
   f"valuation takes his number to EGP {_e1['mark_haircut']['0.75']:.2f} per share; at half, to EGP "
   f"{_e1['mark_haircut']['0.5']:.2f}. He concedes the point openly: the stake is not the argument, the argument is what "
@@ -305,7 +422,7 @@ rich([('Verdict, falsification, and what the price implies. ', dict(bold=True)),
        "his own view is evidence the market does not accept that the round’s marked value transfers cleanly to a "
        "minority holder.", {})])
 
-H2('D.2  Expert 2 — residual income on the whole group')
+H2('C.2  Expert 2 — residual income on the whole group')
 P('Worldview. A company is worth its book value plus the present value of whatever it earns ABOVE the cost of that '
   'equity. If it earns exactly its cost of capital it is worth book; if it earns less, it is worth less than book, and no '
   'growth rate rescues it. He needs no mid-cycle earnings figure and no multiple anybody has to choose — only a book '
@@ -329,9 +446,9 @@ rows = [
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
 TR.waterfall(_e2['book'], [('Divided by shares in issue (mn)', SH)],
-             _e2['book_ps'], dp=2, what='D.2 book value per share')
+             _e2['book_ps'], dp=2, what='C.2 book value per share')
 TR.waterfall(_e2['book_ps'], [('Times the justified multiple of book', _e2['pb'])],
-             _e2['base'], dp=2, what='D.2 Expert 2 fair value')
+             _e2['base'], dp=2, what='C.2 Expert 2 fair value')
 P(f"His arithmetic in one sentence: the group earns {pc(_e2['roe'],2)} on its own reported equity against a cost of "
   f"{pc(CAP['ke_terminal'],2)}, a shortfall of {abs(_e2['roe']-CAP['ke_terminal'])*100:.2f} points against its cost of capital, "
   f"so the accounts on their own justify {_e2['pb']:.4f}× book and no more — EGP {_e2['base']:.2f} a share against a "
@@ -360,7 +477,7 @@ rich([('Verdict, falsification, and what the price implies. ', dict(bold=True)),
        "price implies against him is that the market pays a premium to his number: he is the read a buyer of these "
        "shares is betting against.", {})])
 
-H2('D.3  Expert 3 — cash returns: return on capital against its cost')
+H2('C.3  Expert 3 — cash returns: return on capital against its cost')
 P('Worldview. A business creates value only when each pound of capital earns above its cost, in cash. He looks past the '
   'income statement to the economic-profit spread, and past reported returns to returns excluding one-offs.', size=9.8)
 P('When it works and when it fails. Best for capital-intensive compounders where the reinvestment spread is the story; '
@@ -382,11 +499,11 @@ rows = [
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
 TR.waterfall(E['e3']['ev_at_base'],
              [('Less Auto net debt and minority interests', dcf['auto_nd'] + dcf['auto_nci'])],
-             E['e3']['equity_at_base'], dp=0, what='D.3 Expert 3, operating-leg equity')
+             E['e3']['equity_at_base'], dp=0, what='C.3 Expert 3, operating-leg equity')
 TR.waterfall(E['e3']['equity_at_base'],
              [('Plus the lender at its haircut multiple', CAP['operating_equity'] * E['e3']['params']['cap_mult']),
               ('Plus the associates at their haircut multiple', sotp['assoc'] * E['e3']['params']['assoc_mult'])],
-             _e3['base'] * SH, dp=0, what='D.3 Expert 3, equity value')
+             _e3['base'] * SH, dp=0, what='C.3 Expert 3, equity value')
 P(f"Sensitivity — two levers, and he ranks them himself. Moving his haircut on the associate mark from "
   f"{E['e3']['params']['assoc_mult']:.2f}× to {E['e3']['params']['assoc_mult_bear']:.2f}× costs EGP "
   f"{abs(_e3['mark_lever']):.2f} per share; marking the operating leg at "
@@ -400,7 +517,7 @@ rich([('Verdict, falsification, and what the price implies. ', dict(bold=True)),
        "FY2025 figure, which would make his multiple of capital employed too low, or by a real secondary sale of the "
        "associate’s shares meaningfully below his own haircut.", {})])
 
-H2('D.4  Cross-examination — each challenge, conceded or rejected')
+H2('C.4  Cross-examination — each challenge, conceded or rejected')
 P('Each expert puts one challenge to each of the others, and the answer is recorded as CONCEDED or REJECTED rather than '
   'left as an exchange of views.', size=9.8)
 rows = [
@@ -441,7 +558,7 @@ rows = [
 ]
 table(rows, [2.6, 1.15, 3.35], size=8.6)
 
-H2('D.5  The three in one room')
+H2('C.5  The three in one room')
 P('The stake question that dominated an earlier draft of this study is settled — the company stated its holding in '
   'writing. What the three disagree on is what that holding is worth, and this edition has added a second disagreement '
   'they had not had before: what the lender is worth.', size=9.8)
@@ -467,8 +584,8 @@ P('Where they end up. All three accept the ownership percentage, the volumes, th
   'keeps pointing out, one that the reviewers of GB Corp’s own statements could not settle from inside either.',
   size=9.8)
 
-H2('D.6  Reading the divergence')
-figure('figD1_experts.png', 6.0, 'Figure D-1 — the three experts’ fair-value ranges. Brass ticks are base cases; the '
+H2('C.6  Reading the divergence')
+figure('figD1_experts.png', 6.0, 'Figure C-1 — the three experts’ fair-value ranges. Brass ticks are base cases; the '
        'gold band is the panel centre; the ink line is the price. The spread is almost entirely the associate mark and '
        'the lender basis.')
 _epanel = [_e1['base'], _e2['base'], _e3['base']]

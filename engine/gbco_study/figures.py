@@ -28,35 +28,10 @@ plt.rcParams.update({'figure.facecolor': CREAM, 'axes.facecolor': CREAM,
 
 d = json.load(open('study_numbers.json'))
 spot = d['spot']
-# ---- THE BAND RECORD, READ FROM WHAT THE SITE PUBLISHES, NEVER TYPED [R-CAL-02] -------
-# The record is GENERATED into assets/data.js by scripts/build_band_records.py from the
-# committed panels, and it is refreshed again at render time — a page that states a fact
-# which moves must not be the thing that remembers it, and neither must a builder. This
-# reads the same object, so a refit moves the document at its next build instead of
-# leaving a stale sentence behind.
-def _band_record(ticker='GBCO'):
-    import json as _j, os as _o, re as _re
-    _root = _o.path.dirname(_o.path.dirname(_o.path.dirname(_o.path.abspath(__file__))))
-    _txt = open(_o.path.join(_root, 'assets', 'data.js'), encoding='utf-8').read()
-    _i = _txt.find('BANDS')
-    if _i < 0:
-        raise SystemExit('assets/data.js carries no BANDS block — an absent record is not '
-                         'a clean one [R-ENF-04]')
-    _m = _re.search(r'\b%s:\s*\{([^}]*)\}' % ticker, _txt[_i:])
-    if not _m:
-        raise SystemExit('no band record for %s. It is not published without one.' % ticker)
-    _out = {}
-    for _k, _v in _re.findall(r'(\w+)\s*:\s*("[^"]*"|null|[-\d.]+)', _m.group(1)):
-        _out[_k] = None if _v == 'null' else (
-            _v.strip('"') if _v.startswith('"') else float(_v))
-    for _need in ('n', 'hits', 'c50', 'c90', 'width'):
-        if _out.get(_need) is None:
-            raise SystemExit('the band record for %s carries no %s' % (ticker, _need))
-    _out['n'] = int(_out['n']); _out['hits'] = int(_out['hits'])
-    return _out
-
-
-BAND = _band_record()
+# NO FIGURE IN THIS STUDY PUBLISHES THE BAND RECORD, AND THE READER THAT USED TO LIVE HERE
+# IS GONE WITH IT [08-09-2026]. The record belongs in section 3 of the delivered document as
+# plain sentences with the statistics inline, and docx_base reads it there, once. Two readers
+# of one record in one study is two places for it to go stale.
 
 # THE EXCHANGE LIBRARY, NOT THE STUDY-LOCAL COPY. compute.py strikes the cone on
 # engine/raw_ohlc/EG/GBCO.csv; a chart drawn from the study-local extract, which stops
@@ -223,7 +198,12 @@ for tag, fn in [('1 month', 'pT20.npy'), ('3 months', 'pT60.npy')]:
     ax.hist(x, bins=90, color=GOLD, alpha=0.9, edgecolor='#FFFFFF', linewidth=0.2)
     ax.axvline(spot, color=INK, lw=1.6)
     ax.axvline(np.median(x), color=BRASS, lw=1.6, ls='--')
-    ax.text(spot, ax.get_ylim()[1]*0.94, f' spot {spot:.2f}', color=INK, fontsize=8.4)
+    # TWO CLOCKS, AND THE LABEL SAYS WHICH. These paths start at the exchange library's
+    # last session and this line is the LATEST KNOWN price, four days later. Calling it
+    # "spot" beside a distribution struck from a different close invites a reader to read
+    # the histogram as centred on it.
+    ax.text(spot, ax.get_ylim()[1]*0.94, f' latest known price {spot:.2f}', color=INK,
+            fontsize=8.4)
     ax.text(np.median(x), ax.get_ylim()[1]*0.84, f' median {np.median(x):.1f}', color=BRASS, fontsize=8.4)
     ax.set_xlim(np.percentile(x, 0.3), np.percentile(x, 99.7))
     ax.set_xlabel('EGP / share'); ax.set_yticks([])
@@ -257,13 +237,22 @@ for i, t in enumerate([50, 80, 90]):
     c.plot([i - 0.32, i + 0.32], [t, t], color=INK, ls='--', lw=1.4)
 c.set_xticks([0, 1, 2], ['50% band', '80% band', '90% band'])
 c.set_ylim(0, 105); c.set_title('Interval coverage vs target', fontsize=9.5)
+# ONE SAMPLE PER PANEL. This chart is the study's own replay RE-SCORED UNDER TODAY'S FIT,
+# and the published band record is the record of forecasts AS THEY WERE STRUCK. They are
+# different samples of the same thing, and an annotation from one written across bars drawn
+# from the other is exactly the two-numbers-one-band confusion that took the calibration
+# appendix out of the delivered document. The published record lives in section 3 of the
+# study; this figure carries only what its own bars are.
 c.text(0.02, 0.94,
-       'band %.2fx a naive carry-anchored one (n=%d)\nmiddle band caught %.0f%% against a 50%% target'
-       % (BAND['width'], BAND['n'], BAND['c50'] * 100),
+       're-scored under the current fit, %d non-overlapping windows' % so['n'],
        transform=c.transAxes, fontsize=8.2, color=INK, va='top')
 style(c)
-fig.suptitle('GBCO — testing the price cone on this stock’s own history: the quarterly replay, '
-             'where outcomes landed, and how often the bands held',
+# THIS FIGURE IS AN INTERNAL DIAGNOSTIC AND RENDERS NOWHERE. It is generated and committed
+# because "how would today's cone have done on this name's history" is a fair question to
+# ask when investigating a fit change, and it is the one question the published record
+# cannot answer. It reaches no reader: the delivered study publishes the band record alone.
+fig.suptitle('GBCO — internal diagnostic: the quarterly replay re-scored under the current '
+             'fit, where outcomes landed, and coverage against target',
              fontsize=10, color=INK, y=1.02)
 fig.tight_layout(); fig.savefig('figB1_calibration.png', bbox_inches='tight'); plt.close(fig)
 # site-style copy for the ledger
