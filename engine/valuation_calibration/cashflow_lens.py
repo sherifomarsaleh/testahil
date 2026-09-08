@@ -257,7 +257,35 @@ def _arcc_unit_fixed(B, o, h, fx_level=False, fx_mode=None):
     on THAT argument rather than on its score. The score agrees with it, which is
     evidence and is not the reason.
     """
-    a = B.actual(o)
+    # DECLARATION 6 ON THIS NAME TOO: every driver level is the trailing
+    # three-year median ending at the origin, not the origin year alone. The
+    # PAIRED quantities are medianed as pairs — price per tonne with its own
+    # per-tonne cost stack — for the reason the other name's first draft proved:
+    # a median price against a median cost describes a spread no year earned.
+    a0 = B.actual(o)
+    a = dict(a0)
+    _yrs = [y for y in range(int(o[2:]) - MEDIAN_WINDOW + 1, int(o[2:]) + 1)]
+    _acts = []
+    for _y in _yrs:
+        try:
+            _acts.append(B.actual("FY%d" % _y))
+        except Exception:
+            pass
+    if len(_acts) >= 2:
+        # LEVELS take the median. RATIOS to volume are medianed as ratios, so
+        # the price/cost relationship a year actually had survives.
+        for k in ("vol_local", "vol_export", "services", "ga", "mfg_dep", "amort",
+                  "rou", "provisions", "reversals", "impairments",
+                  "interest_income", "other_income", "finance_costs",
+                  "disposals", "jv"):
+            xs = [x.get(k) for x in _acts if x.get(k) is not None]
+            if len(xs) >= 2:
+                a[k] = _median(xs)
+        for k in ("price_local", "price_export", "raw_per_t", "transport_per_t",
+                  "overhead_per_t"):
+            xs = [x.get(k) for x in _acts if x.get(k)]
+            if len(xs) >= 2:
+                a[k] = _median(xs)
     pi, fxm, _coal = B._paths(o, h, False, False)
 
     # (iv) INFLATION IS A LADDER, NOT A LEVEL — the same error a third time.
@@ -429,7 +457,131 @@ def project_tmgh(origin):
     return out
 
 
-def project_swdy(origin):
+MEDIAN_WINDOW = 3   # borrowed from the capex intensity already in this file
+
+
+def _med_margin(B, o, name, revenue_level):
+    """Gross profit at the median MARGIN, never the median of two medians.
+
+    Same pairing argument as the unit branch: a median revenue and a median
+    gross profit taken apart can describe a margin no year of the company ever
+    earned. The margin is computed year by year, the median taken of THAT, and
+    the profit recovered against the anchored revenue level.
+    """
+    ms = []
+    for y in range(o - MEDIAN_WINDOW + 1, o + 1):
+        r = B.leg(y, "revenue", name)
+        g = B.leg(y, "gross_profit", name) or B.seg(y, name, "gross_profit")
+        if r and g is not None and r != 0:
+            ms.append(g / r)
+    if len(ms) >= 2:
+        return _median(ms) * revenue_level
+    g = B.leg(o, "gross_profit", name) or B.seg(o, name, "gross_profit")
+    return g
+
+
+def _swdy_corrected(B, o, h):
+    """SWDY's projection with declaration 6's three corrections.
+
+    Nothing about the bottom-up STRUCTURE moves — volume x price per tonne,
+    cost per tonne, segment by segment, exactly as the run builds it. What
+    changes is what the levels and the paths are anchored on:
+
+      (i)   INFLATION is the origin's own published forward ladder, compounded,
+            instead of its realised calendar-year rate held flat.
+      (ii)  THE CURRENCY drifts at the inflation differential against long-run
+            foreign inflation, instead of the last two-year move compounded.
+      (iii) EVERY DRIVER LEVEL is the trailing three-year median ending at the
+            origin, instead of the origin year alone.
+
+    It reproduces B.project()'s own arithmetic line for line so the two differ
+    only in what this docstring claims.
+    """
+    p = B.paths(o)
+    fwd = _fwd_cpi(o)
+    CPI = 1.0
+    for k in range(1, h + 1):
+        CPI *= (1 + fwd(k))
+    FX = 1.0
+    for k in range(1, h + 1):
+        FX *= (1 + fwd(k)) / (1 + US_INFLATION_LT)
+    GDP = (1 + p["gdp"]) ** h
+    METAL = B.W_METAL * FX + (1 - B.W_METAL) * CPI
+
+    def med_unit(key):
+        xs = [B.unit(y, key) for y in range(o - MEDIAN_WINDOW + 1, o + 1)]
+        xs = [x for x in xs if x]
+        return _median(xs) if len(xs) >= 2 else B.unit(o, key)
+
+    def med_leg(kind, name):
+        xs = [B.leg(y, kind, name) for y in range(o - MEDIAN_WINDOW + 1, o + 1)]
+        xs = [x for x in xs if x]
+        return _median(xs) if len(xs) >= 2 else B.leg(o, kind, name)
+
+    def med_val(key):
+        xs = [B.val(y, key) for y in range(o - MEDIAN_WINDOW + 1, o + 1)]
+        xs = [x for x in xs if x is not None]
+        return _median(xs) if len(xs) >= 2 else B.val(o, key)
+
+    d = {}
+    in_units = B.UNIT_WINDOW[0] <= o <= B.UNIT_WINDOW[1]
+    if in_units and B.unit(o, "cable_volume_t"):
+        # THE PAIRING IS PRESERVED, AND THE FIRST DRAFT DESTROYED IT.
+        # Medianing price and cost INDEPENDENTLY takes a high price from one
+        # year and a low cost from another that never coexisted, and invents a
+        # spread the company never earned: it valued this name at 214.65 against
+        # a traded 14.74, a defect thirteen times larger than the one the median
+        # was added to fix. So the median is taken on the PRICE and on the
+        # SPREAD — each computed year by year FIRST — and the cost is recovered
+        # as price minus spread. A median of a ratio is a median of a thing that
+        # existed; a ratio of two medians is not.
+        d["D1_cable_volume_t"] = med_unit("cable_volume_t") * GDP
+        _price = med_unit("cable_price_t")
+        _spreads = [B.unit(y, "cable_price_t") - B.unit(y, "cable_cost_t")
+                    for y in range(o - MEDIAN_WINDOW + 1, o + 1)
+                    if B.unit(y, "cable_price_t") and B.unit(y, "cable_cost_t")]
+        _spread = (_median(_spreads) if len(_spreads) >= 2
+                   else B.unit(o, "cable_price_t") - B.unit(o, "cable_cost_t"))
+        d["D2_cable_price_t"] = _price * METAL
+        d["D3_cable_cost_t"] = (_price - _spread) * METAL
+        d["D4_cables_revenue"] = d["D1_cable_volume_t"] * d["D2_cable_price_t"]
+        d["D7_cables_cost"] = d["D1_cable_volume_t"] * d["D3_cable_cost_t"]
+        d["_cables_basis"] = "unit"
+    else:
+        cab = med_leg("revenue", "cables")
+        if cab:
+            d["D4_cables_revenue"] = cab * GDP * CPI
+            gp = _med_margin(B, o, "cables", cab)
+            if gp is not None:
+                d["D7_cables_cost"] = (cab - gp) * GDP * METAL
+        d["_cables_basis"] = "segment"
+
+    for nm, rk, ck in (("contracting", "D5_contracting_revenue", "D8_contracting_cost"),
+                       ("other", "D6_other_revenue", "D9_other_cost")):
+        r = med_leg("revenue", nm)
+        if r:
+            d[rk] = r * GDP * CPI
+            gp = _med_margin(B, o, nm, r)
+            if gp is not None:
+                d[ck] = (r - gp) * GDP * CPI
+
+    sga = med_val("sga")
+    if sga is not None:
+        d["D10_sga"] = abs(sga) * CPI
+
+    base, _macro = B.project(o, h)
+    for k, v in base.items():
+        d.setdefault(k, v)
+    rev = sum(d.get(k) or 0.0 for k in ("D4_cables_revenue", "D5_contracting_revenue",
+                                        "D6_other_revenue"))
+    cost = sum(d.get(k) or 0.0 for k in ("D7_cables_cost", "D8_contracting_cost",
+                                         "D9_other_cost"))
+    d["A_revenue"], d["A_cost_of_revenue"] = rev, cost
+    d["A_gross_profit"] = rev - cost
+    return d
+
+
+def project_swdy(origin, corrected=True):
     """SWDY's own projection — the deepest statement history in the book.
 
     WIRED 08-09-2026 per instruction, on the principal's own reading of the
@@ -447,7 +599,10 @@ def project_swdy(origin):
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        r, _macro = _run(d, B.project, origin, h)
+        if corrected:
+            r = _run(d, _swdy_corrected, B, origin, h)
+        else:
+            r, _macro = _run(d, B.project, origin, h)
         rev = r.get("A_revenue")
         ebit = (r.get("A_gross_profit") - r.get("D10_sga")
                 + r.get("D13_other_operating_income") - r.get("D14_other_operating_expense"))

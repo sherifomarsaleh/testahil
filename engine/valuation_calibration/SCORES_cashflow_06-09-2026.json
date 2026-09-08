@@ -2,79 +2,79 @@
  "DECLARED": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 0.6777983417379188,
-   "median": 0.9850473034927484,
-   "mae": 0.9316115790451405,
-   "below": 3,
-   "above": 14,
+   "mean": 0.28788427847572395,
+   "median": 0.40157111875400076,
+   "mae": 0.7333922009116144,
+   "below": 7,
+   "above": 15,
    "bootstrap": {
     "2": {
-     "lo": 0.36552197826731603,
-     "hi": 1.2441239744466672,
-     "half_width": 0.4393009980896756,
+     "lo": -0.02681553234948754,
+     "hi": 0.6450149732545297,
+     "half_width": 0.3359152528020086,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.36302397219883414,
-     "hi": 1.2984500390470413,
-     "half_width": 0.46771303342410353,
+     "lo": 0.06379620744084527,
+     "hi": 0.5589392642981557,
+     "half_width": 0.2475715284286552,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.3758159762282344,
-     "hi": 1.3546514380467387,
-     "half_width": 0.4894177309092521,
+     "lo": 0.18137289258322475,
+     "hi": 0.35400197196253774,
+     "half_width": 0.0863145396896565,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.4626551072933802,
+     "cells": 14,
+     "mean": 0.08766259817767881,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 0.8669435861824915,
+     "cells": 20,
+     "mean": 0.3907518054829339,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 0.6478783567941162,
+     "cells": 18,
+     "mean": 0.21387488004765143,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 0.5857782546638496,
+     "cells": 15,
+     "mean": 0.4069352765873244,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 0.720427794695539,
+     "cells": 21,
+     "mean": 0.30179652533571105,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.6876385201499322
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 0.7586142075506437
+     "cells": 16,
+     "mean": 0.4138587454545517
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.3747985356480415
+     "mean": -0.04804763346781668
     }
    }
   },
@@ -82,11 +82,11 @@
    {
     "ticker": "ARCC",
     "origin": 2016,
-    "fv": 19.253386317774247,
+    "fv": 14.814093884323732,
     "price": 6.82,
-    "log": 1.0378274860192624,
+    "log": 0.7757195452560612,
     "wacc": 0.2022276502521752,
-    "terminal_share": 0.6240513240276409,
+    "terminal_share": 0.5853949046035573,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 0.76%)",
     "scale": 1.0
@@ -94,11 +94,11 @@
    {
     "ticker": "ARCC",
     "origin": 2017,
-    "fv": 39.05777763354068,
+    "fv": 17.575241596081394,
     "price": 7.63,
-    "log": 1.632954182310799,
+    "log": 0.8344033388823459,
     "wacc": 0.1872307457348306,
-    "terminal_share": 0.7233066007245279,
+    "terminal_share": 0.6133192569372086,
     "price_date": "2017-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 9.75%)",
     "scale": 1.0
@@ -106,11 +106,11 @@
    {
     "ticker": "ARCC",
     "origin": 2018,
-    "fv": 14.057578631192706,
+    "fv": 7.648656992266393,
     "price": 4.99,
-    "log": 1.0357257449454442,
+    "log": 0.4270941660966747,
     "wacc": 0.21352720921539228,
-    "terminal_share": 0.6236078314800299,
+    "terminal_share": 0.5719988843829663,
     "price_date": "2018-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 11.44%)",
     "scale": 1.0
@@ -118,11 +118,11 @@
    {
     "ticker": "ARCC",
     "origin": 2019,
-    "fv": 7.243111128019018,
+    "fv": 5.448945295019582,
     "price": 3.35,
-    "log": 0.7710904820748911,
+    "log": 0.48646172026040324,
     "wacc": 0.1889587239858775,
-    "terminal_share": 0.7016351895553022,
+    "terminal_share": 0.69145277315958,
     "price_date": "2019-12-31",
     "kd_bound": "the company's own effective rate",
     "scale": 1.0
@@ -130,11 +130,11 @@
    {
     "ticker": "ARCC",
     "origin": 2020,
-    "fv": 3.287147691222748,
+    "fv": 12.294919877562462,
     "price": 3.21,
-    "log": 0.023749288451268957,
+    "log": 1.3429152218366336,
     "wacc": 0.1616332190299998,
-    "terminal_share": 0.6840619773027472,
+    "terminal_share": 0.7183526972666229,
     "price_date": "2020-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 9.81%)",
     "scale": 1.0
@@ -142,11 +142,11 @@
    {
     "ticker": "ARCC",
     "origin": 2021,
-    "fv": 7.331741755982199,
+    "fv": 9.341625114112034,
     "price": 4.52,
-    "log": 0.4837011140157822,
+    "log": 0.7259682383481635,
     "wacc": 0.17715479648936805,
-    "terminal_share": 0.6264554628193075,
+    "terminal_share": 0.6428902655030945,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 11.18%)",
     "scale": 1.0
@@ -154,11 +154,11 @@
    {
     "ticker": "ARCC",
     "origin": 2022,
-    "fv": 18.37065850288672,
+    "fv": 7.8717066307839865,
     "price": 6.86,
-    "log": 0.9850473034927484,
+    "log": 0.13756744988681446,
     "wacc": 0.2844392187779406,
-    "terminal_share": 0.4541435288554085,
+    "terminal_share": 0.40223598281956513,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 8.28%)",
     "scale": 1.0
@@ -166,11 +166,11 @@
    {
     "ticker": "ARCC",
     "origin": 2023,
-    "fv": 40.0915398437209,
+    "fv": 14.565171489231794,
     "price": 10.0,
-    "log": 1.3885802425939995,
+    "log": 0.3760480714113268,
     "wacc": 0.30666173517412415,
-    "terminal_share": 0.5316935755050531,
+    "terminal_share": 0.42512751019085615,
     "price_date": "2023-12-31",
     "kd_bound": "the company's own effective rate",
     "scale": 1.0
@@ -201,6 +201,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.8580165762119787,
+    "price": 1.748,
+    "log": -0.7116041373197587,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.4188548961718086,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.538445281489647,
+    "price": 1.364,
+    "log": 1.2021629449718427,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0285106776439972,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 4.600985033775069,
+    "price": 1.993,
+    "log": 0.8366293771173593,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.1253849474828075,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 6.230537306354418,
     "price": 1.96,
@@ -213,48 +249,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 19.842580962198745,
-    "price": 3.67,
-    "log": 1.6876385201499322,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.8324490960685276,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 57.325261404964145,
+    "fv": 22.464589178467158,
     "price": 7.42,
-    "log": 2.0445623316059898,
+    "log": 1.107761197994102,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.7026970423140062,
+    "terminal_share": 0.604191544600784,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 82.92578248977127,
+    "price": 14.74,
+    "log": 1.7273811341416205,
+    "wacc": 0.14402914419477428,
+    "terminal_share": 0.6222969742946638,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 5.873845856691179,
+    "price": 17.97,
+    "log": -1.1181941099889647,
+    "wacc": 0.23098705977718179,
+    "terminal_share": 0.5880840246066027,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.918079896217691,
+    "fv": 8.16079775025861,
     "price": 11.5,
-    "log": -0.6643349809386055,
+    "log": -0.343005107659645,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.6782319677901893,
+    "terminal_share": 0.6505582627365611,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.597595537862533,
+    "price": 9.81,
+    "log": -0.7578688159025988,
+    "wacc": 0.16840605293998154,
+    "terminal_share": 0.8623341055461342,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 33.46761539904289,
+    "fv": 10.75775675501718,
     "price": 9.83,
-    "log": 1.2251393326056095,
+    "log": 0.09018811882259274,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7670360160703157,
+    "terminal_share": 0.6813268458188244,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -262,11 +322,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 14.66016864205996,
+    "fv": 7.44892115158144,
     "price": 12.0,
-    "log": 0.20022755015549665,
+    "log": -0.47683743975104614,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.5574852391872587,
+    "terminal_share": 0.3886773878594205,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -417,21 +477,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,281,305,697, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -466,792,925, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,133,927,106, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -443,27 +488,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -135,906,536, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,497,894,187, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -9.327 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -500,40 +535,40 @@
  "declaration 3's terminal \u2014 SUPERSEDED, kept for comparison": {
   "score": {
    "n": {
-    "cells": 15,
-    "origins": 8,
+    "cells": 16,
+    "origins": 9,
     "names": 3
    },
-   "mean": 0.9814110495917989,
-   "median": 1.175970372275377,
-   "mae": 1.2359029130864516,
-   "below": 3,
-   "above": 12,
+   "mean": 0.6256927472200048,
+   "median": 0.34466093024813244,
+   "mae": 0.8605595890147819,
+   "below": 5,
+   "above": 9,
    "bootstrap": {
     "2": {
-     "lo": 0.5024584804752413,
-     "hi": 1.7365535980750415,
-     "half_width": 0.6170475587999,
+     "lo": 0.34173770798131664,
+     "hi": 1.0514142003038147,
+     "half_width": 0.35483824616124904,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.4585334213407623,
-     "hi": 1.7581027011459878,
-     "half_width": 0.6497846399026127,
+     "lo": 0.42776852011114247,
+     "hi": 0.9900503791479124,
+     "half_width": 0.281140929518385,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.44794727719393435,
-     "hi": 1.4159181476773697,
-     "half_width": 0.48398543524171767,
+     "lo": 0.37593248703027504,
+     "hi": 0.796508799200219,
+     "half_width": 0.21028815608497198,
      "n_boot": 2000
     }
    },
    "lono": {
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 9,
-     "mean": 0.9397211468239539,
+     "cells": 10,
+     "mean": 0.31200287982733316,
      "names_left": 2
     },
     "SWDY": {
@@ -544,23 +579,23 @@
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 14,
-     "mean": 1.0763536075963318,
+     "cells": 15,
+     "mean": 0.7005756325809022,
      "names_left": 2
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 2.5680379429807982
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
      "cells": 12,
-     "mean": 0.8694330283161288
+     "mean": 0.6396895772662244
     },
     "E3 devaluation": {
      "cells": 2,
-     "mean": 0.85996573055132
+     "mean": 0.5417117669426859
     }
    }
   },
@@ -640,11 +675,11 @@
    {
     "ticker": "SWDY",
     "origin": 2015,
-    "fv": 47.85758421103094,
+    "fv": -8.12423236591204,
     "price": 3.67,
-    "log": 2.5680379429807982,
+    "log": null,
     "wacc": 0.1268817185718755,
-    "terminal_share": 0.9123070747276673,
+    "terminal_share": 1.0292366471904126,
     "price_date": "2015-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
     "scale": 1.0
@@ -652,11 +687,11 @@
    {
     "ticker": "SWDY",
     "origin": 2016,
-    "fv": 118.37234973918981,
+    "fv": 48.6641761857828,
     "price": 7.42,
-    "log": 2.769656105389436,
+    "log": 1.8807641002867532,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.8418395438295895,
+    "terminal_share": 0.7749479261547845,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
@@ -664,11 +699,11 @@
    {
     "ticker": "SWDY",
     "origin": 2017,
-    "fv": 352.87466759284126,
+    "fv": 111.83633847631273,
     "price": 14.74,
-    "log": 3.175548057815112,
+    "log": 2.026471652242677,
     "wacc": 0.14402914419477428,
-    "terminal_share": 1.001752028206963,
+    "terminal_share": 0.7179899235246263,
     "price_date": "2017-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
     "scale": 1.0
@@ -676,11 +711,11 @@
    {
     "ticker": "SWDY",
     "origin": 2018,
-    "fv": 9.812857481373214,
+    "fv": 6.870355477031794,
     "price": 17.97,
-    "log": -0.6050101871277938,
+    "log": -0.9614878525182229,
     "wacc": 0.23098705977718179,
-    "terminal_share": 2.7883058303051786,
+    "terminal_share": 0.6478781479506082,
     "price_date": "2018-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
     "scale": 1.0
@@ -688,11 +723,11 @@
    {
     "ticker": "SWDY",
     "origin": 2019,
-    "fv": 14.176458723065446,
+    "fv": 11.325582846829729,
     "price": 11.5,
-    "log": 0.2092357171026959,
+    "log": -0.0152828998206814,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.8704491486855693,
+    "terminal_share": 0.7513381538828863,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
@@ -700,11 +735,11 @@
    {
     "ticker": "SWDY",
     "origin": 2020,
-    "fv": 3.7716336894298146,
+    "fv": 9.236354777372433,
     "price": 9.81,
-    "log": -0.9558940266104384,
+    "log": -0.06025497037446913,
     "wacc": 0.16840605293998154,
-    "terminal_share": 1.1951546203353602,
+    "terminal_share": 0.9334569260427322,
     "price_date": "2020-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
     "scale": 1.0
@@ -712,11 +747,11 @@
    {
     "ticker": "SWDY",
     "origin": 2021,
-    "fv": 34.87917299164082,
+    "fv": 12.407412953408247,
     "price": 9.83,
-    "log": 1.266450954498574,
+    "log": 0.23285517865267477,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7757634136666614,
+    "terminal_share": 0.7158953392882516,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -724,13 +759,25 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 17.499235068922605,
+    "fv": 9.259492508045948,
     "price": 12.0,
-    "log": 0.37725051983886326,
+    "log": -0.25925740737840514,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.6088366443354818,
+    "terminal_share": 0.456893320053896,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2023,
+    "fv": -0.32315787642133503,
+    "price": 29.0,
+    "log": null,
+    "wacc": 0.24711496178390074,
+    "terminal_share": 2.5951187081070386,
+    "price_date": "2023-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 11.84%)",
     "scale": 1.0
    },
    {
@@ -930,12 +977,7 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: terminal free cash flow is -216,967,676.7, not positive: a going concern that consumes cash for ever is not a terminal, "
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: terminal free cash flow is -726,489,830.2, not positive: a going concern that consumes cash for ever is not a terminal, "
    },
    {
     "ticker": "TMGH",
@@ -976,28 +1018,28 @@
     "origins": 8,
     "names": 3
    },
-   "mean": 0.9275502363102802,
-   "median": 1.1719362378705087,
-   "mae": 1.2375908367170316,
-   "below": 3,
-   "above": 12,
+   "mean": 0.5629148250400098,
+   "median": 0.3405999684038542,
+   "mae": 0.8815901204135976,
+   "below": 5,
+   "above": 9,
    "bootstrap": {
     "2": {
-     "lo": 0.44917361324633,
-     "hi": 1.6720247386743956,
-     "half_width": 0.6114255627140328,
+     "lo": 0.2742130802727067,
+     "hi": 0.8929129241530436,
+     "half_width": 0.3093499219401684,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.4199650787988336,
-     "hi": 1.7143935779949375,
-     "half_width": 0.647214249598052,
+     "lo": 0.33790213165171684,
+     "hi": 0.693427304818573,
+     "half_width": 0.17776258658342806,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.3986581508805292,
-     "hi": 1.377110225784289,
-     "half_width": 0.48922603745188,
+     "lo": 0.32896912938842504,
+     "hi": 0.6884623025472916,
+     "half_width": 0.17974658657943327,
      "n_boot": 2000
     }
    },
@@ -1005,7 +1047,7 @@
     "PHDC": {
      "left_out": "PHDC",
      "cells": 9,
-     "mean": 0.8525271882815214,
+     "mean": 0.20503733755495307,
      "names_left": 2
     },
     "SWDY": {
@@ -1017,22 +1059,22 @@
     "TMGH": {
      "left_out": "TMGH",
      "cells": 14,
-     "mean": 1.036913715291174,
+     "mean": 0.6526420015371054,
      "names_left": 2
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 2.4356283705074455
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
      "cells": 12,
-     "mean": 0.8243551966054207
+     "mean": 0.5872697926710769
     },
     "E3 devaluation": {
      "cells": 2,
-     "mean": 0.7926814074408542
+     "mean": 0.4167850192536066
     }
    }
   },
@@ -1111,24 +1153,12 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 41.92238919624545,
-    "price": 3.67,
-    "log": 2.4356283705074455,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.9024576953286061,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 114.2539781810791,
+    "fv": 44.5458046276721,
     "price": 7.42,
-    "log": 2.7342447919545054,
+    "log": 1.7923389200846882,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.836683075667269,
+    "terminal_share": 0.7585758535935437,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
@@ -1136,11 +1166,11 @@
    {
     "ticker": "SWDY",
     "origin": 2017,
-    "fv": 334.392127240373,
+    "fv": 93.35379812384437,
     "price": 14.74,
-    "log": 3.121749451230748,
+    "log": 1.8458316693173766,
     "wacc": 0.14402914419477428,
-    "terminal_share": 1.001848212169395,
+    "terminal_share": 0.6634844926387803,
     "price_date": "2017-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
     "scale": 1.0
@@ -1148,11 +1178,11 @@
    {
     "ticker": "SWDY",
     "origin": 2018,
-    "fv": 9.826423958262188,
+    "fv": 6.883921953920763,
     "price": 17.97,
-    "log": -0.6036286214031453,
+    "log": -0.9595151598258459,
     "wacc": 0.23098705977718179,
-    "terminal_share": 2.785835492397026,
+    "terminal_share": 0.6485726459732841,
     "price_date": "2018-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
     "scale": 1.0
@@ -1160,11 +1190,11 @@
    {
     "ticker": "SWDY",
     "origin": 2019,
-    "fv": 13.742717106180047,
+    "fv": 10.891841229944331,
     "price": 11.5,
-    "log": 0.17816198341622833,
+    "log": -0.054333037422624714,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.8662528126361038,
+    "terminal_share": 0.7411049966504736,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
@@ -1172,11 +1202,11 @@
    {
     "ticker": "SWDY",
     "origin": 2020,
-    "fv": 3.2067721207322513,
+    "fv": 8.671493208674871,
     "price": 9.81,
-    "log": -1.1181374122252568,
+    "log": -0.12336127054674088,
     "wacc": 0.16840605293998154,
-    "terminal_share": 1.232532208300263,
+    "terminal_share": 0.9289896316744182,
     "price_date": "2020-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
     "scale": 1.0
@@ -1184,11 +1214,11 @@
    {
     "ticker": "SWDY",
     "origin": 2021,
-    "fv": 34.87917299164082,
+    "fv": 12.407412953408247,
     "price": 9.83,
-    "log": 1.266450954498574,
+    "log": 0.23285517865267477,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7757634136666614,
+    "terminal_share": 0.7158953392882516,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -1196,13 +1226,25 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 15.591412715921281,
+    "fv": 7.351670155044631,
     "price": 12.0,
-    "log": 0.26181364597682594,
+    "log": -0.4899791303976694,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.5757536291110116,
+    "terminal_share": 0.384525080925988,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2023,
+    "fv": -2.765962462664389,
+    "price": 29.0,
+    "log": null,
+    "wacc": 0.24711496178390074,
+    "terminal_share": 3.4235656428231116,
+    "price_date": "2023-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 11.84%)",
     "scale": 1.0
    },
    {
@@ -1402,12 +1444,12 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: terminal free cash flow is -216,967,676.7, not positive: a going concern that consumes cash for ever is not a terminal, "
+    "why": "terminal refused: terminal free cash flow is -726,489,830.2, not positive: a going concern that consumes cash for ever is not a terminal, "
    },
    {
     "ticker": "SWDY",
-    "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "origin": 2015,
+    "why": "terminal refused: terminal free cash flow is -65,969,840.3, not positive: a going concern that consumes cash for ever is not a terminal, i"
    },
    {
     "ticker": "TMGH",
@@ -1445,31 +1487,31 @@
   "score": {
    "n": {
     "cells": 15,
-    "origins": 9,
+    "origins": 8,
     "names": 2
    },
-   "mean": 1.1581424698149232,
-   "median": 1.0981918881118236,
-   "mae": 1.3508354189998022,
-   "below": 3,
-   "above": 12,
+   "mean": 0.5904736395497968,
+   "median": 0.5121164883784854,
+   "mae": 1.157952796825683,
+   "below": 5,
+   "above": 10,
    "bootstrap": {
     "2": {
-     "lo": 0.33580847741584524,
-     "hi": 1.8245760295216762,
-     "half_width": 0.7443837760529155,
+     "lo": 0.14137260977042926,
+     "hi": 1.2251558535537335,
+     "half_width": 0.5418916218916521,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.22273633703030343,
-     "hi": 1.8428463658319327,
-     "half_width": 0.8100550144008146,
+     "lo": 0.13975716219077375,
+     "hi": 1.0516815518305918,
+     "half_width": 0.455962194819909,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.30731848392435523,
-     "hi": 1.5955688976362707,
-     "half_width": 0.6441252068559578,
+     "lo": 0.12430841605519775,
+     "hi": 0.971332904370313,
+     "half_width": 0.42351224415755767,
      "n_boot": 2000
     }
    },
@@ -1477,7 +1519,7 @@
     "ARCC": {
      "left_out": "ARCC",
      "cells": 8,
-     "mean": 1.134774505200112,
+     "mean": 0.07039544845299972,
      "names_left": 1
     },
     "SWDY": {
@@ -1489,16 +1531,16 @@
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 2.4433253929784864
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
      "cells": 11,
-     "mean": 1.0025333052540613
+     "mean": 0.7398915168315611
     },
     "E3 devaluation": {
-     "cells": 3,
-     "mean": 1.3003150988168966
+     "cells": 4,
+     "mean": 0.179574477024945
     }
    }
   },
@@ -1589,24 +1631,12 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 42.2463117884558,
-    "price": 3.67,
-    "log": 2.4433253929784864,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.9030519731596546,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 118.27234663331524,
+    "fv": 48.5641730799082,
     "price": 7.42,
-    "log": 2.768810930210272,
+    "log": 1.878707022451039,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.8417181937380483,
+    "terminal_share": 0.7745767246959867,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
@@ -1614,11 +1644,11 @@
    {
     "ticker": "SWDY",
     "origin": 2017,
-    "fv": 347.70094372563506,
+    "fv": 106.66261460910651,
     "price": 14.74,
-    "log": 3.1607778664440382,
+    "log": 1.9791058316032817,
     "wacc": 0.14402914419477428,
-    "terminal_share": 1.0017779286231956,
+    "terminal_share": 0.7045964899181768,
     "price_date": "2017-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
     "scale": 1.0
@@ -1626,11 +1656,11 @@
    {
     "ticker": "SWDY",
     "origin": 2018,
-    "fv": 9.373752493127169,
+    "fv": 6.431250488785749,
     "price": 17.97,
-    "log": -0.6507902051930137,
+    "log": -1.0275347041935765,
     "wacc": 0.23098705977718179,
-    "terminal_share": 2.8721265542673287,
+    "terminal_share": 0.6238158419830389,
     "price_date": "2018-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
     "scale": 1.0
@@ -1638,11 +1668,11 @@
    {
     "ticker": "SWDY",
     "origin": 2019,
-    "fv": 13.975494404362339,
+    "fv": 11.12461852812662,
     "price": 11.5,
-    "log": 0.19495836081808252,
+    "log": -0.03318649751139849,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.868538092780867,
+    "terminal_share": 0.7466993050449017,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
@@ -1650,11 +1680,11 @@
    {
     "ticker": "SWDY",
     "origin": 2020,
-    "fv": 5.96343013397655,
+    "fv": 11.428151221919173,
     "price": 9.81,
-    "log": -0.49775643221649885,
+    "log": 0.15267744328326155,
     "wacc": 0.16840605293998154,
-    "terminal_share": 1.1201901769061287,
+    "terminal_share": 0.9465134019540922,
     "price_date": "2020-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
     "scale": 1.0
@@ -1662,11 +1692,11 @@
    {
     "ticker": "SWDY",
     "origin": 2021,
-    "fv": 38.87625569270773,
+    "fv": 16.40449565447516,
     "price": 9.83,
-    "log": 1.374944736595712,
+    "log": 0.5121164883784854,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7972694201020935,
+    "terminal_share": 0.7750264596422788,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -1674,13 +1704,25 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 15.940005872133643,
+    "fv": 7.700263311256995,
     "price": 12.0,
-    "log": 0.28392539196381533,
+    "log": -0.443652125245899,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.582209962160496,
+    "terminal_share": 0.39915382642498487,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2023,
+    "fv": 2.4898586924477244,
+    "price": 29.0,
+    "log": -2.4550698711411956,
+    "wacc": 0.24711496178390074,
+    "terminal_share": 2.1445744057132288,
+    "price_date": "2023-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 11.84%)",
     "scale": 1.0
    }
   ],
@@ -1863,12 +1905,12 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: terminal free cash flow is -431,006,816.6, not positive: a going concern that consumes cash for ever is not a terminal, "
+    "why": "terminal refused: terminal free cash flow is -940,528,970.0, not positive: a going concern that consumes cash for ever is not a terminal, "
    },
    {
     "ticker": "SWDY",
-    "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "origin": 2015,
+    "why": "terminal refused: terminal free cash flow is -58,978,829.1, not positive: a going concern that consumes cash for ever is not a terminal, i"
    },
    {
     "ticker": "TMGH",
@@ -1910,79 +1952,79 @@
  "ARCC's two unit errors corrected \u2014 ATTRIBUTION SENSITIVITY, NOT THE DECLARED RUN": {
   "score": {
    "n": {
-    "cells": 16,
+    "cells": 20,
     "origins": 8,
     "names": 5
    },
-   "mean": 0.6369987936376112,
-   "median": 0.8939397255461494,
-   "mae": 0.9269162626917288,
-   "below": 4,
-   "above": 12,
+   "mean": 0.24876604270031938,
+   "median": 0.04870538310930753,
+   "mae": 0.8475785449304445,
+   "below": 9,
+   "above": 11,
    "bootstrap": {
     "2": {
-     "lo": 0.3953369788115407,
-     "hi": 0.9805537971225967,
-     "half_width": 0.292608409155528,
+     "lo": 0.008590090387333734,
+     "hi": 0.5517887977125906,
+     "half_width": 0.27159935366262844,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.49576587806184247,
-     "hi": 1.0519680899396961,
-     "half_width": 0.27810110593892684,
+     "lo": 0.14335991767563835,
+     "hi": 0.44911991382303024,
+     "half_width": 0.15287999807369596,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.46961582958998127,
-     "hi": 0.9159704003836612,
-     "half_width": 0.22317728539683995,
+     "lo": 0.22773399231670535,
+     "hi": 0.4444469480428833,
+     "half_width": 0.10835647786308898,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.4626551072933802,
+     "cells": 14,
+     "mean": 0.08766259817767881,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 14,
-     "mean": 0.8338259058138952,
+     "cells": 18,
+     "mean": 0.3587168242888411,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 15,
-     "mean": 0.6023641731575347,
+     "cells": 16,
+     "mean": 0.15572591052488652,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 11,
-     "mean": 0.5180679949657597,
+     "cells": 13,
+     "mean": 0.36506891356540966,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 15,
-     "mean": 0.6797502402523856,
+     "cells": 19,
+     "mean": 0.26208388208370487,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.6876385201499322
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 9,
-     "mean": 0.7837051117116389
+     "cells": 15,
+     "mean": 0.40410503501041956
     },
     "E3 devaluation": {
-     "cells": 6,
-     "mean": 0.24183269544118266
+     "cells": 5,
+     "mean": -0.21725093422998148
     }
    }
   },
@@ -1990,11 +2032,11 @@
    {
     "ticker": "ARCC",
     "origin": 2016,
-    "fv": 5.800431066110367,
+    "fv": 3.054680319440161,
     "price": 6.82,
-    "log": -0.16192723532155442,
+    "log": -0.8031845264615907,
     "wacc": 0.2022276502521752,
-    "terminal_share": 0.40548990267748475,
+    "terminal_share": 0.27768703103961084,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 0.76%)",
     "scale": 1.0
@@ -2002,11 +2044,11 @@
    {
     "ticker": "ARCC",
     "origin": 2018,
-    "fv": 17.465236072591193,
+    "fv": 14.836261474326484,
     "price": 4.99,
-    "log": 1.2527764853001617,
+    "log": 1.0896383740228788,
     "wacc": 0.21352720921539228,
-    "terminal_share": 0.6245093323647174,
+    "terminal_share": 0.6265795186282088,
     "price_date": "2018-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 11.44%)",
     "scale": 1.0
@@ -2014,11 +2056,11 @@
    {
     "ticker": "ARCC",
     "origin": 2019,
-    "fv": 12.75684036993878,
+    "fv": 12.21519254173206,
     "price": 3.35,
-    "log": 1.3371072815060427,
+    "log": 1.293720121477279,
     "wacc": 0.1889587239858775,
-    "terminal_share": 0.7006733480744973,
+    "terminal_share": 0.704139325472586,
     "price_date": "2019-12-31",
     "kd_bound": "the company's own effective rate",
     "scale": 1.0
@@ -2026,11 +2068,11 @@
    {
     "ticker": "ARCC",
     "origin": 2020,
-    "fv": 11.496289390528815,
+    "fv": 16.18464682137097,
     "price": 3.21,
-    "log": 1.275753384467649,
+    "log": 1.6177921286432955,
     "wacc": 0.1616332190299998,
-    "terminal_share": 0.7492680185239158,
+    "terminal_share": 0.7325933459969514,
     "price_date": "2020-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 9.81%)",
     "scale": 1.0
@@ -2038,11 +2080,11 @@
    {
     "ticker": "ARCC",
     "origin": 2021,
-    "fv": 9.55490185073543,
+    "fv": 10.411841089038358,
     "price": 4.52,
-    "log": 0.7485423117634634,
+    "log": 0.8344317308818858,
     "wacc": 0.17715479648936805,
-    "terminal_share": 0.6507932820073333,
+    "terminal_share": 0.6504770074135303,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 11.18%)",
     "scale": 1.0
@@ -2050,25 +2092,13 @@
    {
     "ticker": "ARCC",
     "origin": 2022,
-    "fv": 11.73062340259604,
+    "fv": 5.162154817910353,
     "price": 6.86,
-    "log": 0.5364953655167589,
+    "log": -0.28435334904486614,
     "wacc": 0.2844392187779406,
-    "terminal_share": 0.36478517595289206,
+    "terminal_share": 0.2923164911871654,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 8.28%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "ARCC",
-    "origin": 2023,
-    "fv": 28.27342259081969,
-    "price": 10.0,
-    "log": 1.0393371393288353,
-    "wacc": 0.30666173517412415,
-    "terminal_share": 0.4636463625110356,
-    "price_date": "2023-12-31",
-    "kd_bound": "the company's own effective rate",
     "scale": 1.0
    },
    {
@@ -2097,6 +2127,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.8580165762119787,
+    "price": 1.748,
+    "log": -0.7116041373197587,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.4188548961718086,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.538445281489647,
+    "price": 1.364,
+    "log": 1.2021629449718427,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0285106776439972,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 4.600985033775069,
+    "price": 1.993,
+    "log": 0.8366293771173593,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.1253849474828075,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 6.230537306354418,
     "price": 1.96,
@@ -2109,48 +2175,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 19.842580962198745,
-    "price": 3.67,
-    "log": 1.6876385201499322,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.8324490960685276,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 57.325261404964145,
+    "fv": 22.464589178467158,
     "price": 7.42,
-    "log": 2.0445623316059898,
+    "log": 1.107761197994102,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.7026970423140062,
+    "terminal_share": 0.604191544600784,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 82.92578248977127,
+    "price": 14.74,
+    "log": 1.7273811341416205,
+    "wacc": 0.14402914419477428,
+    "terminal_share": 0.6222969742946638,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 5.873845856691179,
+    "price": 17.97,
+    "log": -1.1181941099889647,
+    "wacc": 0.23098705977718179,
+    "terminal_share": 0.5880840246066027,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.918079896217691,
+    "fv": 8.16079775025861,
     "price": 11.5,
-    "log": -0.6643349809386055,
+    "log": -0.343005107659645,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.6782319677901893,
+    "terminal_share": 0.6505582627365611,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.597595537862533,
+    "price": 9.81,
+    "log": -0.7578688159025988,
+    "wacc": 0.16840605293998154,
+    "terminal_share": 0.8623341055461342,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 33.46761539904289,
+    "fv": 10.75775675501718,
     "price": 9.83,
-    "log": 1.2251393326056095,
+    "log": 0.09018811882259274,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7670360160703157,
+    "terminal_share": 0.6813268458188244,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -2158,11 +2248,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 14.66016864205996,
+    "fv": 7.44892115158144,
     "price": 12.0,
-    "log": 0.20022755015549665,
+    "log": -0.47683743975104614,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.5574852391872587,
+    "terminal_share": 0.3886773878594205,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -2209,7 +2299,12 @@
    {
     "ticker": "ARCC",
     "origin": 2017,
-    "why": "terminal refused: the last explicit year's free cash flow is -6,474,953,102.0, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -3,966,996,841.9, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2023,
+    "why": "terminal refused: the last explicit year's free cash flow is -234,982,099.0, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "EGCH",
@@ -2318,21 +2413,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,281,305,697, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -466,792,925, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,133,927,106, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -2344,27 +2424,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -135,906,536, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,497,894,187, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -9.327 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -2401,79 +2471,79 @@
  "ARCC coherent \u2014 level rule applied consistently \u2014 ATTRIBUTION, NOT THE DECLARED RUN": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 0.7965489948529672,
-   "median": 1.107854281519925,
-   "mae": 1.0503622321601893,
-   "below": 3,
-   "above": 14,
+   "mean": 0.4716832795614075,
+   "median": 0.8161343668011729,
+   "mae": 0.917191201997298,
+   "below": 7,
+   "above": 15,
    "bootstrap": {
     "2": {
-     "lo": 0.5199090929596809,
-     "hi": 1.3577765156718489,
-     "half_width": 0.418933711356084,
+     "lo": 0.16479165873763837,
+     "hi": 0.9166139848232076,
+     "half_width": 0.3759111630427846,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.5154758717221747,
-     "hi": 1.3941859272591692,
-     "half_width": 0.4393550277684973,
+     "lo": 0.22685399463381026,
+     "hi": 0.7918404769195997,
+     "half_width": 0.2824932411428947,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.5359009827888224,
-     "hi": 1.5167200309903008,
-     "half_width": 0.49040952410073924,
+     "lo": 0.2888092940042341,
+     "hi": 0.6559607862964517,
+     "half_width": 0.1835757461461088,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.4626551072933802,
+     "cells": 14,
+     "mean": 0.08766259817767881,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 1.0015276597128797,
+     "cells": 20,
+     "mean": 0.592930706677186,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 0.7740509257288551,
+     "cells": 18,
+     "mean": 0.43851810359682003,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 0.754008346576835,
+     "cells": 15,
+     "mean": 0.6765071448463271,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 0.8466003636302779,
+     "cells": 21,
+     "mean": 0.49434785980642715,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.6876385201499322
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 0.9471114863190782
+     "cells": 16,
+     "mean": 0.587221222595071
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.39709658819328797
+     "mean": 0.16358209813830502
     }
    }
   },
@@ -2481,11 +2551,11 @@
    {
     "ticker": "ARCC",
     "origin": 2016,
-    "fv": 22.617316416160165,
+    "fv": 21.188095949711872,
     "price": 6.82,
-    "log": 1.198856354135898,
+    "log": 1.1335800403097591,
     "wacc": 0.2022276502521752,
-    "terminal_share": 0.6263344084199362,
+    "terminal_share": 0.6303279296336507,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 0.76%)",
     "scale": 1.0
@@ -2493,11 +2563,11 @@
    {
     "ticker": "ARCC",
     "origin": 2017,
-    "fv": 42.80743446018535,
+    "fv": 54.22778992677822,
     "price": 7.63,
-    "log": 1.7246239445476599,
+    "log": 1.9611056610248438,
     "wacc": 0.1872307457348306,
-    "terminal_share": 0.7192068309186233,
+    "terminal_share": 0.7092509073116213,
     "price_date": "2017-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 9.75%)",
     "scale": 1.0
@@ -2505,11 +2575,11 @@
    {
     "ticker": "ARCC",
     "origin": 2018,
-    "fv": 17.42945325271985,
+    "fv": 14.806204200019476,
     "price": 4.99,
-    "log": 1.25072558110209,
+    "log": 1.087610385869755,
     "wacc": 0.21352720921539228,
-    "terminal_share": 0.6244427580937876,
+    "terminal_share": 0.626518821816554,
     "price_date": "2018-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 11.44%)",
     "scale": 1.0
@@ -2517,11 +2587,11 @@
    {
     "ticker": "ARCC",
     "origin": 2019,
-    "fv": 10.143312560985883,
+    "fv": 9.659794339909254,
     "price": 3.35,
-    "log": 1.107854281519925,
+    "log": 1.0590120122963527,
     "wacc": 0.1889587239858775,
-    "terminal_share": 0.7007700724165072,
+    "terminal_share": 0.7050344417605817,
     "price_date": "2019-12-31",
     "kd_bound": "the company's own effective rate",
     "scale": 1.0
@@ -2529,11 +2599,11 @@
    {
     "ticker": "ARCC",
     "origin": 2020,
-    "fv": 7.670469415088219,
+    "fv": 12.130043948632679,
     "price": 3.21,
-    "log": 0.871106877810169,
+    "log": 1.3294144089428934,
     "wacc": 0.1616332190299998,
-    "terminal_share": 0.7357482281780755,
+    "terminal_share": 0.7177193791372339,
     "price_date": "2020-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 9.81%)",
     "scale": 1.0
@@ -2541,11 +2611,11 @@
    {
     "ticker": "ARCC",
     "origin": 2021,
-    "fv": 9.256870570874165,
+    "fv": 10.015674845567318,
     "price": 4.52,
-    "log": 0.71685404638605,
+    "log": 0.7956393564849865,
     "wacc": 0.17715479648936805,
-    "terminal_share": 0.6484660198483991,
+    "terminal_share": 0.6475899649930057,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 11.18%)",
     "scale": 1.0
@@ -2553,11 +2623,11 @@
    {
     "ticker": "ARCC",
     "origin": 2022,
-    "fv": 20.080141366869096,
+    "fv": 12.762220981622066,
     "price": 6.86,
-    "log": 1.0740238932436765,
+    "log": 0.6207818791533444,
     "wacc": 0.2844392187779406,
-    "terminal_share": 0.45949104412254393,
+    "terminal_share": 0.4713251320336437,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 8.28%)",
     "scale": 1.0
@@ -2565,11 +2635,11 @@
    {
     "ticker": "ARCC",
     "origin": 2023,
-    "fv": 41.92897272447821,
+    "fv": 31.982763746901213,
     "price": 10.0,
-    "log": 1.4333919681145497,
+    "log": 1.162612031781527,
     "wacc": 0.30666173517412415,
-    "terminal_share": 0.5317831171334425,
+    "terminal_share": 0.5478455728290861,
     "price_date": "2023-12-31",
     "kd_bound": "the company's own effective rate",
     "scale": 1.0
@@ -2600,6 +2670,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.8580165762119787,
+    "price": 1.748,
+    "log": -0.7116041373197587,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.4188548961718086,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.538445281489647,
+    "price": 1.364,
+    "log": 1.2021629449718427,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0285106776439972,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 4.600985033775069,
+    "price": 1.993,
+    "log": 0.8366293771173593,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.1253849474828075,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 6.230537306354418,
     "price": 1.96,
@@ -2612,48 +2718,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 19.842580962198745,
-    "price": 3.67,
-    "log": 1.6876385201499322,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.8324490960685276,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 57.325261404964145,
+    "fv": 22.464589178467158,
     "price": 7.42,
-    "log": 2.0445623316059898,
+    "log": 1.107761197994102,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.7026970423140062,
+    "terminal_share": 0.604191544600784,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 82.92578248977127,
+    "price": 14.74,
+    "log": 1.7273811341416205,
+    "wacc": 0.14402914419477428,
+    "terminal_share": 0.6222969742946638,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 5.873845856691179,
+    "price": 17.97,
+    "log": -1.1181941099889647,
+    "wacc": 0.23098705977718179,
+    "terminal_share": 0.5880840246066027,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.918079896217691,
+    "fv": 8.16079775025861,
     "price": 11.5,
-    "log": -0.6643349809386055,
+    "log": -0.343005107659645,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.6782319677901893,
+    "terminal_share": 0.6505582627365611,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.597595537862533,
+    "price": 9.81,
+    "log": -0.7578688159025988,
+    "wacc": 0.16840605293998154,
+    "terminal_share": 0.8623341055461342,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 33.46761539904289,
+    "fv": 10.75775675501718,
     "price": 9.83,
-    "log": 1.2251393326056095,
+    "log": 0.09018811882259274,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7670360160703157,
+    "terminal_share": 0.6813268458188244,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -2661,11 +2791,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 14.66016864205996,
+    "fv": 7.44892115158144,
     "price": 12.0,
-    "log": 0.20022755015549665,
+    "log": -0.47683743975104614,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.5574852391872587,
+    "terminal_share": 0.3886773878594205,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -2816,21 +2946,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,281,305,697, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -466,792,925, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,133,927,106, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -2842,27 +2957,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -135,906,536, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,497,894,187, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -9.327 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -2899,79 +3004,79 @@
  "ARCC's own compounded currency \u2014 SUPERSEDED, kept for comparison": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 0.8815734058162591,
-   "median": 1.1565181008387588,
-   "mae": 1.1353866431234811,
-   "below": 3,
-   "above": 14,
+   "mean": 0.547733104896522,
+   "median": 0.76520806510609,
+   "mae": 0.9932410273324126,
+   "below": 7,
+   "above": 15,
    "bootstrap": {
     "2": {
-     "lo": 0.5517499747288966,
-     "hi": 1.4554486489120637,
-     "half_width": 0.45184933709158354,
+     "lo": 0.19477391896185012,
+     "hi": 1.0007426292891595,
+     "half_width": 0.40298435516365466,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.5365981996615808,
-     "hi": 1.537540893680779,
-     "half_width": 0.5004713470095992,
+     "lo": 0.2014425910451805,
+     "hi": 0.8678468061473379,
+     "half_width": 0.3332021075510787,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.5484567368259294,
-     "hi": 1.6099031062051805,
-     "half_width": 0.5307231846896255,
+     "lo": 0.22859343682411104,
+     "hi": 0.7111100741561506,
+     "half_width": 0.24125831866601977,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.4626551072933802,
+     "cells": 14,
+     "mean": 0.08766259817767881,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 1.0978886588046104,
+     "cells": 20,
+     "mean": 0.676585514545812,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 0.8643893623773528,
+     "cells": 18,
+     "mean": 0.5314678901175156,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 0.8744595954414985,
+     "cells": 15,
+     "mean": 0.7880468886711617,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 0.9369388002787755,
+     "cells": 21,
+     "mean": 0.5740191053955948,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.6876385201499322
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 0.9710494491514616
+     "cells": 16,
+     "mean": 0.5711611506511356
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.5981024812019762
+     "mean": 0.4852583162175524
     }
    }
   },
@@ -3098,6 +3203,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.8580165762119787,
+    "price": 1.748,
+    "log": -0.7116041373197587,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.4188548961718086,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.538445281489647,
+    "price": 1.364,
+    "log": 1.2021629449718427,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0285106776439972,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 4.600985033775069,
+    "price": 1.993,
+    "log": 0.8366293771173593,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.1253849474828075,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 6.230537306354418,
     "price": 1.96,
@@ -3110,48 +3251,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 19.842580962198745,
-    "price": 3.67,
-    "log": 1.6876385201499322,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.8324490960685276,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 57.325261404964145,
+    "fv": 22.464589178467158,
     "price": 7.42,
-    "log": 2.0445623316059898,
+    "log": 1.107761197994102,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.7026970423140062,
+    "terminal_share": 0.604191544600784,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 82.92578248977127,
+    "price": 14.74,
+    "log": 1.7273811341416205,
+    "wacc": 0.14402914419477428,
+    "terminal_share": 0.6222969742946638,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 5.873845856691179,
+    "price": 17.97,
+    "log": -1.1181941099889647,
+    "wacc": 0.23098705977718179,
+    "terminal_share": 0.5880840246066027,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.918079896217691,
+    "fv": 8.16079775025861,
     "price": 11.5,
-    "log": -0.6643349809386055,
+    "log": -0.343005107659645,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.6782319677901893,
+    "terminal_share": 0.6505582627365611,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.597595537862533,
+    "price": 9.81,
+    "log": -0.7578688159025988,
+    "wacc": 0.16840605293998154,
+    "terminal_share": 0.8623341055461342,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 33.46761539904289,
+    "fv": 10.75775675501718,
     "price": 9.83,
-    "log": 1.2251393326056095,
+    "log": 0.09018811882259274,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7670360160703157,
+    "terminal_share": 0.6813268458188244,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -3159,11 +3324,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 14.66016864205996,
+    "fv": 7.44892115158144,
     "price": 12.0,
-    "log": 0.20022755015549665,
+    "log": -0.47683743975104614,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.5574852391872587,
+    "terminal_share": 0.3886773878594205,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -3314,21 +3479,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,281,305,697, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -466,792,925, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,133,927,106, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -3340,27 +3490,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -135,906,536, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,497,894,187, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -9.327 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -3397,79 +3537,79 @@
  "LEVER 1 \u2014 the cost-of-capital glide (EVALUATED, promotion decided by the rule)": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 1.1106295130615993,
-   "median": 1.2251393326056095,
-   "mae": 1.3135280424283968,
-   "below": 3,
-   "above": 14,
+   "mean": 0.7390865116415983,
+   "median": 0.76520806510609,
+   "mae": 1.0721395967215077,
+   "below": 6,
+   "above": 16,
    "bootstrap": {
     "2": {
-     "lo": 0.6987742802100589,
-     "hi": 1.5924061365781759,
-     "half_width": 0.44681592818405846,
+     "lo": 0.2914710944679963,
+     "hi": 1.2193574210014868,
+     "half_width": 0.46394316326674523,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.6326174353084161,
-     "hi": 1.627168972982035,
-     "half_width": 0.4972757688368094,
+     "lo": 0.23004999041557553,
+     "hi": 1.0465864083571126,
+     "half_width": 0.40826820897076854,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.6987742802100588,
-     "hi": 1.728036338137979,
-     "half_width": 0.5146310289639602,
+     "lo": 0.28501056665262875,
+     "hi": 0.8234158438135195,
+     "half_width": 0.26920263858044535,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.7081462446618445,
+     "cells": 14,
+     "mean": 0.2680369811446122,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 1.2883317584023077,
+     "cells": 20,
+     "mean": 0.8352088955051296,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 1.0718146079534836,
+     "cells": 18,
+     "mean": 0.7333915042530148,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 1.1492088296092173,
+     "cells": 15,
+     "mean": 1.0078462760053368,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 1.1803109142269497,
+     "cells": 21,
+     "mean": 0.7744845791285319,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.6876385201499322
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 1.036511043532756
+     "cells": 16,
+     "mean": 0.6343331460834059
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 1.1379921277616163
+     "mean": 1.0184288197967777
     }
    }
   },
@@ -3596,6 +3736,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.8580165762119787,
+    "price": 1.748,
+    "log": -0.7116041373197587,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.4188548961718086,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.538445281489647,
+    "price": 1.364,
+    "log": 1.2021629449718427,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0285106776439972,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 4.600985033775069,
+    "price": 1.993,
+    "log": 0.8366293771173593,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.1253849474828075,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 11.074137868095168,
     "price": 1.96,
@@ -3608,48 +3784,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 19.842580962198745,
-    "price": 3.67,
-    "log": 1.6876385201499322,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.8324490960685276,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 57.325261404964145,
+    "fv": 22.464589178467158,
     "price": 7.42,
-    "log": 2.0445623316059898,
+    "log": 1.107761197994102,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.7026970423140062,
+    "terminal_share": 0.604191544600784,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 85.34409407776897,
+    "price": 14.74,
+    "log": 1.7561263635738686,
+    "wacc": 0.14402914419477428,
+    "terminal_share": 0.6320377165357723,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 8.149833512960814,
+    "price": 17.97,
+    "log": -0.7907062016089166,
+    "wacc": 0.23098705977718179,
+    "terminal_share": 0.6842586744392497,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.947049549948494,
+    "fv": 8.199949052844762,
     "price": 11.5,
-    "log": -0.6594518127560524,
+    "log": -0.33821909418601015,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.6796212451802696,
+    "terminal_share": 0.652014717890848,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.597595537862533,
+    "price": 9.81,
+    "log": -0.7578688159025988,
+    "wacc": 0.16840605293998154,
+    "terminal_share": 0.8623341055461342,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 33.46761539904289,
+    "fv": 10.75775675501718,
     "price": 9.83,
-    "log": 1.2251393326056095,
+    "log": 0.09018811882259274,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7670360160703157,
+    "terminal_share": 0.6813268458188244,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -3657,11 +3857,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 26.501836829719974,
+    "fv": 12.933672697704115,
     "price": 12.0,
-    "log": 0.7923073951311048,
+    "log": 0.07492754734207241,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.6892809859901322,
+    "terminal_share": 0.538724471657549,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -3812,21 +4012,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,281,305,697, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -466,792,925, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,133,927,106, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -3838,27 +4023,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -131,553,795, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,497,894,187, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -4.439 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -3895,79 +4070,79 @@
  "LEVER 2 \u2014 the terminal anchors (EVALUATED on an empty stack)": {
   "score": {
    "n": {
-    "cells": 18,
-    "origins": 10,
+    "cells": 23,
+    "origins": 9,
     "names": 5
    },
-   "mean": 1.1439634082630348,
-   "median": 1.240356194144459,
-   "mae": 1.354341664853623,
-   "below": 3,
-   "above": 15,
+   "mean": 0.7659640965467511,
+   "median": 0.727602578044049,
+   "mae": 1.137400420239807,
+   "below": 7,
+   "above": 16,
    "bootstrap": {
     "2": {
-     "lo": 0.6514165695516368,
-     "hi": 1.7332359006663651,
-     "half_width": 0.5409096655573642,
+     "lo": 0.28349111760535656,
+     "hi": 1.3563059408864242,
+     "half_width": 0.5364074116405338,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.6328703114111737,
-     "hi": 1.8573128031187909,
-     "half_width": 0.6122212458538085,
+     "lo": 0.2684440882958828,
+     "hi": 1.455945483231257,
+     "half_width": 0.5937506974676872,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.6253899621260719,
-     "hi": 1.9513007161868428,
-     "half_width": 0.6629553770303854,
+     "lo": 0.2688205604329539,
+     "hi": 1.3209191465726995,
+     "half_width": 0.5260492930698728,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 10,
-     "mean": 0.8905590093204415,
+     "cells": 15,
+     "mean": 0.3954281976696709,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 16,
-     "mean": 1.3370677769299493,
+     "cells": 21,
+     "mean": 0.8770913001295161,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 17,
-     "mean": 1.1215387411785744,
+     "cells": 19,
+     "mean": 0.8010636566128111,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 1.0312589052347303,
+     "cells": 15,
+     "mean": 0.8831259239366511,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 17,
-     "mean": 1.213260318117787,
+     "cells": 22,
+     "mean": 0.8023299218110467,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 2,
-     "mean": 2.5572494837540583
+     "cells": 1,
+     "mean": 3.77001633645027
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 0.9822801040524926
+     "cells": 16,
+     "mean": 0.5561451261724075
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.9423402234502644
+     "mean": 0.8248059775610806
     }
    }
   },
@@ -4094,6 +4269,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.7889314529780483,
+    "price": 1.748,
+    "log": -0.7955481174985677,
+    "wacc": 0.16210405091265478,
+    "terminal_share": 1.436100217599599,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 3.4908633893207655,
+    "price": 1.364,
+    "log": 0.939727535687522,
+    "wacc": 0.15601813144225377,
+    "terminal_share": 1.0356150386064953,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 4.125732662946614,
+    "price": 1.993,
+    "log": 0.727602578044049,
+    "wacc": 0.1671680178901965,
+    "terminal_share": 1.1371891533628102,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 9.008127469001806,
     "price": 1.96,
@@ -4107,59 +4318,83 @@
    {
     "ticker": "SWDY",
     "origin": 2013,
-    "fv": 135.52085165228777,
+    "fv": 138.81847525731897,
     "price": 3.2,
-    "log": 3.7459747054074772,
+    "log": 3.77001633645027,
     "wacc": 0.12043784582987672,
-    "terminal_share": 0.7429324727227661,
+    "terminal_share": 0.7515976780497712,
     "price_date": "2013-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 8.02%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 14.421439076917954,
-    "price": 3.67,
-    "log": 1.368524262100639,
-    "wacc": 0.1268817185718755,
-    "terminal_share": 0.7966073551377627,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 56.552718823501,
+    "fv": 22.13404736256034,
     "price": 7.42,
-    "log": 2.030994222449949,
+    "log": 1.0929379704712774,
     "wacc": 0.13886829023674993,
-    "terminal_share": 0.6993498489964751,
+    "terminal_share": 0.6003660440463664,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 84.84828998050568,
+    "price": 14.74,
+    "log": 1.7502999512746613,
+    "wacc": 0.14402914419477428,
+    "terminal_share": 0.6306316102693504,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 7.3190382655529165,
+    "price": 17.97,
+    "log": -0.8982247659412518,
+    "wacc": 0.23098705977718179,
+    "terminal_share": 0.6694806788048869,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.938253316328567,
+    "fv": 8.187944891275874,
     "price": 11.5,
-    "log": -0.6609319997272898,
+    "log": -0.33968409801832683,
     "wacc": 0.17772076507029327,
-    "terminal_share": 0.6793939737232758,
+    "terminal_share": 0.6517688947852215,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.014129647921202,
+    "price": 9.81,
+    "log": -0.8935817247906934,
+    "wacc": 0.16840605293998154,
+    "terminal_share": 0.8409521425156371,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 30.689281632622887,
+    "fv": 9.835195531882825,
     "price": 9.83,
-    "log": 1.138474526985286,
+    "log": 0.0005283987128717581,
     "wacc": 0.1612736120608507,
-    "terminal_share": 0.7477089492262027,
+    "terminal_share": 0.658059066224674,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -4167,11 +4402,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 21.717218354906354,
+    "fv": 10.728459137921705,
     "price": 12.0,
-    "log": 0.5931987687018025,
+    "log": -0.11200670663329926,
     "wacc": 0.23276659024285795,
-    "terminal_share": 0.6663586183357945,
+    "terminal_share": 0.5019809682140285,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -4322,48 +4557,23 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,281,305,697, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -466,792,925, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,133,927,106, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -135,906,536, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: equity value is -0.002 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -6.040 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -4400,79 +4610,79 @@
  "LEVER 3 \u2014 the rating-basis equity risk premium (EVALUATED on an empty stack)": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 0.8791456887528875,
-   "median": 1.1600855430966979,
-   "mae": 1.1294493110525377,
-   "below": 2,
-   "above": 15,
+   "mean": 0.5422446506099458,
+   "median": 0.7719999825742281,
+   "mae": 0.9930646244634658,
+   "below": 6,
+   "above": 16,
    "bootstrap": {
     "2": {
-     "lo": 0.5537336150890232,
-     "hi": 1.4316196199419655,
-     "half_width": 0.43894300242647116,
+     "lo": 0.18083162743885361,
+     "hi": 0.9755169301109539,
+     "half_width": 0.3973426513360501,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.5434385851479434,
-     "hi": 1.5081014879356147,
-     "half_width": 0.48233145139383565,
+     "lo": 0.18559450124155016,
+     "hi": 0.8372150565984008,
+     "half_width": 0.3258102776784253,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.5566948276749658,
-     "hi": 1.5787698668452719,
-     "half_width": 0.5110375195851531,
+     "lo": 0.2162036629437797,
+     "hi": 0.6806521426398014,
+     "half_width": 0.23222423984801088,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.4679060434004152,
+     "cells": 14,
+     "mean": 0.08536142823024705,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 1.0912208999250355,
+     "cells": 20,
+     "mean": 0.6676109551747627,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 0.8608078544099181,
+     "cells": 18,
+     "mean": 0.5265702720107739,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 0.8739541216758812,
+     "cells": 15,
+     "mean": 0.7844010559396701,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 0.9338789884404882,
+     "cells": 21,
+     "mean": 0.5679033056984538,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.6560987941901975
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 0.9564688787095434
+     "cells": 16,
+     "mean": 0.5551527273813955
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.6207815212522424
+     "mean": 0.5078231125527464
     }
    }
   },
@@ -4599,6 +4809,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.8118980450935512,
+    "price": 1.748,
+    "log": -0.7668527841667651,
+    "wacc": 0.1633187475305815,
+    "terminal_share": 1.4307035308015918,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.487718460949615,
+    "price": 1.364,
+    "log": 1.1909228753139554,
+    "wacc": 0.15653126035775541,
+    "terminal_share": 1.029077226388761,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 4.683929194064493,
+    "price": 1.993,
+    "log": 0.8544962878372891,
+    "wacc": 0.16630407720965878,
+    "terminal_share": 1.1229880281424391,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 6.331236213515313,
     "price": 1.96,
@@ -4611,48 +4857,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 19.22651769803243,
-    "price": 3.67,
-    "log": 1.6560987941901975,
-    "wacc": 0.12796534842401955,
-    "terminal_share": 0.8295835818858647,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 56.43039892118013,
+    "fv": 22.081716393199034,
     "price": 7.42,
-    "log": 2.02882894408707,
+    "log": 1.090570896407613,
     "wacc": 0.13979824277512862,
-    "terminal_share": 0.6993821560465496,
+    "terminal_share": 0.6002419742528331,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 81.94041748300359,
+    "price": 14.74,
+    "log": 1.7154274803287335,
+    "wacc": 0.145027537580501,
+    "terminal_share": 0.6185411181327942,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 5.642942084806414,
+    "price": 17.97,
+    "log": -1.1582981250533317,
+    "wacc": 0.2367520999802165,
+    "terminal_share": 0.577317889346707,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.8312553808639915,
+    "fv": 8.04305362292591,
     "price": 11.5,
-    "log": -0.6791147269927277,
+    "log": -0.3575382204390468,
     "wacc": 0.17930538994416068,
-    "terminal_share": 0.6743702915127524,
+    "terminal_share": 0.6465122835712479,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.5569699853483225,
+    "price": 9.81,
+    "log": -0.7667443478108924,
+    "wacc": 0.16906354954940972,
+    "terminal_share": 0.8614592283070036,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 33.81900395682162,
+    "fv": 10.875449369062377,
     "price": 9.83,
-    "log": 1.235583957571381,
+    "log": 0.10106896325506366,
     "wacc": 0.16050745107202624,
-    "terminal_share": 0.7687467350166018,
+    "terminal_share": 0.6835287782752872,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -4660,11 +4930,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 14.902618408413009,
+    "fv": 7.56692273913931,
     "price": 12.0,
-    "log": 0.21663027983259056,
+    "log": -0.46112017236438524,
     "wacc": 0.23110514897738008,
-    "terminal_share": 0.5607555001617928,
+    "terminal_share": 0.39213040161526247,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -4815,21 +5085,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,283,913,466, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -471,470,336, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,124,566,178, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -4841,27 +5096,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -137,794,054, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,497,262,265, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -9.043 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -4898,79 +5143,79 @@
  "LEVER 4 \u2014 the country premium at the house lambda of 1.00, ON THE STACK {3}": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 0.9764389133125976,
-   "median": 1.2737841524938807,
-   "mae": 1.1922474182944658,
-   "below": 2,
-   "above": 15,
+   "mean": 0.6367320543371123,
+   "median": 0.852452952649321,
+   "mae": 1.019170707632543,
+   "below": 6,
+   "above": 16,
    "bootstrap": {
     "2": {
-     "lo": 0.6363267954029149,
-     "hi": 1.5052604752755103,
-     "half_width": 0.4344668399362977,
+     "lo": 0.2758616109573774,
+     "hi": 1.0645941585353886,
+     "half_width": 0.39436627378900563,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.6250675699575056,
-     "hi": 1.585028671436115,
-     "half_width": 0.47998055073930473,
+     "lo": 0.2637545352508737,
+     "hi": 0.9165162123253755,
+     "half_width": 0.32638083853725086,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.6487790156065095,
-     "hi": 1.6591885222936307,
-     "half_width": 0.5052047533435606,
+     "lo": 0.29396717889804785,
+     "hi": 0.7665088671704756,
+     "half_width": 0.23627084413621388,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.5673747078521222,
+     "cells": 14,
+     "mean": 0.17964400284081547,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 1.177120430332615,
+     "cells": 20,
+     "mean": 0.753272506204577,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 0.9569146090932923,
+     "cells": 18,
+     "mean": 0.6157603333037084,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 0.9809126972095222,
+     "cells": 15,
+     "mean": 0.8937695854428338,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 1.0345675729744603,
+     "cells": 21,
+     "mean": 0.664844039842556,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.7550771377372016
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 1.021781918945876
+     "cells": 16,
+     "mean": 0.6290161043041267
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.7710941998530322
+     "mean": 0.6573079210917411
     }
    }
   },
@@ -5097,6 +5342,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.9975001343470259,
+    "price": 1.748,
+    "log": -0.5609752727677361,
+    "wacc": 0.15862635007666434,
+    "terminal_share": 1.38658938079334,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.7379315771924615,
+    "price": 1.364,
+    "log": 1.245179104926214,
+    "wacc": 0.15406855830959174,
+    "terminal_share": 1.0264146449630154,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 5.1604749725468775,
+    "price": 1.993,
+    "log": 0.951387582969763,
+    "wacc": 0.16163867472868826,
+    "terminal_share": 1.110611371229042,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 7.111920032071166,
     "price": 1.96,
@@ -5109,48 +5390,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 21.226890544134942,
-    "price": 3.67,
-    "log": 1.7550771377372016,
-    "wacc": 0.12458942465387843,
-    "terminal_share": 0.8385480951791119,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 58.617827283565966,
+    "fv": 23.01760861288665,
     "price": 7.42,
-    "log": 2.066859812994275,
+    "log": 1.1320804576985393,
     "wacc": 0.13756869991106885,
-    "terminal_share": 0.7073595898868075,
+    "terminal_share": 0.6097639520259135,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 84.03107741412074,
+    "price": 14.74,
+    "log": 1.7406218128761113,
+    "wacc": 0.14294012508568352,
+    "terminal_share": 0.6264252928129258,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 6.22710773279621,
+    "price": 17.97,
+    "log": -1.0597917241400518,
+    "wacc": 0.2229222280000427,
+    "terminal_share": 0.6035240010475388,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 6.181788895819365,
+    "fv": 8.51828460224965,
     "price": 11.5,
-    "log": -0.6207393404436751,
+    "log": -0.3001320525632741,
     "wacc": 0.17318395220093172,
-    "terminal_share": 0.6894173810458427,
+    "terminal_share": 0.6622978079882319,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.757896355482674,
+    "price": 9.81,
+    "log": -0.7235966451446347,
+    "wacc": 0.16590797168625904,
+    "terminal_share": 0.8656804057473085,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 35.82798710988698,
+    "fv": 11.548032070428361,
     "price": 9.83,
-    "log": 1.2932904166761765,
+    "log": 0.16107610477911175,
     "wacc": 0.15637007282533957,
-    "terminal_share": 0.7780592333345376,
+    "terminal_share": 0.6955543870337562,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -5158,11 +5463,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 16.758871881641426,
+    "fv": 8.467286658490595,
     "price": 12.0,
-    "log": 0.3340211328359132,
+    "log": -0.3486965397318339,
     "wacc": 0.21945440276759898,
-    "terminal_share": 0.5842797916178342,
+    "terminal_share": 0.4174023847621662,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -5313,21 +5618,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,273,680,500, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -448,903,247, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,073,181,590, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -5339,27 +5629,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -133,835,316, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,500,295,764, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -7.065 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -5396,79 +5676,79 @@
  "LEVER 5 \u2014 point-in-time betas, Vasicek-shrunk, ON THE STACK {3}": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 0.9033324560293683,
-   "median": 1.0680957436857694,
-   "mae": 1.2038126024425242,
-   "below": 4,
+   "mean": 0.5444738866518347,
+   "median": 0.8026056819941534,
+   "mae": 1.0647763936265253,
+   "below": 9,
    "above": 13,
    "bootstrap": {
     "2": {
-     "lo": 0.5524427993102573,
-     "hi": 1.565656108140043,
-     "half_width": 0.5066066544148928,
+     "lo": 0.17623051826966182,
+     "hi": 1.067901452786083,
+     "half_width": 0.4458354672582106,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.5461864920390541,
-     "hi": 1.6472981340371138,
-     "half_width": 0.5505558209990298,
+     "lo": 0.18502788924060778,
+     "hi": 0.8924894822209761,
+     "half_width": 0.3537307964901842,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.529789153416493,
-     "hi": 1.7323322989750283,
-     "half_width": 0.6012715727792677,
+     "lo": 0.20872929141174756,
+     "hi": 0.7666971866287998,
+     "half_width": 0.27898394760852613,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.3826200348068923,
+     "cells": 14,
+     "mean": 0.004668147650223652,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 1.1409642608832702,
+     "cells": 20,
+     "mean": 0.6868118833545077,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 0.8912240804411236,
+     "cells": 18,
+     "mean": 0.5492984664114787,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 0.9315681396940856,
+     "cells": 15,
+     "mean": 0.8115202881214326,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 0.9643849887561848,
+     "cells": 21,
+     "mean": 0.5739015987590504,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.730108844536521
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 1.0321862852958854
+     "cells": 16,
+     "mean": 0.5840046598398083
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.5507800091673144
+     "mean": 0.4390584914839048
     }
    }
   },
@@ -5595,6 +5875,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.7801978448657502,
+    "price": 1.748,
+    "log": -0.8066800214310896,
+    "wacc": 0.16417367806501412,
+    "terminal_share": 1.4392325125894525,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.170852863829558,
+    "price": 1.364,
+    "log": 1.117698979177453,
+    "wacc": 0.15990953547514278,
+    "terminal_share": 1.0329650501068397,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 3.9456303614648998,
+    "price": 1.993,
+    "log": 0.6829676877461001,
+    "wacc": 0.17462010672854225,
+    "terminal_share": 1.1475175063035026,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 5.870917581141869,
     "price": 1.96,
@@ -5607,48 +5923,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 20.70345317906376,
-    "price": 3.67,
-    "log": 1.730108844536521,
-    "wacc": 0.1254340027433202,
-    "terminal_share": 0.836295047015593,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 58.67356552755184,
+    "fv": 23.041455677533857,
     "price": 7.42,
-    "log": 2.067810236496728,
+    "log": 1.1331159571011191,
     "wacc": 0.1375137805630982,
-    "terminal_share": 0.7075573997352106,
+    "terminal_share": 0.6100008062232946,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 85.48983167735037,
+    "price": 14.74,
+    "log": 1.7578325543587703,
+    "wacc": 0.1415505614634921,
+    "terminal_share": 0.6317411932384591,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 5.630213029090477,
+    "price": 17.97,
+    "log": -1.1605564211553678,
+    "wacc": 0.23708237464832135,
+    "terminal_share": 0.5767078229534933,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.582217055225654,
+    "fv": 7.705197133658627,
     "price": 11.5,
-    "log": -0.7227610161623322,
+    "log": -0.40045198176431257,
     "wacc": 0.18412801896332898,
-    "terminal_share": 0.6627597538999441,
+    "terminal_share": 0.6343693324767996,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.345156412917512,
+    "price": 9.81,
+    "log": -0.8143405171378739,
+    "wacc": 0.17266489284752215,
+    "terminal_share": 0.856710335353449,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 28.603659890699326,
+    "fv": 9.12674729720137,
     "price": 9.83,
-    "log": 1.0680957436857694,
+    "log": -0.07422956839655316,
     "wacc": 0.1734493005340093,
-    "terminal_share": 0.7404157550778693,
+    "terminal_share": 0.647354547570191,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -5656,11 +5996,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 12.422221402563908,
+    "fv": 6.354465609291898,
     "price": 12.0,
-    "log": 0.034580267613549466,
+    "log": -0.6357488384869082,
     "wacc": 0.24995613973504008,
-    "terminal_share": 0.5248397402787686,
+    "terminal_share": 0.3550044941665777,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -5811,21 +6151,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,285,731,826, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -501,944,283, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,212,717,471, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -5837,27 +6162,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -131,173,615, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,493,802,411, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -10.787 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
@@ -5894,79 +6209,79 @@
  "LEVER 5 in isolation \u2014 same betas on an EMPTY stack (not the decision reading)": {
   "score": {
    "n": {
-    "cells": 17,
-    "origins": 9,
+    "cells": 22,
+    "origins": 8,
     "names": 5
    },
-   "mean": 0.8893211482009157,
-   "median": 1.0574177553433095,
-   "mae": 1.2009713588041662,
-   "below": 4,
+   "mean": 0.5373898451617535,
+   "median": 0.7994366171652276,
+   "mae": 1.06100740776667,
+   "below": 9,
    "above": 13,
    "bootstrap": {
     "2": {
-     "lo": 0.5382406346430015,
-     "hi": 1.5561819284500336,
-     "half_width": 0.508970646903516,
+     "lo": 0.1835519089001659,
+     "hi": 1.067210870321224,
+     "half_width": 0.441829480710529,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.5264879757150228,
-     "hi": 1.6411614753577626,
-     "half_width": 0.5573367498213699,
+     "lo": 0.19703875297245813,
+     "hi": 0.8771146487050819,
+     "half_width": 0.3400379478663119,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.5227189092888854,
-     "hi": 1.7262012770974913,
-     "half_width": 0.601741183904303,
+     "lo": 0.2141848401514922,
+     "hi": 0.7751242641968725,
+     "half_width": 0.28046971202269017,
      "n_boot": 2000
     }
    },
    "lono": {
     "ARCC": {
      "left_out": "ARCC",
-     "cells": 9,
-     "mean": 0.3658687247715895,
+     "cells": 14,
+     "mean": -0.00021888592233457082,
      "names_left": 4
     },
     "EGCH": {
      "left_out": "EGCH",
-     "cells": 15,
-     "mean": 1.131778896392624,
+     "cells": 20,
+     "mean": 0.6840400260016187,
      "names_left": 4
     },
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 16,
-     "mean": 0.8777057333728159,
+     "cells": 18,
+     "mean": 0.5393600378871911,
      "names_left": 4
     },
     "SWDY": {
      "left_out": "SWDY",
-     "cells": 12,
-     "mean": 0.9128895647328732,
+     "cells": 15,
+     "mean": 0.7995735268622067,
      "names_left": 4
     },
     "TMGH": {
      "left_out": "TMGH",
-     "cells": 16,
-     "mean": 0.9503980998793164,
+     "cells": 21,
+     "mean": 0.5671660320100987,
      "names_left": 4
     }
    },
    "eras": {
     "E1 pre-float": {
-     "cells": 1,
-     "mean": 1.7472305464365456
+     "cells": 0,
+     "mean": null
     },
     "E2 post-float": {
-     "cells": 10,
-     "mean": 1.0248834530663988
+     "cells": 16,
+     "mean": 0.5855806535700943
     },
     "E3 devaluation": {
      "cells": 6,
-     "mean": 0.5203990737191719
+     "mean": 0.40888102273951077
     }
    }
   },
@@ -6093,6 +6408,42 @@
    },
    {
     "ticker": "PHDC",
+    "origin": 2019,
+    "fv": 0.8296959576558822,
+    "price": 1.748,
+    "log": -0.7451682386122113,
+    "wacc": 0.16284595498709922,
+    "terminal_share": 1.4260546195074968,
+    "price_date": "2019-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.90%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "fv": 4.251231662175404,
+    "price": 1.364,
+    "log": 1.1367871843951172,
+    "wacc": 0.15902313803517307,
+    "terminal_share": 1.0319181571391534,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 6.73%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "fv": 3.807414011626426,
+    "price": 1.993,
+    "log": 0.6473091803557167,
+    "wacc": 0.17635007502304065,
+    "terminal_share": 1.1530496356905078,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
     "origin": 2022,
     "fv": 5.743749721836388,
     "price": 1.96,
@@ -6105,48 +6456,72 @@
    },
    {
     "ticker": "SWDY",
-    "origin": 2015,
-    "fv": 21.060983562815824,
-    "price": 3.67,
-    "log": 1.7472305464365456,
-    "wacc": 0.12485430388594833,
-    "terminal_share": 0.8378407418412397,
-    "price_date": "2015-12-31",
-    "kd_bound": "FLOORED at the sovereign (effective 4.24%)",
-    "scale": 1.0
-   },
-   {
-    "ticker": "SWDY",
     "origin": 2016,
-    "fv": 59.02078836729354,
+    "fv": 23.190010996817204,
     "price": 7.42,
-    "log": 2.0737106698757994,
+    "log": 1.139542568293179,
     "wacc": 0.13717369525603423,
-    "terminal_share": 0.7087837324685557,
+    "terminal_share": 0.6114700018956837,
     "price_date": "2016-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 3.70%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2017,
+    "fv": 85.49748446159316,
+    "price": 14.74,
+    "log": 1.7579220672468687,
+    "wacc": 0.14154341005664964,
+    "terminal_share": 0.6317686925465666,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.35%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "fv": 5.863588171552044,
+    "price": 17.97,
+    "log": -1.1199419686309637,
+    "wacc": 0.23123440659243913,
+    "terminal_share": 0.5876175195745625,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 4.12%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2019,
-    "fv": 5.694234947902273,
+    "fv": 7.857190562530987,
     "price": 11.5,
-    "log": -0.7028927850003356,
+    "log": -0.38091792761562593,
     "wacc": 0.18190581634025368,
-    "terminal_share": 0.6680833034314645,
+    "terminal_share": 0.6399329500844163,
     "price_date": "2019-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 5.39%)",
     "scale": 1.0
    },
    {
     "ticker": "SWDY",
+    "origin": 2020,
+    "fv": 4.405422298896846,
+    "price": 9.81,
+    "log": -0.8005661507031705,
+    "wacc": 0.1716094807184044,
+    "terminal_share": 0.8580945176965844,
+    "price_date": "2020-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 5.45%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "SWDY",
     "origin": 2021,
-    "fv": 27.877238937429752,
+    "fv": 8.882807294257631,
     "price": 9.83,
-    "log": 1.0423716130209615,
+    "log": -0.10132129037496236,
     "wacc": 0.1755632199674556,
-    "terminal_share": 0.7359006234622799,
+    "terminal_share": 0.6416474658861422,
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 4.06%)",
     "scale": 1.0
@@ -6154,11 +6529,11 @@
    {
     "ticker": "SWDY",
     "origin": 2022,
-    "fv": 12.040444382873758,
+    "fv": 6.166695025887426,
     "price": 12.0,
-    "log": 0.003364698288116851,
+    "log": -0.6657436075898497,
     "wacc": 0.2532712473941991,
-    "terminal_share": 0.5187863160242564,
+    "terminal_share": 0.34891858709455226,
     "price_date": "2022-12-29",
     "kd_bound": "FLOORED at the sovereign (effective 4.87%)",
     "scale": 1.0
@@ -6309,21 +6684,6 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2019,
-    "why": "terminal refused: the explicit window's present value is -2,282,901,841, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -494,002,042, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
-    "origin": 2021,
-    "why": "terminal refused: the explicit window's present value is -2,230,517,082, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
    },
@@ -6335,27 +6695,17 @@
    {
     "ticker": "SWDY",
     "origin": 2014,
-    "why": "terminal refused: the last explicit year's free cash flow is -301,901,731.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
+    "why": "terminal refused: the last explicit year's free cash flow is -650,438,670.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
-    "origin": 2017,
-    "why": "terminal refused: the explicit window's present value is -131,159,862, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2018,
-    "why": "terminal refused: the last explicit year's free cash flow is -39,241,449,118.2, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
-   },
-   {
-    "ticker": "SWDY",
-    "origin": 2020,
-    "why": "terminal refused: the explicit window's present value is -1,494,816,101, not positive \u2014 the discounted forecast years destroy more than the whole enterprise is worth, so the terminal is carrying more than all of the value and its share prints negative. That is a broken construction rather than a cheap company."
+    "origin": 2015,
+    "why": "terminal refused: the last explicit year's free cash flow is -182,065,340.7, not positive: a company consuming cash in its final forecast year is not capitalised as a growing perpetuity"
    },
    {
     "ticker": "SWDY",
     "origin": 2023,
-    "why": "TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'"
+    "why": "terminal refused: equity value is -11.166 per share, not positive: a log ratio against the price does not exist below zero and this series is scored on one"
    },
    {
     "ticker": "TMGH",
