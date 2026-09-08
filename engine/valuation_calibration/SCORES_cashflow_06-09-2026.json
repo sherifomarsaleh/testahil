@@ -164,13 +164,18 @@
    },
    {
     "ticker": "ARCC",
+    "origin": 2014,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
+   },
+   {
+    "ticker": "ARCC",
     "origin": 2015,
     "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
    },
    {
     "ticker": "ARCC",
     "origin": 2016,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "terminal refused: implied payout of terminal NOPAT is 107.5%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
@@ -271,6 +276,21 @@
     "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2017,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2018,
+    "why": "capex intensity needs 3 years and the block carries 0"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2019,
+    "why": "capex intensity needs 3 years and the block carries 1"
    },
    {
     "ticker": "TMGH",
@@ -454,13 +474,18 @@
    },
    {
     "ticker": "ARCC",
+    "origin": 2014,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
+   },
+   {
+    "ticker": "ARCC",
     "origin": 2015,
     "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
    },
    {
     "ticker": "ARCC",
     "origin": 2016,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "terminal refused: implied payout of terminal NOPAT is 107.3%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
@@ -564,6 +589,21 @@
    },
    {
     "ticker": "TMGH",
+    "origin": 2017,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2018,
+    "why": "capex intensity needs 3 years and the block carries 0"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2019,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "TMGH",
     "origin": 2020,
     "why": "capex intensity needs 3 years and the block carries 2"
    },
@@ -582,32 +622,32 @@
  "maintenance on the DISCLOSED LIFE \u2014 A SENSITIVITY, NOT THE DECLARED RUN": {
   "score": {
    "n": {
-    "cells": 6,
-    "origins": 6,
+    "cells": 7,
+    "origins": 7,
     "names": 1
    },
-   "mean": 3.6624278784477275,
-   "median": 1.170485555596053,
-   "mae": 3.7613113722734206,
+   "mean": 1.1848487150889935,
+   "median": 1.0981918881118236,
+   "mae": 1.269605995511016,
    "below": 1,
-   "above": 5,
+   "above": 6,
    "bootstrap": {
     "2": {
-     "lo": 0.22140580981202876,
-     "hi": 6.660885727082447,
-     "half_width": 3.219739958635209,
+     "lo": 0.3444458434437427,
+     "hi": 1.6982362786800713,
+     "half_width": 0.6768952176181643,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.42202872747653736,
-     "hi": 6.218065949225522,
-     "half_width": 2.8980186108744923,
+     "lo": 0.3695314178328931,
+     "hi": 1.5259348127194965,
+     "half_width": 0.5782016974433017,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.45129523093054624,
-     "hi": 6.088615765867232,
-     "half_width": 2.818660267468343,
+     "lo": 0.5414939186881863,
+     "hi": 1.3524417923648078,
+     "half_width": 0.40547393683831073,
      "n_boot": 2000
     }
    },
@@ -625,8 +665,8 @@
      "mean": null
     },
     "E2 post-float": {
-     "cells": 4,
-     "mean": 4.589386841549872
+     "cells": 5,
+     "mean": 0.9353842202272162
     },
     "E3 devaluation": {
      "cells": 2,
@@ -637,12 +677,24 @@
   "cells": [
    {
     "ticker": "ARCC",
+    "origin": 2016,
+    "fv": 20.45140041238075,
+    "price": 6.82,
+    "log": 1.0981918881118236,
+    "wacc": 0.2022276502521752,
+    "terminal_share": 0.5883180824337432,
+    "price_date": "2016-12-29",
+    "kd_bound": "FLOORED at the sovereign (effective 0.76%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "ARCC",
     "origin": 2017,
-    "fv": 201953701.59416276,
+    "fv": 77.07129294495772,
     "price": 7.63,
-    "log": 17.091461183769876,
-    "wacc": 0.12128774419494617,
-    "terminal_share": 0.8775636941497617,
+    "log": 2.312643030594645,
+    "wacc": 0.1872307457348306,
+    "terminal_share": 0.7447209663026733,
     "price_date": "2017-12-31",
     "kd_bound": "FLOORED at the sovereign (effective 9.75%)",
     "scale": 1.0
@@ -726,13 +778,13 @@
    },
    {
     "ticker": "ARCC",
-    "origin": 2015,
+    "origin": 2014,
     "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
    },
    {
     "ticker": "ARCC",
-    "origin": 2016,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "origin": 2015,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
    },
    {
     "ticker": "ARCC",
@@ -833,6 +885,21 @@
     "ticker": "PHDC",
     "origin": 2023,
     "why": "no finance charge in the as-reported panel at this origin"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2017,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2018,
+    "why": "capex intensity needs 3 years and the block carries 0"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2019,
+    "why": "capex intensity needs 3 years and the block carries 1"
    },
    {
     "ticker": "TMGH",
