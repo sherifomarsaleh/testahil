@@ -1013,6 +1013,104 @@
  },
  "prior_year_anchor": {
   "_": "FY2015, FY2016 and FY2017 are NOT origins of this run. They are carried because a trailing window reaches back past the first origin — the identity capex = dPPE + D&A needs property at two dates, and a capital-spending intensity is taken over the three fiscal years to an origin, so an origin at FY2017 reads FY2015, FY2016 and FY2017. Recording any of them inside `origins` would misstate what this run tested.",
+  "FY2014": {
+   "cash": {
+    "value": 159366746,
+    "as_at": "2014-12-31",
+    "source": "ARCC_FY2015_Consolidated.pdf, the 31 December 2014 COMPARATIVE column of the audited consolidated financial statements for the year ended 31 December 2015 (the company's own audited statements, from this run's own filings archive; this run holds NO FY2014 filing — its earliest annual is FY2015), consolidated balance sheet, 'Cash and bank balances' (note 11)",
+    "route": "OCR off the rendered pixels at 300 dpi — the filing carries no text layer (36 bytes across 36 pages) and every page is a JBIG2 bilevel stencil at 3508 x 2480, so every figure was read from an image and footed against the statement's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "lines": {
+     "cash_and_bank_balances": 159366746
+    },
+    "note": "the consolidated statement of cash flows closes the same year on the same figure — 'Cash and cash equivalents at the end of the year 159 366 746' — so two statements in one filing agree, and it opens the FY2015 column as 159,366,746 as well",
+    "check": "the 31 December 2014 column foots to the pound on every subtotal it prints: non-current assets 2,676,733,351 + 99,410,072 + 139,936,479 = 2,916,079,902; current assets 201,761,865 + 56,679,974 + 827,715 + 159,366,746 = 418,636,300; current liabilities 8,770,069 + 135,158,769 + 336,514,326 + 294,065,338 + 77,934,000 + 3,905,131 = 856,347,633; working capital 418,636,300 - 856,347,633 = -437,711,333; total investment 2,916,079,902 - 437,711,333 = 2,478,368,569; equity 757,479,400 + 129,463,619 + 36,037,640 + 374,717,936 = 1,297,698,595, plus non-controlling 9,159 = 1,297,707,754; non-current liabilities 341,739,770 + 486,502,712 + 352,418,333 = 1,180,660,815; and 1,297,707,754 + 1,180,660,815 = 2,478,368,569, which is the total investment the other side of the sheet prints"
+   },
+   "debt": {
+    "value": 635805108,
+    "as_at": "2014-12-31",
+    "source": "ARCC_FY2015_Consolidated.pdf, the 31 December 2014 COMPARATIVE column of the audited consolidated financial statements for the year ended 31 December 2015 (the company's own audited statements, from this run's own filings archive; this run holds NO FY2014 filing — its earliest annual is FY2015), consolidated balance sheet, non-current 'Loans' (note 14) and 'Current portion of long - term loans' (note 14)",
+    "route": "OCR off the rendered pixels at 300 dpi — the filing carries no text layer (36 bytes across 36 pages) and every page is a JBIG2 bilevel stencil at 3508 x 2480, so every figure was read from an image and footed against the statement's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "definition": "long-term borrowings, their current portion and credit facilities — the three lines this run's own panel.py forms its effective rate on, so the block and the panel cannot disagree about what debt means",
+    "lines": {
+     "borrowings_non_current": 341739770,
+     "current_portion_of_long_term_borrowings": 294065338,
+     "bank_overdraft": 0
+    },
+    "note": "the bank overdraft line is printed as nil for 2014 and first appears in 2015 at 1,714,317, which the cash-flow statement corroborates with 'Proceeds from bank overdraft' arising in 2015 and nothing in 2014 — so the zero is a DISCLOSED nil rather than an absent line. 'Other liabilities' (non-current 486,502,712 and current portion 77,934,000) is NOT included: it is the operation and electricity licence obligation, not a borrowing, and dividing a finance charge by a total that included it would understate the rate and manufacture a bias that looks exactly like evidence [R-FCAL-01 trap (i)]. The FY2015 anchor beside this one excludes the same line.",
+    "check": "the 31 December 2014 column foots to the pound on every subtotal it prints: non-current assets 2,676,733,351 + 99,410,072 + 139,936,479 = 2,916,079,902; current assets 201,761,865 + 56,679,974 + 827,715 + 159,366,746 = 418,636,300; current liabilities 8,770,069 + 135,158,769 + 336,514,326 + 294,065,338 + 77,934,000 + 3,905,131 = 856,347,633; working capital 418,636,300 - 856,347,633 = -437,711,333; total investment 2,916,079,902 - 437,711,333 = 2,478,368,569; equity 757,479,400 + 129,463,619 + 36,037,640 + 374,717,936 = 1,297,698,595, plus non-controlling 9,159 = 1,297,707,754; non-current liabilities 341,739,770 + 486,502,712 + 352,418,333 = 1,180,660,815; and 1,297,707,754 + 1,180,660,815 = 2,478,368,569, which is the total investment the other side of the sheet prints"
+   },
+   "ppe": {
+    "value": 2676733351,
+    "as_at": "2014-12-31",
+    "source": "ARCC_FY2015_Consolidated.pdf, the 31 December 2014 COMPARATIVE column of the audited consolidated financial statements for the year ended 31 December 2015 (the company's own audited statements, from this run's own filings archive; this run holds NO FY2014 filing — its earliest annual is FY2015), consolidated balance sheet, 'Fixed assets (net)' (note 5)",
+    "route": "OCR off the rendered pixels at 300 dpi — the filing carries no text layer (36 bytes across 36 pages) and every page is a JBIG2 bilevel stencil at 3508 x 2480, so every figure was read from an image and footed against the statement's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "lines": {
+     "property_plant_and_equipment_net": 2676733351,
+     "assets_under_construction": 99410072,
+     "right_of_use_assets_net": 0,
+     "intangible_assets_net": 139936479
+    },
+    "note": "the identity capex = dPPE + D&A is run on property PLUS assets under construction, because this company's spending lands in construction first and moves across without cash; the intangible is the operating licence and amortises on its own line — the same construction the FY2015 anchor states. CROSS-CHECKED BY THAT IDENTITY RATHER THAN ASSERTED: (2,546,154,219 + 124,756,807) - (2,676,733,351 + 99,410,072) + 175,412,201 = 70,179,804, which is EXACTLY the capital expenditure the FY2015 cash-flow statement discloses on its own two lines. This year's property base is one side of that identity, so it is confirmed by an arithmetic the filing itself carries.",
+    "check": "the 31 December 2014 column foots to the pound on every subtotal it prints: non-current assets 2,676,733,351 + 99,410,072 + 139,936,479 = 2,916,079,902; current assets 201,761,865 + 56,679,974 + 827,715 + 159,366,746 = 418,636,300; current liabilities 8,770,069 + 135,158,769 + 336,514,326 + 294,065,338 + 77,934,000 + 3,905,131 = 856,347,633; working capital 418,636,300 - 856,347,633 = -437,711,333; total investment 2,916,079,902 - 437,711,333 = 2,478,368,569; equity 757,479,400 + 129,463,619 + 36,037,640 + 374,717,936 = 1,297,698,595, plus non-controlling 9,159 = 1,297,707,754; non-current liabilities 341,739,770 + 486,502,712 + 352,418,333 = 1,180,660,815; and 1,297,707,754 + 1,180,660,815 = 2,478,368,569, which is the total investment the other side of the sheet prints"
+   },
+   "dep": {
+    "value": 191953042,
+    "as_at": "2014-12-31",
+    "source": "ARCC_FY2015_Consolidated.pdf, the 31 December 2014 COMPARATIVE column of the audited consolidated financial statements for the year ended 31 December 2015 (the company's own audited statements, from this run's own filings archive; this run holds NO FY2014 filing — its earliest annual is FY2015), consolidated statement of cash flows, \"Fixed assets' depreciation\" (note 5) and \"Intangible assets' amortization\" (note 7)",
+    "route": "OCR off the rendered pixels at 300 dpi — the filing carries no text layer (36 bytes across 36 pages) and every page is a JBIG2 bilevel stencil at 3508 x 2480, so every figure was read from an image and footed against the statement's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "lines": {
+     "depreciation_of_property_plant_and_equipment": 169433043,
+     "amortisation_of_intangible_assets": 22519999,
+     "amortisation_of_other_assets": 0,
+     "amortisation_of_right_of_use_assets": 0
+    },
+    "note": "the whole charge, which is more than the cost-of-sales depreciation this run's panel.py carries: that one is the manufacturing share and this is the group total — the same construction as the FY2015 anchor. A NEAR-COINCIDENCE IS RECORDED SO THE NEXT READER DOES NOT MISREAD IT: this year's amortisation of 22,519,999 is within one pound of the 22,520,000 the FY2015 anchor carries, and they are DIFFERENT YEARS' figures rather than a copied cell — the FY2016 filing's RESTATED 2015 column prints amortisation of 22,520,000 for 2015, which is where that anchor's figure comes from, while this filing's own 2015 column prints 30,794,220 as first reported.",
+    "check": "the 31 December 2014 column foots to the pound on every subtotal it prints: non-current assets 2,676,733,351 + 99,410,072 + 139,936,479 = 2,916,079,902; current assets 201,761,865 + 56,679,974 + 827,715 + 159,366,746 = 418,636,300; current liabilities 8,770,069 + 135,158,769 + 336,514,326 + 294,065,338 + 77,934,000 + 3,905,131 = 856,347,633; working capital 418,636,300 - 856,347,633 = -437,711,333; total investment 2,916,079,902 - 437,711,333 = 2,478,368,569; equity 757,479,400 + 129,463,619 + 36,037,640 + 374,717,936 = 1,297,698,595, plus non-controlling 9,159 = 1,297,707,754; non-current liabilities 341,739,770 + 486,502,712 + 352,418,333 = 1,180,660,815; and 1,297,707,754 + 1,180,660,815 = 2,478,368,569, which is the total investment the other side of the sheet prints"
+   },
+   "capex": {
+    "value": 149121669,
+    "as_at": "2014-12-31",
+    "source": "ARCC_FY2015_Consolidated.pdf, the 31 December 2014 COMPARATIVE column of the audited consolidated financial statements for the year ended 31 December 2015 (the company's own audited statements, from this run's own filings archive; this run holds NO FY2014 filing — its earliest annual is FY2015), consolidated statement of cash flows, 'Payments for fixed assets' (note 5) and 'Payments for projects under construction' (note 6)",
+    "route": "OCR off the rendered pixels at 300 dpi — the filing carries no text layer (36 bytes across 36 pages) and every page is a JBIG2 bilevel stencil at 3508 x 2480, so every figure was read from an image and footed against the statement's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "lines": {
+     "payments_for_property_plant_and_equipment": 23743402,
+     "payments_for_assets_under_construction": 125378267,
+     "payments_for_other_assets": 0
+    },
+    "note": "DISCLOSED on this statement as two lines and NOT derived. The statement's own footnote records that transfers from projects under construction to fixed assets are non-cash and have been eliminated, so these two lines are cash spending and adding them does not double-count the transfer.",
+    "check": "the 31 December 2014 column foots to the pound on every subtotal it prints: non-current assets 2,676,733,351 + 99,410,072 + 139,936,479 = 2,916,079,902; current assets 201,761,865 + 56,679,974 + 827,715 + 159,366,746 = 418,636,300; current liabilities 8,770,069 + 135,158,769 + 336,514,326 + 294,065,338 + 77,934,000 + 3,905,131 = 856,347,633; working capital 418,636,300 - 856,347,633 = -437,711,333; total investment 2,916,079,902 - 437,711,333 = 2,478,368,569; equity 757,479,400 + 129,463,619 + 36,037,640 + 374,717,936 = 1,297,698,595, plus non-controlling 9,159 = 1,297,707,754; non-current liabilities 341,739,770 + 486,502,712 + 352,418,333 = 1,180,660,815; and 1,297,707,754 + 1,180,660,815 = 2,478,368,569, which is the total investment the other side of the sheet prints"
+   },
+   "shares": {
+    "value": 378739700,
+    "as_at": "2014-12-31",
+    "issued_capital": 757479400,
+    "par_value": 2.0,
+    "source": "ARCC_FY2015_Consolidated.pdf, the 31 December 2014 COMPARATIVE column of the audited consolidated financial statements for the year ended 31 December 2015 (the company's own audited statements, from this run's own filings archive; this run holds NO FY2014 filing — its earliest annual is FY2015), 'Issued and paid-up capital' (note 16)",
+    "route": "OCR off the rendered pixels at 300 dpi — the filing carries no text layer (36 bytes across 36 pages) and every page is a JBIG2 bilevel stencil at 3508 x 2480, so every figure was read from an image and footed against the statement's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "check": "issued capital 757479400 / par 2 = 378739700, matching the count the same note states",
+    "note": "NOT TODAY'S COUNT CARRIED BACK, which [R-FCAL-01 AMENDED] clause (ii) forbids: this filing PRINTS issued and paid-up capital of 757,479,400 in its own 31 December 2014 column, so the figure is that year's own committed capital, and the par value comes from note 16 of the same document. The capital is unchanged between the two columns, which is a fact the statement of changes in equity states rather than an assumption."
+   },
+   "wc": {
+    "value": -81149903,
+    "as_at": "2014-12-31",
+    "source": "ARCC_FY2015_Consolidated.pdf, the 31 December 2014 COMPARATIVE column of the audited consolidated financial statements for the year ended 31 December 2015 (the company's own audited statements, from this run's own filings archive; this run holds NO FY2014 filing — its earliest annual is FY2015), the trading lines of the consolidated balance sheet",
+    "route": "OCR off the rendered pixels at 300 dpi — the filing carries no text layer (36 bytes across 36 pages) and every page is a JBIG2 bilevel stencil at 3508 x 2480, so every figure was read from an image and footed against the statement's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "definition": "inventories + trade receivables + debtors and other debit balances + due from related parties, less trade and notes payable, creditors and other credit balances and due to related parties",
+    "lines": {
+     "inventories": 201761865,
+     "trade_receivables_net": 0,
+     "debtors_and_other_debit_balances_net": 56679974,
+     "due_from_related_parties": 827715,
+     "trade_and_notes_payable": 0,
+     "creditors_and_other_credit_balances": 336514326,
+     "due_to_related_parties": 3905131,
+     "total_current_assets": 418636300,
+     "total_current_liabilities": 856347633
+    },
+    "note": "THE DEFINITION WAS REPRODUCED AGAINST THE FY2015 ANCHOR BEFORE IT WAS APPLIED HERE rather than read off its prose: the same seven lines on that year's figures give 198,339,836 + 66,249,751 - 529,421,515 - 51,765,814 = -316,597,742, which is that anchor's committed value exactly. It is narrower than the balance sheet's own working-capital line (-437,711,333), which also carries provisions, current tax, the licence obligation's current portion and cash — none of which is trading working capital.",
+    "check": "the 31 December 2014 column foots to the pound on every subtotal it prints: non-current assets 2,676,733,351 + 99,410,072 + 139,936,479 = 2,916,079,902; current assets 201,761,865 + 56,679,974 + 827,715 + 159,366,746 = 418,636,300; current liabilities 8,770,069 + 135,158,769 + 336,514,326 + 294,065,338 + 77,934,000 + 3,905,131 = 856,347,633; working capital 418,636,300 - 856,347,633 = -437,711,333; total investment 2,916,079,902 - 437,711,333 = 2,478,368,569; equity 757,479,400 + 129,463,619 + 36,037,640 + 374,717,936 = 1,297,698,595, plus non-controlling 9,159 = 1,297,707,754; non-current liabilities 341,739,770 + 486,502,712 + 352,418,333 = 1,180,660,815; and 1,297,707,754 + 1,180,660,815 = 2,478,368,569, which is the total investment the other side of the sheet prints"
+   }
+  },
   "FY2015": {
    "cash": {
     "value": 379206624,

@@ -257,6 +257,24 @@ def blocking(dec):
     return c
 
 
+def _market_census():
+    """Which market each completed walk-forward run belongs to.
+
+    ANCHORED ON THE RUN DIRECTORIES ON DISK per [R-ENF-04], never on a written
+    list: a market list in a document goes stale the moment a run is added, which
+    is the same reason the stale-library list was retired. The resolver is
+    panel.find_market(), imported rather than reimplemented [R-ENF-03].
+    """
+    import glob
+    sys.path.insert(0, VCAL)
+    import panel as _P  # noqa: E402
+    out = {}
+    for d in sorted(glob.glob(os.path.join(ENGINE, "*_walkforward"))):
+        tk = os.path.basename(d).split("_")[0].upper()
+        out.setdefault(_P.find_market(tk) or "unresolved", set()).add(tk)
+    return out
+
+
 def main():
     today = dt.date.today()
     print("Part E criterion 3 — CLAUSE BY CLAUSE, printed not attested")
@@ -324,6 +342,29 @@ def main():
     print("  inadmissible. Reported here with their date; they no longer hold the book.")
     print("  THE COST IS STATED: Phase 1 closes with no evidence that the house lean is")
     print("  INFORMATION rather than merely a lean. That is what 2b supplies.")
+
+    print("\n" + "=" * 74)
+    print("MARKET COVERAGE — WHAT THIS BACKTEST HAS AND HAS NOT SEEN")
+    _mk = _market_census()
+    for m, names in sorted(_mk.items()):
+        print("  %-3s  %2d run(s): %s" % (m, len(names), ", ".join(sorted(names))))
+    print("  THE SERIES IS SCORED ON ONE MARKET AND THAT IS THE CAMPAIGN'S OWN ORDER,")
+    print("  NOT AN UNMEASURED GAP [per instruction 08-09-2026 — 'We adopt the")
+    print("  framework. Apply it to EGX, then UAE, etc.']. campaign_queue.py fixes the")
+    print("  order EGX -> UAE -> KSA -> Qatar -> India -> Korea -> USA with a HARD STOP")
+    print("  after EGX, so every completed run is Egyptian by design and the exemplar")
+    print("  ADNOCLS, an AE name, sits behind that stop with no run at all.")
+    print("  THE COST IS STATED RATHER THAN DISCOVERED LATER, and this book has already")
+    print("  paid it once: [R-TERM-01 CLAUSE TWO] was adopted BECAUSE every correction")
+    print("  had come from one market and the terminal defect REVERSES SIGN in a pegged")
+    print("  one — 1/g starves a kiln at 15% inflation and flatters a fleet at 2%. So a")
+    print("  clause passing here is evidence about EGX, and the UAE leg is where it is")
+    print("  tested rather than assumed. A finding measured on one side of a sign change")
+    print("  is not a finding about the sign.")
+    print("  WHAT THIS DOES NOT DO: it holds nothing. The gating clauses are A, B, C, F")
+    print("  exactly as [R-VCAL-02 CLAUSE TWO] states them, and market coverage is not")
+    print("  an adoption condition — it is reported so adoption happens with the limit")
+    print("  on the page instead of in somebody's memory.")
 
     print("\n" + "=" * 74)
     print("VERDICT")
