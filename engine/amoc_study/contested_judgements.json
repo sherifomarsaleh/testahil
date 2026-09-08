@@ -8,63 +8,63 @@
    "name": "the equity-risk-premium basis",
    "adopted": "the CDS basis, the market's own live pricing of the sovereign's credit",
    "alternative": "the rating basis, an agency judgement updated in steps",
-   "value_adopted": 17.617712491127705,
-   "value_alternative": 13.967066821121644,
+   "value_adopted": 17.632866746280982,
+   "value_alternative": 13.982058112202452,
    "why": "both bases are published and one is named central; the swap basis is preferred because it is priced continuously by the market rather than revised in discrete agency steps, and the difference is the largest single contested number in this study"
   },
   {
    "name": "the minority's share",
    "adopted": "the minority at its share of gross equity value, 2.96%",
    "alternative": "that share doubled",
-   "value_adopted": 17.617712491127705,
-   "value_alternative": 17.064186512305046,
+   "value_adopted": 17.632866746280982,
+   "value_alternative": 17.07887806925086,
    "why": "the share is struck on the subsidiaries' own profit contribution net of the parent's credit interest; doubling it is the sensitivity a reader would ask for and it moves the answer by about three per cent, which is a smaller number than the old helper reported"
   },
   {
    "name": "gross versus net debt weights in the operating rate",
    "adopted": "gross-borrowing weights, with the cash added once at face in the bridge",
    "alternative": "net-debt weights",
-   "value_adopted": 17.617712491127705,
-   "value_alternative": 17.619516196806458,
+   "value_adopted": 17.632866746280982,
+   "value_alternative": 17.634669195149044,
    "why": "on a net-cash company the net-debt weight goes negative and levers the equity weight above one, which is the construction [R-BRIDGE-01] (iii) forbids and which a previous edition of this study carried; on a debt book that is 0.14% of the capital structure the corrected difference is essentially nil, and that is the honest finding rather than the 9.5% the broken helper reported"
   },
   {
    "name": "the base anchor: the latest reviewed half, or the twelve-month base",
    "adopted": "the most recent REVIEWED period, the half to 30-Jun-2026 at a gross margin of 12.428%, held flat",
    "alternative": "the twelve months to 30-Jun-2026 at a gross margin of 9.653%, both halves filed and no annualisation scalar — the base the previous edition carried forward",
-   "value_adopted": 17.617712491127705,
-   "value_alternative": 11.401172768028045,
+   "value_adopted": 17.632866746280982,
+   "value_alternative": 11.410241239091295,
    "why": "this is the largest contested number in the study by a wide margin and the standing rule points AT what is now adopted: a near-term reviewed actual outranks a stale full-year rate, and the like-for-like test that rule prescribes supports it, Q1-2025 5.053% against Q1-2026 10.190% being the same quarter doubled, which seasonality cannot produce. The superseded blend averages the reviewed half with the audited transition half at roughly half its margin, so carrying it forward forecasts a level neither half printed. IT WAS TAKEN KNOWING IT CROSSES THE PRICE, from 15.5% below to 30.5% above: the previous edition declined it only because levers are taken one at a time and it had already moved once in that pass, and said in terms that it was left for the next edition to take on its own evidence. A correction is not withheld because of where it lands and is not taken because of where it lands either"
   },
   {
    "name": "the real cost drift on the pound conversion legs",
    "adopted": "the gross spread per tonne held flat in real terms on EVERY cost leg, which is the principle the study already declares for its feedstock leg",
    "alternative": "the pound legs escalated at the full domestic inflation ladder while price grows only at the currency differential — a real cost drift of +2.7 points a year, for ever, as the previous editions carried it",
-   "value_adopted": 17.617712491127705,
-   "value_alternative": 15.802008008413724,
+   "value_adopted": 17.632866746280982,
+   "value_alternative": 15.815070943523091,
    "why": "the drift was unsourced, undeclared, contradicted the study's own registered principle, and ran against the MEASURED direction in the company's own filings, where cost per unit of revenue fell from 93.15%% to 87.57%% across the five filed periods. It produced the entire forecast margin decline, which the study then reported as a finding — [L-048] and the ARCC precedent, registered, correct, and re-violated here"
   },
   {
    "name": "the currency the export leg is discounted in",
    "adopted": "the whole business discounted in pounds on the local cost of capital",
    "alternative": "the export leg deflated to dollars, discounted at a dollar cost of capital with 3.5% terminal growth, and translated back",
-   "value_adopted": 17.617712491127705,
-   "value_alternative": 18.328369574312852,
+   "value_adopted": 17.632866746280982,
+   "value_alternative": 18.345428662404885,
    "why": "a majority-export refiner can be read either way and the two answers differ by three per cent; the pound read is adopted because the cash flows, the tax and the debt are all struck in pounds and a mixed-currency discount would price the same inflation twice"
   },
   {
    "name": "the central lens",
    "adopted": "the cash-flow lens ALONE is the central, the other lenses published beside it as cross-checks",
    "alternative": "the retired 45/20/20/15 blend of four lenses, which this study still publishes unused",
-   "value_adopted": 17.617712491127705,
-   "value_alternative": 13.976054757003476,
+   "value_adopted": 17.632866746280982,
+   "value_alternative": 13.984373515019005,
    "why": "the blend's weights never cleared an out-of-sample test; and this study's own lens record marks the relative lens WITHDRAWN and circular — its multiple is the company's own traded enterprise value re-rated by zero, so a fifth of the blend values the company at what it already costs. Recorded because the blend was the previous edition's answer and a reader is entitled to the size of the change"
   },
   {
    "name": "the tax provision",
    "adopted": "the EGP 996.86mn provision disclosed in note 10-1 deducted at face in the bridge",
    "alternative": "it settles for nothing",
-   "value_adopted": 17.617712491127705,
+   "value_adopted": 17.632866746280982,
    "value_alternative": 18.389572401309664,
    "why": "it is a disclosed claim on the very cash this bridge adds back at face, so leaving it out hands a buyer a cash pile that is already spoken for. What a critic can dispute is the SETTLEMENT, never the disclosure, so the give-back is priced rather than argued with"
   },
@@ -72,7 +72,7 @@
    "name": "the declared dividend payable",
    "adopted": "the EGP 258.30mn payable standing as a liability on the 30-Jun-2026 sheet (note 11) deducted",
    "alternative": "it never leaves",
-   "value_adopted": 17.617712491127705,
+   "value_adopted": 17.632866746280982,
    "value_alternative": 17.817712491127704,
    "why": "no POST-balance-sheet declaration is deducted, which is the thing the bridge rule prohibits; this is a liability ON the sheet whose cash is inside the balance the bridge adds back, and the study's own bridge record says so in as many words"
   },
@@ -80,7 +80,7 @@
    "name": "the employees' statutory profit share",
    "adopted": "the 5.2% statutory appropriation charged",
    "alternative": "it is never paid",
-   "value_adopted": 17.617712491127705,
+   "value_adopted": 17.632866746280982,
    "value_alternative": 17.905341923122315,
    "why": "a statutory appropriation is not a discretionary distribution, and the one delivered workbook in this book that omitted the same line published an answer 14.4% too high; it is conceded here only to show what disputing it is worth"
   },
@@ -88,7 +88,7 @@
    "name": "the terminal risk-free anchor",
    "adopted": "the 7% terminal inflation in force on the house macro path, which is the inflation inside the terminal risk-free of 12.5%",
    "alternative": "the softer 5% longer-dated target",
-   "value_adopted": 17.617712491127705,
+   "value_adopted": 17.632866746280982,
    "value_alternative": 16.454605046864202,
    "why": "the terminal is DERIVED from the market's dated path rather than quoted, and a study may not carry an inflation number of its own; the softer target is a real published objective a reader could reach for, and it is the one row of the give-back stack where conceding LOWERS the answer, which is why it is priced rather than assumed benign"
   },
@@ -96,7 +96,7 @@
    "name": "the tax rate on operating profit",
    "adopted": "the statutory 22.5%",
    "alternative": "the interest-flattered effective 22.12% the group actually reports",
-   "value_adopted": 17.617712491127705,
+   "value_adopted": 17.632866746280982,
    "value_alternative": 17.617712491127705,
    "why": "the reported effective rate is pulled below statutory by interest income the operating lens does not capitalise, so using it would tax the refinery at a rate the refinery does not earn. Priced through the whole model it returns EXACTLY the published answer, and that null is recorded rather than dropped: a reader would assume it mattered"
   }
@@ -116,6 +116,6 @@
    "direction": "unknown, and measured per name rather than predicted"
   }
  ],
- "published_central": 17.617712491127705,
+ "published_central": 17.632866746280982,
  "published_spot": 13.5
 }

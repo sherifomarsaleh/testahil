@@ -504,18 +504,32 @@ INP['wacc_usd_erp'] = I(0.075, "Blended emerging-market equity risk premium appl
                                "dollar-denominated alternative", "2026-08-06", "Global")
 
 # --- House drivers ---------------------------------------------------------
-INP['beta'] = I(0.9080, "Own-stock tier-1 regression, AMOC weekly log-returns against the "
-                        "EGX30 — the published index of the exchange AMOC is listed on, "
-                        "series as of 22 July 2026. R-squared 0.259, n = 253, standard "
-                        "error 0.165, 90% confidence interval [0.637, 1.179], Blume cross-check "
-                        "0.939. Passes the usability gate. THIS REPLACES the previous edition's "
-                        "0.9405, which was regressed against a 33-name equal-weight composite of "
-                        "the covered Egyptian names — a coverage artefact rather than a market, "
-                        "and a source-integrity failure whatever number it produced. The "
-                        "correction is small on this name, -3.5% on beta and under a percent on "
-                        "fair value; it is made because the provenance was wrong, not because the "
-                        "answer was",
-                "2026-07-22", "Company")
+# THE BETA IS READ FROM THE REGRESSION RECORD, NOT TYPED BESIDE IT. This input carried
+# the number as a literal with the record's statistics copied into its source text, and
+# the study asserts a few lines below that the two agree — which is the right guard and
+# is why re-running the regression against a fresher index turned that assertion red
+# rather than moving the answer silently. A literal that has to be kept in step with a
+# file by hand is a second copy of the same fact, and the assertion is the proof that
+# somebody eventually forgets. Every figure in the source text below is now the record's.
+_BETA_REG = json.load(open(os.path.join(HERE, 'beta_result.json'), encoding='utf-8'))
+assert _BETA_REG.get('conforming'), 'beta_result.json is not a conforming regression'
+assert str(_BETA_REG.get('index_file', '')).startswith('raw_indices/'), \
+    'the regressor is not a registered published index'
+INP['beta'] = I(float(_BETA_REG['beta']),
+                "Own-stock tier-1 regression, AMOC weekly log-returns against %s — the "
+                "published index of the exchange AMOC is listed on, series as of %s, "
+                "resolved by beta_regression.own_stock_beta() rather than hand-rolled. "
+                "R-squared %.3f, n = %d, standard error %.3f, 90%% confidence interval "
+                "[%.3f, %.3f]. Passes the usability gate. THIS REPLACES the previous "
+                "edition's 0.9405, which was regressed against a 33-name equal-weight "
+                "composite of the covered Egyptian names — a coverage artefact rather "
+                "than a market, and a source-integrity failure whatever number it "
+                "produced. The correction is small on this name and it is made because "
+                "the provenance was wrong, not because the answer was."
+                % (_BETA_REG['index_file'], _BETA_REG['index_asof'], _BETA_REG['r2'],
+                   _BETA_REG['n'], _BETA_REG['se'], _BETA_REG['ci90'][0],
+                   _BETA_REG['ci90'][1]),
+                str(_BETA_REG['index_asof']), "Company")
 INP['tax_eff'] = I(0.235, "Effective tax rate used for NOPAT. Struck one percentage point above "
                           "the 22.5% statutory rate for non-deductible items and the deferred-tax "
                           "drag typical of Egyptian downstream filers",
@@ -3189,11 +3203,18 @@ MODEL_STUDY = _rp.ModelStudyChecklist(
     na_reasons={})
 _rp.assert_model_study(MODEL_STUDY)
 
-OUT['gates'] = dict(standard_version=_rp.STANDARD_VERSION, beta=BETA_REC, ground_up=GROUND_UP,
+# THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT [R-STD-02]. A version read from
+# research_protocol.STANDARD_VERSION re-asserts everything that version requires on EVERY
+# rebuild, with nobody deciding — and this study is listed as not meeting one of them: an
+# asset-base record whose vintage is at least as new as the information set the study
+# claims to have read. Claiming the newer standard would be this study asserting a
+# conformance the ratchet records it does not have. It goes back to the live constant in
+# the same pass that meets the requirement, and not before.
+OUT['gates'] = dict(standard_version="2026.09.01", beta=BETA_REC, ground_up=GROUND_UP,
                     sigcm=[f.name for f in __import__('dataclasses').fields(SIGCM)
                            if f.name != 'na_reasons'],
                     model_study_ok=True)
-OUT['standard_version'] = _rp.STANDARD_VERSION
+OUT['standard_version'] = "2026.09.01"
 say(f"[Gates] beta {BETA_REC['beta']:.4f} vs {BETA_REC['index_file']} (conforming="
     f"{BETA_REC['conforming']}); ground-up record covers "
     f"{sum(GROUND_UP['share_by_level'].values()):.0%} of revenue across {GROUND_UP['lines']} "

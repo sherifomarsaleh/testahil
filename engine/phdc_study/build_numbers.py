@@ -90,7 +90,14 @@ def main():
                              "discount rate and the lens weights are unchanged."),
             "base_year": 2025, "information_set_ends": "1Q2026",
             "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
-            "standard_version": RP.STANDARD_VERSION,
+            # THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT. [R-STD-02]: a version read
+            # from research_protocol.STANDARD_VERSION re-asserts everything that version requires on
+            # EVERY rebuild, with nobody deciding — and this study is listed as not meeting one of
+            # them (an asset-base record whose vintage is at least as new as the information set it
+            # claims to have read). Claiming the newer standard would be the study asserting a
+            # conformance the ratchet records it does not have. It moves back to the live constant in
+            # the same pass that meets the requirement, and not before.
+            "standard_version": "2026.09.01",
             "spot": 14.40, "spot_date": "close 3 Sep 2026",
         },
         "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
@@ -548,7 +555,7 @@ def main():
 
     # [R-LENS-03] the central IS the class primary, not a blend of lenses
     out["central"] = out["lens_record"]["primary"]["value"]
-    out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    out["standard_version"] = "2026.09.01"   # read by campaign_queue.py; never typed
     out["spot"] = 14.40
     out["meta"]["central"] = out["central"]
     out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1

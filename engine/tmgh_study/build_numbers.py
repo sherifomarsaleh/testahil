@@ -53,7 +53,14 @@ def build():
             "instrument": "Talaat Moustafa Group Holding", "ticker": "TMGH",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
             "edition_date": "2026-09-02",
-            "standard_version": RP.STANDARD_VERSION,
+            # THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT. [R-STD-02]: a version read
+            # from research_protocol.STANDARD_VERSION re-asserts everything that version requires on
+            # EVERY rebuild, with nobody deciding — and this study is listed as not meeting one of
+            # them (an asset-base record whose vintage is at least as new as the information set it
+            # claims to have read). Claiming the newer standard would be the study asserting a
+            # conformance the ratchet records it does not have. It moves back to the live constant in
+            # the same pass that meets the requirement, and not before.
+            "standard_version": "2026.09.01",
             "spot": spot, "spot_source": WC.SPOT_SOURCE,
             # [R-GAP-01] the price carries its date, so a reader can age the
             # comparison and a checker can hold it to the latest supplied figure.
@@ -482,7 +489,7 @@ def main():
     cases = sorted(d["per_share_nci_value_share"].values())
     med = (cases[len(cases) // 2 - 1] + cases[len(cases) // 2]) / 2 if len(cases) % 2 == 0 else cases[len(cases) // 2]
     d["central"] = med
-    d["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    d["standard_version"] = "2026.09.01"   # read by campaign_queue.py; never typed
     d["spot"] = d["meta"]["spot"]
     d["meta"]["central"] = med
     d["meta"]["gap_vs_spot"] = med / d["spot"] - 1

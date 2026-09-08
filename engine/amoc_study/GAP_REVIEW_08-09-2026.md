@@ -1,10 +1,10 @@
 # AMOC — valuation-gap review, 8 September 2026
 
-**AUDITED CENTRAL: 17.6177**
-**AUDITED GAP: +30.5%**
+**AUDITED CENTRAL: 17.6329**
+**AUDITED GAP: +30.6%**
 
-**Trigger.** This edition publishes a central of **EGP 17.62** against a spot of **EGP 13.50**
-— **30.5% ABOVE** the price, past the ten-point trigger on the UPPER side. The audit trigger
+**Trigger.** This edition publishes a central of **EGP 17.63** against a spot of **EGP 13.50**
+— **30.6% ABOVE** the price, past the ten-point trigger on the UPPER side. The audit trigger
 is two-sided and this review is owed for that reason. The publication block is one-sided and
 does not hold a study above the price, so nothing here is asking for a release; what is owed
 is the audit, and the audit is owed precisely because a study is most comfortable to write

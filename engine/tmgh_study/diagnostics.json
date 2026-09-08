@@ -1,17 +1,17 @@
 {
  "ticker": "TMGH",
  "as_of": "2026-09-02",
- "spot": 97.8,
- "published_central": 91.8305824638648,
- "published_spot": 97.8,
+ "spot": 96.6,
+ "published_central": 91.97283407061008,
+ "published_spot": 96.6,
  "why_this_file": "The reverse read \u2014 what the traded price must believe \u2014 is a DIAGNOSTIC and lives outside the numbers file every builder reads. A rate or a growth solved from a price and then used anywhere in the valuation is the reverse-engineered terminal the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything.",
  "implied": {
   "quantity": "the single flat discount rate that reproduces the traded price on this model",
-  "value": 0.31870568093506824,
-  "value_other_framing": 0.1744219434346233,
-  "study_value": 0.3237485685188716,
-  "study_value_terminal": 0.2193244111908764,
+  "value": 0.32319862322727555,
+  "value_other_framing": 0.1757914038035151,
+  "study_value": 0.32335918609446124,
+  "study_value_terminal": 0.2190258178466077,
   "solved_on": "this study's own model, holding every driver at its published value and varying only the discount rate, on each of the two readings of the crux, with the minority deducted on the basis this study adopts",
-  "reading": "The price is paying for a flat 31.9% on the slower reading of the order book and 17.4% on the faster one. This study does not use a flat rate: it discounts each year at its own, from 32.37% to 21.93%. The comparison is a degenerate construction offered because a reader used to one number will look for one, and the disagreement it measures is smaller than the headline rates suggest."
+  "reading": "The price is paying for a flat 32.3% on the slower reading of the order book and 17.6% on the faster one. This study does not use a flat rate: it discounts each year at its own, from 32.34% to 21.90%. The comparison is a degenerate construction offered because a reader used to one number will look for one, and the disagreement it measures is smaller than the headline rates suggest."
  }
 }

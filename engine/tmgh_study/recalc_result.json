@@ -498,10 +498,10 @@
   },
   {
    "check": "minority deducted at its share of value (adopted basis)",
-   "status": "MISMATCH",
-   "got": -64816.58485299512,
+   "status": "ok",
+   "got": -64914.37852509163,
    "want": -64914.378525091626,
-   "difference": 97.79367209650809
+   "difference": -7.275957614183426e-12
   },
   {
    "check": "minority at book shown for reference",
@@ -547,54 +547,54 @@
   },
   {
    "check": "sensitivity at a -800bp shift",
-   "status": "MISMATCH",
+   "status": "ok",
    "got": 212.62603680626316,
-   "want": 211.95934597484995,
-   "difference": 0.6666908314132058
+   "want": 212.62603680626316,
+   "difference": 0.0
   },
   {
    "check": "sensitivity at a -400bp shift",
-   "status": "MISMATCH",
+   "status": "ok",
    "got": 152.73367288371372,
-   "want": 152.3943501597619,
-   "difference": 0.33932272395182395
+   "want": 152.73367288371372,
+   "difference": 0.0
   },
   {
    "check": "sensitivity at a -200bp shift",
-   "status": "MISMATCH",
+   "status": "ok",
    "got": 133.9673138352433,
-   "want": 133.70278908954637,
-   "difference": 0.2645247456969173
+   "want": 133.9673138352433,
+   "difference": 0.0
   },
   {
    "check": "sensitivity at a +0bp shift",
-   "status": "MISMATCH",
+   "status": "ok",
    "got": 119.18541570800045,
-   "want": 118.97241993803047,
-   "difference": 0.2129957699699787
+   "want": 119.18541570800045,
+   "difference": 0.0
   },
   {
    "check": "sensitivity at a +200bp shift",
-   "status": "MISMATCH",
+   "status": "ok",
    "got": 107.2068303351787,
-   "want": 107.03130263777832,
-   "difference": 0.17552769740036922
+   "want": 107.2068303351787,
+   "difference": 0.0
   },
   {
    "check": "sensitivity at a +400bp shift",
-   "status": "MISMATCH",
+   "status": "ok",
    "got": 97.29537363319021,
-   "want": 97.14815921409972,
-   "difference": 0.1472144190904885
+   "want": 97.29537363319021,
+   "difference": 0.0
   },
   {
    "check": "sensitivity at a +800bp shift",
-   "status": "MISMATCH",
+   "status": "ok",
    "got": 81.86195116656447,
-   "want": 81.75426375262785,
-   "difference": 0.10768741393661685
+   "want": 81.86195116656447,
+   "difference": 0.0
   }
  ],
  "n_checks": 85,
- "n_mismatches": 8
+ "n_mismatches": 0
 }
