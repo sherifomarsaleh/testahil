@@ -1,0 +1,1402 @@
+"""HRHO (EFG Holding Company S.A.E., EGX: HRHO.CA / LSE GDR: EFGD LI) — four-ring
+Step 2A Information Sweep register. FIRST-BUILD study; held under a `_pending`
+suffix because it carries no valuation yet.
+
+Runs BEFORE any forecast driver is set. Every mandatory category of every ring is
+closed by a dated finding or a dated negative search.
+
+THIS ISSUER IS NOT ONE BUSINESS, AND THE SWEEP DOES NOT TREAT IT AS ONE
+=======================================================================
+EFG Holding reports, and this sweep is built on, THREE verticals — the company's
+own labels, taken from its own Board of Directors' report on 2Q2026 results and
+from its own website navigation ("The Investment Bank" / "NBFI" / "Commercial
+Bank"):
+
+  (1) EFG HERMES — THE INVESTMENT BANK. Brokerage (commissions on executions,
+      market share by exchange), Investment Banking (advisory/ECM/DCM fees on a
+      mandate pipeline), Asset Management (fees on AUM), Private Equity/merchant
+      banking, and Holding & Treasury Activities (seed capital and NAV, which is
+      where the group's fx volatility lands). H1-2026 revenue EGP 5,539mn.
+
+  (2) EFG FINANCE — THE NBFI PLATFORM. Valu (listed separately on the EGX; group
+      holds 67%), Tanmeyah microfinance, Leasing, Factoring, SME lending, Finance
+      Holding. H1-2026 revenue EGP 3,627mn. THE TASK BRIEF NAMED TWO LEGS; THIS IS
+      A THIRD, IT IS 28% OF GROUP REVENUE, AND IT CANNOT BE FOLDED INTO EITHER —
+      it is neither fee-and-commission (leg 1) nor a deposit-funded bank (leg 3).
+      It is recorded as its own leg rather than blended, and the driver gate below
+      gives it its own rows.
+
+  (3) BANK NXT (formerly aiBANK) — THE CONSOLIDATED COMMERCIAL BANK. 51% DIRECT
+      OWNERSHIP, fully consolidated, 49% minority. H1-2026 revenue EGP 3,971mn,
+      44-45% of group total assets. Deposit-funded, spread-earning, CBE-regulated
+      against a 12.5% minimum capital adequacy ratio and a EGP 5bn minimum paid-up
+      capital, both read off the audited capital-management note.
+
+  A SINGLE BLENDED DRIVER SET CANNOT REACH ANY OF THE THREE. The audited segment
+  note is the join: it splits the group into twelve reportable segments plus an
+  adjustments column, and those twelve segments AGGREGATE EXACTLY onto the three
+  verticals the earnings release reports (H1-2026: 5,539 + 3,627 + 3,971 = 13,137
+  release "Net Operating Revenue", less the note's own EGP 181,433k adjustments
+  column = EGP 12,955,899k, the audited consolidated Revenue line, to the pound).
+  That reconciliation is F22 and it is what makes a three-leg build auditable.
+
+THE OPERATING-COMPANY DRIVER SET WAS DELIBERATELY NOT SWEPT FOR, per instruction
+================================================================================
+There is no volume x price, no cost per unit, no utilisation, no nameplate
+capacity and no landbank anywhere in this issuer. Leg 1 sells execution and
+advice priced in basis points; leg 2 sells credit priced in a spread over its own
+funding; leg 3 is a balance sheet earning a margin. Where a ring category exists
+only because the four-ring taxonomy is written for operating companies —
+GLOBAL / "commodity complex (input/output)" is the clear case — it is CLOSED BY A
+FINDING THAT SAYS SO (F02), with the transmission channel that does reach this
+issuer named, rather than left blank or padded. The rings are not thin; they are
+pointed at the drivers this issuer actually has: executions and commission rate,
+fee income against a named mandate pipeline, AUM and the fee rate on it, net
+interest margin split, the loan and deposit books, cost of risk against the
+stage-1/2/3 tables, and regulatory capital against the stated regulatory floor.
+
+PRIMARY SOURCE: REACHED IN FULL, AND THAT IS THE HEADLINE
+=========================================================
+efgholding.com (reached via efghermes.com and efghldg.com, both of which 301 to
+it) served its ENTIRE investor-relations library to this environment: financial
+statements, earnings releases, investor presentations, annual reports and EGX
+disclosures, indexed by year back to 2010. NOTHING IN THE COMPANY RING RESTS ON
+AN AGGREGATOR, A BROKER NOTE OR A PRESS TRANSCRIPTION. Nineteen documents were
+downloaded and are held in engine/hrho_study_pending/filings/. Fifteen primary
+access attempts are logged below, successes and failures alike.
+
+SOURCING EXCEPTIONS, RECORDED RATHER THAN HIDDEN
+================================================
+(1) THE EXCHANGE ITSELF IS UNREACHABLE. Every egx.com.eg URL tried — the English
+    homepage, the all-disclosures index and the brokerage-ranking PDF endpoint —
+    returned curl (52) "Empty reply from server". The EGX's own quarterly
+    brokerage league table therefore could not be retrieved as a primary
+    document, and the competing market-share denominator it would have settled
+    (F45) is carried from reporting of it, tagged REPUTABLE_PRESS, never as if it
+    were the company's own number.
+
+(2) THE REGULATOR'S OWN PAGE IS BLOCKED. cbe.org.eg returned a 269-byte
+    "Request Rejected" WAF interstitial under HTTP 200. The CBE policy corridor
+    (F05) is therefore carried from reporting of the 20-Aug-2026 MPC decision and
+    is tagged REPUTABLE_PRESS, not REGULATOR_OFFICIAL. The one CBE requirement
+    that matters most to the build — the 12.5% minimum CAR and the EGP 5bn
+    minimum paid-up capital — did NOT need the regulator's site: it is printed in
+    the company's own audited capital-management note and is carried that way
+    (F07, COMPANY_OFFICIAL).
+
+(3) THE BANK'S OWN SITE IS BLOCKED. banknxteg.com failed with curl (35)
+    "Recv failure: Connection reset by peer". Every Bank NXT figure in this
+    register comes instead from the parent's audited consolidated statements and
+    the parent's own earnings release, which is a company-official route, not a
+    substitute from outside the company.
+
+(4) ARITHMETIC IS THE ARBITER, AND EVERY STATEMENT PAGE USED WAS FOOTED. Four
+    complete audited fiscal years (FY2022, FY2023, FY2024, FY2025) and both
+    disclosed quarters of the study year (Q1-2026, Q2-2026) were re-added against
+    their own printed subtotals — income statement, balance sheet, segment note,
+    loan book, deposit book, ECL stage tables, NCI note and geographic split, on
+    BOTH the current and the comparative column of each. EVERY ONE FOOTS TO THE
+    POUND. Nothing was accepted on the extractor's confidence.
+
+(5) THE ROUTE EACH FIGURE CAME BY IS RECORDED, BECAUSE THE BALANCE SHEET HAS NO
+    TEXT LAYER IN ANY YEAR. In every annual and interim set, the consolidated
+    statement of financial position is a SCANNED IMAGE (pdftotext returns zero
+    characters; PyMuPDF confirms 9 embedded images and no text). It was therefore
+    read OFF THE RENDERED PIXELS at 220 dpi. In the FY2025 set the page carries
+    /Rotate 270, so the raw embedded image is sideways and tesseract returned
+    single characters stacked vertically — the render (which applies the page
+    transform) was read instead, and the read was then proved by arithmetic:
+    FY2025 assets foot to EGP 230,647,054k, which is the SAME total the
+    text-layer segment note prints independently. Income statements, notes and
+    segment tables came by the pdftotext text layer and footed. The two routes
+    agree at every point where they overlap; where they did not overlap, the
+    footing check is what carries the figure.
+
+(6) A RESTATEMENT SITS INSIDE THE HISTORY AND THE STUDY MUST PICK A VINTAGE.
+    FY2023 as originally filed (revenue EGP 14,668,951k, profit EGP 3,170,709k,
+    attributable EGP 2,498,471k) differs from FY2023 as restated in the FY2024
+    filing's comparative column (EGP 14,665,685k / 3,166,011k / 2,494,010k), and
+    FY2022 was itself restated in the FY2023 filing (D&A reclassified up by EGP
+    39,263k, profit down by the same). Both vintages foot on their own terms.
+    F38 records it; the study uses one vintage per line and says which.
+
+(7) THE ISSUER IS DUAL-LISTED AND THE REGRESSOR MUST BE CHOSEN, NOT ASSUMED.
+    The annual report states in the company's own words that "EFG Holding's
+    shares are listed on the Egyptian Exchange (EGX) and the London Stock
+    Exchange (LSE) in the form of USD-denominated GDRs." F39 flags it. The
+    EGX-listed ordinary share in EGP is the series to regress, against
+    engine/raw_indices/EG/EGX30.csv; the LSE GDR line is USD-denominated and is
+    NOT a second legitimate series for this study's beta.
+"""
+import sys, os
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, '..'))
+from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
+                            SourceType, DriverMode)
+
+SWEEP_DATE = "2026-09-08"
+R = SweepRegister("HRHO", AssetClass.STOCK, SWEEP_DATE)
+CO, IR, REG, PMD, PRESS, AGG = (SourceType.COMPANY_OFFICIAL, SourceType.COMPANY_IR,
+                                SourceType.REGULATOR_OFFICIAL, SourceType.PRIMARY_MARKET_DATA,
+                                SourceType.REPUTABLE_PRESS, SourceType.AGGREGATOR)
+
+# ---------------------------------------------------------------------------
+# PRIMARY ACCESS — the company's own site tried FIRST for every Company-ring
+# figure, every attempt logged with its outcome, success or failure.
+# ---------------------------------------------------------------------------
+R.record_primary_access("https://efghermes.com/", True, SWEEP_DATE,
+    "REACHED (HTTP 200, 101,802 bytes) after a 301 to https://efgholding.com/en. "
+    "The legacy EFG Hermes domain resolves to the live EFG Holding site.")
+R.record_primary_access("https://efghldg.com/", True, SWEEP_DATE,
+    "REACHED (HTTP 200) after a 301 to https://efgholding.com/en. This is the "
+    "domain the company's own IR contact address uses "
+    "(InvestorRelations@efghldg.com), tried because the earnings release prints it.")
+R.record_primary_access("https://efghldng.com/", False, SWEEP_DATE,
+    "curl (56) CONNECT tunnel failed, response 502 at the proxy. Tried FIRST on "
+    "the strength of a remembered spelling; it does not resolve. Logged rather "
+    "than quietly dropped, because a failed guess at a company domain is exactly "
+    "the moment a study drifts to an aggregator.")
+R.record_primary_access("https://ir.efghldng.com/", False, SWEEP_DATE,
+    "curl (56) CONNECT tunnel failed, response 502 at the proxy — no such IR host.")
+for path, note in (
+    ("investor-relations/financial-statements",
+     "REACHED. Year-indexed 2010-2026. Consolidated and standalone statements for "
+     "every quarter and full year."),
+    ("investor-relations/earning-releases",
+     "REACHED. Year-indexed 2013-2026. Quarterly earnings releases, the document "
+     "class that carries the operating anchors no financial statement does."),
+    ("investor-relations/investor-presentations",
+     "REACHED. Quarterly results presentations 2022-2026."),
+    ("investor-relations/annual-reports",
+     "REACHED. Annual reports 2008-2025; FY2025 report dated 25-Jun-2026."),
+    ("investor-relations/disclosures",
+     "REACHED. EGX disclosure letters, BOD reports on results, capital-structure "
+     "letters to the EGX, dividend notices, the Misr Life Insurance IPO "
+     "appointment and the FY2025 corporate-governance report."),
+    ("investor-relations/share-information",
+     "REACHED (HTTP 200) but the share-price and shareholding-structure panels are "
+     "client-rendered; no figures are present in the served HTML. The shareholder "
+     "facts used here come from the audited statements and the annual report "
+     "instead."),
+):
+    R.record_primary_access(f"https://efgholding.com/en/{path}", True, SWEEP_DATE, note)
+R.record_primary_access("https://efgholding.com/uploads/ (19 PDFs)", True, SWEEP_DATE,
+    "REACHED. Downloaded and held in engine/hrho_study_pending/filings/: audited "
+    "consolidated statements FY2022/FY2023/FY2024/FY2025; interim consolidated "
+    "statements 1Q2026 and 2Q2026; earnings releases FY2024/FY2025/1Q26/2Q26; "
+    "results presentations FY2025/1Q2026/2Q2026; Annual Report 2025; BOD report on "
+    "2Q26 results; capital-structure letter to the EGX 2Q26; dividend distribution "
+    "notice 9-Jun-2026; corporate governance report FY2025; Misr Life Insurance "
+    "IPO appointment release.")
+R.record_primary_access("https://www.banknxteg.com/en/", False, SWEEP_DATE,
+    "curl (35) 'Recv failure: Connection reset by peer'. The consolidated "
+    "commercial bank's OWN site is unreachable; its figures are taken from the "
+    "parent's audited statements and the parent's earnings release instead.")
+R.record_primary_access("https://valu.com.eg/", True, SWEEP_DATE,
+    "REACHED, 301 to https://valugroup.com/. Valu is the separately EGX-listed "
+    "67%-held NBFI subsidiary; its own IR channel exists and is a second primary "
+    "route for the NBFI leg if the parent's disclosure proves too coarse.")
+R.record_primary_access("https://www.egx.com.eg/en/homepage.aspx", False, SWEEP_DATE,
+    "curl (52) 'Empty reply from server'. Also tried /en/DisclosureAll.aspx and "
+    "the brokerage-ranking PDF endpoint get_pdf.aspx?ID=53900 — same failure. The "
+    "exchange's own brokerage league table could not be retrieved; see docstring "
+    "note (1).")
+R.record_primary_access(
+    "https://www.cbe.org.eg/en/economic-research/statistics/overnight-deposit-and-lending-rate",
+    False, SWEEP_DATE,
+    "HTTP 200 carrying a 269-byte 'Request Rejected' WAF interstitial, not the "
+    "page. The regulator's own rate page is blocked to this environment; see "
+    "docstring note (2).")
+
+R.declare_study_year("2026", ["Q1-2026", "Q2-2026"])
+
+# ============================================================ RING 1 — GLOBAL
+f_fed = R.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.S,
+    "The EGP itself is now the single largest swing factor in this issuer's "
+    "reported profit, and it swung BOTH WAYS inside the study year. Management: "
+    "2Q26 Holding & Treasury Activities recorded a LOSS of EGP 377mn against "
+    "revenue of EGP 397mn a year earlier — a EGP 774mn swing — of which 'c.85% of "
+    "these losses were derived from fx movement', caused by 'the very sharp "
+    "appreciation of the EGP against the USD at the close of the quarter'. The "
+    "group's own audited FX line moved EGP 2,907,706k (FY2024) -> 594,928k "
+    "(FY2025); H1-2026 EGP 593,832k",
+    "EFG Holding 2Q26 Earnings Release, 13-Aug-2026, EFG Hermes section; FY2025 and "
+    "2Q2026 consolidated statements, 'Foreign currencies exchange differences'",
+    IR, "2026-08-13", fiscal_period="Q2-2026",
+    url="https://efgholding.com/en/investor-relations/earning-releases",
+    model_impact="Sets the Holding & Treasury Activities revenue line, which is "
+                 "modelled as an EXPLICIT FX-SENSITIVE NAV LINE and NOT glided. "
+                 "23.6% of group revenue is earned in the GCC (F23) and the seed "
+                 "book is USD-heavy, so the EGP path drives both translation and "
+                 "revaluation. Dual-framed: a weaker EGP lifts reported regional "
+                 "revenue and the seed NAV; a stronger EGP does what it did in "
+                 "2Q26. Never netted into a single growth rate.")
+
+f_cmdty = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.C,
+    "THIS ISSUER HAS NO INPUT OR OUTPUT COMMODITY, AND THE CATEGORY IS CLOSED BY "
+    "SAYING SO RATHER THAN BY SILENCE. There is no volume x price, no cost per "
+    "unit, no utilisation and no capacity anywhere in EFG Holding: leg 1 sells "
+    "execution and advice priced in basis points, leg 2 sells credit priced in a "
+    "spread, leg 3 is a deposit-funded balance sheet. Its largest single cost is "
+    "PEOPLE — group employee expenses were EGP 10,420mn in FY2025, 40% of "
+    "operating revenue, and EGP 4,409mn in H1-2026 (34%). The commodity complex "
+    "reaches it only INDIRECTLY, through Egypt's imported food and energy bill "
+    "into CPI, into the CBE policy rate, and thence into both the bank's margin "
+    "and the salary escalator",
+    "EFG Holding FY2025 and 2Q26 Earnings Releases, Group Performance Summary "
+    "(employee expenses / operating revenues line)",
+    IR, "2026-08-13", model_impact="",
+    detail="Recorded so a reviewer can see the operating-company driver set was "
+           "considered and ruled out on the class, per instruction, rather than "
+           "overlooked. The cost driver that replaces it is compensation, and it "
+           "is built as employee expense with a FIXED base and a VARIABLE "
+           "component that moves with revenue — management says so explicitly "
+           "('higher accruals for the variable component of compensation in line "
+           "with the increase in revenues').")
+
+f_gsect = R.add(Ring.GLOBAL, "global sector demand", FindingClass.S,
+    "The fee pool leg 1 sells into CONTRACTED HARD in the study year: MENA "
+    "investment-banking fees fell 19% y/y to an estimated USD 757.1mn in H1-2026, "
+    "a three-year low, and EQUITY UNDERWRITING FEES CRATERED 57% Y/Y TO A "
+    "FIVE-YEAR LOW OF USD 69.5mn as IPOs and follow-ons stalled after the "
+    "outbreak of the Iran war. MENA recorded ~80% fewer IPOs and >90% lower IPO "
+    "proceeds y/y; Q1-2026 saw four IPOs raising USD 296.6mn, the weakest first "
+    "quarter since 2018",
+    "LSEG/Refinitiv MENA Investment Banking Review H1-2026 and Q1-2026 deals "
+    "intelligence, as reported; PwC IPO Watch EMEA H1-2026",
+    PRESS, "2026-07-20",
+    model_impact="This is the external check on EFG's own Investment Banking "
+                 "revenue, which fell 33% y/y in H1-2026 (EGP 951mn -> 632mn). "
+                 "The sector fell 19% and equity underwriting fell 57%, so EFG's "
+                 "decline is INSIDE the market move, not company-specific — which "
+                 "is what stops the IB driver being modelled as a permanent "
+                 "franchise impairment. Sets the IB fee driver as CYCLICAL with a "
+                 "recovery path tied to the named mandate pipeline (F35), not a "
+                 "structural decline.")
+
+f_trade = R.add(Ring.GLOBAL, "trade / sanctions / supply chains", FindingClass.B,
+    "THE IRAN WAR IS A BASE CHANGER FOR THIS STUDY YEAR AND IS DATED. It shut the "
+    "regional ECM window in Q2-2026 (F03), and it hit Egypt's external accounts "
+    "directly: the IMF estimates it cut Egyptian GDP growth by 0.8-1.2pp in 2026, "
+    "to ~3.2% from a pre-war 4.0-4.4%; the CBE cut its own FY2025/26 growth "
+    "forecast to 4.9% from 5.1%; Suez Canal revenue fell 38% at the trough before "
+    "tanker traffic recovered a third through 2026. Remittances were the "
+    "offset — >USD 41bn Jul-2025 to Jan-2026, +40% y/y, with a record ~USD 45bn "
+    "expected for 2026",
+    "IMF and CBE growth revisions for Egypt, Reuters poll of 26-Apr-2026, Suez "
+    "Canal Authority traffic and CBE remittance data, all as reported",
+    PRESS, "2026-04-26",
+    model_impact="BASE CHANGER, modelled as an EXPLICIT DATED EVENT and dual-"
+                 "framed, never smoothed into a growth glide. It is the single "
+                 "common cause behind three otherwise unrelated observations in "
+                 "the same six months: IB revenue -33%, the fx swing in Holding & "
+                 "Treasury (F01), and 'heightened geopolitical uncertainty and a "
+                 "volatile start to 2026' in management's own opening line. The "
+                 "FY2026 forecast is struck with and without a Q4 normalisation.")
+
+# =========================================================== RING 2 — COUNTRY
+f_cbe = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
+    FindingClass.S,
+    "CBE HELD AT THE 20-AUG-2026 MPC: overnight deposit 19.00%, overnight lending "
+    "20.00%, main operation and discount 19.50%. That is the fourth consecutive "
+    "hold. Annual urban headline inflation RE-ACCELERATED to 14.9% in July 2026 "
+    "from 14.3% in June — the first rise since March — with core CPI 14.7%; "
+    "housing +31.1% y/y and transport +21.1% led",
+    "CBE Monetary Policy Committee decision of 20-Aug-2026 and CAPMAS July-2026 CPI "
+    "release, both as reported (cbe.org.eg itself returned a WAF 'Request Rejected' "
+    "interstitial to this environment — see docstring note 2)",
+    PRESS, "2026-08-20",
+    model_impact="Sets (a) the explicit-window risk-free rate in Ke, (b) the "
+                 "repricing input to Bank NXT's local-currency NII build, and "
+                 "(c) the yield on the group's very large treasury and money-market "
+                 "book. A HOLD IS A BULL INPUT TO THE NEAR-TERM MARGIN AND A BEAR "
+                 "INPUT TO THE TERMINAL ONE, and the two are carried separately "
+                 "rather than netted. Terminal rf is norm-built off the CBE's own "
+                 "medium-term target plus an EM real-rate convention, never a "
+                 "historical average.")
+
+f_cds = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
+    FindingClass.C,
+    "Egypt rated B by Fitch and B by S&P since the November-2024 upgrades. EGX30 "
+    "closed at 56,174.30 on 08-Sep-2026, up ~35% year-to-date, on turnover well "
+    "above its own 90-day average",
+    "engine/raw_indices/EG/EGX30.csv (series current to 09/08/2026); Fitch and S&P "
+    "sovereign rating actions as reported",
+    PMD, "2026-09-08", model_impact="",
+    detail="The EGX30 level is not background for this issuer — it is the "
+           "denominator of leg 1's Egyptian brokerage revenue and the mark on "
+           "the seed and PE books. It is recorded in the Country ring because it "
+           "is also the beta regressor (F39).")
+
+f_reg_bank = R.add(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+    FindingClass.D,
+    "THE REGULATORY CAPITAL FLOOR ON LEG 3, FROM THE BANK'S OWN AUDITED "
+    "CAPITAL-MANAGEMENT NOTE: 'The Central Bank of Egypt requires the Bank to do "
+    "the following: - Maintain Five billion Egyptian pounds as a minimum for "
+    "issued and paid-up capital. - Maintain a ratio equal to or more than 12.5% "
+    "between the elements of capital and the elements of assets and contingent "
+    "liabilities weighted by risk weights.' Tier II admits subordinated loans only "
+    "up to 50% of Tier I after disposals, consumed 20% per year over the final "
+    "five years; the CBE financial-leverage minimum is 3%",
+    "EFG Holding FY2025 audited consolidated financial statements, capital-adequacy "
+    "note within the Bank NXT risk-management section (printed page 88), text layer",
+    CO, "2026-03-17", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="DRIVER UNLOCK, and the hard constraint on the whole commercial-"
+                 "bank leg. Bank NXT's CAR was 14.68% at 3Q25 — only 218bp above "
+                 "this floor — and required a EGP 6bn capital increase in 4Q25 to "
+                 "reach 22% (F31). With gross loans growing 50% y/y, the forecast "
+                 "MUST solve for the next capital call rather than assume none: "
+                 "the distance between actual CAR and 12.5%, given RWA growth, "
+                 "bounds both the bank's growth and any dividend it can upstream.")
+
+f_reg_fra = R.add(Ring.COUNTRY, "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+    FindingClass.S,
+    "THE NBFI LEG'S REGULATOR MOVED THREE TIMES INSIDE THE STUDY YEAR, and one of "
+    "the moves is a MOAT rather than a cost. FRA Decision 237/2025 suspended new "
+    "conventional consumer-finance licence applications and Decision 43/2026 "
+    "extended the suspension to fintech consumer-finance applicants — new entry "
+    "into Valu's own market is administratively closed. Against that: consumer-"
+    "finance companies must hold a minimum 12% capital-adequacy ratio against "
+    "risk-weighted assets; Decision 28/2026 requires providers to insure borrowers "
+    "to age 65 against death and permanent total disability for the outstanding "
+    "balance; Decision 44/2026 requires every branch to be registered and gives "
+    "six months to regularise",
+    "Egyptian Financial Regulatory Authority decisions 237/2025, 43/2026, 28/2026 "
+    "and 44/2026, and the FRA's first consolidated consumer-finance rulebook, as "
+    "reported",
+    PRESS, "2026-09-06",
+    model_impact="Cuts both ways on the NBFI leg and is carried as two separate "
+                 "drivers, not one net effect. The licensing freeze SUPPORTS "
+                 "Valu's 23% market share and is the reason the terminal NBFI "
+                 "margin is not decayed to commodity levels. The insurance mandate "
+                 "and the 12% NBFI capital floor are COST and CAPITAL items that "
+                 "enter the cost-of-risk and the funding build directly.")
+
+f_tax = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through",
+    FindingClass.D,
+    "THE GROUP'S EFFECTIVE TAX RATE IS UNSTABLE AND IT IS THE REASON REPORTED "
+    "PROFIT DOES NOT TRACK PRE-TAX PROFIT. Audited: FY2024 tax EGP 2,370,417k on "
+    "PBT 7,701,503k = 30.8%; FY2025 EGP 1,239,570k on 7,494,202k = 16.5%; "
+    "Q1-2026 EGP 792,125k on 2,314,676k = 34.2%; Q2-2026 EGP 351,055k on "
+    "1,727,471k = 20.3%; H1-2026 EGP 1,143,180k on 4,042,147k = 28.3%. Management "
+    "names the mechanism: 'deferred tax gains on seed capital unrealized losses "
+    "and fx losses'. The segment note shows the Holding & Treasury segment booking "
+    "a tax CREDIT of EGP 946,578k in FY2025 against a pre-tax loss",
+    "EFG Holding FY2024, FY2025, 1Q2026 and 2Q2026 consolidated statements, income "
+    "statement and segment note; 2Q26 Earnings Release management commentary",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="DRIVER UNLOCK: tax is built PER SEGMENT off the segment note's "
+                 "own tax line, not as one group rate on group PBT. Egypt's "
+                 "statutory 22.5% would have mis-stated FY2025 by 6pp and Q1-2026 "
+                 "by 12pp in opposite directions. The deferred-tax swing on seed "
+                 "capital is modelled as the mirror of the fx driver (F01) so the "
+                 "two do not double-count.")
+
+f_ipo_prog = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through",
+    FindingClass.S,
+    "THE STATE IPO PROGRAMME IS THIS ISSUER'S OWN REVENUE PIPELINE, and it is "
+    "live: 20 state-owned companies are temporarily listed on the EGX and "
+    "preparing to meet IPO requirements, the EGX chairman expects up to six to "
+    "complete full offerings within a year, and the programme targets ~30 "
+    "companies including 10 petroleum-sector firms. Six state firms were "
+    "temporarily listed in April 2026; Misr Life Insurance is targeted to trade "
+    "before end-2026",
+    "EGX executive chairman interview of 04-Aug-2026 and Egyptian Ministry of "
+    "Investment / TSFE state-offering programme statements, as reported",
+    PRESS, "2026-08-04",
+    model_impact="The specific, dated mechanism by which leg 1's Investment "
+                 "Banking revenue recovers from its H1-2026 trough. It is the "
+                 "external corroboration of the ONE mandate the company has named "
+                 "itself (F35, Misr Life Insurance). Sets the IB revenue recovery "
+                 "path in FY2027 and is the stated basis for the bull case in the "
+                 "sensitivity grid; the bear case holds the H1-2026 run rate.")
+
+# ========================================================== RING 3 — INDUSTRY
+f_egxvol = R.add(Ring.INDUSTRY, "demand drivers & capacity/supply balance", FindingClass.D,
+    "LEG 1'S 'DEMAND' IS TURNOVER, AND THE COMPANY DISCLOSES ITS OWN SHARE OF IT "
+    "EXCHANGE BY EXCHANGE, QUARTER BY QUARTER. 2Q26 executions rose 3% q/q and 16% "
+    "y/y to USD 36.9bn; 1H26 executions USD 72.7bn, +12% y/y. By venue (1H26 "
+    "executions, USD mn / market share): Egypt 6,282 / 29.6%; DFM 15,817 / 48.5%; "
+    "ADX 18,148 / 38.9%; KSA 10,879 / 6.5%; Kuwait 13,770 / 41.6%; Frontier 1,673; "
+    "Structured Products 728. FY2025 for comparison: Egypt 11,357 / 27.8% (from "
+    "33.0% in FY2024), DFM 23,822 / 50.1%, ADX 31,428 / 31.6%, KSA 21,571 / 6.2%, "
+    "Kuwait 29,341 / 33.2%, Kenya 470 / 41.8%, Nigeria 313 / 7.9%",
+    "EFG Holding 2Q26 Earnings Release, 13-Aug-2026, Brokerage executions and "
+    "market-share table; FY2025 Earnings Release, 18-Mar-2026, same table",
+    IR, "2026-08-13", fiscal_period="Q2-2026",
+    detail="FOOTED: the named venues sum to USD 34,535mn in 2Q26 and USD 67,297mn "
+           "in 1H26 against printed totals of 36.9bn and 72.7bn, with the release's "
+           "own footnote stating that Qatar, Oman, Jordan, Bahrain, Lebanon, bonds, "
+           "ETFs and others are 'an additional 7% of total Brokerage executions in "
+           "both 2Q26 and 1H26'. 34,535/0.93 = 37.1bn and 67,297/0.93 = 72.4bn, so "
+           "the table reconciles to the narrative within the rounding of that 7%. "
+           "THE RESIDUAL 7% IS DISCLOSED ONLY AS AN AGGREGATE — that is a real "
+           "disclosure gap and it is flagged, not smoothed.",
+    model_impact="DRIVER UNLOCK, and the reason leg 1's brokerage line is built "
+                 "BOTTOM-UP rather than glided: executions per venue x a blended "
+                 "commission rate. The rate solves from the disclosure — H1-2026 "
+                 "Brokerage revenue EGP 3,377mn on USD 72.7bn of executions is "
+                 "roughly 9-10 basis points blended — and the build then ties back "
+                 "to the printed segment revenue of EGP 3,376,977k. Volume AND "
+                 "rate are each projected; neither is held constant.")
+
+f_price = R.add(Ring.INDUSTRY, "pricing", FindingClass.D,
+    "THE 'PRICE' IN THIS INDUSTRY IS THREE DIFFERENT THINGS AND THE COMPANY "
+    "DISCLOSES ALL THREE. (a) Leg 1 commission per unit of execution — derivable "
+    "to ~9-10bp from F09 against segment revenue. (b) Leg 1 fee rate on assets — "
+    "Egypt AUM EGP 64.3bn at 2Q26 (+7.5% q/q, +17.6% over 1H26, of which 14.8% "
+    "market performance and 2.9% net injections) and regional FIM AUM USD 4.6bn "
+    "(+1.1% q/q, +5.6% over 1H26), against Asset Management revenue of EGP 793mn "
+    "in 1H26. (c) Leg 3's spread — Bank NXT NIM 6.5% in 2Q26, down from 7.3% in "
+    "1Q26 and up from 6.3% in 2Q25; 6.9% for 1H26 against 6.3% for 1H25. "
+    "Management: the q/q fall is 'due to an increase in average earning assets "
+    "with almost same net interest income'",
+    "EFG Holding 2Q26 Earnings Release, 13-Aug-2026: Asset Management AUM evolution "
+    "charts and Bank NXT Performance Summary profitability indicators",
+    IR, "2026-08-13", fiscal_period="Q2-2026",
+    model_impact="DRIVER UNLOCK on all three legs at once, and the reason NO "
+                 "MARGIN IS AN INPUT ANYWHERE IN THIS BUILD. AUM x fee rate "
+                 "replaces an asset-management growth rate; executions x commission "
+                 "rate replaces a brokerage growth rate; earning assets x NIM "
+                 "replaces a bank revenue growth rate. Group and segment margins "
+                 "then fall OUT of those builds. The AUM driver is split into "
+                 "market performance and net flows because the company splits it "
+                 "that way — 84% of 1H26 AUM growth was market, not flows, which "
+                 "is what stops the 17.6% being extrapolated.")
+
+f_entrants = R.add(Ring.INDUSTRY, "new entrants (named-competitor level)", FindingClass.S,
+    "NAMED, AND ARRIVING ON BOTH LEGS AT ONCE. On leg 3: onebank (Banque Misr's "
+    "Misr Digital Innovation) took its FINAL CBE licence in March 2026 as Egypt's "
+    "first fully digital bank; CIB has preliminary approval for yomo and is "
+    "putting USD 300mn behind it. On leg 1: Thndr, a digital-native broker, took "
+    "8.3% of EGX value traded in FY2025 and 11.9% in Q1-2026 against EFG's two "
+    "arms' combined 16.8%, and reports ~18% of EGX equity trading value, 40% of "
+    "total order volume, >200,000 trades a day (from 50,000 a year earlier), 5.5m "
+    "downloads with 75-80% first-time investors. Thndr topped the FT/Statista "
+    "Africa's fastest-growing companies 2026 list, launched on the ADX in 2025 as "
+    "its first remote broker and plans Saudi Arabia",
+    "EGX brokerage league tables for FY2025 and Q1-2026, CBE licensing decisions "
+    "and Thndr's own published operating metrics, all as reported (the EGX's own "
+    "PDF endpoint was unreachable — docstring note 1)",
+    PRESS, "2026-05-17",
+    model_impact="THE SINGLE LARGEST DOWNSIDE DRIVER ON LEG 1 and a real one on "
+                 "leg 3. It sets the Egyptian brokerage COMMISSION-RATE decay path "
+                 "rather than the volume path — a zero-commission-adjacent "
+                 "competitor attacks price, not turnover — and it is the stated "
+                 "mechanism behind EFG's own Egypt share falling from 33.0% "
+                 "(FY2024) to 27.8% (FY2025) to 26.4% (2Q26). On leg 3 it sets the "
+                 "CASA-erosion sensitivity: Bank NXT's CASA share already fell from "
+                 "64.5% of deposits at Mar-26 to 61.5% at Jun-26.")
+
+f_subst = R.add(Ring.INDUSTRY, "technology substitution", FindingClass.S,
+    "THE SUBSTITUTION IS THE DISTRIBUTION CHANNEL, NOT THE PRODUCT, and on the "
+    "NBFI leg it is a two-sided threat that the regulator has partly closed. Valu "
+    "competes against bank-issued cards and against a fintech cohort whose entry "
+    "the FRA has administratively suspended (F08); its own defence is disclosed as "
+    "technology — 'advanced alternative lending models incorporating customers' "
+    "sociodemographic data and digital footprints', with approval rates for "
+    "unbanked customers stable at 40% and unbanked customers ~25% of the base. On "
+    "leg 1 the substitute is the app itself (F13). NO TECHNOLOGY SUBSTITUTES FOR "
+    "THE PRODUCTS THEMSELVES over the forecast horizon: nothing replaces an "
+    "execution, an advisory mandate or a deposit",
+    "EFG Holding 2Q26 Earnings Release, 13-Aug-2026, Valu risk and underwriting "
+    "section",
+    IR, "2026-08-13", fiscal_period="Q2-2026",
+    model_impact="Sets the NBFI leg's cost-of-risk floor rather than a revenue "
+                 "haircut: an alternative-data underwriter lending to a 25% "
+                 "unbanked base is a COST-OF-RISK assumption, and Valu's own "
+                 "disclosed cost of risk already rose to 1.26% in 1H26 from 0.95% "
+                 "a year earlier. Carried as a sensitivity on the NBFI leg, not as "
+                 "a revenue adjustment.")
+
+f_peers = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)", FindingClass.S,
+    "THE NAMED DOMESTIC PEERS BOTH GREW WHILE LEG 1 SHRANK, AND ONE OF THEM GREW "
+    "IN EXACTLY THE LINE EFG LOST. CI Capital H1-2026: revenue EGP 5.5bn, NPATM "
+    "EGP 942mn, on-balance-sheet lending book EGP 31bn (+33% y/y), RoAE 23.8% — "
+    "and its INVESTMENT BANK revenue rose 56% y/y to EGP 1,216mn while EFG's fell "
+    "33% to EGP 632mn. Beltone Holding H1-2026: consolidated operating revenue "
+    "EGP 14.2bn (+125% y/y), net profit EGP 647.76mn, gross lending portfolio "
+    "EGP 99.7bn (+188% y/y), AUM a record EGP 55.7bn (+104% y/y) against EFG "
+    "Egypt AUM of EGP 64.3bn",
+    "CI Capital Holding and Beltone Holding H1-2026 results announcements, as "
+    "reported",
+    PRESS, "2026-08-15",
+    model_impact="This is the finding that stops the IB decline being written off "
+                 "as 'the market'. F03 shows the MENA fee pool fell 19%; CI "
+                 "Capital's IB revenue rose 56% in the same market. The study must "
+                 "therefore carry an explicit SHARE-LOSS component in the IB "
+                 "driver alongside the cyclical one, and say how much of the -33% "
+                 "it attributes to each. Beltone's +188% lending growth sets the "
+                 "competitive ceiling on the NBFI leg's own book growth and the "
+                 "peer set for the relative-multiple cross-check (price-to-book "
+                 "against ROE, never a trailing P/E on a year carrying NAV swings).")
+
+# =========================================================== RING 4 — COMPANY
+# ---- official financial statements: four complete audited fiscal years --------
+f_fs25 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2025 AUDITED CONSOLIDATED. AUDITOR: KPMG HAZEM HASSAN, Public Accountants "
+    "and Consultants, CLEAN UNQUALIFIED OPINION with no qualification and no "
+    "emphasis of matter — 'present fairly, in all material respects' — dated "
+    "Cairo, 18 March 2026. BASIS: EGYPTIAN ACCOUNTING STANDARDS, not IFRS, which "
+    "is stated because it governs what the segment note and the ECL tables mean. "
+    "Statements signed by Mona Zulficar (Chairperson) and Karim Awad (Group CEO). "
+    "Income "
+    "statement: interest income EGP 26,981,276k less interest expense 19,544,037k "
+    "= NII 7,437,239k; fee and commission income 14,009,331k less expense "
+    "2,349,074k = net fees 11,660,257k; securities gain 661,111k; FVTPL change "
+    "762,731k; dividends 127,846k; other revenues 4,353,001k; fx 594,928k; equity "
+    "investees 72,682k; REVENUE 25,669,795k. Less G&A 15,882,915k, financial "
+    "guarantee provision 113,575k, impairment 950,925k, provisions 333,083k, D&A "
+    "895,095k = PBT 7,494,202k; tax 1,239,570k; PROFIT 6,254,632k, split owners "
+    "4,058,309k / NCI 2,196,323k; EPS EGP 2.83. Balance sheet: total assets "
+    "230,647,054k, total liabilities 185,689,073k, equity attributable to owners "
+    "35,422,599k, NCI 9,535,382k, total equity 44,957,981k",
+    "EFG Holding Consolidated Financial Statements for the year ended 31 December "
+    "2025 and Auditor's Report of KPMG Hazem Hassan, filed via efgholding.com IR "
+    "library",
+    CO, "2026-03-18", is_fs_data=True, fiscal_period="FY2025",
+    url="https://efgholding.com/en/investor-relations/financial-statements",
+    detail="FOOTED, BOTH COLUMNS, TWO ROUTES. Income statement, comprehensive "
+           "income, segment note, loan book, deposit book, NCI note and ECL stage "
+           "tables came by the pdftotext text layer and every subtotal re-added to "
+           "zero difference. THE BALANCE SHEET HAS NO TEXT LAYER — PDF page 5 "
+           "carries nine embedded images and zero characters, and the page is "
+           "/Rotate 270 so the raw image is sideways; it was read OFF THE RENDERED "
+           "PIXELS at 220 dpi after PyMuPDF applied the page transform — as was "
+           "the AUDITOR'S REPORT itself, on the same two image-only pages 3-4, "
+           "which is how the KPMG signature, the unqualified opinion and the "
+           "Egyptian-Accounting-Standards basis above were read. The read "
+           "was then proved: all 13 asset lines sum to 230,647,054k and all 10 "
+           "liability lines to 185,689,073k, both of which the TEXT-LAYER segment "
+           "note prints independently and identically. Equity 35,422,599 + "
+           "9,535,382 = 44,957,981 and 185,689,073 + 44,957,981 = 230,647,054 = "
+           "total assets.",
+    model_impact="The anchor year and the base the forecast rolls forward from. "
+                 "Note the shape it sets: PBT FELL 2.7% while NCI's share of "
+                 "profit ROSE from 20.2% to 35.1%, so attributable profit fell "
+                 "4.6% — the NCI leak (F37) is a driver in its own right, not a "
+                 "residual.")
+
+f_fs24 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2024 AUDITED CONSOLIDATED: interest income EGP 22,319,642k less 15,310,258k "
+    "= NII 7,009,384k; net fees 10,095,285k; FVTPL change 2,844,098k; fx "
+    "2,907,706k; REVENUE 24,357,230k; PBT 7,701,503k; tax 2,370,417k; PROFIT "
+    "5,331,086k, owners 4,253,970k / NCI 1,077,116k; EPS EGP 2.94. Balance sheet: "
+    "total assets 186,878,411k, liabilities 147,510,446k, owners' equity "
+    "34,058,826k, NCI 5,309,139k, total equity 39,367,965k",
+    "EFG Holding Consolidated Financial Statement FY2024, filed via efgholding.com "
+    "IR library",
+    CO, "2025-03-18", is_fs_data=True, fiscal_period="FY2024",
+    detail="FOOTED on both the FY2024 and FY2023 columns, income statement and "
+           "balance sheet. The FY2024 column is IDENTICAL to the FY2025 filing's "
+           "comparative, so FY2024 was not restated. Balance sheet read off the "
+           "rendered pixels of the FY2025 filing's comparative column, which "
+           "footed to the pound.",
+    model_impact="Second historical year, and the one that makes FY2025's 'decline' "
+                 "readable: FY2024 attributable profit of EGP 4,253,970k was struck "
+                 "on an fx gain of EGP 2,907,706k, five times the FY2025 figure. "
+                 "FY2024 is therefore NOT usable as a normalisation base without "
+                 "stripping the fx line, and the study strips it explicitly.")
+
+f_fs23 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2023 AUDITED CONSOLIDATED (the year the company was renamed from EFG-Hermes "
+    "Holding to EFG Holding — the cover says so): interest income EGP 13,484,814k "
+    "less 8,863,833k = NII 4,620,981k; net fees 6,442,310k; fx 1,154,847k; REVENUE "
+    "14,668,951k; PBT 4,264,706k; tax 1,093,997k; PROFIT 3,170,709k, owners "
+    "2,498,471k / NCI 672,238k; EPS EGP 1.71. Balance sheet: total assets "
+    "121,907,974k, liabilities 94,512,045k, owners' equity 23,321,025k, NCI "
+    "4,074,904k, total equity 27,395,929k",
+    "EFG Holding Consolidated Financial Statements FY2023, filed via efgholding.com "
+    "IR library",
+    CO, "2024-03-19", is_fs_data=True, fiscal_period="FY2023",
+    detail="FOOTED on both the FY2023 and FY2022 columns, income statement and "
+           "balance sheet; balance sheet read off the rendered pixels at 220 dpi "
+           "(page carries no text layer). Assets 121,907,974 = liabilities "
+           "94,512,045 + equity 27,395,929. SEE F38: these FY2023 figures are the "
+           "AS-FILED vintage and differ from the FY2024 filing's restated "
+           "comparative.",
+    model_impact="Third historical year. Establishes the pre-consolidation shape: "
+                 "NCI was 21.2% of profit here against 35.1% in FY2025, which is "
+                 "the trend the NCI driver has to project.")
+
+f_fs22 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2022 AUDITED CONSOLIDATED, presented in EGP units rather than thousands (a "
+    "presentation change from FY2023 onward, recorded so nobody mis-scales it): "
+    "interest income EGP 9,295,888,885 less 5,698,004,648 = NII 3,597,884,237; net "
+    "fees 4,296,576,153; securities LOSS 847,026,822; fx 2,495,674,927; REVENUE "
+    "10,935,349,833; PBT 3,297,807,891; tax 1,103,724,498; PROFIT 2,194,083,393, "
+    "owners 1,839,715,656 / NCI 354,367,737. Balance sheet at 31/12/2022 (restated "
+    "in the FY2023 filing): total assets EGP 106,101,144k, liabilities 83,732,560k, "
+    "owners' equity 18,923,298k, NCI 3,445,286k, total equity 22,368,584k",
+    "EFG-Hermes Holding Consolidated Financial Statements FY2022, filed via "
+    "efgholding.com IR library",
+    CO, "2023-03-21", is_fs_data=True, fiscal_period="FY2022",
+    detail="FOOTED on the as-filed FY2022 column (income statement, in EGP units) "
+           "and on the FY2023 filing's restated FY2022 balance-sheet column (in EGP "
+           "thousands, read off the rendered pixels). The restatement moved EGP "
+           "39,263k INTO depreciation and amortisation, taking as-filed PBT of "
+           "3,297,808k down to a restated 3,258,545k and profit from 2,194,083k to "
+           "2,154,821k — both vintages foot on their own terms.",
+    model_impact="Fourth historical year, which takes the FS depth to the protocol "
+                 "TARGET of four rather than the floor of two. It is the pre-Bank "
+                 "NXT-scale base: group total assets were EGP 106.1bn against "
+                 "230.6bn three years later, and the whole of that growth is "
+                 "balance-sheet legs (2) and (3), not leg (1).")
+
+f_q1 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "Q1-2026 REVIEWED INTERIM CONSOLIDATED: interest income EGP 6,988,272k less "
+    "4,698,253k = NII 2,290,019k; net fees 2,733,559k; other revenues 1,084,622k; "
+    "fx 357,397k; REVENUE 6,544,119k (vs 5,581,956k in Q1-2025, +17.2%); PBT "
+    "2,314,676k (+19.6%); tax 792,125k (an effective 34.2% against 19.7% a year "
+    "earlier); PROFIT 1,522,551k, owners 1,034,391k / NCI 488,160k; EPS EGP 0.72 "
+    "AGAINST EGP 0.83 A YEAR EARLIER",
+    "EFG Holding Consolidated Interim Financial Statements for the period ended 31 "
+    "March 2026, filed via efgholding.com IR library",
+    CO, "2026-05-19", is_fs_data=True, fiscal_period="Q1-2026",
+    detail="FOOTED on both columns: NII, net fees, the eight-line walk to revenue, "
+           "the five-line walk to PBT, PBT to profit and the owners/NCI split all "
+           "re-add to zero difference.",
+    model_impact="The first actual of the study year, swept in BEFORE the build. "
+                 "It carries the warning the whole study turns on: REVENUE UP "
+                 "17.2% AND EPS DOWN 13.3%, because tax and minorities took the "
+                 "difference. Any forecast that projects group revenue and applies "
+                 "a stable tax rate and a stable NCI share reproduces neither.")
+
+f_q2 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "Q2-2026 REVIEWED INTERIM CONSOLIDATED, standalone quarter and half year. "
+    "Q2 alone: REVENUE EGP 6,411,780k (vs 5,946,887k, +7.8%); PBT 1,727,471k "
+    "(-6.7%); PROFIT 1,376,416k, owners 775,587k / NCI 600,829k; EPS EGP 0.54. "
+    "H1-2026: interest income 14,501,017k less 9,946,494k = NII 4,554,523k; net "
+    "fees 6,532,417k; FVTPL change NEGATIVE 730,818k (against +265,647k a year "
+    "earlier); REVENUE 12,955,899k (+12.4%); PBT 4,042,147k (+6.7%); tax "
+    "1,143,180k; PROFIT 2,898,967k, OWNERS 1,809,978k — DOWN 9.8% from 2,006,706k "
+    "— and NCI 1,088,989k, UP 27.6%. H1 EPS EGP 1.26 against 1.37",
+    "EFG Holding Consolidated Interim Financial Statements for the period ended 30 "
+    "June 2026, filed via efgholding.com IR library",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    detail="FOOTED on all four printed columns (Q2-2026, H1-2026, Q2-2025, "
+           "H1-2025). CROSS-DOCUMENT TIE ALSO CHECKED: Q1 profit 1,522,551 + Q2 "
+           "profit 1,376,416 = H1 2,898,967 exactly, and owners 1,034,391 + "
+           "775,587 = 1,809,978 exactly, so the two interim filings are mutually "
+           "consistent to the pound.",
+    model_impact="The second actual of the study year and the most recent audited "
+                 "figure in existence for this issuer. It is the roll-forward base. "
+                 "It also fixes the shape the forecast must reproduce: group "
+                 "revenue +12.4%, group PBT +6.7%, ATTRIBUTABLE PROFIT -9.8%.")
+
+f_seg = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "THE SEGMENT NOTE IS THE DOCUMENT THAT SPLITS THIS ISSUER, AND IT RECONCILES "
+    "EXACTLY TO THE EARNINGS RELEASE. Twelve reportable segments plus an "
+    "adjustments column. H1-2026 total revenues by segment (EGP k): Holding & "
+    "Treasury 396,463; Brokerage 3,376,977; Asset Management 792,956; Investment "
+    "Banking 632,481; Private Equity 340,452; Finance Holding 375,306; Leasing "
+    "248,903; Micro Finance 1,053,335; Consumer Finance 1,827,154; Factoring "
+    "86,343; SME Lending 35,900; COMMERCIAL BANK (BANK NXT) 3,971,062; adjustments "
+    "(181,433); total 12,955,899. Profit for the period by segment sums to "
+    "2,898,967 with Bank NXT at 1,478,823 and Holding & Treasury at NEGATIVE "
+    "961,248. Total assets 260,670,559 of which Bank NXT 118,131,591 (45.3%); "
+    "total liabilities 214,446,653 of which Bank NXT 101,153,718",
+    "EFG Holding 2Q2026 consolidated interim statements, operating-segment note; "
+    "FY2025 statements, same note",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    detail="FOOTED across all thirteen columns on revenues, profit, total assets "
+           "and total liabilities, for both H1-2026 and H1-2025, and for FY2025 and "
+           "FY2024. THE RECONCILIATION TO THE RELEASE IS EXACT: Brokerage + AM + IB "
+           "+ PE + Holding&Treasury = 5,539,329k = the release's 'EFG Hermes' "
+           "EGP 5,539mn; Finance Holding + Leasing + Micro + Consumer + Factoring + "
+           "SME = 3,626,941k = the release's 'EFG Finance' EGP 3,627mn; Bank NXT "
+           "3,971,062k = EGP 3,971mn. 13,137 less the note's own 181 adjustments = "
+           "12,956 = audited consolidated Revenue.",
+    model_impact="DRIVER UNLOCK, and the finding that makes a three-leg build "
+                 "possible at all. Every driver row below is set at SEGMENT level "
+                 "because the segment note is the finest sourced level for the "
+                 "P&L. WHERE IT STOPS IS FLAGGED: the note gives revenue, G&A, "
+                 "impairment, provisions, D&A, tax, profit, assets and liabilities "
+                 "per segment — it does NOT give employee expense per segment, nor "
+                 "interest income and expense per segment for the NBFI legs. Those "
+                 "come from the release at VERTICAL level only, one level coarser, "
+                 "and that gap is stated rather than papered over.")
+
+f_geo = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "GEOGRAPHIC SPLIT, AUDITED: H1-2026 revenue Egypt EGP 9,752,277k / GCC "
+    "3,063,784k / Other 139,838k = 12,955,899k, so 23.6% of group revenue is "
+    "earned in the GCC. Segment assets Egypt 181,995,093k / GCC 68,611,244k / "
+    "Other 10,064,222k = 260,670,559k (GCC 26.3%). H1-2025 comparatives: revenue "
+    "8,308,588 / 3,044,214 / 176,041; assets 146,687,519 / 54,049,319 / 7,053,398",
+    "EFG Holding 2Q2026 consolidated interim statements, geographical-segments note",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    detail="FOOTED: both revenue and asset rows sum exactly to the printed totals "
+           "in both periods.",
+    model_impact="Sets the currency-translation driver and is the reason the fx "
+                 "line (F01) is modelled rather than assumed away. GCC revenue is "
+                 "earned in dollar-pegged currencies and translated at the EGP "
+                 "rate, so a quarter of group revenue moves mechanically with the "
+                 "pound. Note GCC revenue was FLAT y/y in EGP (3,064 vs 3,044) "
+                 "while Egypt grew 17.4% — the GCC leg's growth is being "
+                 "translated away.")
+
+f_bank_ops = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.D,
+    "LEG 3'S OPERATING ANCHORS, WHICH NO FINANCIAL STATEMENT CARRIES, FROM THE "
+    "COMPANY'S OWN RELEASE. Bank NXT at 30-Jun-2026 (standalone, EGP mn): total "
+    "assets 117,554; net loans 57,817; gross loans 61,473 split corporate 32,597 / "
+    "retail 23,187 / SMEs 5,689 (+50% y/y, retail +76%); customer deposits 93,979 "
+    "split CASA 57,839 / TDs and CDs 32,544 / other 3,596 (+23% y/y); equity "
+    "16,302 (+77% y/y). Ratios: loans/deposits 65%, NPL 2.5% (from 3.0%), coverage "
+    "166% (DOWN from 192%), CAR 19.4%, NIM 6.5%, ROAE 18.3% for 1H26, ROAA 2.8%, "
+    "cost/income 38.6%. 36 branches; gross loans per branch EGP 1,708mn, deposits "
+    "per branch EGP 2,611mn. P&L 1H26: NII 3,283, net fees 500, other 188, revenue "
+    "3,971, opex 1,633, NPBT 2,153, NPAT 1,479, NPATM 758",
+    "EFG Holding 2Q26 Earnings Release, 13-Aug-2026, BANK NXT Performance Summary, "
+    "Balance Sheet Summary, Loans by Type, Deposits by Type and Branch Productivity "
+    "tables",
+    IR, "2026-08-13", fiscal_period="Q2-2026",
+    detail="FOOTED: assets 15,534+9,810+57,817+28,510+5,884 = 117,555 vs printed "
+           "117,554; liabilities 452+93,979+6,822 = 101,253 vs 101,252; loans "
+           "32,597+23,187+5,689 = 61,473 exactly; deposits 57,839+32,544+3,596 = "
+           "93,979 exactly; LDR 61,473/93,979 = 65.4% = printed 65%. TWO PRINTING "
+           "ERRORS IN THE RELEASE ARE RECORDED RATHER THAN COPIED: the balance-"
+           "sheet table's middle column is headed 'Mar-25' but is Mar-26 (the q/q "
+           "column and the loans/deposits tables both prove it), and the CAR "
+           "paragraph says '19.6% in 1Q25' where it means 1Q26. THE STANDALONE "
+           "BALANCE SHEET DOES NOT TIE EXACTLY TO THE GROUP SEGMENT NOTE — assets "
+           "117,554 vs 118,132, deposits 93,979 vs the group's 93,622 — because "
+           "one is standalone and one is the consolidation basis. The difference is "
+           "carried as a named reconciliation item, not ignored.",
+    model_impact="DRIVER UNLOCK for the entire commercial-bank leg. Converts leg 3 "
+                 "from a revenue growth rate into earning assets x NIM less cost of "
+                 "risk less cost/income, funded by a deposit book with a disclosed "
+                 "CASA mix. Two facts set the direction: gross loans +50% y/y "
+                 "against deposits +23% pushed the LDR from 54% to 65% — that gap "
+                 "has to close or be funded — and COVERAGE FELL FROM 192% TO 166% "
+                 "while NPLs fell, which means provisioning grew slower than the "
+                 "book. Both are modelled explicitly.")
+
+f_ib_ops = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.D,
+    "LEG 1'S OPERATING ANCHORS FROM THE SAME RELEASE. EFG Hermes H1-2026 revenue "
+    "by line (EGP mn): Investment Banking 632 (-33% y/y), Brokerage 3,377 (+16%), "
+    "Sell-Side 4,009 (+4%); Asset Management 793 (+8%), Private Equity 340 (+56%), "
+    "Buy-Side 1,133 (+19%); Holding & Treasury Activities 393 (-52%); total 5,539 "
+    "(-2%). Costs: employee expenses 2,845 (+1%), other operating 1,558 (+17%), "
+    "total 4,403 (+6%); net operating profit 1,136 (-23%); NPATM 457 (-50%). "
+    "Q2-2026 alone produced a NET OPERATING LOSS of EGP 43mn and an NPATM LOSS of "
+    "EGP 163mn — 'excluding Holding & Treasury Activities net losses in both "
+    "periods, EFG Hermes recorded a net profit after tax and minority interest of "
+    "EGP694 million, up 50% Y-o-Y'. Research covers 232 stocks across eight "
+    "countries and ten markets",
+    "EFG Holding 2Q26 Earnings Release, 13-Aug-2026, EFG Hermes Performance "
+    "Summary and Research section",
+    IR, "2026-08-13", fiscal_period="Q2-2026",
+    detail="FOOTED within the release's own EGP-million rounding: IB 632 + "
+           "Brokerage 3,377 = 4,009 Sell-Side exactly; AM 793 + PE 340 = 1,133 "
+           "Buy-Side exactly; 4,009 + 1,133 + 393 = 5,535 against a printed 5,539 "
+           "(four rounded components); employee 2,845 + other 1,558 = 4,403 "
+           "exactly; 5,539 - 4,403 = 1,136 exactly. The segment note settles it "
+           "unrounded at EGP 5,539,329k (F22).",
+    model_impact="DRIVER UNLOCK on leg 1, and it forces the ONE structural choice "
+                 "this leg needs: Holding & Treasury Activities is SEPARATED from "
+                 "the four fee businesses and modelled as an fx-and-NAV line, "
+                 "because management itself reports the leg both ways and the "
+                 "'excluding' number is +50% while the reported number is a loss. "
+                 "The fee businesses are then built on their own volume and rate "
+                 "drivers (F11, F12) and the treasury line is sensitised, never "
+                 "glided.")
+
+f_nbfi_ops = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.D,
+    "LEG 2'S OPERATING ANCHORS. EFG Finance H1-2026 revenue EGP 3,627mn (+17% "
+    "y/y), NPATM EGP 596mn (+13%). By line in 2Q26: Valu revenue EGP 932mn (+21% "
+    "y/y), Tanmeyah EGP 436mn (-32%), Leasing EGP 85mn (-55%), Factoring EGP 14mn "
+    "(-76%). Valu asset quality: NPL 1.2%, portfolio coverage excluding "
+    "securitisation 2.2% (from 2.1%), provisions EGP 250mn in 2Q26, COST OF RISK "
+    "1.26% IN 1H26 AGAINST 0.95% A YEAR EARLIER. Leasing: total outstanding "
+    "portfolio EGP 19,791mn (on-book 10,041mn), new bookings EGP 841mn in 2Q26 "
+    "(-83% q/q, -75% y/y) on 7 new contracts against 12, portfolio 61% real estate",
+    "EFG Holding 2Q26 Earnings Release, 13-Aug-2026, EFG Finance Performance "
+    "Summary, Valu, Leasing and Factoring sections; Board of Directors' Report on "
+    "2Q2026 Results",
+    IR, "2026-08-13", fiscal_period="Q2-2026",
+    model_impact="DRIVER UNLOCK on leg 2, and it shows why the leg cannot be "
+                 "modelled as one line: inside a +17% half, Valu grew 21% while "
+                 "Tanmeyah fell 32%, Leasing fell 55% and Factoring fell 76%. Each "
+                 "is given its own driver. Valu is built on portfolio x yield less "
+                 "a rising cost of risk; Leasing is built on new bookings (a "
+                 "disclosed volume) against a shrinking contract count; Tanmeyah's "
+                 "decline is flagged as needing an explanation the disclosure does "
+                 "not give (F43).")
+
+f_ir_pres = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
+    FindingClass.C,
+    "Quarterly results PRESENTATIONS are published separately from the earnings "
+    "releases and were retrieved for FY2025, 1Q2026 and 2Q2026 (27, 17 and 27 "
+    "pages). They restate the release's tables in chart form and add the AUM "
+    "evolution and mandate-flow charts used in F10",
+    "EFG Hermes Results Presentation 2Q2026, efgholding.com IR library",
+    IR, "2026-08-13", model_impact="",
+    detail="Recorded so a reviewer can see the primary IR channel was swept in "
+           "full — releases, presentations and the BOD report on results — rather "
+           "than one document standing for all three.")
+
+f_valu = R.add(Ring.COMPANY, "one-off base-resetting transactions", FindingClass.B,
+    "THE VALU LISTING IS THE BASE CHANGER IN THE HISTORY AND IT WAS PAID IN SHARES, "
+    "NOT CASH. In 2025 EFG Holding distributed approximately 20% of Valu's share "
+    "capital DIRECTLY TO ITS OWN SHAREHOLDERS IN LIEU OF CASH DIVIDENDS, listing "
+    "Valu on the EGX by direct listing rather than an offering; Amazon took a 3.95% "
+    "direct stake at listing; shares have returned more than 50% since. The group "
+    "retains 67% (indirect) of Valu for payments and Digital Solutions and of Valu "
+    "Jordan. In 2Q26 the group's own Investment Banking division ran an accelerated "
+    "bookbuild of 53.8mn further Valu shares, 2.55% of its share capital",
+    "EFG Holding Annual Report 2025 (published 25-Jun-2026), Valu section; FY2025 "
+    "and 2Q2026 consolidated statements, subsidiaries note; 2Q26 Earnings Release, "
+    "Investment Banking section",
+    CO, "2026-06-25", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="BASE CHANGER, modelled as an explicit dated event and dual-"
+                 "framed. Three consequences, each carried separately. (1) It "
+                 "resets the DIVIDEND base: FY2025's distribution was mostly IN "
+                 "KIND, so the EGP 0.278/share cash dividend of Jun-2026 (F36) is "
+                 "not comparable to a prior cash payout and no payout ratio may be "
+                 "extrapolated across the break. (2) It creates a MARKET MARK for "
+                 "part of leg 2 — the 67% Valu stake now has an observable EGX "
+                 "price, so that piece of any sum-of-parts is a market number "
+                 "rather than a house estimate, and the study must say which pieces "
+                 "are marked and which are modelled. (3) It is part of why NCI "
+                 "leapt (F37).")
+
+f_hq = R.add(Ring.COMPANY, "one-off base-resetting transactions", FindingClass.B,
+    "BANK NXT SOLD ITS HEADQUARTERS IN THE NEW ADMINISTRATIVE CAPITAL DURING "
+    "FY2025 — disclosed in the audited notes. This sits inside 'Other revenues', "
+    "which jumped from EGP 1,423,262k (FY2024) to EGP 4,353,001k (FY2025), of "
+    "which the Commercial Bank segment contributed EGP 1,369,594k",
+    "EFG Holding FY2025 consolidated financial statements, notes; segment note "
+    "'Other Revenues' line by segment",
+    CO, "2026-03-17", is_fs_data=True, fiscal_period="FY2025",
+    model_impact="BASE CHANGER on leg 3's FY2025 revenue. It is a NON-RECURRING "
+                 "property disposal sitting in a revenue line the model would "
+                 "otherwise project, and Bank NXT's own quarterly 'Other Revenues' "
+                 "confirms the shape: EGP 172mn in 4Q25 and EGP 193mn in 1Q25 "
+                 "falling to EGP 52mn in 1Q26 and EGP 136mn in 2Q26. Stripped from "
+                 "the normalisation base and modelled as a dated event, never "
+                 "smoothed into a growth glide.")
+
+f_bod = R.add(Ring.COMPANY, "ownership / stake changes (named-transaction rule)",
+    FindingClass.D,
+    "OWNERSHIP OF THE SUBSIDIARIES, NAMED AND FROM THE AUDITED SUBSIDIARIES NOTE AT "
+    "30-JUN-2026: Bank NXT 51% DIRECT (the group does NOT own all of the "
+    "commercial bank); Valu for payments and Digital Solutions 67% indirect; Valu "
+    "Jordan 67% indirect; Tanmeyah Micro Enterprise Services 100% indirect; EFG "
+    "Hermes Sukuk 90% direct / 10% indirect; EFG Hermes-Direct Investment Fund 64% "
+    "direct; FIM Partners Muscat SPC 50%; MENA Long-Term Value Master and "
+    "Management 45%. In March 2026 EFG Finance B.V acquired 56.35% of Balad. "
+    "OWNERSHIP OF THE ISSUER ITSELF: at 31-Dec-2025 the Board of Directors held "
+    "185,853,902 shares, 12.95% of the 1,435,893,008 issued shares, and 18,812 "
+    "shareholders were on the register",
+    "EFG Holding 2Q2026 consolidated interim statements, subsidiaries and "
+    "consolidation note; Annual Report 2025, Shareholder Structure and Executive "
+    "Holdings sections",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    model_impact="DRIVER UNLOCK on the single most consequential mechanical driver "
+                 "in this study. 51% of Bank NXT and 67% of Valu are why "
+                 "attributable profit falls while group profit rises. Every leg's "
+                 "profit must be taken to the GROUP SHARE explicitly, at its own "
+                 "named percentage, before it reaches the valuation — never at a "
+                 "blended group NCI ratio. The 12.95% board holding and the "
+                 "one-in-five-thousand-share register size also fix the free-float "
+                 "and liquidity read for the cone.")
+
+f_capinc = R.add(Ring.COMPANY, "management & capital actions", FindingClass.B,
+    "BANK NXT WAS RECAPITALISED INSIDE THE LAST TWELVE MONTHS, AND IT HAD TO BE. "
+    "The company's own release: 'CAR Ratio recorded 22% in 4Q25 compared to 14.68% "
+    "in 3Q25; an increase of 700 bps, highlighting the increase in capital by EGP6 "
+    "billion. CAR increased by 600 bps Y-o-Y; parallel to the increase in capital "
+    "base by EGP7 billion.' Bank NXT total shareholders' equity went EGP 8,280mn "
+    "(Dec-24) -> 10,580mn (Sep-25) -> 15,386mn (Dec-25) -> 16,302mn (Jun-26). EFG "
+    "Holding's stake remained 51% throughout, so it subscribed its share. CAR has "
+    "since drifted back to 19.4% at Jun-26 on risk-weighted-asset growth",
+    "EFG Holding FY2025 Earnings Release, 18-Mar-2026 and 2Q26 Earnings Release, "
+    "13-Aug-2026, BANK NXT Balance Sheet Summary and CAR commentary",
+    IR, "2026-03-18", fiscal_period="FY2025",
+    model_impact="BASE CHANGER, dual-framed. A 14.68% CAR is 218bp above the 12.5% "
+                 "regulatory floor (F07) on a book growing 50% a year, so the "
+                 "EGP 6bn injection was a requirement, not an option. THE FORECAST "
+                 "MUST SOLVE FOR THE NEXT ONE: CAR fell 260bp in two quarters "
+                 "(22% -> 19.4%) on that growth rate, which puts the floor inside "
+                 "the explicit window unless growth slows or capital is added. "
+                 "Modelled as an explicit capital-need schedule with the parent's "
+                 "51% share of any injection deducted from group free cash flow — "
+                 "the opposite of treating the bank leg as a dividend source.")
+
+f_ecl = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "THE EXPECTED-CREDIT-LOSS DISCLOSURE, STAGE BY STAGE, FROM THE AUDITED NOTES. "
+    "Bank NXT corporate book at 30-Jun-2026 (EGP k): stage 1 carrying 35,049,236 "
+    "with ECL 295,566; stage 2 carrying 2,010,377 with ECL 838,463; STAGE 3 "
+    "CARRYING 1,210,525 WITH ECL 999,332; total carrying 38,270,138, total ECL "
+    "2,133,361, net 36,136,777, collateral 4,641,441. At 31-Dec-2025: stage 1 "
+    "30,854,217 / 283,662; stage 2 1,566,319 / 866,189; stage 3 979,221 / 887,827; "
+    "total 33,399,757 / 2,037,678. Group loans and facilities to customers at "
+    "30-Jun-2026: EGP 95,853,614k gross less impairment 3,430,261k = 92,423,353k, "
+    "of which Bank NXT 61,460,409k, consumer finance 15,436,189k, finance lease "
+    "15,473,543k, micro finance 5,911,001k, factoring 4,280,268k, SME 485,519k",
+    "EFG Holding 2Q2026 consolidated interim statements, credit-risk stage tables "
+    "and note 6 'Loans and facilities to customers'",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    detail="FOOTED: every stage column and every product row re-adds to its own "
+           "printed total in both periods, and net carrying = carrying less ECL "
+           "line by line. Group loan note foots gross to 95,853,614 and "
+           "current + non-current back to 92,423,353.",
+    model_impact="DRIVER UNLOCK on cost of risk, which is built PER STAGE rather "
+                 "than as a percentage of loans. The disclosure says something the "
+                 "headline NPL ratio hides: stage 3 rose from 2.93% to 3.16% of "
+                 "the corporate book in six months WHILE stage-3 coverage fell from "
+                 "90.7% to 82.6%. A flat cost-of-risk assumption would miss both "
+                 "legs of that. The bear case re-provisions stage 3 back to 90% "
+                 "coverage and prices it.")
+
+f_deposits = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "THE DEPOSIT BOOK, AUDITED AND BY TYPE. At 30-Jun-2026 (EGP k): call deposits "
+    "39,798,088; term deposits 16,951,623; saving and deposit certificates "
+    "15,592,674; saving deposits 17,683,853; other 3,595,597; total 93,621,835 "
+    "(from 79,322,035 at 31-Dec-2025, +18.0% in six months). Split corporate "
+    "46,447,697 / individual 47,174,138; current 79,957,162 / non-current "
+    "13,664,673. CALL DEPOSITS FELL FROM 49.8% OF THE BOOK TO 42.5% while saving "
+    "certificates and saving deposits grew 31% and 65%",
+    "EFG Holding 2Q2026 consolidated interim statements, note 19 'Customer deposits'",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    detail="FOOTED three ways on both dates: by type, by counterparty and by "
+           "maturity, each summing exactly to 93,621,835 and 79,322,035.",
+    model_impact="DRIVER UNLOCK on the funding-cost half of leg 3's margin. The "
+                 "mix shift out of call deposits and into certificates is the "
+                 "mechanism behind the NIM falling from 7.3% to 6.5% in one "
+                 "quarter, and it is modelled as a MIX driver with its own path "
+                 "rather than as a single blended deposit rate. Cross-check: the "
+                 "release's standalone CASA of EGP 57,839mn against this note's "
+                 "call deposits of EGP 39,798mn shows the release's CASA definition "
+                 "is wider than the note's — the study states which definition it "
+                 "uses.")
+
+f_aum_ob = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "ASSETS UNDER MANAGEMENT ARE DISCLOSED AS AN OFF-BALANCE-SHEET ITEM IN THE "
+    "AUDITED NOTES, NOT ONLY IN THE RELEASE: EGP 353,185,993k at 30-Jun-2026 "
+    "against EGP 314,047,634k at 31-Dec-2025, +12.5% in six months. The same note "
+    "discloses securitisation and sukuk transactions kept OFF the balance sheet "
+    "under Egyptian accounting standards: client portfolios EGP 15,619,278k, "
+    "custodian balances 1,239,913k and land and buildings 600,000k = assets "
+    "17,459,191k, against bonds 13,662,987k and sukuk 180,000k = liabilities "
+    "13,842,987k. Contingent: the holding company guarantees EFG-Hermes UAE LLC "
+    "for AED 143,670k = EGP 1,925,853k",
+    "EFG Holding 2Q2026 consolidated interim statements, note 28 'Contingent "
+    "liabilities' and group off-financial-position items",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    model_impact="Two effects. (1) The group AUM figure is the AUDITED denominator "
+                 "for the asset-management fee driver and is much larger than the "
+                 "EGP 64.3bn Egypt AM figure in the release (F12) — the study must "
+                 "say which base each fee is earned on rather than divide revenue "
+                 "by the wrong one. (2) EGP 13.8bn of securitisation liabilities "
+                 "sit OFF the balance sheet, and 'higher securitization gains at "
+                 "Valu' is management's own stated reason for 2Q26 NBFI revenue "
+                 "growth — so a recurring revenue line is being produced by an "
+                 "off-balance-sheet mechanism whose capacity is not disclosed. "
+                 "Flagged as a gap and sensitised.")
+
+f_guid = R.add(Ring.COMPANY, "strategic plans & guidance", FindingClass.D,
+    "NO NUMERIC FORWARD GUIDANCE IS ISSUED, AND EXACTLY ONE NAMED FORWARD REVENUE "
+    "ANCHOR EXISTS. The FY2025 annual report and the quarterly releases give "
+    "operating direction only — the three-vertical structure, Bank NXT's growth in "
+    "retail and SME, Valu's ecosystem expansion, 'a robust pipeline' in Investment "
+    "Banking, Private Equity's Saudi Education Fund, Corp-Solutions' deliberate "
+    "shift to fewer and larger leasing tickets — and not one revenue, margin, cost "
+    "or capital-expenditure number for any future period. THE ONE EXCEPTION IS A "
+    "NAMED, DATED MANDATE, disclosed by the company on 3-May-2026: 'EFG Hermes "
+    "Appointed Sole Global Coordinator and Bookrunner for Misr Life Insurance IPO "
+    "on EGX', a transaction 'expected to involve the sale of up to 20% of Misr Life "
+    "Insurance's share capital', tendered by The Sovereign Fund of Egypt. NO FEE, "
+    "NO DEAL SIZE AND NO TIMING ARE DISCLOSED with it",
+    "EFG Holding disclosure 'EFG Hermes x Misr Life Insurance IPO Appointment', "
+    "3-May-2026; Annual Report 2025 (25-Jun-2026); 1Q26 and 2Q26 Earnings Releases; "
+    "Board of Directors' Report on 2Q2026 Results",
+    CO, "2026-05-03",
+    url="https://efgholding.com/en/investor-relations/disclosures",
+    model_impact="Fixes what the forecast may lean on, and gives leg 1's Investment "
+                 "Banking driver its single sourced forward anchor. Every other "
+                 "forward number in this study is DERIVED from a disclosed volume, "
+                 "rate or book, not taken from guidance, because there is none. "
+                 "Because the mandate carries NO fee and NO deal size, the fee "
+                 "itself is still an assumption — so the IB driver is split: the "
+                 "MANDATE is bottom-up and named here, and the FEE RATE and the "
+                 "share-loss component are top-down and cite their own negative "
+                 "searches. Where a driver has no disclosed forward anchor at all "
+                 "it is marked TOP_DOWN in the gate table below.")
+
+f_div = R.add(Ring.COMPANY, "management & capital actions", FindingClass.D,
+    "CAPITAL ACTIONS, ALL FROM THE COMPANY'S OWN DOCUMENTS. (1) The Extraordinary "
+    "General Assembly of 20-Sep-2025 REDUCED issued capital from EGP 7,298,030k to "
+    "EGP 7,179,465k by writing off 23,713,000 treasury shares of EGP 5 par held "
+    "more than a year, charging the EGP 281,410k difference to share premium; "
+    "SHARES IN ISSUE ARE 1,435,893,008 and the reduction is registered. (2) Cash "
+    "dividend of EGP 0.278 per local share, record date 24-Jun-2026, paid "
+    "29-Jun-2026 — about EGP 399mn against FY2025 attributable profit of EGP "
+    "4,058mn, a 9.8% cash payout, because the rest of the FY2025 distribution was "
+    "the Valu share dividend (F28). (3) The ESOP had 60,087,152 shares distributed "
+    "at 31-Dec-2025 (4.18% of issued) with a further 16,006,051 vested in Dec-2025 "
+    "for distribution in 2026, taking the combined total to 5.3%. (4) The Board was "
+    "elected for a new three-year term at the OGM of 2-May-2026",
+    "EFG Holding 2Q2026 consolidated statements note 26 'Share capital'; LSE "
+    "Dividend Distribution notice of 9-Jun-2026; Annual Report 2025 corporate-"
+    "governance section",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    model_impact="Fixes the share count at 1,435,893,008 for every per-share "
+                 "number, and fixes the DILUTION path: 5.3% of issued capital is "
+                 "committed to the ESOP, which the equity bridge must deduct rather "
+                 "than ignore. The cash payout ratio is NOT extrapolated across the "
+                 "in-kind break (F28); the dividend driver is instead built from "
+                 "what each leg can legally upstream — bounded on leg 3 by the "
+                 "12.5% CAR floor (F07) and the next capital call (F31).")
+
+f_nci = R.add(Ring.COMPANY, "regular disclosures", FindingClass.S,
+    "THE MINORITY IS THE STORY, AND IT IS QUANTIFIED IN THE AUDITED NOTE. NCI "
+    "balance: EGP 3,445,286k (FY2022) -> 4,074,904k (FY2023) -> 5,309,139k "
+    "(FY2024) -> 9,535,382k (FY2025) -> 10,101,606k (30-Jun-2026), a 2.9x rise in "
+    "three and a half years. NCI's SHARE OF PROFIT: 16.3% (FY2022), 21.2% (FY2023), "
+    "20.2% (FY2024), 35.1% (FY2025), 37.6% (H1-2026). The Jun-2026 note breaks the "
+    "balance into share capital 5,207,420k, additional paid-in 404,395k, legal "
+    "reserve 252,096k, other reserves 909,338k, retained earnings 2,239,368k and "
+    "period profit 1,088,989k",
+    "EFG Holding 2Q2026 consolidated interim statements, note 27 'Non-controlling "
+    "interests'; FY2022-FY2025 audited statements, equity and income statements",
+    CO, "2026-08-12", is_fs_data=True, fiscal_period="Q2-2026",
+    detail="FOOTED: the six components sum to 10,101,606 at 30-Jun-2026 and to "
+           "9,535,382 at 31-Dec-2025, matching the balance-sheet NCI line exactly "
+           "in both periods.",
+    model_impact="THE DRIVER THAT DECIDES THIS VALUATION. Group profit rose in "
+                 "H1-2026 and attributable profit fell 9.8% purely because the "
+                 "legs that grew — Bank NXT at 51% and Valu at 67% — are the legs "
+                 "with the largest minorities, while the 100%-owned investment bank "
+                 "shrank. The NCI share is therefore NOT projected as a ratio: it "
+                 "is computed leg by leg at each leg's own named ownership "
+                 "percentage (F30) off each leg's own forecast profit. Modelling it "
+                 "as a stable percentage of group profit is the specific error this "
+                 "finding exists to prevent.")
+
+f_restate = R.add(Ring.COMPANY, "regular disclosures", FindingClass.S,
+    "TWO RESTATEMENTS SIT INSIDE THE FOUR-YEAR HISTORY AND THE STUDY MUST CHOOSE A "
+    "VINTAGE PER LINE. FY2023 as originally filed: revenue EGP 14,668,951k, PBT "
+    "4,264,706k, profit 3,170,709k, attributable 2,498,471k. FY2023 as restated in "
+    "the FY2024 filing's comparative column: 14,665,685k / 4,260,008k / 3,166,011k "
+    "/ 2,494,010k. FY2022 was itself restated in the FY2023 filing, with EGP "
+    "39,263k reclassified into depreciation and amortisation, taking PBT from "
+    "3,297,808k to 3,258,545k. FY2024 was NOT restated — the FY2025 filing's "
+    "comparative is identical to the FY2024 filing",
+    "EFG Holding FY2023, FY2024 and FY2025 audited consolidated financial "
+    "statements, income statements and their comparative columns",
+    CO, "2025-03-18", is_fs_data=True, fiscal_period="FY2023",
+    detail="BOTH VINTAGES FOOT ON THEIR OWN TERMS — this is a reclassification, "
+           "not an extraction error, and the arithmetic proves it: the FY2022 "
+           "difference lands entirely in one line (D&A 296,471 -> 335,734, exactly "
+           "the EGP 39,263k).",
+    model_impact="Fixes the historical series the model regresses and normalises "
+                 "on. The study carries the AS-RESTATED vintage for FY2022 and "
+                 "FY2023 so the four-year series is on one basis, states that "
+                 "choice, and never mixes an as-filed year with a restated one "
+                 "inside the same ratio.")
+
+f_dual = R.add(Ring.COMPANY, "regular disclosures", FindingClass.S,
+    "DUAL LISTING, IN THE COMPANY'S OWN WORDS: 'EFG Holding's shares are listed on "
+    "the Egyptian Exchange (EGX) and the London Stock Exchange (LSE) in the form of "
+    "USD-denominated GDRs.' The earnings release prints both lines — EGX "
+    "HRHO.CA / HRHO EY and LSE HRHOq.L / EFGD LI. GDRs are NOT incidental to the "
+    "business either: the brokerage market-share table's own footnote says the "
+    "share calculation 'includes (GDRs)', and the annual report notes GDRs were "
+    "2.2% of total commissions in FY2025",
+    "EFG Holding Annual Report 2025, Shareholders section; 2Q26 Earnings Release "
+    "cover, Listings & Symbols",
+    CO, "2026-06-25",
+    model_impact="Decides the beta regressor before it can be got wrong. The "
+                 "series to regress is the EGX-listed ordinary share in EGP "
+                 "against engine/raw_indices/EG/EGX30.csv via "
+                 "own_stock_beta('HRHO','EG','EGX'); the LSE GDR line is "
+                 "USD-denominated and is not a second legitimate series for this "
+                 "study. The repo's engine/raw_ohlc/EG/HRHO.csv ends 23-Aug-2026 at "
+                 "EGP 26.32, an EGP magnitude consistent with the EGX line, but it "
+                 "is SIXTEEN DAYS STALE against a market quoted near EGP 25.7 on "
+                 "the sweep date — refresh before any regression or cone.")
+
+# ---- dated negative searches: what was actually queried, and found empty ------
+f_neg_pipe = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
+    "efgholding.com IR library in full (financial statements, earnings releases, "
+    "investor presentations, annual reports and EGX disclosures, every year "
+    "2022-2026) searched for a NAMED FORWARD PIPELINE VALUE, a mandate backlog, a "
+    "revenue or margin target, a cost-to-income target, a capital-expenditure plan "
+    "or any numeric guidance for any future period: 'pipeline', 'backlog', "
+    "'guidance', 'target', 'outlook', 'capex', 'capital expenditure'. The only "
+    "forward statement found is qualitative — 'Backed by a robust pipeline, EFG "
+    "Hermes' Investment Banking division remains well positioned' (2Q26 release) — "
+    "with no value, no count and no timing attached", SWEEP_DATE)
+
+f_neg_emp = R.add_negative(Ring.COMPANY, "regular disclosures",
+    "FY2022-FY2025 audited statements and 1Q/2Q 2026 interims searched for "
+    "EMPLOYEE EXPENSE BY SEGMENT and for the split of general and administrative "
+    "expenses into its components: 'employee', 'salaries', 'staff costs', "
+    "'compensation', note 29/30 'General administrative expenses'. The segment "
+    "note gives ONE combined G&A line per segment; the earnings release gives "
+    "employee expense at VERTICAL level only (three verticals, not twelve "
+    "segments). Headcount is disclosed only as employees per branch for Bank NXT. "
+    "No per-segment employee cost, no headcount for legs 1 or 2, no split of G&A "
+    "into salaries / rent / IT / regulatory", SWEEP_DATE)
+
+f_neg_fee = R.add_negative(Ring.COMPANY, "regular disclosures",
+    "Searched every 2026 and 2025 disclosure for a DISCLOSED COMMISSION RATE, "
+    "brokerage tariff, management-fee rate or performance-fee rate: 'commission "
+    "rate', 'basis points', 'bps', 'fee rate', 'management fee', 'incentive fee', "
+    "'performance fee', 'tariff'. The company discloses executions in USD and "
+    "revenue in EGP but NEVER the rate between them, and discloses AUM and asset-"
+    "management revenue but never the fee rate. Both rates are therefore DERIVED "
+    "by division and labelled as derived, not sourced", SWEEP_DATE)
+
+f_neg_tanm = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
+    "Searched the 2Q26 and 1Q26 releases, the BOD report on 2Q26 results and the "
+    "FY2025 annual report for an explanation of TANMEYAH's 32% year-on-year "
+    "revenue decline and for its loan-book, borrower-count or branch data: "
+    "'Tanmeyah', 'micro finance', 'microfinance', 'borrowers', 'active clients'. "
+    "The decline is reported as a number with no cause given, and no operating "
+    "metric is published for the microfinance business at all — unlike Valu, "
+    "Leasing and Factoring, each of which gets its own metrics table", SWEEP_DATE)
+
+f_neg_ownr = R.add_negative(Ring.COMPANY, "ownership / stake changes (named-transaction rule)",
+    "Searched for the SPECIFIC NAMED HOLDERS above 5% of EFG Holding's own issued "
+    "capital, which the annual report says Investor Relations publishes quarterly: "
+    "the efgholding.com share-information page (served, but the shareholding panel "
+    "is client-rendered and carries no figures in the HTML), the disclosures index, "
+    "the FY2025 annual report and the FY2025 corporate-governance report. NO NAMED "
+    ">5% HOLDER WAS RETRIEVED. What is disclosed and used instead is the aggregate "
+    "board holding of 185,853,902 shares (12.95%) and the 18,812-name register "
+    "(F30). An aggregator's free-float figure was seen and DELIBERATELY NOT USED, "
+    "because ownership of the issuer is something the issuer reports about itself",
+    SWEEP_DATE)
+
+f_neg_egx = R.add_negative(Ring.INDUSTRY, "demand drivers & capacity/supply balance",
+    "Attempted the EXCHANGE'S OWN brokerage league table as a primary document to "
+    "settle the competing market-share denominators: www.egx.com.eg English "
+    "homepage, /en/DisclosureAll.aspx, and get_pdf.aspx?ID=53900, ID=53540 and "
+    "ID=52018 (the annual, monthly and quarterly rankings). ALL RETURNED curl (52) "
+    "'Empty reply from server'. The EGX's own numbers therefore reach this "
+    "register only through reporting of them (F11), and the gap matters: the "
+    "company's own Egypt share of 29.6% for 1H26 is computed on executions "
+    "EXCLUDING special transactions and INCLUDING GDRs, while the exchange's "
+    "league table put EFG's two arms at 16.8% in Q1-2026 on value traded. THE TWO "
+    "ARE NOT THE SAME MEASURE and neither supersedes the other", SWEEP_DATE)
+
+# ------------------------------------------------------------- DRIVER GATE TABLE
+# ---- LEG 1: THE INVESTMENT BANK (EFG Hermes) --------------------------------
+R.add_driver("Leg 1 — Brokerage: executions by exchange (USD bn)", DriverMode.BOTTOM_UP,
+    "Built venue by venue from the company's own quarterly executions table — "
+    "Egypt, DFM, ADX, KSA, Kuwait, Frontier, Structured Products, each with its own "
+    "disclosed history back to FY2024 — and projected on each venue's own turnover "
+    "and the company's own share of it. FLAGGED GAP: the residual 7% of executions "
+    "(Qatar, Oman, Jordan, Bahrain, Lebanon, bonds, ETFs) is disclosed only as an "
+    "aggregate percentage, so that slice is carried at the disclosed 7% of total "
+    "and cannot be built finer.",
+    [f_egxvol, f_ib_ops, f_seg])
+R.add_driver("Leg 1 — Brokerage: blended commission rate (bp)", DriverMode.BOTTOM_UP,
+    "SOLVED from disclosure rather than assumed: Brokerage segment revenue of EGP "
+    "3,376,977k (audited segment note) against USD 72.7bn of executions gives ~9-10 "
+    "basis points blended, and the build ties back to the printed segment revenue. "
+    "The rate is then projected DOWNWARD on the named competitive mechanism (Thndr "
+    "at ~18% of EGX value traded), so volume and price each move and neither is "
+    "held flat. THIS IS WHY NO BROKERAGE MARGIN IS AN INPUT.",
+    [f_egxvol, f_seg, f_entrants, f_neg_fee])
+R.add_driver("Leg 1 — Investment Banking fee income", DriverMode.BOTTOM_UP,
+    "Built off the NAMED mandate the company has disclosed itself — sole global "
+    "coordinator and sole bookrunner for the Misr Life Insurance IPO, up to 20% of "
+    "share capital, announced 3-May-2026 and targeted to trade before end-2026 — "
+    "plus the executed 2Q26 transactions whose aggregate value the company states "
+    "(over USD 268mn across two M&A, one ECM and two debt deals), against the "
+    "external fee pool. The recovery path is anchored on the state IPO programme's "
+    "own count, not on a growth rate.",
+    [f_guid, f_ipo_prog, f_ib_ops, f_gsect, f_seg])
+R.add_driver("Leg 1 — Investment Banking: share-loss component", DriverMode.TOP_DOWN,
+    "The company publishes no forward pipeline VALUE (the negative search records "
+    "exactly what was queried and that only the qualitative phrase 'a robust "
+    "pipeline' exists). The split of EFG's -33% between the market's -19% fee pool "
+    "and company-specific share loss — CI Capital's IB revenue rose 56% in the same "
+    "market — therefore cannot be built bottom-up and is set top-down as an "
+    "explicit, sensitised share assumption rather than buried in a growth rate.",
+    [f_neg_pipe, f_peers, f_gsect])
+R.add_driver("Leg 1 — Asset Management: AUM x fee rate", DriverMode.BOTTOM_UP,
+    "AUM is disclosed twice over — group AUM of EGP 353,185,993k in the audited "
+    "note, and Egypt AUM of EGP 64.3bn plus regional FIM AUM of USD 4.6bn in the "
+    "release, each with its own quarterly history back to 1Q24 and each split into "
+    "market performance and net flows. The fee rate is solved against segment "
+    "revenue of EGP 792,956k. Both legs of AUM growth are projected separately "
+    "because the company splits them: 84% of 1H26 growth was market, not flows.",
+    [f_price, f_aum_ob, f_seg, f_neg_fee])
+R.add_driver("Leg 1 — Holding & Treasury Activities (seed capital NAV and fx)",
+    DriverMode.BOTTOM_UP,
+    "Modelled as an explicit, separately disclosed segment line — audited revenue "
+    "EGP 396,463k in H1-2026 against 815,103k in H1-2025, and a NEGATIVE EGP 377mn "
+    "in 2Q26 alone — driven by the EGP/USD path, with management's own attribution "
+    "that c.85% of the 2Q26 loss was fx. Dual-framed with and without, exactly as "
+    "management itself reports the leg both ways.",
+    [f_fed, f_ib_ops, f_seg])
+R.add_driver("Leg 1 — Private Equity management and liquidation fees", DriverMode.BOTTOM_UP,
+    "Built off the two named fee sources the company discloses — management fees on "
+    "the Saudi Education Fund and liquidation fees from Inframed Infrastructure — "
+    "against audited segment revenue of EGP 340,452k in H1-2026, rather than as a "
+    "percentage of an undisclosed fund NAV.",
+    [f_ib_ops, f_seg])
+
+# ---- LEG 2: THE NBFI PLATFORM (EFG Finance) ---------------------------------
+R.add_driver("Leg 2 — Valu: portfolio x yield less cost of risk", DriverMode.BOTTOM_UP,
+    "Built on disclosed consumer-finance loans of EGP 15,436,189k (audited note 6), "
+    "the disclosed NPL of 1.2%, portfolio coverage of 2.2% and the disclosed COST OF "
+    "RISK of 1.26% in 1H26 against 0.95% a year earlier — a rising number that is "
+    "projected as rising, not held flat. Valu is separately EGX-listed at 67% held, "
+    "so its own filings are a second primary route if the parent's disclosure "
+    "proves too coarse.",
+    [f_nbfi_ops, f_ecl, f_valu, f_seg])
+R.add_driver("Leg 2 — Leasing: new bookings and on-book portfolio", DriverMode.BOTTOM_UP,
+    "Built on the disclosed volume series the company publishes for this line "
+    "specifically: new contracts (7 in 2Q26 against 12), net finance amount of new "
+    "bookings (EGP 841mn in 2Q26, EGP 5,804mn in 1H26), total outstanding portfolio "
+    "EGP 19,791mn and on-book EGP 10,041mn, with the securitised principal of EGP "
+    "3,263mn stated separately. Ticket size is derived from the two and projected.",
+    [f_nbfi_ops, f_ecl, f_seg])
+R.add_driver("Leg 2 — Tanmeyah microfinance", DriverMode.TOP_DOWN,
+    "Set top-down and flagged. The negative search records that no loan book, "
+    "borrower count, branch count or explanation of the 32% year-on-year revenue "
+    "decline is published for this business anywhere in the company's disclosure — "
+    "unlike Valu, Leasing and Factoring, each of which gets its own metrics table. "
+    "Carried at segment revenue level with an explicit decline assumption and a "
+    "wide sensitivity, and named as the weakest-sourced line in the model.",
+    [f_neg_tanm, f_nbfi_ops, f_seg])
+R.add_driver("Leg 2 — Securitisation gains", DriverMode.TOP_DOWN,
+    "Management names securitisation gains as a driver of 2Q26 NBFI revenue growth, "
+    "and the audited note discloses EGP 17,459,191k of securitised assets and EGP "
+    "13,842,987k of liabilities kept off the balance sheet — but NO capacity, "
+    "programme size, gain rate or forward schedule is published, and the negative "
+    "search on rates covers it. Modelled top-down as a declining contribution and "
+    "sensitised to zero, because a recurring revenue line produced by an "
+    "off-balance-sheet mechanism of undisclosed capacity is not a base.",
+    [f_neg_fee, f_aum_ob, f_nbfi_ops])
+
+# ---- LEG 3: THE COMMERCIAL BANK (Bank NXT, 51% held) ------------------------
+R.add_driver("Leg 3 — Loan book by segment (corporate / retail / SME)",
+    DriverMode.BOTTOM_UP,
+    "Built from the company's own disclosed split — corporate EGP 32,597mn, retail "
+    "23,187mn, SMEs 5,689mn at Jun-26, each with its own y/y growth (+33%, +76%, "
+    "+70%) — tied back to the audited note's Bank NXT loans of EGP 61,460,409k and "
+    "constrained by the capital driver below rather than extrapolated.",
+    [f_bank_ops, f_ecl, f_seg])
+R.add_driver("Leg 3 — Deposit book and funding mix", DriverMode.BOTTOM_UP,
+    "Built from the audited deposit note by type (call, term, certificates, saving, "
+    "other) and by counterparty (corporate 46,447,697k / individual 47,174,138k), "
+    "with the MIX projected explicitly: call deposits fell from 49.8% to 42.5% of "
+    "the book in six months while certificates and saving deposits grew 31% and 65%. "
+    "The funding cost is an output of that mix, never an input rate.",
+    [f_deposits, f_bank_ops, f_seg])
+R.add_driver("Leg 3 — Net interest margin (output of the two books)",
+    DriverMode.BOTTOM_UP,
+    "NIM IS NOT SET; IT FALLS OUT. Asset yields are built from the loan book and the "
+    "securities book against the CBE corridor, funding cost from the deposit mix, "
+    "and the resulting margin is checked against the disclosed history (6.0% 1Q25, "
+    "6.3% 2Q25, 6.8% 4Q25, 7.3% 1Q26, 6.5% 2Q26, 6.9% 1H26) — which is exactly the "
+    "series that shows a single blended margin assumption would have missed an "
+    "80bp fall in one quarter.",
+    [f_price, f_bank_ops, f_deposits, f_cbe])
+R.add_driver("Leg 3 — Cost of risk, built per ECL stage", DriverMode.BOTTOM_UP,
+    "Built off the audited stage-1/2/3 tables rather than as a percentage of loans: "
+    "stage 3 rose from 2.93% to 3.16% of the corporate book in six months while "
+    "stage-3 coverage FELL from 90.7% to 82.6%. The bear case re-provisions stage 3 "
+    "back to 90% coverage and prices it explicitly.",
+    [f_ecl, f_bank_ops, f_seg])
+R.add_driver("Leg 3 — Regulatory capital and the next capital call",
+    DriverMode.BOTTOM_UP,
+    "Bounded by the floor printed in the bank's own audited capital-management note "
+    "— a minimum CAR of 12.5% and minimum paid-up capital of EGP 5bn — against the "
+    "disclosed CAR path (16% Dec-24, 14.68% Sep-25, 22% Dec-25 after a EGP 6bn "
+    "injection, 19.4% Jun-26). The forecast SOLVES for the next injection at the "
+    "modelled risk-weighted-asset growth and deducts the parent's 51% share from "
+    "group cash, rather than assuming the bank is a dividend source.",
+    [f_reg_bank, f_capinc, f_bank_ops])
+
+# ---- GROUP-LEVEL DRIVERS -----------------------------------------------------
+R.add_driver("Group — minority interest, computed leg by leg", DriverMode.BOTTOM_UP,
+    "NOT a ratio of group profit. Each leg's forecast profit is taken to the group "
+    "share at its OWN named percentage from the audited subsidiaries note — Bank "
+    "NXT 51%, Valu 67%, Tanmeyah 100%, EFG Hermes Sukuk 90/10, the Direct "
+    "Investment Fund 64% — because the whole of the H1-2026 divergence (group PBT "
+    "+6.7%, attributable profit -9.8%) is mix between differently-owned legs. A "
+    "blended NCI percentage reproduces neither year.",
+    [f_nci, f_bod, f_seg, f_fs25])
+R.add_driver("Group — effective tax, computed per segment", DriverMode.BOTTOM_UP,
+    "Built from the segment note's own tax line per segment rather than one group "
+    "rate: the effective rate was 30.8% (FY2024), 16.5% (FY2025), 34.2% (Q1-2026) "
+    "and 20.3% (Q2-2026), and Holding & Treasury booked a EGP 946,578k tax CREDIT "
+    "in FY2025 against a pre-tax loss. Egypt's 22.5% statutory rate would have "
+    "mis-stated two of those four periods by more than 6pp.",
+    [f_tax, f_seg, f_fs25])
+R.add_driver("Group — compensation (the real cost driver)", DriverMode.BOTTOM_UP,
+    "Split into a FIXED base escalated at Egyptian CPI and a VARIABLE component "
+    "that moves with revenue, because management states the mechanism itself "
+    "('higher accruals for the variable component of compensation in line with the "
+    "increase in revenues'). Group employee expense was EGP 10,420mn in FY2025 "
+    "(40% of operating revenue) and EGP 4,409mn in H1-2026 (34%). ONE ESCALATOR PER "
+    "COMPONENT, never one blended rate across the whole cost base. FLAGGED GAP: the "
+    "negative search records that employee expense is disclosed at VERTICAL level "
+    "only, not per segment, so this driver is built one level coarser than the "
+    "revenue it sits against, and that is stated rather than hidden.",
+    [f_neg_emp, f_cmdty, f_ib_ops, f_seg])
+R.add_driver("Group — other G&A and inflation escalator", DriverMode.TOP_DOWN,
+    "The negative search records that general and administrative expenses are NOT "
+    "split into salaries, rent, IT, outsourcing or regulatory components anywhere "
+    "in the disclosure — only the combined line per segment. Other G&A is therefore "
+    "escalated top-down at the disclosed Egyptian CPI path with a separate "
+    "translation effect on GCC costs, and the shortfall is named.",
+    [f_neg_emp, f_cbe, f_geo])
+R.add_driver("Group — cost of equity and the beta regressor", DriverMode.BOTTOM_UP,
+    "Ke built from the CBE corridor for the explicit window and a norm-built "
+    "terminal risk-free rate, with the beta regressed by own_stock_beta('HRHO', "
+    "'EG','EGX') against engine/raw_indices/EG/EGX30.csv. THE DUAL LISTING IS "
+    "RESOLVED EXPLICITLY: the EGX ordinary share in EGP is the series; the "
+    "USD-denominated LSE GDR is not. The repo's HRHO series ends 23-Aug-2026 and "
+    "must be refreshed before the regression runs.",
+    [f_dual, f_cbe, f_cds])
+R.add_driver("Group — share count and ESOP dilution", DriverMode.BOTTOM_UP,
+    "Fixed at 1,435,893,008 shares from the audited share-capital note, after the "
+    "20-Sep-2025 EGM write-off of 23,713,000 treasury shares. The equity bridge "
+    "deducts the ESOP overhang the company discloses itself: 60,087,152 shares "
+    "distributed (4.18%) plus 16,006,051 vested in Dec-2025 for 2026 distribution, "
+    "5.3% combined.",
+    [f_div, f_bod])
+R.add_driver("Group — dividend capacity", DriverMode.BOTTOM_UP,
+    "Built from what each leg can legally upstream rather than from a payout ratio: "
+    "leg 3 is bounded by the 12.5% CAR floor and the next capital call, leg 2 by "
+    "the FRA's 12% NBFI capital-adequacy requirement, leg 1 by its own working "
+    "capital. NO PAYOUT RATIO IS EXTRAPOLATED ACROSS THE FY2025 IN-KIND BREAK, when "
+    "most of the distribution was Valu shares rather than cash and the cash element "
+    "was EGP 0.278 per share.",
+    [f_div, f_valu, f_reg_bank, f_reg_fra, f_capinc])
+
+# ------------------------------------------------------------------------ OUTPUT
+errors, warnings = R.validate()
+R.to_json(os.path.join(HERE, 'sweep_register.json'))
+print(R.qc_line())
+print(f"\nfindings: {len(R.findings)} | drivers: {len(R.drivers)}")
+n_ir = sum(1 for f in R.findings if f.source_type is SourceType.COMPANY_IR)
+n_co = sum(1 for f in R.findings if f.source_type is SourceType.COMPANY_OFFICIAL)
+n_bu = sum(1 for d in R.drivers if d.mode is DriverMode.BOTTOM_UP)
+print(f"company-official: {n_co} | company-IR: {n_ir} | "
+      f"bottom-up drivers: {n_bu} / top-down: {len(R.drivers) - n_bu}")
+if errors:
+    print(f"\nVALIDATOR ERRORS ({len(errors)}) — disclosed, not suppressed:")
+    for e in errors:
+        print(f"  ! {e}")
+else:
+    print("\nVALIDATOR ERRORS: none")
+if warnings:
+    print(f"\nwarnings ({len(warnings)}):")
+    for w in warnings:
+        print(f"  - {w}")
+else:
+    print("warnings: none")
+fr = R.check_freshness("2026-09-08")
+print(f"\nfreshness (delivery 08-Sep-2026): {fr or 'OK — sweep and delivery same day'}")

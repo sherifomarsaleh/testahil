@@ -67,3 +67,13 @@ engine/method_reassessment/board.html
 **/.pg-*.png
 **/__pycache__/
 **/*.pyc
+
+# Step 2A sweep working output: OCR page renders and pdftotext extractions.
+# DERIVED, and regenerable from the filings beside them, which ARE committed because
+# SIGCM wants the source reachable. A rendered page is not a source — it is a reading
+# of one, and the sweep register records which route produced each figure. HRHO alone
+# is 15MB of renders and 4.5MB of text against 46MB of filings that carry the meaning.
+engine/*_study_pending/ocr/
+engine/*_study_pending/txt/
+engine/*_study/ocr/
+engine/*_study/txt/
