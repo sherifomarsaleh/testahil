@@ -1079,3 +1079,51 @@ reproduce-the-base asserts passed. Correcting one made the others visible.
 
 **GUIDANCE LEDGER: the earnings releases carry forward statements and no driver reads
 them.** Guidance is scored and never consumed.
+
+### GBCO — the study's own forward drivers, 08-09-2026
+
+**Appended because the QC gate asked for it and the entry above did not answer it.** The
+GBCO section of this ledger logs the WALK-FORWARD's drivers — the mechanical rules, the
+corrections declined, the macro split. It logs none of the study's OWN forward drivers,
+which is a different requirement and was not met. Every driver below is typed in
+`compute.py` and rests on no disclosure; each is priced where the study's own model can
+price it, and named where it cannot.
+
+**THE TWO THAT MATTER, IN ORDER OF WHAT THEY ARE WORTH:**
+
+| driver | as typed | what the filings say | worth |
+|---|---|---|---|
+| capital expenditure | 3000 · 2400 · 2500 · 2600 · 2800  (3.82% · 2.51% · 2.22% · 2.02% · 1.93% of auto revenue) | FY2025 filed capex of EGP 3,664.2mn on auto revenue of 66,358.3mn is **5.52%**; the ladder falls to a THIRD of that | held at the filed intensity, the present value of explicit free cash flow goes from +6,915 to −2,830 — **EGP 8.98 a share off both branches**, 15–22% of the lower one |
+| working-capital intensity | 26.5% · 25.0% · 23.5% · 22.5% · 21.5% of auto revenue | the opening balance is EGP 18,917.0mn, **28.51%** of FY2025 auto revenue, so the path opens 7% relatively below the base and falls a further fifth | the study's own contested-judgements record prices the glide at **64.5% of the answer** — the largest single judgement in it |
+
+**The first year's capex is management's guidance**, which [R-FCAL-01] forbids outright:
+guidance is scored and never consumed. It is stated to the reader as guidance in §1.2, it
+is in no four-field register, and it is in none of the seven contested judgements despite
+clearing materiality — so the sign test's p of 0.625 is computed on a set missing a
+material judgement resolved the value-raising way.
+
+**Two mitigations are recorded rather than left for the next reader to find**, because a
+finding stated without them is not a finding: capex still runs 3.47x · 2.28x · 2.02x · 1.84x · 1.76x of depreciation across
+the window, so the asset base is growing rather than being harvested; and the terminal
+carries 84% of the auto leg's enterprise value, so an explicit-window driver moves less
+of the answer than its own size suggests.
+
+**THE REST, NAMED AND NOT PRICED**, every one typed and every one unsourced: passenger-car
+volume and price growth; commercial-vehicle and light-mobility volume and price growth;
+trading revenue growth; the auto gross-margin path; selling and administrative, other
+income, provisions and depreciation as ratios of revenue; GB Capital's revenue growth and
+gross-margin paths; the group operating-expense, other-income and provisions ratios; the
+associate-income path; the net finance-cost path; the minority ratio; the elimination
+ratio and the 20% gross margin reversed with it; and GB Capital's depreciation.
+
+**A CORRECTION MADE IN THE COURSE OF WRITING THIS, recorded rather than quietly fixed.**
+The committed field `working_capital_fy2025` carried **31,123.6** — which is FY2030E's
+CLOSING balance, not FY2025's, because the record captured the loop's running variable
+after the loop had finished with it. Read as the base year it named, it implied an opening
+intensity of 46.9% and a twenty-point step down in the first forecast year; the real
+opening intensity is 28.51% and the step is 2.0 points. This author drew the wrong
+conclusion from it before asking what wrote the field. It is now committed as
+`working_capital_opening`, `working_capital_opening_intensity` and
+`working_capital_closing_fy30e`. A FIELD WHOSE NAME SAYS ONE YEAR AND WHOSE VALUE IS
+ANOTHER IS WORSE THAN A MISSING FIELD, because a missing field stops a reader and a
+mislabelled one does not.

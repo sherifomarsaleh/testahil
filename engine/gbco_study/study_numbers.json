@@ -871,7 +871,9 @@
     0.225,
     0.215
    ],
-   "working_capital_fy2025": 31123.63507357789,
+   "working_capital_opening": 18917.0,
+   "working_capital_opening_intensity": 0.28507360797368225,
+   "working_capital_closing_fy30e": 31123.63507357789,
    "tax_rate": 0.28
   }
  },

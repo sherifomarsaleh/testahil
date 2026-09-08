@@ -232,7 +232,16 @@ oth = 0.012; prov = -0.003
 dna_pct = [0.011, 0.011, 0.011, 0.011, 0.011]
 capex = [3000, 2400, 2500, 2600, 2800]
 wc_pct = [0.265, 0.250, 0.235, 0.225, 0.215]
-wc_prev = 18917.0
+# THE OPENING WORKING CAPITAL, CAPTURED BEFORE THE LOOP CONSUMES THE NAME. The record
+# committed `working_capital_fy2025=wc_prev` four hundred lines below, and wc_prev is the
+# loop's running variable — so the field named for the base year carried FY2030E's
+# closing balance, 31,123.6 against a base of 18,917.0, and read as a working-capital
+# intensity of 46.9% of FY2025 revenue where the real opening intensity is 28.5%. A
+# FIELD WHOSE NAME SAYS ONE YEAR AND WHOSE VALUE IS ANOTHER IS WORSE THAN A MISSING
+# FIELD: this author read it as the filed actual and drew a conclusion from it before
+# checking what wrote it, which is [R-ENF-06]'s lesson arriving through a variable name.
+WC_OPENING = 18917.0
+wc_prev = WC_OPENING
 auto_rev_fy25 = 66358.3
 rows = []
 prev_rev = auto_rev_fy25
@@ -1055,7 +1064,9 @@ out = dict(
                     lm_volume=lm_vg, lm_asp=lm_ag, trading=tr_g),
         cost_stack=dict(gross_margin=gpm, gsa_pct=gsa, other_income_pct=oth,
                         provisions_pct=prov, dna_pct=dna_pct, capex=capex,
-                        working_capital_pct=wc_pct, working_capital_fy2025=wc_prev,
+                        working_capital_pct=wc_pct, working_capital_opening=WC_OPENING,
+                        working_capital_opening_intensity=WC_OPENING / auto_rev_fy25,
+                        working_capital_closing_fy30e=wc_prev,
                         tax_rate=TAX)),
     history=HISTORY,
     group_forecast=dict(
