@@ -157,7 +157,18 @@ READINGS = (
     # declaration 3's trailing-capex upkeep charge, which refused 17 of 32 answers
     # because a three-year capex window at a past origin is frequently not a steady
     # state. The declaration was sealed and committed BEFORE this line was changed.
-    ("DECLARED", dict(horizons=CL.HORIZONS, maintenance="gordon")),
+    # THE CURRENCY IS ON THE HOUSE'S OWN RELATION FROM 08-09-2026, and this is a
+    # RULE THAT ALREADY BOUND rather than a lever seeking promotion [R-REBUILD-01]:
+    # [R-MACRO-01]'s macro path derives its forward currency by relative
+    # purchasing-power parity against long-run US inflation and says in terms that
+    # it is NEVER SET BY HAND, and EGCH's own walk-forward already computes exactly
+    # that ("knowable: relative PPP on the last published CPI differential at the
+    # origin"). ARCC alone compounded the origin's last realised annual move, which
+    # at FY2017 asserts x17.557 over five years against a realised x1.077. Same
+    # house, same market, one run on the rule and one not — which is what settles
+    # it, rather than anyone's judgement about currencies.
+    ("DECLARED", dict(horizons=CL.HORIZONS, maintenance="gordon",
+                      arcc_unit_fix="fisher")),
     # Declaration 3's terminal, kept as the SUPERSEDED run rather than deleted: a
     # construction that is replaced is evidence about the replacement, and dropping it
     # would leave nothing to compare against.
@@ -202,6 +213,21 @@ READINGS = (
     # stated principle applied consistently. STILL AN ATTRIBUTION, STILL NOT A LEVER.
     ("ARCC coherent — level rule applied consistently — ATTRIBUTION, NOT THE DECLARED RUN",
      dict(horizons=CL.HORIZONS, maintenance="gordon", arcc_unit_fix="coherent")),
+    # THE CURRENCY, ON THE HOUSE'S OWN RELATION [per instruction, 08-09-2026 — "we
+    # can do one of 2 things, a - assume stable exchange rates or b assume the
+    # fischer effect, whereby the annual devaluation can be the differential
+    # between the country interest rates and the US interest rate or the
+    # differential between the country inflation rate and the [US] inflation
+    # rate. A lot of research houses assume stable exchange rates and then redo
+    # the valuation when a major devaluation happens."]. Both are printed. Fisher
+    # is not a new construction: [R-MACRO-01]'s own macro path derives its forward
+    # currency by relative purchasing-power parity against long-run US inflation
+    # and says in terms that it is NEVER SET BY HAND — so the house already runs
+    # this for its studies and the walk-forward runs something else.
+    # The run's own construction, kept beside the declared one rather than deleted,
+    # so the size of the correction stays readable.
+    ("ARCC's own compounded currency — SUPERSEDED, kept for comparison",
+     dict(horizons=CL.HORIZONS, maintenance="gordon")),
     # ---------------------------------------------------------------- LEVER 1
     # THE COST-OF-CAPITAL GLIDE, the first of the six the pre-registration fixed in
     # order before any score existed. It is EVALUATED here, which is not the same as

@@ -187,7 +187,8 @@ def project_arcc(origin, unit_fix=False):   # unit_fix in (False, True, "coheren
             continue
         if unit_fix:
             p = _run(d, _arcc_unit_fixed, B, "FY%d" % origin, h,
-                     fx_level=(unit_fix == "coherent"))
+                     fx_level=(unit_fix == "coherent"),
+                     fx_mode=("fisher" if unit_fix == "fisher" else None))
         else:
             p = _run(d, B.project, "FY%d" % origin, h)
         ebit = (p["gross_profit"] - p["ga"] - p["provisions"] + p["reversals"]
@@ -197,7 +198,29 @@ def project_arcc(origin, unit_fix=False):   # unit_fix in (False, True, "coheren
     return out
 
 
-def _arcc_unit_fixed(B, o, h, fx_level=False):
+US_INFLATION_LT = 0.025    # the house path's own foreign leg for the PPP relation
+
+
+def _fwd_cpi(o):
+    """The origin's OWN published forward inflation path, as a function of horizon.
+
+    Point-in-time: at origin 2021 this returns 6-7% for ever because nobody then
+    published anything else, and that is the honest input rather than a defect.
+    Beyond the published path the last published year is held, never extrapolated.
+    """
+    year = int(str(o)[2:]) if str(o).startswith("FY") else int(o)
+    v = MH.origin("EG", year)
+    fwd = (v.extras.get("cpi_annual") or {}).get("forward_path") or {}
+    if not fwd:
+        raise ValueError("no published forward inflation path at origin %s" % o)
+    last = float(fwd[max(fwd, key=lambda k: int(k))])
+
+    def at(h):
+        return float(fwd.get(str(year + h), last))
+    return at
+
+
+def _arcc_unit_fixed(B, o, h, fx_level=False, fx_mode=None):
     """ARCC's projection with the two unit errors named above corrected.
 
     Every line not named there is B.project()'s own arithmetic, reproduced rather
@@ -233,8 +256,36 @@ def _arcc_unit_fixed(B, o, h, fx_level=False):
     """
     a = B.actual(o)
     pi, fxm, _coal = B._paths(o, h, False, False)
-    if fx_level:
-        fxm = 1.0                      # (iii) a currency held at its level, not compounded
+
+    # (iii) THE CURRENCY. Three constructions, and the run's own is none of them.
+    #
+    # A LARGE DEVALUATION IS AN EVENT, NOT AN ANNUAL RATE. The run takes the
+    # origin's last realised annual move and compounds it, which at FY2017 turns
+    # the float year's 77.4% into x17.557 over five years against a realised
+    # x1.077, and at three consecutive calm origins runs the OPPOSITE way. Nobody
+    # forecasts a devaluation; what a house can honestly do is one of two things,
+    # and BOTH are sanctioned here rather than one being picked:
+    #
+    #   "level"  — hold the rate where it is and re-value when a devaluation
+    #              lands. This is what a great many research houses do, and it
+    #              makes no claim it cannot support.
+    #   "fisher" — relative purchasing-power parity: the currency drifts at the
+    #              INFLATION DIFFERENTIAL, this origin's own published local path
+    #              against long-run foreign inflation.
+    #
+    # FISHER IS THE HOUSE'S OWN RULE AND THE RUN DOES NOT FOLLOW IT. [R-MACRO-01]
+    # states in the macro path's own derivation field that the forward currency
+    # path is derived by relative PPP against long-run United States inflation and
+    # is NEVER SET BY HAND — so the house carries one construction for its studies
+    # and another inside a walk-forward, and nothing had compared them.
+    if fx_mode == "fisher":
+        fwd = _fwd_cpi(o)
+        m = 1.0
+        for k in range(1, h + 1):
+            m *= (1 + fwd(k)) / (1 + US_INFLATION_LT)
+        fxm = m
+    elif fx_level or fx_mode == "level":
+        fxm = 1.0
     pop = (1 + B.pop_growth(o)) ** h
     w = B.W_DEFAULT
 
@@ -344,18 +395,50 @@ def project_tmgh(origin):
     return out
 
 
+def project_swdy(origin):
+    """SWDY's own projection — the deepest statement history in the book.
+
+    WIRED 08-09-2026 per instruction, on the principal's own reading of the
+    blocked years: "Either live with it or chose another stock that has further
+    back financial statements to test the framework on." AMOC is blocked at two
+    revenue years the principal does not hold and no amount of work here produces
+    them; SWDY commits SEVENTEEN statement years back to 2009 against AMOC's six,
+    so widening the sample is a WIRING job rather than a research one — a name
+    already carried through a full walk-forward and already committing the
+    valuation-input block, and simply never connected to this lens.
+    """
+    d = os.path.join(ENGINE, "swdy_walkforward")
+    B = _in(d)
+    out = {}
+    for h in HORIZONS:
+        if h not in B.HORIZONS:
+            continue
+        r, _macro = _run(d, B.project, origin, h)
+        rev = r.get("A_revenue")
+        ebit = (r.get("A_gross_profit") - r.get("D10_sga")
+                + r.get("D13_other_operating_income") - r.get("D14_other_operating_expense"))
+        out[h] = {"revenue": rev, "ebit": ebit, "dna": r.get("D11_depreciation")}
+    return out
+
+
 PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": project_egch,
-              "PHDC": project_phdc, "TMGH": project_tmgh}
+              "PHDC": project_phdc, "TMGH": project_tmgh, "SWDY": project_swdy}
 
 
 # --------------------------------------------------- the as-reported actuals
 REVENUE = {"AMOC": ["is.net_sales"], "ARCC": ["is.revenue"], "EGCH": ["is.revenue"],
-           "PHDC": ["is.revenue"], "TMGH": ["total_revenue"]}
+           "PHDC": ["is.revenue"], "TMGH": ["total_revenue"],
+           "SWDY": ["revenue"]}
 FINANCE = {"AMOC": ["is.finance_expenses"], "ARCC": ["other.finance_costs"],
            "EGCH": ["is.debit_interest"], "PHDC": ["is.finance_cost"],
-           "TMGH": ["finance_cost"]}
+           "TMGH": ["finance_cost"],
+           # SWDY's panel names this line TWO ways across its seventeen years —
+           # interest_exp in the earlier ones, finance_cost in the later — and a
+           # reader taking either alone finds the other half empty and reports it
+           # as a run with no finance charge [L-355]. Both are named.
+           "SWDY": ["finance_cost", "interest_exp"]}
 MINORITY = {"AMOC": ["is.nci"], "ARCC": ["is.nci"], "EGCH": [], "PHDC": ["is.nci"],
-            "TMGH": ["nci_equity"]}
+            "TMGH": ["nci_equity"], "SWDY": ["nci", "minority"]}
 
 
 # THE PANELS AND THE BLOCKS DO NOT SHARE A UNIT AND NOTHING SAID SO. Measured
@@ -403,6 +486,14 @@ SCALE_PAIR = {
              "identical"),
     "PHDC": (["bs.cash"], "cash", "identical"),
     "TMGH": (["cash"], "cash", "identical"),
+    # SWDY's panel is an INCOME STATEMENT and its block a BALANCE SHEET, so no
+    # quantity appears in both and the identical test has nothing to compare.
+    # Revenue against total assets is a RELATED pair and it pins the unit tightly:
+    # 0.9887 to 1.5638 across ten shared years, nowhere near the midpoint to
+    # another power of ten. A cables manufacturer turning its asset base about
+    # once a year is the ordinary shape of that ratio, which is why it is stable
+    # enough to measure a unit with.
+    "SWDY": (["revenue"], "total_assets", "related"),
 }
 
 
@@ -1059,6 +1150,34 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
                           "positive: a log ratio against the price does not exist "
                           "below zero and this series is scored on one"
                           % f"{per_share:,.3f}")
+        # THE EXPLICIT WINDOW MUST CARRY A POSITIVE PRESENT VALUE, and this
+        # refusal is added 08-09-2026 knowing exactly what it costs, which is
+        # the only reason it can be trusted.
+        #
+        # A cell whose five discounted forecast years sum to a NEGATIVE present
+        # value larger than the terminal is not a cheap company; it is a
+        # construction that has broken. Its terminal share prints as a negative
+        # percentage — on the cell that provoked this, MINUS 280% — which is not
+        # a share of anything, and the value it lands on (0.077 against a traded
+        # 9.81) is arithmetic rather than a reading.
+        #
+        # WHY IT IS NOT RESULTS-SHOPPING, STATED SO A READER CAN CHECK RATHER
+        # THAN TRUST: this refusal makes the answer WORSE. With that one cell in,
+        # the pooled bias is +0.3692 and every bootstrap interval INCLUDES ZERO,
+        # which is criterion 3's clause A passing; with it refused the bias is
+        # +0.6175 and every interval EXCLUDES zero, which is clause A failing.
+        # A test that passes only because one cell of twenty-two returned a
+        # figure its own construction cannot support has not been passed, and
+        # reporting it as passed is the exact failure this whole programme was
+        # called to prevent. The refusal is placed at the SOURCE for the reason
+        # the one above it is: a downstream filter is one somebody later forgets.
+        if pv <= 0:
+            return None, ("terminal refused: the explicit window's present value "
+                          "is %s, not positive — the discounted forecast years "
+                          "destroy more than the whole enterprise is worth, so the "
+                          "terminal is carrying more than all of the value and its "
+                          "share prints negative. That is a broken construction "
+                          "rather than a cheap company." % f"{pv:,.0f}")
         return ({"ticker": tk, "origin": origin, "fv": per_share, "price": price,
                  "log": math.log(per_share / price) if per_share > 0 and price > 0 else None,
                  "equity": equity, "ev": ev, "pv_explicit": pv, "pv_terminal": pv_tv,

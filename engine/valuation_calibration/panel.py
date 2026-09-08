@@ -172,6 +172,20 @@ def _panel(rundir):
             continue
         if isinstance(d, dict) and any(k.isdigit() and len(k) == 4 for k in d):
             return {int(k): v for k, v in d.items() if k.isdigit()}, fn
+        # A RUN MAY NEST ITS YEARS UNDER A NAMED KEY, and the shape search above
+        # only looks at the top level — so SWDY, which wraps its seventeen years
+        # in {"years": {...}} beside its own provenance fields, read as a run with
+        # no panel at all and every one of its cells reported NOT READY. That is
+        # [L-355] on this very module: a reader that guesses a shape silently
+        # finds nothing and reports it as a result. The wrapper keys are NAMED
+        # rather than searched for, because a search that descends into any dict
+        # would eventually find a four-digit key somewhere that is not a year.
+        for wrap in ("years", "annual", "fy"):
+            inner = d.get(wrap) if isinstance(d, dict) else None
+            if isinstance(inner, dict) and any(
+                    k.isdigit() and len(k) == 4 for k in inner):
+                return ({int(k): v for k, v in inner.items() if k.isdigit()},
+                        "%s[%s]" % (fn, wrap))
     return {}, None
 
 
