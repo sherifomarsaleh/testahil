@@ -24,7 +24,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 | 2 | ARCC | EGP | full | 54.6500 | 66.5300 | +21.7% | -50.3% | +16.9% | (study carries no stamp) → 2026.09.07 | — |
 | 3 | EGCH | EGP | full | 3.6400 | 4.0396 / 8.0388 (two-sided) | n/a | n/a | -48.0% | (study carries no stamp) → 2026.09.07 | L-326, L-330, L-331, L-332, L-333 |
 | 4 | ELEC | EGP | skip | 0.3400 | 0.3357 | -1.3% | +1.4% | -0.1% | (study carries no stamp) → 2026.09.07 | — |
-| 5 | GBCO | EGP | full | 35.7000 | 44.3295 | +24.2% | +17.6% | +32.6% | (study carries no stamp) → 2026.09.07 | — |
+| 5 | GBCO | EGP | full | 35.7000 | 41.3484 / 52.3453 (two-sided) | n/a | -17.2% | +2.6% | (study carries no stamp) → 2026.09.07 | — |
 | 6 | PHAR | EGP | light | 61.2100 | 32.9975 / 49.6789 (two-sided) | n/a | -43.1% | -32.0% | (study carries no stamp) → 2026.09.07 | — |
 | 7 | PHDC | EGP | full | unrecoverable | 17.8478 | n/a | n/a | n/a | 2026.08.23 → 2026.09.07 | L-073 |
 | 8 | SCEM | EGP | light | 53.1200 | 111.6213 | +110.1% | -42.1% | +88.9% | (study carries no stamp) → 2026.09.07 | L-367, L-368, L-369 |

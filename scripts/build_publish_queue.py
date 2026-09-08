@@ -45,6 +45,36 @@ def newest(pattern):
     return max(hits)[1] if hits else None
 
 
+# THE DELIVERABLES ARE MATCHED BY SHAPE INSIDE THE STUDY DIRECTORY, NOT BY AN ASSUMED
+# TICKER PREFIX. The directory already establishes which name it is, and one study
+# ships its files under THE COMPANY'S OTHER NAME rather than its ticker — so a matcher
+# keyed on the prefix reported that study as delivering no report and no workbook while
+# both sat on disk beside it. That is [L-355]: a reader that guesses a naming convention
+# silently finds nothing and reports it as a result. check_bibliography already matches
+# this family by shape for exactly this reason; this is the same discipline applied to
+# the queue. The bibliography is excluded by name so it cannot stand in for the study.
+STUDY_PDF = re.compile(r'valuation[_ ]study.*\.pdf$', re.I)
+MODEL_XLSX = re.compile(r'valuation[_ ]model.*\.xlsx$', re.I)
+NOT_A_DELIVERABLE = re.compile(r'(bibliograph|source[_ ]register|_sources_|^source_)', re.I)
+
+
+def newest_of(sd, rx):
+    """The newest file in `sd` whose NAME has the deliverable's shape."""
+    try:
+        names = os.listdir(sd)
+    except OSError:
+        return None
+    hits = []
+    for n in names:
+        if not rx.search(n) or NOT_A_DELIVERABLE.search(n):
+            continue
+        m = re.search(r'(\d{2})[-_]?(\d{2})[-_]?(\d{4})', n)
+        if m:
+            hits.append(('%s%s%s' % (m.group(3), m.group(2), m.group(1)),
+                         os.path.join(sd, n)))
+    return max(hits)[1] if hits else None
+
+
 def study_dir(t):
     return os.path.join(ENGINE, '%s_study' % t.lower())
 
@@ -99,8 +129,8 @@ def build(check_only=False):
             problems.append('%s: a walk-forward ran but there is no %s_study directory'
                             % (t, t.lower()))
             continue
-        report = newest(os.path.join(sd, '%s_Valuation_Study_*.pdf' % t))
-        book = newest(os.path.join(sd, '%s_Valuation_Model_*.xlsx' % t))
+        report = newest_of(sd, STUDY_PDF)
+        book = newest_of(sd, MODEL_XLSX)
         fair = recorded_fair(t, mv)
         if not report:
             problems.append('%s: no valuation report PDF. The deliverable is a PDF; the Word '

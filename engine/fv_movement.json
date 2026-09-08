@@ -676,6 +676,38 @@
       "bear": 17.6,
       "full": 32.6
      }
+    },
+    {
+     "delivered": "2026-09-08",
+     "edition": 2,
+     "fair": {
+      "base": null,
+      "bear": 19.291145633198383,
+      "branches": [
+       {
+        "label": "MNT-Halan at its reviewed carrying value",
+        "value": 41.348367298232716
+       },
+       {
+        "label": "MNT-Halan at the June-2026 round price",
+        "value": 52.345259974418816
+       }
+      ],
+      "full": 52.345259974418816
+     },
+     "lessons": [],
+     "origins": "2016-2023",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -17.2,
+      "full": 2.6
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -29.6,
+      "full": -22.6
+     }
     }
    ],
    "exchange": "EGX",

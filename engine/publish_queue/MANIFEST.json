@@ -1,6 +1,6 @@
 {
  "_": "Staged for a SINGLE BATCH PUBLICATION at the end of the fundamental-calibration campaign, per instruction of 01-09-2026. Two files per calibrated ticker: the valuation report as a PDF and the workbook. assets/data.js deliberately still carries the PRE-CALIBRATION range for every name below; publishing is a separate, explicitly-requested step.",
- "staged": 5,
+ "staged": 10,
  "names": [
   {
    "ticker": "AMOC",
@@ -24,7 +24,7 @@
     "full": 72.1254
    },
    "report_bytes": 1339257,
-   "workbook_bytes": 49147
+   "workbook_bytes": 49148
   },
   {
    "ticker": "EGCH",
@@ -49,6 +49,62 @@
    "workbook_bytes": 49574
   },
   {
+   "ticker": "ELEC",
+   "report": "engine/elec_study/ELEC_Valuation_Study_05-08-2026_public.pdf",
+   "workbook": "engine/elec_study/ELEC_Valuation_Model_05082026_public.xlsx",
+   "fair": {
+    "base": 0.3357186228503667,
+    "bear": 0.1825753729383991,
+    "full": 0.9488142905842855
+   },
+   "report_bytes": 939720,
+   "workbook_bytes": 33413
+  },
+  {
+   "ticker": "GBCO",
+   "report": "engine/gbco_study/GBCO_Valuation_Study_07-09-2026_public.pdf",
+   "workbook": "engine/gbco_study/GBCO_Valuation_Model_07092026_public.xlsx",
+   "fair": {
+    "base": null,
+    "bear": 19.291145633198383,
+    "branches": [
+     {
+      "label": "MNT-Halan at its reviewed carrying value",
+      "value": 41.348367298232716
+     },
+     {
+      "label": "MNT-Halan at the June-2026 round price",
+      "value": 52.345259974418816
+     }
+    ],
+    "full": 52.345259974418816
+   },
+   "report_bytes": 1011942,
+   "workbook_bytes": 44933
+  },
+  {
+   "ticker": "PHAR",
+   "report": "engine/phar_study/EIPICO_Valuation_Study_09-08-2026.pdf",
+   "workbook": "engine/phar_study/EIPICO_Valuation_Model_09082026.xlsx",
+   "fair": {
+    "base": null,
+    "bear": 32.99747064299512,
+    "branches": [
+     {
+      "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+      "value": 32.99747064299512
+     },
+     {
+      "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+      "value": 49.6788791915817
+     }
+    ],
+    "full": 49.6788791915817
+   },
+   "report_bytes": 1137550,
+   "workbook_bytes": 46383
+  },
+  {
    "ticker": "PHDC",
    "report": "engine/phdc_study/PHDC_Valuation_Study_03-09-2026.pdf",
    "workbook": "engine/phdc_study/PHDC_Valuation_Model_03092026.xlsx",
@@ -59,6 +115,30 @@
    },
    "report_bytes": 1109080,
    "workbook_bytes": 37450
+  },
+  {
+   "ticker": "SCEM",
+   "report": "engine/scem_study/SCEM_Valuation_Study_07-09-2026_public.pdf",
+   "workbook": "engine/scem_study/SCEM_Valuation_Model_07092026_public.xlsx",
+   "fair": {
+    "base": 111.62128401804542,
+    "bear": 27.118642954954954,
+    "full": 111.62128401804542
+   },
+   "report_bytes": 942663,
+   "workbook_bytes": 39081
+  },
+  {
+   "ticker": "SWDY",
+   "report": "engine/swdy_study/SWDY_Valuation_Study_05-08-2026_public.pdf",
+   "workbook": "engine/swdy_study/SWDY_Valuation_Model_05082026_public.xlsx",
+   "fair": {
+    "base": 52.69688996099238,
+    "bear": 19.63802419176771,
+    "full": 101.30675843431828
+   },
+   "report_bytes": 1001571,
+   "workbook_bytes": 39352
   },
   {
    "ticker": "TMGH",
