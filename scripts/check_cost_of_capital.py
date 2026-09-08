@@ -181,13 +181,71 @@ def check_record(rec, ticker):
                     break
 
     # 4. ONE DATE, ONE PRICE OF TIME
+    #
+    # THE HARM THIS TEST NAMES IS A PREMIUM, AND ONLY A PREMIUM: a terminal brought
+    # home on a LARGER factor than the last explicit year is the same pound arriving
+    # on the same day priced twice, and it flatters value. That case is refused
+    # outright and always.
+    #
+    # THE OTHER DIRECTION IS A DIFFERENT THING AND USED TO BE CAUGHT BY THE SAME NET.
+    # A terminal value is the value at the END of the explicit window of everything
+    # after it, so under a mid-period schedule it arrives HALF A YEAR LATER than the
+    # last explicit cash flow and is worth LESS, not more. ARCC discounts on the
+    # end-of-window factor 0.415551 while its last explicit year uses 0.452058 —
+    # correct, conservative, and red under an equality test. [R-COC-01] says to
+    # RE-POINT a check that fires on work that is right, never to widen it, so the
+    # test now asks the question it was always for: WHEN does the terminal arrive,
+    # and does its factor reproduce at the same price of time?
+    #
+    # This is STRICTER than equality was, not looser. A record taking the discount
+    # below its last explicit year must DECLARE the arrival time, that time must sit
+    # after the last explicit cash flow and inside the window the forward rates
+    # cover, and the factor must reproduce from the same ladder at that time. An
+    # undeclared or non-reproducing number is refused — where before, any number at
+    # all was refused by the same message whether it was a premium or a discount,
+    # which is what made the message wrong on ARCC.
     df = rec.get("discount_factors") or []
     tdf = rec.get("terminal_discount_factor")
+    _conv4 = rec.get("discounting_convention") or {}
     if df and tdf is not None and abs(tdf - df[-1]) > 1e-9:
-        fails.append("the terminal value is brought home on a factor of %.6f while the last "
-                     "explicit year's cash flow uses %.6f — a %.0f%% premium for relabelling "
-                     "the same pound arriving on the same day."
-                     % (tdf, df[-1], 100 * (tdf / df[-1] - 1)))
+        if tdf > df[-1]:
+            fails.append("the terminal value is brought home on a factor of %.6f while the "
+                         "last explicit year's cash flow uses %.6f — a %.0f%% premium for "
+                         "relabelling the same pound arriving on the same day."
+                         % (tdf, df[-1], 100 * (tdf / df[-1] - 1)))
+        else:
+            t_tv = _conv4.get("terminal_arrival_years")
+            _edges4 = _conv4.get("rate_edges") or [float(k) for k in range(len(fwd) + 1)]
+            _times4 = _conv4.get("cumulative_years") or []
+            if t_tv is None:
+                fails.append("the terminal value is brought home on a factor of %.6f, below "
+                             "the last explicit year's %.6f, and the record declares no "
+                             "terminal_arrival_years. A terminal that arrives later than "
+                             "the last explicit cash flow is legitimate and is worth less; "
+                             "one that arrives on a date nobody wrote down is not readable "
+                             "from outside." % (tdf, df[-1]))
+            elif _times4 and float(t_tv) < _times4[-1] - 1e-9:
+                fails.append("the terminal is declared to arrive at %.4f years, BEFORE the "
+                             "last explicit cash flow at %.4f. A terminal value is what is "
+                             "left after the explicit window, so it cannot arrive inside it."
+                             % (float(t_tv), _times4[-1]))
+            elif len(_edges4) == len(fwd) + 1 and float(t_tv) > _edges4[-1] + 1e-9:
+                fails.append("the terminal is declared to arrive at %.4f years, past the "
+                             "%.4f years the forward rates cover. Beyond that edge the "
+                             "record prices time with a rate it does not hold."
+                             % (float(t_tv), _edges4[-1]))
+            else:
+                acc = 1.0
+                for j, w in enumerate(fwd):
+                    span = max(0.0, min(float(t_tv), _edges4[j + 1]) - _edges4[j])
+                    if span > 0:
+                        acc /= (1 + w) ** span
+                if abs(acc - tdf) > 1e-6:
+                    fails.append("the terminal factor is %.6f and the arrival it declares "
+                                 "(%.4f years at the same forward path) gives %.6f. A "
+                                 "declared arrival that does not reproduce its own factor "
+                                 "is worse than none: it reads as evidence."
+                                 % (tdf, float(t_tv), acc))
     # END-OF-YEAR IS A CONVENTION, NOT THE ONLY ONE. This check assumed each cash
     # flow arrives on the last day of its year, and flagged ARCC — whose factors
     # are a legitimate mid-period schedule struck a quarter before the first cash

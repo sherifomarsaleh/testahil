@@ -2601,14 +2601,26 @@ COC_RECORD = dict(
         # rate never entered any factor at all.
         rate_edges=[float(e) for e in EDGES],
         stub_years=float(V['stub_years']),
+        # WHEN THE TERMINAL ARRIVES, WHICH IS NOT WHEN THE LAST EXPLICIT CASH FLOW
+        # DOES. The terminal value is the value at the END of FY2030 of everything
+        # from FY2031 on, so it is discounted from the END OF THE WINDOW -- half a
+        # year later than the last explicit flow at its own midpoint, and
+        # therefore worth LESS. Earlier editions of this record
+        # printed the last explicit factor here and a sentence saying so, while
+        # the valuation used the end-of-window one: the model was right and its
+        # own description was wrong, which is the harder half to catch because a
+        # recalculation reconciles either way.
+        terminal_arrival_years=float(REM + 4.0),
         note=('each year discounted to its own midpoint from a valuation date '
               '%.3f of the way through FY2026, so the first period is a '
               'half-stub of %.4f years and every later year sits half a year '
-              'inside its own period. The terminal is brought home on the LAST '
-              'EXPLICIT factor, not on an end-of-window one.'
-              % (float(V['stub_years']), float(t_mid[0]))),
+              'inside its own period. The terminal is the value at the END of '
+              'the window of everything after it, so it is brought home on the '
+              'END-OF-WINDOW factor at %.2f years rather than on the last '
+              'explicit year\'s midpoint factor — later, and worth less.'
+              % (float(V['stub_years']), float(t_mid[0]), float(REM + 4.0))),
     ),
-    terminal_discount_factor=float(chain(fwd, t_mid[-1])),
+    terminal_discount_factor=float(df_tv),
     kd_integrity=dict(
         currency_source='note 25 and note 8: 91.1% of the book is euro-denominated '
                         '(NBE at Euribor + 3.00%, EBRD at Euribor + 4.35%), the '

@@ -289,6 +289,63 @@ def main():
     case("CLEAN — a declared mid-period schedule that reproduces, must PASS",
          c_mid, False, results)
 
+    # ---- the re-pointed terminal-arrival check [added 08-Sep-2026] -----------
+    # Test 4 used to demand the terminal factor EQUAL the last explicit year's.
+    # The harm it names is a PREMIUM, and equality also caught the opposite and
+    # correct case: a terminal value is what is left at the END of the window, so
+    # under a mid-period schedule it arrives later than the last explicit cash flow
+    # and is worth LESS. ARCC does exactly that and was red for being right.
+    # The check now asks WHEN the terminal arrives and whether the factor
+    # reproduces there. Every way of answering that badly must FAIL, or "declare an
+    # arrival" becomes the way to switch the terminal check off.
+    def _tv_end(rec, t=None, factor=None, declare=True):
+        """Terminal at the END of the window — the ARCC shape, built from the ladder."""
+        rec = _mid(rec)
+        fwd = rec["forward_wacc"]
+        edges = rec["discounting_convention"]["rate_edges"]
+        t = edges[-1] if t is None else t
+        a = 1.0
+        for j, w in enumerate(fwd):
+            span = max(0.0, min(t, edges[j + 1]) - edges[j])
+            if span > 0:
+                a *= (1 + w) ** span
+        rec["terminal_discount_factor"] = factor if factor is not None else 1.0 / a
+        if declare:
+            rec["discounting_convention"]["terminal_arrival_years"] = t
+        return rec
+
+    def c_tv_end(tmp):
+        put_study(tmp, "NCC", _tv_end(json.loads(json.dumps(GOOD)))); put_list(tmp, [])
+    case("CLEAN — a terminal declared at the end of the window, reproducing, must PASS",
+         c_tv_end, False, results)
+
+    def b_tv_undeclared(tmp):
+        rec = _tv_end(json.loads(json.dumps(GOOD)), declare=False)
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a terminal discounted below the last explicit year on an UNDECLARED arrival",
+         b_tv_undeclared, True, results)
+
+    def b_tv_no_repro(tmp):
+        rec = _tv_end(json.loads(json.dumps(GOOD)))
+        rec["terminal_discount_factor"] *= 0.85          # says one thing, carries another
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a declared terminal arrival that does not reproduce its own factor",
+         b_tv_no_repro, True, results)
+
+    def b_tv_inside_window(tmp):
+        # a discount deeper than the last explicit year, dressed as an EARLIER arrival
+        rec = _tv_end(json.loads(json.dumps(GOOD)))
+        rec["discounting_convention"]["terminal_arrival_years"] = 0.5
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a terminal declared to arrive before the last explicit cash flow",
+         b_tv_inside_window, True, results)
+
+    def b_tv_past_window(tmp):
+        rec = _tv_end(json.loads(json.dumps(GOOD)), t=40.0)
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a terminal declared to arrive past the window the forward rates cover",
+         b_tv_past_window, True, results)
+
     # ---- the re-pointed cost-of-debt check [added 03-Sep-2026] ---------------
     # A book whose trailing effective rate is structurally unrepresentative may
     # re-point the 150bp bound at a contractual anchor. That is only safe if every

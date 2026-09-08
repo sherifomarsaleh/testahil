@@ -28,6 +28,9 @@ from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+# The committed cost-of-capital schedule, so a label describing WHEN the terminal
+# arrives is read from the record rather than typed beside the formula it describes.
+SCHED = D['cost_of_capital_record']
 _NCI = D['inputs']['nci']['value']          # EGP mn, audited, note 24
 _NCI_V1 = D['inputs']['nci_v1']['value']    # EGP mn, revision 1's inferred figure
 _NCI_EGP = _NCI * 1e6                       # the same figure in pounds, as the line states it
@@ -54,6 +57,9 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 _TERMREC = D['terminal_record']
 BU, PE, SHT, TR = D['bottom_up'], D['peers'], D['share_triangulation'], D['terminal_reconciliation']
 UC, KDG, CON = D['unit_calibration'], D['kd_gate'], D['contested']
+# The adopted terminal return on capital, so the workbook publishes the figure the
+# document adopts rather than only the one it disavows [audit finding 14].
+GDV = D['growth_destroys_value']
 CAL = D['calibration']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH, TAX, TAXE = M['spot'], M['shares_mn'], IN['tax_stat'], IN['tax_eff']
@@ -658,7 +664,13 @@ TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B
        f"={A['capcem']}*{A['repl']}*{A['fx']}*{A['infl5']}", DCF['ic_repl'], NUM0),
       ('Terminal NOPAT  (year 5 NOPAT grown at g)', 'B23', f"=F11*(1+{A['g']})",
        DCF['nopat_term'], NUM0),
-      ('Memo: return on invested capital at replacement cost', 'B24', "=B23/B22",
+      # THE LABEL NAMED THE ADOPTED QUANTITY AND CARRIED THE RETIRED ONE, WHICH IS HOW
+      # THREE DELIVERED ARTEFACTS CAME TO PUBLISH TWO VALUES FOR ONE NAME. This cell
+      # divides a profit already grown by a year of terminal growth by a capital base
+      # that has not grown; the study says in terms that figure is NOT used, and adopts
+      # the matched pair below. Both are published, each under the name of what it is.
+      ('Memo: return on invested capital — RETIRED construction (profit grown one year '
+       'against a capital base that has not)', 'B24', "=B23/B22",
        DCF['roic_term'], PCT),
       ('Memo: FY2025 return on BOOK invested capital', 'B25',
        f"=('Income Statement'!D12*(1-{A['taxe']}))/({A['eq25']}+$C$44)",
@@ -666,7 +678,14 @@ TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B
       ('Memo: reinvestment rate the RETIRED construction charged  (g / return)', 'B26',
        f"={A['g']}/B24", DCF['rr_term'], PCT),
       ('Terminal value', 'B27', f"=D26*(1+{A['g']})/($C$50-{A['g']})", DCF['tv'], NUM0),
-      ('End-of-window discount factor  (t = 4.417y, not the year-5 mid-point)', 'B29',
+      # THE ARRIVAL IS COMPUTED, NOT TYPED. This label read "t = 4.417y" until
+      # 08-Sep-2026 while the formula beside it spans (1 - stub) + 4 = 4.50 years:
+      # 4.417 is a stub of 7/12, from a valuation date this study moved off when the
+      # bridge went to the 30 June interims. A typed number in a label is exactly the
+      # class of figure no other gate reads, and it sat next to the formula that
+      # contradicts it. It now comes from the study's own committed record.
+      ('End-of-window discount factor  (t = {0:.2f}y, not the year-5 mid-point)'.format(
+          SCHED['discounting_convention']['terminal_arrival_years']), 'B29',
        f"=1/((1+B17)^(1-{A['stub']})*(1+C17)*(1+D17)*(1+E17)*(1+F17))",
        DCF['df_tv'], DF4),
       ('Present value of terminal value', 'B28', "=B27*B29", DCF['pv_tv'], NUM0)]
@@ -705,6 +724,17 @@ _MT = [('Capital maintenance at the DISCLOSED %.0f-year useful life  (replacemen
 for lab, rw, fm, ex in _MT:
     wsD.cell(row=rw, column=3, value=lab)
     putf(wsD, 'D%d' % rw, fm, ex, NUM0)
+
+# THE ADOPTED RETURN ON CAPITAL, BESIDE THE RETIRED ONE AND UNDER ITS OWN NAME
+# [audit finding 14, 08-Sep-2026]. B24 divides a profit already grown by a year of
+# terminal growth by a capital base that has not grown; the document says in terms that
+# figure is not used, and until this row existed the workbook and the bibliography
+# published it under the name the document gives the ADOPTED figure. Both now appear,
+# each labelled as what it is, and this one is a formula off B23 rather than a paste.
+wsD.cell(row=27, column=3,
+         value='Memo: return on invested capital ADOPTED — profit and capital at the '
+               'SAME date (B23 ungrown, over B22)')
+putf(wsD, 'D27', "=B23/(1+%s)/B22" % A['g'], GDV['n_over_ic'], PCT)
 
 band(wsD, 30, 8); wsD['A30'] = 'ENTERPRISE TO EQUITY BRIDGE'
 BR = [('Present value of explicit years (FY2026E-FY2030E)', 'B31', "=SUM(B19:F19)",
@@ -1251,8 +1281,11 @@ for i in range(3):
     putf(wsFV, f'{c}34', f"={c}32/({denom})", h['roic_book'], PCT)
     putf(wsFV, f'{c}35', f"={c}34*{c}33", h['implied_g'], PCT)
     wsFV.cell(row=36, column=2 + i, value=h['character'])
-wsFV.cell(row=38, column=1, value='Terminal return on capital, REPLACEMENT-COST basis')
-putf(wsFV, 'B38', "=DCF!B24", TR['roic_repl'], PCT, green=True)
+wsFV.cell(row=38, column=1, value='Terminal return on capital, REPLACEMENT-COST basis '
+                                  '— ADOPTED (both legs at the same date)')
+putf(wsFV, 'B38', "=DCF!D27", GDV['n_over_ic'], PCT, green=True)
+wsFV.cell(row=38, column=4, value='RETIRED construction, shown for the record and not used:')
+putf(wsFV, 'E38', "=DCF!B24", TR['roic_repl'], PCT)
 wsFV.cell(row=39, column=1, value='Terminal return on capital, BOOK basis (FY2025)')
 putf(wsFV, 'B39', "=DCF!B25", TR['roic_book_fy25'], PCT, green=True)
 wsFV.cell(row=40, column=1, value='Terminal rate')

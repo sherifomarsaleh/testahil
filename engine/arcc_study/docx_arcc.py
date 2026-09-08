@@ -54,6 +54,10 @@ TECH = json.load(open('technicals.json'))['state']
 EFG = json.load(open('efg_bridge.json'))
 MSC = json.load(open('scenario_margin.json'))
 M, H, F = D['meta'], D['history'], D['forecast']
+# The committed cost-of-capital schedule, read rather than restated: the Table 7
+# caption describes when the terminal arrives, and a caption that says one thing
+# while the record says another is the exact defect this study was audited for.
+SCHED = D['cost_of_capital_record']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT = D['terminal_reconciliation'], D['peers'], D['share_triangulation']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
@@ -386,11 +390,32 @@ caption('Table 3 — The cost stack and the margin it produces. EBITDA is an OUT
 figure('fig7_stack.png', 6.9,
        'Figure 2 — Cash cost per tonne against realised price per tonne. The margin is the '
        'gap, and the gap narrows across the forecast.')
-P(f'The reconstruction reproduces audited FY2025 revenue to '
-  f'{sg(BU[0]["rev"]/IN["rev_fy25"]-1, 3)} and audited FY2025 EBITDA to '
-  f'{sg(BU[0]["ebitda"]/H["ebitda"][2]-1, 3)}. It is not forced to: the volume is derived '
-  f'from the revenue note and the cost lines are the printed ones, so a wrong price '
-  f'assumption would show up as a non-zero residual.')
+# WHAT THIS PARAGRAPH SAID UNTIL 08-SEP-2026, AND WHY IT IS GONE. It printed the two
+# residuals and then claimed "It is not forced to... a wrong price assumption would show
+# up as a non-zero residual." It IS forced to. Prices here are derived as revenue over
+# volume, so revenue times volume rebuilds revenue by construction, for any volume at
+# all. The workbook has said so in terms since revision 4 — "Rows 76-81 are a TIE, not a
+# test... Revision 3 presented exactly this identity as 'a test that can fail'. It
+# cannot." — and the delivered document went on presenting it as a test anyway. The
+# residuals stay, because a tie that did NOT foot would mean an arithmetic error; what
+# goes is the claim that footing is evidence. The real test is named instead, and it is
+# a harder one that the study does not pass comfortably.
+P(f'The reconstruction ties to audited FY2025 revenue at '
+  f'{sg(BU[0]["rev"]/IN["rev_fy25"]-1, 3)} and to audited FY2025 EBITDA at '
+  f'{sg(BU[0]["ebitda"]/H["ebitda"][2]-1, 3)}. THAT IS A TIE AND NOT A TEST, and it is '
+  f'worth being plain about which: prices here are derived as revenue over volume, so '
+  f'revenue rebuilt as volume times price reconstructs by construction and would foot on '
+  f'any volume whatever. It is checked because a tie that failed to foot would mean an '
+  f'arithmetic error, not because footing corroborates the volume.')
+P(f'The test that CAN fail is the three derived prices, because they can be held against '
+  f'a market: local cement at EGP {n0(UC["price_loc_derived"])} a tonne, export cement at '
+  f'USD {n1(UC["price_exp_cem_usd"])} and export clinker at USD '
+  f'{n1(UC["price_exp_clk_usd"])}. Two of the three are credible against Egyptian '
+  f'commentary. The third is not comfortable — export clinker sits roughly a third below '
+  f'the USD 44-48 the trade press quotes for Egyptian FOB cargoes — and that gap is a '
+  f'live disagreement between the physical disclosure and the price indices. It is '
+  f'published rather than tuned away, and it is the reason the volume base carries a '
+  f'sensitivity.')
 P(f'One physical constraint is worth checking, because the volume forecast is built off '
   f'CEMENT capacity while the kiln is what could bind first. At a clinker factor of '
   f'{n2(IN["clinker_factor"])} — observed from the audited capacity pair of '
@@ -541,8 +566,11 @@ caption('Table 7 — The schedule. The glide fractions are the cumulative progre
         'POUND cost-of-debt path: the discount rate is a pound rate applied to pound cash '
         'flows, so the Egyptian easing calendar sets its slope while the euro debt book sets '
         'the level of the cost of debt. The terminal value is capitalised at the terminal '
-        'rate and brought home on year five\'s own cumulative factor — one date, one price '
-        'of time.')
+        f'rate and brought home on the END-OF-WINDOW factor of {SCHED["terminal_discount_factor"]:.4f} '
+        f'at {SCHED["discounting_convention"]["terminal_arrival_years"]:.2f} years — it is the '
+        f'value at the end of the window of everything after it, so it arrives half a year '
+        f'later than year five\'s own cash flow at {F["df"][-1]:.4f} and is worth less. One '
+        f'date, one price of time, and the terminal\'s date is not year five\'s.')
 
 H2('1.5  Beta, and why it is a peer estimate rather than a regression')
 P('This edition changes the beta, and the change is worth setting out plainly because it '
@@ -785,9 +813,24 @@ P(f'Growth in the terminal state has to be paid for, and the choice of what capi
   f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne '
   f'against a replacement cost of USD {n0(IN["repl_usd_t"])}. A return computed on that base '
   f'measures the devaluation, not the economics of adding a tonne.')
+# FOUR OPERANDS, NOT TWO. This sentence used to read "EGP 51,191mn, being 5.0Mt at USD
+# 130 a tonne", and 5.0 x 130 x 50.30 is EGP 32,695mn — a reader following the page could
+# not reach the printed figure, and the two operands it was missing are a currency rate
+# and an escalation. Both belong: the terminal is struck in the LAST FORECAST YEAR'S money
+# and charging a replacement cost in today's pounds against a profit five years out is a
+# unit error, which is the class of defect the terminal rule exists for. The construction
+# was right and the sentence was unfollowable.
 P(f'The terminal block is therefore struck on REPLACEMENT-COST invested capital — EGP '
   f'{n0(DCF["ic_repl"])}mn, being {n1(IN["cap_cement_mt"])}Mt at USD {n0(IN["repl_usd_t"])} '
-  f'a tonne. On that basis the return on capital is {pc(GDV["n_over_ic"], 2)} — the last '
+  f'a tonne, converted at EGP {n2(IN["fx"])} to the dollar and carried forward at the '
+  f'model\'s own cost inflation to the last forecast year — {n1(IN["cap_cement_mt"])} x '
+  f'{n0(IN["repl_usd_t"])} x {n2(IN["fx"])} x {n3(IN["cost_infl"][5])}. THE ESCALATION IS '
+  f'NOT AN ADJUSTMENT AND IT IS THE OPERAND MOST EASILY MISSED: the terminal is struck in '
+  f'that year\'s money, so a replacement cost quoted in today\'s pounds against a profit '
+  f'five years out would compare two different currencies of the same name. In today\'s '
+  f'pounds the same capacity is EGP '
+  f'{n0(IN["cap_cement_mt"] * IN["repl_usd_t"] * IN["fx"])}mn. '
+  f'On that basis the return on capital is {pc(GDV["n_over_ic"], 2)} — the last '
   f'forecast year\'s operating profit after tax against that capital, both measured at the '
   f'same date. A figure of {pc(TR["roic_repl"])} appears in the earlier editions of this '
   f'section and is NOT used here: it divides a profit already grown by one year of terminal '

@@ -259,6 +259,9 @@ _BJ = json.load(open('beta_result.json'))
 BR = _BJ['adopted']
 BRO = _BJ['own_stock']
 SHT = D['share_triangulation']; TR = D['terminal_reconciliation']; UC = D['unit_calibration']
+# The ADOPTED terminal return on capital, so this register heads its entry with the
+# figure the study uses rather than the one it disavows [audit finding 14].
+GDV = D['growth_destroys_value']
 KDG = D['kd_gate']
 # (beta record already loaded above)
 DER = [
@@ -294,7 +297,19 @@ DER = [
   f'three and the reason is stated in the study rather than smoothed. The pound-equivalent '
   f'alternative under interest parity is {KDG["kd_egp_equivalent"]:.2%} and its effect on the '
   f'valuation is published.'),
- (f'Terminal return on invested capital — {TR["roic_repl"]:.1%}',
+ # THE HEADLINE CARRIED THE RETIRED FIGURE [audit finding 14, 08-Sep-2026]. It read
+ # TR["roic_repl"], which divides a profit already grown by a year of terminal growth by
+ # a capital base that has not grown — the construction the study says in terms it does
+ # NOT use. The bibliography, the workbook and the document therefore published two
+ # values under one name. The adopted figure now heads the entry and the retired one is
+ # named inside it, which is where a superseded number belongs.
+ (f'Terminal return on invested capital — {GDV["n_over_ic"]:.2%}',
+  f'The last forecast year\'s operating profit after tax against terminal invested '
+  f'capital, BOTH MEASURED AT THE SAME DATE. Earlier editions of this entry headed it '
+  f'{TR["roic_repl"]:.1%}, which grows the profit by a year of terminal growth and '
+  f'leaves the capital base ungrown; that mismatch flatters the return by '
+  f'{(TR["roic_repl"]-GDV["n_over_ic"])*1e4:.0f} basis points and the figure is '
+  f'withdrawn. It survives in the workbook, labelled as the retired construction. '
   f'Struck on REPLACEMENT cost — 5.0Mt at USD 130 per annual tonne — rather than on the '
   f'audited book, on which the FY2025 return is {TR["roic_book_fy25"]:.1%}. The book carries a '
   f'2010-vintage plant at historical cost through several devaluations: audited net property '
