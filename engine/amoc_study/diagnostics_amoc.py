@@ -233,22 +233,41 @@ def build():
                 "study carried; on a debt book that is 0.14% of the capital "
                 "structure the corrected difference is essentially nil, and that is "
                 "the honest finding rather than the 9.5% the broken helper reported"),
-            row("the base anchor: the twelve-month base, or the latest reviewed half",
-                "the twelve months to 30-Jun-2026 at a gross margin of %.3f%%, both "
-                "halves filed and no annualisation scalar" % (100 * d["dcf"]["gm_h1_filed"] * 0 + 9.653),
-                "the most recent REVIEWED period, the half to 30-Jun-2026 at %.3f%%, "
-                "held flat" % (100 * d["dcf"]["gm_h1_filed"]),
-                d["dcf"]["ps_h1_anchor"],
-                "this is the largest contested number in the study by a wide margin "
-                "and the standing rule points AT the alternative: a near-term "
-                "reviewed actual outranks a stale full-year rate, and the "
-                "like-for-like test that rule prescribes supports it, Q1-2025 "
-                "%.3f%% against Q1-2026 %.3f%% being the same quarter doubled. It "
-                "is not adopted here because [R-VCAL-01] takes levers ONE AT A "
-                "TIME and halts where the stack would cross the price: the "
-                "escalator correction already moved this study from 26.6%% below "
-                "to 12.3%% below, and this one lands 35.9%% above. Published, "
-                "priced, and left for the next edition to take on its own evidence"
+            # THE FRAMINGS ARE THE RIGHT WAY ROUND FROM THIS EDITION ON, AND THE
+            # WRONG WAY ROUND IS WHY THIS COMMENT EXISTS. The lever was taken in
+            # the 08-09-2026 edition and this row went on naming the SUPERSEDED
+            # twelve-month blend as "adopted" while row() filled value_adopted
+            # with the published central — so the record showed both framings
+            # reaching the SAME number, which is arithmetically impossible for a
+            # contested judgement and is a judgement that has quietly stopped
+            # being one. check_artefact_currency passed it the whole time,
+            # correctly: the artefact DID declare the right central. It is
+            # [R-ENF-06] one level down — an artefact can carry the right vintage
+            # marker and the wrong content, and the marker is what gets checked.
+            row("the base anchor: the latest reviewed half, or the twelve-month base",
+                "the most recent REVIEWED period, the half to 30-Jun-2026 at a "
+                "gross margin of %.3f%%, held flat"
+                % (100 * d["dcf"]["gm_h1_filed"]),
+                "the twelve months to 30-Jun-2026 at a gross margin of %.3f%%, "
+                "both halves filed and no annualisation scalar — the base the "
+                "previous edition carried forward"
+                % (100 * d["dcf"]["gm_ttm_base"]),
+                d["dcf"]["ps_ttm_base_superseded"],
+                "this is the largest contested number in the study by a wide "
+                "margin and the standing rule points AT what is now adopted: a "
+                "near-term reviewed actual outranks a stale full-year rate, and "
+                "the like-for-like test that rule prescribes supports it, Q1-2025 "
+                "%.3f%% against Q1-2026 %.3f%% being the same quarter doubled, "
+                "which seasonality cannot produce. The superseded blend averages "
+                "the reviewed half with the audited transition half at roughly "
+                "half its margin, so carrying it forward forecasts a level "
+                "neither half printed. IT WAS TAKEN KNOWING IT CROSSES THE PRICE, "
+                "from 15.5%% below to 30.5%% above: the previous edition declined "
+                "it only because levers are taken one at a time and it had already "
+                "moved once in that pass, and said in terms that it was left for "
+                "the next edition to take on its own evidence. A correction is not "
+                "withheld because of where it lands and is not taken because of "
+                "where it lands either"
                 % (100 * d["dcf"]["gm_q1_2025"], 100 * d["dcf"]["gm_q1_2026"])),
             row("the real cost drift on the pound conversion legs",
                 "the gross spread per tonne held flat in real terms on EVERY cost "

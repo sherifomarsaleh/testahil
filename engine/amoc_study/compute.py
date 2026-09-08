@@ -2904,6 +2904,13 @@ OUT = dict(
              # reader comparing editions can see which construction moved.
              ps_h1_anchor=dcf_ps,
              ps_ttm_base_superseded=_PS_TTM_BASE,
+             # COMMITTED SO THE JUDGEMENT RECORD CAN COMPUTE IT RATHER THAN TYPE
+             # IT. The contested-judgement row that names this framing carried the
+             # blend as a literal 9.653 multiplied onto a live figure by zero — a
+             # typed financial numeral inside a builder, which is exactly what the
+             # numeric-traceability bar forbids, sitting where nothing was looking
+             # for it because it wore the shape of a computation.
+             gm_ttm_base=BASE_GM,
              gm_h1_filed=_GM_H1_FILED, gm_q1_2025=_GM_Q1_2025, gm_q1_2026=_GM_Q1_2026),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         character=hist_character, nopat=nopat_h, ic=ic_h, capex=capex_h,
