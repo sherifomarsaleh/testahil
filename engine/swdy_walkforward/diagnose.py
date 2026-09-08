@@ -84,8 +84,22 @@ def macro_split():
         ek = sum(r['e_known'] for r in rs) / len(rs)
         ei = sum(r['e_inflation'] for r in rs) / len(rs)
         ea = sum(r['e_all'] for r in rs) / len(rs)
+        # THE MEAN ABSOLUTE ERROR UNDER EACH FORESIGHT, ON THE SAME CELLS.
+        # It was missing and its absence was not visible: the harvest view that
+        # feeds the lessons register carried the as-known MAE into BOTH fields,
+        # so every draft this run produced asserted that perfect foresight
+        # changes the error by exactly nothing -- the strongest possible form of
+        # the claim, fabricated by a copy. One registered lesson prints an
+        # identical pair beside a macro share of -61.7%, which is self-
+        # contradictory on its face and is what a real pair would have shown.
+        # Every other run in the book computes this; this one did not.
+        mk = sum(abs(r['e_known']) for r in rs) / len(rs)
+        mi = sum(abs(r['e_inflation']) for r in rs) / len(rs)
+        ma = sum(abs(r['e_all']) for r in rs) / len(rs)
         agg[k] = dict(n=len(rs), bias_as_known=ek, bias_perfect_inflation=ei,
                       bias_perfect_all=ea,
+                      mae_as_known=mk, mae_perfect_inflation=mi,
+                      mae_perfect_all=ma,
                       macro_share_inflation=(ek - ei) / ek if ek else None,
                       macro_share_all=(ek - ea) / ek if ek else None,
                       company_share=ea / ek if ek else None)

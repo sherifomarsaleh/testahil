@@ -2635,7 +2635,7 @@ Re-running every forecast with perfect foresight of inflation barely improves it
 
 **Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
 
-> **What it cost, or how we know.** Average miss 0.563 as known, 0.563 with perfect foresight of inflation — the macro share is only -61.7%.
+> **What it cost, or how we know.** Average miss 0.556 as known, 0.497 with perfect foresight of inflation — an 11% improvement — while the BIAS moves the other way, macro share -61.7%. CORRECTED 08-09-2026: this clause read '0.563 as known, 0.563 with perfect foresight' beside that same -61.7%, which is self-contradictory on its face and was one number printed twice — that run's harvest view filled both fields from the as-known error, so every draft it produced asserted the strongest possible form of this claim by a copy rather than by a measurement. The finding survives the correction and the evidence for it is weaker than it looked.
 
 > **What would overturn it.** A market or period where the same decomposition puts most of the error on the macro path.
 

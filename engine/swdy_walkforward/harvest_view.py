@@ -61,9 +61,16 @@ def main():
 
     macro_split = {}
     for k, m in (D.get('macro_split') or {}).items():
+        # BOTH FIELDS USED TO COME FROM THE SAME PLACE -- the as-known MAE, copied
+        # into the perfect-foresight slot -- so this run told the lessons harvester
+        # that perfect foresight of inflation changed the error by exactly nothing,
+        # for every driver, always. That is not a measurement and it is not a null
+        # result; it is one number printed twice, wearing the strongest form of the
+        # very claim the harvester's rule 3 draws from it. They now come from the
+        # two foresight runs diagnose.py actually performs.
         macro_split[k] = dict(macro_share=m.get('macro_share_inflation') or 0.0,
-                              as_known_mae=drv.get(k, {}).get('mae'),
-                              perfect_mae=drv.get(k, {}).get('mae'))
+                              as_known_mae=m.get('mae_as_known'),
+                              perfect_mae=m.get('mae_perfect_inflation'))
     S.update(by_driver=by_driver, by_horizon=by_horizon, by_era=by_era,
              macro_split=macro_split,
              _harvest_view='emitted by harvest_view.py in the shape '

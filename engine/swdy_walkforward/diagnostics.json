@@ -7,6 +7,9 @@
    "bias_as_known": 0.2497880889716174,
    "bias_perfect_inflation": 0.2497880889716174,
    "bias_perfect_all": 0.2831297039668624,
+   "mae_as_known": 0.25645773656859333,
+   "mae_perfect_inflation": 0.25645773656859333,
+   "mae_perfect_all": 0.28768213494398776,
    "macro_share_inflation": 0.0,
    "macro_share_all": -0.1334796031808926,
    "company_share": 1.1334796031808927
@@ -16,6 +19,9 @@
    "bias_as_known": -0.026116286384329716,
    "bias_perfect_inflation": 0.060082080090691936,
    "bias_perfect_all": 0.060082080090691936,
+   "mae_as_known": 0.43349798752505925,
+   "mae_perfect_inflation": 0.11406755901381538,
+   "mae_perfect_all": 0.11406755901381538,
    "macro_share_inflation": 3.3005598578036106,
    "macro_share_all": 3.3005598578036106,
    "company_share": -2.30055985780361
@@ -25,6 +31,9 @@
    "bias_as_known": -0.024264297505460337,
    "bias_perfect_inflation": 0.06193406896956126,
    "bias_perfect_all": 0.06193406896956126,
+   "mae_as_known": 0.41006020572655155,
+   "mae_perfect_inflation": 0.10859220138668672,
+   "mae_perfect_all": 0.10859220138668672,
    "macro_share_inflation": 3.5524773159257497,
    "macro_share_all": 3.5524773159257497,
    "company_share": -2.5524773159257492
@@ -34,6 +43,9 @@
    "bias_as_known": -0.20654044024086554,
    "bias_perfect_inflation": -0.18042274301585262,
    "bias_perfect_all": -0.1716531137608005,
+   "mae_as_known": 0.6508050274763715,
+   "mae_perfect_inflation": 0.3660657754631233,
+   "mae_perfect_all": 0.38678556245942214,
    "macro_share_inflation": 0.1264531885114349,
    "macro_share_all": 0.16891281164782918,
    "company_share": 0.8310871883521708
@@ -43,6 +55,9 @@
    "bias_as_known": -0.3261779270082824,
    "bias_perfect_inflation": -0.26453160042541696,
    "bias_perfect_all": -0.2557619711703648,
+   "mae_as_known": 0.3901593367257388,
+   "mae_perfect_inflation": 0.2945106465224601,
+   "mae_perfect_all": 0.285986653417416,
    "macro_share_inflation": 0.18899600947338202,
    "macro_share_all": 0.21588203862773822,
    "company_share": 0.7841179613722618
@@ -52,6 +67,9 @@
    "bias_as_known": -0.31551387447736495,
    "bias_perfect_inflation": -0.2538675478944997,
    "bias_perfect_all": -0.24509791863944763,
+   "mae_as_known": 0.5840880670139478,
+   "mae_perfect_inflation": 0.38005497593216736,
+   "mae_perfect_all": 0.37384684209323316,
    "macro_share_inflation": 0.19538388505094964,
    "macro_share_all": 0.2231786350269328,
    "company_share": 0.7768213649730672
@@ -61,6 +79,9 @@
    "bias_as_known": -0.18079001576780598,
    "bias_perfect_inflation": -0.10658671418541193,
    "bias_perfect_all": -0.09781708493035983,
+   "mae_as_known": 0.6445565892620537,
+   "mae_perfect_inflation": 0.32793254478469475,
+   "mae_perfect_all": 0.3482509847635827,
    "macro_share_inflation": 0.41043915653890733,
    "macro_share_all": 0.45894642182016715,
    "company_share": 0.5410535781798329
@@ -70,6 +91,9 @@
    "bias_as_known": -0.35764770755982006,
    "bias_perfect_inflation": -0.29600138097695483,
    "bias_perfect_all": -0.2872317517219027,
+   "mae_as_known": 0.402373184432171,
+   "mae_perfect_inflation": 0.32264353521323985,
+   "mae_perfect_all": 0.314229434458429,
    "macro_share_inflation": 0.1723660610142574,
    "macro_share_all": 0.1968863614934247,
    "company_share": 0.8031136385065752
@@ -79,6 +103,9 @@
    "bias_as_known": -0.31642874523306774,
    "bias_perfect_inflation": -0.2547824186502024,
    "bias_perfect_all": -0.24601278939515037,
+   "mae_as_known": 0.5989972686200801,
+   "mae_perfect_inflation": 0.39628010046055007,
+   "mae_perfect_all": 0.39290569883620136,
    "macro_share_inflation": 0.19481898377297965,
    "macro_share_all": 0.22253337251662147,
    "company_share": 0.7774666274833785
@@ -88,6 +115,9 @@
    "bias_as_known": -0.18991438656352155,
    "bias_perfect_inflation": -0.20168874947674306,
    "bias_perfect_all": -0.20168874947674306,
+   "mae_as_known": 0.2837968525359701,
+   "mae_perfect_inflation": 0.21928082720286204,
+   "mae_perfect_all": 0.21928082720286204,
    "macro_share_inflation": -0.061998267357608966,
    "macro_share_all": -0.061998267357608966,
    "company_share": 1.061998267357609
@@ -97,6 +127,9 @@
    "bias_as_known": -0.9307569269903934,
    "bias_perfect_inflation": -0.9407615732494162,
    "bias_perfect_all": -0.9407615732494162,
+   "mae_as_known": 0.9307569269903934,
+   "mae_perfect_inflation": 0.9407615732494162,
+   "mae_perfect_all": 0.9407615732494162,
    "macro_share_inflation": -0.010748935590920534,
    "macro_share_all": -0.010748935590920534,
    "company_share": 1.0107489355909205
@@ -106,6 +139,9 @@
    "bias_as_known": -0.6794770763640882,
    "bias_perfect_inflation": -0.6178307497812228,
    "bias_perfect_all": -0.6178307497812228,
+   "mae_as_known": 0.8261378462492437,
+   "mae_perfect_inflation": 0.7508235186169033,
+   "mae_perfect_all": 0.7508235186169033,
    "macro_share_inflation": 0.09072613150209219,
    "macro_share_all": 0.09072613150209219,
    "company_share": 0.9092738684979078
@@ -115,6 +151,9 @@
    "bias_as_known": -0.8619518240245897,
    "bias_perfect_inflation": -0.8619518240245897,
    "bias_perfect_all": -0.8619518240245897,
+   "mae_as_known": 0.9934396960661644,
+   "mae_perfect_inflation": 0.9934396960661644,
+   "mae_perfect_all": 0.9934396960661644,
    "macro_share_inflation": -0.0,
    "macro_share_all": -0.0,
    "company_share": 1.0
@@ -124,6 +163,9 @@
    "bias_as_known": -0.4248600754844501,
    "bias_perfect_inflation": -0.4248600754844501,
    "bias_perfect_all": -0.4248600754844501,
+   "mae_as_known": 0.6770100749541463,
+   "mae_perfect_inflation": 0.6770100749541463,
+   "mae_perfect_all": 0.6770100749541463,
    "macro_share_inflation": -0.0,
    "macro_share_all": -0.0,
    "company_share": 1.0
@@ -133,6 +175,9 @@
    "bias_as_known": -0.879798675799276,
    "bias_perfect_inflation": -0.879798675799276,
    "bias_perfect_all": -0.879798675799276,
+   "mae_as_known": 0.9185795902443762,
+   "mae_perfect_inflation": 0.9185795902443762,
+   "mae_perfect_all": 0.9185795902443762,
    "macro_share_inflation": -0.0,
    "macro_share_all": -0.0,
    "company_share": 1.0
@@ -142,6 +187,9 @@
    "bias_as_known": -0.8694072696436458,
    "bias_perfect_inflation": -0.8694072696436458,
    "bias_perfect_all": -0.8694072696436458,
+   "mae_as_known": 1.1388662606753075,
+   "mae_perfect_inflation": 1.1388662606753075,
+   "mae_perfect_all": 1.1388662606753075,
    "macro_share_inflation": -0.0,
    "macro_share_all": -0.0,
    "company_share": 1.0
@@ -151,6 +199,9 @@
    "bias_as_known": -0.2221872795578331,
    "bias_perfect_inflation": -0.19388622817137416,
    "bias_perfect_all": -0.1851165989163221,
+   "mae_as_known": 0.49444514368881615,
+   "mae_perfect_inflation": 0.21918709314165147,
+   "mae_perfect_all": 0.22749617153325666,
    "macro_share_inflation": 0.12737475989975594,
    "macro_share_all": 0.16684429781616675,
    "company_share": 0.8331557021838333
@@ -160,6 +211,9 @@
    "bias_as_known": -0.2147384431367818,
    "bias_perfect_inflation": -0.16277521132441594,
    "bias_perfect_all": -0.15400558206936385,
+   "mae_as_known": 0.48861120543721986,
+   "mae_perfect_inflation": 0.20008107749466295,
+   "mae_perfect_all": 0.21746763901738855,
    "macro_share_inflation": 0.2419838341626929,
    "macro_share_all": 0.28282248944467286,
    "company_share": 0.7171775105553271
@@ -169,6 +223,9 @@
    "bias_as_known": -0.24707582293134253,
    "bias_perfect_inflation": -0.39945444164776406,
    "bias_perfect_all": -0.3909441639860456,
+   "mae_as_known": 0.5555260735159177,
+   "mae_perfect_inflation": 0.49671489743091307,
+   "mae_perfect_all": 0.4908245851768033,
    "macro_share_inflation": -0.6167281642881122,
    "macro_share_all": -0.5822841723153188,
    "company_share": 1.582284172315319
