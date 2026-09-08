@@ -1,8 +1,9 @@
 # check_published_gap resolves a ticker to a directory by lowercasing it, and one name does not survive that
 
 **Found 08-09-2026 while diagnosing a CI red on PR #409. NOT that PR's defect — it
-reproduces on `origin/main`'s own ratchet, `data.js` and price file.** Recorded rather than
-fixed, because the operator was unsupervised and a gate is not edited on a hunch.
+reproduces on `origin/main`'s own ratchet, `data.js` and price file.** Recorded first, then FIXED on the principal's
+'do as you see fit' — with the fix proving, rather than asserting, that it is not a route
+to green.
 
 ## The false message
 
@@ -52,3 +53,27 @@ requested step) or the study's review being re-issued against the current gap.
 same run immediately reported FERTIGLB as a NEW breach. A prune that shortens a list and a
 breach test that re-adds the same name in one pass are disagreeing about one company under
 two names. The prune was reverted; the ratchet is byte-identical to what it was.
+
+
+---
+
+## FIXED 08-09-2026, and the proof that it is not a route to green
+
+`study_dir()` now resolves through an **explicit, asserted `STUDY_ALIAS`** rather than by
+lowercasing — the shape `band_record.LEDGER_ALIAS` already uses for the same problem. It is
+deliberately not a fuzzy or prefix match, because a name resolving to the WRONG study is
+worse than one resolving to none, and `_assert_alias_targets_exist()` refuses at import if
+an alias ever names a directory that is not there.
+
+**The red stands, which is the point.** Before: `FERTIGLB -24.3% no study directory, so
+nothing can carry a review` — false. After: `FERTIGLB -24.3% review GAP_REVIEW_04-09-2026.md
+audits 1.8105; the site publishes 2.15 — the ratchet excuses a deviation of 15.4%; it is now
+24.3% ... a materially WORSE breach on a listed name is a NEW breach [R-ENF-08]` — true, and
+[R-GAP-03]'s actual subject.
+
+## What this gate still lacks, recorded rather than built unsupervised
+
+**It has no negative control.** Every other gate adopted under [R-ENF-01] carries one and
+this one does not, so nothing has ever demonstrated that it fires on its own conditions —
+which is the standing argument for controls, and it applies to the gate that just produced
+today's only red.

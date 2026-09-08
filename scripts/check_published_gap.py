@@ -81,9 +81,39 @@ def published_book():
     return json.loads(r.stdout)
 
 
+# A SITE TICKER IS NOT ALWAYS ITS DIRECTORY NAME, AND GUESSING ONE FROM THE OTHER
+# REPORTS A FALSE ABSENCE [L-355]. Lowercasing the ticker resolved FERTIGLB to
+# engine/fertiglb_study, which does not exist, so this gate said "no study directory, so
+# nothing can carry a review" about a name that HAS a study AND a review
+# (engine/fertiglobe_study/GAP_REVIEW_04-09-2026.md). Both halves of that sentence were
+# false and the gate was reporting it as a measurement.
+#
+# The alias is EXPLICIT AND ASSERTED, never inferred from a filename -- the shape
+# band_record.LEDGER_ALIAS already uses for the same problem, adopted there because a
+# ticker string is not a stable key across surfaces. It is deliberately NOT a fuzzy or
+# prefix match: a name resolving to the WRONG study is worse than one resolving to none.
+STUDY_ALIAS = {
+    "FERTIGLB": "fertiglobe",      # the site publishes FERTIGLB; the study is FERTIGLOBE
+}
+
+
 def study_dir(ticker):
-    d = os.path.join(ENGINE, "%s_study" % ticker.lower())
+    d = os.path.join(ENGINE, "%s_study" % STUDY_ALIAS.get(ticker.upper(), ticker.lower()))
     return d if os.path.isdir(d) else None
+
+
+def _assert_alias_targets_exist():
+    """An alias naming a directory that is not there is a claim about a study that does
+    not exist, which is the defect this table exists to close, facing the other way."""
+    for tk, name in STUDY_ALIAS.items():
+        d = os.path.join(ENGINE, "%s_study" % name)
+        if not os.path.isdir(d):
+            raise RuntimeError(
+                "STUDY_ALIAS maps %s to %s_study and that directory does not exist -- an "
+                "alias to nothing is worse than no alias [R-ENF-04]" % (tk, name))
+
+
+_assert_alias_targets_exist()
 
 
 def load_ratchet():
