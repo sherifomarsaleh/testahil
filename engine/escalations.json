@@ -1017,6 +1017,66 @@
     "must_contain": "LAND BANK RE-SOURCED"
    },
    "note": "The resolving marker is a file that does not exist yet, on the ELEC precedent, rather than a field that already does. A first draft keyed this on the land_bank_sqm_mn input, which is present today — so the entry read as already answered the moment it was written, and the escalation gate said so. What has to change is that input's DATE, and no checker can read an intention, so the close is a person writing down where the newer figure came from."
+  },
+  {
+   "key": "ORAS-regressor-dual-listing",
+   "opened": "2026-09-08",
+   "cls": "instruction",
+   "question": "Orascom Construction is listed twice — ADX primary in AED (ISIN AEE01702O253) and EGX secondary in EGP (ISIN EGS95001C011), same ticker — and on the sweep date the company's own page quoted both at once, EGP 855.85 against AED 60.30. SIGCM clause 6 says the regressor is the published index of the exchange the stock is LISTED on, and this stock is listed on two. Which exchange does ORAS strike on?",
+   "routes": [
+    {
+     "route": "engine/raw_ohlc/EG/ORAS.csv held against both quoted prices",
+     "when": "2026-09-08",
+     "outcome": "closes 782.25 on 23-08-2026, the EGP magnitude, so the series this repository holds is the EGX line and is correctly filed under EG",
+     "rerun": false
+    },
+    {
+     "route": "www.adx.ae and api.adx.ae, for an ADX price series",
+     "when": "2026-09-08",
+     "outcome": "HTTP 403 and CONNECT tunnel failed 502 — no ADX series is obtainable here",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 3,
+   "why_only_the_principal": "Not an access problem. Both readings conform to a rule and they disagree: the EGX line is the series held and EGX30 is its conforming regressor, while ADX is where the stock is primarily listed. Picking one is a house judgement about which listing a beta should describe, and market AE deliberately RAISES rather than guessing between ADX and DFM, so nothing in the code would have chosen for us.",
+   "done_meanwhile": "the sweep closed all four rings without a regressor, and no beta was resolved — which is why this question could be asked before any number depended on it",
+   "default_if_no_answer": "hold ORAS off the queue rather than strike it on a regressor nobody chose; a beta measured against the wrong index is the FERTIGLB defect, where a non-conforming regressor understated beta by about 40%",
+   "default_date": "2026-09-15",
+   "status": "resolved",
+   "resolved": "2026-09-08",
+   "answer_written_to": "engine/oras_study_pending/REGRESSOR_RULING.md",
+   "resolves_when": {
+    "file": "engine/oras_study_pending/REGRESSOR_RULING.md",
+    "must_contain": "ruled_08_09_2026"
+   },
+   "note": "RULED: strike on EGX against engine/raw_indices/EG/EGX30.csv. The ADX primary listing is disclosed in the study, and so is the fact that the beta is measured on the secondary line. TWO COMPLICATIONS THE BUILD CARRIES: the ADX listing REPLACED Nasdaq Dubai inside the regression window — the January-2025 shareholding disclosure still names AEDFXA14NUL7 — and the pound moved from about 47.6 to about 52 to the dollar across it."
+  },
+  {
+   "key": "ORAS-OCI-combination-dual-frame",
+   "opened": "2026-09-08",
+   "cls": "instruction",
+   "question": "Orascom Construction carries a share issue that has NOT completed: 97,201,359 new shares at USD 1 plus USD 12.79 premium, taking issued capital from 110,243,935 to 207,445,294 — up 88.2% — per the shareholders' circular of 8 January 2026. The long stop is 30 December 2026, the OCI vote is pending and a rival all-cash NNS offer at EUR 4.10 is outstanding. A per-share value on either share count alone is a claim about which outcome happens. How is it framed?",
+   "routes": [
+    {
+     "route": "the Step 2A sweep of 08-09-2026, which reached orascom.com's investor shelf in full and carried the circular's own terms",
+     "when": "2026-09-08",
+     "outcome": "the TERMS are established — ratio 0.4634, ORAS equity value USD 1,520.0mn against OCI USD 1,347.9mn, consideration about 47% — and the OUTCOME is not. The sweep recorded it as a base changer to be dual-framed and never smoothed.",
+     "rerun": false
+    }
+   ],
+   "refs_searched": 2,
+   "why_only_the_principal": "The question is not what the terms are but what a study may assert. Blending the two share counts by a probability would state a view on a shareholder vote, and this house publishes distributions rather than views on binary corporate events.",
+   "done_meanwhile": "the sweep closed and both share counts are registered, so either frame can be built",
+   "default_if_no_answer": "build standalone only and disclose the event with its terms, valuing nothing that depends on the vote",
+   "default_date": "2026-09-15",
+   "status": "resolved",
+   "resolved": "2026-09-08",
+   "answer_written_to": "engine/oras_study_pending/REGRESSOR_RULING.md",
+   "resolves_when": {
+    "file": "engine/oras_study_pending/REGRESSOR_RULING.md",
+    "must_contain": "ruled_08_09_2026"
+   },
+   "note": "RULED: DUAL-FRAME. The study is built on the standalone company and the combined case is carried as a fully separate valuation with its own share count. Neither is blended into the other and NO PROBABILITY IS APPLIED to the outcome — a weighted single number would be a view on a vote."
   }
  ]
 }
