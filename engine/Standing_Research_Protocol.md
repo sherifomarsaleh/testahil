@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-08a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-08c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -3626,3 +3626,84 @@ WELL AS BY ITS CONTENT, AND THE SHAPE WINS.** Everything loaded into a session i
 example of how to write, whatever it happens to say about how to write. Where an
 instruction and the material carrying it disagree, the fix is to change what gets loaded
 — not to restate the instruction more firmly, which is what had been tried twice.
+
+
+---
+
+## [R-GAP-02 CLAUSE FOUR] THE DISSENT IS THE CASE; THE PRINCIPAL IS THE DECISION
+
+*Adopted 08-Sep-2026, per instruction — "The instruction should block publishing any study
+with the fair value 10% below latest traded price. It should get back to me for
+authorization."*
+
+**As the rule stood, a study could write its own release.** A central more than 10% below
+the latest known price was held, and the only thing between it and the live site was a
+`MARKET_DISSENT` filed by the same desk that produced the answer under suspicion. The five
+headings are demanding and they were written sincerely — and they are still a
+SELF-ATTESTATION, which is the shape [R-ENF-01] closes everywhere else in this repository.
+It survived here longer than anywhere else because the document is hard to write, and
+difficulty is not independence.
+
+### When it is owed — the same condition as the block, and nothing else
+
+The authorisation is owed **where the fair value is more than 10% BELOW the latest traded
+price**, and in no other case. A study inside the band publishes with no authorisation, and
+so does one ABOVE the price by any margin: the block is one-sided and this clause inherits
+its side exactly. **Asking where nothing is owed is its own breach** [R-IND-01] — it turns a
+narrow escalation into a standing queue, which is that rule's own complaint. The price is
+the LATEST KNOWN one [R-GAP-01 AMENDED], read from the committed supplied artefact, so the
+block and the authorisation cannot disagree about the gap. Where the answer is two-sided the
+trigger is the block's own: every branch more than 10% below.
+
+### What is required now
+
+Both, and in this order: the study makes its argument, then it asks. The dissent is
+unchanged — five headings, `DISSENT_AT_GAP`, and its own staleness tolerance. Added to it
+is `engine/{ticker}_study/PUBLISH_AUTHORISATION_{DD-MM-YYYY}.md`, carrying `AUTHORISED_BY`,
+`AUTHORISED_AT_GAP` and the central it approves.
+
+**The authorisation is an artefact and never a sentence in a conversation** [R-IND-01]. The
+container is rebuilt from the repository, so an approval given in chat and written nowhere
+binds nothing and the next session asks again — which is the exact failure [R-IND-01] was
+adopted on, three days after it happened.
+
+**It goes stale with the case it approved**, on the same three-point tolerance as
+`DISSENT_AT_GAP`. An approval of a −31% disagreement is not an approval of a −55% one.
+
+**An authorisation with no dissent behind it releases nothing either**, and that half is
+not symmetry for its own sake: it would put the principal in the position of approving a
+number with no case attached, which is the MENU [R-IND-01] forbids, wearing a different hat.
+
+### Why this is a permitted exception to the independence rule
+
+[R-IND-01] says a question reaching the principal is the last resort and carries the proof
+that it is. This is the kind it explicitly allows: a decision genuinely the principal's,
+registered with a recommendation and a default, where no command in the room can close it.
+**Whether to tell the market it is wrong is not a fact this repository holds.** The
+escalation is registered in `engine/escalations.json` before it is asked, like any other.
+
+### What does not change
+
+The 10% limit and its one-sidedness (below only — errors in a discounted cash flow are not
+symmetric, and a central above the price is the ordinary shape of finding something cheap).
+[R-GAP-01]'s two-sided eight-heading AUDIT, which is a separate gate and still owes its
+review either way. The price-only publish exemption: a publish that moves no fair value
+asserts no valuation, so it needs no authorisation — what it carries is the cone, the spot,
+the technical read and a graded ledger row. The two-sided branch rule, the unreadable-study
+branch, and clause three's method hold, which still binds on its own.
+
+### Enforcement
+
+Per [R-ENF-01], `scripts/check_publish_block.py` refuses four further ways: no
+authorisation, one naming nobody, one stating no `AUTHORISED_AT_GAP`, and one authorising a
+gap the answer has since moved away from. Negative-controlled on 34 conditions, and **the
+sharpest is inverted rather than deleted**: the case asserting that a complete dissent
+RELEASES the block was correct evidence for the rule as it stood, and must now go the other
+way — the precedent [R-GAP-01] set when its trigger went two-sided. Four abuse cases ride
+beside it, each a different way of reaching a release without a real decision, because an
+exemption is only as narrow as the cases that prove it cannot be widened.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT PUBLISHING: A RELEASE WRITTEN BY THE PARTY THE
+GATE IS ABOUT IS NOT A RELEASE, IT IS A FORM.** The dissent requirement was real work and
+it still asked the suspect to sign its own discharge. Where a gate exists because a
+judgement may be wrong, the release has to come from somewhere that judgement did not.

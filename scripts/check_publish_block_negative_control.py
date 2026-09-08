@@ -38,7 +38,23 @@ A disclosed matched pair of nameplate and cost that earns above the cost of capi
 """
 
 
-def build(tmp, ticker, central, price, dissent=None, two_sided=None):
+AUTH_OK = """# TK — publication authorisation
+
+AUTHORISED_BY: the principal
+AUTHORISED_AT_GAP: -42.0%
+AUTHORISED_CENTRAL: 44.70
+DATE: 2026-09-08
+
+The case in MARKET_DISSENT_03-09-2026.md was put to the principal and approved
+for publication at this gap.
+"""
+
+AUTH_NO_NAME = AUTH_OK.replace("AUTHORISED_BY: the principal\n", "")
+AUTH_NO_GAP = AUTH_OK.replace("AUTHORISED_AT_GAP: -42.0%\n", "")
+AUTH_STALE = AUTH_OK.replace("-42.0%", "-12.0%")
+
+
+def build(tmp, ticker, central, price, dissent=None, two_sided=None, auth=None):
     eng = os.path.join(tmp, "engine")
     sd = os.path.join(eng, "%s_study" % ticker.lower())
     os.makedirs(sd, exist_ok=True)
@@ -59,18 +75,26 @@ def build(tmp, ticker, central, price, dissent=None, two_sided=None):
         open(os.path.join(eng, "prices", "SUPPLIED_03-09-2026.json"), "w"))
     if dissent is not None:
         open(os.path.join(sd, "MARKET_DISSENT_03-09-2026.md"), "w").write(dissent)
+    if auth is not None:
+        open(os.path.join(sd, "PUBLISH_AUTHORISATION_08-09-2026.md"), "w").write(auth)
     return eng
 
 
 CASES = [
-    # (name, central, price, dissent, two_sided, must_publish)
+    # (name, central, price, dissent, two_sided, must_publish[, auth])
     ("inside the band",                 74.0, 77.0, None, None, True),
     ("just inside the edge",            70.0, 77.0, None, None, True),
     ("just below the edge",             69.0, 77.0, None, None, False),
     ("just above the edge",             86.0, 77.0, None, None, True),
     ("far below, no dissent",           53.2, 77.0, None, None, False),
     ("far above, no dissent — OK now", 110.0, 77.0, None, None, True),
-    ("far below, dissent complete",     44.7, 77.0, DISSENT_OK, None, True),
+    # [R-GAP-02 CLAUSE FOUR] INVERTED RATHER THAN DELETED. This construction was
+    # correct evidence that a complete dissent RELEASED the block, and from
+    # 08-Sep-2026 it must go the other way: the dissent is the case, and the
+    # principal is the decision. Keeping the fixture and flipping its expectation
+    # is the only way the change is tested where it matters — the same precedent
+    # [R-GAP-01] set when its trigger went two-sided.
+    ("far below, dissent but no authorisation", 44.7, 77.0, DISSENT_OK, None, False),
     ("dissent missing a heading",       44.7, 77.0,
      DISSENT_OK.replace("## FALSIFIER", "## NOTES"), None, False),
     ("dissent with no gap marker",      44.7, 77.0,
@@ -79,15 +103,26 @@ CASES = [
     ("two-sided, both branches far",     0.0, 14.41, None, (1.79, 5.90), False),
     ("two-sided, one branch inside",     0.0, 14.41, None, (1.79, 13.5), True),
     ("two-sided, one branch above",      0.0, 14.41, None, (1.79, 20.0), True),
+    # [R-GAP-02 CLAUSE FOUR] the authorisation half. AN EXEMPTION IS ONLY AS NARROW
+    # AS THE CASES THAT PROVE IT CANNOT BE WIDENED, so every way of arriving at a
+    # release without a real decision is held: no case behind the approval, nobody
+    # named as approving, no gap stated, and an approval of a different gap.
+    ("dissent + authorisation",         44.7, 77.0, DISSENT_OK, None, True, AUTH_OK),
+    ("authorisation with no dissent",   44.7, 77.0, None,       None, False, AUTH_OK),
+    ("authorisation naming nobody",     44.7, 77.0, DISSENT_OK, None, False, AUTH_NO_NAME),
+    ("authorisation with no gap",       44.7, 77.0, DISSENT_OK, None, False, AUTH_NO_GAP),
+    ("authorisation of a stale gap",    44.7, 77.0, DISSENT_OK, None, False, AUTH_STALE),
 ]
 
 
 def main():
     failures = []
-    for name, central, price, dissent, two, must in CASES:
+    for case in CASES:
+        name, central, price, dissent, two, must = case[:6]
+        auth = case[6] if len(case) > 6 else None
         tmp = tempfile.mkdtemp()
         try:
-            eng = build(tmp, "TK", central, price, dissent, two)
+            eng = build(tmp, "TK", central, price, dissent, two, auth)
             for m in ("check_publish_block", "check_valuation_gap"):
                 sys.modules.pop(m, None)
             import check_valuation_gap as gap
