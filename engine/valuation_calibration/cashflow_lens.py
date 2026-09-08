@@ -678,7 +678,8 @@ def _dfactor(coc, h):
 
 
 def wacc_at(tk, origin, market, panel, blk, price, shares, glide=False,
-            terminal_anchor=False, erp_basis=None, pit_beta=False):
+            terminal_anchor=False, erp_basis=None, pit_beta=False,
+            crp_lambda=None):
     v = MH.origin(market, origin)
     need = v.require("sovereign_10y", "default_spread", "erp")
     rf = need["sovereign_10y"] - need["default_spread"]
@@ -718,6 +719,25 @@ def wacc_at(tk, origin, market, panel, blk, price, shares, glide=False,
         #                                    first stacked run, which read as lever 5
         #                                    doing nothing rather than as a bug.
         need = dict(need, erp=float(e_alt), default_spread=float(d_alt))
+
+    # ---------------------------------------------------------------- LEVER 4
+    # THE COUNTRY-PREMIUM LAMBDA. [R-COC-01] states the default as 1.00 and requires
+    # any other value to be a STATED judgement. The declared run does not state one
+    # and is not at 1.00: it consumes a total premium that already carries the
+    # source's own scaling, 1.10 to 1.50 across these vintages, silently. So this
+    # rebuilds the premium at a stated lambda from the split crp_split.py recovers
+    # — same basis in and out, rating-to-rating or CDS-to-CDS, so the sovereign is
+    # never measured on two sticks.
+    if crp_lambda is not None:
+        import crp_split as CRP
+        basis = erp_basis or (v.extras.get("erp") or {}).get("basis") or "cds"
+        e_new, spread = CRP.erp_at(origin, crp_lambda, basis)
+        if e_new is None:
+            return None, ("this vintage publishes only one premium basis, so the country "
+                          "premium cannot be split — one equation, two unknowns")
+        rf = need["sovereign_10y"] - spread
+        ke = rf + beta * e_new
+        need = dict(need, erp=e_new, default_spread=spread)
     b = blk.get(origin) or {}
     debt = b.get("debt")
     if debt is None:
@@ -900,7 +920,7 @@ def study_life(tk):
 
 def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
          arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
-         pit_beta=False):
+         pit_beta=False, crp_lambda=None):
     panel, _src = P._panel(os.path.join(ENGINE, "%s_walkforward" % tk.lower()))
     blk = block(tk)
     shares, price = cellinfo["shares"], cellinfo["price"]
@@ -953,7 +973,7 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
 
     coc, why = wacc_at(tk, origin, market, panel, blk, price, shares, glide=glide,
                        terminal_anchor=terminal_anchor, erp_basis=erp_basis,
-                       pit_beta=pit_beta)
+                       pit_beta=pit_beta, crp_lambda=crp_lambda)
     if coc is None:
         return None, why
     infl = terminal_inflation(market, origin)
@@ -1118,7 +1138,7 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
 
 def run(market="EG", horizons=HORIZONS, maintenance="amount",
         arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
-        pit_beta=False):
+        pit_beta=False, crp_lambda=None):
     cells, names, declared, usable = P.build(market)
     rows, dropped = [], []
     for (tk, y), c in sorted(cells.items()):
@@ -1131,7 +1151,8 @@ def run(market="EG", horizons=HORIZONS, maintenance="amount",
             r, why = cell(tk, y, market, c, horizons=horizons,
                           maintenance=maintenance, arcc_unit_fix=arcc_unit_fix,
                           glide=glide, terminal_anchor=terminal_anchor,
-                          erp_basis=erp_basis, pit_beta=pit_beta)
+                          erp_basis=erp_basis, pit_beta=pit_beta,
+                          crp_lambda=crp_lambda)
         except MH.VintageMissing as exc:
             r, why = None, str(exc)[:100]
         except Exception as exc:

@@ -236,6 +236,15 @@ READINGS = (
     # the answer. Buildable only by sourcing the implied mature premium by year,
     # which is a sourcing job and not a lever evaluation.
     # ---------------------------------------------------------------- LEVER 5
+    # ---------------------------------------------------------------- LEVER 4
+    # BUILDABLE AFTER ALL, and the correction matters more than the lever. The first
+    # pass recorded this unbuildable because the archive stores no mature-market
+    # premium; it stores TWO BASES, which is two equations in two unknowns, and the
+    # recovered mature premium reproduces Damodaran's own published figure to four
+    # decimals at eight of eleven vintages. See crp_split.py.
+    ("LEVER 4 — the country premium at the house lambda of 1.00, ON THE STACK {3}",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", erp_basis="rating",
+          crp_lambda=1.00)),
     # Lever 5 is evaluated ON THE CURRENT STACK, which after lever 3 is {3} and not
     # empty. The rule says "one at a time on the current stack" and a lever measured
     # against the declared run once something has been promoted is measuring the

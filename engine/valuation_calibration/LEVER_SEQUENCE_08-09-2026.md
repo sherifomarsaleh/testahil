@@ -14,7 +14,7 @@ promoted or not — a lever tried and rejected is evidence; a lever tried in sil
 | 1 | cost-of-capital glide | +1.0078 | **away** | **rejected** |
 | 2 | terminal anchors | +0.8831 | **away** | **rejected** |
 | 3 | rating-basis equity risk premium | **+0.7844** | toward, −0.0036 | **promoted** |
-| 4 | country-premium lambda | — | — | **unbuildable, recorded** |
+| 4 | country-premium lambda at the house default of 1.00 | +0.8938 | **away** | **rejected** |
 | 5 | beta shrinkage, on the stack {3} | +0.8114 | **away** | **rejected** |
 | 6 | the lens set | — | — | **unbuildable, recorded** |
 
@@ -46,13 +46,34 @@ strips the *rating* default spread rather than the swap one — rating-to-rating
 mixing them counts the sovereign on two measuring sticks, which is the double-count
 [R-COC-01] exists to stop arriving through a side door. **Promoted, and worth 0.0036.**
 
-**4 — the country-premium lambda. Unbuildable at these origins, and that is recorded
-rather than skipped [R-ENF-04].** Lambda scales the *country* premium inside the equity
-premium; the point-in-time archive holds only the **total** premium per vintage. Backing
-the mature figure out by subtracting the default spread assumes the equity-to-bond scaling
-is 1.00 — *which is the very quantity lambda is an alternative to*, so it would assume the
-answer. It needs the implied mature premium by year, which nothing here holds: the extract
-carries Egypt's rating, its default spread and both of its totals, and no US row.
+**4 — the country-premium lambda. I recorded this unbuildable and I was wrong, and the
+correction is worth more than the lever.** The first pass asked whether the archive stores
+a mature-market premium, found none, and stopped. It stores **two bases** per vintage,
+which is two equations in two unknowns:
+
+    erp_rating = mature + default_spread_rating x lambda
+    erp_cds    = mature + cds_spread_net_of_us  x lambda
+
+Solved per vintage, the recovered mature premium **reproduces Damodaran's own published
+implied premium for the S&P 500 to four decimal places at eight of the eleven solvable
+vintages** and to within 22 basis points at the other three — a derivation landing on a
+number somebody else published independently is not a coincidence. Verified again against
+a held ctryprem workbook, which prints all three quantities as separate cells for the 2026
+vintage and reproduces the identity to the sixth decimal.
+
+**What the lever then turned out to be is not what the protocol assumes.** [R-COC-01]
+says lambda **defaults to 1.00** and any other value is a stated judgement. The declared
+run does not state one and is not at 1.00: it consumes a total premium carrying the
+source's own scaling — **1.10 to 1.50 across these vintages, never 1.00, and stated
+nowhere.** So the house default is *lower* than the figure the house actually uses, and
+applying it **under-charges country risk**: the premium falls at every vintage (17.42% to
+14.15% at 2023), values rise, and the bias moves away. **Rejected — and the default is
+worth revisiting on its own, separately from this calibration.**
+
+**An absent FIELD is not an absent QUANTITY.** The first probe was looking for a column
+rather than for the number, and reported unbuildable — an absent answer in a clean
+answer's clothes [R-ENF-04], caught only because the principal said to go and use the
+country risk premium.
 
 **5 — beta shrinkage.** The declared run's 1.00 is the **full-shrinkage limit** — all
 prior, no own history. Built the other end: point-in-time regressions through
