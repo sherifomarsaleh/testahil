@@ -3548,6 +3548,98 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
+   "ticker": "MODON",
+   "name": "Modon Holding PSC",
+   "code": "ADX:MODON",
+   "ccy": "AED",
+   "spot": 2.85,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.03,
+   "fv_base": 2.5,
+   "fv_full": 4.13,
+   "gap_base_pct": -12.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.080898,
+    "mu_h": -0.003515,
+    "G": {
+     "bear": -12.58,
+     "base": -1.62,
+     "full": 4.59
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0471,
+     "full": 0.0011
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0725,
+     "full": 0.0021
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.7924,
+     "full": 84.7556
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00104
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.142977,
+    "mu_h": -0.010582,
+    "G": {
+     "bear": -7.12,
+     "base": -0.92,
+     "full": 2.59
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.1575,
+     "full": 0.0095
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.2701,
+     "full": 0.0164
+    },
+    "required_cagr": {
+     "bear": -0.9829,
+     "base": -0.4079,
+     "full": 3.4098
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00526
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "IQCD",
    "name": "Industries Qatar",
    "code": "QSE:IQCD",
@@ -3730,98 +3822,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00203
    },
    "market": "EG"
-  },
-  {
-   "ticker": "MODON",
-   "name": "Modon Holding PSC",
-   "code": "ADX:MODON",
-   "ccy": "AED",
-   "spot": 2.83,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.03,
-   "fv_base": 2.5,
-   "fv_full": 4.13,
-   "gap_base_pct": -11.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.068869,
-    "mu_h": -0.00354,
-    "G": {
-     "bear": -14.68,
-     "base": -1.8,
-     "full": 5.49
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0358,
-     "full": 0.0005
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.0544,
-     "full": 0.0007
-    },
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.7741,
-     "full": 92.3176
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00095
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.127892,
-    "mu_h": -0.010657,
-    "G": {
-     "bear": -7.9,
-     "base": -0.97,
-     "full": 2.96
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.1467,
-     "full": 0.006
-    },
-    "p_touch": {
-     "bear": 0.0003,
-     "base": 0.2482,
-     "full": 0.0109
-    },
-    "required_cagr": {
-     "bear": -0.9825,
-     "base": -0.391,
-     "full": 3.5358
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00101
-   },
-   "market": "AE"
   },
   {
    "ticker": "SABIC",
