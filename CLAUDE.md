@@ -1,11 +1,45 @@
 # TESTAHIL — project memory
 
+## STANDING PRIORITY — FINISH THE FRAMEWORK
+
+**The principal's number one priority is finishing the fundamental-research framework.
+It has been stated repeatedly and it outranks every other piece of work in this
+repository.** Nothing below reorders it. Read this before deciding what to do next.
+
+WHAT FINISHING MEANS IS ALREADY DEFINED AND IS NOT OPEN — [R-VCAL-02 CLAUSE TWO]: the
+framework is adopted when it is BACKTESTED and the GATES PASS. Two conditions and
+nothing else is an adoption condition. The backtest is criterion 3's clauses A, B, C
+and F on the mechanical series; the gates are the standing set every study is held to.
+Phase 2b is calibration, not a bar to clear first.
+
+WHAT IS ACTUALLY BLOCKING IT, READ LIVE — `python3 engine/method_reassessment/criterion3.py`
+— never from this file, because cells are carried and the count moves. The binding
+constraint is the SAMPLE: clauses B and C cannot be measured on one name, so the work
+is carrying valuation-input blocks to more origins across the ten completed runs, per
+[R-FCAL-01 AMENDED]. That is a data-carry job with a rate, out of filings each run has
+already parsed.
+
+**THE FAILURE THIS RECORD EXISTS TO STOP IS DRIFT, NOT DISAGREEMENT.** No session has
+ever disputed the priority; sessions drift into adjacent work because the adjacent work
+is real, is in front of them, and each individual step is defensible — a gate goes red,
+a rule needs amending, a study wants re-issuing. Every one of those is legitimate and
+none of them is this. Where a red gate or an amendment stands between the framework and
+its next measurement, clear it and return; where it does not, it waits.
+
+ISSUING NEW STUDIES IS NOT THE FRAMEWORK, per instruction 08-09-2026 — "i just need to
+finish the framework. I do not care about issuing new reports now." A study is rebuilt
+only where the framework's own measurement needs it.
+
+REPORT ONE NAME AT A TIME, per instruction — "if there is something I do not like I want
+to catch it early." A carry is reported when that name is done, not batched at the end.
+
+
 This repo runs the TESTAHIL Standing Research Protocol: valuation studies, calibrated
 probability cones, and a public ledger, published to the live site. Read this before
 doing any research, study-build, critique-response, or publishing work here.
 
 **Full governing rules — read before starting any study:**
-@engine/PROJECT_INSTRUCTIONS_07-09-2026.md
+@engine/PROJECT_INSTRUCTIONS_08-09-2026.md
 
 That file is the condensed, binding digest (rules only, never volatile numbers). The
 complete prose version, with the reasoning and the failures each rule was adopted from,

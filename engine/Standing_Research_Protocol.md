@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-07n — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-08a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 7 September 2026 (rev. 12) — SIX STANDING RULES ADOPTED IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08]
+Updated 8 September 2026 (rev. 13) — TWO AMENDMENTS, BOTH PER INSTRUCTION: the company's own other documents are the named fallback where the statement itself cannot be reached, with a reporting duty as its price [R-SIGCM-03] · the price arrives on a MONTHLY SCHEDULE and the study is struck against the latest committed supplied price, retiring the per-study ask adopted a day earlier [R-GAP-01 AMENDED]
+(rev. 12, 7 September 2026 — SIX STANDING RULES IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08])
 (rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
 (rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
 (rev. 9, 1 September 2026 — VALUATION-GAP AUDIT [R-GAP-01]: a central fair value more than 10% below the traded price is audited before it ships)
@@ -1001,6 +1002,93 @@ price basis also fails — claiming the level is not the same as having built it
 Adopted because the audit found 63 of 90 studies not built ground-up while the flag sat available
 to be set `True`. The delivered studies already write all of this in prose in §1.6; the record
 only asks for it once more in a form a machine can refuse.
+
+### [R-SIGCM-03] Where the statement itself cannot be reached, the company's own other documents are the named fallback (8-Sep-2026, per instruction — "if you do not have access to financial statements you may look at alternative reports such as these. So long as you report that to me, which is OK")
+
+SIGCM clause 1 builds the past IS/BS/CF from the company's **own issued financial statements and full
+disclosures**, and says that where the official data is inaccessible the desk STOPS AND INFORMS. **The
+stop is what is amended, and nothing else is.** Where the audited or reviewed statement itself cannot
+be obtained, the figure may be taken from THE COMPANY'S OWN OTHER DOCUMENTS — its earnings release, its
+results announcement, its investor presentation, its annual report — on the conditions below.
+
+**What is not amended is the prohibition the clause exists for.** A data vendor, a broker, or
+press-as-a-numbers-source remains a HARD FAIL for a figure the company reported about itself, and this
+rule does not touch it. Nothing here opens a route to unofficial data; the fallback shelf holds the
+company's own documents and does not widen by one name.
+
+**This is narrower than it first looks, and the protocol had already ranked that shelf twice.** The
+Step-2A sweep register tags `SourceType.COMPANY_IR` distinctly from the audited-statements tag,
+precisely so a reviewer can see how much of the Company ring rests on the investor-relations channel;
+and the 09-Aug-2026 clause calls investor-relations presentations and earnings-call materials
+MANDATORY rather than optional for the operating anchors no financial statement carries. So the
+company's own IR channel was already a primary source this house reads and ranks. What it had no route
+to was supplying a REPORTED HISTORICAL at the one moment it was most needed — when the filing itself
+was out of reach. That gap is the whole of what this rule closes.
+
+**The order is unchanged, and a fallback is a fallback.** The audited or reviewed statement is tried
+FIRST, by name, and the attempt is logged in the sweep register with its outcome whether it succeeded
+or failed — that clause has stood since 07-Aug-2026 and this rule leans on it rather than restating
+it. A study that never tried has not earned the fallback, and the log is what shows which happened.
+
+**The reporting duty is the price of the fallback, and it is not satisfied by a file.** The principal
+is told, IN THE TURN THAT USES IT: which figure, which document it came from, and which statement could
+not be reached. The instruction grants the permission and names the price in the same breath — "so long
+as you report that to me" — so a study that quietly uses a release because the statement was awkward
+has taken the permission and skipped the condition it was granted under. Writing it only into a
+register is not reporting it; the register is where it is kept, not where it is said.
+
+**It is recorded in the four fields like anything else, and the SOURCE names the document type.** A
+reader must be able to tell a figure read off an audited balance sheet from one read off a release's
+balance-sheet table. Both are the company's own and neither is a vendor's; they are not the same
+evidence, and a record that blurs them has thrown away the distinction this rule exists to keep.
+
+**Arithmetic remains the arbiter, exactly as for a statement.** A figure taken from a release is
+accepted only if it FOOTS against that document's own printed subtotals — the [R-FCAL-01] discipline
+applies unchanged, and a page that does not foot is re-read by OCR off the rendered pixels with the
+route recorded. The document being a release rather than a filing changes what the source field says;
+it changes nothing about what the figure has to survive.
+
+**Worked case, and it is the one that prompted the rule.** TMG Holding's 1Q2019 earnings release
+carries a consolidated balance sheet whose comparative column is headed FY2018, and the 1Q2020 release
+one headed FY2019. Those two releases and the December 2018 and December 2019 investor presentations
+are committed under `engine/tmgh_study/src/`, because a file in a conversation binds nothing. That
+name's own walk-forward records in its own words that it holds NO ANNUAL FILING before FY2020 — which
+is why its valuation-input origins begin there — so the documents above are the company's own account
+of years its archive has no filing for. **THIS RULE SETTLES THE SOURCE QUESTION AND ONLY THAT.**
+Whether a particular comparative column satisfies point-in-time discipline at a given origin is
+[R-FCAL-01]'s question, answered by that run against its own pre-registration, and nothing here
+pre-empts it or licenses carrying a restated comparative back to a vintage it was not published in.
+
+**And the provoking premise was re-run before it was written down, which changed it** [R-IND-01]. The
+rule was proposed on a report that this company's investor-relations site was unreachable from this
+container — three routes, all HTTP 000. Re-run on 8-Sep-2026 the apex host answered 200 and served an
+index of several hundred documents, and only the `www.` host returns nothing, which is exactly what a
+route-level probe reports as unreachable. THE SITE WAS UP AND THE PREMISE WAS WRONG, which is [R-IND-01]
+verbatim: an empty result is first evidence the probe did not run. What is true is narrower and is
+better evidence for the rule than the claim it replaced — measured the same day, that index carries the
+FY2018, 1Q2019 and FY2019 earnings releases and the December 2018 and December 2019 investor
+presentations, and carries no audited financial-statement link naming either of those fiscal years, the
+statements beginning at 2020. So the fallback is not a workaround for a site that will not answer; it
+is the route to a figure THE COMPANY PUBLISHED IN A DIFFERENT DOCUMENT because the statement is not on
+the shelf at all. Re-run the probe before relying on any of this: reachability is a fact about a day.
+
+**Enforcement is prose where it has to be, and mechanical where it already is** [R-ENF-01]. Whether the
+principal was told in the turn that used the fallback is not a property of the repository a checker can
+read, and that is said plainly rather than dressed up. What is already enforced, and what is why this
+amendment needs no new gate and gets none: `scripts/check_source_integrity.py` fires on a named
+commercial vendor or news outlet in the source of a dated historical that names no company document, so
+a figure sourced to the company's own release names no vendor and never trips it — the gate was built
+around the distinction this rule turns on, and reads the fallback correctly today. `engine/research_sweep.py`
+carries the IR-coverage invariant, so a register resting on the IR channel and never registering a
+COMPANY_IR source fails. Depth-bar standard 2's four fields carry the document type, and standard 1's
+bibliography puts it in front of a reader.
+
+**The general lesson, which is not about sources.** A PERMISSION AND ITS CONDITION ARRIVE IN THE SAME
+SENTENCE AND ARE REMEMBERED SEPARATELY. The permission is what the work wants and the condition is what
+the principal is buying with it, and six weeks later the file shows a release used where a statement
+should have been with nothing anywhere saying it was ever mentioned. Where a rule is granted on a
+condition, WRITE THE CONDITION INTO THE RULE AS A STEP SOMEBODY PERFORMS — not as a spirit the rule is
+read in, because a spirit does not survive a deadline.
 
 ### [R-BETA-04] The beta record has a required shape, and the shape is checked even when the study is silent
 
@@ -3016,21 +3104,27 @@ THE PRICES ARE A COMMITTED ARTEFACT, NEVER A FIGURE IN A CONVERSATION. They live
 
 WHAT THIS DOES NOT CHANGE. The eight headings, the two-sided trigger, the ratchet, the enforcement and the negative control are all as they were. `check_valuation_gap.py` keeps auditing a study against its own strike price, because that remains the honest test of whether the answer was audited before it shipped; what is added is that the strike price must be current at the moment of delivery, which makes the two questions the same question again.
 
-[R-GAP-01 AMENDED] THE PRICE IS ASKED FOR AT THE START OF A STUDY, NOT LOOKED UP AT THE END [AMENDED 07-Sep-2026, per instruction — "when you start any study ask me about the latest share price and date"]
+[R-GAP-01 AMENDED] THE PRICE ARRIVES ON A MONTHLY SCHEDULE, AND THE STUDY IS STRUCK AGAINST THE LATEST COMMITTED SUPPLIED PRICE [AMENDED 08-Sep-2026, per instruction — "The latest prices and data as I told you 100 times before are done on a schedule monthly". THIS REPLACES THE CLAUSE ADOPTED 07-Sep-2026, WHICH HAD EVERY STUDY ASK FOR A PRICE BEFORE IT BEGAN]
 
-THE RULE ABOVE SAYS WHICH PRICE A STUDY IS DELIVERED AGAINST AND SAYS NOTHING ABOUT WHEN IT IS OBTAINED, and the difference is not procedural. A price arriving at the END of a build arrives after every driver is set, every rate is chosen and every contested judgement is resolved — which is the one moment at which a gap can only be answered by moving something, and moving something to close a gap is the reverse-engineering this house prohibits outright. A price arriving at the START is EVIDENCE AVAILABLE TO THE WORK: it tells the desk, before anything is built, which region of the answer space is a high-prior-of-defect region, so the eight headings can be worked as the model is assembled rather than as an audit written over a finished one.
+THE CLAUSE THIS REPLACES DESCRIBED A PRACTICE THE PRINCIPAL DOES NOT RUN, AND THAT IS RECORDED HERE RATHER THAN QUIETLY OVERWRITTEN. Adopted 07-Sep-2026 on this desk's reading of a single instruction and on one worked case, it required every study — a first issue, a re-issue, a rebuild, a re-strike — to ASK THE PRINCIPAL FOR THE LATEST SHARE PRICE AND ITS DATE BEFORE IT BEGAN, and it called that the one sanctioned exception to [R-IND-01]. The prices and the data are supplied ON A MONTHLY SCHEDULE and have been throughout. THE RULE WAS WRITTEN ABOUT SOMEBODY ELSE'S PROCESS WITHOUT ASKING HOW THAT PROCESS RUNS — the same defect as a rule written about a quantity nobody measured, arriving in the one place this document cannot check itself, since a claim about how the principal works is a claim about the world and no gate here can read it.
 
-THE RULE. Every study — a first issue, a re-issue, a rebuild, a re-strike — ASKS THE PRINCIPAL FOR THE LATEST SHARE PRICE AND ITS DATE BEFORE IT BEGINS, and commits the answer to engine/prices/SUPPLIED_{DD-MM-YYYY}.json exactly as [R-GAP-01 AMENDED] already requires of a supplied price. A single name is a legitimate file: gap_today.latest_price_per_ticker() merges every supplied file on each price's OWN date, so a one-name file adds that name without dropping the other eighty-nine, and a name absent from the newest file keeps the price it was last given rather than losing one.
+THE ASK IS RETIRED AS A PER-STUDY STEP. A study does not open by asking for a price.
 
-THIS IS THE ONE SANCTIONED EXCEPTION TO [R-IND-01] AND IT IS AN EXCEPTION BY THAT RULE'S OWN TERMS RATHER THAN AGAINST THEM. [R-IND-01] makes a question the last resort and requires the ladder to be climbed first — the artefact opened, every live ref searched, every tool used, the registers checked for whether it was asked and answered before. THE LADDER TERMINATES HERE WITH NO ANSWER, and it does so for a reason about the world rather than about the operator: THIS ENVIRONMENT HOLDS NO LIVE MARKET-DATA FEED. The OHLC libraries are hand-posted exports and go stale by the calendar; the last supplied price file is a fact about the day it was supplied; and the outbound network policy does not admit a quote vendor. So the price is genuinely a figure only the principal can supply, which is precisely the test [R-IND-01] sets for what may be escalated — and the instruction adopting this rule IS the standing registration, so a study asking for a price is not a fresh escalation and needs no entry in engine/escalations.json.
+WHAT REPLACES IT IS NOT A GUESS. The study is struck against THE LATEST COMMITTED SUPPLIED PRICE — read live from engine/prices/SUPPLIED_{DD-MM-YYYY}.json through gap_today.latest_price_per_ticker(), WITH ITS DATE STATED AND ITS AGE DISCLOSED. That is already this rule's own stated default for where no answer arrived; what changes is that it becomes THE ORDINARY ROUTE rather than the fallback. The merge is on each price's own date, so a file naming one name adds that name without dropping the rest, and a name absent from the newest file keeps the price it was last given rather than losing one. The prices remain a committed artefact and never a figure in a conversation [R-IND-01], because the container is rebuilt from the repository and a figure that lived only in a turn is a figure the next session cannot see.
 
-WHAT IT DOES NOT LICENSE, and the boundary is the whole of it: ASKING FOR A PRICE IS NOT ASKING FOR A DECISION. The question is one line, it names the ticker, it is asked once at the start, and THE WORK ROUTES AROUND IT rather than waiting — every driver, every statement, every sourced figure is built while the answer comes back, because the price enters at the strike and at the gap review and nowhere else. A turn that stops dead on an unanswered price question has converted the operator's work into the principal's queue, which is [R-IND-01]'s own complaint. Where no answer arrives, the DEFAULT IS THE LATEST PRICE ALREADY COMMITTED, used with its date stated and its age disclosed — the same shape as [R-COC-01]'s deliberately-accepted stale sovereign quote, and never a silent substitution.
+THE CADENCE IS THE ONE THE BOOK ALREADY RUNS ON. Monthly is the roll-forward metronome's rhythm — the clock on which a matured cohort is graded and a fresh cone struck — so the supplied price file and the ledger strike arrive on one schedule instead of two, and the question "how old is the price this study was struck against" has an answer bounded by that schedule rather than by whoever last remembered to ask.
 
-ENFORCEMENT IS PROSE AND THAT IS SAID PLAINLY [R-ENF-01]. Whether a question was asked at the start of a build is not a property of the repository a checker can read. What IS mechanically enforced is the consequence, and it already is: [R-GAP-01 AMENDED] holds the delivered study to the LATEST KNOWN price and check_valuation_gap.py reads it, so a study built without asking either happens to agree with the last committed price or goes red on delivery. THE CHECK IS AT THE OUTPUT BECAUSE THAT IS WHERE IT CAN LIVE, and this clause governs the input so the output is not where the problem is first discovered.
+EVERYTHING [R-GAP-01] REQUIRES OF THE PRICE IS UNTOUCHED, AND THE SUBSTANCE IS NOT WEAKENED BY AN INCH: delivery against the LATEST KNOWN price, the two-sided ten-per-cent audit trigger, the eight headings, the five-percentage-point staleness tolerance on an audited gap, and check_valuation_gap.py holding the delivered study to it. What is corrected is WHERE THE NUMBER COMES FROM, and nothing about what is done with it.
 
-WORKED CASE, THE SAME DAY. The ADNOCLS rebuild asked before it began and was given AED 6.80 as at 7 September 2026. The last committed price for that name was 6.85 on 3 September and the study had been STRUCK at 6.16 — so a rebuild that had not asked would have audited itself against a figure three weeks old and reported a gap of −9.0% where the honest figure is −17.6%, the difference between a study inside the audit band and one that owes its eight-heading review and is held from publishing. NO LEVER IN THAT REBUILD MOVED THE CENTRAL BY A SINGLE BASIS POINT: the whole of the gap is the price moving, which is exactly the thing a study cannot see from inside itself.
+THE COST IS STATED RATHER THAN DISCOVERED LATER, AND IT IS REAL. Between monthly deliveries a study is struck against a price that ages by the calendar, so the gap a study audits can drift from the gap the market shows — which is [R-GAP-03]'s subject exactly, arriving from the other direction. Two things bound it and neither is a hope: the DISCLOSURE of the price's age, which keeps the drift on the page where a reader meets it rather than inside the model where nobody does, and the SCHEDULE itself, which caps how far it can run before the next file lands. A cadence that slips is therefore not an administrative matter but the thing that widens this gap, and it is the standing argument for keeping the monthly file current.
 
-THE GENERAL LESSON, WHICH IS NOT ABOUT PRICES: WHERE A RULE NAMES A QUANTITY THE WORK CANNOT OBTAIN, IT HAS TO NAME WHEN TO GO AND GET IT. [R-GAP-01] has required the latest known price since 03-Sep-2026 and was obeyed by looking up whatever the repository happened to hold, which is not the same quantity and looks identical from inside. An input that must come from outside the system is not a detail of the procedure; it is a step in it, and a step nobody scheduled is a step taken at whatever moment is most convenient — which for a price is the moment it can do the least good.
+THE EXCEPTION GOES WITH THE STEP IT LICENSED. The retired clause named itself the one sanctioned exception to [R-IND-01] and held that the instruction adopting it was the standing registration, so asking needed no entry in engine/escalations.json. With no per-study ask there is no standing exception, and NOTHING HERE CREATES A NEW ONE: if a price question is ever genuinely needed it is an ordinary [R-IND-01] matter and carries the ordinary register entry — the routes actually run with their outcomes, why only the principal can close it, what was done meanwhile, the default, and the date the default fires.
+
+WORKED CASE, KEPT AS EVIDENCE RATHER THAN DELETED, AND IT NOW ARGUES FOR SOMETHING ELSE. The ADNOCLS rebuild of 07-Sep-2026 was given AED 6.80 as at 7 September against a last-committed 6.85 of 3 September and a struck 6.16, so a rebuild reading only what the repository then held would have audited itself against a figure three weeks old and reported a gap of −9.0% where the honest figure is −17.6% — the difference between a study inside the audit band and one that owes its eight-heading review and is held from publishing. NO LEVER IN THAT REBUILD MOVED THE CENTRAL BY A BASIS POINT, so the whole of that gap is the price moving. That measurement is true and is kept: it prices what a stale price costs. What it argues for is THE MONTHLY FILE LANDING ON TIME, not a question at the top of every study — the defect it exposes is an out-of-date artefact, and the fix for an out-of-date artefact is a schedule, not an interruption.
+
+ENFORCEMENT IS UNCHANGED AND IS STILL AT THE OUTPUT [R-ENF-01]. Whether a desk read the latest supplied file or an older one is not a property of the repository a checker can read at the moment of the build; what IS mechanically enforced is the consequence, and it already is — check_valuation_gap.py holds the delivered study to the latest known price, so a study struck on a stale figure either happens to agree with the current one or goes red on delivery. The retired clause put a step in front of that check; this one puts an artefact in front of it, which is the half a checker can see.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT PRICES: A RULE ABOUT SOMEBODY ELSE'S PROCESS IS A CLAIM ABOUT THE WORLD, AND IT IS THE ONE KIND OF CLAIM A GOVERNING DOCUMENT CANNOT CHECK ITSELF. Everything else here is held from outside by something — a gate, a ratchet, a negative control — because the subject is the repository and the repository can be read. A sentence describing how the principal works is held by nobody, sounds exactly as authoritative as the rest, and was wrong for a day inside a document whose whole design is that a claim is verified where it can be. WHERE A RULE DESCRIBES A PROCESS OUTSIDE THIS SYSTEM, THE ONLY AVAILABLE CHECK IS TO ASK ITS OWNER, AND THAT IS A STEP RATHER THAN AN ASSUMPTION.
 
 
 [R-VCAL-02] PHASE 1 IS THE BACKTEST, AND THE FORWARD RECORD IS PHASE 2b [ADOPTED 07-Sep-2026, per instruction — "we chose backtesting for that particular purpose. We back test and in the future we calibrate and enhance as we go along and compare our predictions now with what the future unfolds. So as far as my rule is concerned. We backtest."]
