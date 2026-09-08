@@ -51,6 +51,9 @@ MIN_EXPLICIT = 3   # the sealed explicit window
 # the house macro path returns for every terminal it builds. Changing it is an amendment
 # to the declaration, made before the figures it affects are computed.
 TERMINAL_REAL_GROWTH = 0.0
+CONVERGE_PP = 0.02      # [R-MACRO-01]'s own 2pp, borrowed and never minted
+STUB_CAP = 10           # a ladder that has not converged in fifteen years
+                        # total is one this lens refuses, not extrapolates
 INTENSITY_YEARS = 3      # median over the three fiscal years to the origin
 
 
@@ -256,6 +259,37 @@ def _arcc_unit_fixed(B, o, h, fx_level=False, fx_mode=None):
     """
     a = B.actual(o)
     pi, fxm, _coal = B._paths(o, h, False, False)
+
+    # (iv) INFLATION IS A LADDER, NOT A LEVEL — the same error a third time.
+    # The run takes the origin's own realised calendar-year inflation and
+    # COMPOUNDS IT FLAT for five years, so a crisis year becomes a permanent
+    # rate. Measured against the ladder the archive says was PUBLISHED at that
+    # very origin:
+    #
+    #   origin FY2017   cpi(o) 29.5% held flat -> x3.643   published ladder x1.607
+    #   origin FY2023   cpi(o) 33.9% held flat -> x4.302   published ladder x2.200
+    #   origin FY2019   cpi(o)  9.2% held flat -> x1.549   published ladder x1.446
+    #   origin FY2021   cpi(o)  5.2% held flat -> x1.289   published ladder x1.399
+    #
+    # Wrong by 2.27x and 1.96x at the two crisis origins — which are this name's
+    # two worst cells — and wrong the OTHER way at a calm one, so it is not a
+    # bias a reader could correct for. [R-MACRO-01] is explicit that the house
+    # carries a LADDER TO A TERMINAL and that a study may not carry an inflation
+    # number of its own; this run carries its own, flat. The ladder used here is
+    # the origin's OWN published forward path, point-in-time, read rather than
+    # chosen — the same archive, the same discipline as the currency above.
+    #
+    # IT IS A SCALE ERROR RATHER THAN A MARGIN ONE: revenue and costs both
+    # escalate on it, so the margin barely moves and the whole business is
+    # over-sized, which is exactly what this book's own pooled driver census
+    # already said — "the margin is roughly right and THE SCALE IS
+    # SYSTEMATICALLY TOO LOW" — arriving here with the sign the other way up
+    # because a walk-forward under-forecasts what a valuation over-sizes.
+    if fx_mode in ("fisher", "ladder"):
+        fwd = _fwd_cpi(o)
+        pi = 1.0
+        for k in range(1, h + 1):
+            pi *= (1 + fwd(k))
 
     # (iii) THE CURRENCY. Three constructions, and the run's own is none of them.
     #
@@ -1130,9 +1164,40 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
                           "is %s, not positive: a company consuming cash in its final "
                           "forecast year is not capitalised as a growing perpetuity"
                           % f"{last['fcff']:,.1f}")
-        tv = last["fcff"] * (1 + g) / (w_term - g)
-        pv_tv = tv * _dfactor(coc, max(hs))
-        ev = pv + pv_tv
+        # DECLARATION 5 — THE TERMINAL CONVERGES BEFORE IT CAPITALISES.
+        # [R-MACRO-01]: the explicit window runs until growth is within 2pp of
+        # terminal, and eleven of seventeen scoring cells broke it, two by more
+        # than twenty points. The window is NOT lengthened — every run declares
+        # its own horizons and extending a projector to make a cell score is the
+        # selection this method forbids — so the convergence happens here, on the
+        # ORIGIN'S OWN PUBLISHED inflation ladder, read rather than chosen.
+        # Where that ladder already sits at terminal the stub is EMPTY and this
+        # collapses to declaration 4 exactly.
+        cf, N = last["fcff"], max(hs)
+        pv_stub, k = 0.0, 0
+        try:
+            fwd = _fwd_cpi(origin)
+        except Exception:
+            fwd = None
+        if fwd is not None:
+            while k < STUB_CAP:
+                gk = fwd(N + k + 1)
+                if gk - g <= CONVERGE_PP:
+                    break
+                k += 1
+                cf = cf * (1 + gk)
+                pv_stub += cf * _dfactor(coc, N + k)
+            else:
+                return None, ("terminal refused: the origin's own published inflation "
+                              "path has not converged to within %.0fpp of terminal "
+                              "after %d further years, and this lens extrapolates no "
+                              "path it was not given" % (100 * CONVERGE_PP, STUB_CAP))
+        if cf <= 0:
+            return None, ("terminal refused: the converged year's free cash flow is "
+                          "%s, not positive" % f"{cf:,.1f}")
+        tv = cf * (1 + g) / (w_term - g)
+        pv_tv = tv * _dfactor(coc, N + k)
+        ev = pv + pv_stub + pv_tv
         equity = ev + cash - (debt or 0.0)
         per_share = equity / shares
         # A NEGATIVE EQUITY VALUE IS A REAL OUTPUT AND IS NOT A SCOREABLE ONE, and the
