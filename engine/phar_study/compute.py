@@ -2168,6 +2168,24 @@ step0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 
+# THE TWO PUBLISHED FRAMES, DEFINED ONCE. They are the study's answer, and two
+# records publish them: `central_two_sided`, which a reader meets, and
+# `lens_record.primary.branches`, which [R-LENS-03] reads from outside. Until this
+# constant existed only the first carried them, so the lens gate saw a primary
+# declaring two_sided and carrying nothing — a record stating that there is no
+# second number, beside a document that publishes two. Defined here so the two
+# records cannot state different branches.
+TWO_SIDED_BRANCHES = [
+    dict(label='Frame A — provision charge permanent at 5.25% of revenue',
+         value=centre_A,
+         condition="the elevated receivable-provision charge of the last two "
+                   "years is the new normal"),
+    dict(label='Frame B — provision charge normalising to 2.5% of revenue',
+         value=centre_B,
+         condition="the charge reverts toward the level the company ran before "
+                   "the currency devaluation"),
+]
+
 OUT = dict(
     # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
     # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
@@ -2321,22 +2339,18 @@ OUT = dict(
         why="the provision charge is the study's single most consequential contested "
             "judgement and the two readings of it are published side by side, never "
             "averaged: averaging them would state a number neither branch supports.",
-        branches=[
-            dict(label='Frame A — provision charge permanent at 5.25% of revenue',
-                 value=centre_A,
-                 condition="the elevated receivable-provision charge of the last two "
-                           "years is the new normal"),
-            dict(label='Frame B — provision charge normalising to 2.5% of revenue',
-                 value=centre_B,
-                 condition="the charge reverts toward the level the company ran before "
-                           "the currency devaluation"),
-        ]),
+        branches=TWO_SIDED_BRANCHES),
     spot=V['spot'], spot_date=INP['spot']['date'],
     # [R-ANCHOR-01]: the forecast rate against the latest reviewed period, printed
     # for every study whether or not it fires. This one fires on both clauses.
     forecast_anchor=FORECAST_ANCHOR,
     lens_record=dict(**{'class': 'pharmaceutical manufacturer, generic and branded'},
         primary=dict(kind='dcf', two_sided=True, value=None,
+                     # THE BRANCHES ARE THE ANSWER. A record declaring two_sided and
+                     # carrying none states that there is no second number, which is
+                     # exactly what this study does not say — the same list the reader
+                     # meets in `central_two_sided`, referenced rather than repeated.
+                     branches=TWO_SIDED_BRANCHES,
                      range=dict(low=min(centre_A, centre_B),
                                 high=max(centre_A, centre_B)),
                      range_note="the two published frames of the contested provision "

@@ -2954,6 +2954,18 @@
    "kind": "dcf",
    "two_sided": true,
    "value": null,
+   "branches": [
+    {
+     "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+     "value": 32.99747064299512,
+     "condition": "the elevated receivable-provision charge of the last two years is the new normal"
+    },
+    {
+     "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+     "value": 49.6788791915817,
+     "condition": "the charge reverts toward the level the company ran before the currency devaluation"
+    }
+   ],
    "range": {
     "low": 32.99747064299512,
     "high": 49.6788791915817
