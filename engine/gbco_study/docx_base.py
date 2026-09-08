@@ -192,32 +192,21 @@ def sotp_per_share(mark, wacc_shift=0.0, tg=None):
     return (auto_eq + sotp['cap_val'] + mark + sotp['other_assoc']) / D['shares']
 
 
-# ---- THE BAND RECORD, READ FROM WHAT THE SITE PUBLISHES, NEVER TYPED [R-CAL-02] -------
-# The record is GENERATED into assets/data.js by scripts/build_band_records.py from the
-# committed panels, and it is refreshed again at render time — a page that states a fact
-# which moves must not be the thing that remembers it, and neither must a builder. This
-# reads the same object, so a refit moves the document at its next build instead of
-# leaving a stale sentence behind.
-def _band_record(ticker='GBCO'):
-    import json as _j, os as _o, re as _re
-    _root = _o.path.dirname(_o.path.dirname(_o.path.dirname(_o.path.abspath(__file__))))
-    _txt = open(_o.path.join(_root, 'assets', 'data.js'), encoding='utf-8').read()
-    _i = _txt.find('BANDS')
-    if _i < 0:
-        raise SystemExit('assets/data.js carries no BANDS block — an absent record is not '
-                         'a clean one [R-ENF-04]')
-    _m = _re.search(r'\b%s:\s*\{([^}]*)\}' % ticker, _txt[_i:])
-    if not _m:
-        raise SystemExit('no band record for %s. It is not published without one.' % ticker)
-    _out = {}
-    for _k, _v in _re.findall(r'(\w+)\s*:\s*("[^"]*"|null|[-\d.]+)', _m.group(1)):
-        _out[_k] = None if _v == 'null' else (
-            _v.strip('"') if _v.startswith('"') else float(_v))
-    for _need in ('n', 'hits', 'c50', 'c90', 'width'):
-        if _out.get(_need) is None:
-            raise SystemExit('the band record for %s carries no %s' % (ticker, _need))
-    _out['n'] = int(_out['n']); _out['hits'] = int(_out['hits'])
-    return _out
+# ---- THE BAND RECORD, THROUGH THE SHARED READER [R-ENF-03] --------------------------
+# THIS WAS A HAND-ROLLED REGEX OVER assets/data.js AND A GATE CAUGHT IT THE SAME NIGHT.
+# A regular expression returns the FIRST match where a JavaScript parser takes the LAST,
+# and this repository has already paid for exactly that: a ticker page published a
+# support ABOVE its own close, three lines under a narrative quoting a different and
+# correct ladder, because the entry declared its levels twice and every regex-based tool
+# inspected the half the reader never saw. engine/site_data.py hands the file to node
+# and reads the OBJECT THE PAGE RENDERS, which is the only reading that is about the
+# same file the site ships.
+#
+# It also carries the refusals this reader had written out by hand — a missing record,
+# a missing field — so there is one notion of what a readable band record is rather
+# than two that drift.
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+import site_data as _SITE                                             # noqa: E402
 
-
-BAND = _band_record()
+BAND = _SITE.band_record('GBCO')
