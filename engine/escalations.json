@@ -326,12 +326,13 @@
    "done_meanwhile": "The rebuild proceeds on the three levers that need no filing: the cost-of-capital schedule on the house Egyptian path [R-COC-01], growth stored as a real rate on that path [R-MACRO-01], and the re-strike with its eight-heading review [R-GAP-01]. The terminal [R-TERM-01] is the one lever that needs a DISCLOSED useful life and it stays on the ratchet with this as its reason, because a life this desk chose is not a disclosed life.",
    "default_if_no_answer": "Rebuild on those three levers and leave the terminal on the ratchet, with the study stating in its own record that SIGCM clause 1 is unmet — the historicals were gathered in conversation and no filing backs them. Do not substitute an aggregator, and do not choose a useful life.",
    "default_date": "2026-09-19",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/gbco_study/src/SOURCES.md",
     "must_contain": "audited"
    },
-   "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy — and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing."
+   "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy — and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing.  [RESOLVED 07-09-2026] ir.gb-corporation.com answers HTTP 200 and had never been tried. The two hosts the earlier ladder recorded as failures are PARKING LANDERS rather than GB Corp — gbauto.com 301-redirects to a sedo.com domain-sales page and gb-corp.com serves /lander — so six recorded failures were six wrong hostnames. Thirty documents committed under engine/gbco_study/src/: audited consolidated statements FY2020-FY2025, reviewed statements to 30 June 2026, annual reports 2013-2025, releases FY2019-FY2025 with 1Q26 and 2Q26.",
+   "answer_written_to": "engine/gbco_study/src/SOURCES.md"
   },
   {
    "key": "AMOC-real-open-ohlc-export",

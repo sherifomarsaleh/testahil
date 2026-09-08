@@ -127,6 +127,53 @@ DISSENT_RX = __import__("re").compile(
 DISSENT_TOL = 3.0      # percentage points; a dissent argued at -31% still stands
                        # at -33%, and does not stand at -55%
 
+# [R-GAP-02 CLAUSE FOUR, ADOPTED 08-Sep-2026, per instruction — "The instruction
+# should block publishing any study with the fair value 10% below latest traded
+# price. It should get back to me for authorization."]
+#
+# THE DISSENT NO LONGER RELEASES THE BLOCK ON ITS OWN. As the rule stood, a study
+# that disagreed with the market by a third could write its own release: the five
+# headings are hard to write honestly, and they are still written by the same desk
+# that produced the answer under suspicion. THAT IS THE SELF-ATTESTATION SHAPE
+# [R-ENF-01] CLOSES EVERYWHERE ELSE, arriving at the last gate before a reader.
+#
+# From 08-Sep-2026 the dissent is the CASE and the principal is the DECISION. Both
+# are required and the order is fixed: the study makes its argument first, then
+# asks. An authorisation with no dissent behind it releases nothing either — that
+# would put the principal in the position of approving a number with no case
+# attached, which is the menu [R-IND-01] forbids wearing a different hat.
+#
+# THIS IS A NAMED EXCEPTION TO [R-IND-01] AND IT IS THE ONLY KIND THAT RULE ALLOWS:
+# a decision genuinely the principal's, registered with a recommendation and a
+# default, where no command in the room can close it. Whether to tell the market it
+# is wrong is not a fact this repository holds.
+#
+# THE AUTHORISATION IS AN ARTEFACT, NEVER A SENTENCE IN A CONVERSATION [R-IND-01]:
+# the container is rebuilt from the repository, so an approval given in chat and
+# written nowhere binds nothing and the next session asks again. It carries
+# AUTHORISED_AT_GAP for the same reason the dissent does — an approval of a −31%
+# disagreement is not an approval of a −55% one, and the same 3-point tolerance
+# applies, so it goes stale exactly when the case it approved goes stale.
+AUTH_GLOB = "PUBLISH_AUTHORISATION_*.md"
+AUTH_RX = __import__("re").compile(
+    r"AUTHORISED[ _]AT[ _]GAP\s*[:=]\s*(-?[0-9]+\.?[0-9]*)\s*%", __import__("re").I)
+AUTH_BY_RX = __import__("re").compile(
+    r"AUTHORISED[ _]BY\s*[:=]\s*(\S.*?)\s*$", __import__("re").I | __import__("re").M)
+AUTH_TOL = DISSENT_TOL  # the approval goes stale with the case it approved
+
+
+def read_authorisation(sdir):
+    """(filename, who authorised it, the gap they authorised) or (None, None, None)."""
+    hits = sorted(glob.glob(os.path.join(sdir, AUTH_GLOB)))
+    if not hits:
+        return None, None, None
+    raw = open(hits[-1], encoding="utf-8").read()
+    by = AUTH_BY_RX.search(raw)
+    at = AUTH_RX.search(raw)
+    return (os.path.basename(hits[-1]),
+            by.group(1).strip() if by else None,
+            float(at.group(1)) if at else None)
+
 
 def read_dissent(sdir):
     """(filename, covered headings, the gap it was argued at) or (None, [], None)."""
@@ -467,8 +514,24 @@ def verdict(ticker):
                            % (why, fn, at, nearest[2] * 100)), rows
         if not proven:
             return False, ("%s — and %s" % (why_p, fn)), rows
-        return True, ("%+.1f%% from the price, released by %s — an evidenced dissent, "
-                      "not an assertion" % (nearest[2] * 100, fn)), rows
+        # [R-GAP-02 CLAUSE FOUR] the dissent is the CASE; the principal is the
+        # DECISION. A study may not release its own block.
+        afn, aby, aat = read_authorisation(sdir)
+        if afn is None:
+            return False, ("%s — %s makes the case, and the principal has not "
+                           "authorised it. This is the one sanctioned escalation: "
+                           "register it and ask" % (why, fn)), rows
+        if not aby:
+            return False, ("%s — %s names nobody who authorised it"
+                           % (why, afn)), rows
+        if aat is None:
+            return False, ("%s — %s states no AUTHORISED_AT_GAP, so nothing says "
+                           "which disagreement was approved" % (why, afn)), rows
+        if abs(aat - nearest[2] * 100) > AUTH_TOL:
+            return False, ("%s — %s authorises a gap of %+.1f%%, and the gap is now "
+                           "%+.1f%%" % (why, afn, aat, nearest[2] * 100)), rows
+        return True, ("%+.1f%% from the price, case made in %s and authorised by %s "
+                      "in %s" % (nearest[2] * 100, fn, aby, afn)), rows
     if not proven:
         return False, ("inside the band at %+.1f%% of %.2f (%s), but %s"
                        % (nearest[2] * 100, px, pxdate, why_p)), rows
