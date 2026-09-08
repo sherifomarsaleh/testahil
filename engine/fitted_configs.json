@@ -972,11 +972,11 @@
     ],
     "windows": 413,
     "rebuilt_this_run": [],
-    "nu": 5.0,
-    "width_cal": 0.944,
+    "nu": 4.5,
+    "width_cal": 0.957,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0173,
+    "market_skill": 0.0177,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
       0.006,
@@ -1043,21 +1043,21 @@
         ]
       },
       "ADNOCLS": {
-        "nu": 8.0,
-        "width_cal": 0.916,
-        "skill": 0.0003,
-        "skill_raw_basis": -0.0125,
+        "nu": 10.0,
+        "width_cal": 0.909,
+        "skill": 0.0012,
+        "skill_raw_basis": -0.0117,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.132,
+          -0.131,
           0.05
         ]
       },
       "AGTHIA": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": -0.0138,
-        "skill_raw_basis": -0.0214,
+        "width_cal": 0.909,
+        "skill": -0.0135,
+        "skill_raw_basis": -0.0211,
         "verdict": "PARITY",
         "ci_block2": [
           -0.119,
@@ -1067,12 +1067,12 @@
       "AIRARABIA": {
         "nu": 10.0,
         "width_cal": 0.909,
-        "skill": 0.0042,
-        "skill_raw_basis": 0.0,
+        "skill": 0.0158,
+        "skill_raw_basis": 0.013,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.012,
-          0.016
+          -0.026,
+          0.043
         ]
       },
       "ALDAR": {
@@ -1121,9 +1121,9 @@
       },
       "BURJEEL": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": 0.0703,
-        "skill_raw_basis": 0.054,
+        "width_cal": 0.909,
+        "skill": 0.0705,
+        "skill_raw_basis": 0.0544,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
           -0.002,
@@ -1175,14 +1175,14 @@
         ]
       },
       "EMAAR": {
-        "nu": 10.0,
-        "width_cal": 0.909,
-        "skill": 0.0386,
+        "nu": 12.0,
+        "width_cal": 0.902,
+        "skill": 0.0389,
         "skill_raw_basis": 0.0496,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.002,
-          0.087
+          -0.001,
+          0.086
         ]
       },
       "EMAARDEV": {
@@ -1209,12 +1209,12 @@
       },
       "ENBD": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": -0.0133,
+        "width_cal": 0.909,
+        "skill": -0.013,
         "skill_raw_basis": -0.0195,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.043,
+          -0.041,
           0.024
         ]
       },
@@ -1230,13 +1230,13 @@
         ]
       },
       "FERTIGLB": {
-        "nu": 8.0,
-        "width_cal": 0.916,
-        "skill": -0.0033,
-        "skill_raw_basis": -0.0081,
+        "nu": 10.0,
+        "width_cal": 0.909,
+        "skill": -0.0017,
+        "skill_raw_basis": -0.0059,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.023,
+          -0.021,
           0.011
         ]
       },
@@ -1274,14 +1274,14 @@
         ]
       },
       "SALIK": {
-        "nu": 8.0,
-        "width_cal": 0.916,
-        "skill": 0.0295,
-        "skill_raw_basis": 0.0257,
+        "nu": 10.0,
+        "width_cal": 0.909,
+        "skill": 0.0291,
+        "skill_raw_basis": 0.0252,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.004,
-          0.056
+          -0.005,
+          0.055
         ]
       },
       "TWOPOINTZERO": {
@@ -1311,27 +1311,27 @@
       ],
       "w90_sigma": 1.4736,
       "to": [
-        5.0,
-        0.944
+        4.5,
+        0.957
       ],
       "cov50": {
-        "mle": 0.5278,
-        "reshaped": 0.5012,
-        "lono_heldout": 0.5012
+        "mle": 0.5375,
+        "reshaped": 0.4988,
+        "lono_heldout": 0.5036
       },
-      "delta_ll": 1.75,
+      "delta_ll": 2.57,
       "crps_parity_ci": {
         "2": [
-          -0.0012,
-          0.0017
-        ],
-        "3": [
-          -0.0013,
+          -0.0017,
           0.002
         ],
+        "3": [
+          -0.0017,
+          0.0022
+        ],
         "4": [
-          -0.0013,
-          0.0019
+          -0.0017,
+          0.0022
         ]
       },
       "note": "90% edge held exactly (cal*T95 unchanged); 25-75 band reshaped to catch half; adopted under R-SHAPE-01's five guards"
