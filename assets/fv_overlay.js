@@ -4376,98 +4376,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "FERTIGLB",
-   "name": "Fertiglobe plc",
-   "code": "ADX:FERTIGLB",
-   "ccy": "AED",
-   "spot": 2.54,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.27,
-   "fv_base": 2.15,
-   "fv_full": 2.79,
-   "gap_base_pct": -15.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 5.0,
-    "width_cal": 0.944,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.075426,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -9.19,
-     "base": -2.21,
-     "full": 1.24
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0178,
-     "full": 0.0845
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0269,
-     "full": 0.1363
-    },
-    "required_cagr": {
-     "bear": -0.9998,
-     "base": -0.8647,
-     "full": 2.0849
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00191
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.138153,
-    "mu_h": -0.003945,
-    "G": {
-     "bear": -5.02,
-     "base": -1.21,
-     "full": 0.68
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0007,
-     "base": 0.0944,
-     "full": 0.2013
-    },
-    "p_touch": {
-     "bear": 0.001,
-     "base": 0.162,
-     "full": 0.372
-    },
-    "required_cagr": {
-     "bear": -0.9375,
-     "base": -0.4866,
-     "full": 0.4557
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00118
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "TMPV",
    "name": "Tata Motors Passenger Vehicles Ltd.",
    "code": "NSE:TMPV",
@@ -6224,8 +6132,8 @@ const FV_OVERLAY = {
    "gap_base_pct": -24.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
+    "nu": 5.0,
+    "width_cal": 0.944,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6235,25 +6143,25 @@ const FV_OVERLAY = {
    "converged": null,
    "1M": {
     "h_sessions": 21,
-    "sigma_h": 0.085507,
+    "sigma_h": 0.084342,
     "mu_h": 0.0,
     "G": {
-     "bear": -9.41,
-     "base": -3.26,
+     "bear": -9.54,
+     "base": -3.3,
      "full": -0.21
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0001,
-     "base": 0.0046,
-     "full": 0.3964
+     "bear": 0.0,
+     "base": 0.004,
+     "full": 0.3983
     },
     "p_touch": {
-     "bear": 0.0001,
-     "base": 0.007,
-     "full": 0.7008
+     "bear": 0.0,
+     "base": 0.0063,
+     "full": 0.7023
     },
     "required_cagr": {
      "bear": -0.9999,
@@ -6263,29 +6171,29 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00188
+    "selftest_max_dev": 0.00103
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.143388,
+    "sigma_h": 0.141435,
     "mu_h": 0.0,
     "G": {
-     "bear": -5.61,
-     "base": -1.94,
-     "full": -0.12
+     "bear": -5.69,
+     "base": -1.97,
+     "full": -0.13
     },
     "band": "STRETCH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0005,
-     "base": 0.0266,
-     "full": 0.4376
+     "bear": 0.0004,
+     "base": 0.0259,
+     "full": 0.4388
     },
     "p_touch": {
-     "bear": 0.0007,
-     "base": 0.044,
-     "full": 0.8182
+     "bear": 0.0005,
+     "base": 0.0447,
+     "full": 0.8213
     },
     "required_cagr": {
      "bear": -0.96,
@@ -6295,7 +6203,7 @@ const FV_OVERLAY = {
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0073
+    "selftest_max_dev": 0.00496
    },
    "market": "AE"
   },
