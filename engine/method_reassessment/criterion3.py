@@ -138,22 +138,51 @@ def clause_b(dec):
         return None, ["undefined: %d name(s) in the panel, so leaving one out "
                       "leaves nothing to pool" % dec["score"]["n"]["names"]]
     signs = {(v["mean"] > 0) for v in usable.values()}
-    return len(signs) == 1, ["%s: mean %+.4f on %d cells"
-                             % (k, v["mean"], v["cells"])
+    # THE KEY IS THE NAME LEFT OUT, NOT THE NAME MEASURED, and printing it bare read
+    # as the opposite: with PHDC holding six cells and TMGH one, the line "PHDC: mean
+    # -0.3478 on 1 cells" states TMGH's figure under PHDC's name. The scorer is right
+    # and the rendering was the defect, so the label says WITHOUT.
+    return len(signs) == 1, ["without %-6s the remaining %d cell(s) mean %+.4f"
+                             % (k, v["cells"], v["mean"])
                              for k, v in sorted(usable.items())]
 
 
 def clause_c(dec):
+    """Does the sign hold in both eras — where an era is thick enough to be a side.
+
+    A POPULATED ERA IS NOT THE SAME THING AS A SIDE, and reading it as one made this
+    clause report MET on a single observation the first time a second era was
+    populated at all: six cells against one, signs agreeing, verdict MET. This book
+    already refuses exactly that reading in [R-FCAL-01 AMENDED 07-09-2026] — a cut is
+    admitted only where it leaves at least five cells each side, and a quantity too
+    thin to cut is UNTESTABLE, never counted stable, because an absence of contrary
+    evidence is not evidence [R-ENF-04].
+
+    THE THRESHOLD IS BORROWED AND NOT MINTED, which is the only honest justification
+    for a number: boundary_sensitivity.MIN_SIDE is the bound this house already uses
+    for this exact question, IMPORTED rather than retyped so the two cannot drift
+    [R-ENF-03]. Fewer than two sides survive it and the clause is UNTESTABLE — which
+    is what it was before, and is a weaker claim than MET rather than a stronger one.
+    """
+    sys.path.insert(0, VCAL)
+    from boundary_sensitivity import MIN_SIDE  # noqa: E402
+
     eras = dec["score"].get("eras") or {}
     live = {k: v for k, v in eras.items() if v.get("mean") is not None}
-    lines = ["%-16s cells %3d  mean %s"
+    sides = {k: v for k, v in live.items() if v["cells"] >= MIN_SIDE}
+    lines = ["%-16s cells %3d  mean %s%s"
              % (k, v["cells"],
-                "%+.4f" % v["mean"] if v.get("mean") is not None else "—")
+                "%+.4f" % v["mean"] if v.get("mean") is not None else "—",
+                "" if v["cells"] >= MIN_SIDE else
+                "   TOO THIN TO BE A SIDE (needs %d)" % MIN_SIDE)
              for k, v in sorted(eras.items())]
-    if len(live) < 2:
-        return None, lines + ["only %d era populated — 'both eras' has no "
-                              "second side to hold in" % len(live)]
-    signs = {(v["mean"] > 0) for v in live.values()}
+    if len(sides) < 2:
+        return None, lines + [
+            "%d era(s) populated and %d thick enough to be a side at %d cells — "
+            "'both eras' has no second side to hold in, and an era of one "
+            "observation is untestable rather than agreeing"
+            % (len(live), len(sides), MIN_SIDE)]
+    signs = {(v["mean"] > 0) for v in sides.values()}
     return len(signs) == 1, lines
 
 

@@ -422,6 +422,20 @@ def capex_at(blk, year, route):
     carried out of here beside the figure and counted in the report; a run whose
     capex is mostly derived is a different evidence base from one whose capex is
     mostly disclosed, and a reader is owed the difference.
+
+    THE IDENTITY RUNS ON THE BASE THE DISCLOSED LINE COVERS, AND ON THIS BOOK THAT
+    IS MEASURABLE RATHER THAN ARGUABLE. Where a company carries assets under
+    construction as a SEPARATE balance-sheet line and its cash-flow capex line pays
+    for both, an identity on property alone misses everything still being built —
+    which for a developer is most of the spend. Measured on TMGH, the only run whose
+    blocks carry `cip` and which carries a DISCLOSED capex at the same origin, so
+    both routes can be scored against the company's own cash-flow statement: at
+    FY2020 the disclosed figure is EGP 2,379.9mn, the identity on property alone
+    gives 712.1 (-70.1%) and the identity on property plus construction gives 2,443.4
+    (+2.7%). SO THE BASE IS TAKEN FROM THE BLOCK RATHER THAN ASSUMED: where a block
+    records `cip`, it joins the property base on BOTH dates; where it does not — every
+    other run in the book — nothing changes and the identity is exactly as it was.
+    The label stays "derived" either way, because it is derived either way.
     """
     b = blk.get(year) or {}
     if isinstance(b.get("capex"), float):
@@ -430,6 +444,9 @@ def capex_at(blk, year, route):
     prev = blk.get(year - 1) or {}
     ppe, ppe0, dep = b.get("ppe"), prev.get("ppe"), b.get("dep")
     if all(isinstance(x, float) for x in (ppe, ppe0, dep)):
+        cip, cip0 = b.get("cip"), prev.get("cip")
+        if isinstance(cip, float) and isinstance(cip0, float):
+            ppe, ppe0 = ppe + cip, ppe0 + cip0
         route[year] = "derived"
         return ppe - ppe0 + dep
     return None

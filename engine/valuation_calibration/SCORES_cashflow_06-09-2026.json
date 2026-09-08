@@ -2,41 +2,47 @@
  "DECLARED": {
   "score": {
    "n": {
-    "cells": 5,
-    "origins": 5,
-    "names": 1
+    "cells": 7,
+    "origins": 6,
+    "names": 2
    },
-   "mean": 0.9841988962395247,
+   "mean": 0.8451272371413913,
    "median": 1.175970372275377,
-   "mae": 0.9841988962395247,
-   "below": 0,
-   "above": 5,
+   "mae": 0.9444943121332946,
+   "below": 1,
+   "above": 6,
    "bootstrap": {
     "2": {
-     "lo": 0.3262041231713845,
-     "hi": 1.5711646810490016,
-     "half_width": 0.6224802789388086,
+     "lo": 0.4779172121544036,
+     "hi": 1.3439537649159947,
+     "half_width": 0.4330182763807956,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.558394390903013,
-     "hi": 1.4982929312213078,
-     "half_width": 0.4699492701591474,
+     "lo": 0.7348983291694662,
+     "hi": 1.0961858090262189,
+     "half_width": 0.18064373992837635,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.7751668788170646,
-     "hi": 0.9841988962395248,
-     "half_width": 0.10451600871123012,
+     "lo": 0.672002857698434,
+     "hi": 1.212337262128379,
+     "half_width": 0.2701672022149725,
      "n_boot": 2000
     }
    },
    "lono": {
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 0,
-     "mean": null,
-     "names_left": 0
+     "cells": 1,
+     "mean": -0.3477847624716614,
+     "names_left": 1
+    },
+    "TMGH": {
+     "left_out": "TMGH",
+     "cells": 6,
+     "mean": 1.0439459037435668,
+     "names_left": 1
     }
    },
    "eras": {
@@ -45,12 +51,12 @@
      "mean": null
     },
     "E2 post-float": {
-     "cells": 5,
-     "mean": 0.9841988962395247
+     "cells": 6,
+     "mean": 0.7622016197876603
     },
     "E3 devaluation": {
-     "cells": 0,
-     "mean": null
+     "cells": 1,
+     "mean": 1.3426809412637766
     }
    }
   },
@@ -114,38 +120,72 @@
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
     "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "fv": 7.505419912149744,
+    "price": 1.96,
+    "log": 1.3426809412637766,
+    "wacc": 0.24584003938499185,
+    "terminal_share": 0.6147784863108737,
+    "price_date": "2022-12-29",
+    "kd_bound": "FLOORED at the sovereign (effective 11.88%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "fv": 6.405695404942416,
+    "price": 9.07,
+    "log": -0.3477847624716614,
+    "wacc": 0.17202270711252035,
+    "terminal_share": 0.20682017400856068,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 7.21%)",
+    "scale": 1000000.0
    }
   ],
   "dropped": [
    {
     "ticker": "AMOC",
     "origin": 2021,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "capex intensity needs 3 years and the block carries 1"
    },
    {
     "ticker": "AMOC",
     "origin": 2022,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
     "ticker": "AMOC",
     "origin": 2023,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "terminal refused: terminal free cash flow is -371,003,001.4, not positive: a going concern that consumes cash for ever is not a terminal, "
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2015,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
     "ticker": "ARCC",
     "origin": 2017,
-    "why": "capex intensity needs 3 years and the block carries 0"
+    "why": "terminal refused: implied payout of terminal NOPAT is 103.7%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
     "origin": 2018,
-    "why": "capex intensity needs 3 years and the block carries 1"
+    "why": "terminal refused: implied payout of terminal NOPAT is 107.7%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
     "origin": 2019,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "terminal refused: implied payout of terminal NOPAT is 119.7%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
@@ -229,22 +269,12 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2022,
-    "why": "capex intensity needs 3 years and the block carries 2"
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "no finance charge in the as-reported panel at this origin"
    },
    {
     "ticker": "TMGH",
     "origin": 2020,
-    "why": "capex intensity needs 3 years and the block carries 1"
-   },
-   {
-    "ticker": "TMGH",
-    "origin": 2021,
     "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
@@ -262,41 +292,47 @@
  "maintenance read as intensity x origin revenue": {
   "score": {
    "n": {
-    "cells": 5,
-    "origins": 5,
-    "names": 1
+    "cells": 7,
+    "origins": 6,
+    "names": 2
    },
-   "mean": 0.9833919362431258,
+   "mean": 0.8052814829568968,
    "median": 1.1719362378705087,
-   "mae": 0.9833919362431258,
-   "below": 0,
-   "above": 5,
+   "mae": 0.9777210456489637,
+   "below": 1,
+   "above": 6,
    "bootstrap": {
     "2": {
-     "lo": 0.31953589659747894,
-     "hi": 1.5781643759051107,
-     "half_width": 0.6293142396538158,
+     "lo": 0.43446880888364553,
+     "hi": 1.347880188230049,
+     "half_width": 0.4567056896732018,
      "n_boot": 2000
     },
     "3": {
-     "lo": 0.5539162176187256,
-     "hi": 1.502529679945678,
-     "half_width": 0.4743067311634762,
+     "lo": 0.7316379085591492,
+     "hi": 1.0988928950633623,
+     "half_width": 0.18362749325210653,
      "n_boot": 2000
     },
     "4": {
-     "lo": 0.7742692095212533,
-     "hi": 0.9833919362431258,
-     "half_width": 0.10456136336093624,
+     "lo": 0.6342491165792203,
+     "hi": 1.1760941570301484,
+     "half_width": 0.27092252022546404,
      "n_boot": 2000
     }
    },
    "lono": {
     "PHDC": {
      "left_out": "PHDC",
-     "cells": 0,
-     "mean": null,
-     "names_left": 0
+     "cells": 1,
+     "mean": -0.6035384694222334,
+     "names_left": 1
+    },
+    "TMGH": {
+     "left_out": "TMGH",
+     "cells": 6,
+     "mean": 1.0400848083534187,
+     "names_left": 1
     }
    },
    "eras": {
@@ -305,12 +341,12 @@
      "mean": null
     },
     "E2 post-float": {
-     "cells": 5,
-     "mean": 0.9833919362431258
+     "cells": 6,
+     "mean": 0.7189035352988992
     },
     "E3 devaluation": {
-     "cells": 0,
-     "mean": null
+     "cells": 1,
+     "mean": 1.3235491689048826
     }
    }
   },
@@ -374,38 +410,72 @@
     "price_date": "2021-12-30",
     "kd_bound": "FLOORED at the sovereign (effective 8.63%)",
     "scale": 1000000.0
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "fv": 7.363192793554264,
+    "price": 1.96,
+    "log": 1.3235491689048826,
+    "wacc": 0.24584003938499185,
+    "terminal_share": 0.608571736127894,
+    "price_date": "2022-12-29",
+    "kd_bound": "FLOORED at the sovereign (effective 11.88%)",
+    "scale": 1000000.0
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "fv": 4.960139149633,
+    "price": 9.07,
+    "log": -0.6035384694222334,
+    "wacc": 0.17202270711252035,
+    "terminal_share": 0.05993283640405667,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 7.21%)",
+    "scale": 1000000.0
    }
   ],
   "dropped": [
    {
     "ticker": "AMOC",
     "origin": 2021,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "capex intensity needs 3 years and the block carries 1"
    },
    {
     "ticker": "AMOC",
     "origin": 2022,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
     "ticker": "AMOC",
     "origin": 2023,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "terminal refused: terminal free cash flow is -395,863,933.3, not positive: a going concern that consumes cash for ever is not a terminal, "
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2015,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
     "ticker": "ARCC",
     "origin": 2017,
-    "why": "capex intensity needs 3 years and the block carries 0"
+    "why": "terminal refused: implied payout of terminal NOPAT is 103.4%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
     "origin": 2018,
-    "why": "capex intensity needs 3 years and the block carries 1"
+    "why": "terminal refused: implied payout of terminal NOPAT is 107.7%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
     "origin": 2019,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "terminal refused: implied payout of terminal NOPAT is 121.2%, outside [0, 1]: the terminal distributes more than it earns"
    },
    {
     "ticker": "ARCC",
@@ -489,22 +559,12 @@
    },
    {
     "ticker": "PHDC",
-    "origin": 2022,
-    "why": "capex intensity needs 3 years and the block carries 2"
-   },
-   {
-    "ticker": "PHDC",
     "origin": 2023,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "no finance charge in the as-reported panel at this origin"
    },
    {
     "ticker": "TMGH",
     "origin": 2020,
-    "why": "capex intensity needs 3 years and the block carries 1"
-   },
-   {
-    "ticker": "TMGH",
-    "origin": 2021,
     "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
@@ -522,29 +582,34 @@
  "maintenance on the DISCLOSED LIFE \u2014 A SENSITIVITY, NOT THE DECLARED RUN": {
   "score": {
    "n": {
-    "cells": 3,
-    "origins": 3,
+    "cells": 6,
+    "origins": 6,
     "names": 1
    },
-   "mean": 1.106789807669932,
-   "median": 1.2582850659580793,
-   "mae": 1.3045567953213177,
+   "mean": 3.6624278784477275,
+   "median": 1.170485555596053,
+   "mae": 3.7613113722734206,
    "below": 1,
-   "above": 2,
+   "above": 5,
    "bootstrap": {
     "2": {
-     "lo": 0.22166136766797395,
-     "hi": 1.6251016568149848,
-     "half_width": 0.7017201445735054,
+     "lo": 0.22140580981202876,
+     "hi": 6.660885727082447,
+     "half_width": 3.219739958635209,
      "n_boot": 2000
     },
     "3": {
-     "lo": 1.106789807669932,
-     "hi": 1.106789807669932,
-     "half_width": 0.0,
+     "lo": 0.42202872747653736,
+     "hi": 6.218065949225522,
+     "half_width": 2.8980186108744923,
      "n_boot": 2000
     },
-    "4": null
+    "4": {
+     "lo": 0.45129523093054624,
+     "hi": 6.088615765867232,
+     "half_width": 2.818660267468343,
+     "n_boot": 2000
+    }
    },
    "lono": {
     "ARCC": {
@@ -560,8 +625,8 @@
      "mean": null
     },
     "E2 post-float": {
-     "cells": 1,
-     "mean": -0.2966504814770787
+     "cells": 4,
+     "mean": 4.589386841549872
     },
     "E3 devaluation": {
      "cells": 2,
@@ -570,6 +635,42 @@
    }
   },
   "cells": [
+   {
+    "ticker": "ARCC",
+    "origin": 2017,
+    "fv": 201953701.59416276,
+    "price": 7.63,
+    "log": 17.091461183769876,
+    "wacc": 0.12128774419494617,
+    "terminal_share": 0.8775636941497617,
+    "price_date": "2017-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 9.75%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2018,
+    "fv": 14.733472631498655,
+    "price": 4.99,
+    "log": 1.0826860452340263,
+    "wacc": 0.21352720921539228,
+    "terminal_share": 0.5759609919703317,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 11.44%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2019,
+    "fv": 5.414123296145035,
+    "price": 3.35,
+    "log": 0.48005061867266463,
+    "wacc": 0.1889587239858775,
+    "terminal_share": 0.5553490991841081,
+    "price_date": "2019-12-31",
+    "kd_bound": "the company's own effective rate",
+    "scale": 1.0
+   },
    {
     "ticker": "ARCC",
     "origin": 2021,
@@ -611,31 +712,26 @@
    {
     "ticker": "AMOC",
     "origin": 2021,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "capex intensity needs 3 years and the block carries 1"
    },
    {
     "ticker": "AMOC",
     "origin": 2022,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
     "ticker": "AMOC",
     "origin": 2023,
-    "why": "the projection runs to horizon 3; the declared window is 5"
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
    },
    {
     "ticker": "ARCC",
-    "origin": 2017,
-    "why": "capex intensity needs 3 years and the block carries 0"
+    "origin": 2015,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
    },
    {
     "ticker": "ARCC",
-    "origin": 2018,
-    "why": "capex intensity needs 3 years and the block carries 1"
-   },
-   {
-    "ticker": "ARCC",
-    "origin": 2019,
+    "origin": 2016,
     "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
@@ -731,22 +827,22 @@
    {
     "ticker": "PHDC",
     "origin": 2022,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
    },
    {
     "ticker": "PHDC",
     "origin": 2023,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "no finance charge in the as-reported panel at this origin"
    },
    {
     "ticker": "TMGH",
     "origin": 2020,
-    "why": "capex intensity needs 3 years and the block carries 1"
+    "why": "capex intensity needs 3 years and the block carries 2"
    },
    {
     "ticker": "TMGH",
     "origin": 2021,
-    "why": "capex intensity needs 3 years and the block carries 2"
+    "why": "disclosed-life sensitivity: the study commits no scalar useful life"
    },
    {
     "ticker": "TMGH",
