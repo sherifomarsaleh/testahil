@@ -97,7 +97,7 @@ CLAUSES = [
 # visible rather than dropped; what changes is that they no longer hold the book.
 # [R-VCAL-02] is the rule this map implements.
 PHASE = {"A": 1, "B": 1, "C": 1, "F": 1, "D": "2b", "E": "2b"}
-GATING = [c for c in "ABCF"]
+GATING = [c for c in "GBCF"]   # [R-VCAL-02 CLAUSE THREE]: G replaces A
 
 
 def _cashflow():
@@ -310,6 +310,63 @@ def _market_census():
     return out
 
 
+AUDIT_BAR = 0.10          # [R-GAP-01]'s own audit trigger, BORROWED never minted:
+#                           a second cutoff for the same question would be the free
+#                           parameter the PROMOTION RULE forbids.
+AUDIT_FILE = "EXPENSIVE_CALLS_AUDIT_08-09-2026.md"
+
+
+def clause_g(dec):
+    """[R-VCAL-02 CLAUSE THREE] — the bar that REPLACES clause A for Phase 1.
+
+    Per instruction: "I am not worried if we say something is cheap. Because some
+    markets and some companies are genuinely cheap. I am concerned if we say a
+    company is expensive by more than 10%." NO COMPANY IS CALLED EXPENSIVE BY MORE
+    THAN TEN PER CENT WITHOUT AN AUDIT BEHIND IT.
+
+    READ, NEVER ASSERTED [R-ENF-01]. The population comes from the SCORE — every
+    cell more than the bar below the price it was struck against — and each one
+    must be NAMED in the committed audit. A cell the audit does not name is a
+    breach; an audit naming a cell that no longer breaches is not an error, since
+    a fixed cell is exactly what the audit is for. AN UNREADABLE AUDIT IS NOT A
+    CLEAN ONE [R-ENF-04].
+    """
+    rows = dec.get("cells") or []
+    if not rows:
+        return None, ["no scored cell to hold to the bar — a run that read nothing "
+                      "is not a run that found nothing [R-ENF-04]"]
+    breach = [r for r in rows
+              if r.get("price") and r["fv"] / r["price"] - 1.0 < -AUDIT_BAR]
+    p = os.path.join(ENGINE, "valuation_calibration", AUDIT_FILE)
+    if not os.path.exists(p):
+        return None, ["%d cell(s) call a company expensive by more than %.0f%% and "
+                      "no audit is committed" % (len(breach), 100 * AUDIT_BAR)]
+    try:
+        txt = open(p, encoding="utf-8").read()
+    except Exception as exc:
+        return None, ["the committed audit will not read (%s) — unreadable is not "
+                      "clean" % type(exc).__name__]
+    missing = [r for r in breach
+               if ("%s %d" % (r["ticker"], r["origin"])) not in txt]
+    lines = ["THE BAR IS ONE-SIDED BY INSTRUCTION and its cost is recorded in the "
+             "rule: an acceptance criterion that fires one way is the shape "
+             "[R-GAP-01 AMENDED] refused for a delivery gate.",
+             "%d of %d cell(s) sit more than %.0f%% BELOW the price they were "
+             "struck against" % (len(breach), len(rows), 100 * AUDIT_BAR)]
+    for r in sorted(breach, key=lambda x: x["fv"] / x["price"]):
+        named = ("%s %d" % (r["ticker"], r["origin"])) in txt
+        lines.append("  %-6s %d  %+7.1f%%   %s"
+                     % (r["ticker"], r["origin"],
+                        100 * (r["fv"] / r["price"] - 1.0),
+                        "audited" if named else "NOT NAMED IN THE AUDIT"))
+    if missing:
+        lines.append("%d cell(s) are not named in the committed audit." % len(missing))
+        return None, lines
+    lines.append("every one is named in %s, with its cause established by "
+                 "measurement." % AUDIT_FILE)
+    return True, lines
+
+
 def main():
     today = dt.date.today()
     print("Part E criterion 3 — CLAUSE BY CLAUSE, printed not attested")
@@ -323,13 +380,22 @@ def main():
 
     verdicts = {}
     print("=" * 74)
+    g_met, glines = clause_g(dec)
+    verdicts["G"] = g_met
+    print("G  no company called expensive by more than 10% without an audit behind it")
+    print("   [R-VCAL-02 CLAUSE THREE] — GATES Phase 1 IN PLACE OF CLAUSE A")
+    for l in glines:
+        print("     %s" % l)
+    print("   -> %s\n" % ("MET" if g_met else "NOT MET"))
+
     a_met, lines = clause_a(dec)
     verdicts["A"] = a_met
     print("A  %s" % CLAUSES[0][1])
     print("   SERIES (a), the mechanical lens — struck at every origin")
     for l in lines:
         print("     " + l)
-    print("   -> %s\n" % ("MET" if a_met else "NOT MET"))
+    print("   -> %s   [REPORTED, no longer gating — see clause G]\n"
+          % ("MET" if a_met else "NOT MET"))
 
     for tag, fn in (("B", lambda: clause_b(dec)), ("C", lambda: clause_c(dec))):
         met, lines = fn()
@@ -370,6 +436,14 @@ def main():
     print("\n" + "=" * 74)
     print("PHASE — WHICH CLAUSES GATE PHASE 1 AND WHICH BELONG TO 2b")
     print("  GATING (Phase 1, the BACKTEST): %s" % ", ".join(GATING))
+    print("  REPORTED, no longer gating: A — [R-VCAL-02 CLAUSE THREE] replaced the")
+    print("  symmetric zero-bias test with the one-sided audit bar, per instruction.")
+    print("  A SYMMETRIC ZERO-BIAS TEST PENALISES A METHOD FOR DOING THE THING IT IS")
+    print("  FOR, and this house exists to find companies that are cheap. The COST is")
+    print("  that Phase 1 no longer bounds how cheap the method may lean; what guards")
+    print("  it is that [R-GAP-01]'s delivery audit stays TWO-SIDED, [R-VCAL-01]'s")
+    print("  promotion guard stays SYMMETRIC, and 2b remains the only thing that can")
+    print("  say whether a lean is information.")
     print("  REPORTED (Phase 2b, the LIVE forward record): D, E")
     print("  Part D of the plan separates these in terms and 2b grades ONLY claims")
     print("  struck after 2a closed. All 103 vintages held were struck BEFORE it, so")
@@ -396,7 +470,7 @@ def main():
     print("  clause passing here is evidence about EGX, and the UAE leg is where it is")
     print("  tested rather than assumed. A finding measured on one side of a sign change")
     print("  is not a finding about the sign.")
-    print("  WHAT THIS DOES NOT DO: it holds nothing. The gating clauses are A, B, C, F")
+    print("  WHAT THIS DOES NOT DO: it holds nothing. The gating clauses are G, B, C, F")
     print("  exactly as [R-VCAL-02 CLAUSE TWO] states them, and market coverage is not")
     print("  an adoption condition — it is reported so adoption happens with the limit")
     print("  on the page instead of in somebody's memory.")
