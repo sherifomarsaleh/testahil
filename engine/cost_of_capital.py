@@ -171,6 +171,13 @@ class Schedule:
     kd_integrity: Dict[str, object]
     disclosures: List[str] = field(default_factory=list)
     sensitivity: Dict[str, float] = field(default_factory=dict)
+    # [R-COC-02]: WHICH KIND of beta this is, from a CLOSED list, so a record cannot
+    # leave a reader unable to tell a measured regression from a priced peer beta from
+    # a tier-3 unity fallback from a number somebody typed. It is DERIVED from the
+    # BetaRecord's own tier and shrinkage rather than passed in, because a caller free
+    # to name it could name it anything and the field would be an attestation again.
+    beta_source: str = ""
+    beta_tier: Optional[int] = None
 
     def as_record(self) -> dict:
         """The shape a study commits and scripts/check_cost_of_capital.py reads."""
@@ -178,7 +185,8 @@ class Schedule:
             "market": self.market, "regime": self.regime, "years": self.years,
             "rf_observed": self.rf_observed, "default_spread": self.default_spread,
             "rf_star": self.rf_star, "erp": self.erp, "erp_basis": self.erp_basis,
-            "beta": self.beta, "ke_exp": self.ke_exp,
+            "beta": self.beta, "beta_source": self.beta_source,
+            "beta_tier": self.beta_tier, "ke_exp": self.ke_exp,
             "kd_pretax": self.kd_pretax, "kd_aftertax": self.kd_aftertax,
             "weight_equity": self.weight_equity, "weight_debt": self.weight_debt,
             "wacc_exp": self.wacc_exp,
@@ -529,7 +537,8 @@ def schedule(market: str,
     return Schedule(
         market=market, regime=path.regime, years=years,
         rf_observed=rf_observed, default_spread=spread, rf_star=rf_star,
-        erp=erp, erp_basis=erp_basis, beta=beta.beta, ke_exp=ke_exp,
+        erp=erp, erp_basis=erp_basis, beta=beta.beta,
+        beta_source=_beta_source(beta), beta_tier=beta.tier, ke_exp=ke_exp,
         kd_pretax=kd_pre, kd_aftertax=kd_at,
         weight_equity=we, weight_debt=wd, wacc_exp=wacc_exp,
         rf_terminal=rf_t, erp_terminal=erp_t, ke_terminal=ke_t,
@@ -538,6 +547,22 @@ def schedule(market: str,
         glide_fractions=fracs, forward_wacc=fwd, discount_factors=df,
         terminal_discount_factor=terminal_df,
         kd_integrity=kd_integrity, disclosures=disclosures, sensitivity=sens)
+
+
+def _beta_source(beta: "BetaRecord") -> str:
+    """Which KIND of beta this is, from the closed list [R-COC-02] reads.
+
+    DERIVED FROM THE RECORD RATHER THAN NAMED BY THE CALLER, and that is the whole
+    point: a caller free to type this field could type anything, and the field would
+    be the self-attested boolean [R-ENF-01] closes everywhere else. Shrinkage is
+    tested FIRST because a shrunk beta is a tier-1 regression that has been moved
+    toward a prior, and reporting it as an untouched regression would hide the move.
+    """
+    if beta.shrunk_from is not None:
+        return "shrunk"
+    return {1: "own_stock_regression",
+            2: "peer_relevered",
+            3: "tier3_fallback"}.get(beta.tier, "")
 
 
 class Discounter:
