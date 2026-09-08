@@ -548,27 +548,30 @@ def run(market: str, series: str, key: str, today: str,
     # gross-of-dividend overstatement unconditionally. On a zero-yield spot metal
     # that is not a flag on a defaulted input -- it is the sourced value -- and the
     # sentence was simply false.
-    # THE SAME DEFECT ONE STEP FURTHER OUT (08-Sep-2026). The metals fix above made
-    # the clause depend on the ASSET CLASS; it still does not depend on the VALUE it
-    # describes. Every dividend-paying equity struck with a SOURCED q therefore
-    # published 'q_annual=0.058 (the drift is a GROSS-OF-DIVIDEND price carry and
-    # overstates the centre by roughly the yield)' one clause after printing the
-    # drift as ln(1+rf_live)-ln(1+q) — a note contradicting the equation above it
-    # and the cone beneath it. Seven rows shipped that way (DU, BOROUGE, ADNOCLS,
-    # ADNOCDIST, ADNOCDRILL, PHAR, SWDY); they are append-only and stay as struck.
-    # A CLAUSE IS A CLAIM AND IS DERIVED FROM WHAT WAS APPLIED, never from a class.
-    # Both pre-existing branches are byte-identical: a metal at q=0 and any name at
-    # q=0 read exactly as before, and only a supplied non-zero yield is new.
-    qnote = ('(q=0 is SOURCED, not defaulted: a spot metal pays no holder yield '
-             '\u2014 the lease rate is a borrower\u2019s cost, not a return to the '
-             'holder \u2014 so the carry is rf alone.)'
-             if aclass == 'metal' and q_annual == 0 else
-             '(SOURCED \u2014 the carry is NET of this yield: the drift is '
-             'ln(1+rf_live)\u2212ln(1+q) as printed above, not a gross-of-dividend '
-             'price carry.)'
-             if q_annual else
-             '(FLAGGED \u2014 house convention; the drift is a GROSS-OF-DIVIDEND '
-             'price carry and overstates the centre by roughly the yield.)')
+    # THE SAME DEFECT, ONE BRANCH OVER (08-Sep-2026). The metal case was fixed and
+    # the other branch was left asserting the identical false claim. carry_log_h is
+    # ln(1+rf) - ln(1+q), so wherever q is a SOURCED NON-ZERO number the drift is
+    # NET of the yield and the centre is the ex-dividend price path: nothing is
+    # carried gross and nothing is overstated. AMR's 08-Sep-2026 note would have
+    # printed "GROSS-OF-DIVIDEND ... overstates the centre" two clauses after
+    # printing the formula that deducts it, against a sourced q of 3.66%; BOROUGE
+    # and DU shipped that sentence on 07-Sep and their rows are permanent. The
+    # claim is now DERIVED from q_annual rather than asserted -- the rule the
+    # width_cal and nu clauses below already obey -- and the flag SURVIVES where it
+    # is true: a non-metal q of exactly zero is the defaulted case STEP 4 says to
+    # flag, and there the drift really is rf alone.
+    if aclass == 'metal' and q_annual == 0:
+        qnote = ('(q=0 is SOURCED, not defaulted: a spot metal pays no holder yield '
+                 '\u2014 the lease rate is a borrower\u2019s cost, not a return to the '
+                 'holder \u2014 so the carry is rf alone.)')
+    elif q_annual:
+        qnote = ('(the carry is NET of it \u2014 ln(1+rf) \u2212 ln(1+q) \u2014 so the '
+                 'centre is the ex-dividend price path and the yield is deducted, '
+                 'never carried.)')
+    else:
+        qnote = ('(FLAGGED \u2014 q could not be sourced and defaults to zero, so the '
+                 'drift is rf alone: a GROSS-OF-DIVIDEND price carry that overstates '
+                 'the centre by roughly the yield.)')
     # THE DIRECTION CALL IS STATED ON EVERY NAME [R-DRIFT-01], including inside the
     # dead zone, where it prints WEAK against a tilt of exactly zero. It is DERIVED
     # from the strike's own z and alpha, never asserted — a call typed into a

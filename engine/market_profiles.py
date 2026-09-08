@@ -442,7 +442,7 @@ UAE = MarketProfile("AE", "UAE (ADX/DFM)", FED_SCHEDULE, 0.0365,
     "17-Jun-2026. NB the peg 'never-UST' rule governs the VALUATION rf (AED govt bond) -- "
     "the MC carry correctly tracks the Fed for a pegged currency.", "mom_combo", +1, 0.108, True,
     ic_by_h={"1M": 0.108, "3M": 0.185},
-    nu=4.5, width_cal=0.965,
+    nu=5.0, width_cal=0.944,
     fit_meta=(
         "UPDATE 24-Aug-2026 [R-SHAPE-01]: mid-band reshape ADOPTED per instruction "
         "(investor session) via scripts/adopt_calibration.py -- (nu 10, cal 0.916) -> "
