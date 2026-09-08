@@ -16,16 +16,38 @@ this is evidence about 08-09-2026 and not a description of the gate set.
 timeout, plus the import-not-parse checks on the modules the protocol names and the
 JavaScript load-assert on `assets/data.js`.
 
-**Result: 158 completed, 156 green, and BOTH reds were artefacts of how the sweep was
+**Result: 159 completed, 157 green, and BOTH reds were artefacts of how the sweep was
 run rather than defects in the book** — each is named below with the serial re-run that
 settles it. The import checks passed on all nine named modules and `node --check` passed
 on `assets/data.js`.
 
-**The 159th, `check_new_study_gauntlet_negative_control`, took three attempts and the
-first two were killed by the operator, not by the gate** — it plants a weakened gate and
-re-runs the whole set inside a sandbox for EVERY case, which is the most expensive check
-in the repository. Its subject, `check_new_study_gauntlet`, was GREEN both serially and
-in the parallel sweep.
+**The 159th, `check_new_study_gauntlet_negative_control`, is GREEN: 7 of 7 cases
+behaved as specified.** It plants a weakened gate and re-runs the whole set inside a
+sandbox for EVERY case, which makes it the most expensive check in the repository, and it
+took FIVE attempts to get an answer — every failure the operator's or the environment's,
+none of them the gate's. Its subject, `check_new_study_gauntlet`, was GREEN standalone at
+**49 of 49 gates refuse a new study**, run alone as its own control on the same evidence.
+
+**CASE 4 IS THE ONE WORTH RECORDING, AND IT WENT RED TWICE FOR TWO DIFFERENT NON-REASONS
+BEFORE IT PASSED.** It seeds all fourteen ratchets with the unknown study — one innocent
+line per list, the cheapest way to make every check in the repository go blind on one
+name, and the edit `--prune` would then PRESERVE because from outside it reads as
+legitimate recorded debt. On the first attempt the gauntlet CRASHED: `FileNotFoundError`
+on the planted directory at `check_new_study_gauntlet.py:660`, the cleanup after the
+artefact-gate loop, because its sandbox was deleted from OUTSIDE the running process. The
+gauntlet creates exactly one sandbox (`tempfile.mkdtemp`, line 505) and removes it only in
+its own `finally`, and nothing in the repository deletes `/tmp/gauntlet*` — so the
+deletion was the environment's or the operator's, and the operator's own cleanup glob
+`/tmp/gauntlet_[a-z]*` matches a live sandbox by construction. **A CRASH EXITS 1 AND
+THEREFORE READS EXACTLY LIKE A RED**, which is why it was diagnosed rather than reported:
+the standalone run and case 7, the clean case that must exit 0, both settled that the
+gauntlet does not crash on its own. The second attempt then hit a 30-minute wall the
+operator had given it — **A TIMEOUT IS NOT A PASS AND WAS NOT RECORDED AS ONE.** Re-run
+alone with a 120-minute window it PASSED, red with `refuse a new study`, naming the five
+gates that went green under the seeded ratchets: check_study_provenance,
+check_document_structure, check_sweep_module, check_prose_figures and
+check_delivered_vocabulary. The design holds: seeding every ratchet at once does NOT get a
+new study past the set.
 
 **AND IT FILLED THE DISK, WHICH IS THE THIRD OPERATOR ARTEFACT OF THE DAY AND THE ONLY
 ONE THAT COULD HAVE COST SOMETHING.** Each sandbox is a 1.4 GB copy of the repository;
