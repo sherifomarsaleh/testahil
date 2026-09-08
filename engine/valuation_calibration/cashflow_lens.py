@@ -740,6 +740,144 @@ def _project_egch_7a(origin):
     return project_egch(origin, corrected=True)
 
 
+
+# --------------------------------------------------- clause F, the decomposition
+# [R-ANCHOR-01 CLAUSE THREE], adopted 08-09-2026: a forecast rate that climbs past
+# everything the company has ever FILED is a claim, and it is named and sourced like
+# one from a closed list of mechanisms. A MECHANICAL LENS CANNOT NAME ONE BY
+# CONSTRUCTION -- it is forbidden judgement drivers, which is what a mechanism is --
+# so a mechanical projection that rises past the filed record is asserting something
+# nothing in it is entitled to assert.
+#
+# THIS IS AN ATTRIBUTION, NOT A PROMOTED LEVER, and the distinction is the same one
+# this file already draws around the unit-error readings above: the pre-registration
+# fixes six levers in order and this is not among them. It exists to answer criterion
+# 3's clause F -- whether the residual bias attributes to a NAMED lever -- and the
+# lever it names is a standing rule with a gate behind it, not a parameter.
+#
+# The peak is AS AT THE ORIGIN, never as at today: a later good year must not license
+# an earlier forecast that could not have known about it.
+# A NAMED ADAPTER PER RUN, NEVER A GUESSED CONVENTION. Five runs carry five
+# shapes: the first draft of this reader looked for one set of keys, resolved on
+# exactly one name and reported the other four as carrying no margin -- an absent
+# answer in a clean answer's clothes [R-ENF-04], and [L-355] arriving in the
+# instrument rather than in the work. A gate built on it would have attributed the
+# whole residual to the one run whose keys happened to match.
+#
+# `operating` on a run that files the line directly; `gross_profit` less the
+# administrative line where it does not; and a run that files neither is REPORTED
+# rather than skipped.
+PEAK_ADAPTER = {
+    "ARCC": ("arcc_walkforward/panel_export.json", "is.revenue",
+             ["is.gross_profit"], ["is.ga"]),
+    "EGCH": ("egch_walkforward/panel_export.json", "is.revenue",
+             ["is.revenue", "-is.cost_of_sales"], ["is.admin"]),
+    "PHDC": ("phdc_walkforward/panel.json", "is.revenue",
+             ["is.gross_profit"], ["is.sga"]),
+    # This run files the operating line directly only in its later years, so the
+    # adapter carries a FALLBACK rather than reporting the early ones absent --
+    # which is the same [L-355] failure one level down: an adapter that resolves
+    # on the years it happens to fit and calls the rest empty.
+    "SWDY": ("swdy_walkforward/panel.json", "revenue",
+             ["operating"], [], (["gross_profit"], ["admin"])),
+    "TMGH": ("tmgh_walkforward/panel_annual.json", "total_revenue",
+             ["operating_income"], []),
+}
+
+
+def _num(v):
+    """A run's cell, whether it is a bare number or a four-field record."""
+    if isinstance(v, dict):
+        v = v.get("value")
+    return v if isinstance(v, (int, float)) else None
+
+
+def _row(d, y):
+    """The year's own figures, whether they sit at the year or under `cells`."""
+    r = d.get(y) or {}
+    inner = r.get("cells")
+    return inner if isinstance(inner, dict) else r
+
+
+def _years(d):
+    """A run's own year map, whether it sits at the top or under a wrapper."""
+    if any(str(k).isdigit() for k in d):
+        return d
+    for w in ("years", "annual", "fy"):
+        inner = d.get(w)
+        if isinstance(inner, dict) and any(str(k).isdigit() for k in inner):
+            return inner
+    return {}
+
+
+def filed_peak_margin(tk, origin):
+    """The highest operating margin this company had FILED as at this origin.
+
+    AS AT THE ORIGIN, never as at today: a later good year must not license an
+    earlier forecast that could not have known about it. That is point-in-time
+    discipline arriving in an attribution rather than in a panel.
+    """
+    spec = PEAK_ADAPTER.get(tk)
+    if spec is None:
+        return None, "no named adapter for this run"
+    rel, rev_k, plus, minus = spec[0], spec[1], spec[2], spec[3]
+    fallback = spec[4] if len(spec) > 4 else None
+    p = os.path.join(ENGINE, rel)
+    if not os.path.exists(p):
+        return None, "this run commits no as-reported panel at %s" % rel
+    try:
+        d = _years(json.load(open(p, encoding="utf-8")))
+    except Exception as exc:
+        return None, "the panel will not parse: %s" % type(exc).__name__
+    best, seen = None, 0
+    for y in sorted(k for k in d if str(k).isdigit()):
+        if int(y) > origin:
+            break
+        row = _row(d, y)
+        r = _num(row.get(rev_k))
+        if not r:
+            continue
+        op = None
+        for pl, mi in ([(plus, minus)] + ([fallback] if fallback else [])):
+            acc, ok = 0.0, True
+            for k in pl:
+                neg = k.startswith("-")
+                v = _num(row.get(k[1:] if neg else k))
+                if v is None:
+                    ok = False
+                    break
+                acc += -abs(v) if neg else v
+            if not ok:
+                continue
+            for k in mi:
+                acc -= abs(_num(row.get(k)) or 0.0)
+            op = acc
+            break
+        if op is None:
+            continue
+        seen += 1
+        m = op / r
+        best = m if best is None else max(best, m)
+    if best is None:
+        return None, ("no filed year at or before this origin carries a margin "
+                      "(%d year(s) read)" % seen)
+    return best, None
+
+
+def _cap_at_filed_peak(tk, origin, proj):
+    """Hold a projected operating margin to the filed record as at the origin."""
+    peak, why = filed_peak_margin(tk, origin)
+    if peak is None:
+        return proj, why
+    out = {}
+    for h, r in proj.items():
+        rev, ebit = r.get("revenue"), r.get("ebit")
+        if rev and ebit is not None and ebit > peak * rev:
+            r = dict(r, ebit=peak * rev)
+        out[h] = r
+    return out, None
+
+
 PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": _project_egch_7a,
               "PHDC": project_phdc, "TMGH": project_tmgh, "SWDY": project_swdy}
 
@@ -1359,6 +1497,7 @@ def study_life(tk):
 
 
 def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
+         cap_filed_peak=False,
          arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
          pit_beta=False, crp_lambda=None):
     panel, _src = P._panel(os.path.join(ENGINE, "%s_walkforward" % tk.lower()))
@@ -1386,6 +1525,8 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
     # is byte-identical to what it was before this sensitivity existed.
     proj = (PROJECTORS[tk](origin, unit_fix=arcc_unit_fix)
             if (arcc_unit_fix and tk == "ARCC") else PROJECTORS[tk](origin))
+    if cap_filed_peak:
+        proj, _cap_why = _cap_at_filed_peak(tk, origin, proj)
     hs = [h for h in horizons if h in proj]
     if len(hs) < MIN_EXPLICIT:
         return None, ("the projection runs to horizon %d and %d explicit years is the "
@@ -1622,7 +1763,7 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
 
 def run(market="EG", horizons=HORIZONS, maintenance="amount",
         arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
-        pit_beta=False, crp_lambda=None):
+        pit_beta=False, crp_lambda=None, cap_filed_peak=False):
     cells, names, declared, usable = P.build(market)
     rows, dropped = [], []
     for (tk, y), c in sorted(cells.items()):
@@ -1634,6 +1775,7 @@ def run(market="EG", horizons=HORIZONS, maintenance="amount",
         try:
             r, why = cell(tk, y, market, c, horizons=horizons,
                           maintenance=maintenance, arcc_unit_fix=arcc_unit_fix,
+                          cap_filed_peak=cap_filed_peak,
                           glide=glide, terminal_anchor=terminal_anchor,
                           erp_basis=erp_basis, pit_beta=pit_beta,
                           crp_lambda=crp_lambda)

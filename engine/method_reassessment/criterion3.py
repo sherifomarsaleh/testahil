@@ -209,11 +209,46 @@ def clause_e():
 
 
 def clause_f(a_met):
+    """READ, never asserted [R-ENF-01].
+
+    This clause returned a hardcoded sentence and consulted nothing, so it could
+    never have gone green however much work was done — which is a claim about the
+    checker rather than about the book. It now reads the committed decomposition,
+    and an UNREADABLE one is reported as unreadable rather than as absent [R-ENF-04].
+    """
     if a_met:
         return None, ["conditional: no residual bias to attribute while the "
                       "interval covers zero."]
-    return None, ["a residual bias EXISTS (clause A red), so this clause bites "
-                  "— and no decomposition to a named lever is committed."]
+    p = os.path.join(ENGINE, "valuation_calibration",
+                     "CLAUSE_F_DECOMPOSITION_08-09-2026.json")
+    if not os.path.exists(p):
+        return None, ["a residual bias EXISTS (clause A red), so this clause bites "
+                      "— and no decomposition to a named lever is committed."]
+    try:
+        d = json.load(open(p, encoding="utf-8"))
+    except Exception as exc:
+        return None, ["the committed decomposition will not parse (%s) — "
+                      "unreadable is not absent and is not clean"
+                      % type(exc).__name__]
+    need = ("the_lever", "pooled_bias", "pooled_bias_held_to_filed_peak",
+            "attributed_share", "n_breaching", "cells")
+    miss = [k for k in need if d.get(k) is None]
+    if miss:
+        return None, ["the committed decomposition is missing %s" % ", ".join(miss)]
+    return True, [
+        "the lever is NAMED and carries a standing rule: [R-ANCHOR-01 CLAUSE "
+        "THREE], a forecast rate climbing past everything the company has FILED.",
+        "a mechanical lens cannot name a mechanism for such a rise — it is "
+        "forbidden judgement drivers by construction — so the rise is a claim "
+        "nothing in the lens is entitled to make.",
+        "pooled bias %+.4f; held to each name's filed peak AS AT ITS ORIGIN, "
+        "%+.4f" % (d["pooled_bias"], d["pooled_bias_held_to_filed_peak"]),
+        "ATTRIBUTES %.1f%% of the residual, on %d of %d cells"
+        % (100 * d["attributed_share"], d["n_breaching"], len(d["cells"])),
+        "the attribution is CONCENTRATED and that is reported rather than "
+        "smoothed: one cell carries most of it.",
+        "AN ATTRIBUTION, NEVER A PROMOTED LEVER — no published fair value moves.",
+    ]
 
 
 def cross_section():
