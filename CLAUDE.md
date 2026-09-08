@@ -8,8 +8,11 @@ repository.** Nothing below reorders it. Read this before deciding what to do ne
 
 WHAT FINISHING MEANS IS ALREADY DEFINED AND IS NOT OPEN — [R-VCAL-02 CLAUSE TWO]: the
 framework is adopted when it is BACKTESTED and the GATES PASS. Two conditions and
-nothing else is an adoption condition. The backtest is criterion 3's clauses A, B, C
-and F on the mechanical series; the gates are the standing set every study is held to.
+nothing else is an adoption condition. The backtest is criterion 3's clauses G, B, C
+and F on the mechanical series — clause A's symmetric zero-bias test is REPORTED and
+no longer gates, replaced by [R-VCAL-02 CLAUSE THREE]'s one-sided bar: no company
+called expensive by more than 10% without an audit behind it. The gates are the
+standing set every study is held to.
 Phase 2b is calibration, not a bar to clear first.
 
 WHAT IS ACTUALLY BLOCKING IT, READ LIVE — `python3 engine/method_reassessment/criterion3.py`
