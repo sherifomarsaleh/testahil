@@ -428,6 +428,50 @@ def _egch_corrected(B, origin, h):
         EP.actual = real
 
 
+def _egch_foreign_leg(B, origin, h, ladder=False):
+    """EGCH's projection with declaration 7's corrections to the two macro legs.
+
+    Nothing in the driver structure moves. What moves is the two rates the
+    purchasing-power relation stands on:
+
+      7A  THE FOREIGN LEG is this lens's own long-run figure, US_INFLATION_LT,
+          instead of the last published foreign print held flat for five years.
+          At origin FY2023 that print is 8.00%, so revenue priced in dollars
+          grew at 5.5% a year against costs compounding at 13.9% -- an 8.4-point
+          wedge between a price and a cost that are the same event.
+
+      7B  THE DOMESTIC LEG is the origin's own published forward ladder, mapped
+          onto this run's June fiscal year by `fiscal_june` (half of each of the
+          two calendar years the fiscal year spans), instead of that origin's
+          last published print held flat. Declaration 6 applied this to the other
+          two names and exempted this one on a reason that covered only its
+          currency.
+
+    THE PATCH LANDS ON THE MODULE THE PROJECTOR ACTUALLY HOLDS, not on a second
+    instance obtained by importing the name here -- the shadowing trap this file
+    already records, where the correction silently applies to nothing and the run
+    reports an unchanged figure as a clean result. It is asserted below.
+    """
+    real_us = B.cpi_us_rate
+    real_eg = B.cpi_eg_rate
+    B.cpi_us_rate = lambda o: US_INFLATION_LT
+    if ladder:
+        yr0 = int(str(origin)[2:]) if str(origin).startswith("FY") else int(origin)
+
+        def _june(o, year, foresight=False):
+            # fiscal_june: a 30-June year spans two calendar years, half in each.
+            y = int(str(year)[2:]) if str(year).startswith("FY") else int(year)
+            fwd = _fwd_cpi(yr0)
+            a, b = fwd(y - yr0 - 1), fwd(y - yr0)
+            return 0.5 * a + 0.5 * b
+        B.cpi_eg_rate = _june
+    try:
+        return B.project(origin, h)
+    finally:
+        B.cpi_us_rate = real_us
+        B.cpi_eg_rate = real_eg
+
+
 def project_egch(origin, corrected=False):
     """EGCH is NOT median-anchored, and the reason is declaration 6's own caveat.
 
@@ -451,8 +495,11 @@ def project_egch(origin, corrected=False):
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        if corrected:
+        if corrected == "median":
             p = _run(d, _egch_corrected, B, "FY%d" % origin, h)
+        elif corrected:
+            p = _run(d, _egch_foreign_leg, B, "FY%d" % origin, h,
+                     ladder=(corrected == "ladder"))
         else:
             p = _run(d, B.project, "FY%d" % origin, h)
         need = ("cost_of_sales", "selling", "admin", "provisions", "other_bucket")
@@ -674,7 +721,26 @@ def project_swdy(origin, corrected=True):
     return out
 
 
-PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": project_egch,
+# DECLARATION 7 LEVER 7A IS ON: this run's foreign leg is the house long-run
+# figure rather than the origin's last published foreign print held flat.
+#
+# LEVER 7B IS HELD, AND ITS REASON IS POINT-IN-TIME RATHER THAN ITS EFFECT.
+# The domestic ladder would come from the macro archive, whose EG vintage is the
+# IMF WEO published each OCTOBER; this run's fiscal year ends 30 JUNE, so at
+# origin FY2023 that ladder was four months from being published and the origin
+# cannot have seen it. Point-in-time discipline is absolute and outranks the
+# correction. It is recorded rather than dropped, WITH ITS MEASURED DIRECTION, so
+# the hold cannot be read as selection: applied, it makes this run's margin
+# decline WORSE at both scored origins (-88.2% -> -47.7% at FY2023 and
+# -58.5% -> -64.1% at FY2022, against -18.5% and -23.1% under 7A alone). A lever
+# held because it hurt would be the offence; this one is held because the origin
+# could not have known it, and it hurt. Closing it needs an April-edition vintage
+# the archive does not hold for these years, which is a data-carry job.
+def _project_egch_7a(origin):
+    return project_egch(origin, corrected=True)
+
+
+PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": _project_egch_7a,
               "PHDC": project_phdc, "TMGH": project_tmgh, "SWDY": project_swdy}
 
 
@@ -1102,6 +1168,36 @@ def wacc_at(tk, origin, market, panel, blk, price, shares, glide=False,
         kd, bound = sov, "FLOORED at the sovereign (effective %.2f%%)" % (eff * 100)
     else:
         kd, bound = eff, "the company's own effective rate"
+
+    # ---------------------------------------------------------------- LEVER 7C
+    # THE FLOOR BINDS A BOOK THAT IS ACTUALLY LOCAL. [R-COC-01] refuses a cost of
+    # debt below its own sovereign ON AN ALL-LOCAL-CURRENCY BOOK, and separately
+    # requires FX debt at LOCAL-EQUIVALENT cost. Nothing established which kind of
+    # book it was, so the floor above ran unconditionally — measured over the whole
+    # lens it binds on every cell in the book without exception.
+    #
+    # Where the run commits a composition read from the company's own filings the
+    # book is split and each half priced as the rule already directs. Where it does
+    # not, or the disclosure does not foot, this is a no-op and the floor stands —
+    # a weight that is not disclosed is NOT estimated.
+    import debt_currency as DC
+    rec, dc_why = DC.split(tk, origin)
+    if rec is not None:
+        try:
+            fwd = _fwd_cpi(origin)
+            dep = sum((1 + fwd(h)) / (1 + US_INFLATION_LT) - 1
+                      for h in HORIZONS) / len(HORIZONS)
+        except Exception:
+            rec, dc_why = None, "no published inflation path to price the foreign leg"
+    if rec is not None:
+        kd_before = kd
+        kd = DC.kd(rec, sov, dep)
+        bound = ("SPLIT %.1f%% foreign at %.2f%% + %.2f%% expected depreciation; "
+                 "local floored at %.2f%% (was %.2f%% on the whole book)"
+                 % (rec["w_fx"] * 100, rec["r_fx"] * 100, dep * 100,
+                    max(rec["r_local"], sov) * 100, kd_before * 100))
+    else:
+        bound = "%s [currency of borrowing: %s]" % (bound, dc_why)
     tau = tax_rate(tk, origin)
     e = price * shares
     d = debt
