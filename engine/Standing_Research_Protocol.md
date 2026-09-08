@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-08e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-08f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -4997,3 +4997,179 @@ construction — correctly, since a new study owes no debt.
 not a record, it is a re-assertion.** It says what the code believes today rather than what the
 work was held to, and the difference is invisible until somebody asks which of the two the reader
 is entitled to rely on.
+
+---
+
+## [R-STYLE-01] ANSWERS ARE SHORT AND THE WORDS ARE PLAIN
+
+*Adopted 08-Sep-2026, per instruction — "You keep answering me in lengthly complicated
+answers when i ask you something. That is not helpful at all"; and, the same hour, "I
+also want simple language".*
+
+**The rule was already written and it bound nothing.** "3-4 sentences max, no preamble,
+lead with the answer" sat at the END of `CLAUDE.md` and at the END of the digest, in
+those words, for weeks. The answers went on being long. Nobody disagreed with the rule;
+it simply was not present at the moment it bound — which is [R-ENF-01]'s failure applied
+to the operator instead of to a study, and it is the third time this project has met it.
+
+### Why it failed, which is structural and not a matter of anyone trying harder
+
+**(1) The digest was auto-loaded into every session.** `CLAUDE.md` carried
+`@engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md` as an include, so roughly 55,000
+characters of shouted clauses, nested qualifications and rule identifiers were read
+before every answer — before "what time is it" as much as before a study build. **A
+model writes in the register it has just read.** The document instructing brevity was
+itself the longest and most ornate thing in the room, so the instruction and the example
+pointed opposite ways, and the example won. This is not a criticism of the digest: it is
+long because the rules are many and each one carries the failure it was adopted from,
+and that is right for a document read deliberately before a study. It is wrong as the
+last thing read before an ordinary question.
+
+**(2) The rule was last.** A style rule at the bottom of a long file is read after the
+register is already set. Placement is not decoration; it is when the rule arrives
+relative to the thing it governs.
+
+### The fix is placement and load, not wording
+
+The cap is now the FIRST section of `CLAUDE.md`. The digest is referenced BY PATH and is
+no longer included: it is read in full, deliberately, before starting or re-issuing a
+study, a walk-forward run, a critique response, a roll-forward, a publish, or a rule
+amendment — and it is not read for a quick factual question. The literal path stays in
+`CLAUDE.md`, so [R-DOC-01]'s obligation to move that one non-globbable reference in the
+same commit as any rename is unaffected. Every gate resolves the digest by pattern, so
+nothing else moves with the name.
+
+### The cap
+
+**Four sentences.** No preamble, no summary of what was done, lead with the answer.
+Expand only on "expand", "in full" or "why". An answer that seems to need more needs
+FEWER WORDS, not more sentences — cut the reasoning, keep the conclusion.
+
+**The cap is on prose and not on work,** and the exceptions are named so that it cannot
+be used to withhold something. A table the user asked for (a QC gate, a gap review, a
+findings list), the verbatim digest text after an amendment, a delivered study document,
+and tool or gate output quoted as evidence are ARTEFACTS, not answers: emit the artefact,
+then say at most four sentences about it.
+
+**The failure mode is named in advance, because it is the one that will actually
+happen.** Either the operator decides something "counts as an artefact" to escape the
+cap, or — worse — gives a one-line answer that leaves out a finding the user needed. A
+SHORT ANSWER THAT OMITS A MATERIAL FINDING IS A BREACH OF THIS RULE, NOT COMPLIANCE WITH
+IT. The conclusion goes inside the four sentences and the workings are OFFERED; nothing
+is silently dropped to make a word count.
+
+### Plain language, which carries the same force and is the half that was missing
+
+Write the way you would say it out loud to a colleague. Short words. Short sentences.
+One idea per sentence. "We found", not "it was established that". "The number is wrong",
+not "the figure appears inconsistent with the underlying record". "Fair value is 30%
+under the market price", not "the central sits materially below the latest known spot".
+
+Banned in chat: em-dash pile-ups and nested clauses; SHOUTED phrases; this house's own
+register ("THE GENERAL LESSON, WHICH IS NOT ABOUT X", "stated rather than discovered
+later", "the shape of the thing"); and a rule identifier used as shorthand for an idea —
+say what the rule requires, in words, and put the `[R-XXX-NN]` tag after it only if it is
+needed at all. Keep a technical term only where it is the actual name of a thing here:
+fair value, beta, the cone, the ledger.
+
+**The delivered documents are not affected, and that limit is deliberate.** Study
+documents, protocol amendments and the digest keep their own voice and their own
+precision. A delivered document is read once, with care, by someone who needs the
+qualifications; a chat answer is read in a hurry by someone who wants the number. The
+eight depth-bar standards already govern the documents. This rule is about how the chat
+reads.
+
+### Enforcement is prose, and that is said plainly rather than dressed up
+
+Per [R-ENF-01], a rule that can be checked from outside must be. This one cannot: no
+script can read an answer that was never written to disk, and a gate that could would be
+grading a judgement rather than a fact. The honest backstop is PLACEMENT — the cap is
+the first thing read, before the register is set — and the user saying so when it slips.
+Recorded here so the next session inherits the reasoning and not only the instruction.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT STYLE: A DOCUMENT TEACHES BY ITS OWN SHAPE AS
+WELL AS BY ITS CONTENT, AND THE SHAPE WINS.** Everything loaded into a session is an
+example of how to write, whatever it happens to say about how to write. Where an
+instruction and the material carrying it disagree, the fix is to change what gets loaded
+— not to restate the instruction more firmly, which is what had been tried twice.
+
+
+---
+
+## [R-GAP-02 CLAUSE FOUR] THE DISSENT IS THE CASE; THE PRINCIPAL IS THE DECISION
+
+*Adopted 08-Sep-2026, per instruction — "The instruction should block publishing any study
+with the fair value 10% below latest traded price. It should get back to me for
+authorization."*
+
+**As the rule stood, a study could write its own release.** A central more than 10% below
+the latest known price was held, and the only thing between it and the live site was a
+`MARKET_DISSENT` filed by the same desk that produced the answer under suspicion. The five
+headings are demanding and they were written sincerely — and they are still a
+SELF-ATTESTATION, which is the shape [R-ENF-01] closes everywhere else in this repository.
+It survived here longer than anywhere else because the document is hard to write, and
+difficulty is not independence.
+
+### When it is owed — the same condition as the block, and nothing else
+
+The authorisation is owed **where the fair value is more than 10% BELOW the latest traded
+price**, and in no other case. A study inside the band publishes with no authorisation, and
+so does one ABOVE the price by any margin: the block is one-sided and this clause inherits
+its side exactly. **Asking where nothing is owed is its own breach** [R-IND-01] — it turns a
+narrow escalation into a standing queue, which is that rule's own complaint. The price is
+the LATEST KNOWN one [R-GAP-01 AMENDED], read from the committed supplied artefact, so the
+block and the authorisation cannot disagree about the gap. Where the answer is two-sided the
+trigger is the block's own: every branch more than 10% below.
+
+### What is required now
+
+Both, and in this order: the study makes its argument, then it asks. The dissent is
+unchanged — five headings, `DISSENT_AT_GAP`, and its own staleness tolerance. Added to it
+is `engine/{ticker}_study/PUBLISH_AUTHORISATION_{DD-MM-YYYY}.md`, carrying `AUTHORISED_BY`,
+`AUTHORISED_AT_GAP` and the central it approves.
+
+**The authorisation is an artefact and never a sentence in a conversation** [R-IND-01]. The
+container is rebuilt from the repository, so an approval given in chat and written nowhere
+binds nothing and the next session asks again — which is the exact failure [R-IND-01] was
+adopted on, three days after it happened.
+
+**It goes stale with the case it approved**, on the same three-point tolerance as
+`DISSENT_AT_GAP`. An approval of a −31% disagreement is not an approval of a −55% one.
+
+**An authorisation with no dissent behind it releases nothing either**, and that half is
+not symmetry for its own sake: it would put the principal in the position of approving a
+number with no case attached, which is the MENU [R-IND-01] forbids, wearing a different hat.
+
+### Why this is a permitted exception to the independence rule
+
+[R-IND-01] says a question reaching the principal is the last resort and carries the proof
+that it is. This is the kind it explicitly allows: a decision genuinely the principal's,
+registered with a recommendation and a default, where no command in the room can close it.
+**Whether to tell the market it is wrong is not a fact this repository holds.** The
+escalation is registered in `engine/escalations.json` before it is asked, like any other.
+
+### What does not change
+
+The 10% limit and its one-sidedness (below only — errors in a discounted cash flow are not
+symmetric, and a central above the price is the ordinary shape of finding something cheap).
+[R-GAP-01]'s two-sided eight-heading AUDIT, which is a separate gate and still owes its
+review either way. The price-only publish exemption: a publish that moves no fair value
+asserts no valuation, so it needs no authorisation — what it carries is the cone, the spot,
+the technical read and a graded ledger row. The two-sided branch rule, the unreadable-study
+branch, and clause three's method hold, which still binds on its own.
+
+### Enforcement
+
+Per [R-ENF-01], `scripts/check_publish_block.py` refuses four further ways: no
+authorisation, one naming nobody, one stating no `AUTHORISED_AT_GAP`, and one authorising a
+gap the answer has since moved away from. Negative-controlled on 34 conditions, and **the
+sharpest is inverted rather than deleted**: the case asserting that a complete dissent
+RELEASES the block was correct evidence for the rule as it stood, and must now go the other
+way — the precedent [R-GAP-01] set when its trigger went two-sided. Four abuse cases ride
+beside it, each a different way of reaching a release without a real decision, because an
+exemption is only as narrow as the cases that prove it cannot be widened.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT PUBLISHING: A RELEASE WRITTEN BY THE PARTY THE
+GATE IS ABOUT IS NOT A RELEASE, IT IS A FORM.** The dissent requirement was real work and
+it still asked the suspect to sign its own discharge. Where a gate exists because a
+judgement may be wrong, the release has to come from somewhere that judgement did not.

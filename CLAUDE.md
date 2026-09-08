@@ -1,5 +1,41 @@
 # TESTAHIL — project memory
 
+## RESPONSE LENGTH — HARD CAP, READ FIRST
+
+**Chat answers: 4 sentences maximum. No preamble. No summary of what was done. Lead with
+the answer.** Expand ONLY when the user says "expand", "in full", or "why". If an answer
+seems to need more, it needs fewer words, not more sentences — cut the reasoning, keep
+the conclusion. A number, a filename and a one-line verdict beat a paragraph explaining
+them.
+
+THE CAP IS ON PROSE, NOT ON WORK. It does not apply to: a table the user asked for (QC
+gate, gap review, findings list), the verbatim digest text after a protocol amendment, a
+delivered study document, or tool/gate output quoted as evidence. Those are artefacts,
+not answers — emit the artefact, then say at most 4 sentences about it.
+
+WHERE THE ANSWER GENUINELY DOES NOT FIT: give the conclusion in one sentence and offer
+the rest ("say expand for the workings"). Never pre-empt that choice by writing both.
+
+## PLAIN LANGUAGE — SAME FORCE AS THE CAP
+
+**Write the way you would say it out loud to a colleague.** Short words. Short sentences.
+One idea per sentence. Say "we found" not "it was established that"; "the number is
+wrong" not "the figure appears to be inconsistent with the underlying record".
+
+BANNED IN CHAT: em-dash pile-ups and nested clauses; SHOUTED phrases; the protocol's own
+register ("THE GENERAL LESSON, WHICH IS NOT ABOUT X", "stated rather than discovered
+later", "the shape of the thing"); rule identifiers as shorthand for an idea — say what
+the rule requires, in words, and put the [R-XXX-NN] tag in brackets after it if it is
+needed at all.
+
+USE A PLAIN WORD FOR A TECHNICAL ONE WHENEVER ONE EXISTS: "fair value is 30% under the
+market price" beats "the central sits materially below the latest known spot". Keep the
+technical term only where it is the actual name of a thing in this repo (fair value,
+beta, the cone, the ledger).
+
+THE DOCUMENTS ARE NOT AFFECTED. Study documents, protocol amendments and the digest keep
+their own voice and their own precision. This rule is about how the chat reads.
+
 ## STANDING PRIORITY — FINISH THE FRAMEWORK
 
 **The principal's number one priority is finishing the fundamental-research framework.
@@ -46,13 +82,16 @@ only where the framework's own measurement needs it.
 REPORT ONE NAME AT A TIME, per instruction — "if there is something I do not like I want
 to catch it early." A carry is reported when that name is done, not batched at the end.
 
-
 This repo runs the TESTAHIL Standing Research Protocol: valuation studies, calibrated
 probability cones, and a public ledger, published to the live site. Read this before
 doing any research, study-build, critique-response, or publishing work here.
 
-**Full governing rules — read before starting any study:**
-@engine/PROJECT_INSTRUCTIONS_08-09-2026.md
+**Full governing rules — `engine/PROJECT_INSTRUCTIONS_08-09-2026.md`. NOT auto-loaded**
+(~55k characters; injecting it into every session is what makes ordinary answers long and
+ornate). READ IT IN FULL, with `cat`, before any of: starting or re-issuing a study, a
+walk-forward run, a critique response, a roll-forward, a publish, or amending a rule. For
+a quick factual question, do not read it. This literal path is still the one reference
+that cannot glob — update it in the same commit as any digest rename.
 
 That file is the condensed, binding digest (rules only, never volatile numbers). The
 complete prose version, with the reasoning and the failures each rule was adopted from,
@@ -235,6 +274,6 @@ and reports evidence rather than a verdict on itself.
 or from a document — always read `engine/market_profiles.py` and
 `engine/fitted_configs.json` live first; they are volatile and refit on every post.
 
-**Response style in this repo:** 3-4 sentences max, no preamble, lead with the answer.
-Expand only if asked. Never a rating or a price target — fair-value ranges and
-distributions only.
+**Response style:** the hard cap at the top of this file governs — 4 sentences, no
+preamble, lead with the answer. Stated once, there and not here. Separately and always:
+never a rating or a price target — fair-value ranges and distributions only.

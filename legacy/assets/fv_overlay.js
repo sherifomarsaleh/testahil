@@ -8,7 +8,7 @@ const FV_OVERLAY = {
  "engine_configs": {
   "AE": {
    "nu": 4.5,
-   "width_cal": 0.965,
+   "width_cal": 0.957,
    "rf_live": 0.0365,
    "width_overlay_active": false
   },
@@ -529,7 +529,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -786,98 +786,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00325
    },
    "market": "SA"
-  },
-  {
-   "ticker": "AMR",
-   "name": "Americana Restaurants International PLC",
-   "code": "ADX:AMR",
-   "ccy": "AED",
-   "spot": 2.23,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.48,
-   "fv_base": 2.15,
-   "fv_full": 3.33,
-   "gap_base_pct": -3.6,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.096776,
-    "mu_h": 0.004474,
-    "G": {
-     "bear": -4.24,
-     "base": -0.38,
-     "full": 4.14
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0016,
-     "base": 0.2984,
-     "full": 0.0019
-    },
-    "p_touch": {
-     "bear": 0.0023,
-     "base": 0.5311,
-     "full": 0.003
-    },
-    "required_cagr": {
-     "bear": -0.9927,
-     "base": -0.3549,
-     "full": 121.9341
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00176
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.172547,
-    "mu_h": 0.017778,
-    "G": {
-     "bear": -2.38,
-     "base": -0.21,
-     "full": 2.32
-    },
-    "band": "IN-REACH",
-    "informative": false,
-    "already_converged": true,
-    "p_term": {
-     "bear": 0.0122,
-     "base": 0.3461,
-     "full": 0.0176
-    },
-    "p_touch": {
-     "bear": 0.021,
-     "base": 0.6965,
-     "full": 0.031
-    },
-    "required_cagr": {
-     "bear": -0.806,
-     "base": -0.136,
-     "full": 3.9723
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00187
-   },
-   "market": "AE"
   },
   {
    "ticker": "PHDC",
@@ -1265,7 +1173,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1357,7 +1265,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1449,7 +1357,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2185,7 +2093,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2277,7 +2185,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2812,6 +2720,98 @@ const FV_OVERLAY = {
    "market": "SA"
   },
   {
+   "ticker": "AMR",
+   "name": "Americana Restaurants International PLC",
+   "code": "ADX:AMR",
+   "ccy": "AED",
+   "spot": 2.41,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.48,
+   "fv_base": 2.15,
+   "fv_full": 3.33,
+   "gap_base_pct": -10.8,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.957,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.102708,
+    "mu_h": 0.004141,
+    "G": {
+     "bear": -4.75,
+     "base": -1.11,
+     "full": 3.15
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.001,
+     "base": 0.0947,
+     "full": 0.0055
+    },
+    "p_touch": {
+     "bear": 0.0016,
+     "base": 0.1574,
+     "full": 0.0083
+    },
+    "required_cagr": {
+     "bear": -0.9971,
+     "base": -0.7459,
+     "full": 47.4313
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00193
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.172734,
+    "mu_h": 0.020535,
+    "G": {
+     "bear": -2.82,
+     "base": -0.66,
+     "full": 1.87
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0067,
+     "base": 0.1742,
+     "full": 0.0356
+    },
+    "p_touch": {
+     "bear": 0.0117,
+     "base": 0.3371,
+     "full": 0.0588
+    },
+    "required_cagr": {
+     "bear": -0.8578,
+     "base": -0.3666,
+     "full": 2.6451
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00781
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "OCDI",
    "name": "Sixth of October Development & Investment",
    "code": "EGX:OCDI",
@@ -2921,7 +2921,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3289,7 +3289,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3360,6 +3360,98 @@ const FV_OVERLAY = {
     "beats_cash": true,
     "asymmetry": "base inside 90% band",
     "selftest_max_dev": 0.00378
+   },
+   "market": "AE"
+  },
+  {
+   "ticker": "EMPOWER",
+   "name": "Emirates Central Cooling Systems Corporation PJSC",
+   "code": "DFM:EMPOWER",
+   "ccy": "AED",
+   "spot": 1.61,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.45,
+   "fv_base": 1.84,
+   "fv_full": 2.15,
+   "gap_base_pct": 14.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.957,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.083417,
+    "mu_h": -0.006231,
+    "G": {
+     "bear": -1.25,
+     "base": 1.6,
+     "full": 3.47
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0903,
+     "base": 0.0402,
+     "full": 0.0033
+    },
+    "p_touch": {
+     "bear": 0.1425,
+     "base": 0.0656,
+     "full": 0.0053
+    },
+    "required_cagr": {
+     "bear": -0.7152,
+     "base": 3.9648,
+     "full": 31.1626
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00708
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.147731,
+    "mu_h": -0.025159,
+    "G": {
+     "bear": -0.71,
+     "base": 0.9,
+     "full": 1.96
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.253,
+     "base": 0.1077,
+     "full": 0.0201
+    },
+    "p_touch": {
+     "bear": 0.4171,
+     "base": 0.2073,
+     "full": 0.0363
+    },
+    "required_cagr": {
+     "bear": -0.3421,
+     "base": 0.706,
+     "full": 2.1802
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00463
    },
    "market": "AE"
   },
@@ -3454,6 +3546,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00336
    },
    "market": "EG"
+  },
+  {
+   "ticker": "MODON",
+   "name": "Modon Holding PSC",
+   "code": "ADX:MODON",
+   "ccy": "AED",
+   "spot": 2.85,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.03,
+   "fv_base": 2.5,
+   "fv_full": 4.13,
+   "gap_base_pct": -12.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.957,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.080898,
+    "mu_h": -0.003515,
+    "G": {
+     "bear": -12.58,
+     "base": -1.62,
+     "full": 4.59
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0471,
+     "full": 0.0011
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.0725,
+     "full": 0.0021
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.7924,
+     "full": 84.7556
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00104
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.142977,
+    "mu_h": -0.010582,
+    "G": {
+     "bear": -7.12,
+     "base": -0.92,
+     "full": 2.59
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0002,
+     "base": 0.1575,
+     "full": 0.0095
+    },
+    "p_touch": {
+     "bear": 0.0002,
+     "base": 0.2701,
+     "full": 0.0164
+    },
+    "required_cagr": {
+     "bear": -0.9829,
+     "base": -0.4079,
+     "full": 3.4098
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00526
+   },
+   "market": "AE"
   },
   {
    "ticker": "IQCD",
@@ -3640,98 +3824,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "MODON",
-   "name": "Modon Holding PSC",
-   "code": "ADX:MODON",
-   "ccy": "AED",
-   "spot": 2.83,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.03,
-   "fv_base": 2.5,
-   "fv_full": 4.13,
-   "gap_base_pct": -11.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.068869,
-    "mu_h": -0.00354,
-    "G": {
-     "bear": -14.68,
-     "base": -1.8,
-     "full": 5.49
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0358,
-     "full": 0.0005
-    },
-    "p_touch": {
-     "bear": 0.0,
-     "base": 0.0544,
-     "full": 0.0007
-    },
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.7741,
-     "full": 92.3176
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00095
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.127892,
-    "mu_h": -0.010657,
-    "G": {
-     "bear": -7.9,
-     "base": -0.97,
-     "full": 2.96
-    },
-    "band": "IN-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.1467,
-     "full": 0.006
-    },
-    "p_touch": {
-     "bear": 0.0003,
-     "base": 0.2482,
-     "full": 0.0109
-    },
-    "required_cagr": {
-     "bear": -0.9825,
-     "base": -0.391,
-     "full": 3.5358
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00101
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "SABIC",
    "name": "Saudi Basic Industries Corp",
    "code": "TADAWUL:2010",
@@ -3841,7 +3933,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4006,6 +4098,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00402
    },
    "market": "EG"
+  },
+  {
+   "ticker": "AIRARABIA",
+   "name": "Air Arabia PJSC",
+   "code": "DFM:AIRARABIA",
+   "ccy": "AED",
+   "spot": 4.97,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 2.01,
+   "fv_base": 4.17,
+   "fv_full": 6.97,
+   "gap_base_pct": -16.1,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.957,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.091364,
+    "mu_h": 0.004016,
+    "G": {
+     "bear": -9.91,
+     "base": -1.92,
+     "full": 3.7
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0,
+     "base": 0.0256,
+     "full": 0.0029
+    },
+    "p_touch": {
+     "bear": 0.0,
+     "base": 0.04,
+     "full": 0.0048
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.8783,
+     "full": 56.8784
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00112
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.154887,
+    "mu_h": 0.012,
+    "G": {
+     "bear": -5.84,
+     "base": -1.13,
+     "full": 2.18
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0004,
+     "base": 0.0859,
+     "full": 0.0208
+    },
+    "p_touch": {
+     "bear": 0.0005,
+     "base": 0.1534,
+     "full": 0.0345
+    },
+    "required_cagr": {
+     "bear": -0.9732,
+     "base": -0.5044,
+     "full": 2.8682
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00506
+   },
+   "market": "AE"
   },
   {
    "ticker": "ARCC",
@@ -4190,98 +4374,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00219
    },
    "market": "QA"
-  },
-  {
-   "ticker": "FERTIGLB",
-   "name": "Fertiglobe plc",
-   "code": "ADX:FERTIGLB",
-   "ccy": "AED",
-   "spot": 2.54,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.27,
-   "fv_base": 2.15,
-   "fv_full": 2.79,
-   "gap_base_pct": -15.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.076467,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -9.06,
-     "base": -2.18,
-     "full": 1.23
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.0186,
-     "full": 0.0835
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0283,
-     "full": 0.1355
-    },
-    "required_cagr": {
-     "bear": -0.9998,
-     "base": -0.8647,
-     "full": 2.0849
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00049
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.140061,
-    "mu_h": -0.003945,
-    "G": {
-     "bear": -4.95,
-     "base": -1.19,
-     "full": 0.67
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0009,
-     "base": 0.0931,
-     "full": 0.1981
-    },
-    "p_touch": {
-     "bear": 0.0018,
-     "base": 0.1612,
-     "full": 0.3646
-    },
-    "required_cagr": {
-     "bear": -0.9375,
-     "base": -0.4866,
-     "full": 0.4557
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00095
-   },
-   "market": "AE"
   },
   {
    "ticker": "ISPH",
@@ -4577,7 +4669,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4836,190 +4928,6 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "EMPOWER",
-   "name": "Emirates Central Cooling Systems Corporation PJSC",
-   "code": "DFM:EMPOWER",
-   "ccy": "AED",
-   "spot": 1.5,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.45,
-   "fv_base": 1.84,
-   "fv_full": 2.15,
-   "gap_base_pct": 22.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.082164,
-    "mu_h": -0.006689,
-    "G": {
-     "bear": -0.41,
-     "base": 2.49,
-     "full": 4.38
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3387,
-     "base": 0.0108,
-     "full": 0.0013
-    },
-    "p_touch": {
-     "bear": 0.557,
-     "base": 0.0173,
-     "full": 0.0021
-    },
-    "required_cagr": {
-     "bear": -0.3342,
-     "base": 10.607,
-     "full": 74.1911
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00474
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.152292,
-    "mu_h": -0.013423,
-    "G": {
-     "bear": -0.22,
-     "base": 1.34,
-     "full": 2.36
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4323,
-     "base": 0.0598,
-     "full": 0.0127
-    },
-    "p_touch": {
-     "bear": 0.7523,
-     "base": 0.1096,
-     "full": 0.0239
-    },
-    "required_cagr": {
-     "bear": -0.1268,
-     "base": 1.2642,
-     "full": 3.2207
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00201
-   },
-   "market": "AE"
-  },
-  {
-   "ticker": "AIRARABIA",
-   "name": "Air Arabia PJSC",
-   "code": "DFM:AIRARABIA",
-   "ccy": "AED",
-   "spot": 5.24,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 2.01,
-   "fv_base": 4.17,
-   "fv_full": 6.97,
-   "gap_base_pct": -20.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.09733,
-    "mu_h": 0.007605,
-    "G": {
-     "bear": -9.84,
-     "base": -2.35,
-     "full": 2.93
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0,
-     "base": 0.0132,
-     "full": 0.0075
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0201,
-     "full": 0.0116
-    },
-    "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9355,
-     "full": 29.6774
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00076
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.169494,
-    "mu_h": 0.022642,
-    "G": {
-     "bear": -5.65,
-     "base": -1.35,
-     "full": 1.68
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.055,
-     "full": 0.0492
-    },
-    "p_touch": {
-     "bear": 0.0009,
-     "base": 0.1013,
-     "full": 0.0835
-    },
-    "required_cagr": {
-     "bear": -0.9783,
-     "base": -0.5989,
-     "full": 2.1304
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00133
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "TSLA",
    "name": "Tesla, Inc.",
    "code": "NASDAQ:TSLA",
@@ -5221,7 +5129,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5405,7 +5313,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5681,7 +5589,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5865,7 +5773,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5957,7 +5865,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6049,7 +5957,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6141,7 +6049,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6208,6 +6116,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "FERTIGLB",
+   "name": "Fertiglobe plc",
+   "code": "ADX:FERTIGLB",
+   "ccy": "AED",
+   "spot": 2.84,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.27,
+   "fv_base": 2.15,
+   "fv_full": 2.79,
+   "gap_base_pct": -24.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.957,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.084503,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -9.52,
+     "base": -3.29,
+     "full": -0.21
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0044,
+     "full": 0.3952
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0067,
+     "full": 0.6987
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9646,
+     "full": -0.192
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0034
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.141039,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -5.71,
+     "base": -1.97,
+     "full": -0.13
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0005,
+     "base": 0.0253,
+     "full": 0.4366
+    },
+    "p_touch": {
+     "bear": 0.0006,
+     "base": 0.0417,
+     "full": 0.8163
+    },
+    "required_cagr": {
+     "bear": -0.96,
+     "base": -0.6715,
+     "full": -0.0686
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00645
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ALDAR",
    "name": "Aldar Properties PJSC",
    "code": "ADX:ALDAR",
@@ -6225,7 +6225,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6409,7 +6409,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6501,7 +6501,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7013,7 +7013,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7740,20 +7740,20 @@ const FV_OVERLAY = {
    "name": "Borouge plc",
    "code": "ADX:BOROUGE",
    "ccy": "AED",
-   "spot": 2.4,
-   "anchor_date": "2026-08-07",
+   "spot": 2.39,
+   "anchor_date": "2026-09-07",
    "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
+   "fv_lag_days": 31,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.3,
    "fv_base": 1.48,
    "fv_full": 2.55,
-   "gap_base_pct": -38.3,
+   "gap_base_pct": -38.1,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7762,13 +7762,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.044819,
-    "mu_h": -0.004175,
+    "h_sessions": 21,
+    "sigma_h": 0.051963,
+    "mu_h": -0.008403,
     "G": {
-     "bear": -13.68,
-     "base": -10.79,
-     "full": 1.35
+     "bear": -11.72,
+     "base": -9.22,
+     "full": 1.25
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7776,23 +7776,23 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.9994,
-     "base": -0.997,
-     "full": 1.0699
+     "bear": -0.9993,
+     "base": -0.9968,
+     "full": 1.1762
     },
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00112
+    "selftest_max_dev": 0.00102
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.085085,
-    "mu_h": -0.016807,
+    "h_sessions": 62,
+    "sigma_h": 0.087403,
+    "mu_h": -0.021142,
     "G": {
-     "bear": -7.21,
-     "base": -5.68,
-     "full": 0.71
+     "bear": -6.97,
+     "base": -5.48,
+     "full": 0.74
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7800,14 +7800,14 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.9139,
-     "base": -0.8554,
-     "full": 0.2744
+     "bear": -0.9125,
+     "base": -0.853,
+     "full": 0.2959
     },
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00092
+    "selftest_max_dev": 0.0051
    },
    "market": "AE"
   },
@@ -7981,7 +7981,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.965,
+    "width_cal": 0.957,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
