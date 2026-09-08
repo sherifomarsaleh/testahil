@@ -53,30 +53,49 @@ Route recorded per document, not per company:
     cost of sales 4,588.3 + SG&A 205.6 = 4,793.9, exactly the expenses-by-nature
     total, and the same identity holds in FY2022, FY2023 and FY2024.
   * OCR off rendered pixels (pdftoppm -r 300 -gray -> tesseract 5 --psm 6 --oem 1) —
-    the FY2025 CONSOLIDATED STATEMENT OF FINANCIAL POSITION. Printed page 9 / PDF
-    page 11 of Orascom-Construction-PLC-FS-31-Dec-2025English.pdf carries ZERO
-    characters in its text layer and one embedded image: it is a scanned page inside
-    an otherwise clean PDF. It was re-read by OCR and every block footed (non-current
-    assets 859.6, current assets 4,356.2, total assets 5,215.8, equity 900.7,
-    liabilities 4,315.1, total equity and liabilities 5,215.8, and the FY2024
-    comparative column likewise).
-  * THE ONE LINE THE OCR GOT WRONG, AND HOW ARITHMETIC CAUGHT IT. On that page the
-    non-current "Loans and borrowings" row extracted as "—" for 2025 and "75" for
-    2024. Neither foots: total non-current liabilities 111.8 less payables 75.7 less
-    deferred tax 4.9 leaves 31.2, and 65.3 - 53.5 - 4.3 leaves 7.5. Note 18, which
-    IS in the text layer, prints exactly 31.2 long-term and 7.5 long-term. The
-    glyph error is recorded, the arithmetic is the arbiter, and both routes agree.
-  * NOT OBTAINED, AND SAID SO. The statement-of-financial-position pages of the
-    FY2022, FY2023 and FY2024 audited statements are image-only on the same pattern
-    (PDF page 11 in each). Three OCR attempts on the FY2024 page were killed by this
-    environment's CPU contention at 300dpi and again at 150dpi (`Terminated` after
-    500s, with ~20 unrelated tesseract processes resident). The FY2024 balance sheet
-    is nevertheless FULLY carried, because it is the comparative column of the FY2025
-    statement that WAS read and footed. The FY2022 and FY2023 balance-sheet detail is
-    an OPEN ITEM for the build and is named in the final report rather than filled
-    from anywhere else; note that FY2021-FY2024 loans, cash, net cash and total
-    equity are all available from the text layer of each year's own capital-
-    management note and all foot.
+    EVERY CONSOLIDATED STATEMENT OF FINANCIAL POSITION IN THE SET. Printed page 9 /
+    PDF page 11 is a scanned image inside an otherwise clean PDF in the FY2022,
+    FY2023, FY2024 and FY2025 filings alike: zero characters in the text layer, one
+    embedded image. Two pages were rendered and re-read, and between them they carry
+    four year-columns:
+      - FY2025 filing, page 11 -> FY2025 and FY2024 columns. Every block foots:
+        non-current assets 859.6, current assets 4,356.2, total assets 5,215.8,
+        equity 900.7, liabilities 4,315.1, total equity and liabilities 5,215.8.
+      - FY2024 filing, page 11 -> FY2024 and FY2023 columns. Every block foots:
+        FY2023 non-current assets 701.3, current assets 2,964.7, total assets
+        3,666.0, equity attributable 689.1 plus NCI 22.3 = 711.4, liabilities
+        2,954.6, total equity and liabilities 3,666.0.
+    The two readings are INDEPENDENT and they agree on the shared FY2024 column
+    figure for figure, which is the check that matters.
+  * THE THREE LINES THE OCR GOT WRONG, AND HOW ARITHMETIC CAUGHT EACH ONE. This is
+    the failure the protocol names — right positions, wrong glyphs, and nothing about
+    the extraction looking broken.
+      1. FY2025 page, non-current "Loans and borrowings": extracted as "—" for 2025
+         and "75" for 2024. Neither foots — 111.8 - 75.7 - 4.9 = 31.2 and
+         65.3 - 53.5 - 4.3 = 7.5 — and note 18's text layer prints exactly 31.2 and
+         7.5 long-term.
+      2. FY2024 page, same row plus deferred tax: "75" and "43" for 7.5 and 4.3,
+         dropped decimal points. 7.5 + 53.5 + 4.3 = 65.3, the printed subtotal.
+      3. THE DANGEROUS ONE. FY2024 page, "Billing in excess of construction
+         contracts" extracted as 955.6 — a clean, plausible number in the right
+         position. Current liabilities then compute to 3,658.5 against a printed
+         3,258.5, out by EXACTLY 400.0. The correct figure is 555.6: it makes the
+         column foot (305.7 + 1,460.6 + 873.2 + 555.6 + 37.3 + 26.1 = 3,258.5) and
+         it is what the FY2025 filing's own comparative column prints, read on a
+         separate OCR pass. A 5 was read as a 9. Nothing but the arithmetic would
+         have caught it.
+    Every corrected value is confirmed on a second, independent route before it is
+    used. Arithmetic is the arbiter, not the extractor's confidence.
+  * NOT OBTAINED, AND SAID SO. The FY2022 balance-sheet column — page 11 of the
+    FY2023 filing — was not read. Repeated OCR attempts were killed by this
+    environment's CPU contention (`Terminated` after 500s at 300dpi and again at
+    150dpi, with up to 20 unrelated tesseract processes resident), and the run that
+    finally cleared produced FY2024 and FY2023 only. FY2022 balance-sheet DETAIL is
+    therefore an OPEN ITEM, named in the final report rather than filled from
+    anywhere else. What IS held for FY2022, from the text layer of that filing's own
+    capital-management note and footing exactly: loans and borrowings 212.0, cash
+    537.7, net cash (325.7) and total equity 691.3 — plus the same four items for
+    FY2021 (64.1 / 505.7 / (441.6) / 688.6).
   * A HARMLESS EXTRACTOR WARNING, RECORDED SO IT IS NOT MISTAKEN FOR A DEFECT LATER:
     pdftotext emits "Syntax Warning: Invalid Font Weight" ~64 times on each of the
     FY2022/FY2023/FY2024 files. It did not corrupt any figure — every page used from
@@ -570,6 +589,45 @@ f_bs25 = R.add(
                  "investees of 540.0 and cash of 1,369.7 together are 36.6% of total "
                  "assets, so the equity bridge is dominated by items OUTSIDE the "
                  "operating business and cannot be modelled as a residual.")
+
+f_bs23 = R.add(
+    Ring.COMPANY, "official financial statements", D,
+    "FY2023 balance sheet, read off the FY2024 filing's own statement page (also "
+    "image-only): total assets USD 3,666.0m, total equity 711.4, total liabilities "
+    "2,954.6. Non-current assets 701.3 including equity-accounted investees 464.7; "
+    "current assets 2,964.7 including cash 696.6, trade and other receivables "
+    "1,281.1 and contracts work in progress 737.8. The FY2024 column on the same "
+    "page agrees with the FY2025 filing's comparative on every line but one — the "
+    "exception being an OCR failure on this page, not a difference between the two "
+    "filings",
+    "Orascom Construction PLC FY2024 audited consolidated financial statements, "
+    "printed page 9 / PDF page 11 (signed 25 March 2025)",
+    CO, "2025-03-25", is_fs_data=True, fiscal_period="FY2023",
+    url="https://orascom.com/wp-content/uploads/Audited-Financial-Statements-FY-2024.pdf",
+    detail="ROUTE AND ERROR RECORDED IN FULL. Same pattern as F20: zero characters "
+           "of text, one embedded image, pdftoppm -r 300 -gray then tesseract "
+           "--psm 6 --oem 1. FY2023 foots in every block: 126.4 + 27.7 + 22.1 + "
+           "464.7 + 60.4 = 701.3; 248.8 + 1,281.1 + 737.8 + 0.4 + 696.6 = 2,964.7; "
+           "701.3 + 2,964.7 = 3,666.0; 110.2 + 467.3 - 421.7 + 533.3 = 689.1, "
+           "+ 22.3 = 711.4; 0.7 + 43.8 + 2.3 = 46.8; 249.1 + 1,391.8 + 841.6 + "
+           "345.4 + 41.0 + 38.9 = 2,907.8; 46.8 + 2,907.8 = 2,954.6; 711.4 + "
+           "2,954.6 = 3,666.0. THE ONE FIGURE THIS PAGE GOT WRONG WAS IN THE FY2024 "
+           "COLUMN AND IT LOOKED PERFECT: 'Billing in excess of construction "
+           "contracts' extracted as 955.6, a clean number in the right position. "
+           "Current liabilities then came to 3,658.5 against a printed 3,258.5 — out "
+           "by exactly 400.0. The true figure is 555.6, which makes the column foot "
+           "and which the FY2025 filing's own comparative column prints on a "
+           "separate OCR pass; a 5 was read as a 9. Independent confirmations of the "
+           "FY2023 column against the text layer: loans and borrowings 0.7 + 249.1 = "
+           "249.8 and cash 696.6, exactly the FY2023 capital-management note; "
+           "retained earnings 533.3, reserves (421.7) and NCI 22.3 all match the "
+           "FY2025 filing's own 1-January-2024 opening balances; equity-accounted "
+           "investees 464.7 matches note 10's opening for 2024.",
+    model_impact="Extends the balance-sheet history to three consecutive audited "
+                 "year-ends (FY2023, FY2024, FY2025), which is what the working-"
+                 "capital driver needs: DSO, DIO, DPO, retention and advance ratios "
+                 "can now be computed across two full year-on-year moves rather than "
+                 "one. FY2022 balance-sheet detail remains the single open item.")
 
 # ---- regular disclosures ---------------------------------------------------
 f_cost = R.add(
@@ -1427,9 +1485,11 @@ R.add_driver(
     "subcontractor advances, with 71% of gross trade receivables not yet due; "
     "payables into 583.8 trade, 1,043.8 accrued and 232.6 retentions payable; "
     "contract assets 745.5 against billings in excess 990.2 and customer advances "
-    "726.8. Projected from DSO, retention and advance ratios off the revenue build, "
-    "with no plug [SIGCM clause 4].",
-    [f_deck, f_poc, f_h1, f_q1])
+    "726.8. Three consecutive audited year-end balance sheets (FY2023, FY2024, "
+    "FY2025) are now held, so the ratios are computed across two full year-on-year "
+    "moves rather than asserted. Projected from DSO, retention and advance ratios "
+    "off the revenue build, with no plug [SIGCM clause 4].",
+    [f_deck, f_poc, f_h1, f_q1, f_bs25, f_bs23])
 
 R.add_driver(
     "Capital expenditure",

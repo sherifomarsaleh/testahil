@@ -20,6 +20,14 @@ SW = json.load(open('sweep_register.json'))
 INP = D['inputs']
 
 
+def IN(k):
+    """An input's VALUE, read live. A bibliography entry that types a sector figure goes
+    stale the moment the input moves, which is how this register came to list a cement
+    production figure beside an all-product export figure [audit finding 7]."""
+    v = INP[k]
+    return v['value'] if isinstance(v, dict) and 'value' in v else v
+
+
 def pc(x, dp=1):
     return f"{x*100:.{dp}f}%"
 
@@ -222,12 +230,22 @@ CAT = [
  ('Egyptian Tax Authority', 'Tax reference',
   'Statutory corporate income tax rate of 22.5%. The rate actually used is the effective '
   'rate disclosed in the audited accounts.', 'Statutory rate'),
+ # THE ENTRY OVER-ATTRIBUTED TO THE PRESS AND MIXED TWO BASES IN ONE SENTENCE [audit
+ # finding 7, 08-Sep-2026]. It listed sector production, consumption and exports here as
+ # though the trade press supplied them; the company's own market page supplies all three,
+ # and the press supplies only nameplate capacity, the quota history and the revival
+ # programme. It also set a cement production figure beside an all-product export figure,
+ # which is the exact mismatch the utilisation claim was corrected for.
  ('Enterprise, Global Cement and International Cement Review', 'Trade and financial press',
-  'Egyptian sector context only: nameplate capacity of about 76Mt, production of about 65Mt, '
-  'domestic consumption of about 54Mt, exports of about 18.5Mt, the abolition of the '
-  'production quota in May 2025 with exports capped at 30% of output, and the 12.6Mt of '
-  'dormant capacity under revival from the second half of 2026. No company figure is taken '
-  'from these sources in this edition.',
+  f'Egyptian sector context, and NARROWER than earlier editions of this entry claimed: '
+  f'nameplate cement capacity of about {IN("egy_capacity_mt"):.0f}Mt, the abolition of the '
+  f'production quota in May 2025 with exports capped at 30% of output, and the '
+  f'{IN("egy_revival_mt"):.1f}Mt of dormant capacity under revival from the second half of '
+  f'2026. THE SECTOR SALES FIGURES ARE NOT FROM THESE SOURCES — domestic cement '
+  f'{IN("egy_cons_mt"):.1f}Mt, exported cement {IN("egy_exports_cement_mt"):.1f}Mt and '
+  f'exported clinker {IN("egy_exports_clinker_mt"):.1f}Mt all come from the company\'s own '
+  f'FY2025 investor presentation and are listed under it. No company figure is taken from '
+  f'the press in this edition.',
   'enterpriseam.com, globalcement.com, cemnet.com'),
  ('Egyptian cement market pricing commentary', 'Trade press',
   'The local realised price of about EGP 3,500 a tonne and the export price of about USD 62 '

@@ -913,20 +913,47 @@ INP = dict(
 
     # ---- sector and peers --------------------------------------------------
     egy_capacity_mt=I(76.0, "Egyptian nameplate cement capacity", "2025-10-01", "Industry"),
-    egy_cons_mt=I(53.9, "Egyptian domestic cement sales 2025. " + IRP + " page 12 gives "
-                  "53.9Mt, against the 54.0 previously carried on trade estimate",
+    egy_cons_mt=I(53.9929, "Egyptian domestic CEMENT sales 2025. " + IRP + ", Market "
+                  "Overview block, 'Cement Domestic Sales' 53,992.9 K Tons, against the 54.0 "
+                  "previously carried on trade estimate. Read at the page's own precision "
+                  "rather than the chart's rounded 53.9, because the utilisation ratios below "
+                  "are differences of large numbers", "2026-03-01", "Company"),
+    egy_prod_mt=I(72.6248, "Egyptian cement AND CLINKER sales 2025 — local plus export. " +
+                  IRP + " gives domestic cement 53,992.9, cement exports 11,063.0 and clinker "
+                  "exports 7,568.9 K Tons. Revisions 1 to 4 carried 65.0Mt as 'production' "
+                  "against exports of 18.5Mt and consumption of 54Mt, a balance that does not "
+                  "close: 65 less 54 is 11Mt, not 18.5. THE 65Mt THEY DISCARDED WAS THE RIGHT "
+                  "CEMENT-BASIS NUMBER and the balance failed because the two figures were on "
+                  "different bases, not because either was wrong. This total is the "
+                  "all-product one and it is NOT the numerator of a cement utilisation ratio",
                   "2026-03-01", "Company"),
-    egy_prod_mt=I(72.6, "Egyptian cement and clinker SALES 2025 — local plus export. " + IRP +
-                  " page 12 gives local 53.9Mt and exports 18.6Mt, total 72.6Mt. Revisions "
-                  "1 to 4 carried 65.0Mt as 'production' against exports of 18.5Mt and "
-                  "consumption of 54Mt, a balance that does not close: 65 less 54 is 11Mt, "
-                  "not 18.5. One reviewer caught the gap and the disclosure now closes it. "
-                  "This changes the sector picture materially — see the utilisation note",
-                  "2026-03-01", "Company"),
-    egy_exports_mt=I(18.6, "Egyptian cement AND clinker export sales 2025. " + IRP +
-                     " page 12. The two products are reported together, which is why the "
-                     "earlier balance failed: it set a cement-plus-clinker export figure "
-                     "against a cement-only production figure", "2026-03-01", "Company"),
+    egy_exports_mt=I(18.6319, "Egyptian cement AND clinker export sales 2025. " + IRP +
+                     ", Market Overview block, 'Total Export Sales' 18,631.9 K Tons. THE TWO "
+                     "PRODUCTS ARE REPORTED TOGETHER AND THE SAME PAGE SPLITS THEM, which is "
+                     "why the earlier balance failed: it set a cement-plus-clinker export "
+                     "figure against a cement-only production figure. The split is now carried "
+                     "in the two inputs below rather than left folded up here, because a "
+                     "utilisation ratio built on this line has the same defect",
+                     "2026-03-01", "Company"),
+    # THE EXPORT LINE SPLIT, FROM THE SAME PAGE THE STUDY ALREADY CITED [audit finding 7,
+    # 08-Sep-2026]. The utilisation claim divided 72.6Mt of cement-AND-CLINKER sales by
+    # 76Mt of CEMENT nameplate capacity and called the result a market running near 96%.
+    # The mismatch is exactly the one this study's own note above says it corrected, in the
+    # other direction — and the 65Mt it discarded as the failed balance was the right
+    # cement-basis number all along.
+    #
+    # A CLINKER TONNE IS NOT A CEMENT TONNE, and not only as a units question. Clinker
+    # leaves at the kiln and never touches a cement mill, so a tonne exported as clinker
+    # consumes no grinding capacity at all. Putting it in the numerator of a cement
+    # utilisation ratio counts capacity that was never called on.
+    egy_exports_cement_mt=I(11.0630, "Egyptian CEMENT export sales 2025. " + IRP +
+                            ", Market Overview block, 'Cement Export Sales' 11,063.0 K Tons "
+                            "(FY2024: 7,561.7, up 46%)", "2026-03-01", "Company"),
+    egy_exports_clinker_mt=I(7.5689, "Egyptian CLINKER export sales 2025. " + IRP +
+                             ", Market Overview block, 'Clinker Export Sales' 7,568.9 K Tons "
+                             "(FY2024: 12,241.4, down 38%). Leaves at the kiln, never enters a "
+                             "cement mill, and is therefore NOT in the cement-basis "
+                             "utilisation ratio", "2026-03-01", "Company"),
     egy_revival_mt=I(12.6, "Dormant Egyptian capacity under revival from the second half of "
                      "2026", "2025-10-01", "Industry"),
     egy_gdp_egp_bn=I(18000.0, "Egyptian nominal gross domestic product, order of magnitude, "
@@ -2139,6 +2166,12 @@ LR['Weighted central'] = dict(
     bear=float(LR[PRIMARY]['bear']), base=fv_central,
     bull=float(LR[PRIMARY]['bull']))
 
+# THE TWO SECTOR UTILISATION RATIOS [audit finding 7, 08-Sep-2026]. Defined here, once,
+# beside the record that publishes them, so the document cannot compute a third.
+_CEM_SALES = V['egy_cons_mt'] + V['egy_exports_cement_mt']       # cement, domestic + export
+_UTIL_CEMENT = _CEM_SALES / V['egy_capacity_mt']                 # matched: cement over cement
+_UTIL_ALL = V['egy_prod_mt'] / V['egy_capacity_mt']              # the retired, mismatched one
+
 PEERS = dict(
     scem=dict(name='Sinai Cement (SCEM)', rev=V['peer_scem_rev'], pat=V['peer_scem_pat'],
               mcap=V['peer_scem_mcap'], pe=V['peer_scem_mcap'] / V['peer_scem_pat'],
@@ -2149,12 +2182,34 @@ PEERS = dict(
               ps=V['peer_mbsc_mcap'] / V['peer_mbsc_rev']),
     self=dict(name='Arabian Cement (ARCC)', rev=V['rev_fy25'], pat=V['pat_fy25'],
               mcap=MKTCAP, pe=MKTCAP / V['pat_fy25'], ps=MKTCAP / V['rev_fy25']),
+    # TWO UTILISATION RATIOS, EACH ON ITS OWN MATCHED PAIR [audit finding 7]. The record
+    # carried one, built by dividing cement-AND-clinker sales by CEMENT nameplate capacity,
+    # and the document read 96% off it. On matched denominators it is 86%, which is the
+    # figure the cited industry source itself publishes and is a materially different
+    # market. Both are recorded, each named for what it divides, so the mismatch cannot be
+    # made again by picking the wrong one.
     sector=dict(capacity_mt=V['egy_capacity_mt'], consumption_mt=V['egy_cons_mt'],
                 production_mt=V['egy_prod_mt'], exports_mt=V['egy_exports_mt'],
+                exports_cement_mt=V['egy_exports_cement_mt'],
+                exports_clinker_mt=V['egy_exports_clinker_mt'],
+                cement_sales_mt=_CEM_SALES,
                 revival_mt=V['egy_revival_mt'],
                 share_of_capacity=V['cap_cement_mt'] / V['egy_capacity_mt'],
                 revival_pct_of_consumption=V['egy_revival_mt'] / V['egy_cons_mt'],
-                utilisation=V['egy_prod_mt'] / V['egy_capacity_mt']),
+                utilisation=_UTIL_CEMENT,
+                utilisation_basis=('CEMENT sold, domestic plus export, over CEMENT nameplate '
+                                   'capacity. Exported clinker is excluded: it leaves at the '
+                                   'kiln and never enters a cement mill, so it calls on no '
+                                   'grinding capacity.'),
+                utilisation_all_product=_UTIL_ALL,
+                utilisation_all_product_basis=('cement AND clinker sold over CEMENT nameplate '
+                                               'capacity. RECORDED AND NOT USED — the '
+                                               'numerator and denominator are on different '
+                                               'bases, which is the defect this study\'s own '
+                                               'export-line note describes.'),
+                utilisation_retired=('96%: earlier editions printed the all-product ratio as '
+                                     'the market utilisation and built a price argument on '
+                                     'it. Withdrawn 08-09-2026.')),
 )
 
 # ==================== ASSERT ================================================
@@ -2245,10 +2300,24 @@ chk(_worst < 0.001,
     f"exports {p0['clk_exp']:.4f} vs {DISC['clk_exp']}, total {p0['sold']:.4f} vs "
     f"{DISC['sold']}Mt. Revisions 1-3 reconstructed these from an assumed price and were "
     f"28% low on the total")
-chk(abs((V['egy_cons_mt'] + V['egy_exports_mt']) - V['egy_prod_mt']) < 0.15,
+chk(abs((V['egy_cons_mt'] + V['egy_exports_mt']) - V['egy_prod_mt']) < 0.01,
     f"the Egyptian sector balance CLOSES: local {V['egy_cons_mt']}Mt plus exports "
-    f"{V['egy_exports_mt']}Mt = {V['egy_cons_mt']+V['egy_exports_mt']:.1f}Mt against the "
-    f"disclosed total of {V['egy_prod_mt']}Mt. It did not close in any earlier revision")
+    f"{V['egy_exports_mt']}Mt = {V['egy_cons_mt']+V['egy_exports_mt']:.4f}Mt against the "
+    f"disclosed total of {V['egy_prod_mt']}Mt. It did not close in any earlier revision, "
+    f"and the tolerance is now 0.01 rather than 0.15 because every figure is read at the "
+    f"page's own precision instead of off its chart")
+# AND THE EXPORT LINE ITSELF CLOSES, which is what makes the cement-basis ratio safe to
+# publish: if the split did not add back to the total, the numerator of that ratio would
+# be a number this study made up rather than one the company reported.
+chk(abs((V['egy_exports_cement_mt'] + V['egy_exports_clinker_mt']) - V['egy_exports_mt']) < 0.01,
+    f"the export line splits and closes: cement {V['egy_exports_cement_mt']}Mt plus clinker "
+    f"{V['egy_exports_clinker_mt']}Mt = "
+    f"{V['egy_exports_cement_mt']+V['egy_exports_clinker_mt']:.4f}Mt against the disclosed "
+    f"total export of {V['egy_exports_mt']}Mt")
+chk(_UTIL_CEMENT < _UTIL_ALL,
+    f"the cement-basis utilisation {_UTIL_CEMENT:.1%} is BELOW the all-product "
+    f"{_UTIL_ALL:.1%} it replaced, because exported clinker leaves the numerator. A "
+    f"repair that raised the number would mean the split had been read the wrong way round")
 chk(all(b['kiln_util'] <= 1.0 for b in BU),
     f"no forecast year asks the kiln for more than nameplate: peak "
     f"{max(b['kiln_util'] for b in BU):.1%} of {V['cap_clinker_mt']:.1f}Mt")

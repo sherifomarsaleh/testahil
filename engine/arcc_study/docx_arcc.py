@@ -224,14 +224,42 @@ P(f'The balance sheet is the unusual part and it works in the shareholder\'s fav
   f'sets out how that reaches equity value, and section 1.4 why a debt book that changed '
   f'currency inside the period is measured against its facility notes rather than against a '
   f'trailing effective rate the accounts cannot produce.')
-P(f'The sector context is what the forecast turns on, and it was corrected in this edition. '
-  f'Egypt sold about {n1(IN["egy_prod_mt"])} million tonnes against roughly '
-  f'{n0(IN["egy_capacity_mt"])} million tonnes of nameplate — a market running near '
-  f'{pc(PE["sector"]["utilisation"], 0)}, which is NOT the structurally slack market earlier '
-  f'editions of this study described. The oversupply risk is prospective: it lives in the '
-  f'{n1(IN["egy_revival_mt"])} million tonne restart programme and in a production quota '
-  f'that was suspended in May 2025 rather than repealed, either of which would meet a market '
-  f'with little spare demand to absorb it.')
+# THIS PARAGRAPH SAID 96% AND THE MEASURE SAID 86% [audit finding 7, 08-Sep-2026]. It
+# divided cement-AND-CLINKER sales by CEMENT nameplate capacity — the mismatch this
+# study's own export-line note describes as the earlier editions' error, made again in
+# the other direction. Exported clinker leaves at the kiln and calls on no grinding
+# capacity. The correction is nearly ten points and it takes the categorical claim with
+# it: a market with a sixth of its cement capacity idle is NOT a tight market, and this
+# paragraph used to say it was.
+_SEC = PE['sector']
+_SPARE = IN['egy_capacity_mt'] - _SEC['cement_sales_mt']
+P(f'The sector context is what earlier editions of this forecast turned on, and the '
+  f'measure they turned on was wrong. Egypt sold {n1(_SEC["cement_sales_mt"])} million '
+  f'tonnes of CEMENT — {n1(IN["egy_cons_mt"])} domestic and {n1(IN["egy_exports_cement_mt"])} '
+  f'exported — against roughly {n0(IN["egy_capacity_mt"])} million tonnes of cement '
+  f'nameplate. That is {pc(_SEC["utilisation"], 0)}, with about {n1(_SPARE)} million tonnes '
+  f'of grinding capacity idle. The {n1(IN["egy_prod_mt"])}Mt figure earlier editions used '
+  f'adds {n1(IN["egy_exports_clinker_mt"])}Mt of exported CLINKER, which leaves at the kiln '
+  f'and never enters a cement mill, and printed {pc(_SEC["utilisation_all_product"], 0)}.')
+P(f'SO THE MARKET IS NEITHER OF THE TWO THINGS THIS STUDY HAS CALLED IT. It is not the '
+  f'structurally slack market the first editions described, and it is not the '
+  f'{pc(_SEC["utilisation_all_product"], 0)} market the last one described. It is running '
+  f'with roughly a sixth of its cement capacity unused, and the {n1(IN["egy_revival_mt"])} '
+  f'million tonne restart programme would take that to about '
+  f'{n1(_SPARE + IN["egy_revival_mt"])}Mt — a third of nameplate — before a tonne of new '
+  f'demand appears. A production quota suspended in May 2025 rather than repealed sits on '
+  f'top of that.')
+P(f'WHAT THIS DOES AND DOES NOT DO TO THE FORECAST, because a corrected premise that '
+  f'quietly leaves its conclusion standing is the same defect one step along. The price '
+  f'path in this study does NOT rest on the sector being tight. Its FY2026 step is taken '
+  f'from a filed number — the company\'s own fourth-quarter 2025 realised price, which is '
+  f'{pc(0.072, 1)} above its full-year average — and every year after it grows at zero real '
+  f'against the house inflation path. That argument is unaffected by which utilisation '
+  f'figure is right. What IS affected is the comfort around it: at '
+  f'{pc(_SEC["utilisation"], 0)} with a restart programme pending, a price path that merely '
+  f'holds real is a stronger assumption than it looked at '
+  f'{pc(_SEC["utilisation_all_product"], 0)}, and the margin sensitivity in section 7 is '
+  f'where a reader should go to disagree with it.')
 
 # ============================== 1 ============================================
 H1('1  Fundamental valuation')
@@ -1628,37 +1656,52 @@ caption('Table B1 — Every multiple here is RECOMPUTED from revenue, profit and
 figure('fig8_sector.png', 6.6,
        'Figure B1 — The Egyptian cement balance. The surplus is the whole sector case.')
 H2('B.2  The sector balance, and what it is not')
-P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity against roughly '
-  f'{n0(IN["egy_cons_mt"])}Mt of domestic consumption and {n0(IN["egy_prod_mt"])}Mt of '
-  f'total sales. The balance now closes because it is taken from one disclosure rather '
-  f'than assembled from three: the same page gives local '
-  f'{n1(IN["egy_cons_mt"])}Mt, exports {n1(IN["egy_exports_mt"])}Mt and a total of '
-  f'{n1(IN["egy_prod_mt"])}Mt — the two components add to '
-  f'{n1(IN["egy_cons_mt"] + IN["egy_exports_mt"])}Mt at the one decimal each is published '
-  f'to, and the total is the disclosed figure rather than their sum. Earlier '
-  f'editions set a cement-plus-clinker export figure against a cement-only production '
-  f'figure and printed a balance that was out by 7.5Mt. The correction matters beyond '
-  f'tidiness: {n1(IN["egy_prod_mt"])}Mt of sales against roughly '
-  f'{n0(IN["egy_capacity_mt"])}Mt of nameplate is a market running near '
-  f'{pc(PE["sector"]["utilisation"], 0)}, which is NOT the structurally slack market this '
-  f'study has described from its first edition. The oversupply risk is prospective — it '
-  f'lives in the {n1(IN["egy_revival_mt"])}Mt restart programme, not in the current '
-  f'balance — and the distinction is material to the price path. The abolition of the '
-  f'production quota in May 2025 removed the mechanism that had been supporting price into '
-  f'that surplus, and the {n1(IN["egy_revival_mt"])}Mt restart programme would add to it.')
+P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of cement nameplate capacity. The '
+  f'company\'s own market page splits FY2025 sales three ways, and the split is what this '
+  f'balance turns on: domestic cement {n1(IN["egy_cons_mt"])}Mt, exported cement '
+  f'{n1(IN["egy_exports_cement_mt"])}Mt, exported clinker '
+  f'{n1(IN["egy_exports_clinker_mt"])}Mt, total {n1(IN["egy_prod_mt"])}Mt. The three add to '
+  f'the disclosed total exactly, and the export line adds to the disclosed export total '
+  f'exactly, which is what makes either ratio below safe to publish.')
+P(f'TWO RATIOS COME OUT OF THAT PAGE AND ONLY ONE OF THEM MEANS ANYTHING. Cement sold — '
+  f'domestic plus export, {n1(_SEC["cement_sales_mt"])}Mt — against cement nameplate is '
+  f'{pc(_SEC["utilisation"], 1)}. All product sold, {n1(IN["egy_prod_mt"])}Mt, against the '
+  f'same cement nameplate is {pc(_SEC["utilisation_all_product"], 1)}. The second is the '
+  f'one earlier editions of this study printed, and it is not a measure of anything: '
+  f'clinker leaves at the kiln and never enters a cement mill, so a tonne exported as '
+  f'clinker consumes no grinding capacity and does not belong in the numerator. That is '
+  f'the SAME mismatch this study identified in the editions before it — a cement-plus-'
+  f'clinker figure against a cement-only one — committed again in the other direction, and '
+  f'the {n1(_SEC["cement_sales_mt"])}Mt discarded then as a failed balance was the correct '
+  f'cement-basis number all along.')
+P(f'ON THE MEASURE THAT MEANS SOMETHING, the market is running with about {n1(_SPARE)}Mt of '
+  f'cement capacity idle — roughly a sixth of nameplate. That is neither the structurally '
+  f'slack market the first editions of this study described nor the tight one the last '
+  f'edition described. The {n1(IN["egy_revival_mt"])}Mt restart programme would take idle '
+  f'capacity to about {n1(_SPARE + IN["egy_revival_mt"])}Mt before any new demand appears, '
+  f'and the production quota abolished in May 2025 removed the mechanism that had been '
+  f'supporting price into a surplus. The forecast price path does not depend on which of '
+  f'these two numbers is right — its first-year step is a filed quarterly realisation and '
+  f'every later year holds flat in real terms — but the comfort around it does, and this is '
+  f'where a reader who wants to press on the price path should press.')
 H2('B.3  Risk register')
 P('One entry per risk that could move this valuation by more than a few per cent, each '
   'stated as a mechanism rather than a worry, and each with the disclosure it rests on.')
 for head, body in [
-    ('Price risk. ', f'This is the dominant risk, and the disclosure corrects how it '
-     f'should be framed. The Egyptian market is NOT currently slack: it sold '
-     f'{n1(IN["egy_prod_mt"])}Mt against roughly {n0(IN["egy_capacity_mt"])}Mt of '
-     f'nameplate, and this company realised a 60.7% rise in its local price in FY2025. The '
-     f'risk is prospective and it has two legs — the {n1(IN["egy_revival_mt"])}Mt restart '
-     f'programme, and a production quota that was SUSPENDED rather than repealed and could '
-     f'return without legislation. Either would meet a market with little spare demand to '
-     f'absorb it. That is why the forecast price path grows below cost inflation in every '
-     f'year despite an exit rate that would support more.'),
+    ('Price risk. ', f'This is the dominant risk and it is LARGER than the edition before '
+     f'this one said, because that edition measured the market wrongly. On matched '
+     f'denominators Egypt sold {n1(_SEC["cement_sales_mt"])}Mt of cement against roughly '
+     f'{n0(IN["egy_capacity_mt"])}Mt of cement nameplate — {pc(_SEC["utilisation"], 0)}, '
+     f'about {n1(_SPARE)}Mt idle — where the previous edition printed '
+     f'{pc(_SEC["utilisation_all_product"], 0)} by counting exported clinker against '
+     f'grinding capacity it never touched. So the surplus is CURRENT as well as '
+     f'prospective. On top of it sit two further legs: the {n1(IN["egy_revival_mt"])}Mt '
+     f'restart programme, and a production quota SUSPENDED rather than repealed, which '
+     f'could return without legislation. Against that, this company realised a 60.7% rise '
+     f'in its local price in FY2025 and exited the year {pc(0.072, 1)} above its own annual '
+     f'average, which is the evidence the first forecast year rests on — a filed number '
+     f'rather than a view about how tight the market is. Every year after it holds flat in '
+     f'real terms.'),
     ('Energy and currency. ', 'Fuel is dollar-priced and electricity tariffs are on a '
      'reform path. Both raise cost independently of what happens to price.'),
     ('Concentration. ', 'One site, one product, one country. There is no diversification '

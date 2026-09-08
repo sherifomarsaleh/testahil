@@ -2,7 +2,18 @@
 
 marker: ruled_08_09_2026
 
-Both questions below were put to the principal after the Step 2A sweep closed and BEFORE
+**Provenance of these rulings, stated because a reader cannot see where they came from.**
+Both were put to the principal directly, in session, on 8 September 2026 and answered the
+same day; the questions and both answers are in the session record, and both are entered
+in `engine/escalations.json` under `ORAS-regressor-dual-listing` and
+`ORAS-OCI-combination-dual-frame` with `status: resolved`, which the escalation gate
+re-checks against this file's marker on every run. THE SWEEP AGENT THAT PRODUCED THIS
+DIRECTORY DID NOT WRITE THIS FILE AND CORRECTLY SAID SO — it worked from its own task
+brief, which told it not to resolve a beta, and it had no sight of the exchange with the
+principal. Its register still carries the regressor as unresolved, which is right for a
+sweep: this document is the ruling that comes after it, not a change to it.
+
+Both questions were put to the principal after the Step 2A sweep closed and BEFORE
 any number depended on the answer. That order is the point: a sweep that closes without a
 regressor and without a share count can ask, and a study that has already struck a beta
 can only revise. Both were answered the same day and both answers are recorded here rather
@@ -56,9 +67,15 @@ a view on the vote can take the frame that matches it; a reader who does not get
 
 ## What is not settled by either ruling
 
-The sweep left four things open and neither ruling touches them: FY2022 and FY2023
-statement-of-financial-position pages are image-only and not yet read (FY2024's balance
-sheet IS carried, as the FY2025 statement's comparative column); there is no cost of sales
+The sweep left four things open and neither ruling touches them. **One has since closed
+and this paragraph said otherwise until it was corrected on the same day it was written:**
+the FY2023 AND FY2024 balance-sheet columns have now been read, so the balance-sheet
+history runs to three consecutive audited year-ends and only FY2022 remains. That read is
+worth recording for how the error in it was found rather than for the figures: `Billing in
+excess of construction contracts` extracted as 955.6 — a clean, plausible number in the
+right position — and the column then footed to 3,658.5 against a printed 3,258.5, out by
+exactly 400.0. The true figure is 555.6. A 5 had been read as a 9, and nothing but the
+arithmetic would ever have found it. There is no cost of sales
 by segment, so the one top-down margin allocation is flagged as such in the driver gate;
 there are no project-level backlog values, no forward capex plan and no numeric FY2026
 guidance, each closed by a dated negative search; and the FY2025 EBITDA carries a

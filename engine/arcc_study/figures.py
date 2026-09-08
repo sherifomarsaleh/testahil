@@ -253,16 +253,37 @@ fig, ax = plt.subplots(figsize=(9.0, 3.7), dpi=110)
 # — 'Egyptian cement and clinker SALES 2025, local plus export' — and the study's own
 # text calls it total sales, while this label called it production. One of the two was
 # wrong and it was the one drawn inside the picture, where no check reaches.
-cats = ['Nameplate\ncapacity', 'Total sales\n2025', 'Domestic\nsales 2025',
-        'Dormant capacity\nunder revival']
-vals = [PS['capacity_mt'], PS['production_mt'], PS['consumption_mt'], PS['revival_mt']]
+# THE PICTURE CARRIED THE SAME DEFECT AS THE TEXT [audit finding 7, 08-Sep-2026]. It drew
+# 72.6Mt of cement-AND-CLINKER sales next to 76Mt of CEMENT nameplate, so a reader saw two
+# almost equal bars and a caption calling the surplus the whole sector case. Exported
+# clinker leaves at the kiln and calls on no grinding capacity: it is now drawn ON TOP of
+# the cement bar in its own colour rather than inside it, so the comparable quantity is the
+# one that lines up against nameplate and the clinker is visible rather than hidden.
+cats = ['Nameplate\ncapacity', 'Cement sold 2025\n(clinker export above)',
+        'Domestic cement\nsales 2025', 'Dormant capacity\nunder revival']
+vals = [PS['capacity_mt'], PS['cement_sales_mt'], PS['consumption_mt'], PS['revival_mt']]
 cols = [GREY, SAGE, CANVAS, RUST]
 for i, (v, c) in enumerate(zip(vals, cols)):
     ax.bar(i, v, color=c, alpha=0.85, width=0.6)
-    ax.text(i, v + 1.1, f'{v:.1f} Mt', ha='center', fontsize=9.5, fontweight='bold', color=INK)
+    _top = v + PS['exports_clinker_mt'] + 1.1 if i == 1 else v + 1.1
+    ax.text(i, _top, f'{v:.1f} Mt', ha='center', fontsize=9.5, fontweight='bold', color=INK)
+# the clinker export, stacked above the cement bar and labelled as not competing for a mill
+_clk = PS['exports_clinker_mt']
+ax.bar(1, _clk, bottom=PS['cement_sales_mt'], color=RUST, alpha=0.32, width=0.6,
+       hatch='///', edgecolor=RUST, linewidth=0)
+ax.text(1.36, PS['cement_sales_mt'] + _clk / 2,
+        f'+{_clk:.1f} Mt clinker export\n(leaves at the kiln, no mill)',
+        ha='left', va='center', fontsize=8.0, color=RUST)
+# the idle capacity, which is what the corrected measure actually shows
+_idle = PS['capacity_mt'] - PS['cement_sales_mt']
+ax.annotate('', xy=(0.66, PS['capacity_mt']), xytext=(0.66, PS['cement_sales_mt']),
+            arrowprops=dict(arrowstyle='<->', color=INK, lw=1.0))
+ax.text(0.62, (PS['capacity_mt'] + PS['cement_sales_mt']) / 2,
+        f'{_idle:.1f} Mt idle\n{PS["utilisation"]:.0%} utilised', fontsize=8.4, color=INK,
+        ha='right', va='center', fontweight='bold')
 ax.set_xticks(range(4)); ax.set_xticklabels(cats, fontsize=9)
 ax.set_ylabel('Million tonnes per year')
-ax.set_ylim(0, max(vals) * 1.20)
+ax.set_ylim(0, max(vals) * 1.24)
 ax.set_title('The Egyptian cement balance — the surplus is the whole sector case',
              fontsize=11.5, fontweight='bold', loc='left', pad=12)
 ax.grid(axis='x', visible=False)
