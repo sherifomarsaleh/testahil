@@ -270,6 +270,19 @@ rows.append([
  'directly',
  f'PRICED: {pc(_wc["moves_the_carrying_branch_by"],1)} of the lower branch. Holding the first forecast year flat '
  f'across the window gives EGP {_wc["value_alternative_carrying_branch"]:.2f} against EGP {V_LO:.2f}'])
+# CAPITAL EXPENDITURE SITS SECOND IN THIS REGISTER AND WAS IN NONE OF THE THREE. It was
+# outside the four-field inputs, outside the contested judgements and outside this
+# register — which was built to catch exactly this — while the one sentence naming it in
+# the whole document was the one calling it guided. It is priced from the same record
+# every other row here is priced from.
+_cx = _fork('the capital-expenditure path')
+rows.append([
+ 'Capital expenditure stays where the company has been spending it',
+ 'The forward ladder falls to a third of the intensity GB Corp filed for FY2025, and its '
+ 'first year is the figure management guided rather than one this study built',
+ f'PRICED: {pc(_cx["moves_the_carrying_branch_by"],1)} of the lower branch. Spending on at '
+ f'the FY2025 filed amount, flat and therefore falling in real terms, gives EGP '
+ f'{_cx["value_alternative_carrying_branch"]:.2f} against EGP {V_LO:.2f}'])
 _erp = _fork('the equity risk premium basis')
 _bta = _fork('the equity beta')
 rows.append([

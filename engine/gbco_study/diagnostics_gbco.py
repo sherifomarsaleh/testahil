@@ -143,14 +143,24 @@ class Model:
         self.cp = N['lens_inputs']['capital']
 
     # -- the auto leg -------------------------------------------------------
-    def fcff_path(self, gpm=None, wcpct=None):
+    def fcff_path(self, gpm=None, wcpct=None, capex=None):
+        """The auto leg's free cash flow, with any one driver moved.
+
+        CAPEX BECAME A LEVER HERE ONLY WHEN SOMEBODY ASKED IT TO BE PRICED. It was read
+        straight off the committed row and could not be moved, so the judgement it
+        carries could not be measured — and a judgement that cannot be measured is one
+        that does not appear in a register, which is exactly where this one was found:
+        outside the four-field inputs, outside the contested judgements, and outside the
+        risk register that was built to catch it.
+        """
         gpm = gpm or self.gpm
         wcpct = wcpct or self.wcpct
         out, prev = [], self.wc_open
         for i, r in enumerate(self.rows):
             ebit = r['rev'] * gpm[i] - r['rev'] * self.opex[i]
             wc = r['rev'] * wcpct[i]
-            out.append(ebit * (1.0 - self.tax) + r['dna'] - r['capex'] - (wc - prev))
+            cx = r['capex'] if capex is None else capex[i]
+            out.append(ebit * (1.0 - self.tax) + r['dna'] - cx - (wc - prev))
             prev = wc
         return out
 
@@ -507,7 +517,51 @@ def main():
         """One framing, priced on both branches: (carrying, round)."""
         return (M.branch_carrying(**kw), M.branch_round(**kw))
 
+    # THE FILED CAPITAL-EXPENDITURE INTENSITY, which the forward ladder does not hold.
+    # FY2025's filed capex over FY2025 auto revenue, from the study's own committed
+    # inputs rather than typed here.
+    _capex_fy25 = float(N['inputs']['capex_fy2025']['value'])
+    _rev_fy25 = float(N['disclosed_drivers']['auto_revenue_fy2025'])
+    _filed_intensity = _capex_fy25 / _rev_fy25
+    # THE ALTERNATIVE IS THE FILED AMOUNT HELD FLAT, NOT THE FILED INTENSITY HELD FLAT,
+    # and the first draft of this judgement used the intensity. On a revenue base that
+    # more than doubles, holding 5.52% of it takes capital expenditure from 3,000 to
+    # 7,991 and drives the last explicit year's free cash flow through zero — and since
+    # this study's terminal capitalises that same last year, the answer collapses to
+    # about a pound a share, a move of forty times. A COUNTERFACTUAL THAT BREAKS THE
+    # MODEL IS NOT A FRAMING OF THE JUDGEMENT, it is a different question, and pricing a
+    # fork against it would put a number in the register that no reader could use.
+    # What is priced instead is the company simply going on spending what it filed:
+    # EGP 3,664.2mn a year, flat in nominal terms, which is a REAL DECLINE across the
+    # window and is therefore the conservative-looking side understated rather than
+    # overstated. That it is an actual filed figure is the whole reason for choosing it.
+    flat_capex = [_capex_fy25 for _ in M.rows]
+
     J = [
+        dict(name='the capital-expenditure path',
+             adopted=('a ladder falling from %.2f%% of Auto revenue in the first forecast '
+                      'year to %.2f%% by the last, whose first year is the figure '
+                      'management guided'
+                      % (100 * M.rows[0]['capex'] / M.rows[0]['rev'],
+                         100 * M.rows[-1]['capex'] / M.rows[-1]['rev'])),
+             alternative=('the company goes on spending what it filed: EGP %s mn a year, '
+                          'flat in nominal terms, which is a real decline across the window'
+                          % ('{:,.1f}'.format(_capex_fy25))),
+             a=pair(), b=pair(fcff=M.fcff_path(capex=flat_capex)),
+             why=('THIS JUDGEMENT WAS IN NO REGISTER UNTIL IT WAS ASKED FOR, which is the '
+                  'part worth recording: not the four-field inputs, not this list, and not '
+                  'the risk register built to catch exactly this — and on the measurement '
+                  'below it ranks second in that register. The adopted ladder falls to a '
+                  'third of the filed intensity across the window and raises free cash '
+                  'flow in every year of it. TWO THINGS ARGUE THE OTHER WAY and are '
+                  'recorded rather than left for a reader to find: capex still runs above '
+                  'depreciation throughout, so the asset base is growing rather than being '
+                  'harvested, and the terminal carries most of this leg\'s enterprise '
+                  'value, so an explicit-window driver moves less of the answer than its '
+                  'size suggests. THE FIRST YEAR IS MANAGEMENT GUIDANCE and the standing '
+                  'rule is that guidance is scored and never consumed, so the adopted side '
+                  'of this fork is not merely the higher one — it is the one a forward '
+                  'target set.')),
         dict(name='working-capital intensity',
              adopted=('gliding from %.1f%% of Auto revenue in the first forecast year to '
                       '%.1f%% by the last, as payables re-extend and the pre-build unwinds'
