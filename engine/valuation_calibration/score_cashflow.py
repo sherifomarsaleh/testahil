@@ -151,7 +151,18 @@ def drop_taxonomy(dropped):
 
 
 READINGS = (
-    ("DECLARED", dict(horizons=CL.HORIZONS, maintenance="amount")),
+    # DECLARATION 4 (MECHANICAL_LENS_4_08-09-2026.md) is the declared run from
+    # 08-09-2026: the terminal is a growing perpetuity on the LAST EXPLICIT YEAR'S free
+    # cash flow, at terminal inflation plus a stated real growth of zero. It supersedes
+    # declaration 3's trailing-capex upkeep charge, which refused 17 of 32 answers
+    # because a three-year capex window at a past origin is frequently not a steady
+    # state. The declaration was sealed and committed BEFORE this line was changed.
+    ("DECLARED", dict(horizons=CL.HORIZONS, maintenance="gordon")),
+    # Declaration 3's terminal, kept as the SUPERSEDED run rather than deleted: a
+    # construction that is replaced is evidence about the replacement, and dropping it
+    # would leave nothing to compare against.
+    ("declaration 3's terminal — SUPERSEDED, kept for comparison",
+     dict(horizons=CL.HORIZONS, maintenance="amount")),
     ("maintenance read as intensity x origin revenue",
      dict(horizons=CL.HORIZONS, maintenance="intensity")),
     # A SENSITIVITY, NOT THE DECLARED RUN, AND THE LABEL IS LOAD-BEARING. The sealed

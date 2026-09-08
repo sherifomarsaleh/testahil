@@ -102,6 +102,22 @@ growth stated. It is not a per-name dial.
 1. `g >= WACC_terminal`. The perpetuity does not converge; there is no value to compute.
 2. `FCF_N <= 0`. A company whose last forecast year consumes cash cannot be capitalised
    as a growing perpetuity — that is a liquidation, and this lens does not value one.
+3. **Equity value per share `<= 0`.** *(Amended the same day, after the first run,
+   and the amendment is recorded rather than folded in silently.)* A negative equity
+   value is a real model output — the debt exceeds the enterprise value — but it is not
+   a **scoreable** one: this series is scored on `log(FV/P)`, which does not exist below
+   zero. On the first run under this declaration one cell returned −0.557 per share and
+   the scorer rendered its missing log ratio as **+0.0000**, entering the pooled mean as
+   *perfect agreement with the price*. The refusal is placed at the source rather than
+   as a downstream filter, because a downstream filter is one somebody later forgets.
+
+   **Why this amendment is not results-shopping, stated so a reader can check rather
+   than trust:** it EXCLUDES a cell rather than admitting one; it is forced by
+   arithmetic rather than chosen (the logarithm of a negative number does not exist);
+   and it changes no verdict — Tests B and C were computed on the fifteen cells that
+   carried a usable ratio both before and after, because the sixteenth never carried
+   one. Had it admitted a cell, or moved a verdict, it would need a fresh declaration
+   rather than an amendment.
 
 **No longer refuses, because the quantities no longer exist in the construction:** the
 implied-payout test, the terminal-free-cash-flow test as declaration 3 posed it, the

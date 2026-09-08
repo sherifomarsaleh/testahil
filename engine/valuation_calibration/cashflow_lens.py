@@ -44,6 +44,13 @@ HORIZONS = (1, 2, 3, 4, 5)
 # so a scorer refusing it would be refusing work the method licenses. Anything shorter and
 # the terminal carries the whole answer.
 MIN_EXPLICIT = 3   # the sealed explicit window
+
+# Declaration 4. Terminal growth is REAL growth on the house inflation path; a typed
+# nominal rate is prohibited because nobody can tell whether it meant inflation plus a
+# point or inflation minus three. Zero is the conservative standard reading and is what
+# the house macro path returns for every terminal it builds. Changing it is an amendment
+# to the declaration, made before the figures it affects are computed.
+TERMINAL_REAL_GROWTH = 0.0
 INTENSITY_YEARS = 3      # median over the three fiscal years to the origin
 
 
@@ -678,6 +685,71 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
                      "dna": dna, "capex": capex, "wc": wc_h, "dwc": dwc,
                      "fcff": fcff, "df": df})
         last = rows[-1]
+
+    # ---- DECLARATION 4: the terminal is a growing perpetuity on the last explicit
+    # year's free cash flow. MECHANICAL_LENS_4_08-09-2026.md, sealed and committed
+    # before this code path produced a single figure.
+    #
+    #     TV = FCF_N x (1 + g) / (WACC_term - g),   g = terminal inflation + real
+    #
+    # FCF_N is `last["fcff"]` — the same figure the explicit window discounts, taken
+    # without adjustment. It already contains that year's capital spending and
+    # working-capital movement, which is why no separate maintenance, growth-capital
+    # or working-capital charge appears here and why no useful life is read.
+    #
+    # REAL GROWTH IS ZERO AND STATED, never a typed nominal rate: against a sourced
+    # terminal inflation of 7% a typed 5% is a permanent real decline of about 1.9%
+    # a year, and the growth rate and the discount rate must answer to the same
+    # sourced path or they drift apart. Changing it is an amendment to the
+    # declaration, made before the figures it affects exist.
+    if maintenance == "gordon":
+        g = infl + TERMINAL_REAL_GROWTH
+        w_term = coc.get("wacc_terminal") or coc["wacc"]
+        if g >= w_term:
+            return None, ("terminal refused: growth %.4f is not below the terminal "
+                          "rate %.4f, so the perpetuity does not converge" % (g, w_term))
+        if last["fcff"] <= 0:
+            return None, ("terminal refused: the last explicit year's free cash flow "
+                          "is %s, not positive: a company consuming cash in its final "
+                          "forecast year is not capitalised as a growing perpetuity"
+                          % f"{last['fcff']:,.1f}")
+        tv = last["fcff"] * (1 + g) / (w_term - g)
+        pv_tv = tv / (1 + coc["wacc"]) ** max(hs)
+        ev = pv + pv_tv
+        equity = ev + cash - (debt or 0.0)
+        per_share = equity / shares
+        # A NEGATIVE EQUITY VALUE IS A REAL OUTPUT AND IS NOT A SCOREABLE ONE, and the
+        # difference matters because of how it fails: this series is scored on
+        # log(FV/P), which does not exist below zero, so the cell arrived carrying a
+        # null that the scorer rendered as +0.0000 — A COMPANY VALUED AT MINUS 0.557
+        # ENTERING THE POOLED MEAN AS PERFECT AGREEMENT WITH ITS PRICE. That is the
+        # absent answer in a clean answer's clothes, and it is refused at the source
+        # rather than filtered downstream, because a downstream filter is one somebody
+        # later forgets. Declaration 4 is amended to carry this refusal; the amendment
+        # EXCLUDES a cell rather than admitting one and is forced by arithmetic rather
+        # than chosen after seeing a result.
+        if per_share <= 0:
+            return None, ("terminal refused: equity value is %s per share, not "
+                          "positive: a log ratio against the price does not exist "
+                          "below zero and this series is scored on one"
+                          % f"{per_share:,.3f}")
+        return ({"ticker": tk, "origin": origin, "fv": per_share, "price": price,
+                 "log": math.log(per_share / price) if per_share > 0 and price > 0 else None,
+                 "equity": equity, "ev": ev, "pv_explicit": pv, "pv_terminal": pv_tv,
+                 "terminal_share": (pv_tv / ev) if ev else None,
+                 "cash": cash, "debt": debt, "shares": shares,
+                 "wacc": coc["wacc"], "wacc_terminal": w_term,
+                 "terminal_growth": g, "terminal_real_growth": TERMINAL_REAL_GROWTH,
+                 "terminal_basis": "gordon_on_last_fcff",
+                 "declaration": "MECHANICAL_LENS_4_08-09-2026",
+                 "ke": coc["ke"], "kd": coc["kd"], "kd_bound": coc["kd_bound"],
+                 "we": coc["we"], "tau": tau, "inflation": infl, "rows": rows,
+                 "price_date": cellinfo["price_date"], "scale": scale,
+                 "maintenance": None, "maintenance_basis_reading": maintenance,
+                 "useful_life_years": None,
+                 "intensities": it, "capex_route": it["capex_route"],
+                 "minority_book": actual(panel, origin, MINORITY[tk]),
+                 "horizons": hs}, None)
 
     # THE TERMINAL, only through the sanctioned module.
     #
