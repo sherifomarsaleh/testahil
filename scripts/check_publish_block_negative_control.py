@@ -117,6 +117,12 @@ CASES = [
 
 def main():
     failures = []
+    # COUNT AGAINST WHAT ACTUALLY RAN, NEVER A TYPED OFFSET (08-Sep-2026). The
+    # tally read `len(CASES) + 16`, so three conditions added below it would have
+    # been reported as 34 — a control silently understating its own coverage,
+    # which is the shape [R-ENF-04] names: the number looks authoritative and
+    # moves only when somebody remembers. Every condition now records itself.
+    ran = []
     for case in CASES:
         name, central, price, dissent, two, must = case[:6]
         auth = case[6] if len(case) > 6 else None
@@ -137,7 +143,7 @@ def main():
                                 % (name, "PUBLISH" if must else "HELD",
                                    "PUBLISH" if got else "HELD", why))
             else:
-                print("  ok  %-32s %s" % (name, "PUBLISH" if got else "HELD"))
+                ran.append(name); print("  ok  %-32s %s" % (name, "PUBLISH" if got else "HELD"))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -167,7 +173,7 @@ def main():
                                 % (name, "PUBLISH" if must else "HELD",
                                    "PUBLISH" if got else "HELD", why))
             else:
-                print("  ok  %-32s %s" % (name, "PUBLISH" if got else "HELD"))
+                ran.append(name); print("  ok  %-32s %s" % (name, "PUBLISH" if got else "HELD"))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -210,7 +216,7 @@ def main():
                                 % (name, "PUBLISH" if must else "HELD",
                                    "PUBLISH" if got else "HELD", why))
             else:
-                print("  ok  %-32s %s" % (name, "PUBLISH" if got else "HELD"))
+                ran.append(name); print("  ok  %-32s %s" % (name, "PUBLISH" if got else "HELD"))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -296,7 +302,7 @@ def main():
                                 % (name, "PUBLISH" if must else "HELD",
                                    "PUBLISH" if got else "HELD", why))
             else:
-                print("  ok  %-36s %s" % (name, "PUBLISH" if got else "HELD"))
+                ran.append(name); print("  ok  %-36s %s" % (name, "PUBLISH" if got else "HELD"))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -323,7 +329,113 @@ def main():
         if got:
             failures.append("unreadable comparison released the method hold (%s)" % why)
         else:
+            ran.append("unreadable comparison")
             print("  ok  %-36s %s" % ("unreadable comparison", "HELD"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    # AND THE NAME THE EXEMPTION IS ASKED ABOUT (added 08-Sep-2026, on a real miss).
+    #
+    # A STUDY DIRECTORY STEM IS NOT ALWAYS ITS TICKERS KEY. campaign_queue.STUDY_ALIAS
+    # has carried FERTIGLOBE -> FERTIGLB since the campaign was written, and
+    # check_valuation_gap._resolve_ticker imports it — which is why the PRICE resolved
+    # correctly. price_only_publish() keyed on the raw stem instead, missed BOTH sides
+    # of the comparison, and reported the miss as "not on origin/main — a first publish
+    # is never price-only": a plausible sentence naming a real refusal, about a
+    # condition that was never tested [R-ENF-04]. It HELD a roll-forward that moved no
+    # fair value at all, which is exactly what the exemption exists to release.
+    #
+    # RUN IN BOTH DIRECTIONS, because a fix that simply stopped missing would be
+    # indistinguishable from one that stopped checking: an aliased study whose entry
+    # sits under its REAL key must PUBLISH, and a study that genuinely resolves to
+    # nothing on origin/main must still be HELD. The alias is injected into the
+    # resolver's own cache rather than over the function, so the production code path
+    # runs [R-ENF-03].
+    for name, alias, there_key, must in (
+            ("aliased study, entry under real key", {"TKLONG": "TK"}, "TK", True),
+            ("aliased study, genuinely absent on main", {"TKLONG": "TK"}, None, False),
+            ("no alias, stem is the key", {}, "TKLONG", True)):
+        tmp = tempfile.mkdtemp()
+        try:
+            eng = build(tmp, "TKLONG", 74.0, 77.0, None, None)
+            # the price must resolve under the RESOLVED name, not the stem
+            json.dump({"supplied_on": "2026-09-03", "prices": {
+                (alias.get("TKLONG") or "TKLONG"): {
+                    "price": 77.0, "date": "2026-09-03", "ccy": "EGP"}}},
+                open(os.path.join(eng, "prices", "SUPPLIED_03-09-2026.json"), "w"))
+            for m in ("check_publish_block", "check_valuation_gap"):
+                sys.modules.pop(m, None)
+            import check_valuation_gap as gap
+            gap.ENGINE = eng
+            gap._ALIAS_CACHE = (alias, {})
+            import check_publish_block as blk
+            blk.ENGINE = eng
+            blk.gap = gap
+            here_key = alias.get("TKLONG", "TKLONG")
+            blk._published_pair = lambda: (
+                {here_key: dict(LIVE, spot=98.52)},
+                ({there_key: LIVE} if there_key else {}))
+            blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+            # THE MUTATION MUST HAVE LANDED: the stem must not resolve to itself
+            # where an alias is set, or this case tests nothing.
+            resolved, _ = gap._resolve_ticker("TKLONG")
+            assert resolved == (alias.get("TKLONG") or "TKLONG"), \
+                "alias did not land for %r" % name
+            got, why, _ = blk.verdict("TKLONG")
+            if got != must:
+                failures.append("%-36s expected %s, got %s (%s)"
+                                % (name, "PUBLISH" if must else "HELD",
+                                   "PUBLISH" if got else "HELD", why))
+            else:
+                ran.append(name); print("  ok  %-36s %s" % (name, "PUBLISH" if got else "HELD"))
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+    # AND THE SAME NAME FROM THE CALLER'S SIDE (added 08-Sep-2026, same real miss).
+    #
+    # main() globs engine/*_study and passes the STEM; publish_site.py passes the
+    # TICKERS KEY. verdict() built its path from whichever it was handed, so
+    # `--ticker FERTIGLB` looked for engine/fertiglb_study, found nothing, and
+    # answered "no study directory on disk" about a study sitting on disk under
+    # engine/fertiglobe_study. Both directions must resolve to the SAME directory,
+    # and a name with genuinely no study must still be refused — otherwise the fix
+    # would have turned "unreadable is not clean" into "unfound is fine" [R-ENF-04].
+    tmp = tempfile.mkdtemp()
+    try:
+        eng = build(tmp, "TKLONG", 74.0, 77.0, None, None)
+        json.dump({"supplied_on": "2026-09-03", "prices": {
+            "TK": {"price": 77.0, "date": "2026-09-03", "ccy": "EGP"}}},
+            open(os.path.join(eng, "prices", "SUPPLIED_03-09-2026.json"), "w"))
+        for m in ("check_publish_block", "check_valuation_gap"):
+            sys.modules.pop(m, None)
+        import check_valuation_gap as gap
+        gap.ENGINE = eng
+        gap._ALIAS_CACHE = ({"TKLONG": "TK"}, {})
+        import check_publish_block as blk
+        blk.ENGINE = eng
+        blk.gap = gap
+        blk._published_pair = pair(dict(LIVE, spot=98.52), LIVE)
+        blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+        # the two spellings must land on ONE directory
+        assert blk._study_dir("TKLONG") == blk._study_dir("TK") is not None, \
+            "the stem and the ticker did not resolve to one study directory"
+        # ...and a name with no study must still resolve to nothing
+        assert blk._study_dir("NOTHINGHERE") is None, \
+            "a name with no study resolved to a directory — the resolver invented one"
+        for spelling in ("TKLONG", "TK"):
+            got, why, _ = blk.verdict(spelling)
+            if not got:
+                failures.append("caller spelling %-8s expected PUBLISH, got HELD (%s)"
+                                % (spelling, why))
+            else:
+                ran.append("caller spelling %s" % spelling)
+                print("  ok  %-36s %s" % ("caller spelling " + spelling, "PUBLISH"))
+        got, why, _ = blk.verdict("NOTHINGHERE")
+        if got or "no study directory" not in why:
+            failures.append("a name with no study was not refused (%s)" % why)
+        else:
+            ran.append("no study on disk")
+            print("  ok  %-36s %s" % ("no study on disk", "HELD"))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -342,6 +454,7 @@ def main():
         if blk.main([]) == 0:
             failures.append("an empty population reported clean [R-ENF-04]")
         else:
+            ran.append("empty population")
             print("  ok  %-32s FAIL" % "empty population")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -351,7 +464,10 @@ def main():
         for f in failures:
             print("  " + f)
         return 1
-    print("\n%d conditions reinjected, every one behaved" % (len(CASES) + 16))
+    assert len(ran) >= len(CASES), (
+        "the control reported fewer conditions than CASES holds — it did not run "
+        "what it claims [R-ENF-04]")
+    print("\n%d conditions reinjected, every one behaved" % len(ran))
     return 0
 
 
