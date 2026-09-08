@@ -354,30 +354,30 @@ const TICKERS = {
     name: "Fertiglobe plc",
     nameAr: "فيرتيجلوب",
     code: "ADX:FERTIGLB",
-    spot: 2.54,
-    spotDate: "close 07 Aug 2026",
+    spot: 2.84,
+    spotDate: "close 08 Sep 2026",
     fairAsof: "2026-08-07",
     ccy: "AED",
     fair: { bear: 1.27, base: 2.15, full: 2.79 },   // 10 Aug 2026 — four lenses, one field, AED 1.27 to 2.79. Weighted central 2.15 on cash flow 45% / relative 20% / normalised 20% / book 15%: cash flow 2.19, relative multiples 2.06, normalised earnings power 2.79, book value and sustainable return 1.27. Against a close of 2.54 the market is FULLY PRICED (spot sits above the weighted centre). The company reports in US dollars; the valuation runs in dollars and converts at the 3.6725 peg only at the final step. THE CONTESTED JUDGEMENT — whether the 2026 nitrogen price spike is a war premium that fades or a structurally tight market — is computed BOTH WAYS and never averaged: normalisation gives AED 1.76, a structurally tight market gives 2.62. Revenue is built bottom-up: installed capacity x a utilisation path, split urea and merchant ammonia, priced off published benchmarks x a realisation ratio measured at 1.00 across three disclosed periods. The cost side is the crux — gas in Egypt and Algeria is PRODUCT-LINKED, so roughly 48 cents of every extra dollar of realised price comes back out as cost; a model escalating cost on general inflation would have overstated this company badly. Beta 0.931 from the share's own weekly history against the FTSE ADX General index, the published index of the exchange it is listed on — an earlier edition used a constituent composite and understated beta by ~40%, carrying WACC from 11.90% to 8.53% and the centre from 2.15 to 2.74. Terminal value is 55.2% of enterprise value under the normalisation framing and the study says so.
     dist: {
-      t20: { label:"1 month",   p5:2.26, p25:2.43, p50:2.54, p75:2.64, p95:2.86, resolve:"2026-09-07" },
-      t60: { label:"3 months",  p5:2.04, p25:2.35, p50:2.53, p75:2.73, p95:3.14, resolve:"2026-11-09" }
+      t20: { label:"1 month",   p5:2.49, p25:2.71, p50:2.84, p75:2.97, p95:3.23, resolve:"2026-10-08" },
+      t60: { label:"3 months",  p5:2.28, p25:2.62, p50:2.84, p75:3.06, p95:3.52, resolve:"2026-12-08" }
     },
-    hz: { h1:20, h3:63, l1:"1 month", l3:"3 months", cal:true },
-    fit: { nu:4.5, cal:0.965, mult:1, eff:0.965, on:"2026-08-25" },
+    hz: { h1:21, h3:62, l1:"1 month", l3:"3 months", cal:true },
+    fit: { nu:4.5, cal:0.957, mult:1, eff:0.957, on:"2026-09-08" },
     touch: [ /* descending high -> low */
-      [3.05, 2, 12], [2.92, 5, 21], [2.79, 13, 36], [2.67, 35, 59], [2.41, 35, 60], [2.29, 11, 34]
+      [3.05, 26, 48], [2.92, 59, 75], [2.79, 70, 82], [2.67, 32, 55], [2.41, 4, 17], [2.29, 2, 10]
     ],
-    levels: { res:[2.59, 2.69, 2.74], sup:[2.45, 2.34, 2.25] },
+    levels: { res:[2.89, 3.01, 3.23], sup:[2.74, 2.54, 2.45] },
     tech: {
-      trend: "Trading below the whole moving-average stack, under a flat 200-day; fresh death-cross",
-      summary: "The price closed 2.54 below a falling 20-day (2.63), a falling 50-day (2.77) and a flat 200-day (2.78). Momentum is soft: RSI(14) is ~34 and the daily ATR near 0.06 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is below zero but turning up (\u22120.06 / \u22120.06 / +0.00). The 50-day crossed beneath the 200-day 1 session ago. Over the last year it has ranged 2.35\u20133.85; the last close sits 34% below that high and 8% above that low.",
-      bull: "A daily close back above 2.59 would clear the nearest resistance; the next charted level above it is 2.74.",
-      bear: "A close below 2.45 would break the nearest support; the next charted level below it is 2.25."
+      trend: "Trading above the whole moving-average stack, on a rising 200-day; fresh death-cross",
+      summary: "The price closed 2.84 above a rising 20-day (2.63), a falling 50-day (2.64) and a rising 200-day (2.79). Momentum is firm: RSI(14) is ~70 and the daily ATR near 0.07 (~2.6%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.04 / +0.01 / +0.03). The 50-day crossed beneath the 200-day 22 sessions ago. Over the last year it has ranged 2.35\u20133.85; the last close sits 26% below that high and 21% above that low.",
+      bull: "A daily close back above 2.89 would clear the nearest resistance; the next charted level above it is 3.23.",
+      bear: "A close below 2.74 would break the nearest support; the next charted level below it is 2.45."
     },
     asof: {
-      mc:   { data:"2026-08-07", computed:"2026-08-25" },
-      tech: { data:"2026-08-07", computed:"2026-09-07" }
+      mc:   { data:"2026-09-08", computed:"2026-09-08" },
+      tech: { data:"2026-09-08", computed:"2026-09-08" }
     },
     files: {
       study:  "files/FERTIGLB_Valuation_Study_09-08-2026.pdf?v=0810a",
@@ -3265,7 +3265,7 @@ const BANDS = {
   ETEL: {mkt:"EG", n:57, hits:56, c50:0.4211, c80:0.8421, c90:0.9825, width:1.342, strength:"long", flag:"wide"},
   EXTRA: {mkt:"SA", n:54, hits:46, c50:0.4815, c80:0.7593, c90:0.8519, width:1.162, strength:"long", flag:null},
   FAB: {mkt:"AE", n:58, hits:54, c50:0.5690, c80:0.8276, c90:0.9310, width:1.034, strength:"long", flag:null},
-  FERTIGLB: {mkt:"AE", n:14, hits:14, c50:0.4286, c80:0.7857, c90:1.0000, width:1.143, strength:"market-only", flag:null},
+  FERTIGLB: {mkt:"AE", n:15, hits:14, c50:0.4000, c80:0.7333, c90:0.9333, width:1.140, strength:"market-only", flag:null},
   FWRY: {mkt:"EG", n:23, hits:23, c50:0.6087, c80:0.9565, c90:1.0000, width:1.247, strength:"short", flag:null},
   GBCO: {mkt:"EG", n:57, hits:54, c50:0.5965, c80:0.9123, c90:0.9474, width:1.423, strength:"long", flag:null},
   Gold: {mkt:"XAU", n:62, hits:59, c50:0.4194, c80:0.8387, c90:0.9516, width:1.024, strength:"long", flag:null},
@@ -3315,7 +3315,7 @@ const BANDS = {
 };
 // Pooled per-market record: what a market-only name is judged on.
 const BAND_MARKETS = {
-  AE: {names:28, n:914, c90:0.9048, label:"UAE"},
+  AE: {names:28, n:915, c90:0.9038, label:"UAE"},
   EG: {names:37, n:1795, c90:0.9287, label:"Egyptian"},
   IN: {names:3, n:174, c90:0.8793, label:"Indian"},
   KR: {names:3, n:127, c90:0.8898, label:"Korean"},
@@ -3422,9 +3422,8 @@ const LEDGER = [
     note:"First coverage, 10-Aug-2026 — cycle 1, struck on the study's own committed path arrays at the 2026-08-07 anchor and NOT re-simulated at publish: re-striking a frozen cone would publish a forecast the study never made. Production chain, no approximation: Step 0.0 data-quality gate → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal OFF per the AE profile. q_annual = 0.053, SOURCED not defaulted. AE live fit nu=10.0, width_cal=0.979; rf_live 3.65%. Horizons resolved by horizons.resolve() on the UAE's own realized calendar, not a session count. Name-level calibration: PARITY, and ROBUSTLY so — scale-normalized CRPS skill −0.0015 against the carry-anchored random walk, the bootstrap CI90 straddling zero at every block size ([−0.028,+0.013] / [−0.030,+0.009] / [−0.031,+0.005]). The method neither beat the benchmark nor lost to it, and the study says so rather than claiming an edge it did not demonstrate. Fertiglobe listed 27-Oct-2021, so its record yields 14 non-overlapping quarterly origins (2022-11-11 → 2026-02-19); a literal five-year test predates the instrument, so the test covers its whole listed life — the maximum evidence that exists. The SHAPE limb passes: PIT Kolmogorov-Smirnov p=0.44, chi-square p=0.74, coverage 43/79/100 per cent against the 50/80/90 bands. What carries the cone is the MARKET-level gate: the 18-name UAE panel scores +0.0068 over 261 windows, PARITY with the CI90 straddling zero, and that panel is the standing gate. No single-name edge exists on this name and none is claimed. The price map is a map of dispersion around today's price, never a forecast of value.",
     p5:2.24, p25:2.42, p50:2.54, p75:2.66, p95:2.87,
     touch:{"+5":42,"+10":16,"+15":5,"+20":2,"-5":41,"-10":13},
-    realized_close:null, realized_high:null, realized_low:null, in_90:null, in_50:null,
-    realized_quantile:null, median_err:null,
-    touch_hit:{"+5":null,"+10":null,"+15":null,"+20":null,"-5":null,"-10":null},
+    realized_close:2.84, realized_high:2.89, realized_low:2.48, in_90:true, in_50:false, realized_quantile:0.921, median_err:0.1181,
+    touch_hit:{ "+5":true, "+10":true, "+15":false, "+20":false, "-5":false, "-10":false },
     reanchor_from:null
   },
   {
@@ -8253,6 +8252,35 @@ const LEDGER = [
     realized_close:null, realized_high:null, realized_low:null,
     in_90:null, in_50:null, realized_quantile:null, median_err:null,
     touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+
+  // ---- 08-Sep-2026 single-name roll-forward: FERTIGLB, struck on its own
+  //      latest library close. Append-only.
+  {
+    instrument:"FERTIGLB", asset_class:"equity",
+    anchor_date:"2026-09-08", run_date:"2026-09-08", anchor_price:2.84, ccy:"AED",
+    horizon_label:"1 month", grade_date:"2026-10-08", grade_basis:"projected", horizon_days:21,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.3078,
+    signal_z:-0.1403, signal_alpha:0.0,
+    note:"Cycle 2 roll-forward, 08-Sep-2026 — struck on the 08-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.047394 (the carry is NET of it — ln(1+rf) − ln(1+q) — so the centre is the ex-dividend price path and the yield is deducted, never carried.) AE live fit nu=4.5, width_cal=0.957. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN but WEAK — this name’s own mom_combo z is -0.140, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:2.49, p25:2.71, p50:2.84, p75:2.97, p95:3.23,
+    touch:{ "+5":40, "+10":16, "+15":7, "+20":3, "-5":40, "-10":13 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
+  },
+  {
+    instrument:"FERTIGLB", asset_class:"equity",
+    anchor_date:"2026-09-08", run_date:"2026-09-08", anchor_price:2.84, ccy:"AED",
+    horizon_label:"3 months", grade_date:"2026-12-08", grade_basis:"projected", horizon_days:62,
+    cycle_no:2, reanchor_from:"2026-08-07", anchor_vol:0.3035,
+    signal_z:-0.1403, signal_alpha:0.0,
+    note:"Cycle 2 roll-forward, 08-Sep-2026 — struck on the 08-Sep-2026 close, the latest session in this name’s library, at the monthly metronome — the prior cycle’s 1-month matured on 2026-09-07 and is graded in this same pass. The previous cone was anchored 2026-08-07; every still-open cohort on cycle 1 stays OPEN and grades on its own terms; nothing retro-edited. Production chain, no approximation: Step 0.0 data-quality gate → YZ variance proxy → fit_har_v3 → har_forecast_v3 → carry drift ln(1+rf_live)−ln(1+q) → simulate_paths_v3, 50,000 paths, seed 42, signal ON. q_annual=0.047394 (the carry is NET of it — ln(1+rf) − ln(1+q) — so the centre is the ex-dividend price path and the yield is deducted, never carried.) AE live fit nu=4.5, width_cal=0.957. rf_live 3.65% CBUAE base rate (AED peg -> Fed path). Direction call DOWN but WEAK — this name’s own mom_combo z is -0.140, inside the 0.25 dead zone, so the tilt applied is exactly 0 and the cone is carry-centered. Horizons resolved by horizons.resolve() on AE’s own realized calendar — a calendar commitment, not a session count; the session counts (h=21 / 62) size the cone only.",
+    p5:2.28, p25:2.62, p50:2.84, p75:3.06, p95:3.52,
+    touch:{ "+5":61, "+10":37, "+15":22, "+20":13, "-5":61, "-10":35 },
+    realized_close:null, realized_high:null, realized_low:null,
+    in_90:null, in_50:null, realized_quantile:null, median_err:null,
+    touch_hit:{ "+5":null, "+10":null, "+15":null, "+20":null, "-5":null, "-10":null }
   }
 ];
 
@@ -8483,9 +8511,9 @@ const METALS = {
 const CALIB = {
   "ADX:2POINTZERO": {w: 14, in50: 29, in90: 71, through: "2026-06-23"},
   "ADX:ADCB": {w: 58, in50: 48, in90: 86, through: "2026-07-28"},
-  "ADX:ADIB": {w: 58, in50: 50, in90: 83, through: "2026-08-05"},
-  "ADX:ADNOCDIST": {w: 30, in50: 67, in90: 97, through: "2026-07-06"},
-  "ADX:ADNOCDRILL": {w: 15, in50: 60, in90: 100, through: "2026-07-20"},
+  "ADX:ADIB": {w: 58, in50: 47, in90: 83, through: "2026-08-05"},
+  "ADX:ADNOCDIST": {w: 30, in50: 63, in90: 97, through: "2026-07-06"},
+  "ADX:ADNOCDRILL": {w: 15, in50: 53, in90: 100, through: "2026-07-20"},
   "ADX:ADNOCGAS": {w: 9, in50: 44, in90: 100, through: "2026-06-26"},
   "ADX:ADNOCLS": {w: 8, in50: 38, in90: 88, through: "2026-06-24"},
   "ADX:AGTHIA": {w: 58, in50: 64, in90: 97, through: "2026-08-13"},
@@ -8494,15 +8522,15 @@ const CALIB = {
   "ADX:AMR": {w: 10, in50: 10, in90: 100, through: "2026-06-24"},
   "ADX:BOROUGE": {w: 12, in50: 92, in90: 100, through: "2026-06-16"},
   "ADX:BURJEEL": {w: 11, in50: 55, in90: 91, through: "2026-07-28"},
-  "ADX:EAND": {w: 58, in50: 55, in90: 88, through: "2026-08-05"},
+  "ADX:EAND": {w: 58, in50: 53, in90: 88, through: "2026-08-05"},
   "ADX:FAB": {w: 58, in50: 52, in90: 91, through: "2026-08-13"},
-  "ADX:FERTIGLB": {w: 14, in50: 43, in90: 86, through: "2026-05-19"},
+  "ADX:FERTIGLB": {w: 15, in50: 33, in90: 87, through: "2026-08-19"},
   "ADX:IHC": {w: 47, in50: 64, in90: 83, through: "2026-07-21"},
   "ADX:LULU": {w: 2, in50: 100, in90: 100, through: "2026-06-01"},
   "ADX:MODON": {w: 24, in50: 54, in90: 83, through: "2026-09-01"},
   "DFM:AIRARABIA": {w: 58, in50: 47, in90: 84, through: "2026-07-28"},
   "DFM:DEWA": {w: 13, in50: 54, in90: 100, through: "2026-07-28"},
-  "DFM:DIB": {w: 58, in50: 53, in90: 84, through: "2026-07-28"},
+  "DFM:DIB": {w: 58, in50: 52, in90: 84, through: "2026-07-28"},
   "DFM:DU": {w: 58, in50: 64, in90: 93, through: "2026-07-29"},
   "DFM:EMAAR": {w: 58, in50: 45, in90: 79, through: "2026-07-28"},
   "DFM:EMAARDEV": {w: 30, in50: 43, in90: 87, through: "2026-06-17"},
@@ -8716,7 +8744,7 @@ const PRICES = {
   ETEL: { px: 115.0, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   EXTRA: { px: 66.05, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   FAB: { px: 19.4, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  FERTIGLB: { px: 2.67, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
+  FERTIGLB: { px: 2.84, date: "2026-09-08", src: "library" },
   FWRY: { px: 18.95, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   GBCO: { px: 28.98, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   HELI: { px: 8.1, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
