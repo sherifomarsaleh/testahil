@@ -153,14 +153,33 @@ def company_named_not_ticker_named(tmp):
 
 
 def ratcheted_breach_stays_green(tmp):
-    """The known breach is on the list and must not turn the build red."""
+    """A ratcheted breach must not turn the build red.
+
+    THE BREACH AND ITS RATCHET ENTRY ARE BOTH CONSTRUCTED HERE, and that is the
+    correction. This case used to read the LIVE ratchet and take its first name, so
+    the day that list was finally emptied -- the debt being PAID, which is the whole
+    point of a ratchet -- the case had nothing to prove and refused, and the control
+    reported a gate that was fine as broken. That is the third fixture in one session
+    whose subject was live state, and the discipline is the same each time: build the
+    condition, never borrow it. A control that only works while somebody still owes
+    something is a control that stops working when the work is done.
+    """
+    tk = "ZZZTEST"
+    d = os.path.join(tmp, "engine", "%s_study" % tk.lower())
+    os.makedirs(d, exist_ok=True)
+    # a delivered study document and deliberately NO bibliography beside it
+    open(os.path.join(d, "%s_Valuation_Study_08-09-2026.docx" % tk), "wb").write(b"x")
+    assert not _biblio_of(tmp, "%s_study" % tk.lower()), \
+        "fixture: the constructed study is not actually breaching"
     p = os.path.join(tmp, "engine", "build_depth_audit",
                      "bibliography_outstanding.json")
     o = json.load(open(p))
-    assert o.get("outstanding"), "fixture: the ratchet is empty, so this proves nothing"
-    tk = o["outstanding"][0]
-    assert not _biblio_of(tmp, tk.lower() + "_study"), \
-        "fixture: the ratcheted study is not actually breaching"
+    o.setdefault("outstanding", [])
+    if tk not in o["outstanding"]:
+        o["outstanding"].append(tk)
+    json.dump(o, open(p, "w"), indent=1)
+    assert tk in json.load(open(p))["outstanding"], \
+        "MUTATION DID NOT LAND: the ratchet does not name the constructed study"
     return None
 
 

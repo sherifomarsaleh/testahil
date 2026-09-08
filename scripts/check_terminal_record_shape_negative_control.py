@@ -126,14 +126,26 @@ def no_records_anywhere(tmp):
     its rule field: nothing to check, nothing wrong, green — which is exactly the
     absent answer wearing a clean one's clothes.
     """
+    # THE EXPECTED COUNT IS DERIVED FROM THE TREE, NEVER FROZEN. It was a literal 37
+    # and the book grew to 38 -- a study gaining a terminal record, which is the work
+    # going RIGHT -- so this control refused and read as a broken gate. That is the
+    # third fixture in one session whose subject was live state: the discipline is to
+    # count what is there FIRST, then assert the mutation touched exactly that, which
+    # still catches a mutation that lands on nothing without breaking when the book
+    # legitimately moves. Counting against a known total [R-ENF-04] means a total the
+    # run establishes, not one somebody typed last week.
+    paths = glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json"))
+    expect = sum(len(list(_each_record(json.load(open(p))))) for p in paths)
+    assert expect > 0, "MUTATION DID NOT LAND: the tree carries no terminal record"
     hit = 0
-    for p in glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json")):
+    for p in paths:
         o = json.load(open(p))
         for rec in _each_record(o):
             rec["rule"] = "R-TERM-01-RENAMED"
             hit += 1
         json.dump(o, open(p, "w"))
-    assert hit == 37, f"MUTATION DID NOT LAND: renamed {hit} markers, expected 37"
+    assert hit == expect, (
+        f"MUTATION DID NOT LAND: renamed {hit} markers against {expect} counted")
     return "ZERO terminal records"
 
 
