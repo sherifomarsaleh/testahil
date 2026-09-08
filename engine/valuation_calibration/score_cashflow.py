@@ -180,6 +180,28 @@ READINGS = (
     # rather than chosen between. Nothing here promotes anything.
     ("maintenance on the DISCLOSED LIFE — A SENSITIVITY, NOT THE DECLARED RUN",
      dict(horizons=CL.HORIZONS, maintenance="disclosed_life")),
+    # ATTRIBUTION, NOT PROMOTION, AND THE LABEL IS LOAD-BEARING. This lens inherits
+    # every input run's projection by construction, so a UNIT ERROR inside one run
+    # arrives here looking like a property of the valuation method. ARCC holds an
+    # imported dollar commodity flat IN POUNDS and three nominal capital-charge
+    # lines flat at zero, while escalating revenue at the full inflation ladder,
+    # through a window in which the pound fell 10.434x — and it is the largest
+    # single contributor to the pooled bias. This reading measures how much of that
+    # bias is the INPUT rather than the CONSTRUCTION.
+    #
+    # IT IS NOT AND MAY NOT BECOME A PROMOTED LEVER: the pre-registration fixes six
+    # levers in order before any score existed and an input run's projection is not
+    # among them. The remedy for a unit error is to fix the unit in the run that
+    # carries it, which re-scores that run's own drivers and is its own pass.
+    ("ARCC's two unit errors corrected — ATTRIBUTION SENSITIVITY, NOT THE DECLARED RUN",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", arcc_unit_fix=True)),
+    # AND THE THIRD, WHICH IS THE FIRST FACING THE OTHER WAY: the run compounds the
+    # origin's last realised currency move for five years, which at FY2017 asserts
+    # x17.557 against a realised x1.077. Coherent = the level rule applied to a
+    # price in its OWN currency and to the currency itself, which is this run's own
+    # stated principle applied consistently. STILL AN ATTRIBUTION, STILL NOT A LEVER.
+    ("ARCC coherent — level rule applied consistently — ATTRIBUTION, NOT THE DECLARED RUN",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", arcc_unit_fix="coherent")),
 )
 
 

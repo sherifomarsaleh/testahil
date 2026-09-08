@@ -108,3 +108,85 @@ drivers against it. Changing it moves that run's committed results and is not do
 passing or on this evidence alone. What this file establishes is the diagnosis; the
 remedy — a pass-through assumption for a foreign-currency input, and the mirror clause on
 [R-ANCHOR-01] — is a decision recorded separately.
+
+---
+
+# The attribution, measured — 08-09-2026, later the same day
+
+The diagnosis above named a defect. This section prices it, because a named cause with
+no magnitude beside it cannot be the "residual bias attributed to a named lever" the
+acceptance criterion asks for.
+
+## Three readings, all published, none of them the declared run
+
+`score_cashflow.py` now prints all three beside the declared score. The declared run is
+untouched and byte-identical to what it was before this measurement existed.
+
+| reading | cells | pooled mean log(FV/P) | block-4 95% CI |
+|---|---|---|---|
+| **DECLARED** — the run's own projection | 15 | **+0.7880** | [+0.6090, +1.0052] |
+| coal held flat in DOLLARS, carried on the run's own currency path; D&A escalated | 14 | +0.5019 | [+0.5019, +0.7918] |
+| **COHERENT** — the level rule applied consistently | 15 | +0.6917 | [+0.5805, +0.9141] |
+
+## The two errors are one error
+
+The run's own docstring states the principle correctly — *"a commodity price has no drift
+and assuming one would be a forecast, not a rule"* — and then applies the **level** rule
+and the **rate** rule to the wrong quantities.
+
+- **Coal** is held at its level in **pounds**, but `coal_egp()` is the South African
+  dollar price *multiplied by* the exchange rate. Holding that flat through a window in
+  which the pound fell 10.434× asserts a dollar coal price falling about ninety per cent.
+  That is not a rule about a commodity; it is a forecast, and an impossible one.
+- **The currency** is held at a **rate** — the origin's last realised annual move,
+  compounded five years. Inflation is a rate; **a devaluation is a step**:
+
+  | origin | compounds to | realised over the same five years |
+  |---|---|---|
+  | FY2016 | ×3.763 | ×1.560 |
+  | FY2017 | ×17.557 | **×1.077** |
+  | FY2018 | ×0.996 | ×1.724 |
+  | FY2019 | ×0.749 | ×2.701 |
+  | FY2020 | ×0.733 | ×3.124 |
+  | FY2023 | ×10.434 | not yet resolved |
+
+  Wrong by a factor of sixteen at the float year and wrong in the **opposite** direction
+  at three consecutive origins — so it is not a bias a reader could correct for.
+
+The coherent specification is that sentence applied consistently: a price held at its
+level **in its own currency**, and the currency held at its level too. **It is chosen on
+that argument and not on its score.** The score agrees with it — on the five resolved
+five-year margin cells, mean error +0.0393 against the declared +0.1075 and the
+intermediate −0.2110, mean absolute error 0.1959 against 0.2561 and 0.2399 — and that
+agreement is evidence, never the reason. Three specifications were run and the best was
+reported, which is recorded here plainly so a reader can discount it accordingly.
+
+## What this settles, and it is not what it was built to settle
+
+**The unit errors are real and they are not the answer.** They are worth between 0.10 and
+0.29 of the +0.7880, and **every one of the three readings leaves the pooled bias positive
+with all three bootstrap intervals excluding zero.** Correcting them does not reach
+criterion 3's clause A and no further correction inside this lens will.
+
+Under the coherent reading the bias decomposes as **ARCC +1.1722 over 8 cells, PHDC
++0.6210 over 4, EGCH −0.7409 over 2, TMGH −0.0041 over 1** — so ARCC still dominates
+after its own specification is repaired, because what remains is structural: half its
+raw-material stack is pegged to a commodity held at a level while revenue escalates at the
+full inflation ladder, which expands a margin by construction in any inflationary market.
+
+**That is an input's property, not the valuation construction's.** The lens inherits every
+run's projection, so this bias is not removable here, and it is not one of the six levers
+the pre-registration fixed in order before any score existed — the projection is not on
+that list, and adding a seventh after seeing the scores is the fitting this method forbids
+everywhere else. The sanctioned route to clause A is those six levers, in their written
+order, and none of them has been run.
+
+## What is NOT done here, restated because the temptation grew rather than shrank
+
+The intermediate reading over-corrects at exactly the two devaluation origins — ARCC 2017
+drops out entirely, its last forecast year consuming cash — and the coherent reading is
+better at five of seven five-year cells and worse at two. **Neither is the truth**, and
+nobody may claim in advance which way a repair moves a value. The remedy for a unit error
+is to fix the unit **in the run that carries it**, which re-scores that run's own drivers,
+lessons and corrections record, and is its own pass with its own declared amendment and
+its own audit — not a branch inside this lens that somebody could later flip.

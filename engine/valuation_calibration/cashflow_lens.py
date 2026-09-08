@@ -147,19 +147,127 @@ def project_amoc(origin):
     return out
 
 
-def project_arcc(origin):
+def project_arcc(origin, unit_fix=False):   # unit_fix in (False, True, "coherent")
+    """ARCC's own projection, exactly as its run computes it.
+
+    unit_fix IS A LABELLED SENSITIVITY AND IS NEVER THE DECLARED RUN. It exists
+    because this lens INHERITS each run's projection by construction, so a unit
+    error inside one run's cost path arrives here looking like a property of the
+    valuation method. What it varies is named, is arithmetic rather than judgement,
+    and uses NO information the origin did not have:
+
+      (i) COAL IS A DOLLAR COMMODITY AND THE RUN HOLDS IT FLAT IN POUNDS. That
+          run's own docstring states the intent correctly -- "a commodity price
+          has no drift and assuming one would be a forecast, not a rule" -- and
+          then applies it to coal_egp(), which is the South African dollar price
+          MULTIPLIED BY the exchange rate. Holding that level flat through a
+          window in which the pound fell 10.434x asserts that the dollar coal
+          price fell about ninety per cent, which is not a rule about a commodity;
+          it is a forecast, and an impossible one. The sensitivity holds coal flat
+          IN DOLLARS and converts at the model's OWN knowable currency path -- the
+          same (1 + fx_dep(o)) ** h it already applies to export prices.
+      (ii) DEPRECIATION, AMORTISATION AND RIGHT-OF-USE are held at their nominal
+          origin values for five years while revenue escalates at the full
+          inflation ladder. The sensitivity escalates them on that same ladder.
+
+    THIS IS NOT A PROMOTED LEVER AND MAY NOT BECOME ONE HERE. The pre-registration
+    fixes six levers in order before any score existed and an input run's
+    projection is not among them; adding a seventh after seeing the scores is the
+    fitting this method forbids. What this measures is ATTRIBUTION -- how much of
+    the pooled bias is a property of one input rather than of the valuation
+    construction -- which is what the acceptance criterion's residual clause asks
+    for. The remedy for a unit error is to fix the unit in the run that carries
+    it, which re-scores that run's own drivers and is its own pass.
+    """
     d = os.path.join(ENGINE, "arcc_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        p = _run(d, B.project, "FY%d" % origin, h)
+        if unit_fix:
+            p = _run(d, _arcc_unit_fixed, B, "FY%d" % origin, h,
+                     fx_level=(unit_fix == "coherent"))
+        else:
+            p = _run(d, B.project, "FY%d" % origin, h)
         ebit = (p["gross_profit"] - p["ga"] - p["provisions"] + p["reversals"]
                 - p["impairments"])
         out[h] = {"revenue": p.get("revenue"), "ebit": ebit,
                   "dna": (p.get("mfg_dep") or 0.0) + (p.get("amort") or 0.0)}
     return out
+
+
+def _arcc_unit_fixed(B, o, h, fx_level=False):
+    """ARCC's projection with the two unit errors named above corrected.
+
+    Every line not named there is B.project()'s own arithmetic, reproduced rather
+    than re-derived so the two runs differ ONLY in what this function claims to
+    change. It calls B's own paths, drivers and tax rule.
+
+    fx_level ADDS THE THIRD ERROR, WHICH IS THE SAME ERROR AS THE FIRST FACING THE
+    OTHER WAY. The run's knowable path takes the origin's last realised annual
+    currency move and COMPOUNDS IT for five years. Inflation is a rate and
+    compounding it is right; A DEVALUATION IS A STEP. Measured against what the
+    currency actually did over the same five years:
+
+        origin FY2016   compounds x3.763    realised x1.560
+        origin FY2017   compounds x17.557   realised x1.077     <- the float year
+        origin FY2018   compounds x0.996    realised x1.724
+        origin FY2019   compounds x0.749    realised x2.701
+        origin FY2020   compounds x0.733    realised x3.124
+        origin FY2023   compounds x10.434   not yet resolved
+
+    Wrong by a factor of sixteen at FY2017 and wrong in the OPPOSITE direction at
+    three consecutive origins, so it is not a bias a reader could correct for. It
+    reaches the declared run through export prices, and reaches the corrected one
+    through coal as well, which is why the intermediate reading over-corrects at
+    exactly the two devaluation origins.
+
+    THE TWO ERRORS ARE ONE ERROR: the level rule and the rate rule applied to the
+    wrong quantities. This run's own words are "a commodity price has no drift and
+    assuming one would be a forecast, not a rule" -- true, and true of a currency
+    on the same reasoning, and true of a dollar commodity only IN DOLLARS. The
+    coherent specification is that sentence applied consistently, and it is chosen
+    on THAT argument rather than on its score. The score agrees with it, which is
+    evidence and is not the reason.
+    """
+    a = B.actual(o)
+    pi, fxm, _coal = B._paths(o, h, False, False)
+    if fx_level:
+        fxm = 1.0                      # (iii) a currency held at its level, not compounded
+    pop = (1 + B.pop_growth(o)) ** h
+    w = B.W_DEFAULT
+
+    vol_local = a["vol_local"] * pop
+    vol_export = a["vol_export"]
+    vol_total = vol_local + vol_export
+    price_local = a["price_local"] * pi
+    price_export = a["price_export"] * fxm
+    services = a["services"] * pi
+    # (i) coal flat in DOLLARS, carried into pounds on the model's own FX path
+    raw_t = a["raw_per_t"] * (w * fxm + (1 - w) * pi)
+    tr_t = a["transport_per_t"] * pi
+    ov_t = a["overhead_per_t"] * pi
+    # (ii) the nominal capital-charge lines escalate with everything else
+    mfg_dep, amort, rou = a["mfg_dep"] * pi, a["amort"] * pi, a["rou"] * pi
+    ga = a["ga"] * pi
+
+    revenue = (price_local * vol_local * 1000.0
+               + price_export * vol_export * 1000.0 + services)
+    raw = raw_t * vol_total * 1000.0
+    transport = tr_t * vol_total * 1000.0
+    overhead = ov_t * vol_total * 1000.0
+    cogs = raw + transport + overhead + mfg_dep + amort + rou
+    gross_profit = revenue - cogs
+
+    pbt = (gross_profit - ga - a["provisions"] + a["reversals"] - a["impairments"]
+           + a["interest_income"] + a["other_income"] - a["finance_costs"]
+           + 0.0 + a["disposals"] + a["jv"])
+    tax = B.TAX_RATE * pbt if pbt > 0 else 0.0
+    return {"revenue": revenue, "cogs": cogs, "gross_profit": gross_profit, "ga": ga,
+            "provisions": a["provisions"], "reversals": a["reversals"],
+            "impairments": a["impairments"], "mfg_dep": mfg_dep, "amort": amort,
+            "rou": rou, "pbt": pbt, "tax": tax, "pat": pbt - tax}
 
 
 def project_egch(origin):
@@ -599,7 +707,8 @@ def study_life(tk):
     return float(life), src
 
 
-def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
+def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
+         arcc_unit_fix=False):
     panel, _src = P._panel(os.path.join(ENGINE, "%s_walkforward" % tk.lower()))
     blk = block(tk)
     shares, price = cellinfo["shares"], cellinfo["price"]
@@ -621,7 +730,10 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     # mixing two of them. A run whose projection reaches fewer than MIN_EXPLICIT years is
     # still refused, because a terminal capitalising a one- or two-year path is a terminal
     # doing all the work.
-    proj = PROJECTORS[tk](origin)
+    # arcc_unit_fix reaches ONE projector and defaults off, so the declared run
+    # is byte-identical to what it was before this sensitivity existed.
+    proj = (PROJECTORS[tk](origin, unit_fix=arcc_unit_fix)
+            if (arcc_unit_fix and tk == "ARCC") else PROJECTORS[tk](origin))
     hs = [h for h in horizons if h in proj]
     if len(hs) < MIN_EXPLICIT:
         return None, ("the projection runs to horizon %d and %d explicit years is the "
@@ -810,7 +922,8 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
              "horizons": hs}, None)
 
 
-def run(market="EG", horizons=HORIZONS, maintenance="amount"):
+def run(market="EG", horizons=HORIZONS, maintenance="amount",
+        arcc_unit_fix=False):
     cells, names, declared, usable = P.build(market)
     rows, dropped = [], []
     for (tk, y), c in sorted(cells.items()):
@@ -821,7 +934,7 @@ def run(market="EG", horizons=HORIZONS, maintenance="amount"):
             continue
         try:
             r, why = cell(tk, y, market, c, horizons=horizons,
-                          maintenance=maintenance)
+                          maintenance=maintenance, arcc_unit_fix=arcc_unit_fix)
         except MH.VintageMissing as exc:
             r, why = None, str(exc)[:100]
         except Exception as exc:
