@@ -256,7 +256,7 @@
     "index_asof": "2026-07-22",
     "index_dq": [],
     "stock_dq": [
-     "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
+     "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) — vendor fills, not tradeable prices"
     ],
     "week_rule": "W-THU",
     "interim_note": null,
@@ -625,7 +625,7 @@
    "index_asof": "2026-07-22",
    "index_dq": [],
    "stock_dq": [
-    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
+    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) — vendor fills, not tradeable prices"
    ],
    "week_rule": "W-THU",
    "interim_note": null,
@@ -921,9 +921,9 @@
       "dna_book": 1703.218774579439,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
@@ -1242,9 +1242,9 @@
       "dna_book": 1703.218774579439,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3030.714662797211,
@@ -1563,9 +1563,9 @@
       "dna_book": 1434.142454946,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
@@ -1884,9 +1884,9 @@
       "dna_book": 952.28804,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
@@ -2032,7 +2032,7 @@
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing.",
   "gap_per_share": 3.999194072090682,
-  "why_not_averaged": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant \u2014 a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing.",
+  "why_not_averaged": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant — a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing.",
   "both_sides_vs_spot": [
    {
     "label": "carried through",
@@ -2106,19 +2106,40 @@
   "class": "petrochemical",
   "primary": {
    "kind": "dcf",
-   "value": 4.0395808164915605,
+   "two_sided": true,
+   "value": null,
+   "branches": [
+    {
+     "label": "Cash-flow lens, capital programme carried through",
+     "value": 4.0395808164915605,
+     "condition": "the ANNA programme is completed and commissioned as the company is currently doing"
+    },
+    {
+     "label": "Cash-flow lens, capital programme stopped",
+     "value": 8.038774888582243,
+     "condition": "the programme is halted and the remaining spend is not committed"
+    }
+   ],
    "range": {
     "low": 0.9084436628369906,
-    "high": 4.166902987743848
+    "high": 8.038774888582243
    },
-   "range_note": "the cash-flow lens across the dollar export price, from the flat-at-opening path the base case holds to the higher path the upside case holds, with the programme carried through in both and the macro path held still",
+   "range_note": "the two answers to a BINARY question — whether the capital programme is carried through or stopped — with the dollar export-price sensitivity inside the carried-through branch. Not a spread across methods and not a band invented around a point: every read is the same cash-flow lens on one clock, with the macro path held still across all of them",
    "range_basis": {
-    "driver": "the dollar export price per tonne of urea",
-    "low": 530.0,
-    "high": 560.0,
-    "units": "US$ per tonne, f.o.b. Egypt",
+    "driver": "whether the ANNA capital programme is carried through or stopped",
+    "low": 4.0395808164915605,
+    "high": 8.038774888582243,
+    "units": "EGP per share, the present-value read under each answer",
     "macro_held": true,
-    "evidence": "the base case holds the price FLAT in nominal dollars at the opening level, because no forecast of a traded commodity price is defensible and that is the convention this house applies to the same class of input elsewhere; the upside case holds it nearer the CME FOB Egypt settlement of 7 August 2026. Both are levels the market has actually printed, not a chosen percentage band, and the currency path, the cost of capital and terminal growth are held at the house macro path across both."
+    "secondary_basis": {
+     "driver": "the dollar export price per tonne of urea, within the carried-through branch",
+     "low": 530.0,
+     "high": 560.0,
+     "units": "US$ per tonne, f.o.b. Egypt",
+     "macro_held": true,
+     "evidence": "the base case holds the price FLAT in nominal dollars at the opening level, because no forecast of a traded commodity price is defensible and that is the convention this house applies to the same class of input elsewhere; the upside case holds it nearer the CME FOB Egypt settlement of 7 August 2026. Both are levels the market has actually printed, not a chosen percentage band."
+    },
+    "evidence": "both branches re-run the SAME cash-flow lens on the same tonnes, the same disclosed capital cost and the same house macro path; the only thing that changes between them is whether the remaining programme spend is committed. The currency path, the cost of capital and terminal growth are identical in both, so the spread is the decision and nothing else."
    },
    "note": "the cash-flow lens on the company's own tonnes, dollar prices and disclosed capital programme, discounted on the glide. THE CONTESTED JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens reads 4.04, stopped it reads 8.04, and the two are published side by side and never averaged."
   },
@@ -2140,7 +2161,7 @@
     "kind": "book_value",
     "value": 8.15778582586335,
     "present_value": false,
-    "note": "the DISCLOSED book equity per share, published as a floor and never weighted. The retired blend weighted a JUSTIFIED price-to-book of zero at 15% under this name \u2014 a derived valuation wearing the name of a disclosed figure. The justified multiple is 0.00x and is kept as a diagnostic: it says the company does not earn its cost of equity, which is a finding, not a book value."
+    "note": "the DISCLOSED book equity per share, published as a floor and never weighted. The retired blend weighted a JUSTIFIED price-to-book of zero at 15% under this name — a derived valuation wearing the name of a disclosed figure. The justified multiple is 0.00x and is kept as a diagnostic: it says the company does not earn its cost of equity, which is a finding, not a book value."
    }
   ],
   "retired": {
@@ -2242,5 +2263,138 @@
   "basis": "this name's own walk-forward pre-registration, section 0: \"The archive supports eighteen sourceable fiscal years, FY2008 through FY2025\". The run built origins FY2012-FY2024 on that archive",
   "status": "run",
   "note": "The fundamental walk-forward HAS been run on this name (engine/egch_walkforward/, 01-09-2026): 13 origins, FY2012-FY2024, 825 scored cells on the as-known macro setting. No correction was adopted; every candidate is a watch flag, which this study's own record states."
+ },
+ "asset_base_record": {
+  "rule": "R-ASSET-01",
+  "quantity": "urea nameplate capacity",
+  "unit": "tonnes per year",
+  "value": 574875.0,
+  "as_at": "2025-06-30",
+  "disclosure": "Note 28 of the audited consolidated financial statements for the year ended 30 June 2025 states the plants' CONTRACTUAL BENCHMARKS -- 1,575 tonnes a day of urea and 1,200 tonnes a day of ammonia -- which are the design plates the whole utilisation path is measured against. The urea figure is that plate times 365 days (574,875 tonnes a year) and the ammonia plate is stated directly as 438,000 tonnes a year. These are the operating lines the company has today; no later filing restates either.",
+  "components": {
+   "urea_design_tpy": 574875.0,
+   "ammonia_design_tpy": 438000.0,
+   "ammonium_nitrate_under_construction_tpy": 264000.0
+  },
+  "under_construction": {
+   "quantity": "ammonium-nitrate line under construction",
+   "unit": "tonnes per year",
+   "value": 264000.0,
+   "as_at": "2023-06-09",
+   "disclosure": "The EPC award for this plant, announced 9 June 2023 -- 600 tonnes a day of nitric acid converted to 800 tonnes a day of fertilizer-grade granulated ammonium nitrate, at 330 operating days a year. IT IS NOT IN A FILING and is labelled as such: the study had previously said no filing states the plate and DERIVED it from the ammonia surplus instead, reaching 189,863 tonnes, and an outside critique found the award. Both figures are carried; the disclosed one is adopted.",
+   "note": "CARRIED SEPARATELY RATHER THAN ADDED TO THE PLATES, because it has not joined them: the line is not commissioned, and whether it ever is IS this study's contested judgement and the reason it publishes two answers instead of one. Folding an uncommissioned plant into the operating asset base would state as installed capacity the very thing the study says is undecided."
+  },
+  "not_restated_since": {
+   "reason": "A nameplate is restated when a company builds or retires a line, not on a clock, and this company has commissioned nothing since the plates in note 28 were stated. The one addition in progress is the ammonium-nitrate line, which is carried above under its own heading at its own disclosed capacity and its own date, so nothing about the base is being carried forward silently. What HAS moved between the two dates is utilisation rather than capacity -- gas curtailment, which the forecast models on the company's own production history and which is a fact about throughput, not about the plant.",
+   "disclosures_checked": [
+    "Interim statements for the nine months ended 31 March 2026, limited review dated 20 May 2026 -- the latest filing this study reads, and the sheet its bridge stands on. It discloses no change to either design plate and no commissioning of the line under construction.",
+    "Interim statements for the six months ended 31 December 2025, from which the third quarter is derived by difference. No change to either plate.",
+    "Audited consolidated financial statements for the year ended 30 June 2025, note 28, which is where the plates themselves are stated."
+   ]
+  },
+  "note": "THE BASE IS OLDER THAN THE INFORMATION SET AND SAYS SO, WHICH IS WHAT THE RELEASE IS FOR. The ordering test would otherwise refuse a producer that has built nothing -- the commonest case there is -- so the study declares the gap, gives its reason, and names the later filings it actually opened. An empty reason would switch the check off rather than declare it, and a list of filings nobody read would be worse than no list."
+ },
+ "information_set_ends": "2026-03-31",
+ "cost_of_capital_record": {
+  "rule": "R-COC-01",
+  "market": "EG",
+  "macro_path": "EG",
+  "rf_observed": 0.23,
+  "default_spread": 0.0341,
+  "rf_star": 0.19590000000000002,
+  "rf_normalisation_note": "The risk-free rate is the local ten-year government yield of 23.00% less this sovereign's OWN credit-default-swap spread of 3.41%, and the equity premium added back is on the same credit-default-swap basis, so Egypt's country risk is counted exactly once. The rating basis is published beside it: a rating-basis spread of 6.37% with a rating-basis premium of 13.94% gives a cost of capital 113 basis points higher, and both are shown rather than one being chosen quietly.",
+  "rf_terminal": 0.125,
+  "rf_terminal_note": "DERIVED, NOT QUOTED: the house Egyptian path's terminal inflation of 7.0% plus its real-rate convention. It is the same figure the path returns for every Egyptian terminal, so this study cannot hold a private view of where the risk-free rate settles.",
+  "wacc_exp": 0.25757854106089717,
+  "wacc_terminal": 0.1833330573146555,
+  "forward_wacc": [
+   0.25757854106089717,
+   0.2382164717061873,
+   0.2224186525920881,
+   0.21018508371859965,
+   0.20009006498947762
+  ],
+  "glide_fractions": [
+   0.0,
+   0.26078447304466507,
+   0.4735626558644232,
+   0.6383345484592736,
+   0.7743026669191798
+  ],
+  "ke_exp": 0.2928427898875876,
+  "ke_terminal": 0.2219427898875876,
+  "glide_note": "One rate per explicit year, rebuilt from the ground up at each: the risk-free glides from 19.59% to the derived terminal 12.50% and the cost of debt glides with the currency wedge, and the weighted rate falls 25.76% -> 20.01% -> terminal 18.33%. Egypt is a transition market on the house path, so a single rate for five years and a perpetuity would assert that this economy never normalises, against the disinflation path this study's own currency wedge already follows.",
+  "discount_factors": [
+   0.7951789628633429,
+   0.6421970479585323,
+   0.5253495163844073,
+   0.4341067523077859,
+   0.3617284776968736
+  ],
+  "terminal_discount_factor": 0.3617284776968736,
+  "discounting_note": "The terminal value is brought home on the SAME cumulative factor as the final explicit year, 0.361728, and the factors are the compounded forward rates rather than a single rate raised to a power. One date, one price of time.",
+  "kd_pretax": 0.2433796546906064,
+  "kd_after_tax": 0.18861923238521996,
+  "kd_path": [
+   0.2433796546906064,
+   0.20532079497667902,
+   0.18085438516058255,
+   0.16998042524231768,
+   0.16726193526275143
+  ],
+  "kd_integrity": {
+   "pct_local_currency": 0.0031392160874321715,
+   "currency_source": "ESTABLISHED FROM THE FACILITY NOTES BEFORE THE RATE WAS SET. The audited FY2024/25 statements disclose the borrowings facility by facility: the KIMA-2 bank consortium loan (note 18-1), the holding-company facility (note 18-2) and the ammonium-nitrate project loans (note 18-3), the last split explicitly into a pound leg and a dollar leg. Of total borrowings of EGP 14,639m, 0.31% is local currency and 99.69% is foreign. THE FOREIGN TRANCHE IS CARRIED AT LOCAL-EQUIVALENT COST -- the dollar coupon of 11.70% compounded with the expected pound depreciation the house path derives by relative purchasing-power parity, giving 24.35% in the first year and gliding with the wedge -- and never at the raw foreign coupon. That is why the adopted cost of debt sits ABOVE the 23.00% sovereign rather than below it, and it is the half of the amended rule that stops a foreign rate dropped into a local-nominal model from understating the cost.",
+   "interest_bearing_note": "The effective rate's denominator is THE BORROWINGS THAT ACTUALLY BEAR THE CHARGE, facility by facility: EGP 11,580.629m of KIMA-2 consortium debt and EGP 500.0m drawn on the holding-company facility, against the finance costs disclosed for each in note 26. It is NOT total liabilities -- trade payables, the gas balance owed to the state supplier, contract liabilities and accruals bear no interest, and dividing the charge by a total that includes them understates the rate by a multiple and manufactures a bias that looks exactly like evidence.",
+   "effective_rates": {
+    "FY2024/25": 0.11877767291752771
+   },
+   "effective_rate_unavailable": "ONE PERIOD, AND TWO SEPARATE REASONS, BOTH STATED. (1) Only the FY2024/25 audited statements disclose BOTH a finance-cost note broken down by facility and the balances those charges relate to; the earlier years and the interim statements this study reads do not carry the pair, so a second independently computed period cannot be built from what this company has published and is not manufactured. (2) MORE IMPORTANTLY, THE TRAILING CHARGE AND THE ADOPTED RATE ARE NOT THE SAME QUANTITY ON THIS BOOK. The computed FY2024/25 rate is 11.88% -- a charge measured in pounds at the exchange rates that actually prevailed, on a book that is 99.7% foreign-currency -- while the adopted 24.34% carries that same book at LOCAL-EQUIVALENT cost, which includes the depreciation still to come. Comparing them and dragging the adopted rate toward the trailing one would undo precisely the correction the amended rule requires. The closed list of mechanisms that lets a study re-point the 150bp bound -- capitalised interest, a book re-based in period, a facility drawn mid-period -- does not carry this case, and NONE OF THEM IS CLAIMED: naming a mechanism the filings do not establish would be the assumption wearing a mechanism's clothes. Recorded here so the gap in the list is visible rather than worked around.",
+   "contractual_anchor": {
+    "lines": [
+     {
+      "name": "foreign-currency tranche at local-equivalent cost",
+      "balance": 14593050000.000002,
+      "rate": 0.24353515624999988,
+      "rate_basis": "the disclosed US-dollar facility coupon of 11.70% (KIMA-2 consortium and the dollar leg of the project loans, notes 18-1 and 18-3) compounded with the first-year currency wedge of 11.33% the house path derives by relative purchasing-power parity"
+     },
+     {
+      "name": "local-currency tranche as disclosed",
+      "balance": 45955000.0,
+      "rate": 0.194,
+      "rate_basis": "the company's own disclosed rate on the holding-company facility, note 18-2 read with the note 26 finance cost: EGP 96.896m of interest on EGP 500.0m drawn independently computes to 19.38% against a disclosed 19.40%, which is the disclosure checking itself"
+     }
+    ],
+    "blends_to": 0.2433796546906064,
+    "note": "The anchor REPRODUCES the adopted rate to nine decimal places, which is the point of an anchor: a weighted average either comes out or it does not, and one that does not is worse than none because it reads as arithmetic. It is published here as evidence, NOT as a declaration that the trailing effective rate is unusable -- that release requires a mechanism from the closed list, and this book does not have one."
+   },
+   "sovereign_floor_note": "The one local-currency facility carries a disclosed 19.40% against a 23.00% sovereign ten-year yield -- a same-currency corporate borrowing BELOW its own government, which this rule normally refuses outright. It is the company's disclosed rate on a state-bank facility and is used as disclosed rather than raised to the floor, and it is 0.31% of the book, so it moves the blended rate by -2 basis points. The disclosure is carried rather than smoothed away, and the floor does not bind the book as a whole because the book is not local-currency."
+  },
+  "erp_basis": "cds",
+  "erp_central": 0.0941,
+  "beta": 1.0302103069881783,
+  "weights": {
+   "equity": 0.6616480028913871,
+   "debt": 0.33835199710861286,
+   "basis": "market_value_equity",
+   "note": "Market-value equity of EGP 28,627m against total debt of EGP 14,639m, never book equity."
+  },
+  "sensitivity": {
+   "other_basis": {
+    "basis": "rating",
+    "erp": 0.13937694320020103,
+    "default_spread": 0.06372478453347744,
+    "ke_exp": 0.30986277890787556,
+    "wacc_exp": 0.268839782805404,
+    "difference_bp": 112.61241744506822,
+    "note": "The rating-basis premium with its matching rating-basis default spread, stripped and added back consistently. The market basis is named central because it is the market's own live pricing of this sovereign's credit against an agency judgement updated in steps."
+   }
+  },
+  "published_central": null,
+  "published_central_branches": [
+   4.0395808164915605,
+   8.038774888582243
+  ],
+  "published_spot": 14.41
  }
 }
