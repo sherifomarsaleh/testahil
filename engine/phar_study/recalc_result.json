@@ -11,5 +11,22 @@
   "measured_error": 20,
   "label": 614
  },
- "headline_failures": []
+ "headline_failures": [
+  "cost of equity",
+  "weighted average cost of capital",
+  "terminal discount rate",
+  "core enterprise value",
+  "terminal share of enterprise value",
+  "equity value",
+  "value per share, Frame A",
+  "terminal share of TOTAL enterprise value",
+  "weighted centre \u2014 Frame A",
+  "weighted centre \u2014 Frame B",
+  "summary sheet centre \u2014 Frame A",
+  "summary sheet centre \u2014 Frame B",
+  "the Frame A centre IS the Frame A cash-flow lens",
+  "the Frame B centre IS the Frame B cash-flow lens",
+  "the retired blend is printed as a memo and reproduces what it read",
+  "book lens moves with the sustainable return it reads"
+ ]
 }

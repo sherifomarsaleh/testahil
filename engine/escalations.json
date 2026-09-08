@@ -974,6 +974,49 @@
    "resolved": "2026-09-07",
    "answer": "RULED BY THE PRINCIPAL: do not switch the declared maintenance basis. Changing the rule after seeing which answer it produces is selection, which is what the pre-registration exists to prevent. The disclosed-life reading stays a PUBLISHED SENSITIVITY beside the declared run, as designed. The separate filename question stands: when the scorer is next re-run, date its output by the run rather than by a literal.",
    "answer_written_to": "engine/valuation_calibration/score_cashflow.py — the declared reading is unchanged and this ruling is why."
+  },
+  {
+   "key": "PHDC-landbank-current-vintage",
+   "opened": "2026-09-08",
+   "cls": "missing_data",
+   "question": "Palm Hills Development's land bank as at a date no earlier than 31 March 2026 — the figure the company states in its FY2025 and 1Q2026 earnings releases, if it states one. The study registers 33.0 million square metres dated 31 December 2024 from the FY2024 release, and its own information set ends 31 March 2026, so the quantity the whole present-value net asset view is built out of is fifteen months older than the information set. This is the defect [R-ASSET-01] was adopted on, in the principal's own words: a study that takes the current land bank of a developer and does not account for new land added to it.",
+   "routes": [
+    {
+     "route": "the company's own investor-relations page, www.palmhillsdevelopments.com/investor-relations/, fetched directly",
+     "when": "2026-09-08",
+     "outcome": "HTTP 200 and USELESS: the page is JavaScript-rendered and its raw HTML carries 27 links and ZERO pdfs, so nothing on it can be enumerated without executing the page.",
+     "rerun": true
+    },
+    {
+     "route": "the same page through the headless browser this environment installs, which is the route that defeats a rendered source",
+     "when": "2026-09-08",
+     "outcome": "net::ERR_CONNECTION_RESET on navigation, repeatably, while plain curl reaches the same URL — so the block is on the browser's own connection rather than on the host. Reported, not routed around.",
+     "rerun": true
+    },
+    {
+     "route": "the apex host without the www prefix, palmhillsdevelopments.com/investors/",
+     "when": "2026-09-08",
+     "outcome": "HTTP 525 — a TLS handshake failure at the edge, not a missing page.",
+     "rerun": false
+    },
+    {
+     "route": "the study's own committed register, for a later land-bank figure it may already hold",
+     "when": "2026-09-08",
+     "outcome": "land_bank_sqm_mn is the ONLY land-bank quantity registered and it is the FY2024 release's. The register names a 1Q2026 earnings release as a source for other figures — exactly the document a developer restates a land bank in — and that release is not committed to this repository, so whether it carries an updated figure is not established from here.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 2,
+   "why_only_the_principal": "Pure access. The document is published by the issuer and the issuer's site cannot be read from this container by either available route. The principal has supplied primary filings before when a company site refused, and this protocol records that as the rule working rather than failing.",
+   "done_meanwhile": "The gap is MEASURED and already carried on the asset-base ratchet with its full figures rather than as a bare name, so the debt is countable. A ready-made generator sits in the study directory (asset_base_record.py) which writes the record the moment a sourced figure exists; it is deliberately NOT wired into the build, because running it today commits a record whose only content is that the base is stale, which the ratchet already says in more detail. A record that adds nothing and turns a gate red is not a repair.",
+   "default_if_no_answer": "Declare not_restated_since ONLY if the FY2025 and 1Q2026 releases can be read and neither restates the land bank — never on the assumption that they do not. Failing that, PHDC stays on the asset-base ratchet and the land bank is flagged in the study's own limitations as a quantity whose vintage the study cannot establish.",
+   "default_date": "2026-10-08",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/phdc_study/LANDBANK_SOURCE.md",
+    "must_contain": "LAND BANK RE-SOURCED"
+   },
+   "note": "The resolving marker is a file that does not exist yet, on the ELEC precedent, rather than a field that already does. A first draft keyed this on the land_bank_sqm_mn input, which is present today — so the entry read as already answered the moment it was written, and the escalation gate said so. What has to change is that input's DATE, and no checker can read an intention, so the close is a person writing down where the newer figure came from."
   }
  ]
 }

@@ -957,7 +957,7 @@ f_listing = R.add(
     model_impact="Resolves the dual-listing trap BEFORE the beta is run: a single listing means "
                  "one legitimate regressor and no currency or magnitude ambiguity in the series. "
                  "The beta is taken through beta_regression.own_stock_beta('ABUK','EG','EGX') "
-                 "against the published EGX30, never against a constituent composite [R-BETA-01].")
+                 "against the published EGX30, never against a constituent composite (SIGCM clause 6).")
 
 f_route = R.add(
     Ring.COMPANY, "official financial statements", FindingClass.C,
@@ -1254,7 +1254,7 @@ R.add_driver(
     "Single listing confirmed from the company's own releases (ABUK.CA, EGX only, EGP only, ISIN "
     "EGS38191C010), so there is one legitimate regressor and no currency or magnitude ambiguity. "
     "Run through beta_regression.own_stock_beta('ABUK','EG','EGX') against the registered "
-    "published index engine/raw_indices/EG/EGX30.csv — never a constituent composite [R-BETA-01].",
+    "published index engine/raw_indices/EG/EGX30.csv — never a constituent composite (SIGCM clause 6).",
     [f_listing])
 
 R.add_driver(

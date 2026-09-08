@@ -782,11 +782,27 @@ table([['Give-back', 'Central', 'vs price', 'What is being conceded'],
         pc(ADV['ALL_GIVEBACKS']['central'] / SPOT - 1),
         'every contested charge conceded simultaneously']],
       [2.2, 0.85, 0.85, 3.0], band_rows={7}, size=8.7, left_cols=(3,))
-caption('Table 18 — the adversarial stack. Concede everything and the price is still '
-        f'{pc(-(ADV["ALL_GIVEBACKS"]["central"]/SPOT-1))} above the model.')
+# THE DIRECTION IS COMPUTED, NOT TYPED. Both of these sentences were written when the
+# model sat BELOW the market and read correctly then: negating the gap made it positive
+# and "the price is still X above the model" was true. The moment the model crossed the
+# price the arithmetic went on being right and the words went backwards — the caption
+# printed a NEGATIVE per cent followed by the word "above". A direction word beside a
+# signed figure is a claim, and it has to be produced by the same arithmetic as the
+# figure or it is a sentence nobody is checking.
+_ALL_GB = ADV["ALL_GIVEBACKS"]["central"]
+_GB_GAP = _ALL_GB / SPOT - 1.0
+caption('Table 18 — the adversarial stack. Concede every contested charge at once and the '
+        f'cash-flow lens reaches EGP {p2(_ALL_GB)}, '
+        + (f'{pc(_GB_GAP)} above the market price of EGP {p2(SPOT)}.'
+           if _GB_GAP > 0 else
+           f'still {pc(-_GB_GAP)} below the market price of EGP {p2(SPOT)}.'))
 figure(os.path.join(HERE, 'fig4_adversarial.png'), 6.9,
-       'Figure 4 — the same stack drawn. No single concession, and not all of them together, '
-       'reaches the price.')
+       'Figure 4 — the same stack drawn. '
+       + ('Every concession moves the answer further above the price rather than toward '
+          'it, which is what makes this table adversarial in the direction that matters: '
+          'the case against this valuation is not that it has been generous.'
+          if _GB_GAP > 0 else
+          'No single concession, and not all of them together, reaches the price.'))
 P(f'Two further contested choices are computed rather than conceded. On the RATING-BASIS equity '
   f'risk premium instead of the CDS basis, the cash-flow lens is EGP '
   f'{p2(DCF["ps_rating_basis"])}; two independent reviewers reached for that column, so it is '

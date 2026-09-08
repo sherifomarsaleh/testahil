@@ -64,6 +64,13 @@ DIRECTORY_GATES = [
     # having no readable inputs register and refuses unless another list already
     # records it as unreadable — so a new name goes red and is named.
     'check_four_field.py',
+    # An empty study directory commits no spot and no date, and this gate reads a
+    # study whose answer it cannot resolve as UNREADABLE rather than skipping it —
+    # so a planted name goes red and is named. It belongs here rather than among
+    # the artefact-conditional gates for the same reason check_four_field does:
+    # what it reads is the numbers file, which every real study has and an empty
+    # directory does not.
+    'check_spot_currency.py',
     'check_study_provenance.py',
     'check_rebuild_ledger.py',
     'check_workbook_structure.py',
