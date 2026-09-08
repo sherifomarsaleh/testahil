@@ -51,6 +51,19 @@ def say(s):
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
+
+# THE BETA IS READ, NOT TYPED, AND THE TIER IS READ WITH IT. This study already adopts
+# 1.00 and already says why -- the own-stock regression fails the usability gate -- and it
+# reached that conclusion on the WRONG MEASUREMENT, quoting the composite regression's
+# R-squared of 0.038. The conforming regression against the exchange's own published
+# index gives 0.024 and fails the same gate harder, so the ANSWER does not move and the
+# EVIDENCE does. A fallback justified by the wrong statistic is a fallback nobody can
+# check, even when the fallback is correct.
+_BETA = json.load(open(os.path.join(HERE, 'beta_result.json'), encoding='utf-8'))
+assert _BETA.get('conforming'), 'beta_result.json is not a conforming regression'
+assert str(_BETA.get('index_file', '')).startswith('raw_indices/'), \
+    'the regressor is not a registered published index'
+
 FY24 = "Audited independent balance sheet as of 31 December 2024, printed page 5 of the FY2024 audited statements (SCC-AFS-E-1224.pdf), read from the company's own website. ROUTE: OCR off the rendered pixels — that filing carries no text layer at all (zero bytes across its 36 pages), so no extraction confidence exists to trust and ARITHMETIC IS THE ARBITER: the page's own total liabilities of EGP 1,959,808,479 plus its own total equity of EGP 3,735,799,731 foot to its printed total assets of EGP 5,695,608,210 exactly, and its non-current total of 1,703,837,097 plus current total of 3,991,771,113 foot to the same figure. Cross-checked against the FY2025 filing's own comparative column at printed page 2, committed in filings_extract.py, which agrees to the pound on liabilities and prints total assets one pound higher at 5,695,608,211 — the filings' own additive rounding, disclosed rather than reconciled away"
 
 SP = ("FY2025 balance-sheet data from S&P Global Market Intelligence as carried by two "
@@ -347,11 +360,20 @@ INP = dict(
               "3.40% x (9.71/6.37) = 9.4127%. Revision 1 cited 'Damodaran, Egypt row' "
               "without naming the variant; a checker following that citation lands on the "
               "rating-based 13.94%", "2026-01-05", "Country"),
-    beta=I(1.00, "Adopted beta. The own-stock regression FAILS the usability gate "
-           "(R-squared 0.038 against a 0.05 floor) though n=256 and SE 0.153 both pass. "
-           "The lead-lag corrected estimate is 0.837 and its 90% interval contains 1.00. "
-           "Rounding up to 1.00 COSTS 1.84% of the central; that price is now stated "
-           "rather than left implicit", "2026-08-06", "House"),
+    beta=I(float(_BETA['adopted_beta']),
+           "ADOPTED AT TIER %d. The own-stock regression against %s as at %s -- the "
+           "published index of the exchange this stock is listed on, resolved by "
+           "beta_regression.own_stock_beta() -- gives %.4f with an R-squared of %.3f over "
+           "%d weekly observations, and FAILS the usability gate: the index barely "
+           "explains this stock's returns. %s The point estimate is published beside the "
+           "adopted figure and is not used, and the price of adopting 1.00 rather than the "
+           "point estimate is computed in the beta sensitivity rather than asserted here. "
+           "SUPERSEDED: the previous edition justified the same fallback on a 32-name "
+           "equal-weight COMPOSITE of the covered library (R-squared 0.038) -- the right "
+           "conclusion reached on a regression against something that is not a market."
+           % (_BETA['tier'], _BETA['index_file'], _BETA['index_asof'], _BETA['beta'],
+              _BETA['r2'], _BETA['n'], _BETA['tier_reason']),
+           str(_BETA['index_asof']), "House"),
     kd=I(0.0, "PLACEHOLDER — replaced below by the sovereign-plus-spread construction, "
          "because a marginal cost of debt is not a free-standing input once the "
          "sovereign it must sit above comes from the house path", "2026-09-04", "House"),
@@ -879,7 +901,7 @@ sens_nc = [reval(nc=x) for x in nc_grid]
 wacc_grid = [wacc_exp - 0.03, wacc_exp - 0.015, wacc_exp, wacc_exp + 0.015, wacc_exp + 0.03]
 g_grid = [0.03, 0.04, 0.05, 0.06, 0.07]
 sens_wg = [[reval(we=x, g=gg) for gg in g_grid] for x in wacc_grid]
-beta_grid = [0.6, 0.8, 0.837, 1.0, 1.3]
+beta_grid = sorted({0.6, 0.8, round(float(_BETA['beta']), 4), 1.0, 1.3})
 sens_beta = [reval(beta_=b) for b in beta_grid]
 mgn_grid = [-0.04, -0.02, 0.0, 0.02, 0.04]
 sens_mgn = [reval(mgn_shift=m) for m in mgn_grid]
