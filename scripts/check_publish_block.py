@@ -381,14 +381,31 @@ def _published_pair():
 
 
 def price_only_publish(ticker):
-    """(is it, why) — does this publish leave the fundamental valuation where it was?"""
+    """(is it, why) — does this publish leave the fundamental valuation where it was?
+
+    A STUDY DIRECTORY STEM IS NOT ALWAYS ITS TICKERS KEY, AND THIS FUNCTION LOOKED IT
+    UP AS THOUGH IT WERE (found 08-Sep-2026). Its sibling one screen up resolves the
+    name through the alias map campaign_queue.py has carried since the campaign was
+    written — that is why gap.latest_known_price() prices FERTIGLOBE correctly at its
+    real key FERTIGLB — while this lookup keyed on the raw stem, missed both sides of
+    the comparison, and returned "not on origin/main — a first publish is never
+    price-only". THE MISS WAS AN ABSENT ANSWER WEARING THE COSTUME OF A VERDICT
+    [R-ENF-04]: the sentence is plausible, names a real refusal, and is about a
+    condition that was never tested. It fell to the STRICT side, holding a roll-forward
+    that moves no fair value at all, which is the release [R-GAP-02 AMENDED] exists to
+    give — and it would have fallen the other way just as silently on a rule where the
+    miss releases. ONE NAME, RESOLVED ONE WAY, THROUGH THE MAP THAT ALREADY EXISTS
+    [R-ENF-03] — a second copy would be two claims wearing one name, which is the
+    exact defect the sibling's own docstring records.
+    """
     try:
         here, there = _published_pair()
     except Exception as e:
         return False, ("the published entries could not be compared (%s), and an "
                        "unreadable comparison is not an exemption [R-ENF-04]"
                        % str(e)[:120])
-    a, b = here.get(ticker.upper()), there.get(ticker.upper())
+    key, _ = gap._resolve_ticker(ticker)
+    a, b = here.get(key), there.get(key)
     if b is None:
         return False, "not on origin/main — a first publish is never price-only"
     if a is None:
@@ -403,6 +420,39 @@ def price_only_publish(ticker):
                   "already live, so no output of the method under test reaches a reader")
 
 
+def _study_dir(ticker):
+    """The study directory for a name, resolved in BOTH directions, or None.
+
+    THE POPULATION IS STUDY DIRECTORY STEMS AND THE CALLERS ARE NOT (08-Sep-2026).
+    main() globs engine/*_study and passes the stem; publish_site.py passes the
+    TICKERS key. For 23 of 24 studies those are the same string, so the difference
+    was invisible — and on the one name where they differ, `--ticker FERTIGLB`
+    resolved to engine/fertiglb_study, which does not exist, and the gate answered
+    "no study directory on disk", refusing a name whose study is on disk under
+    engine/fertiglobe_study. THE MIRROR IMAGE of the miss in price_only_publish()
+    one screen up, in the caller rather than the callee, and the same remedy: ONE
+    NAME, RESOLVED ONE WAY, THROUGH THE MAP THAT ALREADY EXISTS [R-ENF-03].
+
+    IT RESOLVES, IT NEVER INVENTS: a name with genuinely no study still returns
+    None and is still refused, because "unreadable is not clean" [R-ENF-04] must
+    not be softened into "unfound is fine".
+    """
+    stem = os.path.join(ENGINE, "%s_study" % ticker.lower())
+    if os.path.isdir(stem):
+        return stem
+    # THE MAP IS stem -> ticker AND THIS LOOKUP IS THE REVERSE, derived from that
+    # same single map rather than a second one written the other way round — two
+    # maps for one relationship is how they drift apart [R-ENF-03].
+    gap._resolve_ticker(ticker)                       # populates the shared cache
+    amap = gap._ALIAS_CACHE[0]
+    for study_stem, tk in amap.items():
+        if tk.upper() == ticker.upper():
+            cand = os.path.join(ENGINE, "%s_study" % study_stem.lower())
+            if os.path.isdir(cand):
+                return cand
+    return None
+
+
 def verdict(ticker):
     """(may_publish, reason, rows). An UNREADABLE study may not publish either.
 
@@ -410,8 +460,8 @@ def verdict(ticker):
     passed — it is one that was never examined, and letting it through would make
     "unreadable" the cheapest way past the block.
     """
-    sdir = os.path.join(ENGINE, "%s_study" % ticker.lower())
-    if not os.path.isdir(sdir):
+    sdir = _study_dir(ticker)
+    if sdir is None:
         if ticker.upper() in _metal_keys():
             return True, ("outside this rule's population — a metal publishes no "
                           "fundamental valuation, so there is no central for the "

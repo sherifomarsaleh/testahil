@@ -4192,98 +4192,6 @@ const FV_OVERLAY = {
    "market": "QA"
   },
   {
-   "ticker": "FERTIGLB",
-   "name": "Fertiglobe plc",
-   "code": "ADX:FERTIGLB",
-   "ccy": "AED",
-   "spot": 2.54,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.27,
-   "fv_base": 2.15,
-   "fv_full": 2.79,
-   "gap_base_pct": -15.4,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.076467,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -9.06,
-     "base": -2.18,
-     "full": 1.23
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.0186,
-     "full": 0.0835
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0283,
-     "full": 0.1355
-    },
-    "required_cagr": {
-     "bear": -0.9998,
-     "base": -0.8647,
-     "full": 2.0849
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00049
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.140061,
-    "mu_h": -0.003945,
-    "G": {
-     "bear": -4.95,
-     "base": -1.19,
-     "full": 0.67
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0009,
-     "base": 0.0931,
-     "full": 0.1981
-    },
-    "p_touch": {
-     "bear": 0.0018,
-     "base": 0.1612,
-     "full": 0.3646
-    },
-    "required_cagr": {
-     "bear": -0.9375,
-     "base": -0.4866,
-     "full": 0.4557
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00095
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "ISPH",
    "name": "Ibnsina Pharma",
    "code": "EGX:ISPH",
@@ -6208,6 +6116,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "FERTIGLB",
+   "name": "Fertiglobe plc",
+   "code": "ADX:FERTIGLB",
+   "ccy": "AED",
+   "spot": 2.84,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.27,
+   "fv_base": 2.15,
+   "fv_full": 2.79,
+   "gap_base_pct": -24.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.085507,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -9.41,
+     "base": -3.26,
+     "full": -0.21
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0046,
+     "full": 0.3964
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.007,
+     "full": 0.7008
+    },
+    "required_cagr": {
+     "bear": -0.9999,
+     "base": -0.9646,
+     "full": -0.192
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00188
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.143388,
+    "mu_h": 0.0,
+    "G": {
+     "bear": -5.61,
+     "base": -1.94,
+     "full": -0.12
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0005,
+     "base": 0.0266,
+     "full": 0.4376
+    },
+    "p_touch": {
+     "bear": 0.0007,
+     "base": 0.044,
+     "full": 0.8182
+    },
+    "required_cagr": {
+     "bear": -0.96,
+     "base": -0.6715,
+     "full": -0.0686
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.0073
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "ALDAR",
    "name": "Aldar Properties PJSC",
    "code": "ADX:ALDAR",
@@ -7740,16 +7740,16 @@ const FV_OVERLAY = {
    "name": "Borouge plc",
    "code": "ADX:BOROUGE",
    "ccy": "AED",
-   "spot": 2.4,
-   "anchor_date": "2026-08-07",
+   "spot": 2.39,
+   "anchor_date": "2026-09-07",
    "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
+   "fv_lag_days": 31,
    "fv_stale": false,
    "fv_asof_in_closure": false,
    "fv_bear": 1.3,
    "fv_base": 1.48,
    "fv_full": 2.55,
-   "gap_base_pct": -38.3,
+   "gap_base_pct": -38.1,
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
@@ -7762,13 +7762,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.044819,
-    "mu_h": -0.004175,
+    "h_sessions": 21,
+    "sigma_h": 0.051963,
+    "mu_h": -0.008403,
     "G": {
-     "bear": -13.68,
-     "base": -10.79,
-     "full": 1.35
+     "bear": -11.72,
+     "base": -9.22,
+     "full": 1.25
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7776,23 +7776,23 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.9994,
-     "base": -0.997,
-     "full": 1.0699
+     "bear": -0.9993,
+     "base": -0.9968,
+     "full": 1.1762
     },
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00112
+    "selftest_max_dev": 0.00102
    },
    "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.085085,
-    "mu_h": -0.016807,
+    "h_sessions": 62,
+    "sigma_h": 0.087403,
+    "mu_h": -0.021142,
     "G": {
-     "bear": -7.21,
-     "base": -5.68,
-     "full": 0.71
+     "bear": -6.97,
+     "base": -5.48,
+     "full": 0.74
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7800,14 +7800,14 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -0.9139,
-     "base": -0.8554,
-     "full": 0.2744
+     "bear": -0.9125,
+     "base": -0.853,
+     "full": 0.2959
     },
     "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00092
+    "selftest_max_dev": 0.0051
    },
    "market": "AE"
   },
