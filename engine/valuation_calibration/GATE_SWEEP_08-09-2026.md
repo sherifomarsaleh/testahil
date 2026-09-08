@@ -12,9 +12,21 @@ this is evidence about 08-09-2026 and not a description of the gate set.
 
 ## What was run
 
-Every `scripts/check_*.py` in the repository, each with its own timeout, plus the
-import-not-parse checks on the modules the protocol names and the JavaScript
-load-assert on `assets/data.js`.
+**Every `scripts/check_*.py` in the repository — 159 of them** — each with its own
+timeout, plus the import-not-parse checks on the modules the protocol names and the
+JavaScript load-assert on `assets/data.js`.
+
+**Result: 158 completed, 156 green, and BOTH reds were artefacts of how the sweep was
+run rather than defects in the book** — each is named below with the serial re-run that
+settles it. The import checks passed on all nine named modules and `node --check` passed
+on `assets/data.js`.
+
+**The 159th, `check_new_study_gauntlet_negative_control`, was still running when this was
+written and is recorded as that rather than as a pass** [R-ENF-04] — it plants a weakened
+gate and re-runs the whole set inside a sandbox for every case, which is the most
+expensive check in the repository. Its subject, `check_new_study_gauntlet`, ran SERIALLY
+in an earlier batch on the same tree and was GREEN. **An unfinished run is not a green
+run, and this line says which it was.**
 
 ## A finding about the SWEEP rather than about the book
 
@@ -30,9 +42,18 @@ empty, the first hypothesis is that the probe did not run, and re-running the ex
 operation is what separates the two. **Every non-green result below was re-run
 SERIALLY before it was believed.**
 
-It is recorded here rather than quietly dropped because a parallel sweep is a
-convenience that can manufacture exactly the failure the house's own rules are written
-about, and the next operator reaching for one should know.
+A SECOND RED WAS THE SAME KIND OF THING AND IS RECORDED FOR THE SAME REASON.
+`check_tree_unmodified` failed with *"the baseline was recorded at c5762580 and HEAD is
+now b193d268, so it describes a different tree."* **That is the gate working exactly as
+it is built to.** It is a TWO-HALVES instrument — `--record` first, the comparison last,
+with the checks in between — and a bulk sweep that runs every script alphabetically runs
+the comparison half against whatever baseline happens to be lying about. Run as the two
+halves it is: **0 tracked files modified before the run, 0 after.**
+
+Both are recorded rather than quietly dropped because a parallel sweep is a convenience
+that can manufacture exactly the failure the house's own rules are written about, and
+the next operator reaching for one should know. **NEITHER WAS A DEFECT IN THE BOOK AND
+BOTH LOOKED LIKE ONE.**
 
 ## Five gates were red at the start of the day and every one is closed
 
