@@ -1,8 +1,9 @@
 # ARCC — response to the forensic audit of 8 September 2026
 
-**Status: IN PROGRESS. Four findings adjudicated and fixed — 1, 2, 3 and 5 — every one of
-them DISCLOSURE. No valuation figure has moved and none will move without its own entry
-here.**
+**Status: TEN OF FOURTEEN ADJUDICATED AND FIXED — 1, 2, 3, 5, 7, 8, 9, 10, 11, 12, 13 and
+14. Every one of them turned out to be a DESCRIPTION rather than a calculation. No
+valuation figure has moved and none will move without its own entry here. Findings 4 and 6
+remain escalated: both are INPUTS, and correcting either moves the value.**
 
 The audit is `EXTERNAL_AUDIT_08-09-2026.md` in this directory: 33 readers, 19 findings
 surviving adversarial verification, 7 graded total fail. Six readers rebuilt the whole
@@ -183,23 +184,129 @@ the workbook's "t = 4.417y" — sat in a spreadsheet label, which no gate reads 
 
 ---
 
-## Still to adjudicate
 
-Ten further findings, none implemented, listed with the auditor's own claimed price so
-the debt is countable rather than remembered:
+## Findings 7 to 14, adjudicated together after 5
+
+Each is its own row below. What they have in common is worth naming first, because it is
+the same thing findings 1, 2, 3 and 5 had: **in every case the model does one thing and
+some delivered artefact says another.** Not one of them is an arithmetic error. Every one
+of them was invisible to a recalculation, which is why six independent rebuilds of this
+model reproduced EGP 66.5300 and none of them found any of this.
+
+### Finding 7 — the sector utilisation. ACCEPTED IN FULL, and it is the largest of these.
+
+The study divided 72.6Mt of cement-AND-CLINKER sales by 76Mt of CEMENT nameplate capacity
+and printed a market running near 96%. On matched denominators it is **85.6%** — about
+10.9Mt of grinding capacity idle. A clinker tonne leaves at the kiln and never enters a
+cement mill, so it consumes no grinding capacity at all.
+
+**The receipt is this study's own note.** Its export-line input says that earlier editions
+failed "because it set a cement-plus-clinker export figure against a cement-only
+production figure". The replacement did exactly that in the other direction, and the 65Mt
+those editions discarded as a failed balance was the right cement-basis number all along.
+
+**Read from the primary source, which was the page the study already cited.** The FY2025
+presentation's Market Overview block splits the year three ways — domestic cement
+53,992.9, cement exports 11,063.0, clinker exports 7,568.9 K Tons. All three are now
+inputs; two assertions check the split closes; a third checks the corrected ratio came out
+BELOW the one it replaced, because a repair that raised the number would mean the split
+was read backwards.
+
+**AND THE SENTENCES DID NOT AUTO-CORRECT WITH THE NUMBER.** Three passages asserted the
+market is "NOT structurally slack"; one said "NOT currently slack" outright. At 86% with a
+12.6Mt restart programme pending, that does not hold. The chart carried it too — 72.6 drawn
+beside 76 under a caption calling the surplus the whole sector case — and no gate reaches
+inside a picture.
+
+**MOVED: nothing.** The price path never rested on the sector being tight: its first year
+is a filed quarterly realisation and every later year holds flat in real terms. What
+changes is the comfort around it, and the study now says so.
+
+### Finding 8 — the terminal beta relevering. ACCEPTED IN FULL.
+
+Terminal beta 1.074 is the explicit 0.928 unlevered and relevered, at a statutory 22.5%
+that no delivered document stated. **This repository had already caught it**: ARCC sat on
+`check_ke_reproduction`'s ratchet for exactly this, down to solving the implied tax rate
+out of the answer. The record now declares the construction, the tax rate and both betas;
+section 1.5 — which ran a full page on the beta and never mentioned a second one existed —
+now states the construction, what it is worth, and why two tax rates appear in one model.
+Ratchet shortens 3 → 2. **MOVED: nothing.**
+
+### Finding 9 — two published premium bases. ACCEPTED IN FULL.
+
+The cited country-risk file publishes a rating basis and a CDS basis in the same row, 4.53
+points apart, and this study showed a reader one of them. The record already named the
+alternative and carried `None` for its figure. **Read from the file, not from the audit**:
+the workbook is committed in this repository. Applied consistently the rating basis costs
+118 basis points more, and the adopted basis is the cheaper of the two. The study now says
+that in those words. **MOVED: nothing** — but a reader who prefers the other basis now has
+the number to substitute.
+
+### Finding 10 — the real price-cost wedge. ACCEPTED, AND WORSE THAN REPORTED.
+
+The auditor found two paragraphs printing opposite-signed numbers under one word. The
+larger error is in the sentence beside them: **"the EBITDA margin falls from the audited
+39.3% to 40.4% by FY2030"**, followed by an explanation that "part of the 2025 step-change
+gives back". The path is 39.03, 39.49, 39.99, 40.20, 40.40 — it dips once and rises past
+the audited year every year after.
+
+What replaces it is a **weaker** claim, which is why it is worth stating carefully: on the
+published ladders cost outruns price, but the cost the model CHARGES grows 3.1% slower
+than price once the alternative-fuel saving is netted off. So the margin does not give
+back — and a forecast ending above a company's best filed year needs its mechanism named
+rather than a sentence saying the opposite. **MOVED: nothing.**
+
+### Finding 11 — the workbook's beta label. ACCEPTED IN FULL.
+
+The Assumptions sheet labelled the adopted beta "own-stock weekly regression", which is
+the construction section 1.5 explicitly rejects, on the input the study calls its most
+consequential contested judgement. The two are 12% of value apart. The label now names the
+tier and the peer set, and the rejected regression sits beside it with its R-squared,
+standard error and observation count — none of which the workbook held at all.
+**MOVED: nothing.**
+
+### Finding 12 — the tie presented as a test. ACCEPTED IN FULL.
+
+"It is not forced to... a wrong price assumption would show up as a non-zero residual." It
+is forced to. Prices are derived as revenue over volume, so revenue rebuilt as volume times
+price reconstructs by construction, on any volume whatever. **The workbook has said so
+since revision 4** — "Rows 76-81 are a TIE, not a test... Revision 3 presented exactly this
+identity as 'a test that can fail'. It cannot." — and the document went on presenting it as
+a test. The residuals stay, because a tie that failed to foot would be an arithmetic error;
+the claim that footing corroborates the volume goes, and the test that CAN fail is named
+instead — the three derived prices held against a market, including the export clinker
+figure sitting a third below the trade-press range. **MOVED: nothing.**
+
+### Finding 13 — the EFG reconciliation's discount bar. ACCEPTED IN FULL.
+
+A typed receipt from an earlier edition: "our 24.5% → 14.5%" against a schedule running
+27.60% → 18.34%, "our 0.4876" against factors that give nothing of the kind, and "the whole
+bar is EGP 0.16" against a bar the build computes at −6.19. Two values for one bar, 38×
+apart, in the one section sold to a reader as a reconciliation they can check. **Worse
+than stale, the direction was reversed**: on EFG's own calendar it is OUR factor that
+discounts the far end harder, and the receipt said the opposite. All of it is now written
+from the live schedule and the computed bar. The same file's valuation-date label still
+read "1 Jan → 6 Aug" after the date moved to 30 June. **MOVED: nothing.**
+
+### Finding 14 — one name, two values. ACCEPTED IN FULL.
+
+The workbook cell, the Fundamental Valuation sheet and the bibliography headline all
+carried the retired construction — profit grown a year against an ungrown capital base —
+under the name the document gives the adopted figure, which the document says in terms is
+not used. Both are now published, each labelled as what it is, and the adopted one is a
+formula rather than a paste. **MOVED: nothing.**
+
+---
+## Still to adjudicate — findings 4 and 6
+
+**Two remain, both escalated, neither implemented.** They are the only two of the fourteen
+where the sentence is right and the NUMBER behind it is the question — so correcting
+either moves the value, which is precisely why they are not settled by this desk:
 
 | # | Finding | Claimed impact |
 |---|---|---|
 | 4 | Terminal risk-free of 12.50% reconciles to the 7% target the study's own section 7 says it stopped using, not the 5% target its bibliography cites | ~+12% understated |
 | 6 | FY2026 currency anchor hand-set 9.6% above the study's own observed spot, in the one year of a path the register calls "derived and never hand-set" | −4.7% to −5.8% |
-| 7 | The 96% sector-utilisation claim mixes clinker into a cement-only denominator | narrative |
-| 8 | Terminal beta 1.074 is a relevering the document never names, at a tax rate stated nowhere | disclosure |
-| 9 | Two published equity-premium bases; the cheaper is adopted without disclosure | disclosure |
-| 10 | The stated real price-cost erosion of −3.1% does not reproduce and its sign is inverted (+3.24%) | logic |
-| 11 | The adopted beta is labelled in the workbook as the own-stock regression the study explicitly REJECTS; 0.9275 is the peer median | disclosure |
-| 12 | "Reproduces audited FY2025 revenue to +0.000%" is an algebraic identity presented as a test that could fail | logic |
-| 13 | Two irreconcilable accounts of the study's own discount schedule | logic |
-| 14 | Three delivered artefacts publish two different values for the same named quantity | disclosure |
 
 **Findings 4 and 6 exceed the 5% escalation threshold and are escalated rather than
 settled by this desk.** Both are INPUTS — a terminal risk-free rate and a currency anchor
