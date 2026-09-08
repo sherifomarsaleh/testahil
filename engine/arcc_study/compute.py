@@ -811,6 +811,33 @@ INP = dict(
                      "2026-01-05", "Country"),
     erp_cds=I(0.0941, "Egypt equity risk premium, CDS-based, Damodaran January-2026",
               "2026-01-05", "Country"),
+    # THE SAME ROW OF THE SAME FILE PUBLISHES A SECOND BASIS, AND THIS STUDY USED TO SHOW
+    # A READER ONLY ONE OF THEM [audit finding 9, 08-Sep-2026]. Damodaran's country sheet
+    # carries two complete constructions side by side: a RATING basis, from Egypt's
+    # Moody's rating through his rating-to-spread table, and a CDS basis, from the traded
+    # sovereign CDS net of the Swiss reference. They are not a headline and a footnote —
+    # they are two answers, 4.5 points of premium apart, and the one this study adopts
+    # produces the LOWER discount rate and the HIGHER value. That is exactly the shape of
+    # choice a reader must be told was made. Both are now inputs, the alternative is
+    # priced in section 1.4, and the record carries the figure instead of a None.
+    #
+    # READ FROM THE FILE, NOT FROM THE AUDIT THAT RAISED THIS. The workbook is committed
+    # in this repository at engine/egch_study/ctryprem_snapshot.xlsx, sheet 'ERPs by
+    # country', the Egypt row, and these are its own figures at its own precision.
+    sov_spread_rating=I(0.06372478453347744,
+                        "Egypt rating-based sovereign default spread (Moody's Caa1), "
+                        "Damodaran January-2026 country risk file, sheet 'ERPs by "
+                        "country', Egypt row, column 'Rating-based Default Spread'. The "
+                        "ALTERNATIVE to the CDS spread this study adopts, published in "
+                        "the same row of the same file",
+                        "2026-01-05", "Country"),
+    erp_rating=I(0.13937694320020103,
+                 "Egypt total equity risk premium on the RATING basis, same file, same "
+                 "row, column 'Total Equity Risk Premium'. The CDS basis adopted here "
+                 "gives 9.41%; this is the published alternative and it is 4.53 points "
+                 "higher, so adopting it would RAISE the discount rate and LOWER the "
+                 "value. Priced in section 1.4 rather than left unstated",
+                 "2026-01-05", "Country"),
     euribor=I(0.0249, "Three-month Euribor, the reference rate on the EBRD facility. "
               "Revision 3 carried 2.10%, which sits BELOW the ECB deposit facility rate of "
               "2.25% and is therefore impossible as a term rate. It also applied one "
@@ -1367,12 +1394,27 @@ say(f"[Multi-currency alternative, computed as a VALUE not described] loading th
 rf_star = V['rf'] - V['sov_spread_cds']
 BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
 beta_used = BETA['adopted']['beta_used']
+# THE TIER IS READ, NOT ASSERTED. [R-COC-02] wants the record to say what KIND of beta
+# this is, and the only honest source for that is the beta record that produced it —
+# a tier typed into the cost-of-capital block would be a claim about a file rather than
+# a reading of it, and would go on being true after the beta changed.
+_BETA_TIER = BETA['adopted']['tier']
+assert int(_BETA_TIER) in (1, 2, 3), _BETA_TIER
 ke_exp = rf_star + beta_used * V['erp_cds']
+# THE SAME CONSTRUCTION ON THE FILE'S OTHER PUBLISHED BASIS [audit finding 9]. Not an
+# input to anything — it exists so the choice between two published bases can be priced
+# on the page instead of being one a reader never learns was made. BOTH LEGS MOVE: the
+# rating default spread nets out of the observed risk-free rate and the rating premium
+# goes back on. Mixing a CDS-netted risk-free with a rating premium would charge Egypt's
+# default risk once at one price and once at another, which is not either basis.
+_RF_STAR_RATING = V['rf'] - V['sov_spread_rating']
+_KE_RATING = _RF_STAR_RATING + beta_used * V['erp_rating']
 kd_at = KD * (1 - TAX)
 net_cash_bs = V['cash_fy25'] - debt_tot
 wd_gross = debt_tot / (debt_tot + MKTCAP)
 wd_net = -net_cash_bs / (-net_cash_bs + MKTCAP)
 wacc_exp = (1 - wd_gross) * ke_exp + wd_gross * kd_at
+_WACC_RATING = (1 - wd_gross) * _KE_RATING + wd_gross * kd_at
 # Hamada must start from an ASSET beta. Revision 3 re-levered an already-levered
 # observed beta, levering it twice. Unlever at the observed structure first.
 beta_u = beta_used / (1 + (1 - TAX) * wd_gross / (1 - wd_gross))
@@ -2575,11 +2617,46 @@ COC_RECORD = dict(
     market='EG', regime=_MACRO.regime, years=5,
     rf_observed=V['rf'], default_spread=V['sov_spread_cds'], rf_star=rf_star,
     erp=V['erp_cds'], erp_basis='cds', beta=beta_used,
+    # THE BETA'S TIER, READ OFF THE BETA RECORD RATHER THAN TYPED [R-COC-02]. Until
+    # 08-Sep-2026 this record named no beta_source at all, so nothing in it
+    # distinguished a measured regression from a peer median from a number somebody
+    # typed. It is tier 2: the own-stock regression against the EGX30 returns 0.698 on
+    # an R-squared of 0.047, below the usability floor, so tier 1 is not available.
+    # NOTE WHAT THE CLOSED-LIST NAME DOES AND DOES NOT ASSERT: 'peer_relevered' is this
+    # repository's label for tier 2, and this study did NOT unlever and relever its
+    # peers — peer leverage is not sourced, the beta record says so, and the direction
+    # is disclosed (ARCC holds net cash against levered peers, so the step could only
+    # lower the beta and raise the value). The label is the tier; the method is the
+    # sentence beside it.
+    beta_source={1: 'own_stock_regression', 2: 'peer_relevered',
+                 3: 'tier3_fallback'}[int(_BETA_TIER)],
+    beta_tier=int(_BETA_TIER),
     ke_exp=ke_exp, kd_pretax=KD, kd_aftertax=kd_at,
     weight_equity=1 - wd_gross, weight_debt=wd_gross, wacc_exp=wacc_exp,
     rf_terminal=V['rf_term'], erp_terminal=V['erp_term'], ke_terminal=ke_term,
     kd_terminal_pretax=V['kd_term'], kd_terminal_aftertax=V['kd_term'] * (1 - TAX),
     weight_debt_terminal=V['wd_term'], wacc_terminal=wacc_term,
+    # THE TERMINAL BETA IS A RELEVERING AND THE RECORD NOW SAYS SO [R-COC-02]. It named
+    # no construction until 08-Sep-2026, and the gate could still solve the tax rate out
+    # of the answer — 22.50%, Egypt's statutory rate — which is exactly the thing a
+    # record is supposed to state rather than let a reader reverse out. The explicit
+    # beta is unlevered at the OBSERVED structure and relevered at the terminal one;
+    # revision 3 relevered an already-levered beta and levered it twice.
+    #
+    # TWO TAX RATES APPEAR IN THIS MODEL AND THE DIFFERENCE IS DELIBERATE. Hamada runs
+    # on the STATUTORY rate, because the shield on a pound of debt is worth the
+    # statutory rate; every NOPAT line runs on the EFFECTIVE rate, because that is what
+    # the company actually pays. They are not the same number and neither is a typo.
+    ke_terminal_construction='relevered',
+    relevering_tax_rate=float(TAX),
+    beta_unlevered=float(beta_u), beta_terminal=float(beta_t),
+    relevering_note=(
+        'beta %.6f unlevered at the observed debt weight %.6f gives an asset beta of '
+        '%.6f, relevered at the terminal weight %.4f gives %.6f. The tax rate is the '
+        'STATUTORY %.2f%% and not the effective %.2f%% the NOPAT lines carry: the '
+        'shield on a pound of debt is worth the statutory rate, while what the company '
+        'pays on its profit is the effective one.'
+        % (beta_used, wd_gross, beta_u, V['wd_term'], beta_t, 100 * TAX, 100 * TAXE)),
     glide_fractions=[float(g) for g in glide], forward_wacc=[float(f) for f in fwd],
     discount_factors=[float(chain(fwd, t)) for t in t_mid],
     # DECLARE THE CONVENTION, because the factors cannot be read without it. This
@@ -2665,7 +2742,26 @@ COC_RECORD = dict(
         interest_bearing_note='the borrowing lines only; trade and other payables '
                               'bear no interest',
     ),
-    sensitivity=dict(other_basis='rating', other_erp=V.get('erp_rating')),
+    # THE ALTERNATIVE BASIS, PRICED [audit finding 9]. other_erp was None until
+    # 08-Sep-2026: the record knew a second basis existed, named it, and carried no
+    # figure for it, so nothing downstream could disclose what the choice was worth.
+    # Both legs move together — the rating spread nets out of the risk-free rate and
+    # the rating premium goes back on — because half a basis is not a basis.
+    sensitivity=dict(
+        other_basis='rating',
+        other_erp=float(V['erp_rating']),
+        other_default_spread=float(V['sov_spread_rating']),
+        other_rf_star=float(_RF_STAR_RATING),
+        other_ke_exp=float(_KE_RATING),
+        other_wacc_exp=float(_WACC_RATING),
+        wacc_exp_delta_bp=float((_WACC_RATING - wacc_exp) * 1e4),
+        note=('the cited file publishes both bases in the same row. Applied '
+              'consistently — rating spread out of the risk-free rate, rating premium '
+              'back on — the rating basis gives an explicit cost of capital of %.4f '
+              'against the adopted %.4f, %+.0f basis points. The adopted basis is the '
+              'one that discounts less and values more, which is why the choice is '
+              'disclosed rather than assumed away.'
+              % (_WACC_RATING, wacc_exp, (_WACC_RATING - wacc_exp) * 1e4))),
     disclosures=[
         'The glide fractions are the cost-of-debt path\'s own cumulative progress, '
         'so the front-loaded shape is inherited from the assumed easing calendar '

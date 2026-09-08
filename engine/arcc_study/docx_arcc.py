@@ -545,7 +545,12 @@ rows = [['', 'Explicit window', 'Terminal']]
 rows.append(['Risk-free rate', pc(IN['rf'], 2), pc(IN['rf_term'], 2)])
 rows.append(['Less sovereign default spread', f'({pc(IN["sov_spread_cds"], 2)})', '—'])
 rows.append(['Normalised risk-free rate', pc(W['rf_star'], 2), pc(IN['rf_term'], 2)])
-rows.append(['Beta', n3(W['beta']), n3(W['beta_term'])])
+# THE TWO BETAS ARE NAMED IN THE ROW ITSELF [audit finding 8, 08-Sep-2026]. This row
+# printed two numbers under one word, and section 1.5 below runs a full page on the beta,
+# adopts the explicit one and never mentions that a second exists. A reader met 1.074
+# with nothing anywhere in three delivered artefacts to say where it came from.
+rows.append(['Beta  (terminal is the explicit beta unlevered and relevered — see below)',
+             n3(W['beta']), n3(W['beta_term'])])
 rows.append(['Equity risk premium', pc(IN['erp_cds'], 2), pc(IN['erp_term'], 2)])
 rows.append(['Cost of equity', pc(W['ke_exp'], 2), pc(W['ke_term'], 2)])
 rows.append(['Cost of debt after tax', pc(W['kd_at'], 2),
@@ -571,6 +576,37 @@ caption('Table 7 — The schedule. The glide fractions are the cumulative progre
         f'value at the end of the window of everything after it, so it arrives half a year '
         f'later than year five\'s own cash flow at {F["df"][-1]:.4f} and is worth less. One '
         f'date, one price of time, and the terminal\'s date is not year five\'s.')
+
+# THE SECOND PUBLISHED BASIS, WHICH THIS SECTION USED TO PASS OVER IN SILENCE [audit
+# finding 9, 08-Sep-2026]. Table 6 printed one equity risk premium. The file it comes
+# from publishes two complete constructions in the same row, they are 4.5 points of
+# premium apart, and the one adopted here produces the lower discount rate and the
+# higher value. The study's own record already named the alternative and carried no
+# figure for it, so nothing downstream could have disclosed the price of the choice.
+_SENS = SCHED['sensitivity']
+P(f'ONE CHOICE IN THAT TABLE IS NOT THE ONLY PUBLISHED ANSWER, and a reader should be '
+  f'told which. The equity risk premium of {pc(IN["erp_cds"], 2)} is the CDS-based figure '
+  f'from the country risk file this study cites. The same row of the same file also '
+  f'publishes a RATING-based construction — Egypt at Caa1, a default spread of '
+  f'{pc(IN["sov_spread_rating"], 2)} and a total premium of {pc(IN["erp_rating"], 2)} — '
+  f'and these are two answers rather than an answer and a footnote.')
+P(f'APPLIED CONSISTENTLY, the rating basis nets its own spread out of the risk-free rate '
+  f'and puts its own premium back on: a normalised risk-free of '
+  f'{pc(_SENS["other_rf_star"], 2)}, a cost of equity of {pc(_SENS["other_ke_exp"], 2)} '
+  f'and an explicit cost of capital of {pc(_SENS["other_wacc_exp"], 2)} against the '
+  f'{pc(W["wacc_exp"], 2)} adopted here — {n0(_SENS["wacc_exp_delta_bp"])} basis points '
+  f'dearer. Half a basis is not a basis: mixing a CDS-netted risk-free rate with a '
+  f'rating premium would charge Egypt\'s default risk once at one price and once at '
+  f'another, so the comparison moves both legs together.')
+P(f'WHY THE CDS BASIS IS ADOPTED, and the honest form of the answer includes which way it '
+  f'cuts. A CDS spread is a price at which sovereign risk actually changed hands; a '
+  f'rating spread is a lookup from a letter grade to a table, and Egypt\'s letter grade '
+  f'moves in steps while its traded spread moves continuously. For a sovereign whose CDS '
+  f'trades in size, the traded price is the better estimate of what the market charges '
+  f'for that risk today. IT IS ALSO THE CHEAPER OF THE TWO, and therefore the one that '
+  f'flatters this valuation. A reader who prefers the rating basis should read '
+  f'{pc(_SENS["other_wacc_exp"], 2)} wherever this study prints {pc(W["wacc_exp"], 2)}, '
+  f'and the terminal shifts with it.')
 
 H2('1.5  Beta, and why it is a peer estimate rather than a regression')
 P('This edition changes the beta, and the change is worth setting out plainly because it '
@@ -628,6 +664,38 @@ caption(f'Table 8 — Fair value across the fixed comparability anchors. These a
         f'interval than the anchors show is a fact about how little this regression '
         f'establishes, not a reason to print a narrower one.')
 
+# THE SECOND BETA, WHICH THIS SECTION USED TO OMIT ENTIRELY [audit finding 8].
+# Section 1.5 ran a full page on the beta, adopted 0.928, priced the alternative and
+# published a sensitivity across the whole peer spread — and never once said that the
+# terminal block runs on a different beta. Table 6 printed the second number with no
+# note, the workbook named the step in a single cell label, and the words "unlever",
+# "relever" and "Hamada" appeared in no delivered document. The construction is
+# legitimate and the choice was undisclosed, which is the harder of the two to catch.
+P(f'ONE MORE BETA, AND IT IS NOT THE ONE ABOVE. Everything in this section concerns the '
+  f'beta the EXPLICIT window runs on. The terminal block runs on a different one — '
+  f'{n3(W["beta_term"])} against {n3(W["beta"])} — and the difference is not a second '
+  f'estimate but the same estimate at a different capital structure. The company today '
+  f'carries debt at {pc(W["wd_gross"], 2)} of its capital and holds more cash than debt; '
+  f'the terminal assumes it has settled at {pc(IN["wd_term"], 1)}, which is the structure '
+  f'a mature cement producer in this market would be expected to hold. A beta is a '
+  f'levered quantity, so it cannot be carried across that change unaltered: it is '
+  f'unlevered at the observed structure to an asset beta of '
+  f'{n3(SCHED["beta_unlevered"])} and relevered at the terminal one.')
+P(f'The tax rate in that step is the STATUTORY '
+  f'{pc(SCHED["relevering_tax_rate"], 2)}, and it is deliberately not the effective '
+  f'{pc(IN["tax_eff"], 2)} that every profit line in this model carries. The two answer '
+  f'different questions: what a pound of debt saves in tax is worth the statutory rate, '
+  f'while what the company actually pays on its profit is the effective one. Both are '
+  f'stated here because a reader who found two tax rates in one model and no explanation '
+  f'would be right to suspect one of them of being a mistake.')
+P(f'WHAT THE STEP IS WORTH, because a construction disclosed without its price is only '
+  f'half-disclosed. Relevering raises the terminal beta and therefore the terminal '
+  f'discount rate: carrying the explicit {n3(W["beta"])} straight through instead would '
+  f'lower the terminal cost of capital and RAISE the value. This study takes the more '
+  f'expensive of the two, and it does so because the terminal capital structure it '
+  f'assumes is a real assumption with a real consequence, not because the answer is '
+  f'preferred.')
+
 # ---- 1.6 --------------------------------------------------------------------
 H2('1.6  The cash-flow waterfall')
 rows = [['EGP mn'] + YF]
@@ -672,26 +740,45 @@ P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax 
   f'{pc(IN["tax_stat"], 1)} because the deferred-tax movement is small.')
 
 # ---- 1.7 --------------------------------------------------------------------
+# THIS PARAGRAPH SAID THE MARGIN FALLS AND THE MARGIN RISES [audit finding 10, 08-Sep-
+# 2026]. It read "falls from the audited 39.3% to 40.4% by FY2030" and went on to explain
+# that "part of the 2025 step-change gives back". The forecast path is 39.03, 39.49,
+# 39.99, 40.20, 40.40: it dips once below the audited year and then climbs past it every
+# year after. The paragraph beneath it printed a "real erosion" of −3.1% under a
+# convention where the paragraph above it called +3.2% an erosion, so the two paragraphs
+# named opposite quantities with one word and the corrected one contradicted the story
+# both were told to support. What follows states what the model does, which is a WEAKER
+# claim than the one that was printed and is the reason it is worth stating carefully.
+_COST_IDX = IN['cost_infl'][5] - 1                       # the input-price ladder
+_PRICE_IDX = IN['price_local_path'][5] - 1               # the local realised price ladder
+_CC_CHARGED = BU[5]['cc_t'] / BU[0]['cc_t'] - 1          # what the model actually charges
+_WEDGE_IDX = IN['cost_infl'][5] / IN['price_local_path'][5] - 1
+_WEDGE_CHARGED = (BU[5]['cc_t'] / BU[0]['cc_t']) / IN['price_local_path'][5] - 1
 P(f'The margin path is the central judgement in this forecast, and it deserves stating as '
-  f'one number rather than left inside a table. Local prices are assumed to grow '
-  f'{pc(IN["price_local_path"][5]-1)} in total across the five years while pound costs grow '
-  f'{pc(IN["cost_infl"][5]-1)} — a real erosion of about '
-  f'{pc(IN["cost_infl"][5]/IN["price_local_path"][5]-1, 0)}. The EBITDA margin therefore '
-  f'falls from the audited {pc(H["margin"][2])} to {pc(F["margin"][4])} by FY2030, still '
-  f'well above the {pc(H["margin"][1])} of FY2024 and far above the {pc(H["margin"][0])} of '
-  f'FY2023. The claim is not that the business deteriorates; it is that part of the 2025 '
-  f'step-change gives back as dormant capacity returns and energy reform continues. A '
-  f'reader who thinks the industry passes cost through faster should read the margin '
-  f'sensitivity in section 7: two points of margin is worth about EGP '
-  f'{n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
-P(f'That path is set below the cost path in every year, and this revision changed how it '
-  f'is judged rather than only where it sits. The prior edition justified it against '
-  f'headline inflation of {pc(IN["cost_infl"][5]-1)} — but that is the input-price index, '
-  f'not the cost the model actually charges. Netting the alternative-fuel saving off the '
-  f'materials line, the cash cost per tonne the model charges grows '
-  f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]-1)}, so the real erosion is '
-  f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]/(IN["price_local_path"][5])-1)} rather than the figure '
-  f'previously printed. The comparison is now made against the cost the model charges.')
+  f'one number rather than left inside a table — including where that number runs against '
+  f'the story. Local prices are assumed to grow {pc(_PRICE_IDX)} in total across the five '
+  f'years while the INPUT-PRICE index grows {pc(_COST_IDX)}, so on the published ladders '
+  f'cost outruns price by {pc(_WEDGE_IDX, 1)}. That is not the cost this model charges. '
+  f'Netting the alternative-fuel saving off the materials line — a funded programme with '
+  f'an asset under construction behind it, not a trend — the cash cost per tonne charged '
+  f'grows {pc(_CC_CHARGED)}, which is {pc(abs(_WEDGE_CHARGED), 1)} SLOWER than price '
+  f'rather than faster.')
+P(f'SO THE MARGIN DOES NOT GIVE BACK, AND EARLIER EDITIONS OF THIS PARAGRAPH SAID IT DID. '
+  f'The EBITDA margin dips once, to {pc(F["margin"][0])} in FY2026 from the audited '
+  f'{pc(H["margin"][2])}, and then rises in every year after it to {pc(F["margin"][4])} by '
+  f'FY2030 — above the best year this company has ever filed, against {pc(H["margin"][1])} '
+  f'in FY2024 and {pc(H["margin"][0])} in FY2023. A forecast that ends above a company\'s '
+  f'best filed year is a claim that needs its mechanism named rather than a sentence '
+  f'saying the opposite, and the mechanism is the alternative-fuel substitution: it is the '
+  f'whole of the gap between the input-price ladder and the cost charged. Strip it out and '
+  f'cost grows {pc(_COST_IDX)} against price at {pc(_PRICE_IDX)}, the wedge turns the '
+  f'other way, and the margin declines instead of rising.')
+P(f'THAT IS THE ASSUMPTION IN THIS SECTION MOST WORTH DISAGREEING WITH. It rests on a '
+  f'substitution rate reaching {pc(IN["af_saving"][5], 1)} of the materials and fuel line '
+  f'by FY2030, on capacity that is funded and being built rather than running. A reader '
+  f'who thinks the programme underdelivers, or that the industry passes cost through '
+  f'faster than assumed, should read the margin sensitivity in section 7: two points of '
+  f'margin is worth about EGP {n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
 # THE STEP QUOTED IS THE ONE THE MODEL APPLIES, NOT THE INDEX BEHIND IT. This paragraph
 # used to quote price_local_path[1] alone — the growth index — and call the result "less
 # than a point above a path in which prices stop rising altogether". The model applies

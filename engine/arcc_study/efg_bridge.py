@@ -44,6 +44,17 @@ TR = D['terminal_record']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SH_E, SH_O = 375.0, D['meta']['shares_mn']
 REM = 1.0 - IN['stub_years']
+# THE VALUATION DATE IS READ, NOT DERIVED. Half a forecast year is 2 July by
+# arithmetic and 30 June in fact, and inventing the difference would be precision
+# the stub fraction does not carry. The bridge already commits the date: it is the
+# reviewed balance sheet the whole bridge stands on.
+VAL_DATE = D['bridge_record']['balance_sheet_date']
+
+
+def _short(iso):
+    """'2026-06-30' -> '30 Jun'. The label carries the day, not a rounded fraction."""
+    import datetime
+    return datetime.date(*(int(x) for x in iso.split('-'))).strftime('%d %b').lstrip('0')
 
 # ---- EFG, read off their Figure 1 (6 August 2026) ---------------------------
 E_FCF = [2975, 3489, 3653, 3715, 3790]
@@ -173,7 +184,14 @@ STEPS = [
                  "harsher than our 0.4876. The two errors very nearly cancel and the "
                  "whole bar is EGP 0.16, so neither convention is worth arguing over."),
     dict(key='valuation_date', driver='valuation date', touches={'window', 'cash'},
-         label="Valuation date\n1 Jan → 6 Aug", sub="−3.33 out of window,\n+4.61 back as cash",
+         # THE LABEL IS BUILT FROM THE STUB, NOT TYPED [audit finding 13, 08-Sep-2026].
+         # It read "1 Jan -> 6 Aug" and went on reading it after the valuation date moved
+         # to 30 June, when the bridge went to the reviewed interim accounts so that the
+         # bridge and the explicit window would meet at the same instant. The sub and
+         # receipt on this step are already rewritten from the computed split below; the
+         # label was the one part still describing the retired date.
+         label="Valuation date\n1 Jan -> %s" % _short(VAL_DATE),
+         sub="rewritten below from the split it describes",
          fn=s_valuation_date, off='EFG',
          receipt="A price is what you pay today. Only 0.417 of FY2026 remains, so 0.583 "
                  "of that year's FCFF leaves the discounted window — and arrives in the "
@@ -235,6 +253,42 @@ END = st['lens_override']
 # against the split, and it went FAIL rather than quietly printing stale numbers,
 # which is the invariant doing exactly its job. The caption is now written FROM the
 # split it describes, so it cannot disagree with it again.
+# THE SAME DEFECT, ONE STEP ALONG [audit finding 13, 08-Sep-2026]. The discount-rate
+# step's sub and receipt were typed and described an EARLIER edition of this study: they
+# quoted "our 24.5% -> 14.5%" and "our 0.4876" against a schedule that now runs 27.60% to
+# 18.34% with a year-five factor of 0.4521, and they closed with "the whole bar is EGP
+# 0.16" against a bar this build computes at -6.19 -- two values for one bar, 38x apart,
+# in the one section of this study sold to a reader as a bar-by-bar reconciliation they
+# can check. Neither figure reproduced from anything published. WORSE THAN STALE, the
+# reversed direction: against the schedule this study actually runs it is OUR factor that
+# is the harsher one, so the receipt told the reader the disagreement ran the opposite way
+# from the way it runs. All of it is now written FROM the live schedule and the computed
+# bar, on the same principle as the caption below: a receipt that can disagree with its
+# own bar will.
+_DR_BAR = [b for st, b in zip(STEPS, bars) if st['key'] == 'discount_rate']
+for _s in STEPS:
+    if _s['key'] == 'discount_rate':
+        _s['sub'] = ("their flat %.2f%%\nvs our %.2f%%->%.2f%%"
+                     % (100 * E_WACC, 100 * W['wacc_exp'], 100 * W['wacc_term']))
+        # BOTH FACTORS ON THEIR CALENDAR, which is the only comparison this bar makes.
+        # The step changes the RATE and nothing else, so ours is laid on EFG's own
+        # whole-year convention (O_DF_JAN); Table 7's 0.4521 is our mid-period schedule
+        # on OUR valuation date and is a different quantity that belongs in a different
+        # bar. Quoting one against the other is what made the retired receipt read as
+        # though the direction ran the other way.
+        _theirs, _ours = E_DF[4], O_DF_JAN[4]
+        _s['receipt'] = (
+            "Their flat %.2f%% is applied to FY2026 while the Egyptian 1-year T-bill "
+            "yields %.2f%% -- below the risk-free rate, which is hard to defend. Late in "
+            "the window it runs the other way. On THEIR calendar, which is the only way "
+            "to compare a rate against a rate, their year-five factor is %.4f against "
+            "ours of %.4f, so %s discounts the far end harder. The two work against each "
+            "other and what is LEFT is this bar, %+.2f a share, which is the number to "
+            "argue with rather than either convention."
+            % (100 * E_WACC, 100 * IN['rf'], _theirs, _ours,
+               'theirs' if _theirs < _ours else 'ours',
+               _DR_BAR[0] if _DR_BAR else float('nan')))
+
 _wc = split['valuation_date']
 for _s in STEPS:
     if _s['key'] == 'valuation_date':

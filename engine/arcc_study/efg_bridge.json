@@ -50,15 +50,15 @@
   {
    "key": "discount_rate",
    "label": "Discount\nrate",
-   "sub": "their flat 20.06%\nvs our 24.5%\u219214.5%",
+   "sub": "their flat 20.06%\nvs our 27.60%->18.34%",
    "driver": "discount rate",
    "off": "OPEN",
-   "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% \u2014 below the risk-free rate, which is hard to defend. But it is correspondingly too HIGH late: their year-5 factor of 0.4813 is harsher than our 0.4876. The two errors very nearly cancel and the whole bar is EGP 0.16, so neither convention is worth arguing over.",
+   "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% -- below the risk-free rate, which is hard to defend. Late in the window it runs the other way. On THEIR calendar, which is the only way to compare a rate against a rate, their year-five factor is 0.4813 against ours of 0.4353, so ours discounts the far end harder. The two work against each other and what is LEFT is this bar, -6.19 a share, which is the number to argue with rather than either convention.",
    "value": -6.1863
   },
   {
    "key": "valuation_date",
-   "label": "Valuation date\n1 Jan \u2192 6 Aug",
+   "label": "Valuation date\n1 Jan -> 30 Jun",
    "sub": "-5.33 out of window,\n+1.37 back as cash",
    "driver": "valuation date",
    "off": "EFG",

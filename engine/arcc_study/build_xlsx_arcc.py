@@ -257,7 +257,28 @@ inp('Ordinary shares issued', 'shiss', IN['shares_issued'], NUM4, 'mn — audite
 inp('Treasury shares held', 'shtre', IN['shares_treasury'], NUM4, 'mn — audited note 21')
 inp('Statutory tax rate', 'tax', TAX, PCT, '')
 inp('Effective tax rate', 'taxe', TAXE, PCT2, 'audited: tax over pre-tax profit')
-inp('Beta (own-stock weekly regression)', 'beta', W['beta'], NUM3, '')
+# THE LABEL ASSERTED THE OPPOSITE OF WHAT WAS DONE [audit finding 11, 08-Sep-2026].
+# It read "Beta (own-stock weekly regression)" on the input the study itself calls its
+# most consequential contested judgement — and section 1.5 REJECTS the own-stock
+# regression, at 0.698 on an R-squared of 0.047, and adopts the peer median instead.
+# The number was always the intended one; the label named the construction the study
+# threw away, and the two are 12% of value apart. The workbook also carried none of the
+# rejected regression's diagnostics, so a reader of the model alone could not see that a
+# regression had been run at all, let alone why it was not used. Both are fixed here.
+inp('Beta — median of same-country PEER regressions (tier 2; the own-stock regression is '
+    'rejected, see below)', 'beta', W['beta'], NUM3,
+    'peers: ' + ', '.join('%.3f' % b for b in BETA['peer_betas_usable']))
+_r = R[0]
+wsA.cell(row=_r, column=1,
+         value='   memo — own-stock weekly regression against the EGX30: REJECTED, not used')
+put(wsA, 'B%d' % _r, BETA['own_stock']['beta'], SUB, NUM3)
+wsA.cell(row=_r, column=3, value=(
+    'R-squared %.3f, standard error %.3f, %d weekly observations to %s. The index '
+    'explains under a twentieth of this share\'s movement, which is below the usability '
+    'floor, so tier 1 is unavailable and the peer median above is adopted.'
+    % (BETA['own_stock']['r2'], BETA['own_stock']['se'], BETA['own_stock']['n'],
+       BETA['own_stock']['last_obs']))).font = SUB
+R[0] += 1
 inp('USD/EGP at the valuation date', 'fx', IN['fx'], NUM1, '')
 
 sect('PLANT — AUDITED NOTE 1')

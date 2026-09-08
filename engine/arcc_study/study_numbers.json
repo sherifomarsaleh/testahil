@@ -140,6 +140,8 @@
   "erp": 0.0941,
   "erp_basis": "cds",
   "beta": 0.9275220650537075,
+  "beta_source": "peer_relevered",
+  "beta_tier": 2,
   "ke_exp": 0.28277982632155385,
   "kd_pretax": 0.1335777467249307,
   "kd_aftertax": 0.10352275371182129,
@@ -153,6 +155,11 @@
   "kd_terminal_aftertax": 0.11624999999999999,
   "weight_debt_terminal": 0.2,
   "wacc_terminal": 0.18342102419495454,
+  "ke_terminal_construction": "relevered",
+  "relevering_tax_rate": 0.225,
+  "beta_unlevered": 0.9000901151077718,
+  "beta_terminal": 1.0744825749099027,
+  "relevering_note": "beta 0.927522 unlevered at the observed debt weight 0.037837 gives an asset beta of 0.900090, relevered at the terminal weight 0.2000 gives 1.074483. The tax rate is the STATUTORY 22.50% and not the effective 23.82% the NOPAT lines carry: the shield on a pound of debt is worth the statutory rate, while what the company pays on its profit is the effective one.",
   "glide_fractions": [
    0.0,
    0.37878787878787884,
@@ -252,7 +259,13 @@
   },
   "sensitivity": {
    "other_basis": "rating",
-   "other_erp": null
+   "other_erp": 0.13937694320020103,
+   "other_default_spread": 0.06372478453347744,
+   "other_rf_star": 0.16577521546652257,
+   "other_ke_exp": 0.2950504056444463,
+   "other_wacc_exp": 0.28780355875430846,
+   "wacc_exp_delta_bp": 118.06296444107022,
+   "note": "the cited file publishes both bases in the same row. Applied consistently \u2014 rating spread out of the risk-free rate, rating premium back on \u2014 the rating basis gives an explicit cost of capital of 0.2878 against the adopted 0.2760, +118 basis points. The adopted basis is the one that discounts less and values more, which is why the choice is disclosed rather than assumed away."
   },
   "disclosures": [
    "The glide fractions are the cost-of-debt path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
@@ -1572,6 +1585,18 @@
   "erp_cds": {
    "value": 0.0941,
    "source": "Egypt equity risk premium, CDS-based, Damodaran January-2026",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "sov_spread_rating": {
+   "value": 0.06372478453347744,
+   "source": "Egypt rating-based sovereign default spread (Moody's Caa1), Damodaran January-2026 country risk file, sheet 'ERPs by country', Egypt row, column 'Rating-based Default Spread'. The ALTERNATIVE to the CDS spread this study adopts, published in the same row of the same file",
+   "date": "2026-01-05",
+   "ring": "Country"
+  },
+  "erp_rating": {
+   "value": 0.13937694320020103,
+   "source": "Egypt total equity risk premium on the RATING basis, same file, same row, column 'Total Equity Risk Premium'. The CDS basis adopted here gives 9.41%; this is the published alternative and it is 4.53 points higher, so adopting it would RAISE the discount rate and LOWER the value. Priced in section 1.4 rather than left unstated",
    "date": "2026-01-05",
    "ring": "Country"
   },
