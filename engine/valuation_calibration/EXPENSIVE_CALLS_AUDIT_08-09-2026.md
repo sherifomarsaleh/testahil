@@ -49,28 +49,42 @@ is a conclusion this method is entitled to reach.
 
 ## 3–6. SWDY 2018, 2019, 2020, 2022 — −67.3%, −29.0%, −53.1%, −37.9%
 
-**FOUR OF THE SIX ARE ONE NAME, AND THAT IS THE FINDING RATHER THAN FOUR FINDINGS.**
-Every one of them projects a flat ~11% operating margin, positive and growing cash flow
-after year one, and nothing structurally broken. What they share is a **cost of capital
-running 16.8% to 23.3%**, on a name that is large, liquid and among the most heavily
-traded on its exchange.
+**TWO HYPOTHESES WERE PUT AND BOTH ARE DISPROVEN BY MEASUREMENT. They are recorded as
+refuted rather than deleted, because a wrong diagnosis left in a record is worse than
+none.**
 
-**The suspect is the beta.** This lens carries **beta = 1.00 for every name at every
-origin** — declaration 2's choice, and the full-shrinkage limit of a Vasicek estimator.
-Measured today on this name's own point-in-time regressions, its beta is not 1.00. A
-company whose shares move less than the market is being charged as though they move with
-it, at every origin, and a discount rate too high by a few hundred basis points is worth
-double digits of value on a terminal carrying 39% to 86% of it.
+**Refuted (1): the beta.** The first draft of this audit said these four were one input —
+a beta held flat at 1.00 on a large, liquid name that must move less than the market.
+Measured on this name's own point-in-time regressions at those exact origins:
 
-**Lever 5 already built the correction and the promotion rule rejected it** — because it
-moved the pooled bias away from zero. Under the bar the principal has now set, that
-rejection was answering a different question: the point-in-time beta is the *correct*
-input regardless of what it does to a symmetric bias test, and these four cells are where
-the flat 1.00 costs the most.
+    2018  1.0031      2019  1.0712      2020  1.0605      2022  1.3407
 
-**SWDY 2022 carries a second thing worth naming:** its cash-flow path runs
+**At or ABOVE 1.00, never below.** Correcting the beta would RAISE the discount rate and
+push these cells further below the price, not toward it. The hypothesis was plausible,
+cheap to test, and wrong.
+
+**Refuted (2): the margin.** The projection carries ~11% at every horizon. This company's
+own filed operating margin runs **9.4 / 22.2 / 17.4 / 12.5 / 11.3 / 9.3 / 8.5 / 10.1**
+per cent across 2015-2022. Eleven per cent is mid-range. The projection is not pessimistic
+about the business.
+
+**What is left, and it is stated as a hypothesis rather than a finding.** At origin 2018
+the model reaches an enterprise value of 12,818mn on 5,300mn of filed operating profit —
+about **2.4x EBIT** — while the market was paying roughly **7.4x**. Nothing in the volume,
+price, margin or beta explains a gap that size. What remains is the **discount rate
+itself**: 23.1% at that origin, arithmetically correct from Egypt's own sovereign yield
+and defensible line by line.
+
+The untested question is whether that rate belongs on THIS company's cash flows. Elsewedy
+is an exporter with substantially dollar-linked earnings, and [R-COC-01] requires country
+risk to be counted **exactly once**. A dollar-linked earnings stream discounted at a
+crisis-level local-currency hurdle may be carrying the currency twice — once in the cash
+flows and again in the rate. **That is a hypothesis with a named rule behind it and NO
+measurement, and it is written here as exactly that.**
+
+**SWDY 2022 carries a second undiagnosed thing:** its cash-flow path runs
 16,425 → 1,310 → 2,632 → 3,897 → 5,271. A first year twelve times the second is a
-discontinuity, not a forecast, and it has not been diagnosed here.
+discontinuity, not a forecast.
 
 ---
 
@@ -80,12 +94,18 @@ discontinuity, not a forecast, and it has not been diagnosed here.
 |---|---|
 | EGCH 2023 | **our defect** — a named, governed margin collapse the run never received |
 | PHDC 2019 | **not a defect** — a developer mid-build, real disagreement |
-| SWDY 2018/19/20/22 | **one suspected defect, four times** — a flat beta of 1.00 on a low-beta name |
+| SWDY 2018/19/20/22 | **UNDIAGNOSED** — beta and margin both tested and refuted; a discount-rate hypothesis stands untested |
 | SWDY 2022 | **plus one undiagnosed** — a year-one cash-flow discontinuity |
 
-**Two named defects and one honest disagreement, not six separate problems.** Both defects
-have a known fix already built: the anchor declaration on EGCH's run, and the
-point-in-time beta on SWDY's cost of capital.
+**One named defect, one honest disagreement, and four cells still open.** The defect —
+EGCH's margin collapse — has a fix already written and simply never applied to the run.
+The four open cells are ONE name, and the two cheapest explanations for them have been
+tested and refuted. What is left needs measurement, not another hypothesis.
+
+**THE FIRST DRAFT OF THIS AUDIT NAMED A CAUSE IT HAD NOT MEASURED**, and the correction
+took ten minutes. That is the whole argument for auditing cell by cell rather than
+reasoning about a pooled number: a plausible cause survives any amount of thinking and
+dies on the first measurement.
 
 **WHAT THIS AUDIT DOES NOT DO.** It does not move any fair value toward any price. Every
 verdict above is about a CONSTRUCTION, and the two fixes named are corrections that would
