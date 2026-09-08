@@ -1,5 +1,26 @@
 {
  "entries": {
+  "ABUK": {
+   "baseline": {
+    "built_to": "(no study)",
+    "captured": "2026-09-08",
+    "fair": {
+     "base": 60,
+     "bear": 50,
+     "full": 72
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 76.59,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "ABUK",
+   "tier": "first-build"
+  },
   "AMOC": {
    "baseline": {
     "built_to": "(study carries no stamp)",
