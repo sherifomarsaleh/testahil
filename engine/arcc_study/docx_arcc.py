@@ -664,16 +664,32 @@ P(f'That path is set below the cost path in every year, and this revision change
   f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]-1)}, so the real erosion is '
   f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]/(IN["price_local_path"][5])-1)} rather than the figure '
   f'previously printed. The comparison is now made against the cost the model charges.')
+# THE STEP QUOTED IS THE ONE THE MODEL APPLIES, NOT THE INDEX BEHIND IT. This paragraph
+# used to quote price_local_path[1] alone — the growth index — and call the result "less
+# than a point above a path in which prices stop rising altogether". The model applies
+# that index AND the calibration to the reviewed half, so the actual first-year step is
+# roughly twice the figure the sentence quoted, and the sentence ended by inviting the
+# reader to check it. A claim about the study's own central driver has to be computed
+# from what the driver does.
+_STEP_ACTUAL = BU[1]['price_loc'] / BU[0]['price_loc'] - 1
+_EXIT_FLAT = 0.072
 P(f'The presentation also settles a question three earlier editions argued about without '
   f'evidence. It reports local revenue and local volume for both years, so the realised '
   f'local price can be COMPUTED: EGP 1,810 a tonne in FY2024 against EGP 2,909 in FY2025, '
   f'a rise of 60.7% on volume up only 11.7%. The FY2025 margin step was price, not volume. '
   f'More useful for a forecast is the exit rate: the fourth quarter of 2025 realised EGP '
-  f'3,118 a tonne, 7.2% ABOVE the full-year average. Holding that exit flat through 2026 '
-  f'would by itself produce a full-year average 7.2% higher, so the '
-  f'{pc(IN["price_local_path"][1]-1, 1)} carried here is less than a point above a path in '
-  f'which prices stop rising altogether. That is the sense in which this forecast is '
-  f'conservative, and it can now be checked rather than asserted.')
+  f'3,118 a tonne, 7.2% ABOVE the full-year average, so holding that exit flat through 2026 '
+  f'would by itself produce a full-year average 7.2% higher. THE STEP THIS FORECAST '
+  f'ACTUALLY CARRIES IS {pc(_STEP_ACTUAL, 1)}, not the {pc(IN["price_local_path"][1]-1, 1)} '
+  f'growth index alone: the model calibrates its FY2026 channel prices to the reviewed '
+  f'half before growing them, and the calibration and the index both sit in that number. '
+  f'It is {pc(_STEP_ACTUAL - _EXIT_FLAT, 1)} above the flat-exit path rather than under a '
+  f'point above it, and the earlier editions of this paragraph quoted the index and left '
+  f'the calibration out — which understated the step by about half while claiming the '
+  f'forecast was conservative on exactly that ground. The honest statement is narrower: '
+  f'the price path grows BELOW cost inflation in every forecast year, which is where the '
+  f'margin discipline in this study actually sits, and the first-year level is set by a '
+  f'filed half rather than by a view.')
 P(f'The audited record still frames it. In FY2024 revenue grew '
   f'{pc(H["revenue"][1]/H["revenue"][0]-1, 1)} against total cash cost of '
   f'{pc((H["cogs"][1]+H["ga"][1]-IN["dna_fy24"])/(H["cogs"][0]+H["ga"][0]-IN["dna_fy23"])-1, 1)}; '
@@ -1315,7 +1331,22 @@ for head, body in [
      f'and carried through every forecast year as a level shift of '
      f'{n3(CALB["local"])} times. THAT IS THE ASSUMPTION IN THIS STUDY MOST CAPABLE OF BEING '
      f'WRONG: if the rise was volume rather than price, and volume is capped by the plant, '
-     f'the later years are overstated.'),
+     f'the later years are overstated. '
+     # ALL THREE FACTORS ARE NAMED HERE, NOT ONE. Earlier editions disclosed the local
+     # shift and left the export and cost shifts to the model's own log, where no reader
+     # meets them. They are one calibration to one filed half rather than three separate
+     # adjustments, and a reader shown a third of it cannot see that.
+     f'TWO FURTHER FACTORS COME OUT OF THE SAME HALF AND ARE STATED HERE RATHER THAN LEFT '
+     f'TO THE MODEL: the export price is scaled {n3(CALB["export"])} times, because export '
+     f'sales of goods FELL over the same half, and the whole cash-cost stack is scaled '
+     f'{n3(CALB["cost"])} times, because the half\'s own cost of sales and administrative '
+     f'expenses gross up to EGP {n0(CALB["fy26_cashcost_implied"])}mn against what the '
+     f'uncalibrated model would have charged. The cost factor is not an adjustment to the '
+     f'answer and it is the one that keeps the margin honest: calibrating price to a filed '
+     f'half WITHOUT calibrating cost to the same half would manufacture a margin out of the '
+     f'calibration itself, which is precisely what this study forbids elsewhere. The three '
+     f'move in different directions because that is what the half reports — local price up, '
+     f'export price down, cost down — and all three come from one document.'),
     ('A large collection of export subsidy is treated as one-off. ', f'The half-year accounts '
      f'record EGP {n0(IN["export_subsidy_h1_26"])}mn of export subsidy collected in the '
      f'second quarter, against EGP {n1(IN["export_subsidy_fy25"])}mn for the whole of FY2025. '
