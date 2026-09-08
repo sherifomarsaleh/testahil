@@ -8,12 +8,18 @@ superseded edition did not publish at all.
 """
 import json
 import os
-from docx_base import *
+from docx_base import *                                              # noqa: F401,F403
+import table_residual as TR                                          # noqa: E402
 from docx_A import (pc, sgn, n0, n1, paren, longdate, spot, SPOT_DATE, TA_CLOSE,
-                    TA_DATE_L, GAP, SH, EDITION, EDITION_L, EDITION_STAMP, STAKE)
+                    TA_DATE_L, SH, EDITION, EDITION_L, EDITION_STAMP, STAKE,
+                    STAKE_PRIOR, STAKE_STATEMENTS, STAKE_STATEMENTS_PRIOR,
+                    B_LO, B_HI, V_LO, V_HI, GAP_LO, GAP_HI, MARK_LO, MARK_HI,
+                    EQ_LO, EQ_HI, REL, BOOK, CAP, PRICE_MARK, PRICE_ASSOC, PRICE_MNT_USD,
+                    MNT_USD_AT_CARRYING, OPERATING_EQ, RATE_LO, RATE_HI,
+                    QUALIFICATION, SHARE_OF_PROFIT)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-L = D['lenses']; E = D['experts']; s0 = D['step0']; sotp = D['sotp']; dcf = D['dcf']
+E = D['experts']; s0 = D['step0']; sotp = D['sotp']; dcf = D['dcf']
 HIS = D['history']['income_statement']; PRV = D['history']['provenance']
 GF = D['group_forecast']['rows']; DRV = D['disclosed_drivers']
 COC = D['cost_of_capital_record']; MAC = D['macro']
@@ -161,19 +167,32 @@ for key, lbl in [('rev', 'Auto revenue'), ('ebit', 'Operating profit'),
         row.append(paren(v) if key in ('capex', 'dwc') else n0(v))
     rows.append(row)
 table(rows, [2.4, 0.86, 0.86, 0.86, 0.86, 0.86], first_col_bold=True, size=8.6, band_rows=[7])
+for _r in dcf['rows']:
+    TR.waterfall(_r['nopat'],
+                 [('Plus depreciation and amortisation', _r['dna']),
+                  ('Less capital expenditure', _r['capex']),
+                  ('Less increase in working capital', _r['dwc'])],
+                 _r['fcff'], dp=0, what='Table A3 free cash flow, %s' % _r['year'])
 caption('Table A3 — the Auto leg’s cash flow, line for line as §1.2 discounts it. Deductions are printed as '
         'magnitudes in brackets and the labels state the operation, so the column can be followed to the result.')
 
 H2('A.5  The balance-sheet anchors the bridge stands on')
-rows = [['Item', 'Value (EGP mn)', 'As at', 'Source']]
+# TWO DATES AND THEY ARE NOT THE SAME DATE. Every figure below is read off the SAME
+# reviewed balance sheet, and the document a reader would go and find it in carries its own
+# publication date. Printing one column headed "as at" and filling it with both is how a
+# reader is told a bridge stands on a date it does not.
+_BSDATE = longdate(D['forecast_anchor']['latest_reviewed_date'])
+rows = [['Item', 'Value (EGP mn)', 'Balance sheet as at', 'Where it was read, and the date that document carries']]
 for k, lbl in [('cash_jun2026', 'Cash and equivalents'), ('debt_jun2026', 'Borrowings, group'),
                ('debt_auto_jun2026', 'Borrowings, GB Auto segment'),
-               ('eq_jun2026', 'Total equity')]:
+               ('eq_jun2026', 'Group total equity — a disclosed line, not a sum of the rows above')]:
     it = D['inputs'][k]
-    rows.append([lbl, n1(it['value']), it['date'], it['layer']])
-rows.append(['Auto net debt used in the bridge', n1(dcf['auto_nd']), '2026-06-30', 'segmented balance sheet, GB Auto column'])
-rows.append(['Auto non-controlling interests deducted', n1(dcf['auto_nci']), '2026-06-30', 'that leg’s own minority'])
-table(rows, [2.3, 1.3, 1.1, 2.4], first_col_bold=True, size=8.6)
+    rows.append([lbl, n1(it['value']), _BSDATE, '%s — %s' % (it['layer'], longdate(it['date']))])
+rows.append(['Auto net debt used in the bridge', n1(dcf['auto_nd']), _BSDATE,
+             'the segmented balance sheet, GB Auto column, on the company’s own net-debt definition'])
+rows.append(['Auto non-controlling interests deducted', n1(dcf['auto_nci']), _BSDATE,
+             'that leg’s own minority interest'])
+table(rows, [2.1, 1.05, 1.15, 2.8], first_col_bold=True, size=8.6)
 caption('Table A4 — the bridge stands on the latest disclosed balance sheet, the reviewed statements to 30 June 2026, '
         'and not on the prior year end. The deduction is the AUTO leg’s own net debt and the AUTO leg’s own '
         'minority, because the lender’s borrowings are its raw material rather than its leverage.')
@@ -210,8 +229,9 @@ P(f'The honest caveats. The proper score against a naive benchmark is {sgn(_nl["
 # ================= Appendix C ================================================
 H1('Appendix C  Peer set, sector structure, and risks')
 P('GB Corp has no clean single comparable — an auto assembler-distributor, a non-bank lender and a fintech '
-  'associate in one wrapper. The peer set is therefore split by leg, and it is used for cross-checks only: no peer is a '
-  'source for GB Corp’s own reported figures.')
+  'associate in one wrapper, and that is why the class primary is a sum of the parts rather than a multiple. The peer '
+  'set is therefore split by leg, and it is used for cross-checks only: no peer is a source for GB Corp’s own reported '
+  'figures, and no peer multiple is applied to the group as a whole.')
 rows = [
  ['Leg', 'Closest peers', 'How they are typically valued'],
  ['Auto assembly and distribution', 'Gulf and regional auto distributors; listed consumer-durables names on this exchange', 'Enterprise value against operating profit; earnings multiples'],
@@ -230,73 +250,112 @@ P('Sector structure and principal risks. The Egyptian passenger-car market is in
 # ================= Appendix D ================================================
 H1('Appendix D  The expert valuation panel')
 P('Every study closes with a panel of standing expert personas, so that each accumulates a track record across studies '
-  'and an update is a re-run rather than a re-training. For GB Corp we cast the industrial trio, adding the cash-returns '
-  'lens because the name is capital-heavy: Expert 1 (the accountant — net asset value and the marks), Expert 2 '
-  '(earnings power — normalised mid-cycle earnings and multiples), Expert 3 (cash returns — return on capital '
-  'against its cost). Each runs a different method, derives its value from shown workings, and states in advance what '
-  'would falsify it.')
+  'and an update is a re-run rather than a re-training. For GB Corp we cast the industrial trio, adapted to what this '
+  'group actually is: Expert 1 (the accountant — net asset value and the marks), Expert 2 (residual income — what '
+  'the group’s own reported return justifies against its own book), Expert 3 (cash returns — return on capital '
+  'against its cost). Each runs a different method, derives its value from shown workings, states a named sensitivity, '
+  'and states in advance what would falsify it.')
+P('One change since the last edition is worth naming, because it is a method being retired rather than a persona being '
+  'renamed. Expert 2 used to capitalise mid-cycle earnings. That lens is gone from this study for the reason §1.4 gives '
+  '— GB Corp’s reported earnings swing with what its associates are marked at rather than with an operating cycle — '
+  'so an expert still running it would be working on a lens the study no longer holds. He now runs residual income on '
+  'the whole group, which needs no mid-cycle figure anybody has to choose.', size=9.8)
 
 _e1, _e2, _e3 = E['e1'], E['e2'], E['e3']
+
 H2('D.1  Expert 1 — the split-legs net asset value and the marks')
 P('Worldview. A group is worth the sum of its parts at realisable value, less a discount for the wrapper. Mark each leg '
   'to what it would fetch on its own; then argue only about the discount.', size=9.8)
 P('When it works and when it fails. Best where the legs are separable and independently markable; it fails hardest when '
-  'the discount applied to a private mark is itself contestable, which is exactly his position here.', size=9.8)
+  'the discount applied to a private mark is itself contestable, which is exactly his position here. He also differs from '
+  'the study on the lender: he marks it at its book rather than at what its return justifies, which is a real '
+  'disagreement and is why his number is not the study’s round-price branch.', size=9.8)
 rows = [
  ['Expert 1’s marks', 'EGP mn'],
  ['Auto leg (he accepts the §1.2 cash-flow value)', n0(sotp['auto_eq'])],
- ['GB Capital at one times adjusted book', n0(sotp['cap_val'])],
- ['Associates: MNT-Halan plus the residual holdings', n0(sotp['assoc'])],
- ['Σ before the discount', n0(sotp['auto_eq'] + sotp['cap_val'] + sotp['assoc'])],
- [f"less: wrapper discount at {pc(_e1['wrapper_discount'],0)} — an operator, not a passive holding company", paren((sotp['auto_eq'] + sotp['cap_val'] + sotp['assoc']) * _e1['wrapper_discount'])],
+ ['Plus GB Capital at its operating book', n0(CAP['operating_equity'])],
+ ['Plus associates: MNT-Halan at the round price, plus the residual holdings', n0(sotp['assoc'])],
+ ['Sum before the discount', n0(sotp['auto_eq'] + CAP['operating_equity'] + sotp['assoc'])],
+ [f"Less wrapper discount at {pc(_e1['wrapper_discount'],0)} — an operator, not a passive holding company", paren((sotp['auto_eq'] + CAP['operating_equity'] + sotp['assoc']) * _e1['wrapper_discount'])],
  ['Equity value', n0(_e1['base'] * SH)],
- ['Per share', f"{_e1['base']:.2f}"],
+ ['Per share (EGP)', f"{_e1['base']:.2f}"],
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
-P(f"Sensitivity — the swing is the discount on the mark, now that the stake is stated. Marking MNT-Halan at three "
-  f"quarters of the round's valuation takes his number to EGP {_e1['mark_haircut']['0.75']:.2f} per share; at half, to "
-  f"EGP {_e1['mark_haircut']['0.5']:.2f}. He concedes the point openly: the stake is not the argument any more, the "
-  f"argument is what a {pc(STAKE,2)} minority holding in an unlisted company is worth to a public-market buyer who "
-  "cannot sell it, and that is a discount-rate question rather than an ownership question. Cross-examination: he tells "
-  "Expert 2 that capitalising mid-cycle earnings double-counts assets he has already marked at full value; he tells "
-  "Expert 3 that a haircut on the return on capital is small next to the swing available from how hard you discount an "
-  "illiquid stake.", size=9.8)
+_e1_sum = sotp['auto_eq'] + CAP['operating_equity'] + sotp['assoc']
+TR.waterfall(sotp['auto_eq'],
+             [('Plus GB Capital at its operating book', CAP['operating_equity']),
+              ('Plus associates', sotp['assoc'])],
+             _e1_sum, dp=0, what='D.1 Expert 1, sum before the discount')
+TR.waterfall(_e1_sum,
+             [('Less wrapper discount', _e1_sum * _e1['wrapper_discount'])],
+             _e1['base'] * SH, dp=0, what='D.1 Expert 1, equity value')
+P(f"Sensitivity — the swing is the mark, not the ownership. Marking MNT-Halan at three quarters of the round’s "
+  f"valuation takes his number to EGP {_e1['mark_haircut']['0.75']:.2f} per share; at half, to EGP "
+  f"{_e1['mark_haircut']['0.5']:.2f}. He concedes the point openly: the stake is not the argument, the argument is what "
+  f"a {pc(STAKE,2)} minority holding in an unlisted company is worth to a public-market buyer who cannot sell it.",
+  size=9.8)
 rich([('Verdict, falsification, and what the price implies. ', dict(bold=True)),
       (f"Fair value EGP {_e1['base']:.2f}, on a range of EGP {_e1['rng'][0]:.2f} to {_e1['rng'][1]:.2f} — the widest "
-       "in the room, and driven by the discount debate rather than by an unconfirmed stake. He is falsified by a real "
-       "secondary transaction in the associate's shares at a materially different price, or by a second closing "
-       "repricing the round. The traded price implies a discount on the associate leg far steeper than his stated "
-       "wrapper discount, which in his own view is evidence the market does not accept that the round's marked value "
-       "transfers cleanly to a minority holder.", {})])
+       "in the room, and driven by the discount debate rather than by an unconfirmed stake. HE IS FALSIFIED BY a real "
+       "secondary transaction in the associate’s shares at a materially different price, or by a second closing "
+       f"repricing the round. The traded price leaves EGP {n0(PRICE_ASSOC)} mn for all the associates together, which in "
+       "his own view is evidence the market does not accept that the round’s marked value transfers cleanly to a "
+       "minority holder.", {})])
 
-H2('D.2  Expert 2 — normalised earnings power')
-_n = D['lens_inputs']['normalized']
-P('Worldview. An operating business is worth a fair multiple of its sustainable mid-cycle earnings; peaks and troughs '
-  'are noise to be stripped out.', size=9.8)
-P('When it works and when it fails. Best with a through-cycle record, and three disclosed years spanning trough, '
-  'windfall and normalisation is workable; it fails at structural breaks — if new entrants reset prices '
-  'permanently, his normalisation is simply wrong.', size=9.8)
+H2('D.2  Expert 2 — residual income on the whole group')
+P('Worldview. A company is worth its book value plus the present value of whatever it earns ABOVE the cost of that '
+  'equity. If it earns exactly its cost of capital it is worth book; if it earns less, it is worth less than book, and no '
+  'growth rate rescues it. He needs no mid-cycle earnings figure and no multiple anybody has to choose — only a book '
+  'value, a return and a cost of equity, all three of which the accounts and the cost-of-capital schedule already carry.',
+  size=9.8)
+P('When it works and when it fails. Best where the accounts are clean and the return is durable. It fails where reported '
+  'equity or reported profit is contaminated, and HE STATES THAT BOTH OF HIS OWN INPUTS ARE, in known directions: the '
+  'earnings carry the group’s share of associate results, and the equity carries a revaluation booked on deconsolidating '
+  'an associate. He runs the method anyway and says so, because the direction of the contamination is the argument. His '
+  'is the harshest read in the study.', size=9.8)
 rows = [
- ['Expert 2’s normalisation', 'Value'],
- ['Mid-cycle group profit after tax (EGP mn)', n0(_n['pat']['base'])],
- ['Shares in issue (mn)', n1(SH)],
- ['Normalised earnings per share (EGP)', f"{_n['eps']['base']:.2f}"],
- ['Justified through-cycle multiple', f"{_n['pe']['base']:.1f}×"],
+ ['Expert 2’s residual-income read', 'Value'],
+ ['Group shareholders’ equity before minority interests, 30 June 2026 (EGP mn)', n1(_e2['book'])],
+ ['Divided by shares in issue (mn)', n1(SH)],
+ ['Book value per share (EGP)', f"{_e2['book_ps']:.2f}"],
+ ['Return on that equity — FY2025 reported profit attributable over reported equity', pc(_e2['roe'], 2)],
+ ['Cost of that equity — the terminal rate from the §1.8 schedule', pc(CAP['ke_terminal'], 2)],
+ ['Long-run growth applied to both', pc(CAP['g'], 2)],
+ ['Times the justified multiple of book — (return less growth) over (cost of equity less growth)', f"{_e2['pb']:.4f}×"],
  ['Fair value per share (EGP)', f"{_e2['base']:.2f}"],
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
-P(f"Sensitivity — the swing is the multiple. At {_n['pe']['bear']:.1f}× his number is EGP "
-  f"{_n['eps']['bear']*_n['pe']['bear']:.2f}; at {_n['pe']['bull']:.1f}×, EGP "
-  f"{_n['eps']['bull']*_n['pe']['bull']:.2f}. Cross-examination: he tells Expert 1 that a net asset value struck off a "
-  "trough-margin cash-flow model understates a business whose volumes are still mid-cycle; he tells Expert 3 that "
-  "pessimism about cash conversion ignores that working capital is a stock rather than a perpetual flow, and it releases "
-  "exactly when growth normalises.", size=9.8)
+TR.waterfall(_e2['book'], [('Divided by shares in issue (mn)', SH)],
+             _e2['book_ps'], dp=2, what='D.2 book value per share')
+TR.waterfall(_e2['book_ps'], [('Times the justified multiple of book', _e2['pb'])],
+             _e2['base'], dp=2, what='D.2 Expert 2 fair value')
+P(f"His arithmetic in one sentence: the group earns {pc(_e2['roe'],2)} on its own reported equity against a cost of "
+  f"{pc(CAP['ke_terminal'],2)}, a shortfall of {abs(_e2['roe']-CAP['ke_terminal'])*100:.2f} points against its cost of capital, "
+  f"so the accounts on their own justify {_e2['pb']:.4f}× book and no more — EGP {_e2['base']:.2f} a share against a "
+  f"book value of EGP {_e2['book_ps']:.2f} and a traded price of EGP {spot:.2f}.", size=9.8)
+P(f"Sensitivity — the swing is the return, and he names it as the only lever worth arguing about. A return one "
+  f"percentage point lower takes him to EGP {_e2['rng'][0]:.2f}; two points higher, to EGP {_e2['rng'][1]:.2f}. That is "
+  "the whole range: at this cost of equity the justified multiple is roughly ten times as sensitive to the return as it "
+  "is to anything else on the page, which is why he refuses to argue about multiples.", size=9.8)
+P('His own two admissions, stated before anyone puts them to him. FIRST, HIS EARNINGS ARE CONTAMINATED UPWARD: the '
+  f'group’s share of associates’ results was EGP {n1(D["history"]["income_statement"]["2025"]["associates"])} mn in '
+  f'FY2025, {pc(D["history"]["income_statement"]["2025"]["associates"]/D["history"]["income_statement"]["2025"]["net_profit"],0)} '
+  'of profit attributable — so the return he measures is FLATTERED by the very associate the other two experts are '
+  'arguing about, and the operating return is lower than the one in his table. SECOND, HIS EQUITY IS CONTAMINATED '
+  'UPWARD TOO: it includes the revaluation booked when an associate was deconsolidated, which the company itself strips '
+  'out of its own return measure. The two pull the ratio in opposite directions and he does not claim to net them. '
+  'What survives both admissions is his one claim, and it does not depend on the size of either: on its own accounts, '
+  'read as they stand, GB Corp does not earn its cost of equity — so the entire investment case rests on the associate '
+  'being worth more than those accounts say.', size=9.8)
 rich([('Verdict, falsification, and what the price implies. ', dict(bold=True)),
-      (f"Fair value EGP {_e2['base']:.2f}, on a range of EGP {_e2['rng'][0]:.2f} to {_e2['rng'][1]:.2f} — the most "
-       f"conservative in the room and the closest to the traded price, {sgn(_e2['base']/spot-1)} against it. He is "
-       "falsified by the auto gross margin staying below the level the reviewed half printed through the next two years, "
-       "or by the passenger-car market rolling over. His is also the one estimate in the room that never touches the "
-       "associate stake, which is why it is the number a reader who distrusts that mark should look at first.", {})])
+      (f"Fair value EGP {_e2['base']:.2f}, on a range of EGP {_e2['rng'][0]:.2f} to {_e2['rng'][1]:.2f} — far the most "
+       f"conservative in the room and {sgn(_e2['base']/spot-1)} against the traded price, which is the one number in "
+       "this study that reads the shares as expensive. HE IS FALSIFIED BY the group’s return on its own reported equity "
+       "rising to its cost of equity and staying there for two consecutive reported years — which on his own arithmetic "
+       "would take his value straight to book — or by the associate being realised at anything like either of the "
+       "marks in §1.1, since a realisation converts the contaminated line into cash and settles the argument. What the "
+       "price implies against him is that the market pays a premium to his number: he is the read a buyer of these "
+       "shares is betting against.", {})])
 
 H2('D.3  Expert 3 — cash returns: return on capital against its cost')
 P('Worldview. A business creates value only when each pound of capital earns above its cost, in cash. He looks past the '
@@ -310,61 +369,123 @@ rows = [
  ['Auto return on capital employed — FY2023 / FY2024 / FY2025', f"{pc(_ch['FY23']['roce'],1)} / {pc(_ch['FY24']['roce'],1)} / {pc(_ch['FY25']['roce'],1)}"],
  ['His hurdle — the first forecast year’s cost of capital', pc(COC['wacc_exp'], 2)],
  [f"Spread near nil, so the operating leg is marked at {E['e3']['params']['ev_mult']:.2f}× capital employed (EGP mn)", n0(E['e3']['ev_at_base'])],
- ['less: Auto net debt and minority (EGP mn)', paren(dcf['auto_nd'] + dcf['auto_nci'])],
+ ['Less Auto net debt and minority interests (EGP mn)', paren(dcf['auto_nd'] + dcf['auto_nci'])],
  ['Operating-leg equity (EGP mn)', n0(E['e3']['equity_at_base'])],
- [f"Lender at {E['e3']['params']['cap_mult']:.2f}× book · associates at {E['e3']['params']['assoc_mult']:.2f}× (EGP mn)", f"{n0(sotp['cap_val']*E['e3']['params']['cap_mult'])} · {n0(sotp['assoc']*E['e3']['params']['assoc_mult'])}"],
- ['Fair value per share (EGP)', f"{_e3['base']:.2f}"],
+ [f"Plus the lender at {E['e3']['params']['cap_mult']:.2f}× its operating book (EGP mn)", n0(CAP['operating_equity']*E['e3']['params']['cap_mult'])],
+ [f"Plus the associates at {E['e3']['params']['assoc_mult']:.2f}× the round-price mark (EGP mn)", n0(sotp['assoc']*E['e3']['params']['assoc_mult'])],
+ ['Equity value (EGP mn)', n0(_e3['base'] * SH)],
+ ['Per share (EGP)', f"{_e3['base']:.2f}"],
 ]
 table(rows, [4.4, 1.7], first_col_bold=True, size=9.0)
+TR.waterfall(E['e3']['ev_at_base'],
+             [('Less Auto net debt and minority interests', dcf['auto_nd'] + dcf['auto_nci'])],
+             E['e3']['equity_at_base'], dp=0, what='D.3 Expert 3, operating-leg equity')
+TR.waterfall(E['e3']['equity_at_base'],
+             [('Plus the lender at its haircut multiple', CAP['operating_equity'] * E['e3']['params']['cap_mult']),
+              ('Plus the associates at their haircut multiple', sotp['assoc'] * E['e3']['params']['assoc_mult'])],
+             _e3['base'] * SH, dp=0, what='D.3 Expert 3, equity value')
 P(f"Sensitivity — two levers, and he ranks them himself. Moving his haircut on the associate mark from "
   f"{E['e3']['params']['assoc_mult']:.2f}× to {E['e3']['params']['assoc_mult_bear']:.2f}× costs EGP "
   f"{abs(_e3['mark_lever']):.2f} per share; marking the operating leg at "
   f"{E['e3']['params']['ev_mult_bull']:.2f}× capital employed instead of "
   f"{E['e3']['params']['ev_mult']:.2f}×, which is what a recovery in the return on capital would buy, adds EGP "
-  f"{_e3['roce_lever']:.2f}. The mark is the bigger lever by more than two to one, and that is his point. "
-  "Cross-examination: he tells Expert 2 that mid-cycle earnings without the capital cost of holding them is a half-truth; "
-  "he tells Expert 1 that a single-digit wrapper discount does not begin to capture the illiquidity of a minority stake "
-  "in a company that has never had a public exit.", size=9.8)
+  f"{_e3['roce_lever']:.2f}. The mark is the bigger lever by more than two to one, and that is his point.", size=9.8)
 rich([('Verdict, falsification, and what the price implies. ', dict(bold=True)),
       (f"Fair value EGP {_e3['base']:.2f}, on a range of EGP {_e3['rng'][0]:.2f} to {_e3['rng'][1]:.2f} — even his "
-       f"conservative method lands {sgn(_e3['base']/spot-1)} against the price once the stated stake is applied at the "
-       "round's valuation, which he flags as the real finding: the stake was never the issue, the mark is. He is "
-       "falsified by a durable recovery in the return on capital well above the FY2025 figure, or by a real secondary "
-       "sale of the associate's shares meaningfully below the round's implied valuation.", {})])
+       f"conservative method lands {sgn(_e3['base']/spot-1)} against the price once the stated stake is applied at a "
+       "haircut to the round’s valuation. HE IS FALSIFIED BY a durable recovery in the return on capital well above the "
+       "FY2025 figure, which would make his multiple of capital employed too low, or by a real secondary sale of the "
+       "associate’s shares meaningfully below his own haircut.", {})])
 
-H2('D.4  The three in one room')
+H2('D.4  Cross-examination — each challenge, conceded or rejected')
+P('Each expert puts one challenge to each of the others, and the answer is recorded as CONCEDED or REJECTED rather than '
+  'left as an exchange of views.', size=9.8)
+rows = [
+ ['Challenge', 'From → to', 'The answer'],
+ ['“Capitalising a return you admit is flattered by the associate double-counts an asset I have already marked at full value.”',
+  'Expert 1 → Expert 2',
+  'CONCEDED IN PART. Expert 2 accepts the return is flattered and that his read is therefore too HIGH rather than too '
+  'low. He rejects the conclusion: correcting for it widens his discount to book, it does not close it.'],
+ ['“A single-digit wrapper discount does not begin to capture the illiquidity of a minority stake in a company that has '
+  'never had a public exit.”',
+  'Expert 3 → Expert 1',
+  'REJECTED, with a reason. Expert 1 argues the wrapper discount and the mark haircut are two different things and that '
+  'he prices the second separately — his own sensitivity takes the mark to half the round. What he will not do is '
+  'apply both at once and call it prudence.'],
+ ['“Marking the lender at book ignores that its own disclosed return does not justify book.”',
+  'Expert 2 → Expert 1',
+  'CONCEDED. Expert 1 accepts that the study’s residual-income mark on GB Capital is the better construction and that '
+  f'his own number is EGP {(CAP["operating_equity"]-sotp["cap_val"])*(1-_e1["wrapper_discount"])/SH:.2f} a share higher '
+  'for that reason alone. He keeps his mark on the ground that a realisable-value method marks assets at what they '
+  'would fetch, not at what a return identity supports.'],
+ ['“Mid-cycle or residual income, you are still valuing a company whose largest asset produces no cash flow you can '
+  'model — so your precision is misplaced.”',
+  'Expert 1 → Expert 2',
+  'REJECTED. Expert 2’s answer is that this is his point rather than an objection to it: he prices only what the '
+  'accounts support and lets the gap to the traded price be the associate, which makes the disagreement measurable.'],
+ ['“A return on capital employed struck on a capital base inflated by a one-off inventory and receivable build '
+  'understates the business.”',
+  'Expert 2 → Expert 3',
+  'CONCEDED, and it is already his stated caveat. His bull lever is exactly that recovery and he prices it at EGP '
+  f'{_e3["roce_lever"]:.2f} a share — which he notes is less than half his mark lever, so conceding it does not change '
+  'his ranking of the two.'],
+ ['“You accept the cash-flow value for the auto leg and then mark the same leg at a multiple of capital employed. Pick '
+  'one.”',
+  'Expert 1 → Expert 3',
+  'REJECTED. Expert 3 says the two are different questions — what the leg is worth on its forecast cash flows and what '
+  'its capital has historically earned — and that publishing both is the point of a panel. He notes his mark is the '
+  f'lower of the two by EGP {(sotp["auto_eq"]-E["e3"]["equity_at_base"])/1000:.1f} bn.'],
+]
+table(rows, [2.6, 1.15, 3.35], size=8.6)
+
+H2('D.5  The three in one room')
 P('The stake question that dominated an earlier draft of this study is settled — the company stated its holding in '
-  'writing. What the three disagree on is what that holding is worth.', size=9.8)
+  'writing. What the three disagree on is what that holding is worth, and this edition has added a second disagreement '
+  'they had not had before: what the lender is worth.', size=9.8)
 P('Expert 1: “The company told us what it owns. Fine — now the argument is honest: it is about the '
-  'discount, not the number. I apply a single-digit wrapper discount. If you think that is too thin for an illiquid '
-  'minority stake, argue the discount, not the disclosure.”', size=9.8)
+  'discount, not the number. I apply a single-digit wrapper discount to a clean sum of realisable marks. If you think '
+  'that is too thin for an illiquid minority stake, argue the discount, not the disclosure.”', size=9.8)
 P(f'Expert 3: “Your own arithmetic says a stated {pc(STAKE,2)} stake is worth '
-  f'{pc(sotp["mnt_halan_value"]*(1-sotp["disc"])/D["mktcap"],0)} of the entire market capitalisation. That was true when '
-  'the number was uncertain and it is just as true now that it is not. The company being straight about its ownership '
-  'does not make the market’s scepticism about the mark go away — if anything it sharpens the question.”', size=9.8)
-P('Expert 2: “You are both still arguing about a number that was never in my model. Mid-cycle earnings power does '
-  'not care what the associate is worth. If you want the one read immune to this whole argument, it is mine — and '
-  'notice it is also the one closest to where the market actually prices the stock.”', size=9.8)
+  f'{pc(MARK_HI/D["mktcap"],0)} of the entire market capitalisation at the round price. That was true when the number '
+  'was uncertain and it is just as true now that it is not. The company being straight about its ownership does not make '
+  'the market’s scepticism about the mark go away — if anything it sharpens the question, and I take a haircut to it '
+  'for exactly that reason.”', size=9.8)
+P(f'Expert 2: “You are both arguing about an asset. I am arguing about a business. On its own reported accounts this '
+  f'group earns {pc(_e2["roe"],2)} against a cost of equity of {pc(CAP["ke_terminal"],2)} — it destroys value on the '
+  f'capital it already has, which is why my number is EGP {_e2["base"]:.2f} against a book value of EGP '
+  f'{_e2["book_ps"]:.2f}. And my return is FLATTERED by the very associate you two are pricing. Take that out and it is '
+  'worse. If the associate is worth what either of you says, the shares are cheap; if it is worth what the accounts can '
+  'demonstrate, they are not cheap at all. That is the whole case, and neither of you has narrowed it.”', size=9.8)
+P('Where they end up. All three accept the ownership percentage, the volumes, the working-capital path and the cost of '
+  'capital, and none of them adopts the study’s own residual-income mark on the lender: Expert 1 concedes it is the '
+  'better construction and keeps his book mark anyway, and Expert 3 marks the same book at a haircut. That second '
+  'disagreement is worth a few pounds a share. What remains, and what the study publishes as two branches rather than '
+  'resolving, is a basis question about one line that no amount of modelling can settle from outside — and, as Expert 2 '
+  'keeps pointing out, one that the reviewers of GB Corp’s own statements could not settle from inside either.',
+  size=9.8)
 
-H2('D.5  Reading the divergence')
+H2('D.6  Reading the divergence')
 figure('figD1_experts.png', 6.0, 'Figure D-1 — the three experts’ fair-value ranges. Brass ticks are base cases; the '
-       'gold band is the panel centre; the ink line is the price. The spread is almost entirely the associate mark.')
+       'gold band is the panel centre; the ink line is the price. The spread is almost entirely the associate mark and '
+       'the lender basis.')
 _epanel = [_e1['base'], _e2['base'], _e3['base']]
 rows = [
- ['Expert', 'Method', 'The single swing assumption', 'Base fair value'],
- ['Expert 1', 'Split-legs net asset value', f"The discount on the associate mark ({pc(_e1['wrapper_discount'],0)} wrapper)", f"EGP {_e1['base']:.2f}"],
- ['Expert 2', 'Normalised earnings power', f"Mid-cycle profit × {_n['pe']['base']:.1f}× — stake-blind", f"EGP {_e2['base']:.2f}"],
- ['Expert 3', 'Cash returns against the cost of capital', f"Return-on-capital fade plus a {E['e3']['params']['assoc_mult']:.2f}× haircut on the mark", f"EGP {_e3['base']:.2f}"],
+ ['Expert', 'Method', 'The single swing assumption', 'What it does to the associate', 'Base fair value'],
+ ['Expert 1', 'Split-legs net asset value', f"The wrapper discount, at {pc(_e1['wrapper_discount'],0)}", 'Takes the round price at face value', f"EGP {_e1['base']:.2f}"],
+ ['Expert 2', 'Residual income on the whole group', 'The return on reported equity', 'Prices it at nothing — it is the gap', f"EGP {_e2['base']:.2f}"],
+ ['Expert 3', 'Cash returns against the cost of capital', f"A {E['e3']['params']['assoc_mult']:.2f}× haircut on the mark", 'Takes the round price and cuts it', f"EGP {_e3['base']:.2f}"],
 ]
-table(rows, [1.0, 2.2, 2.5, 1.3], first_col_bold=True, size=9.0)
+table(rows, [0.85, 1.9, 1.65, 1.6, 1.1], first_col_bold=True, size=8.7)
 P(f"The spread — EGP {min(_epanel):.2f} to {max(_epanel):.2f} at base — is wide for what is otherwise a set of "
-  "broadly agreeing methods, and it is one disagreement rather than several: not the volumes, not the lender’s "
-  "profitability, not the cash-conversion path, and not the ownership percentage, which all three accept. What separates "
-  "them is purely how much to discount that stake’s marked value. Expert 2 sidesteps the question by never pricing "
-  "the stake; Experts 1 and 3 both use the stated figure and disagree on the haircut. Unlike a business uncertainty that "
-  "resolves with quarterly prints, this one may never fully resolve, because private-mark discounts are a matter of "
-  "judgment rather than a fact that appears on a schedule. Until a real secondary transaction supplies an independent "
-  "data point, Expert 2’s stake-blind number remains the one estimate in the room immune to the whole argument.")
+  "broadly agreeing methods, and it is one disagreement with a second one riding on it. It is not the volumes, not the "
+  "cash-conversion path, not the cost of capital and not the ownership percentage, which all three accept. It is how "
+  "much of the associate mark to believe, and after that how the lender should be carried. Expert 2 sidesteps the first "
+  "by pricing the associate at nothing and letting the gap to the market be the answer; Experts 1 and 3 both use the "
+  "stated stake at the round price and disagree on the haircut. Unlike a business uncertainty that resolves with "
+  "quarterly prints, this one may never fully resolve without a transaction, because private-mark discounts are a matter "
+  "of judgment rather than a fact that appears on a schedule. Until a real secondary transaction supplies an independent "
+  "data point, Expert 2’s number is the one estimate in the room that does not depend on the argument at all — which "
+  "is exactly why it is also the lowest.")
 caption(f'Each expert’s fair value is logged against this study’s date ({EDITION_L}) and the price it was '
         f'struck at (EGP {spot:.2f}, {SPOT_DATE}) as an internal per-expert track record.')
 
@@ -373,8 +494,9 @@ H1('About this series')
 P('Testahil publishes independent, educational valuation studies. Each is an attempt to reason transparently about what a '
   'security is worth, with every assumption shown and a companion model so readers can disagree productively. The house '
   'style is distributions, not tips: we describe ranges and probabilities, not targets, and we do not tell anyone what to '
-  'do. Studies are framed as educational analysis, the preparer is not licensed by any securities regulator, and holdings '
-  'are disclosed.')
+  'do. Where a question cannot be settled from the evidence, as one cannot here, we publish the disagreement rather than '
+  'an average of it. Studies are framed as educational analysis, the preparer is not licensed by any securities '
+  'regulator, and holdings are disclosed.')
 H1('Disclosure & Disclaimer')
 for head, body in [
  ('Not investment advice. ', 'This document is educational and informational only. It is not, and must not be relied upon '
@@ -384,14 +506,23 @@ for head, body in [
   'regulator in any jurisdiction — including Egypt’s Financial Regulatory Authority — holds no brokerage or '
   'investment-advisory authorisation, and is not acting as your adviser or fiduciary. Nothing here is personalised to your '
   'circumstances.'),
+ ('Two answers, not one. ', 'This study publishes two fair-value figures because GB Corp publishes two different values '
+  'for its largest single asset and the filings do not decide between them. They are not a range, not a confidence '
+  'interval and not an invitation to take the midpoint: they are two answers to one question under two of the company’s '
+  'own disclosures.'),
+ ('A qualified review conclusion, disclosed. ', 'The limited review of GB Corp’s consolidated statements to 30 June 2026 '
+  'reaches a qualified conclusion at the associate line this study is built around: the reviewers state they were not '
+  'provided with that associate’s own financial statements and could not verify the group’s share of its profits for the '
+  'period. The same qualification stood on the 31 December 2025 audited statements. This is disclosed because it bears '
+  'directly on both of the figures above.'),
  ('Holdings disclosure. ', 'The preparer may hold, and may in the future take or dispose of, a position in the security '
   'discussed in this report, and may transact at any time without notice. This is a potential conflict of interest you '
   'should weigh.'),
  ('Sources and accuracy. ', 'Reported financial and operating figures are drawn from the company’s public disclosure '
   'and other public sources believed reliable but not independently verified; they may contain errors or be superseded. '
-  'Forward-looking inputs — the leg marks including the discount applied to the associate stake, the complexity '
-  'discount, projections, multiples, the cash-flow model and the simulation’s factor probabilities — are the '
-  'preparer’s own judgments and are inherently uncertain.'),
+  'Forward-looking inputs — the basis chosen for the associate mark, the mark on the lending arm, projections, '
+  'multiples, the cash-flow model and the simulation’s factor probabilities — are the preparer’s own judgments and are '
+  'inherently uncertain.'),
  ('Forward-looking statements. ', 'Any statements about the future are estimates subject to risks and uncertainties; actual '
   'results may differ materially. The simulation models price, not value, and encodes subjective probabilities for events '
   'that have not occurred.'),
@@ -399,7 +530,7 @@ for head, body in [
   'decision. You are solely responsible for your investment decisions and their outcomes. To the maximum extent permitted '
   'by law, the preparer accepts no liability for any loss arising from use of this document.'),
  ('Currency and figures. ', 'Figures are in Egyptian pounds, millions unless stated; bn denotes billion. The exchange rate '
-  f'used for the associate mark is EGP {sotp["egp_usd"]:.1f} to the US dollar, and it is a flagged estimate. Rounding may '
+  f'used for the round-price mark is EGP {sotp["egp_usd"]:.1f} to the US dollar, and it is a flagged estimate. Rounding may '
   f'cause totals to differ slightly. The price is EGP {spot:.2f} as at {SPOT_DATE}; the price cone and the technical read '
   f'are computed on the exchange library’s own last session, EGP {TA_CLOSE:.2f} on {TA_DATE_L}. Market data change '
   'continuously.'),

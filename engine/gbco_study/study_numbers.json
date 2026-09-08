@@ -607,8 +607,8 @@
   "eq": 56820.77970223162,
   "ps": 52.345259974418816,
   "prediscount_ps": 52.345259974418816,
-  "bear": 26.10430427404253,
-  "bull": 87.25152617035111,
+  "bear": 28.527333598168454,
+  "bull": 85.48490917836006,
   "mnt_halan_stake": 0.4161,
   "mnt_halan_stake_prior": 0.4258,
   "mnt_halan_stake_source": "GB Corp's own press release of 9 June 2026 on MNT-Halan's Al Ahly Capital-led capital increase: the stake 'will be adjusted to 41.61%, compared to 42.58% prior to the transaction'",
@@ -619,14 +619,14 @@
  },
  "lenses": {
   "sotp": {
-   "bear": 26.10430427404253,
+   "bear": 28.527333598168454,
    "base": 52.345259974418816,
-   "bull": 87.25152617035111
+   "bull": 85.48490917836006
   },
   "prediscount": {
-   "bear": 31.83451740736894,
+   "bear": 28.527333598168454,
    "base": 52.345259974418816,
-   "bull": 90.88700642744908
+   "bull": 85.48490917836006
   },
   "relative": {
    "bear": 19.291145633198383,
@@ -703,50 +703,51 @@
    0.01,
    0.02
   ],
-  "grid_disc": [
-   0.0,
-   0.05,
-   0.1,
-   0.15,
-   0.2
+  "grid_mark": [
+   0.5,
+   0.5685996895627676,
+   0.75,
+   1.0
+  ],
+  "grid_mark_labels": [
+   "50% of the round",
+   "the reviewed carrying value",
+   "75% of the round",
+   "the June-2026 round price"
   ],
   "table": [
    [
-    39.72822537158836,
-    37.741814103008934,
-    35.755402834429525,
-    33.7689915658501,
-    31.782580297270687
+    22.7342175124369,
+    24.4829029108708,
+    29.107006549746895,
+    35.4797955870569
    ],
    [
-    48.16095756526931,
-    45.75290968700584,
-    43.34486180874238,
-    40.93681393047891,
-    38.528766052215445
+    31.16694970611785,
+    32.91563510455175,
+    37.539738743427854,
+    43.91252778073785
    ],
    [
-    56.593689758950276,
-    53.76400527100276,
-    50.93432078305525,
-    48.10463629510773,
-    45.27495180716023
+    39.59968189979882,
+    41.348367298232716,
+    45.97247093710882,
+    52.345259974418816
    ],
    [
-    65.02642195263124,
-    61.775100854999664,
-    58.52377975736811,
-    55.27245865973655,
-    52.02113756210498
+    48.03241409347977,
+    49.78109949191367,
+    54.40520313078977,
+    60.77799216809976
    ],
    [
-    73.45915414631219,
-    69.78619643899658,
-    66.11323873168097,
-    62.440281024365355,
-    58.76732331704975
+    56.465146287160735,
+    58.213831685594634,
+    62.83793532447073,
+    69.21072436178072
    ]
-  ]
+  ],
+  "axis": "the auto leg's gross-margin shift against the basis on which the associate is carried; the centre-right cell IS the round-price branch and the carrying-value rung IS the other branch"
  },
  "disclosed_drivers": {
   "_source": "GB Corp's own 4Q23 / 4Q24 / 4Q25 earnings releases, the segment volume and revenue tables, committed under engine/gbco_study/src/",
@@ -1258,8 +1259,8 @@
   "e1": {
    "base": 52.06619457823426,
    "rng": [
-    24.799089060340403,
-    88.99655669375814
+    27.10096691826003,
+    87.19460736192725
    ],
    "wrapper_discount": 0.08,
    "mark_haircut": {
@@ -1755,6 +1756,89 @@
   },
   "central": null,
   "central_note": "there is no central. The primary is two-sided and the two branches are published side by side; a figure between them would be the average the dual-framing rule forbids."
+ },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "FULL",
+  "sourceable_fiscal_years": 14,
+  "earliest_sourceable": "FY2012",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"FULL. Fourteen sourceable fiscal years, FY2012-FY2025, every one tier A from a document the run holds\". Fourteen is at or above eight, so the FULL branch applies.",
+  "status": "run",
+  "note": "The fundamental walk-forward HAS been run on this name: nine origins, FY2016 through FY2024, horizons one to five, 225 scored cells. NO correction was promoted into the live drivers. The finance-cost candidate is the one worth naming: its bias is large and its sign flips at four of six admissible cuts, so it fails the stability clause outright -- and it is also the trap the rule names by name, where a finance charge divided by a broader liabilities total manufactures a bias that looks exactly like evidence."
+ },
+ "driver_lines": [
+  {
+   "name": "passenger cars",
+   "level": "unit",
+   "share_of_revenue": 0.6346050824088872,
+   "unit": "vehicles sold",
+   "unit_source": "GB Corp's own 4Q23, 4Q24 and 4Q25 earnings releases, the passenger-car volume and revenue tables: 26,994 units on EGP 16,544.3mn, 42,043 on 36,533.4mn and 56,548 on 52,827.3mn",
+   "price_basis": "the average selling price the same table implies, revenue divided by its own units, across THREE disclosed years so the rate has an observable trend rather than a single point",
+   "cost_basis": "the auto leg's gross margin, held at the level the latest reviewed half filed and drifting only where the company's own period pair measures a direction",
+   "gap_note": null
+  },
+  {
+   "name": "commercial vehicles",
+   "level": "unit",
+   "share_of_revenue": 0.07911039891842904,
+   "unit": "vehicles sold",
+   "unit_source": "the 4Q25 earnings release segment table: 3,404 units on EGP 5,956.8mn",
+   "price_basis": "revenue divided by its own units in that table. ONE DISCLOSED YEAR, so the level is observable and its trend is not; the price is grown at a stated rate rather than at a measured one",
+   "cost_basis": "the auto leg's gross margin, as above",
+   "gap_note": null
+  },
+  {
+   "name": "motorcycles and three-wheelers",
+   "level": "unit",
+   "share_of_revenue": 0.030438698130185887,
+   "unit": "units sold",
+   "unit_source": "the 4Q25 earnings release segment table: 33,906 units on EGP 2,203.8mn",
+   "price_basis": "revenue divided by its own units in that table. ONE DISCLOSED YEAR, as above",
+   "cost_basis": "the auto leg's gross margin, as above",
+   "gap_note": null
+  },
+  {
+   "name": "tyres, parts and trading",
+   "level": "segment",
+   "share_of_revenue": 0.05065890649203927,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the auto leg's gross margin, as above",
+   "gap_note": "NO UNIT IS DISCLOSED. The releases give this activity's revenue as a segment line and publish neither a volume nor a price for it, so the build stops at the segment and says so rather than inventing a unit. It is grown on a stated rate; that rate is not measured against anything the company publishes."
+  },
+  {
+   "name": "GB Capital (the financing businesses)",
+   "level": "segment",
+   "share_of_revenue": 0.21630925985430063,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the segment's own gross margin, which its income-statement table discloses in full -- cost of sales and cost of funds separately",
+   "gap_note": "BUILT ON THE SEGMENT TOTAL WHILE A FINER SPLIT IS DISCLOSED, and that is the honest statement of it: Table 13 of each release breaks this revenue down by company -- GB Lease, Drive, GB Auto Rental, GBBR, Capital Securitization, Kredit -- and the model consumes the total. No UNIT is disclosed for any of them (a lending business's unit would be portfolio times a rate, and the portfolio is disclosed only in total), so a finer build would still not reach unit level; what it would reach is six growth paths instead of one, which is a real improvement this record names rather than hides."
+  },
+  {
+   "name": "intersegment eliminations",
+   "level": "topdown",
+   "share_of_revenue": -0.011122345803842264,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "the eliminated sales are reversed WITH their own cost, at a stated 20% gross margin on the eliminated revenue. THAT PROPORTION IS TYPED RATHER THAN DISCLOSED and is named here as such: the releases publish the elimination as a single revenue figure and never split it, so the cost reversed with it cannot be sourced. It is the one line in this record whose cost side rests on a chosen number, and it is 1.1% of group revenue.",
+   "gap_note": "A CONTRA RATHER THAN A REVENUE LINE, carried here so the record covers the whole of group revenue: a line omitted is a line nobody checked. It is a percentage of the two legs' combined revenue, and the releases disclose the elimination only as a single figure, so there is nothing finer to build it from."
+  }
+ ],
+ "ground_up": {
+  "ticker": "GBCO",
+  "lines": 6,
+  "share_by_level": {
+   "unit": 0.7441541794575022,
+   "derived": 0,
+   "segment": 0.2669681663463399,
+   "topdown": -0.011122345803842264
+  },
+  "unit_share": 0.7441541794575022,
+  "standard_version": "2026.09.07"
  },
  "valuation_gap": {
   "central": null,

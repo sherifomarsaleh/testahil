@@ -62,6 +62,53 @@ for _row in _SN['dcf']['rows']:
         continue
     vals += [v / _r for v in _row.values() if isinstance(v, (int, float)) and v]
 
+# A LEVEL IS QUOTED AS A DISTANCE FROM THE CLOSE THE READ WAS COMPUTED ON, not from the
+# price the valuation is struck on: the technical read and the cone sit on the exchange
+# library's own last session and the valuation on the latest known price, and they are two
+# clocks. relative_to() is the shared module's own name for exactly this shape.
+_ANCHOR = _SN['valuation_gap']['mc_anchor']
+vals += PF.relative_to([float(k) for k in _SN['mc']['touch']], [_ANCHOR])
+vals += PF.relative_to([v for v in PF.numbers_from(HERE, files=['study_numbers.json'])
+                        if _ANCHOR and 0 < v < _ANCHOR * 3], [_ANCHOR])
+
+# A MULTIPLE IS A RATIO OF TWO COMMITTED FIGURES AND THE RATIO IS NOT ITSELF COMMITTED.
+# The study quotes what each answer, and the traded price, come to as a multiple of the
+# earnings and of the book they stand on — the ratios_against() shape the shared module
+# documents, widened here rather than the figures being deleted from the page.
+_S, _L = _SN['sotp'], _SN['lens_record']
+_MARKS = [_L['primary']['range_basis']['low'], _L['primary']['range_basis']['high']]
+_ANSWERS = ([b['value'] * _SN['shares'] for b in _SN['central_two_sided']['branches']]
+            + [_SN['mktcap'], _S['auto_eq'], _S['cap_val'], _S['auto_eq'] + _S['cap_val']]
+            + [m + _S['other_assoc'] for m in _MARKS])
+_BASES = [_SN['history']['income_statement'][y]['net_profit']
+          for y in _SN['history']['years']]
+_BASES += [_SN['group_forecast']['rows'][0]['net_profit'],
+           _SN['inputs']['eq_jun2026']['value'],
+           _SN['lens_inputs']['capital']['operating_equity']]
+vals += PF.ratios_against(_ANSWERS, _BASES)
+# and the associate mark quoted as a share of the round, of the carrying value, and of what
+# the traded price leaves for the associates
+# TWO RESIDUALS, AS THE DOCUMENT COMPUTES THEM: what the price leaves for ALL the
+# associates once the two operating legs are taken at this study's marks, and what it
+# leaves for MNT-Halan alone with the smaller holdings held at carrying value.
+_PRICE_ASSOC = _SN['spot'] * _SN['shares'] - _S['auto_eq'] - _S['cap_val']
+_PRICE_MARK = _PRICE_ASSOC - _S['other_assoc']
+_ASSOC_LINES = _MARKS + [m + _S['other_assoc'] for m in _MARKS] + [_S['assoc']]
+vals += PF.ratios_against(_ASSOC_LINES + [_PRICE_ASSOC, _PRICE_MARK],
+                          _ASSOC_LINES + [_PRICE_ASSOC, _PRICE_MARK, _SN['mktcap']])
+
+# TWO FIGURES THE MODEL REGISTERS AND THE NUMBERS FILE DOES NOT CARRY FORWARD. GB Corp's
+# reviewed statements give a second ownership pair for the same transaction as its press
+# release, and the study prints both rather than deciding silently. They are read from the
+# model's own committed constants by the document builder and are read the same way here,
+# so the page and the check cannot disagree about what the model registered.
+import re as _re                                                       # noqa: E402
+_SRC = open('compute.py', encoding='utf-8').read()
+for _nm in ('mnt_stake_statements', 'mnt_stake_statements_prior'):
+    _m = _re.search(r'^%s\s*=\s*([0-9.]+)' % _nm, _SRC, _re.M)
+    assert _m, 'the model no longer registers %s' % _nm
+    vals.append(float(_m.group(1)))
+
 RENDER = PF.rendering_set(vals)
 
 if __name__ == '__main__':

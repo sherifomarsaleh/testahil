@@ -33,7 +33,34 @@ from docx.oxml import OxmlElement                                    # noqa: E40
 # A standing-rule identifier and a repository path leak by SHAPE and neither belongs in a
 # document written for somebody outside this house. The stripper is the shared one rather
 # than a copy: one hand-maintained stripper per study is one hole per study.
-from outward_source import outward                                   # noqa: E402
+from outward_source import outward as _outward_shape                 # noqa: E402
+
+# THE SHARED STRIPPER CATCHES SHAPES; A PROCEDURE NOUN IS NOT A SHAPE. A standing-rule
+# identifier and a repository path cannot occur innocently and are matched by shape, which
+# is what makes that instrument safe. The NAMES this house gives its own rules can occur
+# innocently in ordinary English ("the register", "a gate"), so they cannot be shape-matched
+# and are the per-study scrub's job — a judgement about the sense a word is used in.
+# These four are the ones the committed records this register PRINTS actually carry, and
+# they are named here rather than left on the page because none of them means anything to
+# somebody outside this house. The records themselves keep their own words.
+_HOUSE_NAMES = (
+    ('SIGCM clause 8', 'this house’s rule on missing inputs'),
+    ('SIGCM', 'this house’s source-integrity rule'),
+    ('PROMOTION RULE', 'this house’s bar on untested parameters'),
+    ('promotion rule', 'this house’s bar on untested parameters'),
+    ('STAYS on the ratchet', 'STAYS on this house’s list of unfinished business'),
+    ('stays on the ratchet', 'stays on this house’s list of unfinished business'),
+    ('on the ratchet', 'on this house’s list of unfinished business'),
+)
+
+
+def outward(txt):
+    """What an outside reader receives: shapes stripped by the shared instrument, then
+    the house's own names for its own rules replaced by what they mean."""
+    t = _outward_shape(txt)
+    for a, b in _HOUSE_NAMES:
+        t = t.replace(a, b)
+    return t
 
 D = json.load(open('study_numbers.json', encoding='utf-8'))
 INP = D['inputs']
@@ -144,6 +171,27 @@ def pc(x, d=2):
     return f'{x*100:.{d}f}%'
 
 
+def _fmt_mn(x):
+    return f'{x:,.1f}'
+
+
+# THE REVIEWERS' OWN FIGURE AND THE SECOND OWNERSHIP PAIR, READ RATHER THAN TYPED. The
+# qualification's amount lives in the committed judgements record; the second ownership pair
+# is registered in the model and the numbers file does not carry it forward, so it is read
+# from the model's own constants — the same route the document builder takes, so the two
+# cannot disagree. Both lookups RAISE rather than defaulting: a figure nobody can trace is
+# not evidence.
+import re as _re                                                     # noqa: E402
+_SHARE_OF_PROFIT = float(_re.search(
+    r'EGP\s*([\d,.]+)\s*mn share of profit',
+    CJ['two_sided_judgement']['basis_b']['against_it']).group(1).replace(',', ''))
+_MODEL_SRC = open('compute.py', encoding='utf-8').read()
+_STAKE_STATEMENTS = float(_re.search(
+    r'^mnt_stake_statements\s*=\s*([0-9.]+)', _MODEL_SRC, _re.M).group(1))
+_STAKE_STATEMENTS_PRIOR = float(_re.search(
+    r'^mnt_stake_statements_prior\s*=\s*([0-9.]+)', _MODEL_SRC, _re.M).group(1))
+
+
 # ------------------------------------------------------------------ masthead
 t = doc.add_table(rows=1, cols=1); cell_margins(t, 90, 90, 150, 150)
 c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(9.8)
@@ -176,12 +224,21 @@ P('Two consequences of what the filings actually contain, both material and both
   'First, the audited statements for the four most recent years carry NO text layer at all, '
   'and the same audited statements are reproduced inside the annual report for those years, '
   'which does — so the annual report is the ROUTE and the audited statement is the '
-  'DOCUMENT, and the two are recorded separately. Second, the most recent audit opinion is '
-  'QUALIFIED on the very associate that dominates this valuation: the auditors state they '
-  'were not provided with that company’s own audited statements for the year and that '
-  'the group’s share of its profit rests on management-prepared accounts. That is '
-  'disclosed here because it bears directly on the study’s central open question.',
-  size=9.5)
+  'DOCUMENT, and the two are recorded separately. Second, the opinion on the very associate '
+  'that dominates this valuation is QUALIFIED, and it is qualified in BOTH of the most '
+  'recent reporting periods rather than once.', size=9.5)
+P('THE QUALIFICATION, IN THE REVIEWERS’ OWN WORDS AND AT THE MOST RECENT DATE. The limited '
+  'review of the consolidated interim statements to 30 June 2026 reaches a qualified '
+  'conclusion: the reviewers state they “were not provided with the consolidated financial '
+  'statements for one of the associate companies (MNT - BV)” and were therefore “unable to '
+  'verify the accuracy of the Group’s share of profits” — EGP %s mn recorded in the '
+  'period. The same qualification stood on the 31 December 2025 audited statements, where '
+  'the auditors record that the group’s share of that associate’s profit rests on '
+  'management-prepared accounts. It is set out here, and in the study’s own caveats, because '
+  'the LOWER of the two answers this study publishes stands on the carrying value that same '
+  'conclusion is qualified at — so the conservative branch is not a safe harbour either, '
+  'and a reader is entitled to know that before comparing the two.'
+  % _fmt_mn(_SHARE_OF_PROFIT), size=9.5)
 
 # ---------------------------------------------------- primary documents
 doc.add_page_break()
@@ -260,17 +317,74 @@ P('A judgement is a fork this study resolved one way and could defensibly have r
   size=9.5)
 rows = [['Judgement', 'Adopted', 'The alternative', 'Worth', 'Direction taken']]
 for j in CJ['judgements']:
-    rows.append([j['name'], j['adopted'], j['alternative'],
-                 pc(j['moves_the_answer_by'], 1), j['direction']])
+    rows.append([outward(j['name']), outward(j['adopted']), outward(j['alternative']),
+                 pc(j['moves_the_answer_by'], 1), outward(j['direction'])])
 table(rows, [1.45, 2.85, 2.85, 0.6, 2.05], size=7.4)
+_TS = CJ.get('two_sided_judgement')
+if _TS:
+    H2('The judgement this study does NOT resolve — and why it is not in the table above')
+    P('One fork dominates every other and the study does not take a side on it: the basis on '
+      'which GB Corp’s interest in MNT-Halan is carried. Both values below are the company’s '
+      'own disclosures about one holding, and the filings do not choose between them. A sign '
+      'test measures WHICH WAY a study resolved its forks, so recording an unresolved one in '
+      'it would manufacture a count in whichever direction the two happened to sit; it is '
+      'recorded here in full instead.', size=9.5)
+    rows = [['Basis', 'The mark (EGP mn)', 'Answer (EGP/share)', 'What it is', 'What is said against it']]
+    for _b in (_TS['basis_a'], _TS['basis_b']):
+        rows.append([outward(_b['label']), fmt(round(_b['mark_egp_mn'], 1)),
+                     '%.4f' % _b['value'], outward(_b['what']), outward(_b['against_it'])])
+    table(rows, [1.55, 0.85, 0.85, 2.6, 3.85], size=7.4)
+    P('The spread between them is EGP %s mn, %s of the higher answer. Averaging the two would '
+      'be a number neither disclosure supports, and a discount standing in for the '
+      'uncertainty would be a parameter with nothing observable behind it. The uncertainty is '
+      'in this line and it is published as this line.'
+      % (fmt(round(_TS['spread_egp_mn'], 1)),
+         pc(_TS['spread_as_a_share_of_the_higher_branch'], 1)), size=9.5)
+
+_UNV = CJ.get('unvalued') or []
+if _UNV:
+    H2('Named and deliberately NOT priced')
+    P('Three things bear on the answer and carry no number in it. Each is named with the '
+      'reason a number was not invented for it, because an absence a reader cannot see is '
+      'the same as an absence nobody noticed.', size=9.5)
+    rows = [['What', 'What it is', 'Why it carries no number', 'Direction if it were priced']]
+    for _u in _UNV:
+        rows.append([outward(_u['name']), outward(_u['what']), outward(_u['why_not_valued']),
+                     outward(_u['direction_if_valued'])])
+    table(rows, [1.75, 2.6, 3.3, 2.05], size=7.4)
+
+_RET = CJ.get('considered_and_not_counted') or []
+if _RET:
+    H2('Constructions the superseded edition carried, and why they are not judgements')
+    P('Four constructions were removed from this study rather than re-argued. They are listed '
+      'because a removed construction that goes unrecorded looks like a construction that was '
+      'never there — and because listing them one-sided would be its own distortion: of the '
+      'three that can still be priced, counting them would add one upward and two downward.',
+      size=9.5)
+    rows = [['What it was', 'What the superseded edition did', 'Why it is not an alternative framing', 'Direction if counted']]
+    for _r in _RET:
+        rows.append([outward(_r['name']), outward(_r['what']),
+                     outward(_r['why_not_a_judgement']), outward(_r['direction_if_counted'])])
+    table(rows, [1.5, 2.7, 3.6, 1.9], size=7.4)
+
 _st = CJ.get('sign_test', {})
 if _st:
+    # THE KEYS ARE READ BY NAME AND THE LOOKUP RAISES IF ONE MOVES. The superseded version
+    # of this paragraph asked for fields the record does not carry and printed "None were
+    # taken upward, on a two-sided test of None" in a delivered document — a sentence a
+    # missing key wrote, which is exactly what a default hides and a refusal does not.
+    for _k in ('material', 'resolved_upward', 'resolved_downward', 'two_sided_p', 'flagged'):
+        assert _k in _st, 'the direction test no longer records %s' % _k
     P('The direction test. A study that resolves every contested fork the same way has a lean '
       'whether or not any single choice is wrong, so the directions are counted rather than '
-      'asserted: of %s material judgements, %s were taken upward, on a two-sided test of %s. '
-      'That is measured, not claimed, and a study is FLAGGED by it rather than failed — '
-      'a company can genuinely deserve a consistent read.'
-      % (_st.get('material'), _st.get('upward'), fmt(_st.get('p'))), size=9.5)
+      'asserted: of %s material judgements the study took the higher-value side on %s and the '
+      'lower on %s, a two-sided test of %s. That is %s at the 5%% level. It is measured, not '
+      'claimed, and a study is FLAGGED by it rather than failed — a company can genuinely '
+      'deserve a consistent read. THE FORK IT DOES NOT COVER IS THE LARGEST IN THE STUDY: the '
+      'basis of the associate mark is not resolved at all, so it is deliberately outside a '
+      'test that measures which way forks were resolved.'
+      % (_st['material'], _st['resolved_upward'], _st['resolved_downward'],
+         fmt(_st['two_sided_p']), 'FLAGGED' if _st['flagged'] else 'not flagged'), size=9.5)
 P('What would overturn each of these is the same shape in every case and it is stated in the '
   'study body beside the fork: for the associate mark, a real secondary transaction in that '
   'company’s shares at a materially different price, or a second closing repricing the '
@@ -278,8 +392,9 @@ P('What would overturn each of these is the same shape in every case and it is s
   'resolve it directly; for the margin path, the next reviewed half against the one this '
   'forecast is anchored on; for the cost-of-capital basis, either premium basis being shown '
   'to misprice this sovereign, both being published so a reader can switch; and for the '
-  'construction of the central, an out-of-sample test of whether a blend beats its own best '
-  'lens, which this house has not yet run and says so.', size=9.5)
+  'construction of the central, the question does not arise, because this edition publishes no '
+  'blended central at all: one lens is the answer and the others are printed beside it.',
+  size=9.5)
 
 # ---------------------------------------------------- negative results
 doc.add_page_break()
@@ -318,11 +433,29 @@ rows.append([
  'The exposure is NAMED and NOT PRICED. No split was estimated.'])
 rows.append([
  'The company’s own audited statements for the associate that dominates this valuation',
- 'That associate carries most of the equity value in the primary lens',
- 'The audit opinion states the auditors were not provided with them and that the group’s '
- 'share of that associate’s profit rests on management-prepared accounts',
- 'Disclosed in this register and in the study’s caveats. It is the strongest available '
- 'argument for a heavier discount on that mark, and the study says so.'])
+ 'That associate carries most of the equity value in the primary lens, on either basis',
+ 'NOT AVAILABLE TO THE REVIEWERS EITHER, in both of the most recent periods. The limited '
+ 'review of the 30 June 2026 statements reaches a QUALIFIED conclusion at this line — the '
+ 'reviewers were not provided with that company’s statements and were unable to verify the '
+ 'group’s EGP %s mn share of its profits for the period — and the same qualification stood '
+ 'on the 31 December 2025 audited statements' % _fmt_mn(_SHARE_OF_PROFIT),
+ 'Disclosed in this register, in the study’s caveats and in its disclosure section. It is '
+ 'the reason the LOWER of the two published answers is not treated as a safe harbour, and '
+ 'the strongest available argument for discounting both marks.'])
+rows.append([
+ 'One ownership percentage for the MNT-Halan transaction',
+ 'The higher of the two answers applies a percentage to a round price, so the percentage is '
+ 'a direct multiplier on the largest line in the study',
+ 'THERE ARE TWO, AND BOTH ARE THE COMPANY’S OWN. The press release of 9 June 2026 gives '
+ '%s from %s; note 34 to the reviewed 30 June 2026 statements and the review report both '
+ 'give %s from %s for the same transaction — most likely a different level of the '
+ 'structure, the intermediate holding vehicle rather than the operating group'
+ % (pc(D['sotp']['mnt_halan_stake']), pc(D['sotp']['mnt_halan_stake_prior']),
+    pc(_STAKE_STATEMENTS), pc(_STAKE_STATEMENTS_PRIOR)),
+ 'The study adopts the press release’s figure, because it is the one the round it is applied '
+ 'to was announced with, and PRINTS THE OTHER in the body rather than leaving it out. The '
+ 'difference is worth a little over one and a half per cent of the round-price answer and '
+ 'nothing at all on the other.'])
 table(rows, [2.05, 2.25, 2.95, 2.55], size=7.6)
 
 # ---------------------------------------------------- derived and discrepancies
@@ -335,12 +468,14 @@ DER = [
  ('The equity beta — %s' % fmt(round(BETA['beta'], 4)),
   'A %s regression of the shares against the published %s index of the exchange the stock is '
   'listed on, over %s years to %s, on %d observations, with an R-squared of %s and a standard '
-  'error of %s. It passes the usability gate. A cross-check estimator gives %s. The index '
-  'series is held at %s and carries its own as-of date of %s.'
+  'error of %s. It clears the minimum sample, explanatory power and precision this house '
+  'requires before a regression beta may be used at all. A cross-check estimator gives %s. The '
+  'index series used is the published %s, and the copy this study regressed against carries its '
+  'own as-of date of %s.'
   % (BETA['frequency'], BETA['index_file'].split('/')[-1].replace('.csv', ''),
      fmt(BETA['window_years']), BETA['last_obs'], BETA['n'], fmt(round(BETA['r2'], 4)),
      fmt(round(BETA['se'], 4)), fmt(round(BETA['blume_crosscheck'], 4)),
-     BETA['index_file'], BETA['index_asof'])),
+     BETA['index_file'].split('/')[-1].replace('.csv', ''), BETA['index_asof'])),
  ('The normalised risk-free rate — %s' % pc(_COC['rf_star']),
   'The observed local-currency government bond yield of %s less this sovereign’s own '
   'default spread of %s. Country risk then enters exactly once, inside the equity risk '
@@ -362,10 +497,14 @@ DER = [
   'reported line exactly in every disclosed year.'),
  ('The far-year forecast ranges',
   'The full span of the observed errors this method made at that horizon on this company’s '
-  'own history, expressed as %s and applied by multiplying the point projection. The basis is '
-  '"%s" and the observation count is printed beside every band in the study, because a span '
-  'of a handful of readings is not a percentile and this study does not call it one.'
-  % (WFB['_orientation'].split('—')[0].strip(), WFB['_basis'].split('—')[0].strip())),
+  'own history, applied by multiplying the point projection. THE ORIENTATION IS %s, so a band '
+  'above one is a year the method came in low; a band the other way up would move a forecast '
+  'in the wrong direction and the two are never assumed. The bounds are a %s of past readings '
+  'rather than a percentile, and the observation count is printed beside every band in the '
+  'study, because a span of a handful of readings is not a percentile and this study does not '
+  'call it one.'
+  % (WFB['_orientation'].split('—')[0].strip().replace('_', ' ').upper(),
+     WFB['_basis'].split('—')[0].strip())),
 ]
 rows = [['Figure', 'How it was derived']]
 for a, b in DER:

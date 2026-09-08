@@ -1,1 +1,37 @@
-{"DC": {"Auto revenue": 6, "EBITDA": 7, "D&A": 8, "EBIT": 9, "NOPAT = EBIT \u00d7 (1 \u2212 tax)": 10, "+ D&A": 11, "\u2212 Capex": 12, "\u2212 Increase in net working capital": 13, "FCFF": 14, "Cost of capital \u2014 this year\u2019s forward rate": 15, "Discount factor (cumulative on the schedule)": 16, "Discount factor": 16, "PV of FCFF": 17}, "SPV": 19, "TVR": 21, "PVT": 22, "EVR": 23, "AEQ": 27, "EVPP": 29}
+{
+ "AEQ": 27,
+ "DC": {
+  "+ D&A": 11,
+  "- Capex": 12,
+  "- Increase in net working capital": 13,
+  "Auto revenue": 6,
+  "Cost of capital \u2014 terminal (norm-built)": 20,
+  "Cost of capital \u2014 this year's forward rate": 15,
+  "D&A": 8,
+  "Discount factor (cumulative on the schedule)": 16,
+  "EBIT": 9,
+  "EBITDA": 7,
+  "Enterprise value per +1pp of Auto gross margin (helper)": 30,
+  "Enterprise value \u2014 GB Auto leg": 23,
+  "FCFF": 14,
+  "GB Auto equity value": 27,
+  "NOPAT = EBIT x (1 - tax)": 10,
+  "PV of FCFF": 17,
+  "PV of the terminal value": 22,
+  "Sum of the present values, FY26-30E": 19,
+  "Terminal share of enterprise value": 24,
+  "Terminal value (on the terminal rate)": 21,
+  "check: year-1 forward rate less the WACC built on Assumptions": 29,
+  "less: GB Auto net debt (30 June 2026)": 25,
+  "less: GB Auto non-controlling interests": 26
+ },
+ "DF": 16,
+ "EVPP": 30,
+ "EVR": 23,
+ "FCFF": 14,
+ "FWD": 15,
+ "PVT": 22,
+ "SPV": 19,
+ "TVR": 21,
+ "WTR": 20
+}

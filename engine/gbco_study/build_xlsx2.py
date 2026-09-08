@@ -1,8 +1,18 @@
-"""Part 2: Segments · DCF · Income Statement · Balance Sheet · Cash Flow (all formula-linked)."""
+"""Part 2: Segments and DCF — the GB Auto operating leg, built as a live formula model.
+
+Nothing in this part changed construction in the 07-09-2026 rebuild: the auto leg was
+already a units x ASP build discounted on the house cost-of-capital schedule, one forward
+rate per explicit year with the terminal brought home on the same cumulative factor as the
+last explicit year. What changed is that the forward rates are now marked as the INPUTS
+they are and the first of them is reconciled against the WACC the Assumptions sheet builds
+from rf* + beta x ERP, so a reader can see that the two agree rather than being told.
+
+DISCLOSED HISTORY. Every FY2023-FY2025 figure on these sheets is company disclosure from
+GB Corp's own 4Q23 / 4Q24 / 4Q25 earnings releases (committed under src/). Where the
+study's committed numbers file carries the figure it is READ from there; the segment lines
+it does not carry are marked in the block below and are the residue of this rebuild.
+"""
 import os as _os_pathfix
-# EVERY PATH IN THIS BUILDER IS RELATIVE, SO THE RUN'S DIRECTORY DECIDED WHERE ITS
-# INPUT WAS READ AND ITS OUTPUT WAS WRITTEN. Run from anywhere but this folder it
-# either crashed or, worse, wrote a deliverable into the caller's directory.
 _HERE = _os_pathfix.path.dirname(_os_pathfix.path.abspath(__file__))
 _os_pathfix.chdir(_HERE)
 import sys as _sys_pathfix
@@ -14,178 +24,314 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-wb = load_workbook('GBCO_Valuation_Model_07092026_public.xlsx')
+OUT = 'GBCO_Valuation_Model_07092026_public.xlsx'
+wb = load_workbook(OUT)
 A = json.load(open('_asm_rows.json'))
 D = json.load(open('study_numbers.json'))
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
 FILL_T = PatternFill('solid', start_color='1C3A36'); FILL_H = PatternFill('solid', start_color='EAF0EE')
-NUM = '#,##0.0;(#,##0.0);"-"'; NUM0 = '#,##0;(#,##0);"-"'; PCT = '0.0%;(0.0%);"-"'; PX = '0.00'
+NUM = '#,##0.0;(#,##0.0);"-"'; NUM0 = '#,##0;(#,##0);"-"'
+PCT = '0.0%;(0.0%);"-"'; PCT2 = '0.00%;(0.00%);"-"'; PX = '0.00'
+
+_DD = D['disclosed_drivers']
+
+# ---- DISCLOSED HISTORY -------------------------------------------------------------
+# READ from the committed record wherever it carries the figure.
+PC_VOL = [_DD['pc_volume_units'][y] for y in ('FY23', 'FY24', 'FY25')]
+PC_REV = [_DD['pc_revenue'][y] for y in ('FY23', 'FY24', 'FY25')]
+CV_VOL_FY25 = _DD['cv_volume_units']['FY25']; CV_REV_FY25 = _DD['cv_revenue']['FY25']
+LM_VOL_FY25 = _DD['lm_volume_units']['FY25']; LM_REV_FY25 = _DD['lm_revenue']['FY25']
+TR_REV_FY25 = _DD['trading_revenue']['FY25']
+AUTO_REV_FY25 = _DD['auto_revenue_fy2025']
+CAP_REV_FY25 = D['group_forecast']['drivers']['capital_revenue_fy2025']
+GRP_REV = [D['history']['income_statement'][y]['revenue'] for y in ('2023', '2024', '2025')]
+# THE RESIDUE, STATED RATHER THAN HIDDEN: the FY2023 and FY2024 segment splits and the auto
+# leg's own historical gross profit, D&A and EBIT are in the company's releases and are NOT
+# carried in this study's committed numbers file, so they are typed here from those releases
+# with their source named. Closing this means adding them to the record the model computes
+# from, which is a change to the study's own generator rather than to its workbook.
+H_CV_VOL = [2273, 2096]; H_CV_REV = [2323.0, 3984.5]
+H_LM_VOL = [13610, 20189]; H_LM_REV = [854.2, 1378.2]
+H_TR_REV = [2506.8, 3815.5]
+H_AUTO_REV = [23854.0, 47065.0]
+H_CAP_REV = [4950.9, 7383.6]
+H_AUTO_GP = [5813.1, 9057.4, 9837.1]
+H_AUTO_EBIT = [3460.9, 5564.9, 5830.9]
+H_AUTO_DNA = [374.3, 525.7, 683.3]
+H_CAP_OP = [243.7, 380.1, 788.5]
+H_CAP_NP = [1207.6, 1091.5, 1365.9]
+H_CAP_BOOK = [8980.5, 13183.4, 19495.2]
+
 
 def sheet(name):
+    """Replace the sheet if it is already there. These parts run in order on one file, and a
+    part re-run on its own used to APPEND a second copy under a suffixed name — a workbook
+    that opens perfectly, carries every sheet twice and fails the sheet-list standard for a
+    reason nothing in the run explains."""
+    if name in wb.sheetnames:
+        del wb[name]
     ws = wb.create_sheet(name); ws.title = name; return ws
+
+
 def title(ws, text, sub=None, width=10):
     ws['A1'] = text; ws['A1'].font = TITLE; ws['A1'].fill = FILL_T
-    for c in range(2, width+1): ws.cell(row=1, column=c).fill = FILL_T
+    for c in range(2, width + 1): ws.cell(row=1, column=c).fill = FILL_T
     if sub: ws['A2'] = sub; ws['A2'].font = SUB
-    ws.column_dimensions['A'].width = 40
-    for c in range(2, width+1): ws.column_dimensions[get_column_letter(c)].width = 11.5
+    ws.column_dimensions['A'].width = 44
+    for c in range(2, width + 1): ws.column_dimensions[get_column_letter(c)].width = 11.5
+
+
 def put(ws, addr, v, font=BLACK, fmt=NUM, bold=False, fill=None):
     c = ws[addr]; c.value = v
     c.font = Font(color=(font.color if font else '000000'), bold=bold)
     if fmt: c.number_format = fmt
     if fill: c.fill = fill
-def ac(label, col):  # Assumptions driver cell for forecast column j (col letter on that sheet)
-    return f"Assumptions!${col}${A[label]}"
+
+
+def ac(label, col):
+    return "Assumptions!$%s$%d" % (col, A[label])
+
 
 YH = ['FY23', 'FY24', 'FY25']; YF = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
-# columns: B,C,D historical · E..I forecast on Segments/IS/BS ; Assumptions drivers live in C..G
 FCOLS = ['E', 'F', 'G', 'H', 'I']; ACOLS = ['C', 'D', 'E', 'F', 'G']
 
 # ================= SEGMENTS ==================================================
 ws = sheet('Segments')
-title(ws, 'Segment view — the units × ASP build', 'Volumes and ASP per line of business, FY23–FY30E. Drivers disclosed in company releases; forecast links to Assumptions.', 10)
-hdrs = [''] + YH + YF
-for j, h in enumerate(hdrs):
-    put(ws, f'{get_column_letter(1+j)}4', h, BLACK, None, bold=True, fill=FILL_H)
+title(ws, 'Segment view — the units x ASP build',
+      'Volumes and average selling prices per line of business, FY23-FY30E. The forecast '
+      'links to the drivers on Assumptions; nothing on this sheet is a hardcoded forecast.', 10)
+for j, h in enumerate([''] + YH + YF):
+    put(ws, '%s4' % get_column_letter(1 + j), h, BLACK, None, bold=True, fill=FILL_H)
 SR = {}
-def srow(r, label, hist, ffml=None, fmt=NUM, font_hist=BLUE):
+
+
+def srow(r, label, hist, ffml=None, fmt=NUM, font_hist=BLUE, bold=False):
     SR[label] = r
-    put(ws, f'A{r}', label)
+    put(ws, 'A%d' % r, label, BLACK, None, bold=bold)
     for j, v in enumerate(hist):
-        if v is not None: put(ws, f'{get_column_letter(2+j)}{r}', v, font_hist, fmt)
+        if v is not None:
+            f = BLACK if (isinstance(v, str) and v.startswith('=')) else font_hist
+            put(ws, '%s%d' % (get_column_letter(2 + j), r), v, f, fmt, bold=bold)
     if ffml:
         for j, col in enumerate(FCOLS):
             f = ffml(j, col)
-            if f is not None: put(ws, f'{col}{r}', f, BLACK, fmt)
+            if f is not None:
+                put(ws, '%s%d' % (col, r), f, BLACK, fmt, bold=bold)
     return r + 1
-r = 6
-r = srow(r, None, [], lambda j, c: None, NUM0)  # row 6 intentionally blank: an earlier version of this
-    # script duplicated the 'PC volume (units)' row here (a leftover from a bug-fix that patched the
-    # SECOND call without removing the first); the delivered 08-07-2026 workbook
-    # had this exact orphaned duplicate at row 6, cleared on 09-07-2026. This placeholder keeps every
-    # subsequent row number identical to that verified file rather than shifting everything up by one.
-r = srow(r, 'PC volume (units)', [26994, 42043, 56548],
-         lambda j, c: f"={chr(ord(c)-1)}{SR['PC volume (units)']}*(1+{ac('PC volume growth', ACOLS[j])})", NUM0)
-r = srow(r, 'PC revenue', [16544.3, 36533.4, 52827.3],
-         lambda j, c: f"={c}{SR['PC volume (units)']}*{c}{r}", NUM0)  # temp, fixed after ASP row
-PC_REV = SR['PC revenue']
-r = srow(r, 'PC ASP (EGP mn/unit)',
-         [f'=B{PC_REV}/B{PC_REV-1}', f'=C{PC_REV}/C{PC_REV-1}', f'=D{PC_REV}/D{PC_REV-1}'],
-         lambda j, c: f"={chr(ord(c)-1)}{r}*(1+{ac('PC ASP growth', ACOLS[j])})", PX, BLACK)
-ASP = SR['PC ASP (EGP mn/unit)']
-for j, c in enumerate(FCOLS):  # rewire PC revenue forecast = vol × ASP
-    put(ws, f'{c}{PC_REV}', f"={c}{PC_REV-1}*{c}{ASP}", BLACK, NUM0)
-r = srow(r, 'CV&CE volume (units)', [2273, 2096, 3404],
-         lambda j, c: f"={chr(ord(c)-1)}{SR['CV&CE volume (units)']}*(1+{ac('CV&CE volume growth', ACOLS[j])})", NUM0)
-r = srow(r, 'CV&CE revenue', [2323.0, 3984.5, 5956.8],
-         lambda j, c: f"={chr(ord(c)-1)}{SR['CV&CE revenue']}*(1+{ac('CV&CE volume growth', ACOLS[j])})*(1+{ac('CV&CE ASP growth', ACOLS[j])})", NUM0)
-r = srow(r, 'Light-Mobility volume (units)', [13610, 20189, 33906],
-         lambda j, c: f"={chr(ord(c)-1)}{SR['Light-Mobility volume (units)']}*(1+{ac('Light-Mobility volume growth', ACOLS[j])})", NUM0)
-r = srow(r, 'Light-Mobility revenue', [854.2, 1378.2, 2203.8],
-         lambda j, c: f"={chr(ord(c)-1)}{SR['Light-Mobility revenue']}*(1+{ac('Light-Mobility volume growth', ACOLS[j])})*(1+{ac('Light-Mobility ASP growth', ACOLS[j])})", NUM0)
-r = srow(r, 'Trading revenue (tires + parts)', [2506.8, 3815.5, 4242.8],
-         lambda j, c: f"={chr(ord(c)-1)}{SR['Trading revenue (tires + parts)']}*(1+{ac('Trading revenue growth', ACOLS[j])})", NUM0)
-r = srow(r, 'Other Auto / after-sales & adj.', [7625.2, 1353.4, 1127.6], lambda j, c: '=0', NUM0)
-r = srow(r, 'GB Auto total revenue', [23854.0, 47065.0, 66358.3],
-         lambda j, c: f"=SUM({c}{SR['PC revenue']},{c}{SR['CV&CE revenue']},{c}{SR['Light-Mobility revenue']},{c}{SR['Trading revenue (tires + parts)']},{c}{SR['Other Auto / after-sales & adj.']})", NUM0)
-AUTOR = SR['GB Auto total revenue']
-r = srow(r, 'GB Capital revenue', [4950.9, 7383.6, 14743.0],
-         lambda j, c: f"={chr(ord(c)-1)}{SR['GB Capital revenue']}*(1+{ac('GB Capital revenue growth', ACOLS[j])})", NUM0)
-CAPR = SR['GB Capital revenue']
-r = srow(r, 'Intercompany eliminations', [-487.7, -479.0, -871.5],
-         lambda j, c: f"=-({c}{AUTOR}+{c}{CAPR})*{ac('Intercompany eliminations (% of gross revenue)', ACOLS[j])}", NUM0)
-ELIM = SR['Intercompany eliminations']
-r = srow(r, 'Group revenue', [28317.2, 53969.5, 80229.8],
-         lambda j, c: f"={c}{AUTOR}+{c}{CAPR}+{c}{ELIM}", NUM0, BLACK)
-for col in 'BCD':
-    ws[f'{col}{SR["Group revenue"]}'] = f'={col}{AUTOR}+{col}{CAPR}+{col}{ELIM}'
-    ws[f'{col}{SR["Group revenue"]}'].font = BLACK
-GRPR = SR['Group revenue']
-r += 1
-r = srow(r, 'Auto gross profit', [5813.1, 9057.4, 9837.1],
-         lambda j, c: f"={c}{AUTOR}*{ac('Auto gross margin', ACOLS[j])}", NUM0)
-AGP = SR['Auto gross profit']
-r = srow(r, 'Auto gross margin', [f'=B{AGP}/B{AUTOR}', f'=C{AGP}/C{AUTOR}', f'=D{AGP}/D{AUTOR}'],
-         lambda j, c: f"={c}{AGP}/{c}{AUTOR}", PCT, BLACK)
-r = srow(r, 'Auto EBIT (operating profit)', [3460.9, 5564.9, 5830.9],
-         lambda j, c: f"={c}{AGP}-{c}{AUTOR}*{ac('Auto GS&A (% of revenue)', ACOLS[j])}+{c}{AUTOR}*{ac('Auto other operating income (% rev)', ACOLS[j])}+{c}{AUTOR}*{ac('Auto provisions (% rev)', ACOLS[j])}", NUM0)
-AEBIT = SR['Auto EBIT (operating profit)']
-r = srow(r, 'Auto D&A', [374.3, 525.7, 683.3],
-         lambda j, c: f"={c}{AUTOR}*{ac('Auto D&A (% of revenue)', ACOLS[j])}", NUM0)
-ADNA = SR['Auto D&A']
-r = srow(r, 'Auto EBITDA', [3794.6, 5880.5, 6363.3],
-         lambda j, c: f"={c}{AEBIT}+{c}{ADNA}", NUM0)
-AEBITDA = SR['Auto EBITDA']
-r = srow(r, 'Auto EBITDA margin', [f'=B{AEBITDA}/B{AUTOR}', f'=C{AEBITDA}/C{AUTOR}', f'=D{AEBITDA}/D{AUTOR}'],
-         lambda j, c: f"={c}{AEBITDA}/{c}{AUTOR}", PCT, BLACK)
-r = srow(r, 'GB Capital operating profit', [243.7, 380.1, 788.5], lambda j, c: None, NUM0)
-r = srow(r, 'GB Capital net profit (after NCI)', [1207.6, 1091.5, 1365.9], lambda j, c: None, NUM0)
-r = srow(r, 'GB Capital on-book loan portfolio', [8980.5, 13183.4, 19495.2], lambda j, c: None, NUM0)
-put(ws, f'A{r+1}', 'Source: GB Corp 4Q23 / 4Q24 / 4Q25 earnings releases (Tables 1–14). Other Auto = after-sales & regional lines folded into the four LoBs from FY24; forecast conservatively set to zero.', SUB, None)
-json.dump(SR, open('_seg_rows.json', 'w'))
 
-# ================= DCF (Auto operating leg) =================================
-ws = sheet('DCF')
-title(ws, 'DCF — GB Auto operating leg, explicit 5-year FCFF',
-      'Revenue → EBITDA → D&A → EBIT → NOPAT → +D&A → −Capex → −ΔWC → FCFF → discount factor → PV. Links to Segments / Balance Sheet / Assumptions.', 8)
-for j, y in enumerate(YF):
-    put(ws, f'{get_column_letter(2+j)}4', y, BLACK, None, bold=True, fill=FILL_H)
-DC = {}
-def drow(r, label, fml, fmt=NUM0, bold=False):
-    DC[label] = r
-    put(ws, f'A{r}', label, BLACK, None, bold=bold)
-    for j in range(5):
-        c = get_column_letter(2+j)
-        f = fml(j, c)
-        put(ws, f'{c}{r}', f, GREEN if 'Segments!' in str(f) else BLACK, fmt, bold=bold)
-    return r + 1
+
 r = 6
-r = drow(r, 'Auto revenue', lambda j, c: f"=Segments!{FCOLS[j]}{AUTOR}")
-r = drow(r, 'EBITDA', lambda j, c: f"=Segments!{FCOLS[j]}{AEBITDA}")
-r = drow(r, 'D&A', lambda j, c: f"=-Segments!{FCOLS[j]}{ADNA}")
-r = drow(r, 'EBIT', lambda j, c: f"=Segments!{FCOLS[j]}{AEBIT}")
-r = drow(r, 'NOPAT = EBIT × (1 − tax)', lambda j, c: f"={c}{DC['EBIT']}*(1-Assumptions!$B$7)")
-r = drow(r, '+ D&A', lambda j, c: f"=Segments!{FCOLS[j]}{ADNA}")
-r = drow(r, '− Capex', lambda j, c: f"=-{ac('Auto capex (EGP mn)', ACOLS[j])}")
-r = drow(r, '− Increase in net working capital', lambda j, c: f"='Balance Sheet'!{FCOLS[j]}40*-1")  # placeholder row 40 fixed later
-DWC = DC['− Increase in net working capital']
-r = drow(r, 'FCFF', lambda j, c: f"=SUM({c}{DC['NOPAT = EBIT × (1 − tax)']}:{c}{DC['− Increase in net working capital']})", bold=True)
-# ONE FORWARD RATE PER YEAR, NOT ONE RATE COMPOUNDED FIVE TIMES.
-# The superseded workbook discounted every explicit year AND the terminal at the first
-# year's rate, which asserts that this economy's cost of capital never normalises — while
-# the study it accompanies discounts on a schedule that glides to a norm-built terminal.
-# The workbook and the study published two different answers and nothing compared them.
+r = srow(r, 'PC volume (units)', PC_VOL,
+         lambda j, c: "=%s%d*(1+%s)" % (chr(ord(c) - 1), SR['PC volume (units)'],
+                                        ac('PC volume growth', ACOLS[j])), NUM0)
+PCV = SR['PC volume (units)']
+r = srow(r, 'PC revenue', PC_REV, None, NUM0)
+PCR = SR['PC revenue']
+r = srow(r, 'PC ASP (EGP mn/unit)',
+         ['=B%d/B%d' % (PCR, PCV), '=C%d/C%d' % (PCR, PCV), '=D%d/D%d' % (PCR, PCV)],
+         lambda j, c: "=%s%d*(1+%s)" % (chr(ord(c) - 1), SR['PC ASP (EGP mn/unit)'],
+                                        ac('PC ASP growth', ACOLS[j])), PX)
+ASP = SR['PC ASP (EGP mn/unit)']
+for j, c in enumerate(FCOLS):     # PC revenue forecast IS volume x price
+    put(ws, '%s%d' % (c, PCR), "=%s%d*%s%d" % (c, PCV, c, ASP), BLACK, NUM0)
+r = srow(r, 'CV&CE volume (units)', H_CV_VOL + [CV_VOL_FY25],
+         lambda j, c: "=%s%d*(1+%s)" % (chr(ord(c) - 1), SR['CV&CE volume (units)'],
+                                        ac('CV&CE volume growth', ACOLS[j])), NUM0)
+r = srow(r, 'CV&CE revenue', H_CV_REV + [CV_REV_FY25],
+         lambda j, c: "=%s%d*(1+%s)*(1+%s)" % (chr(ord(c) - 1), SR['CV&CE revenue'],
+                                               ac('CV&CE volume growth', ACOLS[j]),
+                                               ac('CV&CE ASP growth', ACOLS[j])), NUM0)
+r = srow(r, 'Light-Mobility volume (units)', H_LM_VOL + [LM_VOL_FY25],
+         lambda j, c: "=%s%d*(1+%s)" % (chr(ord(c) - 1), SR['Light-Mobility volume (units)'],
+                                        ac('Light-Mobility volume growth', ACOLS[j])), NUM0)
+r = srow(r, 'Light-Mobility revenue', H_LM_REV + [LM_REV_FY25],
+         lambda j, c: "=%s%d*(1+%s)*(1+%s)" % (chr(ord(c) - 1), SR['Light-Mobility revenue'],
+                                               ac('Light-Mobility volume growth', ACOLS[j]),
+                                               ac('Light-Mobility ASP growth', ACOLS[j])), NUM0)
+r = srow(r, 'Trading revenue (tires + parts)', H_TR_REV + [TR_REV_FY25],
+         lambda j, c: "=%s%d*(1+%s)" % (chr(ord(c) - 1), SR['Trading revenue (tires + parts)'],
+                                        ac('Trading revenue growth', ACOLS[j])), NUM0)
+# 'Other Auto' is the RESIDUAL against the disclosed segment total, so the column foots to
+# the figure the company published rather than to the four lines this study models.
+r = srow(r, 'Other Auto / after-sales & regional adj.',
+         [None, None, None], lambda j, c: '=0', NUM0)
+OTH = SR['Other Auto / after-sales & regional adj.']
+# THE FIVE REVENUE LINES BY NAME, never a range: the volume and average-price rows sit
+# between them, and a contiguous SUM would add units to pounds. It evaluates perfectly and
+# is wrong by a multiple, which is the shape of error a total has to be built to refuse.
+r = srow(r, 'GB Auto total revenue', H_AUTO_REV + [AUTO_REV_FY25],
+         lambda j, c: "=%s%d+%s%d+%s%d+%s%d+%s%d"
+         % (c, PCR, c, SR['CV&CE revenue'], c, SR['Light-Mobility revenue'],
+            c, SR['Trading revenue (tires + parts)'], c, OTH), NUM0, bold=True)
+AUTOR = SR['GB Auto total revenue']
+for j, col in enumerate('BCD'):   # the residual, so the printed column foots to the total
+    put(ws, '%s%d' % (col, OTH),
+        "=%s%d-%s%d-%s%d-%s%d-%s%d" % (col, AUTOR, col, PCR, col, SR['CV&CE revenue'],
+                                       col, SR['Light-Mobility revenue'],
+                                       col, SR['Trading revenue (tires + parts)']), BLACK, NUM0)
+r = srow(r, 'GB Capital revenue', H_CAP_REV + [CAP_REV_FY25],
+         lambda j, c: "=%s%d*(1+%s)" % (chr(ord(c) - 1), SR['GB Capital revenue'],
+                                        ac('GB Capital revenue growth', ACOLS[j])), NUM0)
+CAPR = SR['GB Capital revenue']
+r = srow(r, 'Intercompany eliminations', [None, None, None],
+         lambda j, c: "=-(%s%d+%s%d)*%s" % (c, AUTOR, c, CAPR,
+                                            ac('Intercompany eliminations (% of gross revenue)',
+                                               ACOLS[j])), NUM0)
+ELIM = SR['Intercompany eliminations']
+r = srow(r, 'Group revenue', GRP_REV,
+         lambda j, c: "=%s%d+%s%d+%s%d" % (c, AUTOR, c, CAPR, c, ELIM), NUM0, bold=True)
+GRPR = SR['Group revenue']
+for col in 'BCD':   # historically the eliminations are the residual against disclosed group revenue
+    put(ws, '%s%d' % (col, ELIM), "=%s%d-%s%d-%s%d" % (col, GRPR, col, AUTOR, col, CAPR),
+        BLACK, NUM0)
+r += 1
+r = srow(r, 'Auto gross profit', H_AUTO_GP,
+         lambda j, c: "=%s%d*%s" % (c, AUTOR, ac('Auto gross margin', ACOLS[j])), NUM0)
+AGP = SR['Auto gross profit']
+r = srow(r, 'Auto gross margin',
+         ['=B%d/B%d' % (AGP, AUTOR), '=C%d/C%d' % (AGP, AUTOR), '=D%d/D%d' % (AGP, AUTOR)],
+         lambda j, c: "=%s%d/%s%d" % (c, AGP, c, AUTOR), PCT2)
+r = srow(r, 'Auto EBIT (operating profit)', H_AUTO_EBIT,
+         lambda j, c: "=%s%d-%s%d*%s+%s%d*%s+%s%d*%s"
+         % (c, AGP, c, AUTOR, ac('Auto GS&A (% of revenue)', ACOLS[j]),
+            c, AUTOR, ac('Auto other operating income (% rev)', ACOLS[j]),
+            c, AUTOR, ac('Auto provisions (% rev)', ACOLS[j])), NUM0)
+AEBIT = SR['Auto EBIT (operating profit)']
+r = srow(r, 'Auto D&A', H_AUTO_DNA,
+         lambda j, c: "=%s%d*%s" % (c, AUTOR, ac('Auto D&A (% of revenue)', ACOLS[j])), NUM0)
+ADNA = SR['Auto D&A']
+r = srow(r, 'Auto EBITDA',
+         ['=B%d+B%d' % (AEBIT, ADNA), '=C%d+C%d' % (AEBIT, ADNA), '=D%d+D%d' % (AEBIT, ADNA)],
+         lambda j, c: "=%s%d+%s%d" % (c, AEBIT, c, ADNA), NUM0)
+AEBITDA = SR['Auto EBITDA']
+r = srow(r, 'Auto EBITDA margin',
+         ['=B%d/B%d' % (AEBITDA, AUTOR), '=C%d/C%d' % (AEBITDA, AUTOR),
+          '=D%d/D%d' % (AEBITDA, AUTOR)],
+         lambda j, c: "=%s%d/%s%d" % (c, AEBITDA, c, AUTOR), PCT2)
+r = srow(r, 'GB Capital operating profit', H_CAP_OP, None, NUM0)
+r = srow(r, 'GB Capital net profit (after NCI)', H_CAP_NP, None, NUM0)
+r = srow(r, 'GB Capital on-book loan portfolio', H_CAP_BOOK, None, NUM0)
+r += 1
+put(ws, 'A%d' % r,
+    'GB Auto 1H2026 reviewed gross margin — the forecast anchor', BLACK, None)
+put(ws, 'B%d' % r, D['forecast_anchor']['latest_reviewed_rate'], BLUE, PCT2)
+SR['GB Auto 1H2026 reviewed gross margin — the forecast anchor'] = r
+put(ws, 'C%d' % r,
+    'The latest reviewed period, from the segment income statement in the 2Q26 release: '
+    'revenue 40,021.5 and gross profit 5,722.1. The forecast OPENS BELOW it, at %.2f%%, '
+    'and the gap is 3.5%% relative — inside the 5%% materiality line, so no mechanism is '
+    'claimed for it.' % (D['forecast_anchor']['first_forecast_rate'] * 100), SUB, None)
+r += 1
+put(ws, 'A%d' % r,
+    'Source: GB Corp 4Q23 / 4Q24 / 4Q25 earnings releases. "Other Auto" is the residual '
+    'against the disclosed segment total, so each historical column foots to the revenue '
+    'the company published; it is set to zero in the forecast, which is conservative. '
+    'Historical eliminations are likewise the residual against disclosed group revenue.',
+    SUB, None)
+json.dump(SR, open('_seg_rows.json', 'w'), indent=1, sort_keys=True)
+
+# ================= DCF (the GB Auto operating leg) ===========================
+ws = sheet('DCF')
+title(ws, 'DCF — GB Auto operating leg, explicit five-year free cash flow to the firm',
+      'Revenue -> EBITDA -> D&A -> EBIT -> NOPAT -> +D&A -> -capex -> -change in working '
+      'capital -> FCFF -> discount factor -> present value. Links to Segments, the Balance '
+      'Sheet and Assumptions.', 8)
+for j, y in enumerate(YF):
+    put(ws, '%s4' % get_column_letter(2 + j), y, BLACK, None, bold=True, fill=FILL_H)
+DC = {}
+
+
+def drow(r, label, fml, fmt=NUM0, bold=False, font=None):
+    DC[label] = r
+    put(ws, 'A%d' % r, label, BLACK, None, bold=bold)
+    for j in range(5):
+        c = get_column_letter(2 + j)
+        f = fml(j, c)
+        fo = font or (GREEN if 'Segments!' in str(f) or 'Balance Sheet' in str(f) else BLACK)
+        put(ws, '%s%d' % (c, r), f, fo, fmt, bold=bold)
+    return r + 1
+
+
+r = 6
+r = drow(r, 'Auto revenue', lambda j, c: "=Segments!%s%d" % (FCOLS[j], AUTOR))
+r = drow(r, 'EBITDA', lambda j, c: "=Segments!%s%d" % (FCOLS[j], AEBITDA))
+r = drow(r, 'D&A', lambda j, c: "=-Segments!%s%d" % (FCOLS[j], ADNA))
+r = drow(r, 'EBIT', lambda j, c: "=Segments!%s%d" % (FCOLS[j], AEBIT))
+r = drow(r, 'NOPAT = EBIT x (1 - tax)',
+         lambda j, c: "=%s%d*(1-Assumptions!$B$7)" % (c, DC['EBIT']))
+r = drow(r, '+ D&A', lambda j, c: "=Segments!%s%d" % (FCOLS[j], ADNA))
+r = drow(r, '- Capex', lambda j, c: "=-%s" % ac('Auto capex (EGP mn)', ACOLS[j]))
+r = drow(r, '- Increase in net working capital',
+         lambda j, c: "='Balance Sheet'!%s40*-1" % FCOLS[j])   # re-pointed in part 3
+DWC = DC['- Increase in net working capital']
+r = drow(r, 'FCFF', lambda j, c: "=SUM(%s%d:%s%d)"
+         % (c, DC['NOPAT = EBIT x (1 - tax)'], c, DWC), bold=True)
+FCFF = DC['FCFF']
+# ONE FORWARD RATE PER YEAR, NOT ONE RATE COMPOUNDED FIVE TIMES. Discounting a five-year
+# forecast and a perpetuity alike at one crisis-level rate asserts that this economy's cost
+# of capital never normalises, against the central bank's own published disinflation path.
 _SCH = D['cost_of_capital_record']
-r = drow(r, 'Cost of capital — this year’s forward rate',
-         lambda j, c: _SCH['forward_wacc'][j], PCT)
-FWD = DC['Cost of capital — this year’s forward rate']
+r = drow(r, "Cost of capital — this year's forward rate",
+         lambda j, c: _SCH['forward_wacc'][j], PCT2, font=BLUE)
+FWD = DC["Cost of capital — this year's forward rate"]
 r = drow(r, 'Discount factor (cumulative on the schedule)',
-         lambda j, c: (f"=1/(1+{c}{FWD})" if j == 0
-                       else f"={get_column_letter(1+j)}{r}/(1+{c}{FWD})"), '0.000')
-DC['Discount factor'] = DC['Discount factor (cumulative on the schedule)']
-r = drow(r, 'PV of FCFF', lambda j, c: f"={c}{DC['FCFF']}*{c}{DC['Discount factor']}", bold=True)
+         lambda j, c: ("=1/(1+%s%d)" % (c, FWD) if j == 0
+                       else "=%s%d/(1+%s%d)" % (get_column_letter(1 + j), r, c, FWD)), '0.0000')
+DF = DC['Discount factor (cumulative on the schedule)']
+r = drow(r, 'PV of FCFF', lambda j, c: "=%s%d*%s%d" % (c, FCFF, c, DF), bold=True)
+PVR = DC['PV of FCFF']
 r += 1
-def dline(r, label, fml, fmt=NUM0, bold=False):
-    put(ws, f'A{r}', label, BLACK, None, bold=bold); put(ws, f'B{r}', fml, BLACK, fmt, bold=bold); return r + 1
-r = dline(r, 'Σ PV of explicit FCFF (FY26–30E)', f"=SUM(B{DC['PV of FCFF']}:F{DC['PV of FCFF']})", bold=True); SPV = r-1
-r = dline(r, 'Cost of capital — terminal (norm-built)', _SCH['wacc_terminal'], PCT); WTR = r-1
-r = dline(r, 'Terminal value (Gordon, on the TERMINAL rate)',
-          f"=F{DC['FCFF']}*(1+Assumptions!$B$17)/(B{WTR}-Assumptions!$B$17)"); TVR = r-1
-# the terminal comes home on the SAME cumulative factor as the last explicit year:
-# one date, one price of time.
-r = dline(r, 'PV of terminal value', f"=B{TVR}*F{DC['Discount factor']}"); PVT = r-1
-r = dline(r, 'Enterprise value — Auto leg', f"=B{SPV}+B{PVT}", bold=True); EVR = r-1
-r = dline(r, '% terminal of EV (device A-7)', f"=B{PVT}/B{EVR}", PCT, bold=True)
-r = dline(r, 'less: Auto net debt', f"=-Assumptions!$B$19")
-r = dline(r, 'less: Auto non-controlling interests', f"=-Assumptions!$B$20")
-r = dline(r, 'Auto equity value', f"=B{EVR}-Assumptions!$B$19-Assumptions!$B$20", bold=True); AEQ = r-1
+
+
+def dline(r, label, f, fmt=NUM0, bold=False, note=None, font=BLACK):
+    put(ws, 'A%d' % r, label, BLACK, None, bold=bold)
+    put(ws, 'B%d' % r, f, font, fmt, bold=bold)
+    if note: put(ws, 'C%d' % r, note, SUB, None)
+    DC[label] = r
+    return r + 1
+
+
+r = dline(r, 'Sum of the present values, FY26-30E', "=SUM(B%d:F%d)" % (PVR, PVR), bold=True)
+SPV = r - 1
+r = dline(r, 'Cost of capital — terminal (norm-built)', _SCH['wacc_terminal'], PCT2,
+          font=BLUE,
+          note='the norm-built terminal rate the schedule glides to; the terminal is brought '
+               'home on the SAME cumulative factor as the last explicit year — one date, one '
+               'price of time.')
+WTR = r - 1
+r = dline(r, 'Terminal value (on the terminal rate)',
+          "=F%d*(1+Assumptions!$B$17)/(B%d-Assumptions!$B$17)" % (FCFF, WTR))
+TVR = r - 1
+r = dline(r, 'PV of the terminal value', "=B%d*F%d" % (TVR, DF))
+PVT = r - 1
+r = dline(r, 'Enterprise value — GB Auto leg', "=B%d+B%d" % (SPV, PVT), bold=True)
+EVR = r - 1
+r = dline(r, 'Terminal share of enterprise value', "=B%d/B%d" % (PVT, EVR), PCT2)
+r = dline(r, 'less: GB Auto net debt (30 June 2026)', '=-Assumptions!$B$19')
+r = dline(r, 'less: GB Auto non-controlling interests', '=-Assumptions!$B$20')
+r = dline(r, 'GB Auto equity value', "=B%d-Assumptions!$B$19-Assumptions!$B$20" % EVR,
+          bold=True)
+AEQ = r - 1
 r += 1
-r = dline(r, 'EV sensitivity per +1pp Auto GPM (helper for Sensitivity)',
-          f"=0.01*(1-Assumptions!$B$7)*(SUMPRODUCT(B{DC['Auto revenue']}:F{DC['Auto revenue']},B{DC['Discount factor']}:F{DC['Discount factor']})"
-          f"+F{DC['Auto revenue']}*(1+Assumptions!$B$17)/(B{WTR}-Assumptions!$B$17)*F{DC['Discount factor']})")
-EVPP = r-1
-put(ws, f'A{r+1}', 'WACC is built on the Assumptions sheet as Ke = rf + β × ERP (house rule §3.5-G) blended with after-tax Kd.', SUB, None)
-json.dump(dict(DC=DC, SPV=SPV, TVR=TVR, PVT=PVT, EVR=EVR, AEQ=AEQ, EVPP=EVPP), open('_dcf_rows.json', 'w'))
-wb.save('GBCO_Valuation_Model_07092026_public.xlsx')
-print('part2a ok — segments+dcf; AUTOR', AUTOR, 'AEBITDA', AEBITDA)
+r = dline(r, 'check: year-1 forward rate less the WACC built on Assumptions',
+          "=B%d-Assumptions!$B$16" % FWD, PCT2,
+          note='ZERO by construction: the schedule\'s first year and rf* + beta x ERP blended '
+               'with after-tax debt are the same rate, and this row is what says so.')
+r = dline(r, 'Enterprise value per +1pp of Auto gross margin (helper)',
+          "=0.01*(1-Assumptions!$B$7)*(SUMPRODUCT(B%d:F%d,B%d:F%d)"
+          "+F%d*(1+Assumptions!$B$17)/(B%d-Assumptions!$B$17)*F%d)"
+          % (DC['Auto revenue'], DC['Auto revenue'], DF, DF, DC['Auto revenue'], WTR, DF),
+          note='EXACT rather than approximate: a margin shift moves cost only, so it moves '
+               'every year\'s free cash flow by revenue x shift x (1 - tax) and nothing else. '
+               'The Sensitivity sheet is built on this row.')
+EVPP = r - 1
+put(ws, 'A%d' % (r + 1),
+    'The discount factors are the cost-of-capital schedule\'s own cumulative factors. The '
+    'terminal growth rate on the Assumptions sheet is stored as a REAL rate on the house '
+    'Egyptian inflation path and recomputed to its nominal value.', SUB, None)
+json.dump(dict(DC=DC, SPV=SPV, TVR=TVR, PVT=PVT, EVR=EVR, AEQ=AEQ, EVPP=EVPP,
+               FCFF=FCFF, DF=DF, FWD=FWD, WTR=WTR), open('_dcf_rows.json', 'w'),
+          indent=1, sort_keys=True)
+wb.save(OUT)
+print('part2 ok — Segments + DCF; auto revenue row %d, auto equity row %d' % (AUTOR, AEQ))

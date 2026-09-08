@@ -1,1 +1,24 @@
-{"GB Auto revenue": 6, "GB Capital revenue": 7, "Intercompany eliminations": 8, "Total revenue": 9, "Gross profit": 10, "Gross profit margin": 11, "Selling, marketing & administration": 12, "Other income (expenses)": 13, "Provisions (net)": 14, "Operating profit": 15, "Investment gains from associates": 16, "EBIT": 17, "Group D&A": 18, "EBITDA (EBIT + D&A)": 19, "Foreign exchange gains (losses)": 20, "Net finance cost": 21, "Earnings before tax": 22, "Income taxes": 23, "Net profit before minority interest": 24, "Minority interest": 25, "Net profit (attributable)": 26, "Net profit margin": 27}
+{
+ "EBIT": 17,
+ "EBITDA (EBIT + D&A)": 19,
+ "Earnings before tax": 22,
+ "Foreign exchange gains (losses)": 20,
+ "GB Auto revenue": 6,
+ "GB Capital revenue": 7,
+ "Gross profit": 10,
+ "Gross profit margin": 11,
+ "Group D&A": 18,
+ "Income taxes": 23,
+ "Intercompany eliminations": 8,
+ "Investment gains from associates": 16,
+ "Minority interest": 25,
+ "Net finance cost": 21,
+ "Net profit (attributable)": 26,
+ "Net profit before minority interest": 24,
+ "Net profit margin": 27,
+ "Operating profit": 15,
+ "Other operating income": 13,
+ "Provisions (net)": 14,
+ "Selling, marketing & administration": 12,
+ "Total revenue": 9
+}

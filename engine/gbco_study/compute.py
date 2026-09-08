@@ -576,16 +576,32 @@ def sotp_case(gpm_shift, wacc, tg, cap_m, assoc_m, d):
     pvs = sum(f*_fac[i] for i, f in enumerate(rws))
     tv_ = rws[-1]*(1+tg)/((_sch.wacc_terminal + _shift)-tg)*_fac[-1]
     ae = pvs+tv_-auto_nd-auto_nci
-    return (ae + cap_book*cap_m + assoc*assoc_m)*(1-d)/SH
+    # THE LENDER LEG IS cap_val, NOT cap_book. This line read cap_book, which was 9,500
+    # when the case function was written and is now the leg's DISCLOSED BOOK FLOOR of
+    # 6,267.3 — so every case built here was valuing the lender at book while the study
+    # values it on residual income, and the rename would have carried that silently.
+    # A variable whose meaning changed under a case function is the unit error [R-TERM-01]
+    # names: nothing about the arithmetic looks wrong.
+    # THE MARK MULTIPLE SCALES MNT-HALAN, NOT THE WHOLE ASSOCIATES BLOCK. It used to
+    # multiply `assoc`, which carries the three small associates too — so the grid's
+    # carrying rung came out at 41.1509 against a published branch of 41.3484, because it
+    # was also marking Bedaia, Milo and Kaf down to 57% of a round they were never in.
+    # The rungs are a claim about ONE holding and the arithmetic now says so.
+    return (ae + cap_val*cap_m + mnt_halan_value*assoc_m + other_assoc)*(1-d)/SH
 # Bear and bull terminal growth are REAL rates on the house path, never typed nominals
 # [R-MACRO-01]: -0.5% and +0.5% real against the path's 7.0% terminal inflation.
 TG_BEAR = _PATH.terminal_inflation - 0.005
 TG_BULL = _PATH.terminal_inflation + 0.005
-sotp_bear = sotp_case(-0.012, WACC+0.020, TG_BEAR, 0.80, 0.80, 0.18)
-sotp_bull = sotp_case(+0.010, WACC-0.015, TG_BULL, 1.25, 1.20, 0.04)
-dcf_lens = dict(bear=sotp_case(-0.012, WACC+0.020, TG_BEAR, 0.80, 0.80, 0.0),
-                base=prediscount_ps,
-                bull=sotp_case(+0.010, WACC-0.015, TG_BULL, 1.25, 1.20, 0.0))
+# A DIAGNOSTIC CASE PAIR, AND NOT THE PUBLISHED ENVELOPE — which is central_bear and
+# central_bull, the min and max of the present-value reads, per [R-LENS-03]. These two flex
+# the macro ladder as well as the business drivers, and that rule refuses such a construction
+# as a published RANGE precisely because terminal growth and the terminal risk-free rate
+# carry the same inflation, so the corners are internally contradictory. They are kept as an
+# internal spread and are labelled here as one; the discount they used to carry is gone with
+# the discount itself.
+sotp_bear = sotp_case(-0.012, WACC+0.020, TG_BEAR, 0.80, 0.80, 0.0)
+sotp_bull = sotp_case(+0.010, WACC-0.015, TG_BULL, 1.25, 1.20, 0.0)
+dcf_lens = dict(bear=sotp_bear, base=prediscount_ps, bull=sotp_bull)
 # ---- ONE CLASS PRIMARY IS THE CENTRAL, AND HERE IT HAS TWO SIDES [R-LENS-03] --------
 # The delivered edition published a weighted blend of four lenses at typed weights. That
 # construction is RETIRED: a number produced by averaging several methods is a new method
@@ -616,9 +632,35 @@ _pv_reads = [sotp_B_ps, sotp_A_ps, rel_ps]
 central_bear = min(_pv_reads)
 central_bull = max(_pv_reads)
 # SOTP sensitivity grid: Auto EBITDA-margin proxy shift × complexity discount
+# THE SECOND AXIS WAS A COMPLEXITY DISCOUNT THIS STUDY NO LONGER APPLIES, so the grid
+# priced a lever that is not in the model and its centre cell reproduced no published
+# answer. It is re-pointed at the CRUX — the basis on which the associate is carried —
+# and its rungs are EVIDENCED rather than evenly spaced: the two published branches, and
+# the two haircuts the expert panel argues for in its own words. AN INTERPOLATED RUNG
+# WOULD PRINT AN AVERAGE OF THE TWO BRANCHES WHILE CALLING IT A SENSITIVITY, which is the
+# averaging the dual-framing rule forbids arriving through a grid.
 grid_margin = [-0.02, -0.01, 0.0, 0.01, 0.02]
-grid_disc = [0.0, 0.05, 0.10, 0.15, 0.20]
-sens = [[sotp_case(mm, WACC, TG, 1.0, 1.0, dd) for dd in grid_disc] for mm in grid_margin]
+_mark_round = mnt_halan_value
+# THE CARRYING RUNG IS THE RATIO ITSELF, NOT A ROUNDED COPY OF IT. A first draft rounded
+# it to six places to keep the set tidy and then compared the rounded value against the
+# unrounded ratio, so the rung that IS the published branch was labelled "57% of the round"
+# — the one label in the grid that had to be right. Rounding a value and then testing it
+# against its own source is the same shape as a check that reads what a process declares.
+_mark_carry = MNT_CARRYING / _mark_round
+grid_mark = sorted([0.50, _mark_carry, 0.75, 1.00])
+grid_mark_labels = [("the reviewed carrying value" if m == _mark_carry else
+                     "the June-2026 round price" if m == 1.00 else
+                     "%.0f%% of the round" % (100 * m)) for m in grid_mark]
+assert grid_mark_labels.count("the reviewed carrying value") == 1, (
+    "the grid must carry the published branch as a rung, exactly once")
+sens = [[sotp_case(mm, WACC, TG, 1.0, mk, 0.0) for mk in grid_mark]
+        for mm in grid_margin]
+# A GRID WHOSE RUNGS NAME THE PUBLISHED BRANCHES MUST REPRODUCE THEM. Asserted rather
+# than assumed: the first draft came out 0.20 low on the carrying rung and the label was
+# the only thing that would have told a reader, which is not a check.
+_zero = grid_margin.index(0.0)
+assert abs(sens[_zero][grid_mark.index(_mark_carry)] - sotp_B_ps) < 1e-9
+assert abs(sens[_zero][grid_mark.index(1.00)] - sotp_A_ps) < 1e-9
 # experts
 cap_hist = dict(FY23=dict(wc=4466.3, nd=2921.8, ce=10231.2, roce=0.359),
                 FY24=dict(wc=10783.9, nd=5292.0, ce=18731.3, roce=0.315),
@@ -675,6 +717,110 @@ exp2 = dict(base=GRP_EQ_BEFORE_NCI_JUN26 * _exp2_pb / SH,
                  / (_sch.ke_terminal - TG) / SH),
             roe=grp_roe_fy25, pb=_exp2_pb, book=GRP_EQ_BEFORE_NCI_JUN26,
             book_ps=GRP_EQ_BEFORE_NCI_JUN26 / SH)
+
+import research_protocol as _RP
+
+# ---- [R-FCAL-01] THE WALK-FORWARD SCOPE DECISION, STATED IN THE STUDY -----------------
+# The rule has required this since 31-Aug-2026 and this study did not carry it, though the
+# decision itself was made and written down where nobody outside the run would look: the
+# pre-registration's own section 0. A decision recorded only in the place that acted on it
+# is a decision no reader of the study can check.
+_WF_SCOPE = dict(
+    rule="R-FCAL-01",
+    scope="FULL",
+    sourceable_fiscal_years=14,
+    earliest_sourceable="FY2012",
+    basis=("this name's own walk-forward pre-registration, section 0: \"FULL. Fourteen "
+           "sourceable fiscal years, FY2012-FY2025, every one tier A from a document "
+           "the run holds\". Fourteen is at or above eight, so the FULL branch applies."),
+    status="run",
+    note=("The fundamental walk-forward HAS been run on this name: nine origins, FY2016 "
+          "through FY2024, horizons one to five, 225 scored cells. NO correction was "
+          "promoted into the live drivers. The finance-cost candidate is the one worth "
+          "naming: its bias is large and its sign flips at four of six admissible cuts, "
+          "so it fails the stability clause outright -- and it is also the trap the rule "
+          "names by name, where a finance charge divided by a broader liabilities total "
+          "manufactures a bias that looks exactly like evidence."))
+
+# ---- [R-SIGCM-02] HOW EACH REVENUE LINE WAS ACTUALLY BUILT ---------------------------
+# The ground-up clause is no longer attestable by a flag, and this study committed no
+# driver record at all. The lines below cover 100% of the FIRST FORECAST YEAR's group
+# revenue -- a line left out of the record is a line nobody checked -- and every one below
+# unit level carries the gap rather than going quiet about it.
+_F26 = GROUP[0]
+_REV26 = _F26['revenue']
+_DD = disclosed_drivers if 'disclosed_drivers' in dir() else None
+_DL = [
+    _RP.DriverLine(
+        name="passenger cars", level="unit",
+        share_of_revenue=fc['FY26E']['pc_rev'] / _REV26,
+        unit="vehicles sold",
+        unit_source=("GB Corp's own 4Q23, 4Q24 and 4Q25 earnings releases, the passenger-car "
+                     "volume and revenue tables: 26,994 units on EGP 16,544.3mn, 42,043 on "
+                     "36,533.4mn and 56,548 on 52,827.3mn"),
+        price_basis=("the average selling price the same table implies, revenue divided by "
+                     "its own units, across THREE disclosed years so the rate has an "
+                     "observable trend rather than a single point"),
+        cost_basis=("the auto leg's gross margin, held at the level the latest reviewed "
+                    "half filed and drifting only where the company's own period pair "
+                    "measures a direction")),
+    _RP.DriverLine(
+        name="commercial vehicles", level="unit",
+        share_of_revenue=fc['FY26E']['cv_rev'] / _REV26,
+        unit="vehicles sold",
+        unit_source="the 4Q25 earnings release segment table: 3,404 units on EGP 5,956.8mn",
+        price_basis=("revenue divided by its own units in that table. ONE DISCLOSED YEAR, "
+                     "so the level is observable and its trend is not; the price is grown "
+                     "at a stated rate rather than at a measured one"),
+        cost_basis="the auto leg's gross margin, as above"),
+    _RP.DriverLine(
+        name="motorcycles and three-wheelers", level="unit",
+        share_of_revenue=fc['FY26E']['lm_rev'] / _REV26,
+        unit="units sold",
+        unit_source="the 4Q25 earnings release segment table: 33,906 units on EGP 2,203.8mn",
+        price_basis=("revenue divided by its own units in that table. ONE DISCLOSED YEAR, "
+                     "as above"),
+        cost_basis="the auto leg's gross margin, as above"),
+    _RP.DriverLine(
+        name="tyres, parts and trading", level="segment",
+        share_of_revenue=fc['FY26E']['tr_rev'] / _REV26,
+        cost_basis="the auto leg's gross margin, as above",
+        gap_note=("NO UNIT IS DISCLOSED. The releases give this activity's revenue as a "
+                  "segment line and publish neither a volume nor a price for it, so the "
+                  "build stops at the segment and says so rather than inventing a unit. "
+                  "It is grown on a stated rate; that rate is not measured against "
+                  "anything the company publishes.")),
+    _RP.DriverLine(
+        name="GB Capital (the financing businesses)", level="segment",
+        share_of_revenue=_F26['capital_revenue'] / _REV26,
+        cost_basis=("the segment's own gross margin, which its income-statement table "
+                    "discloses in full -- cost of sales and cost of funds separately"),
+        gap_note=("BUILT ON THE SEGMENT TOTAL WHILE A FINER SPLIT IS DISCLOSED, and that "
+                  "is the honest statement of it: Table 13 of each release breaks this "
+                  "revenue down by company -- GB Lease, Drive, GB Auto Rental, GBBR, "
+                  "Capital Securitization, Kredit -- and the model consumes the total. "
+                  "No UNIT is disclosed for any of them (a lending business's unit would "
+                  "be portfolio times a rate, and the portfolio is disclosed only in "
+                  "total), so a finer build would still not reach unit level; what it "
+                  "would reach is six growth paths instead of one, which is a real "
+                  "improvement this record names rather than hides.")),
+    _RP.DriverLine(
+        name="intersegment eliminations", level="topdown",
+        share_of_revenue=_F26['eliminations'] / _REV26,
+        cost_basis=("the eliminated sales are reversed WITH their own cost, at a stated "
+                    "20% gross margin on the eliminated revenue. THAT PROPORTION IS TYPED "
+                    "RATHER THAN DISCLOSED and is named here as such: the releases publish "
+                    "the elimination as a single revenue figure and never split it, so the "
+                    "cost reversed with it cannot be sourced. It is the one line in this "
+                    "record whose cost side rests on a chosen number, and it is 1.1% of "
+                    "group revenue."),
+        gap_note=("A CONTRA RATHER THAN A REVENUE LINE, carried here so the record covers "
+                  "the whole of group revenue: a line omitted is a line nobody checked. "
+                  "It is a percentage of the two legs' combined revenue, and the releases "
+                  "disclose the elimination only as a single figure, so there is nothing "
+                  "finer to build it from.")),
+]
+_GROUND_UP = _RP.assert_ground_up(_DL, 'GBCO')
 
 # ---- THE LENS ARCHITECTURE, RECORDED AND ASSERTED IN THE STUDY'S OWN CODE ------------
 # [R-ENF-02]: a study calls the gates itself and a job outside the study verifies it.
@@ -741,7 +887,6 @@ _LENS_RECORD = dict(
                   "are published side by side; a figure between them would be the "
                   "average the dual-framing rule forbids."),
 )
-import research_protocol as _RP
 _LENS_ATTEST = _RP.assert_lens_design(_LENS_RECORD, 'GBCO')
 
 _AUD = ('GB Corp / GB Auto audited consolidated statement of income for the year, as '
@@ -871,7 +1016,9 @@ out = dict(
                 prediscount=dcf_lens, relative=rel, normalized=norm,
                 central=dict(bear=central_bear, base=central, bull=central_bull),
                 weights=weights),
-    forecast=fc, gpm=gpm, sens=dict(grid_margin=grid_margin, grid_disc=grid_disc, table=sens),
+    forecast=fc, gpm=gpm, sens=dict(grid_margin=grid_margin, grid_mark=grid_mark,
+                            grid_mark_labels=grid_mark_labels, table=sens,
+                            axis=("the auto leg's gross-margin shift against the basis on which the associate is carried; the centre-right cell IS the round-price branch and the carrying-value rung IS the other branch")),
     # THE DISCLOSED DRIVER BASE, COMMITTED SO THE DOCUMENT READS IT RATHER THAN RETYPING IT.
     # Depth-bar standard 3 again: the delivered edition printed every one of these by hand
     # because the numbers file did not carry them, so the driver table a reader sees and the
@@ -994,6 +1141,9 @@ out = dict(
         branches=[dict(label=b['label'], value=b['value'], condition=b['note'])
                   for b in BRANCHES]),
     lens_record=_LENS_RECORD,
+    walkforward_scope=_WF_SCOPE,
+    driver_lines=[vars(l) for l in _DL],
+    ground_up=_GROUND_UP,
     valuation_gap=dict(
         central=None, spot=spot, spot_date=spot_date,
         gap=None,

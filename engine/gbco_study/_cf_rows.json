@@ -1,1 +1,20 @@
-{"CF": {"Net profit before minority interest": 6, "+ D&A": 7, "\u2212 Associates income (non-cash)": 8, "\u2212 Increase in net Auto working capital": 9, "\u2212 Increase in GB Capital loan book": 10, "Operating cash flow": 11, "\u2212 Capex (Auto + rental fleet)": 12, "Free cash flow": 13, "+ Increase in borrowings (net)": 14, "\u2212 Dividends paid": 15, "Net change in cash": 16, "Opening cash": 17, "Closing cash": 18}, "CLOSE": 18, "DIVR": 15}
+{
+ "CF": {
+  "+ D&A": 7,
+  "+ Increase in borrowings (net)": 14,
+  "- Associates income (non-cash)": 8,
+  "- Capex (Auto + rental fleet)": 12,
+  "- Dividends paid": 15,
+  "- Increase in net Auto working capital": 9,
+  "- Increase in the GB Capital loan book": 10,
+  "Closing cash": 18,
+  "Free cash flow": 13,
+  "Net change in cash": 16,
+  "Net profit before minority interest": 6,
+  "Opening cash": 17,
+  "Operating cash flow": 11
+ },
+ "CLOSE": 18,
+ "DIVR": 15,
+ "OPEN": 17
+}
