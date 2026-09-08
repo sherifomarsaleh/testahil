@@ -316,11 +316,13 @@ P('A judgement is a fork this study resolved one way and could defensibly have r
   'is worth, and which direction the study took. The last column is what would overturn the '
   'choice. Nothing here is an input to the valuation: it is a record OF the valuation.',
   size=9.5)
-rows = [['Judgement', 'Adopted', 'The alternative', 'Worth', 'Direction taken']]
+rows = [['Judgement', 'Adopted', 'The alternative', 'Worth', 'Direction taken',
+         'What would overturn the choice']]
 for j in CJ['judgements']:
     rows.append([outward(j['name']), outward(j['adopted']), outward(j['alternative']),
-                 pc(j['moves_the_answer_by'], 1), outward(j['direction'])])
-table(rows, [1.45, 2.85, 2.85, 0.6, 2.05], size=7.4)
+                 pc(j['moves_the_answer_by'], 1), outward(j['direction']),
+                 outward(j['overturned_by'])])
+table(rows, [1.25, 2.15, 2.15, 0.55, 1.35, 2.35], size=7.0)
 _TS = CJ.get('two_sided_judgement')
 if _TS:
     H2('The judgement this study does NOT resolve — and why it is not in the table above')

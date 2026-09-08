@@ -561,7 +561,12 @@ def main():
                   'size suggests. THE FIRST YEAR IS MANAGEMENT GUIDANCE and the standing '
                   'rule is that guidance is scored and never consumed, so the adopted side '
                   'of this fork is not merely the higher one — it is the one a forward '
-                  'target set.')),
+                  'target set.'),
+             overturned_by=(
+                 'two further filed years of capital expenditure, or a capital plan the '
+                 'company discloses. Either settles whether the intensity is falling because '
+                 'the build-out is finished or only because revenue is growing faster than '
+                 'the spend.')),
         dict(name='working-capital intensity',
              adopted=('gliding from %.1f%% of Auto revenue in the first forecast year to '
                       '%.1f%% by the last, as payables re-extend and the pre-build unwinds'
@@ -577,7 +582,11 @@ def main():
                   'is a thin residual and a working-capital path moves it directly. The '
                   "study names this its second crux and the company's own quarterly prints "
                   'resolve it; the fork is whether the release is credited before it is '
-                  'shown.')),
+                  'shown.'),
+             overturned_by=(
+                 'two consecutive quarters in which the company discloses its receivable, '
+                 'inventory and payable days. The glide is currently five figures standing '
+                 'in for a cycle the filings would measure directly.')),
         dict(name='the equity risk premium basis',
              adopted=('the market (credit-default-swap) basis, giving a first-year weighted '
                       'cost of capital of %.2f%%'
@@ -592,7 +601,11 @@ def main():
                   'value, which is why it is recorded here rather than treated as settled. '
                   'The figure opposite is a PARALLEL SHIFT of the committed ladder and is '
                   'labelled a proxy: the committed record carries no rating-basis terminal, '
-                  'and a terminal this desk solved for itself is not a committed one.')),
+                  'and a terminal this desk solved for itself is not a committed one.'),
+             overturned_by=(
+                 'the two published bases converging, or the country-risk file naming one of '
+                 "them as the one to use. Neither is in this study's gift and both are "
+                 'published by the same source.')),
         dict(name='the equity beta',
              adopted=('%.4f, the conforming weekly regression against the exchange\'s '
                       'published index, committed in this directory'
@@ -606,7 +619,10 @@ def main():
                   'to. The fork is recorded rather than treated as settled because a beta '
                   'is a judgement about which estimator to trust, not a fact — and this '
                   "one sits close enough to 1.00 that the study's answer barely turns on "
-                  'it, which is itself worth saying.')),
+                  'it, which is itself worth saying.'),
+             overturned_by=(
+                 'a longer usable run of weekly returns, or a structural change in the '
+                 'company that resets the regression window and is disclosed as one.')),
         dict(name="the return anchoring GB Capital's justified price-to-book",
              adopted=('the 1H2026 REVIEWED return on the segment\'s operating equity, '
                       '%.2f%%, annualised on the average of the two committed period-end '
@@ -622,7 +638,11 @@ def main():
                   'whose materiality depends on which branch it is measured against: it '
                   'clears 5%% on the carrying branch and does not on the round branch, and '
                   'the strict reading is the one recorded.'
-                  % (cap_fy25 - M.cap))),
+                  % (cap_fy25 - M.cap)),
+             overturned_by=(
+                 "a full year at the reviewed period's return on the equity base the segment "
+                 'now carries. The two framings disagree because the base more than doubled '
+                 'inside the period, and a year that spans neither half settles it.')),
         dict(name="the discount rate inside GB Capital's justified price-to-book",
              adopted=('the TERMINAL cost of equity from the sanctioned schedule, %.2f%%'
                       % (100 * M.cp['ke_terminal'])),
@@ -635,7 +655,10 @@ def main():
                   '%.0f mn. Where a correction cuts a number the charitable reading is the '
                   'one to take, and the fork is recorded so that choice is visible rather '
                   'than buried in an identity. It moves the answer by less than 2%% either '
-                  'way.' % (cap_ke_exp, M.cap))),
+                  'way.' % (cap_ke_exp, M.cap)),
+             overturned_by=(
+                 'the cost-of-capital glide reaching its terminal, at which point the two '
+                 'rates are the same number and the fork closes on its own.')),
         dict(name='the Auto gross-margin path',
              adopted=('a path opening at %.1f%% and rising to %.1f%%'
                       % (100 * anchor['forecast_path'][0],
@@ -653,7 +676,10 @@ def main():
                   'are close enough that the fork is worth barely 3%% of the answer, which '
                   'is a smaller disagreement than the superseded edition of this record '
                   'reported against an unsourced quarterly figure.'
-                  % (100 * anchor['latest_reviewed_rate']))),
+                  % (100 * anchor['latest_reviewed_rate'])),
+             overturned_by=(
+                 'the second half of the current year filing at a margin outside the range '
+                 "the first half and the prior year's halves together bracket.")),
         dict(name='the ownership percentage applied to the round',
              adopted=('41.61%, GB Corp\'s own press release of 9 June 2026 on the '
                       'transaction the round price comes from'),
@@ -674,11 +700,21 @@ def main():
                   'an exact zero and measuring it there would report a real disagreement as '
                   'no disagreement. It is worth %.2f%% of the round branch.'
                   % (100 * abs(M.primary(mark=mark_statements) - M.branch_round())
-                     / M.primary(mark=mark_statements)))),
+                     / M.primary(mark=mark_statements))),
+             overturned_by=(
+                 'one filing stating a single percentage for both the Dutch holding vehicle '
+                 'and the operating group, or a transaction naming which of the two the '
+                 'round valued.')),
     ]
 
     judgements = []
     for j in J:
+        if not str(j.get('overturned_by') or '').strip():
+            raise SystemExit(
+                'judgement %r states nothing that would overturn it. The bibliography '
+                'prints this column and the depth bar requires it; an empty one is worse '
+                'than an absent table, because the page then asserts a falsifier that is '
+                'not there.' % j['name'])
         on_round = j.get('measured_on') == 'round'
         va = float(j['a'][1] if on_round else j['a'][0])
         vb = float(j['b'][1] if on_round else j['b'][0])
@@ -699,6 +735,13 @@ def main():
             'direction': ('the study took the higher value' if va > vb else
                           'the study took the lower value' if va < vb else 'no difference'),
             'why': j['why'],
+            # WHAT WOULD OVERTURN THE CHOICE — required, not optional. The depth bar asks
+            # the judgements table for this column and the bibliography's own introductory
+            # sentence promised it while the table's last column said something else, so
+            # the sentence was false of the table it introduced. A judgement with nothing
+            # that would overturn it is a habit rather than a finding, which is the same
+            # test the lessons register puts on every lesson it accepts.
+            'overturned_by': j['overturned_by'],
         })
 
     material = [x for x in judgements if x['moves_the_answer_by'] >= 0.05]
