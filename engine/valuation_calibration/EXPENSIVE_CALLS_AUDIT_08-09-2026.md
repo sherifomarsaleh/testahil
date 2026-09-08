@@ -82,6 +82,40 @@ crisis-level local-currency hurdle may be carrying the currency twice — once i
 flows and again in the rate. **That is a hypothesis with a named rule behind it and NO
 measurement, and it is written here as exactly that.**
 
+### MEASURED — and it confirms the currency reading
+
+[R-ENF-05]'s reverse read solves the discount rate the traded price implies under this
+model's own drivers, everything else held at its published value:
+
+| origin | our rate | the price implies | difference |
+|---|---|---|---|
+| 2018 | 23.10% | **12.83%** | **−10.3 pp** |
+| 2019 | 17.77% | 14.65% | −3.1 pp |
+| 2020 | 16.84% | 12.62% | −4.2 pp |
+| 2022 | 23.28% | 18.64% | −4.6 pp |
+
+**The market discounts this company at three to ten points below our rate at every origin,
+and the gap is WIDEST where Egypt's own rates were highest.** That is the signature of a
+currency mismatch rather than a disagreement about the business: when the pound rate
+spikes, our value collapses and the market's does not.
+
+At 2018 the implied 12.83% is close to what a dollar cost of capital plus modest expected
+depreciation would give. **The market is pricing a dollar earner at something near a
+dollar hurdle; we are pricing it at Egypt's sovereign.**
+
+The rule this offends is already written. The cost of capital must be **in the cash-flow
+currency**, matched nominal-to-nominal, with a USD cross-check required in a high-inflation
+market — and country risk counted **exactly once**. A company earning dollars, charged
+Egypt's inflation and country premium on income that does not suffer either, is carrying
+that risk twice.
+
+**WHAT IS STILL MISSING IS THE SHARE.** The committed panel carries this company's revenue
+by SEGMENT — cables, contracting, other — and **no geographic or currency split**, so the
+proportion of earnings that is genuinely dollar-linked cannot be measured from what the run
+commits. That is a data gap with a name, not a modelling choice, and it is what the fix
+needs before it can be built rather than asserted. [R-FCAL-01 AMENDED]'s own lesson applies
+exactly: what a process commits decides what can ever be asked of it later.
+
 **SWDY 2022 carries a second undiagnosed thing:** its cash-flow path runs
 16,425 → 1,310 → 2,632 → 3,897 → 5,271. A first year twelve times the second is a
 discontinuity, not a forecast.
