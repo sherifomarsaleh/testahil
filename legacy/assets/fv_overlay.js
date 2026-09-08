@@ -3364,6 +3364,98 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
+   "ticker": "EMPOWER",
+   "name": "Emirates Central Cooling Systems Corporation PJSC",
+   "code": "DFM:EMPOWER",
+   "ccy": "AED",
+   "spot": 1.61,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
+   "fv_lag_days": 32,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 1.45,
+   "fv_base": 1.84,
+   "fv_full": 2.15,
+   "gap_base_pct": 14.3,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 21,
+    "sigma_h": 0.083417,
+    "mu_h": -0.006231,
+    "G": {
+     "bear": -1.25,
+     "base": 1.6,
+     "full": 3.47
+    },
+    "band": "STRETCH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0903,
+     "base": 0.0402,
+     "full": 0.0033
+    },
+    "p_touch": {
+     "bear": 0.1425,
+     "base": 0.0656,
+     "full": 0.0053
+    },
+    "required_cagr": {
+     "bear": -0.7152,
+     "base": 3.9648,
+     "full": 31.1626
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base above p95",
+    "selftest_max_dev": 0.00708
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.147731,
+    "mu_h": -0.025159,
+    "G": {
+     "bear": -0.71,
+     "base": 0.9,
+     "full": 1.96
+    },
+    "band": "IN-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.253,
+     "base": 0.1077,
+     "full": 0.0201
+    },
+    "p_touch": {
+     "bear": 0.4171,
+     "base": 0.2073,
+     "full": 0.0363
+    },
+    "required_cagr": {
+     "bear": -0.3421,
+     "base": 0.706,
+     "full": 2.1802
+    },
+    "hurdle_rf": 0.0365,
+    "beats_cash": true,
+    "asymmetry": "base inside 90% band",
+    "selftest_max_dev": 0.00463
+   },
+   "market": "AE"
+  },
+  {
    "ticker": "GBCO",
    "name": "GB Corp (Ghabbour)",
    "code": "EGX:GBCO",
@@ -4742,98 +4834,6 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00312
    },
    "market": "EG"
-  },
-  {
-   "ticker": "EMPOWER",
-   "name": "Emirates Central Cooling Systems Corporation PJSC",
-   "code": "DFM:EMPOWER",
-   "ccy": "AED",
-   "spot": 1.5,
-   "anchor_date": "2026-08-07",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 0,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.45,
-   "fv_base": 1.84,
-   "fv_full": 2.15,
-   "gap_base_pct": 22.7,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.965,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.082164,
-    "mu_h": -0.006689,
-    "G": {
-     "bear": -0.41,
-     "base": 2.49,
-     "full": 4.38
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.3387,
-     "base": 0.0108,
-     "full": 0.0013
-    },
-    "p_touch": {
-     "bear": 0.557,
-     "base": 0.0173,
-     "full": 0.0021
-    },
-    "required_cagr": {
-     "bear": -0.3342,
-     "base": 10.607,
-     "full": 74.1911
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base above p95",
-    "selftest_max_dev": 0.00474
-   },
-   "3M": {
-    "h_sessions": 63,
-    "sigma_h": 0.152292,
-    "mu_h": -0.013423,
-    "G": {
-     "bear": -0.22,
-     "base": 1.34,
-     "full": 2.36
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.4323,
-     "base": 0.0598,
-     "full": 0.0127
-    },
-    "p_touch": {
-     "bear": 0.7523,
-     "base": 0.1096,
-     "full": 0.0239
-    },
-    "required_cagr": {
-     "bear": -0.1268,
-     "base": 1.2642,
-     "full": 3.2207
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": true,
-    "asymmetry": "base inside 90% band",
-    "selftest_max_dev": 0.00201
-   },
-   "market": "AE"
   },
   {
    "ticker": "AIRARABIA",
