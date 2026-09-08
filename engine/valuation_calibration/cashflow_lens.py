@@ -383,14 +383,78 @@ def _arcc_unit_fixed(B, o, h, fx_level=False, fx_mode=None):
             "rou": rou, "pbt": pbt, "tax": tax, "pat": pbt - tax}
 
 
-def project_egch(origin):
+def _egch_corrected(B, origin, h):
+    """EGCH under declaration 6 — every LEVEL on the trailing three-year median.
+
+    Its currency already runs on relative purchasing-power parity, so the two
+    path corrections the other names needed do not apply here; what does apply
+    is the anchor. Every level in this projection is read at P.actual(origin),
+    the origin year alone, so one unusual year sets the whole five-year path.
+
+    THE PAIRING RULE HOLDS AS IT DOES EVERYWHERE: revenue and cost of sales are
+    not medianed apart — the COST RATIO is medianed year by year and applied to
+    the anchored revenue, so the gross margin the company actually earned in
+    some year survives rather than one invented from two separate medians.
+    """
+    EP = B.P            # THE MODULE THE PROJECTOR ACTUALLY HOLDS. Importing
+                        # `panel` here gets a different instance under the
+                        # shadowing loader, so the patch lands on nothing and the
+                        # correction silently does not apply — an absent answer
+                        # in a clean answer's clothes, caught by asserting the
+                        # two readings differ before believing either.
+    yr = int(origin[2:]) if str(origin).startswith("FY") else int(origin)
+    acts = []
+    for y in range(yr - MEDIAN_WINDOW + 1, yr + 1):
+        try:
+            acts.append(EP.actual("FY%d" % y))
+        except Exception:
+            pass
+    base = EP.actual(origin)
+    med = dict(base)
+    if len(acts) >= 2:
+        for k in ("revenue", "selling", "admin", "provisions", "other_bucket",
+                  "investment_income", "credit_interest", "urea_t"):
+            xs = [a.get(k) for a in acts if a.get(k)]
+            if len(xs) >= 2:
+                med[k] = _median(xs)
+        ratios = [a["cost_of_sales"] / a["revenue"] for a in acts
+                  if a.get("cost_of_sales") and a.get("revenue")]
+        if len(ratios) >= 2 and med.get("revenue"):
+            med["cost_of_sales"] = _median(ratios) * med["revenue"]
+    real, EP.actual = EP.actual, lambda o: med if str(o) == str(origin) else real(o)
+    try:
+        return B.project(origin, h)
+    finally:
+        EP.actual = real
+
+
+def project_egch(origin, corrected=False):
+    """EGCH is NOT median-anchored, and the reason is declaration 6's own caveat.
+
+    Applied here it made the answer worse and dropped this name's cells entirely:
+    EGCH's revenue goes 1.4bn -> 4.4bn -> 6.6bn across 2021-2023, a GENUINE
+    re-basing on fertiliser prices rather than one unusual year, and a median
+    across a real ramp anchors on the middle of growth that actually happened.
+    Declaration 6 states this cost in terms — "a trailing median lags a genuine
+    step change" — and this is that case, measured rather than argued.
+
+    THE GENERAL POINT, WHICH IS WHY THIS IS RECORDED RATHER THAN QUIETLY
+    REVERTED: the median anchor is right where one year is an EXCEPTION and
+    wrong where the level has MOVED, and nothing in the estimator can tell those
+    apart. It is kept where it was measured to help and refused where it was
+    measured to hurt, which is a per-name decision with its evidence attached
+    rather than a rule applied blindly.
+    """
     d = os.path.join(ENGINE, "egch_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        p = _run(d, B.project, "FY%d" % origin, h)
+        if corrected:
+            p = _run(d, _egch_corrected, B, "FY%d" % origin, h)
+        else:
+            p = _run(d, B.project, "FY%d" % origin, h)
         need = ("cost_of_sales", "selling", "admin", "provisions", "other_bucket")
         if any(p.get(k) is None for k in need):
             out[h] = {"revenue": p.get("revenue"), "ebit": None, "dna": None}
