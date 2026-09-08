@@ -30,7 +30,12 @@ def latest(pat):
     return sorted(c)[-1][1] if c else None
 
 
-DOCS = [d for d in (latest(r'.*Valuation_Study_.*\.docx$'), latest(r'.*(?:Bibliograph|Source).*\.docx$'),) if d]
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION [L-350]. A reader
+# receives three files; this list named two. prose_figures.texts_of() reads a workbook's
+# STRING cells only — a numeric cell is a model output the recalculation gate reconciles,
+# a numeral inside a label or a basis note is prose that happens to live in a spreadsheet.
+DOCS = [d for d in (latest(r'.*Valuation_Study_.*\.docx$'), latest(r'.*(?:Bibliograph|Source).*\.docx$'),
+                    latest(r'.*Valuation_Model_.*\.xlsx$'),) if d]
 
 SN = json.load(open('study_numbers.json'))
 _spot = SN['meta']['spot']

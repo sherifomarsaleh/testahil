@@ -60,7 +60,10 @@ ax.bar(len(periods), D['ttm']['gm'] * 100, color=GOLD, edgecolor=INK, lw=0.8,
 ax.bar(x2, fx, color='#CBD9D4', edgecolor=INK, lw=0.8, label='Forecast (output of the build)')
 # SOLVED by the model, not typed. The previous edition hardcoded 12.16 here, in the headline
 # and in section 1.14, and none of the three moved when the model did.
-req = D['gm_required']['level'] * 100
+# Solved from the price, so it lives outside the numbers file [R-ENF-05]; read to be
+# drawn, never computed from.
+req = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  'reverse_read.json')))['level'] * 100
 ax.axhline(req, color=RED, lw=1.4, ls='--')
 # The annotation sits BELOW its own line and to the right of the legend. Rendered, the
 # previous placement put it straight through the legend's first entry and the two were

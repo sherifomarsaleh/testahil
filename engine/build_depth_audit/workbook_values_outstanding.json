@@ -1,0 +1,9 @@
+{
+ "failing": {
+  "AMOC": "recalc.py REFUSES: it was written for the NINE-sheet workbook of 06-08-2026 and the delivered file is the SIXTEEN-sheet edition of 01-09-2026. This is L-066/L-067 on the same study a third time \u2014 a check that opens a delivered file by name moves with the re-issue. Re-pointing it is a re-issue task on a delivered study, not a fix in passing; recorded here so it is counted rather than remembered."
+ },
+ "no_check": {
+  "XPT": "no recalculation script in the study directory."
+ },
+ "note": "Studies whose delivered workbook was not reconciled against the study when this gate was adopted (05-Sep-2026). Two groups, NOT interchangeable: no_check excuses an absent instrument, failing excuses a red one, and a study moving between them goes red until the move is recorded. Allowed to fail; the lists may only ever get shorter. --prune rewrites them."
+}

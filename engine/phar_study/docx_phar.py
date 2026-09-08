@@ -7,7 +7,9 @@ plain-language sentences with the statistics inline. Experts are labelled Expert
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, '..'))
 import docx_base as B
+import range_disclosure as RD    # the sentence a range built on a handful of readings owes
 from docx.shared import Pt, Inches
 
 doc, P, H1, H2, rich, table, figure, box, bullet, caption, masthead = (
@@ -992,6 +994,18 @@ rows += [
     ['The appendix income statement prints what the model computes',
      'its attributable-profit row printed retained earnings and its finance-cost row was a '
      'first-edition artefact. Both now come from the model rows the valuation uses'],
+    ['The terminal is fed the LAST forecast year\u2019s cash flow, not a year already grown',
+     f"the terminal formula grows the free cash flow one year itself and values the result at "
+     f"the end of the last forecast year, which is where the discount factor lands it. The "
+     f"profit, the depreciation and the working capital handed to it had already been grown "
+     f"once, so the terminal capitalised a flow a year further out than the factor it was "
+     f"discounted at. Correcting it lowers the terminal by "
+     f"{pc(A['tv'] / A['terminal_record']['superseded_grown_basis']['tv'] - 1, 1)} on Frame A "
+     f"and {pc(Bf['tv'] / Bf['terminal_record']['superseded_grown_basis']['tv'] - 1, 1)} on "
+     f"Frame B, and the value per share by "
+     f"{pc(A['per_share'] / A['per_share_superseded_grown_basis'] - 1, 1)} and "
+     f"{pc(Bf['per_share'] / Bf['per_share_superseded_grown_basis'] - 1, 1)} \u2014 the larger "
+     f"share effect is gearing, not a second change"],
     ['NET EFFECT ON THE CENTRE',
      f"a single EGP 79.64 becomes a PAIR: EGP {n2(LN['centre_A'])} on Frame A "
      f"({pc(LN['centre_A'] / 79.64 - 1, 0)}) and EGP {n2(LN['centre_B'])} on Frame B "
@@ -1193,6 +1207,72 @@ table(rows, [1.9, 1.15, 0.85, 0.85, 0.85, 0.85, 0.85], size=8.4)
 caption(f'Table {tnum()} — the asset-conversion cycle, projected rather than plugged. The 268-day '
         'inventory position is a stated policy: the company holds a strategic raw-material '
         'stockpile it says covers at least eight months.')
+
+
+H2('A.4 The far forecast years as ranges, and the years that carry none')
+P('The method behind this forecast has been replayed on the company\'s own past — rebuilt '
+  'year-end by year-end under the same mechanical rules, projected forward and scored '
+  'against what the company later reported. That exercise measures how far out this method '
+  'has been, and the far forecast years are published here as the RANGE that measurement '
+  'supports rather than as points. It covers one, two and three years ahead, so the third '
+  'forecast year carries a measured range and the fourth and fifth carry NONE. No range is '
+  'invented for them: an invented one would corrupt the very error it is scored against.')
+_FY = json.load(open(os.path.join(HERE, 'far_year_ranges.json')))
+_FLINES = [('revenue', 'Revenue'), ('cogs', 'Cost of sales'),
+           ('gross_profit', 'Gross profit'), ('net_profit', 'Profit for the year'),
+           ('dna', 'Depreciation and amortisation'), ('capex', 'Capital expenditure')]
+_FCOLS = [e for e in _FY['far_years']]
+_NOBAND = 'no measured range'
+_POINTS = {'revenue': FC['revenue'], 'cogs': FC['cogs'], 'gross_profit': FC['gross_profit'],
+           'net_profit': [p + V['nci_fwd'] for p in FC['parent']],
+           'dna': FC['dna'], 'capex': FC['capex']}
+rows = [['EGP million'] + [e['year'].replace('FY', '') for e in _FCOLS]
+        + ['Basis of the range', 'Readings behind it']]
+for _k, _lab in _FLINES:
+    _cells = [_FY['far_years'][0]['lines'][_k] if _FY['far_years'][0]['band'] else None]
+    _basis = _cells[0]['basis'] if _cells[0] else _NOBAND
+    _n = str(_cells[0]['n']) if _cells[0] else _NOBAND
+    rows.append([f'{_lab} — as published']
+                + [n0(_POINTS[_k][e['index']]) for e in _FCOLS] + ['—', '—'])
+    for _side in ('low', 'high'):
+        rows.append([f'{_lab} — {_side} of the range']
+                    + [(n0(_FY['far_years'][i]['lines'][_k][_side])
+                        if e['band'] else _NOBAND) for i, e in enumerate(_FCOLS)]
+                    + [_basis, _n])
+table(rows, [2.30, 1.02, 1.02, 1.02, 0.94, 0.70], size=7.9,
+      band_rows={1, 4, 7, 10, 13, 16})
+_H3 = _FY['far_years'][0]
+_BYN = {}
+for _k, _lab in _FLINES:
+    _BYN.setdefault(_H3['lines'][_k]['n'], []).append(_lab.lower())
+
+
+def _andlist(xs):
+    return xs[0] if len(xs) == 1 else ', '.join(xs[:-1]) + ' and ' + xs[-1]
+
+
+# ONE SENTENCE PER COUNT, not one sentence quoting the smallest. Four of these lines rest
+# on three readings and two on two, and a single sentence naming the lower count would
+# under-state four of them while a single sentence naming the higher would over-state two.
+_SENT = ' '.join(RD.sentence(_n, 'the third forecast year on ' + _andlist(_BYN[_n]))
+                 for _n in sorted(_BYN, reverse=True))
+caption(f'Table {tnum()} — the third forecast year as a range, and the fourth and fifth '
+        f'stated as carrying none. The range is the point projection MULTIPLIED by how far '
+        f'the outturn came in from the projection at each replayed year-end, so a factor '
+        f'above one means the outturn came in ABOVE the projection — which is the direction '
+        f'almost every reading runs, because the method under-stated the scale of this '
+        f'company in a decade of currency moves rather than mis-stating its shape. Reading '
+        f'the multiplier the other way up would move a forecast the wrong way, and both '
+        f'values look equally ordinary on a page, which is why the direction is stated here '
+        f'rather than left to be inferred. The basis is a SPAN and is not called anything '
+        f'else: it is the widest and the narrowest of the readings behind it, not a '
+        f'percentile, because a percentile needs more readings than this record holds. '
+        f'{_SENT} The fourth and fifth forecast '
+        f'years are shown as published in Appendix A.1 and are marked here as carrying no '
+        f'measured range, because the replay covers three years ahead and no further. '
+        f'Nothing in this table changes the valuation: the fair-value range in the summary '
+        f'is struck on the point path above it, and this is the disclosure of how wide the '
+        f'method\'s own error has been around that path.')
 
 # ============ 13. APPENDIX B — PEERS, RISK REGISTER, RESEARCH RECORD ===========
 H1('Appendix B — peers, risks and the research record')

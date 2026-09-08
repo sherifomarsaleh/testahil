@@ -6467,6 +6467,35 @@
   "shares_mn": 2060.6538,
   "per_share": 65.16331605181323
  },
+ "forecast_anchor": {
+  "rate_name": "group gross margin",
+  "latest_reviewed_period": "H1 2026, six months to 30 June, reviewed",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.3226384472708002,
+  "first_forecast_rate": 0.316306164450336,
+  "forecast_path": [
+   0.316306164450336,
+   0.3112046390745214,
+   0.307697821366553,
+   0.30541774458623433,
+   0.3040261360444373,
+   0.3032755472384493,
+   0.3029935587615402,
+   0.30306005466841585,
+   0.3033900226275268,
+   0.30392205071916634
+  ],
+  "note": "No margin in this model is an input. Each cost line is a disclosed ratio of its own segment's revenue taken from the reviewed half just filed, so the three segment rates are held at their 30-June-2026 actuals for the whole explicit window and none of them drifts: development 26.58%, hospitality 45.37%, other recurring 31.91%. The group rate is a revenue-weighted mean of those three constants, so every movement in it is MIX and nothing else. It opens at 31.63% against the reviewed half's 32.26%, 1.96% relative below it, because development \u2014 the lowest-margin leg \u2014 is 61.3% of the first forecast year's revenue against 56.2% of the reviewed half's. The filed group record is FY2023 30.38%, FY2024 35.86% as first reported and 32.81% restated, FY2025 33.37%, and the reviewed H1 2026 32.26%; the forecast opens below all of them but FY2023. The path recorded here is the slower-conversion reading of the crux, the steeper of the two this study publishes and never averages: it falls to 30.30% in 2032, 4.21% relative below its own opening year. The faster reading falls only to 31.48%, 0.49% relative below its own. Both movements are the same mix effect \u2014 handovers grow faster than the two recurring legs, so the lowest-margin business takes share. Neither the opening year nor either path reaches the materiality line, so no mechanism is claimed; the steeper reading sits inside it rather than clear of it, and this record says so rather than reporting a pass."
+ },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "FULL",
+  "sourceable_fiscal_years": 16,
+  "earliest_sourceable": "FY2009",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"FULL run. The panel holds 16 sourceable fiscal years \u2014 FY2009 and FY2011-FY2025\". The run built origins 2015-2024 on that archive",
+  "status": "run",
+  "note": "The fundamental walk-forward HAS been run on this name (engine/tmgh_walkforward/, 01-09-2026): 10 origins, 2015-2024, 466 scored cells on the as-known macro setting. Its adopted list is empty \u2014 every candidate is a watch flag."
+ },
  "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
  "fair_value_range": {
   "low": 63.695974064510004,
@@ -6673,8 +6702,8 @@
      "gross_profit_low": 22599.86106040905,
      "gross_profit_high": 64593.24437903483,
      "gross_profit_band_n": 7,
-     "net_profit_low": 13837.127236604716,
-     "net_profit_high": 106316.86781907182,
+     "net_profit_low": 15109.575435833955,
+     "net_profit_high": 116855.27362088315,
      "net_profit_band_n": 7
     },
     {
@@ -6735,8 +6764,8 @@
      "gross_profit_low": 29084.463182602565,
      "gross_profit_high": 102409.15026981909,
      "gross_profit_band_n": 6,
-     "net_profit_low": 21332.57115489621,
-     "net_profit_high": 183292.89979361556,
+     "net_profit_low": 23149.809136710082,
+     "net_profit_high": 217644.73802303174,
      "net_profit_band_n": 6
     },
     {
@@ -6797,8 +6826,8 @@
      "gross_profit_low": 23666.28994319094,
      "gross_profit_high": 151943.2285908685,
      "gross_profit_band_n": 5,
-     "net_profit_low": 15980.12044612317,
-     "net_profit_high": 269175.5221564032,
+     "net_profit_low": 16523.57029221943,
+     "net_profit_high": 320658.31027342705,
      "net_profit_band_n": 5
     }
    ],
@@ -7502,8 +7531,8 @@
      "gross_profit_low": 27144.88588786849,
      "gross_profit_high": 77583.49677944295,
      "gross_profit_band_n": 7,
-     "net_profit_low": 14098.923222745156,
-     "net_profit_high": 108328.36404788631,
+     "net_profit_low": 15395.445915576549,
+     "net_profit_high": 119066.15461302735,
      "net_profit_band_n": 7
     },
     {
@@ -7564,8 +7593,8 @@
      "gross_profit_low": 36246.40527842542,
      "gross_profit_high": 127627.02689728224,
      "gross_profit_band_n": 6,
-     "net_profit_low": 19726.523188937863,
-     "net_profit_high": 169493.47605089535,
+     "net_profit_low": 21406.948250116777,
+     "net_profit_high": 201259.09532364245,
      "net_profit_band_n": 6
     },
     {
@@ -7626,8 +7655,8 @@
      "gross_profit_low": 30002.67017910653,
      "gross_profit_high": 192624.3016671909,
      "gross_profit_band_n": 5,
-     "net_profit_low": 13140.641112548361,
-     "net_profit_high": 221346.19979026666,
+     "net_profit_low": 13587.526316843117,
+     "net_profit_high": 263681.1023587454,
      "net_profit_band_n": 5
     }
    ],
@@ -8646,17 +8675,17 @@
      "widest_high": 46979.043295389216
     },
     "net_profit": {
-     "raw": 24837.39604139699,
+     "raw": 21285.8568469352,
      "corrected": null,
-     "central": 24837.39604139699,
+     "central": 21285.8568469352,
      "correction_applied_log": 0.0,
      "correction_basis": "expanding window at the last origin, half strength",
      "n_observations": 8,
-     "median_of_band": 15253.28538009332,
-     "low": 10711.309242897858,
-     "high": 18519.600322054524,
-     "widest_low": 10310.546571334186,
-     "widest_high": 33926.83709628938
+     "median_of_band": 15343.799393518702,
+     "low": 10153.04118208277,
+     "high": 17889.374095145944,
+     "widest_low": 9355.671557325872,
+     "widest_high": 30915.92001228635
     }
    },
    "2027": {
@@ -8726,17 +8755,17 @@
      "widest_high": 105493.4261315081
     },
     "net_profit": {
-     "raw": 43518.32944690714,
+     "raw": 38572.93243643371,
      "corrected": null,
-     "central": 43518.32944690714,
+     "central": 38572.93243643371,
      "correction_applied_log": 0.0,
      "correction_basis": "expanding window at the last origin, half strength",
      "n_observations": 8,
-     "median_of_band": 31536.876381557082,
-     "low": 15356.269402654749,
-     "high": 48160.13834528295,
-     "widest_low": 11269.040694898336,
-     "widest_high": 107349.47455919685
+     "median_of_band": 31244.774248482277,
+     "low": 14956.049827408278,
+     "high": 44549.678140729426,
+     "widest_low": 10491.846253824611,
+     "widest_high": 105610.40666191588
     }
    },
    "2028": {
@@ -8806,17 +8835,17 @@
      "widest_high": 202966.75440237735
     },
     "net_profit": {
-     "raw": 73094.50874142302,
+     "raw": 66397.43453175681,
      "corrected": null,
-     "central": 73094.50874142302,
+     "central": 66397.43453175681,
      "correction_applied_log": 0.0,
      "correction_basis": "expanding window at the last origin, half strength",
      "n_observations": 7,
-     "median_of_band": 63840.190400410516,
-     "low": 24598.662275532417,
-     "high": 189002.57842215852,
-     "widest_low": 15237.885653110703,
-     "widest_high": 192426.56672941957
+     "median_of_band": 64190.51181623535,
+     "low": 24399.693142571545,
+     "high": 188703.70187098603,
+     "widest_low": 14450.22122185693,
+     "widest_high": 194159.90199843506
     }
    },
    "2029": {
@@ -8886,17 +8915,17 @@
      "widest_high": 395697.7600787613
     },
     "net_profit": {
-     "raw": 121324.96557836348,
+     "raw": 112426.96981616112,
      "corrected": null,
-     "central": 121324.96557836348,
+     "central": 112426.96981616112,
      "correction_applied_log": 0.0,
      "correction_basis": "expanding window at the last origin, half strength",
      "n_observations": 6,
-     "median_of_band": 113961.0660631984,
-     "low": 46834.881006324395,
-     "high": 402412.8685101246,
-     "widest_low": 23656.137776361757,
-     "widest_high": 402412.8685101246
+     "median_of_band": 105603.14007449127,
+     "low": 47097.07781563344,
+     "high": 442786.85419393535,
+     "widest_low": 22768.072679689118,
+     "widest_high": 442786.85419393535
     }
    },
    "2030": {
@@ -8966,17 +8995,17 @@
      "widest_high": 798651.5795098795
     },
     "net_profit": {
-     "raw": 201878.62071107407,
+     "raw": 190215.79958768998,
      "corrected": null,
-     "central": 201878.62071107407,
+     "central": 190215.79958768998,
      "correction_applied_log": 0.0,
      "correction_basis": "expanding window at the last origin, half strength",
      "n_observations": 5,
-     "median_of_band": 141528.06776334147,
-     "low": 44134.0040823489,
-     "high": 743410.766756841,
-     "widest_low": 44134.0040823489,
-     "widest_high": 743410.766756841
+     "median_of_band": 133351.78573581378,
+     "low": 42998.51263409938,
+     "high": 834434.0939447746,
+     "widest_low": 42998.51263409938,
+     "widest_high": 834434.0939447746
     }
    }
   },
@@ -9136,18 +9165,18 @@
     }
    },
    "da": {
-    "bias": -0.2531,
-    "mae": 0.4352,
+    "bias": -0.3692,
+    "mae": 0.5151,
     "n": 30,
     "robust": true,
     "eras": {
      "E2 post-float": {
       "n": 10,
-      "bias": -0.3589
+      "bias": -0.43
      },
      "E3 devaluation": {
       "n": 20,
-      "bias": -0.2002
+      "bias": -0.3388
      }
     }
    },
@@ -9168,18 +9197,18 @@
     }
    },
    "net_profit": {
-    "bias": 0.2638,
-    "mae": 0.6772,
+    "bias": 0.1876,
+    "mae": 0.6577,
     "n": 34,
     "robust": false,
     "eras": {
      "E2 post-float": {
       "n": 15,
-      "bias": 0.5775
+      "bias": 0.5439
      },
      "E3 devaluation": {
       "n": 19,
-      "bias": 0.0162
+      "bias": -0.0937
      }
     }
    },
@@ -9232,18 +9261,18 @@
     }
    },
    "ppe": {
-    "bias": -0.4586,
-    "mae": 0.8082,
+    "bias": -0.6427,
+    "mae": 0.8615,
     "n": 30,
-    "robust": false,
+    "robust": true,
     "eras": {
      "E2 post-float": {
       "n": 10,
-      "bias": 0.0355
+      "bias": -0.1028
      },
      "E3 devaluation": {
       "n": 20,
-      "bias": -0.7056
+      "bias": -0.9126
      }
     }
    }

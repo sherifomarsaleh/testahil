@@ -469,10 +469,30 @@ def open_items() -> None:
     print("  hand-written, and shown as CLAIMS. Where the repository disagrees, the")
     print("  repository is above and this is the drift.\n")
     print("  updated           %s" % st.get("updated", "(unstamped)"))
-    cur = st.get("current") or {}
-    print("  claims            phase %s — %s / %s"
-          % (st.get("phase", "?"), cur.get("workstream", "?"), cur.get("status", "?")))
+    # THE READER ASSUMED A SHAPE THE FILE HAS NOT CARRIED FOR SOME TIME, and it
+    # crashed here — AFTER everything above had printed, which is why nobody saw
+    # it: `current` is a prose paragraph and `next` is a prose list in one string,
+    # so `cur.get(...)` raised AttributeError and, had it not, `for item in nxt`
+    # would have iterated a STRING CHARACTER BY CHARACTER and printed one bullet
+    # per letter. Both are the same defect — a reader modelling the file it reads
+    # rather than reading it — and it is the [R-ENF-03] species: a checker that
+    # models the parser is checking a different file from the one that ships.
+    # Fixed by reading BOTH shapes and saying which was found, so a later change of
+    # shape is visible rather than fatal.
+    cur = st.get("current")
+    if isinstance(cur, dict):
+        print("  claims            phase %s — %s / %s"
+              % (st.get("phase", "?"), cur.get("workstream", "?"),
+                 cur.get("status", "?")))
+    elif isinstance(cur, str) and cur.strip():
+        print("  claims            phase %s" % st.get("phase", "?"))
+        print("    %s" % _wrap(cur, 76))
+    else:
+        print("  claims            phase %s — the state file states no current item"
+              % st.get("phase", "?"))
     nxt = st.get("next") or []
+    if isinstance(nxt, str):
+        nxt = [nxt] if nxt.strip() else []
     if not nxt:
         print("\n  nothing on the next list")
     for item in nxt:

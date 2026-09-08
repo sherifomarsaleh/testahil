@@ -1,49 +1,65 @@
 {
  "ticker": "ADNOCLS",
- "as_of": "2026-08-09",
- "published_central": 5.605378969448954,
- "published_spot": 6.16,
+ "as_of": "2026-09-07",
+ "published_central": 5.338494934992969,
+ "published_spot": 6.8,
  "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices \u2014 which is how a lean survives an audit of its steps. Each is recorded with BOTH framings' values, the side adopted and why, and the binomial sign test is printed. A study landing them all one way is FLAGGED, never failed: a company can genuinely deserve a consistent read, and a gate that failed on it would push studies to resolve judgements inconsistently to stay green.",
  "both_framings_share_a_bridge": "Every alternative below is computed by this study's own dcf() \u2014 the same function that produces the published figure \u2014 through the same bridge, so the difference between them measures the CHOICE and not the construction.",
  "judgements": [
   {
+   "name": "the gas fleet's contracted vessel-year path",
+   "adopted": "the composition the April 2026 contract table gives, whose components this study states and which foots",
+   "alternative": "the same table as printed in the first-half 2026 deck, where the four liquefied-natural-gas carriers' firm period ends in June 2026 and the consolidated path falls to 10.0, 13.0, 17.5, 20.75 and 20.0 vessel-years",
+   "value_adopted": 5.338494934992969,
+   "value_alternative": 4.5613909296036885,
+   "why": "WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS LARGE, so it is priced rather than decided. Its own column heading reads \"No. of Vessels Contracted\" rather than vessels in service, and a bullet on the same slide says five Das carriers were progressively moved to long-term contracts with the parent from June 2026 \u2014 so whether those four ships stop EARNING or merely stop being counted as contracted is not decidable from the page. The total row foots with both rows populated in the second quarter, which is consistent with two separate sets of ships and equally with one set counted twice. SIGCM clause 8: the coarser reading is kept, the finer one is published, and neither is invented. SETTLED ON EVIDENCE OUTSIDE THE PAGE, 7 September 2026, AND THE EVIDENCE WAS ALREADY IN THIS DIRECTORY. The first-quarter 2026 earnings call transcript this study holds describes THAT SAME CONTRACT MATRIX in management's own words: \"We are at a genuine inflection point for our gas carrier fleet. You can see the contract matrix here. Starting this month, May 2026, 5 Das LNG carriers are progressively commencing long-term contracts with ADNOC Gas, 4 on 15-year contracts and 1 on a 7-year contract ... These are vessels that until now have been earning at spot rates.\" The dates on that matrix are contract COMMENCEMENTS, and the alternative requires the company to be presenting a fleet-wide contraction of contracted vessel-years as an inflection point upward on the slide it is describing. THE ADOPTED SIDE IS THE EVIDENCED ONE AND THE ANSWER DOES NOT MOVE \u2014 it was already the adopted side. The alternative is RETAINED here rather than deleted, for two reasons: it remains a legitimate downside framing of a path the company has not disclosed vessel by vessel, and dropping a judgement from this list would shrink the population the sign test [R-ENF-05] is computed over, which is not a thing to do to a test of one's own leaning."
+  },
+  {
+   "name": "the earnings leverage of the tanker unit on its own fleet's rate",
+   "adopted": "solved from two disclosed periods together \u2014 the audited 2025 year and the reviewed six months to 30 June 2026 \u2014 with the reviewed six months to 30 June 2025 held out",
+   "alternative": "exactly one, which is what the delivered edition assumed by setting earnings equal to the owned fleet's charter-equivalent revenue less a single running cost",
+   "value_adopted": 5.338494934992969,
+   "value_alternative": 4.524403960906954,
+   "why": "THE ALTERNATIVE IS NOT A VIEW, IT IS A CONSTRUCTION THAT THE COMPANY'S OWN HALF FALSIFIES: at the published rates the 52 owned tankers earned charter-equivalent revenue of USD 805.8 million in the six months to 30 June 2026 and the unit reported earnings of USD 994.2 million, more than the ships it owns can earn before any cost at all. A leverage of one cannot reproduce that. It is priced here because it is the construction this study shipped three weeks ago and a reader is entitled to see what it was worth."
+  },
+  {
    "name": "how the market is measured for the beta regression",
    "adopted": "the published index of the exchange this company is listed on",
    "alternative": "an equal-weight composite of the same exchange's names",
-   "value_adopted": 5.605378969448954,
-   "value_alternative": 8.018135758598335,
+   "value_adopted": 5.338494934992969,
+   "value_alternative": 7.373422039059579,
    "why": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
   },
   {
    "name": "the charter-rate path through the forecast",
    "adopted": "reversion toward the mid-cycle rate",
    "alternative": "today's strength sustained, the company's own guidance path",
-   "value_adopted": 5.605378969448954,
-   "value_alternative": 6.967913574676671,
+   "value_adopted": 5.338494934992969,
+   "value_alternative": 7.461602071020652,
    "why": "an independent one-year time charter fixed in early 2026 priced a very large crude carrier well below the spot rate of the moment, and a crude tanker order book near a quarter of the trading fleet is the supply reason why. A forward market that will not pay spot for a year of time is saying it does not expect spot to hold. GUIDANCE IS SCORED AND NEVER CONSUMED, so the sustained path is published as the alternative rather than adopted."
   },
   {
    "name": "how the perpetual capital securities are deducted",
    "adopted": "at carrying value",
    "alternative": "at the present value of their perpetual coupon",
-   "value_adopted": 5.605378969448954,
-   "value_alternative": 6.022436875325126,
+   "value_adopted": 5.338494934992969,
+   "value_alternative": 5.765923402428372,
    "why": "the securities rank ahead of the ordinary shares whichever way they are classified, so they are deducted in both framings and only the AMOUNT is contested. Carrying value is what the balance sheet states; the present value of the coupon is what the claim is worth at the terminal cost of capital. Both are published and the deduction is weighted in the cost of capital in both."
   },
   {
    "name": "the tax relief on shipping earnings",
    "adopted": "the reliefs as currently legislated and disclosed",
    "alternative": "the whole group taxed at the 9 per cent statutory rate",
-   "value_adopted": 5.605378969448954,
-   "value_alternative": 5.114650357299365,
+   "value_adopted": 5.338494934992969,
+   "value_alternative": 4.8359232702238835,
    "why": "most of the shipping income is relieved under the regime as it stands. The alternative is the downside case for a global minimum tax reaching those earnings, and it is a scenario about the law rather than about the business \u2014 which is why the sensitivity centred on it does NOT reproduce the base case and says so in its own docstring."
   },
   {
    "name": "the day-rate anchor the reversion path converges to",
    "adopted": "the mid-cycle average as computed",
    "alternative": "that anchor 10 per cent lower",
-   "value_adopted": 5.605378969448954,
-   "value_alternative": 5.151200767706382,
+   "value_adopted": 5.338494934992969,
+   "value_alternative": 4.630792556317077,
    "why": "the anchor is the single quantity the whole reversion path hangs on, and a ten per cent move in it is well inside the span the disclosed quarterly rates have printed."
   }
  ]

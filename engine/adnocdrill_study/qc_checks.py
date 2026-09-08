@@ -12,6 +12,9 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 STUDY = os.path.join(HERE, 'ADNOCDRILL_Valuation_Study_09-08-2026.docx')
 BIB = os.path.join(HERE, 'ADNOCDRILL_Bibliography_09-08-2026.docx')
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK EXCLUDED IT [L-350]. A
+# reader receives three files and this scrub named two, so the third was scanned by nothing.
+XLSX = os.path.join(HERE, 'ADNOCDRILL_Valuation_Model_09082026.xlsx')
 TEXT_WIDTH = 7.0            # 8.5in page less 0.75in margins each side
 BIB_WIDTH = 7.0             # bibliography uses 0.7in margins
 
@@ -33,6 +36,19 @@ BANNED = [
 CASE_BANNED = [r'\bPARITY\b', r'\bBOUNDARY\b', r'\bFAIL\b(?! )']
 
 def doc_text(path):
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        # a workbook's STRING cells are the prose a reader sees; formulas and numbers are
+        # the recalculation gate's job (modelled on stc_study/scrub.py)
+        import openpyxl
+        wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+        parts = []
+        for ws_ in wb.worksheets:
+            for row in ws_.iter_rows(values_only=True):
+                for v in row:
+                    if isinstance(v, str) and not v.startswith('='):
+                        parts.append(v)
+        wb.close()
+        return None, '\n'.join(parts)
     d = Document(path)
     parts = [p.text for p in d.paragraphs]
     for t in d.tables:
@@ -46,7 +62,7 @@ fails = []
 # ---- (k)/(m) procedure-reference scrub --------------------------------------
 print('=' * 74)
 print('(k)+(m)  internal-procedure vocabulary scrub')
-for label, path in [('study', STUDY), ('bibliography', BIB)]:
+for label, path in [('study', STUDY), ('bibliography', BIB), ('workbook', XLSX)]:
     _, txt = doc_text(path)
     low = txt.lower()
     hits = []

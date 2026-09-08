@@ -27,12 +27,24 @@ BANNED = [
     r'\bregister\b(?!ed|ing|s\b)', r'\bQC gate\b', r'\bhard gate\b', r'\bgate\b',
     r'\bSIGCM\b', r'\bmc_v3\b', r'\bmarket_profiles\b', r'\bfitted_configs\b',
     r'\bstudy_numbers\b', r'\bwidth_cal\b', r'\bLONO\b', r'\bwalk-forward\b',
-    r'\bPARITY\b', r'\bVERDICT\b', r'\bPASS\b', r'\bFAIL\b', r'\bBOUNDARY\b',
+    r'\bVERDICT\b', r'\bPASS\b', r'\bFAIL\b', r'\bBOUNDARY\b',
     r'\bmodel study\b', r'\bTestahil Standing\b', r'\bprotocol\b', r'\bdriver ledger\b',
     r'\bcalibration ledger\b', r'\bmateriality gate\b', r'\bpanel\b(?!ed)',
     r'\bCRPS\b', r'\bPIT\b', r'\bnu=', r'\bblock bootstrap\b',
 ]
 ALLOW = {'expert panel', 'panel of', 'the panel does'}   # 'panel' in its ordinary sense
+
+# MATCHED IN CAPS ONLY, and the reason is the house's own: lowercase "parity" is an
+# ORDINARY WORD here — a currency peg, an export price basis, and in this study the
+# phrase "relative purchasing-power PARITY", which is how the macro path derives its
+# currency. The retired skill verdict is the thing this token exists to keep off a
+# delivered page, and that only ever appears in capitals. Matched case-insensitively
+# with the rest of the list, it fired on the bibliography's own description of a
+# sanctioned derivation and had done so on every run — a check that cries wolf is one
+# everyone learns to ignore, so it is RE-POINTED rather than deleted or excused by an
+# ALLOW phrase [R-COC-01]. An ALLOW entry would have hidden the next real occurrence in
+# the same sentence; case does not.
+BANNED_CASE_SENSITIVE = [r'\bPARITY\b']
 
 
 def doc_text(path):
@@ -50,8 +62,9 @@ for name, path in (('study', STUDY), ('bibliography', BIB)):
     txt = doc_text(path)
     low = txt.lower()
     hits = []
-    for pat in BANNED:
-        for m in re.finditer(pat, txt, re.IGNORECASE):
+    for pat, flags in ([(b, re.IGNORECASE) for b in BANNED]
+                       + [(b, 0) for b in BANNED_CASE_SENSITIVE]):
+        for m in re.finditer(pat, txt, flags):
             ctx = txt[max(0, m.start() - 45):m.end() + 45].replace('\n', ' ')
             if any(a in ctx.lower() for a in ALLOW):
                 continue
@@ -68,8 +81,9 @@ for ws in wb.worksheets:
     for row in ws.iter_rows():
         for c in row:
             if isinstance(c.value, str) and not c.value.startswith('='):
-                for pat in BANNED:
-                    m = re.search(pat, c.value, re.IGNORECASE)
+                for pat, flags in ([(b, re.IGNORECASE) for b in BANNED]
+                                   + [(b, 0) for b in BANNED_CASE_SENSITIVE]):
+                    m = re.search(pat, c.value, flags)
                     if m and not any(a in c.value.lower() for a in ALLOW):
                         xl_hits.append((ws.title, c.coordinate, m.group(0), c.value[:90]))
 print(f'external-reader scrub, workbook: {len(xl_hits)} hit(s)')

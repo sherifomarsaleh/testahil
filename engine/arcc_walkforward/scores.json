@@ -5,6 +5,7 @@
    "mae": 0.22736696749628307,
    "over": 0.8,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "vol_export": {
@@ -12,6 +13,7 @@
    "mae": 0.799525517433201,
    "over": 0.2,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "vol_total": {
@@ -19,6 +21,7 @@
    "mae": 0.15128568944359666,
    "over": 0.44,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "price_local": {
@@ -26,6 +29,7 @@
    "mae": 0.42614967641958146,
    "over": 0.28,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "price_export": {
@@ -33,6 +37,7 @@
    "mae": 0.4741766989207391,
    "over": 0.24,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "services": {
@@ -40,6 +45,7 @@
    "mae": 0.6735613913996628,
    "over": 0.32,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "raw_per_t": {
@@ -47,6 +53,7 @@
    "mae": 0.273488403127495,
    "over": 0.32,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "transport_per_t": {
@@ -54,6 +61,7 @@
    "mae": 0.739609612276639,
    "over": 0.24,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "overhead_per_t": {
@@ -61,6 +69,7 @@
    "mae": 0.22110696705897592,
    "over": 0.36,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "raw": {
@@ -68,6 +77,7 @@
    "mae": 0.39170233844070695,
    "over": 0.32,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "transport": {
@@ -75,6 +85,7 @@
    "mae": 0.7907961856187211,
    "over": 0.24,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "overhead": {
@@ -82,6 +93,7 @@
    "mae": 0.2722520059064844,
    "over": 0.32,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "mfg_dep": {
@@ -89,6 +101,7 @@
    "mae": 0.06414057505832232,
    "over": 0.16,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "amort": {
@@ -96,6 +109,7 @@
    "mae": 0.26420167313906906,
    "over": 0.76,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "revenue": {
@@ -103,6 +117,7 @@
    "mae": 0.4825562754529754,
    "over": 0.32,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "cogs": {
@@ -110,6 +125,7 @@
    "mae": 0.3793907078387297,
    "over": 0.32,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "gross_profit": {
@@ -117,6 +133,7 @@
    "mae": 1.265434197486649,
    "over": 0.4,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "ga": {
@@ -124,6 +141,7 @@
    "mae": 0.46674899730568065,
    "over": 0.36,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "provisions": {
@@ -131,6 +149,7 @@
    "mae": 1.665911679580303,
    "over": 0.2,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "interest_income": {
@@ -138,6 +157,7 @@
    "mae": 2.1767184404467694,
    "over": 0.24,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": true
   },
   "other_income": {
@@ -145,6 +165,7 @@
    "mae": 1.2778051859134805,
    "over": 0.28,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "finance_costs": {
@@ -152,6 +173,7 @@
    "mae": 0.3662650579108299,
    "over": 0.72,
    "n": 25,
+   "n_cells": 25,
    "robust_sign": false
   },
   "pbt": {
@@ -159,6 +181,7 @@
    "mae": 1.380552425769029,
    "over": 0.45,
    "n": 20,
+   "n_cells": 25,
    "robust_sign": false
   },
   "tax": {
@@ -166,6 +189,7 @@
    "mae": 1.357258352329024,
    "over": 0.4,
    "n": 20,
+   "n_cells": 25,
    "robust_sign": false
   },
   "pat": {
@@ -173,6 +197,7 @@
    "mae": 1.393462234571435,
    "over": 0.45,
    "n": 20,
+   "n_cells": 25,
    "robust_sign": false
   },
   "majority": {
@@ -180,6 +205,7 @@
    "mae": 1.3946705295055861,
    "over": 0.45,
    "n": 20,
+   "n_cells": 25,
    "robust_sign": false
   }
  },
@@ -1679,157 +1705,183 @@
     "n": 25,
     "bias": 0.19342151640041108,
     "mae": 0.22736696749628307,
-    "share_over": 0.8
+    "share_over": 0.8,
+    "n_cells": 25
    },
    "vol_export": {
     "n": 25,
     "bias": -0.6665771729231174,
     "mae": 0.799525517433201,
-    "share_over": 0.2
+    "share_over": 0.2,
+    "n_cells": 25
    },
    "vol_total": {
     "n": 25,
     "bias": -0.018583658215141005,
     "mae": 0.15128568944359666,
-    "share_over": 0.44
+    "share_over": 0.44,
+    "n_cells": 25
    },
    "price_local": {
     "n": 25,
     "bias": -0.2965663144475495,
     "mae": 0.42614967641958146,
-    "share_over": 0.28
+    "share_over": 0.28,
+    "n_cells": 25
    },
    "price_export": {
     "n": 25,
     "bias": -0.4111725953974751,
     "mae": 0.4741766989207391,
-    "share_over": 0.24
+    "share_over": 0.24,
+    "n_cells": 25
    },
    "services": {
     "n": 25,
     "bias": -0.5490247582291564,
     "mae": 0.6735613913996628,
-    "share_over": 0.32
+    "share_over": 0.32,
+    "n_cells": 25
    },
    "raw_per_t": {
     "n": 25,
     "bias": -0.21359625970492602,
     "mae": 0.273488403127495,
-    "share_over": 0.32
+    "share_over": 0.32,
+    "n_cells": 25
    },
    "transport_per_t": {
     "n": 25,
     "bias": -0.6747143878572309,
     "mae": 0.739609612276639,
-    "share_over": 0.24
+    "share_over": 0.24,
+    "n_cells": 25
    },
    "overhead_per_t": {
     "n": 25,
     "bias": -0.14694411538314214,
     "mae": 0.22110696705897592,
-    "share_over": 0.36
+    "share_over": 0.36,
+    "n_cells": 25
    },
    "raw": {
     "n": 25,
     "bias": -0.232179917920067,
     "mae": 0.39170233844070695,
-    "share_over": 0.32
+    "share_over": 0.32,
+    "n_cells": 25
    },
    "transport": {
     "n": 25,
     "bias": -0.6932980460723718,
     "mae": 0.7907961856187211,
-    "share_over": 0.24
+    "share_over": 0.24,
+    "n_cells": 25
    },
    "overhead": {
     "n": 25,
     "bias": -0.1655277735982831,
     "mae": 0.2722520059064844,
-    "share_over": 0.32
+    "share_over": 0.32,
+    "n_cells": 25
    },
    "mfg_dep": {
     "n": 25,
     "bias": -0.058715368464575805,
     "mae": 0.06414057505832232,
-    "share_over": 0.16
+    "share_over": 0.16,
+    "n_cells": 25
    },
    "amort": {
     "n": 25,
     "bias": 0.26420167313906906,
     "mae": 0.26420167313906906,
-    "share_over": 0.76
+    "share_over": 0.76,
+    "n_cells": 25
    },
    "revenue": {
     "n": 25,
     "bias": -0.27753167118778105,
     "mae": 0.4825562754529754,
-    "share_over": 0.32
+    "share_over": 0.32,
+    "n_cells": 25
    },
    "cogs": {
     "n": 25,
     "bias": -0.2452051371801827,
     "mae": 0.3793907078387297,
-    "share_over": 0.32
+    "share_over": 0.32,
+    "n_cells": 25
    },
    "gross_profit": {
     "n": 25,
     "bias": -0.3122038822064482,
     "mae": 1.265434197486649,
-    "share_over": 0.4
+    "share_over": 0.4,
+    "n_cells": 25
    },
    "ga": {
     "n": 25,
     "bias": -0.23896575889208266,
     "mae": 0.46674899730568065,
-    "share_over": 0.36
+    "share_over": 0.36,
+    "n_cells": 25
    },
    "provisions": {
     "n": 25,
     "bias": -1.409129321475365,
     "mae": 1.665911679580303,
-    "share_over": 0.2
+    "share_over": 0.2,
+    "n_cells": 25
    },
    "interest_income": {
     "n": 25,
     "bias": -1.6412165192255261,
     "mae": 2.1767184404467694,
-    "share_over": 0.24
+    "share_over": 0.24,
+    "n_cells": 25
    },
    "other_income": {
     "n": 25,
     "bias": -0.694624776973182,
     "mae": 1.2778051859134805,
-    "share_over": 0.28
+    "share_over": 0.28,
+    "n_cells": 25
    },
    "finance_costs": {
     "n": 25,
     "bias": 0.2393623876421863,
     "mae": 0.3662650579108299,
-    "share_over": 0.72
+    "share_over": 0.72,
+    "n_cells": 25
    },
    "pbt": {
     "n": 20,
     "bias": -0.45688110454586106,
     "mae": 1.380552425769029,
-    "share_over": 0.45
+    "share_over": 0.45,
+    "n_cells": 25
    },
    "tax": {
     "n": 20,
     "bias": -0.5967392154270998,
     "mae": 1.357258352329024,
-    "share_over": 0.4
+    "share_over": 0.4,
+    "n_cells": 25
    },
    "pat": {
     "n": 20,
     "bias": -0.4048708012057943,
     "mae": 1.393462234571435,
-    "share_over": 0.45
+    "share_over": 0.45,
+    "n_cells": 25
    },
    "majority": {
     "n": 20,
     "bias": -0.40384635198341545,
     "mae": 1.3946705295055861,
-    "share_over": 0.45
+    "share_over": 0.45,
+    "n_cells": 25
    }
   },
   "by_horizon": {

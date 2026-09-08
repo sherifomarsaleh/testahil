@@ -371,7 +371,7 @@ def assert_beta_provenance(rec: dict, tier2_fallback_documented: bool = False) -
 # study built to an older one. Bump this ONLY when a change would alter a
 # delivered number or a required artefact — not for prose.
 # ---------------------------------------------------------------------------
-STANDARD_VERSION = "2026.09.01"
+STANDARD_VERSION = "2026.09.07"
 STANDARD_VERSION_NOTE = (
     "v2 cost of capital (rf normalised by the sovereign's own default spread); beta via "
     "beta_regression.own_stock_beta() against the registered index of the listing exchange, "
@@ -379,7 +379,11 @@ STANDARD_VERSION_NOTE = (
     "level and attested by assert_ground_up() on a driver record; margins as outputs; "
     "terminal growth reconciled; the three gates called in the study's own code; and "
     "[R-GAP-01] a dated GAP_REVIEW covering all eight headings wherever the central fair "
-    "value sits more than 10% below the latest known market price."
+    "value sits more than 10% below the latest known market price; "
+    "[R-ASSET-01] an asset_base_record whose vintage is at least as new as the study's "
+    "own information set, on every study whose class carries an asset-based lens; and "
+    "[R-COC-02] a cost-of-capital record declaring the construction its terminal cost of "
+    "equity reproduces under (same_beta or relevered, the relevering tax rate STATED)."
 )
 # Bumped 01-Sep-2026 for [R-GAP-01]. This clears the "prose only" bar deliberately: the
 # rule adds a REQUIRED ARTEFACT — a study whose central sits more than 10% below the
@@ -387,6 +391,18 @@ STANDARD_VERSION_NOTE = (
 # version stamp is that a study built before that requirement is countable rather than
 # silently assumed current. On adoption day four delivered studies were breaching with no
 # review; see engine/build_depth_audit/gap_outstanding.json.
+#
+# Bumped 07-09-2026 for [R-ASSET-01] and [R-COC-02], and for those two ONLY. Both add a
+# REQUIRED ARTEFACT to a study: an asset_base_record carrying the vintage of the land,
+# fleet or capacity the value rests on, and a declared ke_terminal_construction without
+# which two right answers cannot be told apart. The four other rules adopted the same day
+# do NOT bump it and saying so is the point, since a version justified by the wrong rule
+# is worse than none: [R-GAP-03] widens the POPULATION an existing review requirement is
+# read over, [R-REPAIR-01] and [R-PROOF-01] govern the run rather than the study, and
+# [R-ENF-08] changes the granularity of an EXEMPTION. No delivered number moves on this
+# bump; what moves is that a study built before today is countable rather than assumed
+# current [R-STD-01]. See engine/build_depth_audit/asset_base_outstanding.json and
+# ke_outstanding.json for what was outstanding on the day.
 
 
 # ---------------------------------------------------------------------------
@@ -1018,6 +1034,26 @@ LENS_REGISTRY = {
     # completion timing, so normalising them normalises noise.
     "diversified industrial with a contracting arm":
         ("dcf", ("ev_ebitda_own_history", "relative_multiple", "sotp", "book_value")),
+    # THE PRIMARY IS THE SUM OF THE PARTS AND THE CASH-FLOW LENS IS ONE OF THE PARTS.
+    # That is not a contradiction and it is what `sotp` has always meant here -- "each
+    # part on its own present-value lens", per LENS_KINDS. A group DCF is structurally
+    # incapable of being the primary on this class: the largest single component of GB
+    # Corp's value is a 41.61% stake in an unlisted company it does not consolidate, so a
+    # discounted cash flow of the reporting entity cannot see it at all, whatever drivers
+    # it is given. A lens that cannot reach the asset cannot be the answer.
+    #
+    # RESIDUAL INCOME IS HERE AND IT IS THE POINT. A captive lender is not valued by
+    # discounting a margin off revenue; it is worth its own equity scaled by what it earns
+    # on that equity against what that equity costs, which is the "bank" row's lens
+    # arriving as a PART rather than as a whole. Carrying it at book times one is the
+    # weighting of book value this rule forbids outright, wearing a leg's clothes.
+    #
+    # BOOK VALUE remains a DISCLOSED FLOOR, never weighted; the relative multiple is here
+    # on the ordinary terms. NORMALISED EARNINGS is deliberately absent -- see the class's
+    # own note in lessons_register.CLASSES, where the associate marks that make this
+    # issuer's reported earnings unnormalisable are quoted from its own releases.
+    "automotive assembler and distributor with a captive lender":
+        ("sotp", ("dcf", "residual_income", "relative_multiple", "book_value")),
 }
 
 # RNAV may be a class PRIMARY only where the disclosure supports it. Where land
@@ -1106,6 +1142,105 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                    and float(pr["low"]) <= float(pr["high"])):
         fails.append("the primary's published range is not an ordered low/high pair")
 
+    # THE SENTENCE THIS RULE IS NAMED FOR WAS THE ONE THING NOT CHECKED. [R-LENS-03] is
+    # "ONE CLASS PRIMARY *IS* THE CENTRAL", and every clause above tests the primary's
+    # KIND, its permitted cross-checks, whether book is weighted, whether a multiple is
+    # circular -- and none of them ever compared the primary's VALUE with the answer the
+    # study publishes. So a study could name a conforming primary and publish something
+    # else entirely, which is what ADNOCDIST does: its published central reproduces to
+    # 8.9e-16 as 0.40 x cash flow + 0.25 x normalised + 0.20 x relative + 0.15 x BOOK --
+    # the retired four-lens blend, with book value carrying weight, which this rule
+    # forbids outright as a disclosed floor that is never weighted.
+    #
+    # check_lens_vocabulary reads the DOCUMENT for the words; this holds the QUANTITY,
+    # which is [R-MACRO-01]'s lesson -- a check that reads what a process DECLARES is not
+    # checking what the process DOES, and where a rule governs a quantity, hold it.
+    #
+    # BOTH SHAPES ARE HONEST AND BOTH ARE TESTED. A primary carrying a VALUE must equal
+    # the central. A primary carrying only a RANGE -- which the clause above deliberately
+    # permits, because a two-sided answer must not be forced to invent a point -- must
+    # CONTAIN it. A record exposing neither a central nor a comparable primary is not
+    # failed here: `central` is optional in this record's shape and inventing a
+    # requirement for it belongs to a rule amendment rather than to an assertion.
+    # ------------------------------------------------- a TWO-SIDED answer
+    # [ADDED 06-09-2026] THE IDENTITY CLAUSE WAS FIRING ON WORK THAT WAS RIGHT.
+    # A study whose answer depends on a contested judgement publishes BOTH
+    # framings side by side and is forbidden to average them, so it has no
+    # scalar central to expose -- and the check that a record must expose one
+    # therefore demanded the very midpoint the dual-framing rule prohibits.
+    # Three studies were in that state. Per [R-COC-01] the check is RE-POINTED
+    # rather than widened or switched off: a two-sided record is held to a test
+    # of the same claim, branch-wise, and the test is HARDER than the one it
+    # replaces, because `two_sided` must not become the cheapest route past the
+    # clause that catches a blend.
+    _ts = bool(prim.get("two_sided"))
+    _branches = prim.get("branches") or []
+    if _ts:
+        if len(_branches) < 2:
+            fails.append(
+                "the primary declares two_sided and carries %d branch(es). A two-sided "
+                "answer IS its branches: without them the record states that there is no "
+                "single central and never says what the two answers are, which switches "
+                "the identity clause off rather than satisfying it."
+                % len(_branches))
+        seen_v = []
+        for i, b in enumerate(_branches):
+            if not str((b or {}).get("label") or "").strip():
+                fails.append("branch %d carries no label. A reader shown two numbers and "
+                             "not told which judgement produces which has been shown one "
+                             "number twice." % (i + 1))
+            bv = (b or {}).get("value")
+            if not isinstance(bv, (int, float)):
+                fails.append("branch %d carries no numeric value" % (i + 1))
+            else:
+                seen_v.append(float(bv))
+        if len(seen_v) >= 2 and len(set(round(v, 10) for v in seen_v)) < len(seen_v):
+            fails.append(
+                "two branches carry the same value. Two framings that reach the same "
+                "answer are not a two-sided answer; the judgement is not contested.")
+        if prim.get("value") is not None:
+            fails.append(
+                "the primary declares two_sided AND carries a scalar value of %.6f. It is "
+                "one or the other: a scalar beside the branches is the single number a "
+                "reader will quote, and choosing it is the averaging this rule forbids."
+                % float(prim["value"]))
+        if r.get("central") is not None:
+            fails.append(
+                "the record declares a two-sided primary and also exposes a central of "
+                "%.6f. A two-sided answer has no central -- that is what makes it "
+                "two-sided." % float(r["central"]))
+        if pr and seen_v:
+            _lo, _hi = float(pr["low"]), float(pr["high"])
+            if _lo - abs(_lo) * 1e-9 > min(seen_v) or _hi + abs(_hi) * 1e-9 < max(seen_v):
+                fails.append(
+                    "the primary's published range %.6f to %.6f does not contain its own "
+                    "branches (%s). An envelope that excludes the study's own answer is "
+                    "not that study's envelope."
+                    % (_lo, _hi, ", ".join("%.6f" % v for v in seen_v)))
+    elif _branches:
+        fails.append(
+            "the primary carries %d branches and does not declare two_sided. A record "
+            "that publishes two answers and does not say so is read as single-sided by "
+            "everything downstream, and the branch nobody reads is the one that "
+            "disagrees." % len(_branches))
+    _pub = r.get("central")
+    if _pub is not None:
+        _pub = float(_pub)
+        _pv = prim.get("value")
+        if _pv is not None:
+            if abs(float(_pv) - _pub) > max(abs(_pub), 1.0) * 1e-9:
+                fails.append(
+                    "the primary lens reads %.6f and the record publishes a central of "
+                    "%.6f. ONE CLASS PRIMARY IS THE CENTRAL: a central that is not the "
+                    "primary's own answer is some other construction, and the commonest "
+                    "one is the weighted blend this rule retired." % (float(_pv), _pub))
+        elif pr:
+            _lo, _hi = float(pr["low"]), float(pr["high"])
+            if not (_lo - abs(_lo) * 1e-9 <= _pub <= _hi + abs(_hi) * 1e-9):
+                fails.append(
+                    "the record publishes a central of %.6f and the primary's own range "
+                    "runs %.6f to %.6f, which does not contain it." % (_pub, _lo, _hi))
+
     seen = []
     for x in (r.get("cross_checks") or []):
         k = x.get("kind")
@@ -1121,11 +1256,38 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
             # appearing at all -- a source that says "never the current price" is
             # doing the right thing, and a check that cannot tell the difference
             # is one people learn to write around
-            circular = any(t in src for t in (
-                "from the current price", "from the price", "from spot",
-                "implied by the current price", "implied by the price",
-                "at the current price", "the multiple the shares trade at",
-                "today's multiple", "the market's own multiple"))
+            # ---- THE CLAUSE'S OWN COMMENT PROMISED A NEGATION IT DID NOT IMPLEMENT
+            # [RE-POINTED 07-09-2026, on a study whose source note was correct].
+            # The comment above says a source that says "never the current price" is
+            # doing the right thing and that a check which cannot tell the difference
+            # is one people learn to write around. IT COULD NOT TELL THE DIFFERENCE:
+            # a plain substring test fired on the sentence "never a multiple from the
+            # current price", which is a study DISCLAIMING the construction, and the
+            # only ways past it were to reword an honest note or to delete it. Per
+            # [R-COC-01] the check is RE-POINTED rather than widened or switched off:
+            # a hit is circular only if no negator sits immediately before it.
+            #
+            # THE WINDOW IS SHORT AND THAT IS THE WHOLE SAFEGUARD. A negator anywhere
+            # in a long source field would let "the multiple is the traded one; this
+            # is not a peer set" read as clean, so the negator must sit within the
+            # 24 characters before the phrase -- the span an ordinary "never a
+            # multiple " or "rather than one taken " occupies -- and the arithmetic
+            # clause below is unchanged and remains the binding test either way.
+            _NEG = ("never", "not ", "rather than", "no ", "avoid")
+            circular = False
+            for t in ("from the current price", "from the price", "from spot",
+                      "implied by the current price", "implied by the price",
+                      "at the current price", "the multiple the shares trade at",
+                      "today's multiple", "the market's own multiple"):
+                j = src.find(t)
+                while j >= 0:
+                    lead = src[max(0, j - 24):j]
+                    if not any(n in lead for n in _NEG):
+                        circular = True
+                        break
+                    j = src.find(t, j + 1)
+                if circular:
+                    break
             if not src:
                 fails.append("the relative multiple names no source for its multiple")
             elif circular:
@@ -1320,6 +1482,12 @@ def assert_lens_design(record: dict, ticker: str = "?") -> dict:
                              % (ticker, cls, "\n  - ".join(fails)))
     return {"ticker": ticker, "class": cls, "primary": prim.get("kind"),
             "central": central, "cross_checks": seen,
+            # the gate needs these to run the identity clause BRANCH-WISE against
+            # what the study publishes; the assertion sees only the record and so
+            # can test the record's own shape and nothing further
+            "two_sided": _ts,
+            "branches": [float(b["value"]) for b in _branches
+                         if isinstance((b or {}).get("value"), (int, float))],
             "standard_version": STANDARD_VERSION}
 
 

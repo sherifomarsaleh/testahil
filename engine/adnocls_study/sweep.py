@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass, SourceType,
                             DriverMode)
 
-R = SweepRegister(ticker='ADNOCLS', asset_class=AssetClass.STOCK, sweep_date='2026-08-09')
+R = SweepRegister(ticker='ADNOCLS', asset_class=AssetClass.STOCK, sweep_date='2026-09-07')
 
 # The beta finding below describes a measurement, so it is written FROM THE MEASUREMENT'S
 # OWN RECORD rather than typed. A register entry that quotes a figure by hand goes stale
@@ -48,7 +48,18 @@ R.record_primary_access('https://adnocls.ae/en/investors/reports-and-presentatio
                         'reached through the results-reports and annual-reports pages, so '
                         'nothing was lost; logged because a failed attempt is still a fact '
                         'about how the record was assembled.')
-R.declare_study_year('FY2026', ['Q1 2026'])
+R.record_primary_access('https://adnocls.ae/en/investors/results-reports', True,
+                        '2026-09-07',
+                        'Re-attempted for the half-year. The reviewed six-month statements '
+                        'to 30 June 2026, the management discussion, the earnings release '
+                        'and the first-half earnings presentation — all four dated 10 or '
+                        '11 August 2026 — are held and read. LOGGED AS A CORRECTION AS '
+                        'WELL AS AN ACCESS: the edition of this study delivered on 7 '
+                        'September 2026 declared its information set closed at the first '
+                        'quarter while these four documents had been public for '
+                        'twenty-seven days. The rule is that every disclosed quarter is '
+                        'swept in BEFORE the build starts, and it was not.')
+R.declare_study_year('FY2026', ['Q1 2026', 'Q2 2026'])
 
 # =============================== GLOBAL ====================================
 F = {}
@@ -228,16 +239,82 @@ F['P2b'] = R.add(
     is_fs_data=True, fiscal_period='FY2023')
 F['P3'] = R.add(
     Ring.COMPANY, 'regular disclosures', FindingClass.D,
-    'Reviewed interim financial information for the three months to 31 March 2026 — the '
-    'only quarter of the study year disclosed at the time of writing; the second-quarter '
-    'results were scheduled for 11 August 2026. It gives revenue of USD 1,083 million, '
-    'earnings of USD 368 million, net profit of USD 222 million, net debt of USD 420 '
-    'million and a full segment schedule.',
+    'Reviewed interim financial information for the three months to 31 March 2026. It '
+    'gives revenue of USD 1,083 million, earnings of USD 368 million, net profit of USD '
+    '222 million, net debt of USD 420 million and a full segment schedule.',
     'ADNOC L&S condensed consolidated interim financial information, three months ended '
     '31 March 2026', CO, '2026-05-14',
-    model_impact='Every forecast unit is anchored on its own first-quarter outcome '
-                 'annualised, and the balance sheet at that date is the valuation date.',
+    model_impact='Superseded as the anchor by the six-month information below, and kept '
+                 'because the second quarter is read as the difference between them.',
     is_fs_data=True, fiscal_period='Q1 2026')
+F['P3b'] = R.add(
+    Ring.COMPANY, 'regular disclosures', FindingClass.B,
+    'Reviewed condensed consolidated interim financial information for the SIX MONTHS to '
+    '30 June 2026, review report signed 10 August 2026. Revenue USD 3,666.674 million '
+    'against 2,438.936 million; earnings before interest, tax, depreciation and '
+    'amortisation USD 1,474.868 million against 743.859 million; net profit USD 1,172.932 '
+    'million against 420.388 million; net debt USD 257.318 million against 419.867 million '
+    'at 31 March; a full segment schedule with each unit\'s own depreciation; and the '
+    'property, plant and equipment roll-forward. THE DELIVERED EDITION OF THIS STUDY DID '
+    'NOT HOLD THIS DOCUMENT: it ended its information set at the first quarter while this '
+    'had been public for twenty-seven days.',
+    'ADNOC L&S condensed consolidated interim financial information, six months ended '
+    '30 June 2026 (reviewed)', CO, '2026-08-10',
+    model_impact='THE ANCHOR FOR EVERY DRIVER IN THIS STUDY. Each unit is built as the '
+                 'reported half plus a second half at that unit\'s own measured margin; '
+                 'the tanker cost stack is solved from this half together with the audited '
+                 '2025 year; and the bridge stands on this balance sheet.',
+    is_fs_data=True, fiscal_period='Q2 2026')
+F['P3c'] = R.add(
+    Ring.COMPANY, 'IR communications (calls, presentations, releases)', FindingClass.D,
+    'Management discussion and analysis for the first half of 2026, dated 11 August 2026, '
+    'with the earnings release of the same date. It carries the quarterly and half-year '
+    'segment tables, the free-cash-flow reconciliation, the USD 2.0 billion parent '
+    'revolving facility that replaces the previous term and revolving facilities, the '
+    'second-half delivery schedule of fourteen vessels, forward-contracted revenue of '
+    'about USD 25 billion, an interim dividend of USD 85.3 million on a record date of 20 '
+    'August 2026, and RAISED full-year guidance. It also DISCLOSES A BASIS BREAK: first, '
+    'second and third quarter 2025 Tankers revenue and direct costs are re-presented, with '
+    'no effect on gross profit, net profit or earnings — which is why its prior-year '
+    'revenue of USD 2,507 million differs from the statements\' own 2,438.936 million.',
+    'ADNOC L&S management discussion and analysis, first half 2026; ADNOC L&S first-half '
+    '2026 earnings release', IR, '2026-08-11',
+    model_impact='Supplies the quarterly segment split, the free-cash-flow definition the '
+                 'valuation date removes, the declared dividend the bridge deducts and the '
+                 'guidance the build is SCORED against. The statements, not this document, '
+                 'supply every figure the model consumes.',
+    fiscal_period='Q2 2026')
+F['P3d'] = R.add(
+    Ring.COMPANY, 'IR communications (calls, presentations, releases)', FindingClass.B,
+    'First-half 2026 earnings presentation, 11 August 2026. It carries the published '
+    'time-charter-equivalent rate by vessel class by quarter THROUGH THE THIRD QUARTER OF '
+    '2026 to the presentation date, each with the share of available vessel days already '
+    'contracted; the owned shipping fleet at 30 June 2026 by class, 52 tankers, 22 gas '
+    'carriers, 11 dry bulk and 3 container vessels footing to a stated 88; the charter-out '
+    'book with each fixture\'s rate, period and latest expiry, EIGHT OF THE ELEVEN CARRYING '
+    'LATER EXPIRIES than the April deck; and the gas fleet contract table quarter by '
+    'quarter to 2029, whose own total row foots to its component rows in all sixteen '
+    'quarters.',
+    'ADNOC L&S first-half 2026 earnings presentation', IR, '2026-08-11',
+    model_impact='Supplies the second and third quarter 2026 rates that replace the '
+                 'delivered edition\'s estimates of them, the re-read charter book, the '
+                 'fleet vintage the asset base is stated at, and the gas contract table '
+                 'read as a cross-check on the adopted vessel-year path.',
+    fiscal_period='Q2 2026')
+F['P4b'] = R.add(
+    Ring.COMPANY, 'strategic plans & guidance', FindingClass.D,
+    'Guidance for 2026 was RAISED AGAIN on 11 August 2026, the second raise of the year: '
+    'group revenue growth from low single digit to mid 20 per cent, earnings from high 20 '
+    'per cent to mid 60 per cent and net profit from high 60 per cent to high 110 per '
+    'cent; Shipping revenue from mid-to-high teens to mid 80 per cent and Shipping '
+    'earnings from mid-to-high 50 per cent to low 190 per cent; Integrated Logistics '
+    'revenue from a mid-to-high 20 per cent reduction to a mid 20 per cent reduction. '
+    'Medium-term parameters are stated to be under review.',
+    'ADNOC L&S management discussion and analysis, first half 2026', CO, '2026-08-11',
+    model_impact='SCORED AND NEVER CONSUMED. The build is compared with it and the '
+                 'disagreement is published — this build runs above the raised guidance on '
+                 'both revenue and earnings for 2026 — and no driver takes it as an input.',
+    fiscal_period='Q2 2026')
 F['P4'] = R.add(
     Ring.COMPANY, 'strategic plans & guidance', FindingClass.D,
     'Guidance for 2026 was raised on 14 May 2026: group earnings growth moved from low-to-'

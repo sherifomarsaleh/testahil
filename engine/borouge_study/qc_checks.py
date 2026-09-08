@@ -20,6 +20,49 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 STUDY = os.path.join(HERE, 'BOROUGE_Valuation_Study_09-08-2026_public.docx')
 BIBLIO = os.path.join(HERE, 'BOROUGE_Bibliography_09-08-2026.docx')
+
+
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    a text sort silently picks a superseded edition."""
+    c = []
+    for f in os.listdir(HERE):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})_', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return os.path.join(HERE, sorted(c)[-1][1]) if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK EXCLUDED IT [L-350]. A
+# reader receives three files and the scrub below read two, so the third was scanned by
+# nothing. Only the external-reader scrub gains it: traceability scans builders, and table
+# and figure discipline are properties of the Word documents.
+WORKBOOK = latest_ddmmyyyy(r'.*Valuation_Model_\d{8}.*\.xlsx$')
+
+
+def texts(path):
+    """Every string a reader sees, with where it sits. A workbook's STRING cells only — a
+    numeric cell is a model output the recalculation gate reconciles, and a formula is not a
+    sentence; a numeral inside a label or a source note is prose that lives in a grid."""
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        import openpyxl
+        wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+        out = []
+        for ws in wb.worksheets:
+            for ri, row in enumerate(ws.iter_rows(values_only=True), start=1):
+                for ci, v in enumerate(row, start=1):
+                    if isinstance(v, str) and not v.startswith('='):
+                        out.append(('%s!r%dc%d' % (ws.title, ri, ci), v))
+        wb.close()
+        return out
+    d = Document(path)
+    out = [('p%d' % i, p.text) for i, p in enumerate(d.paragraphs)]
+    for ti, t in enumerate(d.tables):
+        for ri, row in enumerate(t.rows):
+            for ci, c in enumerate(row.cells):
+                out.append(('t%d.%d.%d' % (ti, ri, ci), c.text))
+    return out
 BUILDERS = ['docx_borouge.py', 'docx_biblio.py']
 failures = []
 
@@ -86,20 +129,25 @@ BANNED = [
     r'fitted_configs', r'strike_result', r'horizon_days', r'\bcohort\b',
     r'\bledger\b', r'roll.forward workflow',
 ]
-hits = []
-for path in (STUDY, BIBLIO):
-    d = Document(path)
-    texts = [p.text for p in d.paragraphs]
-    for t in d.tables:
-        for row in t.rows:
-            for c in row.cells:
-                texts.append(c.text)
-    blob = '\n'.join(texts).lower()
-    for term in BANNED:
-        for mt in re.finditer(term, blob):
-            ctx = blob[max(0, mt.start() - 45):mt.start() + 55].replace('\n', ' ')
-            hits.append(f'{os.path.basename(path)}: {term!r} in "...{ctx}..."')
-print(f'2. external-reader scrub: {len(hits)} internal-vocabulary hits')
+# AN EMPTY RESULT IS NOT A CLEAN RESULT [R-ENF-04]: a resolver returning None would silently
+# narrow the population back to two documents and report clean, so it refuses instead, and
+# the line below declares how many documents and strings were actually read.
+if WORKBOOK is None:
+    print('2. external-reader scrub: NO WORKBOOK RESOLVED — refusing to scrub two of three '
+          'delivered documents')
+    sys.exit(1)
+hits, scrub_docs, scrub_strings = [], 0, 0
+for path in (STUDY, BIBLIO, WORKBOOK):
+    scrub_docs += 1
+    for where, txt in texts(path):
+        scrub_strings += 1
+        low = txt.lower()
+        for term in BANNED:
+            for mt in re.finditer(term, low):
+                ctx = low[max(0, mt.start() - 45):mt.start() + 55].replace('\n', ' ')
+                hits.append(f'{os.path.basename(path)} [{where}]: {term!r} in "...{ctx}..."')
+print(f'2. external-reader scrub: {len(hits)} internal-vocabulary hits across '
+      f'{scrub_docs} documents, {scrub_strings} strings read')
 for h in hits[:20]:
     print('   !', h)
 if hits:

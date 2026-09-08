@@ -184,6 +184,12 @@ class Schedule:
             "wacc_exp": self.wacc_exp,
             "rf_terminal": self.rf_terminal, "erp_terminal": self.erp_terminal,
             "ke_terminal": self.ke_terminal,
+            # [R-COC-02]: the record NAMES the construction its terminal cost of equity
+            # was built under. This module builds one — the same beta at the terminal —
+            # and says so rather than leaving a reader to infer it; two studies in the
+            # book relever instead, and until this field existed nothing distinguished a
+            # relevered beta from a typo.
+            "ke_terminal_construction": "same_beta",
             "kd_terminal_pretax": self.kd_terminal_pretax,
             "kd_terminal_aftertax": self.kd_terminal_aftertax,
             "weight_debt_terminal": self.weight_debt_terminal,

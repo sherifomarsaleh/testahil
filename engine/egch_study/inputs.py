@@ -240,10 +240,29 @@ I("urea_fob_egypt", 545.0, "US$/t",
   "Listed granular urea free-on-board Egypt futures contract, front-month settle", "2026-08-07", "L2")
 I("erp_rating", 0.13937694320020103, "ratio", CPF + ", rating basis total equity risk premium", "2026-01-01", "L2")
 I("sov_spread_rating", 0.06372478453347744, "ratio", CPF + ", adjusted default spread", "2026-01-01", "L2")
+# THE SUPERSEDED PAIR IS REGISTERED, AND THE NOTE QUOTING IT IS COMPUTED. Both figures
+# are facts about the edition this one replaced — THIS MODEL CANNOT COMPUTE THEM, a
+# different construction produced them — so they take the same disposition any superseded
+# figure quoted to show what changed must take: registered as the historical fact each is,
+# never typed into the sentence that reports them. The rule reaches a register's OWN
+# justification text, and this note is exactly that. Found by prose_check.py on 05-09-2026,
+# once the delivered workbook joined the population that reads this study.
+_ERP_CDS_V1 = 0.094247
+_SPREAD_V1 = 0.0355
+I("erp_cds_superseded", _ERP_CDS_V1, "ratio",
+  "The credit-default-swap equity risk premium this study carried BEFORE the correction of "
+  "9 August 2026, reconstructed at the time from a sovereign spread the source file does "
+  "not carry. Registered as the historical fact it is so the correction note beside it is "
+  "computed rather than typed.", "2026-08-08", "L4")
+I("sov_spread_cds_superseded", _SPREAD_V1, "ratio",
+  "The sovereign credit-default-swap spread the superseded premium above was reconstructed "
+  "from. It appears in no source file, which is why the premium built on it was corrected; "
+  "it is registered here for the same reason as the premium.", "2026-08-08", "L4")
 I("erp_cds_damodaran", 0.0941, "ratio",
   CPF + ", equity risk premium based on the sovereign credit default swap. CORRECTED "
-  "9 August 2026: the study had 9.4247%, reconstructed from a 3.55% spread the file does "
-  "not carry. Damodaran's Egypt row reads 3.41% and 9.41%.", "2026-01-05", "L4")
+  "9 August 2026: the study had %.4f%%, reconstructed from a %.2f%% spread the file does "
+  "not carry. Damodaran's Egypt row reads 3.41%% and 9.41%%."
+  % (100 * _ERP_CDS_V1, 100 * _SPREAD_V1), "2026-01-05", "L4")
 I("sov_spread_cds", 0.0341, "ratio", CPF + ", ten-year CDS spread", "2026-01-01", "L2")
 I("mature_market_erp", 0.0423, "ratio", CPF + ", mature-market equity risk premium", "2026-01-01", "L2")
 I("country_risk_premium_rating", 0.13937694320020103 - 0.0423, "ratio",

@@ -1,0 +1,43 @@
+{
+ "why": "[R-COC-02] with the ratchet of [R-ENF-02]. Every study carrying a cost-of-capital record on the day the rule was adopted (07-09-2026) predates it and declares no terminal construction. Each entry names WHAT THE RECORD ACTUALLY REPRODUCES UNDER, because the fix is a single declared field rather than a rebuild and an entry that names the fix is an entry somebody can close. NONE of these is a wrong number: all five reproduce exactly, three under same_beta and two under a Hamada relevering at 22.50%. What is outstanding is that the record does not SAY WHICH, so a reader cannot tell a relevered beta from a typo and neither could any instrument. The list may only ever get SHORTER (--prune). [R-ENF-08, 07-09-2026]: each entry now carries the SIGNATURE of the failure it excuses. A ratchet entry is a ticker, so before this a listed study was excused from the whole gate and could acquire a SECOND, DIFFERENT defect of the same class unseen — which the injection harness demonstrated by planting a stale land base in a study already listed and being ignored. Comparison is on the failure's SHAPE with live figures stripped, because an exact-text match would go red every time a date moved. [RE-SEEDED 07-09-2026] The signatures were rewritten when [R-COC-02] gained the weights and beta-provenance clauses: [R-ENF-08] correctly refused to excuse a failure description that no longer described the failure, so every listed study read as a NEW breach. THE DEBT DID NOT CHANGE, THE DESCRIPTION DID — re-seeding records what is actually wrong, which is what a ratchet entry is; leaving the stale signatures would have made the build permanently red, which [R-ENF-02] forbids.",
+ "adopted": "2026-09-07",
+ "outstanding": {
+  "PHDC": {
+   "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
+   "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
+  },
+  "TMGH": {
+   "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction.",
+   "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
+  },
+  "ARCC": {
+   "reason": "reproduces exactly under 'relevered' at an implied 22.50% — beta 0.927522 unlevers to 0.900090 at a debt weight of 0.0378 and relevers to 1.074483 at a terminal 0.20. Declare ke_terminal_construction and relevering_tax_rate; the rate must be STATED, never solved out of the answer it explains.",
+   "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'relevered' at an implied tax rate of 22.50%, which the record does not state — declare it, do not let it be solved out of the answer"
+  },
+  "FERTIGLOBE": {
+   "reason": "UNREADABLE rather than clean: commits a cost-of-capital record carrying no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all.",
+   "signature": "record carries no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all; record carries no market-value weights; the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']"
+  },
+  "STC": {
+   "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction. FOUND BY THE GATE AND NOT BY THE MEASUREMENT THAT PRECEDED IT: the hand-written probe looked for cost_of_capital_record alone and reported six studies; the gate searches three spellings and reads seven. L-355 exactly, caught by the instrument rather than by a person.",
+   "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
+  }
+ },
+ "pruned_on": [
+  {
+   "removed": [
+    "ADNOCLS"
+   ]
+  },
+  {
+   "removed": [
+    "ADNOCLS"
+   ]
+  },
+  {
+   "removed": [
+    "SCEM"
+   ]
+  }
+ ]
+}

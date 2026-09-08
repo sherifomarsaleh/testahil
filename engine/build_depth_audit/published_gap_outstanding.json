@@ -1,0 +1,236 @@
+{
+ "why": "[R-GAP-03] with the ratchet of [R-ENF-02]. Every published name more than ten per cent from its own published spot on the day the rule was adopted (07-09-2026) and carrying no CURRENT audit of the number the site actually shows. Each entry carries its MEASURED gap. The build breaks on a NEW breach with no current audit, or on a published name whose answer becomes unreadable. This list may only ever get SHORTER (--prune). IT SPLITS INTO TWO KINDS AND THEY ARE NOT THE SAME DEBT: names with no study directory, which nothing could audit; and names WITH a study and a review, where the review audits the study's rebuilt answer and the site still carries the pre-rebuild one, because [R-GAP-02] holds the book from publishing. The second kind is not a review going stale — it is a PAGE going stale, and it is the more serious of the two. [R-ENF-08, 07-09-2026]: each entry now carries the MAGNITUDE it excuses. A ratchet entry is a ticker, so before this a listed name was excused from the whole gate — the injection harness planted SABIC at 40% of its spot and nothing fired, because SABIC was already listed at +10.8%. An entry excuses a deviation up to the size it records, plus the same five-point tolerance [R-GAP-01 AMENDED] uses for a stale audited gap; a materially worse breach on a listed name is a NEW breach.",
+ "adopted": "2026-09-07",
+ "outstanding": {
+  "AAPL": {
+   "reason": "-36.1% (fair 208 vs spot 325.71) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.361395
+  },
+  "ABUK": {
+   "reason": "-21.7% (fair 60 vs spot 76.59) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.216608
+  },
+  "ADCB": {
+   "reason": "+28.6% (fair 19.7 vs spot 15.32) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.285901
+  },
+  "ADNOCGAS": {
+   "reason": "+14.8% (fair 3.79 vs spot 3.3) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.148485
+  },
+  "AGTHIA": {
+   "reason": "+30.4% (fair 4.37 vs spot 3.35) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.304478
+  },
+  "AIRARABIA": {
+   "reason": "-20.4% (fair 4.17 vs spot 5.24) — study directory, no usable review.",
+   "magnitude": -0.204198
+  },
+  "ALDAR": {
+   "reason": "+32.2% (fair 10.18 vs spot 7.7) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.322078
+  },
+  "AMOC": {
+   "reason": "-56.1% AS PUBLISHED. Its review GAP_REVIEW_03-09-2026.md audits 11.4012 and the site publishes 5.95 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": -0.560561
+  },
+  "ARCC": {
+   "reason": "-28.7% AS PUBLISHED. Its review GAP_REVIEW_03-09-2026.md audits 66.53 and the site publishes 54.65 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": -0.286554
+  },
+  "BOROUGE": {
+   "reason": "-38.3% (fair 1.48 vs spot 2.4) — study directory, no usable review.",
+   "magnitude": -0.383333
+  },
+  "BURJEEL": {
+   "reason": "+48.0% (fair 1.85 vs spot 1.25) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.48
+  },
+  "CLHO": {
+   "reason": "-48.0% (fair 9.21 vs spot 17.71) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.479955
+  },
+  "COMI": {
+   "reason": "-11.3% (fair 123.3 vs spot 139) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.11295
+  },
+  "DEWA": {
+   "reason": "+23.0% (fair 3.32 vs spot 2.7) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.22963
+  },
+  "DIB": {
+   "reason": "+37.6% (fair 10.18 vs spot 7.4) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.375676
+  },
+  "DSCW": {
+   "reason": "-55.1% (fair 0.88 vs spot 1.96) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.55102
+  },
+  "EFID": {
+   "reason": "-16.6% (fair 27.68 vs spot 33.2) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.166265
+  },
+  "EFIH": {
+   "reason": "-42.6% (fair 14.16 vs spot 24.65) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.425558
+  },
+  "EGAL": {
+   "reason": "-24.2% (fair 250 vs spot 330) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.242424
+  },
+  "EGCH": {
+   "reason": "-74.4% AS PUBLISHED. Its review GAP_REVIEW_05-09-2026.md audits 4.0396 and the site publishes 3.64 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": -0.744202
+  },
+  "EMAAR": {
+   "reason": "+34.5% (fair 14.8 vs spot 11) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.345455
+  },
+  "EMAARDEV": {
+   "reason": "+35.5% (fair 17.29 vs spot 12.76) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.355016
+  },
+  "EMFD": {
+   "reason": "+44.8% (fair 19.84 vs spot 13.7) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.448175
+  },
+  "EMPOWER": {
+   "reason": "+22.7% AS PUBLISHED. Its review GAP_REVIEW_04-09-2026.md audits 1.8353 and the site publishes 1.84 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": 0.226667
+  },
+  "EXTRA": {
+   "reason": "+24.1% (fair 81 vs spot 65.25) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.241379
+  },
+  "FERTIGLB": {
+   "reason": "-15.4% (fair 2.15 vs spot 2.54) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.153543
+  },
+  "FWRY": {
+   "reason": "-23.4% (fair 14.7 vs spot 19.2) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.234375
+  },
+  "GBCO": {
+   "reason": "+21.0% (fair 35.7 vs spot 29.51) — study directory, no usable review.",
+   "magnitude": 0.209759
+  },
+  "IHC": {
+   "reason": "-71.9% (fair 104.5 vs spot 372) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.719086
+  },
+  "ISPH": {
+   "reason": "+34.5% (fair 17.78 vs spot 13.22) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.344932
+  },
+  "KABO": {
+   "reason": "-73.8% (fair 2.39 vs spot 9.12) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.737939
+  },
+  "LGES": {
+   "reason": "-32.4% (fair 248000 vs spot 367000) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.324251
+  },
+  "LULU": {
+   "reason": "+35.4% (fair 1.28 vs spot 0.945) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.354497
+  },
+  "MAADEN": {
+   "reason": "-36.5% (fair 42 vs spot 66.1) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.364599
+  },
+  "MODON": {
+   "reason": "-11.7% AS PUBLISHED. Its review GAP_REVIEW_04-09-2026.md audits 3.8583 and the site publishes 2.5 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": -0.116608
+  },
+  "OCDI": {
+   "reason": "-14.8% (fair 26.43 vs spot 31.01) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.147694
+  },
+  "OIH": {
+   "reason": "-58.5% (fair 0.78 vs spot 1.88) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.585106
+  },
+  "ORAS": {
+   "reason": "+18.6% (fair 928 vs spot 782.25) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.186322
+  },
+  "ORHD": {
+   "reason": "+29.6% (fair 53.79 vs spot 41.5) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.296145
+  },
+  "ORWE": {
+   "reason": "-19.6% (fair 20.9 vs spot 26) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.196154
+  },
+  "PHAR": {
+   "reason": "-52.2% AS PUBLISHED. Its review GAP_REVIEW_04-09-2026.md audits 36.6395 and the site publishes 61.21 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": -0.521797
+  },
+  "PRDC": {
+   "reason": "-15.1% (fair 8.23 vs spot 9.69) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.150671
+  },
+  "QNB": {
+   "reason": "+12.5% (fair 18.76 vs spot 16.67) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.125375
+  },
+  "RAYA": {
+   "reason": "-21.4% (fair 5.56 vs spot 7.07) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.213579
+  },
+  "RIBL": {
+   "reason": "+27.3% (fair 26.61 vs spot 20.9) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.273206
+  },
+  "RMDA": {
+   "reason": "-56.4% (fair 2.77 vs spot 6.35) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.56378
+  },
+  "SABIC": {
+   "reason": "+10.8% (fair 55.5 vs spot 50.1) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.107784
+  },
+  "SALIK": {
+   "reason": "-14.0% (fair 4.62 vs spot 5.37) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.139665
+  },
+  "SAMSUNG": {
+   "reason": "+13.6% (fair 296502 vs spot 261000) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.136023
+  },
+  "SCEM": {
+   "reason": "-46.1% AS PUBLISHED. Its review GAP_REVIEW_04-09-2026.md audits 123.27 and the site publishes 53.12 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": -0.46082
+  },
+  "SWDY": {
+   "reason": "-48.8% AS PUBLISHED. Its review GAP_REVIEW_06-09-2026.md audits 55.4822 and the site publishes 69.73 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": -0.488032
+  },
+  "TMGH": {
+   "reason": "+50.4% AS PUBLISHED. Its review GAP_REVIEW_01-09-2026.md audits 91.8306 and the site publishes 147.12 — the study was rebuilt and the site was not, because the book is HELD. The review is not stale; the PAGE is.",
+   "magnitude": 0.504294
+  },
+  "TMPV": {
+   "reason": "+21.7% (fair 378 vs spot 310.6) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": 0.216999
+  },
+  "TSLA": {
+   "reason": "-29.0% (fair 254 vs spot 357.9) — no study directory, so nothing can carry a review; this is the population check_published_coverage already tracks.",
+   "magnitude": -0.290305
+  }
+ },
+ "pruned_on": [
+  {
+   "removed": [
+    "ADNOCDRILL",
+    "ELEC"
+   ]
+  },
+  {
+   "removed": [
+    "ADNOCLS",
+    "DU"
+   ]
+  }
+ ]
+}

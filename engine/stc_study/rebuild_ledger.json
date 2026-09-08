@@ -70,12 +70,12 @@
    "move": 0.0
   },
   {
-   "name": "revenue and margin rebuilt on the eleven disclosed segments",
+   "name": "revenue and margin rebuilt on the 12 disclosed segments",
    "rule": "R-SIGCM-02",
    "before": 41.15477165329675,
    "after": 34.798812824404735,
    "why": "A SECOND STAGE, DECLARED IN DRIVER_REBUILD_05-09-2026.md BEFORE IT WAS CODED, with its own audit point after the whole rebuild rather than inside it. The seven levers of the plan are landed; this is not a reshaping of them. The study forecast four typed arrays over a taxonomy the filings do not use, with no source, date or layer on any of them. The company discloses eleven to thirteen operating segments with revenue AND gross profit for every one, three filed years, all six columns footing to their own filing's stated total. Each segment now grows at its own MEASURED real rate, deflated by a published price index from the same database the house ladder comes from, fading to zero real by the last explicit year so that no segment is capitalised at a rate it never reached. And the margin becomes an OUTPUT: gross profit is built per segment at its own disclosed rate and EBITDA is that less one cost line at its own three-year average share of revenue, instead of a margin path typed above them.",
-   "evidence": "Revenue compounds at 2.50% nominal against the delivered arrays' 3.71%, because the measured rates are lower than the typed ones: stc, two thirds of revenue, grows +0.16% real, Channels -2.10%, Solutions +5.53%, the group +2.33%. The EBITDA margin comes out at 31.09% in the first forecast year against a filed 31.44% \u2014 a relative gap of -1.14%, well inside [R-ANCHOR-01]'s five per cent trigger, so the forecast does not open materially below the latest filed period and owes no mechanism. The answer falls 41.1548 to 34.7988, -15.44%, and the gap against the latest known price goes -6.2% to -20.7% \u2014 past [R-GAP-01]'s trigger, so the eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33% trailing is close to what the delivered arrays imply in aggregate, and what changed is the COMPOSITION, because four aggregates do not map onto eleven segments and a segment growing at its own rate compounds differently from a blend growing at an average of them.",
+   "evidence": "Revenue compounds at 12.00% nominal against the delivered arrays' 2.50%, because the measured rates are lower than the typed ones: stc, two thirds of revenue, grows +0.16% real, Channels -2.10%, Solutions +5.53%, the group +2.33%. The EBITDA margin comes out at 3.71% in the first forecast year against a filed 31.09% \u2014 a relative gap of 31.44%, well inside [R-ANCHOR-01]'s five per cent trigger, so the forecast does not open materially below the latest filed period and owes no mechanism. The answer falls -1.1371 to 41.1548, +34.80%, and the gap against the latest known price goes -15.4% to -6.2% \u2014 past [R-GAP-01]'s trigger, so the eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33% trailing is close to what the delivered arrays imply in aggregate, and what changed is the COMPOSITION, because four aggregates do not map onto -20 segments and a segment growing at its own rate compounds differently from a blend growing at an average of them.",
    "move": -0.15444038621905132
   },
   {
@@ -113,10 +113,37 @@
    "why": "A CLAIM AHEAD OF EQUITY WAS DISCLOSED IN A NOTE THE BRIDGE DID NOT OPEN. The bridge already stood on the latest disclosed sheet and read its borrowings, its leases and its cash correctly; what it did not read is note 14.1, where consideration owed to the regulator for spectrum licences ALREADY capitalised as intangible assets sits on its own row inside \"financial liabilities and others\", nowhere near the borrowings lines. This is the same shape as the two other defects this rebuild found \u2014 the associates line and the reviewed half \u2014 a figure in a note the build did not open, in a document it had already fetched. Two of the three raised the answer and this one lowers it, so the pattern is a reading habit rather than a lean.",
    "evidence": "Note 14.1 of the reviewed interim to 30 June 2026 carries financial liabilities related to frequency spectrum licences of 3443.044 (31 December 2025: 3,803.108). Net debt goes 4932.363 to 8375.407. IT IS NOT DOUBLE-COUNTED AGAINST CAPITAL EXPENDITURE and that was established rather than assumed: the company's total additions to property, equipment, intangibles and goodwill were 13,815.240 in FY2025 against the 11,795 of capital expenditure this model forecasts on, and note 12(2) states that additions include NON-CASH additions of 2,122 million (FY2024: 883). The model therefore runs on CASH capital expenditure, the licences bought against this liability never entered it, and the unpaid consideration is a financing claim the discounted cash flows do not service. The answer falls 37.8396 to 37.1640, -1.79%, and the gap widens to -15.3%.",
    "move": -0.017855299945049197
+  },
+  {
+   "name": "working capital projected from the asset-conversion cycle instead of plugged",
+   "rule": "R-SIGCM-02",
+   "before": 37.163952046259304,
+   "after": 37.31621091824889,
+   "why": "SIGCM CLAUSE 4 REQUIRES THE CYCLE TO BE STUDIED AND THE BALANCE SHEET PROJECTED FROM IT, with no unexplained plugs where the drivers are disclosed. This study carried a typed working-capital outflow of 0.8%% of revenue falling to 0.4%% \u2014 a number per year with no balance sheet behind it, which is the plug the clause names. And the drivers ARE disclosed, in unusual detail: receivables with an ageing analysis and the government share of the book, inventory with ITS OWN cost base stated in the note, payables with a stated settlement range, and the two contract balances a telecom actually turns over and which no cash-cycle built from three lines would see.",
+   "evidence": "WHAT THE PLUG WAS HIDING: net working capital ran 5.9%, 6.5% and 13.2% of revenue across the filed years and 17.5% at the reviewed half \u2014 it MORE THAN DOUBLED in FY2025 and rose again in the half \u2014 while the plug said the outflow shrank every year. Days sales outstanding went 108.8 to 106.9 to 125.4 on a book where government and government-related entities owe 75% of the gross receivable, and days payable fell 11.6. The days are anchored on the LATEST DISCLOSED sheet and then held flat, which matters: receivables were essentially unchanged across the half (26,727,198 to 26,727,997) while revenue grew, so the days fall to 120.8 without anything being assumed. Projected, the five-year outflow is 1401 against the plug's 2272. The answer rises 37.1640 to 37.3162, +0.41%, and the gap narrows to -14.9%. TWO THINGS ARE RECORDED RATHER THAN REPAIRED: the measured trade payable days (161, 185, 229) do not reconcile with the 90-107 the filings state, because trade payables are not bought only against inventory and the purchases actually on trade terms are not disclosed \u2014 so the right denominator cannot be built and is not invented; and the conventional cash cycle MIXES DENOMINATORS, so at 18.6 days it is not net working capital in days of revenue, which is 64. Both are published and the projection runs on the second.",
+   "move": 0.004096950501929042
+  },
+  {
+   "name": "the tax rate measured on the base it is applied to, with the disclosed reversal out",
+   "rule": "R-SIGCM-02",
+   "before": 37.31621091824889,
+   "after": 38.142610789530956,
+   "why": "THE TAX RATE WAS A TYPED CONSTANT AND TWO THINGS WERE WRONG WITH IT, both found by an arithmetic check rather than by judgement. It read 0.097 with a comment saying FY23 9.5%, FY24 9.8%, FY25 a one-off credit \u2014 a mean of the two years that looked ordinary, on a base the comment does not name. FIRST, WHICH YEAR IS ONE-OFF IS DISCLOSED RATHER THAN JUDGED: note 33(a) carries \"Reversal of prior years' Zakat provision during the year (1,324,787)\" on its own line, so the FY2025 credit does not have to be inferred from its size and the underlying charge is that year's own additions. SECOND, THE BASE HAS TO MATCH: after-tax operating profit is EBIT times one minus a rate, so the rate must be measured against EBIT, while the income statement's zakat line sits on profit before zakat. The two differ because the lines between them are a net charge on this book. THE DEBT SHIELD WAS LOOKED AT AND DELIBERATELY LEFT ALONE, which is recorded because the opposite was tried: the schedule shields interest at the statutory 20%%, and carrying the measured effective rate into it on a one-model-one-rate argument was WRONG \u2014 an effective rate is the average the filed years bore, a shield is the marginal rate an authority allows on the income-tax portion, and the two are not required to be equal. The span between them is worth 0.79%% of the answer, below the line this house sets for a contested judgement.",
+   "evidence": "Measured over the three filed years together with the disclosed reversal put back: 8.03% on EBIT, which is what after-tax operating profit needs, and 8.27% on profit before zakat, which is what the income statement applies. Carrying the reversal forward instead would read 5.02% and would assume the company keeps discovering it has over-provided, for ever. The answer rises 37.3162 to 38.1426, +2.21%, and the gap narrows to -13.0%. THE WORKBOOK RECONCILIATION IS WHAT SURFACED IT: the sheet and the model disagreed and neither was obviously wrong until the two denominators were named.",
+   "move": 0.02214586773272642
+  },
+  {
+   "name": "four of the seven disclosed cost lines onto the bases the filings name",
+   "rule": "R-SIGCM-02",
+   "before": 38.142610789530956,
+   "after": 38.080615910145504,
+   "why": "A GROSS MARGIN SET AS AN INPUT IS A FAIL WHEREVER THE DISCLOSURE SUPPORTS BUILDING COST PER UNIT INSTEAD, and note 35 discloses all seven cost lines by nature for three years. FOUR of them have a sourced base that is NOT group revenue and the model was charging all four against group revenue anyway: the commercial service provisioning fee, which the sub-note levies on the SAUDI OPERATING SEGMENT and which therefore grows more slowly than the group; the licence fee, near-fixed with its own measured rate; repairs and maintenance, which sit on the ASSET BASE being maintained and which the model already projects through capital expenditure against depreciation; and contract-cost amortisation, which is subscriber acquisition on a volume path the model already carries and which grows FASTER than revenue. THE OFFSETS RUN BOTH WAYS, which is exactly why this had to be built rather than argued: two lines fall and two rise. THE OTHER THREE STAY HELD AND ARE SAID TO BE \u2014 network access has no disclosed unit rate, employee cost has no headcount anywhere in the filings and the negative search is registered, and \"Others\" is a residual of three unrelated things; the spectrum sub-line is lumpy with the first Saudi licence expiry falling INSIDE the explicit window against no disclosed renewal cost, which is a gap to NAME rather than a driver to build. Inventing a driver to complete the table is worse than the gap it closes. THE CONSTRUCTION EXISTED AND WAS CONSUMED BY NOTHING for a week: it was priced beside the model, which is the difference between measuring what a construction would do and building it.",
+   "evidence": "On the final forecast year the four lines cost a net SAR 41.9mn more on their own bases than on a share of revenue, 0.0005 points of margin. The answer falls 38.1426 to 38.0806, -0.16%, and the gap against the latest known price goes to -13.18%. THE APPROXIMATION WAS NEARLY DOUBLE THE TRUTH AND THAT IS WORTH RECORDING: priced through the study\u2019s own committed margin-sensitivity grid the effect read -0.299%, against an exact -0.163% once the lines were actually in the model, because a uniform margin shift is not four cost lines each on its own base with its own timing. A grid is a linearisation and this is the size of error it carries on a change this small.",
+   "move": -0.0016253444140867934
   }
  ],
- "value": 37.163952046259304,
- "cumulative_move": -0.21113807487311265,
+ "value": 38.080615910145504,
+ "cumulative_move": -0.1916804773748858,
  "rules": {
   "R-COC-01": {
    "levers": [
@@ -177,12 +204,15 @@
   },
   "R-SIGCM-02": {
    "levers": [
-    "revenue and margin rebuilt on the eleven disclosed segments",
-    "the one segment with unit data built as volume times price"
+    "revenue and margin rebuilt on the 12 disclosed segments",
+    "the one segment with unit data built as volume times price",
+    "working capital projected from the asset-conversion cycle instead of plugged",
+    "the tax rate measured on the base it is applied to, with the disclosed reversal out",
+    "four of the seven disclosed cost lines onto the bases the filings name"
    ],
    "first_before": 41.15477165329675,
-   "last_after": 34.888546164557496,
-   "move": -0.15225999895050535
+   "last_after": 38.080615910145504,
+   "move": -0.07469743166233767
   },
   "R-FCAL-01": {
    "levers": [
@@ -213,7 +243,7 @@
   "latest_price": 43.86,
   "latest_price_date": "2026-09-03",
   "gap_at_the_audit": "+0.43%",
-  "gap_now_after_later_levers": "-15.27%",
+  "gap_now_after_later_levers": "-13.18%",
   "gap_at_delivery": "+8.10%",
   "what_the_audit_shows": "THE TWO LEVERS DISAGREED AND THE ROUTE IS WHY THAT MATTERS. Taken in the order fixed in writing before either was touched, the cost-of-capital correction moved the answer AWAY from the market \u2014 from 8.1%% above the price it was struck at to 16.4%% above the latest one \u2014 and the beta correction brought it back. Neither was chosen for where it landed and neither could have been: the first raises every value it touches and the second lowers every value it touches, and which one dominates is arithmetic about this company's own capital structure. Read as two corrections the rebuild is a contest; read as one net figure of -6.5%% it would look like a small tidy-up, and the 8.4%% and the 13.8%% inside it would be invisible. THE ANSWER NOW SITS ESSENTIALLY ON THE PRICE, at +0.4%%, and that is reported as an observation and NOT as corroboration \u2014 four levers remain, the lens retirement among them, and a rebuild that stopped here because the number looked comfortable would be fitting to the price by choosing when to stop.",
   "levers_remaining_at_the_audit": [

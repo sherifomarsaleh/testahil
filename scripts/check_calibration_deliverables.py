@@ -83,13 +83,54 @@ def runs(engine=ENGINE):
     return out
 
 
+
+# THE BIBLIOGRAPHY-CLASS ARTEFACT SHIPS UNDER THREE NAMES AND THIS GATE KNEW TWO.
+# check_bibliography.BIBLIO is the one place those names are written down, NAMED from
+# what the book actually contains rather than inferred, and it already carries
+# source_register — which ELEC ships and which this gate failed it for. Two gates
+# keeping two copies of one standard is how a standard stops being tested the moment
+# one copy moves, so the pattern is IMPORTED [R-ENF-03] and matched directly instead of
+# being re-expressed as globs here. A first draft DID re-express it, as a string
+# transformation from the regex to a glob tuple, and its own cross-check caught that
+# the transformation did not round-trip — the translation layer was itself the drift it
+# existed to prevent, which is why there is no translation layer now.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import check_bibliography as _bib  # noqa: E402
+
+BIBLIO_RX = _bib.BIBLIO
+
 REQUIRED = (
     ("report",       ("*Valuation_Study*.docx",)),
     ("report PDF",   ("*Valuation_Study*.pdf",)),
     ("workbook",     ("*Valuation_Model*.xlsx",)),
-    ("bibliography", ("*Bibliograph*.docx", "*Sources*.docx", "*Biblio*.docx")),
+    # THE BIBLIOGRAPHY-CLASS ARTEFACT SHIPS UNDER THREE NAMES AND THIS GATE KNEW TWO.
+    # check_bibliography.py holds the list, NAMED from what the book actually contains
+    # rather than inferred, and it already carries source_register — which ELEC ships and
+    # this gate failed it for. Two gates keeping two copies of one standard is how a
+    # standard stops being tested the moment one copy moves, so the pattern is IMPORTED
+    # [R-ENF-03] and the tuple below is now derived from it rather than typed a second
+    # time. A reader that guesses a naming convention silently finds nothing and reports
+    # that as a result [L-355].
+    ("bibliography", None),      # matched by BIBLIO_RX, not by glob
     ("QC gate",      ("QC_GATE_*.md",)),
 )
+
+
+
+def _latest_rx(sdir, rx, ext):
+    """The newest-dated file in `sdir` whose NAME matches `rx` and ends in `ext`.
+
+    The date comes from the filename exactly as _latest reads it, so the edition
+    comparison below is the same comparison for every deliverable.
+    """
+    best = (None, None)
+    for n in sorted(os.listdir(sdir)):
+        if not n.lower().endswith(ext) or not rx.search(n):
+            continue
+        dt = _date(n)
+        if dt and (best[1] is None or dt > best[1]):
+            best = (os.path.join(sdir, n), dt)
+    return best
 
 
 def check_study(sdir):
@@ -98,7 +139,11 @@ def check_study(sdir):
         return ["no study directory at %s" % os.path.relpath(sdir, ROOT)], {}
     bad, dates = [], {}
     for label, pats in REQUIRED:
-        p, dt = _latest(sdir, *pats)
+        if pats is None:
+            p, dt = _latest_rx(sdir, BIBLIO_RX, ".docx")
+            pats = ("a name matching %s" % BIBLIO_RX.pattern,)
+        else:
+            p, dt = _latest(sdir, *pats)
         if not p:
             bad.append("no %s (%s)" % (label, " or ".join(pats)))
             continue

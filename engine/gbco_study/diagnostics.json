@@ -1,0 +1,53 @@
+{
+ "ticker": "GBCO",
+ "as_of": "2026-09-07",
+ "spot": 28.98,
+ "spot_date": "close 2026-09-03, the Egyptian Exchange",
+ "spot_source": "SUPPLIED_03-09-2026.json — GB Corp, the close supplied by the principal",
+ "published_central": 52.345259974418816,
+ "published_central_is": "MNT-Halan at the June-2026 round price",
+ "published_central_note": "THIS STUDY PUBLISHES NO CENTRAL. Its primary is two-sided and the two branches are published side by side. The field above names the branch this file is anchored on — the June-2026 round price, which is the sum of the parts the study carries and the figure its own cross-check machinery reads — and both branches are declared below so an artefact-currency check holds this file to an answer the study actually publishes rather than to an average of two it does not.",
+ "published_central_two_sided": [
+  {
+   "label": "MNT-Halan at its reviewed carrying value",
+   "value": 41.348367298232716
+  },
+  {
+   "label": "MNT-Halan at the June-2026 round price",
+   "value": 52.345259974418816
+  }
+ ],
+ "published_spot": 28.98,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A mark, a rate or a growth solved from a price and then used anywhere in the valuation is the reverse-engineered figure the protocol prohibits outright, arriving through a side door, and the prohibition is worth nothing if the side door is open. Nothing in this file is an input to anything: no builder in this study reads it, it is COMPUTED by diagnostics_gbco.py, and that script asserts the committed numbers file is byte-identical before and after it runs.",
+ "implied": {
+  "quantity": "the whole-company valuation of MNT-Halan, in US dollars, that the traded price implies for GB Corp's 41.61% stake — the single line this study names as its crux and the one input its two published branches differ in",
+  "value": 116.75636159164102,
+  "study_value": 1400.0,
+  "units": "USD million, the valuation of MNT-Halan as a whole",
+  "value_at_the_strike_price": 116.75636159164102,
+  "implied_stake_value_egp_mn": 2307.660297768387,
+  "implied_stake_value_usd_mn": 48.58232205828183,
+  "implied_as_a_share_of_the_round": 0.08339740113688644,
+  "implied_as_a_share_of_the_carrying_value": 0.14667155587266673,
+  "the_two_bases_the_company_itself_discloses": {
+   "round_valuation_usd_mn": 1400.0,
+   "round_stake_value_egp_mn": 27670.650000000005,
+   "stake": 0.4161,
+   "stake_source": "GB Corp's own press release, 9 June 2026, on MNT-Halan's Al Ahly Capital-led capital increase: the stake 'will be adjusted to 41.61%, compared to 42.58% prior to the transaction'",
+   "carrying_stake_value_egp_mn": 15733.523,
+   "whole_company_at_carrying_value_usd_mn": 796.0395653878749,
+   "carrying_value_source": "note 34 to GB Corp's reviewed consolidated interim statements at 30 June 2026, EGP 15,733,523 thousand, which foots to that balance sheet's own associates line",
+   "carrying_value_caveat": "the carrying value is an equity-accounted book figure — cost plus the group's share of retained results and the revaluation on deconsolidation — and is not a valuation. It is also the line the reviewers' own conclusion is QUALIFIED at: they were not provided with the associate's financial statements and could not verify the EGP 409.9mn share of profit recorded in the period. It is the lower branch and it is not a safe harbour."
+  },
+  "solved_on": "this study's own construction, rebuilt from its committed numbers file and asserted against BOTH branches it publishes, holding the auto leg's cash flows, its cost-of-capital ladder, its terminal growth, the lender's residual-income mark and the other associates all at their published values, and moving only the MNT-Halan mark until the model reproduces the traded price. THE SOLVE IS BRANCH-FREE: the branches differ in this one input and in nothing else, so the inversion asks exactly the question they exist to pose, and its answer is a third number to be read against both. The superseded version of this record solved the same quantity on a four-lens weighted blend, where two lenses that do not touch this stake carried 45% of the weight and dampened the read into a negative number.",
+  "second_framing": {
+   "quantity": "the single flat discount rate on the auto leg that reproduces the traded price, every other line held at its published value",
+   "value": 0.3127980706102168,
+   "value_on_the_carrying_branch": 0.257093599103268,
+   "study_value": 0.2287554134378177,
+   "value_at_the_strike_price": 0.3127980706102168,
+   "reading": "carried here because it is the honest alternative reading of the same gap, and on this study it does NOT collapse. Asked of the auto leg's discount rate, the price implies 31.28% against this study's 22.88% on the round branch — 8.4 points, a stretch on a leg worth less than half the sum of the parts — but only 25.71% on the carrying branch, which is 2.8 points and is an ordinary disagreement about the cost of capital in this market. A READER IS ENTITLED TO BOTH: the mark is the quantity solved above because it is the input the two branches actually differ in, not because the discount-rate reading is absurd."
+  },
+  "reading": "At EGP 28.98 the price values GB Corp's 41.61% stake in MNT-Halan at EGP 2308 mn, which is MNT-Halan as a whole at US$117 mn — 8.3% of the US$1.4 bn the June-2026 round was struck at, and 14.7% of the US$796 mn the company's own reviewed carrying value implies. THE PRICE IS BELOW BOTH BASES THE COMPANY ITSELF DISCLOSES, AND NOT NARROWLY: the market capitalisation leaves EGP 2805 mn for all associates once the auto leg and the lender are taken at this study's marks, against EGP 16230 mn carried on the reviewed balance sheet. That is a more useful statement than \"the study is +42.7% to +80.6% against the price\", and it names where the whole disagreement sits. IT DOES NOT SETTLE WHO IS RIGHT, AND THE ARITHMETIC CAN BE READ TWO WAYS: either the market is marking a minority interest in an unlisted company at a fraction of both the price its last primary round was struck at and the value its auditors carry it at, or the sum of the parts is the wrong lens for a wrapper nobody can break up — and this study publishes the branches rather than choosing."
+ }
+}

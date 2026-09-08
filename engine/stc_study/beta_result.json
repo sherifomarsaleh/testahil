@@ -2,13 +2,13 @@
  "ticker": "STC",
  "market": "SA",
  "exchange": "TADAWUL",
- "beta": 0.7107002146600568,
- "r2": 0.3024841659166959,
- "se": 0.1032217317310491,
- "n": 254,
+ "beta": 0.7078292485042049,
+ "r2": 0.3017708702514479,
+ "se": 0.10288860144335289,
+ "n": 252,
  "ci90": [
-  0.5409004659624811,
-  0.8804999633576326
+  0.5385774991298894,
+  0.8770809978785205
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
@@ -16,10 +16,10 @@
  "frequency": "weekly",
  "weak": false,
  "warnings": [],
- "window_years": 4.94,
- "first_obs": "2021-08-12",
- "last_obs": "2026-07-23",
- "blume_crosscheck": 0.8071334764400379,
+ "window_years": 4.91,
+ "first_obs": "2021-09-16",
+ "last_obs": "2026-08-13",
+ "blume_crosscheck": 0.8052194990028032,
  "index_file": "raw_indices/SA/TASI.csv",
  "index_asof": "2026-08-18",
  "index_dq": [
@@ -36,10 +36,10 @@
  "superseded_beta_source": "Genuine daily STC-vs-TASI regression, n=40 paired sessions (5-May->7-Jul-2026, investing.com TASI closes); flagged as a 9-week window, longer TASI history not programmatically accessible at the time",
  "superseded_tier": "none \u2014 a daily short-window stopgap, which the rule states is not a tier",
  "tier": 1,
- "delta_beta": 0.2307,
+ "delta_beta": 0.227829,
  "ke_delta_at_study_erp": {
-  "rating_basis_pp": 1.156,
-  "cds_basis_pp": 1.32
+  "rating_basis_pp": 1.141,
+  "cds_basis_pp": 1.303
  },
  "study_erp_rating": 0.0501,
  "study_erp_cds": 0.0572,

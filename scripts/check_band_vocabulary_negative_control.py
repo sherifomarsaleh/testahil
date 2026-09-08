@@ -101,7 +101,17 @@ COPY = ["*.html", "legacy/*.html", "assets/*.js", "engine/band_record.py", "engi
         # population on EVERY case, clean ones included — the gate going red for the
         # WRONG reason, which reads exactly like going red for the right one and is a
         # mistake this repository has already made once inside a sandbox.
-        "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx"]
+        "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
+        # AND THE DELIVERED DOCUMENT, for exactly the same reason and it took longer to
+        # notice. This list staged html, js, panels and one workbook and NO .docx at all,
+        # so the gate's delivered-DOCUMENT arm -- added 03-Sep-2026 on a real leak, ARCC
+        # having published the retired verdict twice -- resolved an EMPTY population in
+        # every one of these cases and therefore scanned nothing, in all of them, since
+        # the day it was written. Its green said only that the sandbox held no documents.
+        # A CONDITION NEVER INJECTED IS A CONDITION NEVER TESTED, and this one was the
+        # arm the gate exists for.
+        "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.docx",
+        "engine/tmgh_study/TMGH_Sources_02-09-2026.docx"]
 
 
 def stage(dst):
@@ -176,6 +186,92 @@ def run_workbook_case(label, rel, text, must_fail):
         return None
 
 
+#: THE DOCUMENT ARM, FINALLY EXERCISED. It was added 03-Sep-2026 on a real leak -- ARCC
+#: published the retired verdict twice -- and every case in this file ran with no .docx
+#: staged, so it scanned an empty population from the day it was written and has never
+#: been seen to fire. Same shape as the workbook cases beside it, and the same discipline:
+#: the mutation is asserted to have landed before the result is believed.
+DOCUMENT_CASES = [
+    ("PARITY in a delivered study document",
+     "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.docx",
+     "Calibration verdict: PARITY", True),
+    ("the retired skill verdict in a delivered bibliography",
+     "engine/tmgh_study/TMGH_Sources_02-09-2026.docx",
+     "The cone was graded ROBUST FAIL against the naive benchmark.", True),
+    ("CRPS named beside a company in a delivered document",
+     "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.docx",
+     "The CRPS skill of this name is -0.030 against the carry-anchored benchmark.", True),
+    # and the legitimate constructions, which must NOT fire: the band record is what a
+    # reader IS shown, and lower-case "parity" is an ordinary word here -- a currency peg,
+    # an export price basis -- which is why the pattern matches it case-sensitively.
+    ("a band record with its count, in a delivered document",
+     "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.docx",
+     "Over 41 resolved three-month forecasts the price finished inside the 90% band "
+     "88% of the time.", False),
+    ("lower-case parity as an ordinary word, in a delivered document",
+     "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.docx",
+     "The riyal trades at parity with its peg and the export price basis is unchanged.",
+     False),
+]
+
+
+def run_document_case(label, rel, text, must_fail):
+    """Inject a paragraph into a staged .docx and run the gate on the sandbox."""
+    from docx import Document as _Doc
+    with tempfile.TemporaryDirectory() as tmp:
+        work = os.path.join(tmp, "repo")
+        stage(work)
+        path = os.path.join(work, rel)
+        if not os.path.exists(path):
+            return f"{label}: {rel} was not staged — control is stale"
+        d = _Doc(path)
+        d.add_paragraph(text)
+        d.save(path)
+        # PROVE THE MUTATION LANDED. A case that silently modified nothing reports a green
+        # meaning only that the file was untouched, which this repository has shipped once.
+        chk = _Doc(path)
+        if not any(text in p.text for p in chk.paragraphs):
+            return f"{label}: the injected text is not in the saved document"
+        r = subprocess.run([sys.executable,
+                            os.path.join(ROOT, "scripts", "check_band_vocabulary.py"),
+                            "--root", work], capture_output=True, text=True)
+        red = r.returncode != 0
+        if red != must_fail:
+            what = "PASSED on an injected defect" if must_fail else "FAILED on legitimate text"
+            return f"{label}: gate {what} in {rel}"
+        print(f"  {'caught' if must_fail else 'allowed'}: {label}  ({os.path.basename(rel)})")
+        return None
+
+
+def run_empty_document_population_case():
+    """[R-ENF-04] for the OTHER arm. The workbook arm refused on zero workbooks and this
+    one did not -- an asymmetry inside one gate, invisible because no case ever staged a
+    document to remove. Removing every delivered .docx must make the gate REFUSE and must
+    make it NAME why."""
+    with tempfile.TemporaryDirectory() as tmp:
+        work = os.path.join(tmp, "repo")
+        stage(work)
+        gone = [os.path.join(dp, f)
+                for dp, _, fs in os.walk(os.path.join(work, "engine"))
+                for f in fs if f.endswith(".docx")]
+        if not gone:
+            return "empty document population: no .docx was staged — control is stale"
+        for g in gone:
+            os.remove(g)
+        r = subprocess.run([sys.executable,
+                            os.path.join(ROOT, "scripts", "check_band_vocabulary.py"),
+                            "--root", work], capture_output=True, text=True)
+        if r.returncode == 0:
+            return ("empty document population: the gate reported CLEAN having read no "
+                    "delivered document at all")
+        if "ZERO delivered study documents" not in r.stdout:
+            return ("empty document population: the gate went red, but not for the "
+                    "population reason — it must NAME why, or it is red for the wrong cause")
+        print("  caught: an empty DOCUMENT population reported as clean  "
+              "(all delivered documents removed)")
+        return None
+
+
 def run_empty_population_case():
     """[R-ENF-04] An empty population is not a clean one. Removing the only staged
     workbook must make the gate REFUSE rather than report clean — otherwise the whole
@@ -231,6 +327,8 @@ def main():
                 [run_case(*c, must_fail=True) for c in CASES] +
                 [run_case(*c, must_fail=False) for c in CLEAN] +
                 [run_workbook_case(*c, must_fail=True) for c in WORKBOOK_CASES] +
+                [run_document_case(*c) for c in DOCUMENT_CASES] +
+                [run_empty_document_population_case()] +
                 [run_workbook_case(*c, must_fail=False) for c in WORKBOOK_CLEAN] +
                 [run_empty_population_case()]
                 if f]
@@ -239,10 +337,19 @@ def main():
         for f in failures:
             print("  " + f)
         return 1
-    print(f"negative control OK — {len(CASES) + len(WORKBOOK_CASES) + 1} defects caught "
-          f"({len(WORKBOOK_CASES)} of them in a delivered workbook, plus an emptied "
-          f"workbook population), "
-          f"{len(CLEAN) + len(WORKBOOK_CLEAN)} legitimate cases allowed through")
+    # COUNTED FROM THE CASE LISTS, NEVER TYPED. This line read "+ 1" for the one empty
+    # population and went stale the moment a second was added -- the same defect this
+    # repository gates against in every delivered document, sitting in the file whose job
+    # is to prove a gate works.
+    _doc_red = [c for c in DOCUMENT_CASES if c[3]]
+    _doc_clean = [c for c in DOCUMENT_CASES if not c[3]]
+    _empty = 2                       # the workbook population and the document population
+    print(f"negative control OK — "
+          f"{len(CASES) + len(WORKBOOK_CASES) + len(_doc_red) + _empty} defects caught "
+          f"({len(WORKBOOK_CASES)} in a delivered workbook, {len(_doc_red)} in a delivered "
+          f"document, plus an emptied population of each), "
+          f"{len(CLEAN) + len(WORKBOOK_CLEAN) + len(_doc_clean)} legitimate cases allowed "
+          f"through")
     return 0
 
 

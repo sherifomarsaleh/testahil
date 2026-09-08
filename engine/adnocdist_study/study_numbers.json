@@ -3317,5 +3317,58 @@
    "implied_name_width": 0.4920338372856196,
    "pooled_width": 0.979
   }
+ },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin, frame A (inventory movements normalised)",
+  "latest_reviewed_period": "H1 2026, reviewed (six months ended 30 June 2026)",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.13098903907618986,
+  "latest_reviewed_source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026: operating profit of AED 2,517 million plus the depreciation and amortisation line of the distribution and administrative expenses note of AED 370 million, over revenue of AED 22,035 million. The company publishes the same EBITDA figure as its own KPI in the management discussion and analysis of 5 August 2026.",
+  "first_forecast_rate": 0.12341861943192417,
+  "forecast_path": [
+   0.12341861943192417,
+   0.11504268657009767,
+   0.11626961765511819,
+   0.11768496763761664,
+   0.11911520707031377
+  ],
+  "mechanism": {
+   "name": "one_off_in_the_latest_period",
+   "disclosure": "The management discussion and analysis for the second quarter and first half of 2026, published 5 August 2026, states inventory gains of AED 762 million in H1 2026 against AED 147 million in H1 2025, splits them by segment (AED 528 million fuel retail and AED 233 million commercial, against AED 148 million and a loss of AED 1 million a year earlier), and attributes the rise in half-year EBITDA to them. THE COMPANY ITSELF REMOVES THIS ITEM FROM ITS OWN RUN RATE: the same document defines underlying EBITDA as EBITDA excluding inventory movements and one-off items. The full-year figures on the same disclosure are AED 254 million in FY2024 and AED 335 million in FY2025, so a single half has just carried more than the two preceding years together. Frame A holds the realised first half and assumes nothing for the second half or beyond; frame B carries the through-cycle rate instead, and both are published.",
+   "like_for_like": {
+    "measures": "inventory gains disclosed for the six months to 30 June, per litre of fuel sold",
+    "period_a": "H1 2025",
+    "period_b": "H1 2026",
+    "value_a": 0.01928121720881427,
+    "value_b": 0.09834796076406814,
+    "higher_is_worse": true,
+    "note": "THE DIRECTION: the larger the non-recurring gain sitting inside the latest reviewed period, the further a forecast that does not repeat it must open below that period. Measured in the same six months a year apart, on the company's own disclosed volumes, it went from AED 0.0193 to AED 0.0983 per litre \u2014 5.1 times larger \u2014 while the STRUCTURAL margins the forecast is actually built on moved the other way: retail fuel gross profit per litre excluding inventory movements rose 3.8% year on year in the same pair and commercial rose 19.2%. The mechanism and the filings agree, and they agree about a windfall rather than about the business."
+   }
+  },
+  "other_framing": {
+   "label": "Frame B \u2014 inventory movements carried at the through-cycle rate",
+   "first_forecast_rate": 0.127707349862482,
+   "forecast_path": [
+    0.127707349862482,
+    0.12186902442568288,
+    0.12290622011904448,
+    0.12411537368552947,
+    0.12534926784529885
+   ],
+   "note": "Frame B opens 2.51% relatively below the reviewed half against frame A's 5.78%, and falls 4.57% from its own opening year against frame A's 6.79%. Neither clause of this rule would fire on it. The two frames are the study's central contested judgement and are published side by side, never averaged, so the anchor is recorded on the branch that makes the larger claim."
+  },
+  "gross_margin_beside_it": {
+   "latest_reviewed_rate": 0.19297033029810204,
+   "first_forecast_rate": 0.1881330305937158,
+   "forecast_path": [
+    0.1881330305937158,
+    0.1797797030555525,
+    0.18167932934018982,
+    0.1835502703863858,
+    0.1854746759879479
+   ],
+   "note": "Recorded because the choice of rate decides whether this record fires and the choice should be visible. On the gross margin frame A opens 2.51% relatively below the reviewed half and falls 4.44% from its own opening year, both inside the tolerance; on the EBITDA margin it opens 5.78% below and falls 6.79%. The difference is cash operating cost, which the forecast grows off FY2025 rather than off the realised half. The EBITDA margin is recorded as the governing rate because it is the one the company publishes as its own KPI, the one this study's reference pattern anchors on, and the one the contested judgement reaches value through."
+  },
+  "note": "THE FORECAST OPENS BELOW THE REVIEWED HALF AND THE WHOLE OF THE GAP IS THE INVENTORY MOVEMENT. The reviewed six months to 30 June 2026 carried an EBITDA margin of 13.10%; frame A opens FY2026 at 12.34%, 5.78% relatively below it, and reaches its low of 11.50% in FY2027 when the realised first-half gain stops being carried at all. THE UNIT RATES THE FORECAST IS ACTUALLY BUILT ON BOTH OPEN ABOVE THE REVIEWED HALF, which is the other half of this record and is printed because a gate that only catches declines would say nothing about it: structural retail fuel margin per litre opens 2.0% above the realised half and structural commercial margin per litre 17.0% above it, the second of those being an escalator the study sources to the disclosed first half, in which that same structural margin per litre rose 19.2% year on year. So this is not a real cost drift and not a price step-down \u2014 the operating rate the business earns per litre is forecast to rise, and what falls out is a windfall the company itself excludes from underlying EBITDA. Frame B, which carries that windfall at the through-cycle rate instead of at zero, does not fire on either clause."
  }
 }

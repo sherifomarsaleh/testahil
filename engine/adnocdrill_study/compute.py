@@ -1620,6 +1620,93 @@ LENS_WEIGHT = dict(dcf_A=0.25, dcf_B=0.25, relative=0.20, book=0.15, normalised=
 central = sum(FAIR[k] * LENS_WEIGHT[k] for k in FAIR)
 lo, hi = min(FAIR.values()), max(FAIR.values())
 
+
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ----
+# The rate this build turns on is the EBITDA margin, and it is an OUTPUT: revenue
+# is rig-years times revenue per rig times the day-rate escalator, cost is the
+# seven-line stack each on its own physical driver and its own escalator, and the
+# margin is whatever those two leave. Nothing sets it.
+#
+# The latest reviewed period is the 1H-2026 condensed interim, reviewed, released
+# 30 July 2026 — nine days before this study's date, and the period this study
+# already stands its bridge, its working-capital ratio and its stub cash flow on.
+# Its EBITDA is the figure in the accompanying management discussion, which the
+# input register carries with the reconciliation back to the reviewed statement
+# lines (revenue 2,459,813 less direct cost 1,566,479 less overheads 90,356 plus
+# the joint-venture share and other income, before the 260,530 of depreciation
+# inside cost of sales). That is the company's own document under SIGCM clause 1,
+# and it is the SAME basis as the forecast row and as the history: EBITDA
+# INCLUDING the joint-venture share, so the three are like for like.
+#
+# NOTHING FIRES, AND THE RECORD IS PRINTED ANYWAY. The forecast opens a third of a
+# point below the reviewed half — inside the materiality line by a wide margin —
+# and rises from there in both cases, so neither clause one nor clause two is
+# engaged and no mechanism is owed or claimed.
+#
+# WHAT THE RECORD MAKES VISIBLE IS THE SHAPE, which is ARCC's precedent rather
+# than AMOC's: this company's filed EBITDA margin has been FALLING — 48.51% in
+# FY2023, 49.94% in FY2024, 44.83% in FY2025, 44.07% in the reviewed first half —
+# and the forecast opens below every one of them and then recovers to 45.96% by
+# 2030 on the base fleet plan, still short of FY2023. The gate is right not to
+# fire, because the rule anchors on the LATEST reviewed period and against that
+# one the opening year is flat; but a reader is owed the fact that the whole
+# forecast sits at or under the company's own filed range, and no sentence in this
+# study said so.
+#
+# THE OPENING YEAR IS NOT A FREE OUTPUT AND THE RECORD SAYS SO. Revenue in 2026 is
+# calibrated to the company's own reaffirmed full-year guidance — $5.0bn, split
+# $2.0bn onshore, $1.5bn offshore, $1.5bn oilfield services — through the segment
+# calibration factors, so the anchor year's margin is a guided revenue over a
+# ground-up cost stack rather than two ground-up halves. [R-FCAL-01] scores
+# guidance and never consumes it, and consuming it is what this year does; the
+# cost side is not guided, which is why the build lands BELOW the guided EBITDA
+# floor of $2.2bn rather than inside the range. Years two to five carry no
+# guidance and are ground-up on both sides.
+_FA_LATEST = V('ebitda_1h26') / V('rev_1h26')
+_FA_PATH_A = [float(r['ebitda_margin']) for r in CASE['A']['rows']]
+_FA_PATH_B = [float(r['ebitda_margin']) for r in CASE['B']['rows']]
+# the two cases differ in the fleet plan and the terminal, never in the anchor
+# year, and the record names one path — so the claim that the opening rate is
+# case-independent is asserted rather than described.
+assert abs(_FA_PATH_A[0] - _FA_PATH_B[0]) < 1e-12, ('the two cases disagree on the anchor year',
+                                                    _FA_PATH_A[0], _FA_PATH_B[0])
+_FA_FILED = [H[y]['ebitda'] / H[y]['revenue'] for y in YRS_H] + [_FA_LATEST]
+assert _FA_PATH_A[0] < min(_FA_FILED), ('the forecast no longer opens below every filed period; '
+                                        'the note below says it does', _FA_PATH_A[0], _FA_FILED)
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period='1H-2026, reviewed condensed interim',
+    latest_reviewed_date='2026-06-30',
+    latest_reviewed_rate=float(_FA_LATEST),
+    first_forecast_rate=float(_FA_PATH_A[0]),
+    # the PATH, per [R-ANCHOR-01] clause two. It RISES from its opening year in
+    # both cases, which is the shape neither clause fires on. Case A is the one
+    # recorded because it is the LOWER of the two throughout years two to five, so
+    # it is the path that would trip the decline test first if either did.
+    forecast_path=_FA_PATH_A,
+    note='the forecast opens at %.2f%% against %.2f%% in the reviewed first half of 2026 — '
+         '%.2f points, %.2f%% relative, well inside the materiality line — so no mechanism is '
+         'owed and none is claimed. What the record shows instead is the shape: the filed '
+         'EBITDA margin has been falling, FY2023 %.2f%%, FY2024 %.2f%%, FY2025 %.2f%%, 1H-2026 '
+         '%.2f%%, and the forecast opens below every one of them and recovers only to %.2f%% by '
+         '2030 on the base fleet plan (%.2f%% on the slower one), still under FY2023. The '
+         'anchor year is also the one year that is not ground-up on both sides: its revenue is '
+         'calibrated to the company\'s own reaffirmed full-year guidance of $%.1fbn while the '
+         'cost stack is built from the disclosed lines, which is why the build lands at '
+         '$%.3fbn of EBITDA, below the guided floor of $%.1fbn rather than inside the '
+         '$%.1f-%.1fbn range. Years two to five consume no guidance. The 1H-2025 comparative '
+         'EBITDA is disclosed but its revenue is not, so no half-on-half margin pair is '
+         'derivable from what this study holds; none is needed, because nothing fires.'
+         % (100 * _FA_PATH_A[0], 100 * _FA_LATEST,
+            100 * (_FA_LATEST - _FA_PATH_A[0]),
+            100 * (_FA_PATH_A[0] - _FA_LATEST) / abs(_FA_LATEST),
+            100 * H[2023]['ebitda'] / H[2023]['revenue'],
+            100 * H[2024]['ebitda'] / H[2024]['revenue'],
+            100 * H[2025]['ebitda'] / H[2025]['revenue'],
+            100 * _FA_LATEST, 100 * _FA_PATH_A[-1], 100 * _FA_PATH_B[-1],
+            V('g26_revenue') / 1e6, CASE['A']['rows'][0]['ebitda'] / 1e6,
+            V('g26_ebitda_lo') / 1e6, V('g26_ebitda_lo') / 1e6, V('g26_ebitda_hi') / 1e6))
+
 OUT = dict(
     # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a study's
     # own numbers for a central and the spot it was struck at; this study carried both at
@@ -1693,6 +1780,7 @@ OUT = dict(
                         bear=sum(LENS_RANGE[k]['bear'] * LENS_WEIGHT[k] for k in LENS_RANGE),
                         base=central,
                         bull=sum(LENS_RANGE[k]['bull'] * LENS_WEIGHT[k] for k in LENS_RANGE))),
+    forecast_anchor=FORECAST_ANCHOR,
     register=REGISTER,
 )
 

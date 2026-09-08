@@ -152,11 +152,17 @@
      "when": "2026-09-05",
      "outcome": "61 linked statement files, and three facts the earlier routes did not carry. THE INDEX ENDS AT 30 SEPTEMBER 2025 — there is no FY2025 annual, no Q1-2026 and no H1-2026 listed at all, so the missing periods are not merely unserved, they are unpublished. EVERY FILE LISTED FROM MID-2021 ONWARD IS STANDALONE (المستقلة); the latest carrying the consolidated marker (المجمعة) is 30-09-2020, and the 31-12-2020 entry beside it is the standalone one. AND EVERY CONSOLIDATED STATEMENT SITS ON THE DEAD LEGACY HOST — 42 of the 61 links point at ece.allmediaegypt.com, which does not resolve, while all 19 on the live host are standalone. So the consolidated series is unreachable by construction rather than by outage. This study models CONSOLIDATED figures.",
      "rerun": true
+    },
+    {
+     "route": "EVERY route above RE-RUN from scratch on 07-09-2026 — the company index enumerated again, all 19 live-host statement PDFs fetched individually, the legacy host resolved, the three EGX hosts tried, and all 258 live refs of this repository searched for a filing",
+     "when": "2026-09-07",
+     "outcome": "UNCHANGED AND NOW MEASURED RATHER THAN REPORTED. Index HTTP 200, 61 linked statement files, 19 on the live host and 42 on ece.allmediaegypt.com. All 19 live-host PDFs return HTTP 404, each serving the same 54,573-byte error page. The legacy host still does not resolve. All three EGX hosts fail to connect. THE ONE THING THAT CHANGED IS ON OUR SIDE: four filings are now committed under engine/elec_study/filings/ — FY2020 consolidated, FY2021, FY2022 and FY2023 standalone — of which only FY2021 is a complete PDF; the other three are truncated at 1/5/5 MiB with no xref and were read by recovering their raw JPEG page streams. FY2024 and FY2025 ARE STILL UNOBTAINABLE and the index does not even list an FY2025 annual, so the missing periods are unpublished rather than merely unserved. The walk-forward was therefore scoped SKIP (4 sourceable years) and the study was NOT rebuilt.",
+     "rerun": true
     }
    ],
    "refs_searched": 22,
    "why_only_the_principal": "Pure access, and every free route is exhausted: the issuer publishes an index it does not serve, its old host is gone, and the exchange is unreachable through the relay. The principal has supplied primary filings before when a company site refused (the ARCC precedent, which this protocol records as the rule working rather than failing).",
-   "done_meanwhile": "ELEC's committed numbers were audited as far as vendor data allows and the findings written to engine/elec_study/SOURCE_BLOCK_04-09-2026.md: the retired g x IC terminal (return on capital 583bp BELOW its own cost of capital, 54.5% of profit reinvested at that spread), a terminal growth rate that is -1.87% real and stated nowhere, and terminal invested capital resting on a typed 0.05-of-revenue constant. Each is priced. The study stays HELD and no delivered figure was moved, because moving one would build further on the base that is the problem.",
+   "done_meanwhile": "ELEC's committed numbers were audited as far as vendor data allows and the findings written to engine/elec_study/SOURCE_BLOCK_04-09-2026.md: the retired g x IC terminal (return on capital 583bp BELOW its own cost of capital, 54.5% of profit reinvested at that spread), a terminal growth rate that is -1.87% real and stated nowhere, and terminal invested capital resting on a typed 0.05-of-revenue constant. Each is priced. The study stays HELD and no delivered figure was moved, because moving one would build further on the base that is the problem.  [07-09-2026] The four committed filings were read end to end off the rendered pixels, every subtotal re-added (15 footing checks, zero refusals), and the results committed to engine/elec_walkforward/: the filed record, the valuation-input block [R-FCAL-01 AMENDED], the basis-break register with the consolidated/standalone chain factor measured at the FY2020 overlap, and engine/elec_study/useful_lives.json. THE MATERIAL FINDING: the company has issued NO consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5), and the study's committed consolidated historicals run 1.79x the parent's filed revenue and 3.09x its filed net profit in FY2023 against a measured consolidation wedge of 1.73x and 2.04x. Separately, the study's terminal EBITDA margin of 12.30% sits INSIDE the filed standalone range of 1.43-17.49%, which WITHDRAWS the premise of the 06-09-2026 audit's [R-ANCHOR-01] claim that it forecasts less than half the lowest filed year — that range was the study's own vendor hist_is, not a filing.",
    "default_if_no_answer": "WITHDRAW ELEC FROM COVERAGE rather than re-issue it on aggregator data. A study nobody can source is not a study with a wide range; it is not a study. Withdrawal removes the name from the book and leaves the directory with this record in it.",
    "default_date": "2026-10-04",
    "status": "open",
@@ -326,12 +332,14 @@
    "done_meanwhile": "The rebuild proceeds on the three levers that need no filing: the cost-of-capital schedule on the house Egyptian path [R-COC-01], growth stored as a real rate on that path [R-MACRO-01], and the re-strike with its eight-heading review [R-GAP-01]. The terminal [R-TERM-01] is the one lever that needs a DISCLOSED useful life and it stays on the ratchet with this as its reason, because a life this desk chose is not a disclosed life.",
    "default_if_no_answer": "Rebuild on those three levers and leave the terminal on the ratchet, with the study stating in its own record that SIGCM clause 1 is unmet — the historicals were gathered in conversation and no filing backs them. Do not substitute an aggregator, and do not choose a useful life.",
    "default_date": "2026-09-19",
-   "status": "open",
+   "status": "resolved",
    "resolves_when": {
     "file": "engine/gbco_study/src/SOURCES.md",
     "must_contain": "audited"
    },
-   "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy — and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing."
+   "note": "THE LADDER FOUND ONE THING WORTH MORE THAN THE ANSWER. A control on a host curl reaches turned what looked like 'GB Corp blocks automated readers' into 'this container's browser cannot reach anything', which is a different fact with a different remedy — and without the control the first would have gone into the record as true. The same pass found another study's register carrying a stale negative about egx.com.eg. Both are [L-343]: a recorded failure is a fact about one attempt on one day, and it stops being true without anybody noticing.  [RESOLVED 07-09-2026] ir.gb-corporation.com answers HTTP 200 and had never been tried. The two hosts the earlier ladder recorded as failures are PARKING LANDERS rather than GB Corp — gbauto.com 301-redirects to a sedo.com domain-sales page and gb-corp.com serves /lander — so six recorded failures were six wrong hostnames. Thirty documents committed under engine/gbco_study/src/: audited consolidated statements FY2020-FY2025, reviewed statements to 30 June 2026, annual reports 2013-2025, releases FY2019-FY2025 with 1Q26 and 2Q26.",
+   "resolved": "2026-09-07",
+   "answer_written_to": "engine/gbco_study/src/SOURCES.md"
   },
   {
    "key": "AMOC-real-open-ohlc-export",
@@ -610,6 +618,350 @@
    "note": "THE PRICE THE BLOCK USED IS THE LIBRARY'S, NOT THE SUPPLIED FILE'S, AND THAT MATTERS. engine/prices/SUPPLIED_03-09-2026.json carries SWDY at EGP 90.50 for 03-Sep-2026 while the merged library closes that same session at 130.00 — a factor of 1.4365. Every one of the other 36 EG names in that file reconciles to its library (COMI 0.9999, EMFD 1.0073, ORHD 1.0120), so the file is sound and SWDY alone is wrong in it. Three independent external checks corroborate the library: a previous close of 126.20 into 25-Aug, a 52-week low of 62.03 and a 52-week high of 133.98 all reproduce from the merged series to the cent. latest_known_price() takes the NEWER of the two by date, so the 06-Sep library superseded the bad figure and the block's -59.3% is right. It is recorded here because GAP_REVIEW_04-09-2026.md audited against that 90.50 and states AUDITED GAP -38.7%; the true gap at its own date was about -57%, so under [R-GAP-01 AMENDED]'s five-point staleness clause that review is stale and owes a re-run. On 06-09-2026 the principal instructed the correction and the re-run: the supplied row is now 130.00 with supplied_as, corrected and correction_note beside it, and GAP_REVIEW_06-09-2026.md re-audits the answer at the true gap of -59.3%. THE RE-RUN CHANGED THE VERDICT'S REASONING RATHER THAN THE ANSWER: at 90.50 the market appeared to pay 4.9x FY2027E EBITDA against a justified 6.5x, so the cash-flow lens read as the outlier and one contested parameter spanned the gap; at 136.20 the market pays 7.3x, ABOVE that justified multiple, and no published construction in the study reaches the price - the currency alternative leaves 48.9% and the study's own BULL case leaves 22.9%. This makes a MARKET_DISSENT HARDER, not easier, because a reverse read now lands on a believable multiple and [R-GAP-02] counts that as evidence AGAINST dissent. The central is unmoved at 55.48 and the study stays held. RULED ON BY THE PRINCIPAL, 6 September 2026: PUBLISH the MC cone, the technical read and the ledger — 'a MC calibration that has nothing to do with the fundamental analysis'. The ruling rests on [R-LENS-01] lens independence and on the measured fact that fair{} is BYTE-IDENTICAL to main in this change, so the quantity [R-GAP-02] holds is untouched. It covers this roll-forward for SWDY only, is not a release of the study, and is not a precedent for another name. The gate was neither weakened nor skipped: check_publish_block still refuses SWDY and still should.",
    "resolved": "2026-09-06",
    "answer_written_to": "engine/swdy_study/PUBLICATION_RULING.md"
+  },
+  {
+   "key": "EGCH-loan-drawn-amounts-by-currency-FY2019-20",
+   "opened": "2026-09-06",
+   "cls": "missing_data",
+   "question": "The two figures in note (4/11) on page 61 of EGCH_FY2019-20_Annual.pdf: the amount DRAWN in US dollars and the amount DRAWN in Egyptian pounds on the natural-gas conversion facility. They fix the currency split of EGCH's borrowings, which its walk-forward currently treats as 100% dollar — a 'stated simplification' its own module flags and the filings refute.",
+   "routes": [
+    {
+     "route": "pdftotext over all ten held filings",
+     "when": "2026-09-06",
+     "outcome": "the text layer is a broken font map on Arabic scans; an English keyword search returned nothing, which read exactly like an absence and was not one"
+    },
+    {
+     "route": "pdftoppm at 200 dpi + tesseract -l ara over every page of every filing",
+     "when": "2026-09-06",
+     "outcome": "died on a 180s per-page timeout at page 2 of the oldest filing — a PROBE FAILURE, re-run rather than believed"
+    },
+    {
+     "route": "re-pointed sweep: back 45% of each filing, 420s per page, timeouts named",
+     "when": "2026-09-06",
+     "outcome": "COMPLETED, zero pages timed out, all ten filings read. Found the note in four filings and the DRAWN-amounts sentence in FY2019-20 page 61",
+     "rerun": true
+    },
+    {
+     "route": "pdftoppm at 450 and 500 dpi + tesseract -l ara on the located page",
+     "when": "2026-09-06",
+     "outcome": "prose resolves; the two digit strings do not"
+    },
+    {
+     "route": "magnified crop (x1.6, x3), binarised, tesseract psm 6/7/11/13 with a digit-only whitelist",
+     "when": "2026-09-06",
+     "outcome": "four mutually inconsistent digit strings across four modes; none footable"
+    }
+   ],
+   "refs_searched": 239,
+   "why_only_the_principal": "Not a judgement and not an instruction — a READING. The figures are on a page held in this repository and every extraction route available here has been run and failed on Arabic-Indic digits in a low-quality scan. A person opening EGCH_FY2019-20_Annual.pdf at page 61 can read them in seconds. Nothing else in the room can.",
+   "done_meanwhile": "The finding that does not need the digits was established and committed: four filings state the facility in BOTH currencies (~117m USD and 1.887bn EGP from six named Egyptian banks, interest and instalments in both), so the 100%-dollar treatment is refuted on four filings rather than one. The FX line was also bounded without any currency assumption — the realised result sits outside every net-dollar-position construction in 9 of 12 years — so the SIGN is wrong, not the weighting, and that conclusion stands whatever the split turns out to be.",
+   "default_if_no_answer": "Leave EGCH's FX driver exactly as it is and leave the run on the frozen-escalator ratchet. Do NOT estimate a share: a dollar weight invented to make the line behave is the free parameter the promotion rule forbids, and the refutation already stands without it. Record the split as sourced-but-unread in the run's own register so the next reader finds the page reference rather than the question.",
+   "default_date": "2026-09-13",
+   "resolves_when": {
+    "file": "engine/egch_walkforward/valuation_inputs.json",
+    "must_contain": "drawn_usd"
+   },
+   "status": "open",
+   "note": "Registered under [R-IND-01] rather than asked in a message. Twice tonight a 'cannot be obtained' on this same line turned out to be wrong on closer looking — the currency note itself, then the balance split — and both times the FIRST PROBE was what failed while its failure read like an absence. That is why five routes are listed with outcomes and why the sweep that succeeded is marked as a re-run."
+  },
+  {
+   "key": "PARTE-criterion-1-ratchet-clause",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "Part E criterion 1 accepts Phase 1 when every gate is green with its negative control AND the ratchets carry 'only names not yet re-issued'. Five names HAVE been re-issued and 45 ratchet entries still name them (PHDC 13, AMOC 11, TMGH 9, ARCC 7, EGCH 5). Every entry is real debt the gates still fire on — measured 07-09-2026 by running every prune-capable gate in a sandbox and diffing against the live ratchets; three stale ones were pruned and the rest survive. So the criterion as written cannot be met by the re-issues that have happened, and EITHER THE WORK OR THE CRITERION HAS TO MOVE. That is a decision about an acceptance test, which is the principal's.",
+   "routes": [
+    {
+     "route": "read all 49 entries individually across the five names",
+     "when": "2026-09-07",
+     "outcome": "18 carry a reason, 31 are bare — a ticker and nothing else — so the split into 'a re-issue should have cleared it' and 'legitimate outstanding work' cannot be made from the register as it stands",
+     "rerun": false
+    },
+    {
+     "route": "run every prune-capable gate in a sandbox and diff against the live ratchets",
+     "when": "2026-09-07",
+     "outcome": "49 of 52 still fire; the 3 stale were pruned and their gates and negative controls are green after",
+     "rerun": true
+    },
+    {
+     "route": "re-run the same measurement with absolute paths after the first attempt reported 'stale: 0'",
+     "when": "2026-09-07",
+     "outcome": "the first run had cd'd into the sandbox and so read the pruned files as its own baseline — an absent answer, not a wrong one; redone, the real tree verified untouched first",
+     "rerun": true
+    },
+    {
+     "route": "read the plan's Part E and the acceptance instrument for a clause that already resolves this",
+     "when": "2026-09-07",
+     "outcome": "none — the criterion's wording admits neither reading, which is why it is a decision rather than a lookup",
+     "rerun": false
+    },
+    {
+     "route": "re-read acceptance.py's own counter against the ratchet files it walks",
+     "when": "2026-09-07",
+     "outcome": "the count was 49 and the debt is 45: the walker could not tell a debt list from a record of the OPPOSITE, counting two conforming_at_adoption entries and two scope_widened.added ones. Corrected in the instrument, named rather than pattern-matched, and conservatively — ambiguous keys are still counted, because understating debt is the error that matters. IT HAD A CONSEQUENCE: pruning the output ratchet the same day removed AMOC and EGCH from its real list and the count did not move, because both stayed visible through scope_widened.added.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 22,
+   "why_only_the_principal": "changing a programme's own acceptance criterion is not a judgement the plan answers, and a programme that softens its acceptance test when the test fails has no acceptance test.",
+   "done_meanwhile": "The 52 were sorted (49 real, 3 pruned), engine/method_reassessment/acceptance.py was built so criterion 1 can be read live rather than remembered, and the 18/31 split was measured and recorded. Nothing about the criterion was changed.",
+   "default_if_no_answer": "TREAT THE CLAUSE AS WRITTEN AND CLEAR THE 49 RATHER THAN AMEND IT. Clearing is work with a countable remainder; amending is a claim that the bar was wrong, which needs evidence this measurement does not supply.",
+   "default_date": "2026-09-21",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/method_reassessment/PLAN_02-09-2026.md",
+    "must_contain": "CRITERION 1 RATCHET CLAUSE RULED"
+   },
+   "note": "REWRITTEN 07-09-2026. The original entry was registered in f213fdc1 and never reached the commit: this register's own negative control wrote its fixture into the real file and the restore did not run, so thirteen live entries plus this one were replaced by a single case called NC-example. Recovered from f213fdc1^ and this entry rewritten from the routes actually run, recorded here rather than presented as the original text. The mechanism is closed — the gate now reads TESTAHIL_ESCALATIONS_REGISTER and the control asserts, every case, that engine/escalations.json is byte-identical after it runs. [07-09-2026] The figure in this question was 49 when the entry was written and is 45 on a corrected count; the DECISION is unchanged and so is the default. The number is amended here rather than left wrong, because a register carrying a figure its own author knows to be wrong is worse than one carrying none."
+  },
+  {
+   "key": "phase1-one-gate-or-two",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "Phase 1 mixes four criteria that are WORK with one that is a CLOCK. Criterion 3 cannot be met before 2027-06-11 (277 days) because no published fair value has reached the one-year horizon [R-LENS-02] and the archive's earliest matures then. Should Phase 1 be declared complete on criteria 1, 2, 5 and 6, with criterion 3 carried as an open dated commitment maturing on its own clock?",
+   "why_only_the_principal": "It contradicts a standing instruction of theirs [R-GAP-02 CLAUSE THREE, 03-Sep-2026]: 'do not issue the reports before the deviation is sorted AND phase 1 proof the methods is done'. Splitting the gate changes what that instruction holds, which is authority rather than difficulty.",
+   "routes": [
+    {
+     "route": "engine/valuation_calibration/score.py, the scorer's own refusal",
+     "when": "2026-09-07",
+     "outcome": "REFUSED with a date rather than a number: 103 vintages held, none matured; first scoreable 2027-06-11, then 2028-06-11 and 2029-06-11. This is the binding constraint and it is arithmetic, not an estimate."
+    },
+    {
+     "route": "engine/method_reassessment/acceptance.py, read live",
+     "when": "2026-09-07",
+     "outcome": "criterion 1 NOT MET (7 gates green, 47 ratchet entries across 45 lists on the five names); criteria 2, 3, 5, 6 not measured there. Criterion 6 states in its own words that the reading is a human act and no script may attest it."
+    },
+    {
+     "route": "engine/method_reassessment/criterion2.py",
+     "when": "2026-09-07",
+     "outcome": "137 bands, 11 outside, no run commits a priced exception. The decisive cell is now priced (CRITERION2_PRICED_07-09-2026.md); ten remain, all on n<9."
+    },
+    {
+     "route": "re-run of the scorer's short-horizon option, to check the work cannot route around the wait",
+     "when": "2026-09-07",
+     "outcome": "RE-RUN and refused deliberately: a one-to-three-month score exists and would answer the PRICE CONE's question, not this one. Scoring a lens over a horizon it does not speak to is the mistake [R-TCAL-01] caught in its own first edition. There is no honest short cut."
+    },
+    {
+     "route": "every live ref, for a prior ruling on splitting Phase 1",
+     "when": "2026-09-07",
+     "outcome": "none; the clause has been read as one gate since adoption on 03-Sep-2026."
+    }
+   ],
+   "refs_searched": 2,
+   "done_meanwhile": "Criterion 2's decisive cell priced end to end (-60.6% of EGCH's base branch at the nearest band edge; the far edge is unevaluable and terminal_value refuses it). Criterion 1's 47 entries are being classified into cheap declarations versus full re-issues so the remaining work carries a real number rather than 'weeks'.",
+   "recommendation": "SPLIT: declare Phase 1 complete on criteria 1, 2, 5 and 6 and carry criterion 3 as an open dated commitment maturing 2027-06-11 — the same reasoning the price-only publish exemption already uses, that a change asserting no valuation is not held by a gate about valuations. NOT proposed: weakening criterion 3, scoring it early on a shorter horizon, or publishing past the gap block.",
+   "status": "resolved",
+   "resolves_when": {
+    "file": "engine/method_reassessment/STATE.json",
+    "must_contain": "PHASE1_GATE_RULING_"
+   },
+   "answer_goes_to": "engine/method_reassessment/STATE.json, as a PHASE1_GATE_RULING_{DD-MM-YYYY} block, and into the Part E acceptance text the instrument prints — an answer living only in a conversation binds nothing, because the container is rebuilt from the repository [R-IND-01].",
+   "default_if_no_answer": "NO CHANGE — Phase 1 stays one gate and their standing instruction holds. A default that overrode a standing instruction by silence would be the wrong way round; so the work continues on criteria 1 and 2 and the wait runs to 2027-06-11.",
+   "default_date": "2026-09-14",
+   "resolved": "2026-09-07",
+   "resolution": "WITHDRAWN — the premise was mine and was wrong. Criterion 3 opens on the CONTEMPORANEOUS score, which needs no maturity; acceptance.py had summarised it as the gap-closure one and the 2027 date was read off that summary. Reading the forward half into Phase 1 is additionally CIRCULAR (Phase 2b's cohort requires Phase 2a closed, which requires Phase 1 done). No ruling from the principal was needed and none was owed: the plan's own text answered it. THIS IS THE [R-IND-01] FAILURE EXACTLY — a question composed where a command in the room would have finished the search — and it reached the principal as a DATE rather than as a question, which is worse.",
+   "answer_written_to": "engine/method_reassessment/STATE.json, block PHASE1_GATE_RULING_07-09-2026; and engine/method_reassessment/acceptance.py, whose criterion-3 line is corrected in the same commit."
+  },
+  {
+   "key": "ADNOCLS-lng-contracted-vessel-years",
+   "opened": "2026-09-07",
+   "cls": "missing_data",
+   "question": "ADNOC L&S H1 2026 investor presentation, the gas-fleet contract table: the column heading reads 'No. of Vessels CONTRACTED' and the four LNG carriers' firm period ends June 2026, while a bullet on the same slide says five Das carriers moved ONTO long-term contracts from that same month. Read one way the consolidated vessel-year path falls from 12.0/18.0/26.25/30.0 to 10.0/13.0/17.5/20.75/20.0. Worth -14.6% of the central, AED 0.78 a share. The page does not settle it: its total row foots with both rows populated in Q2, which is consistent with two separate sets of ships AND with one set counted twice.",
+   "routes": [
+    {
+     "route": "all four H1 2026 filings — reviewed statements, MD&A, results release and investor presentation — read end to end from the text layer",
+     "when": "2026-09-07",
+     "outcome": "the contract table is the only disclosure of vessel counts by period; 'contracted' and 'in service' are never defined against each other.",
+     "rerun": true
+    },
+    {
+     "route": "the April 2026 (FY2025) presentation carrying the same table, compared row by row against the H1 edition",
+     "when": "2026-09-07",
+     "outcome": "same shape; the June-2026 firm period is new. The change is real, its MEANING is what was undecidable from the page.",
+     "rerun": true
+    },
+    {
+     "route": "the reviewed statements' own gas-segment note, for vessel days or utilisation that would discriminate",
+     "when": "2026-09-07",
+     "outcome": "revenue and profit only. No route from the statements to the count.",
+     "rerun": true
+    },
+    {
+     "route": "EVERY LIVE REF, not the checkout alone — git grep across all 260 refs for 'contracted vessel' / 'vessel-year' [R-IND-01]",
+     "when": "2026-09-07",
+     "outcome": "ANSWERED. The hit is engine/adnocls_study/CALL_Q1_2026.txt, the Q1 2026 earnings-call transcript ALREADY COMMITTED IN THIS STUDY'S OWN DIRECTORY, in which management describes THAT SAME MATRIX: 'We are at a genuine inflection point for our gas carrier fleet. You can see the contract matrix here. Starting this month, May 2026, 5 Das LNG carriers are progressively commencing long-term contracts with ADNOC Gas ... These are vessels that until now have been earning at spot rates.' The dates are COMMENCEMENTS. The alternative requires the company to present a fleet-wide contraction as an inflection point upward on the slide it is describing.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "IT WAS NOT. This entry is registered RESOLVED rather than asked, and that is the point of recording it: the question looked like one only the company or the principal could settle, and the answer was in the study's own directory in a document the study already holds. [R-IND-01]'s own lesson — where a question can be answered by a command available in the room, asking it is the cost of not having run the command. The command was a search of every live ref rather than the checkout.",
+   "done_meanwhile": "The APRIL composition was kept and the alternative published as a priced contested judgement at -14.6%, both framings side by side. Nothing was blocked and the study was completed and gated.",
+   "default_if_no_answer": "The April composition stands and the alternative stays published beside it; the next edition re-tests against the FY2026 filings.",
+   "default_date": "2027-03-31",
+   "status": "resolved",
+   "resolves_when": {
+    "file": "engine/adnocls_study/contested_judgements.json",
+    "must_contain": "SETTLED ON EVIDENCE OUTSIDE THE PAGE"
+   },
+   "resolved": "2026-09-07",
+   "answer": "COMMENCEMENTS. The adopted reading was already the right one, so no value moves: the central stands at AED 5.3385.",
+   "answer_written_to": "engine/adnocls_study/compute.py, in the contested-judgement note that generates contested_judgements.json, quoting the transcript. The alternative is RETAINED rather than deleted — it is still a legitimate downside framing of a path the company has not disclosed vessel by vessel, and dropping a judgement would shrink the population [R-ENF-05]'s sign test is computed over."
+  },
+  {
+   "key": "PANEL_WEDGE-chosen-after-the-fact",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "engine/lessons_harvest.py carries PANEL_WEDGE = 1.30, the multiple of a company's MEASURED consolidation wedge beyond which its study panel is called unreconciled rather than merely bigger. Its own comment claimed the thresholds there were stated ahead of any run; this one was not — it was set with ELEC's measured 1.5130 already in view, which is the selection [R-LESSON-01] keeps out of the harvest by fixing the rules in the module BEFORE a run so they cannot be tuned after seeing its numbers. Does the principal want it kept, re-pointed at the measured wedge itself, or dropped?",
+   "routes": [
+    {
+     "route": "every *_walkforward directory on disk, for any run computing profit_beyond_wedge_by",
+     "when": "2026-09-07",
+     "outcome": "EXACTLY ONE run measures the quantity at all — ELEC, at 1.5130. So any cutoff between 1.0 and 1.5130 classifies every run in the book identically, and no cutoff anywhere classifies a second run either way. THE THRESHOLD DOES NO WORK, which is [R-ANCHOR-01]'s own test of whether a cutoff does work or merely exists.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref, for a prior ruling on this constant or on the harvest's other thresholds",
+     "when": "2026-09-07",
+     "outcome": "none. The other three constants there were genuinely pre-registered and are not in question.",
+     "rerun": true
+    },
+    {
+     "route": "the standing protocol, for a house rule that would settle it without a ruling — the PROMOTION RULE and [R-ANCHOR-01]'s threshold discipline",
+     "when": "2026-09-07",
+     "outcome": "Both bear on it and neither decides it. The PROMOTION RULE forbids a free parameter with no out-of-sample evidence, which this is; [R-COC-01] says re-point rather than widen. Together they point at the measured wedge itself as the bound, but choosing to make that change is a method decision rather than a repair.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "It is a METHOD choice rather than a defect: the constant is not wrong today, it is untestable today, and the three available answers — keep, re-point, drop — are all defensible. Changing a harvest threshold changes which lessons this book draws, which is the principal's to settle rather than the operator's.",
+   "done_meanwhile": "The false claim in the comment was corrected — it now records that this one constant was chosen with a figure in view, and that the threshold does no work, measured. The VALUE was deliberately NOT moved: re-deriving it would change nothing while looking like a correction, and inventing a justification for a chosen number is the free-parameter offence in better clothes.",
+   "default_if_no_answer": "Keep 1.30 with its comment recording how it was chosen, and revisit at the first run that measures the quantity a second time — which is the first moment the choice can be tested at all.",
+   "default_date": "2026-12-31",
+   "status": "resolved",
+   "resolves_when": {
+    "file": "engine/lessons_harvest.py",
+    "must_contain": "PANEL_WEDGE_RULED_"
+   },
+   "recommendation": "Re-point it at the measured wedge itself rather than a multiple of it. The wedge is computed from the company's own overlap year, so 'beyond what consolidation explains' is a measured line; '1.30 times what consolidation explains' is a chosen one, and the house forbids the second wherever it can have the first.",
+   "resolved": "2026-09-07",
+   "answer": "RULED BY THE PRINCIPAL: re-point it at the MEASURED consolidation wedge rather than a chosen multiple of it. The wedge is computed from the company's own overlap year, so 'beyond what consolidation explains' is a measured line where '1.30 times' was a chosen one.",
+   "answer_written_to": "engine/lessons_harvest.py — PANEL_WEDGE_RULED_2026-09-07"
+  },
+  {
+   "key": "lens-registry-has-no-row-for-an-auto-assembler-with-a-captive-lender",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "GB Corp (EGX: GBCO) is an automotive assembler and distributor with a CAPTIVE LENDER and a large stake in a listed fintech. [R-LENS-03]'s LENS_REGISTRY is a closed enumeration of thirteen rows and GBCO maps to none. It also still publishes a FOUR-LENS WEIGHTED BLEND at typed weights (sotp 0.40, prediscount 0.15, relative 0.20, normalized 0.25) reaching EGP 44.3295 — the construction [R-LENS-03] RETIRED outright, and it is on that rule's ratchet with no lens record at all. Does the principal want a row added for this class, or GBCO mapped onto an existing one?",
+   "routes": [
+    {
+     "route": "research_protocol.LENS_REGISTRY, read by import, every one of its thirteen rows compared against GBCO's economics",
+     "when": "2026-09-07",
+     "outcome": "no row fits. 'holding company -> sotp' is the nearest by construction, since GBCO's value splits into an operating auto leg and equity stakes — but a holdco IS its stakes, and GBCO manufactures, assembles and distributes, so the auto leg is an operating business rather than a holding.",
+     "rerun": true
+    },
+    {
+     "route": "the standing protocol's own TEMPLATE section, for a lens pattern by class",
+     "when": "2026-09-07",
+     "outcome": "it carries 'operating-co + captive lender -> split legs' — a PATTERN exists and is named, and it has no registry row. So the method knows what to do with this company and the enumeration does not.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref, for a prior ruling on this class or on GBCO's lens design",
+     "when": "2026-09-07",
+     "outcome": "none. The one open registry escalation concerns SAVOLA, a food and grocery group, and is a different question with a different answer.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "[R-LENS-03] states the test in terms — a class is added when a DIFFERENT LENS carries the weight, never merely when the industry differs — and applying that test to a captive lender is a method judgement rather than a lookup. Registering a class also edits a CLOSED enumeration keyed on the lessons register by import, so it changes what every future study of this shape may publish, which is not the operator's to decide.",
+   "done_meanwhile": "Nothing is blocked on it. GBCO's rebuild, its walk-forward, its corrections log, its four-field register and its diagnostics were all completed and are committed; the study is red on [R-LENS-03] and carried on that rule's ratchet, which is the sanctioned way to hold a known debt rather than a permanently red build.",
+   "default_if_no_answer": "GBCO stays on the lens ratchet with its blend, no row is invented, and the question is put again when the next captive-lender name reaches the queue — a second company of the shape is the evidence [R-LESSON-01] asks for before widening a scope, and the same argument applies to widening a registry.",
+   "default_date": "2026-12-31",
+   "status": "resolved",
+   "resolves_when": {
+    "file": "engine/research_protocol.py",
+    "must_contain": "captive lender"
+   },
+   "recommendation": "Add the row. The captive lender is the reason and it is a lens reason rather than an industry one: a finance book is valued on its own spread and its own loss experience, not by discounting it alongside the cash flows of the vehicles it funds, and the protocol already names 'operating-co + captive lender -> split legs' as the pattern. That is a DIFFERENT LENS carrying part of the weight, which is exactly the test [R-LENS-03] sets — and it is the test SAVOLA fails, which is why these two escalations should not be answered together.",
+   "resolved": "2026-09-07",
+   "answer": "THE PRINCIPAL RULED: build a model for this company rather than adopting the holding-company lens, and fall back to that lens only if the bespoke one fails. It did not fail. The row is registered as 'automotive assembler and distributor with a captive lender' -> sotp primary, with dcf, residual_income, relative_multiple and book_value permitted beside it. THE PAYLOAD IS GENUINELY NEW AND THAT MATTERS: L-337 records that the other blocked names need a set the registry already stores under a different NAME, and its own falsifier is a name needing a LENS the registry does not hold. This is that name — no row combines a sum-of-the-parts primary with a cash-flow lens for an operating leg and residual income for a lender, and the lender is why. It does NOT answer the SAVOLA escalation, which the recommendation already said should not be answered with this one.",
+   "answer_written_to": "engine/research_protocol.py (LENS_REGISTRY, the row and its reasoning) and engine/lessons_register.py (CLASSES, why it is a class rather than an industry)"
+  },
+  {
+   "key": "EGCH-FY2013-14-annual-legible-copy",
+   "opened": "2026-09-07",
+   "cls": "missing_data",
+   "question": "A LEGIBLE copy of Egyptian Chemical Industries' (KIMA / EGCH) annual report for the year ended 30 June 2014. The run HOLDS this filing — engine/egch_walkforward/filings/EGCH_FY2013-14_Annual.pdf — and its own record states why it cannot be used: every page is embedded as a 367 x 519 pixel image, roughly forty-five dots per inch across an A4 page. The prose and the larger income-statement blocks survive that resolution, which is why the run's panel carries FY2014 as a PARTIAL year; the numeric columns of the statement of financial position do not resolve to the digit at any magnification. So every field of the FY2014 valuation-input block is recorded missing WITH ITS REASON, and because three consecutive years of capex intensity are needed to each origin, that year drops the 2015 and 2016 origins from the mechanical valuation series.",
+   "routes": [
+    {
+     "route": "the run's own committed FY2014 block, opened rather than inferred from the filings directory listing",
+     "when": "2026-09-07",
+     "outcome": "ANSWERED THERE ALREADY. All seven fields carry missing:true with the resolution reason quoted above. The run did the work and recorded it correctly under [R-FCAL-01]'s clause that a missing item is RECORDED as missing, never omitted.",
+     "rerun": true
+    },
+    {
+     "route": "engine/egch_walkforward/filings/, every held PDF and the fiscal year each covers",
+     "when": "2026-09-07",
+     "outcome": "ten annuals, FY2008-09 to FY2020-21. The FY2013-14 edition IS present. An earlier reading of this same directory concluded a FY2014-15 report was MISSING, which was wrong twice over: this company's June year end means FY2013-14 is the report covering the 2014 origin, and the file is there.",
+     "rerun": true
+    },
+    {
+     "route": "OCR off the rendered pixels, which is the sanctioned route where a filing carries no usable text layer",
+     "when": "2026-09-07",
+     "outcome": "already attempted by the run and recorded as defeated by RESOLUTION rather than by extraction — at forty-five dots per inch the digits are not present in the image to be recovered. Arithmetic is the arbiter and there is nothing to foot.",
+     "rerun": false
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "The failure is in the SOURCE FILE rather than in any tool: a better scan cannot be produced from a worse one. Every route this environment admits has been run by the study and re-checked here. What is needed is a higher-resolution copy of a document the company published.",
+   "done_meanwhile": "Nothing is blocked and nothing was invented. The 2015 and 2016 origins are DROPPED with their stated reason, which is the correct output — [R-FCAL-01] says leave the year out and shorten the window rather than interpolate, and deriving capex across 2013 to 2015 would present a two-year change as one year's spending. The comparable gap on PHDC, where that company's own filing for the missing year IS legible, is being carried instead, so the recoverable cells are being recovered.",
+   "default_if_no_answer": "The two origins stay dropped and the mechanical series is scored on the cells that exist. The window shortens; nothing is fabricated.",
+   "default_date": "2026-12-31",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/egch_walkforward/valuation_inputs.json",
+    "must_contain": "FY2014_LEGIBLE_COPY_SUPPLIED"
+   },
+   "recommendation": "Supply a legible copy if one exists; otherwise accept the shortened window. Two cells are worth having and neither is worth inventing, and the cost of the absence is already visible in criterion 3's own drop list, which is where a reader would look."
+  },
+  {
+   "key": "cashflow-score-file-restamp-and-rescore",
+   "opened": "2026-09-07",
+   "cls": "instruction",
+   "question": "Two joined questions about [R-VCAL-01] series (a). (1) score_cashflow.py writes to a HARDCODED filename, SCORES_cashflow_06-09-2026.json, so re-running it OVERWRITES a file whose own name states a date the contents would no longer be from — a stale stamp of exactly the kind this house refuses elsewhere. (2) Two valuation-input carries landed today (PHDC's FY2022, ARCC's FY2015-16) and the scorer has not been re-run, so criterion3's printed verdict still reads the 6 September file. Does the principal want the scorer re-run now, and the output dated by its run rather than by a literal?",
+   "routes": [
+    {
+     "route": "score_cashflow.py read end to end, and its pre-registration",
+     "when": "2026-09-07",
+     "outcome": "the scorer chooses NOTHING at run time — statistics, blocks, seed, eras and the four printed readings are all fixed in the sealed declaration. So re-running it is not a decision about the method; it is the method being applied to more data. The only thing in the way is the filename.",
+     "rerun": true
+    },
+    {
+     "route": "scripts/check_valuation_calibration.py, to see whether a NEW dated score file would satisfy the commit-topology rule",
+     "when": "2026-09-07",
+     "outcome": "it globs any file carrying a score marker and requires the pre-registration's introducing commit to be an ANCESTOR of each score file's. A new file written today satisfies that; the constraint is not what blocks this.",
+     "rerun": true
+    },
+    {
+     "route": "the two carries' own in-memory re-runs of cashflow_lens against the tree as it now stands, which is the question re-scoring would answer",
+     "when": "2026-09-07",
+     "outcome": "ANSWERED, and it is why this is not urgent. PHDC's carry takes 5 scored cells to 6 and populates a second era; ARCC's clears all three of its capex-intensity drops, which then land on TERMINAL refusals the sanctioned module is right to make. The series stays on ONE name, clause A's pooled mean moves +0.9842 to +1.0439 and still excludes zero at every block length, and CRITERION 3 REMAINS NOT MET. Re-scoring tonight would rewrite a dated artefact to print a verdict already known.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 260,
+   "why_only_the_principal": "Re-dating the output of a sealed, pre-registered calibration is a decision about that programme's own artefact discipline rather than a repair — and doing it unsupervised, to produce a verdict that does not change, is the shape of act this method distrusts. The arithmetic question is already answered; what is left is whose call the naming is.",
+   "done_meanwhile": "Both carries are committed and their effect is MEASURED and reported rather than assumed. criterion3 prints the stale figure and nothing depends on it: no fair value, no publish, no gate. The drop list it prints is the honest map of what remains.",
+   "default_if_no_answer": "Leave the 6 September file as it stands and re-score at the next carry, dating the output by its run and resolving it by pattern — so the two changes happen together and neither a literal filename nor a stale stamp survives the change.",
+   "default_date": "2026-10-31",
+   "status": "resolved",
+   "resolves_when": {
+    "file": "engine/valuation_calibration/score_cashflow.py",
+    "must_contain": "DECLARED"
+   },
+   "recommendation": "Re-score, and date the output by the run rather than by a literal, with criterion3 resolving the latest by pattern — the same discipline the digest's own dated file already uses. Not because the verdict moves, but because the carries are real work and a programme whose printed verdict silently lags its own inputs will lag them again next time, and nobody will know which run it is reading.",
+   "resolved": "2026-09-07",
+   "answer": "RULED BY THE PRINCIPAL: do not switch the declared maintenance basis. Changing the rule after seeing which answer it produces is selection, which is what the pre-registration exists to prevent. The disclosed-life reading stays a PUBLISHED SENSITIVITY beside the declared run, as designed. The separate filename question stands: when the scorer is next re-run, date its output by the run rather than by a literal.",
+   "answer_written_to": "engine/valuation_calibration/score_cashflow.py — the declared reading is unchanged and this ruling is why."
   }
  ]
 }

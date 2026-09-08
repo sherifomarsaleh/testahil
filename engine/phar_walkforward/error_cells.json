@@ -1,0 +1,4362 @@
+[
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.15416961103403776,
+  "setting": "asknown",
+  "forecast": 2945923459.3002224,
+  "actual": 3436975768
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.11133289489255224,
+  "setting": "asknown",
+  "forecast": 1715140508.1149776,
+  "actual": 1917127364
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.21096008311975237,
+  "setting": "asknown",
+  "forecast": 1230782951.1852448,
+  "actual": 1519848404
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.20028669738492252,
+  "setting": "asknown",
+  "forecast": 739192641.0611949,
+  "actual": 903110813
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": 0.1668112383477762,
+  "setting": "asknown",
+  "forecast": 78721998.51306255,
+  "actual": 66627100
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.18860792028177925,
+  "setting": "asknown",
+  "forecast": 570312308.6371125,
+  "actual": 688690550
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.1130491690665872,
+  "setting": "asknown",
+  "forecast": 466921013.41068363,
+  "actual": 522805382
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": 0.017697590588236122,
+  "setting": "asknown",
+  "forecast": 1779446000,
+  "actual": 1748231122
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.28204701772709373,
+  "setting": "asknown",
+  "forecast": 2983130340.1321845,
+  "actual": 3955156682
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.2817189051104751,
+  "setting": "asknown",
+  "forecast": 1736802655.613767,
+  "actual": 2301968839
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.2825040750413958,
+  "setting": "asknown",
+  "forecast": 1246327684.5184176,
+  "actual": 1653187843
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.47393963390754124,
+  "setting": "asknown",
+  "forecast": 748528610.8811169,
+  "actual": 1202369006
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": 0.32203181411544535,
+  "setting": "asknown",
+  "forecast": 79716253.81466675,
+  "actual": 57768387
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.3317892822812982,
+  "setting": "asknown",
+  "forecast": 577515327.4519675,
+  "actual": 804744041
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.30861528961778795,
+  "setting": "asknown",
+  "forecast": 472818204.81566226,
+  "actual": 643760176
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.4691831976530257,
+  "setting": "asknown",
+  "forecast": 1779446000,
+  "actual": 2844778696
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.5490056338250244,
+  "setting": "asknown",
+  "forecast": 3021411355.178305,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.49865232124149345,
+  "setting": "asknown",
+  "forecast": 1759090172.7554908,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6151976163179587,
+  "setting": "asknown",
+  "forecast": 1262321182.4228144,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6941762754110005,
+  "setting": "asknown",
+  "forecast": 758134103.0146997,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.22143755085766234,
+  "setting": "asknown",
+  "forecast": 80739212.50696594,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6162402805832325,
+  "setting": "asknown",
+  "forecast": 584926291.9150805,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.5418665137502127,
+  "setting": "asknown",
+  "forecast": 478885643.629558,
+  "actual": 823306330
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -1.0083611123280154,
+  "setting": "asknown",
+  "forecast": 1779446000,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.07294597452008621,
+  "setting": "asknown",
+  "forecast": 3676915576.231962,
+  "actual": 3955156682
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.11545457804495307,
+  "setting": "asknown",
+  "forecast": 2050964552.0177913,
+  "actual": 2301968839
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.016612559748673813,
+  "setting": "asknown",
+  "forecast": 1625951024.214171,
+  "actual": 1653187843
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.2167478276748727,
+  "setting": "asknown",
+  "forecast": 968066936.0054687,
+  "actual": 1202369006
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.3834661116206423,
+  "setting": "asknown",
+  "forecast": 84767125.78093965,
+  "actual": 57768387
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.08029776022055411,
+  "setting": "asknown",
+  "forecast": 742651213.9896419,
+  "actual": 804744041
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.09418967225037927,
+  "setting": "asknown",
+  "forecast": 585892653.1123105,
+  "actual": 643760176
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.05098217111936291,
+  "setting": "asknown",
+  "forecast": 323011.1806624423,
+  "actual": 339906
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.0032284718022738425,
+  "setting": "asknown",
+  "forecast": 11141.93435787338,
+  "actual": 11177.96390766859
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.04573707532714062,
+  "setting": "asknown",
+  "forecast": 6214.9135423787575,
+  "actual": 6505.766185199074
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.180323335380714,
+  "setting": "asknown",
+  "forecast": 185451022.20751193,
+  "actual": 222096984
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.18558513767990314,
+  "setting": "asknown",
+  "forecast": 467600137.0573454,
+  "actual": 562954417
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.20255005924842545,
+  "setting": "asknown",
+  "forecast": 121545966.68299057,
+  "actual": 99259979
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.2871735289986823,
+  "setting": "asknown",
+  "forecast": 2134669318.1227531,
+  "actual": 2844778696
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.2851731555105214,
+  "setting": "asknown",
+  "forecast": 3933605898.7126465,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.2776565590684761,
+  "setting": "asknown",
+  "forecast": 2194145090.5259414,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.2945746659177412,
+  "setting": "asknown",
+  "forecast": 1739460808.186705,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.35993636402319507,
+  "setting": "asknown",
+  "forecast": 1059021024.2039682,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.1052718182449702,
+  "setting": "asknown",
+  "forecast": 90684830.55314665,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.33987613549321455,
+  "setting": "asknown",
+  "forecast": 771124614.5358835,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.30256827335353004,
+  "setting": "asknown",
+  "forecast": 608355898.1389318,
+  "actual": 823306330
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.0038299000816396844,
+  "setting": "asknown",
+  "forecast": 329298.4018411109,
+  "actual": 330562
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.2608754217985032,
+  "setting": "asknown",
+  "forecast": 11692.186009683619,
+  "actual": 15177.228477562454
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.25335882535645804,
+  "setting": "asknown",
+  "forecast": 6521.841076926218,
+  "actual": 8402.384504899012
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.5964958518317882,
+  "setting": "asknown",
+  "forecast": 224538798.12093234,
+  "actual": 407705200
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -1.521296234596847,
+  "setting": "asknown",
+  "forecast": 500243918.91329575,
+  "actual": 2290194556
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.3688821837706861,
+  "setting": "asknown",
+  "forecast": 152203468.38830933,
+  "actual": 105249745
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.6425966806999458,
+  "setting": "asknown",
+  "forecast": 2565277119.3836894,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.5898646472727771,
+  "setting": "asknown",
+  "forecast": 4208216110.918609,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.5780844441789462,
+  "setting": "asknown",
+  "forecast": 2347321251.1365385,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6045288937902599,
+  "setting": "asknown",
+  "forecast": 1860894859.7820706,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.8977736456379408,
+  "setting": "asknown",
+  "forecast": 1156288843.3704963,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.835117327468144,
+  "setting": "asknown",
+  "forecast": 97015658.09492235,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6466281115392741,
+  "setting": "asknown",
+  "forecast": 801621674.5064967,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.5507179661570625,
+  "setting": "asknown",
+  "forecast": 632415649.2599431,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": 0.09222208661630393,
+  "setting": "asknown",
+  "forecast": 335708.0000535046,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6732230191935904,
+  "setting": "asknown",
+  "forecast": 12269.612196058039,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6614428160997595,
+  "setting": "asknown",
+  "forecast": 6843.926426754779,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -1.2818608435824763,
+  "setting": "asknown",
+  "forecast": 266456204.96602103,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -1.6711759028531876,
+  "setting": "asknown",
+  "forecast": 535166606.20448583,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": 0.5767873211670204,
+  "setting": "asknown",
+  "forecast": 183036937.88225308,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -1.1161901119337945,
+  "setting": "asknown",
+  "forecast": 3009637812.354525,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.22461771899814545,
+  "setting": "asknown",
+  "forecast": 4179167120.4320025,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.17459251903123307,
+  "setting": "asknown",
+  "forecast": 2432346745.702913,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.2903526441767778,
+  "setting": "asknown",
+  "forecast": 1746820374.7290897,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.1679306456560915,
+  "setting": "asknown",
+  "forecast": 1283191889.6152296,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.17499489736608448,
+  "setting": "asknown",
+  "forecast": 84577393.57051675,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.6810752157267809,
+  "setting": "asknown",
+  "forecast": 548205878.6843768,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.6391152404591496,
+  "setting": "asknown",
+  "forecast": 434507455.0761827,
+  "actual": 823306330
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.04460503976310413,
+  "setting": "asknown",
+  "forecast": 345640.52020300296,
+  "actual": 330562
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.26749025672932053,
+  "setting": "asknown",
+  "forecast": 11615.09936803773,
+  "actual": 15177.228477562454
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.21746505676240827,
+  "setting": "asknown",
+  "forecast": 6760.186500017763,
+  "actual": 8402.384504899012
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.28219615300308293,
+  "setting": "asknown",
+  "forecast": 307460988.09583277,
+  "actual": 407705200
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -1.4028361065713837,
+  "setting": "asknown",
+  "forecast": 563155588.0673858,
+  "actual": 2290194556
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.23278131443778385,
+  "setting": "asknown",
+  "forecast": 132836276.23959379,
+  "actual": 105249745
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.32076012280186506,
+  "setting": "asknown",
+  "forecast": 3539208340.224177,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.5416997487681112,
+  "setting": "asknown",
+  "forecast": 4415864964.335164,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.48741094214941344,
+  "setting": "asknown",
+  "forecast": 2570108939.3988748,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.6126974100570061,
+  "setting": "asknown",
+  "forecast": 1845756024.9362893,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.709520958857747,
+  "setting": "asknown",
+  "forecast": 1395800785.4530013,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.9172309445969683,
+  "setting": "asknown",
+  "forecast": 89367651.08455965,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -1.0429504341552118,
+  "setting": "asknown",
+  "forecast": 539322890.5678477,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.9423881756450533,
+  "setting": "asknown",
+  "forecast": 427466807.19176406,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": 0.1381097951864287,
+  "setting": "asknown",
+  "forecast": 351471.78692403925,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.6896811608574986,
+  "setting": "asknown",
+  "forecast": 12069.32983893746,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.6353923542388008,
+  "setting": "asknown",
+  "forecast": 7024.556403362965,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.9589311785537052,
+  "setting": "asknown",
+  "forecast": 368020837.8080123,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -1.5651063128354343,
+  "setting": "asknown",
+  "forecast": 595051348.5469974,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": 0.46677673631298144,
+  "setting": "asknown",
+  "forecast": 163969001.37794054,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.8089911488464466,
+  "setting": "asknown",
+  "forecast": 4091938041.0309253,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.7048065959420425,
+  "setting": "asknown",
+  "forecast": 4665968797.444762,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6662375842790494,
+  "setting": "asknown",
+  "forecast": 2715673648.112671,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.7561483950016713,
+  "setting": "asknown",
+  "forecast": 1950295149.3320913,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.7297379104575082,
+  "setting": "asknown",
+  "forecast": 1504526005.4604836,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.9060468757195776,
+  "setting": "asknown",
+  "forecast": 94429217.11358668,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.2013261953378722,
+  "setting": "asknown",
+  "forecast": 540198360.9851944,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.225248929733949,
+  "setting": "asknown",
+  "forecast": 428160704.20714945,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": 0.08987238978038622,
+  "setting": "asknown",
+  "forecast": 357401.43236395926,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.8200188070481247,
+  "setting": "asknown",
+  "forecast": 12541.323853148886,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.7814497953851316,
+  "setting": "asknown",
+  "forecast": 7299.264992748054,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.1504387142799322,
+  "setting": "asknown",
+  "forecast": 421874769.1060332,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.76757018231444,
+  "setting": "asknown",
+  "forecast": 628753607.1918212,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": 0.505449434032078,
+  "setting": "asknown",
+  "forecast": 195156930.56801707,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6355241712523715,
+  "setting": "asknown",
+  "forecast": 4653234571.218513,
+  "actual": 8785360492
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.1723388308221843,
+  "setting": "asknown",
+  "forecast": 6388916215.871185,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.1680752241703986,
+  "setting": "asknown",
+  "forecast": 3537018019.771929,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.17760156693244725,
+  "setting": "asknown",
+  "forecast": 2851898196.0992565,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.3311957123156188,
+  "setting": "asknown",
+  "forecast": 2037642570.3624992,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.6790520449142051,
+  "setting": "asknown",
+  "forecast": 113401846.2118517,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.500602319412255,
+  "setting": "asknown",
+  "forecast": 927657471.948609,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.42502858324389725,
+  "setting": "asknown",
+  "forecast": 717115011.1247274,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": 0.09796693673876368,
+  "setting": "asknown",
+  "forecast": 337642.14255870524,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.2819098864958355,
+  "setting": "asknown",
+  "forecast": 18145.793759368946,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.27764627984404994,
+  "setting": "asknown",
+  "forecast": 10045.835215449164,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.4325979827010084,
+  "setting": "asknown",
+  "forecast": 622954048.0369062,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.6363998660942585,
+  "setting": "asknown",
+  "forecast": 1506213475.993885,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": 0.8075490560495421,
+  "setting": "asknown",
+  "forecast": 230545839.77525926,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.2713457158679172,
+  "setting": "asknown",
+  "forecast": 7005279923.124996,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.19070247904833393,
+  "setting": "asknown",
+  "forecast": 7802152079.384471,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.20215866735225343,
+  "setting": "asknown",
+  "forecast": 4319410611.338074,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.17630935292933,
+  "setting": "asknown",
+  "forecast": 3482741468.046397,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.18812993732134287,
+  "setting": "asknown",
+  "forecast": 2585931717.166487,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -1.5231247770890328,
+  "setting": "asknown",
+  "forecast": 138486469.4312147,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.5508197346526174,
+  "setting": "asknown",
+  "forecast": 1035296220.3111247,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.599730991390495,
+  "setting": "asknown",
+  "forecast": 800323915.8805912,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.054191712648159855,
+  "setting": "asknown",
+  "forecast": 344873.93115855125,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.2719665150541188,
+  "setting": "asknown",
+  "forecast": 21694.990731959748,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.28342270335803815,
+  "setting": "asknown",
+  "forecast": 12010.733990704404,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.4331824746389075,
+  "setting": "asknown",
+  "forecast": 864338741.5642136,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.3058794633745176,
+  "setting": "asknown",
+  "forecast": 1839389687.8048434,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.9475910635906596,
+  "setting": "asknown",
+  "forecast": 303671230.2092992,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.0742706123204714,
+  "setting": "asknown",
+  "forecast": 9462696342.288082,
+  "actual": 8785360492
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.05090127746846146,
+  "setting": "asknown",
+  "forecast": 9934398789.411356,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.03518148251275651,
+  "setting": "asknown",
+  "forecast": 5476461114.090796,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.07055713969772821,
+  "setting": "asknown",
+  "forecast": 4457937675.3205595,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.21769972806625024,
+  "setting": "asknown",
+  "forecast": 3880311913.8850965,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -1.1082181516291478,
+  "setting": "asknown",
+  "forecast": 209700275.70737275,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.8246201615217278,
+  "setting": "asknown",
+  "forecast": 787326037.1428357,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.891965635430234,
+  "setting": "asknown",
+  "forecast": 597516498.8312507,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.06848026056127095,
+  "setting": "asknown",
+  "forecast": 305059.53677814186,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.10391333360699506,
+  "setting": "asknown",
+  "forecast": 31593.81080202597,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.08819353865129013,
+  "setting": "asknown",
+  "forecast": 17416.481859743133,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.17103657104904896,
+  "setting": "asknown",
+  "forecast": 1581586600.4173353,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.8478579840826879,
+  "setting": "asknown",
+  "forecast": 3162656521.827528,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.38068374380150805,
+  "setting": "asknown",
+  "forecast": 172265745.56289816,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.48231761466370127,
+  "setting": "asknown",
+  "forecast": 14230739385.8889,
+  "actual": 8785360492
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.15416961103403776,
+  "setting": "foresight",
+  "forecast": 2945923459.3002224,
+  "actual": 3436975768
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.11133289489255224,
+  "setting": "foresight",
+  "forecast": 1715140508.1149776,
+  "actual": 1917127364
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.21096008311975237,
+  "setting": "foresight",
+  "forecast": 1230782951.1852448,
+  "actual": 1519848404
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.20028669738492252,
+  "setting": "foresight",
+  "forecast": 739192641.0611949,
+  "actual": 903110813
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": 0.1668112383477762,
+  "setting": "foresight",
+  "forecast": 78721998.51306255,
+  "actual": 66627100
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.18860792028177925,
+  "setting": "foresight",
+  "forecast": 570312308.6371125,
+  "actual": 688690550
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.1130491690665872,
+  "setting": "foresight",
+  "forecast": 466921013.41068363,
+  "actual": 522805382
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": 0.017697590588236122,
+  "setting": "foresight",
+  "forecast": 1779446000,
+  "actual": 1748231122
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.28204701772709373,
+  "setting": "foresight",
+  "forecast": 2983130340.1321845,
+  "actual": 3955156682
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.2817189051104751,
+  "setting": "foresight",
+  "forecast": 1736802655.613767,
+  "actual": 2301968839
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.2825040750413958,
+  "setting": "foresight",
+  "forecast": 1246327684.5184176,
+  "actual": 1653187843
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.47393963390754124,
+  "setting": "foresight",
+  "forecast": 748528610.8811169,
+  "actual": 1202369006
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": 0.32203181411544535,
+  "setting": "foresight",
+  "forecast": 79716253.81466675,
+  "actual": 57768387
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.3317892822812982,
+  "setting": "foresight",
+  "forecast": 577515327.4519675,
+  "actual": 804744041
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.30861528961778795,
+  "setting": "foresight",
+  "forecast": 472818204.81566226,
+  "actual": 643760176
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.4691831976530257,
+  "setting": "foresight",
+  "forecast": 1779446000,
+  "actual": 2844778696
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.5490056338250244,
+  "setting": "foresight",
+  "forecast": 3021411355.178305,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.49865232124149345,
+  "setting": "foresight",
+  "forecast": 1759090172.7554908,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6151976163179587,
+  "setting": "foresight",
+  "forecast": 1262321182.4228144,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6941762754110005,
+  "setting": "foresight",
+  "forecast": 758134103.0146997,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.22143755085766234,
+  "setting": "foresight",
+  "forecast": 80739212.50696594,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6162402805832325,
+  "setting": "foresight",
+  "forecast": 584926291.9150805,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.5418665137502127,
+  "setting": "foresight",
+  "forecast": 478885643.629558,
+  "actual": 823306330
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -1.0083611123280154,
+  "setting": "foresight",
+  "forecast": 1779446000,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.008961718303264648,
+  "setting": "foresight",
+  "forecast": 3990760981.5924635,
+  "actual": 3955156682
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.03354688522160228,
+  "setting": "foresight",
+  "forecast": 2226025901.0922456,
+  "actual": 2301968839
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.06529513307467714,
+  "setting": "foresight",
+  "forecast": 1764735080.500218,
+  "actual": 1653187843
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.13812094618946325,
+  "setting": "foresight",
+  "forecast": 1047255398.912478,
+  "actual": 1202369006
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.465373804443993,
+  "setting": "foresight",
+  "forecast": 92002476.280672,
+  "actual": 57768387
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.005870466578917696,
+  "setting": "foresight",
+  "forecast": 809482157.8684119,
+  "actual": 804744041
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.008021445450907357,
+  "setting": "foresight",
+  "forecast": 638616944.5179375,
+  "actual": 643760176
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.05098217111936291,
+  "setting": "foresight",
+  "forecast": 323011.1806624423,
+  "actual": 339906
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.07867922102107701,
+  "setting": "foresight",
+  "forecast": 12092.961062878767,
+  "actual": 11177.96390766859
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.03617061749621003,
+  "setting": "foresight",
+  "forecast": 6745.391335395476,
+  "actual": 6505.766185199074
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.11566149619620224,
+  "setting": "foresight",
+  "forecast": 197838819.2805761,
+  "actual": 222096984
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.1036774448565524,
+  "setting": "foresight",
+  "forecast": 507512436.24365944,
+  "actual": 562954417
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.20255005924842545,
+  "setting": "foresight",
+  "forecast": 121545966.68299057,
+  "actual": 99259979
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.16882037632694816,
+  "setting": "foresight",
+  "forecast": 2402872510.9595904,
+  "actual": 2844778696
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.040339004673195844,
+  "setting": "foresight",
+  "forecast": 5447020145.590755,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.047855601115241446,
+  "setting": "foresight",
+  "forecast": 3038319755.000177,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.030937494265975498,
+  "setting": "foresight",
+  "forecast": 2408700390.5905786,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.04240659705662753,
+  "setting": "foresight",
+  "forecast": 1454809095.644465,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.22024034193874698,
+  "setting": "foresight",
+  "forecast": 125574882.59922864,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.00350420527947249,
+  "setting": "foresight",
+  "forecast": 1079466177.5453422,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.033803656860211855,
+  "setting": "foresight",
+  "forecast": 851612830.8865407,
+  "actual": 823306330
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.0038299000816396844,
+  "setting": "foresight",
+  "forecast": 329298.4018411109,
+  "actual": 330562
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.06463673838521404,
+  "setting": "foresight",
+  "forecast": 16190.633830802455,
+  "actual": 15177.228477562454
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.07215333482725947,
+  "setting": "foresight",
+  "forecast": 9031.052079717641,
+  "actual": 8402.384504899012
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.3092033647461273,
+  "setting": "foresight",
+  "forecast": 299268450.838308,
+  "actual": 407705200
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -1.1957840744131298,
+  "setting": "foresight",
+  "forecast": 692707600.6576433,
+  "actual": 2290194556
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.39184781587396944,
+  "setting": "foresight",
+  "forecast": 155739363.87844008,
+  "actual": 105249745
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.22503875013795396,
+  "setting": "foresight",
+  "forecast": 3894730330.333906,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.063585552199455,
+  "setting": "foresight",
+  "forecast": 7122921229.680463,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.051805349105623906,
+  "setting": "foresight",
+  "forecast": 3973128739.5672283,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.07824979871693778,
+  "setting": "foresight",
+  "forecast": 3149792490.1132345,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.3685042056833433,
+  "setting": "foresight",
+  "forecast": 1963021844.7916358,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.30883823239482205,
+  "setting": "foresight",
+  "forecast": 164210884.7173483,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.12467821401831501,
+  "setting": "foresight",
+  "forecast": 1350981530.038947,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.028768068636103348,
+  "setting": "foresight",
+  "forecast": 1065816816.8715701,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": 0.09222208661630393,
+  "setting": "foresight",
+  "forecast": 335708.0000535046,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.14694392412026822,
+  "setting": "foresight",
+  "forecast": 20767.821539509914,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.1351637210264373,
+  "setting": "foresight",
+  "forecast": 11584.18378586109,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.7426694252268449,
+  "setting": "foresight",
+  "forecast": 456871109.2082743,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -1.1448968077798654,
+  "setting": "foresight",
+  "forecast": 905835033.2482967,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": 0.6818324954988216,
+  "setting": "foresight",
+  "forecast": 203310253.1902263,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.47715258699144747,
+  "setting": "foresight",
+  "forecast": 5702229668.932921,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.028830055095312286,
+  "setting": "foresight",
+  "forecast": 5384690030.45943,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.07885525506222481,
+  "setting": "foresight",
+  "forecast": 3133981698.930725,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.03690487008332023,
+  "setting": "foresight",
+  "forecast": 2250708331.5287046,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.06263538183699316,
+  "setting": "foresight",
+  "forecast": 1615939732.5126169,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.07845287672737353,
+  "setting": "foresight",
+  "forecast": 108974595.85543633,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.3760303160850691,
+  "setting": "foresight",
+  "forecast": 743743194.8715241,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.3340703408174379,
+  "setting": "foresight",
+  "forecast": 589490144.851059,
+  "actual": 823306330
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.04460503976310413,
+  "setting": "foresight",
+  "forecast": 345640.52020300296,
+  "actual": 330562
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.014042482635862717,
+  "setting": "foresight",
+  "forecast": 14965.59193914294,
+  "actual": 15177.228477562454
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.035982717331049574,
+  "setting": "foresight",
+  "forecast": 8710.230484137526,
+  "actual": 8402.384504899012
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.12792024031476779,
+  "setting": "foresight",
+  "forecast": 358749410.51382154,
+  "actual": 407705200
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -1.149388332477926,
+  "setting": "foresight",
+  "forecast": 725603497.8449264,
+  "actual": 2290194556
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.23278131443778385,
+  "setting": "foresight",
+  "forecast": 132836276.23959379,
+  "actual": 105249745
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.04983799704389978,
+  "setting": "foresight",
+  "forecast": 4640514274.830048,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.07764173305195791,
+  "setting": "foresight",
+  "forecast": 7023500535.233782,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.0233529264332599,
+  "setting": "foresight",
+  "forecast": 4087797443.370156,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.14863939434085308,
+  "setting": "foresight",
+  "forecast": 2935703091.863626,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.2652785198540143,
+  "setting": "foresight",
+  "forecast": 2176483996.9514866,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.453172928880815,
+  "setting": "foresight",
+  "forecast": 142140611.24930498,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.5293604726981491,
+  "setting": "foresight",
+  "forecast": 901359706.1614444,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.42879821418799063,
+  "setting": "foresight",
+  "forecast": 714416840.9363439,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": 0.1381097951864287,
+  "setting": "foresight",
+  "forecast": 351471.78692403925,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.2256231451413452,
+  "setting": "foresight",
+  "forecast": 19196.45307733109,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.17133433852264737,
+  "setting": "foresight",
+  "forecast": 11172.664032363062,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.5722027432963224,
+  "setting": "foresight",
+  "forecast": 541784324.138024,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -1.101048297119281,
+  "setting": "foresight",
+  "forecast": 946438240.0200152,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": 0.5360012715214767,
+  "setting": "foresight",
+  "forecast": 175721776.55068725,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.32528923204544846,
+  "setting": "foresight",
+  "forecast": 6637402009.449968,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.14743725536596167,
+  "setting": "foresight",
+  "forecast": 8147122740.427262,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.10886824370296863,
+  "setting": "foresight",
+  "forecast": 4741764785.532672,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.19877905442559027,
+  "setting": "foresight",
+  "forecast": 3405357954.8945904,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.17875363813506648,
+  "setting": "foresight",
+  "forecast": 2610292213.8035197,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.3486775351434968,
+  "setting": "foresight",
+  "forecast": 164880318.64425534,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6263855074953307,
+  "setting": "foresight",
+  "forecast": 959946059.735326,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6503082418914075,
+  "setting": "foresight",
+  "forecast": 760852328.7400725,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": 0.08987238978038622,
+  "setting": "foresight",
+  "forecast": 357401.43236395926,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.2626494664720439,
+  "setting": "foresight",
+  "forecast": 21898.06858867271,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.22408045480905084,
+  "setting": "foresight",
+  "forecast": 12745.050469130641,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6160293847126176,
+  "setting": "foresight",
+  "forecast": 719903981.3563964,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.21020084173835915,
+  "setting": "foresight",
+  "forecast": 1097849778.6104836,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": 0.6761455643527376,
+  "setting": "foresight",
+  "forecast": 231481541.81632692,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.05536552335892764,
+  "setting": "foresight",
+  "forecast": 8312174375.846103,
+  "actual": 8785360492
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.1020096068318313,
+  "setting": "foresight",
+  "forecast": 6854421179.332563,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.09774600018004563,
+  "setting": "foresight",
+  "forecast": 3794729873.9305377,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.10727234294209426,
+  "setting": "foresight",
+  "forecast": 3059691305.4020257,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.2712849329700837,
+  "setting": "foresight",
+  "forecast": 2163450316.943206,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.6087228209238521,
+  "setting": "foresight",
+  "forecast": 121664456.09647712,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.40776257130377735,
+  "setting": "foresight",
+  "forecast": 1017905444.555297,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.33218883513541975,
+  "setting": "foresight",
+  "forecast": 786880175.3548868,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": 0.09796693673876368,
+  "setting": "foresight",
+  "forecast": 337642.14255870524,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.21158066250548252,
+  "setting": "foresight",
+  "forecast": 19467.92051381738,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.20731705585369675,
+  "setting": "foresight",
+  "forecast": 10777.788178502542,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.3967578858755107,
+  "setting": "foresight",
+  "forecast": 645685700.5441818,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.5660706421039055,
+  "setting": "foresight",
+  "forecast": 1615958200.3597782,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": 0.8075490560495421,
+  "setting": "foresight",
+  "forecast": 230545839.77525926,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.20933724184184863,
+  "setting": "foresight",
+  "forecast": 7453417212.66844,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.16734294783039624,
+  "setting": "foresight",
+  "forecast": 7986552057.961624,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.17879913613431542,
+  "setting": "foresight",
+  "forecast": 4421497729.87826,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.15294982171139265,
+  "setting": "foresight",
+  "forecast": 3565054328.0833645,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.1578358042760919,
+  "setting": "foresight",
+  "forecast": 2665468949.6583776,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -1.4997652458710953,
+  "setting": "foresight",
+  "forecast": 141759528.16379404,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.5449942664915384,
+  "setting": "foresight",
+  "forecast": 1041344906.5887809,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.593905523229416,
+  "setting": "foresight",
+  "forecast": 804999783.7073009,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.054191712648159855,
+  "setting": "foresight",
+  "forecast": 344873.93115855125,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.24860698383618107,
+  "setting": "foresight",
+  "forecast": 22207.74103283834,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.2600631721401002,
+  "setting": "foresight",
+  "forecast": 12294.601706694442,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.3892176296133743,
+  "setting": "foresight",
+  "forecast": 903186981.507694,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.3292389945924554,
+  "setting": "foresight",
+  "forecast": 1882862746.9781542,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.9680956279146194,
+  "setting": "foresight",
+  "forecast": 309962152.3817237,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.10354888367945635,
+  "setting": "foresight",
+  "forecast": 9743843400.123884,
+  "actual": 8785360492
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.0900383774692322,
+  "setting": "foresight",
+  "forecast": 8628439834.77542,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.10575817242493699,
+  "setting": "foresight",
+  "forecast": 4756534968.254432,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.07038251523996583,
+  "setting": "foresight",
+  "forecast": 3871904866.5209875,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.11157673944311591,
+  "setting": "foresight",
+  "forecast": 3489618967.74539,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -1.2491578065668416,
+  "setting": "foresight",
+  "forecast": 182133438.63399458,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -1.1574651213231757,
+  "setting": "foresight",
+  "forecast": 564419337.4095922,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -1.224810595231682,
+  "setting": "foresight",
+  "forecast": 428348422.9551148,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.06848026056127095,
+  "setting": "foresight",
+  "forecast": 305059.53677814186,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.03702632133069868,
+  "setting": "foresight",
+  "forecast": 27440.542848664078,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": -0.05274611628640342,
+  "setting": "foresight",
+  "forecast": 15126.941151227484,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.11344923450554856,
+  "setting": "foresight",
+  "forecast": 1493080124.844048,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.7069183291449943,
+  "setting": "foresight",
+  "forecast": 2746899142.576686,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.38068374380150805,
+  "setting": "foresight",
+  "forecast": 172265745.56289816,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2024",
+  "year": "FY2025",
+  "horizon": 1,
+  "log_error": 0.3815699728900767,
+  "setting": "foresight",
+  "forecast": 12866882067.155188,
+  "actual": 8785360492
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.15416961103403776,
+  "setting": "knowable",
+  "forecast": 2945923459.3002224,
+  "actual": 3436975768
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.11133289489255224,
+  "setting": "knowable",
+  "forecast": 1715140508.1149776,
+  "actual": 1917127364
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.21096008311975237,
+  "setting": "knowable",
+  "forecast": 1230782951.1852448,
+  "actual": 1519848404
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.20028669738492252,
+  "setting": "knowable",
+  "forecast": 739192641.0611949,
+  "actual": 903110813
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": 0.1668112383477762,
+  "setting": "knowable",
+  "forecast": 78721998.51306255,
+  "actual": 66627100
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.18860792028177925,
+  "setting": "knowable",
+  "forecast": 570312308.6371125,
+  "actual": 688690550
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": -0.1130491690665872,
+  "setting": "knowable",
+  "forecast": 466921013.41068363,
+  "actual": 522805382
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2021",
+  "horizon": 1,
+  "log_error": 0.017697590588236122,
+  "setting": "knowable",
+  "forecast": 1779446000,
+  "actual": 1748231122
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.28204701772709373,
+  "setting": "knowable",
+  "forecast": 2983130340.1321845,
+  "actual": 3955156682
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.2817189051104751,
+  "setting": "knowable",
+  "forecast": 1736802655.613767,
+  "actual": 2301968839
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.2825040750413958,
+  "setting": "knowable",
+  "forecast": 1246327684.5184176,
+  "actual": 1653187843
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.47393963390754124,
+  "setting": "knowable",
+  "forecast": 748528610.8811169,
+  "actual": 1202369006
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": 0.32203181411544535,
+  "setting": "knowable",
+  "forecast": 79716253.81466675,
+  "actual": 57768387
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.3317892822812982,
+  "setting": "knowable",
+  "forecast": 577515327.4519675,
+  "actual": 804744041
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.30861528961778795,
+  "setting": "knowable",
+  "forecast": 472818204.81566226,
+  "actual": 643760176
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2022",
+  "horizon": 2,
+  "log_error": -0.4691831976530257,
+  "setting": "knowable",
+  "forecast": 1779446000,
+  "actual": 2844778696
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.5490056338250244,
+  "setting": "knowable",
+  "forecast": 3021411355.178305,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.49865232124149345,
+  "setting": "knowable",
+  "forecast": 1759090172.7554908,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6151976163179587,
+  "setting": "knowable",
+  "forecast": 1262321182.4228144,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6941762754110005,
+  "setting": "knowable",
+  "forecast": 758134103.0146997,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.22143755085766234,
+  "setting": "knowable",
+  "forecast": 80739212.50696594,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.6162402805832325,
+  "setting": "knowable",
+  "forecast": 584926291.9150805,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -0.5418665137502127,
+  "setting": "knowable",
+  "forecast": 478885643.629558,
+  "actual": 823306330
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2020",
+  "year": "FY2023",
+  "horizon": 3,
+  "log_error": -1.0083611123280154,
+  "setting": "knowable",
+  "forecast": 1779446000,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.07713398519936251,
+  "setting": "knowable",
+  "forecast": 3661548815.0721774,
+  "actual": 3955156682
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.11964258872422931,
+  "setting": "knowable",
+  "forecast": 2042393051.8664768,
+  "actual": 2301968839
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.0208005704279501,
+  "setting": "knowable",
+  "forecast": 1619155763.2057006,
+  "actual": 1653187843
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.22076105964211507,
+  "setting": "knowable",
+  "forecast": 964189644.271009,
+  "actual": 1202369006
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.379278100941366,
+  "setting": "knowable",
+  "forecast": 84412862.49991757,
+  "actual": 57768387
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.08471364578418732,
+  "setting": "knowable",
+  "forecast": 739378981.4346092,
+  "actual": 804744041
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.09860555781401249,
+  "setting": "knowable",
+  "forecast": 583311122.2709763,
+  "actual": 643760176
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.05098217111936291,
+  "setting": "knowable",
+  "forecast": 323011.1806624423,
+  "actual": 339906
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.0074164824815502,
+  "setting": "knowable",
+  "forecast": 11095.369393139841,
+  "actual": 11177.96390766859
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.049925086006416965,
+  "setting": "knowable",
+  "forecast": 6188.939845116903,
+  "actual": 6505.766185199074
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.1835993255904165,
+  "setting": "knowable",
+  "forecast": 184844480.52913687,
+  "actual": 222096984
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.18977314835917947,
+  "setting": "knowable",
+  "forecast": 465645917.6918286,
+  "actual": 562954417
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": 0.20255005924842545,
+  "setting": "knowable",
+  "forecast": 121545966.68299057,
+  "actual": 99259979
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2022",
+  "horizon": 1,
+  "log_error": -0.293344296419099,
+  "setting": "knowable",
+  "forecast": 2121537329.1363883,
+  "actual": 2844778696
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.29354917686907456,
+  "setting": "knowable",
+  "forecast": 3900795533.6729236,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.28603258042702895,
+  "setting": "knowable",
+  "forecast": 2175843638.0612116,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.30295068727629443,
+  "setting": "knowable",
+  "forecast": 1724951895.611712,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.3684622768546157,
+  "setting": "knowable",
+  "forecast": 1050030284.8571725,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.11364783960352313,
+  "setting": "knowable",
+  "forecast": 89928424.73349199,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.348046340582522,
+  "setting": "knowable",
+  "forecast": 764850035.4880315,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.3107384784428375,
+  "setting": "knowable",
+  "forecast": 603405755.0619957,
+  "actual": 823306330
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.0038299000816396844,
+  "setting": "knowable",
+  "forecast": 329298.4018411109,
+  "actual": 330562
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.2692514431570562,
+  "setting": "knowable",
+  "forecast": 11594.661015831132,
+  "actual": 15177.228477562454
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.2617348467150109,
+  "setting": "knowable",
+  "forecast": 6467.442138147162,
+  "actual": 8402.384504899012
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.6055790224870549,
+  "setting": "knowable",
+  "forecast": 222508508.5909081,
+  "actual": 407705200
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -1.5296722559554001,
+  "setting": "knowable",
+  "forecast": 496071364.2621502,
+  "actual": 2290194556
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": 0.36774406246445834,
+  "setting": "knowable",
+  "forecast": 152030340.9167748,
+  "actual": 105249745
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2023",
+  "horizon": 2,
+  "log_error": -0.6542938912395403,
+  "setting": "knowable",
+  "forecast": 2535445347.2286034,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6024286793106064,
+  "setting": "knowable",
+  "forecast": 4155674705.98441,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.5906484762167751,
+  "setting": "knowable",
+  "forecast": 2318013926.342401,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6170929258280894,
+  "setting": "knowable",
+  "forecast": 1837660779.6420088,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.9107455203151362,
+  "setting": "knowable",
+  "forecast": 1141386474.2035735,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.8476813595059731,
+  "setting": "knowable",
+  "forecast": 95804375.48904628,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6586041490738531,
+  "setting": "knowable",
+  "forecast": 792078680.9274817,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.5626940036916415,
+  "setting": "knowable",
+  "forecast": 624886987.4583874,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": 0.09222208661630393,
+  "setting": "knowable",
+  "forecast": 335708.0000535046,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6857870512314197,
+  "setting": "knowable",
+  "forecast": 12116.420761543533,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -0.6740068481375887,
+  "setting": "knowable",
+  "forecast": 6758.477034363785,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -1.2961959185450702,
+  "setting": "knowable",
+  "forecast": 262663782.56651148,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -1.6837399348910167,
+  "setting": "knowable",
+  "forecast": 528484818.80984724,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": 0.5739015395080177,
+  "setting": "knowable",
+  "forecast": 182509494.65302494,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2021",
+  "year": "FY2024",
+  "horizon": 3,
+  "log_error": -1.1329497647903841,
+  "setting": "knowable",
+  "forecast": 2959617658.427669,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.1813993213686821,
+  "setting": "knowable",
+  "forecast": 4363743853.183488,
+  "actual": 5231665571
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.13137412140176985,
+  "setting": "knowable",
+  "forecast": 2539773561.214933,
+  "actual": 2896343413
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.24713424654731422,
+  "setting": "knowable",
+  "forecast": 1823970291.968555,
+  "actual": 2335322158
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.1289953915055773,
+  "setting": "knowable",
+  "forecast": 1334138668.943303,
+  "actual": 1517829393
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.13177649973662092,
+  "setting": "knowable",
+  "forecast": 88312831.40298821,
+  "actual": 100751986
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.6279023645470643,
+  "setting": "knowable",
+  "forecast": 578144454.4282401,
+  "actual": 1083255484
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.585942389279433,
+  "setting": "knowable",
+  "forecast": 458236741.5739677,
+  "actual": 823306330
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.04460503976310413,
+  "setting": "knowable",
+  "forecast": 345640.52020300296,
+  "actual": 330562
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.2242718590998573,
+  "setting": "knowable",
+  "forecast": 12128.090839820421,
+  "actual": 15177.228477562454
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.17424665913294504,
+  "setting": "knowable",
+  "forecast": 7058.756310940996,
+  "actual": 8402.384504899012
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.2569762812898949,
+  "setting": "knowable",
+  "forecast": 315313721.0129326,
+  "actual": 407705200
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -1.3596177089419204,
+  "setting": "knowable",
+  "forecast": 588027868.9503467,
+  "actual": 2290194556
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": 0.23278131443778385,
+  "setting": "knowable",
+  "forecast": 132836276.23959379,
+  "actual": 105249745
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2023",
+  "horizon": 1,
+  "log_error": -0.2742168001987389,
+  "setting": "knowable",
+  "forecast": 3707828487.94476,
+  "actual": 4877648272
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.4552629535091848,
+  "setting": "knowable",
+  "forecast": 4814540092.143098,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.4009741468904868,
+  "setting": "knowable",
+  "forecast": 2802144682.8309493,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.52626061479808,
+  "setting": "knowable",
+  "forecast": 2012395409.3121486,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.6274606116189111,
+  "setting": "knowable",
+  "forecast": 1515171505.5924215,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.8307941493380417,
+  "setting": "knowable",
+  "forecast": 97435981.97913803,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.9452752591252666,
+  "setting": "knowable",
+  "forecast": 594659885.698865,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.8447130006151081,
+  "setting": "knowable",
+  "forecast": 471326856.60174984,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": 0.1381097951864287,
+  "setting": "knowable",
+  "forecast": 351471.78692403925,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.6032443655985721,
+  "setting": "knowable",
+  "forecast": 13158.978561205156,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.5489555589798744,
+  "setting": "knowable",
+  "forecast": 7658.75059737098,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.8891954557750521,
+  "setting": "knowable",
+  "forecast": 394601061.5678662,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -1.4786695175765079,
+  "setting": "knowable",
+  "forecast": 648774044.8591058,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": 0.4776913389953056,
+  "setting": "knowable",
+  "forecast": 165768460.2053958,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2024",
+  "horizon": 2,
+  "log_error": -0.7181313864661687,
+  "setting": "knowable",
+  "forecast": 4481144438.683028,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.5751514030536526,
+  "setting": "knowable",
+  "forecast": 5311905803.5321865,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.5365823913906599,
+  "setting": "knowable",
+  "forecast": 3091620033.9378486,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6264932021132812,
+  "setting": "knowable",
+  "forecast": 2220285769.594338,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.604766073972096,
+  "setting": "knowable",
+  "forecast": 1704803301.7575827,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.7763916828311876,
+  "setting": "knowable",
+  "forecast": 107501598.9569742,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.058741659112447,
+  "setting": "knowable",
+  "forecast": 622984066.7937294,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.0826643935085238,
+  "setting": "knowable",
+  "forecast": 493776575.4449367,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": 0.08987238978038622,
+  "setting": "knowable",
+  "forecast": 357401.43236395926,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6903636141597351,
+  "setting": "knowable",
+  "forecast": 14277.491738907594,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.6517946024967419,
+  "setting": "knowable",
+  "forecast": 8309.744398147513,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -1.0375870505803082,
+  "setting": "knowable",
+  "forecast": 472274402.56264865,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.63791498942605,
+  "setting": "knowable",
+  "forecast": 715795600.0183842,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": 0.5335211042154229,
+  "setting": "knowable",
+  "forecast": 200712929.79807854,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2022",
+  "year": "FY2025",
+  "horizon": 3,
+  "log_error": -0.502287456359454,
+  "setting": "knowable",
+  "forecast": 5316415506.996946,
+  "actual": 8785360492
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.13974853752911187,
+  "setting": "knowable",
+  "forecast": 6600562951.111071,
+  "actual": 7590545643
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.13548493087732624,
+  "setting": "knowable",
+  "forecast": 3654189428.9868,
+  "actual": 4184382863
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.14501127363937474,
+  "setting": "knowable",
+  "forecast": 2946373522.1242704,
+  "actual": 3406162780
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.30351093129120443,
+  "setting": "knowable",
+  "forecast": 2094842387.5968914,
+  "actual": 2837686902
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.6464617516211327,
+  "setting": "knowable",
+  "forecast": 117158528.83374788,
+  "actual": 223629288
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.45732058481350785,
+  "setting": "knowable",
+  "forecast": 968689663.3611269,
+  "actual": 1530370100
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.38174684864515035,
+  "setting": "knowable",
+  "forecast": 748834477.944146,
+  "actual": 1096923604
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": 0.09796693673876368,
+  "setting": "knowable",
+  "forecast": 337642.14255870524,
+  "actual": 306133
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.24931959320276303,
+  "setting": "knowable",
+  "forecast": 18746.912615485144,
+  "actual": 24055.13943286088
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.2450559865509774,
+  "setting": "knowable",
+  "forecast": 10378.625340451259,
+  "actual": 13260.69533654191
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.41614349716225674,
+  "setting": "knowable",
+  "forecast": 633289233.3032423,
+  "actual": 960131966
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.6038095728011859,
+  "setting": "knowable",
+  "forecast": 1556110070.9713724,
+  "actual": 2846239746
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": 0.8075490560495421,
+  "setting": "knowable",
+  "forecast": 230545839.77525926,
+  "actual": 102811854
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2023",
+  "year": "FY2024",
+  "horizon": 1,
+  "log_error": -0.24267541204630133,
+  "setting": "knowable",
+  "forecast": 7209030262.468026,
+  "actual": 9189025167
+ },
+ {
+  "driver": "revenue",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.12552189246218914,
+  "setting": "knowable",
+  "forecast": 8327640725.561984,
+  "actual": 9441379305
+ },
+ {
+  "driver": "cogs",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.13697808076610848,
+  "setting": "knowable",
+  "forecast": 4610330502.586324,
+  "actual": 5287140903
+ },
+ {
+  "driver": "gross_profit",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.11112876634318554,
+  "setting": "knowable",
+  "forecast": 3717310222.9756603,
+  "actual": 4154238402
+ },
+ {
+  "driver": "expenses_total",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.12985666175993246,
+  "setting": "knowable",
+  "forecast": 2741099591.751303,
+  "actual": 3121194598
+ },
+ {
+  "driver": "other_block",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -1.457944190502888,
+  "setting": "knowable",
+  "forecast": 147813776.38381818,
+  "actual": 635173001
+ },
+ {
+  "driver": "pbt",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.4685918574311555,
+  "setting": "knowable",
+  "forecast": 1124024407.6081753,
+  "actual": 1795901858
+ },
+ {
+  "driver": "net_profit",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.5175031141690332,
+  "setting": "knowable",
+  "forecast": 868914227.4391727,
+  "actual": 1457893015
+ },
+ {
+  "driver": "units_th",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.054191712648159855,
+  "setting": "knowable",
+  "forecast": 344873.93115855125,
+  "actual": 326682
+ },
+ {
+  "driver": "price_per_pack",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.20678592846797403,
+  "setting": "knowable",
+  "forecast": 23156.186462647252,
+  "actual": 28475.609308134517
+ },
+ {
+  "driver": "cost_per_pack",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.2182421167718931,
+  "setting": "knowable",
+  "forecast": 12819.678020525398,
+  "actual": 15946.24618366453
+ },
+ {
+  "driver": "finance",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": -0.38881101472994267,
+  "setting": "knowable",
+  "forecast": 903554305.451527,
+  "actual": 1332946559
+ },
+ {
+  "driver": "capex",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.37106004996066244,
+  "setting": "knowable",
+  "forecast": 1963275813.9662938,
+  "actual": 1354665231
+ },
+ {
+  "driver": "dna",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.9569658336722254,
+  "setting": "knowable",
+  "forecast": 306531464.24319977,
+  "actual": 117725374
+ },
+ {
+  "driver": "debt",
+  "origin": "FY2023",
+  "year": "FY2025",
+  "horizon": 2,
+  "log_error": 0.13103914628303323,
+  "setting": "knowable",
+  "forecast": 10015419966.882103,
+  "actual": 8785360492
+ }
+]

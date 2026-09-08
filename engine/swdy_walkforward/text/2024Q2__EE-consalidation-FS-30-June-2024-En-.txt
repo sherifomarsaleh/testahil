@@ -1,0 +1,2061 @@
+            Elsewedy Electric Company
+       (An Egyptian Joint Stock Company)
+Condensed Consolidated Interim Financial Statements
+      for the Six Month Ended 30 June 2024
+            and Limited Review Report
+                                                                    Translated from Arabic
+
+Elsewedy Electric Company
+(An Egyptian Joint Stock Company)
+Condensed Consolidated interim Financial Statements
+for the Six Months ended 30 June 2024
+
+
+ Contents                                                                           Pages
+
+
+ Limited Review                                                                       -
+
+ Condensed Consolidated Interim statement of financial position                       1
+
+ Condensed Consolidated Interim statement of profit or loss                           2
+
+ Condensed Consolidated Interim statement of comprehensive income                     3
+
+ Condensed Consolidated Interim statement of changes in equity                        4
+
+ Condensed Consolidated Interim statement of cash flows                               5
+
+ Notes to the Condensed consolidated Interim financial statements                   6 – 37
+                                                                                                                       Translated from Arabic
+
+
+
+Elsewedy Electric Company
+( An Egyptian Joint Stock Company)
+Condensed Consolidated Interim Statement of Profit or Loss
+
+                                                                                               For the six months ended 30 June                  For the three months ended 30 June
+EGP                                                                        Note                  2024                          2023                2024                      2023
+
+
+Revenue                                                                     )5(                  102 626 205 878               69 637 787 910       57 376 557 362           36 301 930 327
+Cost of revenue                                                             )6(                  (79 938 720 622)            (56 760 519 272)      (44 592 819 023)        (29 542 884 684)
+Gross profit                                                                                      22 687 485 256               12 877 268 638         12 783 738 339           6 759 045 643
+Other income                                                                )9(                         716 240 244               161 733 573          338 207 878               10 151 036
+Selling and distribution expenses                                           )7(                   (1 926 770 728)             (1 210 202 837)       (1 011 461 589)          ( 599 173 365)
+General and administrative expenses                                         )8(                   (3 724 560 074)             (2 545 338 687)       (2 029 659 200)         (1 390 949 779)
+Net impairment loss on trade and other receivables                         )10(                       ( 483 388 223)             ( 87 965 707)       ( 206 047 951)             ( 5 696 360)
+Other expenses                                                             )11(                   (3 518 825 277)             (1 519 235 881)        (1 250 328 969)          (1 021 266 593)
+Operating profit                                                                                  13 750 181 198                7 676 259 099          8 624 448 508           3 752 110 582
+
+Finance income                                                             )12(                       3 507 085 162             2 989 230 200             85 970 462          1 464 785 921
+Finance costs                                                              )12(                   (3 499 312 685)             (2 171 583 300)       (1 808 657 947)         (1 305 239 729)
+Net finance income                                                         )12(
+                                                                                                          7 772 477               817 646 900        (1 722 687 485)             159 546 192
+Group share of profit of equity-accounted investees, net of tax            )20(                         450 560 237               192 606 529          267 358 744               92 306 047
+Profit for the Period before tax                                                                   14 208 513 912               8 686 512 528          7 169 119 767           4 003 962 821
+Income tax expense                                                         )13(                   (5 099 077 760)             (2 528 935 771)       (2 296 513 057)         (1 023 863 437)
+Profit for the period after tax                                                                       9 109 436 152             6 157 576 757          4 872 606 710           2 980 099 384
+Profit attributable to:
+Owners of the parent company                                                                          8 435 897 044             5 564 259 802        4 455 920 347            2 659 590 570
+Non-controlling interests                                                                               673 539 108               593 316 956          416 686 363              320 508 814
+                                                                                                      9 109 436 152             6 157 576 758          4 872 606 710           2 980 099 384
+Basic earning per share                                                    (40)                                3.56                      2.34                   1.94                    1.09
+Diluted earning per share                                                  (40)                                3.56                      2.34                   1.93                    1.09
+
+
+The notes from no.(1) to (43) are an integral part of these condensed consolidated interim financial statements.
+
+
+
+
+                                                                                                -2-
+                                                                                                             Translated from Arabic
+
+Elsewedy Electric Company
+(An Egyptian Joint Stock Company)
+Condensed Consolidated Interim Statement of Comprehensive Income
+                                                                                          For the Six months ended 30 June               For the three months ended 30 June
+EGP                                                                                         2024                        2023             2024                          2023
+
+
+Profit for the period after tax                                                              9 109 436 152               6 157 576 758      4 872 606 709                     2 980 099 384
+Other comprehensive income:
+Foreign operations translation differences                                                   6 502 180 878               2 106 715 711      1 276 946 026                     ( 167 329 205)
+
+Other comprehensive income for the Period                                                    6 502 180 878               2 106 715 711      1 276 946 026                     ( 167 329 205)
+Total comprehensive income for the Period                                                   15 611 617 030               8 264 292 469      6 149 552 735                     2 812 770 179
+
+
+Total comprehensive income attributable to :
+Owners of the parent company                                                                13 854 543 922               7 412 909 724      5 673 503 250                     2 481 031 716
+
+Non-controlling interests                                                                    1 757 073 108                 851 382 745          476 049 485                     331 738 463
+
+                                                                                            15 611 617 030               8 264 292 469      6 149 552 735                     2 812 770 179
+
+
+
+
+The notes from no.(1) to (43) are an integral part of these condensed consolidated interim financial statements.
+
+
+
+
+                                                                                                   -3-
+                                                                                                                                                                                                                                                                                                                              Translated from Arabic
+Elsewedy Electric Company
+
+(An Egyptian Joint Stock Company)
+
+Condensed Consolidated Interim Statement of Changes in Equity
+For the Six months ended 30 June
+
+
+
+
+                                                                                                                                                                                                        Reserves                                                                                                   Non-controlling
+                                                                                                                                                                                                                                                             Retained earnings        Total equity attributable
+                                                                                                                   Issued and paid-up                            Treasury shares       Legal reserve         Foreign operations                          attributable to owners of                                                              Total equity
+                                                                                                                                               ESOP shares
+                                                                                                                         capital                                                                           translation differences   Total reserves         the parent company        to owners of the parent         interests
+                                                                                                                                            issued not granted
+EGP                                                                                                                                                                                                                reserve                                                                   company
+
+Balance as at 1 January 2023                                                                                               2 170 777 876          ( 1 422 160)        ( 254 137 884)         436 836 000            2 079 301 847        2 516 137 847              21 578 808 504                26 010 164 183         1 635 139 443                 27 645 303 626
+
+Total comprehensive income for the period
+
+Profit for the period                                                                                                                -                    -                     -                   -                         -                   -                  5 564 259 802                 5 564 259 802          593 316 956                   6 157 576 758
+
+Foreign operations translation differences                                                                                           -                    -                     -                   -               1 848 649 922        1 848 649 922                         -                   1 848 649 922          258 065 789                   2 106 715 711
+
+Total comprehensive income for the period                                                                                            -                    -                     -                   -               1 848 649 922        1 848 649 922               5 564 259 802                 7 412 909 724          851 382 745                   8 264 292 469
+
+Transactions with owners of the parent company and others
+
+Contributions and distributions
+
+Dividends to employees and board of directors' remunerations                                                                         -                    -                     -                   -                         -                   -                 (1 174 884 448)              (1 174 884 448)         ( 16 007 634)                 (1 190 892 082)
+
+Total contributions and distributions                                                                                                -                    -                     -                   -                         -                   -                 (1 174 884 448)              (1 174 884 448)         ( 16 007 634)                 (1 190 892 082)
+
+Total transactions with owners of the parent company and others                                                                      -                    -                     -                   -                         -                   -                 (1 174 884 448)              (1 174 884 448)         ( 16 007 634)                 (1 190 892 082)
+
+Balance as at 30 June 2023                                                                                                 2 170 777 876          ( 1 422 160)        ( 254 137 884)         436 836 000            3 927 951 769        4 364 787 769              25 968 183 858                32 248 189 459         2 470 514 554                 34 718 704 013
+
+
+
+Balance as at 1 January 2024                                                                                               2 170 777 876          ( 1 422 160)        ( 254 137 884)         554 350 878            3 387 649 590        3 942 000 468              29 867 247 832                35 724 466 132         2 384 013 396                 38 108 479 528
+
+Total comprehensive income for the period
+
+Profit for the period                                                                                                                -                    -                     -                   -                         -                   -                  8 435 897 044                 8 435 897 044          673 539 108                   9 109 436 152
+
+Foreign operations translation differences                                                                                           -                    -                     -                   -               5 418 646 878        5 418 646 878                         -                   5 418 646 878         1 083 534 000                  6 502 180 878
+
+Total comprehensive income for the period                                                                                            -                    -                     -                                   5 418 646 878        5 418 646 878               8 435 897 044                13 854 543 922         1 757 073 108                 15 611 617 030
+
+Transactions with owners of the parent company and others
+
+Contributions and distributions
+
+Retirement of treasury shares                                                                                               ( 30 000 000)                 -             254 137 884                 -                         -                   -                  ( 224 137 884)                          -                       -                            -
+
+Dividends to employees and board of directors' remunerations                                                                         -                    -                     -                   -                         -                   -                 (1 342 143 087)              (1 342 143 087)         ( 76 189 293)                 (1 418 332 380)
+
+Total contributions and distributions                                                                                       ( 30 000 000)                 -             254 137 884                 -                         -                   -                 (1 566 280 971)              (1 342 143 087)         ( 76 189 293)                 (1 418 332 380)
+
+Total transactions with owners of the parent company and others                                                             ( 30 000 000)                 -             254 137 884                 -                         -                   -                 (1 566 280 971)              (1 342 143 087)         ( 76 189 293)                 (1 418 332 380)
+
+Balance as at 30 June 2024                                                                                                 2 140 777 876          ( 1 422 160)                  -            554 350 878            8 806 296 468        9 360 647 346              36 736 863 905                48 236 866 967         4 064 897 211                 52 301 764 178
+
+
+The notes from no.(1) to (43) are an integral part of these condensed consolidated interim financial statements.
+
+
+
+
+                                                                                                                                                                                       -4-
+                                                                                                                           Translated from Arabic
+Elsewedy Electric Company
+(An Egyptian Joint Stock Company)
+Condensed Consolidated Interim Statement of Cash Flows
+                                                                                                                   For the Six months ended 30 June
+EGP                                                                                              Note               2024                            2023
+
+Cash flows from operating activities
+Profit for the period before tax                                                                                    14 208 513 912                   8 686 512 529
+Adjustments For :
+Depreciation of property plant and equipment                                                      (17)                 902 678 964                   1 018 757 283
+
+Depreciation of investment in property                                                                                      736 380                           -
+Amortization of intangible assets                                                                 (22)                  39 836 305                    ( 27 629 365)
+Amortization of right of use assets                                                               (19)                  74 928 507                       60 948 927
+
+Impairment loss on goodwill& Intangible asset                                                     (11)                 249 159 307                            -
+Net finance income                                                                                (12)                 ( 7 772 477)                  ( 817 646 900)
+Reverse of impairment loss on property plant and equipment                                                             ( 5 825 427)                           -
+Share of profit of equity-accounted investees, net of tax                                         (20)               ( 450 560 237)                  ( 192 606 529)
+
+Gain on sale of property, plant and equipment                                                     (9)                  ( 7 668 779)                   ( 11 281 206)
+
+                                                                                                                    15 004 026 455                   8 717 054 739
+Changes in :
+Inventories                                                                                                        (15 137 143 669)                 (8 610 945 505)
+Contract assets                                                                                                     (2 020 695 787)                 (3 498 839 175)
+Trade and other receivables                                                                                        (24 130 060 424)                 (5 928 302 369)
+Due from related parties                                                                                            (3 492 064 032)                  ( 754 454 946)
+Trade and other payables                                                                                            14 380 363 322                   ( 558 490 391)
+Contract liabilities                                                                                                 9 157 452 146                   4 595 141 272
+Other liabilities                                                                                                      ( 3 141 930)                   223 276 807
+Due to related parties                                                                                               1 043 623 783                   1 214 862 976
+Work in progress                                                                                                      ( 37 035 089)                   ( 65 742 223)
+Provisions                                                                                                           2 775 988 371                   2 512 472 731
+Cash flows from operating activities                                                                                (2 458 686 854)                 (2 153 966 084)
+Income tax paid                                                                                                     (3 806 128 184)                 (2 139 972 056)
+Interest paid                                                                                                       (3 486 299 286)                 (2 153 703 625)
+Net cash flows (Used in) operating activities                                                                       (9 751 114 324)                 (6 447 641 765)
+Cash flows from investing activities
+Acquisition of property, plant and equipment and projects under contraction                                         (4 595 530 101)                 (1 858 436 892)
+Acquisition of investment property                                                                                        ( 466 197)                            -
+Interest received                                                                                                       604 443 790                             -
+Acquisition of intangible assets                                                                                       ( 65 756 975)                   ( 17 895 540)
+Proceeds from the disposal of Intangible assets                                                                               72 414                            -
+Paid for acquisition of equity - accounted investees                                                                            -                         35 392 875
+Proceeds from sale of property, plant and equipment                                                                     195 587 771                       78 743 147
+Net proceeds from debt securities - at amortized cost                                                                ( 513 844 905)                     527 581 801
+Net cash flows used in investing activities                                                                         (4 375 494 203)                 (1 234 614 609)
+
+Cash flows from financing activities
+Dividends and remuneration paid to board of directors                                                               (1 342 143 087)                 (1 190 892 082)
+
+Payment of lease liabilities                                                                                          ( 81 802 702)                  ( 175 871 143)
+
+Proceeds from non-forward contracts                                                                                             -                      771 402 106
+
+Proceeds from loans and borrowings                                                                                  17 628 940 751                  13 434 861 647
+Net paid non-controlling interests from subsidiaries                                                                  ( 76 189 293)                   ( 16 007 634)
+Net cash from financing activities                                                                                  16 128 805 669                  12 823 492 894
+
+Net change in cash and cash equivalents                                                                              2 002 197 142                   5 141 236 520
+Cash and cash equivalents at 1 January                                                            (28)             25 552 044 800                   19 715 749 761
+
+Effect of movement in exchange rate on cash held                                                                       376 379 043                     611 895 965
+
+Cash and cash equivalents at 30 June                                                              (28)              27 930 620 985                  25 468 882 246
+
+
+The notes from no.(1) to (43) are an integral part of these condensed consolidated interim financial statements.
+
+
+
+
+                                                                                  -5-
+                                                                                              Translated from Arabic
+
+Elsewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the condensed consolidated interim Financial Statements for the six months ended 30 June 2024
+_____________________________________________________________________________________
+
+1- Reporting entity
+  - Elsewedy Electric Company “Previously Elsewedy Cables Company” (The Company) is an Egyptian Joint Stock
+    Company that was established under the Investment Incentives and Guarantees Law No. (8) of year 1997 and its
+    executive regulations which is superseded by law No. (72) of year 2017.
+  - The company was registered in the commercial register under no. 14584 on 1 June 2005.
+  - The extraordinary general assembly meeting on 19 April 2010 decided to change the company name from Elsewedy
+    Cables Company to Elsewedy Electric Company. This change was registered in the company’s commercial register
+    on 4 October 2010. The company obtained the approval of Misr for Central Clearing, Depository, and Registry
+    Company on 31 October 2010 for changing its name, also it changed its name in the Egyptian Stock Exchange after
+    obtaining the approval of the Securities Listing Committee.
+  - The duration of the company is 25 years starting from 1 June 2005.
+  - These condensed consolidated interim financial statements comprise the Elsewedy Electric Company (The Parent
+    Company) and its subsidiaries (together referred to as “The Group”).
+
+1-1 Company’s purpose
+  - Production of power cables, electricity poles, towers, transformers, and terminators.
+  - Production of Joint accessories, terminators for electrical power cables, electrical power cable, telephone cables.
+  - Production of electrical wires and cables with aluminum or copper and connectors either coated or not coated, with
+    low, med, and high potential.
+  - Production of (PVC) with its forms and byproducts.
+  - Building, managing, operating, and maintaining power generation units and power nets.
+    Each activity has an independent center, and the required licenses should be acquired.
+
+1-2 Foreign branches
+    Elsewedy Electric Company (The Parent Company) has the following two foreign branches:
+ A- Tanzania Branch
+
+  - The company established a branch in Tanzania during 2018 and on 11 December 2018 the management entered into
+    a joint operation through this branch with the Arab Contractors Company "Othman Ahmed Osman" for the purpose
+    of building Julius Nyerere Dam.
+  - The branch recognizes its share which is 45% in the joint operation, over which the branch has exercised joint
+    control, in accordance with the contractual agreement between the parties after unifying any discrepancy in the
+    applied accounting policies. The financial statements of the Group include its share of the assets in joint operation,
+    together with its share of the liabilities, revenues and expenses.
+  - According to the main original contract, the project of Building Julius Nyerere Dam was planned to be completed
+    on 30 June 2022. The last formal extension of the project was ended on May 2025 and about 70.70% of the project
+    has been delivered on 30 June 2024.
+  - The main original contract also stipulates a three-years warranty period starting from the date of issuance of the
+    initial hand over certificate of the project, where the joint operation and the branch remain exist during the warranty
+    period to meet its contractual obligations.
+  - Elsewedy Electric Company’s management intends to maintain its branch in Tanzania even after the project’s
+    completion as a representative of Elsewedy Electric Company to expand its operations in Tanzania with the full
+    support to the branch, whenever it’s necessary. Accordingly, the management has a reasonable expectation that the
+    branch will continue its operational activities in the foreseeable future.
+
+
+
+
+                                                            6
+                                                                                              Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+B-     Burkina Faso Branch
+ - The company established a branch in Burkina Faso on 17 March 2022, and entered into an agreement with the
+   National Electricity Company of Burkina Faso (Sonabel) to carry out the construction works of the Photovoltaic
+   Power Plant (42 MW) and the 90/33 KV Substation in the Northern Ouagadougou Region for the purpose of
+   developing Solar Photovoltaic Plants and Strengthening the National Electricity System.
+ - According to the main original contract, the duration of the project ended on 30 April 2023, and on
+   8 January 2024, the project was extended for the second time to be ended on 31 May 2024. As of February 23, 2024,
+   the project period has been extended for two years, ending on February 22, 2026.
+ - The contract also stipulates a two-years warranty period starting from the date of issuing the initial handover
+   certificate of the project.
+ - Elsewedy Electric Company’s management intends to maintain its branch in Burkina Faso even after the project’s
+   completion as a representative of Elsewedy Electric Company to expand its operations in Burkina Faso with the full
+   support to the branch, whenever it’s necessary. Accordingly, the management has a reasonable expectation that the
+   branch will continue its operational activities in the foreseeable future.
+
+2- Basis of accounting
+
+     2-1 Compliance with accounting standards and laws
+     The condensed consolidated interim financial statements were approved by the board of directors of the company for
+     issuance on 14 August 2024.
+     These condensed consolidated financial statements have been prepared in less detail than consolidated financial
+     statements as of 31 December 2023 and to obtain a better understanding of the financial position of the company
+     and the result of operations .This condensed Consolidated interim financial statement must be read together with the
+     full consolidated financial statement as of 31 December 2023.
+
+     2-2 Compliance with accounting standards and laws
+
+ - These condensed consolidated interim financial statements have been prepared in accordance with Egyptian
+   Accounting Standards and the Egyptian laws and regulations.
+
+ - The Condensed Consolidated interim financial statements were prepared on 30 June 2024 in accordance with the
+   Egyptian accounting standard No. 30 interim financial statement as a summary of the company's annual
+   Consolidated financial statements and in the light of the relevant Egyptian laws and regulations.
+
+ - These Condensed consolidated interim financial statements do not contain all the information required when
+   preparing the detailed annual financial statements and must be read with the annual consolidated financial statements
+   as at 31 December 2023.
+     2-3 Basis of measurement
+     These Condensed consolidated interim financial statements have been prepared under the historical cost basis,
+     except for:
+ - Financial assets and liabilities that are recorded at fair value through profit or loss.
+
+ - Financial assets and liabilities that are recorded at fair value through other comprehensive income.
+
+ - Financial assets and liabilities that are recorded at amortized cost.
+
+ - For presentational purposes, the current and non-current classification has been used for the condensed consolidated
+   interim financial statement of Financial Position, while expenses are analysed in Condensed consolidated interim
+   financial statement of income using a classification based on their function. The in-direct method has been used in
+   preparing the Condensed consolidated interim financial statement of cash flows.
+
+                                                             7
+                                                                                                Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+
+3- Presentation currency
+      These condensed consolidated interim financial statements are presented in Egyptian Pound which is the group
+      functional currency.
+4-    Use of judgments and estimates
+ - In preparing these condensed consolidated interim financial statements, the management has made judgements and
+   estimates about the future which affect the application of the Group’s accounting policies and the reported amounts
+   of assets, liabilities, income and expenses. Actual results may differ from these estimates.
+ - Estimates and underlying assumptions are reviewed on an ongoing basis and are consistent with the Group's risk
+   management where appropriate. Revisions to accounting estimates are recognized prospectively.
+
+   4-1 Judgements
+ - Information about judgments made in applying accounting policies that have the most significant effect on the
+   amounts recognized in the Condensed consolidated interim financial statements is included in the following notes:
+      • Revenue recognition: whether revenue is recognized at a point in time or over time.
+      • Business Combination: whether the Group has actual control over an investee.
+      • Lease term: whether the Group is reasonably certain about exercising extension’s options.
+      • Equity-accounted investee: whether the Group has significant influence over an Investee.
+4-2 Assumptions and estimations uncertainties
+  - Information about assumptions and estimation uncertainties at the reporting date that have a significant risk of
+    resulting in a material adjustment to the carrying amounts of assets and liabilities within the next financial year is
+    included in the following notes:
+   • Revenue recognition: Estimate of expected returns.
+   • Uncertain tax treatments.
+   • Impairment test of intangible assets and goodwill: key assumptions underlying recoverable amounts, including
+       the recoverability of development costs.
+   • Measurement of ECL allowance for trade and other receivables and contract assets: key assumptions in
+       determining the weighted-average loss rate.
+   • Acquisition of subsidiaries: fair value of the consideration transferred (including contingent consideration) and
+       fair value of the assets acquired, and liabilities assumed, measured on a provisional basis.
+   • Recognition of deferred tax assets: availability of future taxable profit against which deductible temporary
+       differences and tax losses carried forward can be utilized.
+   • Recognition and measurement of provisions and contingencies: key assumptions about the likelihood and
+       magnitude of an outflow of resources, assumption related to warranty provision, Provision for restoring of the
+       site, and provision for transfer cost.
+
+     Measurement of fair values
+- The fair value of financial instruments shall be determined on the basis of market value of the financial instruments
+  or similar financial instruments as at the date of Condensed Consolidated interim financial statements without
+  deducting any estimated future selling cost. Financial asset are valued at the current purchase price of those assets ،
+  while financial liabilities are valued at the current prices at which they can be settled.
+- In case of there is no active market for determining the fair value of financial instruments , fair value is assessed using
+  different valuation methods taking into account recent transactions prices , and guided by the current fair value of
+  other instruments that are intrinsically similar – the discounted cash flow method – or any other valuation method that
+  results in reliable values.
+
+
+                                                              8
+                                                                                               Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+- When using discounted cash flow as a valuation method , future cash flow are estimated on the basis of management ,s
+  best estimate and the discount rate used is determined in the light of the prevailing market price at the date of financial
+  statements of similar financial instruments in the terms of their nature and conditions.
+5- Revenue
+
+5-1 Revenue classification according to the timing of revenues’ recognition
+                                  For the Six months ended 30 June                      For the three Months ended 30 June
+ EGP                                 2024                     2023                        2024                        2023
+ Recognized                       72 644 888 668          45 954 798 100               39 971 177 033              24 359 025 196
+ revenue at a point
+ Recognized
+ in time                          29 981 317 210          23 682 989 810               17 405 380 329              11 942 905 131
+ revenue over time
+                                 102 626 205 878          69 637 787 910               57 376 557 362              36 301 930 327
+
+5-2 Revenue classification in accordance with the primary geographical market
+                          For the Six months ended 30 June                         For the three Months ended 30 June
+ EGP                             2024                  2023                        2024                            2023
+ Inside Egypt                  71 807 059 492       47 898 359 763                39 569 158 420                     24 695 021 910
+ Outside Egypt                 30 819 146 386       21 739 428 147                17 807 398 942                     11 606 908 417
+
+                           102 626 205 878          69 637 787 910                57 376 557 362                     36 301 930 327
+
+5-3 Revenue classification in accordance with the major products and services lines
+                                  For the Six months ended 30 June                   For the three Months ended 30 June
+ EGP                                   2024              2023                        2024                     2023
+ Cables                           62 482 178 919     37 830 252 153               34 537 989 406                19 972 268 468
+
+ Electrical products and its       10 162 709 749       8 124 545 947              5 433 187 627                      4 386 756 728
+ accessories
+
+ Constructions                    29 981 317 210       23 682 989 810             17 405 380 329                     11 942 905 131
+                                 102 626 205 878       69 637 787 910             57 376 557 362                     36 301 930 327
+
+5-4 Revenue from foreign branches and joint operations
+ -   The Group’s revenues include revenues from Burkina Faso branch amounted to EGP 91 127 680 which is equivalent
+     to CFA Francs 1 381 349 520 for the financial period ended 30 June 2024.
+ -   The Group’s revenues include revenues from Tanzania branch amounted to EGP 3 502 188 419 which is equivalent
+     to 227 327 669 013 Tanzanian Shilling for the financial period ended 30 June 2024
+     (EGP 4 688 033 438 for the financial period ended 30 June 2023).
+ -   The Group’s revenues include revenues resulted from the joint operation of Playa Resort between El-Rowad Modern
+     Engineering Company (Subsidiary Company) and G Investment Company amounted to EGP 1 586 878 820 for the
+     financial period ended 30 June 2024 (EGP 818 981 298 for financial period ended 30 June 2023).
+
+
+
+
+                                                              9
+                                                                                            Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+
+
+6-    Cost of revenue
+                                             For the Six months ended 30 June             For the three Months ended 30 June
+ EGP                        Note No.            2024                      2023                  2024                  2023
+ Cost of recognized           (6-1)         62 731 055 404           41 216 897 701        34 976 017 904      21 932 418 425
+ revenue at a point in
+ time of recognized
+ Cost                         (6-2)         17 207 665 218           15 543 621 571         9 616 801 119      7 610 466 259
+
+ revenue over time                          79 938 720 622           56 760 519 272        44 592 819 023      29 542 884 684
+
+6-1   Cost of recognized revenue at a point in time
+
+                                             For the Six months ended 30 June            For the three Months ended 30 June
+ EGP                         Note No.             2024                2023                      2024              2023
+ Raw materials                                 53 284 157 117     33 752 471 405             29 708 022 928 18 412 385 173
+ Salaries and its
+                                                 3 337 128 051          2 563 462 967          1 783 716 879    1 223 637 590
+ equivalents
+ Depreciation of              (17-1)
+ property, plant and                               673 026 347           855 526 480            356 761 922          438 205 679
+ equipment
+ Depreciation of right of       (19)
+                                                    16 330 162            11 429 517              8 470 773            5 931 549
+ use assets
+ Amortization of                (22)                   7 722 538            1 410 782             6 197 951             725 126
+ intangible assets
+ Inventory write-down                            2 044 468 736           881 115 228           1 322 649 046         173 888 259
+ Utilities, maintenance,
+                                                 1 158 975 152           847 734 329            665 033 883          384 394 255
+ and spare parts
+ Logistics costs                                   366 797 919            436 977 659           124 040 957          271 344 129
+ Rent expense*                                     349 148 553            388 972 612           183 251 210          194 316 681
+ Other costs                                     1 493 300 829          1 477 796 722           817 872 355          827 589 984
+                                                62 731 055 404         41 216 897 701         34 976 017 904   21 932 418 425
+
+*The rent expense represents the value of low-value or short-term leases that are not subject to lease right-of-use
+recognition requirements in accordance with Egyptian accounting standards no (49).
+
+
+ 6-2 Cost of recognized revenue over time
+
+                                      For the Six months ended 30 June                  For the three Months ended 30 June
+ EGP                                     2024                        2023                     2024                  2023
+ Raw materials                            7 604 052 927             7 623 039 680              4 461 461 530    3 754 544 791
+ Cost of subcontractors                   8 651 382 592             7 505 660 864              4 563 710 733    3 622 935 410
+ Finance costs                              771 111 154               410 835 801                415 012 957      233 516 667
+ Formed provision                           181 118 545                 4 085 226               176 615 899           ( 530 609)
+
+                                         17 207 665 218            15 543 621 571              9 616 801 119    7 610 466 259
+
+
+
+                                                             10
+                                                                                Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+
+7- Selling and distribution expenses
+                                       For the Six months ended 30 June     For the three Months ended 30 June
+                             Note            2024             2023                2024                2023
+ EGP                         No.
+ Salaries and its                          563 198 564      442 611 732            305 088 612           225 934 697
+ equivalents
+ General expense,
+                                            11 179 626       13 799 118              5 759 089             6 945 805
+ accounts and spare parts
+ Depreciation of property,
+ plant and equipment         (17-1)         10 787 924        7 993 551              5 890 977             3 192 271
+ Depreciation of right of     (19)           3 937 841          874 664              2 110 341              471 286
+ use assets
+ Amortization of
+                              (22)           1 512 972        1 099 875               743 303               556 761
+ intangible assets
+ Advertising and
+ promotions                                149 743 051       81 508 823             75 669 506            33 510 207
+
+ Transportation and                         65 466 497       54 486 358             36 637 936            31 826 996
+ travelling
+
+ Insurance                                  17 378 372       13 565 782              9 019 949             6 938 620
+ Communication and
+ telephone expenses                          6 805 038        4 305 162              4 699 697             2 148 143
+
+ Logistics services                        866 538 039      395 074 497            452 215 180           185 299 154
+ Professional and
+                                             7 242 290        5 390 441              2 765 888             2 705 128
+ consultancy fees
+ Rent expense                               38 730 789       26 077 841             22 262 503            12 411 055
+ Other expenses                            184 249 725      163 414 992             88 598 608            87 233 242
+                                         1 926 770 728     1 210 202 836         1 011 461 589           599 173 365
+
+
+
+
+                                                      11
+                                                                                Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+ 8- General and administrative expenses
+
+                                      For the Six months ended 30 June      For the three Months ended 30 June
+                             Note
+  EGP                         No           2024               2023                2024                    2023
+ Salaries and its                       1 623 640 819     1 150 647 356            884 481 923           566 766 825
+ equivalents
+
+ Utilities, maintenance                  242 282 867         192 862 937           149 361 021           105 132 101
+ and spare parts
+
+ Depreciation of             )17-1(
+ property, plant and                     218 864 693         155 279 811           125 458 287            73 491 991
+ equipment.
+ Depreciation of
+                                             736 380            -                        368 190            -
+ investment property
+ Amortization of right        )19(
+ of use assets                             54 660 504         48 644 746            32 873 462            33 705 454
+ Amortization of               (22)        30 600 795         25 118 708            15 764 016            12 624 407
+ intangible assets
+ Cars, transportation
+                                         162 313 685         133 443 217            86 558 318            68 055 537
+ and travelling
+ Bank charges                            204 911 236         132 742 682           120 028 855            75 605 438
+ Rent expenses                           133 965 115          85 422 114            93 389 300            28 162 593
+ Communication and
+ telephone                                 12 563 406          8 840 187             7 269 866             4 564 340
+ Professional and
+ consultancy fees                          24 074 791         14 546 062            15 513 286             5 154 623
+
+ Insurance                                 20 083 105         14 688 551             8 809 705             9 051 293
+ Taxes                                   111 409 123          73 826 368            40 176 147            63 950 445
+ Logistics services                        12 053 750          8 671 086             4 772 313             4 834 465
+ Other expenses                          872 399 805         500 604 862           444 834 511           339 850 267
+                                        3 724 560 074     2 545 338 687           2 029 659 200     1 390 949 779
+
+ 9- Other income
+                                      For the Six months ended 30 June      For the three Months ended 30 June
+                             Note          2024              2023                 2024                2023
+  EGP                        No.
+ Gain on sale of property,
+                                           7 668 779          11 281 206             3 204 785             5 964 654
+ plant and equipment
+
+ Reversal of impairment
+                                           5 825 427           -                         334 127            -
+ on tangible asset
+ Provisions no longer        (35)         21 137 277          15 122 558            20 333 430       ( 23 868 748)
+
+ Other operating income                 681 608 761          135 329 809           314 335 536            28 055 130
+ required
+                                        716 240 244          161 733 573           338 207 878            10 151 036
+
+
+
+
+                                                        12
+                                                                                                Translated from Arabic
+
+ El Sewedy Electric Company
+ (An Egyptian Joint Stock Company)
+ Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+ Continued
+ ______________________________________________________________________________________
+10- Net of impairment loss on trade and other receivables
+
+                              For the Six months ended 30 June                    For the three Months ended 30 June
+      EGP                          2024              2023                               2024                 2023
+      Impairment loss on
+      trade and other
+                                ( 669 721 793)         ( 199 254 961)                   ( 349 028 022)      ( 38 475 683)
+      receivables and due
+      from related parties
+      Reversal of
+      impairment loss on
+                                     186 333 570         111 289 254                      142 980 071         32 779 323
+      trade and other
+      receivables
+                                ( 483 388 223)         ( 87 965 707)                    ( 206 047 951)       ( 5 696 360)
+
+
+11-      Other expenses
+
+                                         For the Six months ended 30 June           For the three Months ended 30 June
+                             Note              2024             2023                      2024               2023
+      EGP
+                             No.
+      Formed provisions                     3 137 969 251      1 435 138 326            1 172 446 857        976 348 332
+      Takaful
+      contribution
+      expense                                131 696 719          83 770 355               67 791 707         44 591 061
+      Impairment loss         (22)
+      on Goodwill                            249 159 307                -                  10 090 405           -
+      Other expenses
+                                                   -                    327 200             -                327 200
+                                            3 518 825 277      1 519 235 881            1 250 328 969      1 021 266 593
+
+
+
+12-      Net finance income
+
+                                        For the Six months ended June               For the three Months ended 30 June
+    EGP                                    2024                2023                         2024             2023
+  Finance income
+  Credit interests                        259 177 967           222 350 073              135 668 635         150 175 526
+  Foreign currencies
+                                         2 902 641 372        2 565 620 047            (224 588 932)      (1 222 888 582)
+  translation gain
+  Other finance income                    345 265 823           201 260 080              174 890 759          91 721 813
+  Total finance income                3 507 085 162         2 989 230 200             85 970 462         1 464 785 921
+  Finance costs
+  Interests and finance
+                                     (3 486 299 286)         (2 153 703 625)        (1 799 523 259)      (1 289 280 705)
+  expenses
+  Interests on lease
+                                      (13 013 399)             ( 17 879 675)          (9 134 688)         ( 15 959 024)
+  liability
+  Total finance costs                  (3 499 312 685)       (2 171 583 300)         (1 808 657 947)      (1 305 239 729)
+  Net finance income                    7 772 477            817 646 900            (1 722 687 485)       159 546 192
+
+
+
+
+                                                                13
+                                                                                                   Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+13- Income tax expense
+
+                                    For the Six months ended 30 June                   For the three Months ended 30 June
+                         Note             2024                2023                              2024            2023
+      EGP
+                         No.
+      Income tax
+      for the                         (4 066 909 592)         (1 914 452 055)           (1 751 411 146)        ( 751 304 323)
+      current period
+      Deferred tax       (13-1)
+      expense                          (1 032 168 168)          ( 614 483 716)            ( 545 101 911)        ( 272 559 114)
+                                       (5 099 077 760)         (2 528 935 771)           (2 296 513 057)       (1 023 863 437)
+
+13-1 Deferred tax expense
+
+                                       For the Six months ended 30 June                For the three Months ended 30 June
+       EGP                                 2024                2023                          2024               2023
+      Form and reversal of
+      temporary tax                   (1 032 168 168)         ( 614 483 716)            ( 545 101 911)          ( 272 559 114)
+      differences
+                                       (1 032 168 168)        ( 614 483 716)            ( 545 101 911)          ( 272 559 114)
+
+14-   Deferred tax
+
+       EGP                                                    Note No.          30 June 2024             31 December 2023
+      Tax differences from which an asset is                                                                      726 284 664
+                                                               (14-1)               801 819 108
+      generated
+      Total deferred tax assets                                                     801 819 108                   726 284 664
+
+      Tax differences which a liability is generated           (14-2)            (2 667 809 414)               (1 809 916 821)
+      Total deferred tax liabilities                                             (2 667 809 414)               (1 809 916 821)
+
+14-1 Deferred tax assets
+
+      EGP                                                                  30 June 2024                 31 December 2023
+      Property, plant and equipment and provisions                                 684 108 680                     608 574 236
+
+      Tax losses carried forward                                                   117 710 428                     117 710 428
+                                                                                   801 819 108                     726 284 664
+
+
+14-2 Deferred tax liabilities
+
+        EGP                                                               30 June 2024                  31 December 2023
+        Property, plant and equipment, and provisions                         (443 228 616)                      (391 924 337)
+        Deferred   tax     on     undistributed   dividends    from             (2 234 580 798)                (1 417 992 484)
+        Subsidries companies
+                                                                                (2 667 809 414)                (1 809 916 821)
+
+
+                                                               14
+                                                                                            Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+
+ 14-3 Unrecognized deferred tax asset
+
+        EGP                                                                 30 June 2024         31 December 2023
+        Impairment loss on trade and other receivables                     1 463 923 627               983 114 384
+        Provisions                                                         2 955 234 354              1 571 868 113
+        Inventory write-down                                               1 103 758 902               652 707 755
+                                                                          5 522 916 883             3 207 690 252
+ -   Deferred tax assets have not been recognized in respect of the above items due to uncertainty of the utilization of
+     their benefits in the future foreseeable.
+15- Group’s tax status
+
+ -   The Parent Company is subject to the Investment Guarantees and Incentives Law No. (8) of year 1997 and its
+     executive regulations which is superseded by law No. (72) of year 2017.
+ -   The parent company and its subsidiaries that are located in Egypt are filed all of the required tax returns on their
+     due dates in accordance with the applicable Egyptian laws and provisions.
+ -   There are subsidiaries in Egypt that are not subject to corporate tax as they were established according to the Free
+     Zones Law. According to this law, these entities shall pay 1% of their revenues to the General Authority for
+     Investment and Free Zones (GAFI).
+ -   The foreign branches and the subsidiaries located in foreign countries are subject to the applicable laws and taxes
+     in those countries.
+16- Operating segments
+
+    An operating segment is a component of an entity:
+ a) that engages in business activities from which it may earn revenues and incur expenses including revenues and
+    expenses relating to transactions with other components of the same entity,
+ b) whose operating results are regularly reviewed by the entity’s chief operating decision maker to make decisions
+    about resources to be allocated to the segment and assess its performance, and
+ c) for which discrete financial information is available.
+    Basis for segmentation
+     The group has three major operating segments representing its reportable segments. These segments offer different
+     products and services. Segments are managed separately as they require different technology and marketing
+     strategies.
+     The following summary describes the operations of each reportable segment:
+
+               Segments                                                   Operations
+     Cables segment                   This segment manufactures, markets and trades in cables.
+     Constructions segment            This segment execute construction works related to constructing electric power
+                                      plants and electricity distribution networks.
+     Electrical products and its      This segment manufactures electric meters, transformers, electrical joint and
+     accessories segment              terminals in addition to marketing and trading them.
+
+
+     The Board of Directors reviews the internal management reports of each segment quarterly.
+     Geographic segments
+     The Group's revenues and non-current assets are determined based on the geographical location of the parent
+     company which is Egypt and the other countries, accordingly they are separated as inside and outside Egypt.
+
+                                                           15
+Elsewedy Electric Company                                                                                                                                                                                                                             Translated from Arabic
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated Interim Financial Statements for the Six months Ended 30 June 2024 – Continued
+
+
+16- Operating segments - (Continued)
+
+                                                                                                    Cables                                        Constructions                       Electrical products and its accessories                                                  Total
+                                                                                                                                                                                                                                           Inter-company
+                                                                                                                                                                                                                                       transactions elimination
+     EGP                                                                             Inside Egypt            Outside Egypt         Inside Egypt              Outside Egypt            Inside Egypt             Outside Egypt                                              30 June 2024
+
+
+
+     Local Sales and construction revenue                                               18 946 101 704           13 638 992 553       17 530 629 754                 4 520 053 288         2 577 748 917              1 887 057 968               -                              59 100 584 184
+
+     Export Sales and construction revenue                                              29 316 594 608               580 490 054       1 871 391 395                 6 059 242 773         1 564 593 114              4 133 309 750               -                              43 525 621 694
+     Total revenue without inter-segment sales                                          48 262 696 312           14 219 482 607       19 402 021 149                10 579 296 061         4 142 342 031              6 020 367 718               -                            102 626 205 878
+
+
+     Total Inter-segment sales revenue                                                  11 859 683 838            1 084 913 718        2 067 941 509                    35 926 544         2 097 357 934              1 485 371 931           ( 18 631 195 474)                  -
+     Total revenue                                                                      60 122 380 150           15 304 396 325       21 469 962 658                10 615 222 605         6 239 699 965              7 505 739 649           ( 18 631 195 474)                102 626 205 878
+     Total Cost of revenue                                                            ( 48 691 370 712)        ( 11 905 230 947)    ( 17 895 770 061)              ( 9 888 142 986)      ( 2 450 364 542)           ( 7 739 036 848)            18 631 195 474                 ( 79 938 720 622)
+     Gross Profit                                                                       11 431 009 438            3 399 165 378        3 574 192 597                   727 079 619         3 789 335 423             ( 233 297 199)               -                              22 687 485 256
+     Total selling and distribution expenses                                            ( 809 672 822)           ( 345 930 788)         ( 56 886 735)                ( 53 292 509)        ( 277 491 680)             ( 383 496 194)                                             ( 1 926 770 728)
+     Segment profit                                                                     10 621 336 616            3 053 234 590        3 517 305 862                   673 787 110         3 511 843 743             ( 616 793 393)               -                              20 760 714 528
+
+
+     Other income                                                                                                                                                                                                                                                                     716 240 244
+     Group share of profit of equity-accounted investees, net of tax                                                                                                                                                                                                                  450 560 237
+     General and administrative expenses                                                                                                                                                                                                                                        ( 3 724 560 074)
+     Impairment loss on trade and other receivables                                                                                                                                                                                                                              ( 483 388 223)
+     Other expenses                                                                                                                                                                                                                                                             ( 3 518 825 277)
+     Net finance income                                                                                                                                                                                                                                                                 7 772 477
+     Income tax expense                                                                                                                                                                                                                                                         ( 5 099 077 760)
+     Profit for the period after tax                                                                                                                                                                                                                                                 9 109 436 152
+     Allocation of some important accounts on group segments.
+                                                                                                    Cables                                        Constructions                         Electric Products and Accessories                                                      Total
+                                                                                                                                                                                                                                             Unallocated
+     EGP                                                                             Inside Egypt            Outside Egypt         Inside Egypt              Outside Egypt            Inside Egypt             Outside Egypt                                              30 June 2024
+
+
+     Depreciation                                                                        133 153 908              150 565 256          239 888 393                  133 942 315             78 631 383                 97 810 581               68 687 128                            902 678 964
+
+     Assets                                                                          59 604 822 867           16 908 390 626        34 494 981 355                34 463 410 908       17 345 693 458                 155 280 469             47 452 784 615                   210 425 364 298
+     Liabilities                                                                     17 872 170 016             5 207 215 482       33 813 736 410                29 065 201 981        9 153 579 588               2 432 444 216             60 579 252 427                   158 123 600 120
+
+
+
+     Acquisition of property, plant and equipment                                        581 108 369              801 271 350        2 528 807 358                  246 788 117           409 260 796                 184 945 390                 73 974 498                         4 826 155 878
+
+
+
+     Government and sovereign entities represent 24% of the group's total revenue.
+
+
+
+
+                                                                                                                                            - 16-
+EL Sewedy Electric company
+(An Egyptian Joint Stock Company)                                                                                                                                                                                                                             Translated from Arabic
+Notes to the Condensed Consolidated Interim Financial Statements for the Six months Ended 30 June 2024 – Continued
+
+16- Operating segments- Counited
+
+                                                                                                   Cables                                   Construction projects                      Electric Products and Accessories               Inter-company          Total Consolidated
+    L.E                                                                             Inside Egypt            Outside Egypt           Inside Egypt          Outside Egypt             Inside Egypt            Outside Egypt          transactions elimination      30 June 2023
+
+
+    Local Sales                                                                       13 409 055 132            8 318 637 367         13 282 109 241           2 577 269 434          2 384 670 179               1 030 640 494               -                          41 002 381 847
+    Export Sales and construction revenue                                             15 199 669 248                 902 890 406       2 774 832 423           5 048 778 712            848 023 540               3 861 211 734               -                          28 635 406 063
+    Total revenue without inter-segment sales                                          28 608 724 380            9 221 527 773        16 056 941 664            7 626 048 146          3 232 693 719               4 891 852 228                       -                 69 637 787 910
+
+
+    Total Inter-segment sales revenue                                                  7 555 230 783                 855 682 309      1 117 376 428                  75 036 470       1 117 617 111                  645 264 428          ( 11 366 207 529)                         -
+    Total revenue                                                                    36 163 955 163          10 077 210 082         17 174 318 092            7 701 084 616          4 350 310 830               5 537 116 656           ( 11 366 207 529)             69 637 787 910
+    Total Cost                                                                      ( 30 538 570 449)         ( 7 829 851 464)      ( 14 947 147 964)        ( 7 285 258 515)       ( 2 884 793 982)            ( 4 641 104 427)            11 366 207 529             ( 56 760 519 272)
+    Gross Profit                                                                        5 625 384 714            2 247 358 618         2 227 170 128                 415 826 101       1 465 516 848                 896 012 229                        -                12 877 268 638
+    Total selling and distribution expenses                                           ( 523 548 863)           ( 209 207 990)         ( 40 835 718)            ( 23 970 457)         ( 205 951 440)              ( 206 688 368)                                         ( 1 210 202 836)
+    Segment profit                                                                      5 101 835 851            2 038 150 628         2 186 334 410                 391 855 644       1 259 565 408                 689 323 861                        -                11 667 065 802
+
+
+    Other income                                                                                                                                                                                                                                                              161 733 573
+    Share of profit equity-accounted investee                                                                                                                                                                                                                                 192 606 529
+    General and administrative expenses                                                                                                                                                                                                                                ( 2 545 338 687)
+    Impairment loss on trade and other receivables                                                                                                                                                                                                                        ( 87 965 707)
+    Other expenses                                                                                                                                                                                                                                                     ( 1 519 235 881)
+    Net finance income                                                                                                                                                                                                                                                        817 646 900
+    Current income tax                                                                                                                                                                                                                                                 ( 2 528 935 771)
+    Profit for the period after tax                                                                                                                                                                                                                                      6 157 576 758
+    Allocation of some important accounts on group segments.
+                                                                                                   Cables                                    Construction projects                      Electric Products and Accessories                                             Total
+                                                                                                                                                                                                                                         Unallocated
+    EGP                                                                             Inside Egypt            Outside Egypt            Inside Egypt          Outside Egypt            Inside Egypt             Outside Egypt                                        30 June 2023
+
+
+    Depreciation                                                                       109 964 490             101 018 644            470 083 607              156 694 535             56 165 736                   71 577 027                53 253 244              1 018 757 283
+
+    Assets                                                                          37 559 514 036           8 279 927 063         34 809 601 216          11 603 200 405          10 827 796 950               1 045 439 822            39 316 976 867            143 442 456 359
+    Liabilities                                                                      8 676 738 961           2 868 095 021         27 877 458 507           9 292 486 169           6 945 157 675               2 152 773 819            50 911 042 194            108 723 752 346
+
+    Additions to Property plant and equipment and project under progress               433 641 837             255 327 647            439 156 027              146 385 342            358 413 771                 199 516 440                 25 995 828              1 419 280 865
+
+    Government and sovereign entities represent 24% of the group's total revenue.
+
+
+
+
+                                                                                                                                                 - 17-
+EL Sewedy Electric company                                                                                                                                                                                                                                                                            Translated from Arabic
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months Ended 30 June 2024– Continued
+
+  17- Property, plant and Equipment
+                                                                                                                           Buildings                Machineries               Furniture                                                                                                 Property, plant, and
+                                                                                                                                                                                                                         Leasehold                            Projects under                equipment              Total property, plant
+       EGP                                                                                       Land                                                                                                Vehicles                             Total
+                                                                                                                        & constructions             & equipment               & fixtures                               improvements                            construction                 retirement                and equipment
+                                                                                                                                                                                                                                                                                            obligations
+
+       Cost as at 1 January 2023                                                                 1 534 319 197                 4 984 287 954           14 939 373 946                989 327 462        565 269 772        190 982 409    23 203 560 740             3 772 320 805               -                          26 975 881 545
+       Additions during the year                                                                     44 905 028                  256 342 020               861 263 753               407 321 962        142 463 160         26 254 012      1 738 549 935           2 560 063 684               449 981 766                  4 748 595 385
+       Disposals during the year                                                                   ( 35 750 960)                 ( 10 844 413)           ( 518 287 183)           ( 139 482 383)       ( 84 772 668)      ( 52 880 151)    ( 842 017 758)           ( 465 703 031)               -                         (1 307 720 789)
+       Transfers from project under constructions                                                               -              2 138 346 656               531 382 314                64 923 780         -                   6 650 081      2 741 302 831          (2 741 302 831)               -                            -
+       Transfer to investment property                                                                          -                ( 68 140 508)             -                       -                     -                   -               ( 68 140 508)           -                           -                            ( 68 140 508)
+       Effect of movement in exchange rates                                                          37 961 990                  656 015 176            2 519 543 536                 80 008 017         42 236 171         27 966 903      3 363 731 793              383 480 337               -                           3 747 212 130
+       Cost as at 31 December 2023                                                                1 581 435 255                 7 956 006 885           18 333 276 366             1 402 098 838         665 196 435        198 973 254   30 136 987 033             3 508 858 964              449 981 766                 34 095 827 763
+       Cost as at 1 January 2024                                                                 1 581 435 255                 7 956 006 885           18 333 276 366            1 402 098 838          665 196 435       198 973 254     30 136 987 033            3 508 858 964               449 981 766                34 095 827 763
+       Additions during the period                                                                   78 391 117                1 058 645 965               650 525 665              128 385 217         103 543 483         36 548 074     2 056 039 521            2 770 116 357                 -                          4 826 155 878
+       Disposals during the period                                                                 ( 60 763 800)                 ( 89 891 768)           ( 145 783 296)            ( 32 228 811)       ( 11 520 973)       ( 6 857 506)     ( 347 046 154)          ( 256 679 628)                -                         ( 603 725 782)
+       Transfers from project under constructions                                                   -                              37 526 051              104 495 802                5 221 219           3 422 975          5 123 631        155 789 678           ( 155 789 678)                -                           -
+       Effect of movement in exchange rates                                                          91 886 665                1 730 929 728            6 643 443 456              298 658 490         128 744 205         58 173 795      8 951 836 339              517 212 632               249 185 488                  9 718 234 459
+       Cost as at 30 June 2024                                                                    1 690 949 237                10 693 216 861           25 585 957 993            1 802 134 953          889 386 125       291 961 248     40 953 606 417            6 383 718 647               699 167 254               48 036 492 318
+
+
+       Accumulated depreciation as at 1 January 2023                                               -                           1 802 121 875            9 272 352 637                 657 010 732      368 245 859        142 418 017     12 242 149 120             -                            -                        12 242 149 120
+       Depreciation during the year                                                                -                             264 580 055            1 549 264 381                 204 096 190       88 681 209         14 167 973      2 120 789 808             -                            -                            2 120 789 808
+       Accumulated depreciation of disposals                                                       -                            ( 10 145 572)           ( 414 858 756)             ( 38 464 373)       ( 47 342 869)       ( 9 213 002)    ( 520 024 572)            -                            -                            ( 520 024 572)
+       Impairment loss of property, plant and equipment                                                  365 687                  ( 1 165 796)                2 466 757                  ( 16 888)          944 755         1 286 818             3 881 333              76 649 154               -                               80 530 487
+       Transfer to investment property                                                             -                            ( 12 452 475)            -                        -                     -                   -               ( 12 452 475)            -                            -                             ( 12 452 475)
+       Effect of movement in exchange rates                                                        -                             401 781 234            1 662 518 153                   64 514 100      32 127 753         18 536 278      2 179 477 518                 ( 3 808 490)             -                            2 175 669 028
+       Accumulated depreciation as at 31 December 2023                                                   365 687                2 444 719 321          12 071 743 172                 887 139 761       442 656 707        167 196 084    16 013 820 732                 72 840 664               -                        16 086 661 396
+
+
+       Accumulated depreciation as at 1 January 2024                                                     365 687               2 444 719 321           12 071 743 172                 887 139 761      442 656 707        167 196 084     16 013 820 732                 72 840 664               -                        16 086 661 396
+       Depreciation during the period                                                              -                             193 599 159              537 649 393                 111 599 053       42 324 673         17 506 686        902 678 964             -                            -                              902 678 964
+       Accumulated depreciation of disposals                                                       -                            ( 15 457 825)           ( 119 427 741)             ( 20 298 297)        ( 9 156 374)       ( 6 437 779)    ( 170 778 016)            -                            -                            ( 170 778 016)
+       Impairment loss of property, plant and equipment                                            -                              -                      -                        -                     -                   5 825 427          5 825 427             -                            -                                5 825 427
+       Effect of movement in exchange rates                                                        -                           1 033 591 387            4 645 980 757                 202 285 726      100 261 625         42 517 041      6 024 636 536             -                            -                            6 024 636 536
+       Accumulated depreciation as at 30 June 2024                                                       365 687                3 656 452 042          17 135 945 581             1 180 726 243         576 086 631        226 607 459    22 776 183 643                 72 840 664               -                        22 849 024 307
+
+
+       Net carrying amount as at 30 June 2024                                                     1 690 583 550                 7 036 764 819           8 450 012 412                 621 408 710       313 299 494         65 353 789    18 177 422 774             6 310 877 983          699 167 254                    25 187 468 011
+       Net carrying amount as at 31 December 2023                                                 1 581 069 568                 5 511 287 564           6 261 533 194                 514 959 077       222 539 728         31 777 170    14 123 166 301             3 436 018 300          449 981 766                    18 009 166 367
+
+
+  17-1 Depreciation of property, plant and equipment charged to the Condensed consolidated statement of profit or loss is presented as follows:-
+
+                                                                                                                                                                          s
+       EGP                                                                                     Note No.                         2024                   2023
+       Cost of recognized revenue at a point in time                                             (6-1)                           673 026 347             855 466 854
+       Selling and distribution expenses                                                          )7(                             10 787 924                  8 010 618
+       General and administrative expenses                                                        )8(                            218 864 693             155 279 811
+                                                                                                                                 902 678 964            1 018 757 283
+
+       Information about the property, plant and equipment pledged as security for liabilities is included in note No. (32).
+
+       Information about the amount of contractual commitments for the acquisition of property, plant and equipment is included in note No. (36).
+
+
+
+
+                                                                                                                                                                                - 18-
+                                                                                          Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+18- Investment property
+    EGP                                                             Lands           Buildings             Total
+    Cost as of 1 January 2023                                     9 907 417         2 282 480             12 189 897
+    Transfer from property, plant and equipment                        -            68 140 508            68 140 508
+    Cost as of 31 December 2023                                      9 907 417      70 422 988            80 330 405
+    Cost as of 1 January 2024                                        9 907 417      70 422 988            80 330 405
+
+    Additions during the period                                        -             466 197                   466 197
+    Cost as of 30 June 2024                                          9 907 417      70 889 185            80 796 602
+    Accumulated depreciation as of 1 January 2023                      -             (456 496)             (456 496)
+    Depreciation during the year                                       -           (6 388 342)            (6 388 342)
+    Transfer from property, plant and equipment                        -          (12 452 475)           (12 452 475)
+    Accumulated depreciation as of 31 December 2023                    -           (19 297 313)          (19 297 313)
+    Accumulated depreciation as of 1 January 2024                      -           (19 297 313)          (19 297 313)
+    Depreciation during the period                                     -             (736 380)             (736 380)
+    Accumulated depreciation as of 30 June 2024                        -           (20 033 693)          (20 033 693)
+    Net Carrying amount as of 30 June 2024 *                         9 907 417      50 855 492            60 762 909
+    Net Carrying amount as of 31 December 2023                       9 907 417      51 125 675            61 033 092
+
+  * The net carrying value as of 30 June 2024 includes investment property for the below companies:
+
+    Subsidiary company                                                                                Amount
+    SDM for development and Management                                                                   9 460 185
+    Red sea copper company - Egypt                                                                       2 582 261
+    El Sewedy Electric (S.A.E)                                                                          48 720 463
+
+
+
+
+                                                         19
+                                                                                                Translated from Arabic
+
+ El Sewedy Electric Company
+ (An Egyptian Joint Stock Company)
+ Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+ Continued
+ ______________________________________________________________________________________
+
+19- Right of use assets
+      EGP                                              Lands           Buildings             Machinery               Total
+      Cost as of 1 January 2023                      72 403 487         722 870 096             158 534 254         953 807 837
+      Additions during the year                          -
+                                                                        377 286 008              27 140 543         404 426 551
+      Disposals during the year                     (92 151 506)      (226 733 445)            (20 929 050)       (339 814 001)
+      Effect of movement in exchange rates           27 955 115
+                                                                         40 194 694              17 602 845          85 752 654
+      Cost as of 31 December 2023                      8 207 096
+                                                                        913 617 353             182 348 592       1 104 173 041
+      Cost as of 1 January 2024                        8 207 096        913 617 353             182 348 592       1 104 173 041
+      Additions during the period                         -             276 805 245              19 462 588         296 267 833
+      Disposals during the period                         -             ( 4 547 061)            ( 9 737 247)       ( 14 284 308)
+      Effect of movement in exchange rates                -             267 847 498              38 182 081         306 029 579
+      Cost as of 30 June 2024                          8 207 096      1 453 723 035             230 256 014       1 692 186 145
+      Accumulated depreciation as of 1
+                                                    (8 711 773)       (18 909 468)          (88 807 853)         (116 429 094)
+      January 2023
+      Depreciation during the year                       -             (90 315 762)            (24 545 469)       (114 861 231)
+      Accumulated depreciation of disposals          12 594 040          13 910 244              20 929 050          47 433 334
+      Effect of movement in exchange rates          (12 089 363)       (24 511 626)             (2 734 960)        (39 335 949)
+      Accumulated depreciation as of 31              (8 207 096)      (119 826 612)            (95 159 232)       (223 192 940)
+      December 2023
+      Accumulated depreciation as of 1
+                                                     (8 207 096)      (119 826 612)            (95 159 232)       (223 192 940)
+      January 2024
+      Depreciation during the period                     -             ( 63 848 590)           ( 11 079 917)       ( 74 928 507)
+      Accumulated depreciation of disposals              -                 4 547 061               6 903 621          11 450 682
+      Effect of movement in exchange rates               -             ( 58 502 395)           ( 22 882 280)       ( 81 384 675)
+      Accumulated depreciation as of 30
+      June 2024                                      ( 8 207 096)    ( 237 630 536)          ( 122 217 808)      ( 368 055 440)
+      Net carrying amount as of 30 June
+                                                         -
+      2024                                                            1 216 092 499             108 038 206       1 324 130 705
+      Net carrying amount as of 31
+                                                         -              793 790 741              87 189 360         880 980 101
+      December 2023
+
+   - The net carrying amount as of 30 June 2024 includes right of use assets of the following subsidiaries:
+
+                                 Subsidiary Name                                                       Amount
+      Elsewedy Electric for Transmission and Distribution Company                                                   215 321 926
+      Elsewedy Electric for Trading and Distribution Company                                                        576 007 316
+      October Dry Port Company                                                                                      355 470 634
+      Elsewedy for Industrial Development Company - Ain Al Sokhna                                                    55 567 734
+
+
+    - An amount of EGP 237 159 406 was capitalized on the value of the building of Elsewedy Electric for Trading and
+      Distribution which represented the foreign currency differences of the financial lease liabilities that were capitalized
+      in accordance with the accounting treatment in Appendix (H) of the Egyptian Accounting Standard no. (13) as of
+      30 June 2024 (Comparing to an amount of EGP 99 059 244 as of 31 December 2023.
+
+
+
+
+                                                              20
+                                                                                 Translated from Arabic
+
+ El Sewedy Electric Company
+ (An Egyptian Joint Stock Company)
+ Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+ Continued
+ ______________________________________________________________________________________
+
+
+20-   Equity-accounted investees
+
+       EGP                                   Group Share of Net Assets        Group Share of Profit And loss
+                                                                                       (Net of Tax)
+                                           30 June 2024       31 December     30 June 2024      30 June 2023
+                                                                   2023
+       Elastmold-Egypt company               24 449 251         25 178 540       ( 729 289)      ( 380 411)
+       Elsewedy Cables company – Qatar      733 559 062        452 592 740      23 639 203       11 974 113
+       Pyramids Development Industrial      180 045 648        197 873 554     ( 17 827 906)      4 779 783
+       Parks company
+       Senyar Industries Qatar Holding                        619 714 076
+       company                              739 442 455                        ( 17 883 506)    ( 13 534 275)
+
+       Doha Cables – Qatar                 2 841 353 915     1 576 481 877     335 373 930      184 592 659
+       Aloula For Industrial Parks           51 009 612        45 904 157       5 105 455         2 918 695
+       Development
+       Pyramids Zona Franca Egypt for       139 811 793       139 283 173        528 620         ( 394 230)
+       Industrial Parks Development
+       SC Zone Utilities                    271 580 703       202 427 128       69 136 936        8 404 448
+       Elsewedy Wataniya for Industries     285 834 089       225 559 597       50 753 020       ( 1 722 306)
+       & Engineering Projects – SWIEP
+       Raneen Energy LLC                     7 598 271             -            7 726 091        ( 6 146 036)
+       Others                               394 223 155       317 829 427      ( 5 262 317)       2 114 089
+                                           5 668 907 954     3 802 844 269     450 560 237      192 606 529
+
+ 21- Trade and other receivables
+
+       EGP                                                     30 June 2024              31 December 2023
+       Trade receivables                                              1 604 299 456                907 791 784
+       Retention receivables                                          1 842 461 771              1 842 461 771
+       Other receivables                                                 20 750 077                 20 492 106
+                                                                      3 467 511 304             2 770 745 661
+
+
+
+
+                                                    21
+                                                                                             Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+22- Intangible assets and goodwill
+   EGP                                                   Goodwill *             Development cost              Total
+   Cost as at 1 January 2023                              1 049 683 502                332 101 450       1 381 784 952
+   Additions during the period                                 -                        77 095 411             77 095 411
+   Effect of movement in exchange rates                         -                     143 164 461            143 164 461
+   Cost as at 31 December 2023                            1 049 683 502               552 361 322          1 602 044 824
+   Cost as at 1 January 2024                              1 049 683 502               552 361 322          1 602 044 824
+   Additions during the period                                  -                       65 756 975             65 756 975
+   Disposal during the period                                   -                      ( 4 043 952)           ( 4 043 952)
+   Effect of movement in exchange rates                  ( 282 011 367)               342 857 549              60 846 182
+   Cost as at 30 June 2024                                 767 672 135                956 931 894          1 724 604 029
+   Accumulated amortization as of 1 January                  (2 393 805)             (149 477 832)          (151 871 637)
+   2023
+   Amortization during the year                                  -                    (53 947 575)          (53 947 575)
+   Impairment loss during the year – Note no. (11)           (29 037 988)               -                   (29 037 988)
+   Effect of movement in exchange rates                      (13 157 052)              (92 268 325)        (105 425 377)
+   Accumulated amortization as of 31 December                (44 588 845)           (295 693 732)          (340 282 577)
+   2023
+   Accumulated amortization as of 1 January                  (44 588 845)            (295 693 732)         (340 282 577)
+   2024
+   Amortization during the period                                       -              ( 39 836 305)         ( 39 836 305)
+   Impairment loss during the period – Note no. (11)        ( 17 601 474)            ( 231 557 833)        ( 249 159 307)
+   Accumulated amortization of disposal during the
+   period                                                               -                 3 971 538             3 971 538
+   Effect of movement in exchange rates                                 -              ( 3 216 981)           ( 3 216 981)
+   Accumulated amortization as of 30 June 2024              ( 62 190 319)          ( 566 333 313)          ( 628 523 632)
+   Net carrying amount as of 30 June 2024                    705 481 816              390 598 581          1 096 080 397
+   Net carrying amount as of 31 December 2023               1 005 094 657            256 667 590           1 261 762 247
+
+ * The net carrying amount of goodwill amounted to EGP 705 181 816 as of 30 June 2024 includes a goodwill that
+    was resulted from the acquisition of energy companies’ group in Greece during September 2019 amounted to
+    EGP 700 270 247.
+
+23- Inventories
+
+      EGP                                                              30 June 2024                31 December 2023
+     Raw materials and supplies                                             22 363 315 760                16 549 387 747
+     Work in progress                                                        6 161 212 763                 3 570 570 238
+     Finished goods                                                          9 696 289 854                 6 640 610 470
+     Construction work in process                                            1 572 095 952                 1 222 609 089
+     Goods in transit                                                        6 226 051 422                 2 898 644 538
+                                                                            46 018 965 751                30 881 822 082
+
+   - Inventories balances are presented net after deducting the write-down balance amounted to EGP 4 905 595 122
+     (against an amount of 2 900 923 356 EGP in 31 December 2023).
+
+
+
+
+                                                       22
+                                                                                         Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+24-    Work in progress
+
+        EGP                                                            30 June 2024            31 December 2023
+        Real Estate Development Land                                     1 255 295 932                1 218 260 843
+                                                                         1 255 295 932                1 218 260 843
+
+The Work in progress balance includes the balance of SDM Development and Management Company (a subsidiary)
+amounted to 948 000 699 Egyptian pounds, related to the following plots of land
+
+       Location                          Cost of lands          Development work                Capitalized interests
+                                         EGP                          EGP                            EGP
+       Tenth of Ramadan                   325 264 932                    227 733 884                        50 832 362
+       Sadat                              122 883 036                    162 534 940                        21 875 545
+       Alamein                              36 876 000                   -                             -
+
+25- Contract assets
+
+        EGP                                                     30 June 2024                 31 December 2023
+        Contract assets                                              18 200 329 509                   16 179 633 722
+                                                                     18 200 329 509                   16 179 633 722
+
+26-   Trade and other receivables
+
+       EGP                                                     30 June 2024                  31 December 2023
+       Trade receivables                                            41 362 496 492                    24 567 472 409
+       Notes receivables                                            13 388 356 632                     3 667 172 911
+       Advance payments to suppliers                                 5 896 930 127                     8 089 710 807
+       Retention receivable                                          3 409 237 734                     4 469 254 555
+       Prepaid expenses                                              2 886 605 940                     2 101 972 110
+       Tax authority – Value added tax                               1 154 570 428                         836 573 552
+       Deposits with others                                            630 417 756                         441 361 140
+       Other receivables                                             4 199 206 136                     2 418 367 608
+                                                                    72 927 821 245                    46 591 885 092
+ - Trade and other receivables are presented in net amount after impairment amounted to around EGP 6.506 billion as
+   at 30 June 2024 (EGP 4.369 billion as at 31 December 2023).
+
+
+
+
+                                                         23
+                                                                                            Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+27-   Investment in debt securities at amortized cost.
+       EGP                                                               30 June 2024           31 December 2023
+       Face value of treasury bills (More than 3 months)                    1 517 437 970              1 012 000 000
+       (Less:)
+       Treasury bills interests (Not due)                                   (156 427 102)              (164 834 037)
+       Net carrying amount                                                  1 361 010 868                847 165 963
+
+28-   Cash and cash equivalents
+
+       EGP                                                              30 June 2024           31 December 2023
+
+       Banks - Time deposits                                              4 433 114 246                5 050 395 401
+       Banks - Current accounts                                          23 305 021 112               20 362 194 082
+       Cash on hand                                                         192 485 627                  139 455 317
+       Cash and cash equivalents                                         27 930 620 985               25 552 044 800
+
+29-   Share capital
+      Authorized share capital
+      The Company’s authorized share capital is EGP 5 billion.
+      Issued and paid-up capital
+
+      The issued and fully paid-up capital of the Company as of 1 January 2017 amounted to EGP 2 234 180 000
+      distributed over 223 418 000 shares at a par value EGP 10 each. The Extraordinary General Assembly meeting of
+      the Company decided on 4 May 2017 to write-off 5 million treasury shares and accordingly the company's issued
+      and paid-up capital become EGP 2 184 180 000 distributed over 218 418 000 shares at a par value of EGP 10 per
+      share.
+      On 22 May 2018, the Extraordinary General Assembly Meeting of the Company approved the split of the par
+      value of the Company's shares to one Egyptian pound instead of ten Egyptian pounds. This amendment was
+      annotated in the Commercial Register of the Company on 8 August 2018.
+
+      The Management of Elsewedy Electric Company reduced the company’s issued capital by the value of treasury
+      shares purchased during the period from 24 June 2020 to 28 June 2020 and the shares purchased during the period
+      from 1 July 2020 until 30 September 2020 with a total number of 13 402 124 shares accordingly, the number of
+      shares became 2 170 777 876 shares. The commercial register of the company was annotated on 17 October 2022.
+      On April 18, 2024, the management of El Sewedy Electric Company has invited the company’s extraordinary
+      general assembly to approve the reduction of the company's issued capital by retirement the treasury shares owned
+      by the company that have reached the end of their holding period, totaling 30 000 000 shares with a par value of
+      30 000 000 Egyptian pounds. After the reduction, the company's issued capital will amount to 2 140 777 876
+      Egyptian pounds - Note No. (31).
+
+
+
+
+                                                           24
+                                                                                                Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+          The shareholder’s structure on 30 June 2024 is as follows:
+
+           Shareholder                                                         No. of Shares                Owner
+                                                                                  (Share)                 percentage
+           Sadek Ahmed Sadek Elsewedy                                               546 502 820             25.53%
+           Ahmed Ahmed Sadek Elsewedy                                               546 252 820             25.52%
+           Mohamed Ahmed Sadek Elsewedy                                             385 602 690             18.01%
+           Other shareholders                                                       660 997 386             30.88%
+           Treasury shares and ESOP shares issued not granted                         1 422 160              0.06%
+                                                                                  2 140 777 876              100%
+
+      -     The percentage of the main shareholders of El Sewedy family whom shares exceed 5% each, represent 68.1%
+            of the total company’s capital.
+
+          In light of the approval of the Financial Supervisory Authority on May 30, 2024, to publish the announcement of
+          the optional purchase offer submitted by Electra Investment Holding Limited to purchase up to 531,840,580
+          shares, representing 24.5% of the shares of Elsewedy Electric LLC, at a cash price of 1.05 US dollars per share,
+          and in accordance with the requirements of the Financial Supervisory Authority, the company held a board of
+          directors meeting on May 30, 2024, that approved appointing an independent financial consultant to prepare a
+          study of the fair value of the share.
+
+      -     The board of directors unanimously approved, at the meeting held on June 27, 2024, the publication of a
+            statement regarding the board's position on the voluntary tender offer made by Electra Investment Holding
+            Restricted Limited to acquire a percentage of 24.5%, with a minimum of 15%, of the issued shares of El Sewedy
+            Electric Company. in accordance with Article (338) of the executive regulations of the Capital Market Law No.
+            95 of 1992. The board was also briefed on the findings of the independent financial advisor tasked with
+            assessing the fair value of the shares, which was determined to be 52.38 Egyptian pounds per share.
+
+      -     On July 17, 2024, 19.98% of the total shares of Elsewedy electric company (S.A.E.) was purchased by (Electra
+            Investment Holding Restricted Limited). Consequently, in the subsequent period, capital restructuring was
+            carried out as follows:
+
+           Shareholder                                                         No. of Shares                Owner
+                                                                                  (Share)                 percentage
+           Sadek Ahmed Sadek Elsewedy                                               546 502 820             25.53%
+           Ahmed Ahmed Sadek Elsewedy                                               546 252 820             25.52%
+           Mohamed Ahmed Sadek Elsewedy                                             385 602 690             18.01%
+           Electra Investment Holding restricted limited                            427 711 646             19.98%
+           Other shareholders                                                       233 285 740             10.93%
+           Treasury shares and ESOP shares issued not granted                         1 422 160              0.06%
+                                                                                  2 140 777 876              100%
+
+
+30-       Reserves
+          EGP                                                     30 June 2024                 31 December 2023
+          Legal reserve                                                  554 350 878                        554 350 878
+          Foreign operations translation differences                   8 806 296 468                      3 387 649 590
+                                                                       9 360 647 346                      3 942 000 468
+
+
+                                                             25
+                                                                                              Translated from Arabic
+
+ El Sewedy Electric Company
+ (An Egyptian Joint Stock Company)
+ Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+ Continued
+ ______________________________________________________________________________________
+31-  Treasury shares
+   - The Board of Directors held on 5 July 2022 decided to approve the purchase of a maximum number of
+     30 000 000 shares equivalent to 1.373% of the company's share. This is due to the decrease of capital share price,
+     which represents an investment opportunity for the company to support the market share price. The purchase process
+     made from 6 July 2022 to 5 October 2022.
+   - The management of Elsewedy Electric company has invited the company's extraordinary general assembly meeting
+     to be held on 23 August 2022, in order to consider reducing the share capital by the value of treasury share purchased
+     during the period from 24 June 2020 to 28 June 2020 and shares purchased during the period from 1 July 2020 until
+     30 September 2020.
+  - The management of Elsewedy Electric company has reduced the company issued capital by the value of treasury
+     share purchased during the period from 24 June 2020 to 28 June 2020 and shares purchased during the period from
+     1 July 2020 until 30 September 2020 with a total number of 13 402 124 shares. Accordingly, the total share of the
+     company became 2 170 777 876 shares. Annotation was made in the commercial register of the company on 17
+     October 2022.
+   - The Board of Directors held on 27 September 2022, decided to approve the extension of the purchase of a maximum
+     number of 30 000 000 shares as a maximum equivalent to 1.373% of the company's shares which has been
+     previously decided in the board meeting held on 5 July 2022 to be purchased on 5 January 2023 instead of 5 October
+     2022.
+
+      EGP                                                            Average               No. of             Value
+                                                                    share price            shares             (EGP)
+                                                                      (EGP)               (Share)
+
+      Shares repurchased during the period from 1 July 2022 to           6.4454          11 975 000           77 183 471
+       30 September 2022
+      Shares repurchased during the period from 1 October                9.8172          18 025 000         176 954 413
+      2022 to 31 December 2022
+                                                                                         30 000 000         254 137 884
+
+  -  Management of Elsewedy Electric company has invited the company's extraordinary general assembly meeting to
+     be held in order to consider reducing the company issued capital from EGP 2 170 777 876 to EGP
+     2 140 777 876 by executing treasury shares owned with an amount of 30 000 000 shares with a par value of EGP
+     30 000 000 purchased during the period from 1 July 2022 to 31 December 2022.
+  - On April 18, 2024, the management of El Sewedy Electric Company called for an extraordinary general meeting to
+     approve the reduction of the company's issued capital by retiring the treasury shares owned by the company, which
+     had expired the company's retention period, amounting to 30,000,000 shares with a par value of 30 000 000 Egyptian
+     pounds. This reduced the company's issued capital to 2 140 777 876 Egyptian pounds. Amendment of Article (6) of
+     the Articles of Association was approved, specifying the authorized capital of the company as 5 billion Egyptian
+     pounds and the issued capital as 2 140 777 876 Egyptian pounds, divided into 2 140 777 876 shares with a par value
+     of 1 Egyptian pound each. The reduction was registered at the commercial register on May 22, 2024.
+ 32- Loans and borrowings
+       EGP                                                            30 June 2024              31 December 2023
+       Current liabilities
+       Loans – current portion                                               12 878 849 361             7 401 079 843
+       Banks- Credit facilities                                              35 934 948 745            27 530 523 733
+       Lease liabilities – Current portion                                      102 215 024                19 206 529
+                                                                             48 916 013 130            34 950 810 105
+       Non-current liabilities
+       Loans – non-current portion                                            6 202 687 320              6 235 939 701
+       Lease liabilities – non-current portion
+                                                                                790 433 086               579 742 265
+                                                                              6 993 120 406             6 815 681 966
+                                                                             55 909 133 536            41 766 492 071
+
+                                                             26
+                                                                                                   Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+
+
+      - The average interest rate on loans and credit facilities in Egyptian pounds is 28.9 %, including the Central Bank of
+         Egypt lending rate, as for the US dollar and foreign currencies, the average interest rate is 5.8% and 7.45%
+         respectively .
+      -     The loans and credit facilities granted to the Company and its subsidiaries which are guaranteed by promissory
+            notes from subsidiaries within the limit of an amount of EGP 878 million, USD 86 million, Euros 71 million,
+            Algerian dinars 476 million for the purchase of machinery and equipment. There is no pledge on property, plant
+            and equipment against the outstanding balances of loans and borrowings.
+      -     The liabilities of finance lease contracts for the current and non-current portion were included under the loans and
+            borrowings according to the requirements of Egyptian Accounting Standard No. (49) – Lease Contracts.
+          - Elsewedy Electric signed a credit facility agreement on 22 December 2022, with the Africa of Export -Import
+            bank with an amount of USD 200 million to finance or obtain credit support for payment of obligations for import
+            of goods and services from suppliers in order to secure credit support for engineering, purchases and construction
+            services in Africa and the Middle East and for the company's general purposes.
+
+33-         Trade and other payables
+             EGP                                                              30 June 2024             31 December 2023
+             Trade and notes payables                                            25 327 985 495               18 335 452 414
+             Tax Authority                                                        4 673 062 237                4 566 748 649
+             Retention payables- construction projects                            2 959 822 309                2 238 353 411
+             Accrued expenses                                                     8 732 874 961                4 158 732 110
+             Dividends payable                                                      134 400 348                    65 026 975
+            Other trade payable                                                   4 751 121 440                2 573 808 501
+                                                                                 46 579 266 790               31 938 122 060
+
+34-         Contract liabilities
+               EGP                                                            30 June 2024             31 December 2023
+              Contract liabilities                                               34 217 780 238               25 060 328 092
+                                                                                 34 217 780 238               25 060 328 092
+
+            These liabilities representing the Group’s obligation to transfer revenue to a customer for which the Group has
+            received consideration (or the amount is due) from the customer.
+
+
+
+
+                                                                 27
+                                                                                                                Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+35-      Provisions
+
+      EGP                         Balance at        Formed                 Used           No longer               Effect of            Balance at
+                                  1 January       During the             During the       required              movement in            30 June
+                                                  period /year             year                                 exchange rate
+                                                                          period /
+      Non-Current
+      provisions
+      Provision for
+      warranty, lawsuits and         88 077 904         5 175 850          ( 4 406 609)                  -                24 624 101       113 471 246
+      contractual risks
+      Provision for claims          92 755 664         2 013 471               -                -                        43 431 154       138 200 289
+      Provision for restoring      571 535 500                                                                          306 001 106        877 446 606
+                                                        -                      -                -
+      the sites
+      Balance as of 30
+      June 2024                    752 369 068          7 189 321          ( 4 406 609)                  -              373 056 361      1 129 208 141
+
+      Balance as of 31
+                                   308 542 214       489 886 388         (131 675 184)                   -                85 615 650       752 369 068
+      December 2023
+
+      Current provisions
+      Provision for
+      warranty, lawsuits          7 206 681 802   3 228 481 005          ( 485 851 743)   ( 12 936 123)           1 121 145 349        11 057 520 290
+      and contractual risks
+      Provision for Training
+                                  441 103 678           -                      -                -                         -             441 103 678
+      and Rehabilitation
+      Takaful contribution
+                                  402 639 396       90 606 791           ( 38 983 117)    ( 8 201 154)               60 480 880         506 542 796
+      provision
+      Balance as of 2024          8 050 424 876   3 319 087 796          ( 524 834 860)   ( 21 137 277)           1 181 626 229        12 005 166 764
+      Balance as of 2023          4 527 493 624   4 053 475 855          (789 053 875)    (446 679 001)              705 188 273        8 050 424 876
+      Balance as of 30
+                                  8 802 793 944   3 326 277 117          (529 241 469)    ( 21 137 277)           1 555 682 590        13 134 374 905
+      June 2024
+      Balance as of 31
+      December 2023               4 836 035 838   4 543 362 243          (920 729 059)    (446 679 001)              790 803 923        8 802 793 944
+
+
+
+
+36- Capital Commitments
+
+       The value of the capital commitments, expected to be settled within one year from the date of the Condensed
+       consolidated interim financial statements is presented as follows:
+         EGP (Millions)                                                                   30 June 2024                        31 December 2023
+
+         Contractual agreement– purchasing of property plant and                                             1.159                             0.906
+         equipment
+
+
+37-      Contingent liabilities
+
+          EGP (Millions)                                                                  30 June 2024                        31 December 2023
+
+         Uncovered portion of letters of guarantees and letter of credits                             40 610                                  55 900
+
+
+
+
+                                                                    28
+Elsewedy Electric Company
+
+(An Egyptian Joint Stock Company)                                                                                                                                                              Translated from Arabic
+Notes to the Condensed Consolidated interim Financial Statements for the Six months Ended 30 June 2024 – Continued
+
+
+38- Related parties transactions
+
+      The transactions with the related parties are transactions between group's companies and these parties. Those transactions are made according to conditions approved by the group's management , the main
+      transactions and it's volume and the balances resulted from them at 30 June 2024 are as follows :
+
+      EGP (Billions)                                                                                                                                                    30 June 2024             31 December 2023
+      Sales to the related parties                                                                                                                                          1,2                                       9.2
+                                                                                                      Nature and Volume of main transactions
+      EGP                                                                                                  Sales        Payments on behalf         Others              30 June 2024             31 December 2023
+
+
+      Classified as non-current assets (Due from related parties)
+      Aswan 21 Company                                                                                                  -                  -                                  175 429 119                111 110 144
+                                                                                                                                                                              175 429 119                 111 110 144
+      Classified as current assets : ( Due from related parties)
+      Zesco company                                                                                           209 419 916         -                   -                       345 497 567                136 077 651
+      El Sewedy cables Company – Qatar                                                                          -                     7 991 743       3 054 783                   50 691 420              39 644 894
+      ELSewedy for Electric Equipment and Cables Company                                                    1 141 431 228         -               ( 353 770 434)              793 572 881                  5 912 087
+      El Sewedy for Electrical constructions Co. - Algeria                                                      -                 -                  28 779 024                   41 212 843              12 433 819
+      EMAS Company                                                                                              -                 -                  26 571 317                   42 254 958              15 683 641
+      Doha Cables Company – Qatar                                                                               -                 -                  66 098 196               276 109 685                210 011 489
+      Pyramids for Industrial parks developmentCompany                                                          -                  30 960 465      ( 16 866 954)                  27 719 837              13 626 326
+      Giad cables Company                                                                                       -                 -                 176 334 057               381 204 008                204 869 951
+      Pyramids Zonafranca Company                                                                               -                 -                 ( 9 141 965)                  13 683 398              22 825 363
+      3W Company – Egypt                                                                                        -                 -                            -                  13 076 379              13 076 379
+      Arabian for steel industries Company                                                                      -                 -                ( 43 212 905)                   7 217 226              50 430 131
+      Al Oula for industrial parks development Company                                                          -                 -                 ( 9 552 655)                   2 285 875              11 838 530
+      RME Mozambique Company                                                                                    -                 -                            -                   4 013 821               4 013 821
+      GAMA – Al Rowad                                                                                           -                 -                ( 41 961 859)                  10 113 645              52 075 504
+      Iskarmeko Company -Malaysia                                                                               -                 -                   1 761 368                    4 041 652               2 280 284
+      Play resort Company                                                                                       -                     9 012 762    ( 47 669 739)                    541 978               39 198 955
+      Tanzania project Company                                                                                  -                  15 044 420       273 970 265             1 362 653 435               1088 683 170
+      Iskara Argentina Company                                                                                  -                 -                ( 36 062 294)                  16 307 005              37 324 879
+      El Sewedy Cables Erbil Company -Iraq                                                                      -                 -                   8 293 429                   58 318 134              50 024 705
+      El Sewedy Cables Company - Yemen                                                                          -                 -                 268 689 734               753 980 294                485 290 560
+      El Sewedy watania for Industries and Engineering projects (SWIEP) Company                                 -                 -                 229 809 346               632 271 795                402 462 449
+      DB Schenker Company                                                                                       -                 -                            -                   1 154 032               1 154 032
+      SC Zone utilities Company                                                                                 -                 -                  28 924 980                   44 663 773              15 738 793
+      Ranen for Energy Company                                                                                  -                 -                  93 325 808               258 282 763                164 956 955
+      Rowad KSA Company                                                                                         -                 -                ( 59 274 104)                       -                  59 274 104
+      3W Network Advanced Manufacturing Company                                                                 -                 -                  13 321 781                   34 666 244              21 344 463
+      Petrojet Company                                                                                          -                 -                ( 10 119 196)                       -                  10 119 196
+      Senyar Industries Qatar Holding Company                                                                   -                 -                ( 34 333 488)                       -                  34 333 488
+      ALRowad libya Company                                                                                     -                 -                 450 052 962               450 052 962                         -
+
+      Hassan Allam project                                                                                      -                 -                  89 239 514                   89 239 514                      -
+
+      Orascom project & El-Rowad                                                                                -                 -                  85 364 066                   85 364 066                      -
+
+      NEOM project                                                                                              -                 -                  87 759 405                   87 759 405                      -
+
+      Others                                                                                                    -                 -                  80 856 142              158 029 218                  77 173 076
+      Less: impairment loss on related parties                                                                                                                            (1 096 769 312)               ( 727 962 914)
+                                                                                                                                                                            4 949 210 501               2 553 915 781
+      Total due from related parties                                                                                                                                        5 124 639 620               2 665 025 925
+
+                                                                                                                - 29-
+Elsewedy Electric Company
+                                                                                                                                                   Translated from Arabic
+(An Egyptian Joint Stock Company)
+Notes to the condensed Consolidated interim Financial Statements for the Six months Ended 30 June 2024 – Continued
+
+38-   Related parties transactions - continued
+                                                                                            Nature and Volume of transactions
+      EGP                                                                                   Payments                 Others               30 June 2024           31 December 2023
+      Classified as non-current liabilities: ( Due to related parties)
+      PV Power Plant company                                                                      -                                             118 789 577                      81 722 342
+                                                                                                                                                118 789 577                      81 722 342
+      Classified as current liabilities: ( Due to related parties)
+      Pyramids for industrial Parks Development company                                          28 913 083            -                       -                                28 913 083
+      Pyramids Zona franca company                                                                9 857 459                    35 093          -                                 9 892 552
+      Al Oula for Industrial Parks Development company                                            -                         4 648 867          -                                 4 648 867
+      Al Arabiya for Steel Industries company                                              11 527 265                      35 301 147          -                                46 828 412
+      Elastmold company-Egypt                                                                     -                           717 407          47 163 084                       47 880 491
+      El Sewedy Cables company-Qatar                                                              -                   ( 145 146 450)          199 372 255                       54 225 805
+      Doha Cables company-Qatar                                                                   -                   ( 136 256 500)          394 137 942                   257 881 442
+      Senyar Holding Qatar company                                                                -                   ( 258 537 856)          667 827 028                   409 289 172
+      El Sewedy watania for Industries and Engineering projects (SWIEP) company                 198 971 963            235 567 048             28 333 244                   462 872 255
+      El Sewedy for Equipment & Cables company                                                    -                           291 868         297 889 991                   298 181 859
+      EMAS company                                                                                -                        31 755 400          10 647 791                       42 403 191
+      Giad cables company                                                                         -                        ( 4 433 340)        10 413 904                        5 980 564
+      El Rowad Mozambique company                                                                 -                    -                           2 203 232                     2 203 232
+      Play resort company                                                                         -                        38 806 946          -                                38 806 946
+      Rowad for modern engineering (GAMA Project)                                                 -                        41 315 131          -                                41 315 131
+      Egyptian company for mechanical and electrical projects (Kahromecha) company                -                    -                           1 420 244                     1 420 244
+      JV Tanznia                                                                                  -                   ( 208 522 224)          1163 861 540                  955 339 316
+      DB schenker company                                                                         -                         1 084 079              1 425 065                     2 509 144
+      Red sea copper company                                                                      -                   ( 121 080 447)          339 683 130                   218 602 683
+      El Sewedy technical Academy                                                                 -                    -                           1 693 893                     1 693 893
+      El Sewedy Electric Corporation                                                              -                        15 657 053          -                                15 657 053
+      Elraghy Group                                                                               -                        59 611 396          74 177 086                   133 788 482
+      Tripoli Project                                                                             -                  ( 146 876 424)           146 876 424                   -
+      Alrowad Company Comoros                                                                     -                  ( 226 215 362)           226 215 362                   -
+      Elrowad Libya project                                                                       -                  ( 363 386 228)           363 386 228                   -
+      Others                                                                                      -                  ( 147 230 157)           173 643 011                       26 412 854
+
+                                                                                                                                             4 150 370 454             3 106 746 671
+      Total due to related parties                                                                                                           4 269 160 031             3 188 469 013
+
+      Significant transactions with key management personnel represented in:
+                                                                                                                                            For the six months ended 30 June
+      EGP                                                                                                                                     2024                     2023
+      Salaries and allowances for key management personnel                                                                                     42 060 323                       17 324 264
+
+
+
+
+                                                                                        - 30-
+                                                                                                      Translated from Arabic
+
+  El Sewedy Electric Company
+  (An Egyptian Joint Stock Company)
+  Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+  Continued
+  ______________________________________________________________________________________
+
+39-    Major events during the period
+
+        In light of the global and local economic conditions and the geopolitical risks facing the country, the government,
+        represented mainly by the Central Bank of Egypt, has taken a number of financial measures during 2022 and 2023
+        to contain the impact of these crises as well as the resulting inflationary impact over the Egyptian economy, including
+        the devaluation of the Egyptian pound against foreign currencies, raising the interest rate on overnight deposits and
+        lending rates, and setting maximum limits on cash withdrawals and deposits in banks. This resulted a decrease in
+        exchange rates and the availability of foreign currencies through official channels As a result, there has been a
+        shortage in foreign exchange availability through official channels, leading to delays in foreign currency debt
+        repayments and increased purchasing and repayment costs. On March 6, 2024, the Central Bank of Egypt issued a
+        decision to raise the overnight deposit and lending rates by 600 basis points to reach 27.25% and 28.25%,
+        respectively, also the credit and discount rate was raised by 600 basis points to reach 27.75, with allowing the use of
+        a flexible exchange rate driven by market mechanisms, which led to an increase in the average official exchange rate
+        of US dollars during the first week of the Central Bank's decision date, to reach between 49 to 50 EGP/USD.
+
+  40- Basic and diluted earnings per share (EPS)
+         The calculation of EPS is based on the following profit attributable to ordinary shareholders and weighted‑average
+         number of shares outstanding is presented below:
+
+         For the purpose of calculating diluted earnings per share, an entity shall adjust profit or loss attributable to ordinary
+         shareholders of the parent entity, and the weighted average number of shares outstanding, for the effects of all
+         dilutive potential ordinary shares.
+
+      A. Basic earnings per share for Condensed consolidated interim financial statements.
+                                       For the Six months ended 30 June                   For the Three Months ended 30 June
+      EGP                                  2024               2023                             2024                 2023
+      Profit for the period
+      attributable to owners of        8 435 897 044          5 564 259 802                    4 455 920 346           2 659 590 570
+      the company
+      Less:
+      Employees’ share in
+                                       ( 814 739 403)         (556 425 980)                    (314 680 310)           (323 403 116)
+      profit (Expected)
+      Profit attributable to
+                                         7 621 157 641          5 007 833 822                  4 141 240 036           2 336 187 454
+      ordinary shareholders
+      Weighted-average
+      number of shares
+      Issued ordinary shares
+                                         2 140 777 876          2 170 777 876                  2 140 777 876           2 170 777 876
+      (share)
+      Less:
+      Treasury shares (share)                           -        ( 30 000 000)                    -                     ( 30 000 000)
+      ESOP shares issued not
+                                           ( 1 422 160)           ( 1 422 160)                   ( 1 422 160)            ( 1 422 160)
+      granted (share)
+      Weighted-average
+      number of ordinary                 2 139 355 716          2 139 355 716                  2 139 355 716           2 139 355 716
+      shares at 30 June (share)
+       Basic earnings per                          3.56                    2.34                           1.94                       1.09
+      share
+
+
+
+
+                                                                 31
+                                                                                        Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+B. Diluted earnings per share for condensed consolidated interim financial statements
+
+                             For the Six months ended 30 June           For the Three Months ended 30 June
+  EGP                            2024               2023                     2024               2023
+  Profit for the period
+  attributable to owners
+  of the company                8 435 897 044      5 564 259 802           4 455 920 346          2 659 590 570
+  Less:
+  Employees’ share in
+                                ( 814 739 403)
+  profit (Expected)                               ( 556 425 980)          ( 314 680 310)         ( 323 403 116)
+  Profit attributable to
+                                7 621 157 641      5 007 833 822           4 141 240 036          2 336 187 454
+  ordinary shareholders
+  Weighted-average
+  number of shares
+  Issued ordinary shares
+                                2 140 777 876      2 170 777 876           2 140 777 876          2 170 777 876
+  (share)
+  Less:
+  Treasury shares (share)            -             ( 30 000 000)               -                   ( 30 000 000)
+  Weighted-average
+  number of ordinary
+                                2 140 777 876      2 140 777 876           2 140 777 876          2 140 777 876
+  shares at 30 June
+  (share)
+   Diluted earnings per
+                                         3.56               2.34              1.93                   1.09
+  share
+
+
+40-1 Market price per share on the Egyptian Stock Exchange
+
+ EGP                                                               30 June 2024            31 December 2023
+ Market price per share (SWDY.CA)                                      47.12                     27.69
+
+
+41- Non-controlling interests
+
+  EGP                                              Percentage       30 June 2024         31 December 2023
+  Rowad for Modern Engineering company                   49 %           924 911 864             745 271 459
+  Elsewedy Cables company– KSA Ltd.                      40 %         2 250 080 729             991 916 388
+  Egyptian company for Solar Energy                      49 %           300 544 317             222 187 769
+  Elsewedy Electric Zambia limited company               40 %           269 474 455             164 554 963
+  October Dry Port company                               10 %           131 397 773              80 925 538
+  Egyptian Co. For Electrical Insulators              25.17 %            67 479 604              61 175 002
+  Others                                                     -          121 008 469             117 982 277
+                                                                      4 064 897 211             2 384 013 396
+
+
+
+
+                                                       32
+                                                                                                   Translated from Arabic
+
+   El Sewedy Electric Company
+   (An Egyptian Joint Stock Company)
+   Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+   Continued
+   ______________________________________________________________________________________
+  42-      Other liabilities
+
+         EGP                                                                 30 June 2024        31 December 2023
+        Creditors – property, plant, and equipment purchase                       92 530 756                  118 584 607
+        Government grants                                                         238 832 883                 157 612 951
+        Long term notes payable                                                   609 310 604                 158 418 679
+        Other payable                                                             405 400 963                 339 437 062
+                                                                                1 346 075 206                 774 053 299
+
+ 43-      Material accounting policies
+          The Group has consistently applied the following accounting policies to all periods presented in these Condensed
+          consolidated interim financial statements.
+
+ 43-1       New issuances and amendments on Egyptian Accounting Standards:
+       A) On 6 March 2023, the Prime Minister's Decree No. (883) of 2023 was issued amending some provisions of the
+          Egyptian accounting standards, and on 3 March 2024, another decision was issued by the Prime Minister No. (636)
+          of 2024 amending some other provisions of the Egyptian accounting standards, and the following is a summary of
+          the most important of those amendments:
+
+ New or reissued               Summary of the most significant              Impact on the financial          Effective date
+   standards                            amendments                                 statements
+
+
+Egyptian                1-This standard determines the principles of       The Company is currently       Egyptian
+Accounting              recognition of insurance contracts falling         assessing the impact of        Accounting
+Standard No. (50)       within the scope of this standard, and             applying this new standard     Standard No. (50) is
+“Insurance              determines their measurement, presentation,        on its financial statements.   effective for annual
+Contracts".             and disclosure. The objective of the standard                                     financial periods
+                        is to ensure that the Company provides                                            starting on or after
+                        appropriate information that truthfully reflects                                  July 1, 2024, and if
+                        those contracts. This information provides                                        the Egyptian
+                        users of financial statements with the basis for                                  Accounting
+                        assessing the impact of insurance contracts on                                    Standard No. (50)
+                        the Company’s financial position, financial                                       shall be applied for
+                        performance, and cash flows.                                                      an earlier period,
+                                                                                                          the Company
+                        2-Egyptian Accounting Standard No. (50)                                           should disclose that
+                        replaces and cancels Egyptian Accounting                                          fact.
+                        Standard No. 37 "Insurance Contracts".
+                        Any reference to Egyptian Accounting
+                        Standard No. (37) in other Egyptian
+                        Accounting Standards to be replaced by
+                        Egyptian Accounting Standard No. (50).
+
+                        3-The following Egyptian Accounting
+                        Standards have been amended to comply with
+                        the requirements of the application of
+
+
+                                                                  33
+                                                                                                 Translated from Arabic
+
+   El Sewedy Electric Company
+   (An Egyptian Joint Stock Company)
+   Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+   Continued
+   ______________________________________________________________________________________
+ New or reissued             Summary of the most significant                Impact on the financial        Effective date
+   standards                            amendments                                statements
+
+
+                        Egyptian Accounting Standard No. (50)
+                        "Insurance Contracts", as follows:
+                       - Egyptian Accounting Standard No. (10)
+                                "Fixed Assets ".
+                       - Egyptian Accounting Standard No. (23)
+                                "Intangible Assets".
+                       - Egyptian Accounting Standard No. (34) "
+                         "Investment property ".
+
+
+
+Egyptian               The Egyptian Accounting Standard No. (34)           The Company doesn’t have     The amendments to
+Accounting             "Investment Property" was reissued in 2024, to      this   type    of   asset.   the amendment of
+Standard No. (34)      amend the fair value application mechanism                                       addition of the
+                                                                           Accordingly, this change
+amended     2024       by the mandate of recognizing the gain or loss                                   option to use the fair
+                                                                           doesn’t have an impact on
+"Investment            arising from the change in the fair value of the                                 value model apply to
+Property "             investment property in the statement of profit      the financial statement of   financial periods
+                       or loss for the period in which the change arises   the Company.                 commencing on or
+                       or through the statement of other                                                after January 1,
+                       comprehensive income for one time in the life                                    2024 with early
+                       of the asset or investment, taking into account                                  adaption allowed
+                       paragraphs (35a) and (35b) of the standard.                                      retrospectively by
+                                                                                                        recognizing the
+                                                                                                        cumulative impact of
+                                                                                                        the application of the
+                                                                                                        fair value model
+                                                                                                        initially by adding it
+                                                                                                        to the opening
+                                                                                                        balance of retained
+                                                                                                        earnings/losses as at
+                                                                                                        the beginning of the
+                                                                                                        financial period in
+                                                                                                        which the Company
+                                                                                                        applies this model
+                                                                                                        for the first time.
+Egyptian               This standard was reissued in 2024, to add how      No effect in the financial   Amendments
+Accounting             to determine the spot exchange rate when            statements                   regarding the
+Standard No. (13)      exchange between two currencies is difficult                                     determination of
+amended      2024      and what are the conditions that must be met                                     spot exchange rate
+"Effects          of   for determining the spot exchange rate at the                                    when it is difficult to
+changes in foreign     measurement date.                                                                exchange between
+exchange rates"                                                                                         two currencies is
+                                                                                                        applicable to
+
+                                                                  34
+                                                                                          Translated from Arabic
+
+  El Sewedy Electric Company
+  (An Egyptian Joint Stock Company)
+  Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+  Continued
+  ______________________________________________________________________________________
+New or reissued         Summary of the most significant              Impact on the financial       Effective date
+  standards                          amendments                            statements
+
+
+                  An appendix to the application guidelines has                                 financial periods
+                  been added, which includes guidelines for                                     commencing on or
+                  assessing whether a currency is exchangeable                                  after January 1,
+                  for another currency, and guidelines for                                      2024 with early
+                  applying the required treatments in case of non-                              adaption allowed. If
+                  exchangeability.                                                              the entity made an
+                                                                                                early application,
+                                                                                                this has to be
+                                                                                                disclosed. Entity
+                                                                                                shall not be
+                                                                                                modifying
+                                                                                                comparative
+                                                                                                information and
+                                                                                                instead should:
+                                                                                                • When the entity
+                                                                                                reports foreign
+                                                                                                currency
+                                                                                                transactions to its
+                                                                                                functional currency,
+                                                                                                any effect of the
+                                                                                                initial application is
+                                                                                                recognized as an
+                                                                                                adjustment to the
+                                                                                                opening balance
+                                                                                                retained
+                                                                                                earnings/losses on
+                                                                                                the date of initial
+                                                                                                application.
+                                                                                                • When an entity
+                                                                                                uses presentation
+                                                                                                currency different
+                                                                                                than its functional
+                                                                                                currency or
+                                                                                                translates the results
+                                                                                                and balances of
+                                                                                                foreign operation,
+                                                                                                the resulting
+                                                                                                differences and
+                                                            35
+                                                                                                   Translated from Arabic
+
+      El Sewedy Electric Company
+      (An Egyptian Joint Stock Company)
+      Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+      Continued
+      ______________________________________________________________________________________
+ New or reissued             Summary of the most significant                Impact on the financial         Effective date
+   standards                            amendments                                statements
+
+
+                                                                                                         financial position of
+                                                                                                         a foreign transaction,
+                                                                                                         any effect of the
+                                                                                                         initial application is
+                                                                                                         recognized as an
+                                                                                                         adjustment to the
+                                                                                                         cumulative
+                                                                                                         translation
+                                                                                                         adjustment reserve -
+                                                                                                         accumulated in
+                                                                                                         equity section on the
+                                                                                                         date of initial
+                                                                                                         application.
+Accounting              Carbon Credits Certificates: Are financial        The Company is currently       The application
+                        instruments subject to trading that represent     assessing the impact of
+Interpretation No.      units for reducing greenhouse gas emissions.                                     starts on or after the
+                        Each unit represents one ton of equivalent        applying this new standard
+(2)         "Carbon                                                                                      first of January
+                        carbon dioxide emissions, and are issued in       on its financial statements.
+Reduction                                                                                                2025,early adaption
+                        favor of the reduction project developer
+Certificates"           (owner/non-owner), after approval and                                            is allowed.
+                        verification in accordance with internationally
+                        recognized standards and methodologies for
+                        reducing carbon emissions, carried out by
+                        verification and certification bodies, whether
+                        local or international, registered in the list
+                        prepared by the Financial Regulatory
+                        Authority “FRA” for this purpose. Companies
+                        can use Carbon Credits Certificates to meet
+                        voluntary emissions reduction targets to
+                        achieve carbon trading or other targets, which
+                        are traded on the Voluntary Carbon Market
+                        “VCM”.
+
+
+      B) The difficulty of currency exchange.
+      - On March 3, 2024, the Prime Minister issued Resolution No. 636 amending Egyptian Accounting Standard No. (3)
+      “Effects of Changes in Foreign Exchange Rates” (Egyptian Accounting Standard No. 13) Paragraph 57 A, which is
+      effective as of January 1, 2024.
+      The company applied the amendment to Paragraph No. 57A of Egyptian Standard No. 13 and conducted an assessment
+      to determine whether there is a difficulty in exchanging foreign currencies against the Egyptian pound. Below is a
+      summary of the results of this assessment.
+      The Company has assessed that there is no difficulty to exchange assets denominated in foreign currencies as of January
+      1, 2024, the date of application of the amended Egyptian Accounting Standard No. 13. This assessment was made on
+      the basis that assets denominated in foreign currencies can be exchanged in the bank at any time without any difficulty.
+      The Company has also assessed that there is no difficulty exchanging foreign currency denominated liabilities, to the
+      extent that foreign currency denominated assets can be used to settle such liabilities. And that there are no obligations
+      denominated in foreign currencies that will be settled outside the banking system. There is no estimate that there is
+
+
+                                                                 36
+                                                                                          Translated from Arabic
+
+El Sewedy Electric Company
+(An Egyptian Joint Stock Company)
+Notes to the Condensed Consolidated interim Financial Statements for the Six months ended 30 June 2024 –
+Continued
+______________________________________________________________________________________
+difficulty in exchanging these balances, and there is no monetary impact of applying the amended Egyptian Accounting
+Standard No. 13.
+
+Currency Position
+The following is a summary for assets and liabilities in US dollars as of 31 January 2024.
+                          USD                EUR               GBP             SAR                  KWD
+Financial assets
+
+Trade receivables and
+other debit balance              321                 79             50               17                             54
+
+Cash and cash
+equivalent                       309                 36             19          -                      -
+
+Total financial assets
+                                 630               115              69               17                             54
+
+Financial liabilities
+that are readily
+tradable:
+Trade payables and
+other credit balance           (218)                 (25)           (4)             (1)                            (3)
+
+Loans and
+borrowings                     (365)                 (55)           (8)         -                      -
+
+Total financial
+liabilities                    (583)                 (80)          (12)             (1)                            ( 3)
+
+Net financial assets              47                  35            57               16                             51
+
+
+
+
+                                                          37
+

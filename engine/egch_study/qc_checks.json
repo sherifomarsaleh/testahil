@@ -1,6 +1,15 @@
 {
+ "scrub_docs": [
+  "EGCH_Valuation_Study_05-09-2026.docx",
+  "EGCH_Bibliography_05-09-2026.docx",
+  "EGCH_Valuation_Model_05092026.xlsx"
+ ],
  "scrub_patterns": 73,
- "scrub_hits": [],
+ "scrub_hits": [
+  "EGCH_Valuation_Model_05092026.xlsx: /\\broll[- ]forward\\b/ -> ...ross interest-bearing debt net debt forecast roll-forward egp million fy2026/27 fy2027/28 fy2028/29 fy...",
+  "EGCH_Valuation_Model_05092026.xlsx: /\\bmonte carlo\\b/ -> ...ation at a different pair of inputs, and the monte carlo sheet reports statistics of a fifty-thousand...",
+  "EGCH_Valuation_Model_05092026.xlsx: /\\b(non-overlapping|resolved|three-month|3-month|back-?tested|rolling) windows?\\b/ -> ...ifteen-year price history in non-overlapping three-month windows and scored against a random walk. over the l..."
+ ],
  "figures": 15,
  "transparent": [],
  "tables": 56,
@@ -12,5 +21,7 @@
   "figures.py"
  ],
  "typed_numerals": [],
- "fails": []
+ "fails": [
+  "external_reader_scrub"
+ ]
 }

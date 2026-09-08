@@ -1,0 +1,102 @@
+{
+ "ticker": "STC",
+ "years": [
+  "FY2023",
+  "FY2024",
+  "FY2025"
+ ],
+ "sources": {
+  "FY2025": "stc_Annual-2025-en.txt, note 9 (audited, year ended 31 December 2025)",
+  "FY2024": "stc_Annual-2025-en.txt, note 9 (audited, year ended 31 December 2025)",
+  "FY2023": "stc_Annual-2024-en.txt, note 9 (audited, year ended 31 December 2024)"
+ },
+ "lines": {
+  "Total revenues": [
+   71777161,
+   75893413,
+   77818675
+  ],
+  "Cost of operations, excluding depreciation and amortisation": [
+   -49331772,
+   -51942298,
+   -53349240
+  ],
+  "Depreciation, amortisation and impairment": [
+   -9284098,
+   -9525477,
+   -10031171
+  ],
+  "Cost of the early retirement programme": [
+   -862842,
+   -2577256,
+   -823801
+  ],
+  "Finance income": [
+   1482016,
+   1717851,
+   1276442
+  ],
+  "Finance cost": [
+   -1068102,
+   -1233679,
+   -1125361
+  ],
+  "Net other income and expenses": [
+   -110976,
+   -61263,
+   7042
+  ],
+  "Net share in associates and joint ventures": [
+   52579,
+   -665913,
+   295160
+  ],
+  "Net other gains": [
+   1333077,
+   529069,
+   654896
+  ],
+  "Zakat and income tax": [
+   -1326610,
+   -1191564,
+   466436
+  ]
+ },
+ "net_profit_continuing": [
+  12660433,
+  10942883,
+  15189078
+ ],
+ "ebitda": [
+  22445389,
+  23951115,
+  24469435
+ ],
+ "ebit": [
+  13161291,
+  14425638,
+  14438264
+ ],
+ "net_finance": [
+  413914,
+  484172,
+  151081
+ ],
+ "profit_before_zakat": [
+  13987043,
+  12134447,
+  14722642
+ ],
+ "effective_zakat_rate": 0.08266854587581883,
+ "effective_zakat_rate_on_ebit": 0.08034525861665882,
+ "zakat_reversal_fy2025": 1324787,
+ "zakat_reversal_source": "stc_Annual-2025-en.txt, note 33(a), the movement of the zakat provision: \"Reversal of prior years' Zakat provision during the year\"",
+ "underlying_zakat": [
+  1326610,
+  1191564,
+  858351
+ ],
+ "zakat_rate_carrying_the_reversal": 0.05023336032701099,
+ "early_retirement_mean": -1421299.6666666667,
+ "finding": "The two lines a forecast has to decide about are the early retirement programme and zakat, and neither can be read off the latest year. The programme ran 862,842, 2,577,256 and 823,801 \u2014 a threefold swing with no year resembling another \u2014 so it is normalised to its own three-year mean rather than dropped, because it is a real recurring cost of a company restructuring its workforce and no filing calls it non-recurring. Zakat went to a RELEASE of 466,436 in FY2025 after charges of 1,326,610 and 1,191,564, so the effective rate is taken over the three years TOGETHER (8.27%) rather than as a mean of three ratios one of which is negative."
+}

@@ -1,0 +1,8 @@
+{
+ "rule": "R-FCAL-01 far-year ranges reach the reader",
+ "note": "Ratchet [R-ENF-02]. Both entries publish years three to five as POINTS while their own walk-forward commits a band. Rebuilding a delivered study is a re-issue and an explicitly-requested step, so neither is fixed in passing; the build breaks on a NEW run that prints points, and this list may only ever SHORTEN.",
+ "outstanding": {
+  "ARCC": "The band reaches horizons 3, 4 and 5 on 5, 4 and 3 observations and was committed 01-09-2026, two days before the delivered study was rebuilt on 03-09-2026. That document carries no range for FY2028E/29E/30E and no sentence anywhere about the method having been tested on this company's own history. This is a plain breach with nothing excusing it but the cost of a re-issue.",
+  "AMOC": "The record reaches horizon 3 only, on four, three and two observations, so years four and five have NO band to publish and year three has one the run's own counts_warning says supports a span and not a percentile. The study states the principle in Section 7 in plain words -- the far forecast years support a range and never a point -- and prints none. Correcting it means deciding what a two-observation span may be published as, which is the basis-and-count question [R-FCAL-01 AMENDED 07-09-2026] binds forward."
+ }
+}

@@ -59,10 +59,12 @@ MARKET_ORDER = (
     ('US', ('NASDAQ',),         'United States / NASDAQ'),
 )
 
-# A study directory stem that is not its ticker.  Kept explicit: a silent
-# mismatch would put a rebuilt name in the first-build tier and nobody would
-# see it.  Mirrors build_depth_audit/outstanding.json's own alias table.
-STUDY_ALIAS = {'FERTIGLOBE': 'FERTIGLB'}
+# A study directory stem that is not its ticker. IMPORTED, NOT COPIED: this file
+# carried its own copy and the two were compared only when study_population ran as
+# a script, so the consumer that never imported either got no alias at all and
+# listed a studied name as unstudied for three days. One table, every consumer
+# imports it, nothing left to drift.
+from study_aliases import DIR_ALIAS as STUDY_ALIAS  # noqa: E402
 
 # Study directories that intentionally resolve to no equity in the queue.
 STUDY_NOT_IN_QUEUE = {'XPT': 'metals study - no issuer, no statements, no drivers'}

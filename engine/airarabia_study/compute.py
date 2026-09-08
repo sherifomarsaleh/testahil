@@ -258,6 +258,60 @@ INP = dict(
     q1_26_pax=I(2.68, "Q1-2026 consolidated passengers, millions (Q1-2025: 3.03), Q1-2026 "
                 "results presentation", "2026-05-13", "Company"),
 
+    # ---- Q1-2026 interim income statement — THE LATEST REVIEWED PERIOD ----
+    # [R-ANCHOR-01]. Read off the condensed consolidated statement of profit or
+    # loss and the segment note of the interim filing this study already holds,
+    # restated from AED '000 to AED mn. The March-2025 column is that SAME
+    # filing's own comparative, so the pair is like-for-like by construction:
+    # same quarter of the year, same limited review, same presentation basis.
+    # These lines feed the forecast_anchor record and NOTHING ELSE — no driver,
+    # rate, forecast or value moves on them. The whole statement is registered
+    # rather than the four lines the margin needs, so revenue can be footed down
+    # to profit before tax against the filing before any of it is used.
+    #
+    # The rounded presentation figures registered above are left exactly as they
+    # were filed. Two of their LABELS are loose against the statement and it is
+    # recorded here rather than restated: the 302.0 the register calls "operating
+    # profit" is the filing's GROSS PROFIT line, and the 278.1 it calls "net
+    # profit" is PROFIT FOR THE PERIOD BEFORE TAX — profit for the period is
+    # 248.201. Neither is consumed by anything in this model.
+    q126_rev=I(1800.435, "Revenue, three months ended 31 March 2026, " + Q126,
+               "2026-05-13", "Company"),
+    q126_dcost=I(1498.433, "Direct costs, same statement", "2026-05-13", "Company"),
+    q126_ga=I(91.564, "Administrative and general expenses, same statement",
+              "2026-05-13", "Company"),
+    q126_sm=I(28.546, "Selling and marketing expenses, same statement",
+              "2026-05-13", "Company"),
+    q126_fininc=I(55.852, "Finance income, same statement", "2026-05-13", "Company"),
+    q126_fincost=I(21.743, "Finance costs, same statement", "2026-05-13", "Company"),
+    q126_assoc=I(13.614, "Share of profit on investments in associates and joint ventures, "
+                 "same statement", "2026-05-13", "Company"),
+    q126_other=I(48.488, "Other income, net, same statement", "2026-05-13", "Company"),
+    q126_pbt=I(278.103, "Profit for the period before tax, same statement",
+               "2026-05-13", "Company"),
+    q126_dna=I(166.805, "Depreciation and amortisation, three months ended 31 March 2026 — "
+               "the interim statement of cash flows and the segment note of the same filing "
+               "agree at 166,805 thousand, which is the same construction as the audited "
+               "years' D&A already registered (FY2025: 621,798, segment note)",
+               "2026-05-13", "Company"),
+    q125_rev=I(1779.274, "Revenue, three months ended 31 March 2025 — the comparative column "
+               "of " + Q126, "2026-05-13", "Company"),
+    q125_dcost=I(1406.581, "Direct costs, same comparative column", "2026-05-13", "Company"),
+    q125_ga=I(80.034, "Administrative and general expenses, same comparative column",
+              "2026-05-13", "Company"),
+    q125_sm=I(25.565, "Selling and marketing expenses, same comparative column",
+              "2026-05-13", "Company"),
+    q125_fininc=I(64.353, "Finance income, same comparative column", "2026-05-13", "Company"),
+    q125_fincost=I(17.143, "Finance costs, same comparative column", "2026-05-13", "Company"),
+    q125_assoc=I(6.855, "Share of profit on investments in associates and joint ventures, "
+                 "same comparative column", "2026-05-13", "Company"),
+    q125_other=I(34.188, "Other income, net, same comparative column", "2026-05-13", "Company"),
+    q125_pbt=I(355.347, "Profit for the period before tax, same comparative column",
+               "2026-05-13", "Company"),
+    q125_dna=I(147.840, "Depreciation and amortisation, same comparative column — cash-flow "
+               "statement and segment note agree at 147,840 thousand",
+               "2026-05-13", "Company"),
+
     # ---- unit build history (pax mn, LF, revenue lines — DISCLOSED) --------
     pax_hist=I(dict(FY22=8.36, FY23=10.11, FY24=11.22, FY25=13.06),
                "Consolidated passengers carried, millions — company results presentations "
@@ -830,6 +884,123 @@ say(f"[FY2026 cross-check against the print] Q1-2026 revenue {V['q1_26_rev']:,.1
     f"on Q1-2025's seasonal share of FY2025 implies {_impl26:,.0f}; the build produces "
     f"{rev[0]:,.0f} ({rev[0]/_impl26-1:+.1%}).")
 assert abs(rev[0] / _impl26 - 1) < 0.10, 'FY26 build diverges from the Q1-2026 print'
+
+# ---- [R-ANCHOR-01] THE FORECAST AGAINST THE LATEST REVIEWED PERIOD ----------
+# The anchor is the latest REVIEWED period, not the latest audited YEAR — the
+# standing rule is that a near-term reviewed actual outranks a stale full-year
+# rate. For this company that is the three months to 31 March 2026, under limited
+# review, and it is the period the model's own register holds and consumes for a
+# revenue cross-check while consuming none of its profit lines.
+#
+# ARITHMETIC IS THE ARBITER. Both quarters are footed against their own filing —
+# revenue less direct costs to the printed gross profit, and the whole statement
+# down to profit before tax on the SAME construction this model uses for the
+# audited years — before either is used for anything.
+def _q_foot(tag, gp_printed):
+    r, dc = V[tag + '_rev'], V[tag + '_dcost']
+    ga, sm = V[tag + '_ga'], V[tag + '_sm']
+    assert abs((r - dc) - gp_printed) < 5e-4, f'{tag}: gross profit does not foot'
+    ebit = r - dc - ga - sm
+    pbt = ebit + V[tag + '_fininc'] - V[tag + '_fincost'] + V[tag + '_assoc'] + V[tag + '_other']
+    assert abs(pbt - V[tag + '_pbt']) < 5e-4, f'{tag}: statement does not foot to profit before tax'
+    return dict(rev=r, ebit=ebit, ebitda=ebit + V[tag + '_dna'],
+                margin=(ebit + V[tag + '_dna']) / r, dcost_ratio=dc / r)
+
+_Q126 = _q_foot('q126', 302.002)          # gross profit as printed, AED mn
+_Q125 = _q_foot('q125', 372.693)
+say(f"[Latest reviewed period, footed] Q1-2026 revenue {_Q126['rev']:,.3f} less direct costs "
+    f"foots to the printed gross profit, and the statement foots to the printed profit before "
+    f"tax of {V['q126_pbt']:,.3f}; on this model's own construction the quarter's EBITDA is "
+    f"{_Q126['ebitda']:,.3f} and its EBITDA margin {_Q126['margin']:.4%} "
+    f"(Q1-2025 on the same lines: {_Q125['margin']:.4%}).")
+
+# The forecast opens ABOVE the latest reviewed period, so neither clause of the
+# rule fires; the record is committed anyway, because a record printed only when
+# it fires cannot show a reader the shape of a forecast that does not.
+_fa_gap = ebitda_margin[0] - _Q126['margin']
+_fa_fy25 = hist_is['FY25']['ebitda'] / V['rev_fy25']
+say(f"[R-ANCHOR-01] the forecast opens at {ebitda_margin[0]:.4%} against the reviewed quarter's "
+    f"{_Q126['margin']:.4%} — {_fa_gap:+.4%}, {_fa_gap / _Q126['margin']:+.2%} relative, ABOVE it, "
+    f"so no mechanism is owed. Against the last AUDITED year ({_fa_fy25:.4%}) the same opening "
+    f"year sits {ebitda_margin[0] / _fa_fy25 - 1:+.2%} relative BELOW, and the path's minimum IS "
+    f"its opening year, so the decline clause does not reach it either. The path falls "
+    f"{min(ebitda_margin[1:]) / max(ebitda_margin) - 1:+.2%} from its FY2027 peak, which is what "
+    f"the mechanism below is recorded for.")
+
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period='Q1-2026, limited review (three months ended 31 March 2026)',
+    latest_reviewed_date='2026-03-31',
+    latest_reviewed_rate=float(_Q126['margin']),
+    first_forecast_rate=float(ebitda_margin[0]),
+    forecast_path=[float(m) for m in ebitda_margin],
+    mechanism=dict(
+        name='input_cost_outpacing_price',
+        disclosure=(
+            "The forecast is built on units, so the margin is an output of two paths that "
+            "are not the same rate. Revenue per passenger — the fare and the ancillary "
+            "spend the company discloses — runs from AED %.2f in FY2026 to AED %.2f in "
+            "FY2030, %+.2f%% over the window. The cost stack per passenger is escalated "
+            "line by line on its own driver, and the disclosed non-fuel lines (staff, "
+            "maintenance, landing and en-route, ground handling) run from AED %.2f to AED "
+            "%.2f, %+.2f%%, while the fuel line follows its own commodity path rather than "
+            "any domestic index. That wedge is what carries the margin down from its "
+            "FY2027 peak, and it is the same wedge the company has just printed."
+            % (V['fare_path'][0] + V['anc_path'][0], V['fare_path'][-1] + V['anc_path'][-1],
+               100 * ((V['fare_path'][-1] + V['anc_path'][-1]) /
+                      (V['fare_path'][0] + V['anc_path'][0]) - 1),
+               V['staff_per_pax'][0] + V['maint_per_pax'][0] + V['landing_per_pax'][0]
+               + V['handling_per_pax'][0],
+               V['staff_per_pax'][-1] + V['maint_per_pax'][-1] + V['landing_per_pax'][-1]
+               + V['handling_per_pax'][-1],
+               100 * ((V['staff_per_pax'][-1] + V['maint_per_pax'][-1]
+                       + V['landing_per_pax'][-1] + V['handling_per_pax'][-1]) /
+                      (V['staff_per_pax'][0] + V['maint_per_pax'][0]
+                       + V['landing_per_pax'][0] + V['handling_per_pax'][0]) - 1))),
+        like_for_like=dict(
+            measures='direct cost per unit of revenue, the two printed lines of the '
+                     'interim statement of profit or loss',
+            period_a='Q1-2025 (comparative column of the Q1-2026 interim)',
+            value_a=float(_Q125['dcost_ratio']),
+            period_b='Q1-2026 (limited review)',
+            value_b=float(_Q126['dcost_ratio']),
+            higher_is_worse=True)),
+    note=(
+        'NEITHER CLAUSE OF THIS RULE FIRES AND THE RECORD IS COMMITTED ANYWAY, so the shape '
+        'is visible rather than merely not-red. The forecast opens at %.2f%% against %.2f%% '
+        'in the three months to 31 March 2026 — %+.2f%% relative, ABOVE the latest reviewed '
+        'period — and the path\'s minimum IS its opening year, so the decline clause has '
+        'nothing to reach. WHAT A READER SHOULD SEE INSTEAD IS THE TWO THINGS THAT SIT '
+        'EITHER SIDE OF IT. First, the same opening year is %.2f%% relative BELOW the last '
+        'AUDITED full year (FY2025 %.2f%%); the filed full-year record is FY2023 %.2f%%, '
+        'FY2024 %.2f%%, FY2025 %.2f%%, falling every year, and the forecast opens below all '
+        'three and recovers to %.2f%% in FY2027 before falling again to %.2f%% by FY2030. '
+        'Second, a quarter is not a year: measured in this company\'s own filings the only '
+        'pair available, Q1-2025 ran %.2f%% against a FY2025 of %.2f%%, i.e. %.2f%% '
+        'relatively below the full year it sits in, so the reviewed quarter is a slightly '
+        'low-season anchor rather than a high one and the sign of the gap does not turn on '
+        'it. The reviewed quarter is also where the compression is: Q1-2025 %.2f%% to '
+        'Q1-2026 %.2f%%, %.2f points in the same quarter a year apart, on passengers down '
+        '11%% into the February-March 2026 regional airspace closures with revenue held '
+        '+1%%. THE MECHANISM BLOCK IS RECORDED VOLUNTARILY and is owed to nothing: it names '
+        'and measures the wedge that carries the path down %.2f%% from its FY2027 peak to '
+        'FY2030, which this rule\'s decline clause — written against the opening year — does '
+        'not test. Its like-for-like runs the way the mechanism claims: direct cost per unit '
+        'of revenue rose from %.3f%% to %.3f%% in the same quarter a year apart, both lines '
+        'printed in the same filing.'
+        % (100 * ebitda_margin[0], 100 * _Q126['margin'],
+           100 * (_fa_gap / _Q126['margin']),
+           100 * (ebitda_margin[0] / _fa_fy25 - 1), 100 * _fa_fy25,
+           100 * hist_is['FY23']['ebitda'] / V['rev_fy23'],
+           100 * hist_is['FY24']['ebitda'] / V['rev_fy24'],
+           100 * _fa_fy25,
+           100 * max(ebitda_margin), 100 * ebitda_margin[-1],
+           100 * _Q125['margin'], 100 * _fa_fy25,
+           100 * (_Q125['margin'] / _fa_fy25 - 1),
+           100 * _Q125['margin'], 100 * _Q126['margin'],
+           100 * (_Q126['margin'] - _Q125['margin']),
+           100 * (min(ebitda_margin[1:]) / max(ebitda_margin) - 1),
+           100 * _Q125['dcost_ratio'], 100 * _Q126['dcost_ratio'])))
 
 # ---- FCFF waterfall ---------------------------------------------------------
 dna = list(V['dna_path'])
@@ -1455,6 +1626,7 @@ OUT = dict(
                            capex_mult=1.15, macro_held=True),
                  bull=dict(pax_mult=1.05, fare_mult=1.03, capex_mult=0.90,
                            jv_val='15x profit share', macro_held=True))),
+    forecast_anchor=FORECAST_ANCHOR,          # [R-ANCHOR-01]
     terminal_record=dict(
         construction='engine/terminal_value.py [R-TERM-01]',
         retired_construction=dict(

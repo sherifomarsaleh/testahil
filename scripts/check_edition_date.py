@@ -50,6 +50,15 @@ DATE = re.compile(r'(\d{2})-(\d{2})-(\d{4})')
 # the masthead is the block before the document gets going. Ten paragraphs is generous:
 # every study that states its date correctly does so within the first four.
 MASTHEAD_PARAS = 10
+# ...AND THE HOUSE MASTHEAD IS A TABLE, WHICH doc.paragraphs DOES NOT CONTAIN. Re-pointed
+# 07-09-2026 on the first study to actually put its edition date there: the banner is a
+# single shaded cell, python-docx keeps table text out of the paragraph list entirely, so
+# this gate read straight past a correct masthead and then reported a PRICE DATE from an
+# ordinary paragraph below it as "the masthead states". A diagnostic naming the wrong
+# object is worse than one admitting it found nothing, which is this check's own recorded
+# lesson from its first draft — arriving again one layer out. Per [R-COC-01] the fix is to
+# read what the masthead actually is, not to widen what counts as a date.
+MASTHEAD_TABLES = 1
 _MONTHS = ('January', 'February', 'March', 'April', 'May', 'June', 'July',
            'August', 'September', 'October', 'November', 'December')
 
@@ -83,6 +92,21 @@ def documents():
     return out
 
 
+def masthead_text(doc):
+    """The banner block a reader meets first — paragraphs AND the banner table.
+
+    A study is free to build its masthead as a shaded table (every study here does) or as
+    plain paragraphs, and a check that reads only one of those shapes finds nothing in half
+    the book and says so as though it were a finding [L-355].
+    """
+    parts = [p.text for p in doc.paragraphs[:MASTHEAD_PARAS]]
+    for tb in doc.tables[:MASTHEAD_TABLES]:
+        for row in tb.rows:
+            for cell in row.cells:
+                parts.append(cell.text)
+    return ' | '.join(parts)
+
+
 def audit():
     from docx import Document
     examined, bad = 0, {}
@@ -96,7 +120,7 @@ def audit():
             continue
         examined += 1
         forms = renderings(dt)
-        head = ' | '.join(p.text for p in doc.paragraphs[:MASTHEAD_PARAS])
+        head = masthead_text(doc)
         if any(x in head for x in forms):
             continue
         whole = ' | '.join(p.text for p in doc.paragraphs)

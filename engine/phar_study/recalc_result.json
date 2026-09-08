@@ -1,6 +1,6 @@
 {
- "formulas": 873,
- "checked": 873,
+ "formulas": 883,
+ "checked": 883,
  "unresolvable": 0,
  "unchecked": 0,
  "mismatched": 0,
@@ -8,7 +8,8 @@
   "audited": 321,
   "unit_build": 5,
   "grid": 136,
-  "label": 577
+  "measured_error": 20,
+  "label": 614
  },
  "headline_failures": []
 }

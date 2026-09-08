@@ -51,8 +51,8 @@ def say(s):
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
-EGX = ("EGX filing reported by Global Cement, cemnet/International Cement Review, Daily "
-       "News Egypt and Arab Finance")
+FY24 = "Audited independent balance sheet as of 31 December 2024, printed page 5 of the FY2024 audited statements (SCC-AFS-E-1224.pdf), read from the company's own website. ROUTE: OCR off the rendered pixels — that filing carries no text layer at all (zero bytes across its 36 pages), so no extraction confidence exists to trust and ARITHMETIC IS THE ARBITER: the page's own total liabilities of EGP 1,959,808,479 plus its own total equity of EGP 3,735,799,731 foot to its printed total assets of EGP 5,695,608,210 exactly, and its non-current total of 1,703,837,097 plus current total of 3,991,771,113 foot to the same figure. Cross-checked against the FY2025 filing's own comparative column at printed page 2, committed in filings_extract.py, which agrees to the pound on liabilities and prints total assets one pound higher at 5,695,608,211 — the filings' own additive rounding, disclosed rather than reconciled away"
+
 SP = ("FY2025 balance-sheet data from S&P Global Market Intelligence as carried by two "
       "independent aggregations (stockanalysis.com, simplywall.st), which agree")
 
@@ -97,9 +97,35 @@ INP = dict(
     pat_fy25=I(2284.539004, "Audited statement of profit or loss for the year ended 31 December 2025, printed page 3, read from the company's own website and committed with its footings in filings_extract.py. Revision 2 used a trade-press figure relayed from an EGX filing it had not read", "2025-12-31", "Company"),
     ebitda_fy24=I(1590.0, "FY2024 EBITDA, the one disclosed margin anchor",
                   "2026-03-10", "Company"),
-    ta_fy24=I(6385.92, EGX + " — FY2024 total assets", "2025-03-16", "Company"),
-    tl_fy24=I(1610.86, EGX + " — FY2024 total liabilities; the triple closes to equity of "
-              "4,775.06 exactly", "2025-03-16", "Company"),
+    # SIGCM CLAUSE 1: THESE TWO CAME FROM THE TRADE PRESS AND THE FILING WAS ALREADY IN
+    # THIS DIRECTORY. Both were sourced to "EGX filing reported by Global Cement,
+    # cemnet/International Cement Review, Daily News Egypt and Arab Finance" — a VENUE,
+    # not a document: it names where the statements were lodged and did not read them.
+    # The audited FY2024 statements sit at filings/SCC-AFS-E-1224.pdf, committed in this
+    # study since the 04-09-2026 rebuild, and the balance sheet is on its printed page 5.
+    # THE FILED FIGURES DIFFER MATERIALLY AND IN BOTH DIRECTIONS: total assets 5,695.61
+    # against 6,385.92 used (the relayed figure ran 12.1 per cent HIGH) and total
+    # liabilities 1,959.81 against 1,610.86 (the relayed figure ran 17.8 per cent BELOW
+    # the filed one), so the equity the pair
+    # closed to was 4,775.06 against a FILED 3,735.80 — overstated by 27.8 per cent. The
+    # relayed pair also carried a date of 16 March 2025, which is when the trade press
+    # wrote; the filing itself is dated 13 March 2025 and reports on 31 December 2024.
+    ta_fy24=I(5695.608210, FY24 + " — total assets", "2024-12-31", "Company"),
+    tl_fy24=I(1959.808479, FY24 + " — total liabilities", "2024-12-31", "Company"),
+    # THE TWO LINES THAT MAKE THE EQUITY ROLL FOOT, off the same page and its own
+    # comparative column. Without them FY2023 equity was DERIVED by rolling FY2024 equity
+    # back through FY2024 profit, which ignores the capital increase paid in during 2024
+    # and is wrong whichever total-asset figure it starts from.
+    eq_fy23_rep=I(-614.028180, FY24 + " — total equity at 31 December 2023, the "
+                  "comparative column of the same page. It is NEGATIVE, and the filing's "
+                  "own totals foot: liabilities of 4,116,928,922 plus equity of "
+                  "(614,028,180) give total assets of 3,502,900,742, which is also that "
+                  "column's non-current 1,232,905,958 plus current 2,269,994,784",
+                  "2023-12-31", "Company"),
+    cap_increase_fy24=I(1277.466100, FY24 + " — \"Paid under capital increase\", note 17, "
+                        "nil in the comparative column and EGP 1,277,466,100 at 31 "
+                        "December 2024. This is the line the equity roll was missing",
+                        "2024-12-31", "Company"),
     # ---- THE COST STACK, FROM THE COMPANY'S OWN NOTES 24, 25 AND 26 ----------------
     cost_materials_fy25=I(3592.466202, "Note 24, 'Raw materials, Supplies, fuel, power, "
         "packing sacks', FY2025 " + "audited statements for the year ended 31 December 2025, read from the company's own website; committed with its footings in filings_extract.py" + ". Revision 2 built this from four industry "
@@ -127,11 +153,37 @@ INP = dict(
     # ---- WHAT THE ASSETS COST TO RUN AND TO REPLACE --------------------------------
     gross_fixed_fy25=I(3140.855154, "Note 4, gross cost of fixed assets at 31-Dec-2025, "
         "footing across five classes " + "audited statements for the year ended 31 December 2025, read from the company's own website; committed with its footings in filings_extract.py", "2025-12-31", "Company"),
-    dep_rate_disclosed=I(0.038626, "The weighted depreciation rate implied by note 3/2's "
-        "disclosed rates on note 4's own gross-cost mix: buildings 2-2.5%, machinery 5%, "
-        "vehicles and tools 20%, furniture 10-25%. It reproduces the filed FY2025 charge "
-        "to within 1.2% (121.3 against 122.6), which is what makes it a sourced forward "
-        "rule rather than an assumption", "2025-12-31", "Company"),
+    dep_rate_disclosed=I(0.038626, "The BOOK depreciation rate carried forward on gross "
+        "cost, being note 3/2's disclosed rates at the midpoint of the two ranges, "
+        "cost-weighted as an arithmetic mean of lives on note 4's own mix. It is used ONLY "
+        "for the forward book charge, which is what a rate is for. IT IS NOT THE TERMINAL'S "
+        "USEFUL LIFE and revision 3 used its reciprocal as one: 1/0.038626 = 25.89 years, "
+        "justified on the grounds that it 'reproduces the filed FY2025 charge to within 1.2% "
+        "(121.3 against 122.6)'. THAT VALIDATION WAS TWO ERRORS CANCELLING - the 121.3 is an "
+        "arithmetic-mean rate that understates the disclosed rates' own product of 151.5mn, "
+        "and the 122.6 includes intangible amortisation against a filed FIXED-ASSET charge of "
+        "99.2mn. See useful_lives.json", "2025-12-31", "Company"),
+    vicat_stake=I(0.776, "Vicat's holding through Vicat Egypt Cement Industries, from the "
+        "Financial Regulatory Authority filing of the July 2025 mandatory tender offer for "
+        "the remaining 58,416,664 shares (22.4%) at EGP 41.00 a share. REGISTERED rather "
+        "than typed: it is quoted in nine places across the two delivered documents and a "
+        "figure a reader sees must be computed, not typed, even when its source is an "
+        "external filing rather than this model", "2025-07-28", "Company"),
+    free_float=I(0.224, "The public float, being one less Vicat's holding. DERIVED: "
+        "1 - vicat_stake, and it is the share count the same tender offer names "
+        "(58,416,664 of 260,812,477 = 22.4%), which is the check that the two figures are "
+        "one fact and not two", "2025-07-28", "Company"),
+    useful_life_disclosed=I(20.0, "THE DISCLOSED USEFUL LIFE behind the terminal maintenance "
+        "charge [R-TERM-01], route one: note 3/2, printed page 8 of the audited statements "
+        "for the year ended 31 December 2025, states MACHINERY at a SCALAR 5% - a 20-year "
+        "life - and note 4 shows machinery is EGP 2,182.6mn of a EGP 3,140.9mn gross cost, "
+        "69.5%, the class that dominates the capacity-based replacement cost this study "
+        "capitalises. No average across the two disclosed RANGES is required, which matters "
+        "because the two ordinary ways of blending disagree by a quarter (25.9 years on a "
+        "cost-weighted mean of lives, 20.7 on the charge-reproducing harmonic mean). The "
+        "FY2022, FY2023 and FY2024 filings carry the identical table. Read by the fundamental "
+        "walk-forward of 07-09-2026 into useful_lives.json, route and cross-check recorded "
+        "there", "2025-12-31", "Company"),
     capex_run_rate=I(303.211, "Capex on the company's own cash-flow statements: FY2023 "
         "120.827, FY2024 526.408, FY2025 262.397, average 303.211. Revision 2 assumed "
         "4.5-5.0% of revenue, which is 435-484mn and rising", "2025-12-31", "Company"),
@@ -616,7 +668,19 @@ def build_dcf(bu=None, life=None, repl_usd_t=None, conv=None, df_over=None):
     df_l = df_ if df_over is None else df_over
     conv = _CONV_DEFAULT if conv is None else conv
     repl = V["repl_usd_t"] if repl_usd_t is None else repl_usd_t
-    life_ = (1.0 / V["dep_rate_disclosed"]) if life is None else life
+    # [R-TERM-01] THE LIFE IS THE DISCLOSED SCALAR OF THE DOMINANT CLASS, route one
+    # of the disclosed-life rule, read into useful_lives.json by the fundamental
+    # walk-forward of 07-09-2026. Machinery is 69.5% of note 4's gross cost and
+    # note 3/2 states its rate as a SCALAR 5%, so no average is needed at all.
+    # WHAT THIS REPLACES, and why it was not a disclosed life: the 04-09 edition
+    # used 1/dep_rate_disclosed = 25.89 years, which resolves TWO disclosed RANGES
+    # at their midpoints and then takes an ARITHMETIC MEAN OF LIVES. The midpoint
+    # half is small (24.71 to 27.45 across the whole disclosed span); the averaging
+    # half is not — the average that turns a capital base into an annual charge is
+    # the HARMONIC one, 1/(cost-weighted rate) = 20.73 years, and the two disagree
+    # by 25% on the same table. dep_rate_disclosed still drives the forward BOOK
+    # depreciation roll, which is what it is a rate for.
+    life_ = V["useful_life_disclosed"] if life is None else life
     ic_repl_pre = V['cap_cement_mt'] * 1e6 * repl * V['fx'] / 1e6
     gross_fa, dna_f, capex = [], [], []
     _g = V['gross_fixed_fy25']
@@ -663,22 +727,39 @@ def build_dcf(bu=None, life=None, repl_usd_t=None, conv=None, df_over=None):
     # rates and note 4 the gross-cost mix they apply to; weighted, the plant life is 25.9
     # years. THE MACHINERY LIFE ALONE IS 20 YEARS and that is the contested judgement, priced
     # both ways in section 6 rather than chosen silently.
+    #
+    # THE INPUTS ARE IN THE LAST EXPLICIT YEAR'S MONEY, AND REVISION 3 GREW TWO OF THEM
+    # FIRST. engine/terminal_value.py states the contract on TerminalInputs in terms: the
+    # figures are "IN THE LAST EXPLICIT YEAR'S money - not the terminal year's. The module
+    # grows the free cash flow one year itself", and "Pass a NOPAT already grown by (1+g)
+    # and the terminal is overstated by exactly (1+g) - a year-seven flow discounted at the
+    # year-five factor." tv = fcff x (1+g) / (wacc - g) already puts the first perpetuity
+    # year in the numerator and values the terminal AT THE END OF THE LAST EXPLICIT YEAR,
+    # which is where df_l[-1] discounts it. What made this an error rather than a
+    # convention is that it was not applied to the whole flow: working_capital and
+    # ic_replacement in the SAME call were passed ungrown, so the charge sat in year five's
+    # money while the profit it was deducted from sat in year six's. Corrected on both call
+    # sites at once - the base case here and the sensitivity grid below - so the grid still
+    # centres on the published answer, which its own assertion enforces.
     _life = life_
     _tin = TV.TerminalInputs(
-        nopat=nopat[-1] * (1 + V['g_term']),
+        nopat=nopat[-1],
         wacc=wacc_term,
         inflation=V['g_term'],          # the terminal rate IS inflation at zero real growth
         real_growth=0.0,
-        dna_book=dna_f[-1] * (1 + V['g_term']),
+        dna_book=dna_f[-1],
         ic_replacement=ic_repl,
         useful_life_years=_life,
         useful_life_source=(
             "Note 3/2 of the audited statements for the year ended 31 December 2025, printed "
             "page 8: straight-line depreciation at 2-2.5 per cent on buildings and utilities, "
-            "5 per cent on machinery, 20 per cent on motor vehicles and tools, 10-25 per cent "
-            "on furniture and office equipment. Weighted on note 4's own gross-cost mix that "
-            "is a " + format(_life, ".1f") + "-year life, and it reproduces the filed FY2025 "
-            "charge to within 1.2 per cent. The FY2024 filing carries the identical table."),
+            "5 PER CENT ON MACHINERY, 20 per cent on motor vehicles and tools, 10-25 per cent "
+            "on furniture and office equipment. Machinery is EGP 2,182.6mn of note 4's EGP "
+            "3,140.9mn gross cost - 69.5 per cent - and its rate is disclosed as a SCALAR, so "
+            "the life of the class that dominates the replacement-cost base is "
+            + format(_life, ".1f") + " years and no average across the ranges is needed. The "
+            "FY2022, FY2023 and FY2024 filings carry the IDENTICAL table, each stating the "
+            "rates are consistent with the preceding year."),
         maintenance_basis='disclosed_life',
         working_capital=V['rev_fy25'] * V['wc_pct_drev'])
     _term = TV.build(_tin)
@@ -781,9 +862,13 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0):
     # THE SENSITIVITY REVALUES THROUGH THE SAME TERMINAL THE MODEL PUBLISHES. Revision 2's
     # grid re-derived the retired reinvestment identity inline, so every sensitivity in the
     # study answered a question about a construction the study no longer uses.
+    # ON THE LAST EXPLICIT YEAR'S BASIS, exactly as the base case above: the module's own
+    # contract says it grows the free cash flow one year itself, so a pre-grown NOPAT
+    # overstates the terminal by (1+g). Both call sites moved together, which is why the
+    # grid's centre still reproduces the published central.
     tvl = TV.build(TV.TerminalInputs(
-        nopat=np_[-1] * (1 + g), wacc=wt, inflation=g, real_growth=0.0,
-        dna_book=dna_f[-1] * (1 + g), ic_replacement=ic_repl,
+        nopat=np_[-1], wacc=wt, inflation=g, real_growth=0.0,
+        dna_book=dna_f[-1], ic_replacement=ic_repl,
         useful_life_years=_life, useful_life_source=_tin.useful_life_source,
         maintenance_basis='disclosed_life',
         working_capital=V['rev_fy25'] * V['wc_pct_drev'])).tv
@@ -828,7 +913,53 @@ _HIST_MGN = [FIL['derived'][y]['ebitda_margin'] for y in HIST]
 _mgn_fc0 = BU[1]['mgn']
 _UTIL23 = (V['rev_fy23'] / 2118.0) * cf / V['cap_clinker_mt']   # the filed year's own kilns
 _mgn_lo = min(_HIST_MGN)
-_range_lo = float(reval(mgn_shift=_mgn_lo - _mgn_fc0))
+
+
+# THE SANCTIONED TERMINAL REFUSES THIS COMPANY'S WORST FILED MARGIN, AND THAT IS A
+# FINDING RATHER THAN A BUG [R-TERM-01]. At the DISCLOSED 20-year machinery life the
+# terminal maintenance charge is large enough that at the FY2023 margin terminal free
+# cash flow turns NEGATIVE, and terminal_value.build() refuses outright: a going
+# concern that consumes cash for ever is a liquidation and must be valued as one.
+# Revision 3 never met this because its 25.9-year life charged a fifth less
+# maintenance, so the refusal is NEW INFORMATION THE CORRECTION PRODUCED rather than an
+# obstacle to it. The bound is therefore published as what it is - THE MARGIN AT WHICH
+# THE GOING-CONCERN READING STOPS - solved to a basis point on the refusal itself and
+# never on a value; below it this model does not produce a smaller number, it produces
+# a different question, and the disclosed book value is what stands there.
+def _lowest_going_concern_margin(lo, hi, tol=1e-5):
+    """The lowest forecast margin at which the sanctioned module still builds a
+    terminal. Bisection ON THE REFUSAL, never on a number."""
+    def ok(m):
+        try:
+            reval(mgn_shift=m - _mgn_fc0)
+            return True
+        except TV.TerminalRefused:
+            return False
+    if ok(lo):
+        return lo, True
+    while hi - lo > tol:
+        mid = 0.5 * (lo + hi)
+        if ok(mid):
+            hi = mid
+        else:
+            lo = mid
+    return hi, False
+
+
+_mgn_floor, _lo_is_filed = _lowest_going_concern_margin(_mgn_lo, _mgn_fc0)
+_range_lo = float(reval(mgn_shift=_mgn_floor - _mgn_fc0))
+_MGN_RANGE_NOTE = (
+    "the low bound is the company's own worst filed EBITDA margin, and the sanctioned "
+    "terminal builds at it"
+    if _lo_is_filed else
+    "THE LOW BOUND IS NOT THE COMPANY'S WORST FILED MARGIN of {:.1f} per cent. At that "
+    "margin the sanctioned terminal REFUSES: on the disclosed 20-year machinery life "
+    "terminal free cash flow turns negative, and a going concern consuming cash for "
+    "ever is a liquidation, not a lower discounted cash flow. The bound published is "
+    "{:.2f} per cent, the lowest margin at which the going-concern reading survives, "
+    "solved to a basis point on the refusal itself. Below it the disclosed book value "
+    "is the floor."
+    .format(100 * _mgn_lo, 100 * _mgn_floor))
 
 # ---------------------------------------------------------------- [R-ENF-05]
 # EVERY CONTESTED JUDGEMENT WORTH MORE THAN 5 PER CENT OF VALUE, BOTH WAYS, THROUGH THE
@@ -862,17 +993,20 @@ _judge('kiln utilisation through the forecast',
        'contest first.')
 
 _judge('the depreciable life behind the terminal maintenance charge',
-       'the weighted %.1f-year life implied by note 3/2\'s disclosed rates on note 4\'s '
-       'own gross-cost mix' % (1.0 / V['dep_rate_disclosed']),
-       'the 20-year MACHINERY life alone, note 3/2',
-       build_dcf(life=20.0)['fv'],
+       'the %.1f-year MACHINERY life, note 3/2, disclosed as a scalar for the class that '
+       'is 69.5%% of gross cost' % V['useful_life_disclosed'],
+       'the weighted %.1f-year life across all five classes' % (1.0 / V['dep_rate_disclosed']),
+       build_dcf(life=1.0 / V['dep_rate_disclosed'])['fv'],
        'note 3/2 discloses 2-2.5%% on buildings and utilities, 5%% on machinery, 20%% on '
-       'vehicles and tools and 10-25%% on furniture. Weighted on note 4\'s own cost mix '
-       'that is a %.1f-year life and it reproduces the filed FY2025 charge to within 1.2 '
-       'per cent, which is what makes it sourced. Machinery alone is 20 years and is the '
-       'part that actually wears out; the buildings carry most of the weighting and last '
-       'far longer. Both are the company\'s own disclosure and the choice between them is '
-       'a judgement.' % (1.0 / V['dep_rate_disclosed']))
+       'vehicles and tools and 10-25%% on furniture. TWO OF THE FIVE CLASSES ARE RANGES, '
+       'so any single blended life has to resolve them by choosing a point inside, and '
+       'the two ordinary ways of blending disagree by a quarter on the same table: a '
+       'cost-weighted mean of LIVES gives %.1f years and the charge-reproducing harmonic '
+       'mean gives %.1f. Machinery needs neither - it is 69.5 per cent of gross cost and '
+       'its rate is disclosed as a scalar - so it is adopted. The blend is published '
+       'beside it because a reader may reasonably prefer a whole-plant average, and the '
+       'buildings that carry most of its weighting genuinely do last longer than the '
+       'kilns.' % (1.0 / V['dep_rate_disclosed'], 20.73))
 
 _judge('replacement cost per annual tonne of cement capacity',
        'USD %.0f per tonne' % V['repl_usd_t'],
@@ -985,6 +1119,24 @@ COC_RECORD = dict(
     rf_terminal=V['rf_term'], erp_terminal=V['erp_term'], ke_terminal=ke_term,
     kd_terminal_pretax=V['kd_term'], kd_terminal_aftertax=V['kd_term'] * (1 - TAX),
     weight_debt_terminal=V['wd_term'], wacc_terminal=wacc_term,
+    # [R-COC-02] THE CONSTRUCTION IS NAMED AND THE TAX RATE IS STATED. Two right
+    # answers a hundred basis points apart are indistinguishable from a typing
+    # error until the record says which arithmetic produced them, and a rate
+    # SOLVED out of the answer it explains is the reverse-engineered construction
+    # this house prohibits outright - so it is declared here, not solved.
+    beta_source='tier3_fallback',
+    beta_source_note=(
+        'the tier-1 own-stock regression against EGX30 FAILS the usability gate on '
+        'R-squared (0.038 against the 0.05 floor; n and standard error both pass), '
+        'and tier 2 is unavailable because no Egyptian listed cement peer carries an '
+        'OHLC series in the engine library. beta_result.json carries the diagnostics '
+        'that triggered the fallback, which is what the protocol requires of one.'),
+    ke_terminal_construction='relevered',
+    relevering_tax_rate=TAX,
+    ke_terminal_construction_note=(
+        'the terminal carries a 20 per cent debt weight against 0.5 per cent in the '
+        'explicit window, so the equity beta is re-levered by Hamada at the statutory '
+        'rate for the terminal structure rather than carried across unchanged.'),
     glide_fractions=[float(g) for g in glide], forward_wacc=[float(f) for f in fwd],
     discount_factors=[float(d) for d in df_],
     terminal_discount_factor=float(df_[-1]),
@@ -1140,7 +1292,10 @@ LENS_RECORD = dict(
                    'the company has ever filed, the macro path held still',
         range_basis=dict(
             driver='the EBITDA margin, across its own audited span',
-            low=float(_mgn_lo), high=float(_mgn_fc0), macro_held=True,
+            low=float(_mgn_floor), high=float(_mgn_fc0), macro_held=True,
+            filed_minimum=float(_mgn_lo),
+            floor_is_filed_minimum=bool(_lo_is_filed),
+            floor_note=_MGN_RANGE_NOTE,
             evidence=(
                 'Sinai Cement filed an EBITDA margin of %.2f per cent in FY2023, %.2f in '
                 'FY2024 and %.2f in FY2025, every one audited. THE FORECAST OPENS AT %.2f '
@@ -1152,12 +1307,19 @@ LENS_RECORD = dict(
                 '%.1f) against a fixed cost that escalates only with the house inflation '
                 'ladder. What the range prices is that mechanism failing. The FY2023 '
                 'corner carries a plant at %.1f per cent utilisation through a currency '
-                'collapse; it is the company\'s own filed record and it is used as the '
-                'floor without adjustment.'
+                'collapse. IT IS NOT USED AS THE FLOOR WITHOUT ADJUSTMENT, and that is a '
+                'finding of the 07-09-2026 rebuild: on the DISCLOSED 20-year machinery '
+                'life the terminal maintenance charge is large enough that at the FY2023 '
+                'margin terminal free cash flow turns NEGATIVE and the sanctioned module '
+                'refuses to build a terminal at all, because a going concern consuming '
+                'cash for ever is a liquidation. The floor published is %.2f per cent, '
+                'the lowest margin at which the going-concern reading survives, solved to '
+                'a basis point ON THE REFUSAL ITSELF rather than on a value. Below it the '
+                'disclosed book value is the floor, not a smaller discounted cash flow.'
                 % (100 * _HIST_MGN[0], 100 * _HIST_MGN[1], 100 * _HIST_MGN[2],
                    100 * _mgn_fc0, 100 * BU[5]['mgn'],
                    100 * V['kiln_util'][1], 100 * V['kiln_util'][5],
-                   100 * _UTIL23))),
+                   100 * _UTIL23, 100 * _mgn_floor))),
         note='the cash-flow lens on the company\'s own tonnes and prices, discounted on '
              'the glide from the house macro path, with the terminal built by the '
              'sanctioned module on the DISCLOSED asset life'),
@@ -1287,6 +1449,21 @@ assert abs((ev + net_cash - V['nci']) - eq_dcf) < 1e-6
 say(f"  bridge closes: EV {ev:,.2f} + net cash {net_cash:,.2f} - NCI {V['nci']:,.2f} "
     f"= {eq_dcf:,.2f}")
 assert net_cash > 0 and V['nci'] >= 0
+# SIGCM CLAUSE 1 — THE FILED BALANCE SHEET FOOTS, AND THAT IS WHAT MAKES THE READ SAFE.
+# Both FY2024 totals now come from the audited statements themselves by OCR off the
+# rendered pixels, and a misread digit breaks one of the two identities below rather than
+# passing quietly. The equity the pair closes to is the figure the same page prints.
+_eq24_filed = 3735.799731
+assert abs((V['ta_fy24'] - V['tl_fy24']) - _eq24_filed) < 1e-5, \
+    'filed total assets less filed total liabilities does not reproduce the filed equity'
+assert abs((V['eq_fy23_rep'] + V['pat_fy24'] + V['cap_increase_fy24']) - _eq24_filed) < 1e-5, \
+    'the equity roll from 31-Dec-2023 does not close on the filed FY2024 equity'
+say(f"  filed FY2024 balance sheet foots: total assets {V['ta_fy24']:,.2f} - total "
+    f"liabilities {V['tl_fy24']:,.2f} = equity {_eq24_filed:,.2f}, and that equity is "
+    f"FY2023's {V['eq_fy23_rep']:,.2f} plus the year's profit {V['pat_fy24']:,.2f} plus "
+    f"the capital increase {V['cap_increase_fy24']:,.2f}")
+say(f"  the relayed pair this replaced closed to {6385.92 - 1610.86:,.2f}, which is "
+    f"{100 * ((6385.92 - 1610.86) / _eq24_filed - 1):.1f} per cent above the filed equity")
 assert 0 < tv_share < 0.95
 say(f"  terminal value {tv_share:.1%} of enterprise value")
 # THE RETIRED HURDLE IS RECORDED AS RETIRED, NOT QUIETLY REPLACED. Revision 2 asserted
@@ -1303,13 +1480,18 @@ assert abs(_term.maintenance - ic_repl / _life) < 1e-6, \
 # the retired construction's signature.
 assert abs(_term.implied_cycle_years - 1.0 / V['g_term']) > 1.0, \
     'the implied cycle equals 1/g, which is the retired construction'
-assert abs((nopat[-1] * (1 + V['g_term']) + _term.dna_addback - _term.maintenance
+# ON THE MODULE'S OWN BASIS, WHICH IS THE LAST EXPLICIT YEAR'S. This assertion used to
+# reproduce the flow from a NOPAT grown by (1+g) and passed, because the call site handed
+# in the same grown figure; both are now the last explicit year's, per the contract quoted
+# at the call site. _tin.nopat is read back off the inputs actually passed rather than
+# recomputed here, so the two cannot drift apart again.
+assert abs((_tin.nopat + _term.dna_addback - _term.maintenance
             - _term.growth_capex - _term.wc_charge) - _term.fcff) < 1e-6, \
     'the terminal free cash flow does not reproduce from its own components'
 say(f"  terminal on the DISCLOSED life: maintenance {_term.maintenance:,.0f} = "
     f"replacement capital {ic_repl:,.0f} over {_life:.1f} years, which is "
-    f"{_term.maintenance/(nopat[-1]*(1+V['g_term'])):.1%} of terminal profit against the "
-    f"retired identity's {V['g_term']*ic_repl/(nopat[-1]*(1+V['g_term'])):.1%}")
+    f"{_term.maintenance/_tin.nopat:.1%} of the last explicit year's profit against the "
+    f"retired identity's {V['g_term']*ic_repl/_tin.nopat:.1%}")
 say(f"  implied replacement cycle {_term.implied_cycle_years:.1f} years, against 1/g of "
     f"{1.0/V['g_term']:.1f} — an asset fact rather than a currency fact")
 say(f"  terminal free cash flow {_term.fcff:,.0f}; the NOPAT-perpetuity floor is "
@@ -1337,7 +1519,7 @@ say(f"  the central IS the cash-flow lens; no weights are carried")
 
 OUT = dict(
     meta=dict(ticker="SCEM", company="Sinai Cement Company S.A.E.", market="EGX",
-              market_code="EG", currency="EGP", asof="2026-09-04", spot_date="2026-09-02", revision=3,
+              market_code="EG", currency="EGP", asof="2026-09-07", spot_date="2026-09-02", revision=4,
               spot=V['spot'], shares_mn=V['shares_mn'], mktcap=mktcap,
               # the central belongs where a checker outside this study can read it:
               # [R-GAP-01]'s gate held this study as "no readable answer" while the
@@ -1449,6 +1631,56 @@ OUT = dict(
                            revival_mt=V['egy_revival_mt'],
                            scem_share_of_capacity=V['cap_cement_mt']/V['egy_capacity_mt'],
                            revival_pct_of_consumption=V['egy_revival_mt']/V['egy_cons_mt'])),
+    # ---------------------------------------------------------------- [R-FCAL-01]
+    # THE SCOPE DECISION, DECIDED FIRST AND STATED IN THE STUDY.
+    walkforward_scope=dict(
+        scope='LIGHT',
+        sourceable_fiscal_years=5,
+        status='run',
+        basis=('The company publishes exactly six documents on its own website and they '
+               'are all it publishes: five audited annual filings and one reviewed '
+               'interim. FY2021 to FY2025 are sourceable from them. THE SIXTH IS ARABIC '
+               'and its figures are Eastern Arabic numerals which no OCR route available '
+               'here reads, so FY2020 cannot be obtained and the window is shortened '
+               'rather than filled from a vendor — a fabricated cell corrupts the very '
+               'error the run scores. Every source attempt, including that failure, is '
+               'logged in engine/scem_walkforward/fetch_attempts.json.'),
+        note=('Five origins, FY2021 to FY2025, horizons one to three, nine resolved '
+              'driver-cells. Run 07-09-2026; record at engine/scem_walkforward. Three of '
+              'the six filings had never been downloaded before that run, and opening the '
+              'two English ones is what took this name from SKIP to LIGHT.'),
+    ),
+    # WHAT THE FUNDAMENTAL WALK-FORWARD OF 07-09-2026 DID TO THIS STUDY'S DRIVERS.
+    # SILENCE AND "NONE ADOPTED" ARE THE SAME FILE TO A READER AND DIFFERENT FACTS ABOUT
+    # THE WORK, so this study says which. Nothing was promoted, and that was pre-registered
+    # before any error was computed rather than concluded after seeing the numbers.
+    walkforward_record=dict(
+        which='the FUNDAMENTAL walk-forward [R-FCAL-01] — the driver model rebuilt at five '
+              'past origins and scored against what the company reported. NOT the '
+              'price-engine walk-forward in backtest_5y.py and NOT the technical one',
+        run='engine/scem_walkforward', date='2026-09-07',
+        scope='light', scope_reason='five sourceable fiscal years, FY2021-FY2025',
+        origins='FY2021-FY2025, horizons 1-3, 9 resolved driver-cells',
+        corrections_adopted=0,
+        adopted_corrections=[],
+        watch_flags=11,
+        refused_as_aggregates=2,
+        why_none_adopted=(
+            'Nine cells spread over four target years admit ZERO boundaries leaving five '
+            'cells on each side, so under [R-FCAL-01 AMENDED 07-09-2026] every driver here '
+            'is UNTESTABLE for stability rather than stable — an absence of contrary '
+            'evidence is not evidence. Four candidates DO improve the out-of-sample error '
+            'under an expanding-window half-strength factor and none of them is promoted. '
+            'This was stated in PRE_REGISTRATION_07-09-2026.md before a single error was '
+            'computed.'),
+        skill_vs_freeze=[0.185, 0.129, 0.123],
+        skill_vs_trend=[0.239, 0.231, 0.205],
+        skill_note='the method beat both naive benchmarks at every horizon tested',
+        direction='eleven of thirteen drivers came in BELOW what the company reported',
+        forward_ranges='engine/scem_walkforward/forward_ranges.json — basis span, '
+                       'orientation actual-over-forecast, counted per cell; horizons four '
+                       'and five carry NO band and the document says so',
+    ),
     revision_notes=dict(
         prior_central=62.81, prior_dcf=54.49, prior_net_cash=5307.05,
         prior_fy26_margin=0.305, prior_fy25_margin=0.280,

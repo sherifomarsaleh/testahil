@@ -281,7 +281,7 @@
      "topdown": 0
     },
     "unit_share": 0.7470974569827978,
-    "standard_version": "2026.09.01"
+    "standard_version": "2026.09.07"
    }
   }
  },
@@ -650,7 +650,7 @@
     "topdown": 0
    },
    "unit_share": 0.7470974569827978,
-   "standard_version": "2026.09.01"
+   "standard_version": "2026.09.07"
   }
  },
  "standard_version": "2026.09.01",
@@ -927,6 +927,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 50811.72101180598,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -943,6 +944,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 213.92487759001696,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3056.069679857385,
      "dna_addback": 1703.218774579439,
      "net_capital_charge": 812.984192754212,
      "implied_cycle_years": null,
@@ -1245,6 +1248,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3030.714662797211,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 50811.72101180598,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -1261,6 +1265,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 212.1500263958048,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3030.714662797211,
      "dna_addback": 1703.218774579439,
      "net_capital_charge": 811.2093415599998,
      "implied_cycle_years": null,
@@ -1563,6 +1569,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 42784.43110157481,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -1579,6 +1586,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 213.92487759001696,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3056.069679857385,
      "dna_addback": 1434.142454946,
      "net_capital_charge": 718.3441628459511,
      "implied_cycle_years": null,
@@ -1881,6 +1890,7 @@
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
+      "working_capital_source": "",
       "incremental_capital_per_unit_growth": 28409.38283063925,
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
@@ -1897,6 +1907,8 @@
      "maintenance_escalator": 1.3517218833570666,
      "growth_capex": 0.0,
      "wc_charge": 213.92487759001696,
+     "wc_basis": "supplied_unsourced",
+     "wc_level": 3056.069679857385,
      "dna_addback": 952.28804,
      "net_capital_charge": 548.8654205172264,
      "implied_cycle_years": null,
@@ -1994,6 +2006,10 @@
  },
  "spot": 14.41,
  "spot_date": "2026-09-03",
+ "superseded": {
+  "erp_cds": 0.094247,
+  "sov_spread_cds": 0.0355
+ },
  "central": null,
  "fair": {
   "bear": 0.9084436628369906,
@@ -2217,5 +2233,14 @@
    }
   },
   "note": "the audited record is FY2022/23 45.94%, FY2023/24 32.71%, FY2024/25 38.39%, and the part-year FY2025/26 estimate is 43.87%. The forecast opens ABOVE the latest audited year and is held roughly flat rather than escalated, because the dollar export price is now held FLAT in nominal dollars -- the convention this house applies to the same class of input elsewhere. The previous edition opened at the same rate and fell to 33.02% on a typed price path nothing sourced."
+ },
+ "walkforward_scope": {
+  "rule": "R-FCAL-01",
+  "scope": "FULL",
+  "sourceable_fiscal_years": 18,
+  "earliest_sourceable": "FY2008",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"The archive supports eighteen sourceable fiscal years, FY2008 through FY2025\". The run built origins FY2012-FY2024 on that archive",
+  "status": "run",
+  "note": "The fundamental walk-forward HAS been run on this name (engine/egch_walkforward/, 01-09-2026): 13 origins, FY2012-FY2024, 825 scored cells on the as-known macro setting. No correction was adopted; every candidate is a watch flag, which this study's own record states."
  }
 }

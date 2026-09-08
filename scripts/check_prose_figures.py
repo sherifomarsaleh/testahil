@@ -197,7 +197,17 @@ def main(argv):
     on_disk = {os.path.basename(d)[:-len('_study')].upper() for d in dirs}
     stranded = sorted(set(known) - on_disk)
 
-    have, lack, detail = [], [], {}
+    # THE TWO WAYS OF LACKING ARE NOT THE SAME AND THE MESSAGE MUST SAY WHICH.
+    # Both belong in `lack` — a red instrument is not conformance, which is this gate's
+    # own rule that it RUNS the instrument rather than counting the file. But they are
+    # different facts about the study and they send a reader to different places. On
+    # 05-09-2026 EGCH's own prose check went red on one unmatched figure and this gate
+    # reported "no prose check and no entry either way" — a study that has carried the
+    # book's ORIGINAL implementation since 01-09-2026. The next reader went looking for a
+    # deleted file. A MESSAGE THAT MISDESCRIBES WHY A CHECK FAILED IS THE COMMENT
+    # ASSERTING A CHECK THAT DOES NOT EXIST, one layer out: it is confidently wrong, and
+    # it stops the reader looking where the defect actually is.
+    have, lack, detail, red = [], [], {}, set()
     for sdir in dirs:
         tk = os.path.basename(sdir)[:-len('_study')].upper()
         script = has_instrument(sdir)
@@ -210,6 +220,8 @@ def main(argv):
         except Exception as e:                                          # noqa: BLE001
             ok, line = False, '%s: %s' % (type(e).__name__, e)
         detail[tk] = line
+        if not ok:
+            red.add(tk)
         (have if ok else lack).append(tk)
 
     print('PROSE-FIGURE VERIFICATION — the instrument, not a book-wide threshold')
@@ -284,8 +296,14 @@ def main(argv):
         rc = 1
     unlisted = [tk for tk in lack if tk not in known]
     if unlisted:
-        print('\nFAIL — %d study/studies with no prose check and no entry either way: %s'
-              % (len(unlisted), ', '.join(unlisted)))
+        _red = [tk for tk in unlisted if tk in red]
+        _none = [tk for tk in unlisted if tk not in red]
+        if _none:
+            print('\nFAIL — %d study/studies with NO prose check and no entry either '
+                  'way: %s' % (len(_none), ', '.join(_none)))
+        for tk in _red:
+            print('\nFAIL — %s CARRIES a prose check and it is RED, which is not the same '
+                  'fact as having none: %s' % (tk, detail.get(tk, '')))
         print('\nA typed word does not look like a figure. "four", "close to", "revision 3" '
               'and "514 basis points" all reached readers this week in studies that passed '
               'every other gate, because every other gate examines how a number was BUILT.')

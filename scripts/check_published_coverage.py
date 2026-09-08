@@ -93,8 +93,21 @@ def main(argv):
               'clean result [R-ENF-04]: either data.js changed shape or this reader is '
               'looking at the wrong key.')
         return 1
-    studies = {os.path.basename(d)[:-len('_study')].upper()
-               for d in glob.glob(os.path.join(ENGINE, '*_study'))}
+    # THE ALIAS IS RESOLVED, NOT ASSUMED AWAY [06-09-2026]. This derived the study
+    # set from RAW DIRECTORY NAMES, so `fertiglobe_study` never matched the ticker
+    # FERTIGLB and that name sat on this gate's outstanding list as having no study
+    # while its study directory existed. The list was stale by one and nothing could
+    # see it until a second measurement of the same fact disagreed.
+    # engine/study_aliases.py is DEPENDENCY-FREE for exactly this reason: this gate
+    # runs inside a negative-control sandbox that builds a minimal tree, so importing
+    # the full resolver here would kill every case with ModuleNotFoundError — which
+    # it did, on the first attempt, and which is the third time today that adding an
+    # import broke somebody else's sandbox.
+    sys.path.insert(0, ENGINE)
+    from study_aliases import DIR_ALIAS
+    studies = {DIR_ALIAS.get(t, t) for t in
+               (os.path.basename(d)[:-len('_study')].upper()
+                for d in glob.glob(os.path.join(ENGINE, '*_study')))}
     if not studies:
         print('FAIL — no study directories found. The comparison has no second population '
               '[R-ENF-04].')

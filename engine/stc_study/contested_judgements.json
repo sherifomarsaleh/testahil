@@ -1,0 +1,63 @@
+{
+ "published_central": 38.080615910145504,
+ "published_spot": 43.86,
+ "threshold": 0.05,
+ "judgements": [
+  {
+   "name": "which lens is the answer",
+   "adopted": "the cash-flow model is the central",
+   "alternative": "the enterprise multiple on this company's own trading history",
+   "value_adopted": 38.080615910145504,
+   "value_alternative": 48.07526101832944,
+   "why": "One class primary IS the central and the rest are cross-checks published beside it; no weights are applied anywhere, because a number produced by averaging several methods is a new method with parameters nobody tested. This is the study's most consequential contested judgement and both reads are published side by side rather than averaged. The multiple lens capitalises what the company earns today at what the market has paid for it; the cash-flow lens charges for the capital it must keep spending to go on earning it."
+  },
+  {
+   "name": "the beta: the point estimate, or shrunk toward the market prior",
+   "adopted": "the own-stock regression at its point estimate",
+   "alternative": "one standard error toward the market prior, which the cost-of-capital procedure permits for a noisy beta",
+   "value_adopted": 38.080615910145504,
+   "value_alternative": 35.43848026760412,
+   "why": "The regression is the first tier of the house preference order and it passes its usability gate, so the point estimate is what the method returns. It is recorded as contested rather than settled because the regression explains under a third of this stock's variance, and a shrinkage toward the prior is expressly permitted for exactly that condition. Adopting the raw estimate is the higher-value choice and it is not a free one."
+  },
+  {
+   "name": "capital intensity: the filed years, or management's guided band",
+   "adopted": "the three filed years' own mean, measured from the statements",
+   "alternative": "the midpoint of the band management guides to",
+   "value_adopted": 38.080615910145504,
+   "value_alternative": 37.23093949348441,
+   "why": "Guidance is SCORED against what happens and never consumed as an input, because a forward target leans the same way an optimistic model does. The guided midpoint is nonetheless a real alternative a reader may prefer, and it is worth less than the materiality line either way."
+  },
+  {
+   "name": "the margin: an output of the cost build, or an assumed improvement",
+   "adopted": "an output \u2014 the cost stack decides it, and it runs flat",
+   "alternative": "the mix-driven improvement to 32.5% an earlier edition assumed",
+   "value_adopted": 38.080615910145504,
+   "value_alternative": 39.83116882116048,
+   "why": "Margins are outputs wherever the filings disclose enough to build cost per unit, and they do here. The alternative is what this study itself published before the cost stack was rebuilt, so it is the honest counterfactual rather than an invented one."
+  },
+  {
+   "name": "the debt tax shield: the statutory rate, or the effective one",
+   "adopted": "the statutory rate, which is the marginal rate an authority allows",
+   "alternative": "the effective rate the three filed years actually bore",
+   "value_adopted": 38.080615910145504,
+   "value_alternative": 37.8397,
+   "why": "An effective rate is the average a company paid and a shield is the marginal rate allowed on the income-tax portion of its base; the two are not required to agree. What is genuinely unsourced is the split between zakat and income tax by ownership, which would place the true shield below the statutory rate. The change was made, measured and withdrawn rather than left as a bare constant."
+  },
+  {
+   "name": "terminal real growth",
+   "adopted": "zero real growth, stated",
+   "alternative": "half a point of real growth in perpetuity",
+   "value_adopted": 38.080615910145504,
+   "value_alternative": 38.23402538852858,
+   "why": "Terminal growth is stored as a real rate on the house macro path and recomputes to its nominal, so the judgement is the REAL number and it is written down as the number it is. Zero is the default and a positive real rate would need incremental capital behind it that nothing discloses."
+  },
+  {
+   "name": "the minority interest: its share of value, or its book cost",
+   "adopted": "a value-share proxy from the minority's own disclosed profit share",
+   "alternative": "the book value carried on the latest balance sheet",
+   "value_adopted": 38.080615910145504,
+   "value_alternative": 38.3199212188326,
+   "why": "The model capitalises 100% of subsidiary cash flow, so the minority's claim is worth its share of THAT value rather than what it historically cost. Book is published beside it so a reader sees the choice and not only its result, and the deduction is taken from equity value rather than from enterprise value."
+  }
+ ]
+}

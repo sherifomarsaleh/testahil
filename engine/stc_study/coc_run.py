@@ -31,7 +31,20 @@ MACRO = MP.load('SA')
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 BUILD_DATE = '2026-09-05'
-TAX = 0.20                      # zakat and income tax, the study's own rate
+# THE DEBT SHIELD IS A MARGINAL RATE AND THE MODEL'S TAX CHARGE IS AN EFFECTIVE ONE, AND
+# THEY ARE NOT REQUIRED TO BE EQUAL. This was changed to the measured 8.03% effective rate
+# on a coherence argument — one model, one tax rate — and the argument was wrong. The
+# 8.03% is the AVERAGE rate the three filed years bore, a blend of zakat on the Saudi
+# share of the base and income tax on the rest; the shield on interest is a MARGINAL rate
+# against the income-tax portion, for which the statutory 20% is the rate an authority
+# actually allows. Taxing profit at an effective rate while shielding debt at a marginal
+# one is ordinary and correct, not an inconsistency.
+#
+# What IS unsourced is the split: the correct shield is 20% weighted by the non-Saudi
+# ownership share, which this study does not hold, so 20% is the upper bound of it. The
+# whole span is worth 0.79% of the answer — below the materiality line this house sets for
+# a contested judgement — and it is recorded here rather than left as a bare constant.
+TAX = 0.20
 
 # ---------------------------------------------------------------------------
 # THE BORROWINGS BOOK, facility by facility, from note 26 of the FY2025 audited
@@ -237,6 +250,21 @@ def record(sched):
     r['gross_debt'] = BORROWINGS_H126
     r['effective_rate_detail'] = EFF
     r['weights_source'] = WEIGHTS_SOURCE
+    # THE CONTRACTUAL ANCHOR IS COMMITTED, NOT ONLY DESCRIBED. The two tranche rates of
+    # the January 2026 sukuk build the marginal cost of debt and are quoted in the study,
+    # the workbook and the sweep — and they were in no committed record, so the instrument
+    # that reconciles the delivered documents against the model reported them unmatched.
+    # They were right, and the model was what was missing.
+    r['marginal_issue'] = dict(
+        tranches=[dict(years=5, amount_th=T5, rate=T5_RATE),
+                  dict(years=10, amount_th=T10, rate=T10_RATE)],
+        weighted_rate=KD_MARGINAL,
+        note=('The January 2026 international sukuk, SAR 7,500 million in two tranches, '
+              'weighted by their own sizes. It is the marginal rate this company actually '
+              'faces and it is what the schedule adopts.'))
+    r['facilities_fy25'] = [dict(name=n, currency=c, rate_as_disclosed=rt,
+                                 current_th=cu, non_current_th=nc)
+                            for n, c, rt, cu, nc in FACILITIES_FY25]
     r['sovereign_staleness_disclosed'] = (
         'The Saudi sovereign quote on the house macro path carries an as-of date of '
         '31 July 2026 and this schedule is struck on 5 September 2026, so it is 36 days '

@@ -1,0 +1,446 @@
+{
+ "ticker": "FERTIGLOBE",
+ "as_of": "2026-09-06",
+ "published_central": 1.8105356735634544,
+ "published_spot": 2.54,
+ "published_answer_is_two_sided": {
+  "branch_A": 1.8105356735634544,
+  "branch_B": 2.6846415874479153
+ },
+ "why_this_file": "Any single contested choice in a valuation is defensible. What is not is a study that resolves EVERY contested choice the same way and never notices. Each is recorded with BOTH framings' values, the side adopted and why, and a two-sided binomial sign test is printed over the ones worth more than five per cent of value. A study that lands them all one way is FLAGGED, never failed — a company can genuinely deserve a consistent read. What it may not do is go unmeasured.",
+ "how_the_framings_were_valued": "Every alternative below is a full re-run of the study's own model — build_frame, run_dcf and the study's own bridge — with ONE construction moved and everything else at its published value, restored afterwards. No figure here is typed, interpolated or read off a table.",
+ "which_branch_and_why": "THE ANSWER IS TWO-SIDED, so every alternative has to be priced against one of the two branches, and the choice is declared rather than convenient. Framing A is the base: it is the branch this study's own gap review audits, the branch the repository's gap reader takes as the central, and the branch a reader is handed whenever one number is wanted. Every judgement was ALSO priced on framing B and the directions compared, so the base cannot be quietly doing the work — `sign_test_on_framing_B` and `sign_stable_across_branches` below report what happens if the other branch is used.",
+ "what_this_record_measures": "18 judgements, 10 of them worth five per cent of value or more; 3 resolved toward the higher value and 7 toward the lower, two-sided binomial p=0.34. THE LEAN IS TOWARD THE LOWER VALUE AND IT IS NOT SIGNIFICANT, so the flag is not raised and the honest reading is that this study does not resolve its forks one way. Where the lean sits is worth naming, and `largest_material_each_way` carries the ordering. The biggest downward entry is the price path itself; behind it are two constructions where the study deliberately took the more expensive side of a real choice — pricing the group on the countries its plants are in rather than on its listing domicile, and deducting the minority at its share of value rather than at book. The biggest upward entries are operating and balance-sheet ones: the utilisation glide, the unsettled gas accrual left out of the bridge, and terminal leverage normalised to the sector. ONE MATERIAL ENTRY IS A CONCEDED DEFECT RATHER THAN A DEFENDED FORK (the terminal risk-free rate, named in the study's own gap review and registered for a later cost-of-capital pass); the other conceded construction, the net-debt weighting, turns out to be worth under two per cent of value and never reaches the test at all. Without both, p=0.51 — the answer does not turn on them. THE LARGEST FORK IN THE STUDY IS NOT IN THIS LIST: the gas cost pass-through is named in `examined_not_priced`, because the alternative reading of it is a conflict between two company sources and neither of them states a number, so pricing it would have meant inventing one.",
+ "largest_material_each_way": {
+  "downward": [
+   {
+    "name": "the nitrogen price path — the study's own central contested judgement",
+    "value_adopted": 1.8105356735634544,
+    "value_alternative": 2.6846415874479153
+   },
+   {
+    "name": "the equity risk premium — which country",
+    "value_adopted": 1.8105356735634544,
+    "value_alternative": 2.57828879576217
+   },
+   {
+    "name": "non-controlling interests",
+    "value_adopted": 1.8105356735634544,
+    "value_alternative": 2.2592839015292534
+   }
+  ],
+  "upward": [
+   {
+    "name": "the utilisation path",
+    "value_adopted": 1.8105356735634544,
+    "value_alternative": 1.5856195120651586
+   },
+   {
+    "name": "the unsettled Algerian gas accrual, in the BRIDGE",
+    "value_adopted": 1.8105356735634544,
+    "value_alternative": 1.6567258747853317
+   },
+   {
+    "name": "terminal leverage",
+    "value_adopted": 1.8105356735634544,
+    "value_alternative": 1.6915202479954705
+   }
+  ]
+ },
+ "judgements": [
+  {
+   "name": "the nitrogen price path — the study's own central contested judgement",
+   "adopted": "both framings computed in full and published side by side, never averaged; framing A — reversion toward the marginal cost of the swing supplier — is the branch read as this study's central",
+   "alternative": "framing B, the structurally-tight reading, on the same tonnes, the same calibrated cost stack and the same discount schedule",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 2.6846415874479153,
+   "why": "the study settles this nowhere and says so. Framing A treats the 2026 spike as a war premium on a marginal-cost anchor set by European gas; framing B rests on the company's own sourced balance — demand growth outside China of about 11.4 million tonnes to 2030 against about 9.1 million tonnes of additions — plus the rising European tariff wall on Russian product. It is recorded because it is by far the largest fork in the study AND because the branch a reader is handed when one number is wanted is the lower of the two, which is exactly the kind of fact this record exists to make countable.",
+   "material": true,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 1.8105356735634544,
+    "material": true,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the lens architecture",
+   "adopted": "one lens is the answer — the cash-flow lens, with the enterprise multiple and book value published beside it as cross-checks and never weighted into it",
+   "alternative": "the retired 45/20/20/15 blend of cash flow, enterprise multiple, normalised earnings and book, rebuilt on this branch alone",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.976316014192437,
+   "why": "the weights were typed, inherited and had never cleared an out-of-sample test, and a blend imports the weakest lens at whatever number somebody wrote down: book value here is depreciated historical cost on plants whose worth turns on a gas position, and the normalised-earnings lens capitalised a mid-cycle profit on a multiple of 11.0 that nobody sourced. Priced on one branch alone deliberately — the blend the study actually retired ALSO averaged the two price framings, and counting that here would price the same choice twice.",
+   "material": true,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.369663675440444,
+    "material": true,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "non-controlling interests",
+   "adopted": "deducted at their share of equity VALUE, proxied by their disclosed 26.3% share of group profit",
+   "alternative": "deducted at the book carrying amount of those interests, $443.3m",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 2.2592839015292534,
+   "why": "the model capitalises 100% of subsidiary cash flow, so the minority's claim is worth its share of THAT value rather than its historical cost — and the two outside stakes (49.01% of the Algerian producer, 25.0% of the Egyptian one) sit in the group's most profitable assets, so they take far more of the profit than of the book. The study calls its own choice the more conservative of the two and publishes both. It is the largest single step in the bridge.",
+   "material": true,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 3.445316349133678,
+    "material": true,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the equity risk premium — which country",
+   "adopted": "blended across the countries the plants are in, weighted by disclosed non-current assets — 50.9% UAE, 31.1% Egypt, 16.1% Algeria — giving 8.51%",
+   "alternative": "the listing domicile alone: Abu Dhabi's own published premium of 4.87%, the convention that prices a company where its shares trade",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 2.57828879576217,
+   "why": "nearly half the asset base sits in Egypt and Algeria, so pricing the whole group on an Abu Dhabi premium would charge it for country risk it does not carry and credit it with safety it does not have. This is the largest cost-of-capital fork in the study, the study takes the more expensive side of it, and it is priced here rather than argued away.",
+   "material": true,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 3.882918017529684,
+    "material": true,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the equity risk premium — which basis",
+   "adopted": "the credit-rating basis, 8.51%",
+   "alternative": "the sovereign default-swap basis, 7.14% — the market's own live pricing of the same credit, against an agency judgement updated in steps",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 2.0492952300631893,
+   "why": "both bases are published in the study and neither is averaged into the other. The swap basis is the NARROWER premium here, so adopting the rating basis is the more punitive of the two — which is worth saying plainly, because a cautious-sounding choice is still a claim about the world.",
+   "material": true,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 3.0563218925665256,
+    "material": true,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the unsettled Algerian gas accrual, in the BRIDGE",
+   "adopted": "not deducted: it is charged through the cost line as it accrues and is excluded from working capital, and the bridge deducts only net debt",
+   "alternative": "deducted from equity value as a debt-like obligation — $468.8m accrued at 30 June 2026, retrospective to November 2023, with no agreed payment schedule and treated by the auditors as a key audit matter",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.6567258747853317,
+   "why": "the study's own judgements table settles how this accrual is treated in WORKING CAPITAL and is silent on whether the accumulated balance is a claim on enterprise value. On one reading it is a real unsettled obligation that has to come out of the bridge; on the other it is an estimate that will keep being trued up through the cost line the model already charges. This is the largest fork in the study that runs in the study's own favour.",
+   "material": true,
+   "direction": "up",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.5308317886697926,
+    "material": true,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the lower-carbon ammonia project",
+   "adopted": "excluded from the valuation entirely — no cash flow, no capital and no value; named as an unpriced upside catalyst instead",
+   "alternative": "carried at the company's own disclosed capital cost for the one-million-tonne plant — under $500m of total project cost — at the 54% interest the option describes, added to attributable equity",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.9307324103749361,
+   "why": "the parent is warehousing the project and the company holds an option, not an asset, so nothing is consolidated today. THE ALTERNATIVE IS AN UPPER BOUND AND IS LABELLED ONE: the consideration payable on exercise is disclosed nowhere, so the option is priced here as though it were free, which it will not be. Valued instead on this study's own replacement cost of $1,250 a tonne of installed capacity the same construction gives AED 2.1110 a share; the company's own disclosed project cost is used because a figure the company published outranks one this desk assumed.",
+   "material": true,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.804838324259397,
+    "material": false,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the terminal risk-free rate",
+   "adopted": "today's Abu Dhabi sovereign yield less that sovereign's own default spread, 4.73%, held flat into the terminal",
+   "alternative": "the terminal risk-free rate the house macro path derives from its inflation anchor and real-rate convention, 3.98%",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.9164095848332034,
+   "why": "a pegged market gets a flat cost-of-capital schedule, and flat should mean flat at the NORM rather than flat at today's spot. THIS IS A CONCEDED DEFECT RATHER THAN A DEFENDED FORK: the study's own gap review names it, prices it at about 75 basis points, records that correcting it RAISES the value, and registers it for a deliberate cost-of-capital pass rather than stacking it on the terminal rebuild in one edition. It is recorded here because it is a material choice standing at the lower value, whatever the reason for the delay.",
+   "material": true,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.85091519935738,
+    "material": true,
+    "direction": "down"
+   },
+   "conceded_defect": true
+  },
+  {
+   "name": "terminal leverage",
+   "adopted": "the debt weight normalises to 20%, where merchant nitrogen producers actually run, above the group's currently light net leverage",
+   "alternative": "the group's current 9.8% net-debt weight carried into the terminal, which collapses the glide and capitalises the perpetuity at the explicit-window rate",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.6915202479954705,
+   "why": "a mature plant base running 9.8% net leverage is under-levered against its own sector and normalising it is the ordinary construction — but the terminal carries 56% of enterprise value here, so the choice is worth more than it looks, and it runs in the study's own favour.",
+   "material": true,
+   "direction": "up",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.4978812136476547,
+    "material": true,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the utilisation path",
+   "adopted": "urea utilisation glides from 82.3% in 2026 to 88.8% by 2030 and merchant ammonia from 71.5% to 84.7%, on the company's stated manufacturing improvement programme, with installed capacity held flat because no additions are announced",
+   "alternative": "utilisation held flat at the 2026 level across the whole window — no improvement credited at all, which is what a reader who declines to price an unquantified programme would do",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.5856195120651586,
+   "why": "the company gives no numeric volume guidance, so no guidance figure is carried and the glide is anchored on the 92% urea utilisation actually reported for the first half of 2026. It is the second most powerful driver after price and it runs in the study's own favour.",
+   "material": true,
+   "direction": "up",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.3834374050273373,
+    "material": true,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the terminal construction",
+   "adopted": "built through the sanctioned terminal — maintenance at replacement cost over the composite 22.04-year asset life DERIVED from the company's own property note, with book depreciation added back",
+   "alternative": "the retired reinvestment identity, terminal profit times one less growth over return on capital, which charges the whole capital base every 1/g years and so implies a fifty-year replacement cycle at a 2% terminal",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.7580771656522494,
+   "why": "the retired construction makes the implied asset life a fact about the currency rather than about the plant. Nobody predicted which way rebuilding it would move the value and it is recorded as a measurement rather than a prediction: here it raises it, by less than the five per cent this record counts as material.",
+   "material": false,
+   "direction": "up",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.6209853705278605,
+    "material": false,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the cost-of-capital weights",
+   "adopted": "struck on NET debt",
+   "alternative": "struck on GROSS debt, which is one of the two coherent conventions the study's own gap review names",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.8443247258868902,
+   "why": "the cash lightens the debt weight, raising the rate the operations are discounted at, and then comes back a second time through the net-debt deduction in the bridge. A CONCEDED DEFECT, registered in the study's own records and worth about 105 basis points of cost of capital — which turns out to be under two per cent of value, so it does not reach this record's materiality bar. The rate effect and the value effect are different sizes and only one of them is what this record measures.",
+   "material": false,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.7347467652261,
+    "material": false,
+    "direction": "down"
+   },
+   "conceded_defect": true
+  },
+  {
+   "name": "the forecast tax rate",
+   "adopted": "13.1%, the mean of three independently constructed estimates — the four-year aggregate reported effective rate, the four-year aggregate cash rate and a jurisdiction-weighted statutory build",
+   "alternative": "the four-year aggregate reported effective rate alone, 10.4%, which is the leg a reader would compute straight off the filed statements",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.8770470414681624,
+   "why": "no single reported year is usable: the group's statutory rate runs from zero to 25% on free-zone status, and the reported 4.0% in 2025 and 7.0% in 2024 were flattered by items that do not recur. The three legs span 10.4% to 15.7% and the whole span is worth under four per cent of value in either direction, so the triangulation is not where this answer is decided.",
+   "material": false,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.7801976881390287,
+    "material": false,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "beta",
+   "adopted": "0.931, the point estimate from 242 weekly observations against the published index of the exchange the share is listed on, used as measured",
+   "alternative": "0.954, the same regression adjusted toward one on the conventional shrinkage — the alternative the study itself publishes",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.7793267067137537,
+   "why": "the regression passes the usability gate, so the point estimate is what the hierarchy takes; the fit is weak — 10.0% of variance — for an economic reason the study states plainly, and the shrinkage convention is shown rather than argued away. Worth under two per cent of value. The regression's own 90% interval is far wider than this and is a two-sided sensitivity, not a framing a study could adopt; it is recorded in `examined_not_priced` rather than turned into a one-sided judgement here.",
+   "material": false,
+   "direction": "up",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.6361461904585415,
+    "material": false,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the third-party trading margin",
+   "adopted": "7.5% of traded revenue — the one leg not built from volume times price less cost per tonne, because no purchase-side unit economics are disclosed anywhere in any filing",
+   "alternative": "the margin the company actually reported for the first half of 2026, 10.8%",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.8737400828304906,
+   "why": "the disclosed segment margins run 1.9% in 2024, 3.8% in 2025 and 10.8% in the first half of 2026, so 7.5% sits inside the observed range rather than at either end. The leg is small and the whole observed span moves the value under four per cent.",
+   "material": false,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.747845996714951,
+    "material": false,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "the capital expenditure path",
+   "adopted": "capex converges on depreciation but stays below it throughout the window, against disclosed maintenance capital expenditure of $143.6m for 2025",
+   "alternative": "capex set equal to depreciation and amortisation in every year — full replacement of the asset base as it is consumed",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.7384065633601606,
+   "why": "the plant base is mature and urea capacity is flat, so the company is not spending to grow — but an asset base depreciated faster than it is replaced cannot support the volume path indefinitely, which is the reading the alternative takes. Worth four per cent of value.",
+   "material": false,
+   "direction": "up",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.6125124772446218,
+    "material": false,
+    "direction": "up"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "working capital and the gas accrual",
+   "adopted": "projected from the conversion cycle with the accrual removed from payables — receivable days 64, inventory days 63, payable days 82",
+   "alternative": "the accrual left inside payables, which puts payable days at 154 and makes the cash conversion cycle permanently negative",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.8831052420242902,
+   "why": "the accrued gas catch-up is not a trade payable arising in the ordinary course; leaving it in would show the company financing itself on supplier credit it has not negotiated. Worth four per cent of value, and it runs against the study rather than for it.",
+   "material": false,
+   "direction": "down",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.783186644554792,
+    "material": false,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  },
+  {
+   "name": "terminal real growth",
+   "adopted": "zero real growth STATED, so the terminal grows with inflation alone and is charged no growth capital",
+   "alternative": "one point of real growth a year in perpetuity, charged the incremental capital at replacement cost that a point of real output needs",
+   "value_adopted": 1.8105356735634544,
+   "value_alternative": 1.754945129561518,
+   "why": "real growth is not free in the sanctioned terminal: it costs capital, and on this company's replacement cost a point of it costs more than it brings. So stating zero is the HIGHER value rather than the prudent one, and the axis runs downward from the study's own choice. Worth three per cent.",
+   "material": false,
+   "direction": "up",
+   "on_framing_B": {
+    "value_adopted": 2.6846415874479153,
+    "value_alternative": 2.716782896434776,
+    "material": false,
+    "direction": "down"
+   },
+   "conceded_defect": false
+  }
+ ],
+ "sign_test": {
+  "material": 10,
+  "resolved_upward": 3,
+  "resolved_downward": 7,
+  "p_two_sided": 0.34375,
+  "flagged": false
+ },
+ "sign_test_excluding_conceded_defects": {
+  "material": 9,
+  "resolved_upward": 3,
+  "resolved_downward": 6,
+  "p_two_sided": 0.5078125,
+  "flagged": false,
+  "excluded": [
+   "the cost-of-capital weights",
+   "the terminal risk-free rate"
+  ],
+  "note": "a conceded defect is a choice standing at the lower value for a stated reason rather than a framing the study defends; both readings are printed so nobody has to take this record's word for which is fair"
+ },
+ "sign_test_on_framing_B": {
+  "material": 9,
+  "resolved_upward": 5,
+  "resolved_downward": 4,
+  "p_two_sided": 1.0,
+  "flagged": false
+ },
+ "sign_stability_across_branches": {
+  "stable_on_material_judgements": false,
+  "flips": [
+   {
+    "name": "the nitrogen price path — the study's own central contested judgement",
+    "on_framing_A": "down",
+    "on_framing_B": "up",
+    "material_on_A": true,
+    "material_on_B": true,
+    "definitional": true
+   },
+   {
+    "name": "the lens architecture",
+    "on_framing_A": "down",
+    "on_framing_B": "up",
+    "material_on_A": true,
+    "material_on_B": true,
+    "definitional": false
+   },
+   {
+    "name": "terminal real growth",
+    "on_framing_A": "up",
+    "on_framing_B": "down",
+    "material_on_A": false,
+    "material_on_B": false,
+    "definitional": false
+   }
+  ],
+  "note": "Every judgement was priced on BOTH branches so the choice of base could be checked rather than trusted. Three entries change direction. The price path itself is DEFINITIONAL — on a two-sided answer that entry is the A-against-B comparison, so it reverses whichever branch is the base, and reading that as instability would be reading the arithmetic of the record rather than the study. Terminal real growth flips and is immaterial on both branches, so it never enters the test. THE ONE THAT MATTERS IS THE LENS ARCHITECTURE: the retired blend pulls toward the cross-checks, which sit between the two branches, so it RAISES the low branch and LOWERS the high one. That is a real fact about the construction and is why it is reported rather than smoothed — the blend does not lean in a direction, it leans toward the middle, and the study publishes the two ends instead."
+ },
+ "examined_not_priced": [
+  {
+   "name": "the gas cost pass-through — the conflict between two company sources",
+   "status": "named, bracketed, NOT priced",
+   "note": "THE LARGEST UNPRICED FORK IN THE STUDY, and it is unpriced because pricing it would mean choosing a number nobody has published. The audited FY2025 segment note describes the gas offtake agreements as carrying \"no/limited price exposure\"; on the results call of 6 August 2026 the chief executive said the company has product-linked gas pricing in both Egypt and Algeria. Both are company sources and they cannot both describe the same arrangement. The study resolves it in favour of the call — more recent by five months, more specific, and corroborated by the $6/MMBtu delivered gas price disclosed for the second quarter and by a three-period fit of 0.960 — and calibrates the slope at 0.481 of every dollar of realised price. The accounting-note reading implies a LOWER slope, but no filing states one, so there is no alternative value to compute: inventing one to fill this cell would be worse than leaving it named. What can be reported is the study's own sensitivity axis, run here: a slope of 0.30 gives AED 3.0686 a share and a slope of 0.65 gives AED 0.6343, against AED 1.8105 at the calibrated 0.481. Stripping the Algerian catch-up accrual moves the fitted slope only to 0.489, worth AED 1.7568, so the calibration is not an artefact of that item. A reader should treat this as the place where this study could be most wrong in either direction."
+  },
+  {
+   "name": "beta's confidence interval",
+   "status": "measured in both directions, NOT a judgement",
+   "note": "the 90% interval on the regression runs from 0.47 to 1.40 and is worth AED 2.7756 and AED 1.3368 a share against the point estimate's AED 1.8105. That is enormous, and it is a two-sided SENSITIVITY rather than a framing a study could adopt: the hierarchy takes the point estimate when the regression passes its usability gate, and picking one end of an interval to record as \"the alternative\" would be choosing a direction rather than measuring one. The interval is published in the study's own sensitivity table, which is where it belongs."
+  },
+  {
+   "name": "the replacement cost of installed nitrogen capacity",
+   "status": "attempted in both directions, ONE SIDE REFUSED",
+   "note": "$1,250 a tonne sets the capital base the terminal charges maintenance on, and it is this desk's figure rather than a disclosed one. The only capital cost per tonne of nitrogen capacity the company itself publishes is the lower-carbon plant's — under $500m for one million tonnes — and the sanctioned terminal REFUSES at that level and at $1,000: the maintenance charge falls so far that terminal cash flow exceeds terminal profit and the implied payout passes one, which is a liquidation rather than a going concern. At $500/t: REFUSED by the sanctioned terminal: implied payout of terminal NOPAT is 127.1%, outside [0, 1]: the terminal distributes more than it earns. At $1,000/t: REFUSED by the sanctioned terminal: implied payout of terminal NOPAT is 101.9%, outside [0, 1]: the terminal distributes more than it earns. In the other direction $1,500/t gives value AED 1.6504. So the judgement cannot be priced downward at all and is recorded here rather than as a one-sided fork."
+  },
+  {
+   "name": "the terminal return on capital",
+   "status": "inert by construction",
+   "note": "the study triangulates it — the final-year book return, the return on replacement cost and a long-run sector return — and publishes it as a diagnostic. It does NOT enter the terminal, which is built from the capital the plants need to be kept whole on the disclosed asset life, so no assumed return sets the charge. Moving it moves nothing, which is why it is not a judgement worth any percentage of value."
+  },
+  {
+   "name": "the 2026 base year",
+   "status": "arithmetic, not judgement",
+   "note": "the first half is the disclosed actual — 2,571kt of own-produced volume on $1,597m of segment revenue — and only the second half is modelled. The study's own judgements table records that nothing would overturn this because carrying a modelled full year over a period the company has already reported would discard evidence that exists."
+  },
+  {
+   "name": "the enterprise multiple used in the relative lens",
+   "status": "a cross-check, not the answer",
+   "note": "5.8 times mid-cycle EBITDA against a peer set trading from 5.2 to 10.4 times. Under the lens architecture this is published beside the cash-flow lens and never weighted into it, so moving it cannot move the answer this record measures. Book value is treated the same way, as a disclosed floor."
+  }
+ ]
+}

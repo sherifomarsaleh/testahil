@@ -22,8 +22,29 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
 import prose_figures as PF                                             # noqa: E402
 
-DOCS = ['AMOC_Valuation_Study_03-09-2026_public.docx',
-        'AMOC_Bibliography_03-09-2026.docx']
+
+
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    would pick a superseded edition (the trap ADNOCLS's resolver records)."""
+    import re
+    c = []
+    for f in os.listdir('.'):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})_', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return sorted(c)[-1][1] if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION IN THE BOOK [L-350].
+# A reader receives three files and this list named two, so the third was read by nothing.
+# prose_figures.texts_of() reads a workbook's STRING cells only: a numeric cell is a model
+# output the recalculation gate already reconciles, and a numeral inside a label is prose
+# that happens to live in a spreadsheet.
+DOCS = [d for d in ('AMOC_Valuation_Study_03-09-2026_public.docx',
+                    'AMOC_Bibliography_03-09-2026.docx',
+                    latest_ddmmyyyy(r'AMOC_Valuation_Model_\d{8}_public\.xlsx$')) if d]
 
 SN = json.load(open('study_numbers.json'))
 vals = PF.numbers_from(HERE)

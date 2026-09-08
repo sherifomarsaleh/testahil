@@ -29,7 +29,9 @@ STK, S0, BETA, BT = D['strike'], D['step0'], D['wacc']['beta'], D['backtest']
 EXP, SCEN = D['experts'], D['scen']
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
 SPOT, SH, C = D['spot'], IN['shares_mn'], D['central']
-GMR = D['gm_required']
+# The required margin is SOLVED FROM THE PRICE, so it is not in the numbers file
+# [R-ENF-05]; it is read here only to be printed, and nothing computes from it.
+GMR = json.load(open(os.path.join(HERE, 'reverse_read.json')))
 GP_H1_GM = IN['gp_h1cy26'] / IN['rev_h1cy26']
 TVS = D['dcf'].get('tv_share') or D['terminal_recon'].get('tv_share', 0.0)
 

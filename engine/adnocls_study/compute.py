@@ -13,6 +13,7 @@ fleet earns in — and converts to dirhams at the peg only at the per-share step
 Amounts are USD thousand unless a name says otherwise.
 """
 import json, os, math
+import dataclasses as _dc
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 # ============================================================================
@@ -29,6 +30,14 @@ IP26 = "ADNOC L&S plc, Investor Presentation April 2026"
 IPFY25 = "ADNOC L&S plc, FY2025 Investor Presentation"
 CALL25 = "ADNOC L&S plc, FY2025 earnings call transcript"
 CALLQ126 = "ADNOC L&S plc, Q1 2026 earnings call transcript"
+# The half-year filed 11 August 2026. The delivered edition of this study ended its
+# information set at the first quarter and these four documents had been public for
+# twenty-seven days; every figure below is read from them and footed against the
+# statements' own columns before it is used.
+FSH126 = "ADNOC L&S plc, Condensed Consolidated Interim Financial Information, six months ended 30 June 2026 (PwC review report signed 10 Aug 2026)"
+MDAH126 = "ADNOC L&S plc, Management Discussion and Analysis, First Half 2026 (11 Aug 2026)"
+ERH126 = "ADNOC L&S plc, First Half 2026 Earnings Release (11 Aug 2026)"
+IPH126 = "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026)"
 
 INPUTS = {}
 
@@ -51,9 +60,44 @@ def IN(key, value, source, date, layer):
     return value
 
 
+
+# ---------------------------------------------------------------------------- latest price
+def _latest_known(ticker='ADNOCLS'):
+    """The freshest close this repository holds for this name, with its provenance.
+
+    Raises rather than defaulting: a study that cannot see a price is a study that must
+    stop and ask for one, which is what the standing question at the start of a study
+    exists for. An absent answer is not a clean one.
+    """
+    import sys as _s, os as _o
+    _s.path.insert(0, _o.path.join(_o.path.dirname(_o.path.abspath(__file__)),
+                                   '..', 'prices'))
+    import gap_today as _G
+    row = _G.latest_price_per_ticker().get(ticker)
+    if not row:
+        raise SystemExit('STOP: no supplied price is held for %s. Ask for the latest '
+                         'share price and its date before delivering [R-GAP-01].' % ticker)
+    return dict(price=float(row['price']), date=str(row['date']),
+                source=str(row['file']), currency='AED')
+
+
 # ---------------------------------------------------------------- market ----
-spot_aed = IN('spot_aed', 6.16, "ADX daily price history for ADNOCLS, last close in the "
-              "series used throughout this study", '2026-08-07', 'Market')
+# [R-GAP-01 AMENDED] THE STUDY IS DELIVERED AGAINST THE LATEST KNOWN PRICE, and that
+# price is READ from the committed file rather than typed, so it cannot go stale silently.
+# TWO CLOCKS, AND THEY ARE NOT RECONCILED SILENTLY: the fundamental valuation is struck
+# and delivered at the latest known close; the probability cone and the technical read
+# stand on the ADX daily series this repository holds, which ends on 7 August 2026, and a
+# fundamental rebuild does not re-strike a cone. Both dates are published.
+_LATEST = _latest_known()
+spot_aed = IN('spot_aed', _LATEST['price'], "The latest known close for ADNOCLS, supplied "
+              "by the principal and committed at engine/prices/" + _LATEST['source']
+              + ". This study is DELIVERED against it: a fair value published against a "
+              "month-old price is a comparison a reader cannot use",
+              _LATEST['date'], 'Market')
+price_close_engine = IN('price_close_engine', 6.16, "ADX daily price history for ADNOCLS, "
+              "last close in the series this repository holds — the close the probability "
+              "cone and the technical read were struck on, and a different clock from the "
+              "valuation strike above", '2026-08-07', 'Market')
 peg = IN('fx_aed_usd', 3.6725, "UAE dirham's fixed parity to the US dollar, unchanged "
          "since 1997 and maintained by the Central Bank of the UAE", '2026-08-07', 'Country')
 shares_mn = IN('shares_mn', 7398.498764, "Authorised, issued and fully paid ordinary "
@@ -304,6 +348,87 @@ IN('q1_26_eqp', 5073902, Q126 + " — equity attributable to owners", '2026-03-3
 IN('q1_26_hybrid', 1978619, Q126 + " — hybrid equity instrument", '2026-03-31', 'Company')
 IN('q1_26_nci', 272134, Q126 + " — non-controlling interests", '2026-03-31', 'Company')
 
+# ------------------------------------------------------------------ H1 2026 ----
+# THE LATEST REVIEWED PERIOD. Every line below is the reviewed six months to 30 June
+# 2026 as filed, with the prior-period comparative beside it exactly as the statements
+# present it. The statements' own comparative is used and NOT the management discussion's:
+# the discussion re-presents Q1, Q2 and Q3 2025 Tankers revenue and direct costs "for
+# analytical consistency, with no impact on Gross Profit, Net Profit or EBITDA", which
+# carries H1 2025 revenue to 2,507 against the 2,438,936 the reviewed statements report.
+# The two differ by 68,104 on revenue and by the same amount on direct cost, so gross
+# profit, earnings and every margin are identical either way. The basis break is
+# registered rather than reconciled away, and the model runs on the statements.
+IN('h1_26_rev', 3666674, FSH126, '2026-06-30', 'Company')
+IN('h1_25_rev', 2438936, FSH126 + " — prior-period comparative, as presented in the reviewed statements", '2025-06-30', 'Company')
+IN('h1_26_dc', 2317664, FSH126 + " — direct costs", '2026-06-30', 'Company')
+IN('h1_25_dc', 1900726, FSH126 + " — direct costs, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_gp', 1349010, FSH126 + " — gross profit", '2026-06-30', 'Company')
+IN('h1_25_gp', 538210, FSH126 + " — gross profit, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_ga', 133051, FSH126 + " — general and administrative expenses", '2026-06-30', 'Company')
+IN('h1_26_ecl', 48212, FSH126 + " — provision for expected credit losses", '2026-06-30', 'Company')
+IN('h1_26_oth_inc', 34413, FSH126 + " — other income", '2026-06-30', 'Company')
+IN('h1_26_oth_exp', 27933, FSH126 + " — other expenses", '2026-06-30', 'Company')
+IN('h1_26_op', 1174227, FSH126 + " — operating profit", '2026-06-30', 'Company')
+IN('h1_25_op', 462585, FSH126 + " — operating profit, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_jv', 38520, FSH126 + " — share of profit from joint ventures and associates", '2026-06-30', 'Company')
+IN('h1_26_fin_inc', 5763, FSH126 + " — finance income", '2026-06-30', 'Company')
+IN('h1_26_fin_cost', 18636, FSH126 + " — finance costs", '2026-06-30', 'Company')
+IN('h1_26_pbt', 1199874, FSH126 + " — profit before income tax", '2026-06-30', 'Company')
+IN('h1_26_tax', 27398, FSH126 + " — current tax expense", '2026-06-30', 'Company')
+IN('h1_26_dtax_cr', 456, FSH126 + " — deferred tax credit", '2026-06-30', 'Company')
+IN('h1_26_pat', 1172932, FSH126 + " — profit for the period", '2026-06-30', 'Company')
+IN('h1_25_pat', 420388, FSH126 + " — profit for the period, prior-period comparative", '2025-06-30', 'Company')
+IN('h1_26_npa', 1119717, FSH126 + " — attributable to equity holders of the Company", '2026-06-30', 'Company')
+IN('h1_25_npa', 409301, FSH126 + " — attributable to equity holders, comparative", '2025-06-30', 'Company')
+IN('h1_26_nci_profit', 53215, FSH126 + " — profit attributable to non-controlling interests", '2026-06-30', 'Company')
+IN('h1_26_dep_ppe', 205640, FSH126 + " — depreciation on property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_dep_ip', 2724, FSH126 + " — depreciation on investment properties", '2026-06-30', 'Company')
+IN('h1_26_dep_rou', 48445, FSH126 + " — depreciation on right-of-use assets", '2026-06-30', 'Company')
+IN('h1_26_amort', 5312, FSH126 + " — amortisation of intangible assets", '2026-06-30', 'Company')
+IN('h1_26_impair', 14880, FSH126 + " — impairment losses on property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_capex', 547217, FSH126 + " — purchase of property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_ppe_additions', 463814, FSH126 + " — note 4, additions to property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_ppe_cost', 8453284, FSH126 + " — note 4, gross cost of property, plant and equipment at 30 June 2026", '2026-06-30', 'Company')
+IN('h1_26_ocf', 1164364, FSH126 + " — net cash generated from operating activities", '2026-06-30', 'Company')
+IN('h1_26_wc', -302614, FSH126 + " — working capital movements in the cash flow statement, "
+   "the sum of inventories, trade and other receivables, due from related parties, trade "
+   "and other payables and due to related parties", '2026-06-30', 'Company')
+
+# ------------------------------------- balance sheet at 30 June 2026 (reviewed) ----
+IN('h1_26_cash', 542682, FSH126 + " — cash and cash equivalents", '2026-06-30', 'Company')
+IN('h1_26_ppe', 7041588, FSH126 + " — property, plant and equipment", '2026-06-30', 'Company')
+IN('h1_26_rou', 242860, FSH126 + " — right-of-use assets", '2026-06-30', 'Company')
+IN('h1_26_intang', 16192, FSH126 + " — intangible assets", '2026-06-30', 'Company')
+IN('h1_26_ip', 87199, FSH126 + " — investment properties", '2026-06-30', 'Company')
+IN('h1_26_jv_bv', 522768, FSH126 + " — investment in joint ventures and associates", '2026-06-30', 'Company')
+IN('h1_26_gw', 51368, FSH126 + " — goodwill", '2026-06-30', 'Company')
+IN('h1_26_ta', 10808133, FSH126 + " — total assets", '2026-06-30', 'Company')
+IN('h1_26_tl', 2657251, FSH126 + " — total liabilities", '2026-06-30', 'Company')
+IN('h1_26_teq', 8150882, FSH126 + " — total equity", '2026-06-30', 'Company')
+IN('h1_26_eqp', 5883066, FSH126 + " — equity attributable to owners of the Company", '2026-06-30', 'Company')
+IN('h1_26_hybrid', 1978619, FSH126 + " — hybrid equity instrument", '2026-06-30', 'Company')
+IN('h1_26_nci', 289197, FSH126 + " — non-controlling interests", '2026-06-30', 'Company')
+IN('h1_26_inventories', 180525, FSH126 + " — inventories", '2026-06-30', 'Company')
+IN('h1_26_receivables', 1098718, FSH126 + " — trade and other receivables", '2026-06-30', 'Company')
+IN('h1_26_due_from', 842940, FSH126 + " — due from related parties", '2026-06-30', 'Company')
+IN('h1_26_payables', 990496, FSH126 + " — trade and other payables", '2026-06-30', 'Company')
+IN('h1_26_due_to', 413670, FSH126 + " — due to related parties", '2026-06-30', 'Company')
+IN('h1_26_shldr_loan', 125000, FSH126 + " — shareholder loan, current", '2026-06-30', 'Company')
+IN('h1_26_borrowings', 431353, FSH126 + " — loans and other borrowings (non-current 317,248 "
+   "and current 114,105)", '2026-06-30', 'Company')
+IN('h1_26_leases', 243647, FSH126 + " — lease liabilities (non-current 153,001 and current "
+   "90,646)", '2026-06-30', 'Company')
+IN('h1_26_pcp', 304297, FSH126 + " — purchase consideration payable on the staged "
+   "acquisition, carried against the investment reserve", '2026-06-30', 'Company')
+IN('h1_26_netdebt', 257318, MDAH126 + " — net debt of USD 257 million. FOOTED RATHER THAN "
+   "TAKEN: the stated definition names the shareholder loan and lease liabilities less "
+   "cash and omits loans and other borrowings, and only including them reproduces the "
+   "published figure — 125,000 + 243,647 + 431,353 − 542,682 = 257,318", '2026-06-30', 'Company')
+IN('h1_26_fcf', 598095, MDAH126 + " — free cash flow, earnings before interest, tax, "
+   "depreciation and amortisation less working capital movements less income tax expense "
+   "less capital expenditure; footed as 1,474,868 − 302,614 − 26,942 − 547,217",
+   '2026-06-30', 'Company')
+
 # ------------------------------------------- debt structure at the valuation date ----
 IN('q1_26_shldr_loan', 500000, Q126 + " — related-party note: unsecured revolving credit "
    "facility with the parent, closing balance after the January 2026 conversion, "
@@ -529,6 +654,27 @@ IN('osv_owned', 40, AR25 + " — offshore support vessels: 40 owned plus 9 time 
    "in or out", '2025-12-31', 'Company')
 IN('gas_owned', 20, IP26 + " — gas fleet: 15 of 20 owned vessels on long-term contracts",
    '2025-12-31', 'Company')
+# THE OWNED SHIPPING FLEET AT 30 JUNE 2026, from the first-half presentation's own
+# appendix. The subtotals foot to the stated total, which is the check that the block a
+# row belongs to was read correctly — the same footing test that caught a misplaced
+# floating-storage row in the April deck.
+FLEET_H126 = dict(tankers=52, gas=22, dry_bulk=11, container=3)
+IN('fleet_tankers_30jun26', FLEET_H126['tankers'], IPH126 + " — owned shipping fleet as at "
+   "30 June 2026: Handysize 2, MR 16, LR1 9, LR2 17, VLCC 8, footing to a stated 52",
+   '2026-06-30', 'Company')
+IN('fleet_gas_30jun26', FLEET_H126['gas'], IPH126 + " — the same slide: floating storage 2, "
+   "LNG 10, VLGC 7, VLEC 2, molten sulphur 1, footing to a stated 22", '2026-06-30', 'Company')
+IN('fleet_dry_bulk_30jun26', FLEET_H126['dry_bulk'], IPH126 + " — the same slide: Handysize "
+   "3, Supramax 4, Ultramax 4, footing to a stated 11", '2026-06-30', 'Company')
+IN('fleet_container_30jun26', FLEET_H126['container'], IPH126 + " — the same slide: 3 feeder "
+   "vessels", '2026-06-30', 'Company')
+IN('fleet_shipping_30jun26', sum(FLEET_H126.values()), IPH126 + " — owned shipping fleet "
+   "total as at 30 June 2026; the four class subtotals foot to the printed 88",
+   '2026-06-30', 'Company')
+IN('h2_26_deliveries', 14, MDAH126 + " — scheduled second-half 2026 deliveries: one very "
+   "large ammonia carrier, six very large crude carriers and three very large gas carriers "
+   "in the third quarter, then one ethane carrier, one ammonia carrier and two gas "
+   "carriers in the fourth", '2026-08-11', 'Company')
 IN('gas_lt_contracted', 15, IP26 + " — gas fleet: 15 of 20 owned vessels on long-term "
    "contracts", '2025-12-31', 'Company')
 IN('contracted_revenue_lt', 25000000, IP26 + " — long-term contracted revenue of about "
@@ -596,6 +742,87 @@ IN('q1_26_ebitda_group', 368000, MDAQ126 + " — group earnings before interest,
 IN('q1_26_netdebt', 419867, MDAQ126 + " — net debt of USD 420 million, reconciled here to "
    "the shareholder facility, third-party borrowings and lease liabilities less cash",
    '2026-03-31', 'Company')
+
+# ------------------------------ H1 2026 segment actuals, from the statements' own note ----
+# NOT from the management discussion. The operating-segments note carries revenue, direct
+# costs, the depreciation and amortisation inside each of them, and earnings before
+# interest, tax, depreciation and amortisation, for both halves, to the dollar; the
+# discussion rounds to millions and re-presents the prior-year Tankers split. The note's
+# own columns foot to the group income statement, and that is what is used.
+H1_SEG = {   # revenue26, revenue25, ebitda26, ebitda25, directcost26, directcost25, d&a26
+    'Offshore Contracting':    (667002, 658901, 210970, 314926, 463361, 391335, 82570),
+    'Offshore Services':       (371157, 284551,  89262,  76914, 307140, 230107, 34608),
+    'Offshore Projects':       (  1884, 349490, -16959,  28173,  20173, 324613,  1753),
+    'Tankers':                 (2102006, 797040, 994166, 203856, 1152141, 670056, 82901),
+    'Gas Carriers':            (186656,  82006,  92694,  71442, 125911,  61041, 29448),
+    'Dry-Bulk and Containers': (149038, 101759,  52852,  15123,  99862,  92224, 13526),
+    'Services':                (188931, 165189,  52035,  32918, 149076, 131350, 17315),
+}
+for _s, (_r26, _r25, _e26, _e25, _c26, _c25, _da26) in H1_SEG.items():
+    _k = _s.lower().replace(' ', '_').replace('-', '_')
+    IN(f'h1_26_rev_{_k}', _r26, FSH126 + " — operating segments note", '2026-06-30', 'Company')
+    IN(f'h1_25_rev_{_k}', _r25, FSH126 + " — operating segments note, comparative", '2025-06-30', 'Company')
+    IN(f'h1_26_ebitda_{_k}', _e26, FSH126 + " — operating segments note", '2026-06-30', 'Company')
+    IN(f'h1_25_ebitda_{_k}', _e25, FSH126 + " — operating segments note, comparative", '2025-06-30', 'Company')
+    IN(f'h1_26_dc_{_k}', _c26, FSH126 + " — operating segments note, direct costs", '2026-06-30', 'Company')
+    IN(f'h1_25_dc_{_k}', _c25, FSH126 + " — operating segments note, direct costs, comparative", '2025-06-30', 'Company')
+    IN(f'h1_26_da_{_k}', _da26, FSH126 + " — operating segments note, depreciation and "
+       "amortisation in direct costs plus in general and administrative expenses",
+       '2026-06-30', 'Company')
+IN('h1_26_ebitda_group', 1474868, FSH126 + " — operating segments note, group earnings "
+   "before interest, tax, depreciation and amortisation. FOOTED against the definition the "
+   "management discussion states: profit before income tax 1,199,874 plus finance costs "
+   "18,636 less finance income 5,763 plus depreciation and amortisation 262,121",
+   '2026-06-30', 'Company')
+IN('h1_25_ebitda_group', 743859, FSH126 + " — the same note, comparative", '2025-06-30', 'Company')
+IN('q2_26_ebitda_group', 1106000, MDAH126 + " — second-quarter earnings before interest, "
+   "tax, depreciation and amortisation", '2026-06-30', 'Company')
+IN('q2_26_rev_group', 2583999, FSH126 + " — three-month column of the statement of "
+   "comprehensive income", '2026-06-30', 'Company')
+
+# ----------------------------------------- the disclosed rate path, extended ----
+# Second-quarter rates were an ESTIMATE in the delivered edition, taken off the May
+# earnings call. They are now published, and the published Handysize series belongs to the
+# dry-bulk fleet rather than the two small product tankers, which is why the tanker
+# Handysize proxy is left where it was.
+IN('tce_vlcc_q2_26_actual', 291145, IPH126 + " — tanker fleet time-charter equivalent by "
+   "class, second quarter 2026", '2026-06-30', 'Company')
+IN('tce_lr2_q2_26_actual', 129568, IPH126 + " — the same slide", '2026-06-30', 'Company')
+IN('tce_lr1_q2_26_actual', 80206, IPH126 + " — the same slide", '2026-06-30', 'Company')
+IN('tce_mr_q2_26_actual', 36229, IPH126 + " — the same slide", '2026-06-30', 'Company')
+IN('tce_vlcc_q3_26', 159518, IPH126 + " — third quarter 2026 to the presentation date, on "
+   "78% of available vessel days contracted", '2026-08-11', 'Company')
+IN('tce_lr2_q3_26', 107917, IPH126 + " — third quarter 2026 to date, 58% of days", '2026-08-11', 'Company')
+IN('tce_lr1_q3_26', 89721, IPH126 + " — third quarter 2026 to date, 62% of days", '2026-08-11', 'Company')
+IN('tce_mr_q3_26', 30441, IPH126 + " — third quarter 2026 to date, 65% of days", '2026-08-11', 'Company')
+IN('cover_vlcc_q3_26', 0.78, IPH126 + " — contracted vessel days divided by total available "
+   "vessel days for the third quarter", '2026-08-11', 'Company')
+IN('cover_lr2_q3_26', 0.58, IPH126 + " — the same measure", '2026-08-11', 'Company')
+IN('cover_lr1_q3_26', 0.62, IPH126 + " — the same measure", '2026-08-11', 'Company')
+IN('cover_mr_q3_26', 0.65, IPH126 + " — the same measure", '2026-08-11', 'Company')
+
+# --------------------------------------------- guidance, SCORED and never consumed ----
+IN('g26h_rev_group', 0.25, MDAH126 + " — raised full-year 2026 guidance: mid 20 per cent "
+   "revenue growth. Recorded to be scored against this model's own build and used as an "
+   "input to nothing", '2026-08-11', 'Company')
+IN('g26h_ebitda_group', 0.65, MDAH126 + " — raised full-year 2026 guidance: mid 60 per cent "
+   "growth in earnings before interest, tax, depreciation and amortisation", '2026-08-11', 'Company')
+IN('g26h_np_group', 1.10, MDAH126 + " — raised full-year 2026 guidance: high 110 per cent "
+   "net profit growth", '2026-08-11', 'Company')
+IN('g26h_rev_shipping', 0.85, MDAH126 + " — raised 2026 segment guidance: mid 80 per cent "
+   "Shipping revenue growth", '2026-08-11', 'Company')
+IN('g26h_rev_il', -0.25, MDAH126 + " — raised 2026 segment guidance: a mid 20 per cent "
+   "reduction in Integrated Logistics revenue", '2026-08-11', 'Company')
+IN('g26h_rev_services', 0.05, MDAH126 + " — raised 2026 segment guidance: mid single-digit "
+   "Services revenue growth", '2026-08-11', 'Company')
+IN('g26h_ebitda_il', -0.25, MDAH126 + " — raised 2026 segment guidance: a mid 20 per cent "
+   "reduction in Integrated Logistics earnings", '2026-08-11', 'Company')
+IN('g26h_ebitda_shipping', 1.90, MDAH126 + " — raised 2026 segment guidance: low 190 per "
+   "cent growth in Shipping earnings", '2026-08-11', 'Company')
+IN('g26h_ebitda_services', 0.20, MDAH126 + " — raised 2026 segment guidance: low 20 per "
+   "cent growth in Services earnings", '2026-08-11', 'Company')
+IN('contracted_revenue_h126', 25000000, MDAH126 + " — forward-contracted revenue of about "
+   "USD 25 billion at 30 June 2026", '2026-06-30', 'Company')
 
 # ============================================================================
 # COST OF CAPITAL INPUTS
@@ -764,6 +991,15 @@ hist_bs = dict(
     bvps=[e / shares_mn for e in h('eqp')],
     roe=[p / e for p, e in zip(h('npa'), h('eqp'))],
 )
+# The same working-capital construction, on the reviewed 30 June 2026 sheet — the
+# valuation date's own opening invested capital, so the return on capital the terminal is
+# built off is measured on the balance sheet the bridge stands on.
+NWC_H126 = (V['h1_26_inventories'] + V['h1_26_receivables'] + V['h1_26_due_from']
+            - V['h1_26_payables'] - V['h1_26_due_to'])
+IN('nwc_h126', NWC_H126, FSH126 + " — inventories plus trade and other receivables plus "
+   "amounts due from related parties, less trade and other payables and amounts due to "
+   "related parties, at 30 June 2026. DERIVED: the same construction as every historical "
+   "year in this study", '2026-06-30', 'Company')
 hist_cf = dict(
     year=YH, ocf=h('ocf'), capex=[-V[f'capex_{y}'] for y in H], icf=h('icf'),
     dividends=[-V[f'div_paid_{y}'] for y in H],
@@ -832,28 +1068,36 @@ def _minus_months(d, n):
 
 # The twelve charters out, exactly as published: vessel, class, period, rate, expiry.
 # The start is the expiry less the disclosed period, so no date is invented.
+# THE CHARTER BOOK IS RE-READ OFF THE LATEST DECK. Eight of the eleven contracts carry
+# LATER expiries in the first-half presentation than in the April one this study was built
+# on — the crude charters by four to ten months and the LR1s by four — and one, the LR2
+# Navig8 Prosperity, has run off and is gone from the table. It is kept here because it
+# earned through the first four months of 2026 and the model prices the days each contract
+# actually runs. A charter book is a fact about the world and it moves; reading it once
+# and carrying it forward is how a study quietly stops describing the company it names.
 CHARTER_TABLE = [
-    ('Navig8 Macallister', 'lr1', 20, 19750, '2027-03-28'),
-    ('Navig8 Martinez', 'lr1', 32, 19750, '2028-03-28'),
+    ('Navig8 Macallister', 'lr1', 18, 19750, '2027-03-28'),
+    ('Navig8 Martinez', 'lr1', 32, 19750, '2028-07-28'),
     ('Navig8 Prosperity', 'lr2', 36, 30561, '2026-05-04'),
-    ('Navig8 Promise', 'lr2', 12, 32125, '2026-07-02'),
-    ('Navig8 Pride', 'lr2', 12, 32125, '2026-07-09'),
-    ('Navig8 Prestige', 'lr2', 12, 36850, '2026-10-08'),
-    ('Navig8 Providence', 'lr2', 12, 42000, '2027-01-31'),
-    ('Navig8 Passion', 'lr2', 12, 42000, '2027-02-06'),
-    ('Zakum', 'vlcc', 22, 50633, '2027-09-02'),
-    ('Hili', 'vlcc', 22, 50633, '2027-09-16'),
-    ('Arzanah', 'vlcc', 12, 70000, '2027-02-01'),
-    ('Habshan', 'vlcc', 12, 72500, '2027-02-21'),
+    ('Navig8 Promise', 'lr2', 12, 32125, '2026-08-27'),
+    ('Navig8 Pride', 'lr2', 12, 32125, '2026-10-07'),
+    ('Navig8 Prestige', 'lr2', 12, 36850, '2026-12-07'),
+    ('Navig8 Providence', 'lr2', 12, 42000, '2027-04-18'),
+    ('Navig8 Passion', 'lr2', 12, 42000, '2027-06-20'),
+    ('Zakum', 'vlcc', 22, 50633, '2028-01-02'),
+    ('Hili', 'vlcc', 22, 50633, '2028-01-16'),
+    ('Arzanah', 'vlcc', 12, 70000, '2027-04-20'),
+    ('Habshan', 'vlcc', 12, 72500, '2027-05-21'),
 ]
 CHARTERS = [dict(name=n, klass=k, rate=r, start=_minus_months(_dstr(e), p), end=_dstr(e),
                  period_months=p)
             for n, k, p, r, e in CHARTER_TABLE]
 for _c in CHARTERS:
+    _src = (IP26 if _c['name'] == 'Navig8 Prosperity' else IPH126)
     IN(f"charter_{_c['name'].lower().replace(' ', '_')}", _c['rate'],
-       IP26 + f" — charters out: {_c['name']}, a {_c['klass'].upper()} fixed for "
+       _src + f" — charters out: {_c['name']}, a {_c['klass'].upper()} fixed for "
               f"{_c['period_months']} months to {_c['end']:%d %b %Y}",
-       '2026-04-30', 'Company')
+       '2026-04-30' if _c['name'] == 'Navig8 Prosperity' else '2026-08-11', 'Company')
 
 
 # On 7 August 2026 -- the anchor date of this study, and therefore already inside the
@@ -926,7 +1170,6 @@ def implied_spot(klass, blend, fleet_n, a, b):
 # Quarterly windows, so each blend is converted on the fleet and charters of its own quarter
 Q25 = [(_dstr('2025-01-01'), _dstr('2025-04-01')), (_dstr('2025-04-01'), _dstr('2025-07-01')),
        (_dstr('2025-07-01'), _dstr('2025-10-01')), (_dstr('2025-10-01'), _dstr('2026-01-01'))]
-Q26 = [(_dstr('2026-01-01'), _dstr('2026-04-01')), (_dstr('2026-04-01'), _dstr('2026-07-01'))]
 
 TCE25 = {c: sum(TCE_FY25[c]) / 4 for c in TCE_FY25}
 TCE24 = {c: sum(TCE_FY24[c]) / 4 for c in TCE_FY24}
@@ -942,36 +1185,129 @@ HS_REL = IN('handysize_relative', 0.79, CALLQ126 + " — Handysize rates were so
             "move rather than used unadjusted", '2026-05-14', 'Company')
 TCE25['hs'] = TCE25['mr'] * HS_REL
 TCE24['hs'] = TCE24['mr'] * HS_REL
+# the 2025 quarterly grid with the small-tanker proxy filled, so every period the cost
+# stack is measured on and every period it forecasts run through one construction
+TCE_FY25_C = dict(TCE_FY25)
+TCE_FY25_C['hs'] = [r * HS_REL for r in TCE_FY25['mr']]
 BLEND_MID = {c: (TCE24[c] + TCE25[c]) / 2 for c in CLASSES}
 
 # spot rates implied by the disclosed blends, class by class
-SPOT_25 = {c: sum(implied_spot(c, TCE_FY25.get(c, [TCE25[c]] * 4)[i], FLEET_FY25[c], *Q25[i])
+# ONE SERIES, USED EVERYWHERE. The smallest class has no published rate of its own, so it
+# takes that QUARTER'S medium-range rate scaled by the disclosed relative move — the same
+# grid the cost stack below is solved on. An annual average here and a quarterly rate
+# there are two different numbers and the two would drift apart silently.
+SPOT_25 = {c: sum(implied_spot(c, TCE_FY25_C[c][i], FLEET_FY25[c], *Q25[i])
                   for i in range(4)) / 4 for c in CLASSES}
 SPOT_MID = {c: implied_spot(c, BLEND_MID[c], FLEET_FY25[c], *Q25[0]) for c in CLASSES}
+# THE SECOND QUARTER IS NO LONGER AN ESTIMATE. The delivered edition took it off the May
+# earnings call — 260,000 for a very large crude carrier against a published 291,145, and
+# 55,000 for an LR1 against 80,206 — because the quarter had not been reported. It has.
 Q1_BLEND = {c: V[f'tce_{c}_q1_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
-Q2_BLEND = {c: V[f'tce_{c}_q2_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
-Q1_BLEND['hs'] = Q1_BLEND['mr'] * HS_REL; Q2_BLEND['hs'] = Q2_BLEND['mr'] * HS_REL
+Q2_BLEND = {c: V[f'tce_{c}_q2_26_actual'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+# THE THIRD QUARTER IS DISCLOSED AND IS PART DISCLOSED. The presentation prints a rate for
+# the quarter to 11 August beside the share of available vessel days that is contracted —
+# 78 per cent of the crude fleet's days, 58 per cent of the LR2s'. The rate applies to the
+# days it covers; the balance is taken at the 2024-25 mid-cycle rate rather than at the
+# quarter's own level, which is the conservative reading and is the same mid-cycle anchor
+# the reversion path already ends on.
+Q3_BLEND = {c: V[f'cover_{c}_q3_26'] * V[f'tce_{c}_q3_26']
+               + (1 - V[f'cover_{c}_q3_26']) * BLEND_MID[c]
+            for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+for _c in ('mr', 'lr1', 'lr2', 'vlcc'):
+    IN(f'tce_{_c}_q3_26_built', round(Q3_BLEND[_c], 0), IPH126 + " — the disclosed "
+       "third-quarter rate on the disclosed share of contracted days, with the uncovered "
+       "balance at the 2024-25 mid-cycle rate for the class", '2026-08-11', 'Company')
+for _d in (Q1_BLEND, Q2_BLEND, Q3_BLEND):
+    _d['hs'] = _d['mr'] * HS_REL
+Q26 = [(_dstr('2026-01-01'), _dstr('2026-04-01')), (_dstr('2026-04-01'), _dstr('2026-07-01')),
+       (_dstr('2026-07-01'), _dstr('2026-10-01')), (_dstr('2026-10-01'), _dstr('2027-01-01'))]
 SPOT_Q1 = {c: implied_spot(c, Q1_BLEND[c], FLEET[c], *Q26[0]) for c in CLASSES}
 SPOT_Q2 = {c: implied_spot(c, Q2_BLEND[c], FLEET[c], *Q26[1]) for c in CLASSES}
+SPOT_Q3 = {c: implied_spot(c, Q3_BLEND[c], FLEET[c], *Q26[2]) for c in CLASSES}
 
-# the running cost is solved so the same construction reproduces reported 2025 earnings
+
+def tce_revenue(fleet, blends, windows):
+    """Charter-equivalent revenue the OWNED fleet earns over a set of windows, USD'000.
+
+    One construction, used for every period the model measures a parameter on and for
+    every period it forecasts, so the historical fit and the forward build cannot be on
+    two different bases."""
+    tot = 0.0
+    for blend, (a, b) in zip(blends, windows):
+        d = (b - a).days
+        tot += sum(fleet[c] * blend[c] for c in CLASSES) * d
+    return tot / 1000.0
+
+# ============================================================================
+# THE TANKER COST STACK — FIXED AND VARIABLE, MEASURED ACROSS THREE DISCLOSED PERIODS
+# ============================================================================
+# THE DELIVERED EDITION SET EARNINGS EQUAL TO THE OWNED FLEET'S CHARTER-EQUIVALENT REVENUE
+# LESS A SINGLE RUNNING COST PER VESSEL-DAY, SOLVED ON ONE YEAR. That construction has an
+# earnings leverage of exactly 1.0 on the rate, and it is now falsified by the company's
+# own half: at the published rates the 52 owned tankers earned USD 806,230 thousand of
+# charter-equivalent revenue in the six months to 30 June 2026 and the segment reported
+# EARNINGS of USD 994,166 thousand — more than the fleet's own charter-equivalent revenue,
+# before any running cost at all. The segment earns on chartered-in and relet tonnage and
+# on parent-facing service contracts alongside the ships it owns, and that block moves
+# with the same rate. A model that cannot express it cannot reproduce the period.
+#
+# So the cost side is built as a stack rather than as one solved number: a FIXED base a
+# year, escalated on the house ladder, and a VARIABLE component per unit of the owned
+# fleet's charter-equivalent revenue. Two parameters, solved from the AUDITED 2025 year and
+# the REVIEWED first half of 2026, with the reviewed first half of 2025 HELD OUT.
 vessel_days_25 = sum(FLEET_FY25.values()) * 365
-tce_rev_25 = sum(FLEET_FY25[c] * TCE25[c] for c in FLEET_FY25) * 365 / 1000.0
-opex_day_25 = (tce_rev_25 - V['seg_ebitda_tankers_fy25']) * 1000.0 / vessel_days_25
-IN('tnk_opex_day', round(opex_day_25, 0), "Implied all-in running cost per vessel per day, "
-   "solved so that the owned fleet's charter-equivalent revenue less running cost "
-   "reproduces the reported Tankers earnings before interest, tax, depreciation and "
-   "amortisation for 2025", '2025-12-31', 'Company')
+tce_rev_25 = tce_revenue(FLEET_FY25, [{c: TCE_FY25_C[c][i] for c in CLASSES} for i in range(4)], Q25)
+tce_rev_h125 = tce_revenue(FLEET_FY25, [{c: TCE_FY25_C[c][i] for c in CLASSES} for i in range(2)], Q25[:2])
+tce_rev_h126 = tce_revenue(FLEET, [Q1_BLEND, Q2_BLEND], Q26[:2])
+IN('tnk_tce_rev_fy25', round(tce_rev_25, 0), "Charter-equivalent revenue the owned tanker "
+   "fleet earned in 2025 — the fleet at 31 December 2025 priced quarter by quarter on the "
+   "company's own published time-charter-equivalent rates for its classes",
+   '2025-12-31', 'Company')
+IN('tnk_tce_rev_h126', round(tce_rev_h126, 0), "The same construction over the six months "
+   "to 30 June 2026, on the fleet the company owned at that date and the published "
+   "second-quarter rates", '2026-06-30', 'Company')
+IN('tnk_tce_rev_h125', round(tce_rev_h125, 0), "The same construction over the six months "
+   "to 30 June 2025 — the HELD-OUT period, used to test the stack and not to fit it",
+   '2025-06-30', 'Company')
+_h = 181.0 / 365.0
+TNK_LEV = ((V['h1_26_ebitda_tankers'] - _h * V['seg_ebitda_tankers_fy25'])
+           / (tce_rev_h126 - _h * tce_rev_25))
+TNK_FIXED = TNK_LEV * tce_rev_25 - V['seg_ebitda_tankers_fy25']
 gross_up_25 = V['seg_rev_tankers_fy25'] / tce_rev_25
+gross_up_h125 = V['h1_25_rev_tankers'] / tce_rev_h125
+gross_up_26 = V['h1_26_rev_tankers'] / tce_rev_h126
+TNK_VAR = gross_up_26 - TNK_LEV
+IN('tnk_cost_fixed', TNK_FIXED, "The fixed component of the Tankers cost stack, "
+   "USD thousand a year before escalation — crew, technical management, insurance, repairs "
+   "and the shore organisation that do not move with the rate. SOLVED SIMULTANEOUSLY with "
+   "the variable component from two disclosed periods: the audited 2025 year and the "
+   "reviewed six months to 30 June 2026", '2026-06-30', 'Company')
+IN('tnk_cost_var', TNK_VAR, "The variable component of the Tankers cost stack, "
+   "per unit of the owned fleet's charter-equivalent revenue — voyage costs, charter-in "
+   "hire and the cost of the relet and parent-facing book, all of which scale with the "
+   "tonnage traded. Solved with the fixed component from the same two periods",
+   '2026-06-30', 'Company')
 IN('tnk_grossup_25', round(gross_up_25, 3), "Ratio of reported Tankers revenue to "
    "owned-fleet charter-equivalent revenue in 2025 — the voyage-cost and low-margin relet "
    "and third-party trading content of gross revenue", '2025-12-31', 'Company')
-gross_up_26 = 1.60
-IN('tnk_grossup_26', gross_up_26, "The same ratio for 2026 onward. Reported first-quarter "
-   "revenue was flat year on year while the rate earned per vessel more than doubled, "
-   "because low-margin relet and third-party trading fell away; the ratio is set well below "
-   "the 2025 level to reflect that and is presentational only — it moves revenue, never "
-   "earnings", '2026-03-31', 'Company')
+IN('tnk_grossup_h125', round(gross_up_h125, 3), "The same ratio over the six months to 30 "
+   "June 2025", '2025-06-30', 'Company')
+IN('tnk_grossup_26', gross_up_26, "The same ratio for 2026 onward, MEASURED on "
+   "the reviewed six months to 30 June 2026 rather than assumed. The delivered edition "
+   "carried 1.60, inferred from a single quarter in which reported revenue was flat year "
+   "on year while the rate earned per vessel more than doubled. The half says 2.61, the "
+   "2025 year 2.73 and the first half of 2025 2.79 — the quarter was the outlier, and its "
+   "own ratio of 1.51 against the second quarter's 3.16 is why one quarter is not an "
+   "anchor for this line. The LATEST REVIEWED period is adopted and it is the LOWEST of "
+   "the three, so the forecast faces the stricter comparison", '2026-06-30', 'Company')
+# THE HELD-OUT PERIOD, reported rather than hidden.
+_h125_rev = gross_up_26 * tce_rev_h125
+_h125_cost = TNK_FIXED * _h + TNK_VAR * tce_rev_h125
+_h125_eb = _h125_rev - _h125_cost
+IN('tnk_holdout_ebitda_error', round(_h125_eb / V['h1_25_ebitda_tankers'] - 1, 4),
+   "The stack's error on the HELD-OUT reviewed six months to 30 June 2025: it reproduces "
+   "that period's Tankers earnings to within this fraction, understating them. Two "
+   "parameters fitted on two periods and tested on a third", '2025-06-30', 'Company')
 
 # [R-MACRO-01] THE RUNNING-COST ESCALATOR IS THE HOUSE LADDER, YEAR BY YEAR. A single
 # 2.0 per cent rate was carried for all five years and the house path's own 2026 figure is
@@ -994,119 +1330,281 @@ for _r in OPEX_PATH:
 IN('opex_escalation_path', OPEX_PATH, "The house calendar ladder 2026-2030, compounded "
    "into opex_index and applied to every dirham cost line. A study may not carry an "
    "inflation number of its own", _PATH.as_of, 'Country')
-H2_26_REVERSION = IN('h2_2026_reversion', 0.50, "Weight placed on the 2025 implied spot "
-                     "rate, against the rate implied by the first quarter of 2026, in "
-                     "setting the second half of 2026", '2026-08-09', 'Industry')
+# THE REVERSION WEIGHT IS UNCHANGED AND ITS ANCHOR HAS MOVED. The parameter was 0.50 and
+# stays 0.50; what it is applied to is now the DISCLOSED third quarter rather than the
+# first, because the third quarter is the latest rate the company has published. Moving a
+# free parameter at the same time as moving its anchor would leave neither testable.
+H2_26_REVERSION = IN('h2_2026_reversion', 0.50, "Weight placed on the 2024-25 mid-cycle "
+                     "rate, against the disclosed third-quarter 2026 rate, in setting the "
+                     "fourth quarter of 2026. The value is unchanged from the delivered "
+                     "edition; the rate it reverts FROM is the latest disclosed quarter "
+                     "rather than the first", '2026-08-11', 'Industry')
+Q4_BLEND = {c: (1 - H2_26_REVERSION) * Q3_BLEND[c] + H2_26_REVERSION * BLEND_MID[c]
+            for c in CLASSES}
+SPOT_Q4 = {c: implied_spot(c, Q4_BLEND[c], FLEET[c], *Q26[3]) for c in CLASSES}
+_QD26 = [(b - a).days for a, b in Q26]
+SPOT_26 = {c: sum(sq[c] * d for sq, d in zip((SPOT_Q1, SPOT_Q2, SPOT_Q3, SPOT_Q4), _QD26))
+              / sum(_QD26) for c in CLASSES}
+H2_26 = (Q26[2][0], Q26[3][1])          # the second half of 2026 as one window
+
+
+def _spot_days(klass, a, b):
+    cd, _ = charter_days(klass, a, b)
+    return FLEET[klass] * (b - a).days - cd + acquired_days(klass, a, b)
+
+
+# The half's spot rate per class is the SPOT-DAY weighted average of its two quarters, so
+# one window over the half reproduces the two quarters exactly rather than approximately —
+# which matters because the six crude carriers bought in August earn from 1 September and
+# therefore have more days in the fourth quarter than in the third.
+SPOT_H2_26 = {c: ((_spot_days(c, *Q26[2]) * SPOT_Q3[c] + _spot_days(c, *Q26[3]) * SPOT_Q4[c])
+                  / (_spot_days(c, *Q26[2]) + _spot_days(c, *Q26[3]))) for c in CLASSES}
 
 
 def spot_path(mode):
-    """Implied SPOT rate per class, FY2026-FY2030 — never the published blend."""
+    """Implied SPOT rate per class, FY2026-FY2030 — never the published blend.
+
+    2026 is the day-weighted average of its own four quarters: two REPORTED, one
+    DISCLOSED to the presentation date on the share of days it covers, and the fourth
+    reverting halfway to mid-cycle. From there the glide runs to mid-cycle by 2030."""
     out = {}
     for c in CLASSES:
-        h2 = SPOT_Q1[c] * (1 - H2_26_REVERSION) + SPOT_25[c] * H2_26_REVERSION
-        y26 = (SPOT_Q1[c] + SPOT_Q2[c] + 2 * h2) / 4.0
+        y26 = SPOT_26[c]
         end = SPOT_MID[c] * (1.0 if mode == 'reversion' else 1.30)
         out[c] = [y26] + [y26 + (end - y26) * i / 4.0 for i in range(1, 5)]
     return out
 
 
+def tce_window(a, b, rate_by_class):
+    """Owned-fleet charter-equivalent revenue over [a, b), USD'000.
+
+    Chartered vessels earn their own contracted rate for exactly the days their own
+    contract runs; everything else, including the ships bought in August 2026, earns the
+    rate supplied for its class."""
+    tot = 0.0
+    for c in CLASSES:
+        cd, crev = charter_days(c, a, b)
+        sd = FLEET[c] * (b - a).days - cd + acquired_days(c, a, b)
+        tot += (crev + sd * rate_by_class[c]) / 1000.0
+    return tot
+
+
 def tanker_leg(mode):
-    """Every vessel priced on its own terms: chartered vessels at their own rate for
-    exactly the days their own contract runs, everything else at the implied spot rate."""
+    """The half that is reported is taken as reported; the rest is built.
+
+    [R-ANCHOR-01]: 2026 is the REVIEWED first half plus a modelled second half, so no part
+    of a period the company has already reported is replaced by a forecast of it."""
     spot = spot_path(mode)
-    rev, ebitda = [], []
-    for i, y in enumerate(range(2026, 2031)):
+    rev, ebitda, tce = [], [], []
+    # --- 2026: reported half + built half -----------------------------------
+    h2_tce = tce_window(H2_26[0], H2_26[1], SPOT_H2_26)
+    tce.append(tce_rev_h126 + h2_tce)
+    rev.append(V['h1_26_rev_tankers'] + gross_up_26 * h2_tce)
+    ebitda.append(V['h1_26_ebitda_tankers']
+                  + gross_up_26 * h2_tce
+                  - (TNK_FIXED * OPEX_IDX[0] * (184.0 / 365.0) + TNK_VAR * h2_tce))
+    # --- 2027-2030: built in full -------------------------------------------
+    for i, y in enumerate(range(2027, 2031), start=1):
         a, b = _date.date(y, 1, 1), _date.date(y + 1, 1, 1)
-        yr_days = (b - a).days
-        tce_rev = 0.0
-        for c in CLASSES:
-            cd, crev = charter_days(c, a, b)
-            # the ships bought in August 2026 trade at spot from delivery
-            sd = FLEET[c] * yr_days - cd + acquired_days(c, a, b)
-            tce_rev += (crev + sd * spot[c][i]) / 1000.0
-        opex = vessel_days_25 * opex_day_25 * OPEX_IDX[i] / 1000.0
+        tce_rev = tce_window(a, b, {c: spot[c][i] for c in CLASSES})
+        tce.append(tce_rev)
         rev.append(tce_rev * gross_up_26)
-        ebitda.append(tce_rev - opex)
+        ebitda.append(tce_rev * gross_up_26
+                      - (TNK_FIXED * OPEX_IDX[i] + TNK_VAR * tce_rev))
     return rev, ebitda, spot
 
 
 # --- gas carriers: contracted vessel-years x implied day rate ------------------
+# THE CONTRACT TABLE IS RE-READ OFF THE LATEST DECK AND IT IS LOWER, NOT HIGHER. The
+# delivered edition carried 10.75, 13.0, 21.25, 25.0 and 25.0 consolidated vessel-years
+# from the April 2026 presentation. The first-half deck prints the same table quarter by
+# quarter to 2029 and its own TOTAL row FOOTS to the component rows in every one of the
+# sixteen quarters — and it shows the four spot liquefied-natural-gas carriers coming OFF
+# contract in June 2026, which the April table did not. Consolidated of the AW Shipping
+# joint venture, whose profit is equity-accounted and removed below, the quarters are:
+GAS_Q = {                     # quarterly consolidated vessel counts, IPH126 gas fleet slide
+    2026: [2 + 4 + 1 + 0, 2 + 4 + 1 + 5, 2 + 0 + 1 + 5, 2 + 0 + 1 + 5],
+    2027: [2 + 0 + 1 + 5] * 4,
+    2028: [2 + 0 + 1 + 5, 2 + 0 + 1 + 5 + 3, 2 + 0 + 1 + 5 + 7, 2 + 0 + 1 + 5 + 8],
+    2029: [2 + 1 + 5 + 8, 2 + 1 + 5 + 8, 2 + 1 + 5 + 8, 2 + 0 + 5 + 8],
+}
+GAS_VY_H1D = [sum(GAS_Q[y]) / 4.0 for y in (2026, 2027, 2028, 2029)]
+GAS_VY_H1D.append(float(GAS_Q[2029][3]))
+# AND IT IS NOT ADOPTED, BECAUSE WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS
+# LARGE. Its own column heading is "No. of Vessels CONTRACTED", not vessels in service, and
+# the change from the April table is entirely the four liquefied-natural-gas carriers whose
+# firm period the deck now shows ENDING IN JUNE 2026 — while a bullet on the same slide
+# says five Das carriers were "progressively moved to long-term contracts with ADNOC Gas
+# from June 2026". Whether those four ships stop EARNING or merely stop being counted as
+# contracted is not decidable from this page: the total row foots with both rows populated
+# in the second quarter, which is consistent with two separate sets of ships and also with
+# a transition counted twice. A driver worth USD 1.7bn of 2029 revenue is not rebuilt on a
+# reading of a column heading. The APRIL composition is kept, the first half is taken from
+# the quarters the two tables AGREE on, and the difference is priced as a contested
+# judgement rather than resolved silently. SIGCM clause 8: stop and inform.
 GAS_VY = [10.75, 13.0, 21.25, 25.0, 25.0]
 # the five gas carriers bought on 7 August 2026: three delivering in the third quarter,
-# two newbuildings in the fourth, so 2026 carries only the part-year
+# two newbuildings in the fourth, so 2026 carries only the part-year. They are NOT in the
+# contract table above — its very large gas carrier row runs flat at one throughout.
 GAS_VY = [v + a for v, a in zip(GAS_VY, [3 * (4 / 12.0) + 2 * (1.5 / 12.0), 5, 5, 5, 5])]
+GAS_VY_H1 = IN('gas_vessel_years_h126', sum(GAS_Q[2026][:2]) / 2.0, IPH126 + " — the gas "
+   "fleet contract table's own first and second quarters of 2026, consolidated of the "
+   "joint venture: seven vessels and then twelve as the five Das carriers enter. DERIVED "
+   "from the disclosed table rather than assumed", '2026-06-30', 'Company')
 IN('gas_vessel_years_26', GAS_VY[0], IP26 + " — gas fleet contract table, consolidated "
-   "vessel-quarters averaged over the year (floating storage 2, the four spot liquefied "
-   "natural gas carriers to mid-year, one very large gas carrier, the ethane carrier ramp "
-   "and five Das carriers from the second quarter)", '2026-04-30', 'Company')
+   "vessel-quarters averaged over the year (floating storage 2, four liquefied natural gas "
+   "carriers, one very large gas carrier and five Das carriers from the second quarter), "
+   "plus the part-year on the August purchase", '2026-04-30', 'Company')
 IN('gas_vessel_years_27', GAS_VY[1], IP26 + " — the same table for 2027", '2026-04-30', 'Company')
 IN('gas_vessel_years_28', GAS_VY[2], IP26 + " — the same table for 2028, including the "
    "Ruwais carriers entering service", '2026-04-30', 'Company')
 IN('gas_vessel_years_29', GAS_VY[3], IP26 + " — the same table for 2029", '2026-04-30', 'Company')
 IN('gas_vessel_years_30', GAS_VY[4], IP26 + " — held at the 2029 level; the contract table "
    "ends in 2029", '2026-04-30', 'Company')
+for _i, _y in enumerate((2026, 2027, 2028, 2029, 2030)):
+    IN(f'gas_vessel_years_contracted_{_y}', GAS_VY_H1D[_i], IPH126 + " — the SAME table as "
+       "read in the first-half deck, whose heading is 'No. of Vessels Contracted' and "
+       "which shows the four liquefied-natural-gas carriers' firm period ending in June "
+       "2026. Published beside the adopted figure and priced as a contested judgement; an "
+       "input to nothing", '2026-06-30', 'Company')
 gas_vy_25 = 8.0
 IN('gas_vessel_years_25', gas_vy_25, IP26 + " — consolidated gas vessels in service through "
    "2025 (two floating storage units, four liquefied natural gas carriers, one very large "
    "gas carrier and the first ethane carrier), excluding the six gas carriers held in the "
    "50% joint venture", '2025-12-31', 'Company')
 gas_rate_25 = V['seg_rev_gas_carriers_fy25'] * 1000.0 / (gas_vy_25 * 365)
-IN('gas_rate_day', round(gas_rate_25, 0), "Implied average charter revenue per gas vessel "
-   "per day, solved from reported 2025 Gas Carriers revenue over consolidated vessel-years. "
-   "Per-vessel rates are not disclosed, so this is the finest level the disclosure supports",
-   '2025-12-31', 'Company')
+IN('gas_rate_day_fy25', round(gas_rate_25, 0), "Implied average charter revenue per gas "
+   "vessel per day over 2025 — a MEMORANDUM, published so the step to the half below can "
+   "be read, and an input to nothing", '2025-12-31', 'Company')
 JV_GAS = IN('jv_gas_fy25', 21313, FS25 + " — operating segments note: the share of profit from the "
    "AW Shipping joint venture carried inside the disclosed Gas Carriers earnings",
    '2025-12-31', 'Company')
 JV_SERVICES = IN('jv_services_fy25', 16079, FS25 + " — operating segments note: the share of profit from "
    "joint ventures and associates carried inside the disclosed Services earnings",
    '2025-12-31', 'Company')
-GAS_MARGIN = IN('gas_margin', 0.70, "Gas Carriers earnings margin held near the 2025 "
-                "outcome of 72% net of joint-venture profit, reflecting that fifteen of "
-                "twenty owned vessels sit on long-term contracts", '2026-08-09', 'Company')
+# THE GAS MARGIN WAS A TYPED INPUT AND IS NOW THE HALF'S OWN MEASURED OUTCOME. It was set
+# at 0.70 "near the 2025 outcome of 72%"; the reviewed six months to 30 June 2026 delivered
+# 0.4966 on revenue that grew 128 per cent, because the new carriers entered on charters
+# rather than on the 2025 book's terms. A margin held near a year that is now two periods
+# behind is a margin nobody is measuring.
+GAS_MARGIN = IN('gas_margin', round(V['h1_26_ebitda_gas_carriers']
+                                    / V['h1_26_rev_gas_carriers'], 4),
+                "Gas Carriers earnings margin, MEASURED on the reviewed six months to 30 "
+                "June 2026 rather than typed. The delivered edition carried 0.70 on the "
+                "2025 outcome; the half printed this, on revenue up 128 per cent",
+                '2026-06-30', 'Company')
+# The half's own joint-venture share, annualised, replaces the 2025 figure in the
+# double-count removal — the AW Shipping ethane carriers and the Integr8 bunkering
+# business both stepped up and removing last year's number would leave part of an
+# equity-accounted profit inside a consolidated cash-flow forecast.
+JV_GAS_H1 = IN('jv_gas_h126', 12440 * 2, FSH126 + " — operating segments note: the share of "
+   "profit from joint ventures and associates carried inside the disclosed Gas Carriers "
+   "earnings for the half, annualised", '2026-06-30', 'Company')
+JV_SERVICES_H1 = IN('jv_services_h126', 26080 * 2, FSH126 + " — operating segments note: the "
+   "share of profit from joint ventures and associates carried inside the disclosed "
+   "Services earnings for the half, annualised", '2026-06-30', 'Company')
+# THE RATE IS RE-ANCHORED ON THE HALF, exactly as every other unit driver is. Solved on
+# 2025 it was 61,573 a vessel-day; the reviewed six months to 30 June 2026 imply 95,928 on
+# the same construction, because the new liquefied-gas carriers entered on their own terms
+# and spot rates rose. A rate solved on a year two periods back is a rate nobody is
+# measuring.
+IN('gas_rate_day', gas_rate_25, "Implied average charter revenue per gas vessel per day, "
+   "solved from reported 2025 Gas Carriers revenue over consolidated vessel-years. "
+   "Per-vessel rates are not disclosed, so this is the finest level the disclosure "
+   "supports, and it is UNCHANGED from the delivered edition", '2025-12-31', 'Company')
+# THE SAME SOLVE ON THE REVIEWED HALF GIVES 108,536, AND IT IS NOT ADOPTED. The denominator
+# in both cases is the CONTRACTED vessel count the fleet slide publishes, and the numerator
+# is the whole segment's revenue — including vessels that are not on that list and the ship
+# management and pooling income that sits in this unit. Between 2025 and the half the
+# non-contracted share of that revenue grew, so the ratio rose for a reason that is a MIX
+# rather than a rate. Adopting it would carry a mix shift into every forecast year as if it
+# were a price. Published as a memorandum, priced in the contested-judgement record, and an
+# input to nothing.
+gas_rate_h1 = V['h1_26_rev_gas_carriers'] * 1000.0 / (GAS_VY_H1 * 181)
+IN('gas_rate_day_h126', round(gas_rate_h1, 0), "The same construction on the reviewed six "
+   "months to 30 June 2026 — a MEMORANDUM, not adopted, because its denominator counts "
+   "CONTRACTED vessels while its numerator is the whole unit's revenue", '2026-06-30',
+   'Company')
+GAS_RATE_PATH = [gas_rate_25] * 5
 
-# --- the remaining units: growth and margin drivers ---------------------------
-# Every unit below is anchored on what it actually earned in the first quarter of 2026,
-# annualised, and then grown on its own driver. Where the company has given a figure for
-# 2026 — engineering and construction revenue of USD 100-150 million — that figure is used
-# rather than a growth rate.
-DRV = {
-    'Offshore Contracting':    dict(rev=[1248192, 1298120, 1350044, 1404046, 1460208],
-                                    mar=[0.385, 0.415, 0.430, 0.430, 0.430]),
-    'Offshore Services':       dict(rev=[662856, 696000, 730800, 767340, 805707],
-                                    mar=[0.287, 0.290, 0.290, 0.290, 0.290]),
-    'Offshore Projects':       dict(rev=[125000, 200000, 250000, 275000, 300000],
-                                    mar=[-0.020, 0.060, 0.065, 0.065, 0.065]),
-    'Dry-Bulk and Containers': dict(rev=[197164, 201107, 205129, 209232, 213417],
-                                    mar=[0.184, 0.184, 0.184, 0.184, 0.184]),
-    'Services':                dict(rev=[355372, 369587, 384370, 399745, 415735],
-                                    mar=[0.200, 0.200, 0.200, 0.200, 0.200]),
-}
+# EVERY REMAINING SEGMENT IS ANCHORED ON THE REVIEWED HALF, NOT ON THE QUARTER AND NOT ON
+# A MARGIN SOMEBODY TYPED. 2026 is the half the company REPORTED plus a second half built
+# at the same revenue and the same margin the half itself delivered; the years after it
+# grow on the segment's own driver. Where a one-off is DISCLOSED in the half it is named
+# and removed, and nowhere else. The delivered edition carried margins of 0.385, 0.287,
+# 0.184 and 0.200 against halves that printed 0.316, 0.241, 0.355 and 0.275 — four typed
+# rates against four measured ones, in both directions.
+SEG_ONEOFF_26 = {
+    'Offshore Contracting': 47531,   # the expected-credit-loss provision, disclosed in the
+}                                    # segment note as this unit's own charge
+SEG_GROWTH = {'Offshore Contracting': 0.04, 'Offshore Services': 0.05,
+              'Offshore Projects': 0.00, 'Dry-Bulk and Containers': 0.02,
+              'Services': 0.04}
+# Dry-bulk charter rates spiked exactly as tanker rates did — the company's own published
+# Supramax and Ultramax time-charter equivalent ran 11,067 to 16,701 through 2025 and
+# 46,285 in the second quarter of 2026 — so this unit reverts to its 2025 outcome by 2030
+# on the same mechanism and the same clock as the tanker leg, rather than extrapolating a
+# spike. No other unit reverts, because no other unit's revenue is set in a spot market.
+SEG_REVERT_FY25 = {'Dry-Bulk and Containers'}
+DRV, DRV_WHY = {}, {}
+for _s in ('Offshore Contracting', 'Offshore Services', 'Offshore Projects',
+           'Dry-Bulk and Containers', 'Services'):
+    _k = _s.lower().replace(' ', '_').replace('-', '_')
+    _h1r = V[f'h1_26_rev_{_k}']
+    _h1e = V[f'h1_26_ebitda_{_k}'] + SEG_ONEOFF_26.get(_s, 0)
+    _m26 = _h1e / _h1r if _h1r else 0.0
+    if _s == 'Offshore Projects':
+        _m26 = 0.0        # the half lost money on cost overruns; nothing supports a margin
+    _r26 = _h1r * 2.0
+    _e26 = V[f'h1_26_ebitda_{_k}'] + (_r26 - _h1r) * _m26   # reported half + built half
+    _g = SEG_GROWTH[_s]
+    _rev = [_r26 * (1 + _g) ** i for i in range(5)]
+    if _s in SEG_REVERT_FY25:
+        _r25, _e25 = V[f'seg_rev_{_k}_fy25'], V[f'seg_ebitda_{_k}_fy25']
+        _m25 = _e25 / _r25
+        _rev = [_r26 + (_r25 - _r26) * i / 4.0 for i in range(5)]
+        _mar = [_m26 + (_m25 - _m26) * i / 4.0 for i in range(5)]
+    else:
+        _mar = [_m26] * 5
+    _eb = [_e26] + [r * m for r, m in zip(_rev[1:], _mar[1:])]
+    DRV[_s] = dict(rev=_rev, mar=_mar, ebitda=_eb)
 DRV_WHY = {
-    'Offshore Contracting': 'First-quarter revenue annualised, then 4% a year as further '
+    'Offshore Contracting': 'The reviewed six months to 30 June 2026 as reported, plus a '
+                            'second half at the same revenue and at the margin the half '
+                            'itself delivered BEFORE the expected-credit-loss provision '
+                            'disclosed in the segment note, then 4% a year as further '
                             'jack-up barges and support vessels are deployed on the '
-                            'contracted programme. The 2026 margin is the first quarter\'s '
-                            'own margin before the one-off receivable provision, recovering '
-                            'toward the 2025 level as utilisation normalises.',
-    'Offshore Services': 'First-quarter revenue annualised, then 5% a year on the support-'
-                         'vessel fleet growth already under way. Margin held at the level '
-                         'the first quarter delivered.',
-    'Offshore Projects': 'The company\'s own stated range of USD 100-150 million of '
-                         'engineering and construction revenue for 2026 after the large '
-                         'island project completed, then a recovery as new awards replace '
-                         'it. This is the least visible line in the model.',
-    'Dry-Bulk and Containers': 'First-quarter revenue annualised and grown 2% a year; the '
-                               'container vessels sit on a fifteen-year contract and the '
-                               'bulk carriers earn charter rates that have been recovering.',
-    'Services': 'First-quarter revenue annualised and grown 4% a year. The margin reflects '
-                'the warehouse activity moved into this unit and the growing profit share '
-                'from the bunkering associate.',
+                            'contracted programme. The margin is held flat rather than '
+                            'recovering toward the 2025 level, because nothing disclosed '
+                            'measures a recovery in jack-up utilisation or pricing.',
+    'Offshore Services': 'The reviewed half as reported plus a second half at the same '
+                         'revenue and the same margin, then 5% a year on the support-vessel '
+                         'fleet growth already under way. The margin is the half\'s own.',
+    'Offshore Projects': 'The reviewed half as reported plus a second half at the same '
+                         'revenue and no margin, held FLAT thereafter. The large island '
+                         'project completed in the fourth quarter of 2025 and NO NEW '
+                         'AWARD IS DISCLOSED; the two projects the company names are '
+                         'loss-making. The delivered edition carried USD 125 million of '
+                         '2026 revenue recovering to 300 million by 2030 on a company '
+                         'range the half has since falsified — the unit earned USD 1.9 '
+                         'million in six months. A recovery nothing discloses is not '
+                         'forecast.',
+    'Dry-Bulk and Containers': 'The reviewed half as reported plus a second half on the '
+                               'same terms, then a straight-line reversion of both revenue '
+                               'and margin to the 2025 outcome by 2030. Bulk charter rates '
+                               'spiked with tanker rates and the company publishes the '
+                               'series that shows it; the container vessels sit on a '
+                               'fifteen-year contract and do not.',
+    'Services': 'The reviewed half as reported plus a second half on the same terms, then '
+                '4% a year. The margin is the half\'s own and reflects the warehouse '
+                'activity moved into this unit; the profit share from the bunkering '
+                'associate is removed separately so it is not counted twice.',
 }
 for _s, _d in DRV.items():
     _k = _s.lower().replace(' ', '_').replace('-', '_')
     for _i, _y in enumerate(YF):
-        IN(f'drv_rev_{_k}_{_y[2:]}', _d['rev'][_i], DRV_WHY[_s], '2026-08-09', 'Company')
-        IN(f'drv_mar_{_k}_{_y[2:]}', _d['mar'][_i], DRV_WHY[_s], '2026-08-09', 'Company')
+        IN(f'drv_rev_{_k}_{_y[2:]}', _d['rev'][_i], DRV_WHY[_s], '2026-06-30', 'Company')
+        IN(f'drv_mar_{_k}_{_y[2:]}', _d['mar'][_i], DRV_WHY[_s], '2026-06-30', 'Company')
 
 
 def build_forecast(mode):
@@ -1120,9 +1618,16 @@ def build_forecast(mode):
     central question and it is published both ways rather than blended.
     """
     tnk_rev, tnk_ebitda, tce = tanker_leg(mode)
-    gas_rev = [GAS_VY[i] * 365 * gas_rate_25 * OPEX_IDX[i] / 1000.0
-               for i in range(5)]
-    gas_ebitda = [r * GAS_MARGIN for r in gas_rev]
+    # 2026 is the REPORTED half plus a half built on the vessel-year ramp; the years
+    # after it scale on the same ramp off that anchor.
+    _gvy_h2 = 2.0 * GAS_VY[0] - GAS_VY_H1          # the year's average implies the half
+    _g26 = (V['h1_26_rev_gas_carriers']
+            + _gvy_h2 * 184 * GAS_RATE_PATH[0] * OPEX_IDX[0] / 1000.0)
+    gas_rev = [_g26] + [GAS_VY[i] * 365 * GAS_RATE_PATH[i] * OPEX_IDX[i] / 1000.0
+                        for i in range(1, 5)]
+    gas_ebitda = [V['h1_26_ebitda_gas_carriers']
+                  + (gas_rev[0] - V['h1_26_rev_gas_carriers']) * GAS_MARGIN] \
+                 + [r * GAS_MARGIN for r in gas_rev[1:]]
     # The company's disclosed segment earnings INCLUDE its share of joint-venture and
     # associate profit -- verifiable exactly in the 2025 segment note, where Gas Carriers'
     # operating profit plus its own depreciation falls short of its disclosed earnings by
@@ -1130,14 +1635,14 @@ def build_forecast(mode):
     # Navig8 share. Those earnings are equity-accounted, not consolidated cash flow, and
     # the equity bridge already adds the joint ventures at carrying value. Leaving them in
     # the forecast would count them twice, so they are removed here.
-    gas_ebitda = [e - JV_GAS * OPEX_IDX[i]
+    gas_ebitda = [e - JV_GAS_H1 * OPEX_IDX[i]
                   for i, e in enumerate(gas_ebitda)]
     seg = {'Tankers': dict(rev=tnk_rev, ebitda=tnk_ebitda),
            'Gas Carriers': dict(rev=gas_rev, ebitda=gas_ebitda)}
     for s_, d in DRV.items():
-        eb = [r * m for r, m in zip(d['rev'], d['mar'])]
+        eb = list(d['ebitda'])
         if s_ == 'Services':                       # same joint-venture removal
-            eb = [e - JV_SERVICES * OPEX_IDX[i]
+            eb = [e - JV_SERVICES_H1 * OPEX_IDX[i]
                   for i, e in enumerate(eb)]
         seg[s_] = dict(rev=list(d['rev']), ebitda=eb)
     grp = {g: dict(rev=[sum(seg[s_]['rev'][i] for s_ in SEGS if SEG_GROUP[s_] == g)
@@ -1150,19 +1655,31 @@ def build_forecast(mode):
 
 
 def guidance_check(f):
-    """What management guided for 2026, against what this build produces for 2026."""
-    gkey = {'Integrated Logistics': 'il', 'Shipping': 'ship', 'Services': 'serv'}
+    """What management guided for 2026, against what this build produces for 2026.
+
+    GUIDANCE IS SCORED AND NEVER CONSUMED. Nothing below is an input to anything: the
+    build is compared with the guidance so a reader can see the disagreement, and the
+    guidance read is the RAISED one published with the half on 11 August 2026, not the
+    superseded May figures the delivered edition was still scoring against."""
+    gkey = {'Integrated Logistics': 'il', 'Shipping': 'shipping',
+            'Services': 'services'}
     out = {}
     for g in GROUPS:
         out[g] = dict(
-            guided_revenue=grp_hist[g]['revenue'][2] * (1 + V[f'g26_rev_{gkey[g]}']),
-            guided_ebitda=grp_hist[g]['ebitda'][2] * (1 + V[f'g26_ebitda_{gkey[g]}']),
+            guided_revenue=grp_hist[g]['revenue'][2] * (1 + V[f'g26h_rev_{gkey[g]}']),
+            guided_ebitda=grp_hist[g]['ebitda'][2] * (1 + V[f'g26h_ebitda_{gkey[g]}']),
+            superseded_ebitda=grp_hist[g]['ebitda'][2] * (
+                1 + V['g26_ebitda_' + ('il' if g == 'Integrated Logistics'
+                                       else 'ship' if g == 'Shipping' else 'serv')]),
             built_revenue=f['group'][g]['rev'][0], built_ebitda=f['group'][g]['ebitda'][0])
+        out[g]['revenue_gap'] = out[g]['built_revenue'] / out[g]['guided_revenue'] - 1
         out[g]['ebitda_gap'] = out[g]['built_ebitda'] / out[g]['guided_ebitda'] - 1
     out['Group'] = dict(
-        guided_revenue=V['rev_fy25'] * (1 + V['g26_rev_group']),
-        guided_ebitda=ebitda_rep[2] * (1 + V['g26_ebitda_group']),
+        guided_revenue=V['rev_fy25'] * (1 + V['g26h_rev_group']),
+        guided_ebitda=ebitda_rep[2] * (1 + V['g26h_ebitda_group']),
+        guided_np=V['npa_fy25'] * (1 + V['g26h_np_group']),
         built_revenue=f['revenue'][0], built_ebitda=f['ebitda'][0])
+    out['Group']['revenue_gap'] = out['Group']['built_revenue'] / out['Group']['guided_revenue'] - 1
     out['Group']['ebitda_gap'] = out['Group']['built_ebitda'] / out['Group']['guided_ebitda'] - 1
     return out
 
@@ -1186,13 +1703,15 @@ for _i, _y in enumerate(YF):
         "delivered, so spending falls back toward the stated USD 100-150 million a year of "
         "maintenance capital expenditure plus continuing fleet renewal"),
        '2026-04-30' if _i < 3 else '2026-08-09', 'Company')
-DEP_RATE = IN('dep_rate_ppe', round(V['q1_26_dep_ppe'] * 4 /
-              ((V['ppe_fy25'] + V['q1_26_ppe']) / 2), 4),
-              "Depreciation charged on property, plant and equipment in the first quarter "
-              "of 2026, annualised, over the average balance for that quarter. The first "
-              "quarter is the better forward basis than the 2025 full year, whose average "
-              "balance is distorted by the fleet acquired at the start of that year",
-              '2026-03-31', 'Company')
+DEP_RATE = IN('dep_rate_ppe', round(V['h1_26_dep_ppe'] * 2 /
+              ((V['ppe_fy25'] + V['h1_26_ppe']) / 2), 4),
+              "Depreciation charged on property, plant and equipment in the six months to "
+              "30 June 2026, annualised, over the average balance for that half. The half "
+              "replaces the first quarter as the basis: the quarter is a shorter window on "
+              "the same fleet and the half is the latest reviewed period. It stays a "
+              "better forward basis than the 2025 full year, whose average balance is "
+              "distorted by the fleet acquired at the start of that year",
+              '2026-06-30', 'Company')
 IN('life_tankers', 25, FS25 + " — accounting policies: tankers are depreciated straight "
    "line over 25 years, dry-bulk and containers 25, gas carriers 25 to 40, offshore vessels "
    "20 to 25 and jack-up barges 40, with dry-docking components over 2 to 5",
@@ -1204,10 +1723,10 @@ IN('dep_rate_realised_fy25', 0.0675, FS25 + " — depreciation charged on proper
    "2 to 5 years. The rate used is the more conservative of the two available forward "
    "bases and is sensitised", '2025-12-31', 'Company')
 OTHER_DNA25 = IN('other_dna_run_rate',
-                 (V['q1_26_dep_rou'] + V['q1_26_dep_ip'] + V['q1_26_amort']) * 4,
-                 Q126 + " — depreciation on right-of-use assets and investment properties "
-                 "plus amortisation of intangibles in the first quarter, annualised",
-                 '2026-03-31', 'Company')
+                 (V['h1_26_dep_rou'] + V['h1_26_dep_ip'] + V['h1_26_amort']) * 2,
+                 FSH126 + " — depreciation on right-of-use assets and investment properties "
+                 "plus amortisation of intangibles in the six months to 30 June 2026, "
+                 "annualised", '2026-06-30', 'Company')
 opcost_25 = V['rev_fy25'] - ebitda_op[2]
 # Receivables were calibrated on 2025 revenue, which carries a 2.72x gross-up from
 # charter-equivalent revenue, and then applied to forecast revenue built at 1.60x. The
@@ -1306,9 +1825,9 @@ IN('lease_open_fy25', 170274, FS25 + " — lease liabilities note, opening balan
    '2025-01-01', 'Company')
 IN('lease_close_fy25', 223153, FS25 + " — lease liabilities note, closing balance",
    '2025-12-31', 'Company')
-debt_now = V['q1_26_shldr_loan'] + V['q1_26_borrowings'] + V['q1_26_leases']
-kd_m2 = (V['q1_26_shldr_loan'] * kd_m1 + V['q1_26_borrowings'] * kd_thirdparty
-         + V['q1_26_leases'] * kd_lease) / debt_now
+debt_now = V['h1_26_shldr_loan'] + V['h1_26_borrowings'] + V['h1_26_leases']
+kd_m2 = (V['h1_26_shldr_loan'] * kd_m1 + V['h1_26_borrowings'] * kd_thirdparty
+         + V['h1_26_leases'] * kd_lease) / debt_now
 kd_m3 = kd_bank_mid
 # Three independent constructions, AVERAGED. The first edition's prose described this as
 # "weighted across the drawn book", which it is not: only the second construction is
@@ -1343,7 +1862,7 @@ kd_retired_average = (kd_m1 + kd_m2 + kd_m3) / 3
 # subtracted a cheap tranche of capital from value without letting it price that value.
 # Two independent reviews reached the same conclusion; it is adopted here.
 kh = V['sofr'] + V['hybrid_margin']            # the perpetual's own coupon rate
-hybrid_cap = V['q1_26_hybrid']
+hybrid_cap = V['h1_26_hybrid']
 cap_total = mktcap + debt_now + hybrid_cap
 we = mktcap / cap_total
 wd = debt_now / cap_total
@@ -1392,11 +1911,15 @@ wacc_blk = dict(
 # ============================================================================
 # DISCOUNTED CASH FLOW — both paths, identical machinery
 # ============================================================================
-NETDEBT_CO = V['q1_26_netdebt']
-DEFERRED = V['q1_26_pcp']
+# [R-BRIDGE-01] THE BRIDGE STANDS ON THE LATEST DISCLOSED SHEET, WHICH IS NOW 30 JUNE
+# 2026. The delivered edition stood on the reviewed 31 March 2026 sheet and net debt of
+# 419,867; the half-year filed on 11 August reports 257,318, the company having generated
+# 598,095 of free cash flow in the half and repaid 275,000 of the parent facility net.
+NETDEBT_CO = V['h1_26_netdebt']
+DEFERRED = V['h1_26_pcp']
 NETDEBT = NETDEBT_CO + DEFERRED + ACQ_COST   # the August purchase is committed and funded
-HYBRID = V['q1_26_hybrid']
-NCI_BV = V['q1_26_nci']
+HYBRID = V['h1_26_hybrid']
+NCI_BV = V['h1_26_nci']
 # Minorities take 8.8% of profit but hold only 5.1% of book equity, so book understates
 # their claim on VALUE. But the dominant minority is already priced elsewhere: 251,985 of
 # the 264,512 arose on the Navig8 combination (equity statement), and that 20% is
@@ -1407,9 +1930,7 @@ NCI_NAVIG8 = IN('nci_navig8', 251985, FS25 + " — statement of changes in equit
                 "non-controlling interests arising on business combinations, being the 20% "
                 "of the acquired tanker business", '2025-12-31', 'Company')
 NCI_OTHER_BV = NCI_BV - NCI_NAVIG8
-JV_BV = 493120
-IN('jv_bv_q126', JV_BV, Q126 + " — investment in joint ventures and associates",
-   '2026-03-31', 'Company')
+JV_BV = V['h1_26_jv_bv']
 # [R-TERM-01] THE TERMINAL IS BUILT ON A DISCLOSED ASSET LIFE, NOT ON THE RECIPROCAL OF
 # THE GROWTH RATE. This study charged the reinvestment identity rr = g/ROIC, which
 # substitutes to a charge of g x IC every year for ever and therefore an implied
@@ -1438,10 +1959,18 @@ VESSEL_LIFE = IN('vessel_life_years', 25.0,
     "the longer end instead would lengthen the life and raise the value, and that "
     "alternative is priced in the sensitivity rather than chosen silently",
     '2025-12-31', 'Company')
-STUB = 0.75      # the valuation date is 31 March 2026; three quarters of 2026 remain
-Q1_FCF = IN('q1_26_fcf', 130000, MDAQ126 + " — free cash flow of USD 130 million in the "
-            "first quarter of 2026, already reflected in net debt at the valuation date",
-            '2026-03-31', 'Company')
+STUB = 0.50      # the valuation date is 30 June 2026; half of 2026 remains
+BASE_FCF = V['h1_26_fcf']   # already inside the balance-sheet net debt at that date
+
+
+# [R-BRIDGE-01] A DIVIDEND IS DEDUCTED ONLY IF DECLARED AFTER THE BRIDGE'S BALANCE-SHEET
+# DATE. The board approved an interim cash dividend of USD 85.3 million for the second
+# quarter with a record date of 20 August 2026 — after the 30 June sheet this bridge
+# stands on, and before the 7 September close this study is delivered against, so a buyer
+# at that price does not receive it and it is not in the equity being bought.
+DIV_DECLARED = IN('div_declared_q2_26', 85300, MDAH126 + " — interim cash dividend of USD "
+   "85.3 million, equivalent to AED 313.3 million, approved by the board for the second "
+   "quarter of 2026 on a record date of 20 August 2026", '2026-08-11', 'Company')
 
 
 def nci_deduction(equity_pre):
@@ -1460,12 +1989,12 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
         cum *= (1 + r) ** (STUB if i == 0 else 1.0)     # the factors compound year on year
         df.append(1.0 / cum)
     fcff = list(path['fcff'])
-    # the valuation date is 31 March 2026, so the first quarter's free cash flow is already
+    # the valuation date is 30 June 2026, so the first half's free cash flow is already
     # inside the balance-sheet net debt and is removed rather than discounted a second time
-    fcff[0] -= Q1_FCF
+    fcff[0] -= BASE_FCF
     pv = [c * d for c, d in zip(fcff, df)]
     pv_expl = sum(pv)
-    ic_end = path['ppe'][4] + path['nwc'][4] + V['intang_fy25'] + V['gw_fy25']
+    ic_end = path['ppe'][4] + path['nwc'][4] + V['h1_26_intang'] + V['h1_26_gw']
     roic_t = path['nopat'][4] / ic_end
     reinv = g / roic_t
     nopat_t1 = path['nopat'][4] * (1 + g)
@@ -1544,7 +2073,7 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
     ev_ops = pv_expl + pv_tv
     ev = ev_ops + JV_BV
     nd = NETDEBT + (HYBRID if hybrid_as_debt else 0.0)
-    pre_nci = ev - nd
+    pre_nci = ev - nd - DIV_DECLARED
     nci_ded = nci_deduction(pre_nci)
     eq = pre_nci - nci_ded
     fv_usd = eq / shares_mn / 1000.0      # equity is USD thousand, shares are millions
@@ -1555,6 +2084,7 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
                 term_gross_base_fy25=float(GROSS_PPE_FY25),
                 ev_ops=ev_ops, jv=JV_BV, ev=ev, net_debt=nd, deferred=DEFERRED,
                 hybrid=HYBRID if hybrid_as_debt else 0.0, nci=nci_ded,
+                dividend_declared=DIV_DECLARED,
                 nci_book=NCI_BV, nci_navig8=NCI_NAVIG8, nci_other_bv=NCI_OTHER_BV,
                 equity=eq, fv_usd=fv_usd, fv_aed=fv_usd * peg,
                 ic_terminal=ic_end)
@@ -1564,10 +2094,18 @@ def dcf(path, hybrid_as_debt=False, wacc_ov=None, g_ov=None, term_wacc_ov=None):
 # ============================================================================
 DPS_USD = [V['dps_2026_usd'] * 1000.0 * (1 + V['div_growth']) ** i for i in range(5)]
 HYB_COUPON = HYBRID * (V['sofr'] + V['hybrid_margin'])
-NCI_SHARE = IN('nci_share', 0.088, Q126 + " — profit attributable to non-controlling "
-               "interests over profit for the period in the first quarter of 2026",
-               '2026-03-31', 'Company')
-CASH_HELD = V['q1_26_cash']
+# THE PROFIT SPLIT AND THE CASH MOVE TO THE SAME SHEET AS THE BRIDGE. Both were still
+# reading the superseded quarter after the bridge had moved, which is the defect that
+# rule is about arriving one line lower down. The minority's share of profit is VOLATILE
+# between quarters — 8.8 per cent in the first, 3.5 in the second — so the HALF is the
+# measure, exactly as the margin anchors are, and the quarterly range is published beside
+# it rather than smoothed away.
+NCI_SHARE = IN('nci_share', round(V['h1_26_nci_profit'] / V['h1_26_pat'], 4),
+               FSH126 + " — profit attributable to non-controlling interests over profit "
+               "for the period, over the reviewed six months to 30 June 2026. The two "
+               "quarters inside it read 8.8 and 3.5 per cent, so the half is used rather "
+               "than either", '2026-06-30', 'Company')
+CASH_HELD = V['h1_26_cash']
 
 
 def finance_roll(path):
@@ -1601,7 +2139,7 @@ def finance_roll(path):
 
 def forecast_bs(path, fin):
     """Balance sheet rolled forward from the drivers, not pasted."""
-    eq_prev = V['q1_26_eqp']
+    eq_prev = V['h1_26_eqp']
     rows = []
     for i in range(5):
         eq = eq_prev + fin['npa'][i] - DPS_USD[i] - HYB_COUPON
@@ -1609,12 +2147,12 @@ def forecast_bs(path, fin):
             ppe=path['ppe'][i], nwc=path['nwc'][i], cash=CASH_HELD,
             gross_debt=fin['gross_debt'][i], net_debt=fin['net_debt'][i],
             equity_parent=eq, hybrid=HYBRID, nci=NCI_BV, jv=JV_BV,
-            intangibles=V['intang_fy25'], goodwill=V['gw_fy25'],
+            intangibles=V['h1_26_intang'], goodwill=V['h1_26_gw'],
             bvps=eq / shares_mn / 1000.0,
             roe=fin['npa'][i] / ((eq_prev + eq) / 2),
-            invested_capital=path['ppe'][i] + path['nwc'][i] + V['intang_fy25'] + V['gw_fy25'],
-            roic=path['nopat'][i] / (path['ppe'][i] + path['nwc'][i] + V['intang_fy25']
-                                     + V['gw_fy25']),
+            invested_capital=path['ppe'][i] + path['nwc'][i] + V['h1_26_intang'] + V['h1_26_gw'],
+            roic=path['nopat'][i] / (path['ppe'][i] + path['nwc'][i] + V['h1_26_intang']
+                                     + V['h1_26_gw']),
         ))
         eq_prev = eq
     return rows
@@ -1654,7 +2192,7 @@ BSB = forecast_bs(BASE, FINB)
 
 
 def equity_from_ev(ev, hybrid_as_debt=True):
-    pre = ev + JV_BV - NETDEBT - (HYBRID if hybrid_as_debt else 0.0)
+    pre = ev + JV_BV - NETDEBT - DIV_DECLARED - (HYBRID if hybrid_as_debt else 0.0)
     return pre - nci_deduction(pre)
 
 
@@ -1680,7 +2218,7 @@ rel = dict(
     own_ev_ebitda_26_bridge=(mktcap + NETDEBT + HYBRID + NCI_BV) / BASE['ebitda'][0],
     own_ev_ebitda_26=(mktcap + NETDEBT) / BASE['ebitda'][0],
     own_pe_ttm=mktcap / (V['npa_fy25'] - V['hybrid_coupon_fy25']),
-    own_pb=mktcap / (V['q1_26_eqp'] + HYBRID),
+    own_pb=mktcap / (V['h1_26_eqp'] + HYBRID),
     own_dy=V['dps_2026_usd'] * 1000.0 / mktcap,
 )
 rel['base'] = (rel['value_ev_ebitda'] + rel['value_pe']) / 2
@@ -1711,7 +2249,7 @@ g_b = V['g_terminal']
 # than the cost of equity on it while that lasts, plus a fading remainder.
 def residual_income(ke_r, roe_scale=1.0):
     """Book value plus the present value of returns above the cost of equity."""
-    b0 = V['q1_26_eqp'] / 1000.0                      # opening ordinary book, USD mn
+    b0 = V['h1_26_eqp'] / 1000.0                      # opening ordinary book, USD mn
     b, pv, detail = b0, 0.0, []
     for i in range(5):
         roe_i = FINB_ROE[i] * roe_scale
@@ -1742,8 +2280,8 @@ FINB_ROE = [(FINB['npa'][i] - HYB_COUPON) / BSB[i]['equity_parent'] for i in ran
 ri_base, ri_detail, ri_pv_tv = residual_income(ke)
 ri_bear, _, _ = residual_income(ke_ci_hi, 0.85)
 ri_bull, _, _ = residual_income(ke_ci_lo, 1.15)
-bvps_now = V['q1_26_eqp'] / shares_mn / 1000.0
-pb_fair = ri_base / (V['q1_26_eqp'] / 1000.0)
+bvps_now = V['h1_26_eqp'] / shares_mn / 1000.0
+pb_fair = ri_base / (V['h1_26_eqp'] / 1000.0)
 book = dict(roe_sustainable=roe_sust, ke=ke, g=g_b, pb_fair=pb_fair, method='residual income',
             fade=FADE, roe_path=FINB_ROE, detail=ri_detail, pv_terminal=ri_pv_tv,
             vessel_sale_price=V['vessel_sale_price'], vessel_sale_book=V['vessel_sale_book'],
@@ -1835,6 +2373,48 @@ for _lab, _dcfkey in (('central', 'dcf'), ('central_beta_alt', 'dcf_beta_alt')):
                         bull=lenses[_dcfkey]['bull'])
 central = lenses['central']['base']
 central_alt = lenses['central_beta_alt']['base']
+
+# --- the two judgements the half-year filings created, priced -------------------
+# Each is re-run through the SAME machinery, so the alternative is a value this model
+# actually produces rather than a scaled guess at one.
+def _refit_gas(vy):
+    _old = list(GAS_VY)
+    GAS_VY[:] = list(vy)
+    try:
+        return dcf(project('reversion'), hybrid_as_debt=True)['fv_aed']
+    finally:
+        GAS_VY[:] = _old
+
+
+GAS_ALT_FV = _refit_gas([v + a for v, a in
+                         zip(GAS_VY_H1D, [3 * (4 / 12.0) + 2 * (1.5 / 12.0), 5, 5, 5, 5])])
+IN('gas_vy_alt_fv', round(GAS_ALT_FV, 4), IPH126 + " — fair value per share on the "
+   "first-half deck's own reading of the gas contract table, computed through the same "
+   "model. Published beside the adopted figure; an input to nothing", '2026-08-11', 'Company')
+
+
+def _refit_leverage(lev):
+    _oldl, _oldv = TNK_LEV, TNK_VAR
+    globals()['TNK_LEV'] = lev
+    globals()['TNK_VAR'] = gross_up_26 - lev
+    globals()['TNK_FIXED'] = lev * tce_rev_25 - V['seg_ebitda_tankers_fy25']
+    try:
+        return dcf(project('reversion'), hybrid_as_debt=True)['fv_aed']
+    finally:
+        globals()['TNK_LEV'] = _oldl
+        globals()['TNK_VAR'] = _oldv
+        globals()['TNK_FIXED'] = _oldl * tce_rev_25 - V['seg_ebitda_tankers_fy25']
+
+
+# The delivered edition's construction: earnings equal to the owned fleet's own
+# charter-equivalent revenue less a running cost, which is an earnings leverage of
+# EXACTLY ONE on the rate.
+LEV_ALT_FV = _refit_leverage(1.0)
+IN('tnk_leverage_alt_fv', round(LEV_ALT_FV, 4), "Fair value per share if the tanker unit's "
+   "earnings leverage on its own fleet's charter-equivalent revenue were 1.0 — the "
+   "delivered edition's construction — with the fixed base re-solved on the audited 2025 "
+   "year at that leverage. Computed through the same model; an input to nothing",
+   '2026-06-30', 'Company')
 RETIRED_BLEND = sum(RETIRED_W[k] * lenses['dcf' if k == 'dcf' else k]['base']
                     for k in RETIRED_W)
 
@@ -1879,7 +2459,7 @@ e2 = dict(method_short='owner cash earnings', fcff=e2_fcff, interest_after_tax=e
                     'capital expenditure, would break the annuity this rests on.')
 
 # Expert 3 — cash returns against the cost of capital (economic profit)
-ic0 = V['q1_26_ppe'] + hist_bs['nwc'][2] + V['intang_fy25'] + V['gw_fy25']
+ic0 = V['h1_26_ppe'] + NWC_H126 + V['h1_26_intang'] + V['h1_26_gw']
 e3_ep, e3_pv, e3_spread = [], 0.0, []
 for i in range(5):
     ic = BSB[i]['invested_capital']
@@ -1980,10 +2560,11 @@ for g in GROUPS:
                                  "the company's own disclosed share of earnings exposed to "
                                  'spot rates')))
 sotp_ev = sum(l['ev'] for l in sotp_legs)
+_sotp_eq = sotp_ev + JV_BV - NETDEBT - HYBRID - DIV_DECLARED - NCI_BV
 sotp = dict(legs=sotp_legs, ev_ops=sotp_ev, jv=JV_BV, ev=sotp_ev + JV_BV,
-            net_debt=NETDEBT, hybrid=HYBRID, nci=NCI_BV,
-            equity=sotp_ev + JV_BV - NETDEBT - HYBRID - NCI_BV,
-            fv_aed=(sotp_ev + JV_BV - NETDEBT - HYBRID - NCI_BV) / shares_mn / 1000.0 * peg,
+            net_debt=NETDEBT, hybrid=HYBRID, nci=NCI_BV, dividend_declared=DIV_DECLARED,
+            equity=_sotp_eq,
+            fv_aed=_sotp_eq / shares_mn / 1000.0 * peg,
             contracted_multiple=contracted_mult, spot_multiple=spot_mult, spot_weight=SPOT_W)
 
 # ============================================================================
@@ -2035,11 +2616,50 @@ A('reported earnings bridge to operating earnings FY2025',
   abs(ebitda_op[2] + V['assoc_fy25'] + V['bargain_fy25'] + V['prevheld_fy25']
       - ebitda_rep[2]) < 2)
 A('net debt at the valuation date reconciles to the disclosed figure',
+  abs((V['h1_26_shldr_loan'] + V['h1_26_borrowings'] + V['h1_26_leases']
+       - V['h1_26_cash']) - V['h1_26_netdebt']) < 1)
+A('the superseded quarter still reconciles on its own sheet',
   abs((V['q1_26_shldr_loan'] + V['q1_26_borrowings'] + V['q1_26_leases']
        - V['q1_26_cash']) - V['q1_26_netdebt']) < 1)
-A('the tanker unit build reproduces reported segment earnings for 2025',
-  abs((tce_rev_25 - vessel_days_25 * opex_day_25 / 1000.0)
+A('the balance sheet at 30 June 2026 foots',
+  abs(V['h1_26_ta'] - (V['h1_26_tl'] + V['h1_26_teq'])) < 1)
+A('equity at 30 June 2026 foots to its three components',
+  abs(V['h1_26_teq'] - (V['h1_26_eqp'] + V['h1_26_hybrid'] + V['h1_26_nci'])) < 1)
+A('the half-year income statement foots from revenue to profit',
+  abs((V['h1_26_rev'] - V['h1_26_dc'] - V['h1_26_ga'] - V['h1_26_ecl']
+       + V['h1_26_oth_inc'] - V['h1_26_oth_exp']) - V['h1_26_op']) < 1)
+A('the half-year profit foots from operating profit',
+  abs((V['h1_26_op'] + V['h1_26_jv'] + V['h1_26_fin_inc'] - V['h1_26_fin_cost']
+       + V['h1_26_dtax_cr'] - V['h1_26_tax']) - V['h1_26_pat']) < 1)
+A('the half-year earnings before interest, tax, depreciation and amortisation '
+  'reproduce from the definition the company states',
+  abs((V['h1_26_pbt'] + V['h1_26_fin_cost'] - V['h1_26_fin_inc'] + V['h1_26_dep_ppe']
+       + V['h1_26_dep_ip'] + V['h1_26_dep_rou'] + V['h1_26_amort'])
+      - V['h1_26_ebitda_group']) < 1)
+A('the segment note foots to the group half-year revenue',
+  abs(sum(_v[0] for _v in H1_SEG.values()) - V['h1_26_rev']) < 1)
+A('the segment note foots to the group half-year earnings, one-offs aside',
+  abs(sum(_v[2] for _v in H1_SEG.values()) - 152 - V['h1_26_ebitda_group']) < 1)
+A('the segment note foots to the group half-year direct costs',
+  abs(sum(_v[4] for _v in H1_SEG.values()) - V['h1_26_dc']) < 1)
+A('the disclosed net debt reproduces from the balance-sheet lines it names',
+  abs((V['h1_26_shldr_loan'] + V['h1_26_leases'] + V['h1_26_borrowings']
+       - V['h1_26_cash']) - 257318) < 1)
+A('the tanker cost stack reproduces reported segment earnings for 2025',
+  abs((gross_up_26 * tce_rev_25 - (TNK_FIXED + TNK_VAR * tce_rev_25))
       - V['seg_ebitda_tankers_fy25']) < 1)
+A('the tanker cost stack reproduces the reviewed first half of 2026',
+  abs((gross_up_26 * tce_rev_h126
+       - (TNK_FIXED * 181.0 / 365.0 + TNK_VAR * tce_rev_h126))
+      - V['h1_26_ebitda_tankers']) < 1)
+A('the held-out first half of 2025 is reproduced within 15 per cent and understated',
+  -0.15 < INPUTS['tnk_holdout_ebitda_error']['value'] < 0.0,
+  f"held-out error {INPUTS['tnk_holdout_ebitda_error']['value']:+.4f}")
+A('the tanker earnings leverage on fleet charter-equivalent revenue exceeds one',
+  TNK_LEV > 1.0, f'leverage {TNK_LEV:.4f}')
+A('the reviewed half earned more than the owned fleet could on its own, which is why '
+  'the delivered construction could not reproduce it',
+  V['h1_26_ebitda_tankers'] > tce_rev_h126)
 A('cost of debt sits above the local government bond yield', kd > V['rf_observed'],
   f'kd {kd:.4f} vs rf {V["rf_observed"]:.4f}')
 A('country risk is charged once', abs(rf_star - (V['rf_observed'] - V['sov_spread'])) < 1e-9)
@@ -2056,9 +2676,13 @@ A('the terminal value share is computed, not asserted',
 A('the calibration evidence is the committed market fit',
   step0['nu'] == bt5['fit']['nu'] and step0['width_cal'] == bt5['fit']['width_cal'])
 A('the five-year scoring beats the benchmark', bt5['five_year']['skill_norm'] > 0)
-A('the price map was struck on the same close as the study',
-  abs(strike['spot'] - spot_aed) < 1e-9)
-A('the technical read was computed on the same close', abs(tech['close'] - spot_aed) < 1e-9)
+A('the price map was struck on the close the daily series ends at',
+  abs(strike['spot'] - V['price_close_engine']) < 1e-9)
+A('the technical read was computed on the same close as the price map',
+  abs(tech['close'] - V['price_close_engine']) < 1e-9)
+A('the valuation is delivered against a price at least as fresh as the price map',
+  spot_aed >= 0 and _LATEST['date'] >= '2026-08-07',
+  f"delivered at {spot_aed} on {_LATEST['date']}, cone on 2026-08-07")
 A('the beta used is the one the regression produced',
   abs(V['beta'] - round(beta_res['adopted']['beta_used'], 4)) < 1e-9)
 # ...and that regression is the SANCTIONED one, against a conforming regressor. The
@@ -2138,6 +2762,16 @@ _gu = [
     RP.DriverLine(
         name='Offshore Contracting', level='segment',
         share_of_revenue=_SEGR['Offshore Contracting'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Offshore Contracting']),
         gap_note='THE DISCLOSURE STOPS AT THE SEGMENT AND THE GAP IS STATED RATHER THAN '
                  'FILLED. This leg earns under long-term integrated logistics contracts '
                  'whose scope, duration and pricing are commercially confidential; the '
@@ -2149,12 +2783,32 @@ _gu = [
     RP.DriverLine(
         name='Offshore Services', level='segment',
         share_of_revenue=_SEGR['Offshore Services'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Offshore Services']),
         gap_note='as Offshore Contracting: segment revenue and backlog are disclosed and '
                  'no physical unit is. Flagged rather than modelled at a level the '
                  'filings do not support.'),
     RP.DriverLine(
         name='Offshore Projects', level='segment',
         share_of_revenue=_SEGR['Offshore Projects'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Offshore Projects']),
         gap_note='as Offshore Contracting. This is the smallest leg and the least '
                  'disclosed: project revenue is recognised as work completes and the '
                  'project list is not published, so even the backlog run-off is coarser '
@@ -2162,6 +2816,16 @@ _gu = [
     RP.DriverLine(
         name='Services', level='segment',
         share_of_revenue=_SEGR['Services'] / _REVT,
+        # THE COST BASIS ON A SEGMENT LINE IS THE MARGIN, AND THE RECORD HAS TO SAY SO.
+        # It was written into the gap note below and nowhere a checker could point at it —
+        # the study holding the fact and stating it where nothing could read it, which is
+        # the same shape as every other record this rebuild closed. The reason is READ FROM
+        # THE FORECAST'S OWN DRV_WHY rather than retyped, so the line and the model cannot
+        # drift apart.
+        cost_basis=('no unit is disclosed for this leg, so no cost per unit can be built '
+                    'and the MARGIN is the input with cost as the residual — which the '
+                    'rule permits at the segment level and forbids wherever the filings '
+                    'support a unit. ' + DRV_WHY['Services']),
         gap_note='a portfolio of shore-based and marine support activities disclosed only '
                  'in aggregate. No unit is published for any of them and none is '
                  'invented; the leg is grown on the disclosed segment and its margin is '
@@ -2245,8 +2909,8 @@ OUT = dict(
               exchange='Abu Dhabi Securities Exchange', market='AE',
               isin='AEE01268A239',
               reporting_currency='USD', listing_currency='AED', fx=peg,
-              asof='2026-08-09', price_date='2026-08-07',
-              valuation_date='2026-03-31',
+              asof='2026-09-07', price_date=_LATEST['date'],
+              valuation_date='2026-06-30',
               spot_aed=spot_aed, spot_usd=spot_usd,
               # THE ANSWER, IN THE PAIR THE SHARED READER LOOKS FOR. This study committed
               # a central at the top level and its price only as spot_aed, so the
@@ -2256,7 +2920,8 @@ OUT = dict(
               # were named where nothing shared was looking, which is the whole reason
               # [R-ENF-04] says an unreadable answer is not a clean answer. The central is
               # in AED, the listing currency, and so is this.
-              spot=spot_aed, spot_date='2026-08-07',
+              spot=spot_aed, spot_date=_LATEST['date'],
+              engine_close=V['price_close_engine'], engine_close_date='2026-08-07',
               central=None,          # filled below, once the lenses have run
               latest_known_price=dict(
                   value=6.85, date='2026-09-03', currency='AED',
@@ -2282,14 +2947,26 @@ OUT = dict(
                         start=str(c['start']), end=str(c['end']),
                         period_months=c['period_months']) for c in CHARTERS],
                blend_fy24=TCE24, blend_fy25=TCE25, blend_mid=BLEND_MID,
-               blend_q1_26=Q1_BLEND, blend_q2_26=Q2_BLEND,
+               blend_q1_26=Q1_BLEND, blend_q2_26=Q2_BLEND, blend_q3_26=Q3_BLEND,
+               blend_q4_26=Q4_BLEND,
                spot_fy25=SPOT_25, spot_mid=SPOT_MID, spot_q1_26=SPOT_Q1,
-               spot_q2_26=SPOT_Q2, tce_mid=BASE_MID, opex_day=opex_day_25,
+               spot_q2_26=SPOT_Q2, spot_q3_26=SPOT_Q3, spot_q4_26=SPOT_Q4,
+               spot_26=SPOT_26, spot_h2_26=SPOT_H2_26, tce_mid=BASE_MID,
+               cost_fixed=TNK_FIXED, cost_var=TNK_VAR, leverage=TNK_LEV,
+               grossup=gross_up_26,
                gas_vessel_years=GAS_VY, gas_rate_day=gas_rate_25,
-               vessel_days_25=vessel_days_25, tce_rev_25=tce_rev_25),
+               vessel_days_25=vessel_days_25, tce_rev_25=tce_rev_25,
+               tce_rev_h125=tce_rev_h125, tce_rev_h126=tce_rev_h126),
     drivers=DRV, driver_why=DRV_WHY,
-    fcst=dict(years=YF, **{k: v for k, v in BASE.items()
-                           if k not in ('seg', 'group', 'tce', 'mode', 'years')}),
+    fcst=dict(years=YF,
+              # the depreciation share of earnings, and its five-year MEAN. The mean was
+              # computed inside the document builder and matched nothing committed, which
+              # is the prose-figure rule's own case: a figure that is real and that the
+              # model does not produce means the MODEL is what is missing.
+              dna_share=[d / e for d, e in zip(BASE['dna'], BASE['ebitda'])],
+              dna_share_avg=sum(d / e for d, e in zip(BASE['dna'], BASE['ebitda'])) / 5.0,
+              **{k: v for k, v in BASE.items()
+                 if k not in ('seg', 'group', 'tce', 'mode', 'years')}),
     fcst_seg={s: BASE['seg'][s] for s in SEGS},
     fcst_group=BASE['group'],
     fcst_sustained=dict(years=YF, revenue=GUID['revenue'], ebitda=GUID['ebitda'],
@@ -2387,7 +3064,68 @@ OUT = dict(
     # resolving all of them the same way and never noticing. Each alternative below is
     # computed by this file's own dcf(), so the difference measures THE CHOICE and not
     # the construction.
+    # THE TWO JUDGEMENTS THE HALF-YEAR FILINGS CREATED, PRICED BOTH WAYS RATHER THAN
+    # RESOLVED SILENTLY. Both are computed above and both are published beside the answer.
     contested=[
+        dict(choice='the gas fleet\'s contracted vessel-year path',
+             adopted='the composition the April 2026 contract table gives, whose components '
+                     'this study states and which foots',
+             alternative='the same table as printed in the first-half 2026 deck, where the '
+                         'four liquefied-natural-gas carriers\' firm period ends in June '
+                         '2026 and the consolidated path falls to 10.0, 13.0, 17.5, 20.75 '
+                         'and 20.0 vessel-years',
+             fv_adopted=float(central), fv_alternative=float(GAS_ALT_FV),
+             effect=abs(GAS_ALT_FV - central) / central,
+             direction='the adopted side is HIGHER',
+             note='WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS LARGE, so it '
+                  'is priced rather than decided. Its own column heading reads "No. of '
+                  'Vessels Contracted" rather than vessels in service, and a bullet on the '
+                  'same slide says five Das carriers were progressively moved to long-term '
+                  'contracts with the parent from June 2026 — so whether those four ships '
+                  'stop EARNING or merely stop being counted as contracted is not '
+                  'decidable from the page. The total row foots with both rows populated '
+                  'in the second quarter, which is consistent with two separate sets of '
+                  'ships and equally with one set counted twice. SIGCM clause 8: the '
+                  'coarser reading is kept, the finer one is published, and neither is '
+                  'invented. '
+                  'SETTLED ON EVIDENCE OUTSIDE THE PAGE, 7 September 2026, AND THE '
+                  'EVIDENCE WAS ALREADY IN THIS DIRECTORY. The first-quarter 2026 '
+                  'earnings call transcript this study holds describes THAT SAME CONTRACT '
+                  'MATRIX in management\'s own words: "We are at a genuine inflection '
+                  'point for our gas carrier fleet. You can see the contract matrix here. '
+                  'Starting this month, May 2026, 5 Das LNG carriers are progressively '
+                  'commencing long-term contracts with ADNOC Gas, 4 on 15-year contracts '
+                  'and 1 on a 7-year contract ... These are vessels that until now have '
+                  'been earning at spot rates." The dates on that matrix are contract '
+                  'COMMENCEMENTS, and the alternative requires the company to be '
+                  'presenting a fleet-wide contraction of contracted vessel-years as an '
+                  'inflection point upward on the slide it is describing. THE ADOPTED '
+                  'SIDE IS THE EVIDENCED ONE AND THE ANSWER DOES NOT MOVE — it was '
+                  'already the adopted side. The alternative is RETAINED here rather than '
+                  'deleted, for two reasons: it remains a legitimate downside framing of '
+                  'a path the company has not disclosed vessel by vessel, and dropping a '
+                  'judgement from this list would shrink the population the sign test '
+                  '[R-ENF-05] is computed over, which is not a thing to do to a test of '
+                  'one\'s own leaning.'),
+        dict(choice='the earnings leverage of the tanker unit on its own fleet\'s rate',
+             adopted='solved from two disclosed periods together — the audited 2025 year '
+                     'and the reviewed six months to 30 June 2026 — with the reviewed six '
+                     'months to 30 June 2025 held out',
+             alternative='exactly one, which is what the delivered edition assumed by '
+                         'setting earnings equal to the owned fleet\'s charter-equivalent '
+                         'revenue less a single running cost',
+             fv_adopted=float(central), fv_alternative=float(LEV_ALT_FV),
+             effect=abs(LEV_ALT_FV - central) / central,
+             direction='the adopted side is HIGHER' if central > LEV_ALT_FV
+                       else 'the adopted side is LOWER',
+             note='THE ALTERNATIVE IS NOT A VIEW, IT IS A CONSTRUCTION THAT THE COMPANY\'S '
+                  'OWN HALF FALSIFIES: at the published rates the 52 owned tankers earned '
+                  'charter-equivalent revenue of USD 805.8 million in the six months to 30 '
+                  'June 2026 and the unit reported earnings of USD 994.2 million, more '
+                  'than the ships it owns can earn before any cost at all. A leverage of '
+                  'one cannot reproduce that. It is priced here because it is the '
+                  'construction this study shipped three weeks ago and a reader is '
+                  'entitled to see what it was worth.'),
         dict(choice='how the market is measured for the beta regression',
              adopted='the published index of the exchange this company is listed on',
              alternative='an equal-weight composite of the same exchange\'s names',
@@ -2457,57 +3195,115 @@ OUT = dict(
     # trigger and the sign test's business rather than this rule's — and it is exactly the
     # shape a reader should see stated.
     forecast_anchor=dict(
-        # THE FIELD NAMES ARE THE SHARED READER'S, NOT A HOUSE VOCABULARY. A first draft
-        # of this record nested the latest period under its own key names and the gate
-        # could not read it — the same defect as the beta record two hundred lines above,
-        # where index_file had been renamed regressor_file. Both were right underneath and
-        # unreadable, and both were invisible because a ratcheted study's failure REASON
-        # was never printed. It is printed now.
-        rate_name='EBITDA margin, operating basis',
-        latest_reviewed_period='FY2025, audited',
-        latest_reviewed_date='2025-12-31',
-        latest_reviewed_rate=float(hist_is['ebitda_margin'][2]),
-        latest_reviewed_source='the audited consolidated financial statements for the '
-                               'year ended 31 December 2025: operating EBITDA over '
-                               'reported revenue',
+        rate_name='EBITDA margin, group, on the definition the company states',
+        latest_reviewed_period='H1 2026, reviewed',
+        latest_reviewed_date='2026-06-30',
+        latest_reviewed_rate=float(V['h1_26_ebitda_group'] / V['h1_26_rev']),
+        latest_reviewed_source='the reviewed condensed consolidated interim financial '
+                               'information for the six months ended 30 June 2026: the '
+                               'operating-segments note\'s group earnings before '
+                               'interest, tax, depreciation and amortisation over '
+                               'reported revenue, on the definition the management '
+                               'discussion states in its own footnote',
         first_forecast_rate=float(BASE['ebitda_margin'][0]),
         forecast_path=[float(m) for m in BASE['ebitda_margin']],
-        note=('THE FORECAST OPENS %.1f POINTS ABOVE THE LATEST AUDITED YEAR AND THAT IS '
-              'THE LARGEST SINGLE THING A READER SHOULD INTERROGATE IN IT. FY2023-25 '
-              'printed %.2f, %.2f and %.2f per cent; FY2026 opens at %.2f and the path '
-              'runs to %.2f by FY2030, so every forecast year sits above every audited '
-              'one. On roughly flat revenue — FY2026 at USD %s thousand against a filed '
-              'FY2025 of USD %s — that is a claim about EARNINGS rather than about scale.\n'
-              '\nWHAT DRIVES IT IS FLEET COMPOSITION AND IT IS DISCLOSED RATHER THAN '
-              'ASSUMED: the model prices every vessel on its own terms — each chartered '
-              'vessel at its own contracted rate for exactly the days its own contract '
-              'runs, everything else at the implied spot rate for its class — against a '
-              'running cost per vessel-day solved to reproduce the reported FY2025 result. '
-              'The eleven vessels announced on 7 August 2026, six of them very large crude '
-              'carriers, enter at USD %s thousand of committed and funded cost and earn '
-              'from 2026, and the fleet mix they shift is toward the higher-margin classes.\n'
-              '\nIT IS NOT LEFT AS AN ASSERTION. The step is the single largest lever in '
-              'the study after the beta, the day-rate anchor it depends on is sensitised '
-              'both ways in the contested-judgement record, and the reversion path that '
-              'produces it is the CONSERVATIVE of the two available — the company\'s own '
-              'guidance path is published beside it and is worth more, not less.'
-              % (100 * (BASE['ebitda_margin'][0] - hist_is['ebitda_margin'][2]),
-                 100 * hist_is['ebitda_margin'][0], 100 * hist_is['ebitda_margin'][1],
-                 100 * hist_is['ebitda_margin'][2],
+        # [R-ANCHOR-01 CLAUSE TWO] THE PATH FALLS FROM ITS OWN OPENING YEAR AND THE
+        # MECHANISM IS NAMED, SOURCED AND MEASURED. It is not a margin assumption: the
+        # margin is an OUTPUT of a charter rate reverting from an extreme.
+        mechanism=dict(
+            name='contracted_price_step_down',
+            disclosure='the company publishes its own realised time-charter-equivalent '
+                       'rate by vessel class by quarter, and it has ALREADY STEPPED DOWN '
+                       'inside the disclosed record: a very large crude carrier earned '
+                       '291,145 US dollars a day in the second quarter of 2026 and '
+                       '159,518 in the third to 11 August. Eleven of the company\'s own '
+                       'vessels are additionally fixed OUT on time charters at 19,750 to '
+                       '72,500 a day with disclosed expiry dates running to July 2028, so '
+                       'a further part of the fleet is contractually held far below the '
+                       'spot level for a period the filings state.',
+            like_for_like=dict(
+                period_a='2Q2026', period_b='3Q2026 to 11 August',
+                value_a=float(V['tce_vlcc_q2_26_actual']),
+                value_b=float(V['tce_vlcc_q3_26']),
+                higher_is_worse=False,
+                measures='the company\'s own published very large crude carrier '
+                         'time-charter-equivalent rate, US dollars per vessel per day'),
+        ),
+        note=('THE FORECAST OPENS %.2f PER CENT AGAINST A REVIEWED HALF THAT PRINTED '
+              '%.2f, WHICH IS %.1f PER CENT BELOW IT IN RELATIVE TERMS AND INSIDE THE '
+              'MATERIALITY LINE. The delivered edition of this study anchored on the '
+              'audited FY2025 year at %.2f per cent and forecast %.2f for 2026 — a rate '
+              'that turned out to be very nearly right, because THE MARGIN WAS NOT WHAT '
+              'THAT EDITION GOT WRONG. What it got wrong was SCALE: it forecast USD '
+              '5,003,932 thousand of 2026 revenue and the company earned USD %s thousand '
+              'in the first six months alone.\n'
+              '\nTHE PATH FALLS FROM %.2f PER CENT IN 2026 TO %.2f IN 2030 AND THAT IS '
+              'THE CLAIM TO INTERROGATE. It is not a margin assumption. Every rate in it '
+              'is the company\'s own published time-charter equivalent — reported for the '
+              'first and second quarters of 2026, disclosed for the third to 11 August on '
+              'the share of vessel days it covers, and reverting from there to the average '
+              'of the company\'s own 2024 and 2025 outcomes by 2030. The cost side is a '
+              'fixed base escalated on the house inflation ladder plus a variable '
+              'component per unit of the fleet\'s charter-equivalent revenue, both solved '
+              'from the audited 2025 year and the reviewed 2026 half, with the reviewed '
+              '2025 half HELD OUT and reproduced to within %.1f per cent. The margin is '
+              'what those two lines leave.\n'
+              '\nTHE ELEVEN VESSELS ANNOUNCED ON 7 AUGUST 2026, six of them very large '
+              'crude carriers, enter at USD %s thousand of committed and funded cost and '
+              'earn from the third quarter. The reversion path is the CONSERVATIVE of the '
+              'two the study publishes; the sustained path is shown beside it and is worth '
+              'more, not less.'
+              % (100 * BASE['ebitda_margin'][0],
+                 100 * V['h1_26_ebitda_group'] / V['h1_26_rev'],
+                 100 * (1 - BASE['ebitda_margin'][0]
+                        / (V['h1_26_ebitda_group'] / V['h1_26_rev'])),
+                 100 * hist_is['ebitda_margin'][2], 41.69,
+                 format(V['h1_26_rev'], ',.0f'),
                  100 * BASE['ebitda_margin'][0], 100 * BASE['ebitda_margin'][4],
-                 format(BASE['revenue'][0], ',.0f'), format(V['rev_fy25'], ',.0f'),
+                 abs(100 * INPUTS['tnk_holdout_ebitda_error']['value']),
                  format(ACQ_COST, ',.0f'))),
+    ),
+    # [R-FCAL-01] THE SCOPE DECISION IS STATED IN THE STUDY, and the exemplar owes it first:
+    # a study is built by opening this document beside it, so a record this one does not carry
+    # is a record every study written after it does not carry either [R-ENF-01 EXT 04-Sep].
+    # THE COUNT IS WHAT IS ESTABLISHED, NOT WHAT IS HOPED FOR. Five fiscal years are sourceable
+    # from statements in this study's own directory: FY2022, FY2023, FY2024 and FY2025 from
+    # their own signed audited accounts, and FY2021 as the comparative carried in the FY2022
+    # accounts — a comparative rather than an as-originally-reported filing, which is a
+    # point-in-time qualification and is written down rather than smoothed over. The company
+    # listed in June 2023 and its pre-listing audited years were NOT established as reachable
+    # by this study; asserting they are, to reach the eight a FULL scope needs, would be the
+    # fabricated count this rule exists to prevent. Five puts it in the LIGHT band.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='LIGHT',
+        sourceable_fiscal_years=5,
+        earliest_sourceable='FY2021',
+        basis=('the four audited consolidated financial statements held in this study\'s own '
+               'directory (FY2022, FY2023, FY2024, FY2025), plus FY2021 as the comparative '
+               'carried in the FY2022 accounts. The company listed in June 2023 and no '
+               'pre-listing audited year was established as reachable by this study, so the '
+               'count stops at five rather than being extended to the eight a FULL scope '
+               'would need'),
+        status='pending',
+        note=('The fundamental walk-forward has NOT been run on this name. Scope is LIGHT on '
+              'five sourceable fiscal years — the last five origins, horizons one to three — '
+              'and the rule forbids delaying a delivery for the run: it goes alongside and its '
+              'corrections feed the next edition. No lesson, bias correction or calibrated '
+              'range in this study rests on a walk-forward result, because there is none.'),
     ),
     bridge_record=dict(
         market='AE',
-        balance_sheet_date='2026-03-31', latest_disclosed_date='2026-03-31',
+        balance_sheet_date='2026-06-30', latest_disclosed_date='2026-06-30',
         latest_disclosed_source=(
-            'the condensed consolidated interim financial information for the three '
-            'months ended 31 March 2026, from the company\'s own investor-relations '
-            'channel and registered in this study\'s sweep. THE VALUATION DATE IS THAT '
-            'BALANCE-SHEET DATE rather than the date of the latest traded price, so no '
-            'roll-forward stands between the bridge and a filing, and the first '
-            'quarter\'s free cash flow is inside net debt rather than discounted again.'),
+            'the condensed consolidated interim financial information for the six months '
+            'ended 30 June 2026, reviewed and signed 10 August 2026, from the company\'s '
+            'own investor-relations channel and registered in this study\'s sweep. THE '
+            'VALUATION DATE IS THAT BALANCE-SHEET DATE rather than the date of the latest '
+            'traded price, so no roll-forward stands between the bridge and a filing, and '
+            'the half\'s free cash flow is inside net debt rather than discounted again. '
+            'The delivered edition stood on the 31 March 2026 quarter and net debt of '
+            '419,867; this sheet reports 257,318.'),
         register='sweep_register.json',
         lines=[
             dict(label='Enterprise value of the operations',
@@ -2520,8 +3316,10 @@ OUT = dict(
             dict(label='less perpetual capital securities at carrying value',
                  value=float(-HYBRID)),
             dict(label='less non-controlling interests',
-                 value=float(-(dcf_own_beta['ev'] - NETDEBT - HYBRID
+                 value=float(-(dcf_own_beta['ev'] - NETDEBT - HYBRID - DIV_DECLARED
                                - dcf_own_beta['equity']))),
+            dict(label='less the interim dividend declared after the balance-sheet date',
+                 value=float(-DIV_DECLARED)),
         ],
         equity_value=float(dcf_own_beta['equity']),
         # EVERY FIGURE IN THIS BRIDGE IS IN USD THOUSANDS, so the share count is too:
@@ -2530,6 +3328,24 @@ OUT = dict(
         # check when a bridge does not divide.
         shares_mn=float(shares_mn * 1000.0),
         per_share=float(dcf_own_beta['fv_usd']),
+        # AND THE RECORD NOW SAYS SO, WHICH THE COMMENT ABOVE COULD NOT. On 07-09-2026 a
+        # gate read this bridge's 1.5263 against the published 5.6054 and reported the
+        # exemplar as carrying the largest disagreement in the book. The figures are the
+        # SAME NUMBER — 1.5263 USD x the 3.6725 peg is 5.6054 AED to six decimals — and
+        # the generator's own comment above says the units plainly. A COMMENT IN A BUILDER
+        # IS NOT A DECLARATION A READER OR A CHECKER CAN USE, which is this repository's
+        # own lesson about conventions stated in prose beside a number. Declared here in
+        # the record instead, and the gate reads it.
+        units=dict(currency='USD', scale='thousands',
+                   shares=('thousands of shares — the field name says millions '
+                           'and the model carries millions, so it is multiplied '
+                           'to thousands here to match the equity value above'),
+                   per_share_currency='USD',
+                   published_currency='AED',
+                   fx=float(peg),
+                   note='per_share is in the REPORTING currency; the study publishes in '
+                        'the LISTING currency, and per_share x fx is the published '
+                        'central.'),
         cash_charged_once=True,
         # 'none': the cash is not added anywhere in this bridge — it sits inside the
         # net-debt figure deducted once. Registering it as added_at_face would
@@ -2624,7 +3440,17 @@ OUT = dict(
             note='vessel-days times day rates, vessel by vessel, discounted on a schedule '
                  'that is flat by construction of the currency peg'),
         cross_checks=[
+            # NOT A PRESENT-VALUE READ, and the record now says so. Every leg of this
+            # sum is a MULTIPLE applied to one forecast year's earnings — the same
+            # construction the relative lens already declares present_value False for —
+            # so putting it inside an envelope of present-value reads on one clock would
+            # be mixing two clocks in the one field that exists to keep them apart. The
+            # correction was forced by the gate rather than volunteered, and the honest
+            # reading is that the classification was wrong from the first edition and only
+            # became visible when this lens rose above the primary's own bull corner: an
+            # unmarked field defaults to True and nothing had been high enough to test it.
             dict(kind='sotp', value=float(sotp['fv_aed']),
+                 present_value=False,
                  note='the three legs summed on their own multiples — a contracted-fleet '
                       'multiple where the leg earns under long-term contracts and a blend '
                       'of contracted and spot where it does not, weighted by the '
@@ -2634,9 +3460,62 @@ OUT = dict(
             dict(kind='relative_multiple', value=float(rel['base']),
                  present_value=False,
                  multiple=float(rel['blend_ev_ebitda']),
-                 circularity=dict(spot=float(spot_aed), shares=float(shares_mn),
+                 # THIS LENS IS TWO ROUTES AND THE RECORD NOW SAYS SO. A reader — or an
+                 # instrument — holding only the enterprise multiple above and the
+                 # operands beside it cannot reproduce the published figure, and until
+                 # this block existed the honest conclusion from the record was that the
+                 # figure came from nowhere. It is 70 per cent of an enterprise multiple
+                 # carried through the FULL bridge (net debt, the perpetual securities
+                 # and the minority) and 30 per cent of an earnings multiple on profit
+                 # AFTER the hybrid coupon, both converted at the peg. The weights sum to
+                 # one and the routes reproduce the published figure, which is what makes
+                 # this a declaration rather than an excuse.
+                 construction=dict(
+                     units=dict(currency='AED', operand_currency='USD',
+                                operand_scale='thousands', fx=float(peg)),
+                     routes=[
+                         dict(name='ev_ebitda', weight=float(W_EVEB),
+                              value=float(rel['value_ev_ebitda']),
+                              multiple=float(rel['blend_ev_ebitda']),
+                              metric=float(rel['ebitda_26']),
+                              metric_name='FY2026 forecast EBITDA, USD thousands',
+                              basis='enterprise value at the blended peer multiple, '
+                                    'carried to equity through the same bridge the '
+                                    'cash-flow lens uses — net debt, the perpetual '
+                                    'capital securities and the minority — then divided '
+                                    'by shares and converted at the peg'),
+                         dict(name='earnings', weight=float(1 - W_EVEB),
+                              value=float(rel['value_pe']),
+                              multiple=float(rel['blend_pe']),
+                              metric=float(rel['npa_ord_26']),
+                              metric_name='FY2026 forecast profit after the perpetual '
+                                          'coupon, attributable to ordinary shares, '
+                                          'USD thousands',
+                              basis='the earnings multiple applied to profit AFTER the '
+                                    'hybrid coupon, because the coupon is not available '
+                                    'to ordinary shareholders and applying a multiple '
+                                    'before it values earnings the ordinary share does '
+                                    'not receive'),
+                     ]),
+                 # ONE BASIS, AND IT WAS THREE. This block existed so
+                 # assert_lens_design could show the adopted multiple is not the
+                 # traded one, and it mixed an AED spot against a share count in
+                 # MILLIONS against net debt and EBITDA in USD THOUSANDS — so the
+                 # traded multiple it computed was 0.9909x, which is not a multiple,
+                 # and the circularity test compared 11.10x against a number that
+                 # meant nothing AND PASSED. Put on the reporting currency, where
+                 # net debt and the metric already sit: spot_usd x shares in
+                 # thousands reproduces meta.mktcap_usd000 exactly, plus net debt
+                 # reproduces meta.ev_usd000 exactly, and the traded multiple comes
+                 # out at 6.92x. NOTHING VALUED MOVES — this is a cross-check's own
+                 # diagnostic, and under [R-LENS-03] a cross-check is published
+                 # beside the answer and never averaged into it.
+                 circularity=dict(spot=float(spot_usd),
+                                  shares=float(shares_mn * 1000.0),
                                   net_debt=float(NETDEBT),
-                                  metric_value=float(BASE['ebitda'][0])),
+                                  metric_value=float(BASE['ebitda'][0]),
+                                  basis='USD thousands; spot is the AED close '
+                                        'converted at the peg, shares are thousands'),
                  multiple_source=(
                      'a blend of %.2fx on the contracted book and %.2fx on the '
                      'spot-exposed book, both taken from the listed peer set — Nakilat '
@@ -2677,15 +3556,118 @@ OUT = dict(
                     % (norm['base'], 100 * RETIRED_W['normalized'])),
         ),
     ),
+    # [R-ASSET-01] THE OPERATING ASSET BASE, WITH THE DATE IT WAS TRUE ON. On a chartered
+    # fleet valued with replacement cost beside the cash-flow lens, the fleet IS the asset
+    # base, and until this record existed the study held every figure below and stated the
+    # vintage of none of them in a form anything outside the study could read — which is
+    # the sweep-register lesson exactly: five real checks passing on facts written where
+    # no checker could point at them. Nothing here is new research; it is a copy out of
+    # the study's own four-field register.
+    asset_base_record=dict(
+        quantity='owned vessels',
+        unit='vessels',
+        value=int(V['fleet_shipping_30jun26'] + V['jub_owned'] + V['osv_owned']
+                  + INPUTS['acq_2026_vlcc']['value'] + INPUTS['acq_2026_gas']['value']),
+        as_at='2026-08-07',
+        disclosure='the owned shipping fleet DISCLOSED AT 30 JUNE 2026 in the first-half '
+                   '2026 earnings presentation — 52 tankers, 22 gas carriers, 11 dry-bulk '
+                   'and 3 container vessels, subtotals footing to a stated 88 — carried '
+                   'forward by the 7 August 2026 announcement of the purchase of eleven '
+                   'vessels, six very large crude carriers and five gas carriers, which is '
+                   'the latest disclosure moving this fleet; plus the jack-up barges and '
+                   'offshore support vessels disclosed for 31 December 2025, which no '
+                   'later filing restates',
+        components=dict(
+            shipping_owned_30jun2026=int(V['fleet_shipping_30jun26']),
+            jack_up_barges_owned=int(V['jub_owned']),
+            offshore_support_vessels_owned=int(V['osv_owned']),
+            acquired_aug2026_vlcc=int(INPUTS['acq_2026_vlcc']['value']),
+            acquired_aug2026_gas=int(INPUTS['acq_2026_gas']['value']),
+        ),
+        note='THE BASE IS NEWER THAN THE INFORMATION SET AND THAT IS THE POINT OF THE '
+             'ORDERING. The statements this study reads end at 30 June 2026 and the '
+             'fleet is carried to 7 August 2026, because the company disclosed a movement '
+             'in it after that date and the price this value is compared against already '
+             'contains it. The shipping count is now the company\'s own 30 June 2026 '
+             'disclosure rather than the 31 December 2025 one the delivered edition '
+             'carried, so the base and the information set move together.',
+    ),
+    # The reading this study claims, stated once so the asset base can be ordered against
+    # it rather than against an assumption about what a study of this date must have read.
+    information_set_ends='2Q2026',
+    # [R-ANCHOR-01] / the anchor-ordering half of [R-BRIDGE-01]. THE ANCHOR AND THE BRIDGE
+    # NOW STAND ON THE SAME SHEET AND THE SAME PERIOD, which they did not before: the
+    # delivered edition anchored the margin on the AUDITED FY2025 year while the bridge
+    # stood on the reviewed 31 March 2026 quarter, and declared the reason for the gap.
+    # The reviewed six months to 30 June 2026 removes the gap — it is a HALF rather than a
+    # quarter, so the objection that answered the quarter (one quarter is a point on a
+    # seasonal path, not a rate the business runs at) no longer applies, and it is the
+    # latest reviewed period, which is what the rule asks for.
+    anchor_ordering_reason=dict(
+        reason='the anchor IS the latest reviewed period. The delivered edition anchored '
+               'on the audited FY2025 year because the only later period was a single '
+               'quarter, and on a fleet earning on charters that begin and end on their '
+               'own dates one quarter is a point on a seasonal path rather than a rate '
+               'the business runs at. The six months to 30 June 2026 are not a quarter '
+               'and the objection lapses: every driver in this study is now anchored on '
+               'that half, and the bridge stands on its balance sheet.',
+        later_period='H1 2026, reviewed',
+        later_rate=float(INPUTS['h1_26_ebitda_group']['value']
+                         / INPUTS['h1_26_rev']['value']),
+        anchor_rate=float(INPUTS['h1_26_ebitda_group']['value']
+                          / INPUTS['h1_26_rev']['value']),
+        later_rate_basis='the group earnings before interest, tax, depreciation and '
+                         'amortisation the operating-segments note discloses, over '
+                         'reported revenue, on the reviewed six months to 30 June 2026 — '
+                         'and it IS the anchor, so there is no later period to order '
+                         'against',
+        direction_note='THERE IS NO ORDERING LEFT TO DECLARE. The anchor and the latest '
+                       'reviewed period are the same period, so no rate is being adopted '
+                       'in preference to a later one.',
+        superseded=dict(
+            anchor='FY2025, audited', anchor_rate=float(hist_is['ebitda_margin'][2]),
+            reason='the delivered edition\'s anchor, recorded because the movement from '
+                   'it is the substance of this re-strike rather than a detail beside it'),
+    ),
     cost_of_capital_record=dict(
         market='AE', regime=_PATH.regime, years=5,
         rf_observed=V['rf_observed'], default_spread=V['sov_spread'], rf_star=rf_star,
         erp=V['erp_total'], erp_basis='rating', beta=V['beta'],
         ke_exp=ke, kd_pretax=kd, kd_aftertax=kd * (1 - tax_stat),
         weight_equity=we, weight_debt=wd, wacc_exp=wacc,
+        # THE THIRD TRANCHE IS DECLARED HERE BECAUSE THIS COMPANY HAS THREE. Equity and
+        # drawn debt sum to 0.872377, and the remaining 0.127635 is the perpetual capital
+        # securities — real, priced at their own coupon, and carried in this model since
+        # the first edition. Until 07-09-2026 the weight lived in a different object and
+        # the cost-of-capital record showed two weights and an unexplained gap, so a
+        # gate reading it reported the exemplar as the largest weights defect in the book.
+        # The arithmetic was never wrong: the three weights sum to one exactly and
+        # reproduce wacc_exp to zero. WHAT WAS MISSING WAS THE DECLARATION, which is this
+        # repository's own standing lesson about a convention stated anywhere but in the
+        # record a reader and a checker actually hold.
+        other_tranches=[dict(
+            name='perpetual_capital_securities', weight=float(wh), rate=float(kh),
+            basis='placed with a third-party investor at SOFR + 1.25%, disclosed in the '
+                  'perpetual capital securities note; carried at its coupon because it '
+                  'pays a coupon rather than a taxed interest charge',
+        )],
+        # [R-COC-02]: WHERE THE BETA CAME FROM, on the closed list. A reader of a record
+        # carrying 1.1032 cannot otherwise tell a measured regression from a priced
+        # tier-3 fallback from a number somebody typed.
+        beta_source='own_stock_regression',
         rf_terminal=V['rf_terminal'], erp_terminal=V['erp_total'], ke_terminal=ke_term,
+        # [R-COC-02]: the record NAMES the construction its terminal cost of equity was
+        # built under. This study carries the beta straight through to the terminal; two
+        # studies in the book relever instead, and until this field existed nothing
+        # distinguished a relevered beta from a typo.
+        ke_terminal_construction='same_beta',
         kd_terminal_pretax=kd_term, kd_terminal_aftertax=kd_term * (1 - tax_stat),
         weight_debt_terminal=wd, wacc_terminal=wacc_term,
+        other_tranches_terminal=[dict(
+            name='perpetual_capital_securities', weight=float(wh), rate=float(kh_term),
+            basis='the same tranche repriced off the terminal risk-free rate at the same '
+                  'disclosed margin',
+        )],
         glide_fractions=[(i + 1) / 5.0 for i in range(5)],
         forward_wacc=[float(x) for x in wacc_glide],
         discount_factors=[float(x) for x in dcf_own_beta['df']],
@@ -2746,17 +3728,17 @@ OUT = dict(
                 'weighted average — which either comes out or it does not.'),
             # THE CONTRACTUAL ANCHOR, AND THE ADOPTED RATE REPRODUCES FROM IT EXACTLY.
             contractual_anchor=[
-                dict(facility='shareholder loan', balance=V['q1_26_shldr_loan'],
+                dict(facility='shareholder loan', balance=V['h1_26_shldr_loan'],
                      rate=kd_m1,
                      note='SOFR of %.2f per cent plus the disclosed %.0f basis point '
                           'margin' % (100 * V['sofr'], 10000 * V['shldr_margin'])),
                 dict(facility='third-party bank and other borrowings',
-                     balance=V['q1_26_borrowings'], rate=kd_thirdparty,
+                     balance=V['h1_26_borrowings'], rate=kd_thirdparty,
                      note='the mid-point of the two disclosed ranges, %.2f-%.2f per cent '
                           'on bank loans and %.2f-%.2f per cent on other borrowings'
                           % (100 * V['bank_loan_lo'], 100 * V['bank_loan_hi'],
                              100 * V['other_borr_lo'], 100 * V['other_borr_hi'])),
-                dict(facility='lease liabilities', balance=V['q1_26_leases'],
+                dict(facility='lease liabilities', balance=V['h1_26_leases'],
                      rate=kd_lease,
                      note='the implied borrowing rate computed independently from the '
                           'audited FY2025 lease interest over the average lease liability'),
@@ -2794,7 +3776,38 @@ OUT = dict(
             'manufactured.',
         ],
     ),
+    # THE SCALE THIS STUDY'S STATEMENTS ARE KEPT IN, DECLARED. `shares_mn` carries its
+    # scale in its name and `npa_fy25` carries none, so an instrument dividing one into
+    # the other lands a factor of a thousand out — which is exactly what the earnings
+    # reconciliation reported, correctly, as a reconciliation it could not read. The
+    # company reports in US dollars and files in thousands; the per-share figures a
+    # reader sees are converted to dirhams at the peg at the last step.
+    reporting_units=dict(currency='USD', statement_scale='thousands',
+                         share_scale='millions', per_share_currency='AED',
+                         fx=float(peg),
+                         note='every income-statement and balance-sheet figure committed '
+                              'here is in USD thousands, as filed. The share count is in '
+                              'millions, as its own key name says. A per-share figure is '
+                              'USD until it is multiplied by the peg.'),
+    # [R-GAP-01 AMENDED] THE LATEST KNOWN PRICE, WITH ITS DATE AND THE FILE IT CAME FROM.
+    # This study is ANCHORED at the 7 August close — that is the date its information set
+    # ends, the date the fleet purchase was announced, and the date its market-value
+    # weights are a fact about — and it is DELIVERED against whatever the market has done
+    # since. Those are two different prices doing two different jobs, and publishing only
+    # the first leaves a reader comparing a valuation against a quote that has moved.
+    # READ FROM THE COMMITTED PRICE FILE rather than typed, so it cannot go stale silently
+    # and cannot be a figure that only ever existed in a conversation.
+    latest_known=_latest_known(),
     ground_up=GROUND_UP,
+    # THE LINES THE ASSERTION WAS COMPUTED FROM, not only what it returned. Until this
+    # was committed the study published share_by_level — the assertion's OUTPUT — and
+    # nothing outside the study could RE-RUN assert_ground_up() to see whether that
+    # output followed from anything. A committed conclusion with no committed inputs is
+    # the self-attested boolean [R-ENF-01] closes everywhere else, wearing a summary's
+    # clothes. Seven lines, covering 100 per cent of forecast revenue, each naming its
+    # level, its unit, the disclosure the unit came from, the price basis and the cost
+    # basis — and every line below `unit` carrying the gap note the rule requires.
+    driver_lines=[_dc.asdict(_l) for _l in _gu],
     assert_log=assert_log,
 )
 OUT['meta']['central'] = central

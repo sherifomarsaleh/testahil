@@ -241,14 +241,32 @@ def build() -> str:
     return out
 
 
-TEMPLATE = """<title>Reassessment Progress Board</title>
-<!-- GitHub Pages serves the whole repository, so this file IS a served page and
-     carries the site's tab chrome like every other one. check_page_integrity.py
-     said so and it was right: the first instinct was to exempt it as "an artifact
-     source, not a site page", which would have asserted something false about the
-     deployment in order to quiet a gate. On the published Artifact this link
-     resolves to nothing and the tab icon comes from the publish call, which costs
-     nothing; on testahil.com it resolves. -->
+TEMPLATE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reassessment Progress Board</title>
+<!-- THE DOCUMENT WRAPPER IS THE POINT OF THIS BLOCK AND IT WAS MISSING FOR A WEEK.
+     This file was authored to be published as an Artifact, where the host supplies
+     <!doctype html>, <html>, <head> and <body> and the page is written as a
+     fragment. GitHub Pages supplies NONE OF THAT — it serves the bytes — so the
+     live page at testahil.com/engine/method_reassessment/dashboard.html had no
+     doctype and rendered in QUIRKS MODE, where box-sizing reverts to content-box
+     and a grid-and-flex layout comes apart. It returned 200 with the right bytes
+     the whole time, which is why nothing caught it: the failure is in the
+     RENDERING, not in the response, and no check here reads a page the way a
+     browser does.
+
+     THE TWO DESTINATIONS WANT OPPOSITE THINGS AND ONLY ONE OF THEM IS LIVE. The
+     comment this replaces already knew the file "IS a served page" and still wrote
+     it as an artifact source — a true observation and the wrong conclusion. It is
+     written as a COMPLETE DOCUMENT from here on, because that is what the URL
+     people actually open needs; publishing it as an Artifact is a separate output
+     and a separate act.
+
+     The favicon link resolves on testahil.com and resolves to nothing elsewhere,
+     which costs nothing either way. -->
 <link rel="icon" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -411,6 +429,8 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
   .mkts li{grid-template-columns:1fr 60px} .mk-bar{grid-column:1/-1}
 }
 </style>
+</head>
+<body>
 
 <div class="wrap">
   <header class="mast">
@@ -607,6 +627,8 @@ footer code{font-family:var(--mono);font-size:13px;background:var(--sunk);
     pre-reassessment numbers.</p>
   </footer>
 </div>
+</body>
+</html>
 """
 
 

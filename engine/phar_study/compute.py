@@ -1466,8 +1466,28 @@ def run_dcf(ebit, ebitda, label):
     pv = [fcff[i] * df[i] for i in range(n)]
     pv_sum = sum(pv)
     roic_fy30 = nopat[-1] / ic_fy30
-    nopat_term = nopat[-1] * (1 + V['g_term']) - term_dep_catchup * (1 - TAX_FCFF)
-    # THE RETIRED FORM, kept in one line so the change is legible and priced: the
+    # [R-TERM-01] THE MODULE'S OWN CONTRACT: TerminalInputs takes the flows IN THE LAST
+    # EXPLICIT YEAR'S MONEY, "not the terminal year's. The module grows the free cash flow
+    # one year itself" — tv = fcff * (1+g) / (W-g) puts the first perpetuity year in the
+    # numerator and values the terminal at the END OF FY2030E, which is where df[-1]
+    # discounts it. In its own words: "Pass a NOPAT already grown by (1+g) and the terminal
+    # is overstated by exactly (1+g) — a year-seven flow discounted at the year-five
+    # factor." This call site did exactly that, on nopat, on dna_book and on
+    # working_capital, and the module grew all three a second time.
+    #
+    # WHAT EACH TERM IS DENOMINATED IN, ESTABLISHED RATHER THAN ASSUMED, because the fix is
+    # NOT "divide the old expression by (1+g)": nopat[-1] is FY2030E's own NOPAT and is
+    # already on the required basis, so the (1+g) is simply removed; term_dep_catchup is
+    # cip[-1] x dep_rate, a FY2030E closing construction balance at the annual depreciation
+    # rate, so it is ALREADY a FY2030E-money annual charge and is deducted at full value —
+    # deflating it by (1+g) would put it a year behind everything beside it, and the module
+    # grows it once with the rest of the flow, which is what a charge borne in perpetuity
+    # should do.
+    nopat_term = nopat[-1] - term_dep_catchup * (1 - TAX_FCFF)
+    # THE RETIRED FORM, kept in one line so the change is legible and priced. It is stated
+    # on the TERMINAL year, which is what that construction meant, so it is built from its
+    # own grown numerator and is untouched by the basis correction above — the retired
+    # diagnostic must keep pricing the construction the study retired, not a new one. The
     # reinvestment identity rr = g/ROIC charges g x IC every year for ever, so the
     # implied replacement cycle is 1/g — a fact about the growth rate rather than about
     # the asset. At the previous edition's 5% that was 20.0 years against a weighted
@@ -1478,12 +1498,16 @@ def run_dcf(ebit, ebitda, label):
     # study typed a rate BELOW inflation and so ran long in exactly the market the
     # clause says should run short.
     reinv_rate = V['g_term'] / roic_fy30
-    tv_retired = nopat_term * (1 - reinv_rate) / (wacc_term - V['g_term'])
+    nopat_term_grown = nopat[-1] * (1 + V['g_term']) - term_dep_catchup * (1 - TAX_FCFF)
+    tv_retired = nopat_term_grown * (1 - reinv_rate) / (wacc_term - V['g_term'])
     _inc_cap = ((ic_fy30 - ic_fy26) / (revenue[-1] - revenue[0])) * revenue[-1]
     _terminal = TV.build(TV.TerminalInputs(
         nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
         real_growth=V['g_term_real'],
-        dna_book=dna[-1] * (1 + V['g_term']),
+        # LAST EXPLICIT YEAR, per the contract quoted above: dna_book, working_capital and
+        # the capital behind incremental_capital_per_unit_growth all sit on the same basis
+        # as nopat, because the module grows the whole free cash flow once.
+        dna_book=dna[-1],
         useful_life_years=V['asset_life_weighted'],
         useful_life_source=INP['asset_life_weighted']['source'],
         # The cross-check basis, and the reason is structural rather than convenience:
@@ -1493,10 +1517,27 @@ def run_dcf(ebit, ebitda, label):
         # through five years of forecast capital spending at mixed vintages would be a
         # construction of ours rather than a figure the company discloses.
         maintenance_basis='book_dna_escalated',
-        working_capital=wc[-1] * (1 + V['g_term']),
+        working_capital=wc[-1],
         incremental_capital_per_unit_growth=_inc_cap))
     fcff_term = _terminal.fcff
     tv = _terminal.tv
+    # THE SUPERSEDED BASIS, PRICED RATHER THAN DESCRIBED. Until this edition all three flow
+    # inputs were handed in already grown by (1+g) and the module grew them again. The
+    # defect is rebuilt here through the same module so what it was worth is COMPUTED and
+    # committed, never typed into a document; nothing downstream discounts it.
+    # TERMINAL-BASIS-EXCEPTION: deliberate. This rebuilds the SUPERSEDED pre-grown
+    # construction through the same module so what the defect was worth is COMPUTED
+    # rather than typed into a document. Nothing downstream discounts this terminal —
+    # it feeds the committed per_share_superseded_grown_basis and nothing else.
+    _terminal_grown = TV.build(TV.TerminalInputs(
+        nopat=nopat_term_grown, wacc=wacc_term, inflation=PI_TERM,
+        real_growth=V['g_term_real'],
+        dna_book=dna[-1] * (1 + V['g_term']),
+        useful_life_years=V['asset_life_weighted'],
+        useful_life_source=INP['asset_life_weighted']['source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=wc[-1] * (1 + V['g_term']),
+        incremental_capital_per_unit_growth=_inc_cap))
     pv_tv = tv * df[-1]
     ev_core = pv_sum + pv_tv
     assoc_earnings = V['assoc_norm'] * V['assoc_multiple']
@@ -1504,18 +1545,21 @@ def run_dcf(ebit, ebitda, label):
     ev_total = ev_core + assoc_value + V['afs_fy25']
     equity = ev_total - net_debt - V['nci_bridge']
     ps = equity / V['shares_mn']
-    return dict(label=label, ebitda=ebitda, ebit=ebit, nopat=nopat, fcff=fcff, pv=pv,
+    # What the superseded basis was worth per share, on this frame, everything else held.
+    ps_superseded = ((ev_total - pv_tv + _terminal_grown.tv * df[-1]
+                      - net_debt - V['nci_bridge']) / V['shares_mn'])
+    return dict(label=label, per_share_superseded_grown_basis=ps_superseded, ebitda=ebitda, ebit=ebit, nopat=nopat, fcff=fcff, pv=pv,
                 pv_sum=pv_sum, nopat_term=nopat_term, reinvest_rate=reinv_rate,
                 roic_term=roic_fy30, term_dep_catchup=term_dep_catchup,
                 fcff_term=fcff_term, tv=tv, tv_retired=tv_retired,
                 terminal_record=dict(inputs=dict(
                     nopat=nopat_term, wacc=wacc_term, inflation=PI_TERM,
                     real_growth=V['g_term_real'], nominal_growth=V['g_term'],
-                    dna_book=dna[-1] * (1 + V['g_term']),
+                    dna_book=dna[-1],
                     useful_life_years=V['asset_life_weighted'],
                     useful_life_source=INP['asset_life_weighted']['source'],
                     maintenance_basis='book_dna_escalated',
-                    working_capital=wc[-1] * (1 + V['g_term']),
+                    working_capital=wc[-1],
                     incremental_capital_per_unit_growth=_inc_cap),
                     outputs=dict(fcff=_terminal.fcff, tv=_terminal.tv,
                                  floor=_terminal.floor,
@@ -1528,7 +1572,11 @@ def run_dcf(ebit, ebitda, label):
                     record=_terminal.record,
                     retired_construction=dict(
                         form='NOPAT_term(1 - g/ROIC)/(W-g)', tv=tv_retired,
-                        implied_cycle_years=1.0 / V['g_term'])),
+                        implied_cycle_years=1.0 / V['g_term']),
+                    superseded_grown_basis=dict(
+                        form='every flow input handed in already grown by (1+g), then '
+                             'grown again inside the module',
+                        tv=_terminal_grown.tv, fcff=_terminal_grown.fcff)),
                 pv_tv=pv_tv, ev_core=ev_core,
                 tv_share=pv_tv / ev_core, assoc_value=assoc_value,
                 assoc_earnings_value=assoc_earnings,
@@ -1875,7 +1923,13 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     pvs = sum(fc[i] * d_[i] for i in range(n))
     ic_ = ppe_b_ + cip_b_ + wc_[-1] + V['intang_fy25']
     roic_ = ebit_[-1] * (1 - TAX_FCFF) / ic_
-    nt = (ebit_[-1] * (1 - TAX_FCFF) * (1 + g)
+    # [R-TERM-01], the same contract as the base DCF above and for the same reason: the
+    # module takes the LAST EXPLICIT YEAR'S flows and grows them itself, so a sensitivity
+    # harness that hands it a grown NOPAT grades a terminal a year further out than the
+    # factor it is discounted at. The parked-construction catch-up is cip_close_ x dr_rate,
+    # a FY2030E balance at the annual rate, so it is already on that basis and is deducted
+    # at full value rather than deflated.
+    nt = (ebit_[-1] * (1 - TAX_FCFF)
           - cip_close_ * dr_rate * (1 - TAX_FCFF))
     # The terminal is built through the sanctioned module here too. A sensitivity grid
     # that keeps the retired construction grades a model the study no longer publishes,
@@ -1887,11 +1941,11 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
         tv_ = TV.build(TV.TerminalInputs(
             nopat=nt, wacc=max(wt, g + 0.02), inflation=PI_TERM,
             real_growth=(1.0 + g) / (1.0 + PI_TERM) - 1.0,
-            dna_book=dna_[-1] * (1 + g),
+            dna_book=dna_[-1],
             useful_life_years=V['asset_life_weighted'],
             useful_life_source=INP['asset_life_weighted']['source'],
             maintenance_basis='book_dna_escalated',
-            working_capital=wc_[-1] * (1 + g),
+            working_capital=wc_[-1],
             incremental_capital_per_unit_growth=_inc_cap_base)).tv
     except TV.TerminalRefused:
         return float('nan')
@@ -1970,12 +2024,158 @@ say(f"  Two things that must be published for that hurdle to be auditable, and w
     f"edition let it arrive free of both and published a hurdle of about USD 115 million; "
     f"charged properly it is USD {crux['required_rev_usd_mn']:,.0f} million.")
 
+
+# ======================= FORECAST ANCHOR ======================================
+# [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD, AND A
+# DECLINE AWAY FROM IT NAMES ITS MECHANISM. The record is printed for every study
+# whether or not it fires. THIS ONE FIRES ON BOTH CLAUSES, and the record says so
+# rather than the study carrying the decline in silence.
+#
+# THE ANCHOR IS THE REVIEWED QUARTER, NOT THE AUDITED YEAR: a near-term reviewed
+# actual outranks a stale full-year rate, and the most recent period this model
+# consumes is the three months to 31 March 2026. Its gross margin is read straight
+# off the reviewed income statement -- gross profit over net sales -- and the same
+# statement carries the comparative quarter, which is where the like-for-like
+# measurement comes from. Nothing here is estimated: every figure below is a
+# committed input or a committed model series.
+_FA_Q1_GM      = V['q1_gp'] / V['q1_rev']
+_FA_Q1_GM_LY   = V['q1_gp_ly'] / V['q1_rev_ly']
+_FA_Q1_COST    = (V['q1_rev'] - V['q1_gp']) / V['q1_rev']
+_FA_Q1_COST_LY = (V['q1_rev_ly'] - V['q1_gp_ly']) / V['q1_rev_ly']
+_FA_Q1_DNA_R    = V['q1_dna'] / V['q1_rev']
+_FA_Q1_DNA_R_LY = V['q1_dna_ly'] / V['q1_rev_ly']
+# per-pack rates, filed against filed on both sides: packs from the Board of
+# Directors' report, revenue and cost of sales from the audited statements; the
+# forecast year uses the identical construction on the model's own series
+_FA_RPP24, _FA_RPP25 = (hist['FY2024']['revenue'] / V['packs_sold_fy24'],
+                        hist['FY2025']['revenue'] / V['packs_sold_fy25'])
+_FA_CPP24, _FA_CPP25 = (hist['FY2024']['cogs'] / V['packs_sold_fy24'],
+                        hist['FY2025']['cogs'] / V['packs_sold_fy25'])
+_FA_RPP26, _FA_CPP26 = revenue[0] / packs_total[0], cogs[0] / packs_total[0]
+# where the fall against the audited base year sits: the cash stack against the
+# production share of depreciation, both as a share of revenue. The audited note
+# gives the FY2025 split; the forecast year is the model's own.
+_FA_CASH25 = (hist['FY2025']['cogs'] - V['dep_in_cogs_fy25']) / hist['FY2025']['revenue']
+_FA_DEP25  = V['dep_in_cogs_fy25'] / hist['FY2025']['revenue']
+_FA_CASH26 = cogs_cash[0] / revenue[0]
+_FA_DEP26  = dna[0] * DEP_COGS_SHARE / revenue[0]
+# the domestic price leg against the house ladder it is escalated beside
+_FA_REAL_DOM = [(1 + V['dom_price_growth'][i]) / (1 + V['esc_domestic_cpi'][i]) - 1
+                for i in range(n)]
+_FA_REAL_CUM = 1.0
+for _r in _FA_REAL_DOM:
+    _FA_REAL_CUM *= (1 + _r)
+
+FORECAST_ANCHOR = dict(
+    rate_name='gross margin',
+    latest_reviewed_period='Q1-2026, reviewed interim',
+    latest_reviewed_date='2026-03-31',
+    latest_reviewed_rate=float(_FA_Q1_GM),
+    first_forecast_rate=float(gross_margin[0]),
+    forecast_path=[float(g) for g in gross_margin],
+    mechanism=dict(
+        name='input_cost_outpacing_price',
+        disclosure=(
+            'the audited FY2025 cost-of-sales note splits production cost by nature: raw '
+            'materials %.2f%%, packaging materials %.2f%%, labour %.2f%%, fuel, oils, '
+            'electricity, water and lighting %.2f%%, other consumables and services %.2f%%, '
+            'depreciation %.2f%%. The raw-material leg is imported active pharmaceutical '
+            'ingredient and part of the packaging leg is imported film, foil and closures, '
+            'so on the study\'s registered import share of packaging %.1f%% of the CASH cost '
+            'stack -- those same lines excluding the depreciation shown above -- is priced '
+            'abroad and reaches the income statement through the exchange '
+            'rate, which the FY2025 foreign-currency note states at EGP %.2f to the dollar on '
+            'average during the period. The output price is not on the same clock: the '
+            'domestic leg is administratively priced and moves in approved steps, and the '
+            'export leg is set in dollars. The two legs separate visibly in the '
+            'company\'s own filings twice over. In the reviewed first quarter of 2026 net '
+            'sales rose %.1f%% on the comparative quarter while cost of sales rose %.1f%%. '
+            'In the audited pair FY2024 to FY2025, on the pack counts the Board of '
+            'Directors\' report discloses, revenue per pack rose %.2f%% against cost of '
+            'sales per pack %.2f%%, and the audited gross margin fell from %.2f%% to %.2f%%.'
+            % (100 * cs_all['materials'], 100 * cs_all['packaging'], 100 * cs_all['labour'],
+               100 * cs_all['energy'], 100 * cs_all['services_other'],
+               100 * cs_all['depreciation'], 100 * fx_cost_share, V['fx_avg_fy25'],
+               100 * (V['q1_rev'] / V['q1_rev_ly'] - 1),
+               100 * ((V['q1_rev'] - V['q1_gp']) / (V['q1_rev_ly'] - V['q1_gp_ly']) - 1),
+               100 * (_FA_RPP25 / _FA_RPP24 - 1), 100 * (_FA_CPP25 / _FA_CPP24 - 1),
+               100 * hist['FY2024']['gross_margin'], 100 * hist['FY2025']['gross_margin'])),
+        like_for_like=dict(
+            measures='cost of sales per unit of revenue, the reviewed first quarter of 2026 '
+                     'against the comparative quarter presented in the same filing',
+            period_a='Q1-2025, the comparative quarter (three months ended 31 March 2025)',
+            value_a=float(_FA_Q1_COST_LY),
+            period_b='Q1-2026, reviewed (three months ended 31 March 2026)',
+            value_b=float(_FA_Q1_COST),
+            higher_is_worse=True)),
+    note=(
+        'BOTH CLAUSES FIRE AND THE RECORD SAYS SO. The forecast opens at %.2f%% against a '
+        'latest reviewed %.2f%%, %.2f points and %.1f%% relatively below it, and then falls '
+        'a further %.1f%% relative from its own opening year to %.2f%% in the final explicit '
+        'year. The audited record is FY2023 %.2f%%, FY2024 %.2f%%, FY2025 %.2f%%; the '
+        'reviewed first quarter of 2026 is %.2f%% against a comparative quarter of %.2f%%, '
+        'so the company was already running below its audited years before the forecast '
+        'starts. WHERE THE FALL SITS, against the audited base year: the cash cost stack '
+        'goes from %.2f%% of revenue to %.2f%% and the production share of depreciation '
+        'from %.2f%% to %.2f%%, so roughly three quarters of the %.2f-point fall is the '
+        'cost stack and the rest is the new facility beginning to depreciate. THE '
+        'COMMISSIONING STEP IS ALREADY PARTLY INSIDE THE ANCHOR and that is why it is not '
+        'the mechanism named: the reviewed quarter carries depreciation and amortisation of '
+        '%.2f%% of revenue against %.2f%% in the comparative quarter, the transfer out of '
+        'construction arriving on the company\'s own schedule. WHAT THE FILINGS DO NOT '
+        'ESTABLISH IS THE MAGNITUDE, and this record does not pretend otherwise. The '
+        'direction agrees with the company\'s own accounts on both measured pairs, but the '
+        'model opens a far wider wedge than the filings have ever shown: revenue per pack '
+        '%+.2f%% against cost of sales per pack %+.2f%% in the first forecast year, against '
+        'a filed FY2024-to-FY2025 pair of %+.2f%% and %+.2f%%. The domestic realised price '
+        'is escalated at %.1f%% in the first year against a house consumer-inflation ladder '
+        'of %.1f%%, and %.1f%% cumulatively in real terms across the explicit window, while '
+        'the domestic cost legs escalate on that same ladder and the labour and energy legs '
+        'above it. The company\'s own filed domestic realised price per pack rose %.2f%% in '
+        'FY2025. A real price cut compounding for five years is a claim about the world; the '
+        'filings give it a direction and they do not give it that size, and the input '
+        'register\'s own justification for the path says price growth tracks domestic '
+        'inflation with no real price gain, which these numbers are not. That is registered '
+        'here rather than corrected, because this record is a measurement of what the model '
+        'does and the correction is a rebuild.'
+        % (100 * gross_margin[0], 100 * _FA_Q1_GM,
+           100 * (_FA_Q1_GM - gross_margin[0]),
+           100 * (_FA_Q1_GM - gross_margin[0]) / _FA_Q1_GM,
+           100 * (gross_margin[0] - min(gross_margin)) / gross_margin[0],
+           100 * min(gross_margin),
+           100 * hist['FY2023']['gross_margin'], 100 * hist['FY2024']['gross_margin'],
+           100 * hist['FY2025']['gross_margin'], 100 * _FA_Q1_GM, 100 * _FA_Q1_GM_LY,
+           100 * _FA_CASH25, 100 * _FA_CASH26, 100 * _FA_DEP25, 100 * _FA_DEP26,
+           100 * (hist['FY2025']['gross_margin'] - gross_margin[0]),
+           100 * _FA_Q1_DNA_R, 100 * _FA_Q1_DNA_R_LY,
+           100 * (_FA_RPP26 / _FA_RPP25 - 1), 100 * (_FA_CPP26 / _FA_CPP25 - 1),
+           100 * (_FA_RPP25 / _FA_RPP24 - 1), 100 * (_FA_CPP25 / _FA_CPP24 - 1),
+           100 * V['dom_price_growth'][0], 100 * V['esc_domestic_cpi'][0],
+           100 * (_FA_REAL_CUM - 1),
+           100 * (dom_ppp25 / dom_ppp24 - 1))))
+
+say('')
+say('[Forecast anchor] gross margin: latest reviewed period Q1-2026 at '
+    f'{_FA_Q1_GM:.2%}, first forecast year {gross_margin[0]:.2%}, '
+    f'{100 * (gross_margin[0] - _FA_Q1_GM):+.2f} points and '
+    f'{100 * (gross_margin[0] - _FA_Q1_GM) / _FA_Q1_GM:+.1f}% relative. Path low '
+    f'{min(gross_margin):.2%}. Mechanism named: input cost outpacing price; measured '
+    f'cost per unit of revenue {_FA_Q1_COST_LY:.4f} -> {_FA_Q1_COST:.4f} in the '
+    f'company\'s own quarter pair.')
+
 # ============================ OUTPUT ==========================================
 step0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 bt5 = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 
 OUT = dict(
+    # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
+    # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
+    # run behind it and no statement either way is SILENT, which is a different
+    # fact from 'none adopted' and reads identically.
+    adopted_corrections=[],
+    adopted_corrections_note=(
+        "the walk-forward on this name adopted NO correction — see engine/phar_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work."),
     meta=dict(company='Egyptian International Pharmaceutical Industries Company',
               short='EIPICO', ticker='PHAR', market='EG', exchange='The Egyptian Exchange',
               currency='EGP', sector='Pharmaceuticals — generic and branded manufacturing',
@@ -2132,6 +2332,9 @@ OUT = dict(
                            "the currency devaluation"),
         ]),
     spot=V['spot'], spot_date=INP['spot']['date'],
+    # [R-ANCHOR-01]: the forecast rate against the latest reviewed period, printed
+    # for every study whether or not it fires. This one fires on both clauses.
+    forecast_anchor=FORECAST_ANCHOR,
     lens_record=dict(**{'class': 'pharmaceutical manufacturer, generic and branded'},
         primary=dict(kind='dcf', two_sided=True, value=None,
                      range=dict(low=min(centre_A, centre_B),

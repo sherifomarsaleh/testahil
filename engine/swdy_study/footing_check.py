@@ -46,14 +46,38 @@ def _latest(pattern):
 
 DOCS = [d for d in (_latest('SWDY_Valuation_Study_*_public.docx'), _latest('SWDY_Bibliography_*.docx')) if d]
 
+# THE DECLARATION IS KEYED ON A TABLE INDEX AND AN INDEX MOVES. Inserting the far-year
+# range table into section 7 shifted the balance sheet from 26 to 27, and the allowance
+# went with the index rather than with the table — the balance sheet went RED (the safe
+# direction) and table 26 silently acquired an allowance it had not earned (the other
+# one). The index is corrected AND asserted below, so the next insertion breaks loudly
+# instead of moving an exemption onto a table nobody chose. [L-066/L-067] applied to a
+# position rather than to a filename.
+_BS_TABLE = 27
 DECLARED = [
-    (_latest('SWDY_Valuation_Study_*_public.docx'), 26, "Total assets",
+    (_latest('SWDY_Valuation_Study_*_public.docx'), _BS_TABLE, "Total assets",
      "A CONDENSED LAYOUT against a disclosed total: between 6.3% and 6.9% of assets are not "
      "broken out in the six rows above — the narrowest of the condensed cases and the one "
      "closest to being worth a labelled residual at its next re-issue."),
 ]
 
+def _assert_declaration_points_at_the_balance_sheet():
+    """The declared index must be the table the reason is about, or the allowance has
+    moved. An exception is granted to a SUBJECT and is spent by a CLAIM [R-ENF-08]; an
+    index-keyed one silently changes subject the moment a table is inserted above it."""
+    doc = _latest('SWDY_Valuation_Study_*_public.docx')
+    tabs = TF.tables_of(doc) if hasattr(TF, 'tables_of') else None
+    if tabs is None:
+        return
+    rows = tabs[_BS_TABLE] if _BS_TABLE < len(tabs) else []
+    labels = {(r[0] or '').strip() for r in rows if r}
+    assert 'Total assets' in labels, (
+        'the footing declaration points at table %d, which carries no "Total assets" row '
+        '- the allowance has moved off the balance sheet it was written for' % _BS_TABLE)
+
+
 if __name__ == '__main__':
+    _assert_declaration_points_at_the_balance_sheet()
     examined, problems = TF.check(DOCS, DECLARED)
     assert examined, 'no tables examined — an empty result is not a clean result'
     sys.exit(TF.report(examined, problems, 'SWDY'))

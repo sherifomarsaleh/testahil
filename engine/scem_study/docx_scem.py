@@ -1,4 +1,4 @@
-"""SCEM_Valuation_Study_04-09-2026_public.docx — TMPV house structure.
+"""SCEM_Valuation_Study_07-09-2026_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -72,7 +72,7 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Sinai Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · SCEM · Egyptian pounds · issued 4 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
+P('Egyptian Exchange · SCEM · Egyptian pounds · issued 7 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
   space_after=10)
 rich([(f'A single-plant cement producer, sitting on net cash worth '
        f'{pc(D["dcf"]["net_cash"] / (SPOT * SH), 0)} of its market '
@@ -89,9 +89,13 @@ box([('What this is. ', 'An independent valuation of Sinai Cement, an educationa
      ('Where the value lands. ',
       f'The cash-flow lens is the answer: EGP {n2(LN["central"])} a share against a market '
       f'price of EGP {n2(SPOT)}, {sg(LN["central"]/SPOT-1)}. Flexing the operating margin '
-      f'down to the lowest the company has ever filed takes it to EGP '
-      f'{n2(LREC["primary"]["range"]["low"])}, and the forecast opens above the best year '
-      f'it has filed, so essentially the whole of that range is downside. The other lenses '
+      f'down to {pc(LREC["primary"]["range_basis"]["low"])} takes it to EGP '
+      f'{n2(LREC["primary"]["range"]["low"])} — and that is not the lowest margin the '
+      f'company has filed but the lowest at which this remains a GOING CONCERN, because '
+      f'below it the terminal consumes cash for ever and would have to be valued as a '
+      f'liquidation rather than at a smaller number. The forecast opens above the best '
+      f'year the company has filed, so essentially the whole of that range is downside. '
+      f'The other lenses '
       f'are published beside it rather than averaged into it: replacement cost EGP '
       f'{n2(LN["values"]["Asset / replacement cost"])}, an enterprise multiple EGP '
       f'{n2(LN["values"]["Relative multiples"])}, and a disclosed book floor of EGP '
@@ -459,9 +463,15 @@ rows.append(['MEMO — the retired four-lens blend', '—',
 table(rows, [1.62, 0.72, 0.72, 0.72, 0.78, 2.39], band_rows={1})
 caption('Table 8 — The lenses side by side. NOTHING IS WEIGHTED: the cash-flow read is the '
         'central and the others are cross-checks. Its bear corner flexes the operating '
-        'margin down to the lowest the company has filed and holds the macro path still; '
-        'its bull corner is the base case, because the forecast already opens above the '
-        'best margin the company has ever filed and this driver has no upside left '
+        f'margin down to {pc(LREC["primary"]["range_basis"]["low"])} and holds the macro '
+        'path still. THAT IS NOT THE LOWEST MARGIN THE COMPANY HAS FILED, which is '
+        f'{pc(LREC["primary"]["range_basis"]["filed_minimum"])}: at that margin terminal '
+        'free cash flow on the disclosed twenty-year machinery life is negative, and a '
+        'going concern consuming cash for ever is a liquidation rather than a lower '
+        'valuation — so the bound published is the lowest margin at which the '
+        'going-concern reading survives, and below it the disclosed book value is the '
+        'floor. Its bull corner is the base case, because the forecast already opens above '
+        'the best margin the company has ever filed and this driver has no upside left '
         'against its own record.')
 
 # ---- 1.6 --------------------------------------------------------------------
@@ -754,51 +764,73 @@ caption('Table 17 — Zones read against the fundamental work rather than agains
 
 # ============================== 7 ============================================
 H1('7  Caveats and what would change our mind')
+P('This edition is built entirely on the company\'s own audited financial statements, '
+  'which are published as six PDFs on its own website. Every caveat below is a limit of '
+  'what those statements disclose, not a limit of what could be obtained.')
 for head, body in [
-    ('The audited statements could not be obtained. ',
-     'Revenue and profit after tax are carried as disclosed through reporting of the '
-     'company\'s exchange filings. Every line between them — EBITDA, depreciation, '
-     'operating profit and treasury income — is DERIVED by closing the disclosed profit, '
-     'and is labelled as derived in the financial statements appendix. The margin '
-     'structure rests on a single disclosed EBITDA figure for FY2024.'),
-    ('The balance sheet still does not fully reconcile. ',
-     f'Rolling FY2024 equity of EGP {n0(D["equity_gap"]["rolled"] - IN["pat_fy25"])} million '
-     f'forward by FY2025 profit with no distribution gives EGP '
-     f'{n0(D["equity_gap"]["rolled"])} million, against a reported figure of about EGP '
-     f'{n0(D["equity_gap"]["reported"])} million. The EGP {n0(D["equity_gap"]["gap"])} '
-     'million difference implies a FY2025 distribution that no obtainable source reports. '
-     'It is carried as a disclosed uncertainty rather than plugged, and it bears directly '
-     'on the cash balance the valuation adds back.'),
-    ('The cash balance is now reported, and sensitised. ',
-     f'An earlier draft inferred it from the treasury income the profit bridge implied, '
-     f'divided by a deposit yield, and then grew it by an undisclosed multiplier. It is now '
-     f'the reported FY2025 balance of EGP {n0(IN["cash_fy25"])} million, rolled forward to '
-     f'the valuation date on the elapsed share of FY2026 free cash flow. It is '
-     f'{pc(DCF["net_cash"]/DCF["equity"], 0)} of fair equity value, so it carries its own '
-     'sensitivity grid in section 1.9 rather than being asserted.'),
-    ('The EBITDA margin is an output, and that changed the answer. ',
-     'An earlier draft set the FY2026 EBITDA margin at 30.5% — above the FY2025 outturn it '
-     'simultaneously described as a cyclical peak. Rebuilding the operating line from the '
-     f'cost stack puts FY2026 at {pc(D["forecast"]["margin"][0])} falling to '
-     f'{pc(D["forecast"]["margin"][4])}, and moved the weighted central materially lower.'),
-    ('The fixed cost block is calibrated, not observed. ',
-     f'Variable costs are built from independent physical norms, but the fixed block — '
-     f'labour, maintenance, insurance, security and administration — is set at USD '
-     f'{n1(IN["fixed_usd_t_capacity"])} per tonne of installed capacity, the level the '
-     'FY2025 reconciliation implies against that variable stack. It sits inside the USD '
-     '10-20 industry band, but it is the one cost line the build does not independently '
-     'evidence.'),
-    ('Capital expenditure is a top-down assumption. ',
-     'The company publishes no capital-expenditure figure, guidance or investment plan that '
-     'could be retrieved. Capex is set at 4.5% to 5.0% of revenue as maintenance for a '
-     'mature two-line plant plus decarbonisation spending, and is sensitised.'),
-    ('The FY2024 disposal gain is estimated, not disclosed. ',
-     f'The EUR {n0(IN["swcc_eur"])} million consideration and the completion date are '
-     'reported, but the carrying value of the stake is not. It is estimated at EGP 100 '
-     'million on the reasoning that a 1990s-vintage holding carried at historic cost in '
-     'pre-devaluation pounds is small. A different carrying value shifts the split between '
-     'the FY2024 disposal gain and FY2024 treasury income, but not the FY2025 or forecast '
-     'figures.'),
+    ('This issuer discloses no volume, and that is the largest gap in the build. ',
+     'Not a tonne of clinker, not a tonne of cement, not an installed capacity and not a '
+     'utilisation rate appears anywhere in any of the six published filings. The cost of '
+     'sales, selling and administrative notes are broken out line by line and are used '
+     'here as disclosed, so the cost side is built from the company\'s own figures; the '
+     'physical quantities the unit build needs come from the plant register and the trade '
+     'press and are industry-ring forecast drivers, not the company\'s own reported '
+     'numbers. Capacity and the kiln utilisation path are the single largest judgement in '
+     'this study and are priced both ways in the contested-judgements table.'),
+    ('The equity roll closes, and the earlier edition\'s gap was a sourcing error rather '
+     'than a distribution. ',
+     f'Rolling FY2024 equity forward by FY2025 profit with no distribution gives EGP '
+     f'{n2(D["equity_gap"]["rolled"])} million against the filed EGP '
+     f'{n2(D["equity_gap"]["reported"])} million — the two agree to the pound. Earlier '
+     f'editions of this study showed a gap here and read it as a distribution the '
+     f'statements do not itemise, because the FY2024 totals they carried came from trade '
+     f'press relaying the filing rather than from the filing itself; on the audited '
+     f'figures there is nothing left to explain. Nothing in the valuation turns on it '
+     f'either way, since the cash the valuation adds back is read off the reviewed '
+     f'balance sheet directly.'),
+    ('The forecast margin is an output of a disclosed cost stack, and it rises. ',
+     f'FY2026 opens at {pc(D["forecast"]["margin"][0])} against a filed FY2025 of '
+     f'{pc(D["history"]["ebitda"][-1] / D["history"]["revenue"][-1])} and a reviewed first '
+     f'quarter of '
+     f'2026 that came in ahead of it. The rise is the output of holding the disclosed '
+     f'cost lines flat in real terms against a volume path that grows; it is not an '
+     'assumed margin, and a reader who disagrees with the volume path should read the '
+     'utilisation judgement rather than this line.'),
+    ('The terminal rests on a disclosed 20-year machinery life, and the choice is worth '
+     'more than five per cent. ',
+     'Note 3/2 discloses depreciation rates rather than lives, and two of its five asset '
+     'classes are ranges. Machinery is disclosed as a single 5% rate and is 69.5% of the '
+     'gross cost the replacement-cost base represents, so its 20-year life is adopted '
+     'without averaging anything. A whole-plant blend across all five classes would be '
+     'longer and is published beside it in the contested-judgements table. The two '
+     'ordinary ways of blending disagree by a quarter on the same disclosed table, which '
+     'is why the scalar is preferred to either.'),
+    ('At this company\'s worst filed margin the terminal is a liquidation, not a lower '
+     'valuation. ',
+     'The bear bound of the range in section 1.9 is not the FY2023 EBITDA margin of '
+     f'{pc(min(e / r for e, r in zip(D["history"]["ebitda"], D["history"]["revenue"])))}. '
+     f'At that margin '
+     'terminal free cash flow on the disclosed maintenance charge is negative, and a '
+     'going concern that consumes cash for ever is not a business to be discounted at a '
+     'lower value — it is a liquidation and would have to be valued as one. The bound '
+     'published is the lowest margin at which the going-concern reading survives, and '
+     'below it the disclosed book value is the floor.'),
+    ('The beta is a tier-3 default on a genuine gate failure. ',
+     'The own-stock regression against EGX30 returns an R-squared of 0.038 against the '
+     '0.05 floor, and no Egyptian listed cement peer carries a price series in the '
+     'library, so no peer beta can be re-levered either. A beta of 1.0 is used, disclosed '
+     'with the diagnostics that triggered it, and it is worth more than five per cent of '
+     'value — it is in the contested-judgements table for that reason.'),
+    ('The method has been walk-forward tested on this company\'s own history, and the '
+     'run is LIGHT. ',
+     'Five sourceable fiscal years support five origins at horizons of one to three '
+     'years, nine resolved driver-cells. The method beat both naive benchmarks — holding '
+     'every line flat, and extrapolating each line\'s own trailing growth — at every '
+     'horizon tested. It also forecast BELOW what the company reported on eleven of '
+     'thirteen drivers, and the far-year ranges in Appendix A carry that finding rather '
+     'than hiding it. No correction was promoted from the run: nine cells admit no era '
+     'boundary large enough to test whether any bias is stable, so every bias it measured '
+     'is recorded and acted on by nobody.'),
     ('The price map is wider than the market average, and it says so. ',
      f'Over {BAND["n"]} resolved three-month forecasts the 90% band held '
      f'{pc(BAND["c90"], 0)} of the time and the middle band {pc(BAND["c50"], 0)}, so the '
@@ -810,6 +842,11 @@ for head, body in [
      'Vicat holds 77.6%. A minority shareholder in an Egyptian company with a float of '
      '22.4% has limited influence over dividend policy, related-party terms or the timing '
      'of any exit, and the shares trade thinly as a direct consequence.'),
+    ('A disclosed finite corporate term. ',
+     'Note 1 states the company\'s term is twenty-five years, ending on 4 September 2032, '
+     'while this valuation capitalises a perpetuity. Egyptian company terms are routinely '
+     'extended and no non-renewal is disclosed, but the disclosure is recorded rather '
+     'than passed over.'),
     ('What would change our mind, upward. ',
      'A declared dividend confirming the cash is distributable; cancellation or material '
      'delay of the capacity-revival programme; realised prices holding above EGP 3,900 a '
@@ -818,8 +855,8 @@ for head, body in [
     ('What would change our mind, downward. ',
      'Restarted capacity reaching the market faster than expected; realised prices falling '
      'in nominal terms rather than merely in real terms; a debt-funded expansion into the '
-     'surplus; or confirmation that the cash balance is smaller than the profit bridge '
-     'implies.')]:
+     'surplus; or a distribution that takes the cash off the balance sheet the bridge '
+     'stands on.')]:
     bullet(body, bold_head=head)
 
 # ============================== APPENDIX A ===================================
@@ -827,6 +864,40 @@ doc.add_page_break()
 H1('Appendix A  Financial statements')
 P('Three years of history and a five-year forecast. Figures shown in green in the '
   'companion model are disclosed; the remainder are derived and are marked here.')
+
+H2('The far forecast years, published as a range')
+P('The method behind this forecast was tested on this company\'s own history — five '
+  'origins, horizons of one to three years, nine resolved driver-cells, every figure '
+  'from the company\'s own audited statements. The table below carries what that '
+  'record actually supports for the third forecast year rather than a single figure. '
+  'The bounds are the RANGE OF THE OBSERVED OUTCOMES, not percentiles: with two '
+  'observations at three years a percentile would be a statistic invented for the '
+  'occasion.')
+_WFB = json.load(open(os.path.join(HERE, '..', 'scem_walkforward',
+                                   'forward_ranges.json')))
+_b_rev = _WFB['bands']['revenue']['3']
+_b_ebt = _WFB['bands']['ebitda']['3'] if '3' in _WFB['bands'].get('ebitda', {}) else None
+_y3 = YF[2]
+rows = [['Forecast year', 'Low', 'Point', 'High', 'Tested on']]
+rows.append([_y3, n0(F['revenue'][2] * _b_rev['low'] / _b_rev['central']),
+             n0(F['revenue'][2]),
+             n0(F['revenue'][2] * _b_rev['high'] / _b_rev['central']),
+             '%d resolved three-year forecasts' % _b_rev['n']])
+rows.append([_y3 + ' EBITDA', n0(F['ebitda'][2] * _b_rev['low'] / _b_rev['central']),
+             n0(F['ebitda'][2]),
+             n0(F['ebitda'][2] * _b_rev['high'] / _b_rev['central']),
+             'the same revenue band, applied to the margin path'])
+table(rows, [1.5, 1.15, 1.15, 1.15, 2.35])
+caption('Revenue for the third forecast year, in EGP million, with the band this '
+        'company\'s own record supports around it. The band is centred on the point '
+        'projection: over the tested horizons this method came in BELOW what the '
+        'company reported on eleven of thirteen drivers, and the width here is what '
+        'that record measured rather than a symmetric allowance.')
+P('THE FOURTH AND FIFTH FORECAST YEARS CARRY NO SUCH BAND, and that is stated rather '
+  'than filled. Five sourceable fiscal years give a longest resolved horizon of three, '
+  'so nothing in this company\'s own record speaks to a four- or five-year forecast. '
+  'Borrowing the three-year band and printing it against ' + YF[4] + ' would be '
+  'presenting a measurement that was never made.')
 
 H2('Income statement (EGP million)')
 rows = [['', 'FY2023', 'FY2024', 'FY2025'] + YF]
@@ -862,19 +933,26 @@ rows.append(['Net cash',
              n0(DCF['cash_fy25'] / IN['cash_growth_fy25'] * 0.35 - IN['debt_fy25']),
              n0(DCF['cash_fy25'] / IN['cash_growth_fy25'] - IN['debt_fy25']),
              n0(DCF['net_cash'])] + [n0(v - IN['debt_fy25']) for v in F['cash']])
+# FY2023 EQUITY IS THE FIGURE THE FILING PRINTS, NOT A ROLL-BACK. Rolling FY2024 equity
+# back through FY2024 profit alone omits the capital increase paid in during that year and
+# returns a positive figure where the audited comparative column shows a negative one.
+_eq23 = IN['eq_fy23_rep']
+_eq24 = D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value']
 rows.append(['Shareholders\' equity',
-             n0(D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value'] - IN['pat_fy24']),
-             n0(D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value']),
+             n0(_eq23), n0(_eq24),
              n0(LN['eq_fy25_roll'])] + [n0(v) for v in F['equity']])
 rows.append(['Book value per share (EGP)',
-             n2((D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value'] - IN['pat_fy24']) / SH),
-             n2((D['inputs']['ta_fy24']['value'] - D['inputs']['tl_fy24']['value']) / SH),
+             n2(_eq23 / SH), n2(_eq24 / SH),
              n2(LN['bvps'])] + [n2(v / SH) for v in F['equity']])
 table(rows, [2.02, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60, 0.60], size=8.4)
-caption('Table A2 — Balance sheet. FY2024 is the disclosed column: total assets of EGP '
-        '6,385.9 million less total liabilities of EGP 1,610.9 million closes to equity of '
-        'EGP 4,775.1 million exactly. FY2025 equity is rolled forward and does not '
-        'reconcile to the reported figure; see section 7.')
+caption(f'Table A2 — Balance sheet. FY2024 is the disclosed column, taken from the '
+        f'audited statements for that year: total assets of EGP '
+        f'{n1(D["inputs"]["ta_fy24"]["value"])} million less total liabilities of EGP '
+        f'{n1(D["inputs"]["tl_fy24"]["value"])} million closes to equity of EGP '
+        f'{n1(_eq24)} million exactly, and that equity is FY2023\'s EGP {n1(_eq23)} '
+        f'million plus the year\'s profit of EGP {n1(IN["pat_fy24"])} million plus the '
+        f'EGP {n1(IN["cap_increase_fy24"])} million paid in under the capital increase. '
+        f'FY2023 equity is negative because losses had exhausted it before that increase.')
 
 H2('Cash flow (EGP million)')
 rows = [['', ] + YF]
@@ -964,6 +1042,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'SCEM_Valuation_Study_04-09-2026_public.docx'
+OUT = 'SCEM_Valuation_Study_07-09-2026_public.docx'
 doc.save(OUT)
 print('wrote', OUT)

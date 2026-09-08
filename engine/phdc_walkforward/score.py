@@ -48,9 +48,21 @@ def cells(panel, model="bottom_up", macro="as_known"):
                        "proj": p, "actual": a, "era": era_of(t)}
                 if p > 0 and a > 0:
                     row["e"] = math.log(p / a)
+                    row["dropped"] = None
                 else:
                     row["sign_case"] = True
                     row["rel"] = (p - a) / abs(a) if a else None
+                    row["e"] = None
+                    row["dropped"] = ("not_projected" if (p is None or a is None)
+                                      else "non_positive")
+                # `dropped` IS PRESENT ON EVERY ROW, INCLUDING THE SCOREABLE ONES.
+                # A file whose rows carry the key can EXPRESS a drop, so a file with
+                # none means none occurred; a file where the key appears only when a
+                # drop happens cannot be told apart from one that discards them. The
+                # pooled census reported this run UNMEASURABLE for exactly that
+                # reason, on a ground true of the file and false of the writer — this
+                # run drops NOTHING, 403 of 403 cells scoreable, and could not say so.
+                # THE SCHEMA IS THE DECLARATION [R-ENF-06 species].
                 rows.append(row)
     return rows
 
@@ -81,7 +93,7 @@ def block_bootstrap(vals_by_origin, blocks=(2, 3, 4), n=2000, seed=42):
 
 
 def summarise(rows, field=None, h=None):
-    sel = [r for r in rows if "e" in r
+    sel = [r for r in rows if r.get("e") is not None
            and (field is None or r["field"] == field)
            and (h is None or r["h"] == h)]
     if not sel:
@@ -94,7 +106,16 @@ def summarise(rows, field=None, h=None):
     robust = bool(boot) and all(
         (v["lo"] > 0 and v["hi"] > 0) or (v["lo"] < 0 and v["hi"] < 0)
         for v in boot.values())
-    return {"n": len(es),
+    # n IS THE CELLS THE SCORE TOOK; n_cells IS THE CELLS THAT EXIST. A record
+    # carrying only the first cannot show a reader that a driver was scored on
+    # half its history — one driver in this book publishes a bias computed on NONE
+    # of its fifty cells — and the coverage was recoverable only by running a
+    # census by hand. The pair carries no threshold and makes no judgement; it
+    # makes the fraction visible in the record that quotes the bias.
+    exists = sum(1 for r in rows
+                 if (field is None or r["field"] == field)
+                 and (h is None or r["h"] == h))
+    return {"n": len(es), "n_cells": exists,
             "bias": round(sum(es) / len(es), 4),
             "mae": round(sum(abs(e) for e in es) / len(es), 4),
             "median": round(st.median(es), 4),
@@ -107,8 +128,8 @@ def skill(rows_model, rows_bench, field=None, h=None):
     BOTH resolve — a model scored on a different sample from its benchmark is
     not being compared to it."""
     key = lambda r: (r["origin"], r["h"], r["field"])
-    m = {key(r): r for r in rows_model if "e" in r}
-    b = {key(r): r for r in rows_bench if "e" in r}
+    m = {key(r): r for r in rows_model if r.get("e") is not None}
+    b = {key(r): r for r in rows_bench if r.get("e") is not None}
     shared = [k for k in m if k in b
               and (field is None or k[2] == field)
               and (h is None or k[1] == h)]
@@ -188,7 +209,9 @@ def main():
     print("%-16s %-16s %4s %8s %8s" % ("driver", "era", "n", "bias", "MAE"))
     for f in ("is.revenue", "new_sales", "units_sold", "asp", "is.npat_mi"):
         for era in ERAS:
-            sel = [r for r in rows_bu if r["field"] == f and r["era"] == era and "e" in r]
+            sel = [r for r in rows_bu
+                   if r["field"] == f and r["era"] == era
+                   and r.get("e") is not None]
             if not sel:
                 continue
             es = [r["e"] for r in sel]

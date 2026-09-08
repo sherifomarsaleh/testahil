@@ -3,26 +3,58 @@ import json
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
+import os
 
-FN = 'STC_Valuation_Model_09072026_public.xlsx'
-wb = load_workbook(FN)
-A = json.load(open('_asm_rows.json'))
-BSJ = json.load(open('_bs_rows.json')); BS = BSJ['BS']
-IS = json.load(open('_is_rows.json'))
-CFJ = json.load(open('_cf_rows.json')); CF = CFJ['CF']; CLOSE = CFJ['CLOSE']
+HERE = os.path.dirname(os.path.abspath(__file__))
+# PATHS ARE ABSOLUTE AGAINST THIS FILE'S OWN DIRECTORY. They were relative to the
+# working directory, so running the build from the repository root — which is how
+# every gate and the CI runner invoke things — read no inputs and scattered outputs.
+# A path relative to cwd is a path that depends on who ran it.
+
+
+FN = 'STC_Valuation_Model_05092026_public.xlsx'
+wb = load_workbook(os.path.join(HERE, FN))
+A = json.load(open(os.path.join(HERE, '_asm_rows.json')))
+BSJ = json.load(open(os.path.join(HERE, '_bs_rows.json'))); BS = BSJ['BS']
+IS = json.load(open(os.path.join(HERE, '_is_rows.json')))
+CFJ = json.load(open(os.path.join(HERE, '_cf_rows.json'))); CF = CFJ['CF']; CLOSE = CFJ['CLOSE']
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 SUB = Font(size=9, color='6E7B77')
 NUM0 = '#,##0;(#,##0);"-"'; PCT = '0.0%;(0.0%);"-"'
 FCOLS = ['E', 'F', 'G', 'H', 'I']; ACOLS = ['C', 'D', 'E', 'F', 'G']
 
-# ---- 1) Assumptions: add Gross margin driver row 55 -------------------------
+# ---- 1) Assumptions: append the gross-margin driver on a FREE row -----------
+# THIS LINE READ `grow = 55` AND IT DESTROYED THE WORKBOOK. Row 55 already held "First-year
+# scale onto the reviewed half (annualised)", so this pass overwrote that driver's value
+# with the gross margin of 0.485 and then re-pointed the anchor map so BOTH labels
+# resolved to 55. The segment revenue formulas had already been written by the earlier
+# pass as `...*Assumptions!$C$55` — correct when written, and multiplying by 0.485 from
+# here on. Group revenue halved every forecast year, profit turned negative from FY28E,
+# closing cash reached minus thirty-three billion and the workbook published a central of
+# SAR 28.94 against the study's 38.14.
+#
+# NONE OF THAT SHOWS UP AS AN ERROR. Every formula parsed, every cell computed, and a
+# recalculation reported zero error results — which is exactly why the depth bar says a
+# clean recalculation is necessary but NOT sufficient, and why `recalc.py` now exists
+# beside this file to compare the workbook's VALUES against the model's.
+#
+# The row is found rather than chosen, and two assertions hold it: the target must be
+# empty, and the anchor map must stay a BIJECTION. A map that is not is a formula pointing
+# somewhere its author did not mean.
 wa = wb['Assumptions']
-grow = 55
+grow = max(A.values()) + 2
+assert wa[f'A{grow}'].value in (None, ''), \
+    'row %d is already in use by %r' % (grow, wa[f'A{grow}'].value)
+assert grow not in A.values(), 'row %d is already claimed in the anchor map' % grow
 wa[f'A{grow}'] = 'Gross margin (% of revenue)'
 for j, v in enumerate([0.485]*5):
     c = wa[f'{get_column_letter(3+j)}{grow}']; c.value = v; c.font = BLUE; c.number_format = PCT
 A['Gross margin (% of revenue)'] = grow
-json.dump(A, open('_asm_rows.json', 'w'))
+_dupes = [v for v in A.values() if list(A.values()).count(v) > 1]
+assert not _dupes, ('the anchor map must be a bijection; rows %s are claimed twice by %s'
+                    % (sorted(set(_dupes)),
+                       sorted(k for k, v in A.items() if v in _dupes)))
+json.dump(A, open(os.path.join(HERE, '_asm_rows.json'), 'w'))
 
 def ac(label, j): return f"Assumptions!${ACOLS[j]}${A[label]}"
 
@@ -43,7 +75,7 @@ for col, v in [('B', 13987.0), ('C', 12134.0), ('D', 14723.0)]:
     wi[f'{col}{EBTR}'] = v; wi[f'{col}{EBTR}'].font = BLUE; wi[f'{col}{EBTR}'].number_format = NUM0
 IS['Associates, net finance, impairments & other'] = ASSR
 del IS['Share of associates & JVs + net finance & other']
-json.dump(IS, open('_is_rows.json', 'w'))
+json.dump(IS, open(os.path.join(HERE, '_is_rows.json'), 'w'))
 
 # ---- 3) Balance Sheet restructure -------------------------------------------
 wbs = wb['Balance Sheet']
@@ -94,5 +126,5 @@ wbs[f'A{CHK+2}'] = ('Historic mapping: disclosed IR anchors (total assets, cash+
                     'SAR +7,284mn (the completed Jan-2026 $2bn sukuk net of amortisation); gross debt flat thereafter. Two cash framings: FS cash incl. '
                     'stc bank (21,442 at Q1-26) vs IR core-group cash (15,412) — the model rolls the IR-basis series (FY25: 15,080).')
 wbs[f'A{CHK+2}'].font = SUB
-wb.save(FN)
+wb.save(os.path.join(HERE, FN))
 print('fix1 ok')

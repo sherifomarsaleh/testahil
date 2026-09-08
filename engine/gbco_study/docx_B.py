@@ -1,178 +1,265 @@
-"""Content part B: §3 → §7."""
-from docx_base import *
+"""Content part B: §3 → §7.
+
+REBUILT 07-09-2026, SECOND PASS. The comparison and the caveats are rewritten against the
+answer the study now publishes: one class primary with two branches, no weighted blend, no
+complexity discount, no normalised-earnings lens. Every figure is read from the committed
+record.
+"""
+from docx_base import *                                              # noqa: F401,F403
+from docx_A import (pc, sgn, n0, n1, paren, longdate, spot, SPOT_DATE, TA_CLOSE,
+                    TA_DATE_L, SH, EDITION_STAMP, STAKE, STAKE_PRIOR,
+                    STAKE_STATEMENTS, STAKE_STATEMENTS_PRIOR,
+                    B_LO, B_HI, V_LO, V_HI, GAP_LO, GAP_HI, MARK_LO, MARK_HI,
+                    EQ_LO, EQ_HI, REL, BOOK, CAP, PRICE_MARK, PRICE_ASSOC, PRICE_MNT_USD,
+                    MNT_USD_AT_CARRYING, OPERATING_EQ, RATE_LO, RATE_HI,
+                    SHARE_OF_PROFIT)
 
 pr = D['mc']['prob_read']; q20, q60 = D['mc']['q20'], D['mc']['q60']
-L = D['lenses']; eng = D['engine']; touch = D['mc']['touch']; zones = D['mc']['zones']
-spot = D['spot']
+eng = D['engine']; touch = D['mc']['touch']; zones = D['mc']['zones']
+sotp = D['sotp']; dcf = D['dcf']; COC = D['cost_of_capital_record']; MAC = D['macro']
+s0 = D['step0']; HIS = D['history']['income_statement']
 
 # ================= §3 Monte Carlo ===========================================
-H1('3  Monte Carlo — a probabilistic price map')
-P('The probability read below opens the section, per house presentation: computed from the same 50,000 paths as everything '
-  'that follows, it is a summary of the distribution, not an input to it.', size=9.8, space_after=4)
+H1('3  A probabilistic price map')
+P('The probability read below opens the section: computed from the same 50,000 paths as everything that follows, it is a '
+  'summary of the distribution rather than an input to it.', size=9.8, space_after=4)
 rows = [
  ['The probability read (3 months)', ''],
- ['P(price above spot)', f"{pr['p_above']*100:.0f}%"],
- ['P(+10%) vs P(−10%) — the odds', f"{pr['p_up10']*100:.0f}% vs {pr['p_dn10']*100:.0f}%  ·  {pr['odds']:.1f} : 1"],
- ['Median level, and its move', f"EGP {pr['median']:.2f}  ({pr['med_move']*100:+.1f}%)"],
- ['The 50% band (25th–75th)', f"EGP {pr['band50'][0]:.1f} – {pr['band50'][1]:.1f}   ({pr['band50_pct'][0]*100:+.0f}% / {pr['band50_pct'][1]*100:+.0f}% of spot)"],
- ['Touch(+10%) / touch(−10%) at any point', f"{pr['touch_up10']*100:.0f}%  /  {pr['touch_dn10']*100:.0f}%"],
+ ['Probability the price finishes above the anchor', pc(pr['p_above'], 0)],
+ ['Probability of +10% against −10% — the odds', f"{pc(pr['p_up10'],0)} against {pc(pr['p_dn10'],0)}  ·  {pr['odds']:.2f} : 1"],
+ ['Median level, and its move', f"EGP {pr['median']:.2f}  ({sgn(pr['med_move'],1)})"],
+ ['The 50% band (25th–75th percentile)', f"EGP {pr['band50'][0]:.2f} – {pr['band50'][1]:.2f}   ({sgn(pr['band50_pct'][0],0)} / {sgn(pr['band50_pct'][1],0)} of the anchor)"],
+ ['Probability of touching +10% / −10% at any point', f"{pc(pr['touch_up10'],0)}  /  {pc(pr['touch_dn10'],0)}"],
 ]
 table(rows, [3.3, 3.3], first_col_bold=True, band_rows=[0], header=False)
-P('We simulate 50,000 three-month price paths (seed 42) with the house YZ-HAR v2 engine: width from a pooled log-HAR '
-  'cascade (variance lags 1/5/22) on a gap-aware Yang-Zhang variance proxy, projecting the average daily variance over the '
-  '3-month window (annualized ≈ ' + f"{eng['anchor_vol']*100:.1f}%" + ' at this origin — regime-conditional by construction, '
-  'with no calibration multiplier: the retired KVOL floor is replaced by the HAR width itself); shape from unit-variance '
-  'Student-t(5) innovations via a per-path chi-square mixture (tighter interquartile body, honest tails); and drift that is '
-  'asset-class-conditional — here the secular expanding-window drift (+' + f"{eng['drift_daily']*60*100:.1f}%" + ' per '
-  'quarter), because that is the configuration that passed the Step 0 gate on this name while zero drift failed it '
-  '(Appendix B). A sixteen-factor stack layers on top: seven continuous macro/operating drivers contributing a small net '
-  'forward drift and nine discrete events that each fire with a probability and an impact, together adding a modest '
-  f"+{eng['factor_drift_q']*100:.1f}% over the quarter.")
-rich([('By design the paths diffuse from spot as near-term price and deliberately do not embed the fundamental NAV — the '
-       'value gap of §1 is kept out of the drift. ', dict(bold=True)),
-      ('The fundamental gap lives in §1, not here; §3 maps where price could go from today, not where value sits. The upward '
-       'median you see is the stock\u2019s own measured secular behaviour surviving a calibration test — never a target, and '
-       'never the §1 value gap smuggled in.', {})])
+P(f'We simulate 50,000 three-month price paths from the exchange library’s last session, EGP {TA_CLOSE:.2f} on '
+  f'{TA_DATE_L}. Width comes from a pooled cascade on a gap-aware variance proxy, projecting the average daily variance '
+  f'over the window — {pc(eng["anchor_vol"],1)} annualised at this origin, regime-conditional by construction and with '
+  'no calibration multiplier bolted on. Shape comes from unit-variance fat-tailed innovations through a per-path mixture: '
+  'a tighter interquartile body and honest tails. Drift is the expanding-window secular term measured on this stock’s '
+  f'own history ({sgn(eng["drift_q"],1)} per quarter) rather than an assumption about where value sits; how often the '
+  'bands built around it have actually held is published at the end of this section. A sixteen-factor stack layers on '
+  f'top — seven continuous drivers and nine '
+  f'discrete events, each firing with a probability and an impact — together adding {sgn(eng["factor_drift_q"],2)} '
+  'over the quarter.')
+rich([('By design the paths diffuse from the anchor as near-term price and deliberately do not embed the fundamental value. ',
+       dict(bold=True)),
+      ('Neither branch of §1 is in the drift. §3 maps where price could go from here, not where value sits. The '
+       'upward median is this stock’s own measured behaviour surviving a calibration test — never a target, and '
+       'never the §1 disagreement smuggled in through a side door.', {})])
 rows = [
- ['Continuous factor (7)', 'Dir.', 'Discrete event (9)', 'Prob.', 'Mean impact'],
- ['Egypt PC demand / rate-cut cycle', '+', '2Q26 results (11 Aug 2026)', '90%', '+0.5%'],
- ['EGP/USD drift (CKD import content)', '±', 'MNT-Halan second closing ≥ $1.4 bn', '45%', '+1.5%'],
- ['CBE easing (affordability + Capital NIM)', '+', 'CBE cut ≥ 100 bp (Aug/Oct MPC)', '50%', '+1.0%'],
- ['Iraq / Jordan regional-conflict drag', '−', 'Regional escalation spillover', '25%', '−2.5%'],
- ['Chinese grey-import competition', '−', 'BYD Egypt entry / price shock', '35%', '−1.0%'],
- ['Localization / CKD mix & Sadat ramp', '+', 'Sadat ramp / new CKD model', '55%', '+0.6%'],
- ['Funding-cost & provisioning cycle', '−', 'Dividend / capital-return surprise', '15%', '+0.8%'],
- ['', '', 'EGP step-devaluation', '12%', '−2.0%'],
- ['', '', 'EGX flows / index event', '25%', '+0.8%'],
+ ['Continuous factor (7)', 'Direction', 'Discrete event (9)', 'Probability', 'Mean impact'],
+ ['Egyptian passenger-car demand and the rate-cut cycle', '+', 'A results release inside the window', '90%', '+0.5%'],
+ ['Currency drift through imported assembly content', '±', 'MNT-Halan second closing at or above the round', '45%', '+1.5%'],
+ ['Policy easing — affordability and lender margin', '+', 'A policy cut of 100 basis points or more', '50%', '+1.0%'],
+ ['Regional conflict drag on Iraq and Jordan', '−', 'Regional escalation spillover', '25%', '−2.5%'],
+ ['Chinese grey-import competition', '−', 'A new entrant resetting price points', '35%', '−1.0%'],
+ ['Localisation and the assembly-plant ramp', '+', 'Plant ramp or a new assembled model', '55%', '+0.6%'],
+ ['Funding cost and the provisioning cycle', '−', 'Dividend or capital-return surprise', '15%', '+0.8%'],
+ ['', '', 'A step devaluation of the pound', '12%', '−2.0%'],
+ ['', '', 'Index flows or an index event', '25%', '+0.8%'],
 ]
-table(rows, [2.15, 0.5, 2.2, 0.7, 0.95], size=8.7)
-H2('Percentile map (EGP/share)')
+table(rows, [2.15, 0.6, 2.2, 0.8, 0.85], size=8.7)
+caption('The factor stack is the preparer’s own judgment, stated so a reader can disagree with each line. It is '
+        'deliberately modest in aggregate: the whole stack moves the quarter by less than two per cent.')
+
+H2('Percentile map (EGP per share)')
 rows = [['Horizon', 'p5', 'p25', 'p50', 'p75', 'p95'],
- ['1 month', f"{q20['5']:.1f}", f"{q20['25']:.1f}", f"{q20['50']:.1f}", f"{q20['75']:.1f}", f"{q20['95']:.1f}"],
- ['3 months', f"{q60['5']:.1f}", f"{q60['25']:.1f}", f"{q60['50']:.1f}", f"{q60['75']:.1f}", f"{q60['95']:.1f}"]]
+ ['1 month', f"{q20['5']:.2f}", f"{q20['25']:.2f}", f"{q20['50']:.2f}", f"{q20['75']:.2f}", f"{q20['95']:.2f}"],
+ ['3 months', f"{q60['5']:.2f}", f"{q60['25']:.2f}", f"{q60['50']:.2f}", f"{q60['75']:.2f}", f"{q60['95']:.2f}"]]
 table(rows, [1.9, 1.0, 1.0, 1.0, 1.0, 1.0], first_col_bold=True)
-P('Lead with the 50% band, not the tails: a quarter ahead, half of all paths finish between roughly EGP '
-  f"{q60['25']:.0f} and {q60['75']:.0f}; at one month the band is ~EGP {q20['25']:.0f}–{q20['75']:.0f} (width ≈ ÷√3). "
-  'The 5–95% cone is context, not a forecast.', size=9.8)
-figure('fig4_fan.png', 6.4, 'Figure 4 — Forward price cone to 3 months. The median drifts up with the calibrated secular term; '
-       'the gold dashed line marks the EGP 30 fundamental central, deliberately below the median path.')
-figure('fig5_dist.png', 5.2, 'Figure 5 — Price distribution at 1 month.')
-figure('fig6_dist.png', 5.2, 'Figure 6 — Price distribution at 3 months.')
+P(f"Lead with the 50% band rather than the tails: a quarter ahead, half of all paths finish between EGP "
+  f"{q60['25']:.2f} and {q60['75']:.2f}; at one month the band is EGP {q20['25']:.2f}–{q20['75']:.2f}. The 5th-to-95th "
+  'cone is context, not a forecast.', size=9.8)
+_inside = [b for b in (V_LO, V_HI) if b <= q60['95']]
+figure('fig4_fan.png', 6.4,
+       'Figure 4 — Forward price cone to three months. The median drifts up with the calibrated secular term; the two '
+       'brass dashed lines mark the two branches of the fundamental answer. At three months the cone’s 95th percentile '
+       f'reaches EGP {q60["95"]:.2f}, so '
+       + ('both branches sit above the whole cone.' if not _inside else
+          (f'the lower branch (EGP {V_LO:.2f}) sits inside the cone’s upper tail and the higher (EGP {V_HI:.2f}) above '
+           'it entirely.' if len(_inside) == 1 else 'both branches sit inside the cone’s upper tail.'))
+       + ' The two are on different clocks and the picture is a comparison, not a forecast of the value.')
+figure('fig5_dist.png', 5.2, 'Figure 5 — Price distribution at one month.')
+figure('fig6_dist.png', 5.2, 'Figure 6 — Price distribution at three months.')
+
 H2('Level-touch ladder')
-P('The probability that price touches a level at any point by the horizon (running max for upside, running min for '
-  'downside):', size=9.8)
-rows = [['Level (EGP)', '1-month touch', '3-month touch', 'Note']]
-notes = {40: 'Blue-sky; +28%', 38: 'Upper zone gateway', 36: 'Above the Feb high zone', 34: 'New-high territory',
-         32: 'Just above spot', 30: 'The 20-day / round number', 28: 'The 50/100-day shelf', 26: 'April-low zone'}
-for lv in [40, 38, 36, 34, 32, 30, 28, 26]:
+P('The probability that price touches a level at any point by the horizon — the running maximum for levels above the '
+  'anchor, the running minimum for levels below it:', size=9.8)
+rows = [['Level (EGP)', '1-month touch', '3-month touch', 'Against the anchor']]
+for lv in sorted((int(k) for k in touch), reverse=True):
     tv = touch[str(lv)]
-    rows.append([f'{lv}', f"{tv['t20']*100:.0f}%", f"{tv['t60']*100:.0f}%", notes[lv]])
-table(rows, [1.2, 1.2, 1.2, 3.0], first_col_bold=True)
+    rows.append([f'{lv}', pc(tv['t20'], 0), pc(tv['t60'], 0), sgn(lv / TA_CLOSE - 1, 1)])
+table(rows, [1.2, 1.4, 1.4, 2.6], first_col_bold=True)
+caption('Every rung and every probability in this ladder is computed from the same 50,000 paths; the distance column is '
+        'measured against the session the cone was struck on, not against the later price the valuation uses.')
+
+H2('How often these bands have actually held')
+P(f'A cone is only worth what its record says. Over {BAND["n"]} resolved three-month forecasts on this stock — every '
+  f'one struck, frozen and then graded against the close on its own stated date — the price finished inside the 90% '
+  f'band {pc(BAND["hits"]/BAND["n"],0)} of the time, against a 90% target, and inside the middle 50% band '
+  f'{pc(BAND["c50"],0)} of the time against a 50% target. THE COUNT IS PRINTED BESIDE THE PERCENTAGE because a '
+  f'percentage without its count is the number that misleads, and {BAND["n"]} resolved windows is a long record for a '
+  'single name rather than a short one — long enough for the figure to tell an honest cone from a broken one.')
+P(f'One more figure is disclosed and carries no threshold: this cone’s 90% band is {BAND["width"]:.2f} times as wide as '
+  'a naive carry-anchored one. That ratio is published because a band can hold as often as it promises simply by being '
+  'too wide to be useful, and a reader is entitled to see how wide. It is NOT a pass mark and nothing here is graded '
+  'against it — a wider band is not automatically wrong where the tail it covers is real, and Egyptian three-month '
+  'moves have a real tail. What the record above supports is a BAND, not an edge, and the difference is the whole '
+  'reason the counts are printed.')
 
 # ================= §4 comparison =============================================
-H1('4  Comparison of the lenses, and a verdict')
-P(f"Three readings sit side by side, and for once they genuinely disagree. The fundamental lenses spread "
-  f"{L['relative']['base']:.0f}–{L['sotp']['base']:.1f} with a central {L['central']['base']:.1f} — meaningfully below spot "
-  "— but that reading is now dominated by a confirmed input (the MNT-Halan stake, 41.61%, §1.1) whose mark, not its "
-  "existence, is the open question. The technical picture sits closer to the middle: above every average, momentum "
-  "positive, six percent from an all-time high, but not pricing in anything like the fundamental lenses' implied "
-  "re-rating. The probabilistic map is the one piece entirely unaffected by any of this: its median "
-  f"({q60['50']:.0f}) sits above spot because the engine\u2019s calibrated secular drift — the EGX repricing that has "
-  "carried this stock thirteen-fold in five years — has not yet statistically died; that is a description of measured "
-  "price behaviour, not a claim about value, and it does not know or care what GB Corp\u2019s associate stake is worth.")
+H1('4  Comparison of the lenses')
+P(f"Three readings sit side by side and they genuinely disagree. The fundamental primary reads EGP {V_LO:.2f} and "
+  f"{V_HI:.2f} — {sgn(GAP_LO)} and {sgn(GAP_HI)} against the price — on the two bases GB Corp itself publishes for "
+  f"one asset, while its cross-checks sit either side of the traded price at EGP {REL['value']:.2f} on forward earnings "
+  f"and EGP {BOOK['value']:.2f} on disclosed book. The technical picture has turned: the price came off its short "
+  "averages with negative momentum and sits in the middle of its own 52-week range. The probabilistic map is the one "
+  f"piece untouched by any of this: its median ({q60['50']:.2f}) sits above the anchor because the repricing that "
+  "carried this stock over the sample period has not yet statistically died. That is a description of measured price "
+  "behaviour, not a claim about value, and it does not know what an associate stake is worth.")
 rows = [
- ['Lens', 'Reads', 'Central / implication'],
- ['Fundamental (4-lens)', 'Meaningfully undervalued — if the mark holds', f"EGP {L['central']['base']:.1f} ({(L['central']['base']/spot-1)*100:+.0f}%)"],
- ['Technical', 'Strong / extended', 'Support 30.0 / 28.2 (20d/50d); resistance 33.4 (ATH)'],
- ['Monte Carlo (3-month)', 'Drift-up, right-skewed', f"Median {q60['50']:.0f}; p5–p95 {q60['5']:.0f}–{q60['95']:.0f}"],
+ ['Lens', 'What it reads', 'Central / implication'],
+ ['Fundamental — primary, carrying-value branch', 'The associate at its reviewed carrying value', f"EGP {V_LO:.2f} ({sgn(GAP_LO)})"],
+ ['Fundamental — primary, round-price branch', 'The associate at the June-2026 round price', f"EGP {V_HI:.2f} ({sgn(GAP_HI)})"],
+ ['Fundamental — cross-checks', 'Forward earnings multiple · disclosed book floor', f"EGP {REL['value']:.2f} · {BOOK['value']:.2f}"],
+ ['Technical', 'Momentum lost, long trend intact', 'Below the 20- and 50-day averages; above the 100- and 200-day'],
+ ['Simulation (three months)', 'Drift up, right-skewed', f"Median {q60['50']:.2f}; p5–p95 {q60['5']:.2f}–{q60['95']:.2f}"],
 ]
-table(rows, [1.9, 1.9, 3.1], first_col_bold=True)
-rich([('Verdict (a fair-value read, not a recommendation). ', dict(bold=True)),
-      (f"GBCO reads meaningfully undervalued on fundamentals ({(L['central']['base']/spot-1)*100:+.0f}% central) — and "
-       "unlike the first draft of this study, that verdict now rests on a confirmed number: GB Corp's own 9-June-2026 "
-       "press release states its MNT-Halan stake as 41.61%. What is not confirmed is what that stake is actually worth "
-       "to the market: taking the round's USD 1.4bn valuation at face value implies the stake alone is worth roughly "
-       "three quarters of GB Corp's market cap, which the market plainly does not credit. Strip the associate leg out "
-       "and the remaining business — Auto plus GB Capital — reads close to fairly valued against spot, in line with "
-       "what the tape and the Monte Carlo distribution already show. The honest summary is: the operating business is "
-       "priced about right; whether the shares are cheap depends on how much of a discount the market is entitled to "
-       "apply to an unlisted, minority financial-services stake — a legitimate valuation question this study raises "
-       "rather than settles. The bear–bull span "
-       f"(EGP {L['central']['bear']:.0f}–{L['central']['bull']:.0f}) is wide enough on its own to demand real humility, and "
-       "readers should treat the stake-sensitivity table in §1.1 as showing where the discount debate lives, not the "
-       f"single central number. We publish the distribution, not a target.", {})])
+table(rows, [2.3, 2.3, 2.3], first_col_bold=True)
+rich([('A fair-value read, not a recommendation. ', dict(bold=True)),
+      (f"GB Corp trades below both branches of its primary lens, and the distance between those branches rests on a "
+       f"basis question rather than a fact: the company states a {pc(STAKE,2)} holding in MNT-Halan, carries it at EGP "
+       f"{MARK_LO/1000:.1f} bn in its own reviewed balance sheet, and announced a funding round in June 2026 that marks "
+       f"the same holding at EGP {MARK_HI/1000:.1f} bn. What the traded price leaves for ALL the associates together is "
+       f"EGP {PRICE_ASSOC/1000:.1f} bn. Strip the associate leg out and what remains — the auto business and the lender "
+       f"— is {pc(OPERATING_EQ/D['mktcap'],0)} of the entire market capitalisation, which is close to what the tape and "
+       "the earnings multiple already say. The honest summary is that the operating businesses are priced about right, "
+       "and whether the shares are cheap depends on how much of a discount an unlisted minority financial-services stake "
+       "is entitled to — a question this study poses precisely rather than settles. The envelope of the "
+       f"present-value reads, EGP {ENVELOPE['low']:.2f} to {ENVELOPE['high']:.2f}, is wide enough on its own to demand "
+       "real humility. We publish the distribution, not a target.", {})])
 
 # ================= §5 catalysts ==============================================
 H1('5  Catalysts to watch')
 for head, body in [
- ('2Q26 results (11 Aug 2026). ', 'First read on whether the 1Q26 margin dip (12.4% Auto GPM) was the regional-drag trough; '
-  'watch Egypt PC volumes vs the +42% 1Q pace and the finance-cost line as CBE cuts feed through.'),
- ('CBE MPC meetings (Aug / Oct 2026). ', 'Each 100 bp cut lowers GB Capital funding costs, customer instalments and this '
-  'study\u2019s discount rate — the single most mechanical catalyst.'),
- ('The MNT-Halan mark and discount — no longer the stake. ', 'GB Corp confirmed its current stake (41.61%, 9-Jun-2026); '
-  'the open question now is whether the market accepts the round\u2019s USD 1.4bn valuation at face value or applies a '
-  'steeper illiquidity/minority discount. Any secondary transaction, analyst note, or further disclosure bearing on how '
-  'the market should mark an unlisted 41.61% stake is the single most value-relevant catalyst left.'),
- ('MNT-Halan second closing. ', 'The round\u2019s first close (9 Jun 2026) already fixed GB Corp\u2019s post-transaction '
-  'stake at 41.61%; a second closing would mainly test whether the USD 1.4bn valuation holds or moves, not the '
-  'ownership percentage itself.'),
- ('Sadat ramp and new CKD models. ', 'The June-2026 inauguration adds capacity and local content; model announcements and '
-  'the inventory unwind are the visible working-capital catalysts.'),
- ('BYD entry pricing. ', 'The clearest competitive threat to PC ASPs and share in the recovering Egyptian market.'),
- ('Iraq / Jordan normalization. ', '~19.5% of PC revenue; any de-escalation restores the fastest-margin sales in the mix.'),
- ('The pound. ', 'A step-devaluation is the compound risk (CKD costs, rates, the EGP value of every mark); continued '
-  'stability is the quiet tailwind.'),
- ('Dividend decision. ', 'FY25 paid ~EGP 0.35/share (~13% payout); with Auto deleveraging to 2.14× ND/EBITDA, a payout step-up '
-  'would mark the cash-conversion inflection this study is waiting for (device A-2 schedule in Appendix A).'),
+ ('The next results release. ', 'The reviewed half to 30 June 2026 is the anchor this forecast is struck on; the next '
+  'print is the first test of whether the auto gross margin holds where that half left it, and of whether the finance-cost '
+  'line responds as policy eases.'),
+ ('Policy meetings. ', 'Each cut lowers GB Capital’s funding cost, the customer’s instalment and this study’s '
+  'discount rate at once — the single most mechanical catalyst on the list.'),
+ ('An audited MNT-Halan financial statement. ', 'The one disclosure that would collapse the gap between this study’s two '
+  'branches. The reviewers of GB Corp’s own 30 June 2026 statements were not given that company’s accounts and said so; '
+  'until somebody is, the carrying value and the round price are two claims with nothing between them.'),
+ ('A secondary transaction in the associate’s shares. ', 'A real trade at a real price is the only thing that would tell '
+  'a reader which of the two branches — or neither — the market should be using. Any further disclosure bearing on how '
+  'an unlisted minority stake of this size should be marked is the most value-relevant event available.'),
+ ('The second closing of that round. ', 'It would test whether the round’s valuation holds or moves; it does not '
+  'change the ownership percentage, which the company has already stated.'),
+ ('The assembly-plant ramp and new models. ', 'Added capacity and local content, and the inventory unwind behind them, are '
+  'the visible working-capital catalysts.'),
+ ('Competitive pricing from new entrants. ', 'The clearest threat to passenger-car prices and share in a recovering market.'),
+ ('Regional normalisation. ', 'Part of passenger-car revenue is Iraq and Jordan. This study does not hold a sourced split '
+  'of that revenue for the reviewed half, so the exposure is named and not priced; any de-escalation restores the '
+  'fastest-margin sales in the mix.'),
+ ('The pound. ', 'A step devaluation is the compound risk — assembly costs, rates, and the pound value of the round-price '
+  'mark at once; continued stability is the quiet tailwind.'),
+ ('The dividend decision. ', 'A payout step-up would mark the cash-conversion inflection this study is waiting for. The '
+  'model’s own forecast cash flows carry the constraint: the first forecast year converts EGP '
+  f"{dcf['rows'][0]['fcff']:,.0f} mn of free cash flow against EGP {dcf['rows'][-1]['fcff']:,.0f} mn in the last."),
 ]:
     bullet(body, bold_head=head)
 
 # ================= §6 zones ==================================================
 H1('6  Reading the probability zones')
-P('Translating the three-month distribution into plain zones, anchored on spot EGP 31.25 and the fair-value cluster:')
+_bounds = [26, 30, 34, 38]
+P(f'Translating the three-month distribution into plain zones, anchored on the EGP {TA_CLOSE:.2f} session the cone was '
+  f'struck from and on the fundamental reads of §1:')
 rows = [
- ['Zone (3 months)', 'Range', 'Approx. probability', 'What it would mean'],
- ['Deep downside', '< EGP 26', f'~{zones[0]*100:.0f}%', 'Regional escalation / devaluation; tests the April shelf'],
- ['Lower band', 'EGP 26–30', f'~{zones[1]*100:.0f}%', 'Margin proof delayed; relative-multiple lens dominates'],
- ['Around spot', 'EGP 30–34', f'~{zones[2]*100:.0f}%', 'Status quo; fair value and price coexist'],
- ['Upper band', 'EGP 34–38', f'~{zones[3]*100:.0f}%', 'Cuts + WC release credited; new-high extension'],
- ['Strong upside', '> EGP 38', f'~{zones[4]*100:.0f}%', 'Secular repricing continues; discount narrows toward NAV'],
+ ['Zone (3 months)', 'Range', 'Probability', 'What it would mean'],
+ ['Deep downside', f'below EGP {_bounds[0]}', pc(zones[0], 0), 'Regional escalation or a devaluation; tests the lower shelf'],
+ ['Lower band', f'EGP {_bounds[0]}–{_bounds[1]}', pc(zones[1], 0), 'Margin proof delayed; the earnings multiple dominates'],
+ ['Around the anchor', f'EGP {_bounds[1]}–{_bounds[2]}', pc(zones[2], 0), 'Status quo; the price sits near disclosed book and pays nothing for the associate'],
+ ['Upper band', f'EGP {_bounds[2]}–{_bounds[3]}', pc(zones[3], 0), 'Cuts and the working-capital release credited'],
+ ['Strong upside', f'above EGP {_bounds[3]}', pc(zones[4], 0), 'The market begins to pay something for the associate line'],
 ]
-table(rows, [1.5, 1.3, 1.5, 2.6], first_col_bold=True)
-P('The distribution is right-skewed by construction — the calibrated secular drift plus fat-tailed innovations put roughly a '
-  'third of terminal mass above EGP 38, more than any other single zone. Read that with Appendix B open: the drift term '
-  'passed its test, but on 17 non-overlapping windows with a thin margin. It is the spread of outcomes consistent with the '
-  'stock\u2019s own measured behaviour and the factor stack; it is not a forecast.')
+table(rows, [1.5, 1.3, 1.2, 2.9], first_col_bold=True)
+P(f'The distribution is right-skewed by construction: the drift measured on this stock’s own history plus '
+  f'fat-tailed innovations put {pc(zones[4],0)} of terminal mass above EGP {_bounds[3]}. Read that against the band '
+  f'record earlier in §3: over {BAND["n"]} resolved three-month forecasts this cone’s 90% band has contained the '
+  f'close {pc(BAND["hits"]/BAND["n"],0)} of the time against a 90% target. That is evidence about the WIDTH of the '
+  'cone and says nothing about the direction of its median. This is the spread of outcomes consistent with the '
+  'stock’s own measured behaviour and the factor stack; it is not a forecast.')
 
 # ================= §7 caveats ================================================
 H1('7  Caveats and what would change our mind')
 for head, body in [
- ('The MNT-Halan stake is confirmed; what it is worth is not. ', 'GB Corp\u2019s own 9-June-2026 press release states its '
-  'current stake directly: 41.61%, down from 42.58% pre-transaction. That removes the sourcing uncertainty this study '
-  'originally flagged. What remains genuinely open is the mark: taking the round\u2019s USD 1.4bn valuation at face value '
-  'implies the stake alone is worth \u2248EGP 27.7bn — roughly three quarters of GB Corp\u2019s entire market cap. If the '
-  'market is right to discount that mark far more heavily than this study\u2019s uniform 10%, the SOTP compresses toward '
-  'the relative and normalized lenses, i.e. toward fair value, not undervalued.'),
- ('Working capital is the second-order model. ', 'The DCF\u2019s Auto-leg value lives in the glide from 28.5% to 21.5% WC '
-  'intensity; if 26–28% is the new structural cost of holding share (import finance, CKD stock), the Auto leg is worth '
-  'EGP 4–8/share less — a real but now secondary lever next to the mark-and-discount question above.'),
- ('Terminal-value dependency. ', f"{D['dcf']['tv_pct']*100:.0f}% of the Auto EV is terminal value at a 10.5-pt WACC−g spread; "
-  'the §1.9 grid is the honest statement that this is partly a bet on Egyptian nominal normalization.'),
- ('The drift is empirical, and thin. ', 'Secular drift passed Step 0 (CRPS skill +3.2% non-overlapping, +9.6% monthly) where '
-  'zero drift failed — but the bootstrap CI spans zero (P(skill>0) ≈ 0.62 on 17 windows). A regime turn — the exact failure '
-  'mode that killed trend drift on Samsung and Tata — would flip the median read; we will re-test every quarter and cut the '
-  'drift the moment it fails.'),
- ('The associate mark is real but private, and now the study\u2019s central bet. ', 'MNT-Halan\u2019s USD 1.4bn is a genuine '
-  'transaction price — cash changed hands — but for an unlisted company and, per public reporting, only an initial '
-  'tranche of an ongoing round (a second closing remains open, size and terms undisclosed). The stake applied to it '
-  '(41.61%) is now confirmed and current, not the uncertainty it was; the bear case in the football field instead applies '
-  'a much heavier discount to the mark itself, which is why its EGP 24 floor sits far below the base case.'),
- ('The lender is a credit cycle. ', 'GB Capital\u2019s 15% adjusted ROAE and 2.1–2.5% NPLs are cycle-friendly numbers struck '
-  'in an easing cycle; a funding-market seizure or NPL spike would break the 1.0× book mark.'),
+ ('The answer has two sides, and neither is a hedge. ',
+  f'GB Corp carries its MNT-Halan interest at EGP {MARK_LO/1000:.1f} bn in its own reviewed balance sheet at 30 June 2026 '
+  f'and announced a June-2026 funding round that marks the same interest at EGP {MARK_HI/1000:.1f} bn. Both are the '
+  f'company’s own disclosures; the filings do not decide between them and neither does this study. The two answers, EGP '
+  f'{V_LO:.2f} and {V_HI:.2f}, differ in that one line and in nothing else — the auto leg, the lender and the residual '
+  'associates are identical. Averaging them would produce a figure neither disclosure supports.'),
+ ('The lower branch is not a safe harbour, and this is the most important sentence in the study. ',
+  'The limited review of the 30 June 2026 consolidated statements reaches a QUALIFIED conclusion, and it is qualified at '
+  'exactly this line: the reviewers state they “were not provided with the consolidated financial statements for one of '
+  'the associate companies (MNT – BV)” and were therefore “unable to verify the accuracy of the Group’s share of the '
+  f'profits” — EGP {n1(SHARE_OF_PROFIT)} mn recorded in the period. The same qualification stood on the '
+  '31 December 2025 audited statements. So the conservative branch of this study rests on a carrying value that the '
+  'reviewers of that balance sheet could not verify. That is a disclosure rather than a remeasurement — nothing in the '
+  'valuation changes because of it — and it is the strongest available argument for discounting BOTH marks.'),
+ ('The ownership percentage is disclosed twice and the two disclosures differ. ',
+  f'The press release of 9 June 2026 gives {pc(STAKE,2)} from {pc(STAKE_PRIOR,2)}; the reviewed statements and the review '
+  f'report give {pc(STAKE_STATEMENTS,2)} from {pc(STAKE_STATEMENTS_PRIOR,2)} for the same transaction, most likely at a '
+  f'different level of the structure. This study adopts the lower, because it is the figure the round it is applied to was '
+  'announced with, and prints the other rather than leaving it out. It is worth a little over one and a half per cent of '
+  'the round-price branch and exactly nothing on the other.'),
+ ('There is no complexity discount, and its removal is a correction rather than an opinion. ',
+  'The superseded edition deducted a typed ten per cent from the sum of the parts and then weighted the discounted and '
+  'undiscounted sums, applying an effective four. Both figures were parameters with nothing observable behind them and '
+  'nothing in GB Corp’s filings discloses a basis for either. They are gone. What such a discount was standing in for is '
+  'now named instead — the uncertainty is in the associate mark and is published as two branches.'),
+ ('There is no weighted blend either. ',
+  'The superseded edition published a central that averaged four reads at weights that had never been tested against any '
+  'alternative. One class primary is the answer and the other reads are cross-checks; a number produced by averaging '
+  'several methods is a new method with untested parameters, wearing the appearance of caution.'),
+ ('Working capital is the second-order model. ', 'The operating leg’s value lives in the glide of working-capital '
+  f'intensity from {pc(D["disclosed_drivers"]["cost_stack"]["working_capital_pct"][0],1)} of revenue to '
+  f'{pc(D["disclosed_drivers"]["cost_stack"]["working_capital_pct"][-1],1)}. If the higher figure is the new structural '
+  'cost of holding share — import finance and assembly stock — the auto leg is worth materially less, and the '
+  '§1.9 grid rather than a single sentence is where that is priced.'),
+ ('Terminal-value dependency, and a life that could not be sourced. ',
+  f'{pc(dcf["tv_pct"],0)} of the auto leg’s enterprise value is terminal value, at a terminal spread of '
+  f'{pc(COC["wacc_terminal"]-MAC["terminal_growth_nominal"],2)} between the cost of capital and growth. Worse, the house '
+  'standard is that a terminal rests on a disclosed asset life, and none could be sourced here: the policy note gives '
+  'rate ranges rather than a scalar, and the identity route depends on an undisclosed land split. The refusal is recorded '
+  'in §1.2 rather than resolved by choosing a life, and it is the largest single piece of unfinished business in this '
+  'study.'),
+ ('The gap can be read as a rate rather than as a mark, and that reading is milder. ',
+  f'Solving the traded price for the auto leg’s cost of capital instead of the associate mark implies {pc(RATE_HI,2)} on '
+  f'the round-price branch against this study’s {pc(dcf["wacc"],2)}, and {pc(RATE_LO,2)} on the carrying-value branch. '
+  'The second is an ordinary disagreement about the cost of capital in this market. Both figures are solved from the '
+  'price and used nowhere; they are printed because a binary between “the market is wrong about the associate” and “our '
+  'auto leg is wrong” is too neat.'),
+ ('The drift is empirical, and it is thin. ', 'The upward median rests on a drift measured on this stock’s own history '
+  'and on nothing else. What that supports is set out in §3 and is a claim about the WIDTH of the band rather than '
+  f'about the direction of its middle: over {BAND["n"]} resolved three-month forecasts the price finished inside the '
+  f'90% band {pc(BAND["hits"]/BAND["n"],0)} of the time against a 90% target. A regime turn would flip the median '
+  'read; the drift is re-tested at every roll-forward and cut the moment the record stops holding.'),
+ ('The lender is a credit cycle, and its mark is a return the cycle sets. ',
+  f'GB Capital is marked at {CAP["justified_pb"]:.2f}× its operating equity because a reviewed return of '
+  f'{pc(CAP["roe_adopted"],2)} against a terminal cost of equity of {pc(CAP["ke_terminal"],2)} supports that and no more. '
+  f'On the FY2025 full-year return of {pc(CAP["roe_fy25"],2)} the same arithmetic gives EGP {n0(CAP["value_fy25_framing"])} '
+  'mn instead. The study took the reviewed half because a near-term reviewed actual outranks a stale full-year rate, and '
+  'that is also the lower number; a funding-market seizure or a deterioration in credit would take it lower again.'),
  ('Consolidation approximations. ', 'The consolidated forecast maps eliminations, minority interests and the grouped '
-  'balance-sheet layout with stated simplifications (flagged in the model); segment disclosure, not audited consolidation '
-  'schedules, is the source.'),
- ('Technical reminder. ', 'An extended tape above every average mean-reverts routinely; the strong chart says nothing about '
-  'value and can unwind 10% without touching the thesis. The technical read is context, not a trigger.'),
+  'balance-sheet layout with stated simplifications. Segment disclosure, not audited consolidation schedules, is the '
+  'source for the split of the group into legs.'),
+ ('The far forecast years are ranges, and thin ones. ', 'Appendix A publishes the third, fourth and fifth forecast years '
+  'as ranges taken from how wrong this method has been on this company’s own history. Those ranges rest on a handful '
+  'of observations each — the table prints the count beside every one — and the count is what tells a reader what '
+  'the range can and cannot promise.'),
+ ('Technical reminder. ', 'The technical read is context, not a trigger, and it is computed on an older session than the '
+  'price the valuation is struck on. Both dates are printed wherever either figure is quoted.'),
 ]:
     bullet(body, bold_head=head)

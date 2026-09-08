@@ -10,9 +10,17 @@
   {
    "file": "MECHANICAL_LENS_2_03-09-2026.md",
    "sha256": "ca673e84d0d6f359473ef722c5d6c5ad51727408beaffcffd6b2ce1defbebd02",
-   "status": "in force",
+   "status": "SUPERSEDED, not edited",
    "sealed": "2026-09-03",
-   "note": "declares that there is no third declaration"
+   "note": "declared that there is no third SHAPE on the same inputs, and in the same paragraph instructed the calibration to WAIT FOR THE PROJECTION TO CARRY THE MISSING ITEMS. The valuation-input block [R-FCAL-01 AMENDED] carries them; declaration 3 is that release, not that bar.",
+   "superseded_by": "MECHANICAL_LENS_3_06-09-2026.md"
+  },
+  {
+   "file": "MECHANICAL_LENS_3_06-09-2026.md",
+   "sha256": "5db7b5818ba86f7d14975a36ccc8029057982a7f7cd2c33198eba59a16c58ec6",
+   "status": "in force",
+   "sealed": "2026-09-06",
+   "note": "the cash-flow lens, on the valuation-input blocks. No fourth declaration."
   }
  ]
 }

@@ -1,24 +1,24 @@
 {
- "published_central": 123.27165156625448,
+ "published_central": 111.62128401804542,
  "published_spot": 100.5,
  "why_this_file": "Every figure the eight-heading gap review quotes, resolved from study_numbers.json rather than typed. The review is an audit of an answer, so an audit quoting a stale figure audits nothing.",
- "central": 123.27165156625448,
+ "central": 111.62128401804542,
  "spot": 100.5,
  "spot_date": "2026-09-02",
- "gap": 0.2265835976741739,
+ "gap": 0.1106595424681136,
  "net_cash": 6555.135133835882,
  "net_cash_per_share": 25.13351818607927,
- "net_cash_share_of_answer": 0.2038872511785147,
+ "net_cash_share_of_answer": 0.2251677931066984,
  "net_cash_share_mktcap": 0.2500847580704405,
- "ev_fair": 25715.64965503988,
+ "ev_fair": 22677.088436831058,
  "ev_mkt": 19776.51880466412,
- "ev_ebitda_fair_25": 7.442582591570685,
+ "ev_ebitda_fair_25": 6.563167016641562,
  "ev_ebitda_mkt_25": 5.72368874797673,
- "ev_ebitda_fair_26": 6.309767494301835,
+ "ev_ebitda_fair_26": 5.564205353687485,
  "ev_ebitda_mkt_26": 4.852501771413059,
- "pe_fair_25": 14.0732045863883,
+ "pe_fair_25": 12.743150158388337,
  "pe_mkt_25": 11.473498107323186,
- "pe_fair_26": 8.561576839986165,
+ "pe_fair_26": 7.752424729904608,
  "pe_mkt_26": 6.980019018858946,
  "just_evebitda": 4.2,
  "margins": [
@@ -46,64 +46,64 @@
   0.772,
   0.791
  ],
- "tv_share": 0.6649276342265025,
- "life": 25.889297364469527,
- "term_fcff": 4297.276595464135,
- "term_floor": 26266.138755719847,
- "term_maintenance": 958.8325110000001,
+ "tv_share": 0.6451999495233066,
+ "life": 20.0,
+ "term_fcff": 3677.0797038133646,
+ "term_floor": 24378.445181055184,
+ "term_maintenance": 1241.175,
  "capex": [
   351.72476,
-  606.8775979728001,
-  893.6075765727043,
-  1210.1474642066855,
-  1561.843458449554
+  698.5824384,
+  1093.5241287040003,
+  1532.5129045184003,
+  2021.7514866276003
  ],
- "maintenance_at_current_cost": 958.8325110000001,
+ "maintenance_at_current_cost": 1241.175,
  "wacc_exp": 0.2895969690413578,
  "wacc_term": 0.18982919506576718,
  "wd_exp": 0.00522087139223936,
  "lens": {
-  "DCF (cash flow)": 123.27165156625448,
+  "DCF (cash flow)": 111.62128401804542,
   "Relative multiples": 62.10832856546192,
   "Asset / replacement cost": 94.22626331575341,
   "Book value (disclosed floor)": 27.118642954954954
  },
- "primary": 123.27165156625448,
+ "primary": 111.62128401804542,
  "envelope": [
-  23.62014366636873,
-  123.27165156625448
+  22.362031793964093,
+  111.62128401804542
  ],
- "retired_blend_value": 95.96108438513127,
+ "retired_blend_value": 90.36890796199091,
  "contested": [
   {
    "choice": "kiln utilisation through the forecast",
-   "effect": 0.11423447629709851,
-   "adopted_value": 123.27165156625448,
-   "alternative_value": 109.18977900730499
+   "effect": 0.11979244726504196,
+   "adopted_value": 111.62128401804542,
+   "alternative_value": 98.24989723865744
   },
   {
    "choice": "the depreciable life behind the terminal maintenance charge",
-   "effect": 0.05146026786159656,
-   "adopted_value": 123.27165156625448,
-   "alternative_value": 116.92805935691362
+   "effect": 0.05692067999846262,
+   "adopted_value": 111.62128401804542,
+   "alternative_value": 117.97484340665409
   },
   {
    "choice": "replacement cost per annual tonne of cement capacity",
-   "effect": 0.013442969163287565,
-   "adopted_value": 123.27165156625448,
-   "alternative_value": 124.92878857696716
+   "effect": 0.01924790683152648,
+   "adopted_value": 111.62128401804542,
+   "alternative_value": 113.76976009324011
   },
   {
    "choice": "the explicit window's capital charge",
-   "effect": 0.03835382839508389,
-   "adopted_value": 123.27165156625448,
-   "alternative_value": 127.99959133640517
+   "effect": 0.06089458879339414,
+   "adopted_value": 111.62128401804542,
+   "alternative_value": 118.41841620891495
   },
   {
    "choice": "the adopted beta",
-   "effect": 0.08273231709923014,
-   "adopted_value": 123.27165156625448,
-   "alternative_value": 133.47020093297965
+   "effect": 0.07850797994797999,
+   "adopted_value": 111.62128401804542,
+   "alternative_value": 120.3844455455019
   }
  ]
 }

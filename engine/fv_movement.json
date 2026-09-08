@@ -595,6 +595,148 @@
    "ticker": "EGCH",
    "tier": "reissue"
   },
+  "ELEC": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 0.34,
+     "bear": 0.18,
+     "full": 0.95
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 2.12,
+    "spot_date": "close 06 Sep 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": 0.3357186228503667,
+      "bear": 0.1825753729383991,
+      "full": 0.9488142905842855
+     },
+     "lessons": [],
+     "origins": "none \u2014 walk-forward not run; insufficient sourceable history (4 years); 0 scoreable origins",
+     "scope": "skip",
+     "vs_baseline_pct": {
+      "base": -1.3,
+      "bear": 1.4,
+      "full": -0.1
+     },
+     "vs_previous_pct": {
+      "base": -1.3,
+      "bear": 1.4,
+      "full": -0.1
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "ELEC",
+   "tier": "reissue"
+  },
+  "GBCO": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 35.7,
+     "bear": 23.3,
+     "full": 51
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 29.51,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": 44.329496406267786,
+      "bear": 27.400479675581863,
+      "full": 67.64860887942503
+     },
+     "lessons": [],
+     "origins": "2016-2023",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 24.2,
+      "bear": 17.6,
+      "full": 32.6
+     },
+     "vs_previous_pct": {
+      "base": 24.2,
+      "bear": 17.6,
+      "full": 32.6
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "GBCO",
+   "tier": "reissue"
+  },
+  "PHAR": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 61.21,
+     "bear": 58.04,
+     "full": 73.03
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 128,
+    "spot_date": "close 06 Sep 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": null,
+      "bear": 32.99747064299512,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 32.99747064299512
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 49.6788791915817
+       }
+      ],
+      "full": 49.6788791915817
+     },
+     "lessons": [],
+     "origins": "2019-2024",
+     "scope": "light",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -43.1,
+      "full": -32.0
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -43.1,
+      "full": -32.0
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "PHAR",
+   "tier": "reissue"
+  },
   "PHDC": {
    "baseline": {
     "built_to": "2026.08.23",
@@ -696,6 +838,127 @@
    "market": "EG",
    "ticker": "PHDC",
    "tier": "current"
+  },
+  "SCEM": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 53.12,
+     "bear": 46.84,
+     "full": 59.1
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 98.52,
+    "spot_date": "close 06 Sep 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": 116.9281,
+      "bear": 21.598,
+      "full": 116.9281
+     },
+     "lessons": [],
+     "origins": "FY2021-FY2025, h=1-3, 9 cells",
+     "scope": "light",
+     "vs_baseline_pct": {
+      "base": 120.1,
+      "bear": -53.9,
+      "full": 97.8
+     },
+     "vs_previous_pct": {
+      "base": 120.1,
+      "bear": -53.9,
+      "full": 97.8
+     }
+    },
+    {
+     "delivered": "2026-09-07",
+     "edition": 2,
+     "fair": {
+      "base": 111.62128401804542,
+      "bear": 27.118642954954954,
+      "full": 111.62128401804542
+     },
+     "lessons": [
+      "L-367",
+      "L-368",
+      "L-369"
+     ],
+     "origins": "2020-2025",
+     "scope": "light",
+     "vs_baseline_pct": {
+      "base": 110.1,
+      "bear": -42.1,
+      "full": 88.9
+     },
+     "vs_previous_pct": {
+      "base": -4.5,
+      "bear": 25.6,
+      "full": -4.5
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "SCEM",
+   "tier": "reissue"
+  },
+  "SWDY": {
+   "baseline": {
+    "built_to": "(study carries no stamp)",
+    "captured": "2026-09-07",
+    "fair": {
+     "base": 69.73,
+     "bear": 19.95,
+     "full": 138.73
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 136.2,
+    "spot_date": "close 06 Sep 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-07",
+     "edition": 1,
+     "fair": {
+      "base": 52.69688996099238,
+      "bear": 19.63802419176771,
+      "full": 101.30675843431828
+     },
+     "lessons": [
+      "L-370",
+      "L-371",
+      "L-372",
+      "L-373",
+      "L-374",
+      "L-375"
+     ],
+     "origins": "2014-2025",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -24.4,
+      "bear": -1.6,
+      "full": -27.0
+     },
+     "vs_previous_pct": {
+      "base": -24.4,
+      "bear": -1.6,
+      "full": -27.0
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "SWDY",
+   "tier": "reissue"
   },
   "TMGH": {
    "baseline": {
