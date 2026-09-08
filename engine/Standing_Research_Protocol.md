@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-08a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-08b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 8 September 2026 (rev. 13) — TWO AMENDMENTS, BOTH PER INSTRUCTION: the company's own other documents are the named fallback where the statement itself cannot be reached, with a reporting duty as its price [R-SIGCM-03] · the price arrives on a MONTHLY SCHEDULE and the study is struck against the latest committed supplied price, retiring the per-study ask adopted a day earlier [R-GAP-01 AMENDED]
+Updated 8 September 2026 (rev. 14) — THE MIRROR CLAUSE [R-ANCHOR-01 CLAUSE THREE]: a forecast rate climbing past the company's own FILED RECORD names a mechanism from a closed list and carries its disclosure, on the same borrowed 5% as the decline clause — the rule fired on a collapsing margin and had said in its own text that it does not fire on a climbing one, naming two other instruments as covering that direction without either of them being asked whether it did
+(rev. 13, 8 September 2026 — TWO AMENDMENTS, BOTH PER INSTRUCTION: the company's own other documents are the named fallback where the statement itself cannot be reached, with a reporting duty as its price [R-SIGCM-03] · the price arrives on a MONTHLY SCHEDULE and the study is struck against the latest committed supplied price, retiring the per-study ask adopted a day earlier [R-GAP-01 AMENDED])
 (rev. 12, 7 September 2026 — SIX STANDING RULES IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08])
 (rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
 (rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
@@ -3443,6 +3444,76 @@ mechanism, a path that does not parse, and three clean cases — a flat path, a 
 and **EGCH's corrected path with its mechanism measured and agreeing**, which must stay
 green.
 
+### Clause three: the mirror clause — a rise past the filed record
+
+**THE RULE FIRED ON A COLLAPSING MARGIN AND SAID IN ITS OWN TEXT THAT IT DOES NOT FIRE ON A
+CLIMBING ONE.** As adopted on 3 September 2026 this rule stated plainly that it "does NOT
+fire on a forecast *above* the latest period, which is [R-GAP-01]'s two-sided trigger and
+[R-ENF-05]'s sign test". Both of those are real instruments, both were correctly named, and
+**neither of them asks this question**: [R-GAP-01] audits the ANSWER against a price, and
+the sign test counts the DIRECTION of contested judgements. So a forecast margin climbing
+past everything a company has ever filed was owned by nobody, while the identical arithmetic
+running downward had a closed mechanism list, a required disclosure and a required
+like-for-like measurement standing in front of it.
+
+The one-sidedness was inherited from the incident this rule was written on — the first
+occurrence was a margin COLLAPSING — and that is the same shape twice already recorded in
+this document: [R-GAP-01]'s own one-sided trigger, and [R-TERM-01 CLAUSE TWO]'s defect
+measured on one side of a sign change and mistaken for a finding about the sign.
+
+**MEASURED ON THE BOOK RATHER THAN ARGUED.** ARCC's mechanical projection expands its
+operating margin at **eight of eight origins, monotonically at every one**, reaching
+**55.81%** at origin FY2017 and **60.14%** at FY2023 — against a company whose filed
+operating margin over FY2014–FY2025 runs **−2.81% to 37.55%**, swings both ways, and whose
+peak *as at either of those origins* was **26.23%** (FY2016). The overstatement of that
+name's fair value tracks the terminal margin almost monotonically, and ARCC is the largest
+contributor to the pooled bias that is the last thing standing between this house and Phase
+1 acceptance under [R-VCAL-02].
+
+**THE BASELINE IS THE FILED RECORD, NOT THE FORECAST'S OWN OPENING YEAR, AND THAT WAS FORCED
+BY THE DATA RATHER THAN CHOSEN.** ARCC at origin FY2020 opens at an operating margin of
+**−1.15%** and recovers to **5.49%** — a rise of nearly five points and a reversal of sign,
+which is ordinary mean reversion out of a loss-making year and **must not fire**. The same
+name at FY2023 climbs to 60.14% and **must**. Both of them rise, so a clause tested against
+the forecast's own opening year cannot tell them apart; tested against the filed record they
+separate by a wide margin — **+129.3% against −79.1%**.
+
+**THE FILED PEAK IS AS AT THE ORIGIN, NEVER AS AT TODAY.** A later good year must not
+license an earlier forecast that could not have known about it — point-in-time discipline
+arriving in a gate rather than in a panel.
+
+**THE MECHANISM LIST IS CLOSED AND IS THE MIRROR OF THE EXISTING ONE**, for [R-COC-01
+AMENDED]'s reason that an open list lets any study opt out by inventing a reason:
+`capacity_commissioning_completing`, `contracted_price_step_up`, `input_cost_normalising`,
+`mix_shift_to_higher_margin`, `one_off_depressing_the_latest_period`. A named mechanism must
+carry the **disclosure** that establishes it from the filings.
+
+**THE TOLERANCE IS BORROWED, NEVER MINTED:** the same relative 5% clause one uses. A second
+cutoff for the same question would be the free parameter the PROMOTION RULE forbids, and it
+would let two clauses of one rule disagree about what a material move is.
+
+**WHAT THE CLAUSE DELIBERATELY DOES NOT REQUIRE, AND IT IS THE ASYMMETRY WITH CLAUSE ONE,
+STATED RATHER THAN LEFT IMPLICIT.** A rise mechanism needs a NAME and a DISCLOSURE but **not
+a like-for-like measurement**. Clause one demands the measurement because a decline claims
+the company will do WORSE than its own filings, and the filings are the only instrument that
+can contradict it. A rise past the filed record is a claim about something the company has
+NOT yet done, which by construction has no like-for-like pair in its own history — demanding
+one would be demanding evidence that cannot exist, which is the permanently-red check
+[R-ENF-02] forbids. If a future case shows a rise mechanism that COULD have been measured
+and was not, that is the evidence to tighten this, and it is written down here so the revisit
+does not depend on anyone remembering.
+
+`filed_peak_rate` and `rise_mechanism` are **not** required fields, on `forecast_path`'s own
+precedent: they are being introduced onto studies that predate them and the ratchet carries
+those. A record that HAS a filed peak is tested on it. **It binds forward.**
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT MARGINS: A RULE WRITTEN ON AN INCIDENT INHERITS THE
+INCIDENT'S DIRECTION.** Every element of [R-ANCHOR-01] was correct, closed, sourced and
+measured, and it faced one way because the failure that provoked it faced one way — and the
+rule then NAMED two other instruments as covering the other direction **without either of
+them being asked whether it did**. Where a rule declines to fire one way, ask what actually
+fires there, and **ask it of that instrument rather than of the rule**.
+
 ### The threshold, stated rather than dressed up
 
 **RELATIVE, at 5%** of the latest reviewed rate, with a small absolute floor so a genuinely
@@ -3467,11 +3538,18 @@ which is the test of whether a cutoff is doing work or merely existing.
 It does **not** require a forecast to equal the latest period. Mean reversion is real and a
 refiner's spread is volatile. It requires the claim to be **named, sourced and measured**.
 
-It does **not** fire on a forecast *above* the latest period. That direction is audited by
-[R-GAP-01]'s two-sided trigger and by [R-ENF-05]'s sign test, and a gate firing both ways
-here would collide with them. The record is nonetheless **printed for every study whether
-or not it fires**, so ARCC's shape — a forecast sitting at the top of its own filed range —
-is visible to a reader rather than merely not-red.
+**THE OPENING-YEAR CLAUSE** does not fire on a forecast *above* the latest reviewed
+period — mean reversion up out of a weak half is not a claim against the record, and clause
+one is right not to fire on it. **This is not the same thing as the rule being silent on a
+rise**, and the sentence that stood here said it was: it read that the whole direction was
+"audited by [R-GAP-01]'s two-sided trigger and by [R-ENF-05]'s sign test", which is
+[R-ANCHOR-01 CLAUSE THREE]'s subject and half superseded — those two instruments audit an
+ANSWER against a price and count the DIRECTION of contested judgements, and neither asks
+whether a forecast rate climbs past what the company has ever filed. **A rise above the
+FILED RECORD is now governed by clause three**, on its own closed mechanism list and the
+same borrowed 5%. The record is, as ever, **printed for every study whether or not it
+fires**, so ARCC's shape — a forecast sitting at the top of its own filed range — is visible
+to a reader rather than merely not-red.
 
 ### Enforcement
 
@@ -3480,10 +3558,22 @@ is visible to a reader rather than merely not-red.
 every study then on disk, since the record did not exist until this rule; the list may only
 ever SHORTEN). Population-anchored per [R-ENF-04] — a run examining zero studies FAILS, and
 every listed ticker must resolve on disk. Negative-controlled by
-`scripts/check_forecast_anchor_negative_control.py`: eighteen conditions, including **AMOC's
-forecast exactly as it stood**, **AMOC's mechanism contradicted by its own filings**,
-**EGCH's typed price path**, and four clean cases that must stay green — among them
-**ARCC's shape**, which the first draft of the gate wrongly failed.
+`scripts/check_forecast_anchor_negative_control.py`, which runs **31 conditions** — among
+them **AMOC's forecast exactly as it stood**, **AMOC's mechanism contradicted by its own
+filings**, **EGCH's typed price path**, and **eleven clean cases that must stay green**,
+including **ARCC's shape**, which the first draft of the gate wrongly failed.
+
+**THE FOUR MIRROR CASES CARRY ARCC's PATHS AS ITS PROJECTION COMPUTES THEM RATHER THAN
+TRANSCRIBED**, and the decisive clean ones are the three that could not be got right by
+accident: **ARCC's FY2020 recovery**, which rises and must not fire; **a rise past the peak
+that is named and sourced**; and **a rise inside the borrowed tolerance**. **THE CONTROL
+ASSERTS THE RED IS FOR THE RIGHT REASON.** Every red fixture in that file ends on the same
+closing sentence, so the four mirror cases additionally require the failure text to CONTAIN
+their own arithmetic — **+112.8%** and **+129.3%** against **0.2623** — because all four open
+ABOVE their latest reviewed rate, and a bug making clause one fire on them would otherwise
+read as a clean red. The clause is **falsified by re-pointing it at the wrong baseline**: set
+against the forecast's own opening year rather than the filed record, four conditions go
+wrong.
 
 **AMOC is on the ratchet and the reason is worth recording.** It cannot name a mechanism its
 filings support, and it is not simply re-anchored because [R-VCAL-01]'s promotion guard
