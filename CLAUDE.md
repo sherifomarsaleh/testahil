@@ -1,11 +1,31 @@
 # TESTAHIL — project memory
 
+## RESPONSE LENGTH — HARD CAP, READ FIRST
+
+**Chat answers: 4 sentences maximum. No preamble. No summary of what was done. Lead with
+the answer.** Expand ONLY when the user says "expand", "in full", or "why". If an answer
+seems to need more, it needs fewer words, not more sentences — cut the reasoning, keep
+the conclusion. A number, a filename and a one-line verdict beat a paragraph explaining
+them.
+
+THE CAP IS ON PROSE, NOT ON WORK. It does not apply to: a table the user asked for (QC
+gate, gap review, findings list), the verbatim digest text after a protocol amendment, a
+delivered study document, or tool/gate output quoted as evidence. Those are artefacts,
+not answers — emit the artefact, then say at most 4 sentences about it.
+
+WHERE THE ANSWER GENUINELY DOES NOT FIT: give the conclusion in one sentence and offer
+the rest ("say expand for the workings"). Never pre-empt that choice by writing both.
+
 This repo runs the TESTAHIL Standing Research Protocol: valuation studies, calibrated
 probability cones, and a public ledger, published to the live site. Read this before
 doing any research, study-build, critique-response, or publishing work here.
 
-**Full governing rules — read before starting any study:**
-@engine/PROJECT_INSTRUCTIONS_06-09-2026.md
+**Full governing rules — `engine/PROJECT_INSTRUCTIONS_06-09-2026.md`. NOT auto-loaded**
+(~55k characters; injecting it into every session is what makes ordinary answers long and
+ornate). READ IT IN FULL, with `cat`, before any of: starting or re-issuing a study, a
+walk-forward run, a critique response, a roll-forward, a publish, or amending a rule. For
+a quick factual question, do not read it. This literal path is still the one reference
+that cannot glob — update it in the same commit as any digest rename.
 
 That file is the condensed, binding digest (rules only, never volatile numbers). The
 complete prose version, with the reasoning and the failures each rule was adopted from,
@@ -173,6 +193,6 @@ and reports evidence rather than a verdict on itself.
 or from a document — always read `engine/market_profiles.py` and
 `engine/fitted_configs.json` live first; they are volatile and refit on every post.
 
-**Response style in this repo:** 3-4 sentences max, no preamble, lead with the answer.
-Expand only if asked. Never a rating or a price target — fair-value ranges and
-distributions only.
+**Response style:** the hard cap at the top of this file governs — 4 sentences, no
+preamble, lead with the answer. Stated once, there and not here. Separately and always:
+never a rating or a price target — fair-value ranges and distributions only.
