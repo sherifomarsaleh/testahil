@@ -59,3 +59,50 @@ and its arithmetic check [R-SIGCM-03 clause iv].
 Frozen before any work: **bear 50 / base 60 / full 72 EGP**, built to no current-standard
 study, so the movement column at the end measures against a number of unknown provenance
 and must say so wherever it is quoted.
+
+## The six-month period, which the company's own website labels as a year
+
+**THE PERIOD ENDED 31 DECEMBER 2025 IS SIX MONTHS, NOT TWELVE.** The statements say so in
+terms — *"for the six months from July 1 till December 31, 2025"* and *"period from
+01/07/2025 to 31/12/2025"* — while the investor-relations page lists that same file under
+**"Q4 (Year ended December 31, 2025)"**.
+
+A build taking the website's label at face value books **EGP 13,131,643,463** as a full
+year when it is half of one, understating the base year by about a factor of two and
+compounding that through every forecast year and the terminal. This is [R-GAP-01]'s BASE
+YEAR heading — anything annualised, scaled or solved is named as such — caught before a
+driver was set rather than found in the error afterwards.
+
+## Text layer and route
+
+**The text layer is 50 characters across 50 pages**, i.e. empty — the SCEM and ARCC shape
+exactly. Every figure below was read by **OCR off the rendered pixels** (pdftoppm 200dpi,
+tesseract 5.3.4 eng, `--psm 6`), and the disputed column re-rendered at 400dpi and re-read.
+
+## Arithmetic, which is the arbiter
+
+Individual statement of financial position, 31-Dec-2025 (EGP):
+
+| total | computed from printed rows | stated | result |
+|---|---:|---:|---|
+| non-current assets | 8,716,933,927 | 8,716,933,928 | **out by 1** |
+| current assets | 23,888,244,441 | 23,888,244,441 | foots |
+| total assets | 32,605,178,369 | 32,605,178,370 | out by 1, inherited |
+| total equity | 23,241,840,301 | 23,241,840,301 | foots |
+
+**The 1 EGP is the filing's own, not the OCR's.** Both comparative columns — 30-Jun-2025
+and 1-Jul-2024 — foot EXACTLY on the same OCR pass, and every line of the December column
+re-read identically at 400dpi. Recorded rather than repaired; immaterial to a valuation and
+exactly the kind of thing that gets silently absorbed.
+
+## Why this is a PENDING directory and carries no frozen baseline
+
+A baseline was frozen here and **removed as premature**. `fv_movement.py check` anchors on
+run directories and refuses a record with no run behind it, symmetrically — which is the
+gate correctly saying a name cannot be started halfway. EMFD is the precedent: substantial
+work in a `_walkforward_pending` directory and no register entry until the run is real.
+
+**The removal is provably lossless**: `assets/data.js` still carries ABUK at
+`bear 50 / base 60 / full 72`, identical to what was frozen, so nothing this campaign could
+have moved has moved, and the baseline captured when the run genuinely starts will read the
+same three numbers. It carried no editions.
