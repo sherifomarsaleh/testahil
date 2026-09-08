@@ -16,11 +16,21 @@ standing set every study is held to.
 Phase 2b is calibration, not a bar to clear first.
 
 WHAT IS ACTUALLY BLOCKING IT, READ LIVE — `python3 engine/method_reassessment/criterion3.py`
-— never from this file, because cells are carried and the count moves. The binding
-constraint is the SAMPLE: clauses B and C cannot be measured on one name, so the work
-is carrying valuation-input blocks to more origins across the ten completed runs, per
-[R-FCAL-01 AMENDED]. That is a data-carry job with a rate, out of filings each run has
-already parsed.
+— never from this file, because cells are carried, vintages mature and a clause that
+passes today can go red on the next run. THE SAMPLE CONSTRAINT THIS PARAGRAPH USED TO
+NAME IS CLOSED: it said clauses B and C could not be measured on one name, and that was
+true when it was written and stopped being true on 08-09-2026, when the series reached
+five names, eight origins and 22 cells and both clauses went green. A status sentence in
+a standing document is a claim about the world and it rots [R-DOC-02] — which is exactly
+why the live command is named here and the state is not.
+
+The two conditions are answered separately and neither is answered from this file. The
+BACKTEST half is criterion3.py's own print. The GATES half is the standing set, run from
+outside the work they govern. What remains after both is DEBT rather than a blocker, and
+it is countable rather than remembered: the ratchet lists, and the named data-carry job
+of taking valuation-input blocks to more origins across the ten completed runs per
+[R-FCAL-01 AMENDED] — a copy out of filings each run has already parsed, which is work
+with a rate.
 
 **THE FAILURE THIS RECORD EXISTS TO STOP IS DRIFT, NOT DISAGREEMENT.** No session has
 ever disputed the priority; sessions drift into adjacent work because the adjacent work
