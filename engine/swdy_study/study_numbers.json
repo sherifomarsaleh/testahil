@@ -2710,6 +2710,7 @@
    "reason": "Struck 3 September 2026 against a house Egyptian path whose FX spot anchor is dated 6 August 2026, twenty-eight days earlier and past the fourteen-day bound. Accepted deliberately: refreshing the house path is a house-level act rather than a step of this name's rebuild, and re-striking this study onto the anchor's own date would deliver it against a month-old price. The staleness is disclosed, not switched off."
   }
  },
+ "spot_date": "2026-09-03",
  "forecast_anchor": {
   "rate_name": "group segment-profit margin",
   "latest_reviewed_period": "H1-2026, six months ended 30 June 2026, reviewed condensed interim consolidated statements",

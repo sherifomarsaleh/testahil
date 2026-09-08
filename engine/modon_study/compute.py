@@ -1671,6 +1671,13 @@ D['inputs'] = INP
 A(len(INP) >= 120, f'input register carries {len(INP)} four-field inputs')
 D['assert_log'] = assert_log
 D['meta']['revision'] = 2
+
+# [R-GAP-01] THE PRICE CARRIES ITS DATE. The spot has always been registered with its own
+# date in the input register, four fields like every other input, and that date reached the
+# committed numbers NOWHERE — so nothing outside the study could tell a price struck today
+# from one struck a month ago, and half the book was in that state when it was first
+# measured. The date is not invented here: it is the spot input's own, surfaced.
+D['spot_date'] = INP['spot']['date']
 D['meta']['valuation_date'] = '2026-06-30'
 with open(OUT, 'w') as f:
     json.dump(D, f, indent=1)

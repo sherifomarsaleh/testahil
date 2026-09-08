@@ -3200,6 +3200,13 @@ say(f"[Gates] beta {BETA_REC['beta']:.4f} vs {BETA_REC['index_file']} (conformin
     f"lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report "
     f"bar both pass. Study stamped to STANDARD_VERSION {_rp.STANDARD_VERSION}.")
 
+# [R-GAP-01] THE PRICE CARRIES ITS DATE. The spot has always been registered with its own
+# date in the input register, four fields like every other input, and that date reached the
+# committed numbers NOWHERE — so nothing outside the study could tell a price struck today
+# from one struck a month ago, and half the book was in that state when it was first
+# measured. The date is not invented here: it is the spot input's own, surfaced.
+OUT['spot_date'] = INP['spot']['date']
+
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(OUT, f, indent=1)
 say("=" * 78)

@@ -5677,5 +5677,6 @@
   "[Beta \u2014 resolved by the exchange rule, both regressions priced] ADOPTED: own-stock 5-year weekly vs FTSE ADX General Index (FADGI), the index the binding rule resolves for a DFM-listed share = 0.812 (R2 0.135, n 260, SE 0.128) -> Ke 8.39%, WACC 8.00%, DCF AED 4.75. It applies under a REGISTERED INTERIM SUBSTITUTION, quoted in the report. CROSS-CHECK on the unregistered DFM General series held in the repo = 1.086 (R2 0.402, n 258) -> Ke 9.73%, WACC 9.19%, DCF AED 3.83 (-0.92/share, -19.4%). The cross-check has the HIGHER explanatory power (3.0x), which is why registering it is a live open item \u2014 but it is not the registered regressor today, so it is published beside the adopted figure rather than used.",
   "[Expert panel] Expert 1 4.12 [3.10-5.14]; Expert 2 2.59 [1.79-3.50]; Expert 3 4.31 [3.14-4.86]; panel median 4.12 (-17% vs spot)",
   "[Catalyst quantity, defined] one quarter's deferral of the FY2027 fuel relief = (fuel/pax FY26 - FY27) x FY27 passengers x (1-t) / 4 / shares = AED 0.019 per share per quarter."
- ]
+ ],
+ "spot_date": "2026-09-03"
 }

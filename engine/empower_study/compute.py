@@ -1266,6 +1266,13 @@ out = dict(
     beta_reg=beta_reg,
     assert_log=LOG)
 
+# [R-GAP-01] THE PRICE CARRIES ITS DATE. The spot has always been registered with its own
+# date in the input register, four fields like every other input, and that date reached the
+# committed numbers NOWHERE — so nothing outside the study could tell a price struck today
+# from one struck a month ago, and half the book was in that state when it was first
+# measured. The date is not invented here: it is the spot input's own, surfaced.
+out['spot_date'] = INP['spot']['date']
+
 json.dump(out, open(os.path.join(HERE, 'study_numbers.json'), 'w'), indent=1,
           default=float)
 
