@@ -1,4 +1,4 @@
-"""DU_Bibliography_09-08-2026.docx — the companion bibliography document.
+"""DU_Bibliography_08-09-2026.docx — the companion bibliography document.
 Every input in the model: value, source, date and research layer — emitted from
 study_numbers.json (the compute script's own INPUTS block), plus the document
 bibliography and the negative results."""
@@ -13,6 +13,8 @@ from docx.oxml import OxmlElement
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 INP = D['inputs']
+BR = D['wacc']['beta']
+TRI = D['terminal_record']['inputs']
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77); WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 F_DARK, F_PANEL, F_CREAM = '1C3A36', 'EAF0EE', 'F6F1E6'
 
@@ -232,15 +234,34 @@ table([['Judgement', 'Basis', 'What would overturn it'],
         'past FY2028'],
        ['Payout stays at 98%', 'FY2024 actual 98%, FY2025 ~100%, interim raised through the '
         'war quarter', 'any declared cut'],
-       ['Beta 0.472 from the own-index regression', 'five years weekly, R² 0.20, gate '
-        'passed, composite cross-check 0.394', 'a structural re-rating of DFM correlations; '
-        'the 0.57-0.80 alternatives are priced'],
-       ['Terminal growth 2.5%', 'below long-run UAE nominal GDP (~4%+); duopoly at '
-        'population-plus-inflation minus price erosion', 'sustained sub-2% revenue growth '
-        'after the recovery completes'],
-       ['Lease replacement charged at right-of-use depreciation', 'conservative: actual '
-        'FY2025 lease additions ran at a quarter of depreciation', 'a disclosed structural '
-        'shift to leased infrastructure']],
+       [f"Beta {BR['beta']:.4f} — own-stock regression through the house routine",
+        f"weekly on the exchange's own trading week, five years to {BR['last_obs']}, "
+        f"Dimson lead-lag corrected, R² {BR['r2']:.2f}, SE {BR['se']:.3f}, n {BR['n']}, gate "
+        f"passed. NOT CONFORMING: the regressor is a registered INTERIM. Cross-checks, "
+        f"never adopted: DFM General {BR['dfm_alt']['beta']:.4f}, equal-weight composite "
+        f"{BR['composite_alt']['beta']:.4f}. SUPERSEDES 0.472/0.394, which this table went "
+        f"on printing after the study adopted 0.488, and 0.488 itself, which came from a "
+        f"study-local script",
+        'a structural re-rating of DFM correlations, or a DFM General index registered as '
+        'the regressor; the 0.31-1.00 range is priced'],
+       [f"Terminal growth {TRI['nominal_growth']:.2%}, stored as REAL "
+        f"{TRI['real_growth']:.2%} on the house path's {TRI['inflation']:.2%} inflation",
+        "derived, never typed, and the company's own audited goodwill impairment test "
+        "(note 9) uses the same 2% long-term rate. SUPERSEDES 2.5%, which this table went "
+        "on printing after the study adopted 2.0%",
+        'sustained sub-2% revenue growth after the recovery completes, or a house '
+        'inflation path that moves'],
+       ['No lease replacement charged inside the explicit window; the renewal is paid for '
+        'in the terminal instead',
+        'the lease liability is deducted in FULL as debt in the bridge, so charging '
+        'renewal in the window would bill the same obligation twice; in perpetuity a '
+        'one-off deduction cannot cover renewals for ever, so the terminal adds back the '
+        'FULL depreciation charge — right-of-use included — and escalates all of it, with '
+        'the right-of-use book entering the blended life at its own 10.24 years against '
+        'the 10.1-year average lease term note 7 discloses. THIS ROW SAID THE OPPOSITE '
+        'UNTIL 08-09-2026, as did the study body and the workbook',
+        'a disclosed structural shift to leased infrastructure, or a lease book that stops '
+        'being matched by non-cash additions']],
       [1.85, 2.60, 2.60], size=7.8)
 
 H1('Negative results — what could not be sourced')
@@ -303,10 +324,15 @@ P('Three discrepancies a checking reader will find, all explained rather than sm
   '(1) FY2024 EBITDA is 6,469.8 in this study (the IFRS 18 re-presented comparative on the '
   'face of the FY2025 statements) but derives as 6,472.2 from the original FY2024 '
   'presentation — the re-presented basis is used so FY2024 and FY2025 sit on one '
-  'presentation. (2) FY2024 federal royalty is 1,571.6 on the re-presented face but 1,675.9 '
+  f"presentation. (2) FY2024 federal royalty is {INP['royalty_fy24']['value']:,.1f} on the "
+  f"re-presented face but {INP['royalty_fy24_original']['value']:,.1f} "
   'in the original FY2024 statements (which included prior-period adjustments); the '
-  're-presented figure is carried, and the FY2024 effective-rate note (44.7%) belongs to '
-  'the original basis. (3) The company\'s IR capex (cost-additions basis, 2,274 for FY2025) '
+  f"re-presented figure is carried, and the FY2024 effective rate on the ORIGINAL basis is "
+  f"{(INP['royalty_fy24_original']['value'] + INP['tax_fy24']['value']) / INP['pbt_fy24']['value']:.1%}"
+  f" ((royalty {INP['royalty_fy24_original']['value']:,.1f} + tax "
+  f"{INP['tax_fy24']['value']:,.1f}) / profit before both "
+  f"{INP['pbt_fy24']['value']:,.1f}), computed from the registered original-basis royalty "
+  f"rather than typed. (3) The company's IR capex (cost-additions basis, 2,274 for FY2025) "
   'differs from the cash-flow-statement capex (2,353.2) used in the model; the audited cash '
   'basis is used and the IR basis is quoted only where the IR intensity ratios are cited.')
 
@@ -315,5 +341,5 @@ P('This bibliography is part of an educational analysis and is not investment ad
   'Sources are quoted for verification; all errors of transcription are the authors\' own. '
   '© Testahil, 2026.', size=9.3)
 
-doc.save(os.path.join(HERE, 'DU_Bibliography_09-08-2026.docx'))
-print('wrote DU_Bibliography_09-08-2026.docx')
+doc.save(os.path.join(HERE, 'DU_Bibliography_08-09-2026.docx'))
+print('wrote DU_Bibliography_08-09-2026.docx')

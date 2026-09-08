@@ -42,6 +42,20 @@ vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']), (
 _PANEL = [v for v in PF.numbers_from(HERE, files=['study_numbers.json']) if _spot and 0 < v < _spot * 5]
 vals += PF.ratios_against([_spot] if _spot else [], _PANEL)
 
+# EFFECTIVE FISCAL RATES ARE RATIOS OF COMMITTED NUMBERS AND ARE NOT THEMSELVES COMMITTED
+# [widened 08-09-2026]. The source-discrepancy note quotes the FY2024 combined take on the
+# ORIGINAL presentation basis — (royalty + tax) / profit before both — and the model holds
+# all three components as four-field inputs but not their quotient. The widening is the fix
+# the rule prescribes; deleting the figure from the register would have hidden a real
+# discrepancy a checking reader is entitled to see.
+_IV = {k: v['value'] for k, v in SN['inputs'].items() if isinstance(v.get('value'), (int, float))}
+for _roy in ('royalty_fy23', 'royalty_fy24', 'royalty_fy24_original', 'royalty_fy25'):
+    for _tax in ('tax_fy24', 'tax_fy25'):
+        for _pbt in ('pbt_fy23', 'pbt_fy24', 'pbt_fy25'):
+            if _roy in _IV and _tax in _IV and _pbt in _IV and _IV[_pbt]:
+                vals.append((_IV[_roy] + _IV[_tax]) / _IV[_pbt])
+                vals.append(_IV[_roy] / _IV[_pbt])
+
 RENDER = PF.rendering_set(vals)
 
 if __name__ == '__main__':

@@ -13,7 +13,14 @@ import market_profiles as MP
 import horizons as HZ
 import adaptive_width as AW
 
-Q_ANNUAL = 0.66 / 12.30   # declared cash DPS stream: FY2025 final AED 0.40 paid 28-Apr-2026 + H1-2026 interim AED 0.26 declared 23-Jul-2026 (FS/ER, investors.du.ae) = AED 0.66 on spot 12.30 = 5.37%
+# THE DIVIDEND YIELD IS STRUCK ON THE SAME PRICE AS THE CONE, not on a superseded one.
+# Corrected 08-09-2026 with the study's re-strike: this line divided the declared cash stream
+# by AED 12.30, the 7-August close, while the cone itself was seeded at whatever session the
+# library ended on. A carry drift is rf less q, so a q struck on the wrong price is a drift
+# struck on the wrong price.
+_SPOT_FOR_Q = None   # set below, from the session the cone is actually struck at
+DPS_DECLARED = 0.66  # FY2025 final AED 0.40 paid 28-Apr-2026 + H1-2026 interim AED 0.26,
+                     # ex 31-Jul-2026, paid 21-Aug-2026 (FS/ER, investors.du.ae)
 
 prof = MP.PROFILES['AE']
 raw = load_ohlc(os.path.join(HERE, '../raw_ohlc/AE/DU.csv'))
@@ -24,6 +31,7 @@ close = df['Price'].to_numpy(dtype=float)
 i = len(df) - 1
 anchor_date = dates.iloc[i]
 spot = float(close[i])
+Q_ANNUAL = DPS_DECLARED / spot     # struck on the SAME price as the cone, never on a stale one
 v_ = __import__('primitives').yz_variance_proxy(df)
 plan = HZ.cohort_plan('AE', anchor_date)
 width_mult = AW.live_width_mult(df, prof)
@@ -41,7 +49,14 @@ for short, hz in plan['horizons'].items():
     cal_eff = cal * width_mult
     sigma_h = float(np.sqrt(dvar * h) * cal_eff)
     drift = carry_log_h(prof, anchor_date, Q_ANNUAL, h, yearfrac=months / 12.0)
-    alpha, z = signal_alpha(prof, close, i, sigma_h)
+    # THE PER-HORIZON IC, as the production strike passes it [R-DRIFT-01]. This line read
+    # signal_alpha(prof, close, i, sigma_h) until 08-09-2026 and therefore carried the
+    # ONE-MONTH ic across to the three-month horizon, which the rule names explicitly as
+    # something that must at least be disclosed and is better not done: it understated the
+    # 3M tilt by about three quarters of a point and made this study's published cone
+    # differ from the one the site strikes for the same name on the same session.
+    alpha, z = signal_alpha(prof, close, i, sigma_h,
+                            ic=(getattr(prof, 'ic_by_h', None) or {}).get(short))
     paths = simulate_paths_v3(spot, dvar, h, drift + alpha, nu=nu,
                               n_paths=50000, seed=42, width_cal=cal_eff)
     term = paths[:, -1]
@@ -51,6 +66,7 @@ for short, hz in plan['horizons'].items():
         anchor_vol_ann=float(np.sqrt(dvar * 252)), sigma_h=sigma_h,
         drift_log_h=float(drift),
         pct={f'p{p}': float(np.percentile(term, p)) for p in (5, 25, 50, 75, 95)},
+        signal_alpha=float(alpha), signal_z=float(z),
         p_above=float(np.mean(term > spot)),
         p_up10=float(np.mean(term >= spot * 1.10)),
         p_dn10=float(np.mean(term <= spot * 0.90)),

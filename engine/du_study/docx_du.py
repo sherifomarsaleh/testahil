@@ -1,7 +1,7 @@
-"""DU_Valuation_Study_09-08-2026_public.docx — 16-section study, house style,
+"""DU_Valuation_Study_08-09-2026_public.docx — 16-section study, house style,
 model-study (SWDY) skeleton, operating-company lens. Every financial numeral is
 read from study_numbers.json; no number is typed into this builder."""
-import json, os, sys
+import json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
@@ -21,6 +21,28 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 TRC = D['terminal_record']
 TRI, TRO = TRC['inputs'], TRC['outputs']
 DL = TRC['derived_life']
+SG = DCF['scenario_growth']
+MX = D['unitcost']['mix']
+
+# THE EDITION DATE COMES OFF THE FILE THIS DOCUMENT SHIPS AS, and the ANCHOR date off the
+# price it is struck on. They are two different dates and the masthead now says both — a
+# study can be anchored on one day and issued on another, and saying both is more honest
+# than saying one. Earlier editions carried the edition date nowhere in the masthead and
+# only incidentally in the body, inside a sentence about a licence expiry.
+import datetime as _dt
+OUT_DOCX = 'DU_Valuation_Study_08-09-2026_public.docx'
+_ed = _dt.datetime.strptime(re.search(r'(\d{2}-\d{2}-\d{4})', OUT_DOCX).group(1), '%d-%m-%Y')
+EDITION_HUMAN = f"{_ed.day} {_ed.strftime('%B %Y')}"
+_an = _dt.datetime.strptime(M['asof'], '%Y-%m-%d')
+ANCHOR_HUMAN = f"{_an.day} {_an.strftime('%B %Y')}"
+
+# DISPLAY ONLY — the reverse read is a diagnostic and never feeds the valuation [R-ENF-05].
+# It is IMPORTED as a function rather than read back from a file: there is one solver, the
+# study document can print what the price believes, and nothing solved from a price reaches
+# study_numbers.json or any driver. The rule's own text says a builder that only DISPLAYS
+# the read is fine; what it forbids is the value re-entering the model, and it cannot here.
+import diagnostics as _RDMOD
+RD = _RDMOD.build()
 EXP, REL, NRM, BK = D['experts'], D['rel'], D['norm'], D['book']
 SEG, S0, STK, BU = D['seg_fy25'], D['step0'], D['strike'], D['bottomup']
 UC = D['unitcost']
@@ -64,7 +86,8 @@ H2('Independent Valuation Study — Educational Analysis')
 H1('Emirates Integrated Telecommunications Company PJSC (DFM: DU)')
 rich([('du · United Arab Emirates · Integrated telecom operator (mobile · fixed · wholesale · '
        'ICT and data centres)   ', dict(size=10.5)),
-      (f"Anchor {M['asof']} · Spot AED {p2(SPOT)} · Market capitalisation AED "
+      (f"Edition of {EDITION_HUMAN} · anchored on the {ANCHOR_HUMAN} close · Spot AED "
+       f"{p2(SPOT)} · Market capitalisation AED "
        f"{n0(M['mktcap'])}mn", dict(size=10.5, color=GREY))], space_after=10)
 P('READ FIRST. This study is an educational analysis, not investment advice, a recommendation '
   'or a solicitation. It never issues a rating or a price target: it publishes fair-value '
@@ -144,8 +167,9 @@ caption(f'{T()} — the valuation summary. The central is the cash-flow lens its
         f'{p2(CEN)}, and its bear and bull columns are that same lens under its own two paths '
         f'on one clock — NOT an envelope of four methods and NOT a weighted average of them. '
         f'The other lenses are cross-checks, published at their own values so a reader sees the '
-        f'disagreement rather than a number in which it has been dissolved; the book lens is a '
-        f'disclosed floor and is never weighted, and normalised earnings power is not among '
+        f'disagreement rather than a number in which it has been dissolved; the DISCLOSED FLOOR '
+        f'is book value per share, AED {p2(BK["bvps"])}, and the book-and-sustainable-return '
+        f'lens above it is a cross-check that is never weighted, and normalised earnings power is not among '
         f'this class\'s permitted cross-checks and is shown only so its removal is visible. '
         f'The retired blend of AED {p2(RETV)} is printed for the same reason and feeds nothing. '
         f'Every lens value is dated at the {M["asof"]} anchor, net of the AED '
@@ -207,7 +231,8 @@ P('One lens carries the answer and the rest are cross-checks. For an integrated 
   'operator the primary is the discounted cash flow: the company is a licence and a network '
   'generating a distributable cash stream, so the value is the present value of that stream '
   'and nothing else measures it directly. Relative multiples are published beside it as a '
-  'cross-check, the book lens as a disclosed floor that is never weighted, and normalised '
+  f"cross-check; the DISCLOSED FLOOR is book value per share at AED {p2(BK['bvps'])}, and the "
+  'book-and-sustainable-return lens is a cross-check above it that is never weighted; normalised '
   'earnings power is shown but is NOT among this class\'s permitted cross-checks — it is '
   'computed here only so that its removal from the answer is visible rather than silent. '
   'The four are never averaged: an earlier edition of this study published a 45/25/20/10 '
@@ -250,8 +275,11 @@ table(rows, [2.30, 0.94, 0.94, 0.94, 0.94, 0.94], band_rows={2, 4, 10, 12}, size
 caption(f'{T()} — the FCFF waterfall. EBITDA margin holds near {pc(F["ebitda_margin"][0])} '
         '(an OUTPUT of the segment build, not an input); capital intensity glides from '
         f'{pc(IN["capex_pct"][0])} of revenue at the data-centre peak to {pc(IN["capex_pct"][-1])}; '
-        'lease replacement is charged at right-of-use depreciation so the lease book neither '
-        'inflates nor starves the cash flow; working-capital change is a cash RELEASE in every '
+        'no lease replacement is charged inside the window because the lease liability is '
+        'deducted in FULL as debt in the bridge and charging renewal here as well would bill '
+        'the same obligation twice — the memo row prints zero and the terminal is where the '
+        'renewal is paid for, which is where a perpetual obligation belongs; '
+        'working-capital change is a cash RELEASE in every '
         'year because the working capital is negative and revenue grows.')
 P(f"Terminal growth is stated as a REAL rate and the headline rate is derived from it: "
   f"real growth of {pc(TRI['real_growth'])} on the {pc(TRI['inflation'])} long-run "
@@ -263,7 +291,8 @@ P(f"Terminal growth is stated as a REAL rate and the headline rate is derived fr
   f"sensitivity below prices the alternative rather than burying it.")
 P(f"What the terminal charges for is capital MAINTENANCE, at what replacement costs. "
   f"Terminal operating profit after tax is AED {n0(TRI['nopat'])}mn; AED "
-  f"{n0(TRI['dna_book'])}mn of owned depreciation and amortisation is added back because "
+  f"{n0(TRI['dna_book'])}mn of depreciation and amortisation is added back — THE FULL "
+  f"charge, property, intangibles and right-of-use alike — because "
   f"that profit is already struck after it, and AED {n0(TRO['maintenance'])}mn charged "
   f"against it — the same charge escalated over half the {DL['years']:.2f}-year life of "
   f"the depreciable owned base. That life is not picked: the depreciation notes give "
@@ -280,10 +309,17 @@ P(f"One line in that block is easy to miss and matters: the LEASE renewal. The f
   f"renewal there too would bill the same obligation twice. That argument does not survive "
   f"into perpetuity — a one-off deduction of today's liability cannot cover renewals for "
   f"ever — and the retired construction supplied the renewal only as a side effect of "
-  f"charging growth against the whole capital base. The terminal therefore neither adds "
-  f"back nor charges the right-of-use depreciation, which is exactly a lease renewed at "
-  f"its own current cost: a lease re-prices when it renews, unlike an asset bought twelve "
-  f"years ago.")
+  f"charging growth against the whole capital base — on a 1/g cycle of fifty years, "
+  f"against a lease term the company discloses at 10.1 years. So the terminal puts the "
+  f"renewal back EXPLICITLY: it adds back the FULL depreciation charge, right-of-use "
+  f"included, and escalates all of it into the replacement charge, and the right-of-use "
+  f"book enters the blended asset life at its own derived {DL['components']['right_of_use']:.2f} "
+  f"years rather than at the network's. A lease is an asset with a life like any other "
+  f"here, and it re-prices when it renews. AN EARLIER EDITION OF THIS STUDY SAID THE "
+  f"REVERSE IN THIS PARAGRAPH AND IN THE CAPTION ABOVE — that the terminal 'neither adds "
+  f"back nor charges' the right-of-use depreciation, and that lease replacement was charged "
+  f"inside the window. Both were the wrong way round, both were caught by an outside audit, "
+  f"and the arithmetic never changed: what was wrong was the account of it.")
 P(f"That yields a terminal value of AED {n0(DCF['tv'])}mn, whose present value is AED "
   f"{n0(DCF['pv_tv'])}mn — {pc(DCF['tv_share'],0)} of enterprise value, against AED "
   f"{n0(TRC['retired_construction']['tv'])}mn on the retired construction. A reader should "
@@ -305,19 +341,29 @@ rows = [['Step', 'AED mn', 'AED / share'],
         ['plus cash and term deposits', n0(DCF['net_cash']), p2(DCF['net_cash']/SH)],
         ['plus equity-accounted investees', p2(DCF['investees']), p2(DCF['investees']/SH)],
         ['Equity value at 31-Dec-2025', n0(DCF['eq_val']), p2(DCF['ps_dec'])],
-        [f"× anchor accretion (1+Ke)^(219/365) = {DCF['roll']:.4f}, less the AED "
-         f"{p2(IN['div_between'])} final dividend paid 28-Apr-2026", '', ''],
-        ['Fair value per share at the 07-Aug-2026 anchor', '', p2(DCF['ps'])]]
+        [f"× anchor accretion (1+Ke)^({DCF['anchor_days']:.0f}/365) = {DCF['roll']:.4f}, "
+         f"less the AED {p2(IN['div_between'])} of dividends gone ex in between", '', ''],
+        [f"Fair value per share at the {M['asof']} anchor", '', p2(DCF['ps'])]]
 table(rows, [4.05, 1.30, 1.30], band_rows={3, 8, 10})
 caption(f'{T()} — enterprise value to equity. There are no minority interests (every '
         'subsidiary is wholly owned) and no borrowings to net: the bridge is leases out, cash '
-        'in. The H1-2026 interim dividend of AED 0.26, declared 23-Jul-2026 but unpaid at the '
-        'anchor, stays in the share.')
+        f'in. The AED {p2(IN["div_between"])} deducted is TWO dividends, not one: the AED 0.40 '
+        'final FY2025 (ex 12-Mar-2026, paid 28-Apr-2026) and the AED 0.26 H1-2026 interim '
+        '(ex 31-Jul-2026, paid 21-Aug-2026). The test is the EX-date, not the payment date, '
+        'because the anchor price is already ex both.')
 P(f"Scenario span on this lens: bear AED {p2(LN['dcf']['bear'])} (ARPU −5%, a quarter-million "
-  f"fewer subscribers, margins −3%, +100bp on the discount rate, terminal growth "
-  f"{pc(0.02)}), bull AED {p2(LN['dcf']['bull'])} (the war recovery runs hot and the "
-  'data-centre leg compounds). The base case is deliberately NOT the midpoint of those two: '
-  'it is built driver by driver in section 1.6.', space_after=10)
+  f"fewer subscribers, direct cost per unit +3%, the opex stack +50bp of revenue, capex +8%, "
+  f"+100bp on the discount rate, and terminal REAL growth of {pc(SG['bear_real'])} — a "
+  f"perpetual real decline, written down as one, which on the {pc(SG['inflation'])} inflation "
+  f"path is a nominal {pc(SG['bear_nominal'])}), bull AED {p2(LN['dcf']['bull'])} (the war "
+  f"recovery runs hot, the data-centre leg compounds, and terminal real growth of "
+  f"{pc(SG['bull_real'])}, a nominal {pc(SG['bull_nominal'])}). AN EARLIER EDITION'S BEAR "
+  f"CARRIED NO GROWTH LEG AT ALL: it was described as taking terminal growth of "
+  f"{pc(SG['base_nominal'])}, which is the BASE rate, so the single largest lever in the "
+  'study moved for the bull and not for the bear and the bear was less bearish than its own '
+  'description. Both scenario rates are now stated as REAL and derived to nominal on the '
+  'house inflation path, like the base. The base case is deliberately NOT the midpoint of '
+  'those two: it is built driver by driver in section 1.6.', space_after=10)
 
 H2('1.2  Book value and sustainable return — the asset lens')
 P(f"Book value per share is AED {p2(BK['bvps'])} (audited FY2025 equity of AED "
@@ -330,8 +376,15 @@ P(f"Book value per share is AED {p2(BK['bvps'])} (audited FY2025 equity of AED "
   f"{BK['pb_just']:.2f}×, i.e. AED {p2(LN['book']['base'])} per share at the anchor. The "
   'multiple looks extreme against industrial norms; it is what the arithmetic of a small '
   'equity base and a low required return produces, and the honest caveat is that it is the '
-  'lens MOST exposed to the low regression beta discussed in section 1.8 — which is one '
-  'reason it is published as a disclosed floor and carries no weight in the answer at all.')
+  'lens MOST exposed to the regression beta discussed in section 1.8 — which is one '
+  'reason it carries no weight in the answer at all. '
+  f"AND IT IS NOT THE FLOOR, WHICH EARLIER EDITIONS OF THIS STUDY CALLED IT. A justified "
+  f"price-to-book of {BK['pb_just']:.2f}× on a sustainable-return construction is a "
+  f"VALUATION; the disclosed floor is book value itself, AED {p2(BK['bvps'])} per share. The "
+  f"difference is not pedantic: at AED {p2(LN['book']['base'])} this lens sits ABOVE two of "
+  f"the other three and "
+  + ("ABOVE" if LN['book']['base'] > SPOT else "below") +
+  f" the traded price, and a number above the market is not a floor under anything.")
 
 H2('1.3  Relative multiples')
 P(f"du trades at {REL['pe_trailing']:.1f}× its FY2025 earnings and "
@@ -466,6 +519,22 @@ P('This matters because of what the forecast assumes elsewhere. The subscriber p
   f"decomposition implies, the cash-flow lens reads AED {SN['dcf_mix_exhaust']:.2f} rather than "
   f"AED {DCF['ps']:.2f}, {SN['dcf_mix_exhaust']/DCF['ps']-1:+.0%}. It is the largest single "
   'downside in the study that does not come from the discount rate.')
+P(f"THE DECOMPOSITION HAS TWO DEFENSIBLE PERIOD PAIRS AND THIS STUDY NOW PUBLISHES BOTH, "
+  f"because an earlier edition published only the gentler one and an outside audit was right "
+  f"that the priced downside was calibrated on it. The pair above spans a full year — FY2025 "
+  f"average to the second quarter of 2026 on BOTH legs — and implies per-leg erosion of "
+  f"{MX['erosion']:+.2%} a year. The other pair is the most recent observation: from the "
+  f"quarterly PEAK of AED {UC['arpu_q']['Q4_2025']:.1f} in the fourth quarter of 2025 to AED "
+  f"{UC['arpu_q']['Q2_2026']:.1f} in the second quarter of 2026, blended ARPU fell "
+  f"{MX['printed_peak_pair']:+.2%} while the mix shift alone should have LIFTED it "
+  f"{MX['mix_lift_peak_pair']:+.2%} — implying per-leg erosion of {MX['erosion_peak_pair_half']:+.2%} "
+  f"across those two quarters, more than twice the annual pair's rate. Carried as an annual "
+  f"rate that reads AED {MX['ps_mix_exhaust_peak']:.2f}; compounded for five years "
+  f"({MX['erosion_peak_pair']:+.2%} a year) it reads AED "
+  f"{MX['ps_mix_exhaust_peak_annualised']:.2f}. THE STUDY CARRIES NEITHER OF THE HARSHER TWO "
+  f"AND SAYS WHY: two quarters of a mix disrupted by a war is not a five-year trend, and "
+  f"compounding it is an extrapolation rather than a measurement. It is priced here anyway, "
+  f"because a scenario refused without a number beside it is an assertion.")
 P('A reader will reasonably ask why the two legs are not simply modelled separately. Because '
   'they cannot be identified. du publishes no prepaid or postpaid ARPU anywhere — not in the '
   'earnings releases, not in the presentations, not in the audited segment note, which splits '
@@ -642,9 +711,17 @@ caption(f'{T()} — the study\'s central judgement, both ways. The cash-flow len
         f"honest form of the observation that {pc(DCF['tv_share'],0)} of enterprise value sits "
         'beyond year five.')
 P(f"In real observable units, the two legs of the judgement price out like this. On the return "
-  f"leg: every 0.10 on beta is worth roughly AED "
-  f"{p2(abs(SN['grid_beta'][1]-SN['grid_beta'][4])/((SN['beta_grid'][4]-SN['beta_grid'][1])*10)):s} "
-  f"per share, so the regression's own 90% interval ({SN['beta_grid'][0]:.2f} to "
+  f"leg the relation is CONVEX and a single slope misdescribes it, so the slope is quoted "
+  f"segment by segment rather than averaged: from beta {SN['beta_grid'][0]:.2f} to "
+  f"{SN['beta_grid'][1]:.3f} it runs AED "
+  f"{p2((SN['grid_beta'][0]-SN['grid_beta'][1])/((SN['beta_grid'][1]-SN['beta_grid'][0])*10)):s} "
+  f"per 0.10; from {SN['beta_grid'][1]:.3f} to {SN['beta_grid'][2]:.2f}, AED "
+  f"{p2((SN['grid_beta'][1]-SN['grid_beta'][2])/((SN['beta_grid'][2]-SN['beta_grid'][1])*10)):s}; "
+  f"and from {SN['beta_grid'][3]:.2f} to {SN['beta_grid'][4]:.2f}, AED "
+  f"{p2((SN['grid_beta'][3]-SN['grid_beta'][4])/((SN['beta_grid'][4]-SN['beta_grid'][3])*10)):s}. "
+  f"An earlier edition quoted one number for all of it — the average over the FLATTEST "
+  f"segment — which understated what the first tenth of beta is worth by about a third. "
+  f"The regression's own 90% interval ({SN['beta_grid'][0]:.2f} to "
   f"{SN['beta_grid'][2]:.2f}) spans AED {p2(SN['grid_beta'][2])} to {p2(SN['grid_beta'][0])}, and "
   f"a sector-average 0.80 gives AED {p2(SN['grid_beta'][4])}. On the terminal leg: each turn of "
   f"the exit multiple is worth about AED "
@@ -652,6 +729,32 @@ P(f"In real observable units, the two legs of the judgement price out like this.
   'share. A reader who believes the market is simply wrong about du should take Framing 1; a '
   'reader who thinks a licensed single-market operator does not re-rate by a third should take '
   'Framing 2; the study refuses to choose for them.')
+H2('What the price believes — the same model, read backwards')
+P(f"Every study states what IT believes and almost none states what the PRICE believes, and "
+  f"the two are the same model read backwards. Holding every other driver in this study at "
+  f"its published value and moving only the beta until the answer meets the market: at AED "
+  f"{p2(SPOT)} the price is paying for an equity beta of {RD['implied']['value']:.2f} — a "
+  f"required return of {pc(RD['implied']['implied_cost_of_equity'],2)} — against the "
+  f"{RD['implied']['study_value']:.4f} this study measures and the "
+  f"{pc(RD['implied']['study_cost_of_equity'],2)} it produces. THAT IS NOT AN ABSURD NUMBER, "
+  f"and saying so is the point: a beta near one is an ordinary read for a single-market, "
+  f"single-licence operator whose licence economics were unpublished at the anchor. It sits "
+  f"just outside the regression's own 90% interval, whose top is "
+  f"{W['beta']['ci90'][1]:.2f}, so the disagreement is real and it is narrow, and it is "
+  f"about the PRICE OF RISK rather than about the cash flows — every lens in this study "
+  f"consumes the same build. A reader who thinks a licensed duopoly should carry market risk "
+  f"has a coherent position, and this study does not hold it. "
+  f"This read is a diagnostic and it is kept OUT of the model: a rate solved from a price and "
+  f"then used in a valuation is a reverse-engineered discount rate arriving through a side "
+  f"door, which this house prohibits outright.")
+P(f"The same discipline applied to the study's own choices. "
+  f"{RD['sign_test']['material_count']} judgements in this study are worth more than 5% of "
+  f"the central; {RD['sign_test']['resolved_higher']} of them are resolved toward a higher "
+  f"value and {RD['sign_test']['resolved_lower']} toward a lower one, a two-sided sign test "
+  f"of p = {RD['sign_test']['p_two_sided']:.2f}. Any single contested choice is defensible; "
+  f"what would not be is a study resolving every one of them the same way and never noticing, "
+  f"which is how a lean survives an audit of its steps. The count is two-sided and the test "
+  f"is printed whether it flatters the study or not.")
 H2('The two judgements that are NOT the crux, and why')
 P('The fiscal regime was the previous edition of this study\'s central judgement. It is not one '
   'any more, and the correction is worth stating plainly: du published its own disclosure of the '
@@ -696,14 +799,32 @@ rows = [['Component', 'Value', 'Source basis'],
          'Damodaran mature 4.23% + a 6bp country premium scaled off the same 4bp'],
         ['Cost of equity', pc(W['ke_exp'],2), 'build, not assumption'],
         ['Marginal cost of debt (AED sovereign + GCC telecom spread)', pc(IN['kd'],2),
-         'stc sukuk curve evidence; du has no debt'],
+         'stc sukuk curve evidence; du has no drawn debt'],
+        ['Cost of debt AFTER tax — interest shields both fiscal legs',
+         pc(W['kd_at'],2),
+         f"{pc(IN['kd'],2)} x (1 − {pc(IN['tax_eff'],2)}); the royalty base is profit AFTER "
+         f"interest, so the shield runs at the combined rate"],
         ['Weights — market equity / lease debt', f"{pc(W['we_exp'],1)} / {pc(W['wd_exp'],1)}",
          'market capitalisation vs the audited lease book'],
-        ['Cost of capital — explicit window', pc(W['wacc_exp'],2), ''],
+        ['Cost of capital — explicit window', pc(W['wacc_exp'],2),
+         f"{pc(W['we_exp'],1)} x {pc(W['ke_exp'],2)} + {pc(W['wd_exp'],1)} x {pc(W['kd_at'],2)}"],
+        ['Terminal risk-free rate, net of the same 4bp spread', pc(W['rf_path'][-1] - IN['sov_spread_market_observed'],2),
+         f"terminal AED risk-free {pc(IN['rf_term'],2)} less the same sovereign spread"],
+        ['Terminal cost of equity', pc(W['ke_term'],2),
+         f"same beta {IN['beta']:.4f} on the terminal premium {pc(IN['erp_term'],2)}"],
+        ['Terminal cost of debt, after tax', pc(W['kd_term_at'],2),
+         f"{pc(IN['kd_term'],2)} x (1 − {pc(IN['tax_eff'],2)})"],
         ['Cost of capital — terminal', pc(W['wacc_term'],2),
-         f"terminal risk-free {pc(IN['rf_term'],2)}, debt weight {pc(IN['wd_term'],0)}"]]
-table(rows, [3.30, 1.10, 2.25], band_rows={6, 9, 10}, size=8.8)
-caption(f'{T()} — the cost of capital, built from sourced parts. The sovereign spread is '
+         f"{pc(1-IN['wd_term'],0)} x {pc(W['ke_term'],2)} + {pc(IN['wd_term'],0)} x "
+         f"{pc(W['kd_term_at'],2)}"]]
+table(rows, [3.30, 1.10, 2.25], band_rows={6, 10, 14}, size=8.8)
+caption(f'{T()} — the cost of capital, built from sourced parts. EVERY TOTAL HERE REPRODUCES '
+        'FROM THE ROWS ABOVE IT, and an earlier edition\'s did not: it printed the cost of '
+        'equity, a pre-tax cost of debt and the two weights and then a cost of capital those '
+        'four do not produce, because the after-tax step was in the workbook and not on the '
+        'page, and it gave the terminal rate with neither a terminal cost of equity nor a '
+        'terminal cost of debt to build it from. Both steps are now printed. The sovereign '
+        'spread is '
         'stripped from the risk-free rate because the equity premium already carries the country '
         'premium: counting it twice is the classic error this construction exists to avoid. The '
         'spread stripped and the premium added back are on the SAME basis — 4 basis points out, a '
@@ -717,17 +838,27 @@ caption(f'{T()} — the cost of capital, built from sourced parts. The sovereign
         'which is why it is the alternative and not the primary.')
 H2('The beta — measured, gated, and honestly low')
 BR = W['beta']
-P(f"du's beta is measured, not assumed: weekly log-returns against the FTSE ADX General "
-  f"Index — adopted as the base market index for the UAE in this edition — five years, "
-  f"{BR['n']} observations: beta {BR['beta']:.3f}, R² {BR['r2']:.2f}, standard error "
-  f"{BR['se']:.3f}, 90% confidence interval {BR['ci90'][0]:.2f} to {BR['ci90'][1]:.2f}. The "
-  'regression passes the usability gate (enough observations, explanatory power, an error '
-  'smaller than the estimate). du itself lists on the Dubai Financial Market, so the choice '
-  'of UAE index is itself shown both ways rather than hidden: against the DFM General — the '
-  f"listing venue's own index — the same construction measures {BR['dfm_alt']['beta']:.3f} "
+P(f"du's beta is measured, not assumed, and this edition measures it differently from the "
+  f"last. Weekly log-returns on the exchange's own realised trading week against the FTSE "
+  f"ADX General Index, five years to {BR['last_obs']}, Dimson lead-lag corrected because "
+  f"this share does not trade every session: beta {BR['beta']:.4f}, R² {BR['r2']:.2f}, "
+  f"standard error {BR['se']:.3f}, {BR['n']} observations, 90% confidence interval "
+  f"{BR['ci90'][0]:.2f} to {BR['ci90'][1]:.2f}. The regression passes the usability gate "
+  f"(enough observations, explanatory power, an error smaller than the estimate). AN EARLIER "
+  f"EDITION PUBLISHED {0.488:.3f} FROM A DIFFERENT CONSTRUCTION — sampled on calendar week "
+  f"numbers rather than the exchange's own week, with no correction for thin trading — and "
+  f"the difference is worth about AED 1.05 a share. The regressor is not a free choice here "
+  f"and this study does not present it as one: du lists on the Dubai Financial Market, and "
+  f"the FTSE ADX General is a REGISTERED INTERIM substitute for a DFM index, adopted "
+  f"10 August 2026 and held open 23 August 2026 on measured evidence that it explains the "
+  f"Dubai-listed names better than the Abu Dhabi names it actually covers. A BETA BUILT ON "
+  f"AN INTERIM REGRESSOR IS NOT A CONFORMING BETA and this one is published as such. The "
+  f"listing venue's own index is shown beside it rather than hidden: against the DFM General "
+  f"the same construction measures {BR['dfm_alt']['beta']:.3f} "
   f"(R² {BR['dfm_alt']['r2']:.2f}, a tighter fit), and an equal-weight composite of the "
-  f"market's own large names cross-checks both at {BR['composite_alt']['beta']:.3f}. All "
-  'three land in the same place: a defensive, negative-net-debt telecom measuring below 0.5 '
+  f"market's own names — a coverage artefact rather than a market, and never a regressor — "
+  f"reads {BR['composite_alt']['beta']:.3f}. All "
+  'three land in the same place: a defensive, negative-net-debt telecom measuring well below 1 '
   'on either UAE index. That number is also the single assumption doing the most work in '
   'this study, because at these weights the cost of capital is essentially the cost of '
   f"equity. Betas of {SN['beta_grid'][2]:.2f} (the interval's top), 0.65 and 0.80 are priced "
@@ -804,7 +935,12 @@ figure(os.path.join(HERE, 'fig2_sens.png'), 6.6,
        'market to be right on this lens, something outside this grid has to be wrong — the '
        'fiscal regime, the terminal multiple, or the cash flows themselves. Sections 1.7 and 4 '
        'take that seriously rather than treating the grid as vindication.')
-rows = [['Driver (grid)', '', '', 'base', '', '', 'swing']]
+# THE BASE IS MARKED IN THE ROW, NOT IN A COLUMN HEADER [critique finding F26, corrected
+# 08-09-2026]. A single 'base' marker over the third column was right on six rows and wrong
+# on two — the beta and fiscal-take grids put their base SECOND — so a reader reading down
+# the marked column got two numbers that are not any base. The base parameter is now marked
+# with an asterisk in each row's own grid, wherever it actually sits.
+rows = [['Driver (grid — * marks the base parameter)', '', '', '', '', '', 'swing']]
 for lab, grid, vals, gf in [
         ('Beta', SN['beta_grid'], SN['grid_beta'], '{:.2f}'),
         ('Combined fiscal take', SN['tax_grid'], SN['grid_tax'], '{:.0%}'),
@@ -815,14 +951,21 @@ for lab, grid, vals, gf in [
         ('Capex path (×)', SN['capex_grid'], SN['grid_capex'], '{:.2f}'),
         ('Asset life, years (derived from the depreciation notes)',
          SN['life_grid'], SN['grid_life'], '{:.1f}')]:
-    rows.append([f"{lab}  ({' / '.join(gf.format(g) for g in grid)})"]
+    _b = min(range(len(vals)), key=lambda i: abs(vals[i] - LN['dcf']['base']))
+    _cells = [(gf.format(g) + '*' if i == _b else gf.format(g)) for i, g in enumerate(grid)]
+    rows.append([f"{lab}  ({' / '.join(_cells)})"]
                 + [p2(v) for v in vals] + [p2(max(vals) - min(vals))])
 table(rows, [2.60, 0.70, 0.70, 0.70, 0.70, 0.70, 0.70], size=8.2)
-caption(f'{T()} — single-driver sensitivities on the DCF (AED/share); the middle column is '
-        'the base. Each cell is a complete re-run of the model including the unit build, and each '
-        'grid returns the base case at its base parameter — a check this study failed in its '
-        'previous edition, where the beta row was computed on a retired construction and its base '
-        'cell missed the headline by AED 1.77. The rank order is the honest hierarchy: the '
+caption(f'{T()} — single-driver sensitivities on the DCF (AED/share). The asterisk in each row '
+        'marks its own base parameter, which is NOT always the middle column: the beta and '
+        'fiscal-take grids put theirs second. Each cell is a complete re-run of the model '
+        'including the unit build, and every grid returns the headline exactly at its base '
+        'parameter — a check this study has now failed twice and states both times. The first '
+        'time the beta row sat on a retired construction and missed by AED 1.77; the second, '
+        'caught by an outside audit, EVERY discount-rate grid in the study was still running '
+        'the reinvestment-identity terminal this house retired on 3 September while the '
+        'headline ran the sanctioned one, so each of them returned a number AED 0.66 above the '
+        'headline it claimed to reproduce. The rank order is the honest hierarchy: the '
         'discount rate dwarfs every operating driver, and the fiscal take comes next; among '
         'operating drivers ARPU is king, which is why a duopoly that does not price-war deserves '
         'its premium.')
@@ -901,13 +1044,19 @@ P(f"The widths below are tested rather than assumed, and the honest result is st
   f"benchmark (the confidence interval spans zero), neither better nor worse. Outcomes were "
   f"spread evenly across the distribution: a uniformity test returns p = {BT5['chi2_p']:.2f}, "
   f"which at {BT5['windows']} windows means the test cannot reject uniformity — a statement "
-  f"about the test's power, not a certificate of calibration. On coverage the honest finding is "
-  f"OVER-dispersion, not calibration: outcomes fell inside the stated bands MORE often than "
-  f"advertised at every level ({BT5['cov50']*100:.0f}% inside the 50% band, "
-  f"{BT5['cov80']*100:.0f}% inside the 80%, {BT5['cov90']*100:.0f}% inside the 90%), and for "
-  f"this low-volatility share the bands run about "
-  f"{(BT5['width_vs_benchmark']-1)*100:.0f}% wider than the benchmark's. The cone is too wide "
-  'rather than too confident, and a reader should treat the outer bands as generous. Over the full history the model UNDERPERFORMS the benchmark on windows that '
+  f"about the test's power, not a certificate of calibration. THE COVERAGE SENTENCE IS "
+  f"WRITTEN FROM THE COVERAGE FIGURES rather than around them, because an earlier edition's "
+  f"was not and went on describing over-dispersion at every level after a re-run had moved "
+  f"one of the three onto its target: outcomes fell inside the 50% band "
+  f"{BT5['cov50']*100:.0f}% of the time, inside the 80% band {BT5['cov80']*100:.0f}%, and "
+  f"inside the 90% band {BT5['cov90']*100:.0f}% — "
+  + (f"over-covered at every level" if min(BT5['cov50']-0.50, BT5['cov80']-0.80,
+                                          BT5['cov90']-0.90) > 0.005 else
+     f"on target where the middle band is concerned and OVER-covered in the tails") +
+  f". For this low-volatility share the bands run about "
+  f"{(BT5['width_vs_benchmark']-1)*100:.0f}% wider than the benchmark's, so the outer bands "
+  f"are generous and a reader should treat them as such. Over the full history the model "
+  f"UNDERPERFORMS the benchmark on windows that "
   'predate the 2022 change in the exchange\'s trading week. Those windows are excluded from the '
   'calibration for that reason, and the figures quoted above are the post-exclusion set — '
   f"{BT5['windows']} windows with origins from {BT5['first_origin']} to {BT5['last_origin']}, all "
@@ -984,17 +1133,27 @@ figure(os.path.join(HERE, 'figD1_experts.png'), 7.0,
 # =========================== 5 CATALYSTS ======================================
 H1('5  Catalysts to watch')
 for head, body in [
-    ('1 · The post-2026 fiscal regime (direction: either; size: the study\'s largest). ',
-     'du\'s own filings describe the 38% + 9% regime as effective 2024-2026. The other '
-     'operator has disclosed a ministry notification extending the structure through 2029; '
-     'du\'s mirroring disclosure — and whether the AED 1.8bn combined floor carries over — '
-     f'is the single most valuable sentence the company can publish: AED {p2(DCF["ps"])} '
-     f'versus AED {p2(DCF["ps_framing_b"])} per share between the framings.'),
-    ('2 · The licence renewal (direction: binary-adverse tail; timing: now). ',
-     'The TDRA extension ran to 8 August 2026 with conclusion expected "on or before" that '
-     'date — i.e. the outcome is due at press time. Renewal on comparable terms is the base '
-     'case and would be a non-event; a renewal that raises the fee ratio costs roughly AED '
-     f'{p2(LN["dcf"]["base"] - SN["dcf_opex_1pp"])} per share per percentage point of revenue.'),
+    ('1 · The POST-2029 fiscal regime (direction: either; size: the study\'s largest). ',
+     'The 2027-2029 extension is settled and is NOT a catalyst: du disclosed it itself on '
+     '24 July 2026, on the same 38% + 9% structure, with the AED 1.8bn combined annual '
+     'floor expressly retained — which this study now models rather than merely quotes. '
+     'What remains open is what follows it. The ministry has legislated the regime three '
+     'years at a time twice; the next decision is due before the end of 2029 and the '
+     'company has no visibility to offer before the ministry publishes. Reversion to the '
+     'pre-2024 construction is worth the difference between the two framings: AED '
+     f'{p2(DCF["ps"])} against AED {p2(DCF["ps_framing_b"])} per share. AN EARLIER EDITION '
+     'OF THIS STUDY PRINTED THE OPPOSITE HERE — that only the other operator had disclosed '
+     'the extension and du had not — which is precisely the error section 1.7 of the same '
+     'document corrects. It was caught by an outside audit.'),
+    ('2 · The licence TERMS (direction: binary-adverse tail; timing: unknown). ',
+     'The renewal itself is DONE and is no longer a catalyst: the TDRA renewed both '
+     'operators\' licences for twenty years effective 9 August 2026, announced 12 August. '
+     'What has not been published is the TERMS — the fee ratio in particular — and that is '
+     'the open question a reader should watch: a renewal that raises the fee ratio costs '
+     f'roughly AED {p2(LN["dcf"]["base"] - SN["dcf_opex_1pp"])} per share per percentage '
+     'point of revenue, and the regulator has not published them. AN EARLIER EDITION SAID '
+     'THE OUTCOME WAS "DUE AT PRESS TIME" while section 1.7 of the same document already '
+     'reported the renewal as granted.'),
     ('3 · The war recovery (direction: up if the ceasefire holds). ',
      'Prepaid subscribers, roaming and wholesale transit all recover with tourism; the '
      'company itself reports gross adds below pre-war levels with a ceasefire in place. The '
@@ -1167,30 +1326,50 @@ P(f"The equity walk: profit less the {pc(F['payout'],0)} payout compounds equity
   f"{n0(HB['FY25']['eq'])}mn to AED {n0(F['equity'][-1])}mn by FY2030E. The cash walk is the "
   'stress line: at a near-total payout plus the data-centre capex peak, cash and term '
   f"deposits fall from AED {n0(HB['FY25']['net_cash'])}mn to AED {n0(F['net_cash'][-1])}mn by "
-  'the last forecast year, declining in every year of the forecast with no rebuild inside the '
-  'window — the audited mid-2026 position (term deposits nil after '
-  'the royalty settlement and final dividend) already shows exactly this mechanic, and the '
-  'undrawn AED 2.0bn facility is the disclosed backstop. Working capital RELEASES cash every '
-  'year; the lease book is held flat with replacement charged at depreciation.',
+  'the last forecast year — falling for three years, troughing in FY2028E and rebuilding in '
+  'the last two as the capex peak passes, which is what the row above prints and what an '
+  'earlier edition of this study wrongly described as a decline in every year. The reviewed '
+  'mid-2026 position (term deposits nil after the royalty settlement and the final dividend) '
+  'already shows the mechanic, and the undrawn AED 2.0bn facility is the disclosed backstop. '
+  'Working capital RELEASES cash every year; the lease book is held flat, matched by non-cash '
+  'lease additions, and no replacement is charged here because the liability is deducted in '
+  'full as debt in the bridge — the renewal is paid for in the terminal instead.',
   space_after=10)
 
 # =========================== APPENDIX B =======================================
 H1('Appendix B  Peer frame, risk register — and the research register')
 H2('B.1  Peers and the sector frame')
-rows = [['Company', 'Market', 'Trailing P/E', 'Yield', 'Read-across'],
-        ['e&', 'UAE (ADX)', '~20.7×', '~4.8%',
-         'the duopoly partner: scale + international assets earn the premium multiple'],
-        ['stc', 'Saudi Arabia', '~18.9×', '~5.2%', 'the regional benchmark payer'],
-        ['Mobily', 'Saudi Arabia', '~15.5×', '~2.9%',
-         'closest structural analogue — the #2 that closed the gap; sets the justified P/E'],
-        ['Ooredoo', 'Qatar', '~12.5×', '~4.6%', 'multi-market, softer growth'],
-        ['Zain', 'Kuwait', '~9×', '~6-7%', 'levered multi-market; the bracket floor'],
-        ['Omantel', 'Oman', '~11.4×', '~6.7%', 'small-market incumbent, yield-heavy'],
-        ['DT / Vodafone', 'Developed', 'n/m', '~3.4%',
+rows = [['Company', 'Market', 'Trailing P/E', 'Yield', 'Basis', 'Read-across'],
+        ['e&', 'UAE (ADX)', '15.7×', '4.50%', 'ISSUER FILINGS',
+         'the duopoly partner: scale + international assets. RE-DERIVED end-to-end from its '
+         'own filings (TTM EPS AED 1.33 reported-attributable, close AED 20.98); an earlier '
+         'edition of this table printed an aggregator ~20.7× and ~4.8%'],
+        ['stc', 'Saudi Arabia', '~18.9×', '5.07%', 'aggregator / issuer yield',
+         'the regional benchmark payer. The yield is the issuer figure; an earlier edition '
+         'printed an aggregator ~5.2% the register had already superseded'],
+        [f"Mobily", 'Saudi Arabia', f"{REL['pe_just']:.1f}×", f"{pc(REL['div_yield_peer'],2)}",
+         'ISSUER FILINGS',
+         'closest structural analogue — the #2 that closed the gap; SETS THE JUSTIFIED P/E. '
+         'TTM EPS SAR 4.76 from Mobily\'s own issuer announcements on a 06-Aug-2026 close of '
+         'SAR 61.30 = 12.88×, and the market-cap route ties independently at 12.89×. AN '
+         'EARLIER EDITION OF THIS TABLE PRINTED ~15.5× AND ~2.9% — a January-2026 aggregator '
+         'read on FY2024 earnings, and a yield that matched neither the issuer data nor this '
+         'study\'s own sweep — while section 1.3 of the same document had already corrected '
+         'both. Corrected and uncorrected figures in one delivery is what an outside audit '
+         'caught here'],
+        ['Ooredoo', 'Qatar', '~12.5×', '~5.70%', 'aggregator', 'multi-market, softer growth'],
+        ['Zain', 'Kuwait', 'REFUSED', '~6-7%', 'aggregator (refused)',
+         'the provider returned 11,365× and was refused rather than passed through'],
+        ['Omantel', 'Oman', '~11.4×', '~6.7%', 'aggregator (inconsistent)',
+         'small-market incumbent; its quoted multiple and yield are mutually inconsistent, '
+         'and it holds ~22% of Zain, so the two are not independent observations'],
+        ['DT / Vodafone', 'Developed', 'n/m', '~3.4%', 'aggregator',
          'the developed bracket: more leverage, lower returns, lower multiples']]
-table(rows, [1.30, 1.20, 1.00, 0.80, 2.70], size=8.6)
-caption('Table B1 — aggregator reads at the sweep date, labelled cross-check; never a build '
-        'source. du computes at '
+table(rows, [1.05, 0.95, 0.80, 0.65, 0.95, 2.60], size=8.0)
+caption('Table B1 — the peer frame, with the BASIS of every line stated. Only two rows derive '
+        'end-to-end from issuer filings (Mobily and e&) and only those two are used for '
+        'anything; the rest are aggregator reads at the sweep date, labelled as such, and '
+        'NO PEER MEDIAN IS CLAIMED anywhere in this study. du computes at '
         f"{REL['pe_trailing']:.1f}× trailing earnings and {REL['ev_ebitda_trailing']:.1f}× "
         'trailing EV/EBITDA from its own audited figures.')
 H2('B.2  Risk register')
@@ -1320,7 +1499,10 @@ H2('C.4  Cross-examination')
 for head, body in [
     ('Expert 2 to Expert 1: ', 'your multiple is a market mood; my denominator is a policy '
      'rate. CONCEDED in part by Expert 1: the multiple carries sentiment — which is exactly '
-     'why it is set at the peer median rather than du\'s own historical average.'),
+     'why it is set against the closest structural analogue, Mobily, rather than against '
+     'du\'s own historical average — and NOT at a peer median, which section 1.3 of this '
+     'study expressly declines to claim because only two of six peers survive as clean '
+     'observations. An earlier edition defended it as a median in this very answer.'),
     ('Expert 1 to Expert 2: ', 'you capitalise a promise at a 3.7-point spread; one cut and '
      'your number is fiction. REJECTED by Expert 2: the payout has risen through a war '
      'quarter and a guidance cut — the board has told you what the dividend is for.'),
@@ -1351,9 +1533,11 @@ rows = [['Gap', 'Driver of the gap', 'Worth (AED/share)'],
          'payout-as-perpetuity vs capital-charged spread — small, because at ~100% payout '
          'the dividend nearly IS the economic profit', p2(abs(E2['base'] - E3['base']))],
         [f"Panel median vs the study's central ({p2(CEN)})",
-         'both are cash-flow reads; the panel median sits a little below because two of its '
-         'three members set the terminal on a market multiple rather than on the measured '
-         'cost of capital', p2(abs(D['panel_centre'] - CEN))]]
+         'both are cash-flow reads. Only ONE of the three panel members sets a terminal on a '
+         'market multiple (Expert 1); Expert 2 capitalises at the terminal cost of equity '
+         'and Expert 3 at the cost of capital, and the median is Expert 2. An earlier '
+         'edition said two of three, which the three worked constructions printed above it '
+         'contradict', p2(abs(D['panel_centre'] - CEN))]]
 table(rows, [2.30, 3.35, 1.35], size=8.6)
 caption('Table C1 — the divergence table: which assumption drives which gap.', space_after=10) \
     if False else caption('Table C1 — the divergence table: which assumption drives which gap.')
@@ -1377,5 +1561,5 @@ P('This document is educational analysis, not investment advice, an offer, a sol
   'promises. Markets can and do behave outside any model\'s bands. Readers should conduct '
   'their own research and consult their own advisers. © Testahil, 2026.', size=9.3)
 
-doc.save(os.path.join(HERE, 'DU_Valuation_Study_09-08-2026_public.docx'))
-print('wrote DU_Valuation_Study_09-08-2026_public.docx')
+doc.save(os.path.join(HERE, OUT_DOCX))
+print('wrote ' + OUT_DOCX)

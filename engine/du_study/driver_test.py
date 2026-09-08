@@ -11,12 +11,15 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'DU_Valuation_Model_09082026_public.xlsx'))
+wb = openpyxl.load_workbook(os.path.join(HERE, 'DU_Valuation_Model_08092026_public.xlsx'))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
     if isinstance(c.value, str):
         A[c.value] = c.row
+
+_ASSUMPTION_LABELS = list(A)
+
 
 def row_of(label):
     if label not in A:
@@ -86,7 +89,7 @@ CASES = [
     # published central through a weight, and the test asserted exactly that. They must now
     # move their own lens and leave the central alone — see the isolation sweep below, which
     # is the stronger claim: it is not that the weight is small, it is that there is none.
-    ('Justified price/earnings (GCC telecom peer median)', 'C', +1.0, 'relative', +1,
+    (next(l for l in _ASSUMPTION_LABELS if l.startswith('Justified price/earnings')), 'C', +1.0, 'relative', +1,
      'a higher justified multiple must raise the relative-multiple cross-check'),
     ('Sustainable return on equity', 'C', +0.03, 'book', +1,
      'a higher sustainable return must raise the book lens'),
@@ -96,7 +99,7 @@ CASES = [
      'more cash in the bridge must raise the equity value'),
     ('Dividends gone ex between 31-Dec-2025 and the anchor (AED/share)', 'C', +0.10, 'dcf', -1,
      'a larger dividend already out of the price is value that left the share'),
-    ('Days from the 31-Dec-2025 valuation date to the 07-Aug-2026 anchor', 'C', +100.0,
+    (next(l for l in _ASSUMPTION_LABELS if l.startswith('Days from the 31-Dec-2025')), 'C', +100.0,
      'dcf', +1, 'a later anchor accretes more value at the cost of equity'),
     ('Marginal cost of debt (AED sovereign + GCC telecom spread)', 'C', +0.03, 'wacc', +1,
      'a higher cost of debt must raise the explicit-window cost of capital'),
@@ -187,6 +190,12 @@ DEAD_OK = {
     # yield-cross triangulation is shown beside the lens, not fed into a headline
     'Peer benchmark dividend yield',
 }
+# TWO INPUTS ARE STRUCTURALLY INERT AT THE BASE AND EACH IS DECLARED WITH ITS REASON
+# [added 08-09-2026]. A dead input is normally a defect; these two are dead because of what
+# the base case IS, and both go live the moment it moves — which is tested below rather than
+# asserted, because a declared exception nobody exercises is a switched-off check.
+DEAD_OK |= {l for l in A if l.startswith('AED 1.8bn combined annual royalty')}
+DEAD_OK |= {l for l in A if l.startswith('Incremental capital per unit of real terminal')}
 # ---------------------------------------------------------------------------------
 # ISOLATION SWEEP — the claim the retired blend made impossible to test.
 # Under a weighted central every lens input reached the published answer, so no input
@@ -195,7 +204,7 @@ DEAD_OK = {
 # A near-zero tolerance would be a free parameter; the right answer here is arithmetic,
 # because a weight of nothing is not a small weight.
 ISOLATED = [
-    ('Justified price/earnings (GCC telecom peer median)', +1.0, 'relative'),
+    (next(l for l in _ASSUMPTION_LABELS if l.startswith('Justified price/earnings')), +1.0, 'relative'),
     ('Sustainable return on equity', +0.03, 'book'),
     ('Peer benchmark dividend yield', +0.01, None),
 ]
@@ -230,6 +239,27 @@ if dead:
     print('  inputs that changed nothing:', dead)
 else:
     print('  none — every remaining driver reprices the model')
+
+# ---- THE TWO DECLARED-INERT INPUTS, EXERCISED WHERE THEY BITE --------------------
+# The fiscal floor is inert only while the modelled charge sits above it; the incremental
+# capital is inert only while terminal REAL growth is zero. Nudging each into the region
+# where it binds must move the answer, and in the right direction.
+print('\nDECLARED-INERT INPUTS, EXERCISED WHERE THEY BIND')
+_floor_row = row_of(next(l for l in A if l.startswith('AED 1.8bn combined annual royalty')))
+_out = read({('Assumptions', f'C{_floor_row}'): 4000.0})
+print(f"  [{'OK ' if _out['dcf'] < base['dcf'] - 1e-6 else 'BAD'}] the AED 1.8bn floor raised "
+      f"to 4,000 (above the modelled charge in every year): dcf {base['dcf']:.4f} -> "
+      f"{_out['dcf']:.4f}")
+assert _out['dcf'] < base['dcf'] - 1e-6, 'the fiscal floor does not bind even when raised above the charge'
+_greal_row = row_of(next(l for l in A if l.startswith('Terminal REAL growth')))
+_ic_row = row_of(next(l for l in A if l.startswith('Incremental capital per unit of real terminal')))
+_a = read({('Assumptions', f'C{_greal_row}'): 0.01})
+_b = read({('Assumptions', f'C{_greal_row}'): 0.01,
+           ('Assumptions', f'C{_ic_row}'): wb['Assumptions'][f'C{_ic_row}'].value * 2})
+print(f"  [{'OK ' if _b['dcf'] < _a['dcf'] - 1e-6 else 'BAD'}] incremental capital DOUBLED at "
+      f"1% terminal real growth: dcf {_a['dcf']:.4f} -> {_b['dcf']:.4f} — growth that costs "
+      f"twice as much is worth less")
+assert _b['dcf'] < _a['dcf'] - 1e-6, 'the incremental-capital charge does not bite at positive real growth'
 
 assert not fails, f'{len(fails)} drivers failed to move the model correctly: {fails}'
 assert not dead, f'dead inputs: {dead}'

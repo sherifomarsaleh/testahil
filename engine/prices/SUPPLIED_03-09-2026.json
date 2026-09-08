@@ -1,5 +1,5 @@
 {
- "_": "Prices supplied by the principal on 3 September 2026, written here because a figure that arrives in a conversation binds nothing: the container is rebuilt from the repository and a session that cannot see it will ask again [R-IND-01]. Source file: Latest_testahil_stocks_prices_392026.xlsx. These are CLOSES on the date each row carries, not all the same day — two EGX names and a few others carry 2 September.",
+ "_": "Prices supplied by the principal on 3 September 2026, written here because a figure that arrives in a conversation binds nothing: the container is rebuilt from the repository and a session that cannot see it will ask again [R-IND-01]. Source file: Latest_testahil_stocks_prices_392026.xlsx. These are CLOSES on the date each row carries, not all the same day \u2014 two EGX names and a few others carry 2 September.",
  "supplied": "2026-09-03",
  "by": "the principal",
  "source_file": "Latest_testahil_stocks_prices_392026.xlsx",
@@ -258,7 +258,7 @@
    "date": "2026-09-03",
    "supplied_as": 90.5,
    "corrected": "2026-09-06",
-   "correction_note": "The supplied figure of EGP 90.50 is not this stock's 3-Sep-2026 close. Corrected to 130.00, the close on that session in engine/raw_ohlc/EG/SWDY.csv after the 6-Sep-2026 roll-forward merged the vendor export. THE CORRECTION IS EVIDENCED, NOT PREFERRED: the supplied file reconciles to its library for every other EG name in it (COMI 0.9999, EMFD 1.0073, ORHD 1.0120 against libraries that reach 1-Sep), so the file is sound and this one row is not; and three independent published anchors reproduce from the merged series to the cent — a previous close of 126.20 into 25-Aug-2026, a 52-week low of 62.03 and a 52-week high of 133.98 as it stood that day. 90.50/130.00 is 0.696, which no corporate action in this name's record explains and which the vendor export contradicts: it agrees with the held library to the cent on all 35 overlapping sessions after 14-Jun-2026, including the 5-Aug close of 105.20 the study was struck at. Left uncorrected it understates SWDY by a third and drives [R-GAP-01]'s audit against a price that never traded."
+   "correction_note": "The supplied figure of EGP 90.50 is not this stock's 3-Sep-2026 close. Corrected to 130.00, the close on that session in engine/raw_ohlc/EG/SWDY.csv after the 6-Sep-2026 roll-forward merged the vendor export. THE CORRECTION IS EVIDENCED, NOT PREFERRED: the supplied file reconciles to its library for every other EG name in it (COMI 0.9999, EMFD 1.0073, ORHD 1.0120 against libraries that reach 1-Sep), so the file is sound and this one row is not; and three independent published anchors reproduce from the merged series to the cent \u2014 a previous close of 126.20 into 25-Aug-2026, a 52-week low of 62.03 and a 52-week high of 133.98 as it stood that day. 90.50/130.00 is 0.696, which no corporate action in this name's record explains and which the vendor export contradicts: it agrees with the held library to the cent on all 35 overlapping sessions after 14-Jun-2026, including the 5-Aug close of 105.20 the study was struck at. Left uncorrected it understates SWDY by a third and drives [R-GAP-01]'s audit against a price that never traded."
   },
   "TMGH": {
    "exchange": "EGX",
@@ -647,6 +647,13 @@
    "on": "2026-09-06",
    "basis": "engine/raw_ohlc/EG/SWDY.csv close for 2026-09-03",
    "by": "the 06-09-2026 SWDY roll-forward"
+  },
+  "DU": {
+   "supplied": 11.36,
+   "corrected_to": 11.38,
+   "on": "2026-09-08",
+   "basis": "engine/raw_ohlc/AE/DU.csv. The supplied figure of 11.36 is recorded here as the 3-September close and it is not: 11.36 is the 31-AUGUST close, and the 3-September close was 11.12. The value replacing it is the 7-September close of 11.38, the latest session in this name's library and the close the 07-Sep-2026 roll-forward struck this name's cone on. A supplied price is a hand-off, not a source, and this one was never put against the library the way the SWDY figure above was.",
+   "by": "the 08-09-2026 DU critique response"
   }
  }
 }

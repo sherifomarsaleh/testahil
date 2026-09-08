@@ -4,18 +4,18 @@
   "company": "Emirates Integrated Telecommunications Company PJSC (du)",
   "market": "DFM",
   "currency": "AED",
-  "asof": "2026-08-07",
-  "spot": 11.36,
+  "asof": "2026-09-07",
+  "spot": 11.38,
   "shares_mn": 4532.905989,
-  "mktcap": 51493.81203504,
-  "ev_trailing": 51182.912035040004,
+  "mktcap": 51584.47015482,
+  "ev_trailing": 51273.57015482001,
   "klass": "integrated telecom operating company"
  },
  "inputs": {
   "spot": {
-   "value": 11.36,
-   "source": "DFM close for DU, 3 September 2026, from the price file the principal supplied that day and committed to the repository. THE STUDY IS RE-STRUCK ON IT because no study is delivered against a stale price: the prior edition stood on the 7-August close of 12.30, and the stock has since fallen 7.6%, which widens rather than closes this study's disagreement with the market",
-   "date": "2026-09-03",
+   "value": 11.38,
+   "source": "DFM close for DU on 7 September 2026 \u2014 THE LATEST SESSION IN THIS NAME'S OWN DAILY PRICE HISTORY, which is also the close the 07-Sep-2026 roll-forward struck this name's price cone on. RE-STRUCK 08-09-2026, critique response findings F1/F30/S10/S11. The prior edition published AED 11.36 and dated it three different ways in three artefacts \u2014 7 August on the masthead, 3 September in the register \u2014 and it is NEITHER: 11.36 is the 31 AUGUST close. It came in on a supplied price list dated 3 September, which records it as the 3-September close; the daily history says the 3-September close was 11.12. A supplied price is a hand-off, not a source, and this one was never put against the library the way another figure on the same list was on 6 September. The correction is recorded beside that list rather than the value silently replaced",
+   "date": "2026-09-07",
    "ring": "Market"
   },
   "shares_mn": {
@@ -25,14 +25,14 @@
    "ring": "Company"
   },
   "anchor_days": {
-   "value": 246.0,
-   "source": "31-Dec-2025 valuation date to the 3-Sep-2026 price anchor (246 days), twenty-seven days longer than the prior edition's because the anchor moved with the price it is compared against",
-   "date": "2026-09-03",
+   "value": 250.0,
+   "source": "Calendar days from the 31-Dec-2025 valuation date to the 07-Sep-2026 price anchor: 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 7 = 250. CORRECTED 08-09-2026, critique response finding F2/S7: the prior edition computed 246 (a 3-September anchor) while the document printed the exponent as 219 (a 7-August anchor) and the workbook cell that held 246 was LABELLED 'days to the 07-Aug-2026 anchor'. Three day counts for one construction, and the price in use belonged to a fourth date. One anchor date now, stated once, and every artefact reads this cell",
+   "date": "2026-09-07",
    "ring": "House"
   },
   "div_between": {
    "value": 0.66,
-   "source": "Dividends whose EX-DATE falls between the 31-Dec-2025 valuation date and the 07-Aug-2026 anchor, and which are therefore no longer in the share price: the final FY2025 AED 0.40 (AGM 30-Mar-2026, paid 28-Apr-2026) PLUS the H1-2026 interim AED 0.26 \u2014 Board-approved 22-Jul-2026, EX-DATE 31-JULY-2026, record 03-Aug-2026, paid 21-Aug-2026, per du's own dividend disclosure to DFM (Ref RME/14/2026). CORRECTED 17-Aug-2026: the prior edition carried only 0.40, on the reasoning that the interim was declared but unpaid at the anchor so it 'stays in the share'. That applied the PAYMENT date; the correct test is the EX-date, which had passed six trading sessions before the anchor. The anchor spot of AED 12.30 is ex the 0.26, so every lens rolled to that anchor must be ex it too",
+   "source": "Dividends whose EX-DATE falls between the 31-Dec-2025 valuation date and the 07-Sep-2026 anchor, and which are therefore no longer in the share price. IT IS NOT ONE DIVIDEND AND THE LABEL SAID IT WAS (critique finding F9, corrected 08-09-2026): AED 0.66 is the AED 0.40 FINAL FY2025 dividend PLUS the AED 0.26 H1-2026 INTERIM, and three artefacts called the whole sum 'the final dividend'. No further dividend went ex between the prior 7-Aug anchor and this one, so moving the anchor does not change the amount: the final FY2025 AED 0.40 (AGM 30-Mar-2026, paid 28-Apr-2026) PLUS the H1-2026 interim AED 0.26 \u2014 Board-approved 22-Jul-2026, EX-DATE 31-JULY-2026, record 03-Aug-2026, paid 21-Aug-2026, per du's own dividend disclosure to DFM (Ref RME/14/2026). CORRECTED 17-Aug-2026: the prior edition carried only 0.40, on the reasoning that the interim was declared but unpaid at the anchor so it 'stays in the share'. That applied the PAYMENT date; the correct test is the EX-date, which had passed six trading sessions before the anchor. The anchor spot of AED 12.30 is ex the 0.26, so every lens rolled to that anchor must be ex it too",
    "date": "2026-07-31",
    "ring": "Company"
   },
@@ -238,6 +238,24 @@
    "value": 0.4357,
    "source": "Combined federal royalty + income tax charge / profit before both, audited FY2025: (1,956.602 + 287.435) / 5,149.122 = 43.57% (Note 26 states 43.6%; FY2024 44.7%). Regime: Cabinet decision 8/38 of 2023 \u2014 38% federal royalty on total UAE regulated and non-regulated profits + 9% corporate income tax, combined floor AED 1.8bn/yr, legislated for 2024-2026",
    "date": "2026-02-09",
+   "ring": "Company"
+  },
+  "inflation_terminal": {
+   "value": 0.02,
+   "source": "UAE LONG-RUN INFLATION, 2.00% \u2014 the terminal rate, and the escalator behind the staff, administration and other-operating-cost lines and the terminal replacement charge. REGISTERED 08-09-2026, critique finding F15: it reached this model through the house macro path for the United Arab Emirates and appeared in NO layer of the register, while the register's own READ FIRST says 'nothing in the study is computed from a figure that does not appear here'. It is the input that sets terminal growth, escalates the terminal replacement charge and drives three operating-cost escalators, and on this study's own grid it is worth AED 1.5-1.7 a share at plus or minus 50 basis points. A STUDY MAY NOT CARRY AN INFLATION NUMBER OF ITS OWN: this record does not set the figure, it DISCLOSES the house path the model reads, and the company's own audited goodwill impairment test (note 9) uses the same 2% terminal growth rate, 'determined based on management's estimate of the long-term cash flow growth rate'",
+   "date": "2026-09-08",
+   "ring": "Country"
+  },
+  "royalty_fy24_original": {
+   "value": 1675.9,
+   "source": "FY2024 federal royalty as ORIGINALLY presented in the FY2024 audited statements (it included prior-period adjustments), against the 1,571.649 IFRS 18 re-presented comparative on the face of the FY2025 statements which this model carries. REGISTERED 08-09-2026: the bibliography's source-discrepancy note quoted an effective rate of 44.7% on this basis and the figure was TYPED, because the model held no input it could be computed from. A figure that is real and that the model cannot produce means the model is what is missing",
+   "date": "2025-02-10",
+   "ring": "Company"
+  },
+  "fiscal_floor": {
+   "value": 1800.0,
+   "source": "AED 1.8 BILLION COMBINED ANNUAL FLOOR on the federal royalty plus corporate income tax \u2014 Cabinet decision 8/38 of 2023 for 2024-2026, and EXPRESSLY RETAINED in the Ministry of Finance extension for 2027-2029 that du disclosed itself on 24-Jul-2026 ('Extension of Federal Royalty Scheme for the Period 2027-2029'). REGISTERED AND MODELLED 08-09-2026, critique finding F28: the prior edition named this floor in the headline block, in section 1.7 and in this register as the key feature of the extension, and applied a flat 43.57% rate in every year and every scenario without it. It does not bind in the base case and the model now SAYS so rather than assuming it, and it does bind in a deep bear and under Framing B",
+   "date": "2026-07-24",
    "ring": "Company"
   },
   "reg_share": {
@@ -1381,8 +1399,8 @@
    "ring": "Country"
   },
   "e1_horizon_years": {
-   "value": 2.4027,
-   "source": "Years from the 07-Aug-2026 anchor to 31-Dec-2028, the date Expert 1's FY2028 earnings multiple values: 877 calendar days / 365. REGISTERED 17-Aug-2026 after an external critique showed the lens was discounting over a NET 1.40 years, a full year short of anchor consistency",
+   "value": 2.3178,
+   "source": "Years from the 07-Sep-2026 anchor to 31-Dec-2028, the date Expert 1's FY2028 earnings multiple values: 877 calendar days / 365. REGISTERED 17-Aug-2026 after an external critique showed the lens was discounting over a NET 1.40 years, a full year short of anchor consistency",
    "date": "2026-08-17",
    "ring": "House"
   },
@@ -1482,9 +1500,9 @@
    "ring": "Country"
   },
   "beta": {
-   "value": 0.488,
-   "source": "Own-stock regression vs the FTSE ADX GENERAL INDEX, adopted per explicit user instruction (10-Aug-2026) as the UAE base market index: DU weekly log-returns, 5-year window, last-common-session weekly sampling on the user-supplied index export (2011..24-Jul-2026): beta 0.488, R2 0.120, n 256, SE 0.083, CI90 [0.35, 0.62] - passes the usability gate (n>=24, R2>=5%, SE<|beta|). Published alternatives: DFM General (DU's own listing venue, the house default) 0.472 (R2 0.202, SE 0.058); equal-weight AE-library composite 0.400. A defensive, negative-net-debt telecom regressing below 0.5 on either UAE index is economically coherent; betas at the CI ends and 0.65/0.80 priors are PRICED in the sensitivity grid",
-   "date": "2026-08-10",
+   "value": 0.5568988032727834,
+   "source": "OWN-STOCK TIER-1 REGRESSION through beta_regression.own_stock_beta('DU','AE','DFM') -- the only sanctioned route; a study-local regression script is a hard fail (SIGCM clause 6). Weekly log-returns on the exchange's own realised trading week (W-FRI), 4.81 years to 2026-07-17, Dimson lead-lag corrected for thin trading: beta 0.5569, R2 0.141, n 249, SE 0.149, CI90 [0.31, 0.80] -- passes the usability gate (n>=24, R2>=5%, SE<|beta|). Regressor: the FTSE ADX General Index, the published index series as of 2026-07-24. THE REGRESSOR IS A REGISTERED INTERIM AND THIS BETA IS THEREFORE NOT CONFORMING: INTERIM: DFM-listed name regressed against FTSE ADX General, by instruction 10-Aug-2026, because no DFM General series is held. Empirically the better-supported half of the substitution: over five years of weekly returns FADGI explains the six DFM names BETTER than it explains the ADX names it actually covers (median R2 0.240 vs 0.127; median beta 1.067 vs 1.037), and all six clear the R2>=5% usability gate. HELD OPEN BY INSTRUCTION, 23-Aug-2026. A DFM General series IS now held at raw_indices/AE/DFMGI.csv (2015-01-05 to 2026-07-16), so the 10-Aug clause's replacement condition ('replace with a DFM index when one is supplied') is met and has been explicitly DECLINED for now: the nine DFM names stay on FTSE ADX General. DFMGI is HELD BUT NOT REGISTERED -- do not map (\"AE\",\"DFM\") to it without a further instruction. The cost is measured, not nil: on the two names run both ways DFMGI has the higher explanatory power (AIRARABIA beta 0.812/R2 0.135 on FADGI vs 1.086/0.402 on DFMGI; EMPOWER 0.863/0.103 vs 0.652/0.157), moving beta by a quarter to a third in OPPOSITE directions -- so this is not a uniform bias a reader can correct for. Quote this note wherever the beta is quoted, and never call such a beta conforming. Cross-checks, published and never adopted: DFM General (du's own listing venue, from the registered series) 0.4613 (R2 0.201, n 250); equal-weight AE library composite 0.4309 (n 260, 27 names), which is a coverage artefact and not a regressor. SUPERSEDES 0.488, which came from a study-local script reading a copy of the index held inside this study directory, sampling its own weekly grid and applying no Dimson correction.",
+   "date": "2026-07-24",
    "ring": "Market"
   },
   "kd": {
@@ -1930,25 +1948,25 @@
    3899.50853719294
   ],
   "df": [
-   0.9398418878242466,
-   0.8837213354982759,
-   0.8314443809468651,
-   0.7826309713245793,
-   0.7371204368603927
+   0.9373303771461203,
+   0.8790113207142812,
+   0.8248172631371986,
+   0.7743375621598286,
+   0.727385589237272
   ],
   "pv": [
-   2750.489484345724,
-   2766.876339775096,
-   2804.448278085098,
-   2885.7633776196794,
-   2874.407436476491
+   2743.1394355774146,
+   2752.1295774843816,
+   2782.0951182636063,
+   2855.1834270169743,
+   2836.4463150618594
   ],
   "fwd_wacc": [
-   0.06400875823381369,
-   0.06350480640407732,
-   0.06287486661690685,
-   0.06237091478717047,
-   0.061740975
+   0.06685969470517883,
+   0.06634619493233516,
+   0.06570432021628056,
+   0.06519082044343688,
+   0.06454894572738229
   ],
   "ppe": [
    10887.36958861438,
@@ -2423,6 +2441,14 @@
    "lift": 0.026075645396384184,
    "erosion": -0.023873353466018044,
    "printed": 0.0015797788309637184,
+   "erosion_peak_pair": -0.10205957968442736,
+   "erosion_peak_pair_half": -0.05240281748225284,
+   "mix_lift_peak_pair": 0.024595197323756368,
+   "printed_peak_pair": -0.029096477794793296,
+   "postpaid_share_q4_2025": 0.2039155074703761,
+   "ps_mix_exhaust": 12.825495330017127,
+   "ps_mix_exhaust_peak": 9.826739825931055,
+   "ps_mix_exhaust_peak_annualised": 2.0110456257091176,
    "prepaid_drop": -499,
    "postpaid_gain": 74,
    "share": {
@@ -2573,20 +2599,20 @@
   "rf": 0.0448,
   "rf_alt": 0.0469,
   "rf_star": 0.0444,
-  "ke_exp": 0.06533520000000001,
-  "ke_mkt_alt": 0.0643656,
-  "ke_raw_retired": 0.0657352,
+  "ke_exp": 0.06829095866040241,
+  "ke_mkt_alt": 0.06772097171938454,
+  "ke_raw_retired": 0.06869095866040241,
   "kd": 0.051,
   "kd_at": 0.0287793,
-  "we_exp": 0.963714700877661,
-  "wd_exp": 0.036285299122338986,
-  "wacc_exp": 0.06400875823381369,
-  "wacc_exp_mkt": 0.0630743404598427,
-  "wacc_rf_alt": 0.06603255910565677,
-  "ke_term": 0.0635352,
+  "we_exp": 0.9637761611699194,
+  "wd_exp": 0.03622383883008058,
+  "wacc_exp": 0.06685969470517883,
+  "wacc_exp_mkt": 0.06631035487924765,
+  "wacc_rf_alt": 0.06888362464363565,
+  "ke_term": 0.0664909586604024,
   "kd_term": 0.049,
   "kd_term_at": 0.027650700000000004,
-  "wacc_term": 0.061740975,
+  "wacc_term": 0.06454894572738229,
   "glide_frac": [
    0.0,
    0.22222222222222052,
@@ -2603,35 +2629,52 @@
   ],
   "lease_rate_disclosed": 0.036,
   "beta": {
-   "beta": 0.4879595874282318,
-   "r2": 0.12046293890041448,
-   "n": 256,
-   "se": 0.08273082248993131,
+   "ticker": "DU",
+   "market": "AE",
+   "exchange": "DFM",
+   "beta": 0.5568988032727834,
+   "r2": 0.14116426339435617,
+   "se": 0.1490208120729619,
+   "n": 249,
    "ci90": [
-    0.3518673844322948,
-    0.6240517904241688
+    0.3117595674127611,
+    0.8020380391328057
    ],
    "usable": true,
    "gate_msg": "passes minimum usability gate",
-   "window_years": 5,
+   "dimson": true,
    "frequency": "weekly",
-   "index": "FTSE ADX General (user-supplied export, adopted per instruction as the UAE base market index; series to 24-Jul-2026)",
    "weak": false,
    "warnings": [],
+   "window_years": 4.81,
+   "first_obs": "2021-09-24",
+   "last_obs": "2026-07-17",
+   "blume_crosscheck": 0.7045992021818556,
+   "index_file": "raw_indices/AE/FADGI.csv",
+   "index_asof": "2026-07-24",
+   "index_dq": [
+    "dropped 1 interior stale/no-trade rows"
+   ],
+   "stock_dq": [],
+   "week_rule": "W-FRI",
+   "interim_note": "INTERIM: DFM-listed name regressed against FTSE ADX General, by instruction 10-Aug-2026, because no DFM General series is held. Empirically the better-supported half of the substitution: over five years of weekly returns FADGI explains the six DFM names BETTER than it explains the ADX names it actually covers (median R2 0.240 vs 0.127; median beta 1.067 vs 1.037), and all six clear the R2>=5% usability gate.\n\nHELD OPEN BY INSTRUCTION, 23-Aug-2026. A DFM General series IS now held at raw_indices/AE/DFMGI.csv (2015-01-05 to 2026-07-16), so the 10-Aug clause's replacement condition ('replace with a DFM index when one is supplied') is met and has been explicitly DECLINED for now: the nine DFM names stay on FTSE ADX General. DFMGI is HELD BUT NOT REGISTERED -- do not map (\"AE\",\"DFM\") to it without a further instruction. The cost is measured, not nil: on the two names run both ways DFMGI has the higher explanatory power (AIRARABIA beta 0.812/R2 0.135 on FADGI vs 1.086/0.402 on DFMGI; EMPOWER 0.863/0.103 vs 0.652/0.157), moving beta by a quarter to a third in OPPOSITE directions -- so this is not a uniform bias a reader can correct for. Quote this note wherever the beta is quoted, and never call such a beta conforming.",
+   "conforming": false,
    "dfm_alt": {
-    "beta": 0.4715600357114492,
-    "r2": 0.20228373108313535,
-    "n": 259,
-    "se": 0.05841362753766983,
-    "note": "DFM General Index (DU's own listing venue) \u2014 the house own-local-index default, published as the alternative"
+    "beta": 0.46134301566480895,
+    "r2": 0.20077148104553333,
+    "se": 0.1011353685106689,
+    "n": 250,
+    "index_file": "raw_indices/AE/DFMGI.csv",
+    "index_asof": "2026-07-16",
+    "note": "DFM General Index, DU's own listing venue, from the REGISTERED series raw_indices/AE/DFMGI.csv. HELD BUT NOT REGISTERED as a regressor: wacc_builder.EXCHANGE_INDEX still maps (\"AE\",\"DFM\") to FTSE ADX General and a session may not re-point it on the reasoning that this file exists. Published as a labelled cross-check, never adopted."
    },
    "composite_alt": {
-    "beta": 0.3996691918562717,
-    "r2": 0.14151887359959447,
-    "n": 256,
-    "se": 0.06176493778254817,
-    "names": 18,
-    "note": "equal-weight AE library composite, house cross-check construction"
+    "beta": 0.43093667052347334,
+    "r2": 0.1278851765767347,
+    "se": 0.0700616448888226,
+    "n": 260,
+    "names": 27,
+    "note": "equal-weight AE library composite. A CONSTITUENT COMPOSITE IS NOT A REGRESSOR and is not a tier: it changes whenever a stock is posted, it mixes ADX with DFM inside one market code, and it shares constituents with the panel it prices. Shown only so its distance from the published index is visible."
    }
   },
   "erp_market_basis": 0.0429,
@@ -2640,35 +2683,44 @@
   "sov_spread_damodaran_rating": 0.0042
  },
  "dcf": {
-  "pv_explicit": 14081.984916302088,
-  "tv": 82050.41458811572,
-  "pv_tv": 60481.0374457682,
-  "ev": 74563.02236207029,
-  "tv_share": 0.8111398321822118,
+  "pv_explicit": 13968.993873404235,
+  "tv": 76878.68361735571,
+  "pv_tv": 55920.446582796096,
+  "ev": 69889.44045620033,
+  "tv_share": 0.8001272612540289,
   "lease": 1938.819,
   "net_cash": 2249.719,
   "investees": 0.511,
-  "eq_val": 74874.43336207028,
-  "ps": 16.577799870736467,
-  "ps_dec": 16.517976226237213,
-  "roll": 1.043578198360395,
-  "anchor_days": 246.0,
+  "eq_val": 70200.85145620033,
+  "ps": 15.543769111741863,
+  "ps_dec": 15.48694184846469,
+  "roll": 1.0462859143071062,
+  "anchor_days": 250.0,
   "div_between": 0.66,
   "roic_term": 0.2728612569370977,
   "rr_term": 0.073297324158448,
   "g": 0.020000000000000018,
-  "bear": 10.56609178209415,
-  "bull": 27.67129453178129,
-  "ps_framing_b": 14.742581056174174,
-  "ps_rf_alt": 16.439661445952037,
-  "ps_rf_long": 18.766804960673113,
-  "ps_rf_debut": 20.591175895855578,
-  "wacc_rf_long": 0.06063575678074188,
-  "wacc_rf_debut": 0.05725311818066128,
-  "ev_ebitda_now": 6.9746805476952165,
+  "bear": 9.602165860968288,
+  "bull": 25.2158991714098,
+  "scenario_growth": {
+   "bear_real": -0.005,
+   "bear_nominal": 0.014899999999999913,
+   "bull_real": 0.01,
+   "bull_nominal": 0.030200000000000005,
+   "base_real": 0.0,
+   "base_nominal": 0.020000000000000018,
+   "inflation": 0.02
+  },
+  "ps_framing_b": 13.196776625089313,
+  "ps_rf_alt": 14.868733936229784,
+  "ps_rf_long": 16.816032425226613,
+  "ps_rf_debut": 18.319650192096695,
+  "wacc_rf_long": 0.06348647814108412,
+  "wacc_rf_debut": 0.0601036238153777,
+  "ev_ebitda_now": 6.987034503329616,
   "ebitda_term": 9495.68760245454,
-  "tv_implied_mult": 8.640808125038413,
-  "ps_mkt_term": 13.892941327636125,
+  "tv_implied_mult": 8.096168159268776,
+  "ps_mkt_term": 13.775498775085811,
   "rou_repl_retired": [
    355.0,
    350.0,
@@ -2696,13 +2748,13 @@
   "construction": "engine/terminal_value.py [R-TERM-01]",
   "retired_construction": {
    "form": "NOPAT(1+g)(1 - g/ROIC)/(W-g)",
-   "tv": 85963.59953431036,
+   "tv": 80545.21606481356,
    "implied_cycle_years": 49.99999999999996,
    "why_retired": "the reinvestment identity charges g x invested capital every year for ever, so the implied replacement cycle is 1/g \u2014 50 years at the derived 2.0% and 40 at the previous edition's typed 2.5%, both facts about the dirham's peg to the dollar rather than about a mobile network. Notes 6 and 8 say the depreciable owned base turns over in 17.91 years. It also supplied the perpetual LEASE renewal only as a side effect, which is why the corrected construction has to put that renewal back explicitly."
   },
   "inputs": {
    "nopat": 3796.090807333835,
-   "wacc": 0.061740975,
+   "wacc": 0.06454894572738229,
    "inflation": 0.02,
    "real_growth": 0.0,
    "nominal_growth": 0.020000000000000018,
@@ -2718,8 +2770,8 @@
   },
   "outputs": {
    "fcff": 3357.710102021737,
-   "tv": 82050.41458811572,
-   "floor": 61484.140918309684,
+   "tv": 76878.68361735571,
+   "floor": 58809.49354876135,
    "maintenance": 3046.7483237662796,
    "growth_capex": 0.0,
    "wc_charge": -25.949195169762458,
@@ -2731,7 +2783,7 @@
    "rule": "R-TERM-01",
    "inputs": {
     "nopat": 3796.090807333835,
-    "wacc": 0.061740975,
+    "wacc": 0.06454894572738229,
     "inflation": 0.02,
     "real_growth": 0.0,
     "dna_book": 2582.4184232844186,
@@ -2748,9 +2800,9 @@
     "floor_exemption_disclosure": ""
    },
    "fcff": 3357.710102021737,
-   "tv": 82050.41458811572,
-   "floor": 61484.140918309684,
-   "tv_vs_floor": 0.33449721119355336,
+   "tv": 76878.68361735571,
+   "floor": 58809.49354876135,
+   "tv_vs_floor": 0.3072495438787015,
    "nominal_growth": 0.020000000000000018,
    "real_growth": 0.0,
    "maintenance": 3046.7483237662796,
@@ -2770,83 +2822,89 @@
    "years": 16.699659377281474,
    "cross_check_fy2024": 15.96,
    "direct_average_age": 11.485671342638687,
+   "components": {
+    "property_plant_equipment": 18.553219575036973,
+    "intangibles": 14.590182862525895,
+    "right_of_use": 10.23693152009405
+   },
+   "right_of_use_disclosed_lease_term": 10.1,
    "basis": "notes 6, 7 and 8: gross cost of every depreciable class over the year's own charge, validated against the 10.1-year average lease term note 7 discloses directly",
    "note": "the module's formula assumes an average age of half the life; the second identity \u2014 accumulated depreciation over the same charge \u2014 measures that age directly, and where it reads higher the base charge is the lighter of the two readings."
   },
   "moved": {
-   "tv_before": 85963.59953431036,
-   "tv_after": 82050.41458811572,
-   "pct": -0.045521417988468316
+   "tv_before": 80545.21606481356,
+   "tv_after": 76878.68361735571,
+   "pct": -0.045521417988468094
   }
  },
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 10.56609178209415,
-   "base": 16.577799870736467,
-   "bull": 27.67129453178129,
+   "bear": 9.602165860968288,
+   "base": 15.543769111741863,
+   "bull": 25.2158991714098,
    "w": null
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 8.23590786280928,
-   "base": 8.903100952519974,
-   "bull": 13.054524621830973,
+   "bear": 8.258989594124142,
+   "base": 8.927913813683451,
+   "bull": 13.090108957608052,
    "w": null
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 8.248497585142468,
-   "base": 8.916634904028154,
-   "bull": 13.07393377709464,
+   "bear": 8.271611982329405,
+   "base": 8.94148288100411,
+   "bull": 13.109568472757832,
    "w": null,
    "note": "RETIRED for this class: normalised earnings power is not among a telecom operator's permitted cross-checks. Removed rather than re-weighted, and computed and shown so the move is visible."
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 10.07004104744589,
-   "base": 12.756544093651263,
-   "bull": 13.829867621143364,
+   "bear": 9.54382749926329,
+   "base": 11.936157598420836,
+   "bull": 12.943850206294504,
    "w": null,
    "note": "a disclosed FLOOR, published as such and never weighted"
   },
   "central": {
    "name": "Cash-flow lens (the central)",
-   "bear": 10.56609178209415,
-   "base": 16.577799870736467,
-   "bull": 27.67129453178129,
+   "bear": 9.602165860968288,
+   "base": 15.543769111741863,
+   "bull": 25.2158991714098,
    "w": null
   },
   "retired_blend": {
    "name": "RETIRED 45/25/20/10 blend, published unused",
    "bear": null,
-   "base": 12.74476657013216,
+   "base": 12.208586889747606,
    "bull": null,
    "w": 0.0
   }
  },
- "central": 16.577799870736467,
+ "central": 15.543769111741863,
  "span": [
-  10.56609178209415,
-  27.67129453178129
+  9.602165860968288,
+  25.2158991714098
  ],
- "spot": 11.36,
- "retired_blend_value": 12.74476657013216,
+ "spot": 11.38,
+ "retired_blend_value": 12.208586889747606,
  "lens_record": {
   "class": "telecom operator",
   "primary": {
    "kind": "dcf",
    "two_sided": false,
-   "value": 16.577799870736467,
+   "value": 15.543769111741863,
    "range": {
-    "low": 10.56609178209415,
-    "high": 27.67129453178129
+    "low": 9.602165860968288,
+    "high": 25.2158991714098
    },
    "range_note": "the cash-flow lens under its own bear and bull paths on one clock, not the widest spread across four methods",
    "range_basis": {
     "driver": "the fibre and mobile revenue path and the capital intensity it carries",
-    "low": 10.56609178209415,
-    "high": 27.67129453178129,
+    "low": 9.602165860968288,
+    "high": 25.2158991714098,
     "units": "AED per share, the present-value read under each path",
     "macro_held": true,
     "evidence": "both paths are engine re-runs of the same model with the macro path, the cost of capital and terminal growth held still"
@@ -2855,12 +2913,12 @@
   "cross_checks": [
    {
     "kind": "relative_multiple",
-    "value": 8.903100952519974,
+    "value": 8.927913813683451,
     "present_value": false,
     "multiple": 12.9,
     "multiple_source": "a justified earnings multiple set against the named regional telecom peer set and this company's own history, never one read off the current price",
     "circularity": {
-     "spot": 11.36,
+     "spot": 11.38,
      "shares": 4532.905989,
      "net_debt": -2249.719,
      "metric_value": 7338.388
@@ -2869,7 +2927,7 @@
    },
    {
     "kind": "book_value",
-    "value": 12.756544093651263,
+    "value": 11.936157598420836,
     "present_value": false,
     "floor": true,
     "note": "a disclosed FLOOR, published as such and never weighted"
@@ -2888,10 +2946,10 @@
     "normalized": 0.2,
     "book": 0.1
    },
-   "blend_value": 12.74476657013216,
-   "why": "the weights were typed and had never cleared an out-of-sample test. What they concealed here was the SIZE of the disagreement rather than its direction: the blend read +12% against the price where the cash-flow lens reads +46%, so a reader \u2014 and every gate that reads the published central \u2014 saw about a quarter of the disagreement this study actually holds. An external finding (CC10) had already identified the weight scheme as an untested house judgement that moved the answer; it is resolved by removing the scheme rather than by re-tuning it.",
+   "blend_value": 12.208586889747606,
+   "why": "the weights were typed and had never cleared an out-of-sample test. What they concealed here was the SIZE of the disagreement rather than its direction: the blend read +7% against the price where the cash-flow lens reads +37%, so a reader \u2014 and every gate that reads the published central \u2014 saw about a quarter of the disagreement this study actually holds. An external finding (CC10) had already identified the weight scheme as an untested house judgement that moved the answer; it is resolved by removing the scheme rather than by re-tuning it.",
    "normalised_removed": {
-    "value": 8.916634904028154,
+    "value": 8.94148288100411,
     "why": "normalised earnings power is not among a telecom operator's permitted cross-checks. Removed rather than re-weighted; computed and shown so the move is visible."
    }
   }
@@ -2899,10 +2957,10 @@
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 11.536347600907417,
+   "base": 11.527961830926632,
    "rng": [
-    9.557590446229586,
-    13.185311896472276
+    9.551278362583112,
+    13.175198054546229
    ],
    "eps": 0.7679138860507622,
    "pe": 15.0,
@@ -2910,47 +2968,47 @@
   },
   "e2": {
    "method_short": "dividend stream",
-   "base": 16.361378676841117,
+   "base": 15.320565998165433,
    "rng": [
-    9.885722650418625,
-    21.65369177441337
+    9.412187366027771,
+    19.899494796351174
    ],
    "dps": 0.696161670750553,
-   "ke": 0.0635352,
+   "ke": 0.0664909586604024,
    "g": 0.020000000000000018
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 16.83846400340635,
+   "base": 15.759804877115378,
    "rng": [
-    11.230049056898382,
-    18.859079683815114
+    10.580917778242853,
+    17.650981462369227
    ],
    "ic0": 12024.54,
-   "pv_ep": 11074.66029735484,
-   "pv_ep_term": 52596.04771867528,
-   "ev": 75695.24801603012,
+   "pv_ep": 10834.435172900323,
+   "pv_ep_term": 47966.41386227741,
+   "ev": 70825.38903517774,
    "ep": [
-    2447.8529334845507,
-    2517.312365932091,
-    2654.240319140194,
-    2785.102207047984,
-    2934.2592833069016
+    2413.5717338471613,
+    2481.3104846573056,
+    2616.8588857893837,
+    2746.5584161469824,
+    2895.06330864983
    ],
    "spread": [
-    0.1965719650562236,
-    0.19319433631842706,
-    0.19641927096662049,
-    0.2009641081720662,
-    0.20797086044873261
+    0.19372102858485846,
+    0.1903529477901692,
+    0.19358981736724676,
+    0.19814420251579978,
+    0.20516288972135033
    ]
   }
  },
- "panel_centre": 16.361378676841117,
+ "panel_centre": 15.320565998165433,
  "yield_ps": 14.236434984673886,
  "rel": {
-  "pe_trailing": 17.725406325474125,
-  "ev_ebitda_trailing": 6.9746805476952165,
+  "pe_trailing": 17.75661302675137,
+  "ev_ebitda_trailing": 6.987034503329616,
   "pe_just": 12.9,
   "div_yield_peer": 0.0489,
   "eps26": 0.7103690517862785,
@@ -2969,10 +3027,10 @@
  },
  "book": {
   "bvps": 2.2388046486353015,
-  "pb_just": 5.742479648652128,
+  "pb_just": 5.377389651741723,
   "roe_sust": 0.27,
   "roe_trailing": 0.29012066669276515,
-  "ke_term": 0.0635352
+  "ke_term": 0.0664909586604024
  },
  "sens": {
   "g_grid": [
@@ -2983,106 +3041,106 @@
    0.035
   ],
   "wt_grid": [
-   0.051740974999999995,
-   0.056740975,
-   0.061740975,
-   0.066740975,
-   0.071740975
+   0.05454894572738229,
+   0.05954894572738229,
+   0.06454894572738229,
+   0.0695489457273823,
+   0.07454894572738228
   ],
   "we_grid": [
-   0.05400875823381369,
-   0.05900875823381369,
-   0.06400875823381369,
-   0.0690087582338137,
-   0.07400875823381368
+   0.05685969470517883,
+   0.06185969470517883,
+   0.06685969470517883,
+   0.07185969470517883,
+   0.07685969470517882
   ],
   "grid_wacc_g": [
    [
-    19.895218785092982,
-    22.316352633464305,
-    25.63837116711629,
-    30.482832079722318,
-    38.21385160013466
+    17.696823179974313,
+    19.6975187647231,
+    22.372320177683953,
+    26.13312239534504,
+    31.813219053980372
    ],
    [
-    17.644092014420035,
-    19.434344434681798,
-    21.784854053951335,
-    25.009889816615217,
-    29.712823565514647
+    15.84173086815623,
+    17.35861058459491,
+    19.312029389796045,
+    21.923588636033116,
+    25.59542806181716
    ],
    [
-    15.873820589593446,
-    17.241874841761685,
-    18.979067269268704,
-    21.2598434469616,
-    24.389119566295168
+    14.360215514527763,
+    15.543769111741863,
+    17.024415242937344,
+    18.931141578096707,
+    21.48024020149315
    ],
    [
-    14.445010163795278,
-    15.517668945810179,
-    16.84451177084813,
-    18.52931271255159,
-    20.741233926461877
+    13.14955962173155,
+    14.094354348421328,
+    15.249324317300882,
+    16.69418413453401,
+    18.554794304218564
    ],
    [
-    13.267399834889789,
-    14.125983466511755,
-    15.165788527155485,
-    16.451938589888616,
-    18.085007333862052
+    12.141544044644984,
+    12.909890387234435,
+    13.831611633945192,
+    14.95835038875499,
+    16.367865048630424
    ]
   ],
   "grid_exp_term": [
    [
-    22.86071252254099,
-    19.907666579334453,
-    17.661157515530515,
-    15.89445565418189,
-    14.468471432633626
+    20.17652091744545,
+    17.780079848691372,
+    15.920598023164402,
+    14.435532784553626,
+    13.221936444386223
    ],
    [
-    22.586422871828248,
-    19.669175592231607,
-    17.44989909580002,
-    15.704612576944431,
-    14.29591279580231
+    19.93517083789516,
+    17.567722331713686,
+    15.730736122753683,
+    14.263636224488094,
+    13.06472055501731
    ],
    [
-    22.316352633464316,
-    19.434344434681798,
-    17.241874841761692,
-    15.517668945810183,
-    14.125983466511755
+    19.6975187647231,
+    17.35861058459491,
+    15.543769111741863,
+    14.094354348421328,
+    12.909890387234435
    ],
    [
-    22.050421277036765,
-    19.203103363997915,
-    17.03702321635302,
-    15.333569675837909,
-    13.958633566750253
+    19.46349435142657,
+    17.152682960013014,
+    15.359642092007249,
+    13.927637647719045,
+    12.757400836028783
    ],
    [
-    21.788550114084295,
-    18.975384230930153,
-    16.8352840869271,
-    15.152260937881366,
-    13.793814354369964
+    19.23302885567437,
+    16.949879214868798,
+    15.178301414529338,
+    13.76343773898419,
+    12.607207820428261
    ]
   ],
   "beta_grid": [
-   0.35,
-   0.488,
-   0.62,
+   0.31,
+   0.5568988032727834,
    0.65,
-   0.8
+   0.8,
+   1.0
   ],
   "grid_beta": [
-   20.023266559816147,
-   17.241874841761692,
-   15.202386430274467,
-   14.802130408136048,
-   13.070259195140673
+   20.220941335661927,
+   15.543769111741863,
+   14.284942462398108,
+   12.625127816000866,
+   10.91522983421841
   ],
   "tax_grid": [
    0.4,
@@ -3092,11 +3150,11 @@
    0.531
   ],
   "grid_tax": [
-   17.78493082128233,
-   16.577799870736467,
-   15.418007388839445,
-   14.403611632078208,
-   13.355402683424927
+   16.67707667457666,
+   15.543769111741863,
+   14.454904982743708,
+   13.50254568624387,
+   12.518441079860704
   ],
   "arpu_grid": [
    0.92,
@@ -3106,11 +3164,11 @@
    1.08
   ],
   "grid_arpu": [
-   13.996632354006426,
-   15.287216112371446,
-   16.577799870736467,
-   17.86838362910148,
-   19.158967387466518
+   13.126060949986554,
+   14.334915030864208,
+   15.543769111741863,
+   16.75262319261951,
+   17.961477273497177
   ],
   "drift_grid": [
    -0.025,
@@ -3120,16 +3178,16 @@
    0.01
   ],
   "grid_drift": [
-   13.529976199085644,
-   14.721517756728664,
-   16.577799870736467,
-   17.215326654389862,
-   17.862393744506797
+   12.702004644898063,
+   13.813038178657346,
+   15.543769111741863,
+   16.13814208453203,
+   16.741392594419505
   ],
   "cc3": {
-   "price": 17.15687382944743,
-   "vol": 17.28372726735544,
-   "vol_matched": 16.975420861244324,
+   "price": 16.086171659101165,
+   "vol": 16.204436928208523,
+   "vol_matched": 15.915897170290531,
    "m_price": 1.0179476598851536,
    "m_vol": 336.6671179641444,
    "m_vol_matched": 189.6312759038383,
@@ -3139,8 +3197,8 @@
    "rev_vol": 91861.75794200729
   },
   "cc10": {
-   "to_dcf": 14.278503335863622,
-   "to_book": 13.514252180446583,
+   "to_dcf": 13.530551810041898,
+   "to_book": 12.809029507377693,
    "family": 0.45,
    "w_to_dcf": {
     "dcf": 0.65,
@@ -3156,14 +3214,14 @@
    }
   },
   "cc7": {
-   "as_built": 9.931469594101246,
-   "horizon_only": 9.893785773389158,
-   "coherent": 11.536347600907417,
-   "div_pv": 1.6425618275182585,
-   "years": 2.4027,
-   "net_exp_as_built": -1.3260273972602739
+   "as_built": 9.900270749406548,
+   "horizon_only": 9.883417341717594,
+   "coherent": 11.527961830926632,
+   "div_pv": 1.6445444892090368,
+   "years": 2.3178,
+   "net_exp_as_built": -1.3150684931506849
   },
-  "dcf_mix_exhaust": 13.662411696778042,
+  "dcf_mix_exhaust": 12.825495330017127,
   "subs_grid": [
    -400.0,
    -200.0,
@@ -3172,11 +3230,11 @@
    400.0
   ],
   "grid_subs": [
-   15.739075375290902,
-   16.158437623013686,
-   16.577799870736467,
-   16.99716211845924,
-   17.416524366182028
+   14.758818302810157,
+   15.151293707276011,
+   15.543769111741863,
+   15.936244516207708,
+   16.328719920673564
   ],
   "mg_grid": [
    0.94,
@@ -3186,11 +3244,11 @@
    1.06
   ],
   "grid_margin": [
-   17.643957650950266,
-   17.110878760843356,
-   16.577799870736467,
-   16.044720980629556,
-   15.511642090522653
+   16.543534011468324,
+   16.043651561605085,
+   15.543769111741863,
+   15.043886661878622,
+   14.544004212015388
   ],
   "capex_grid": [
    0.85,
@@ -3200,11 +3258,11 @@
    1.2
   ],
   "grid_capex": [
-   17.535207134891312,
-   17.056503502813886,
-   16.577799870736467,
-   15.939528361299896,
-   15.301256851863325
+   16.453504568609475,
+   15.998636840175667,
+   15.543769111741863,
+   14.937278807163446,
+   14.330788502585035
   ],
   "nwc_grid": [
    -0.1,
@@ -3214,11 +3272,11 @@
    -0.03
   ],
   "grid_nwc": [
-   16.767977033050435,
-   16.682060144438154,
-   16.577799870736467,
-   16.48158740434283,
-   16.36703155285978
+   15.729916638839143,
+   15.645820230224814,
+   15.543769111741863,
+   15.449595276791381,
+   15.337466731972278
   ],
   "life_grid": [
    10.7,
@@ -3228,16 +3286,16 @@
    22.7
   ],
   "grid_life": [
-   17.306492948922585,
-   16.94753628662998,
-   16.5777572591148,
-   16.196829577436592,
-   15.804417115205268
+   16.21926300037442,
+   15.886512437865761,
+   15.543729611037271,
+   15.190612052098583,
+   14.826848174005576
   ],
   "life_variant_years": 22.971342685277374,
-  "ps_life_variant": 15.768346184605544,
-  "dcf_opex_1pp": 16.02610768139918,
-  "dcf_tax_per_pp": 0.33813191892041244
+  "ps_life_variant": 14.793410648788438,
+  "dcf_opex_1pp": 15.025772997961285,
+  "dcf_tax_per_pp": 0.3174530988332791
  },
  "step0": {
   "windows_scored": 18,
@@ -3300,53 +3358,57 @@
   "span_years": 15.594798083504449
  },
  "strike": {
-  "anchor_date": "2026-08-07",
-  "spot": 12.3,
-  "nu": 10.0,
-  "width_cal": 0.979,
+  "anchor_date": "2026-09-07",
+  "spot": 11.38,
+  "nu": 4.5,
+  "width_cal": 0.965,
   "width_overlay_mult": 1.0,
   "rf_live": 0.0365,
-  "q_annual": 0.05365853658536585,
+  "q_annual": 0.05799648506151142,
   "horizons": {
    "1M": {
-    "h": 20,
-    "target_date": "2026-09-07",
-    "grade_date": "2026-09-07",
-    "anchor_vol_ann": 0.27845358036990564,
-    "sigma_h": 0.0767980558006468,
-    "drift_log_h": -0.0013843126114768446,
+    "h": 21,
+    "target_date": "2026-10-07",
+    "grade_date": "2026-10-07",
+    "anchor_vol_ann": 0.3102936576888593,
+    "sigma_h": 0.08643897117834456,
+    "drift_log_h": -0.001726694497871286,
     "pct": {
-     "p5": 10.848509682659836,
-     "p25": 11.710557734698478,
-     "p50": 12.282445205350406,
-     "p75": 12.8853822483405,
-     "p95": 13.878371420398961
+     "p5": 10.027350221156597,
+     "p25": 10.906180659483109,
+     "p50": 11.43121497579116,
+     "p75": 11.983621157735577,
+     "p95": 13.058483154930377
     },
-    "p_above": 0.49186,
-    "p_up10": 0.0909,
-    "p_dn10": 0.07884,
-    "touch_up10": 0.1523,
-    "touch_dn10": 0.128
+    "signal_alpha": 0.006243884947430069,
+    "signal_z": 0.6688389360159968,
+    "p_above": 0.52604,
+    "p_up10": 0.11152,
+    "p_dn10": 0.07536,
+    "touch_up10": 0.17924,
+    "touch_dn10": 0.12822
    },
    "3M": {
-    "h": 63,
-    "target_date": "2026-11-07",
-    "grade_date": "2026-11-09",
-    "anchor_vol_ann": 0.2808947610903803,
-    "sigma_h": 0.13749798555374115,
-    "drift_log_h": -0.004152937834430534,
+    "h": 62,
+    "target_date": "2026-12-07",
+    "grade_date": "2026-12-07",
+    "anchor_vol_ann": 0.2993939973754962,
+    "sigma_h": 0.14330652878610395,
+    "drift_log_h": -0.005180083493613858,
     "pct": {
-     "p5": 9.818707373130604,
-     "p25": 11.258375206884907,
-     "p50": 12.259570943656882,
-     "p75": 13.345945892124613,
-     "p95": 15.32471824257266
+     "p5": 9.27930504887402,
+     "p25": 10.659240580566255,
+     "p50": 11.535234205412719,
+     "p75": 12.460515795323396,
+     "p95": 14.319353662400198
     },
-    "p_above": 0.48962,
-    "p_up10": 0.21854,
-    "p_dn10": 0.21026,
-    "touch_up10": 0.40526,
-    "touch_dn10": 0.37854
+    "signal_alpha": 0.017732062453927062,
+    "signal_z": 0.6688389360159968,
+    "p_above": 0.54716,
+    "p_up10": 0.23774,
+    "p_dn10": 0.1614,
+    "touch_up10": 0.41296,
+    "touch_dn10": 0.30582
    }
   }
  },
@@ -3357,47 +3419,47 @@
    "first_origin": "2012-01-16",
    "last_origin": "2026-04-29",
    "span_years": 14.28,
-   "skill_norm": -0.03190383580297196,
-   "skill_raw": -0.029547870700943113,
-   "verdict": "FAIL",
+   "skill_norm": -0.0026194142774396134,
+   "skill_raw": -0.00022788932709971732,
+   "verdict": "PARITY",
    "ci_blocks": {
     "2": [
-     -0.0663,
-     -0.0053,
-     "FAIL"
+     -0.0383,
+     0.0294,
+     "PARITY"
     ],
     "3": [
-     -0.0695,
-     -0.0048,
-     "FAIL"
+     -0.0378,
+     0.0311,
+     "PARITY"
     ],
     "4": [
-     -0.0709,
-     -0.0037,
-     "FAIL"
+     -0.0394,
+     0.0323,
+     "PARITY"
     ]
    },
-   "cov50": 0.7241379310344828,
-   "cov80": 0.9137931034482759,
-   "cov90": 0.9482758620689655,
-   "pit_mean": 0.5358586206896552,
+   "cov50": 0.6379310344827587,
+   "cov80": 0.896551724137931,
+   "cov90": 0.9310344827586207,
+   "pit_mean": 0.5264353448275861,
    "pit_hist": [
     0,
-    1,
-    7,
-    15,
-    6,
-    7,
-    8,
     5,
-    4,
-    5
+    3,
+    14,
+    7,
+    9,
+    2,
+    7,
+    5,
+    6
    ],
-   "chi2": 26.48,
-   "chi2_p": 0.002,
-   "ks_stat": 0.196,
-   "ks_p": 0.02,
-   "width_vs_benchmark": 1.3692012878865136
+   "chi2": 23.72,
+   "chi2_p": 0.005,
+   "ks_stat": 0.163,
+   "ks_p": 0.081,
+   "width_vs_benchmark": 1.285967817124209
   },
   "five_year": {
    "label": "LAST FIVE YEARS of origins",
@@ -3405,47 +3467,47 @@
    "first_origin": "2021-10-27",
    "last_origin": "2026-04-29",
    "span_years": 4.5,
-   "skill_norm": -0.011537956890712797,
-   "skill_raw": -0.0028557976184837575,
+   "skill_norm": 0.04213779621261027,
+   "skill_raw": 0.045672189179287725,
    "verdict": "PARITY",
    "ci_blocks": {
     "2": [
-     -0.0787,
-     0.0399,
+     -0.0381,
+     0.1146,
      "PARITY"
     ],
     "3": [
-     -0.074,
-     0.0467,
+     -0.0367,
+     0.1154,
      "PARITY"
     ],
     "4": [
-     -0.072,
-     0.051,
+     -0.0348,
+     0.1112,
      "PARITY"
     ]
    },
-   "cov50": 0.631578947368421,
+   "cov50": 0.5263157894736842,
    "cov80": 0.9473684210526315,
    "cov90": 1.0,
-   "pit_mean": 0.5749921052631578,
+   "pit_mean": 0.5703631578947368,
    "pit_hist": [
     0,
-    1,
     2,
+    1,
     3,
+    0,
+    4,
     1,
-    2,
     3,
     4,
-    2,
     1
    ],
-   "chi2": 6.79,
-   "chi2_p": 0.659,
-   "ks_stat": 0.194,
-   "ks_p": 0.421,
-   "width_vs_benchmark": 1.5191857625636616
+   "chi2": 11.0,
+   "chi2_p": 0.276,
+   "ks_stat": 0.206,
+   "ks_p": 0.346,
+   "width_vs_benchmark": 1.4290908604341814
   },
   "production": {
    "label": "production window set (post-break origins)",
@@ -3453,61 +3515,103 @@
    "first_origin": "2022-01-27",
    "last_origin": "2026-04-29",
    "span_years": 4.25,
-   "skill_norm": -0.007429777050631747,
-   "skill_raw": 0.0008480894810285466,
+   "skill_norm": 0.04355362924787032,
+   "skill_raw": 0.04696445591743659,
    "verdict": "PARITY",
    "ci_blocks": {
     "2": [
-     -0.0694,
-     0.0461,
+     -0.0376,
+     0.1197,
      "PARITY"
     ],
     "3": [
-     -0.0677,
-     0.0509,
+     -0.0336,
+     0.1179,
      "PARITY"
     ],
     "4": [
-     -0.0636,
-     0.0552,
+     -0.0328,
+     0.1181,
      "PARITY"
     ]
    },
-   "cov50": 0.6111111111111112,
+   "cov50": 0.5,
    "cov80": 0.9444444444444444,
    "cov90": 1.0,
-   "pit_mean": 0.5713194444444444,
+   "pit_mean": 0.5660277777777777,
    "pit_hist": [
     0,
-    1,
     2,
+    1,
     3,
-    1,
-    2,
-    2,
+    0,
     4,
-    2,
+    0,
+    3,
+    4,
     1
    ],
-   "chi2": 6.44,
-   "chi2_p": 0.695,
-   "ks_stat": 0.173,
-   "ks_p": 0.593,
-   "width_vs_benchmark": 1.5307762058939494
+   "chi2": 13.11,
+   "chi2_p": 0.158,
+   "ks_stat": 0.186,
+   "ks_p": 0.506,
+   "width_vs_benchmark": 1.4397384842708885
   },
   "fit": {
-   "nu": 10.0,
-   "width_cal": 0.979,
-   "market_verdict": "PARITY",
-   "market_skill": 0.0068,
+   "nu": 4.5,
+   "width_cal": 0.965,
+   "market_verdict": "PASS",
+   "market_skill": 0.0178,
    "market_ci90": [
-    -0.001,
-    0.014
+    0.007,
+    0.031
    ],
-   "fit_date": "2026-07-29",
-   "panel_names": 18
+   "fit_date": "2026-08-09",
+   "panel_names": 28
   }
  },
+ "ground_up": [
+  {
+   "name": "Mobile",
+   "level": "unit",
+   "share_of_revenue": 0.43443882585767424,
+   "unit": "mobile customer-month",
+   "unit_source": "du quarterly earnings releases and analyst decks (COMPANY_IR): mobile customers at each quarter end, 8,916k (Q4-2024) through 9,280k (Q2-2026); the unit build reproduces the audited FY2025 mobile segment to 0.04% (avg base 9,310k x AED 63.3 x 12 = 7,072 against a disclosed 7,075)",
+   "price_basis": "blended mobile ARPU, AED/month, disclosed quarterly by the company (63.3 FY2025, 63.4 Q2-2026)",
+   "cost_basis": "THREE separate per-subscriber direct costs, each measured on the like-for-like half-year pair rather than assumed: interconnect, commission and a small lumpy device line. The margin is the residual",
+   "gap_note": null
+  },
+  {
+   "name": "Fixed",
+   "level": "derived",
+   "share_of_revenue": 0.289608527469079,
+   "unit": "fixed subscription-month",
+   "unit_source": "du quarterly earnings releases (COMPANY_IR): fixed subscriptions at each quarter end, 682k (Q4-2024) through 744k (Q2-2026)",
+   "price_basis": "IMPLIED revenue per subscription \u2014 segment revenue over the average base \u2014 a consumer-plus-enterprise blend and therefore a revenue INTENSITY metric, not a disclosed tariff",
+   "cost_basis": "per-subscriber capacity cost, measured on the like-for-like half-year pair",
+   "gap_note": "DERIVED rather than unit: du discloses fixed subscriptions but no fixed tariff or ARPU, so the price leg is back-solved from segment revenue. The volume is disclosed and the price is not, which is why this line is a weaker construction than Mobile and is labelled as one in the study body rather than presented as a price"
+  },
+  {
+   "name": "Wholesale",
+   "level": "segment",
+   "share_of_revenue": 0.15353673411517005,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "direct cost as a share of segment revenue, held FLAT at the H1-2026 reviewed rate (the series worsens at every observation and the forecast takes no credit for the recovery du's own commentary implies, and equally projects no further deterioration)",
+   "gap_note": "SEGMENT level: du discloses no volume unit for wholesale anywhere in the filings \u2014 no minutes, no transit volumes, no roaming days \u2014 so no unit build is possible. The gap is stated rather than filled with an imported ratio"
+  },
+  {
+   "name": "ICT and associated telecom services",
+   "level": "segment",
+   "share_of_revenue": 0.1224159125580766,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": null,
+   "cost_basis": "direct cost as a share of segment revenue, from the disclosed segment contribution",
+   "gap_note": "SEGMENT level: du discloses no volume unit for ICT \u2014 no racks, no megawatts, no contract counts \u2014 so no unit build is possible. The growth path is anchored on the company's own disclosed programme (five data centres, a hyperscale campus with Microsoft as anchor tenant, capital commitments up AED 287mn in six months) rather than on a unit economic"
+  }
+ ],
  "margin_record": {
   "periods": [
    {
@@ -3581,6 +3685,7 @@
   "[Unit-build reconciliation, FY2025] avg mobile base 9,310k x ARPU AED 63.3 x 12 = 7,072 vs disclosed mobile segment revenue 7,075 (-0.0%) \u2014 the subscribers-x-ARPU frame reproduces the audited segment to within a percent.",
   "[Mobile mix, disclosed] postpaid share of the base 20.2% (Q4-2024) -> 20.4% (Q4-2025) -> 22.1% (Q2-2026). The Q2-2026 jump is not postpaid strength alone: prepaid fell -499k while postpaid rose +74k.",
   "[Is a prepaid/postpaid split IDENTIFIED? \u2014 NO. Tested across every quarter pair, not one] du publishes the base split every quarter but only ONE blended ARPU, so a two-leg build needs two unknowns per period against one disclosed equation. The mix DID move, which in principle pins the ratio between the legs if both are constant \u2014 so solve for it on all 21 available quarter pairs. The implied postpaid/prepaid ARPU ratio ranges -45.2x to 16.8x. 9 of 21 pairs imply a NEGATIVE ratio and 2 imply a postpaid subscriber worth LESS than a prepaid one \u2014 both impossible. Only 5 sit inside the 2.9x-7.2x band observed at the one Gulf operator that discloses both legs. An estimator that swings from -45x to 17x depending on which two quarters you pick is not identifying anything. THE SPLIT IS THEREFORE NOT BUILT: the build stays on the blended figure, which is the finest level du sources, and the gap is flagged rather than filled with an imported ratio. Note the arithmetic is also mix-preserving \u2014 at unchanged mix EVERY ratio in the peer band reproduces the same blended ARPU and the same audited revenue \u2014 so a split would add an unsourced driver and no information.",
+  "[Mix decomposition on the SECOND, more recent pair \u2014 Q4-2025 to Q2-2026] postpaid share 20.39% -> 22.12% (+1.73pp) would alone have lifted blended ARPU +2.46%; the company printed -2.91% over those two quarters. Implied per-leg erosion -5.24% over the half, -10.21% annualised \u2014 against -2.39% on the FY2025-average pair. BOTH ARE PUBLISHED AND NEITHER IS AVERAGED: the first pair spans a full year and is the like-for-like comparison; the second is the most recent observation and is the harsher read. The downside is priced on both.",
   "[What the flat blended ARPU is actually hiding \u2014 mix decomposition] at a 3.0x postpaid/prepaid ratio, the +1.83pp mix shift alone would have lifted blended ARPU +2.61%. The company printed +0.16%. So each leg's own ARPU eroded about -2.39% over the same span, and the flat headline is a COINCIDENCE of two offsetting forces, not stability. THE RISK THIS CREATES: the mix shift came from a one-off collapse in low-value visitor prepaid SIMs, and the subscriber path in this study assumes prepaid RECOVERS. A recovering prepaid base pushes the postpaid share back DOWN, which removes the tailwind and leaves the underlying leg erosion exposed. Priced below as the mix-exhaustion scenario, and carried into the caveats.",
   "[Direct-cost unit rates, from du's own filings] AED per subscriber per month unless shown as a rate. FY24: mobile interconnect 18.24 + commission 5.69 + devices 0.52 = 24.45; fixed capacity 79.71; wholesale 11.97%; ICT 79.25% | FY25: mobile interconnect 17.40 + commission 6.14 + devices 1.26 = 24.81; fixed capacity 73.14; wholesale 13.58%; ICT 80.61% | H125: mobile interconnect 17.54 + commission 6.12 + devices 1.40 = 25.06; fixed capacity 75.29; wholesale 13.94%; ICT 80.77% | H126: mobile interconnect 16.81 + commission 6.31 + devices 0.96 = 24.08; fixed capacity 68.35; wholesale 15.58%; ICT 78.48%",
   "[Like-for-like half-year direction] mobile interconnect 17.54 -> 16.81 (-4.1%); commission 6.12 -> 6.31 (+3.0%); fixed capacity 75.29 -> 68.35 (-9.2%). Only the first two carry a named mechanism and a drift; the rest are anchored on H1-2026 and held flat.",
@@ -3593,29 +3698,30 @@
   "[Is the FY2026E margin too rich? \u2014 TEST IT ON THE IMPLIED SECOND HALF] the build's FY26E 47.8% sits above the company's guided 46-47%, so the claim to defend is the implied H2-2026 margin of 46.5%. H1 improved +2.1pp y/y (47.1% -> 49.2%); the implied H2 improves only +1.3pp y/y (45.2% -> 46.5%). The forecast therefore assumes the y/y margin gain roughly HALVES in the second half. The guided range is a full-year figure the company set in July against a first half that had already printed 49.2%; hitting the 46.5% midpoint would require an H2 margin of 43.9%, i.e. a y/y DETERIORATION of -1.3pp against an H1 that improved. That is a possible outcome and it is priced in the sensitivity, but it is not the central case the filings support.",
   "[D&A roll-forward] FY26E 2,235 (2x reviewed H1-2026 actual = 2,266 \u2014 within 1.4%); PP&E 10,289 -> 12,432.",
   "[FCFF waterfall] 2,927 -> 3,131 -> 3,373 -> 3,687 -> 3,900",
-  "[Cost of equity] rf 4.48% (Jan-2031 AED T-bond) less UAE rating-basis default spread 0.04% = rf* 4.44%; + beta 0.488 x ERP 4.29% -> Ke 6.53%. ERP basis 2 (market-spread, implied-US base): 6.44%. RETIRED un-netted construction 6.57% (audit trail only).",
-  "[WACC explicit] weights: lease debt 3.6% / market equity 96.4% (market cap 51,494; du has no drawn borrowings) -> WACC 6.40% (basis 2: 6.31%). Interest shields both fiscal legs (the royalty base is profit AFTER interest), so the shield runs at the combined 43.6%.",
-  "[WACC terminal] Ke 6.35%; Kd after tax 2.77%; weights 95%/5% -> 6.17%",
-  "[Glide] forward WACC 6.40% -> 6.35% -> 6.29% -> 6.24% -> 6.17%; discount factors 0.9398, 0.8837, 0.8314, 0.7826, 0.7371",
+  "[Cost of equity] rf 4.48% (Jan-2031 AED T-bond) less UAE rating-basis default spread 0.04% = rf* 4.44%; + beta 0.557 x ERP 4.29% -> Ke 6.83%. ERP basis 2 (market-spread, implied-US base): 6.77%. RETIRED un-netted construction 6.87% (audit trail only).",
+  "[WACC explicit] weights: lease debt 3.6% / market equity 96.4% (market cap 51,584; du has no drawn borrowings) -> WACC 6.69% (basis 2: 6.63%). Interest shields both fiscal legs (the royalty base is profit AFTER interest), so the shield runs at the combined 43.6%.",
+  "[WACC terminal] Ke 6.65%; Kd after tax 2.77%; weights 95%/5% -> 6.45%",
+  "[Glide] forward WACC 6.69% -> 6.63% -> 6.57% -> 6.52% -> 6.45%; discount factors 0.9373, 0.8790, 0.8248, 0.7743, 0.7274",
   "[Profit path] EPS 0.71 -> 0.73 -> 0.77 -> 0.80 -> 0.84; DPS at 98% payout 0.70 -> 0.72 -> 0.75 -> 0.79 -> 0.82; net cash (before leases) 2,250 -> 2,158",
-  "[Terminal] life 16.70y derived; maintenance 3,047 against owned book charge 2,582; working-capital line -26 (a CREDIT \u2014 this company collects before it pays); terminal FCFF 3,358 = 86.7% of terminal profit; TV 82,050 against the retired 85,964 (-4.6%) at g 2.00% / WACC(term) 6.17%",
-  "[DCF] PV(explicit) 14,082 + PV(terminal) 60,481 (TV = 81% of EV) = EV 74,563; \u2212 leases 1,939 + cash & deposits 2,250 + investees 0.5 = equity 74,874 -> AED 16.52 at 31-Dec-2025; x accretion 1.0436 \u2212 final dividend 0.66 paid 28-Apr-2026 = AED 16.58 at the 07-Aug-2026 anchor",
-  "[Contested judgement \u2014 THE REQUIRED RETURN, both ways] Framing 1 (measured beta 0.488, Gordon terminal): AED 16.58, whose terminal implies an exit multiple of 8.64x EBITDA against du's OWN current 6.97x \u2014 i.e. a +24% re-rating. Framing 2 (no re-rating: du's current multiple held into perpetuity): AED 13.89. Gap +2.68/share. Published side by side; never averaged.",
-  "[Post-2029 fiscal tail \u2014 no longer the contested judgement, du disclosed the 2027-2029 extension itself on 24-Jul-2026] Current regime (43.6% take): AED 16.58. Framing B (reversion to the pre-2024 construction, effective take 51.1% -> 50.9%): AED 14.74. Gap +1.84/share (-11%). Published side by side; never averaged.",
-  "[rf tenor gap, BOTH ALTERNATIVES PRICED] base rf 4.48% (Jan-2031 AED T-Bond, 30-Jul-2026) -> AED 16.58. LONGER, LOWER: the Feb-2033 AED Islamic Treasury Sukuk second tap at 4.13% (23-Apr-2026) -> WACC 6.06% -> AED 18.77 (+2.19/share, +13.2%). LONGER, HIGHER: the 10y peg-extrapolated 4.69% -> WACC 6.60% -> AED 16.44 (-0.14/share). The base sits BETWEEN the two, which is the point: there is no liquid 10-year AED point, so the tenor choice is a real range and it is published as one.",
-  "[The critique's rf, PRICED before it is judged] the Feb-2033 sukuk's DEBUT print 3.779% (22-Feb-2026) -> WACC 5.73% -> AED 20.59 (+4.01/share, +24.2%) \u2014 so the finding is MATERIAL and had to be re-derived, not waved away. It is nonetheless REJECTED on the evidence: the issuer's own second tap of the SAME instrument cleared 4.13% two months later, and the Jan-2031 T-Bond moved 3.90% -> 3.85% -> 4.30% -> 4.48% across the same window. A debut print 5.5 months before the anchor is not the rate that prevailed at the anchor.",
-  "[DCF scenarios] bear 10.57 / base 16.58 / bull 27.67 AED per share",
-  "[Relative lens] trailing P/E 17.7x, trailing EV/EBITDA 7.0x (du's own, computed from audited figures). Justified P/E 12.9x (Mobily, the closest structural analogue, from its own filings \u2014 NO peer median is claimed: only 2 of 6 peers survive as clean observations) x FY26E EPS 0.71 -> AED 8.90 at the anchor [bear 12x 8.24 / bull 18.5x 13.05]. Dividend-yield cross: DPS 0.70 / peer benchmark 4.9% = AED 14.24. Peer EV/EBITDA was NOT reliably sourceable from public aggregators (flagged) \u2014 the relative lens runs on P/E and yield, both sourced.",
-  "[Normalised lens] mid-cycle margin 47.9% (FY2028E) on FY2026E revenue -> normalised EPS 0.71 x 12.9 = AED 8.92 at the anchor",
-  "[Book lens] justified P/B = (27% \u2212 2.0%) / (6.35% \u2212 2.0%) = 5.74x on BVPS 2.24 -> AED 12.76 at the anchor. A 27% sustainable ROE against a 6.4% cost of equity is what a licensed duopoly with negative working capital looks like; the multiple is high because the equity base is small, not because the claim is aggressive. Trailing ROE 29.0%.",
-  "[Synthesis] the cash-flow lens IS the central, AED 16.58; span 10.57 - 27.67; spot 11.36 (+46% to the central).",
-  "[Mix-exhaustion scenario, PRICED] if the postpaid mix tailwind exhausts and the blended ARPU path instead erodes at the per-leg rate the decomposition implies (-2.39%/yr), the DCF is AED 13.66 against the base 16.58 (-2.92/share, -17.6%). Grid across ARPU drift: -2.5% -> 13.53, -1.5% -> 14.72, +0.0% -> 16.58, +0.5% -> 17.22, +1.0% -> 17.86.",
-  "[CC7 PRICED \u2014 Expert 1's discounting horizon] as built AED 9.93 (net exponent -1.33 years). Horizon corrected to the anchor-consistent 2.40 years and nothing else: AED 9.89 (-0.04/share). But that version silently discards the dividends receivable between the anchor and FY2028, worth AED 1.64 in present value on a payout near 100%; adding them back gives AED 11.54 (+1.60/share vs as built, +9.7% of the central). VERDICT: the finding's PREMISE is correct and was under-priced by being left unpriced \u2014 the horizon really is a year short. Its CONCLUSION that the lens is overstated is wrong in sign once the omitted dividends are restored. Expert 1 is republished on the coherent construction.",
-  "[CC10 RESOLVED \u2014 the market-multiple family's weight] the finding said the weight scheme was a house judgement that moved the answer, and it was right. It was priced against the blend this study published at the time, AED 12.74: moving the freed 20% to the cash-flow lens gave AED 14.28 (+1.53/share) and to the book lens AED 13.51 (+0.77/share) \u2014 up to 1.53/share, not immaterial. VERDICT: RESOLVED, and not by re-tuning the weights. The scheme is gone: the cash-flow lens IS the central at AED 16.58 and the others are published beside it, so there is no weight left to re-set. The finding pointed at a free parameter nobody had tested and the answer was to remove it rather than to choose it better. The arithmetic above is kept as the record of what the retired construction did, and the blend itself is published unused.",
-  "[CC3 PRICED \u2014 revenue at the guidance midpoint] the build lands at +4.3% against du's guided 4-6%, so the midpoint +5.0% is +0.7pp above it, worth about AED 107mn of FY2026 revenue. Won on PRICE (blended ARPU 1.018x, no incremental unit cost or capex): AED 17.16 (+0.58/share). Won on VOLUME (+337k subscribers, carrying both unit cost and the capex it implies): AED 17.28 (+0.71/share). So the finding is worth AED +0.58 to +0.71 a share and is NOT immaterial.",
+  "[Terminal] life 16.70y derived; maintenance 3,047 against owned book charge 2,582; working-capital line -26 (a CREDIT \u2014 this company collects before it pays); terminal FCFF 3,358 = 86.7% of terminal profit; TV 76,879 against the retired 80,545 (-4.6%) at g 2.00% / WACC(term) 6.45%",
+  "[DCF] PV(explicit) 13,969 + PV(terminal) 55,920 (TV = 80% of EV) = EV 69,889; \u2212 leases 1,939 + cash & deposits 2,250 + investees 0.5 = equity 70,201 -> AED 15.49 at 31-Dec-2025; x accretion 1.0463 over 250 days \u2212 the 0.66 of dividends gone ex in between (0.40 final FY2025, ex 12-Mar-2026, paid 28-Apr-2026, PLUS 0.26 H1-2026 interim, ex 31-Jul-2026, paid 21-Aug-2026) = AED 15.54 at the 2026-09-07 anchor",
+  "[Contested judgement \u2014 THE REQUIRED RETURN, both ways] Framing 1 (measured beta 0.557, Gordon terminal): AED 15.54, whose terminal implies an exit multiple of 8.10x EBITDA against du's OWN current 6.99x \u2014 i.e. a +16% re-rating. Framing 2 (no re-rating: du's current multiple held into perpetuity): AED 13.78. Gap +1.77/share. Published side by side; never averaged.",
+  "[Post-2029 fiscal tail \u2014 no longer the contested judgement, du disclosed the 2027-2029 extension itself on 24-Jul-2026] Current regime (43.6% take): AED 15.54. Framing B (reversion to the pre-2024 construction, effective take 51.1% -> 50.9%): AED 13.20. Gap +2.35/share (-15%). Published side by side; never averaged.",
+  "[rf tenor gap, BOTH ALTERNATIVES PRICED] base rf 4.48% (Jan-2031 AED T-Bond, 30-Jul-2026) -> AED 15.54. LONGER, LOWER: the Feb-2033 AED Islamic Treasury Sukuk second tap at 4.13% (23-Apr-2026) -> WACC 6.35% -> AED 16.82 (+1.27/share, +8.2%). LONGER, HIGHER: the 10y peg-extrapolated 4.69% -> WACC 6.89% -> AED 14.87 (-0.68/share). The base sits BETWEEN the two, which is the point: there is no liquid 10-year AED point, so the tenor choice is a real range and it is published as one.",
+  "[The critique's rf, PRICED before it is judged] the Feb-2033 sukuk's DEBUT print 3.779% (22-Feb-2026) -> WACC 6.01% -> AED 18.32 (+2.78/share, +17.9%) \u2014 so the finding is MATERIAL and had to be re-derived, not waved away. It is nonetheless REJECTED on the evidence: the issuer's own second tap of the SAME instrument cleared 4.13% two months later, and the Jan-2031 T-Bond moved 3.90% -> 3.85% -> 4.30% -> 4.48% across the same window. A debut print 5.5 months before the anchor is not the rate that prevailed at the anchor.",
+  "[DCF scenarios] bear 9.60 / base 15.54 / bull 25.22 AED per share",
+  "[Relative lens] trailing P/E 17.8x, trailing EV/EBITDA 7.0x (du's own, computed from audited figures). Justified P/E 12.9x (Mobily, the closest structural analogue, from its own filings \u2014 NO peer median is claimed: only 2 of 6 peers survive as clean observations) x FY26E EPS 0.71 -> AED 8.93 at the anchor [bear 12x 8.26 / bull 18.5x 13.09]. Dividend-yield cross: DPS 0.70 / peer benchmark 4.9% = AED 14.24. Peer EV/EBITDA was NOT reliably sourceable from public aggregators (flagged) \u2014 the relative lens runs on P/E and yield, both sourced.",
+  "[Normalised lens] mid-cycle margin 47.9% (FY2028E) on FY2026E revenue -> normalised EPS 0.71 x 12.9 = AED 8.94 at the anchor",
+  "[Book lens] justified P/B = (27% \u2212 2.0%) / (6.65% \u2212 2.0%) = 5.38x on BVPS 2.24 -> AED 11.94 at the anchor. A 27% sustainable ROE against a 6.6% cost of equity is what a licensed duopoly with negative working capital looks like; the multiple is high because the equity base is small, not because the claim is aggressive. Trailing ROE 29.0%.",
+  "[Synthesis] the cash-flow lens IS the central, AED 15.54; span 9.60 - 25.22; spot 11.38 (+37% to the central).",
+  "[Mix-exhaustion scenario, PRICED] if the postpaid mix tailwind exhausts and the blended ARPU path instead erodes at the per-leg rate the decomposition implies (-2.39%/yr), the DCF is AED 12.83 against the base 15.54 (-2.72/share, -17.5%). Grid across ARPU drift: -2.5% -> 12.70, -1.5% -> 13.81, +0.0% -> 15.54, +0.5% -> 16.14, +1.0% -> 16.74.",
+  "[Sensitivity grids] all 10 return the headline AED 15.5438 exactly at their base parameter \u2014 the check the caption claims, now run rather than asserted",
+  "[CC7 PRICED \u2014 Expert 1's discounting horizon] as built AED 9.90 (net exponent -1.32 years). Horizon corrected to the anchor-consistent 2.32 years and nothing else: AED 9.88 (-0.02/share). But that version silently discards the dividends receivable between the anchor and FY2028, worth AED 1.64 in present value on a payout near 100%; adding them back gives AED 11.53 (+1.63/share vs as built, +10.5% of the central). VERDICT: the finding's PREMISE is correct and was under-priced by being left unpriced \u2014 the horizon really is a year short. Its CONCLUSION that the lens is overstated is wrong in sign once the omitted dividends are restored. Expert 1 is republished on the coherent construction.",
+  "[CC10 RESOLVED \u2014 the market-multiple family's weight] the finding said the weight scheme was a house judgement that moved the answer, and it was right. It was priced against the blend this study published at the time, AED 12.21: moving the freed 20% to the cash-flow lens gave AED 13.53 (+1.32/share) and to the book lens AED 12.81 (+0.60/share) \u2014 up to 1.32/share, not immaterial. VERDICT: RESOLVED, and not by re-tuning the weights. The scheme is gone: the cash-flow lens IS the central at AED 15.54 and the others are published beside it, so there is no weight left to re-set. The finding pointed at a free parameter nobody had tested and the answer was to remove it rather than to choose it better. The arithmetic above is kept as the record of what the retired construction did, and the blend itself is published unused.",
+  "[CC3 PRICED \u2014 revenue at the guidance midpoint] the build lands at +4.3% against du's guided 4-6%, so the midpoint +5.0% is +0.7pp above it, worth about AED 107mn of FY2026 revenue. Won on PRICE (blended ARPU 1.018x, no incremental unit cost or capex): AED 16.09 (+0.54/share). Won on VOLUME (+337k subscribers, carrying both unit cost and the capex it implies): AED 16.20 (+0.66/share). So the finding is worth AED +0.54 to +0.66 a share and is NOT immaterial.",
   "[Why volume looks better here \u2014 the comparison was mis-specified, and the fix] calibrating both cases on FY2026 growth does NOT hold revenue constant, because H1-2026 is a reviewed ACTUAL: a subscriber shift can only move the second half of FY2026, so matching FY2026 needs a shift large enough to then apply to the WHOLE of FY2027-FY2030. Five-year revenue comes out 91,049 on price against 91,862 on volume (+0.89%) \u2014 the volume case simply sells more over the window. That is a timing artefact of the calibration, not evidence about attribution.",
-  "[CC3, attribution isolated on matched five-year revenue] +190k subscribers delivers the same 91,049 of five-year revenue as the price case. On PRICE: AED 17.16. On VOLUME: AED 16.98 (-0.18/share, -1.1%). NOW the expected ordering holds: identical revenue is worth less when it has to be bought with per-subscriber cost and the capex to carry the traffic. VERDICT on the finding: material, published as a range. The build stays below the midpoint because it is driven by disclosed subscriber and ARPU paths rather than reverse-engineered to a guidance number \u2014 but the reader is entitled to see what the midpoint is worth and that HOW it is won matters as much as whether it is.",
-  "[Expert panel] Expert 1 11.54 [9.56-13.19]; Expert 2 16.36 [9.89-21.65]; Expert 3 16.84 [11.23-18.86]; panel median 16.36 (+44% vs spot)",
+  "[CC3, attribution isolated on matched five-year revenue] +190k subscribers delivers the same 91,049 of five-year revenue as the price case. On PRICE: AED 16.09. On VOLUME: AED 15.92 (-0.17/share, -1.1%). NOW the expected ordering holds: identical revenue is worth less when it has to be bought with per-subscriber cost and the capex to carry the traffic. VERDICT on the finding: material, published as a range. The build stays below the midpoint because it is driven by disclosed subscriber and ARPU paths rather than reverse-engineered to a guidance number \u2014 but the reader is entitled to see what the midpoint is worth and that HOW it is won matters as much as whether it is.",
+  "[Expert panel] Expert 1 11.53 [9.55-13.18]; Expert 2 15.32 [9.41-19.90]; Expert 3 15.76 [10.58-17.65]; panel median 15.32 (+35% vs spot)",
   "[EBITDA margin record] FY2022 40.32% \u00b7 FY2023 42.53% \u00b7 FY2024 44.21% \u00b7 FY2025 46.14% \u00b7 H1-2025 47.10% \u00b7 H1-2026 49.18% | highest H1-2026 at 49.18% | the full years rise monotonically"
  ]
 }

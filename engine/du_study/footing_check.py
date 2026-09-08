@@ -43,12 +43,13 @@ DECLARED = [
      "A DISCLOSED LINE ITEM in a markers table, printed after asset and liability lines "
      "that are not its components — the same shape as TMGH's marker block."),
     (_latest('DU_Valuation_Study_*_public.docx'), 12, "Blended ARPU (\u00d7)  "
-     "(0.92 / 0.96 / 1.00 / 1.04 / 1.08)", "A DRIVER NAME IN A SENSITIVITY GRID. The row "
+     "(0.92 / 0.96 / 1.00* / 1.04 / 1.08)", "A DRIVER NAME IN A SENSITIVITY GRID. The row "
      "carries the fair value at five settings of that driver; nothing in this table is a "
      "roll-up of anything, and the word 'blended' is in its ordinary sense — ARPU blended "
-     "across the mobile and fixed legs."),
+     "across the mobile and fixed legs. The asterisk marks the row's own base parameter, "
+     "which is not always the middle column."),
     (_latest('DU_Valuation_Study_*_public.docx'), 12, "Blended ARPU drift (%/yr)  "
-     "(-2.5% / -1.5% / +0.0% / +0.5% / +1.0%)", "A driver name in the same sensitivity "
+     "(-2.5% / -1.5% / +0.0%* / +0.5% / +1.0%)", "A driver name in the same sensitivity "
      "grid, as above."),
 ]
 

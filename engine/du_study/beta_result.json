@@ -1,32 +1,49 @@
 {
- "beta": 0.4879595874282318,
- "r2": 0.12046293890041448,
- "n": 256,
- "se": 0.08273082248993131,
+ "ticker": "DU",
+ "market": "AE",
+ "exchange": "DFM",
+ "beta": 0.5568988032727834,
+ "r2": 0.14116426339435617,
+ "se": 0.1490208120729619,
+ "n": 249,
  "ci90": [
-  0.3518673844322948,
-  0.6240517904241688
+  0.3117595674127611,
+  0.8020380391328057
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
- "window_years": 5,
+ "dimson": true,
  "frequency": "weekly",
- "index": "FTSE ADX General (user-supplied export, adopted per instruction as the UAE base market index; series to 24-Jul-2026)",
  "weak": false,
  "warnings": [],
+ "window_years": 4.81,
+ "first_obs": "2021-09-24",
+ "last_obs": "2026-07-17",
+ "blume_crosscheck": 0.7045992021818556,
+ "index_file": "raw_indices/AE/FADGI.csv",
+ "index_asof": "2026-07-24",
+ "index_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "stock_dq": [],
+ "week_rule": "W-FRI",
+ "interim_note": "INTERIM: DFM-listed name regressed against FTSE ADX General, by instruction 10-Aug-2026, because no DFM General series is held. Empirically the better-supported half of the substitution: over five years of weekly returns FADGI explains the six DFM names BETTER than it explains the ADX names it actually covers (median R2 0.240 vs 0.127; median beta 1.067 vs 1.037), and all six clear the R2>=5% usability gate.\n\nHELD OPEN BY INSTRUCTION, 23-Aug-2026. A DFM General series IS now held at raw_indices/AE/DFMGI.csv (2015-01-05 to 2026-07-16), so the 10-Aug clause's replacement condition ('replace with a DFM index when one is supplied') is met and has been explicitly DECLINED for now: the nine DFM names stay on FTSE ADX General. DFMGI is HELD BUT NOT REGISTERED -- do not map (\"AE\",\"DFM\") to it without a further instruction. The cost is measured, not nil: on the two names run both ways DFMGI has the higher explanatory power (AIRARABIA beta 0.812/R2 0.135 on FADGI vs 1.086/0.402 on DFMGI; EMPOWER 0.863/0.103 vs 0.652/0.157), moving beta by a quarter to a third in OPPOSITE directions -- so this is not a uniform bias a reader can correct for. Quote this note wherever the beta is quoted, and never call such a beta conforming.",
+ "conforming": false,
  "dfm_alt": {
-  "beta": 0.4715600357114492,
-  "r2": 0.20228373108313535,
-  "n": 259,
-  "se": 0.05841362753766983,
-  "note": "DFM General Index (DU's own listing venue) \u2014 the house own-local-index default, published as the alternative"
+  "beta": 0.46134301566480895,
+  "r2": 0.20077148104553333,
+  "se": 0.1011353685106689,
+  "n": 250,
+  "index_file": "raw_indices/AE/DFMGI.csv",
+  "index_asof": "2026-07-16",
+  "note": "DFM General Index, DU's own listing venue, from the REGISTERED series raw_indices/AE/DFMGI.csv. HELD BUT NOT REGISTERED as a regressor: wacc_builder.EXCHANGE_INDEX still maps (\"AE\",\"DFM\") to FTSE ADX General and a session may not re-point it on the reasoning that this file exists. Published as a labelled cross-check, never adopted."
  },
  "composite_alt": {
-  "beta": 0.3996691918562717,
-  "r2": 0.14151887359959447,
-  "n": 256,
-  "se": 0.06176493778254817,
-  "names": 18,
-  "note": "equal-weight AE library composite, house cross-check construction"
+  "beta": 0.43093667052347334,
+  "r2": 0.1278851765767347,
+  "se": 0.0700616448888226,
+  "n": 260,
+  "names": 27,
+  "note": "equal-weight AE library composite. A CONSTITUENT COMPOSITE IS NOT A REGRESSOR and is not a tier: it changes whenever a stock is posted, it mixes ADX with DFM inside one market code, and it shares constituents with the panel it prices. Shown only so its distance from the published index is visible."
  }
 }

@@ -1,96 +1,126 @@
-"""DU beta — own-stock weekly regression vs the FTSE ADX General Index, adopted
-per explicit user instruction (10-Aug-2026 session) as the base market index for
-the UAE. DU is DFM-listed, so the house own-local-index default would be the DFM
-General; the AE calibration panel itself spans ADX and DFM as one market, which
-is the economic basis for a UAE-wide index choice. BOTH constructions are run
-and published — ADX as primary (instructed), DFM General and the equal-weight
-AE-library composite as the disclosed alternatives — so the choice is priced,
-not hidden.
+"""DU beta — through the SANCTIONED house routine, never a study-local regression.
 
-Index sources: FTSE ADX General daily history (user-supplied export,
-2011-01-02..2026-07-24); DFM General from the official DFM API spliced with
-cross-validated Yahoo history (identical closes on all 307 overlapping
-sessions). Weekly sampling uses the LAST COMMON trading date per ISO week on an
-inner join of stock and index — never a calendar assumption.
+REWRITTEN 08-09-2026, critique response finding S1. What stood here until this edition was a
+study-local weekly regression: it read a reformatted copy of the FTSE ADX General series from
+INSIDE this directory (ADXGI_daily.csv), sampled its own weekly grid off ISO week numbers, and
+applied no Dimson lead-lag correction. It returned beta 0.488. SIGCM clause 6 and CLAUDE.md
+both say the same thing in the same words -- "NEVER hand-roll a study-local beta script" -- and
+this study was one of the scripts they were written about.
+
+Run through beta_regression.own_stock_beta(), which resolves the regressor itself from
+raw_indices/, runs Step 0.0 on both series, matches the weekly grid to the exchange's real
+trading week and Dimson-corrects for thin trading, the answer is 0.5569, not 0.488. That is
+worth -AED 1.05 per share, -6.3% of the central, and it moves the answer TOWARD the price.
+
+THE REGRESSOR IS THE REGISTERED INTERIM AND IT IS DISCLOSED AS ONE. DU lists on the DFM;
+wacc_builder maps ("AE","DFM") to FTSE ADX General as a labelled exception adopted 10-Aug-2026
+and held open 23-Aug-2026, on measured evidence that FADGI explains the DFM names better than
+the ADX names it actually covers. index_interim_note() carries that disclosure and ends "Quote
+this note wherever the beta is quoted, and never call such a beta conforming" -- so the record
+below carries the note verbatim and conforming=False, and every document that quotes the beta
+quotes the note with it.
+
+The DFM General cross-check runs against the REGISTERED raw_indices/AE/DFMGI.csv (2,307 rows),
+not the 1,099-row copy this directory used to carry, and it reuses beta_regression's OWN
+helpers rather than re-implementing them.
 """
 import sys, os, glob, json
+
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.join(HERE, '..'))
+ENGINE = os.path.join(HERE, '..')
+sys.path.insert(0, ENGINE)
+
 import numpy as np
 import pandas as pd
+
+import beta_regression as BR
+from beta_regression import own_stock_beta
 from primitives import load_ohlc
 from data_quality import clean_ohlc
 from wacc_builder import RegressionBetaAttempt
+from beta_regression import WEEK_END
 
-du, _ = clean_ohlc(load_ohlc(os.path.join(HERE, '..', 'raw_ohlc', 'AE', 'DU.csv')),
-                   'DU', verbose=False, market='AE')
-du = du.set_index('Date')['Price']
-cut = du.index.max() - pd.DateOffset(years=5)
+# ---------------------------------------------------------------------------
+# THE ADOPTED BETA — one call, no local arithmetic
+# ---------------------------------------------------------------------------
+rec = own_stock_beta('DU', 'AE', 'DFM', root=ENGINE)
 
-def reg(x, y):
-    n = len(x)
-    X = np.column_stack([np.ones(n), x])
-    b, *_ = np.linalg.lstsq(X, y, rcond=None)
-    yhat = X @ b
-    ss_res = float(((y - yhat) ** 2).sum()); ss_tot = float(((y - y.mean()) ** 2).sum())
-    r2 = 1 - ss_res / ss_tot
-    se_b = float(np.sqrt(ss_res / (n - 2) / ((x - x.mean()) ** 2).sum()))
-    return float(b[1]), r2, n, se_b
+# ---------------------------------------------------------------------------
+# CROSS-CHECKS, published beside it and never adopted. Both reuse the module's own
+# helpers; neither is a second implementation of the adopted number.
+# ---------------------------------------------------------------------------
+RULE = WEEK_END.get('AE', 'W-FRI')
 
-def weekly_beta(idx_csv):
-    idx = pd.read_csv(idx_csv, parse_dates=['Date']).set_index('Date')['Close']
-    both = pd.concat([du.rename('du'), idx.rename('idx')], axis=1, sort=True).dropna()
-    both = both[both.index >= cut]
-    wk = both.groupby([both.index.isocalendar().year, both.index.isocalendar().week]).tail(1)
-    r = np.log(wk / wk.shift(1)).dropna()
-    return reg(r['idx'].values, r['du'].values), both
 
-(beta, r2, n, se), both_adx = weekly_beta(os.path.join(HERE, 'ADXGI_daily.csv'))
-att = RegressionBetaAttempt(beta=beta, r_squared=r2, n_obs=n, se_beta=se, frequency='weekly')
-ok, msg = att.is_usable()
-ci = (beta - 1.645 * se, beta + 1.645 * se)
+def _against(index_csv, dimson=True):
+    s, _ = clean_ohlc(load_ohlc(os.path.join(ENGINE, 'raw_ohlc', 'AE', 'DU.csv')),
+                      'DU', verbose=False, market='AE')
+    i, _ = clean_ohlc(load_ohlc(index_csv), os.path.basename(index_csv)[:-4],
+                      verbose=False, market='AE')
+    s = s.set_index('Date').sort_index()['Price']
+    i = i.set_index('Date').sort_index()['Price']
+    cut = s.index.max() - pd.DateOffset(years=5)
+    al = pd.concat([BR._weekly_logret(s[s.index >= cut], RULE).rename('y'),
+                    BR._weekly_logret(i[i.index >= cut], RULE).rename('m')],
+                   axis=1, sort=True).dropna()
+    if dimson:
+        al = al.assign(lag=al['m'].shift(1), lead=al['m'].shift(-1)).dropna()
+        X = np.column_stack([np.ones(len(al)), al['lag'], al['m'], al['lead']])
+        b, r2, cov, _ = BR._ols(al['y'].values, X)
+        beta, se = float(b[1:4].sum()), float(np.sqrt(cov[1:4, 1:4].sum()))
+    else:
+        X = np.column_stack([np.ones(len(al)), al['m']])
+        b, r2, cov, _ = BR._ols(al['y'].values, X)
+        beta, se = float(b[1]), float(np.sqrt(cov[1, 1]))
+    return dict(beta=beta, r2=float(r2), se=se, n=len(al),
+                index_file=os.path.relpath(index_csv, ENGINE),
+                index_asof=str(i.index.max().date()))
 
-(beta_d, r2_d, n_d, se_d), _ = weekly_beta(os.path.join(HERE, 'DFMGI_daily.csv'))
 
-# ---- cross-check: equal-weight AE composite (house pattern) -----------------
+dfm = _against(os.path.join(ENGINE, 'raw_indices', 'AE', 'DFMGI.csv'))
+dfm['note'] = ('DFM General Index, DU\'s own listing venue, from the REGISTERED series '
+               'raw_indices/AE/DFMGI.csv. HELD BUT NOT REGISTERED as a regressor: '
+               'wacc_builder.EXCHANGE_INDEX still maps ("AE","DFM") to FTSE ADX General and a '
+               'session may not re-point it on the reasoning that this file exists. Published '
+               'as a labelled cross-check, never adopted.')
+
+# ---- equal-weight AE composite: a coverage artefact, shown so its distance is visible ----
 comp = {}
-for f in sorted(glob.glob(os.path.join(HERE, '..', 'raw_ohlc', 'AE', '*.csv'))):
+for f in sorted(glob.glob(os.path.join(ENGINE, 'raw_ohlc', 'AE', '*.csv'))):
     tkr = os.path.basename(f)[:-4]
     if tkr == 'DU':
         continue
     try:
         df, _ = clean_ohlc(load_ohlc(f), tkr, verbose=False, market='AE')
-        comp[tkr] = df.set_index('Date')['Price']
-    except Exception as e:
-        print('skip', tkr, e)
-R = pd.DataFrame({t: np.log(s / s.shift(1)) for t, s in comp.items()})
-R = R[R.index >= cut]
-mkt_d = R.mean(axis=1, skipna=True)
-wk = both_adx.groupby([both_adx.index.isocalendar().year,
-                       both_adx.index.isocalendar().week]).tail(1)
-wk_tag = pd.Series(list(zip(both_adx.index.isocalendar().year,
-                            both_adx.index.isocalendar().week)), index=both_adx.index)
-mkt_wk = mkt_d.reindex(both_adx.index).groupby(wk_tag).sum(min_count=1).dropna()
-du_wk = np.log(wk['du'] / wk['du'].shift(1)).dropna()
-du_wk.index = pd.Series(list(zip(du_wk.index.isocalendar().year,
-                                 du_wk.index.isocalendar().week)), index=du_wk.index).values
-al = pd.concat([pd.Series(du_wk, name='du'), pd.Series(mkt_wk, name='mkt')], axis=1).dropna()
-beta_c, r2_c, n_c, se_c = reg(al['mkt'].values.astype(float), al['du'].values.astype(float))
+        comp[tkr] = df.set_index('Date').sort_index()['Price']
+    except Exception as exc:                                    # pragma: no cover
+        print('skip', tkr, exc)
+_du, _ = clean_ohlc(load_ohlc(os.path.join(ENGINE, 'raw_ohlc', 'AE', 'DU.csv')),
+                    'DU', verbose=False, market='AE')
+_du = _du.set_index('Date').sort_index()['Price']
+_cut = _du.index.max() - pd.DateOffset(years=5)
+_R = pd.DataFrame({t: BR._weekly_logret(s[s.index >= _cut], RULE) for t, s in comp.items()})
+_mkt = _R.mean(axis=1, skipna=True).dropna()
+_al = pd.concat([BR._weekly_logret(_du[_du.index >= _cut], RULE).rename('y'),
+                 _mkt.rename('m')], axis=1, sort=True).dropna()
+_X = np.column_stack([np.ones(len(_al)), _al['m']])
+_b, _r2, _cov, _ = BR._ols(_al['y'].values, _X)
+composite = dict(beta=float(_b[1]), r2=float(_r2), se=float(np.sqrt(_cov[1, 1])),
+                 n=len(_al), names=len(comp),
+                 note='equal-weight AE library composite. A CONSTITUENT COMPOSITE IS NOT A '
+                      'REGRESSOR and is not a tier: it changes whenever a stock is posted, it '
+                      'mixes ADX with DFM inside one market code, and it shares constituents '
+                      'with the panel it prices. Shown only so its distance from the published '
+                      'index is visible.')
 
-out = dict(beta=beta, r2=r2, n=n, se=se, ci90=[float(ci[0]), float(ci[1])],
-           usable=bool(ok), gate_msg=msg, window_years=5, frequency='weekly',
-           index='FTSE ADX General (user-supplied export, adopted per instruction as the '
-                 'UAE base market index; series to 24-Jul-2026)',
-           weak=bool(r2 < 0.10 or (ci[1] - ci[0]) > 2 * abs(beta)),
-           warnings=att.interim_warnings(),
-           dfm_alt=dict(beta=beta_d, r2=r2_d, n=n_d, se=se_d,
-                        note='DFM General Index (DU\'s own listing venue) — the house '
-                             'own-local-index default, published as the alternative'),
-           composite_alt=dict(beta=beta_c, r2=r2_c, n=n_c, se=se_c,
-                              names=len(comp), note='equal-weight AE library composite, '
-                              'house cross-check construction'))
-json.dump(out, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1)
-print(f"ADX beta {beta:.3f} | R2 {r2:.3f} | n {n} | SE {se:.3f} | CI90 [{ci[0]:.2f},{ci[1]:.2f}]"
-      f" | usable={ok} ({msg}) | weak={out['weak']}")
-print(f"DFMGI alt beta {beta_d:.3f} | R2 {r2_d:.3f} | n {n_d} | SE {se_d:.3f}")
-print(f"composite alt beta {beta_c:.3f} | R2 {r2_c:.3f} | n {n_c} | SE {se_c:.3f}")
+rec['dfm_alt'] = dfm
+rec['composite_alt'] = composite
+json.dump(rec, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1)
+
+print(f"ADOPTED  beta {rec['beta']:.4f} | R2 {rec['r2']:.3f} | n {rec['n']} | SE {rec['se']:.3f}"
+      f" | CI90 [{rec['ci90'][0]:.2f},{rec['ci90'][1]:.2f}] | dimson={rec['dimson']}"
+      f" | usable={rec['usable']} | conforming={rec['conforming']}")
+print(f"         index {rec['index_file']} as of {rec['index_asof']}, week rule {rec['week_rule']}")
+print(f"CROSS    DFM General {dfm['beta']:.4f} (R2 {dfm['r2']:.3f}, n {dfm['n']}) "
+      f"| composite {composite['beta']:.4f} (n {composite['n']}, {composite['names']} names)")
+print("INTERIM NOTE CARRIED:", (rec['interim_note'] or '')[:80], '...')

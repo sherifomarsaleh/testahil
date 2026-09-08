@@ -33,7 +33,7 @@ def _scrub_attestation():
                        'scanned. Build them, run qc_checks.py, then re-run this module — '
                        'an unmeasured result is not a clean one.')
     r = json.load(open(f))
-    want = {'DU_Valuation_Study_09-08-2026_public.docx', 'DU_Bibliography_09-08-2026.docx'}
+    want = {'DU_Valuation_Study_08-09-2026_public.docx', 'DU_Bibliography_08-09-2026.docx'}
     missing = sorted(want - set(r.get('files', [])))
     if missing:
         return False, ('the scrub covers %s and not %s — a check that opens a superseded '
@@ -66,7 +66,7 @@ print('SIGCM: PASS —', 'no failures')
 
 msc = ModelStudyChecklist(
     structure_matches_model=True,       # 16-section Word + 16-sheet Excel, exact sheet names/order
-    bibliography_document=True,         # DU_Bibliography_09-08-2026: primary docs + full register +
+    bibliography_document=True,         # DU_Bibliography_08-09-2026: primary docs + full register +
                                         # judgements/overturn + negative results + discrepancy notes
     provenance_four_field=True,         # every INP record carries value/source/date/ring (validated below)
     numeric_traceability=True,          # builders read study_numbers.json only; see recalc.py

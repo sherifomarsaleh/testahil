@@ -1,4 +1,4 @@
-"""DU_Valuation_Model_09082026_public.xlsx — 16 sheets mirroring the house canonical
+"""DU_Valuation_Model_08092026_public.xlsx — 16 sheets mirroring the house canonical
 model (operating-company variant). Blue = inputs · black = formulas · green = cross-sheet
 links.
 
@@ -163,7 +163,7 @@ for i, ln in enumerate([
  'on the AED risk-free path (du has no debt whose cost could',
  'define the glide); the terminal value, a value dated at the end of year five, is discounted at the',
  'year-five factor. A mid-year convention would raise the answer and is not adopted.',
- 'One date, one price of time: the bridge is dated 31-Dec-2025 and rolled to the 07-Aug-2026 anchor at',
+ f'One date, one price of time: the bridge is dated 31-Dec-2025 and rolled to the {M["asof"]} anchor at',
  f"the cost of equity, net of the AED {IN['div_between']:.2f} of dividends whose EX-dates fall in that",
  'window (the 0.40 final, paid 28-Apr-2026, and the 0.26 interim, ex 31-Jul-2026).', '',
  f"Currency. AED million unless stated. Spot AED {SPOT:.2f} ({M['asof']} close). Sheets: READ FIRST · Summary ·",
@@ -381,6 +381,10 @@ hdr(ws, 3, ['Input', YF[0], YF[1], YF[2], YF[3], YF[4]])
 block('Anchors', [
     ('spot', 'Spot price (AED)', SPOT, PX),
     ('shares', 'Shares outstanding (mn)', SH, NUM0),
+    ('fiscal_floor', 'AED 1.8bn combined annual royalty-and-tax FLOOR — Cabinet decision '
+     '8/38 of 2023 and expressly retained in the 2027-2029 extension du disclosed on '
+     '24-Jul-2026. MODELLED from 08-09-2026: it does not bind in the base case and the '
+     'model now says so rather than assuming it (AED mn)', IN['fiscal_floor'], NUM0),
     ('tax_eff', 'Combined federal royalty + income tax rate (Framing A, audited FY2025)',
      IN['tax_eff'], PCT),
     ('reg_share', 'Regulated revenue share (Framing B base, audited FY2023)', IN['reg_share'], PCT),
@@ -465,14 +469,24 @@ block('Capital intensity and working capital', [
      IN['dep_rate_ppe'], PCT),
     ('amort_rate', 'Intangibles amortisation rate on opening balance (audited FY2025)',
      IN['amort_rate'], PCT),
-    ('rou_dep', 'Right-of-use depreciation, matched by non-cash lease additions (AED mn)',
+    ('rou_dep', 'Lease replacement charged inside the explicit window (AED mn) — ZERO by '
+     'construction: the lease liability is deducted in FULL as debt in the bridge, so '
+     'charging renewal here as well would bill the same obligation twice. The renewal is '
+     'paid for in the terminal instead. This row carried the retired replacement path '
+     '(355 / 350 / 345 / 340 / 335) until 08-09-2026, live in the delivered workbook, while '
+     'the study document printed zeros for the same row',
      IN['rou_dep_path'], NUM0),
     ('nwc_pct', 'Net working capital / revenue (audited FY2025 component days)', NWC_PCT, PCT)])
 block('Cost of capital', [
     ('rf', 'Risk-free rate — Jan-2031 AED T-bond (longest liquid AED tenor)', IN['rf'], PCT),
-    ('sov', 'UAE sovereign default spread (netted out; Aa2 rating basis)',
+    ('sov', 'UAE sovereign default spread (netted out; MARKET-observed basis, +4bp over UST '
+     'on this very bond — the RATINGS-table basis is 42bp and is the published alternative, '
+     'not this cell; the label said "Aa2 rating basis" until 08-09-2026)',
      IN['sov_spread_market_observed'], PCT),
-    ('erp', 'Equity risk premium (UAE total, rating basis)', IN['erp_market_basis'], PCT),
+    ('erp', 'Equity risk premium (UAE total, MARKET basis — mature 4.23% plus a country '
+     'premium scaled off the SAME 4bp that was stripped above; the ratings basis is 4.87% '
+     'and is the published alternative. The label said "rating basis" until 08-09-2026)',
+     IN['erp_market_basis'], PCT),
     ('beta', 'Beta (DU weekly vs FTSE ADX General, 5y)', IN['beta'], '0.000'),
     ('kd', 'Marginal cost of debt (AED sovereign + GCC telecom spread)', IN['kd'], PCT),
     ('rf_path', 'AED risk-free path (defines the glide)', IN['rf_path'], PCT),
@@ -500,10 +514,19 @@ block('Balance-sheet and bridge anchors', [
     ('lease_rate', 'Lease interest rate (audited FY2025 effective)', F['lease_rate'], PCT),
     ('div_between', 'Dividends gone ex between 31-Dec-2025 and the anchor (AED/share)',
      IN['div_between'], PX),
-    ('anchor_days', 'Days from the 31-Dec-2025 valuation date to the 07-Aug-2026 anchor',
-     IN['anchor_days'], NUM0)])
+    ('anchor_days', 'Days from the 31-Dec-2025 valuation date to the '
+     + str(M['asof']) + ' price anchor', IN['anchor_days'], NUM0),
+    ('inc_cap', 'Incremental capital per unit of real terminal growth (AED mn) — DERIVED '
+     'from the forecast\'s own invested-capital and revenue paths: (IC(FY30E) − IC(FY26E)) '
+     '/ (revenue(FY30E) − revenue(FY26E)) x revenue(FY30E). It is what a unit of real '
+     'growth would cost, and the terminal charges for it. This figure was a LITERAL inside '
+     'the terminal formula until 08-09-2026, so the workbook stopped repricing off-base',
+     TRI['incremental_capital_per_unit_growth'], NUM0)])
 block('Lens inputs', [
-    ('pe_just', 'Justified price/earnings (GCC telecom peer median)', IN['pe_just'], MULT),
+    ('pe_just', 'Justified price/earnings — Mobily\'s own, re-derived from its issuer '
+     'filings. NOT A PEER MEDIAN and this study claims none: only two of six peers survive '
+     'as clean observations. The label read "GCC telecom peer median" until 08-09-2026',
+     IN['pe_just'], MULT),
     ('yield_peer', 'Peer benchmark dividend yield', IN['div_yield_peer'], PCT),
     ('roe_sust', 'Sustainable return on equity', IN['roe_sust'], PCT)])
 # The four lens-weight rows that stood here went with the blend. They are REMOVED rather
@@ -805,10 +828,12 @@ title(ws, 'Relative multiples and normalised earnings power', None, 6, awidth=52
 hdr(ws, 4, ['Relative lens', 'Value'])
 rel_rows = [
     ('FY2026E earnings per share (AED)', "='Income Statement'!E19", F['eps'][0], PX),
-    ('Justified price / earnings (GCC peer median)', f'={a("pe_just")}', IN['pe_just'], MULT),
+    ('Justified price / earnings (Mobily\'s own, from its issuer filings — no peer median '
+     'is claimed)', f'={a("pe_just")}', IN['pe_just'], MULT),
     ('Implied value at 31-Dec-2025 (AED)', '=C5*C6', IN['pe_just'] * F['eps'][0], PX),
     ('Anchor accretion factor', '=DCF!C62', DCF['roll'], DF4),
-    ('Less final FY2025 dividend paid 28-Apr-2026 (AED)', f'={a("div_between")}',
+    ('Less dividends gone ex between the valuation date and the anchor (0.40 final + '
+     '0.26 interim, AED)', f'={a("div_between")}',
      IN['div_between'], PX),
     ('', None, None, None),
     ('Implied value per share at the anchor (AED)', '=C7*C8-C9', LN['relative']['base'], PX)]
@@ -908,8 +933,9 @@ wf(7, 'EBITDA margin', lambda i: f'={CD[i]}6/{CD[i]}5', F['ebitda_margin'], PCT)
 wf(8, 'Less depreciation and amortisation', lambda i: f"='Income Statement'!{FCOL[i]}11",
    [-x for x in F['dna']], green=True)
 wf(9, 'EBIT', lambda i: f'={CD[i]}6+{CD[i]}8', F['ebit'], bd=True)
-wf(10, f"NOPAT — EBIT x (1 - {TAX:.1%} combined royalty and tax)",
-   lambda i: f'={CD[i]}9*(1-{a("tax_eff")})', F['nopat'])
+wf(10, f"NOPAT — EBIT less the combined royalty and tax charge at {TAX:.1%}, FLOORED at "
+       f"the disclosed AED {IN['fiscal_floor']:,.0f}mn (it does not bind in the base case)",
+   lambda i: f'={CD[i]}9-MAX({CD[i]}9*{a("tax_eff")},{a("fiscal_floor")})', F['nopat'])
 wf(11, 'Add back depreciation and amortisation', lambda i: f'=-{CD[i]}8', F['dna'])
 wf(12, 'Less capital expenditure', lambda i: f'=-{CD[i]}5*{a("capex_pct", i)}',
    [-x for x in F['capex']])
@@ -971,7 +997,8 @@ coc = [
     ('Risk-free rate net of the sovereign spread', '=C35-C36', W['rf_star'], PCT2),
     ('Beta (DU weekly vs the FTSE ADX General, 5 years)', f'={a("beta")}',
      IN['beta'], '0.000'),
-    ('Equity risk premium (UAE total, rating basis)', f'={a("erp")}', IN['erp_market_basis'], PCT2),
+    ('Equity risk premium (UAE total, MARKET basis)', f'={a("erp")}',
+     IN['erp_market_basis'], PCT2),
     ('Cost of equity, explicit window', '=C37+C38*C39', W['ke_exp'], PCT2),
     ('Marginal cost of debt (AED sovereign + GCC telecom spread)', f'={a("kd")}', IN['kd'],
      PCT2),
@@ -1011,7 +1038,7 @@ put(ws, 'A59', 'Note: row 16 above is the explicit-window cost of capital walked
 put(ws, 'A61', 'THE ANCHOR ROLL — one date, one price of time', bold=True, fmt=None)
 put(ws, 'A62', 'Anchor accretion factor — (1 + cost of equity)^(days to anchor / 365)', fmt=None)
 putf(ws, 'C62', f'=(1+C40)^({a("anchor_days")}/365)', DCF['roll'], DF4)
-put(ws, 'A63', 'Fair value per share at the 07-Aug-2026 anchor (AED)', fmt=None)
+put(ws, 'A63', f'Fair value per share at the {M["asof"]} anchor (AED)', fmt=None)
 putf(ws, 'C63', f'=C32*C62-{a("div_between")}', DCF['ps'], PX, bold=True)
 band(ws, 63, 4)
 put(ws, 'A66', 'THE TERMINAL, LINE BY LINE — capital maintained at replacement cost over '
@@ -1027,16 +1054,18 @@ _tw = [('Terminal inflation — UAE house macro path', f'={a("pit")}', TRI['infl
        ('Weighted asset life, derived from notes 6 and 8 (years)', f'={a("life")}',
         IN['asset_life_years'], NUM1),
        ('Terminal operating profit after tax (from row 21)', '=C21', TRI['nopat'], NUM0),
-       ('Plus owned depreciation and amortisation — the right-of-use '
-        'charge is neither added back nor charged, which is a lease renewed at its own '
-        'current cost', f'={TRI["dna_book"]:.6f}',
-        TRI['dna_book'], NUM0),
+       ('Plus depreciation and amortisation — THE FULL FY2030E charge, property, '
+        'intangibles and right-of-use alike, because terminal profit is already struck '
+        'after all of it and the lease renews in perpetuity like any other asset. This '
+        'cell was a PASTED CONSTANT until 08-09-2026, and its label said the right-of-use '
+        'charge was neither added back nor charged, which is the reverse of what the '
+        'model does', '=-F8', TRI['dna_book'], NUM0),
        ('Less capital maintenance at replacement cost — that charge escalated over half '
         'the derived life', '=-C74*(1+C70)^(C72/2)', -TRO['maintenance'], NUM0),
        ('Less capital for real growth, and less inflation on working capital (a CREDIT '
-        'here: this company collects before it pays)',
-        f'=-C71*{TRI["incremental_capital_per_unit_growth"]:.6f}'
-        f'-C70*{TRI["working_capital"]:.6f}',
+        'here: this company collects before it pays). BOTH constants inside this formula '
+        'were pasted until 08-09-2026; both are links now',
+        f'=-C71*{a("inc_cap")}-C70*(F5*{a("nwc_pct")})',
         -TRO['growth_capex'] - TRO['wc_charge'], NUM0),
        ('Terminal free cash flow', '=SUM(C73:C76)', TRO['fcff'], NUM0)]
 _r = 70
@@ -1051,9 +1080,11 @@ putf(ws, 'C78', '=C21/C25', TRO['floor'], NUM0)
 
 put(ws, 'A64', 'The bridge on row 32 is dated 31-Dec-2025 (the audited balance-sheet date it '
     'nets leases and cash at). Row 63 rolls it to the anchor at the cost of equity, net of the '
-    'AED 0.40 final FY2025 dividend paid 28-Apr-2026. Every lens on every sheet is rolled the '
-    'same way. The H1-2026 interim dividend of AED 0.26 (declared 23-Jul-2026, unpaid at the '
-    'anchor) stays in the share.', fmt=None).font = SUB
+    'AED 0.66 of dividends whose EX-DATE falls in between — TWO dividends, not one: the AED '
+    '0.40 final FY2025 (ex 12-Mar-2026, paid 28-Apr-2026) and the AED 0.26 H1-2026 interim '
+    '(ex 31-Jul-2026, paid 21-Aug-2026). Every lens on every sheet is rolled the same way. '
+    'This note said the interim "stays in the share" until 08-09-2026, beside a cell that '
+    'had netted it since 17 August.', fmt=None).font = SUB
 
 # ============ 9 INCOME STATEMENT =================================================
 ws = sheet('Income Statement')
@@ -1587,7 +1618,7 @@ _ws = wb['Summary']
 putf(_ws, f'C{SUMMARY_ALT_ROW}', f"='Fundamental Valuation'!{ANCH['fv_framing2']}",
      DCF['ps_mkt_term'], PX, green=True)
 
-out = os.path.join(HERE, 'DU_Valuation_Model_09082026_public.xlsx')
+out = os.path.join(HERE, 'DU_Valuation_Model_08092026_public.xlsx')
 wb.save(out)
 json.dump({'expected': EXPECT, 'anchors': ANCH},
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)

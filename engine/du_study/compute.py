@@ -79,22 +79,38 @@ _X125, _X126, _D_FIXED = _lfl(2140.263 - 1826.774, 2382.608 - 2079.325, _F125, _
 
 INP = dict(
     # ---- anchors --------------------------------------------------------
-    spot=I(11.36, "DFM close for DU, 3 September 2026, from the price file the principal "
-           "supplied that day and committed to the repository. THE STUDY IS RE-STRUCK ON "
-           "IT because no study is delivered against a stale price: the prior edition "
-           "stood on the 7-August close of 12.30, and the stock has since fallen 7.6%, "
-           "which widens rather than closes this study's disagreement with the market",
-           "2026-09-03",
+    spot=I(11.38, "DFM close for DU on 7 September 2026 — THE LATEST SESSION IN THIS NAME'S "
+           "OWN DAILY PRICE HISTORY, which is also the close the "
+           "07-Sep-2026 roll-forward struck this name's price cone on. RE-STRUCK 08-09-2026, "
+           "critique response findings F1/F30/S10/S11. The prior edition published AED 11.36 "
+           "and dated it three different ways in three artefacts — 7 August on the masthead, "
+           "3 September in the register — and it is NEITHER: 11.36 is the 31 AUGUST close. It "
+           "came in on a supplied price list dated 3 September, which records it as the "
+           "3-September close; the daily history says the 3-September close was 11.12. A supplied "
+           "price is a hand-off, not a source, and this one was never put against the library "
+           "the way another figure on the same list was on 6 September. The correction is recorded "
+           "beside that list rather than the value silently replaced",
+           "2026-09-07",
            "Market"),
     shares_mn=I(4532.905989, "Share capital note 27, audited FY2025 consolidated FS: "
                 "4,532,905,989 shares of AED 1 each, authorised, issued and fully paid, "
                 "unchanged across FY2023-FY2025 and both 2026 interims", "2026-02-09", "Company"),
-    anchor_days=I(246.0, "31-Dec-2025 valuation date to the 3-Sep-2026 price anchor "
-                  "(246 days), twenty-seven days longer than the prior edition's because "
-                  "the anchor moved with the price it is compared against", "2026-09-03",
+    anchor_days=I(250.0, "Calendar days from the 31-Dec-2025 valuation date to the 07-Sep-2026 "
+                  "price anchor: 31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 7 = 250. "
+                  "CORRECTED 08-09-2026, critique response finding F2/S7: the prior edition "
+                  "computed 246 (a 3-September anchor) while the document printed the exponent "
+                  "as 219 (a 7-August anchor) and the workbook cell that held 246 was LABELLED "
+                  "'days to the 07-Aug-2026 anchor'. Three day counts for one construction, and "
+                  "the price in use belonged to a fourth date. One anchor date now, stated once, "
+                  "and every artefact reads this cell", "2026-09-07",
                   "House"),
     div_between=I(0.66, "Dividends whose EX-DATE falls between the 31-Dec-2025 valuation date and "
-                  "the 07-Aug-2026 anchor, and which are therefore no longer in the share price: "
+                  "the 07-Sep-2026 anchor, and which are therefore no longer in the share price. "
+                  "IT IS NOT ONE DIVIDEND AND THE LABEL SAID IT WAS (critique finding F9, corrected "
+                  "08-09-2026): AED 0.66 is the AED 0.40 FINAL FY2025 dividend PLUS the AED 0.26 "
+                  "H1-2026 INTERIM, and three artefacts called the whole sum 'the final dividend'. "
+                  "No further dividend went ex between the prior 7-Aug anchor and this one, so "
+                  "moving the anchor does not change the amount: "
                   "the final FY2025 AED 0.40 (AGM 30-Mar-2026, paid 28-Apr-2026) PLUS the H1-2026 "
                   "interim AED 0.26 — Board-approved 22-Jul-2026, EX-DATE 31-JULY-2026, record "
                   "03-Aug-2026, paid 21-Aug-2026, per du's own dividend disclosure to DFM (Ref "
@@ -179,6 +195,42 @@ INP = dict(
               "44.7%). Regime: Cabinet decision 8/38 of 2023 — 38% federal royalty on total UAE "
               "regulated and non-regulated profits + 9% corporate income tax, combined floor "
               "AED 1.8bn/yr, legislated for 2024-2026", "2026-02-09", "Company"),
+    inflation_terminal=I(0.0200, "UAE LONG-RUN INFLATION, 2.00% — the terminal rate, and the "
+                        "escalator behind the staff, administration and other-operating-cost "
+                        "lines and the terminal replacement charge. REGISTERED 08-09-2026, "
+                        "critique finding F15: it reached this model through the house macro "
+                        "path for the United Arab Emirates and appeared in NO layer of the "
+                        "register, while the register's own READ FIRST says 'nothing in the "
+                        "study is computed from a figure that does not appear here'. It is the "
+                        "input that sets terminal growth, escalates the terminal replacement "
+                        "charge and drives three operating-cost escalators, and on this study's "
+                        "own grid it is worth AED 1.5-1.7 a share at plus or minus 50 basis "
+                        "points. A STUDY MAY NOT CARRY AN INFLATION NUMBER OF ITS OWN: this "
+                        "record does not set the figure, it DISCLOSES the house path the model "
+                        "reads, and the company's own audited goodwill impairment test (note 9) "
+                        "uses the same 2% terminal growth rate, 'determined based on "
+                        "management's estimate of the long-term cash flow growth rate'",
+                        "2026-09-08", "Country"),
+    royalty_fy24_original=I(1675.9, "FY2024 federal royalty as ORIGINALLY presented in the "
+                            "FY2024 audited statements (it included prior-period "
+                            "adjustments), against the 1,571.649 IFRS 18 re-presented "
+                            "comparative on the face of the FY2025 statements which this "
+                            "model carries. REGISTERED 08-09-2026: the bibliography's "
+                            "source-discrepancy note quoted an effective rate of 44.7% on "
+                            "this basis and the figure was TYPED, because the model held no "
+                            "input it could be computed from. A figure that is real and that "
+                            "the model cannot produce means the model is what is missing",
+                            "2025-02-10", "Company"),
+    fiscal_floor=I(1800.0, "AED 1.8 BILLION COMBINED ANNUAL FLOOR on the federal royalty plus "
+                   "corporate income tax — Cabinet decision 8/38 of 2023 for 2024-2026, and "
+                   "EXPRESSLY RETAINED in the Ministry of Finance extension for 2027-2029 that du "
+                   "disclosed itself on 24-Jul-2026 ('Extension of Federal Royalty Scheme for the "
+                   "Period 2027-2029'). REGISTERED AND MODELLED 08-09-2026, critique finding F28: "
+                   "the prior edition named this floor in the headline block, in section 1.7 and in "
+                   "this register as the key feature of the extension, and applied a flat 43.57% "
+                   "rate in every year and every scenario without it. It does not bind in the base "
+                   "case and the model now SAYS so rather than assuming it, and it does bind in a "
+                   "deep bear and under Framing B", "2026-07-24", "Company"),
     reg_share=I(0.690, "Regulated revenue share under the PRE-2024 regime, audited FY2023 Note 27: "
                 "total regulated revenue 9,410.136 / total revenue 13,636.340 = 69.0% — the "
                 "revenue base for Framing B of the contested judgement", "2024-02-13", "Company"),
@@ -658,7 +710,7 @@ INP = dict(
     rf=I(4.14, "PLACEHOLDER — DO NOT SHIP", "1900-01-01", "SENTINEL"),
 
     # ---- lens inputs -------------------------------------------------------
-    e1_horizon_years=I(2.4027, "Years from the 07-Aug-2026 anchor to 31-Dec-2028, the date "
+    e1_horizon_years=I(2.3178, "Years from the 07-Sep-2026 anchor to 31-Dec-2028, the date "
                        "Expert 1's FY2028 earnings multiple values: 877 calendar days / 365. "
                        "REGISTERED 17-Aug-2026 after an external critique showed the lens was "
                        "discounting over a NET 1.40 years, a full year short of anchor "
@@ -764,6 +816,45 @@ for k, rec in _wr.items():
     INP[k] = rec
 assert INP['rf']['ring'] != 'SENTINEL', 'WACC register did not overwrite the sentinel rf'
 
+# ---- THE BETA IS READ FROM THE REGRESSION, NOT FROM A TYPED REGISTER ENTRY ------
+# CORRECTED 08-09-2026, critique response finding S1. The beta reached this model as a
+# typed value inside wacc_register.json, so the number the valuation used and the number
+# the regression produced were two different facts that nobody compared. They had drifted:
+# the register carried 0.488 from a study-local script this repository forbids, while the
+# sanctioned routine returns 0.5569. Reading the record itself closes the class -- the
+# model can no longer run on a beta the regression did not produce, and it cannot run at
+# all if beta_reg.py has not been run.
+with open(os.path.join(HERE, 'beta_result.json')) as f:
+    _BETA = json.load(f)
+assert _BETA.get('index_file', '').startswith('raw_indices/'), (
+    'the beta record does not name a registered index file: %r' % _BETA.get('index_file'))
+assert _BETA['usable'], _BETA['gate_msg']
+INP['beta'] = I(_BETA['beta'],
+                "OWN-STOCK TIER-1 REGRESSION through beta_regression.own_stock_beta('DU','AE',"
+                "'DFM') -- the only sanctioned route; a study-local regression script is a hard "
+                "fail (SIGCM clause 6). Weekly log-returns on the exchange's own realised "
+                "trading week (%s), %s years to %s, Dimson lead-lag corrected for thin trading: "
+                "beta %.4f, R2 %.3f, n %d, SE %.3f, CI90 [%.2f, %.2f] -- passes the usability "
+                "gate (n>=24, R2>=5%%, SE<|beta|). Regressor: the FTSE ADX General Index, "
+                "the published index series as of %s. "
+                "THE REGRESSOR IS A REGISTERED INTERIM AND THIS BETA IS THEREFORE NOT "
+                "CONFORMING: %s "
+                "Cross-checks, published and never adopted: DFM General (du's own listing "
+                "venue, from the registered series) %.4f (R2 %.3f, n %d); equal-weight AE "
+                "library composite %.4f (n %d, %d names), which is a coverage artefact and not "
+                "a regressor. SUPERSEDES 0.488, which came from a study-local script reading a "
+                "copy of the index held inside this study directory, sampling its own weekly "
+                "grid and applying no Dimson correction."
+                % (_BETA['week_rule'], _BETA['window_years'], _BETA['last_obs'],
+                   _BETA['beta'], _BETA['r2'], _BETA['n'], _BETA['se'],
+                   _BETA['ci90'][0], _BETA['ci90'][1],
+                   _BETA['index_asof'],
+                   (_BETA['interim_note'] or '').replace('\n\n', ' '),
+                   _BETA['dfm_alt']['beta'], _BETA['dfm_alt']['r2'], _BETA['dfm_alt']['n'],
+                   _BETA['composite_alt']['beta'], _BETA['composite_alt']['n'],
+                   _BETA['composite_alt']['names']),
+                _BETA['index_asof'], "Market")
+
 # ---- audit-response override hook (pricing harness only; unset in the delivered build) ----
 # Lets a finding be PRICED on the real chain rather than on a re-implementation.
 #
@@ -801,6 +892,12 @@ import macro_path as MP                                                    # noq
 import terminal_value as TERMVAL                                           # noqa: E402
 _AE = MP.load('AE')
 PI_TERM = (_AE.raw['inflation']['terminal'] or {})['value']
+# THE REGISTERED FIGURE AND THE ONE THE MODEL USES ARE THE SAME FIGURE, OR THE BUILD STOPS.
+# [critique finding F15] A register entry that merely describes an input is a description;
+# one the model is held to is a record.
+assert abs(V['inflation_terminal'] - PI_TERM) < 1e-12, (
+    'the registered UAE terminal inflation (%r) is not the one the house macro path supplies '
+    '(%r)' % (V['inflation_terminal'], PI_TERM))
 V['g_term'] = (1.0 + PI_TERM) * (1.0 + V['g_term_real']) - 1.0
 INP['g_term_derived'] = I(V['g_term'], "DERIVED, never typed: (1 + terminal inflation "
                           "%.4f from the house UAE macro path) x (1 + stated real growth "
@@ -1006,6 +1103,31 @@ _b0 = (1 - _m_fy25) + _r * _m_fy25
 _b1 = (1 - _m_q226) + _r * _m_q226
 mix_lift = _b1 / _b0 - 1
 leg_erosion = _rel / (_b1 / _b0) - 1
+# ---- THE SAME DECOMPOSITION ON THE MOST RECENT MATCHED PAIR ----------------------
+# [critique finding F13, added 08-09-2026]. The pair above is FY2025-average to Q2-2026 on
+# BOTH legs and is internally matched -- the critique said it was not, and it was wrong about
+# that. What it was right about is the consequence: a decomposition run on the company's most
+# recent PEAK-to-latest pair, which this study's own register already prints in words ("the
+# last three prints run 65.3 -> 63.4 -> 63.4, i.e. DOWN 2.9% from the recent peak"), implies
+# a far steeper per-leg erosion than the one the priced downside is calibrated on. Two
+# defensible pairs, two answers, and the study published the gentler without showing the
+# other. Both are now published and the downside is priced on BOTH.
+_m_q425 = _pp['Q4_2025']
+_a_q425 = V['arpu_mobile_q']['Q4_2025']
+_rel_pk = _a_q226 / _a_q425
+_b0_pk = (1 - _m_q425) + _r * _m_q425
+_b1_pk = (1 - _m_q226) + _r * _m_q226
+mix_lift_pk = _b1_pk / _b0_pk - 1
+_leg_pk_2q = _rel_pk / (_b1_pk / _b0_pk) - 1          # over TWO quarters
+leg_erosion_peak = (1.0 + _leg_pk_2q) ** 2 - 1.0      # annualised
+say(f"[Mix decomposition on the SECOND, more recent pair — Q4-2025 to Q2-2026] postpaid share "
+    f"{_m_q425:.2%} -> {_m_q226:.2%} ({(_m_q226-_m_q425)*100:+.2f}pp) would alone have lifted "
+    f"blended ARPU {mix_lift_pk:+.2%}; the company printed {_rel_pk-1:+.2%} over those two "
+    f"quarters. Implied per-leg erosion {_leg_pk_2q:+.2%} over the half, "
+    f"{leg_erosion_peak:+.2%} annualised — against {leg_erosion:+.2%} on the FY2025-average "
+    f"pair. BOTH ARE PUBLISHED AND NEITHER IS AVERAGED: the first pair spans a full year and "
+    f"is the like-for-like comparison; the second is the most recent observation and is the "
+    f"harsher read. The downside is priced on both.")
 say(f"[What the flat blended ARPU is actually hiding — mix decomposition] at a {_r:.1f}x "
     f"postpaid/prepaid ratio, the {(_m_q226-_m_fy25)*100:+.2f}pp mix shift alone would have "
     f"lifted blended ARPU {mix_lift:+.2%}. The company printed {_rel-1:+.2%}. So each leg's own "
@@ -1311,7 +1433,23 @@ say(f"[D&A roll-forward] FY26E {dna[0]:,.0f} (2x reviewed H1-2026 actual = "
 assert abs(dna[0] / (2 * V['h1_26_dna']) - 1) < 0.05
 
 ebit = [ebitda[i] - dna[i] for i in range(5)]
-nopat = [e * (1 - TAX) for e in ebit]
+# THE AED 1.8bn COMBINED FLOOR IS MODELLED, NOT ONLY NAMED [critique finding F28, added
+# 08-09-2026]. The ministry's 2027-2029 extension retains a floor on du's combined annual
+# royalty-and-tax charge, and this study named it in the headline block, in section 1.7 and
+# in the register as the key feature of the extension while applying a flat 43.57% rate in
+# every year and every scenario. A disclosure that is quoted and not consumed is a driver
+# nobody checked. It does not bind in the base case — the charge runs 2,484 to 2,931 against
+# a floor of 1,800 — and that is now a computed statement rather than an assumed one, and it
+# DOES bind in a deep bear and under Framing B, which is exactly why it belongs in the model
+# and not in the prose.
+def _fiscal_charge(ebit_, rate):
+    """Combined royalty + corporate tax, floored at the disclosed AED 1.8bn."""
+    return max(ebit_ * rate, V['fiscal_floor'])
+
+
+fiscal_charge = [_fiscal_charge(e, TAX) for e in ebit]
+fiscal_floor_binds = [c > e * TAX + 1e-9 for c, e in zip(fiscal_charge, ebit)]
+nopat = [e - c for e, c in zip(ebit, fiscal_charge)]
 
 # ---- working capital (component days held at FY2025) ------------------------
 nwc_fc = [nwc_pct * r for r in rev]
@@ -1488,8 +1626,10 @@ dcf_ps = dcf_ps_dec * ROLL - V['div_between']
 say(f"[DCF] PV(explicit) {pv_explicit:,.0f} + PV(terminal) {pv_tv:,.0f} "
     f"(TV = {tv_share:.0%} of EV) = EV {ev:,.0f}; − leases {LEASE:,.0f} + cash & deposits "
     f"{NETCASH:,.0f} + investees 0.5 = equity {eq_val:,.0f} -> AED {dcf_ps_dec:.2f} at "
-    f"31-Dec-2025; x accretion {ROLL:.4f} − final dividend {V['div_between']:.2f} paid "
-    f"28-Apr-2026 = AED {dcf_ps:.2f} at the 07-Aug-2026 anchor")
+    f"31-Dec-2025; x accretion {ROLL:.4f} over {V['anchor_days']:.0f} days − the "
+    f"{V['div_between']:.2f} of dividends gone ex in between (0.40 final FY2025, ex 12-Mar-2026, "
+    f"paid 28-Apr-2026, PLUS 0.26 H1-2026 interim, ex 31-Jul-2026, paid 21-Aug-2026) = AED "
+    f"{dcf_ps:.2f} at the {INP['spot']['date']} anchor")
 assert abs((ev - LEASE + NETCASH + INVEST) - eq_val) < 0.01, 'bridge does not close'
 assert tv_share < 0.90, 'terminal value share implausibly high'
 
@@ -1537,10 +1677,17 @@ def framingB():
         tb.append(t_)
         fcffB.append(ebit[i] * (1 - t_) + dna[i] - capex[i] - rou_repl[i] - dnwc[i])
         npB.append(pbt_ * (1 - t_))
-    # Framing B must earn its own reinvestment rate off its own NOPAT, not inherit Framing A's
-    _roicB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) / ic[-1]
-    _rrB = min(V['g_term'] / _roicB, 0.95)
-    tvB = ebit[-1] * (1 - tb[-1]) * (1 + V['g_term']) * (1 - _rrB) / (wacc_term - V['g_term'])
+    # NO AED 1.8bn FLOOR HERE, AND THAT IS A DECISION RATHER THAN AN OMISSION: the floor
+    # arrived WITH the 2024 regime and the extension retains it to 2029. Framing B is a
+    # reversion to the PRE-2024 construction, which carried no floor, so importing one would
+    # be modelling a regime nobody has described. Framing B's take is above the floor in
+    # every year in any case.
+    #
+    # SANCTIONED TERMINAL — corrected 08-09-2026 with dcf_at() and dcf_at_rf(). Framing B is
+    # the AED 14.74 post-2029 tail the study publishes in its headline block, and it was the
+    # LAST place the retired reinvestment identity survived. The critique never reached it.
+    _nopatB = [ebit[i] * (1 - tb[i]) for i in range(5)]
+    tvB = _terminal_at(V['g_term'], nopat_last=_nopatB[-1]).tv
     evB = sum(fcffB[i] * df[i] for i in range(5)) + tvB * df[-1]
     psB = (evB - LEASE + NETCASH + INVEST) / SH * ROLL - V['div_between']
     return tb, fcffB, npB, psB
@@ -1560,7 +1707,10 @@ def dcf_at_rf(rf_):
     _dfa, cc = [], 1.0
     for w in [x + _sh for x in fwd]:
         cc /= (1 + w); _dfa.append(cc)
-    _tv = nopat[-1] * (1 + V['g_term']) * (1 - rr_term) / (wacc_term + _sh - V['g_term'])
+    # SANCTIONED TERMINAL, same as the headline — corrected 08-09-2026 with dcf_at() above.
+    # On the retired identity this function returned 16.44 against a headline of 16.58 and
+    # section 1.8 published the risk-free question as worth -0.14; like-for-like it is -0.77.
+    _tv = _terminal_at(V['g_term'], wacc_t=wacc_term + _sh).tv
     _ev = sum(fcff[i] * _dfa[i] for i in range(5)) + _tv * _dfa[-1]
     return ((_ev - LEASE + NETCASH + INVEST) / SH * ((1 + _ke) ** T_ANCHOR)
             - V['div_between']), _w
@@ -1614,7 +1764,7 @@ def dcf_scenario(arpu_mult=1.0, subs_shift=0.0, dc_mult=1.0, opex_shift=0.0,
         _ppe.append(pp_)
     _dna = [_dep[i] + _amo[i] + V['rou_dep_path'][i] for i in range(5)]
     _ebit = [_ebitda[i] - _dna[i] for i in range(5)]
-    _nopat = [e * (1 - t_) for e in _ebit]
+    _nopat = [e - _fiscal_charge(e, t_) for e in _ebit]
     _nwc = [nw * r for r in _rev]
     _dnwc = [_nwc[0] - nwc_fy25] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
     _f = [_nopat[i] + _dna[i] - _capex[i] - rou_repl[i] - _dnwc[i] for i in range(5)]
@@ -1637,10 +1787,20 @@ def dcf_scenario(arpu_mult=1.0, subs_shift=0.0, dc_mult=1.0, opex_shift=0.0,
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine != base: {_base_chk} vs {dcf_ps}'
 
+# THE SCENARIO GROWTH RATES ARE STATED AS REAL RATES AND DERIVED TO NOMINAL, like the base
+# [R-MACRO-01], and the bear now carries a REAL one. Corrected 08-09-2026, critique finding
+# F22: the bear was described as "terminal growth 2.0%" — which IS the base rate, so its
+# growth leg was a null adjustment while the bull took a full +100bp. The bear was less
+# bearish than its own description, by the largest single lever in the study. A terminal real
+# decline is permitted here and is written down as the real number it is rather than left to
+# be inferred from a nominal.
+G_BEAR_REAL, G_BULL_REAL = -0.005, +0.010
+g_bear = (1.0 + PI_TERM) * (1.0 + G_BEAR_REAL) - 1.0
+g_bull = (1.0 + PI_TERM) * (1.0 + G_BULL_REAL) - 1.0
 dcf_bear = dcf_scenario(arpu_mult=0.95, subs_shift=-250.0, dc_mult=1.03,
-                        opex_shift=+0.005, wacc_shift=+0.01, g=0.02, capex_mult=1.08)
+                        opex_shift=+0.005, wacc_shift=+0.01, g=g_bear, capex_mult=1.08)
 dcf_bull = dcf_scenario(arpu_mult=1.03, subs_shift=+200.0, dc_mult=0.985,
-                        opex_shift=-0.005, wacc_shift=-0.005, g=0.03, capex_mult=0.95)
+                        opex_shift=-0.005, wacc_shift=-0.005, g=g_bull, capex_mult=0.95)
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} AED per share")
 
 # ---- lens 2: relative ---------------------------------------------------------
@@ -1760,19 +1920,45 @@ wt_grid = [wacc_term - 0.010, wacc_term - 0.005, wacc_term, wacc_term + 0.005,
 we_grid = [wacc_exp - 0.010, wacc_exp - 0.005, wacc_exp, wacc_exp + 0.005, wacc_exp + 0.010]
 
 def dcf_at(we_, wt_, g_):
+    """A sensitivity cell is a re-run of THIS model, or it is a re-run of a different one.
+
+    CORRECTED 08-09-2026, critique response finding F5/F6/S5. Until this edition this
+    function still built its terminal on the reinvestment identity
+    NOPAT(1+g)(1-g/ROIC)/(W-g) that [R-TERM-01] retired on 3 September, while the headline
+    ran the sanctioned module. Every discount-rate cell in the study — Figure 3, both 5x5
+    grids, Table 11's beta row, and the alternatives priced in Table 10 and quoted in
+    sections 1.7 and 1.8 — was therefore an engine re-run of a construction the study does
+    not use, published beside a headline that does. The base cell read AED 17.24 against a
+    headline of 16.58, and the AED 0.664 wedge was close enough to the AED 0.66 of netted
+    dividends that an outside auditor read it as the dividend and priced it as one. The
+    docstring on _terminal_at() said all of this could not happen. A comment asserting a
+    check that does not exist is worse than no comment, because it stops the next reader
+    looking."""
     _fwd = [we_ - (we_ - wt_) * fr for fr in glide_frac]
     _df, cc = [], 1.0
     for w in _fwd:
         cc /= (1 + w); _df.append(cc)
-    _rr = min(g_ / roic_term, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.012)
+    try:
+        _tv = _terminal_at(g_, wacc_t=wt_).tv
+    except TERMVAL.TerminalRefused:
+        return float('nan')
     _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
     return ((_ev - LEASE + NETCASH + INVEST) / SH) * ROLL - V['div_between']
 
 grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
 grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
 _bci = json.load(open(os.path.join(HERE, 'beta_result.json')))['ci90']
-beta_grid = [round(_bci[0], 2), round(V['beta'], 3), round(_bci[1], 2), 0.65, 0.80]
+# THE RUNGS ARE SORTED, UNIQUE AND MEANINGFUL. The Dimson-corrected regression carries a
+# wider standard error than the retired construction did, so the interval's top now rounds
+# onto the sector prior: a grid built as [CI low, base, CI high, 0.65, 0.80] came out
+# unsorted AND with 0.80 printed twice. The rungs are the interval's two ends, the base, a
+# mid prior and a MARKET beta of 1.00 — which is where a reader who thinks a licensed
+# duopoly should carry market risk actually sits, and it brackets the reverse read.
+# the base rung is the UNROUNDED beta: a grid whose base cell is a rounded input does
+# not return the headline exactly, and 'each grid returns the base case at its base
+# parameter' is a check this study prints in its own caption.
+beta_grid = sorted({round(_bci[0], 2), V['beta'], 0.65, round(_bci[1], 2), 1.00})
+assert len(beta_grid) == 5, beta_grid
 def dcf_beta(b):
     ke = rf_star + b * V['erp_market_basis']
     we_ = we_exp * ke + wd_exp * kd_at
@@ -1796,6 +1982,15 @@ grid_margin = [dcf_scenario(dc_mult=m) for m in mg_grid]
 drift_grid = [-0.025, -0.015, 0.0, 0.005, 0.010]
 grid_drift = [dcf_scenario(arpu_drift=d) for d in drift_grid]
 dcf_mix_exhaust = dcf_scenario(arpu_drift=leg_erosion / 1.0 if leg_erosion < 0 else -0.02)
+# THREE READINGS, PRICED, AND THE STUDY SAYS WHICH IT CARRIES. The harsher pair's HALF-YEAR
+# erosion read as an annual rate is a defensible middle case; COMPOUNDING that half-year move
+# for five years is an extrapolation of two war-disrupted quarters and this study does not
+# carry it -- it is priced anyway, because a scenario refused without a number beside it is
+# an assertion.
+dcf_mix_exhaust_peak = dcf_scenario(
+    arpu_drift=_leg_pk_2q if _leg_pk_2q < 0 else -0.02)
+dcf_mix_exhaust_peak_annualised = dcf_scenario(
+    arpu_drift=leg_erosion_peak if leg_erosion_peak < 0 else -0.02)
 say(f"[Mix-exhaustion scenario, PRICED] if the postpaid mix tailwind exhausts and the blended "
     f"ARPU path instead erodes at the per-leg rate the decomposition implies "
     f"({leg_erosion:+.2%}/yr), the DCF is AED {dcf_mix_exhaust:.2f} against the base "
@@ -1825,13 +2020,42 @@ def dcf_life(l_):
 grid_life = [dcf_life(l_) for l_ in life_grid]
 LIFE_VARIANT = 2.0 * (V['accum_dep_owned_fy25'] / V['dep_charge_owned_fy25'])
 PS_LIFE_VARIANT = dcf_life(LIFE_VARIANT)
+# ---- THE CHECK THE CAPTION CLAIMS, RUN [critique findings F5/F6/S5, added 08-09-2026] ----
+# "each grid returns the base case at its base parameter" has been printed under Table 11
+# since this study's first edition and NOTHING TESTED IT. It was false for every
+# discount-rate grid in the document for a month: they ran the retired reinvestment-identity
+# terminal while the headline ran the sanctioned one, and returned AED 0.66 more. The
+# coincidence that the wedge was the size of the netted dividend is what let it survive an
+# outside forensic audit as a mis-diagnosis. A caption is a claim; this is the claim as a
+# test, and it refuses at build time.
+_GRID_BASE_CHECKS = [
+    ('terminal rate x terminal growth', grid_wacc_g[2][1]),
+    ('explicit rate x terminal rate', grid_exp_term[2][2]),
+    ('beta', grid_beta[beta_grid.index(V['beta'])]),
+    ('combined fiscal take', grid_tax[tax_grid.index(TAX)]),
+    ('blended ARPU', grid_arpu[arpu_grid.index(1.00)]),
+    ('subscriber shift', grid_subs[subs_grid.index(0.0)]),
+    ('direct cost per unit', grid_margin[mg_grid.index(1.00)]),
+    ('blended ARPU drift', grid_drift[drift_grid.index(0.0)]),
+    ('capex path', grid_capex[capex_grid.index(1.00)]),
+    ('asset life', grid_life[life_grid.index(round(_LIFE, 2))]),
+]
+_grid_fails = [(n, v) for n, v in _GRID_BASE_CHECKS if abs(v - dcf_ps) > 5e-4]
+assert not _grid_fails, (
+    'SENSITIVITY GRIDS DO NOT RETURN THE HEADLINE at their base parameter, which is the '
+    'check the study prints under its own table: %s against a headline of %.6f'
+    % (', '.join('%s %.6f' % f for f in _grid_fails), dcf_ps))
+say('[Sensitivity grids] all %d return the headline AED %.4f exactly at their base parameter '
+    '— the check the caption claims, now run rather than asserted'
+    % (len(_GRID_BASE_CHECKS), dcf_ps))
+
 dcf_opex_1pp = dcf_scenario(opex_shift=+0.01)   # +1pp of revenue in the cost stack
 dcf_tax_per_pp = (grid_tax[0] - grid_tax[4]) / ((tax_grid[4] - tax_grid[0]) * 100)
 
 # ---- expert panel: three genuinely different methods ---------------------------
 # Expert 1 — earnings power on a through-cycle multiple.
 # CORRECTED 17-Aug-2026 (external finding CC7, and it was right): the lens values FY2028
-# earnings, which arrive at 31-Dec-2028 — 2.40 years after the 07-Aug-2026 anchor. The prior
+# earnings, which arrive at 31-Dec-2028 — 2.32 years after the 07-Sep-2026 anchor. The prior
 # construction discounted two years from a 31-Dec-2025 base and then accreted to the anchor, a
 # NET 1.40 years, so it was a full year short. Correcting the horizon alone would have dropped
 # the dividends receivable in the meantime from a company paying out about all of its earnings,
@@ -1883,7 +2107,7 @@ panel_centre = float(sorted([e1_base, e2_base, e3_base])[1])
 # (1) Expert 1's discounting horizon. The lens values FY2028 earnings on a through-cycle
 # multiple. As built it accretes to the anchor from a 31-Dec-2025 base after discounting two
 # years, a NET exponent of (T_ANCHOR - 2) = -1.40 years. But FY2028 earnings arrive at
-# 31-Dec-2028, which is 2.40 years after the 07-Aug-2026 anchor. The horizon is a full year
+# 31-Dec-2028, which is 2.32 years after the 07-Sep-2026 anchor. The horizon is a full year
 # short. Correcting it alone, however, would drop nearly three years of dividends from a
 # ~98%-payout company, so the coherent correction adds those back.
 _e1_years_anchor = V['e1_horizon_years']
@@ -2044,7 +2268,7 @@ assert _BEST_P == 'H1-2026', (
 
 OUT = dict(
     meta=dict(ticker='DU', company='Emirates Integrated Telecommunications Company PJSC (du)',
-              market='DFM', currency='AED', asof='2026-08-07', spot=SPOT, shares_mn=SH,
+              market='DFM', currency='AED', asof=INP['spot']['date'], spot=SPOT, shares_mn=SH,
               mktcap=MKTCAP, ev_trailing=ev_trailing,
               klass='integrated telecom operating company'),
     inputs=INP,
@@ -2076,6 +2300,14 @@ OUT = dict(
                   seg_dc_hist=V['seg_dc_hist'], seg_dc_h1=V['seg_dc_h1'],
                   mix=dict(fy25=_m_fy25, q226=_m_q226, ratio=_r, lift=mix_lift,
                            erosion=leg_erosion, printed=_rel - 1,
+                           erosion_peak_pair=leg_erosion_peak,
+                           erosion_peak_pair_half=_leg_pk_2q,
+                           mix_lift_peak_pair=mix_lift_pk,
+                           printed_peak_pair=_rel_pk - 1,
+                           postpaid_share_q4_2025=_m_q425,
+                           ps_mix_exhaust=dcf_mix_exhaust,
+                           ps_mix_exhaust_peak=dcf_mix_exhaust_peak,
+                           ps_mix_exhaust_peak_annualised=dcf_mix_exhaust_peak_annualised,
                            prepaid_drop=V['subs_prepaid']['Q2_2026'] - V['subs_prepaid']['Q4_2025'],
                            postpaid_gain=V['subs_postpaid']['Q2_2026'] - V['subs_postpaid']['Q4_2025'],
                            share={k: _pp[k] for k in _pp}),
@@ -2103,7 +2335,11 @@ OUT = dict(
              ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL, anchor_days=V['anchor_days'],
              div_between=V['div_between'], roic_term=roic_term, rr_term=rr_term,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull,
-             ps_framing_b=dcf_ps_B, ps_rf_alt=dcf_ps_rf_alt,
+             scenario_growth=dict(bear_real=G_BEAR_REAL, bear_nominal=g_bear,
+                              bull_real=G_BULL_REAL, bull_nominal=g_bull,
+                              base_real=V['g_term_real'], base_nominal=V['g_term'],
+                              inflation=PI_TERM),
+         ps_framing_b=dcf_ps_B, ps_rf_alt=dcf_ps_rf_alt,
              ps_rf_long=dcf_ps_rf_long, ps_rf_debut=dcf_ps_rf_debut,
              wacc_rf_long=wacc_rf_long, wacc_rf_debut=wacc_rf_debut,
              ev_ebitda_now=ev_ebitda_now, ebitda_term=ebitda_term,
@@ -2169,6 +2405,13 @@ OUT = dict(
         derived_life=dict(
             years=V['asset_life_years'], cross_check_fy2024=15.96,
             direct_average_age=V['accum_dep_owned_fy25'] / V['dep_charge_owned_fy25'],
+            # the per-class lives the blend is made of, published rather than left implicit
+            # so the study can quote the right-of-use component against the 10.1-year lease
+            # term note 7 discloses directly -- the check that validates the whole route
+            components=dict(property_plant_equipment=28616356.0 / 1542393.0,
+                            intangibles=3500287.0 / 239907.0,
+                            right_of_use=3726888.0 / 364063.0),
+            right_of_use_disclosed_lease_term=10.1,
             basis="notes 6, 7 and 8: gross cost of every depreciable class over the year's "
                   "own charge, validated against the 10.1-year average lease term "
                   "note 7 discloses directly",
@@ -2277,6 +2520,66 @@ OUT = dict(
     # ("above the best single quarter this company has ever filed", when the company had
     # filed a higher one twice). The record is now committed, the claim is derived from it,
     # and the WINDOW IS NAMED so the sentence claims only what the evidence covers.
+    # ---- THE GROUND-UP RECORD [R-SIGCM-02], added 08-09-2026, critique finding S14 ----
+    # forecast_ground_up was a boolean this study set on itself. It is now a record with a
+    # line per revenue line, its build level, its physical unit and the disclosure the unit
+    # came from -- and every line below `unit` carries a GAP NOTE, because the rule has
+    # always permitted a coarser level where the disclosure stops and has never permitted
+    # going quiet about it. The lines cover 100% of revenue: a line left out of the record
+    # is a line nobody checked.
+    ground_up=[
+        dict(name='Mobile', level='unit',
+             share_of_revenue=seg_rev['mobile'][0] / rev[0],
+             unit='mobile customer-month',
+             unit_source='du quarterly earnings releases and analyst decks (COMPANY_IR): '
+                         'mobile customers at each quarter end, 8,916k (Q4-2024) through '
+                         '9,280k (Q2-2026); the unit build reproduces the audited FY2025 '
+                         'mobile segment to 0.04% (avg base 9,310k x AED 63.3 x 12 = 7,072 '
+                         'against a disclosed 7,075)',
+             price_basis='blended mobile ARPU, AED/month, disclosed quarterly by the company '
+                         '(63.3 FY2025, 63.4 Q2-2026)',
+             cost_basis='THREE separate per-subscriber direct costs, each measured on the '
+                        'like-for-like half-year pair rather than assumed: interconnect, '
+                        'commission and a small lumpy device line. The margin is the residual',
+             gap_note=None),
+        dict(name='Fixed', level='derived',
+             share_of_revenue=seg_rev['fixed'][0] / rev[0],
+             unit='fixed subscription-month',
+             unit_source='du quarterly earnings releases (COMPANY_IR): fixed subscriptions at '
+                         'each quarter end, 682k (Q4-2024) through 744k (Q2-2026)',
+             price_basis='IMPLIED revenue per subscription — segment revenue over the average '
+                         'base — a consumer-plus-enterprise blend and therefore a revenue '
+                         'INTENSITY metric, not a disclosed tariff',
+             cost_basis='per-subscriber capacity cost, measured on the like-for-like '
+                        'half-year pair',
+             gap_note='DERIVED rather than unit: du discloses fixed subscriptions but no '
+                      'fixed tariff or ARPU, so the price leg is back-solved from segment '
+                      'revenue. The volume is disclosed and the price is not, which is why '
+                      'this line is a weaker construction than Mobile and is labelled as one '
+                      'in the study body rather than presented as a price'),
+        dict(name='Wholesale', level='segment',
+             share_of_revenue=seg_rev['wholesale'][0] / rev[0],
+             unit=None, unit_source=None, price_basis=None,
+             cost_basis='direct cost as a share of segment revenue, held FLAT at the H1-2026 '
+                        'reviewed rate (the series worsens at every observation and the '
+                        'forecast takes no credit for the recovery du\'s own commentary '
+                        'implies, and equally projects no further deterioration)',
+             gap_note='SEGMENT level: du discloses no volume unit for wholesale anywhere in '
+                      'the filings — no minutes, no transit volumes, no roaming days — so no '
+                      'unit build is possible. The gap is stated rather than filled with an '
+                      'imported ratio'),
+        dict(name='ICT and associated telecom services', level='segment',
+             share_of_revenue=seg_rev['ict'][0] / rev[0],
+             unit=None, unit_source=None, price_basis=None,
+             cost_basis='direct cost as a share of segment revenue, from the disclosed '
+                        'segment contribution',
+             gap_note='SEGMENT level: du discloses no volume unit for ICT — no racks, no '
+                      'megawatts, no contract counts — so no unit build is possible. The '
+                      'growth path is anchored on the company\'s own disclosed programme '
+                      '(five data centres, a hyperscale campus with Microsoft as anchor '
+                      'tenant, capital commitments up AED 287mn in six months) rather than '
+                      'on a unit economic'),
+    ],
     margin_record=MARGIN_RECORD,
     register_figures=dict(
         lfl_mobile_interconnect=_D_INTER,

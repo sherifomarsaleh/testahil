@@ -5,9 +5,15 @@
  "_examined_at_adoption": 31,
  "outstanding": {
   "engine/adnocls_study/ADNOCLS_Valuation_Study_09-08-2026_public.docx": "the masthead states '16 on 2026' and the file is dated 2026-08-09",
-  "engine/du_study/DU_Valuation_Study_09-08-2026_public.docx": "the edition date 2026-08-09 appears only at paragraph 74, not in the masthead",
   "engine/gbco_study/GBCO_Valuation_Study_08-07-2026_public.docx": "the edition date 2026-07-08 appears only at paragraph 167, not in the masthead",
   "engine/riyadhcable_study/RIYADHCABLE_Valuation_Study_18-08-2026_public.docx": "the edition date 2026-08-18 appears only at paragraph 119, not in the masthead",
   "engine/savola_study/SAVOLA_Valuation_Study_19-08-2026_public.docx": "the edition date 2026-08-19 appears NOWHERE in the document"
- }
+ },
+ "_shortened": [
+  {
+   "on": "2026-09-08",
+   "entry": "engine/du_study/DU_Valuation_Study_09-08-2026_public.docx",
+   "why": "the 09-08-2026 edition was superseded by the 08-09-2026 re-issue and the document it named no longer exists. The new edition carries its edition date in the masthead in the two-date form this check's own docstring calls the better one \u2014 'Edition of 8 September 2026 \u00b7 anchored on the 7 September 2026 close' \u2014 with both dates DERIVED, the edition off the filename the document ships as and the anchor off the price it is struck on. A ratchet may only ever shorten and this is a shortening."
+  }
+ ]
 }

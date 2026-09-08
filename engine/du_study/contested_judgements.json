@@ -1,0 +1,64 @@
+{
+ "ticker": "DU",
+ "published_central": 15.543769111741863,
+ "published_spot": 11.38,
+ "judgements": [
+  {
+   "name": "The required return \u2014 capitalise at the measured cost of capital, or hold du's own current EBITDA multiple into perpetuity",
+   "adopted": "this study's construction",
+   "alternative": "the other framing, computed and published beside it",
+   "value_adopted": 15.543769111741863,
+   "value_alternative": 13.775498775085811,
+   "why": "the cash-flow lens is the central and the market-multiple terminal is published beside it at its own value, never averaged"
+  },
+  {
+   "name": "Post-2029 fiscal regime \u2014 the extended 38%+9% construction, or reversion to the pre-2024 15%-of-revenue + 30%-of-profit one",
+   "adopted": "this study's construction",
+   "alternative": "the other framing, computed and published beside it",
+   "value_adopted": 15.543769111741863,
+   "value_alternative": 13.196776625089313,
+   "why": "du disclosed the 2027-2029 extension itself on 24-Jul-2026; reversion after 2029 is a named tail, priced, not a coin-flip"
+  },
+  {
+   "name": "Risk-free tenor \u2014 the Jan-2031 T-bond at 4.48%, or the Feb-2033 sukuk tap at 4.13%",
+   "adopted": "this study's construction",
+   "alternative": "the other framing, computed and published beside it",
+   "value_adopted": 15.543769111741863,
+   "value_alternative": 16.816032425226613,
+   "why": "the most recent primary print on the longest liquid tenor; the sukuk is a different instrument type and its debut print is five months stale"
+  },
+  {
+   "name": "Blended ARPU \u2014 held roughly flat, or eroding at the per-leg rate the postpaid-mix decomposition implies once the tailwind exhausts",
+   "adopted": "this study's construction",
+   "alternative": "the other framing, computed and published beside it",
+   "value_adopted": 15.543769111741863,
+   "value_alternative": 12.702004644898063,
+   "why": "the disclosed path is flat-to-slightly-up; the erosion case is priced as the largest operating downside in the study rather than assumed away"
+  },
+  {
+   "name": "Terminal maintenance \u2014 replacement cost over the derived 16.70-year life, or over the 22.97-year second reading of the same notes",
+   "adopted": "this study's construction",
+   "alternative": "the other framing, computed and published beside it",
+   "value_adopted": 15.543769111741863,
+   "value_alternative": 14.826848174005576,
+   "why": "the gross-cost-over-charge route validates against the 10.1-year lease term note 7 discloses directly; the accumulated-depreciation route does not"
+  },
+  {
+   "name": "Beta \u2014 the own-stock Dimson-corrected regression, or a sector-implied 0.80 prior",
+   "adopted": "this study's construction",
+   "alternative": "the other framing, computed and published beside it",
+   "value_adopted": 15.543769111741863,
+   "value_alternative": 10.91522983421841,
+   "why": "SIGCM takes the own-stock regression wherever it clears the usability gate; the prior is priced, not adopted"
+  },
+  {
+   "name": "Terminal real growth \u2014 zero, stated, and charged for the capital it would consume, or the +0.49% real the retired typed 2.5% nominal implied",
+   "adopted": "this study's construction",
+   "alternative": "the other framing, computed and published beside it",
+   "value_adopted": 15.543769111741863,
+   "value_alternative": 17.024415242937344,
+   "why": "a real rate nobody has quantified is written down as zero rather than left as the residue of typing a nominal"
+  }
+ ],
+ "note": "every judgement worth more than 5% of the central, both framings computed on the same model and never averaged into one number"
+}

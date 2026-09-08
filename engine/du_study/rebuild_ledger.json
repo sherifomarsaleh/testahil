@@ -4,15 +4,15 @@
  "start_value": 18.890899,
  "start_spot": 12.3,
  "start_gap": 0.5358454471544716,
- "audit_after": "all three levers: the growth storage and the terminal rebuild are one pass on this name because the growth rate feeds the terminal, and the re-strike only settles which price the answer is compared against — a look taken between them would audit a state the study never publishes",
+ "audit_after": "after the 04-09 pass (growth storage + terminal + re-strike, audited together because the growth rate feeds the terminal), and again after the 08-09 pass. THE 08-09 LEVERS ARE ONE AUDIT POINT because only the first moves the answer: the fiscal floor does not bind in the base case and the re-strike settles which price the answer is compared against, so a look taken between them would audit a state the study never publishes.",
  "levers": [
   {
    "name": "terminal growth stored as a real rate on the house UAE path",
    "rule": "R-MACRO-01",
    "before": 18.890899,
    "after": 17.154235,
-   "why": "the previous edition typed a nominal 2.50% and argued it as 'population-plus-inflation minus price erosion' — which names TWO real forces pointing opposite ways and puts a number on NEITHER, so the +0.49% real that 2.50% implies against 2.0% inflation was never anybody's estimate; it was the residue of typing the nominal",
-   "evidence": "engine/macro_paths/AE.json gives a 2.0% terminal, and THE COMPANY ITSELF DISCLOSES THE SAME FIGURE: note 9's goodwill impairment test uses a terminal growth rate of 2%, 'determined based on management's estimate of the long-term cash flow growth rate, consistent with the assumption that a market participant would make'. So this lever is not a house default overriding a company view — it is the house path and the company's own audited disclosure agreeing, against a rate this desk had typed. Real growth is also now CHARGED for the capital it consumes, which this model prices at AED 10,430mn per unit",
+   "why": "the previous edition typed a nominal 2.50% and argued it as 'population-plus-inflation minus price erosion' \u2014 which names TWO real forces pointing opposite ways and puts a number on NEITHER, so the +0.49% real that 2.50% implies against 2.0% inflation was never anybody's estimate; it was the residue of typing the nominal",
+   "evidence": "engine/macro_paths/AE.json gives a 2.0% terminal, and THE COMPANY ITSELF DISCLOSES THE SAME FIGURE: note 9's goodwill impairment test uses a terminal growth rate of 2%, 'determined based on management's estimate of the long-term cash flow growth rate, consistent with the assumption that a market participant would make'. So this lever is not a house default overriding a company view \u2014 it is the house path and the company's own audited disclosure agreeing, against a rate this desk had typed. Real growth is also now CHARGED for the capital it consumes, which this model prices at AED 10,430mn per unit",
    "move": -0.09193125218656883
   },
   {
@@ -20,7 +20,7 @@
    "rule": "R-TERM-01",
    "before": 17.154235,
    "after": 16.493468,
-   "why": "the retired reinvestment identity implied a replacement cycle of 1/g — 50 years at the derived 2.0% — which is a fact about the dirham's peg and not about a mobile network, and it supplied the perpetual LEASE renewal only as a side effect, on that same 50-year cycle against a lease term the company discloses at 10.1 years THIS LEVER READ 16.7705 UNTIL 4 SEPTEMBER 2026 AND WAS WRONG: it handed the sanctioned construction a profit figure, a depreciation charge and a working-capital balance ALL already grown by (1+g), which the construction grows again, overstating the terminal by exactly (1+g) — 2.00% here. Corrected, it takes more off, not less.",
+   "why": "the retired reinvestment identity implied a replacement cycle of 1/g \u2014 50 years at the derived 2.0% \u2014 which is a fact about the dirham's peg and not about a mobile network, and it supplied the perpetual LEASE renewal only as a side effect, on that same 50-year cycle against a lease term the company discloses at 10.1 years THIS LEVER READ 16.7705 UNTIL 4 SEPTEMBER 2026 AND WAS WRONG: it handed the sanctioned construction a profit figure, a depreciation charge and a working-capital balance ALL already grown by (1+g), which the construction grows again, overstating the terminal by exactly (1+g) \u2014 2.00% here. Corrected, it takes more off, not less.",
    "evidence": "notes 6, 7 and 8 give ranges per class and no weighting, so gross cost over the year's own charge supplies one: property 18.55 years, intangibles 14.59, right-of-use 10.24, blended 16.70, cross-checked at 15.96 on FY2024's columns. THE ROUTE VALIDATES ITSELF: the right-of-use component derives 10.24 against the 10.1 note 7 states directly, 1.4% apart. Maintenance AED 3,108mn against a book charge of AED 2,634mn; the working-capital line is a CREDIT because this company collects before it pays",
    "move": -0.038519176168450575
   },
@@ -32,10 +32,37 @@
    "why": "the study stood on the 7-August close of 12.30 while the stock had fallen to 11.36. A fair value published against a price four weeks old is a comparison a reader cannot use",
    "evidence": "DFM close of 3 September 2026, from the price file supplied that day; the anchor moves with it from 219 to 246 days, and the longer roll at the cost of equity slightly outweighs the lower market capitalisation's effect on the weights",
    "move": 0.005113054452829502
+  },
+  {
+   "name": "BETA RE-DERIVED THROUGH THE SANCTIONED HOUSE ROUTINE, replacing a study-local regression script",
+   "rule": "SIGCM-06",
+   "before": 16.5778,
+   "after": 15.5321,
+   "why": "beta_reg.py was a study-local weekly regression \u2014 the shape CLAUDE.md and SIGCM clause 6 forbid in the same words, 'NEVER hand-roll a study-local beta script'. It read a copy of the FTSE ADX General series held INSIDE this study directory rather than the registered file, sampled its own weekly grid off calendar week numbers rather than the exchange's own trading week, and applied no Dimson correction for thin trading. It returned 0.488. THE OUTSIDE AUDIT DID NOT FIND THIS: it questioned which INDEX was used and was wrong about that, because the FTSE ADX General is a registered, measured, labelled interim for DFM-listed names. The defect was in the regression, not the regressor.",
+   "evidence": "beta_regression.own_stock_beta('DU','AE','DFM') against the registered raw_indices/AE/FADGI.csv as of 2026-07-24: beta 0.5569, R2 0.141, SE 0.149, n 249, CI90 [0.31, 0.80], Dimson-corrected, week rule W-FRI, conforming=false because the regressor is a registered interim. compute.py now READS that record rather than a typed register entry, so the model cannot run on a beta the regression did not produce.",
+   "move": -0.06307833367515592
+  },
+  {
+   "name": "the AED 1.8bn combined fiscal floor MODELLED rather than quoted",
+   "rule": "SIGCM-08",
+   "before": 15.5321,
+   "after": 15.5321,
+   "why": "the floor was named in the headline block, in section 1.7 and in the register as the key feature of the 2027-2029 extension, and the model applied a flat 43.57% rate in every year and every scenario without it. A disclosure that is quoted and not consumed is a driver nobody checked.",
+   "evidence": "the modelled combined charge runs 2,484 / 2,565 / 2,691 / 2,809 / 2,931 against a floor of 1,800, so it does not bind in the base case \u2014 a COMPUTED statement now rather than an assumed one. Raised to 4,000 in driver_test.py it binds and takes the answer to AED 10.17, so the input is live, not decorative.",
+   "move": 0.0
+  },
+  {
+   "name": "re-struck on the latest known price, correctly dated, on the anchor date the day count actually implies",
+   "rule": "R-GAP-01",
+   "before": 15.5321,
+   "after": 15.543769111741863,
+   "why": "the previous edition published AED 11.36 and dated it three different ways in three artefacts \u2014 7 August on the masthead, 3 September in the register \u2014 and it is NEITHER: 11.36 is the 31 AUGUST close. The printed accretion exponent said 219 days, the workbook cell held 246 under a label naming a 219-day anchor, and the price belonged to a fourth date.",
+   "evidence": "engine/raw_ohlc/AE/DU.csv: 7-Aug 12.30 \u00b7 31-Aug 11.36 \u00b7 3-Sep 11.12 \u00b7 7-Sep 11.38. Struck on 11.38 at 7 September 2026, the last session in this name's own library and the close the 07-Sep roll-forward struck its cone on, over 250 days.",
+   "move": 0.0007512900214305951
   }
  ],
- "value": 16.5778,
- "cumulative_move": -0.12244515202796868,
+ "value": 15.543769111741863,
+ "cumulative_move": -0.17718213877794475,
  "rules": {
   "R-MACRO-01": {
    "levers": [
@@ -43,7 +70,8 @@
    ],
    "first_before": 18.890899,
    "last_after": 17.154235,
-   "move": -0.09193125218656883
+   "move": -0.09193125218656883,
+   "note": ""
   },
   "R-TERM-01": {
    "levers": [
@@ -51,17 +79,38 @@
    ],
    "first_before": 17.154235,
    "last_after": 16.493468,
-   "move": -0.038519176168450575
+   "move": -0.038519176168450575,
+   "note": ""
   },
   "R-GAP-01": {
    "levers": [
-    "re-struck on the latest known price"
+    "re-struck on the latest known price",
+    "re-struck on the latest known price, correctly dated, on the anchor date the day count actually implies"
    ],
    "first_before": 16.493468,
-   "last_after": 16.5778,
-   "move": 0.005113054452829502
+   "last_after": 15.543769111741863,
+   "move": 0.005868185861049646,
+   "note": "COMPOUNDED from each lever's own move, not measured end-to-end: this rule's levers are NOT contiguous in the sequence, so an endpoint-to-endpoint reading would silently attribute the levers in between to it. On the first render of this ledger it did exactly that \u2014 it reported the two re-strikes as -5.8% when together they are worth +0.6%, because the beta lever sits between them."
+  },
+  "SIGCM-06": {
+   "levers": [
+    "BETA RE-DERIVED THROUGH THE SANCTIONED HOUSE ROUTINE, replacing a study-local regression script"
+   ],
+   "first_before": 16.5778,
+   "last_after": 15.5321,
+   "move": -0.06307833367515592,
+   "note": ""
+  },
+  "SIGCM-08": {
+   "levers": [
+    "the AED 1.8bn combined fiscal floor MODELLED rather than quoted"
+   ],
+   "first_before": 15.5321,
+   "last_after": 15.5321,
+   "move": 0.0,
+   "note": ""
   }
  },
- "distinct_rules": 3,
- "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
+ "distinct_rules": 5,
+ "note": "SIX levers over two passes and FOUR RULES, and the grouping is the point. The 04-09 pass took 12.2% off on two rules pulling the same way. The 08-09 pass is a response to an outside forensic audit and to this desk's own audit of the same documents: 53 findings, of which exactly THREE move the answer and one of those three is the whole of it. Read as six corrections it is a landslide; read as four rules it is one real defect (a beta produced by a script this house forbids), one disclosure consumed at last, and two re-strikes."
 }

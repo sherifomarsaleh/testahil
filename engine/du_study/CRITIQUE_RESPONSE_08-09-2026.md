@@ -246,5 +246,142 @@ running our own code against our own committed index file.
 
 ---
 
-*Prepared under `engine/Critique_Response_Prompt.md` v2. Nothing implemented. Awaiting approval
-to proceed to step 9.*
+---
+
+# PART TWO — IMPLEMENTED, 8 September 2026
+
+Approved and implemented. What follows is step 9: what changed, what it did to the headline,
+what every gate says, and the two things the implementation itself turned up.
+
+## ONE VERDICT IN PART ONE WAS WRONG AND IS CORRECTED HERE
+
+**F31 — the bridge date. Part one said "ACCEPT, and raise its severity". That was wrong, and
+it is now REJECTED with a computation as the receipt.**
+
+The bridge stands on the 31 December 2025 audited sheet, which is the study's own valuation
+date, and rolls to the anchor at the cost of equity net of the dividends gone ex in between.
+Sheet, valuation date and roll agree. The test that settles it is whether the model's own cash
+walk reproduces the reviewed 30 June 2026 position it is accused of ignoring:
+
+| | AED mn |
+|---|---|
+| disclosed cash + term deposits, 31 Dec 2025 | 2,249.7 |
+| disclosed cash + term deposits, 30 Jun 2026 | 307.2 |
+| movement over the half | −1,942.6 |
+| less the final FY2025 dividend paid 28 Apr 2026, which the roll already accounts for | +1,813.2 |
+| **movement excluding that dividend** | **−129.4** |
+| the model's own FY2026E full-year movement | −226.6 |
+| half of it | −113.3 |
+| **difference** | **−16.1mn on the half = AED 0.0036 per share** |
+
+Book equity fell 181.2 while 1,813.2 of dividends were paid, so equity before distributions rose
+about 35% annualised against a 6.83% roll — the roll is conservative against the outturn. Moving
+the bridge onto the June sheet **while still deducting those dividends would charge the same
+distribution twice**, which is the bridge rule's own trap in mirror image. The critique's own
+note ("the roll-forward at Ke net of ex-dividends is coherent") was closer to right than part
+one's answer to it. The bridge is unchanged; DU stays on the bridge-record ratchet, and
+re-cutting the explicit window to a 30 June valuation date is registered as owed at the next
+re-issue.
+
+## THE HEADLINE, BEFORE AND AFTER
+
+| | Before | After |
+|---|---|---|
+| Cash-flow lens (the central) | **16.5778** | **15.5438** |
+| Spot it is struck at | 11.36, dated three different ways and none of them right | **11.38, 7 September 2026** |
+| Gap | +45.9% | **+36.6%** |
+| Beta | 0.488, from a study-local script | **0.5569**, from the sanctioned routine |
+| Cost of equity / WACC / terminal WACC | 6.53% / 6.40% / 6.17% | 6.83% / 6.69% / 6.45% |
+| Anchor roll | 246 days, printed as 219, labelled 07-Aug | **250 days, one date, stated once** |
+| Bear – bull | 10.57 – 27.67 | **9.60 – 25.22** |
+| Terminal value share of EV | 81.1% | 80.0% |
+| Framing B (post-2029 reversion) | 14.74 | 13.20 |
+| No-re-rating framing | 13.89 | 13.78 |
+| Relative / normalised / book lenses | 8.90 / 8.92 / 12.76 | 8.93 / 8.94 / 11.94 |
+| Reverse read — the beta the price implies | not published | **0.96** (Ke 8.54%) |
+| Sign test | not published | **6 material, 4 up / 2 down, p = 0.69** |
+
+Three levers moved the answer and the rebuild ledger walks them in order. Read as six
+corrections across two passes it is a landslide; read as **four rules** it is one real defect
+(a beta produced by a script this house forbids, −6.31%), one disclosure consumed at last (the
+AED 1.8bn floor, 0.00% because it does not bind), and two re-strikes (+0.6% together).
+
+## WHAT THE IMPLEMENTATION ITSELF TURNED UP
+
+Restructuring for a fix routinely exposes something else. Two things, and the first is bigger
+than most of the ledger above.
+
+**I-1. The retired terminal was in one more place than either audit found: Framing B.** The
+post-2029 fiscal tail — the AED 14.74 the study prints in its own headline block — was still
+built on the reinvestment identity after the headline terminal was rebuilt. Corrected, it reads
+13.20. The critique never reached it; part one of this document did not name it either. It was
+found by reading every call site of the terminal rather than the ones the findings pointed at.
+
+**I-2. `_terminal_at()` carried a docstring asserting exactly what was not true.** It read:
+*"Every terminal in this file goes through the sanctioned module — base, scenario and
+sensitivity point alike — so the retired construction cannot survive in a grid nobody reads the
+arithmetic of."* Four functions were doing the opposite three hundred lines below it. A comment
+asserting a check that does not exist is worse than no comment, because it stops the next reader
+looking — which is this repository's own lesson, in its own words, about a different file.
+The claim is now a build-time assertion: all ten grids must return the headline exactly at their
+base parameter, or `compute.py` refuses.
+
+Two smaller ones. The study's cone was struck with the **one-month** information coefficient
+carried across to the three-month horizon, so the study published a different three-month cone
+from the one the site struck for the same name on the same session; corrected, the two now
+agree to the cent. And the cone's dividend yield was struck on a superseded price (0.66/12.30)
+while the cone itself was seeded on the current one.
+
+## GATES — every one re-run on the delivered files
+
+Study-local:
+
+```
+gate_check.py     SIGCM: PASS · MODEL-STUDY BAR: PASS — all eight depth standards + structure
+                  four-field register: 219 inputs, all complete · ALL GATES PASS
+                  EXTERNAL-READER SCRUB: 43 patterns, 169,722 characters, 0 hits
+recalc.py         RECALC OK — 844 formulas, 0 unresolvable, 844 cell-level agreements
+                  with the model, 42 headline reconciliations passed
+driver_test.py    DRIVER TEST OK — 39 drivers each reprice the workbook in the right direction
+                  + the two declared-inert inputs exercised where they bind
+qc_checks.py      ALL AUTOMATED QC CHECKS PASSED
+prose_check.py    prose figures checked: 511; unmatched: 0
+footing_check.py  tables examined: 31; unreconciled totals: 0
+```
+
+Repository-level, all green: `check_valuation_gap`, `check_delivered_pdf_currency`,
+`check_table_footing`, `check_prose_figures`, `check_output_records`, `check_rebuild_ledger`,
+`check_artefact_currency`, `check_delivered_vocabulary`, `check_edition_date`,
+`check_column_widths`, `check_waterfall_assertions`, `check_sign_convention`,
+`check_source_integrity`, `check_sweep_module`, `check_bridge`, `check_cost_of_capital`,
+`check_macro_coherence`, `check_forecast_anchor`, `check_eps_reconciliation`,
+`check_harness_outputs`, `check_study_provenance`, `check_workbook_structure`,
+`check_document_structure`, `check_lens_design`, `check_terminal_floor`, `check_protocol_sync`,
+`check_protocol_text`, `check_lessons_register`, `check_tech_calibration`, `check_escalations`,
+`check_source_rebinding`, `check_lens_vocabulary`, `check_figure_axes`.
+
+**Two ratchets SHORTENED, which is the only direction they may move.**
+`output_outstanding.json` 21 → 20: DU now conforms on the reverse read and the sign test.
+`edition_outstanding.json` 5 → 4: the masthead now carries its own edition date, in the two-date
+form — *"Edition of 8 September 2026 · anchored on the 7 September 2026 close"* — with both dates
+derived rather than typed.
+
+**Four gates caught this rebuild in the act and are worth naming**, because they are the argument
+for having them: `check_delivered_vocabulary` refused three repository paths that my own new
+register entries had leaked into a document a reader receives; `check_edition_date` refused a
+ratchet entry naming a file the rename had removed; `driver_test` refused two inputs that changed
+nothing until each was exercised where it binds; and `footing_check` refused the sensitivity table
+the moment its row labels moved.
+
+## THE GAP REVIEW
+
+The central moved and so did the price, so the disagreement moved: +45.9% to +36.6%.
+`GAP_REVIEW_08-09-2026.md` covers all eight headings against the new answer and the new gap, and
+`scripts/check_valuation_gap.py` is clean. The publication block does not fire — it is one-sided
+below the price and this central sits above it — so no authorisation is owed and none is asked
+for. **Nothing is published. The study is re-issued to the principal.**
+
+---
+
+*Prepared under `engine/Critique_Response_Prompt.md` v2. Part one is the stop-and-report of
+step 8; part two is step 9 and step 9b.*
