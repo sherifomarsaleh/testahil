@@ -1297,8 +1297,8 @@
       }
     },
     "superseded": {
-      "nu": 4.5,
-      "width_cal": 0.965,
+      "nu": 5.0,
+      "width_cal": 0.944,
       "market_verdict": "PASS",
       "replaced_on": "2026-09-08"
     },
