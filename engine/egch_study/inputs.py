@@ -335,36 +335,62 @@ I("quota_domestic_share_2021", 0.55, "ratio",
 I("quota_free_local_2021", 0.10, "ratio", "Cabinet decision 170 of 24 November 2021", "2021-11-24", "L3")
 I("export_levy_egp_t", 2500.0, "EGP/t",
   "Trade and industry ministry decree 241 of 2021 — levy on the quota shortfall", "2021-06-03", "L3")
-# RE-TIERED L3 -> L4 ON 09-09-2026, AND THE SOURCE NOW SAYS WHAT IT RESTS ON.
-# L3 means "Official external (regulator, central bank, government)". The three policy
-# inputs immediately above cite instruments by number -- cabinet decision 170 of
-# 24 November 2021, twice, and trade-ministry decree 241 of 2021. This one cited a
-# DESCRIPTION OF A CHANGE, under a date of 2026-01-01 that is a placeholder rather than a
-# publication date, and claimed the same tier.
+# THE INSTRUMENT WAS FOUND. RE-TIERED L3 -> L4 EARLIER ON 09-09-2026 AND BACK TO L3 THE
+# SAME DAY, AND THE SECOND MOVE IS THE ONE THAT MATTERS.
 #
-# The study's own sweep register already recorded the truth and nothing read it across:
-# the 2021 decisions come "as cited in the auditor's reports on the audited FY2024/25
-# statements and the Q1-2025/26 limited review", while the 2026 duty change comes from
-# "Mada Masr and Edge Consultancy reporting". Press reporting about a sector is INDUSTRY
-# CONTEXT, which is what L4 is for. It is not an official instrument and no instrument has
-# been located.
+# What was true and remains true: this input cited a DESCRIPTION OF A CHANGE under a date
+# of 2026-01-01 that is a placeholder rather than a publication date, while the three
+# policy inputs immediately above cite their instruments by number -- cabinet decision 170
+# of 24 November 2021, twice, and trade-ministry decree 241 of 2021. The study's own sweep
+# register recorded that the 2026 duty came from "Mada Masr and Edge Consultancy
+# reporting" and nothing read it across. That was a real provenance defect and it is why
+# the input carries a proper citation now.
 #
-# IT IS APPLIED TO EVERY EXPORT TONNE IN PERPETUITY and is worth EGP 2.683 a share on the
-# carried-through branch against a central of 4.0396 -- 26.3% of this study's gap to the
-# market, and the largest single line anyone has priced in it. It was in no contested
-# register. It is now, computed both ways.
+# WHAT WAS NOT TRUE WAS THE SENTENCE THIS DESK THEN WROTE: "no instrument has been
+# located". Nobody had looked. Twenty minutes of searching found DECREE No. 258 of 2026 of
+# the Minister of Investment and Foreign Trade, published in the Official Gazette on
+# 25 June 2026, corroborated independently by two reports of the same instrument. Writing
+# that a document does not exist because this desk has not read it is the SWDY defect
+# exactly -- a delivered sentence asserting an absence that a search would have closed --
+# and it is worse here, because it was written INTO a study while auditing another study
+# for the same thing.
 #
-# WHAT WOULD SETTLE IT: the 2026 decree or ministerial decision with its number, date and
-# rate; or the FY2025/26 auditor's report disclosing a duty actually charged, in the way
-# the FY2024/25 report disclosed the EGP 437.5m shortfall levy on 175kt. Either belongs in
-# the filings this study already holds.
+# WHAT THE DECREE SAYS, AND WHAT IT DOES TO THE 2.683 A SHARE THIS LINE IS WORTH:
+#   * 10% ad valorem on the FOB invoice value of NITROGEN FERTILISER exports, the invoice
+#     certified by the Chamber of Chemical Industries before export.
+#   * It REPLACED a temporary US$90 per tonne duty imposed in May 2026 for three months,
+#     which was due to expire in early August. The 10% carries NO STATED EXPIRY, so
+#     applying it in perpetuity is a defensible reading of the instrument rather than an
+#     assumption -- which is what this line needed and did not have.
+#   * PURE AMMONIUM NITRATE ABOVE 34.2% NITROGEN IS EXEMPT, verified by joint
+#     customs and export-control sampling, as are shipments to productive enterprises in
+#     the free zones.
+#
+# The rate the study carries is the rate the decree sets, on the base the decree sets, and
+# it applies to urea, which is a nitrogen fertiliser and is not exempt. THE LARGEST SINGLE
+# PRICEABLE LINE IN THIS STUDY IS THEREFORE NOT A DEFECT. It stays in the contested
+# register because a reader should see what it is worth, but it is no longer an open
+# provenance question, and the answer does not move.
+#
+# THE EXEMPTION WAS CHECKED AGAINST THIS MODEL RATHER THAN NOTED. compute.py applies the
+# duty at line 463 to the UREA export leg alone; the existing granulated nitrate (line
+# 469) and the new complex's nitrate (line 544) both carry no duty. The model is already
+# consistent with the exemption. Recorded because a search that changes nothing is still
+# a search, and the next reader should not have to run it again.
+#
+# WHAT WOULD IMPROVE IT FURTHER: the decree text itself from the Official Gazette rather
+# than two reports of it, and the FY2025/26 auditor's report disclosing a duty actually
+# charged, in the way the FY2024/25 report disclosed the EGP 437.5m shortfall levy on
+# 175kt. The second belongs in the filings this study already holds.
 I("export_duty_2026", 0.10, "ratio",
-  "2026 replacement of the shortfall levy with an ad-valorem duty tied to the global "
-  "price. NO DECREE, MINISTRY OR RATE DOCUMENT HAS BEEN LOCATED: this rests on press "
-  "reporting (Mada Masr, Edge Consultancy) as this study's own sweep register states, "
-  "not on an official instrument, and it is tiered L4 for that reason while the three "
-  "policy inputs above cite their decisions by number",
-  "2026-01-01", "L4")
+  "Decree No. 258 of 2026 of the Minister of Investment and Foreign Trade, published in "
+  "the Official Gazette on 25 June 2026 — 10% ad valorem on the FOB invoice value of "
+  "nitrogen fertiliser exports, the invoice certified by the Chamber of Chemical "
+  "Industries. It replaced a temporary US$90/t duty imposed in May 2026 for three months; "
+  "the 10% carries no stated expiry. Pure ammonium nitrate above 34.2% nitrogen and free "
+  "zone shipments are exempt — urea is neither. Read from two independent reports of the "
+  "instrument rather than the Gazette text, which is the remaining gap in this citation",
+  "2026-06-25", "L3")
 I("subsidised_price", 6000.0, "EGP/t", "Cooperative supply price for subsidised fertilizer", "2025-09-08", "L3")
 I("quota_revision_sep2025", 0.53, "ratio",
   "Cabinet decision of 8 September 2025 — industry export share after the revision", "2025-09-08", "L3")

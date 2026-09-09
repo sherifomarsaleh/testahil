@@ -1733,9 +1733,9 @@
    "key": "export_duty_2026",
    "value": 0.1,
    "unit": "ratio",
-   "source": "2026 replacement of the shortfall levy with an ad-valorem duty tied to the global price. NO DECREE, MINISTRY OR RATE DOCUMENT HAS BEEN LOCATED: this rests on press reporting (Mada Masr, Edge Consultancy) as this study's own sweep register states, not on an official instrument, and it is tiered L4 for that reason while the three policy inputs above cite their decisions by number",
-   "date": "2026-01-01",
-   "layer": "L4",
+   "source": "Decree No. 258 of 2026 of the Minister of Investment and Foreign Trade, published in the Official Gazette on 25 June 2026 \u2014 10% ad valorem on the FOB invoice value of nitrogen fertiliser exports, the invoice certified by the Chamber of Chemical Industries. It replaced a temporary US$90/t duty imposed in May 2026 for three months; the 10% carries no stated expiry. Pure ammonium nitrate above 34.2% nitrogen and free zone shipments are exempt \u2014 urea is neither. Read from two independent reports of the instrument rather than the Gazette text, which is the remaining gap in this citation",
+   "date": "2026-06-25",
+   "layer": "L3",
    "note": ""
   },
   "subsidised_price": {

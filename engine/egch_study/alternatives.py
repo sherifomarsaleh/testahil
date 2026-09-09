@@ -76,27 +76,66 @@ project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0
 # argued about, at the rate adopted, at no duty at all, and at half.
 _duty_zero = reprice(export_duty_pct=0.0)
 _duty_half = reprice(export_duty_pct=0.05)
+_an_disclosed = reprice(anna_price_usd_t=20000.0 / 49.0)
 
 ALTS = [
     dict(key="export_duty_2026",
          made="A 10% ad-valorem export duty charged on every export tonne, for ever",
          alt="No duty at all (%.4f) or half the rate (%.4f)" % (_duty_zero, _duty_half),
          value=_duty_zero,
-         why="THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND ITS SOURCE NAMES NO "
-             "INSTRUMENT. The two cabinet decisions and the ministry decree it sits "
-             "beside are each cited by number and date; this one cites a description of a "
-             "change, dated 2026-01-01, which is a placeholder rather than a publication "
-             "date. The study's own sweep register says where it actually comes from -- "
-             "'Mada Masr and Edge Consultancy reporting on the Sep-2025 redistribution "
-             "and 2026 duty change' -- against the 2021 decisions, which come as cited in "
-             "the auditor's own reports. Press about a sector is industry context and the "
-             "input is tiered L4 now, not L3 'Official external'. THE DIRECTION IS "
-             "AGAINST THIS STUDY: removing the duty RAISES the value and narrows the gap "
-             "to the market, and it is priced for that reason rather than despite it "
-             "[R-GAP-04]. What would settle it: the 2026 decree with its number, date and "
-             "rate, or the FY2025/26 auditor's report disclosing a duty actually charged, "
-             "the way the FY2024/25 report disclosed the EGP 437.5m shortfall levy on "
-             "175kt."),
+         why="THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND THE INSTRUMENT BEHIND "
+             "IT HAS NOW BEEN FOUND. It is DECREE No. 258 of 2026 of the Minister of "
+             "Investment and Foreign Trade, published in the Official Gazette on 25 June "
+             "2026: 10% ad valorem on the FOB invoice value of nitrogen fertiliser "
+             "exports, replacing a temporary US$90/t duty imposed in May 2026 for three "
+             "months, and carrying no stated expiry of its own. The rate this study "
+             "charges is the rate the decree sets, on the base it sets, applied in "
+             "perpetuity because the instrument names no end -- which is a reading of the "
+             "decree rather than the assumption it was until today. "
+             "PURE AMMONIUM NITRATE ABOVE 34.2% NITROGEN AND FREE-ZONE SHIPMENTS ARE "
+             "EXEMPT, and that was checked against the model rather than noted: the duty "
+             "is applied to the UREA export leg alone, and urea is not exempt. "
+             "THE DIRECTION IS AGAINST THIS STUDY -- removing the duty RAISES the value "
+             "and narrows the gap -- and the search was made for that reason rather than "
+             "despite it [R-GAP-04]. It came back saying the duty is real, so the "
+             "alternative below is priced and NOT adopted; a reader is entitled to see "
+             "what the largest line in the study is worth even when it survives. "
+             "The input was briefly re-tiered L3 to L4 earlier today on the ground that "
+             "no instrument had been located; nobody had looked, and that sentence was "
+             "the same defect it was written to record. It is L3 again, cited by number "
+             "and date. What would improve it further: the Gazette text itself rather "
+             "than two independent reports of it, and the FY2025/26 auditor's report "
+             "disclosing a duty actually charged, the way the FY2024/25 report disclosed "
+             "the EGP 437.5m shortfall levy on 175kt."),
+    dict(key="an_price_usd_t",
+         made="The new complex's granulated ammonium nitrate priced at a typed "
+              "US$280/t, the weakest-sourced input in a 304-input register",
+         alt="Priced at the SAME PRODUCT'S OWN DISCLOSED REALISED PRICE — EGP 20,000/t "
+             "from note 20, which is US$%.2f/t at this model's FY2024/25 rate of 49.00 "
+             "(%.4f)" % (20000.0 / 49.0, _an_disclosed),
+         value=_an_disclosed,
+         why="THE STUDY PRICES ONE PRODUCT TWICE, 31% APART, AND THE TERMINAL TAKES THE "
+             "LOWER. The existing granulated nitrate is carried at the disclosed EGP "
+             "20,000/t; the new complex's identical output is carried at a typed "
+             "US$280/t whose source string is four words long and names no assessor, "
+             "series, date or basis. The study set out at length why the terminal "
+             "tonne's COST had to come off the auditor's own product cost table for this "
+             "exact product -- granulated ammonium nitrate at EGP 4,076.31/t -- rather "
+             "than from a ratio, and then took the price from a guess. The same "
+             "principle, applied to one side of the margin only, and the side it was not "
+             "applied to is the one 31% below the company's own realised figure. "
+             "IT IS PRICED AND NOT ADOPTED. Two things are unresolved from what this "
+             "desk holds: the disclosed figure is a LOCAL realised price while the new "
+             "complex's output is modelled as export, and a mid-cycle price is by "
+             "construction below a realised one. A search for an assessed mid-cycle "
+             "ammonium nitrate series returned vendor subscription databases only, which "
+             "is not a source this house uses, and what qualitative reporting there is "
+             "points UP for 2026 on gas and Hormuz supply risk rather than down. "
+             "Replacing an unsourced number with another unsourced number that happens "
+             "to raise the value is not a correction [R-GAP-04], so the conservative "
+             "figure stands and the reader is shown what it costs. What would settle it: "
+             "an assessed FOB Egypt or Black Sea series with its assessor and date, or a "
+             "note 20 splitting nitrate revenue into local and export."),
     dict(key="premium_basis",
          made="Country risk priced off the sovereign's traded default swap",
          alt="Priced off the sovereign's credit rating instead, which is the wider of "
