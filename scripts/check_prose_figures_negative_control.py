@@ -133,8 +133,22 @@ CASES = [
     ('6. no study directories at all [R-ENF-04]', True, {}, None,
      'examined zero study directories'),
     ('7. CLEAN — carries it and passes', False, {'X': PASSING}, None, None),
-    ('8. CLEAN — a study with no check that is on the ratchet', False, {'X': None},
-     {'X': 'no prose check'}, None),
+    # THE ENTRY MUST LOOK LIKE A REAL ONE, because since 09-09-2026 the gate reads what
+    # an entry RECORDS rather than merely that a name appears. Every committed entry
+    # carries the day it was measured; this fixture planted a bare string, which after
+    # the hardening records nothing and excuses nothing. The fixture was asserting that
+    # a name on the list is excused — which is exactly the belief the hardening removed.
+    ('8. CLEAN — a study with no check, on the ratchet with a MEASURED entry', False,
+     {'X': None},
+     {'X': {'checked': None, 'measured_on': '2026-09-09',
+            'reason': 'no script reconciles the delivered documents against the numbers'}},
+     None),
+    # AND THE OTHER SIDE OF IT, which nothing in this control tested before: a name
+    # seeded onto the list with no measurement behind it must NOT buy silence. This is
+    # the one-line edit the new-study gauntlet demonstrates, and it belongs in this
+    # gate's own control rather than only in the meta-test that found it.
+    ('8b. a study with no check, seeded onto the ratchet with NO measurement', True,
+     {'X': None}, {'X': 'seeded by hand'}, 'NO prose check'),
     ('9. CLEAN — a study whose check is RED but is on the ratchet: knowingly '
      'outstanding, allowed to fail', False, {'X': FAILING}, {'X': 'unmatched: 3'}, None),
 ]
