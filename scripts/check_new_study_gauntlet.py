@@ -432,6 +432,17 @@ EXCLUDED = {
                                'correctly no band whose absence from a document '
                                'could be refused; it reads study directories only '
                                'to find the document a run already owes',
+    # ADDED 09-09-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07]. It compares a
+    # study's TYPED artefact names against the dates its own committed record states,
+    # so its whole subject is a record that already exists. A new empty study
+    # directory has no study_numbers.json, therefore no owned dates, therefore
+    # nothing a typed name could contradict -- and it is reported as
+    # no_dated_record rather than passed over, so the population stays visible.
+    # Demanding a nonzero exit here would be asking it to refuse a study for
+    # holding no dates, which is not what the rule says.
+    'check_typed_dates.py': 'compares typed artefact names against the dates a '
+                            'study RECORD already states; a new empty study has no '
+                            'record, so there is correctly nothing to contradict',
 }
 
 
