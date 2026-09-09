@@ -94,6 +94,7 @@ def _sandbox():
         shutil.copy(rat, os.path.join(eng, "build_depth_audit"))
     shutil.copy(os.path.join(SRC_ENGINE, "range_disclosure.py"), eng)
     open(os.path.join(eng, "__init__.py"), "w").close()
+    missing_study = []
     for run in sorted(glob.glob(os.path.join(SRC_ENGINE, "*_walkforward"))):
         if not os.path.exists(os.path.join(run, "forward_ranges.json")):
             continue
@@ -103,10 +104,28 @@ def _sandbox():
              "w").write("{}")
         src = os.path.join(SRC_ENGINE, "%s_study" % tk)
         dst = os.path.join(eng, "%s_study" % tk)
+        # A RUN WITH NO STUDY DIRECTORY IS A REAL STATE AND THE SANDBOX MUST REPRODUCE IT,
+        # not crash on it and not paper over it. This block assumed every walk-forward has
+        # a matching _study and called os.listdir on the path unconditionally; ABUK is the
+        # first run where that is false — its own training record says Document 1 of
+        # [R-FCAL-01] §6 is not built — and the control died with FileNotFoundError before
+        # a single case ran. A harness that cannot build its own fixture reports nothing,
+        # and nothing is not clean [R-ENF-04].
+        #
+        # Creating an EMPTY dst would be worse than crashing: the gate under test would
+        # then see a study directory holding no document, which is a different condition
+        # from no study directory at all, and every case would be scored against a state
+        # the book is not in. So the absence is copied through as an absence.
+        if not os.path.isdir(src):
+            missing_study.append(tk.upper())
+            continue
         os.makedirs(dst)
         f = _latest(src)
         if f:
             shutil.copy(os.path.join(src, f), os.path.join(dst, f))
+    if missing_study:
+        print("  fixture note: %d run(s) carry no study directory and are reproduced "
+              "that way — %s" % (len(missing_study), ", ".join(sorted(missing_study))))
     os.makedirs(os.path.join(tmp, "scripts"))
     shutil.copy(TARGET, os.path.join(tmp, "scripts", "check_forward_ranges.py"))
     return tmp

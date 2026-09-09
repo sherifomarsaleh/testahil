@@ -1361,6 +1361,48 @@
     "file": "engine/emfd_walkforward_pending/PANEL_RULING.md",
     "must_contain": "EMFD PANEL RULED ON"
    }
+  },
+  {
+   "key": "ABUK-document-1-not-built-five-gates-red",
+   "opened": "2026-09-09",
+   "cls": "instruction",
+   "question": "ABUK's walk-forward is the only run in the book with no study directory behind it, and FIVE gates are red on that single fact: the campaign queue and fair-value register, the staged publish queue, check_calibration_deliverables, check_forward_ranges, and its negative control. THE GATES ARE RIGHT. ABUK's own training record, section 13, says so in terms: 'The delivered valuation study — Document 1 of [R-FCAL-01] §6 — is NOT built ... no fair value has been struck.' [R-FCAL-01] §6 requires TWO DOCUMENTS EVERY RUN and names the first as a 16-section Word document with a valuation summary and a cash-flow model. So the run is unfinished by the rule's own terms. Two ways forward and both are the principal's: BUILD ABUK's Document 1 and workbook, which is issuing a study and is what instruction 08-09-2026 defers ('i just need to finish the framework. I do not care about issuing new reports now'); or AMEND [R-FCAL-01] §6 so a campaign run on a name with no current-standard study may be calibration-only, declaring that it struck nothing. Which?",
+   "routes": [
+    {
+     "route": "ABUK's own TRAINING_RECORD_09-09-2026.md, section 13, read for what the run says about itself",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "the run declares Document 1 not built, the 16-sheet workbook, the standalone bibliography and the QC gate not built, and fair{bear,base,full} untouched at the frozen baseline of 50/60/72 EGP. It is not a gate misreading a finished run."
+    },
+    {
+     "route": "[R-FCAL-01] §6 in engine/Fundamental_Walkforward_Prompt.md, read to settle whether a strike is optional",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "it is not optional as written: TWO DOCUMENTS, EVERY RUN, the first a 16-section Word document carrying a valuation summary and a full FCFF waterfall. CLAUDE.md states the same rule from the other side — 'a run that produces one and not the other is not finished'."
+    },
+    {
+     "route": "every walk-forward directory on disk checked for a matching study directory",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "ABUK is the ONLY one of eleven runs with no study behind it, against 24 study directories. This is one name, not a pattern, which is why it can be ruled on rather than surveyed."
+    },
+    {
+     "route": "the five gates run from outside the work they govern, to check they name ABUK and nothing else",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "each reports exactly one problem and it is ABUK in every case. No gate is wrong and none was widened. The far-year negative control was ALSO crashing on this state with an unhandled FileNotFoundError; that is fixed separately — a harness that cannot build its fixture reports nothing, and nothing is not clean [R-ENF-04] — and it now runs to completion with three clean cases firing on the real ABUK condition."
+    }
+   ],
+   "refs_searched": 11,
+   "why_only_the_principal": "Both routes are reserved. Building the study is issuing a report, which the standing instruction of 08-09-2026 defers outright, and building it TO CLEAR A GATE would invert the order this house works in. Amending [R-FCAL-01] §6 is a standing-rule change. This desk may do neither, and the one thing it must not do is widen the five gates to accept the state — the gates are reporting the truth.",
+   "done_meanwhile": "nothing was widened and no gate was touched for this. The far-year negative control's CRASH was fixed, which is a separate defect in the instrument rather than in the finding: it now reproduces the missing study directory as an absence, names it in a fixture note, and runs all 19 cases. The three cases that then fail are the real ABUK debt surfacing through clean cases, exactly as the delivered-PDF control does.",
+   "default_if_no_answer": "leave all five red and do not build the study. A red gate that names a true and declared debt is doing its job, and the standing priority is the framework rather than a new report. Revisit when the principal rules or when the framework's own measurement needs ABUK built",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/abuk_walkforward/DOCUMENT_1_RULING.md",
+    "must_contain": "ABUK DOCUMENT 1 RULED ON"
+   }
   }
  ]
 }
