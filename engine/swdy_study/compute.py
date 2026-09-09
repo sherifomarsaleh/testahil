@@ -700,10 +700,34 @@ INP = dict(
               "level (19.87%) — a genuine improvement on FY2023 (24.1%) and FY2024 (23.1%), "
               "carried forward without assuming further improvement or reversion",
               "2026-08-05", "House"),
+    # ---- THE DISCLOSED HALF-YEAR CAPEX, ALL FOUR OF THEM [added 09-09-2026]
+    # THE REVIEWED HALF THIS STUDY ALREADY READS FOR REVENUE, PROFIT, FINANCE, TAX AND
+    # ASSOCIATES ALSO DISCLOSES CAPEX, AND NOBODY REGISTERED IT. Same filing, same cash
+    # flow statement, two lines below figures this register already carries. It is the
+    # third disclosure hole found in this study in two days, after the Constructions
+    # backlog and the employees'-cap headroom, and it is the one that is worth something.
+    capex_h1_26=I(5435.908723, H126 + ", condensed interim consolidated statement of cash "
+                  "flows: 'Paid for acquisition of property, plant and equipment and "
+                  "projects under construction'", "2026-06-30", "Company"),
+    capex_h1_25=I(5386.809066, H126 + ", same line, comparative column — and independently "
+                  "in the reviewed interim statements for the six months ended 30 June "
+                  "2025, where it is the current-period figure. Two readings of one fact "
+                  "agreeing [R-ENF-03]", "2025-06-30", "Company"),
+    capex_h1_24=I(4595.530101, "Reviewed condensed interim consolidated financial "
+                  "statements for the six months ended 30 June 2024, statement of cash "
+                  "flows, same line", "2024-06-30", "Company"),
+    capex_h1_23=I(1858.436892, "Reviewed condensed interim consolidated financial "
+                  "statements for the six months ended 30 June 2024, same line, "
+                  "comparative column", "2023-06-30", "Company"),
     capex_pct=I([0.044, 0.040, 0.036, 0.033, 0.031],
-                "Capex as a share of revenue, tapering from the FY2025 disclosed level of 4.7% "
-                "(up from 3.1% FY2023 and 3.7% FY2024) toward a lower maintenance-plus-modest-"
-                "capacity level as the current expansion cycle completes", "2026-08-05", "House"),
+                "THE RETIRED PATH, superseded 09-09-2026 and kept because the depth bar "
+                "requires a displaced construction to be published beside the one that "
+                "replaced it. It tapered from the FY2025 disclosed level of 4.7% (up from "
+                "3.1% FY2023 and 3.7% FY2024) toward a lower maintenance-plus-modest-"
+                "capacity level as the expansion cycle completes — a House glide, on a "
+                "story about the cycle, set before the reviewed half was read. The half "
+                "measures the cycle directly: see capex_pct_measured below",
+                "2026-08-05", "House"),
     dna_pct=I(0.0125, "Depreciation and amortisation as a share of revenue, held near the FY2025 "
               "disclosed level (1.07%) with a modest rise reflecting the larger capitalised asset "
               "base from the FY2025-26 capex ramp", "2026-08-05", "House"),
@@ -1266,7 +1290,49 @@ seg_ebit = [{s: seg_gp[i][s] - V['opex_pct'][i] * seg_rev[i][s] for s in SUBS} f
 dna = [V['dna_pct'] * r for r in rev]
 ebit = [ebitda[i] - dna[i] for i in range(5)]
 nopat = [e * (1 - TAX) for e in ebit]
-capex = [V['capex_pct'][i] * rev[i] for i in range(5)]
+# ---- CAPEX, RE-ANCHORED ON THE REVIEWED HALF [09-09-2026] --------------------
+# THE MODEL CHARGED 23.0% MORE FY2026 CAPEX THAN THE COMPANY'S OWN FILED HALF IMPLIES,
+# and the filing had never been read for this line. capex_pct was a House glide tapering
+# from FY2025's 4.665% on a story about the expansion cycle completing. The reviewed six
+# months to 30 June 2026 measure that cycle: capex of 5,435.909 against 5,386.809 a year
+# earlier — UP 0.91% — while revenue over the same halves rose 31.92%. Capex is flat in
+# level and falling hard as a share of revenue, which is what "the cycle is completing"
+# looks like when it is observed rather than assumed.
+#
+# THIS IS THE STUDY'S OWN ESTABLISHED STANDARD, NOT A NEW ONE. corp_load sits eight lines
+# above capex_pct in the register and was re-anchored on exactly this evidence, in these
+# words: "The first edition glided it up toward 5.0% on the view that FY2025 was unusually
+# low; the reviewed half measures the level holding, and no disclosure names a mechanism
+# that would take it back up." The same half, the same filing, the same reasoning, applied
+# to the line it had not been applied to.
+#
+# THE CONSTRUCTION NEEDS NO SEASONALITY ASSUMPTION, WHICH MATTERS BECAUSE THE SEASONALITY
+# IS NOT STABLE. The H1 share of full-year capex is 39.1% (2023), 54.1% (2024) and 41.1%
+# (2025) — a range too wide to annualise a half on. So the half is not annualised: it is
+# compared with the SAME HALF of the prior year, like for like, and the growth rate that
+# comes out of it is applied to the audited full year. Flat halves imply a flat year.
+#
+# The finding survives every one of the three seasonality patterns anyway, which is why it
+# is reported as a defect rather than as a judgement: annualising H1-2026 at the most
+# H2-weighted year on record still gives 13,890 against the model's 16,281.
+_CAPEX_H1_GROWTH = V['capex_h1_26'] / V['capex_h1_25'] - 1.0
+_CAPEX_FY26 = V['capex_fy25'] * (1.0 + _CAPEX_H1_GROWTH)
+# Held FLAT as a share of revenue from FY2027, for the corp_load reason: the half measures
+# a level and no disclosure names a mechanism that moves it. Note which way that cuts —
+# flat is ABOVE the retired taper in FY2029 (3.58% vs 3.30%) and FY2030 (3.58% vs 3.10%),
+# so the out-years are charged MORE capex than the path this replaces, not less.
+_CAPEX_PCT_MEASURED = _CAPEX_FY26 / rev[0]
+V['capex_pct_measured'] = I([round(_CAPEX_PCT_MEASURED, 6)] * 5,
+    "DERIVED, not typed. FY2026 capex is the audited FY2025 figure of %.3f grown by the "
+    "%+.2f%% the reviewed halves measure (H1-2026 %.3f against H1-2025 %.3f), giving "
+    "%.1f, which is %.3f%% of this model's own FY2026 revenue and is then held flat. "
+    "The retired House taper charged %.1f in FY2026, %+.1f%% more."
+    % (V['capex_fy25'], 100 * _CAPEX_H1_GROWTH, V['capex_h1_26'], V['capex_h1_25'],
+       _CAPEX_FY26, 100 * _CAPEX_PCT_MEASURED, V['capex_pct'][0] * rev[0],
+       100 * (V['capex_pct'][0] * rev[0] / _CAPEX_FY26 - 1.0)),
+    "2026-06-30", "Company/House")
+capex = [_CAPEX_PCT_MEASURED * rev[i] for i in range(5)]
+_CAPEX_RETIRED = [V['capex_pct'][i] * rev[i] for i in range(5)]
 nwc = [V['nwc_pct'] * r for r in rev]
 dnwc = [nwc[0] - nwc_fy25] + [nwc[i] - nwc[i - 1] for i in range(1, 5)]
 fcff = [nopat[i] + dna[i] - capex[i] - dnwc[i] for i in range(5)]
@@ -1369,9 +1435,15 @@ _terminal = TV.build(TV.TerminalInputs(
     # MAINTENANCE ON BOOK D&A ESCALATED OVER HALF THE DERIVED LIFE, not on the FY2025
     # gross cost. THE FIRST DRAFT OF THIS TERMINAL USED THE FY2025 BASE AND WAS WRONG:
     # the model itself adds five years of capex, growing net depreciable PP&E from
-    # 24,806 to 90,938 — 3.67x — so a maintenance charge struck on the opening base
-    # understates replacement by a multiple, and it showed as a charge of 7,916 against
-    # the model's own FY2030 capex of 17,212. The terminal-year book D&A already carries
+    # 24,806 to roughly 90,000 — about 3.6x — so a maintenance charge struck on the
+    # opening base understates replacement by a multiple, and it showed as a charge of
+    # 7,916 against a final-year capex of 17,212. THOSE TWO FIGURES ARE THE RETIRED
+    # CAPEX PATH'S, named as such since 09-09-2026 rather than left reading as live: the
+    # path was re-anchored on the reviewed half that day and the final-year figure is now
+    # a different number. The argument is about the SHAPE — five years of capex build a
+    # base the opening one does not describe — and that is unchanged by the re-anchoring,
+    # which is why the figures are kept as the historical illustration they are instead
+    # of being refreshed into a comment nobody re-reads. The terminal-year book D&A carries
     # the built-up base; escalating it over half an asset life converts historical cost
     # to replacement cost, which is the module's own cross-check route made primary here
     # because the other one's base was stale.
@@ -1721,7 +1793,10 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
     _dna = [V['dna_pct'] * r for r in _rev]
     _ebit = [_ebitda[i] - _dna[i] for i in range(5)]
     _nopat = [e * (1 - TAX) for e in _ebit]
-    _capex = [V['capex_pct'][i] * r for i, r in enumerate(_rev)]
+    # THE SCENARIO ENGINE READS THE SAME CAPEX CONSTRUCTION AS THE BASE, and the study's
+    # own reproduce-the-base assertion is what caught it reading the retired one: two
+    # readers of one fact disagreeing [R-ENF-03], found by a gate rather than by eye.
+    _capex = [_CAPEX_PCT_MEASURED * r for r in _rev]
     _nwc = [nwc * r for r in _rev]
     _dnwc = [_nwc[0] - nwc_fy25] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
     _f = [_nopat[i] + _dna[i] - _capex[i] - _dnwc[i] for i in range(5)]
