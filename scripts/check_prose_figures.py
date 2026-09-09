@@ -147,7 +147,22 @@ def has_instrument(sdir):
     it must actually READ a .docx — a file that only prints a report is not the check."""
     for p in glob.glob(os.path.join(sdir, '*prose*.py')):
         src = open(p, encoding='utf-8', errors='replace').read()
-        if '.docx' in src and ('Document(' in src or 'docx' in src):
+        # OPENING A DOCUMENT IS THE TEST, NOT SPELLING ITS NAME OUT [R-COC-01].
+        # This required the literal '.docx' to appear in the source, which was true
+        # while every study typed its delivered filenames. On 09-09-2026 those names
+        # moved into each study's edition module, so ARCC's and AMOC's prose checks
+        # stopped containing the string while still reading exactly the same files --
+        # and this gate reported "no script reconciles the delivered documents", which
+        # is confidently wrong and sends the next reader looking for a deleted file.
+        # A python-docx Document() call IS the act of reading one.
+        # AND THE HOUSE'S OWN SHARED INSTRUMENT COUNTS, which is the case that
+        # actually broke. ARCC and AMOC do not touch python-docx at all: they
+        # import engine/prose_figures.py, the module every study is supposed to
+        # use rather than hand-roll, and it does the reading for them. A detector
+        # that recognises only the hand-rolled shapes penalises the studies that
+        # followed the instruction.
+        if ('prose_figures' in src or 'Document(' in src
+                or ('.docx' in src and 'docx' in src)):
             return os.path.basename(p)
     return None
 
