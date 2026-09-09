@@ -109,6 +109,18 @@ for k, rec in D['inputs'].items():
     cnt[rec['ring']] = cnt.get(rec['ring'], 0) + 1
 for row in rings[1:]:
     row[2] = str(cnt.get(row[0], 0)) + ' records' if row[0] in cnt else '—'
+# ANY RING PRESENT IN THE DATA AND NOT NAMED ABOVE GETS ITS OWN ROW, BUILT FROM THE
+# DATA. The list above was hand-typed and therefore could only ever describe the rings
+# whoever typed it had thought of; a ring the study actually uses and this table does
+# not name is a register that misdescribes itself.
+for _r in sorted(r for r in cnt if r not in {row[0] for row in rings[1:]}):
+    if _r == 'Vendor':
+        _what = ('A DATA VENDOR, not the company. The vendor is named on every row of §C. ELEC’s own '
+                 'audited statement for these figures could not be obtained (§A note), so a vendor '
+                 'carries them. Declared, not shown as company-sourced.')
+    else:
+        _what = 'Ring used by the model and not described above — read the source column on each row.'
+    rings.append([_r, _what, str(cnt[_r]) + ' records'])
 table(rings, [1.0, 4.4, 1.6], size=9)
 
 # B — primary documents
@@ -139,13 +151,23 @@ table(rows, [1.9, 1.9, 0.85, 2.45], size=8.2)
 # C — full register
 H1('C.  The full input register')
 P('Every record below was emitted by compute.py. “House” in the ring column means the number is an argued '
-  'assumption, not an observable; each such row is sensitized in the study (§1.9).', size=9.4)
+  'assumption, not an observable; each such row is sensitized in the study (§1.9). A ring beginning '
+  '“Vendor” names the data vendor the figure came from, because the company’s own statement for that '
+  'figure could not be obtained — see §A on the source position.', size=9.4)
 by_ring = {}
 for k, rec in D['inputs'].items():
     by_ring.setdefault(rec['ring'], []).append((k, rec))
-for ring in ['Market', 'Country', 'Industry', 'Company', 'House']:
-    if ring not in by_ring: continue
-    H2(f'C.{["Market","Country","Industry","Company","House"].index(ring)+1}  Ring: {ring}  ({len(by_ring[ring])} records)')
+# THE RING ORDER IS THE CANONICAL FIVE, THEN EVERY OTHER RING PRESENT, SORTED.
+# It used to be the five alone, which meant a record carrying any other ring was
+# dropped from this register in silence -- the register asserting completeness while
+# omitting exactly the rows a reader most needs to see. The order is fixed; the
+# membership is read from the data.
+_CANON = ['Market', 'Country', 'Industry', 'Company', 'House']
+_order = [r for r in _CANON if r in by_ring] + sorted(r for r in by_ring if r not in _CANON)
+assert set(_order) == set(by_ring), 'ring ordering dropped a ring present in the inputs'
+assert sum(len(by_ring[r]) for r in _order) == len(D['inputs']), 'register does not carry every input'
+for _i, ring in enumerate(_order, start=1):
+    H2(f'C.{_i}  Ring: {ring}  ({len(by_ring[ring])} records)')
     rows = [['Input', 'Value', 'Date', 'Source / provenance']]
     for k, rec in by_ring[ring]:
         v = rec['value']

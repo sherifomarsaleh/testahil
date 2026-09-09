@@ -20,7 +20,7 @@
    "value": 3313.540373,
    "source": "Mubasher ELEC profile (paid-in capital EGP 662,708,074.60 / par 0.20); verified 3 ways: SWS holder sum; FY24 EPS 0.40=1,327.8/3,313.5; FY25 EPS 0.15=500.3/3,313.5",
    "date": "2026 (mid)",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "tax": {
    "value": 0.225,
@@ -38,67 +38,67 @@
    "value": 8673.4,
    "source": "MarketScreener/Mubasher FY2024 results note (comparative)",
    "date": "2025-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "rev_fy24": {
    "value": 13778.2,
    "source": "MarketScreener/Mubasher FY2024 consolidated results",
    "date": "2025-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "rev_fy25": {
    "value": 10819.0,
    "source": "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "np_fy23": {
    "value": 1248.0,
    "source": "Zawya/MarketScreener (FY23 consolidated NP)",
    "date": "2024-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "np_fy24": {
    "value": 1327.8,
    "source": "Mubasher FY2024 consolidated results",
    "date": "2025-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "np_fy25": {
    "value": 500.31,
    "source": "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "ebit_fy24": {
    "value": 3400.0,
    "source": "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "ebitda_fy24": {
    "value": 3490.0,
    "source": "Investing.com financial summary ('EBITDA 3.49B') \u2014 single aggregator, period attributed to FY2024; flagged",
    "date": "2026 capture",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "int_cover_fy24": {
    "value": 2.0,
    "source": "Simply Wall St health page (interest coverage 2x EBIT)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "q1_26_rev": {
    "value": 2094.0,
    "source": "Zawya/Arab Finance Q1-2026 (consolidated net sales)",
    "date": "2026-05",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "q1_26_np": {
    "value": -241.6,
    "source": "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)",
    "date": "2026-05",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "q1_25_rev": {
    "value": 3723.0,
@@ -116,43 +116,43 @@
    "value": 4960.0,
    "source": "Zawya 9M-2023 results note (comparative, 31-Dec-2022)",
    "date": "2023-11",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "assets_fy24": {
    "value": 14970.0,
    "source": "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "assets_fy25": {
    "value": 16460.0,
    "source": "Zawya/Decypha FY2025 results (total assets, +9.9%)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "debt_fy24": {
    "value": 8960.0,
    "source": "Company's own FY25-filing comparative ('vs 8.96bn in 2024'); SWS independent print ~9.0bn corroborates. Standardized on the filing comparative so every FY24 net-debt reference in the study is the same number (8,132)",
    "date": "2026-03-18",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "cash_fy24": {
    "value": 827.6,
    "source": "Simply Wall St health page (cash & ST investments)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "equity_fy24": {
    "value": 3600.0,
    "source": "Simply Wall St health page (total shareholder equity)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "liab_fy24": {
    "value": 11300.0,
    "source": "Simply Wall St health page (total liabilities)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "assets_fy23_est": {
    "value": 10000.0,
@@ -212,7 +212,7 @@
    "value": 4700.0,
    "source": "FY25 standalone sales EGP 4.7bn vs 7.69bn FY24 (Arab Finance AR) \u2014 the consolidated subsidiaries carry most of group revenue",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "agm_no_dividend": {
    "value": "FY25 profits carried forward, no cash distribution; new board elected",

@@ -13,6 +13,26 @@ import numpy as np
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
+# ============================ SOURCE RINGS, DECLARED ==========================
+# TWENTY FIGURES IN THIS FILE NAMED A VENDOR IN THEIR SOURCE AND CLAIMED THE RING
+# "Company". The ring is what a gate reads and what a reader is told; the source string
+# is prose beside it. So the register asserted company sourcing on figures it described
+# in the same breath as coming from Simply Wall St, Investing.com, Zawya, Mubasher,
+# MarketScreener, Arab Finance, Decypha and Reuters. That is not a labelling nicety: it
+# is the difference between a study that says where its numbers came from and one that
+# does not, and SIGCM clause 1 exists because of it.
+#
+# ON THE PRINCIPAL'S EXPLICIT INSTRUCTION, 09-09-2026 -- "Declare that the financials
+# are from vendor and state specifically they are from investing.com" -- every such ring
+# now NAMES its vendor. Nothing about the numbers changes. What changes is that the
+# study, its gates and its reader can all see what they rest on.
+#
+# THE EXCEPTION IS DECLARED, NOT SMUGGLED. SIGCM clause 1 forbids a vendor as the source
+# of a company's own historicals, and this study breaches it. It breaches it because the
+# company's statements cannot be obtained: FY2024 and FY2025 were never filed anywhere
+# reachable, and every archived annual but FY2021 is truncated mid-file by the crawler.
+# The full consolidated record and its footing checks are in
+# vendor_record_investing.json.
 INP = dict(
     # ---- anchors ----
     # RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. Struck at
@@ -29,7 +49,7 @@ INP = dict(
            "2026-09-03", "Market"),
     shares_mn=I(3313.540373, "Mubasher ELEC profile (paid-in capital EGP 662,708,074.60 / par 0.20); "
                 "verified 3 ways: SWS holder sum; FY24 EPS 0.40=1,327.8/3,313.5; FY25 EPS 0.15=500.3/3,313.5",
-                "2026 (mid)", "Company"),
+                "2026 (mid)", "Vendor"),
     tax=I(0.225, "PwC Tax Summaries Egypt — corporate income tax 22.5%, unchanged 2025-26", "2026", "Country"),
     fx=I(49.8, "USD/EGP mid-market 49.765 (Xe/Google Finance, 05-Aug-26). NB the pound was NOT "
          "range-bound over the last year: 46.8 (Feb-26 strong side) to ~54.7 (Apr-26, war spike), "
@@ -37,31 +57,31 @@ INP = dict(
          "throughout", "2026-08-05", "Country"),
 
     # ---- historical income statement (EGP mn) ----
-    rev_fy23=I(8673.4, "MarketScreener/Mubasher FY2024 results note (comparative)", "2025-03", "Company"),
-    rev_fy24=I(13778.2, "MarketScreener/Mubasher FY2024 consolidated results", "2025-03", "Company"),
-    rev_fy25=I(10819.0, "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)", "2026-03", "Company"),
-    np_fy23=I(1248.0, "Zawya/MarketScreener (FY23 consolidated NP)", "2024-03", "Company"),
-    np_fy24=I(1327.8, "Mubasher FY2024 consolidated results", "2025-03", "Company"),
-    np_fy25=I(500.31, "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)", "2026-03", "Company"),
-    ebit_fy24=I(3400.0, "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'", "2025-05-22", "Company"),
+    rev_fy23=I(8673.4, "MarketScreener/Mubasher FY2024 results note (comparative)", "2025-03", "Vendor"),
+    rev_fy24=I(13778.2, "MarketScreener/Mubasher FY2024 consolidated results", "2025-03", "Vendor"),
+    rev_fy25=I(10819.0, "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)", "2026-03", "Vendor"),
+    np_fy23=I(1248.0, "Zawya/MarketScreener (FY23 consolidated NP)", "2024-03", "Vendor"),
+    np_fy24=I(1327.8, "Mubasher FY2024 consolidated results", "2025-03", "Vendor"),
+    np_fy25=I(500.31, "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)", "2026-03", "Vendor"),
+    ebit_fy24=I(3400.0, "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'", "2025-05-22", "Vendor"),
     ebitda_fy24=I(3490.0, "Investing.com financial summary ('EBITDA 3.49B') — single aggregator, "
-                  "period attributed to FY2024; flagged", "2026 capture", "Company"),
-    int_cover_fy24=I(2.0, "Simply Wall St health page (interest coverage 2x EBIT)", "2025-05-22", "Company"),
-    q1_26_rev=I(2094.0, "Zawya/Arab Finance Q1-2026 (consolidated net sales)", "2026-05", "Company"),
-    q1_26_np=I(-241.6, "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)", "2026-05", "Company"),
+                  "period attributed to FY2024; flagged", "2026 capture", "Vendor"),
+    int_cover_fy24=I(2.0, "Simply Wall St health page (interest coverage 2x EBIT)", "2025-05-22", "Vendor"),
+    q1_26_rev=I(2094.0, "Zawya/Arab Finance Q1-2026 (consolidated net sales)", "2026-05", "Vendor"),
+    q1_26_np=I(-241.6, "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)", "2026-05", "Vendor"),
     q1_25_rev=I(3723.0, "Q1-2026 release comparatives", "2026-05", "Company"),
     q1_25_np=I(451.7, "Q1-2026 release comparatives", "2026-05", "Company"),
 
     # ---- historical balance sheet anchors (EGP mn) ----
-    assets_fy22=I(4960.0, "Zawya 9M-2023 results note (comparative, 31-Dec-2022)", "2023-11", "Company"),
-    assets_fy24=I(14970.0, "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)", "2026-03", "Company"),
-    assets_fy25=I(16460.0, "Zawya/Decypha FY2025 results (total assets, +9.9%)", "2026-03", "Company"),
+    assets_fy22=I(4960.0, "Zawya 9M-2023 results note (comparative, 31-Dec-2022)", "2023-11", "Vendor"),
+    assets_fy24=I(14970.0, "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)", "2026-03", "Vendor"),
+    assets_fy25=I(16460.0, "Zawya/Decypha FY2025 results (total assets, +9.9%)", "2026-03", "Vendor"),
     debt_fy24=I(8960.0, "Company's own FY25-filing comparative ('vs 8.96bn in 2024'); SWS independent "
                 "print ~9.0bn corroborates. Standardized on the filing comparative so every FY24 "
-                "net-debt reference in the study is the same number (8,132)", "2026-03-18", "Company"),
-    cash_fy24=I(827.6, "Simply Wall St health page (cash & ST investments)", "2025-05-22", "Company"),
-    equity_fy24=I(3600.0, "Simply Wall St health page (total shareholder equity)", "2025-05-22", "Company"),
-    liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Company"),
+                "net-debt reference in the study is the same number (8,132)", "2026-03-18", "Vendor"),
+    cash_fy24=I(827.6, "Simply Wall St health page (cash & ST investments)", "2025-05-22", "Vendor"),
+    equity_fy24=I(3600.0, "Simply Wall St health page (total shareholder equity)", "2025-05-22", "Vendor"),
+    liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Vendor"),
     assets_fy23_est=I(10000.0, "House estimate — bounded by 9M-23 disclosed 8,060 and FY24 14,970; "
                       "no FY23 year-end print found (flagged). A single aggregator shows ~8,900, "
                       "which would put this estimate ~12%% high — affects only the FY23 ROIC context "
@@ -86,7 +106,7 @@ INP = dict(
     q1_25_gp=I(1233.0, "Q1-2025 gross profit comparative (same sources)", "2026-06-30", "Company"),
     q1_25_op=I(1124.0, "Q1-2025 operating profit comparative (same sources)", "2026-06-30", "Company"),
     fy25_standalone_sales=I(4700.0, "FY25 standalone sales EGP 4.7bn vs 7.69bn FY24 (Arab Finance AR) — "
-                            "the consolidated subsidiaries carry most of group revenue", "2026-03", "Company"),
+                            "the consolidated subsidiaries carry most of group revenue", "2026-03", "Vendor"),
     agm_no_dividend=I("FY25 profits carried forward, no cash distribution; new board elected",
                       "AGM resolutions (amwalalghad/almasryalyoum, May-2026)", "2026-05-06", "Company"),
 
