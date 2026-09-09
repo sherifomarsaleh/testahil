@@ -95,6 +95,12 @@ engine/*_walkforward/txt/
 # script records the route each figure came by [R-FCAL-01 §1] so the output is
 # reproducible from what is committed. Named here rather than left to whoever notices.
 engine/*_walkforward/pages/
+# A LOG A RUNNING PROCESS IS STILL WRITING. ocr.log was swept into a commit by a
+# `git add -A` while the ADIB extraction was mid-flight, so every subsequent branch
+# operation hit "Please commit your changes or stash them" against a file that changes
+# by itself. A log is the RECORD OF a run, not an artefact of it: the route each figure
+# came by is recorded in the run's own JSON, which is what [R-FCAL-01 §1] asks for.
+engine/*_walkforward/*.log
 # Raw probe output — web-archive CDX index dumps and the like. A query RESULT is not a
 # source document: what SIGCM wants reachable is the filing, which lands in filings/ or
 # src/ and IS committed, and what the protocol wants logged is the access attempt with its
