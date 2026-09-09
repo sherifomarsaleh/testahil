@@ -1,6 +1,5 @@
 {
  "rule": "R-ENF-06 a date the record holds is never typed again",
- "_why": "Seeded 09-09-2026, the day this gate was adopted, from the 139 literals already in the book. They bind NOTHING forward: a NEW typed date fails the build. This list may only ever SHORTEN, and it shortens as each study is next touched. Nothing here condemns a study for a date typed before the rule existed.",
  "outstanding": {
   "ADNOCDIST": [
    [
@@ -9,23 +8,8 @@
     "study_date"
    ],
    [
-    "compute.py",
-    "7 August 2026",
-    "price_date"
-   ],
-   [
     "docx_adnocdist.py",
     "09-08-2026",
-    "study_date"
-   ],
-   [
-    "docx_adnocdist.py",
-    "7 August 2026",
-    "price_date"
-   ],
-   [
-    "docx_adnocdist.py",
-    "9 August 2026",
     "study_date"
    ],
    [
@@ -51,16 +35,6 @@
    [
     "recalc.py",
     "09082026",
-    "study_date"
-   ],
-   [
-    "sweep.py",
-    "7 August 2026",
-    "price_date"
-   ],
-   [
-    "sweep.py",
-    "9 August 2026",
     "study_date"
    ]
   ],
@@ -71,28 +45,13 @@
     "study_date"
    ],
    [
-    "build_xlsx.py",
-    "9 August 2026",
-    "study_date"
-   ],
-   [
     "docx_biblio.py",
     "09-08-2026",
     "study_date"
    ],
    [
-    "docx_biblio.py",
-    "9 August 2026",
-    "study_date"
-   ],
-   [
     "docx_study.py",
     "09-08-2026",
-    "study_date"
-   ],
-   [
-    "docx_study.py",
-    "9 August 2026",
     "study_date"
    ],
    [
@@ -126,79 +85,10 @@
     "study_date"
    ]
   ],
-  "ADNOCLS": [
-   [
-    "compute.py",
-    "7 September 2026",
-    "price_date"
-   ],
-   [
-    "docx_adnocls.py",
-    "7 September 2026",
-    "price_date"
-   ],
-   [
-    "write_ledger.py",
-    "07-09-2026",
-    "price_date"
-   ],
-   [
-    "write_ledger.py",
-    "7 September 2026",
-    "price_date"
-   ]
-  ],
-  "AIRARABIA": [
-   [
-    "compute.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "compute.py",
-    "7 August 2026",
-    "asof"
-   ],
-   [
-    "diagnostics_airarabia.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "prose_check.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "qc_checks.py",
-    "03092026",
-    "spot_date"
-   ]
-  ],
   "AMOC": [
    [
     "build_xlsx_v5.py",
     "03092026",
-    "asof"
-   ],
-   [
-    "compute.py",
-    "03-09-2026",
-    "asof"
-   ],
-   [
-    "compute.py",
-    "3 September 2026",
-    "asof"
-   ],
-   [
-    "diagnostics_amoc.py",
-    "03-09-2026",
     "asof"
    ],
    [
@@ -212,55 +102,8 @@
     "asof"
    ],
    [
-    "docx_v6.py",
-    "3 September 2026",
-    "asof"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "asof"
-   ],
-   [
     "prose_check.py",
     "03-09-2026",
-    "asof"
-   ],
-   [
-    "prose_check.py",
-    "03092026",
-    "asof"
-   ]
-  ],
-  "AMR": [
-   [
-    "compute.py",
-    "03-09-2026",
-    "asof"
-   ],
-   [
-    "compute.py",
-    "3 September 2026",
-    "asof"
-   ],
-   [
-    "diagnostics_amr.py",
-    "03-09-2026",
-    "asof"
-   ],
-   [
-    "diagnostics_amr.py",
-    "3 September 2026",
-    "asof"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "asof"
-   ],
-   [
-    "prose_check.py",
-    "03092026",
     "asof"
    ]
   ],
@@ -269,41 +112,6 @@
     "build_xlsx_arcc.py",
     "03092026",
     "spot_date"
-   ],
-   [
-    "build_xlsx_arcc.py",
-    "30 June 2026",
-    "asof"
-   ],
-   [
-    "compute.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "compute.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "compute.py",
-    "30 June 2026",
-    "asof"
-   ],
-   [
-    "docx_arcc.py",
-    "30 June 2026",
-    "asof"
-   ],
-   [
-    "docx_biblio.py",
-    "30 June 2026",
-    "asof"
-   ],
-   [
-    "driver_test.py",
-    "30 June 2026",
-    "asof"
    ],
    [
     "footing_check.py",
@@ -321,263 +129,15 @@
     "spot_date"
    ],
    [
-    "prose_check.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
     "recalc.py",
     "03092026",
     "spot_date"
-   ],
-   [
-    "sweep.py",
-    "30 June 2026",
-    "asof"
-   ]
-  ],
-  "BOROUGE": [
-   [
-    "build_xlsx_borouge.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "diagnostics_borouge.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "prose_check.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "qc_checks.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "write_rebuild_ledger.py",
-    "3 September 2026",
-    "spot_date"
-   ]
-  ],
-  "DU": [
-   [
-    "compute.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "diagnostics_du.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "prose_check.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "qc_checks.py",
-    "03092026",
-    "spot_date"
-   ]
-  ],
-  "EGCH": [
-   [
-    "build_xlsx.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "figures.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "inputs.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "lenses.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "prose_check.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "qc_checks.py",
-    "03092026",
-    "spot_date"
-   ]
-  ],
-  "ELEC": [
-   [
-    "compute.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "diagnostics_elec.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "diagnostics_elec.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "prose_check.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "scrub.py",
-    "03092026",
-    "spot_date"
-   ]
-  ],
-  "EMPOWER": [
-   [
-    "compute.py",
-    "3 September 2026",
-    "asof"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "asof"
-   ]
-  ],
-  "FERTIGLOBE": [
-   [
-    "compute.py",
-    "7 August 2026",
-    "price_date"
-   ],
-   [
-    "diagnostics_fertiglobe.py",
-    "7 August 2026",
-    "price_date"
-   ],
-   [
-    "docx_biblio.py",
-    "7 Aug 2026",
-    "price_date"
-   ]
-  ],
-  "GBCO": [
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "rebuild_levers.py",
-    "3 September 2026",
-    "spot_date"
-   ]
-  ],
-  "MODON": [
-   [
-    "build_xlsx_modon.py",
-    "9 Aug 2026",
-    "asof"
-   ],
-   [
-    "docx_modon.py",
-    "7 Aug 2026",
-    "spot_date"
-   ],
-   [
-    "docx_modon.py",
-    "7 August 2026",
-    "spot_date"
-   ],
-   [
-    "docx_modon.py",
-    "9 August 2026",
-    "asof"
-   ],
-   [
-    "docx_register_modon.py",
-    "7 Aug 2026",
-    "spot_date"
-   ],
-   [
-    "docx_register_modon.py",
-    "9 August 2026",
-    "asof"
-   ]
-  ],
-  "PHAR": [
-   [
-    "compute.py",
-    "3 September 2026",
-    "price_date"
-   ],
-   [
-    "docx_phar.py",
-    "3 September 2026",
-    "price_date"
-   ],
-   [
-    "edition.py",
-    "3 September 2026",
-    "price_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "price_date"
-   ],
-   [
-    "gap_review.py",
-    "3 September 2026",
-    "price_date"
    ]
   ],
   "RIYADHCABLE": [
    [
     "build_xlsx.py",
     "18082026",
-    "asof"
-   ],
-   [
-    "compute.py",
-    "18 Aug 2026",
-    "asof"
-   ],
-   [
-    "docx_bibliography.py",
-    "18 August 2026",
     "asof"
    ],
    [
@@ -628,16 +188,6 @@
     "study_date"
    ],
    [
-    "compute.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "docx_register_savola.py",
-    "19 August 2026",
-    "study_date"
-   ],
-   [
     "docx_register_savola.py",
     "19-08-2026",
     "study_date"
@@ -651,11 +201,6 @@
     "driver_test.py",
     "19082026",
     "study_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
    ],
    [
     "gate_check.py",
@@ -685,11 +230,6 @@
     "asof"
    ],
    [
-    "compute.py",
-    "07-09-2026",
-    "asof"
-   ],
-   [
     "docx_biblio.py",
     "07-09-2026",
     "asof"
@@ -698,63 +238,9 @@
     "docx_scem.py",
     "07-09-2026",
     "asof"
-   ],
-   [
-    "docx_scem.py",
-    "2 September 2026",
-    "spot_date"
-   ],
-   [
-    "docx_scem.py",
-    "7 September 2026",
-    "asof"
-   ],
-   [
-    "sweep.py",
-    "07-09-2026",
-    "asof"
-   ]
-  ],
-  "STC": [
-   [
-    "coc_run.py",
-    "3 September 2026",
-    "spot_date"
-   ],
-   [
-    "stc_xlsx_a.py",
-    "3 September 2026",
-    "spot_date"
-   ]
-  ],
-  "SWDY": [
-   [
-    "bridge_record.py",
-    "3 September 2026",
-    "asof"
-   ],
-   [
-    "compute.py",
-    "3 September 2026",
-    "asof"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "asof"
-   ],
-   [
-    "rebuild_ledger.py",
-    "03-09-2026",
-    "asof"
    ]
   ],
   "TMGH": [
-   [
-    "build_numbers.py",
-    "2 September 2026",
-    "edition_date"
-   ],
    [
     "build_xlsx_tmgh.py",
     "02092026",
@@ -771,11 +257,6 @@
     "edition_date"
    ],
    [
-    "docx_tmgh.py",
-    "2 September 2026",
-    "edition_date"
-   ],
-   [
     "gate_check.py",
     "02-09-2026",
     "edition_date"
@@ -788,11 +269,6 @@
    [
     "recalc.py",
     "02092026",
-    "edition_date"
-   ],
-   [
-    "wacc.py",
-    "2 September 2026",
     "edition_date"
    ]
   ]

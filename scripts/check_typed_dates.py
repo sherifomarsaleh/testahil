@@ -47,8 +47,36 @@ OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'typed_dates_outstanding
 MONTHS = ('January February March April May June July August September October '
           'November December').split()
 
-#: the dates a study's own record OWNS. Re-typing one of these is the defect.
+#: the dates a study's own record OWNS.
 OWNED_KEYS = ('study_date', 'price_date', 'asof', 'edition_date', 'spot_date')
+
+# ONLY A DATE INSIDE AN ARTEFACT'S NAME IS A FINDING, AND THAT NARROWING WAS FORCED BY
+# MEASUREMENT [R-COC-01].
+#
+# The first cut flagged every literal reproducing an owned date: 150 across 22 studies.
+# Reading them showed the population is MIXED and cannot be separated by where it sits.
+# Some are the real defect -- a builder writing 'AMOC_Valuation_Study_03-09-2026.docx'
+# as its output name, a masthead typing "Prepared 9 August 2026". Others are correct
+# work that merely mentions the same day: "the previous edition was struck at AED 5.24
+# on 7 August 2026", "Brent stood at USD 83.55 a barrel on 7 August 2026", "Cash and
+# bank balances, reviewed 30 June 2026". A study's as-of date IS a filing date, so it
+# recurs legitimately in source descriptions all through a register.
+#
+# Roughly a hundred of the hundred and fifty were work that is right, and a gate that
+# fires on those is worse than no gate. THE MASTHEAD CASE IS ALREADY COVERED, and by a
+# better instrument: check_edition_date.py reads the DELIVERED DOCUMENT and compares
+# what its masthead says with the date in its own filename, which is the thing a reader
+# receives rather than a string in a builder.
+#
+# What that gate cannot see is the case where BOTH are typed and AGREE while the
+# edition has moved -- TMGH rebuilt on fresh numbers and shipped under its 02-09 name,
+# masthead and filename consistent and both wrong. That is this gate's job, and it has
+# a clean structural signature needing no word list: a date inside a string that also
+# names one of this house's artefacts. A filename is never prose, and a filename is
+# never a fact about the world.
+ARTEFACT = re.compile(
+    r'(Valuation_Study|Valuation_Model|Valuation_Report|Bibliography|Source_Register'
+    r'|QC_GATE|_public|\.docx|\.xlsx|\.pdf)')
 
 
 def written_forms(iso):
@@ -99,8 +127,11 @@ def census():
             body = '\n'.join(ln for ln in open(py, encoding='utf-8', errors='ignore')
                              if not ln.lstrip().startswith('#'))
             for form, key in want.items():
-                if re.search(r"['\"][^'\"]*" + re.escape(form) + r"[^'\"]*['\"]", body):
-                    found.append((os.path.basename(py), form, key))
+                for m in re.finditer(r"['\"][^'\"]*" + re.escape(form) + r"[^'\"]*['\"]",
+                                     body):
+                    if ARTEFACT.search(m.group(0)):
+                        found.append((os.path.basename(py), form, key))
+                        break
         rows.append(dict(ticker=tk, state='read', owned=owned, found=sorted(set(found))))
     return rows
 
