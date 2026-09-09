@@ -1,11 +1,18 @@
 # ADIB-Egypt (EGX: ADIB) — GAP REVIEW, 09-09-2026
 
-**AUDITED CENTRAL: 40.8103**
-**AUDITED GAP: -21.6%**
+**AUDITED CENTRAL: 37.1779**
+**AUDITED GAP: -28.6%**
 
-Central fair value EGP 40.81 against the latest known price of EGP 52.05, the close on
-3 September 2026 held in `engine/prices/SUPPLIED_03-09-2026.json`. That is 21.6% below
-the market and it triggers [R-GAP-01].
+Central fair value EGP 37.18 against the latest known price of EGP 52.05, the close on
+3 September 2026 held in `engine/prices/SUPPLIED_03-09-2026.json`. That is 28.6% below the
+market and it triggers [R-GAP-01].
+
+The central is the **dividend-discount lens alone**, because [R-LENS-03] makes one class
+primary the central for a bank and forbids a typed blend. That architecture is worth EGP
+3.63 of the gap on its own: an earlier draft of this model published a four-lens weighted
+average at EGP 40.81, and the lens pulling it up was the relative-multiple band — the
+weakest evidence in the study, on peers whose same-day book values could not be sourced.
+**The rule removed the flattering lens from the answer, not the honest one.**
 
 **The rule does not say the answer must change. It says the answer is audited before it
 ships**, because a large discount is the one output shape consistent with almost every
@@ -14,7 +21,7 @@ modelling error this house has made. Every figure quoted below is computed by
 
 **The verdict, stated first: the answer does not change, and the gap has two named
 sources, one of which is a live data request.** They are the cost-of-risk normalisation
-(worth EGP 9.69 a share) and a stale risk-free rate (worth up to EGP 5.63 a share). Both
+(worth EGP 10.86 a share) and a stale risk-free rate (worth EGP 6.57 a share). Both
 are disclosed in the study, both are sensitised, and neither is hidden. One arithmetic
 defect was found and fixed during this audit and it made the answer HIGHER, which is
 recorded below because a review that only finds defects in the convenient direction is
@@ -80,14 +87,16 @@ material step-down and it needs its mechanism named, which [R-ANCHOR-01] require
 
 A half-year at a near-nil loss charge is a release, not a run rate. The study normalises
 it to 1.00% of average financing in FY2026 and 1.30% thereafter — **below** the FY2022–25
-mean of 2.09% and far above the reviewed half. **Annualising the June half instead would
-add EGP 9.69 to the central**, taking it to EGP 50.50 and the gap to −3.0%.
+mean of 2.09% and far above the reviewed half. **Carrying the June half's loss rate through the whole
+forecast instead would add EGP 10.86 to the central**, taking it to EGP 48.04 and the gap
+to −7.7%. Doing it for FY2026 alone is worth only EGP 0.68, because the terminal carries
+70% of this lens's value and one year barely touches it.
 
 **So the cost-of-risk call is most of the gap, and the audit's question is whether it is
 too harsh.** It is not. The observed series is 1.64% (FY2022), 2.73% (FY2023), 2.73%
 (FY2024), 1.25% (FY2025), ~0.00% (H1-2026). The study's path sits between the last two
-observations and below the four-year mean. Setting it at the mean would take the central
-to roughly EGP 26. **The study is already assuming a structurally better loss experience
+observations and below the four-year mean. Setting it at the FY2022–25 mean instead would take the central to
+roughly EGP 22. **The study is already assuming a structurally better loss experience
 than this bank has ever sustained for two consecutive years**, and going further would be
 capitalising a single exceptional half.
 
@@ -164,10 +173,10 @@ study is carrying.
 
 | risk-free rate | central | gap to EGP 52.05 |
 |---|---|---|
-| 23.00% (held, stale) | **EGP 40.81** | −21.6% |
-| 21.29% (Apr–May 2026 market average) | EGP 46.44 | −10.8% |
-| 19.29% (the held rate less 200bp) | EGP 55.72 | +7.0% |
-| 19.99% | EGP 52.05 | 0.0% |
+| 23.00% (held, stale) | **EGP 37.18** | −28.6% |
+| 21.29% (Apr–May 2026 market average) | EGP 43.74 | −16.0% |
+| 19.29% (the held rate less 200bp) | EGP 54.57 | +4.8% |
+| 19.69% | EGP 52.05 | 0.0% |
 
 **A lower risk-free rate is the single largest lever on this valuation and the evidence
 points that way rather than the other.** The study carries the held rate because that is
@@ -205,7 +214,7 @@ terminal growth of 8% — still below the terminal risk-free — would add 1.4% 
 
 The terminal carries 70% of the dividend-discount value and 73% of the free-cash-flow
 value. **It carries only 21% of the residual-income value, and residual income is the
-highest of the three lenses at EGP 38.58.** The lens least dependent on the terminal does
+highest of the three present-value lenses at EGP 38.58 — 3.8% above the central.** The lens least dependent on the terminal does
 not disagree with the ones most dependent on it, which is the check worth having.
 
 ## 6 · BALANCE SHEET
@@ -247,8 +256,8 @@ free-cash-flow lenses disagreed by EGP 7 a share while attributable equity drift
 disagreement between two lenses was the only thing saying so. The payout is now DERIVED:
 equity each year is pinned at 10.5% of assets, the level the bank actually stood at on 30
 June 2026, and the dividend is what profit is left after getting there. **The three
-cash-flow lenses now land within EGP 2.74 of each other (35.84, 37.18, 38.58) and the
-central rose from EGP 38.15 to EGP 40.81.** The derived path also reproduces what the bank
+present-value lenses now land within EGP 2.74 of each other — 35.84, 37.18, 38.58 — and
+the dividend lens itself rose from EGP 31.04 to EGP 37.18.** The derived path also reproduces what the bank
 does: 18.2% for FY2026 against the 11.7% it actually paid on FY2024 earnings.
 
 ## 7 · CLAIMS AGAINST THE RECORD
@@ -273,16 +282,17 @@ plausible superlative nobody had put against the series.
 
 ## 8 · MULTIPLE CROSS-CHECK
 
-| | at the central EGP 40.81 | at the market EGP 52.05 |
+| | at the central EGP 37.18 | at the market EGP 52.05 |
 |---|---|---|
-| price / FY2026E book | 1.26x | 1.60x |
-| price / 30-June-2026 book | 1.41x | 1.79x |
-| price / FY2026E earnings | 4.5x | 5.8x |
-| price / FY2025 reported earnings | 4.9x | 6.2x |
+| price / FY2026E book | 1.15x | 1.60x |
+| price / 30-June-2026 book | 1.28x | 1.79x |
+| price / FY2026E earnings | 4.1x | 5.8x |
+| price / FY2025 reported earnings | 4.4x | 6.2x |
 
 **The central is internally consistent with its own discount rate.** A Gordon
 price-to-book at the study's FY2026 return on equity of 32.5%, its first-year cost of
-equity of 28.18% and 7% terminal growth is **1.21x**; the central implies 1.26x. At the
+equity of 28.18% and 7% terminal growth is **1.21x**; the central implies 1.15x — marginally BELOW its own Gordon read, which is
+the terminal's discount showing through. At the
 terminal — 24.7% return, 20.02% cost of equity — it is 1.36x. The valuation is not
 carrying a multiple its own arithmetic will not produce.
 
@@ -302,21 +312,27 @@ answer. It is also the lens pulling the central UP, not down: on its own it give
 
 ## The audit's conclusion
 
-**The answer does not change.** One defect was found — a typed payout path that made two
-lenses disagree — and fixing it raised the central by EGP 2.66. One false claim was found
-and removed. Everything else in the gap is two disclosed judgements pointing the same way:
+**The answer does not change.** Two defects were found and both are recorded above: a
+typed payout path that made two lenses disagree by EGP 7 a share while the model retained
+capital it had no use for, and a false "highest return on equity in the record" claim.
+Fixing the payout raised the dividend lens by EGP 6.14; removing the claim cost a sentence.
+**Neither found the gap.**
 
-1. **The cost of risk (EGP 9.69 a share).** The study will not capitalise a single half
-   at a 0.003% loss rate. It already assumes a better loss experience than this bank has
+What the gap is made of is two disclosed judgements, both pointing the same way:
+
+1. **The cost of risk (EGP 10.86 a share).** The study will not capitalise a single half at
+   a 0.003% loss rate. It already assumes a better loss experience than this bank has
    sustained for two consecutive years.
-2. **The risk-free rate (up to EGP 5.63 a share, and possibly more).** The held 23.00% is
-   34 days old, the house path itself says re-source it, four routes failed, and the only
-   market evidence found points 171 basis points lower. **This is an open data request,
-   not a resolved question.**
+2. **The risk-free rate (EGP 6.57 a share on the only market evidence found, and possibly
+   more).** The held 23.00% is 34 days old, the house path itself says re-source it, four
+   routes failed, and the Apr–May 2026 market average is 171 basis points lower. **This is
+   an open data request, not a resolved question.**
 
-Taken together — the Apr–May market yield and the June half's loss charge holding through
-FY2026 — the central would be EGP 47.47 and the gap −8.8%, inside the band that would not
-have triggered this review at all.
+Taken together — the Apr–May market yield and the June half's loss charge holding into
+FY2026 — the central would be EGP 44.43 and the gap −14.6%. **Still outside the band, and
+that is worth saying plainly: the two named items do not close this gap between them.**
+What remains is a genuine disagreement about what a Caa1 sovereign's fastest-growing bank
+is worth, and this study does not resolve it in its own favour.
 
 The study ships at EGP 40.81 because that is what the record supports today. What would
 move it is named, sized and dated, which is what the review is for.
