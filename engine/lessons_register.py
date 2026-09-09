@@ -6799,6 +6799,62 @@ LESSONS = [
       "small enough that the reported earnings track the operating "
       "legs, which would make a normalised read of the group "
       "meaningful again."),
+
+
+    L("L-379", "ALL", None,
+      "The method under-forecasts nominal revenue wherever a currency "
+      "steps.",
+      "Every origin holds the exchange rate flat because that is all "
+      "that is knowable then. In a stepping currency that is a "
+      "systematic downward lean on every nominal line, and it "
+      "compounds with the horizon. Read any nominal forecast in such "
+      "a market as a floor rather than a central until the currency "
+      "leg is carried explicitly.",
+      "ABUK walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.469 log (about 60% too low), average miss 0.497, wrong "
+      "in the same direction in 85% of cases, and the sign holds "
+      "across every bootstrap block tested (n=20).",
+      "A market whose currency did not step showing the same lean — "
+      "the UAE leg is the test, and the mechanism predicts a macro "
+      "share near zero there. A peg that shows -0.30 log of revenue "
+      "bias refutes this."),
+
+
+    L("L-381", "ALL", None,
+      "Test whether the macro path explains an error before assuming "
+      "it does.",
+      "Substitute the actual macro path and re-measure. If the error "
+      "falls, it is macro; if it does not move, it is the company; if "
+      "it RISES, the macro path is wired into that line the wrong way "
+      "round and no correction factor will fix it.",
+      "ABUK walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Average miss 0.646 as known, 0.585 with perfect foresight of "
+      "inflation — the macro share is only 9.4%.",
+      "A line where substituting the actual macro path never changes "
+      "the error in either direction, making the test uninformative "
+      "rather than diagnostic."),
+
+    L("L-382", "ALL", None,
+      "A driver defined as another driver's denominator is not "
+      "independent evidence about either.",
+      "Check the definitions before scoring two drivers as two "
+      "findings. If one is computed from the other, their errors will "
+      "mirror and cancel, and a correction factor applied to either "
+      "hides the wiring instead of fixing it.",
+      "ABUK walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "ABUK's volume proxy is defined as revenue divided by the urea "
+      "price and the exchange rate. Across 20 cells the volume leg "
+      "and the commodity-price leg correlate at -0.578 with a slope "
+      "of -1.28 against an exact-cancellation -1.00, and the two legs "
+      "SUM to -0.0013 log — they cancel to within a tenth of a "
+      "percent. Two of this run's drafts were two readings of that "
+      "one defect.",
+      "A run where two drivers are definitionally linked and their "
+      "error legs do NOT cancel — which would mean the linkage is not "
+      "load-bearing and the two can be scored apart after all."),
 ]
 
 
