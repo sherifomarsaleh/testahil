@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 11 (ABUK, AMOC, ARCC, EGCH, ELEC, GBCO, PHAR, PHDC, SCEM, SWDY, TMGH) | 10 origins x 5 horizons |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 12 (ABUK, ADIB, AMOC, ARCC, EGCH, ELEC, GBCO, PHAR, PHDC, SCEM, SWDY, TMGH) | 10 origins x 5 horizons |
 | **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 20 | 414 |
 
-**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (56). The fundamental method has been through a full training run on ABUK and AMOC and ARCC and EGCH and ELEC and GBCO and PHAR and PHDC and SCEM and SWDY and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 414 forecasts across 20 names.
+**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (56). The fundamental method has been through a full training run on ABUK and ADIB and AMOC and ARCC and EGCH and ELEC and GBCO and PHAR and PHDC and SCEM and SWDY and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 414 forecasts across 20 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 

@@ -1,0 +1,13 @@
+{
+  "_what": "This walk-forward run is NOT finished. The declaration exists so the gates read a true statement about it rather than inferring a false one.",
+  "ticker": "ADIB",
+  "started": "2026-09-09",
+  "waiting_on": "primary statement extraction — ADIB-Egypt files as a BANK, and the run has to establish whether the walk-forward machinery's industrial shape (revenue x margin, capex, working capital) can carry a name whose drivers are net interest margin, cost of risk, fee income, cost-to-income and capital. ADCB is the bank pattern in the closed reference set.",
+  "why_a_file_was_committed_before_the_run_finished": "extract_pages.py was committed mid-run so it would not be lost with the container. That made engine/adib_walkforward/ exist on every checkout, and check_lessons_register.py anchors on the EXISTENCE of a run directory — so an unfinished run read as a finished one missing its lessons. The work is worth keeping and the false reading is not; this declares the difference.",
+  "what_is_owed_before_this_marker_may_be_REMOVED": [
+    "the baseline re-frozen per engine/ADIB_BASELINE_09-09-2026.md — bear 31.6 / base 54.3 / full 95.3, taken FROM THAT NOTE if assets/data.js has moved, or the baseline is a fabricated zero",
+    "lessons_harvest.py ADIB, with every draft ruled registered or declined",
+    "either a delivered fair value recorded in fv_movement.json, or a CALIBRATION_ONLY.json declaring the run struck none — silence is not a declaration"
+  ],
+  "this_marker_cannot_park_the_run": "check_lessons_register.py goes RED if this file sits beside lessons_draft.json, scores.json or projections.json. The test is the run's own artefacts, not a clock, so there is no horizon to argue about and no way to hold the marker over a run that has actually finished."
+}

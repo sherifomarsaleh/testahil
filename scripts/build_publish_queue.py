@@ -126,6 +126,14 @@ def build(check_only=False):
     mv = json.load(open(MOVEMENT))
     rows, problems = [], []
     for t, run in calibrated():
+        # A RUN STILL UNDER WAY STAGES NOTHING, and says so in the same file the lessons
+        # gate and the fair-value register read. Without it, a run whose first artefact is
+        # committed mid-flight refuses the whole publish queue for a study it has not
+        # reached the point of building -- which is what ADIB did here on 09-09-2026.
+        # Honoured only while the run has produced nothing; that clause lives in
+        # scripts/check_lessons_register.py and tests the run's own artefacts.
+        if os.path.exists(os.path.join(run, 'RUN_IN_PROGRESS.json')):
+            continue
         sd = study_dir(t)
         if not os.path.isdir(sd):
             # [R-FCAL-01 §6 AMENDED 09-09-2026] — a calibration-only run strikes no fair

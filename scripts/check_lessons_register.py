@@ -31,6 +31,7 @@ What it checks, and why each one exists:
    is not a real study directory is either a typo or a lesson filed at the wrong
    scope, which is the mistake this register exists to prevent.
 """
+import json as _json
 import os, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -114,7 +115,58 @@ def main():
         fails.append("no walk-forward directories found at all — either the "
                      "population is empty or this check is looking in the "
                      "wrong place; an empty result is not a clean result")
+    # A RUN STILL UNDER WAY DECLARES IT, AND SILENCE IS STILL NOT A DECLARATION.
+    # This check anchors on the EXISTENCE of a run directory, so a run whose first
+    # committed file lands before it has finished reads as a COMPLETED run missing its
+    # lessons -- which is a false statement about the work, not a finding. That happened
+    # to ADIB on 09-09-2026: one extraction script was committed mid-run so it would not
+    # be lost with the container, and this gate reported the run as unharvested.
+    #
+    # The repository's own answer to that shape is an explicit declaration, exactly as
+    # ABUK's CALIBRATION_ONLY.json declares "this run struck no fair value" rather than
+    # leaving the gates to infer it. RUN_IN_PROGRESS.json says "this run is not finished
+    # yet", names when it started and what it is waiting for, and is PRINTED on every run
+    # so it cannot sit unnoticed.
+    #
+    # IT CANNOT BE USED TO PARK A RUN, and that clause is what makes it safe: the marker
+    # is only honoured while the run genuinely has no output. A directory carrying both
+    # the marker AND a harvest, scores or a lessons draft is a FINISHED run wearing an
+    # unfinished label, and that is red -- with no threshold to argue about, because the
+    # test is the run's own artefacts rather than a clock.
+    inflight = {}
     for d in wf:
+        mp = os.path.join(ENGINE, d, "RUN_IN_PROGRESS.json")
+        if not os.path.exists(mp):
+            continue
+        try:
+            m = _json.load(open(mp, encoding="utf-8"))
+        except Exception as e:
+            fails.append("%s/RUN_IN_PROGRESS.json will not parse (%s); an unreadable "
+                         "declaration is not a declaration" % (d, e))
+            continue
+        done = [f for f in ("lessons_draft.json", "scores.json", "projections.json")
+                if os.path.exists(os.path.join(ENGINE, d, f))]
+        if done:
+            fails.append("%s declares RUN_IN_PROGRESS while carrying %s — a finished run "
+                         "wearing an unfinished label. Remove the marker and harvest it."
+                         % (d, ", ".join(done)))
+            continue
+        if not m.get("started") or not m.get("waiting_on"):
+            fails.append("%s/RUN_IN_PROGRESS.json must name 'started' and 'waiting_on'; "
+                         "a marker that says nothing excuses nothing" % d)
+            continue
+        inflight[d] = m
+
+    if inflight:
+        print("  IN FLIGHT (%d) — declared unfinished, exempt from the two checks below, "
+              "and owed:" % len(inflight))
+        for d, m in sorted(inflight.items()):
+            print("     %-26s started %s · waiting on %s"
+                  % (d, m.get("started"), str(m.get("waiting_on"))[:70]))
+
+    for d in wf:
+        if d in inflight:
+            continue
         tk = d[:-len("_walkforward")].upper()
         got = [x for x in LR.LESSONS
                if x["origin"] == "walk_forward_fundamental"
@@ -132,8 +184,9 @@ def main():
     # unanswered question wearing the costume of one. Each draft must end as
     # registered (an id) or declined (a reason). Neither is allowed to be blank,
     # and a run with no draft file at all has not been harvested.
-    import json as _json
     for d in wf:
+        if d in inflight:
+            continue
         rd = os.path.join(ENGINE, d)
         dp = os.path.join(rd, "lessons_draft.json")
         if not os.path.exists(dp):

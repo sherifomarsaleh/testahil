@@ -315,7 +315,21 @@ def check():
         fails.append('no walk-forward run directories found at all — either the '
                      'campaign has not started or this check is looking in the '
                      'wrong place; an empty result is not a clean result')
-    for tk in sorted(runs & inq):
+    # A RUN STILL UNDER WAY DECLARES IT, same discipline as the calibration-only
+    # declaration above and the same file the lessons gate reads. This check anchors on
+    # the EXISTENCE of a run directory, so a run whose first file is committed before it
+    # finishes reads as a finished one -- which on 09-09-2026 made ADIB fail here for a
+    # baseline it had not reached the point of needing. The marker is honoured ONLY while
+    # the run has produced nothing (checked in scripts/check_lessons_register.py against
+    # the run's own artefacts, not a clock), and the baseline it still owes is named
+    # inside it, so the debt is written down rather than waived.
+    inflight = {tk for tk in runs
+                if os.path.exists(os.path.join(ENGINE, tk.lower() + '_walkforward',
+                                               'RUN_IN_PROGRESS.json'))}
+    if inflight:
+        print('  in flight, declared unfinished and exempt: %s'
+              % ', '.join(sorted(inflight)))
+    for tk in sorted((runs & inq) - inflight):
         e = d['entries'].get(tk)
         if not e:
             fails.append('%s has a walk-forward run on disk and no frozen '
@@ -334,6 +348,11 @@ def check():
                              'value recorded, and no calibration-only declaration '
                              '(%s)' % (tk, why))
     for tk in sorted(d['entries']):
+        if tk in inflight:
+            fails.append('%s declares RUN_IN_PROGRESS and also carries a register '
+                         'entry. A run that has frozen its baseline has started for '
+                         'real; remove the marker.' % tk)
+            continue
         if tk not in runs:
             fails.append('%s carries a record with no walk-forward run '
                          'directory behind it' % tk)
