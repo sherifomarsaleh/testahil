@@ -7,6 +7,7 @@ sandbox, and asserts the gauntlet notices. A gauntlet that stays green while a g
 told to ignore unknown studies would be the most comfortable check in the repository and the
 least informative.
 """
+import concurrent.futures as futures
 import os
 import re
 import shutil
@@ -151,29 +152,96 @@ case('7. CLEAN — nothing weakened', False, lambda repo: None)
 EXPECTED_CASES = 7          # a dropped case is a green that proves nothing
 
 
+# EACH SANDBOX IS A 1.6GB DEEP COPY, SO THE CONCURRENCY BOUND IS DISK, NOT CPU.
+#
+# Measured on this container: seven concurrent sandboxes is 11.2GB of peak disk where
+# serial was 1.6GB. Bounding on cpu_count alone drove the filesystem to 0MB free and
+# killed the run with ENOSPC — the same outcome as the timeout it was written to fix,
+# and no more of a verdict than the timeout was [R-ENF-04].
+#
+# WHAT WAS TRIED FIRST AND DOES NOT WORK HERE: copy-on-write. `cp --reflink=always`
+# fails with "Operation not supported" on this filesystem (ext2/ext3), so a sandbox
+# cannot share blocks with the source. Hardlinking would, but every mutation site in
+# this file opens a path for WRITING, and writing through a hardlink truncates the
+# shared inode — the negative control would corrupt the repository it is testing. That
+# is a worse failure than a slow one, so it is not done.
+#
+# The bound is therefore arithmetic: reserve headroom, divide what is left by the
+# measured cost of one sandbox, and never exceed the CPU bound. A machine with room
+# for one case runs them serially and still reports all seven.
+SANDBOX_COST = 2.5 * 1024 ** 3      # 1.6GB measured, plus the gauntlet's own scratch
+DISK_RESERVE = 4 * 1024 ** 3        # never spend the last of the disk on a control
+
+
+def _workers():
+    cpu = max(2, (os.cpu_count() or 2) - 1)
+    try:
+        st = os.statvfs(tempfile.gettempdir())
+        free = st.f_bavail * st.f_frsize
+    except OSError:
+        return 2                     # unmeasurable disk is not abundant disk
+    by_disk = int(max(0, free - DISK_RESERVE) // SANDBOX_COST)
+    return max(1, min(len(CASES), cpu, by_disk))
+
+
+def _one(idx):
+    """Run one case end to end and return (idx, ok, line, detail). Independent by
+    construction: its own sandbox, its own gauntlet, nothing shared."""
+    name, must_fail, mutate, expect = CASES[idx]
+    tmp, repo = sandbox()
+    try:
+        mutate(repo)
+        rc, out = run(repo)
+        red = rc != 0
+        ok = (red == must_fail) and (expect is None or expect in out)
+        detail = ''
+        if not ok:
+            detail = ('      rc=%d wanted %s%s\n      %s'
+                      % (rc, 'RED' if must_fail else 'GREEN',
+                         (' containing %r' % expect) if expect else '',
+                         '\n      '.join(out.strip().splitlines()[-8:])))
+        return idx, ok, name, detail
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     assert len(CASES) == EXPECTED_CASES, (
         'this file declares %d cases and %d are registered — a case lost to an edit is '
         'a green that proves nothing, which has now happened three times in this '
         'repository' % (EXPECTED_CASES, len(CASES)))
+
+    # THE SEVEN CASES RUN CONCURRENTLY, AND NOTHING ABOUT THE CLAIM CHANGES.
+    #
+    # Serially this took past thirty minutes and killed a CI run outright — sixty green
+    # steps and no recorded result, because a timeout is not a verdict. Each case already
+    # builds its OWN sandbox, mutates only inside it, and runs the gauntlet there; they
+    # share nothing but the read-only source tree. So the work was always parallel and
+    # only the loop was serial.
+    #
+    # WHAT IS DELIBERATELY NOT DONE HERE: no case was dropped, none was narrowed to the
+    # single gate it names, and none was made to reuse another's sandbox. Every one of
+    # those would have been faster and each would have bought the speed with coverage.
+    # This buys it with concurrency, which costs nothing.
+    #
+    # RESULTS ARE REORDERED BACK INTO DECLARATION ORDER before printing, so the output a
+    # reader compares against last week's is identical line for line — a control whose
+    # output shuffles is one nobody can diff.
+    workers = _workers()
+    results = [None] * len(CASES)
+    with futures.ThreadPoolExecutor(max_workers=workers) as pool:
+        for fut in futures.as_completed([pool.submit(_one, i) for i in range(len(CASES))]):
+            idx, ok, name, detail = fut.result()
+            results[idx] = (ok, name, detail)
+
     bad = 0
-    for name, must_fail, mutate, expect in CASES:
-        tmp, repo = sandbox()
-        try:
-            mutate(repo)
-            rc, out = run(repo)
-            red = rc != 0
-            ok = (red == must_fail) and (expect is None or expect in out)
-            print('%-4s %s' % ('PASS' if ok else 'FAIL', name))
-            if not ok:
-                bad += 1
-                print('      rc=%d wanted %s%s' % (
-                    rc, 'RED' if must_fail else 'GREEN',
-                    (' containing %r' % expect) if expect else ''))
-                print('      ' + '\n      '.join(out.strip().splitlines()[-8:]))
-        finally:
-            shutil.rmtree(tmp, ignore_errors=True)
-    print('\n%d/%d cases behaved as specified' % (len(CASES) - bad, len(CASES)))
+    for ok, name, detail in results:
+        print('%-4s %s' % ('PASS' if ok else 'FAIL', name))
+        if not ok:
+            bad += 1
+            print(detail)
+    print('\n%d/%d cases behaved as specified (%d run concurrently)'
+          % (len(CASES) - bad, len(CASES), workers))
     return 1 if bad else 0
 
 
