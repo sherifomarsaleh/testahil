@@ -404,6 +404,28 @@
       "bear": 118.0,
       "full": 34.2
      }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 7,
+     "fair": {
+      "base": 69.22170258351841,
+      "bear": 27.303264382824587,
+      "full": 69.76773858796382
+     },
+     "lessons": [],
+     "origins": "FY2018-FY2025 h=1-5, 25 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 26.7,
+      "bear": -44.9,
+      "full": 13.1
+     },
+     "vs_previous_pct": {
+      "base": 4.0,
+      "bear": 10.9,
+      "full": -3.3
+     }
     }
    ],
    "exchange": "EGX",
@@ -1184,6 +1206,28 @@
       "base": -17.4,
       "bear": -17.6,
       "full": -17.3
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 3,
+     "fair": {
+      "base": 39.55403218844242,
+      "bear": 15.724005037913132,
+      "full": 71.71181857114279
+     },
+     "lessons": [],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -43.3,
+      "bear": -21.2,
+      "full": -48.3
+     },
+     "vs_previous_pct": {
+      "base": -9.1,
+      "bear": -2.8,
+      "full": -14.4
      }
     }
    ],
