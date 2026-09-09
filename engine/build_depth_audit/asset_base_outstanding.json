@@ -25,8 +25,11 @@
    "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
   },
   "PHDC": {
-   "reason": "MEASURED: commits land_bank_sqm_mn = 33.0 dated 2024-12-31, sourced to the FY2024 earnings release, in a study edition-dated 2026-09-02 whose information set ends 1Q2026 and whose bridge stands on the 31-March-2026 balance sheet. Printed to the delivered workbook at build_xlsx_phdc.py:336. This is the defect the rule was adopted on and it comes off at PHDC's next rebuild.",
-   "signature": "no asset_base_record committed"
+   "note": "THE ENTRY THIS REPLACES RECORDED 'no asset_base_record committed'. That was true and is now fixed — the record exists, runs, and is LAST in the declared build order, because it appends to study_numbers.json and build_numbers.py rebuilds that file from scratch. Committing it exposed the ordering failure underneath, which is a different fact and gets its own signature [R-ENF-08]. Until today this study had no declared build order at all, which is why a correct record had been written more than once and reverted every time.",
+   "reason": "MEASURED 09-09-2026, and this is the case [R-ASSET-01] was adopted on — in the principal's own words, a study that takes the current land bank of a developer and does not account for land added to it. The base is 33.0 million square metres dated 31-Dec-2024, sourced to the FY2024 earnings release. The information set ends 31-MARCH-2026: the bridge stands on that reviewed balance sheet and the register carries a 1Q2026 earnings release. Fifteen months, and the test is an ordering rather than a threshold. The figure is printed to the delivered workbook at build_xlsx_phdc.py:336, so it reaches a reader.",
+   "signature": "asset base as at 2024-12-31 is BEHIND the information set ending 2026-03-31, and the study declares no not_restated_since",
+   "what_closes_it": "read the FY2025 and 1Q2026 earnings releases for a land-bank figure and either carry the newer number or declare the absence of a restatement with those two named. Tracked separately as escalation PHDC-landbank-current-vintage.",
+   "why_no_release": "The study's own register names a 1Q2026 earnings release — exactly the document a developer restates a land bank in — and that release is not committed to this repository, so whether the figure moved has not been established. Declaring a not_restated_since nobody checked would switch the check off rather than declare it, and an invented list of 'disclosures checked' is worse than no list."
   },
   "RIYADHCABLE": {
    "reason": "no asset_base_record; filed under cement and heavy industrial.",

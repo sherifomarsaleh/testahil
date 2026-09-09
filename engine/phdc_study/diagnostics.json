@@ -3,18 +3,18 @@
  "as_of": "2026-09-02",
  "spot": 14.4,
  "spot_date": "close 3 Sep 2026",
- "published_central": 17.847764793737,
+ "published_central": 17.86172061871956,
  "published_spot": 14.4,
  "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything. It is COMPUTED by diagnostics_phdc.py; an earlier version of it was committed with no generator at all and froze at a spot of 15.20 through a re-strike to 14.40.",
  "implied": {
   "quantity": "the rate at which contracted sales become operating cash",
-  "value": 0.0730697034310055,
+  "value": 0.07302162936928369,
   "study_value": 0.08713663734609707,
   "study_value_range": [
    0.039375934839767424,
    0.17870012846326283
   ],
   "solved_on": "this study's own model through valuation_v2.implied_conversion, on the adopted CDS cost-of-capital schedule, holding every driver at its published value and varying only cash conversion until the model reproduces the traded price",
-  "reading": "At EGP 14.40 the price is paying for a cash-conversion rate of 7.31%, against this study's forecast of 8.71% and a range of 3.94% to 17.87% that the company's own filed cash-flow statements actually show. The market's implied figure sits inside that filed range. The disagreement is 141 basis points on ONE driver a reader can check, which is a more useful statement than \"the study is +23.9% against the price\"."
+  "reading": "At EGP 14.40 the price is paying for a cash-conversion rate of 7.30%, against this study's forecast of 8.71% and a range of 3.94% to 17.87% that the company's own filed cash-flow statements actually show. The market's implied figure sits inside that filed range. The disagreement is 141 basis points on ONE driver a reader can check, which is a more useful statement than \"the study is +24.0% against the price\"."
  }
 }

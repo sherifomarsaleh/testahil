@@ -158,7 +158,7 @@
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   },
   "rating": {
@@ -258,7 +258,7 @@
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
  },
@@ -359,7 +359,7 @@
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  },
  "cost_of_capital_record_alt": {
@@ -459,7 +459,7 @@
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  }
 }
