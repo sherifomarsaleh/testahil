@@ -85,6 +85,18 @@ _PI_T_HOUSE = _MACRO_EG.terminal_inflation
 _RRC_HOUSE = _MACRO_EG.real_rate_convention
 _RF_TERM_HOUSE = _PI_T_HOUSE + _RRC_HOUSE
 
+# THE TWO MARGINS THE SEASONALITY ARGUMENT RESTS ON, COMPUTED [09-09-2026]. Both were
+# typed into a source string. They are simple ratios of figures this register already
+# carries, so typing them meant the study asserted numbers it did not produce -- and the
+# whole re-anchoring discipline turns on the claim that this company's halves are not
+# alike, which is the claim these two figures ARE.
+_KD_FY24_EGP, _KD_FY24_USD, _KD_FY24_EUR = 0.2868, 0.0649, 0.0392
+_SP_FY25 = (21016.396482 + 5868.890571 + 7604.808509) - 246.710877
+_MGN_FY25 = _SP_FY25 / 281049.081719
+_SP_H1_25 = ((6823.397790 + 3925.845038 + 2031.644426 + 1083.868786
+              + 1923.388459 + 1713.421415) - (88.329068 + 9.124728))
+_MGN_H1_25 = _SP_H1_25 / 123800.551073
+
 H126 = ("Reviewed condensed interim consolidated financial statements for the six months "
         "ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board "
         "on 11 August 2026 (note 2-1), published on the company's own investor-relations "
@@ -491,13 +503,31 @@ INP = dict(
                          elecprod=5627.101011 + 9876.677315),
                     H126 + ", note 16 H1-2025 comparative. Sums EXACTLY to 123,800.551073",
                     "2026-08-11", "Company"),
+    # THE TWO MARGINS, REGISTERED so the pool prose_check draws on actually holds them.
+    # Computing them was not enough: the checker matches against registered VALUES, not
+    # against module variables, so a figure formatted from a local is still a figure the
+    # study asserts and cannot show.
+    mgn_fy25=I(round(_MGN_FY25, 6),
+               "FY2025 group segment-profit margin, DERIVED: the three segments' note-16 "
+               "profit less the disclosed unallocated item, over audited group revenue",
+               "2025-12-31", "Company"),
+    mgn_h1_25=I(round(_MGN_H1_25, 6),
+                "H1-2025 group segment-profit margin, DERIVED the same way from the "
+                "note-16 comparative half. It is 1.9 points ABOVE the full year, which is "
+                "the whole basis of this study's refusal to anchor a full year on a half",
+                "2025-06-30", "Company"),
     seg_profit_h1_25=I(dict(cables=6823.397790 + 3925.845038,
                             construct=2031.644426 + 1083.868786,
                             elecprod=1923.388459 + 1713.421415),
                        H126 + ", note 16 H1-2025 comparative, segment profit — THE HALF THIS "
-                       "STUDY MUST COMPARE AGAINST, because FY2025's group margin of 12.18% "
-                       "sits well below H1-2025's 14.06%: this company's halves are not alike "
-                       "and a half-against-full-year comparison is a basis error",
+                       "STUDY MUST COMPARE AGAINST, because FY2025's group margin of "
+                       + ("%.2f%%" % (100 * _MGN_FY25)) + " sits well below H1-2025's "
+                       + ("%.2f%%" % (100 * _MGN_H1_25)) + ": this company's halves are not "
+                       "alike and a half-against-full-year comparison is a basis error. Both "
+                       "figures are COMPUTED from the note-16 figures registered here and "
+                       "above rather than typed beside them — they were typed until "
+                       "09-09-2026, and a figure in a delivered source string that the model "
+                       "does not produce is one prose_check cannot reconcile",
                        "2026-08-11", "Company"),
 
     # ---- the 30-Jun-2026 balance sheet, for the bridge [R-BRIDGE-01] ------
@@ -834,10 +864,24 @@ INP = dict(
                   "FY2025 Note 32 (loans and borrowings) and Note 43-3-2 (interest-rate risk) — "
                   "both give 21.30%/21.3%. DOWN from 28.68% at FY2024-end and further to 20.32% at "
                   "Q1-2026", "2026-03-15", "Company"),
+    # THE COMPANY'S OWN SUPERSEDED THREE-WAY RATE SPLIT, REGISTERED [09-09-2026]. It was
+    # typed into the source string below, which quotes it to explain a disclosure
+    # convention the issuer has since simplified. A DISCLOSED FACT this model does not
+    # compute still carries four fields, and until it did prose_check could not reconcile
+    # a figure the delivered bibliography prints.
+    kd_fy24_egp=I(0.2868, FY25 + ", note 43-3-2 comparative — average interest rate on "
+                  "EGYPTIAN POUND financial liabilities, FY2024, under the three-way split "
+                  "the company published before FY2025", "2024-12-31", "Company"),
+    kd_fy24_usd=I(0.0649, FY25 + ", note 43-3-2 comparative — US DOLLAR leg of the same "
+                  "superseded three-way split", "2024-12-31", "Company"),
+    kd_fy24_eur=I(0.0392, FY25 + ", note 43-3-2 comparative — EURO leg of the same "
+                  "superseded three-way split", "2024-12-31", "Company"),
     kd_hard_note=I(0.0529, "Average interest rate on US-dollar and other foreign-currency financial "
                    "liabilities, blended, audited FY2025 Note 32 and Note 43-3-2. The company "
-                   "simplified its disclosure from a three-way EGP/USD/EUR split (FY2024: 28.68% / "
-                   "6.49% / 3.92%) to this two-way EGP/blended-foreign split from FY2025 onward; "
+                   "simplified its disclosure from a three-way EGP/USD/EUR split (FY2024: "
+                   + ("%.2f%% / %.2f%% / %.2f%%" % (100 * _KD_FY24_EGP, 100 * _KD_FY24_USD,
+                                                    100 * _KD_FY24_EUR)) +
+                   ") to this two-way EGP/blended-foreign split from FY2025 onward; "
                    "the model follows the company's own current convention rather than preserving "
                    "a split it no longer publishes", "2026-03-15", "Company"),
     debt_open_fy25=I(58796.795504, "Loans and credit facilities (excluding lease liabilities) at 1 "
@@ -891,6 +935,19 @@ INP = dict(
     # IT COSTS ABOUT EGP 7.7 A SHARE AND WIDENS THIS STUDY'S GAP TO THE MARKET, which is
     # the only direction that proves the discipline is not fitting to a price. The same
     # sentence is already written eleven lines below, about the terminal flows correction.
+    # A SUPERSEDED FIGURE THE STUDY QUOTES, REGISTERED [09-09-2026]. The sensitivity
+    # narrative names what the retired grid returned at its adopted point. It was typed
+    # into a builder f-string and DIVIDED BY THE LIVE CENTRAL, so a statement about a
+    # superseded edition was silently rewritten by every later correction. A fact this
+    # model does not compute still carries four fields.
+    grid_centre_retired=I(49.7076, "What the RETIRED sensitivity grid returned at the "
+                          "adopted rates, growth and beta, before the grids were pointed "
+                          "at the same valuation function as the headline. It re-implemented "
+                          "the terminal on a construction this study had already retired "
+                          "and omitted the employees' statutory share of profit that the "
+                          "bridge charges. Quoted so a reader can see what changed; a "
+                          "different function produced it, so this model cannot compute it",
+                          "2026-09-04", "House"),
     rf_term=I(_RF_TERM_HOUSE, "Terminal risk-free rate, DERIVED from the house macro path "
               "as the inflation target in force plus the real-rate convention, never "
               "typed: %.2f%% + %.2f%% = %.2f%%. Revisions to 08-09-2026 carried 10.50%%, "

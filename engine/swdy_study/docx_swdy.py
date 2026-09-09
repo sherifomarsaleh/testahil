@@ -819,8 +819,16 @@ P(f"Every grid above is produced by the SAME valuation function as the headline,
   f"EGP {p2(SN['grid_exp_term'][2][2])} against the published central of {p2(D['central'])}. Until "
   f"this edition the grids ran through a second function that re-implemented the terminal on "
   f"a construction the study had already retired and omitted the employees' statutory share "
-  f"of profit that the bridge charges, so the surface was centred "
-  f"{pc(49.7076 / D['central'] - 1, 1)} above the answer it was supposed to be testing. Note also "
+  # THE PERCENTAGE DRIFTED WITH EVERY RE-STRIKE AND DESCRIBED NOTHING [09-09-2026].
+  # 49.7076 is a fixed historical figure — what the RETIRED grid returned at its adopted
+  # point — and this divided it by TODAY's central, so the sentence claimed the retired
+  # surface sat some percentage above "the answer it was supposed to be testing" while
+  # measuring it against an answer struck after the defect was fixed. Every correction to
+  # this study silently rewrote a statement about a superseded edition. The absolute
+  # figure is the fact; the ratio was never one.
+  f"of profit that the bridge charges, so the surface was centred at EGP "
+  f"{p2(IN['grid_centre_retired'])} rather than on the answer it was supposed to be "
+  f"testing. Note also "
   f"where the adopted point SITS in each range rather than assuming it is the middle: "
   f"terminal growth is adopted at {pc(IN['g_term'],0)}, the TOP of the "
   f"{pc(SN['g_grid'][0],0)}–{pc(SN['g_grid'][-1],0)} range tested, so the terminal-growth "
