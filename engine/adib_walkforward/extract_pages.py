@@ -30,9 +30,18 @@ THRESH = 150
 MIN_DIGITS = 60
 
 
-def _ocr(img):
+def _ocr(img, target_h=5200):
+    """Upscale to a TARGET height, never by a blind multiple.
+
+    Tesseract wants roughly 300-400 dpi of glyph. The native scans here are 115-200
+    dpi so they need 3-4x; a 400 dpi page render already exceeds it, and multiplying
+    THAT by four produced a 300-megapixel page that never finished. Scaling to a
+    target instead makes the two passes comparable and bounded.
+    """
     g = img.convert('L')
-    g = g.resize((g.width * SCALE, g.height * SCALE), Image.LANCZOS)
+    if g.height < target_h:
+        k = min(SCALE, max(1, int(round(float(target_h) / g.height))))
+        g = g.resize((g.width * k, g.height * k), Image.LANCZOS)
     g = g.point(lambda x: 0 if x < THRESH else 255)
     tmp = os.path.join(OUT, '_tmp.png')
     g.save(tmp)
@@ -45,7 +54,7 @@ def ocr_page(doc, i):
     """BOTH passes, always, and both are kept.
 
     Pass A takes the largest embedded image at its NATIVE resolution; pass B renders
-    the whole page at 450 dpi. Neither dominates: FY2020's balance sheet reads cleanly
+    the whole page at 400 dpi. Neither dominates: FY2020's balance sheet reads cleanly
     off the native image and illegibly off a page render, and FY2025's income statement
     (two overlapping JPEGs per page, one of them a mask) is the exact reverse. Keeping
     both is what lets a figure that does not foot on one pass be resolved on the other
@@ -61,12 +70,12 @@ def ocr_page(doc, i):
     a_txt = ''
     if best is not None and area > 200000:
         a_txt = _ocr(Image.open(io.BytesIO(best['image'])))
-    pix = pg.get_pixmap(dpi=450, colorspace=fitz.csGRAY)
+    pix = pg.get_pixmap(dpi=400, colorspace=fitz.csGRAY)
     b_txt = _ocr(Image.open(io.BytesIO(pix.tobytes('png'))))
     da = sum(c.isdigit() for c in a_txt)
     db = sum(c.isdigit() for c in b_txt)
     body = ('--- pass A: native image x%d (digits=%d) ---\n%s\n'
-            '--- pass B: page render 450dpi (digits=%d) ---\n%s' % (SCALE, da, a_txt, db, b_txt))
+            '--- pass B: page render 400dpi (digits=%d) ---\n%s' % (SCALE, da, a_txt, db, b_txt))
     return body, 'ocr-both(nativeA=%d,renderB=%d)' % (da, db)
 
 

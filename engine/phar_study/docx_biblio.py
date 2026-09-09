@@ -87,11 +87,22 @@ docs = [
     ('P9', 'Company announcement of the active-ingredient plant foundation, 15 January 2026',
      'The USD 165 million project in the Suez Canal Economic Zone, and the fact that it is a '
      'separate legal entity', 'eipico.com.eg → News → item 258'),
-    ('P10', 'Country default spreads and risk premiums file, last updated 5 January 2026, '
-     'read live on 9 August 2026',
-     'Egypt row: Moody\'s Caa1; adjusted default spread 6.37%; country risk premium 9.71%; '
-     'total equity risk premium 13.94% on the rating basis; corporate tax rate 22.50%; '
-     'sovereign credit-default-swap spread 3.41%; equity risk premium on the swap basis 9.41%',
+    # THE VINTAGE THIS STUDY ACTUALLY USES, WITH ITS FIGURES DERIVED FROM THE COMMITTED
+    # INPUTS. This row described the JANUARY-2026 file and typed its numbers -- default
+    # spread 6.37%, swap spread 3.41%, swap-basis premium 9.41%. The study moved to the
+    # MID-YEAR (July 2026) vintage, and sov_spread_cds's own source string records the
+    # move in as many words ("The January-2026 vintage previously used carried 3.41%").
+    # So the bibliography documented a source the study had RETIRED, and a reader
+    # reconciling the cost of capital against it would have found 9.41% where the model
+    # carries 9.5164%. Derived now, so the row cannot describe a vintage the model has left.
+    ('P10', 'Country default spreads and risk premiums file, MID-YEAR (July 2026) vintage, '
+     'spreads measured 30 June 2026. The 5-January-2026 vintage this study previously used '
+     'is superseded and is named here rather than dropped',
+     'Egypt row: Moody\'s Caa1; adjusted default spread %.2f%%; total equity risk premium '
+     '%.2f%% on the rating basis; sovereign credit-default-swap spread %.2f%%; total equity '
+     'risk premium %.4f%% on the swap basis — the basis this study adopts'
+     % (100 * INP['sov_spread_rating']['value'], 100 * INP['erp_rating']['value'],
+        100 * INP['sov_spread_cds']['value'], 100 * INP['erp_cds']['value']),
      'pages.stern.nyu.edu → adamodar → datafile → ctryprem'),
     ('P12', 'Reviewed consolidated interim financial statements for the three months ended '
      '31 March 2026, English translation issued by the auditor, review report dated 14 May '

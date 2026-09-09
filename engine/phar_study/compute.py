@@ -73,6 +73,15 @@ IRDECK = ("Company investor presentation, published on the corporate website "
 # ---- [R-MACRO-01]: the house path owns the economy; this study owns no rate of its own
 _EG = MP.load('EG')
 _HOUSE_CPI = list(_EG.inflation_path[:5])
+#: the real drift on the domestic realised price, named ONCE and applied to the house
+#: ladder. Zero is adopted; the retired typed path is priced against it in the contested
+#: register. See the long note at dom_price_growth for why.
+_DOM_PRICE_REAL_DRIFT = 0.0
+_DOM_PRICE_PATH = [round((1.0 + c) * (1.0 + _DOM_PRICE_REAL_DRIFT) - 1.0, 6)
+                   for c in _HOUSE_CPI]
+#: what the study carried until 09-09-2026, kept so the alternative can be COMPUTED
+#: through the same bridge rather than described.
+_DOM_PRICE_TYPED_RETIRED = [0.05, 0.080, 0.075, 0.065, 0.055]
 _US_LT = _EG.raw['us_inflation_lt']['value']
 _FX_SPOT = _EG.raw['fx']['spot']['value']
 # relative purchasing-power parity, year by year, off the OBSERVED spot. FY2026 is that
@@ -519,14 +528,49 @@ INP = dict(
                       "export value across 67 countries; the biosimilars plant licensed in "
                       "December 2025 adds a new export line rather than replacing one",
                       "2026-08-09", "House"),
-    dom_price_growth=I([0.05, 0.080, 0.075, 0.065, 0.055],
-                       "Domestic realised price per pack, annual growth. Egyptian medicine "
-                       "prices are set administratively by the Egyptian Drug Authority and move "
-                       "in periodic approved adjustments rather than continuously; realised "
-                       "price per pack rose 12.6% in FY2025 after a much larger devaluation-"
-                       "driven step in FY2024. The path assumes price growth tracks domestic "
-                       "inflation as it converges on the central bank's target, with no real "
-                       "price gain", "2026-08-09", "House"),
+    # DERIVED FROM THE HOUSE PATH, NOT TYPED. This read [0.05, 0.080, 0.075, 0.065,
+    # 0.055] against a house CPI ladder of [0.16, 0.12, 0.09, 0.075, 0.07] -- a real price
+    # cut of 15.9% compounding over five years, and 9.5% in the first year alone, which is
+    # a larger real cut than any the company has been observed to take.
+    #
+    # THREE PLACES IN THIS STUDY SAID IT DID THE OPPOSITE. This input's own source string
+    # said "price growth tracks domestic inflation ... with no real price gain"; the
+    # committed macro record says esc_domestic_cpi is "the house calendar ladder exactly,
+    # at zero real: this study carries no inflation rate of its own"; and line 34 imports
+    # the house path under [R-MACRO-01] -- "the house path, never a typed rate" -- and
+    # then a five-element price path was typed beside it anyway. The rule was not
+    # circumvented deliberately; it was applied to the escalators and not to the price
+    # they escalate, which is the same rule and the harder half.
+    #
+    # IT IS THE LARGEST SINGLE THING IN THIS STUDY: the difference is EGP 57.22 a share on
+    # Frame A and 59.17 on Frame B, against a Frame A central of 31.30. A permanent real
+    # price decline is also not a going concern -- it drives the terminal margin toward
+    # zero by construction, which is why the study's own margin-as-output test fails and
+    # why more volume DESTROYS value in it (+4pp of pack growth adds 2,396mn of FY2030
+    # revenue and 79mn of FY2030 EBIT, a 3.3% incremental margin against filed margins of
+    # 23.5 / 20.1 / 25.1%).
+    #
+    # ZERO REAL IS ADOPTED because it is what this study asserts in both of its own
+    # records and what [R-MACRO-01] requires, and because it needs no source this
+    # repository does not hold. A REAL LAG IS REAL -- the Egyptian Drug Authority sets
+    # prices in periodic approved adjustments and realised price per pack rose 12.59% in
+    # FY2025 -- but its SIZE is nowhere evidenced, and a lag that is observed once is not
+    # a lag that compounds for ever. The typed path is published as the contested
+    # alternative with its price, and what would settle it is named: a disclosed EDA
+    # price-approval schedule, or an FY2026 filing carrying domestic revenue per pack.
+    dom_price_growth=I(_DOM_PRICE_PATH,
+                       "Domestic realised price per pack, annual growth: THE HOUSE CPI "
+                       "LADDER at a real drift of %+.1f%% a year [R-MACRO-01], not a typed "
+                       "path. Egyptian medicine prices are set administratively by the "
+                       "Egyptian Drug Authority and move in periodic approved adjustments "
+                       "rather than continuously; realised price per pack rose 12.59%% in "
+                       "FY2025 after a much larger devaluation-driven step in FY2024. The "
+                       "path tracks domestic inflation as it converges on the central "
+                       "bank's target, with no real price gain and no real price loss -- "
+                       "which is what this input's previous source string claimed while "
+                       "its numbers delivered a 15.9%% real cut over five years. The cut "
+                       "is published as the contested alternative rather than discarded"
+                       % (100 * _DOM_PRICE_REAL_DRIFT), "2026-09-09", "House"),
     exp_price_usd_growth=I([0.01, 0.01, 0.01, 0.01, 0.01],
                            "Export realised price per pack in US dollars, annual growth. FY2025 "
                            "realised USD 1.00 per pack. Generic export pricing is competitive "
@@ -1916,7 +1960,8 @@ PROV_2YR_MEAN = float(np.mean([_prov_hist[0][0] / _prov_hist[0][1],
 
 
 def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1.0,
-           dom_vol_shift=0.0, dep_rate=None, extra_rev_fy30=0.0, extra_margin=0.45):
+           dom_vol_shift=0.0, dep_rate=None, extra_rev_fy30=0.0, extra_margin=0.45,
+           dom_price_path=None):
     """extra_rev_fy30 is an ADDITIONAL revenue line reaching that level by FY2030E on a
     straight ramp — the biosimilars facility's own contribution, which the base build does
     NOT carry because the company has published no volume or price guidance for it."""
@@ -1939,11 +1984,12 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     for i in range(n):
         pd_ *= (1 + V['dom_pack_growth'][i] + dom_vol_shift)
         pe_ *= (1 + V['exp_pack_growth'][i])
-        rd_ *= (1 + V['dom_price_growth'][i])
+        _dpp = (V['dom_price_growth'] if dom_price_path is None else dom_price_path)[i]
+        rd_ *= (1 + _dpp)
         re_ *= (1 + V['exp_price_usd_growth'][i])
         pt_ *= (1 + V['toll_growth'][i])
-        ft_ *= (1 + V['dom_price_growth'][i])
-        st_ *= (1 + V['dom_price_growth'][i])
+        ft_ *= (1 + _dpp)
+        st_ *= (1 + _dpp)
         f_ = fx[i] * fx_scale
         rev_.append((pd_ * rd_ + pe_ * re_ * f_ + pt_ * ft_ + pt_ * st_) * consol_uplift)
         pk_.append(pd_ + pe_ + pt_)
@@ -1967,10 +2013,17 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
         dep_.append(dd)
     cip_close_ = cip_b_
     dna_ = [dep_[i] + amort[i] for i in range(n)]
+    # SCALAR OR PER-YEAR. Frame A's charge is one rate held for ever; Frame B's is a
+    # normalising PATH. This took a scalar only, so Frame B could not be re-priced through
+    # the same function as Frame A, and any alternative had to be quoted on one branch --
+    # which is how a two-sided study ends up publishing a pair whose halves were built
+    # differently.
     pv_pct = V['prov_pct_permanent'] if prov_pct is None else prov_pct
+    pv_ = (list(pv_pct) if isinstance(pv_pct, (list, tuple))
+           else [float(pv_pct)] * n)
     xrev = [extra_rev_fy30 * r for r in CRUX_RAMP]
     ebit_ = [rev_[i] - cog_[i] - rev_[i] * (V['mkt_pct'][i] + V['rnd_pct'][i] + V['ga_pct'][i])
-             - rev_[i] * pv_pct - dna_[i] - BOARD_FEE + xrev[i] * extra_margin
+             - rev_[i] * pv_[i] - dna_[i] - BOARD_FEE + xrev[i] * extra_margin
              for i in range(n)]
     rev_ = [rev_[i] + xrev[i] for i in range(n)]
     # ANY INCREMENTAL REVENUE IS CHARGED THE SAME REINVESTMENT IDENTITY AS THE EXISTING
@@ -2039,6 +2092,50 @@ sens = dict(
 # The three readings of the provision charge that anyone auditing this study will ask for,
 # published together rather than argued about: the level carried, the mean of the three
 # disclosed years, and the expected-credit-loss component alone.
+# ==================== THE CONTESTED PRICE PATH, COMPUTED ======================
+# The largest single judgement in this study, published BOTH ways and never averaged.
+# Both are run through dcf_at(), the same function the headline uses, so the difference
+# measures the CHOICE and not the construction.
+# dcf_at defaults to Frame A's permanent provision charge; Frame B is the same run with
+# the normalising charge. Both branches are re-priced on the retired path so the pair a
+# reader sees is the pair the study publishes.
+_alt_a = dcf_at(dom_price_path=_DOM_PRICE_TYPED_RETIRED)
+_alt_b = dcf_at(prov_pct=V['prov_pct_normalising'],
+                dom_price_path=_DOM_PRICE_TYPED_RETIRED)
+_now_a, _now_b = dcf_at(), dcf_at(prov_pct=V['prov_pct_normalising'])
+DOM_PRICE_CONTESTED = dict(
+    choice='Domestic realised price per pack: the HOUSE CPI LADDER at zero real (adopted, '
+           '[R-MACRO-01]) vs the typed path this study carried until 09-09-2026, which '
+           'delivered a 15.9% real price CUT compounding over five years',
+    adopted='house CPI ladder, real drift %+.1f%%' % (100 * _DOM_PRICE_REAL_DRIFT),
+    alternative='typed [5.0, 8.0, 7.5, 6.5, 5.5]% — a real cut of 9.5% in year one alone',
+    fv_adopted_frame_a=float(_now_a), fv_adopted_frame_b=float(_now_b),
+    fv_alternative_frame_a=float(_alt_a), fv_alternative_frame_b=float(_alt_b),
+    effect_frame_a=float(_alt_a / _now_a - 1.0),
+    note=('The typed path was not a view anybody argued for; it contradicted this study in '
+          'both of its own records. Its own source string said price growth "tracks '
+          'domestic inflation ... with no real price gain", and the committed macro record '
+          'says the escalator is "the house calendar ladder exactly, at zero real: this '
+          'study carries no inflation rate of its own". [R-MACRO-01] requires the house '
+          'path and forbids a typed rate; the rule had been applied to the escalators and '
+          'not to the price they escalate. A REAL LAG IS REAL — the Egyptian Drug '
+          'Authority sets prices in periodic approved adjustments and realised price per '
+          'pack rose 12.59% in FY2025 — but its SIZE is nowhere evidenced, and a lag '
+          'observed once is not a lag that compounds for ever. What would settle it: a '
+          'disclosed EDA price-approval schedule, or an FY2026 filing carrying domestic '
+          'revenue per pack. Note also that a permanent real price decline is not a going '
+          'concern: under the retired path more volume DESTROYS value in this model, and '
+          'terminal return on capital read 12.73% against a terminal cost of capital of '
+          '15.22% — a symptom of the price path, not an independent defect.'))
+say(f"\n[The contested price path, computed both ways] the adopted house ladder at zero "
+    f"real gives Frame A {_now_a:.2f} and Frame B {_now_b:.2f}; the retired typed path, "
+    f"a 15.9% real cut over five years, gives {_alt_a:.2f} and {_alt_b:.2f}. The "
+    f"difference is EGP {_now_a - _alt_a:.2f} a share on Frame A — the largest single "
+    f"judgement in this study, published both ways and never averaged. It was not a view "
+    f"anybody argued for: it contradicted this study's own source string and its own "
+    f"committed macro record, and [R-MACRO-01] forbids a typed rate where the house path "
+    f"exists")
+
 PROV_READINGS = [
     ('Carried — struck above the two non-outlier years', V['prov_pct_permanent']),
     ('Mean of the three disclosed years, including the FY2024 spike', PROV_3YR_MEAN),
@@ -2260,6 +2357,7 @@ OUT = dict(
     # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
     # run behind it and no statement either way is SILENT, which is a different
     # fact from 'none adopted' and reads identically.
+    dom_price_contested=DOM_PRICE_CONTESTED,
     adopted_corrections=[],
     adopted_corrections_note=(
         "the walk-forward on this name adopted NO correction — see engine/phar_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work."),
@@ -2282,6 +2380,12 @@ OUT = dict(
     inputs=INP,
     history=hist,
     unit_build=dict(
+                    # THE ONE REALISED PRICE OBSERVATION THIS STUDY HAS, committed as a
+                    # number. It is quoted in the domestic-price driver's source string,
+                    # which the bibliography prints verbatim, and it was traceable to no
+                    # committed figure -- so a reader met the single most load-bearing
+                    # piece of evidence for the price path and could not check it.
+                    dom_price_realised_fy25=dom_ppp25 / dom_ppp24 - 1.0,
                     # THE CONTRACT-MANUFACTURING LINE'S OWN RATES, COMMITTED. Both are
                     # printed in the delivered bibliography and neither was a committed
                     # figure, so a reader met them and could not trace either.
