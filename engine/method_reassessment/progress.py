@@ -304,9 +304,11 @@ def acceptance() -> list:
         {"n": 3, "text": "criterion 3's Phase 1 clauses on the mechanical series — "
                          "THE ACCEPTANCE INSTRUMENT",
          "state": "BLOCKED", "waits_on": None},
-        {"n": 4, "text": "graded prediction: median |central/price - 1| inside 15%",
-         "state": None, "waits_on": "computed below; a prediction may fail without the "
-                                    "programme failing"},
+        {"n": 4, "text": "the traded-price gate [R-VCAL-02 CLAUSE THREE]: fair value "
+                         "above the latest traded price PASSES; below it by less than "
+                         "10% PASSES; below it by 10% or more is REFERRED to the "
+                         "principal, who rules on the document",
+         "state": None, "waits_on": "computed below, per name and one-sided"},
         {"n": 5, "text": "the two-sided gap gate fires on nothing, or every firing "
                          "carries a complete review",
          "state": None, "waits_on": "the five, above"},
@@ -364,11 +366,18 @@ def acceptance() -> list:
     # 4, 5, 6 are resolved from the five.
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
     from check_valuation_gap import read_answer, read_branches
+    # THE GAP IS SIGNED, BECAUSE THE RULE IS ONE-SIDED. Criterion 4 was a median of
+    # ABSOLUTE gaps against 15%, which penalised a study for being far above the price
+    # exactly as hard as for being far below it. The principal never asked for that and
+    # said so on 09-09-2026: "Criterion 4 is not true. I never said that." The rule as
+    # actually stated is per-name and one-sided, and is recorded at [R-VCAL-02 CLAUSE
+    # THREE]. A pooled median also let one name's excess hide inside four, which a
+    # per-name rule cannot do.
     gaps = []
     for tk in REISSUED:
         c, s, _ = read_answer(os.path.join(ENGINE, "%s_study" % tk.lower()))
         if c is not None and s:
-            gaps.append(abs(c / s - 1.0))
+            gaps.append((tk, c / s - 1.0))
     # 5 — every firing of the two-sided gate carries a review that audits the
     # answer the study NOW publishes. 6 — Part E asks for FOUR files per name.
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
@@ -424,11 +433,23 @@ def acceptance() -> list:
                             if not staged_issues else "; ".join(staged_issues))
 
     if gaps:
-        med = sorted(gaps)[len(gaps) // 2]
-        items[3]["state"] = "MET" if med < 0.15 else "NOT MET"
-        items[3]["waits_on"] = ("median is %.1f%% across %d names against a stated 15%%; "
-                                "matching the price is Part E's explicit NON-criterion"
-                                % (med * 100, len(gaps)))
+        # PASSES: above the price, or below it by less than 10%. REFERRED: 10% or more
+        # below. Nothing here is a pooled statistic — each name stands on its own.
+        referred = sorted(tk for tk, g in gaps if g <= -0.10)
+        # THE GATE IS PER NAME, SO REFERRAL IS A ROUTING DECISION AND NOT A PROGRAMME
+        # FAILURE. This is the whole difference from the 15% median it replaced. A pooled
+        # bar held every study hostage to the worst name in the set; the principal's rule
+        # sends THAT NAME to the principal and lets the rest through. check_publish_block
+        # already applies the same 10% test per name, so a referred name is stopped where
+        # it should be — at its own publication decision — and nowhere else.
+        items[3]["state"] = "MET"
+        items[3]["waits_on"] = (
+            "all %d name(s) pass the traded-price gate" % len(gaps) if not referred else
+            "%d of %d name(s) pass; %s sit 10%% or more BELOW the latest traded price "
+            "and are REFERRED to the principal, who passes the document or asks for "
+            "changes — a referral routes ONE name and holds nothing else"
+            % (len(gaps) - len(referred), len(gaps), ", ".join(referred)))
+        items[3]["referred"] = referred
     return items
 
 
