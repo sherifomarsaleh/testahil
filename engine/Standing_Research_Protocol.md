@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-09b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-09c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 9 September 2026 (rev. 19) — [R-FCAL-01 §6 AMENDED, per instruction] A CAMPAIGN WALK-FORWARD ON A NAME WITH NO CURRENT-STANDARD STUDY MAY BE CALIBRATION-ONLY: it owes the lessons register, its run records, the study document and the Excel model, and need not STRIKE A FAIR VALUE — provided it DECLARES machine-readably that it struck none. Silence is not a declaration and the exemption is closed to any name that already publishes a central. The section said the UPDATED fundamental analysis and you cannot update what does not exist; the gates that went red on it were reading the rule correctly, so the rule moved and not them.
+Updated 9 September 2026 (rev. 20) — [R-GAP-04, per instruction] A VALUATION GAP IS NOT GENUINE, DOES NOT STAND, AND IS NOT REFERRED TO THE PRINCIPAL UNTIL AN EXHAUSTIVE, RECORDED HUNT FOR OUR OWN ERROR HAS COME BACK EMPTY: referral is a last resort that must be earned and evidenced, and it carries the search — what was examined, what each candidate is worth in currency per share, and what would falsify each. It does NOT weaken the absolute prohibition on moving a fair value toward the price, which it restates inside itself: closing the gap is the OUTCOME of finding a real defect and never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.
+(rev. 19, 9 September 2026 — [R-FCAL-01 §6 AMENDED, per instruction] A CAMPAIGN WALK-FORWARD ON A NAME WITH NO CURRENT-STANDARD STUDY MAY BE CALIBRATION-ONLY: it owes the lessons register, its run records, the study document and the Excel model, and need not STRIKE A FAIR VALUE — provided it DECLARES machine-readably that it struck none. Silence is not a declaration and the exemption is closed to any name that already publishes a central. The section said the UPDATED fundamental analysis and you cannot update what does not exist; the gates that went red on it were reading the rule correctly, so the rule moved and not them.)
 (rev. 18, 9 September 2026 — [R-VCAL-02 CLAUSE THREE AMENDED, per instruction] THE TRADED-PRICE GATE, PER NAME AND ONE-SIDED: a fair value above the latest recorded traded price passes, below it by less than 10% passes, below it by 10% or more is REFERRED to the principal, who reviews the document and lets it pass or asks for changes. It replaces Part E acceptance criterion 4 — a median of ABSOLUTE gaps against a 15% target, which nobody set: two-sided, pooled, and computed in a file that called matching the price Part E's explicit NON-criterion. REFERRAL IS A ROUTING DECISION AND NOT A FAILURE — a referred name is stopped at its own publication decision and holds nothing else.)
 (rev. 17, 8 September 2026 — [R-VCAL-02 CLAUSE THREE] CORRECTED: the clause resolves its audit BY PATTERN rather than by a dated filename, and its NEGATIVE CONTROL is wired into CI while the verdict itself is deliberately not — criterion3.py measures an adoption criterion, so a build keyed on it would go red on the programme’s own findings. The bar is unchanged: NO COMPANY IS CALLED EXPENSIVE BY MORE THAN TEN PER CENT WITHOUT AN AUDIT BEHIND IT: clause A's symmetric zero-bias test is REPORTED rather than gating and this one-sided bar replaces it for Phase 1, per instruction — a symmetric test penalises a method for doing the thing it exists to do, and some markets and some companies are genuinely cheap)
 (rev. 15, 8 September 2026 — THE CURRENCY OF BORROWING IS ESTABLISHED BEFORE THE COST OF DEBT IS SET [R-COC-01 AMENDED]: the sovereign floor binds the LOCAL-CURRENCY tranche only and the foreign tranche is carried at local-equivalent cost — the exception was written, correct and unreachable, because nothing anywhere established which kind of book the rule was standing in front of)
@@ -5280,3 +5281,134 @@ exemption is only as narrow as the cases that prove it cannot be widened.
 GATE IS ABOUT IS NOT A RELEASE, IT IS A FORM.** The dissent requirement was real work and
 it still asked the suspect to sign its own discharge. Where a gate exists because a
 judgement may be wrong, the release has to come from somewhere that judgement did not.
+
+---
+
+## [R-GAP-04] A gap is not genuine until the hunt for our own error has been run, recorded, and come back empty (09-Sep-2026, per instruction — "CLOSE THE GAP. MAKE THE EFFORT. MAKE THAT A RULE")
+
+*The instruction in full, because the rule exists because of it and its force is in its own
+words:*
+
+> "With PHAR, EGCH and SWDY and ARCC. You need to try hard to close the gap and not just
+> refer tpo me. Refering to me is the easy way out. You are a superior AI model that
+> investgates till its find its mistake. CLOSE THE GAP. MAKE THE EFFORT. MAKE THAT A RULE"
+
+### The rule
+
+**A valuation gap is never reported as GENUINE, never written up as THE GAP STANDS, and
+never REFERRED to the principal, until an exhaustive search for OUR OWN ERROR has been run,
+has been recorded, and has come back empty.**
+
+**Referral is a last resort that must be EARNED and EVIDENCED.** It is not a default, it is
+not a conclusion, and it is not where a hard afternoon gets put down. The referral carries
+the search that entitles it: **what was examined, what each candidate is worth IN CURRENCY
+PER SHARE, and what would falsify each.** A gap review that arrives at *"we do not know
+which"* without that record is not finished — **it is unstarted.**
+
+This does not repeal [R-VCAL-02 CLAUSE THREE]'s routing or [R-GAP-02 CLAUSE FOUR]'s
+authorisation. Both still stand and both still stop the work at the same places. What this
+rule fixes is what must be TRUE before either of them is reached: a referral is the end of a
+search, and until the search exists there is nothing to refer.
+
+### What the search must cover, at minimum, and every candidate priced
+
+1. **The study's own arithmetic, worked BACKWARDS from the market price, line by line.**
+   [R-ENF-05]'s `engine/reverse_read.py` is the shared construction so that "the rate the
+   price implies" means one thing across the book. The question the reverse read answers is
+   not *how far apart are we* but *what would have to be true* — and whether that is a
+   belief somebody could hold or an impossibility.
+2. **Every typed constant against the model's own derived equivalent.** A figure typed into
+   a model that already computes the same quantity somewhere else is a defect until it is
+   shown not to be. Two of them were sitting in one file on adoption day.
+3. **Every source string against what the filings actually disclose.** A study that says a
+   disclosure does not exist while the issuer publishes it **has a hole in its sweep**, and
+   the hole is reported whatever the number turns out to be worth — the finding is about the
+   sweep, not about the price.
+4. **Standalone against consolidated, on every ratio.** A parent-only numerator over a
+   consolidated denominator is not a small error; it is a different company.
+5. **Each lens against the model's own forecast of the quantity that lens consumes.** A lens
+   fed a typed net debt or a typed book equity while the same model forecasts both is not an
+   independent read, it is a second answer to a question already answered.
+6. **The contested register tested for a lean INSIDE a category, not only across the file.**
+   A whole-file sign test is passed by a file that resolves every judgement of one kind one
+   way and every judgement of another kind the other way. Categories, then the file.
+
+### What this rule does NOT do, and this is the half to get right
+
+**IT DOES NOT WEAKEN, QUALIFY, OR CREATE AN EXCEPTION TO THE STANDING PROHIBITION ON MOVING
+A FAIR VALUE TOWARD THE PRICE. THAT PROHIBITION IS ABSOLUTE, AND IT IS RESTATED HERE, INSIDE
+THIS RULE, BECAUSE THE TWO ARE EASY TO CONFUSE.** A rate solved out of the price may not
+re-enter a valuation [R-ENF-05]; a terminal reverse-engineered from the answer it explains
+is refused outright [R-COC-02]; and no correction is adopted because of where it lands.
+
+**Closing the gap is the OUTCOME of finding a real defect. It is never the aim.** A defect
+found under this rule is corrected **identically** whether it moves the answer toward the
+market or away from it. A session that searched hard, found four defects, and finished
+further from the price than it started has obeyed this rule completely. A session that
+stopped searching the moment the number got close has broken it, and the fact that its
+answer improved is not a defence.
+
+A future session reading only this rule must not conclude that agreement with the market is
+the objective. **The objective is to be right. The market is evidence that something may be
+wrong, and it is the only piece of evidence in the room that is not ours.**
+
+### The evidence it was adopted on, and it points BOTH WAYS
+
+Four names were interrogated from outside their own studies on 09-Sep-2026 under [R-GAP-01],
+and the record is `engine/gap_challenges/CHALLENGE_FINDINGS_09-09-2026.md` — internal,
+applied to nothing, moving no fair value. **Three findings anchor this rule:**
+
+- **ELEC.** The published central is almost entirely FLOORS: the cash-flow lens contributes
+  1.2% of it, `eq_dcf = max(eq_dcf_unfloored, 0.0)` pins the rest, and the unfloored central
+  is negative. And the study's OWN stated mechanism is falsified by the company's own
+  quarterly record — the forecast margin is justified as under-absorption at low volume,
+  while two filed quarters ran EBITDA margins of 28.8% and 23.3% at revenue BELOW the
+  study's own forecast quarterly rate. Lower volume, much higher margin. Priced both ways
+  the swing is EGP 2.59 a share, several times the entire published fair value.
+- **SWDY.** The delivered study's driver says *"no order book or backlog figure is disclosed
+  in any of the audited filings or the Q1-2026 interim"*. **Six of the issuer's own quarterly
+  releases, sitting in the study's own `engine/swdy_walkforward/filings/` directory, disclose
+  it** — 196bn rising to 346bn. The taper that sentence defends is worth 0.17% of the gap,
+  and the finding was reported anyway, because the defect is the sweep.
+- **PHAR.** The largest single driver contradicts its own committed source string: the
+  domestic price escalator runs below the house inflation ladder while the source it cites
+  says price growth tracks inflation with no real gain — a permanent, compounding real price
+  cut that sets the terminal margin.
+
+**And the corrections ran in both directions, which is the evidence that this rule does not
+bias the search.** PHAR's largest item points AT the price and its associates finding — the
+sharpest open item the 08-Sep review had — points AWAY from it, resolving at −12.29 rather
+than the −13.65 that review carried. On ELEC every honest correction except the margin
+judgement **widens** the gap: the typed net debt, the typed book equity, the composite beta,
+the vendor-difference depreciation, the terminal working-capital intensity. On SWDY the
+direction count came out 6 up and 7 down. **A search that only ever found reasons to agree
+with the market would be a different and much worse instrument, and this is the record that
+it is not one.**
+
+**PHAR is also where clause 6 comes from.** Its contested register passed a whole-file sign
+test at 10 up and 10 down — and the split was STRUCTURAL underneath: every ratio judgement
+resolved generously, every price and escalator judgement severely. The unanimity was inside
+the price lines, not across the file, **and a whole-file test cannot see it.**
+
+### Enforcement
+
+Per [R-ENF-01] a rule that can be checked from outside must be. **This one stays prose, and
+the reason is stated rather than dressed up: the rule's subject is EFFORT, and no script can
+read how hard somebody looked.** It is the same shape as [R-STYLE-01], which is prose for
+the same reason and says so.
+
+What IS mechanical is the ARTEFACT, and the two instruments that would carry it already
+exist and are named here so a future session amends them rather than inventing a third:
+`scripts/check_valuation_gap.py`, which already reads each gap review and refuses one that
+skips a required heading, and `scripts/check_escalations.py`, which already refuses a
+question reaching the principal that does not record the routes it ran. **Neither is amended
+in this commit, deliberately** — a required heading and an escalation class are rule
+substance, and the substance of a standing rule is the principal's to set. What binds today
+is the text, and the backstop is the same one [R-STYLE-01] names: the principal saying so
+when it slips.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT VALUATION GAPS: THE CHEAPEST WRONG ANSWER IN ANY
+REVIEW IS "WE CHECKED THE PROCESS AND THE PROCESS WAS FOLLOWED".** Every gate in this
+repository checks a process, and each of them passed all four of these studies. **All three
+of the findings above were found by challenging the ANSWER, and none of them by re-walking
+the process.**

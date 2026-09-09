@@ -58,6 +58,8 @@ conforming beta produced by the sanctioned routine against `raw_indices/AE/FADGI
 > `GAP_REVIEW_{DD-MM-YYYY}.md` covering all eight headings and clear
 > `python3 scripts/check_valuation_gap.py` before reporting the re-issue done.
 >
+> **7c — Earn the referral** [R-GAP-04]. A gap is not genuine, does not stand, and is not referred to me until an exhaustive, recorded hunt for OUR OWN ERROR has come back empty.** Referral is a last resort that must be earned and evidenced, and it carries the search: what was examined, WHAT EACH CANDIDATE IS WORTH IN CURRENCY PER SHARE, and what would falsify each. At minimum, each priced — the study's own arithmetic worked BACKWARDS from the price through `engine/reverse_read.py` [R-ENF-05]; every typed constant against the model's own derived equivalent; every source string against what the filings actually disclose (a study saying a disclosure does not exist while the issuer publishes it has a hole in its SWEEP); standalone against consolidated on every ratio; each lens against the model's own forecast of the quantity that lens consumes; the contested register tested for a lean INSIDE a category and not only across the file. **This does not weaken the absolute prohibition on moving a fair value toward the price** — closing the gap is the OUTCOME of finding a real defect, never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.
+>
 > **8 — Verify by import, not by parse**, and commit on a feature branch with an open PR.
 > Never push protocol or engine changes straight to main.
 
