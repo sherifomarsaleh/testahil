@@ -349,9 +349,23 @@ def check():
                              '(%s)' % (tk, why))
     for tk in sorted(d['entries']):
         if tk in inflight:
-            fails.append('%s declares RUN_IN_PROGRESS and also carries a register '
-                         'entry. A run that has frozen its baseline has started for '
-                         'real; remove the marker.' % tk)
+            # A BASELINE IS THE FIRST STEP OF A RUN, NOT THE LAST. This clause read "a run
+            # that has frozen its baseline has started for real; remove the marker", which
+            # was wrong the moment a real run reached it: snapshot() MUST happen before
+            # anything touches assets/data.js, so EVERY correctly-run walk-forward carries
+            # a baseline while it is still working. The clause made the in-flight marker
+            # unusable for precisely the case it exists for. Written 09-09-2026 and
+            # corrected the same evening by the first run to hit it -- ADIB, which had
+            # frozen bear 31.6 / base 54.3 / full 95.3 and had not yet scored a single
+            # origin. [R-COC-01]: re-point a check that fires on work that is right.
+            #
+            # What DOES contradict the marker is a delivered EDITION. An edition means the
+            # run recorded a fair value, which is the end of it.
+            if d['entries'][tk].get('editions'):
+                fails.append('%s declares RUN_IN_PROGRESS and has recorded %d delivered '
+                             'edition(s). A run that has delivered a fair value has '
+                             'finished; remove the marker.'
+                             % (tk, len(d['entries'][tk]['editions'])))
             continue
         if tk not in runs:
             fails.append('%s carries a record with no walk-forward run '

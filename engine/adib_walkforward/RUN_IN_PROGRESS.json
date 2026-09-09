@@ -2,12 +2,16 @@
   "_what": "This walk-forward run is NOT finished. The declaration exists so the gates read a true statement about it rather than inferring a false one.",
   "ticker": "ADIB",
   "started": "2026-09-09",
-  "waiting_on": "primary statement extraction — ADIB-Egypt files as a BANK, and the run has to establish whether the walk-forward machinery's industrial shape (revenue x margin, capex, working capital) can carry a name whose drivers are net interest margin, cost of risk, fee income, cost-to-income and capital. ADCB is the bank pattern in the closed reference set.",
-  "why_a_file_was_committed_before_the_run_finished": "extract_pages.py was committed mid-run so it would not be lost with the container. That made engine/adib_walkforward/ exist on every checkout, and check_lessons_register.py anchors on the EXISTENCE of a run directory — so an unfinished run read as a finished one missing its lessons. The work is worth keeping and the false reading is not; this declares the difference.",
-  "what_is_owed_before_this_marker_may_be_REMOVED": [
-    "the baseline re-frozen per engine/ADIB_BASELINE_09-09-2026.md — bear 31.6 / base 54.3 / full 95.3, taken FROM THAT NOTE if assets/data.js has moved, or the baseline is a fabricated zero",
-    "lessons_harvest.py ADIB, with every draft ruled registered or declined",
+  "waiting_on": "scoring and the lessons harvest. The bank driver set is built and the corrections are estimated; what is missing is scores.json, projections.json and lessons_draft.json, and until those exist the run cannot say what it found.",
+  "_restored": "This marker was DELETED once, on 09-09-2026, while the run still owed all three of the items listed below. It is restored rather than left off, because removing it made check_lessons_register.py and fv_movement.py report a FINISHED run missing its lessons — which is the false reading the marker exists to prevent, in the other direction. The marker may be removed when the run has output, and the anti-parking clause enforces that from the other side: a directory carrying this file AND lessons_draft.json, scores.json or projections.json is RED.",
+  "progress_since_the_marker_was_written": {
+    "baseline_frozen": "DONE. bear 31.6 / base 54.3 / full 95.3, matching engine/ADIB_BASELINE_09-09-2026.md exactly, which confirms assets/data.js had not moved and the baseline is a real measurement rather than a fabricated zero.",
+    "driver_set_established": "DONE, and it answers the question the run was set. ADIB-Egypt files as a BANK and the fourteen drivers built are a bank's — financings to customers, customer deposits, total assets, financing income, cost of funds, net funds income, net fees, other non-interest income, admin, other operating, ECL, profit before tax, net profit, net profit attributable to parent. No revenue-times-margin line anywhere, so the walk-forward's industrial shape did not have to be forced onto it.",
+    "corrections_estimated": "DONE. Expanding-window, half strength, two-clause test: 70 applied across 11 origins and 14 drivers, 17 refused because the bias changes sign between eras, 21 refused for too few resolved cells. Two drivers fail the stability clause outright — other non-interest income and ECL — which is the right pair for a bank."
+  },
+  "still_owed_before_this_marker_may_be_REMOVED": [
+    "scores.json and projections.json — the run has produced score_output.txt and diagnose_output.txt but has committed neither as a record a gate can read",
+    "lessons_harvest.py ADIB, with every draft ruled registered or declined; a candidate nobody ruled on is an unanswered question wearing the costume of one",
     "either a delivered fair value recorded in fv_movement.json, or a CALIBRATION_ONLY.json declaring the run struck none — silence is not a declaration"
-  ],
-  "this_marker_cannot_park_the_run": "check_lessons_register.py goes RED if this file sits beside lessons_draft.json, scores.json or projections.json. The test is the run's own artefacts, not a clock, so there is no horizon to argue about and no way to hold the marker over a run that has actually finished."
+  ]
 }
