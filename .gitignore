@@ -123,5 +123,10 @@ engine/*_study_pending/src/txt_*.txt
 # provenance that matters is the URL, the access date and the finding, all of which
 # live in the sweep register; the byte copy was only ever convenience, and the same
 # reasoning already excludes ocr/ and txt/ under these directories.
-*_study_pending/src/*.html
-*_study_pending/src/**/*.html
+# ANCHORED AT engine/, BECAUSE A PATTERN CONTAINING A SLASH IS ANCHORED AT THE
+# .gitignore's OWN DIRECTORY. Written first as `*_study_pending/src/*.html`, which
+# matches only a directory of that name at the REPOSITORY ROOT — these live under
+# engine/, so it matched nothing, the files were re-added by the next `git add -A
+# engine`, and check_page_integrity went red again on a fix that had already landed.
+engine/*_study_pending/src/*.html
+engine/*_study_pending/src/**/*.html

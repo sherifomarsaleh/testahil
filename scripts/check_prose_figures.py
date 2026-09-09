@@ -328,7 +328,35 @@ def main(argv):
         print('\nFAIL — %d listed study/studies no longer resolve on disk: %s'
               % (len(stranded), ', '.join(stranded)))
         rc = 1
-    unlisted = [tk for tk in lack if tk not in known]
+    # [R-ENF-08] — AN ENTRY EXCUSES THE FAILURE IT RECORDED, NOT EVERY FAILURE OF ITS
+    # CLASS. This read `tk not in known`, so BARE PRESENCE on the ratchet excused a
+    # study having no prose check AT ALL, whatever the entry actually recorded. Seeding
+    # an unknown ticker into the list turned this gate green — caught by the new-study
+    # gauntlet's negative control, and invisible to this gate's own control, because the
+    # shape-verification elsewhere covers a name whose script RUNS and gets worse and
+    # says nothing about a name with no script.
+    #
+    # THE TWO FAILURES ARE NOT THE SAME AND THE TEST MUST NOT LUMP THEM. A study whose
+    # check is RED is excused by an entry recording a count — that is the failure the
+    # entry is about, and the worse-than-recorded test above already governs it. A study
+    # with NO SCRIPT may only be excused by an entry that recorded THAT, and an entry
+    # carrying `checked` is a claim that a check ran, which contradicts there being none.
+    # A first draft tested only for `checked` and made SWDY red for carrying a red check
+    # its entry legitimately records — the right answer to the wrong question.
+    def _entry(tk):
+        e = known.get(tk) if isinstance(known, dict) else None
+        return e if isinstance(e, dict) else None
+
+    unlisted = []
+    for tk in lack:
+        if tk not in known:
+            unlisted.append(tk)
+            continue
+        if tk in red:
+            continue                      # a recorded red check; the shape test governs it
+        e = _entry(tk)
+        if e is not None and e.get('checked') is not None:
+            unlisted.append(tk)           # entry says a check RAN; there is none
     if unlisted:
         _red = [tk for tk in unlisted if tk in red]
         _none = [tk for tk in unlisted if tk not in red]
