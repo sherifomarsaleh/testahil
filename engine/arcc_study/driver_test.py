@@ -1,3 +1,4 @@
+import sys
 """Prove the workbook is a LIVE DRIVER model.
 
 READ FIRST tells the reader that changing a blue cell on Assumptions reprices the model.
@@ -57,7 +58,9 @@ GDV = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                   'study_numbers.json')))['growth_destroys_value']
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx'))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
+wb = openpyxl.load_workbook(os.path.join(HERE, _ed.MODEL_XLSX))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]

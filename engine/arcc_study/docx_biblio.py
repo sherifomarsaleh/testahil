@@ -1,4 +1,5 @@
-"""ARCC_Bibliography_03-09-2026.docx — a standalone source register.
+import sys
+"""ARCC_Bibliography_{edition}.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -6,6 +7,8 @@ Reads study_numbers.json and the sweep register — no numeral is typed here.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 os.chdir(HERE)
 sys.path.insert(0, HERE)
 from docx import Document
@@ -406,6 +409,6 @@ P('')
 P('Testahil · Independent valuation research · Educational analysis, not investment advice.',
   size=8.4, italic=True, color=GREY)
 
-OUT = 'ARCC_Bibliography_03-09-2026.docx'
+OUT = _ed.BIBLIO_DOCX
 doc.save(OUT)
 print('wrote', OUT)

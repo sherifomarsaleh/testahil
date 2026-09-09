@@ -21,8 +21,10 @@ Only three classes of cell are pasted, named on READ FIRST:
      price map's percentile ladder;
   3. whole-model re-runs — the sensitivity grids and the contested-choice alternatives.
 """
-import json, os
+import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
@@ -1571,7 +1573,7 @@ assert not _missing and not _extra, (
     % (_missing, _extra))
 wb._sheets = [wb[n] for n in _WANT]
 assert wb.sheetnames == _WANT, wb.sheetnames
-OUT = os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx')
+OUT = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(EXPECT, f, indent=1)

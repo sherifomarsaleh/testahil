@@ -1,4 +1,5 @@
-"""ARCC_Valuation_Study_03-09-2026_public.docx — TMPV house structure.
+import sys
+"""ARCC_Valuation_Study_{edition}_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -13,6 +14,8 @@ process references appear anywhere in the output.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 os.chdir(HERE)
 sys.path.insert(0, HERE)
 from docx_base import *          # noqa: F401,F403
@@ -54,6 +57,7 @@ TECH = json.load(open('technicals.json'))['state']
 EFG = json.load(open('efg_bridge.json'))
 MSC = json.load(open('scenario_margin.json'))
 M, H, F = D['meta'], D['history'], D['forecast']
+WF, BU = D['walkforward'], D['bottom_up']   # the calibration run and the unit build
 # The committed cost-of-capital schedule, read rather than restated: the Table 7
 # caption describes when the terminal arrives, and a caption that says one thing
 # while the record says another is the exact defect this study was audited for.
@@ -84,6 +88,7 @@ TAXE = H['tax_eff']
 def n0(x): return f"{x:,.0f}"
 def n1(x): return f"{x:,.1f}"
 def n2(x): return f"{x:,.2f}"
+def E1(x): return f"{x:,.2f}"
 def n3(x): return f"{x:,.3f}"
 def pc(x, dp=1): return f"{x*100:.{dp}f}%"
 def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
@@ -1639,6 +1644,72 @@ table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.6, band_rows={6})
 caption('Table A3 — Free cash flow to the FIRM excludes treasury income, which is handled '
         'in the equity bridge; free cash flow to equity includes it through profit.')
 
+H2('A.4  Years three to five as ranges — this company\'s own tested error, applied')
+# THE FAR YEARS OF THIS FORECAST ARE PUBLISHED AS RANGES AND THE STUDY DID NOT PRINT THEM.
+# The calibration run committed a band on 01-09; the document was rebuilt on 03-09 and said
+# nothing about the run, the correction it adopted, or the width it measured. The band was
+# therefore computed, scored, committed and never shown to a reader, and every instrument
+# here reported the run complete. A range that exists only in an internal record is not a
+# published range.
+#
+# The multipliers are read off the run's own record. Nothing is typed: the point path is the
+# study's, the multipliers are the walk-forward's, and the product is arithmetic.
+_WFR = WF['ranges']
+_FAR = [2, 3, 4]                     # FY2028E, FY2029E, FY2030E — horizons 3, 4 and 5
+_H = ['3', '4', '5']
+rows = [['', YF[2], YF[3], YF[4]]]
+_VOL = [BU[i + 1]['vol'] for i in range(5)]
+for lab, path, band, fmt in [
+        ('Revenue — point (EGP mn)', F['revenue'], 'revenue', n0),
+        ('Revenue — low of the range', F['revenue'], 'revenue', n0),
+        ('Revenue — high of the range', F['revenue'], 'revenue', n0),
+        ('Cement and clinker sold — point (mn t)', _VOL, 'vol_total', lambda x: f'{x:,.2f}'),
+        ('Volume — low of the range', _VOL, 'vol_total', lambda x: f'{x:,.2f}'),
+        ('Volume — high of the range', _VOL, 'vol_total', lambda x: f'{x:,.2f}'),
+        ('Profit before tax — point (EGP mn)', F['pbt'], 'pbt', n0),
+        ('Profit before tax — low of the range', F['pbt'], 'pbt', n0),
+        ('Profit before tax — high of the range', F['pbt'], 'pbt', n0)]:
+    if 'low of the range' in lab:
+        vals = [path[i] * _WFR[band][h]['low'] for i, h in zip(_FAR, _H)]
+    elif 'high of the range' in lab:
+        vals = [path[i] * _WFR[band][h]['high'] for i, h in zip(_FAR, _H)]
+    else:
+        vals = [path[i] for i in _FAR]
+    rows.append([lab] + [fmt(v) for v in vals])
+rows.append(['Tested cases behind each band']
+            + [n0(_WFR['revenue'][h]['n']) for h in _H])
+table(rows, [2.45, 1.15, 1.15, 1.15], size=8.4, band_rows={4, 7})
+caption(f"Table A4 — the multipliers come from rebuilding this company's forecast as it would "
+        f"have stood at each of {WF['origins']} past year-ends, projecting one to five years "
+        f"ahead under the same rules, and scoring every projection against what was later "
+        f"reported: {WF['cells']} tested cases over {WF['span']}. The bands are the spread of "
+        f"those misses at three, four and five years out, applied to this forecast's own path.")
+P(f"THE TONNES WERE FORECAST FAR BETTER THAN THE MONEY, and that is the most useful thing "
+  f"this test says about the forecast above. Three years out, the volume band runs "
+  f"{E1(_WFR['vol_total']['3']['low'])} to {E1(_WFR['vol_total']['3']['high'])} times the "
+  f"point, while revenue runs {E1(_WFR['revenue']['3']['low'])} to "
+  f"{E1(_WFR['revenue']['3']['high'])} times and profit before tax "
+  f"{E1(_WFR['pbt']['3']['low'])} to {E1(_WFR['pbt']['3']['high'])} times. The physical "
+  f"business — kilns, mills, tonnes sold — was largely knowable in advance. What was not "
+  f"knowable was the price those tonnes fetched and the cost of making them, in a currency "
+  f"that was devalued twice inside the tested window. The width on profit is a measurement of "
+  f"Egyptian inflation and the exchange rate, not of this plant.")
+P(f"The band is wide because the record is short and the period was violent, and it narrows "
+  f"on volume for the same reason it widens on profit. It is published rather than smoothed: "
+  f"a far year of any projection of this company supports a range and never a point, and the "
+  f"reader is entitled to the width the method actually earned rather than to a single "
+  f"figure carried to the decimal. The counts in the last row fall from "
+  f"{n0(_WFR['revenue']['3']['n'])} to {n0(_WFR['revenue']['5']['n'])} across the three "
+  f"years, because a five-year-ahead test needs five more years of history than a "
+  f"one-year-ahead test, and those are the cases the record actually holds.")
+P(f"One correction was adopted out of {WF['adopted_correction']['of_candidates']} candidates "
+  f"— manufacturing depreciation, at a factor of "
+  f"{WF['adopted_correction']['factor']:.4f} — and "
+  f"{WF['adopted_correction']['watch_flags']} others were recorded as watch flags and acted "
+  f"on by nobody. A correction is adopted only where the bias holds its sign across the "
+  f"record and the model is otherwise right; where the model itself is wrong, a multiplier "
+  f"would hide it rather than fix it.")
+
 # ============================== APPENDIX B ===================================
 doc.add_page_break()
 H1('Appendix B  Peer set, sector structure and risks')
@@ -1922,6 +1993,6 @@ P(f'The price quoted throughout is the latest known close, EGP {n2(SPOT)} on '
   f'received from the company, from any holder of its shares, or from anyone with an '
   f'interest in its price.', size=8.8)
 
-OUT = 'ARCC_Valuation_Study_03-09-2026_public.docx'
+OUT = _ed.STUDY_DOCX
 doc.save(OUT)
 print('wrote', OUT)

@@ -131,6 +131,8 @@ right and the rejection was right), and revenue and profit for all three years.
 import datetime as _dt
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 import macro_path as MP
@@ -145,7 +147,7 @@ import terminal_value
 # 'issued 2 September' on a 3 September edition. A date typed beside a computed
 # number is the same defect as a number typed beside a computed one.
 SPOT_DATE = '2026-09-03'      # engine/prices/SUPPLIED_03-09-2026.json
-EDITION_DATE = '2026-09-03'   # the date in the delivered filenames
+EDITION_DATE = _ed.ISO       # edition.py is the ONE place this date is written
 
 # ---------------------------------------------------------------------------
 # THE HOUSE MACRO PATH [R-MACRO-01]. Until this edition ARCC carried its own
@@ -2545,8 +2547,9 @@ def _scrub_attestation():
                        'scanned. Build them, run scrub_gate.py, then re-run this '
                        'module — an unmeasured result is not a clean one.')
     r = json.load(open(f))
-    want = {'ARCC_Valuation_Study_03-09-2026_public.docx',
-            'ARCC_Bibliography_03-09-2026.docx'}
+    # DERIVED, so a new edition cannot leave this check reading the old files —
+    # which is precisely the failure it exists to catch, one level up.
+    want = set(_ed.DELIVERED)
     missing = sorted(want - set(r.get('files', [])))
     if missing:
         return False, ('the scrub covers %s and not %s — a check that opens a '
