@@ -193,7 +193,28 @@ def _carry(paths):
 
 
 def _restore(carried):
-    """Put back any carried file a step changed. Returns the paths restored."""
+    """REPORT any carried file whose content changed during the step. WRITES NOTHING.
+
+    THIS USED TO PUT THE CARRIED BYTES BACK AND THAT WAS THE WRONG INSTRUMENT. Restoring
+    an ALREADY-DIRTY file means writing over the operator's uncommitted work on a guess
+    about who changed it, and inside one working tree a concurrent editor and a mutating
+    step are not distinguishable by content. On 09-09-2026 it destroyed the same edit
+    three times: engine/study_population.py after it had been COMMITTED, which the
+    clean-vs-HEAD guard below now catches, and then engine/swdy_study/build_xlsx_swdy.py
+    twice while it was still uncommitted, which no HEAD check can catch because HEAD
+    never moved.
+
+    A check does not write to the tree it checks [R-ENF-01], and that binds the guard as
+    much as the step. The run now SAYS what a step overwrote and leaves it alone. The
+    operator is left with the path named and their editor's undo, which is strictly
+    better than having the file silently replaced by whichever of two writers the run
+    happened to guess.
+
+    Reverting NEWLY-dirty paths is kept and is a different thing: those were clean when
+    the step began, so git checkout restores HEAD rather than overwriting anyone's work.
+
+    Returns the paths a step overwrote, for the caller to print.
+    """
     back = []
     for rel, blob in carried.items():
         if blob is None:
@@ -208,12 +229,7 @@ def _restore(carried):
                     continue
         except OSError:
             pass
-        try:
-            with open(full, "wb") as fh:
-                fh.write(blob)
-            back.append(rel)
-        except OSError:
-            pass
+        back.append(rel)          # REPORTED, NOT REWRITTEN — see the docstring
     return back
 
 
@@ -372,6 +388,12 @@ def _run(a):
                          len(carried)))
                 carried = {}
             clobbered = _restore(carried)
+            if clobbered:
+                print("  NOTE   this step OVERWROTE %d file(s) that already carried "
+                      "uncommitted changes, and they were NOT put back: %s. A check does "
+                      "not write to the tree it checks [R-ENF-01], and that binds this "
+                      "guard too — recover from your editor if the change was yours."
+                      % (len(clobbered), ", ".join(clobbered[:4])))
             now_dirty = _dirty_set()
             if before_dirty is None or now_dirty is None:
                 mutated = None
@@ -395,7 +417,7 @@ def _run(a):
                 _touched = sorted(set(mutated or []) | set(clobbered))
                 print("  GREEN  %s%s" % (label[:90],
                       "" if not _touched else
-                      "   [MUTATED and RESTORED: %s]" % ", ".join(_touched[:3])))
+                      "   [TOUCHED: %s]" % ", ".join(_touched[:3])))
             else:
                 red.append((label, (r.stdout + r.stderr).strip().splitlines()[-6:]))
                 print("  RED    %s   exit %d" % (label[:90], r.returncode))
