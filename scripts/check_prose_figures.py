@@ -343,20 +343,25 @@ def main(argv):
     # carrying `checked` is a claim that a check ran, which contradicts there being none.
     # A first draft tested only for `checked` and made SWDY red for carrying a red check
     # its entry legitimately records — the right answer to the wrong question.
-    def _entry(tk):
+    # AN ENTRY THAT RECORDS NOTHING EXCUSES NOTHING. A real entry carries the day it was
+    # MEASURED; the gauntlet's control seeds a bare string, which is precisely the
+    # one-line edit anybody could make in good faith and which --prune would then
+    # preserve. A ratchet is a record of measured debt, so an entry with no measurement
+    # behind it is anchored on nothing [R-ENF-04] and cannot buy silence.
+    def _excuses_absence(tk):
         e = known.get(tk) if isinstance(known, dict) else None
-        return e if isinstance(e, dict) else None
+        if not isinstance(e, dict) or not e.get('measured_on'):
+            return False                  # records nothing
+        return e.get('checked') is None   # a count claims a check RAN; there is none
 
     unlisted = []
     for tk in lack:
         if tk not in known:
             unlisted.append(tk)
-            continue
-        if tk in red:
-            continue                      # a recorded red check; the shape test governs it
-        e = _entry(tk)
-        if e is not None and e.get('checked') is not None:
-            unlisted.append(tk)           # entry says a check RAN; there is none
+        elif tk in red:
+            pass                          # a recorded red check; the shape test governs it
+        elif not _excuses_absence(tk):
+            unlisted.append(tk)
     if unlisted:
         _red = [tk for tk in unlisted if tk in red]
         _none = [tk for tk in unlisted if tk not in red]
