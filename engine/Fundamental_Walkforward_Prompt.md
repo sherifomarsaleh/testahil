@@ -155,3 +155,31 @@ python3 scripts/check_lessons_register.py      confirm the gate is green
 ### Also produced, and internal
 
 The scope decision and its reason; the training-record files (panel with provenance, error cells, the per-origin side-by-side income statements); the pre-registration text; the basis-break register; the corrections proposed with their test results; the caveats stated plainly (span obtained, provisional inputs, single-name limits); and an appended entry in the Fundamental Driver Ledger. None of this is shown to a reader.
+
+---
+
+## AFTER ANY CHANGE TO A PUBLISHED FAIR VALUE, THE RECORDS MOVE WITH IT
+
+    python3 scripts/check_records_follow_the_answer.py
+
+Correcting a study is not one edit. The answer lives in the study's own committed
+numbers, and it is ALSO recorded in the fair-value half of the calibration register and
+staged in the publish queue's manifest. The study-local gates — recalc, prose, footing,
+the gap gate — do not read either of those files, so all of them stay green while both
+records describe a number the study no longer publishes.
+
+**This was got wrong twice in one evening on the same name**, 09-09-2026, PHAR: once when
+its cost of debt was corrected and once when its price path was, each time with the
+study's own gates green and CI red on a register nobody had touched. Both times the check
+that would have caught it existed and was in CI; the failure was choosing which gates to
+run by hand.
+
+**Append, never retype.** The register is append-only so a correction leaves the
+superseded figure visible beside the new one:
+
+    python3 engine/fv_movement.py record TICKER ...   # a new EDITION, not an edit
+    python3 engine/fv_movement.py build
+    python3 scripts/build_publish_queue.py            # re-stage
+
+The complete answer is `python3 scripts/run_ci_gates.py`, which runs CI's own step list by
+parsing the workflow. Use it before any push that moves a number.

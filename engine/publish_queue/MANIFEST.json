@@ -45,8 +45,8 @@
     ],
     "full": 8.038774888582243
    },
-   "report_bytes": 1676380,
-   "workbook_bytes": 49574
+   "report_bytes": 1682253,
+   "workbook_bytes": 49850
   },
   {
    "ticker": "ELEC",
@@ -88,21 +88,21 @@
    "workbook": "engine/phar_study/EIPICO_Valuation_Model_09092026.xlsx",
    "fair": {
     "base": null,
-    "bear": 31.29765587745293,
+    "bear": 88.52006108866603,
     "branches": [
      {
       "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
-      "value": 31.29765587745293
+      "value": 88.52006108866603
      },
      {
       "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
-      "value": 47.50628127175547
+      "value": 106.68118434967789
      }
     ],
-    "full": 47.50628127175547
+    "full": 106.68118434967789
    },
-   "report_bytes": 1137095,
-   "workbook_bytes": 46402
+   "report_bytes": 1147677,
+   "workbook_bytes": 46411
   },
   {
    "ticker": "PHDC",

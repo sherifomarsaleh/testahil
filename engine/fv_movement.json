@@ -663,7 +663,7 @@
       "full": 0.9488142905842855
      },
      "lessons": [],
-     "origins": "none — walk-forward not run; insufficient sourceable history (4 years); 0 scoreable origins",
+     "origins": "none \u2014 walk-forward not run; insufficient sourceable history (4 years); 0 scoreable origins",
      "scope": "skip",
      "vs_baseline_pct": {
       "base": -1.3,
@@ -782,11 +782,11 @@
       "bear": 32.99747064299512,
       "branches": [
        {
-        "label": "Frame A — provision charge permanent at 5.25% of revenue",
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
         "value": 32.99747064299512
        },
        {
-        "label": "Frame B — provision charge normalising to 2.5% of revenue",
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
         "value": 49.6788791915817
        }
       ],
@@ -814,11 +814,11 @@
       "bear": 31.3738,
       "branches": [
        {
-        "label": "Frame A — provision charge permanent at 5.25% of revenue",
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
         "value": 31.3738
        },
        {
-        "label": "Frame B — provision charge normalising to 2.5% of revenue",
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
         "value": 47.6035
        }
       ],
@@ -846,11 +846,11 @@
       "bear": 31.29765587745293,
       "branches": [
        {
-        "label": "Frame A — provision charge permanent at 5.25% of revenue",
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
         "value": 31.29765587745293
        },
        {
-        "label": "Frame B — provision charge normalising to 2.5% of revenue",
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
         "value": 47.50628127175547
        }
       ],
@@ -869,6 +869,38 @@
       "bear": -0.2,
       "full": -0.2
      }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 4,
+     "fair": {
+      "base": null,
+      "bear": 88.52006108866603,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 88.52006108866603
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 106.68118434967789
+       }
+      ],
+      "full": 106.68118434967789
+     },
+     "lessons": [],
+     "origins": "FY2020-FY2024, 5 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": 52.5,
+      "full": 46.1
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 182.8,
+      "full": 124.6
+     }
     }
    ],
    "exchange": "EGX",
@@ -884,7 +916,7 @@
     "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
     "spot": 15.2,
     "spot_date": "close 23 Aug 2026",
-    "unrecoverable": "run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 — so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement."
+    "unrecoverable": "run and study delivered 30-Aug-2026, before this record existed. assets/data.js carries no date or standard stamp on fair{}, and every data.js commit reachable in this clone (23, from 30-Aug-2026) already holds 7.62/15.89/24.92 \u2014 so whether the delivered study moved it cannot be established. Recorded as absent rather than filled in with the post-run number, which would fabricate a zero movement."
    },
    "ccy": "EGP",
    "editions": [
@@ -896,7 +928,7 @@
        "bear": 7.62,
        "full": 24.92
       },
-      "why": "WRONG NUMBER RECORDED. The figure entered here was 7.62/15.89/24.92, which is what assets/data.js was carrying — the PRE-campaign range — not what the delivered study produced. PHDC's own study_numbers.json lens_weighted, and the delivered document's own headline, are 4.60/10.94/23.33. Because this name's baseline is unrecoverable the register had nothing to check the entry against, so it recorded the live number as the run's output and reported a zero movement for a rebuild that in fact cut the range by 31%. Found by OPENING the staged PDF instead of trusting the manifest."
+      "why": "WRONG NUMBER RECORDED. The figure entered here was 7.62/15.89/24.92, which is what assets/data.js was carrying \u2014 the PRE-campaign range \u2014 not what the delivered study produced. PHDC's own study_numbers.json lens_weighted, and the delivered document's own headline, are 4.60/10.94/23.33. Because this name's baseline is unrecoverable the register had nothing to check the entry against, so it recorded the live number as the run's output and reported a zero movement for a rebuild that in fact cut the range by 31%. Found by OPENING the staged PDF instead of trusting the manifest."
      },
      "delivered": "2026-09-01",
      "edition": 1,
@@ -925,7 +957,7 @@
       "full": 23.5404
      },
      "lessons": [],
-     "origins": "FY2016-FY2025 h=1-5 (10 origins); interim class-A edition 02-Sep-2026: bridge, book lens and debt stack on the 31-Mar-2026 reviewed balance sheet, minority at its share of value, normalised earnings at ke less growth — the three corrections of GAP_REVIEW_01-09-2026; discount rate and lens weights unchanged",
+     "origins": "FY2016-FY2025 h=1-5 (10 origins); interim class-A edition 02-Sep-2026: bridge, book lens and debt stack on the 31-Mar-2026 reviewed balance sheet, minority at its share of value, normalised earnings at ke less growth \u2014 the three corrections of GAP_REVIEW_01-09-2026; discount rate and lens weights unchanged",
      "scope": "full",
      "vs_baseline_pct": null,
      "vs_previous_pct": {
@@ -943,7 +975,7 @@
       "full": 44.8509
      },
      "lessons": [],
-     "origins": "FY2016-FY2025 h=1-5; edition 3 of 02-Sep-2026 — WS8 re-issue on the four modules: the cost-of-capital SCHEDULE, the house macro path (prices 16%->7%, terminal growth 7% inflation-only replacing 12%), the explicit window extended to 15 years so growth converges on the terminal, and the lens architecture (the cash-flow lens IS the central; the typed 45/15/20/20 blend retired, normalised earnings dropped as a developer lens)",
+     "origins": "FY2016-FY2025 h=1-5; edition 3 of 02-Sep-2026 \u2014 WS8 re-issue on the four modules: the cost-of-capital SCHEDULE, the house macro path (prices 16%->7%, terminal growth 7% inflation-only replacing 12%), the explicit window extended to 15 years so growth converges on the terminal, and the lens architecture (the cash-flow lens IS the central; the typed 45/15/20/20 blend retired, normalised earnings dropped as a developer lens)",
      "scope": "full",
      "vs_baseline_pct": null,
      "vs_previous_pct": {
@@ -1216,7 +1248,7 @@
       "full": 123.0284
      },
      "lessons": [],
-     "origins": "FY2021-FY2025 h=1-5; edition 3 of 02-Sep-2026 — WS8 re-issue on the four new modules: the cost-of-capital SCHEDULE replacing a flat 32.37%, terminal growth on the house macro path (7%, inflation only, replacing 15%), the lens architecture (one primary published as a range), and the bridge standard",
+     "origins": "FY2021-FY2025 h=1-5; edition 3 of 02-Sep-2026 \u2014 WS8 re-issue on the four new modules: the cost-of-capital SCHEDULE replacing a flat 32.37%, terminal growth on the house macro path (7%, inflation only, replacing 15%), the lens architecture (one primary published as a range), and the bridge standard",
      "scope": "full",
      "vs_baseline_pct": {
       "base": -37.6,
