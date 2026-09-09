@@ -8,9 +8,13 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), 'adib_walkforward'))
 import compute as C  # noqa: E402
+import gates         # noqa: E402  — the four standing assertions
 
 
 def main():
+    # THE STUDY'S OWN CODE CALLS THE FOUR ASSERTIONS, and they RAISE rather than warn.
+    # A record written by a study that has not cleared them is a record of nothing.
+    gates.run()
     d = dict(
         meta=dict(ticker='ADIB',
                   company='Abu Dhabi Islamic Bank (ADIB) – Egypt S.A.E.',
