@@ -1,8 +1,9 @@
-"""SWDY_Valuation_Study_05-08-2026_public.docx — python-docx builder, house style.
+"""SWDY_Valuation_Study_{edition}_public.docx — python-docx builder, house style.
 Reads study_numbers.json exclusively: no numeral is typed into this file."""
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 exec(open(os.path.join(HERE, 'docx_base.py')).read())   # doc, P, H1, H2, table, box, ...
 
@@ -33,7 +34,7 @@ def to_anchor_docx(v):
 # =========================== MASTHEAD / TITLE ================================
 # ONE literal for the delivered filename: the masthead's edition date is derived
 # from it, so the two cannot state different days.
-DELIVERED = 'SWDY_Valuation_Study_05-08-2026_public.docx'
+DELIVERED = _ed.STUDY_DOCX
 masthead(edition_from_filename(DELIVERED))
 H2('Independent Valuation Study — Educational Analysis')
 H1('Elsewedy Electric Company S.A.E. (EGX: SWDY)')

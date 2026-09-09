@@ -1,8 +1,12 @@
-"""SWDY_Bibliography_05-08-2026.docx — the companion bibliography document.
+"""SWDY_Bibliography_{edition}.docx — the companion bibliography document.
 Every input in the model: value, source, date and research layer — emitted from
 study_numbers.json (the compute script's own INPUTS block), plus the document
 bibliography and the negative results."""
 import json, os
+import sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -10,7 +14,6 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 INP = D['inputs']
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77); WHITE = RGBColor(0xFF, 0xFF, 0xFF)
@@ -324,7 +327,7 @@ P('This document accompanies an educational valuation study. It is not investmen
   'verify the analysis independently. Where a figure is derived or estimated rather than '
   'disclosed, that is stated.', size=9.2, color=GREY)
 
-out = os.path.join(HERE, 'SWDY_Bibliography_05-08-2026.docx')
+out = os.path.join(HERE, _ed.BIBLIO_DOCX)
 doc.save(out)
 print(f'wrote {out} | {len(doc.paragraphs)} paragraphs | {len(doc.tables)} tables | '
       f'{len(INP)} inputs registered')

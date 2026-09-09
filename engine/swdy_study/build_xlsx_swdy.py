@@ -1,4 +1,4 @@
-"""SWDY_Valuation_Model_05082026_public.xlsx — 16 sheets mirroring the house canonical
+"""SWDY_Valuation_Model_{edition}_public.xlsx — 16 sheets mirroring the house canonical
 model (operating-company variant). Blue = inputs · black = formulas · green = cross-sheet
 links.
 
@@ -20,7 +20,10 @@ xlsx_expected.json, and recalc.py evaluates the workbook independently and asser
 agree. A formula that computes the right thing the wrong way therefore fails the gate.
 """
 import json, os
+import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
@@ -1169,7 +1172,7 @@ for lab, v, xp, fmt in [
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'B{r}', v, xp, fmt, green=True); r += 1
 
-out = os.path.join(HERE, 'SWDY_Valuation_Model_05082026_public.xlsx')
+out = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(out)
 json.dump({'expected': EXPECT, 'anchors': ANCH},
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
