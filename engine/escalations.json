@@ -1232,8 +1232,134 @@
    "default_date": "2026-09-16",
    "status": "open",
    "resolves_when": {
-    "file": "engine/escalations.json",
-    "must_contain": "JBIG2_ruled_09_2026"
+    "file": "engine/scanned_filing_integrity_RULING.md",
+    "must_contain": "JBIG2 RISK RULED ON"
+   }
+  },
+  {
+   "key": "OCDI-FY2025-statements-blocked-at-EGX",
+   "opened": "2026-09-09",
+   "cls": "missing_data",
+   "question": "SODIC's FY2025 consolidated financial statements exist, are dated, and cannot be reached. The 30-Jun-2026 review report states the FY2025 consolidated statements carry an unmodified opinion from the predecessor auditor dated 5 February 2026, and the file sits at the EGX as downloads/News/سوديك مجمعه انجليزى 08-02-2026.pdf. SODIC's own IR library holds NOTHING dated between 23-Oct-2025 and 27-Jul-2026 — no 31-Dec-2025 statements, no FY2025 earnings release, no 2025 annual board report, no 31-Mar-2026 quarterly. Can the principal supply the FY2025 consolidated statements (English) and the FY2025 earnings release or annual board report if they exist?",
+   "routes": [
+    {
+     "route": "www.sodic.com IR library, all 333 documents enumerated, and the Arabic IR page re-fetched separately to rule out an English-page truncation",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "identical library on both languages, so the hole is real. Newest document before the gap 23-Oct-2025; next document 27-Jul-2026."
+    },
+    {
+     "route": "www.egx.com.eg, four paths including the named FY2025 attachment, over https and http, plus egx.com.eg and /en/homepage.aspx",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "HTTP 200 with content-type text/html and an F5/BIG-IP body: 'Please enable JavaScript to view the page content. Your support ID is: 4562065020937510468.' The same URL through the fetch tool returned HTTP 503. Judging by status code alone would have stored the challenge page as the filing."
+    },
+    {
+     "route": "cms.sodic.com/api/* and disclosure.efsa.gov.eg",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "403 ForbiddenError on the CMS API; CONNECT tunnel failed, response 502 on the FRA disclosure host. cms.sodic.com/uploads/ itself serves, so the block is the API and the regulator, not the transport."
+    },
+    {
+     "route": "ir.sodic.com — the IR host SODIC prints on its own releases",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "https: curl (56) CONNECT tunnel failed, response 502. http: curl (6) could not resolve host. The address on the company's own paper does not resolve."
+    }
+   ],
+   "refs_searched": 8,
+   "why_only_the_principal": "It is an access problem and nothing else — SIGCM clause 1 forbids substituting a vendor or a press carry for the subject's own reported historicals, so there is no analytical route around it. Only someone who can reach the EGX behind its firewall, or who holds the file, can close it.",
+   "done_meanwhile": "the complete, footed 31-Dec-2025 BALANCE SHEET was recovered from SODIC's own documents (F19) and is in the register. What is not recoverable is the FY2025 income statement and every FY2025 operating anchor — contracted sales, units sold, units delivered, collections, capex and the 31-Dec-2025 backlog. Q4-2025 cannot be differenced out because 9M-2025 is filed and FY2025 is not. That is the single top-down row in an otherwise 16-of-18 bottom-up driver gate.",
+   "default_if_no_answer": "build OCDI on the FY2025 balance sheet that was recovered and on 9M-2025 plus H1-2026 for the income statement, carry the FY2025 income statement and the operating anchors as a NAMED hole rather than an interpolation, and retire the one top-down driver row the moment the filing is supplied",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/ocdi_study_pending/sweep_register.json",
+    "must_contain": "OCDI_FY2025_statements_received"
+   }
+  },
+  {
+   "key": "EMFD-publishes-nothing-after-Q2-2021",
+   "opened": "2026-09-09",
+   "cls": "missing_data",
+   "question": "Emaar Misr has published no financial statements of its own since Q2-2021. Its IR register AND its own WordPress media API — which lists every file the site hosts, linked or not — both stop there, and the newest press release is 26-Mar-2021, while marketing uploads continue through 01-Sep-2026. So the site is live and the filings are simply absent from it. Can the principal supply EMFD's FY2022, FY2023, FY2024 and FY2025 audited consolidated statements and the Q1-2026 and H1-2026 interims as filed, plus any results release alongside them?",
+   "routes": [
+    {
+     "route": "emaarmisr.com IR register and the site's own WordPress media API, enumerating hosted files rather than linked ones",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "both stop at Q2-2021. The media API is the stronger evidence: an unlinked file would still appear in it, and none does."
+    },
+    {
+     "route": "ir.egidegypt.com:8080, the IR API named in the company's own assets/config.json",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "curl (35) Recv failure: connection reset by peer, status 000. The proxy log records ws_closed_mid_exchange in the same second — tunnel closed after 6s, 517 B sent, 39 B received. Port 8080 is not permitted by egress policy, so this is OUR constraint, not the company's."
+    },
+    {
+     "route": "www.egx.com.eg over four paths including a known Emaar Misr /downloads/News/ attachment, plus disclosure.egx.com.eg and a headless Chromium attempt at the JS challenge",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "HTTP 200 with 6,020 bytes of F5 Shape/TSPD interstitial, support ID 4562065020937468764. disclosure.egx.com.eg: SSL_ERROR_SYSCALL. Chromium: net::ERR_CONNECTION_RESET, and https://example.com fails identically from it, so the transport is the cause and the challenge cannot be solved here."
+    },
+    {
+     "route": "Wayback CDX over egx.com.eg filtered on Emaar, and archive.org/wayback/available",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "CDX reachable, HTTP 200, ZERO rows. The availability API returned HTTP 429 separately. There is no archived copy to fall back on."
+    },
+    {
+     "route": "data.egidegypt.com and fra.gov.eg",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "403 Forbidden with a credentials message; the FRA does not host listed-company statements."
+    }
+   ],
+   "refs_searched": 15,
+   "why_only_the_principal": "SIGCM clause 1 again: four years of the subject's own reported historicals cannot come from a press carry, and the sweep did not pretend otherwise — it left the two press-sourced 2026 rows as VALIDATOR ERRORS rather than downgrade is_fs_data to silence them. Closing this needs the filings.",
+   "done_meanwhile": "FY2022-FY2025 are carried from the CONTROLLING PARENT's audited note 35 (Emaar Properties PJSC), which is an official document but is the parent's account of the subsidiary, not the subsidiary's own filing, and it is presented in AED. FY2017-FY2020 come from EMFD's own audited filings. The two 2026 quarters are press-only and flagged as errors.",
+   "default_if_no_answer": "do not adopt any FY2026 base. The study year contradicts itself on the press numbers — Q1-2026 profit of EGP 7.768bn against H1-2026 of EGP 5.555bn implies a Q2-2026 LOSS of EGP 2.213bn, while the identical arithmetic reconciles exactly on 2025 — so the 2026 pair is the anomaly and no base may be built on it. Build the explicit window off FY2025 from the parent's note 35, state the AED presentation and the parent-account provenance in terms, and hold the study at that until the filings arrive",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/emfd_study_pending/sweep_register.json",
+    "must_contain": "EMFD_own_statements_received"
+   }
+  },
+  {
+   "key": "EMFD-walkforward-panel-rests-on-refused-scans",
+   "opened": "2026-09-09",
+   "cls": "instruction",
+   "question": "engine/emfd_walkforward_pending/ built its FY2012-FY2016 panel and its FY2016/FY2017 balance sheets on six filings that scanned_filing_integrity.py now REFUSES — JBIG2 scans carrying a symbol dictionary, from Xerox WorkCentre 7830/7835 and PDFlib producers. That run accepted them BECAUSE THEY FOOT, re-reading at higher resolution until the subtotals re-derived, which is the one check blind to this defect: the substitution is consistent, so a column of substituted digits foots against a subtotal of substituted digits. Today's sweep established what survives against safe second documents. FY2014, FY2015 and FY2016 survive; FY2012 and FY2013 DO NOT, and neither do the FY2016 and FY2017 balance-sheet rows of its valuation-input block. Does that run get rebuilt on the surviving years, or held?",
+   "routes": [
+    {
+     "route": "engine/scanned_filing_integrity.py across every EMFD filing held",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "nine REFUSE. FS 2013-AR, FS 2014-AR, FS 2015, FS 2016 and both 2019 disclosures are JBIG2 throughout with zero text. FS 2017 is JBIG2 on PAGE 3 ONLY — the statement of financial position — with the other 34 pages native text, so its P&L is safe and its balance sheet is not."
+    },
+    {
+     "route": "a safe second document for each affected year, required to be NOT a JBIG2 scan",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "FY2014 and FY2015 reproduce from the FY2015 earnings release (Word-produced); FY2016 reproduces to the pound from the FY2017 filing's native-text comparative column. FY2012 and FY2013 have no safe second document in the book or on the company's site."
+    },
+    {
+     "route": "that run's own committed checks, re-read for what they already showed",
+     "when": "2026-09-09",
+     "rerun": false,
+     "outcome": "its FY2016 PPE-plus-deferred-tax check had ALREADY failed to foot by EGP 143,345,677 and was carried rather than resolved. The refusal explains it."
+    }
+   ],
+   "refs_searched": 15,
+   "why_only_the_principal": "It is a question about whether completed work is withdrawn, which this desk does not decide. It is also narrower than the standing JBIG2 escalation it sits under: there the risk is unquantified, here the loss is ESTABLISHED for two named years and two named balance sheets. The run is _pending and is NOT among the ten completed runs criterion 3 scores, so nothing about the adoption condition turns on the answer — which is exactly why it can be answered calmly.",
+   "done_meanwhile": "nothing was withdrawn and no figure was changed. What survives and what does not is written down, per year and per statement, so the rebuild is a known job rather than a re-investigation.",
+   "default_if_no_answer": "leave the run in place, marked, and rebuild its panel on FY2014-FY2016 with FY2012 and FY2013 dropped rather than re-read — re-reading cannot help, because if the defect fired the pixels are already wrong",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/emfd_walkforward_pending/PANEL_RULING.md",
+    "must_contain": "EMFD PANEL RULED ON"
    }
   }
  ]
