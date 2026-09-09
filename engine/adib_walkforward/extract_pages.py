@@ -42,19 +42,32 @@ def _ocr(img):
 
 
 def ocr_page(doc, i):
-    """Largest embedded image at native resolution; page render only as a fallback."""
+    """BOTH passes, always, and both are kept.
+
+    Pass A takes the largest embedded image at its NATIVE resolution; pass B renders
+    the whole page at 450 dpi. Neither dominates: FY2020's balance sheet reads cleanly
+    off the native image and illegibly off a page render, and FY2025's income statement
+    (two overlapping JPEGs per page, one of them a mask) is the exact reverse. Keeping
+    both is what lets a figure that does not foot on one pass be resolved on the other
+    rather than guessed at.
+    """
     pg = doc[i]
-    ims = pg.get_images(full=True)
     best, area = None, 0
-    for im in ims:
+    for im in pg.get_images(full=True):
         info = doc.extract_image(im[0])
         a = info['width'] * info['height']
         if a > area:
             area, best = a, info
+    a_txt = ''
     if best is not None and area > 200000:
-        return _ocr(Image.open(io.BytesIO(best['image']))), 'ocr-native%dx' % SCALE
-    pix = pg.get_pixmap(dpi=300, colorspace=fitz.csGRAY)
-    return _ocr(Image.open(io.BytesIO(pix.tobytes('png')))), 'ocr-render300'
+        a_txt = _ocr(Image.open(io.BytesIO(best['image'])))
+    pix = pg.get_pixmap(dpi=450, colorspace=fitz.csGRAY)
+    b_txt = _ocr(Image.open(io.BytesIO(pix.tobytes('png'))))
+    da = sum(c.isdigit() for c in a_txt)
+    db = sum(c.isdigit() for c in b_txt)
+    body = ('--- pass A: native image x%d (digits=%d) ---\n%s\n'
+            '--- pass B: page render 450dpi (digits=%d) ---\n%s' % (SCALE, da, a_txt, db, b_txt))
+    return body, 'ocr-both(nativeA=%d,renderB=%d)' % (da, db)
 
 
 def run(files, first, last):
