@@ -26,11 +26,6 @@
    "reason": "the study is struck against a price that is no longer the latest supplied",
    "kind": "stale_price",
    "signature": "struck at 2.54 (2026-08-07) against a latest supplied 2.67 of 2026-09-03 — -4.9% away, so this study is audited against its own past"
-  },
-  "TMGH": {
-   "reason": "the study commits no readable date for the price it was struck at",
-   "kind": "no_date",
-   "signature": "commits a spot of 97.8 and NO READABLE DATE (None). The latest supplied price is 96.6 of 2026-09-02."
   }
  },
  "pruned_on": [
@@ -43,6 +38,11 @@
     "MODON",
     "RIYADHCABLE",
     "SWDY"
+   ]
+  },
+  {
+   "removed": [
+    "TMGH"
    ]
   }
  ]

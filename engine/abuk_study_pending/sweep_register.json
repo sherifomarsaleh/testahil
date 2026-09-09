@@ -644,7 +644,7 @@
    "source_date": "2026-08-13",
    "detail": "",
    "url": "https://abuqir.net/wp-content/uploads/2025/11/Earnings-Release-for-FY-ended-30-06-2025.pdf",
-   "model_impact": "Resolves the dual-listing trap BEFORE the beta is run: a single listing means one legitimate regressor and no currency or magnitude ambiguity in the series. The beta is taken through beta_regression.own_stock_beta('ABUK','EG','EGX') against the published EGX30, never against a constituent composite [R-BETA-01].",
+   "model_impact": "Resolves the dual-listing trap BEFORE the beta is run: a single listing means one legitimate regressor and no currency or magnitude ambiguity in the series. The beta is taken through beta_regression.own_stock_beta('ABUK','EG','EGX') against the published EGX30, never against a constituent composite (SIGCM clause 6).",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -1005,7 +1005,7 @@
   {
    "driver": "Beta and the cost-of-equity regressor",
    "mode": "BOTTOM_UP",
-   "justification": "Single listing confirmed from the company's own releases (ABUK.CA, EGX only, EGP only, ISIN EGS38191C010), so there is one legitimate regressor and no currency or magnitude ambiguity. Run through beta_regression.own_stock_beta('ABUK','EG','EGX') against the registered published index engine/raw_indices/EG/EGX30.csv \u2014 never a constituent composite [R-BETA-01].",
+   "justification": "Single listing confirmed from the company's own releases (ABUK.CA, EGX only, EGP only, ISIN EGS38191C010), so there is one legitimate regressor and no currency or magnitude ambiguity. Run through beta_regression.own_stock_beta('ABUK','EG','EGX') against the registered published index engine/raw_indices/EG/EGX30.csv \u2014 never a constituent composite (SIGCM clause 6).",
    "sweep_refs": [
     "F43"
    ]

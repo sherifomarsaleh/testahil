@@ -1,3 +1,4 @@
+
 """Recalculate the DELIVERED workbook and reconcile it cell-by-cell against the model.
 
 Three gates, in increasing strength:
@@ -15,6 +16,14 @@ Recalculation runs through the explicit evaluator in xlcalc.py rather than throu
 that wrote the file: an independent reimplementation that has to agree cell-for-cell is the
 stronger check.
 """
+# THE SUCCESSOR, DECLARED SO A CHECKER CAN FOLLOW IT RATHER THAN READ THE REFUSAL AS A
+# RESULT [08-09-2026]. scripts/check_workbook_values.py ran this file, saw a non-zero
+# exit, and parked AMOC on its ratchet against the refusal message — while the live
+# recalculator underneath was red with 1,867 disagreeing cells and a delivered workbook
+# publishing a fair value 35% below the study's own answer. The refusal was right and it
+# became a substitute for the failure it was hiding, which is [R-ENF-04] inside a gate.
+SUPERSEDED_BY = "recalc_v5.py"
+
 import fnmatch, json, os, re, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)

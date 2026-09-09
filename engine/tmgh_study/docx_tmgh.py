@@ -706,6 +706,7 @@ def section1_drivers(doc):
     doc.add_heading("1.8 The cost of capital, priced line by line", level=2)
     ins = W["inputs"]
     dam = ins["damodaran"]
+    CBE = ins["cbe"]
     # EACH COST OF EQUITY REPRODUCES FROM THE ROWS THIS TABLE PRINTS, on its own basis.
     for _rf, _erp, _ke in ((W["rf_star_rating"], dam["total_erp_rating"], W["ke_rating"]),
                            (W["rf_star_cds"], dam["total_erp_cds"], W["ke_cds"])):
@@ -717,9 +718,16 @@ def section1_drivers(doc):
                       else dam["sovereign_cds"])) < 5e-4, "the spread stripped is not printed"
     table(doc, ["Input", "Value", "Where it comes from"],
           [["Egyptian ten-year government bond yield", pct(ins["rf_observed"], 2),
+            # READ, NOT TYPED [08-09-2026]. These three were typed here and in the
+            # source register, and printed to a reader from both, so the prose check
+            # found figures in two delivered documents that no committed record carried.
+            # They are sourced — the CBE's own August decision — and a sourced figure a
+            # reader is shown belongs in the record where it ages visibly.
             "market quote dated 6 August 2026, cross-checked against a policy "
-            "rate of 19.00%, an overnight lending rate of 20.00% and an "
-            "interbank rate of 19.51% at the central bank's August 2026 meeting"],
+            "rate of " + pct(CBE["policy"], 2) + ", an overnight lending rate of "
+            + pct(CBE["overnight_lending"], 2) + " and an interbank rate of "
+            + pct(CBE["interbank"], 2) + " at the central bank's " + CBE["meeting"]
+            + " meeting"],
            ["Egypt's own default spread, rating basis", pct(dam["adj_default_spread"], 2),
             "the sovereign's own row in the published country-premium file, read "
             "fresh on 1 September 2026"],

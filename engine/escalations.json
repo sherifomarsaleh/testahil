@@ -1077,6 +1077,48 @@
     "must_contain": "ruled_08_09_2026"
    },
    "note": "RULED: DUAL-FRAME. The study is built on the standalone company and the combined case is carried as a fully separate valuation with its own share count. Neither is blended into the other and NO PROBABILITY IS APPLIED to the outcome — a weighted single number would be a view on a vote."
+  },
+  {
+   "key": "AMOC-volume-history-series",
+   "opened": "2026-09-08",
+   "cls": "missing_data",
+   "question": "Alexandria Mineral Oils' total sales tonnage for FY2021-FY2025 by year, and its per-product-line tonnage over the same span. The study prints the annual series as 1,492 / 1,548 / 1,449 / 1,433 / 1,262 thousand tonnes and derives a five-year mean of 1,437 and a base-year annualisation of 1,616 from it. NOTHING IN THIS REPOSITORY CARRIES THAT SERIES. It matters because the BEAR CASE is anchored to it: the volume dial is set at -4.5% a year and its stated purpose is to return tonnage toward that mean.",
+   "routes": [
+    {
+     "route": "the three committed AMOC filings in engine/amoc_study/filings/",
+     "when": "2026-09-08",
+     "outcome": "two December-2025 statements and one June-2025. Note 14-A gives ONE half's tonnage by line with a VALUE-only comparative. Grepped all three for the five annual totals: none present. FY2022-FY2024 per-line tonnage would need filings this study does not hold.",
+     "rerun": false
+    },
+    {
+     "route": "engine/amoc_study/filings/AUDITED_EXTRACT.md, the committed extract",
+     "when": "2026-09-08",
+     "outcome": "carries note 14-A for the half only; no annual series of any kind",
+     "rerun": false
+    },
+    {
+     "route": "the company's own investor-relations shelf, www.amoc.com.eg/en/investor-relations",
+     "when": "2026-09-08",
+     "outcome": "curl (56) CONNECT tunnel failed, response 502 over https; plain http returns 'Could not resolve host: www.amoc.com.eg'. The company site is not reachable from this environment at all, by either scheme.",
+     "rerun": true
+    },
+    {
+     "route": "the Egyptian Exchange, www.egx.com.eg/en/HomePage.aspx",
+     "when": "2026-09-08",
+     "outcome": "curl (52) Empty reply from server after 1.5s — the same EGX block three other sweeps hit today (ORAS, HRHO and ISPH all logged it). Not a one-off and not this probe's fault.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 6,
+   "why_only_the_principal": "Pure access to superseded filings. Four earlier annual reports would settle it and none is on disk; SIGCM forbids reconstructing a historical series from a vendor, a press summary or an interpolation, and these are the figures a bear case is anchored to.",
+   "done_meanwhile": "the four per-line compound rates that rested on the same series are NO LONGER PRINTED — the prose check caught one of the four and the other three were unflagged rather than verified, so under SIGCM a figure this desk cannot source is one it does not print. The DIRECTION survives, which is what the argument needs: six lines down, two up. The bear leg's own description was also corrected in the same pass: it claimed -4.5% a year returns tonnage to the five-year mean by year five, and it does not — it lands at 1,284, BELOW that mean and close to the last audited year. Reaching the mean would need only -2.3% a year. The dial is unchanged and now an assertion checks that the sentence describing it is true.",
+   "default_if_no_answer": "stop printing the five annual totals, the five-year mean and the base-year annualisation, and re-anchor the bear leg on something this repository holds — which would be a study act with its own ledger entry, not a record fix",
+   "default_date": "2026-09-22",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
+    "must_contain": "annual_tonnage_FY2021_FY2025"
+   }
   }
  ]
 }

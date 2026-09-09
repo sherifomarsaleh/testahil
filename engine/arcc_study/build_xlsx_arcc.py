@@ -441,7 +441,10 @@ inp('Normalised revenue haircut', 'nhc', IN['norm_rev_haircut'], PCT)
 
 sect('SECTOR AND PEERS')
 inp('Egyptian nameplate capacity', 'egcap', IN['egy_capacity_mt'], NUM1, 'Mt')
-inp('Egyptian production 2025', 'egprod', IN['egy_prod_mt'], NUM1, 'Mt')
+inp('Egyptian sales 2025 — cement AND clinker', 'egprod', IN['egy_prod_mt'], NUM1, 'Mt')
+inp('  of which cement exports', 'egexpc', IN['egy_exports_cement_mt'], NUM1, 'Mt')
+inp('  of which clinker exports', 'egexpk', IN['egy_exports_clinker_mt'], NUM1,
+    'Mt — leaves at the kiln, so it is OUT of the cement utilisation ratio')
 inp('Egyptian consumption 2025', 'egcons', IN['egy_cons_mt'], NUM1, 'Mt')
 inp('Egyptian exports 2025', 'egexp', IN['egy_exports_mt'], NUM1, 'Mt')
 inp('Dormant capacity under revival', 'egrev', IN['egy_revival_mt'], NUM1, 'Mt')
@@ -1515,18 +1518,41 @@ band(wsP, 12, 8); wsP['A12'] = 'THE EGYPTIAN CEMENT BALANCE'
 SEC = [('Nameplate capacity (Mt)', 'B13', f"={A['egcap']}", PE['sector']['capacity_mt'], NUM1),
        ('Production 2025 (Mt)', 'B14', f"={A['egprod']}", PE['sector']['production_mt'], NUM1),
        ('Domestic consumption 2025 (Mt)', 'B15', f"={A['egcons']}", PE['sector']['consumption_mt'], NUM1),
-       ('Exports 2025 (Mt)', 'B16', f"={A['egexp']}", PE['sector']['exports_mt'], NUM1),
+       ('Exports 2025 (Mt) — cement AND clinker', 'B16', f"={A['egexp']}",
+        PE['sector']['exports_mt'], NUM1),
        ('Dormant capacity under revival (Mt)', 'B17', f"={A['egrev']}", PE['sector']['revival_mt'], NUM1),
-       ('Sector utilisation', 'B18', "=B14/B13", PE['sector']['utilisation'], PCT),
+       # THE UTILISATION RATIO USES THE CEMENT HALF OF THE EXPORT LINE ONLY [audit finding
+       # 7, 08-Sep-2026]. B18 read =B14/B13 — all-product sales over CEMENT nameplate —
+       # and computed 95.6% where the matched measure is 85.6%. The record and the
+       # document were corrected and this formula was not, so the delivered workbook went
+       # on publishing the retired ratio while the study printed the new one. The split
+       # sits in this block's own free columns, below, so no row address moves.
+       ('Sector utilisation — CEMENT sold over CEMENT nameplate', 'B18', "=D17/B13",
+        PE['sector']['utilisation'], PCT),
        ('The subject as a share of national capacity', 'B19', f"={A['capcem']}/B13",
         PE['sector']['share_of_capacity'], PCT),
        ('Revival capacity as a share of consumption', 'B20', "=B17/B15",
         PE['sector']['revival_pct_of_consumption'], PCT),
        ('The subject\'s own volume as a share of national production', 'B21',
-        "='Segments'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
+        "='Segments'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT),
+       ('  memo: all product over cement nameplate — RETIRED, the bases do not match', 'B22',
+        "=B14/B13", PE['sector']['utilisation_all_product'], PCT)]
 for lab, ad, fm, ex, ft in SEC:
     wsP.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsP, ad, fm, ex, ft, green=(int(ad[1:]) <= 17))
+
+# THE EXPORT LINE SPLIT, in this block's own free columns so no row address above moves.
+# Clinker leaves at the kiln and never enters a cement mill, so it is separated out rather
+# than counted against grinding capacity.
+_SPLIT = [('  of which CEMENT exports (Mt)', 15, f"={A['egexpc']}",
+           PE['sector']['exports_cement_mt']),
+          ('  of which CLINKER exports (Mt) — no cement mill involved', 16,
+           f"={A['egexpk']}", PE['sector']['exports_clinker_mt']),
+          ('CEMENT sold 2025 (Mt) — domestic plus cement exports', 17, "=B15+D15",
+           PE['sector']['cement_sales_mt'])]
+for lab, rw, fm, ex in _SPLIT:
+    wsP.cell(row=rw, column=3, value=lab)
+    putf(wsP, 'D%d' % rw, fm, ex, NUM1)
 note(wsP, 23, 'Every multiple here is RECOMPUTED from revenue, profit and market capitalisation rather than')
 note(wsP, 24, 'quoted, because the published multiples for this peer set do not reconcile.')
 

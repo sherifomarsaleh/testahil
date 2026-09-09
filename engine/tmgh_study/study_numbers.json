@@ -1077,7 +1077,7 @@
   },
   "inputs": {
    "rf_observed": 0.23,
-   "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026, the same sourced quote this repository's current Egyptian editions carry. CROSS-CHECKS taken 1-Sep-2026: the Central Bank of Egypt held its policy rate at 19.00% at its August 2026 meeting with an overnight lending rate of 20.00% and an interbank rate of 19.51% (Trading Economics, Egypt interest rate); Investing.com's Egypt 10-year page quotes 22.880%, but its own timestamp reads 2-Feb-2026 and it is therefore recorded as a stale second reading rather than a refresh. A 10-year at 23.00% against a 19.00% policy rate implies a term premium of about four points, which is plausible for this curve. FLAGGED: the adopted quote is 26 days old at this build date. Section 1.9 prices the sensitivity of fair value to it.",
+   "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026, the same sourced quote this repository's current Egyptian editions carry. CROSS-CHECKS taken 1-Sep-2026: the Central Bank of Egypt held its policy rate at 19.00% at its August 2026 meeting with an overnight lending rate of 20.00% and an interbank rate of 19.51% (Trading Economics, Egypt interest rate); Investing.com's Egypt 10-year page quotes 22.880%, but its own timestamp reads 2-Feb-2026 and it is therefore recorded as a stale second reading rather than a refresh. A 10-year at 23.00% against a 19.00% policy rate implies a term premium of about 4 points, which is plausible for this curve. FLAGGED: the adopted quote is 26 days old at this build date. Section 1.9 prices the sensitivity of fair value to it.",
    "kd_local": 0.255,
    "kd_source": "Marginal, forward-looking, in the cash-flow currency: Egypt 10-year sovereign 23.00% plus a 250bp corporate spread, giving 25.50%. TMG's own facility pricing is NOT disclosed in any statement or release held (recorded as a GAP in the input register), so the company's own latest issue cannot be used. The result sits ABOVE the local sovereign, as a same-currency corporate must. TMG's borrowings are EGP-denominated bank facilities and loans; no foreign-currency tranche is disclosed separately, so no local-equivalent FX adjustment applies.",
    "spot": 96.6,
@@ -1085,6 +1085,14 @@
    "shares_mn": 2060.6538,
    "interest_bearing_debt": 17006.9,
    "market_cap": 199059.15708,
+   "cbe": {
+    "policy": 0.19,
+    "overnight_lending": 0.2,
+    "interbank": 0.1951,
+    "meeting": "August 2026",
+    "read_on": "2026-09-01",
+    "source": "Central Bank of Egypt August 2026 monetary policy decision, read 1-Sep-2026 via Trading Economics, Egypt interest rate"
+   },
    "damodaran": {
     "moodys_rating": "Caa1",
     "adj_default_spread": 0.0637,
@@ -1186,7 +1194,7 @@
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    },
    "rating": {
@@ -1278,7 +1286,7 @@
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    }
   },
@@ -1371,7 +1379,7 @@
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
  },
@@ -6318,7 +6326,7 @@
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 33 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   "DISCLOSED STALENESS: the sovereign quote is 34 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  },
  "macro_record": {

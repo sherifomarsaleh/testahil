@@ -354,14 +354,27 @@ INP['line_vol_growth'] = I(dict(oils=[0.0]*5, wax=[0.0]*5, gasoil=[0.0]*5,
                            "annual record for FY2021-FY2025 says the opposite: total sales "
                            "tonnage ran 1,492 / 1,548 / 1,449 / 1,433 / 1,262 thousand tonnes, a "
                            "fall of 18.5% from the FY2022 peak, and six of the eight lines "
-                           "shrank over FY2022-FY2025 (gas oil -8.3% a year, naphtha -7.4%, fuel "
-                           "oil -6.4%, heavy fuel oil -28.2%; only wax +1.1% and LPG +1.7% grew). "
+                           "shrank over FY2022-FY2025 while wax and LPG grew. "
+                           "THE PER-LINE COMPOUND RATES ARE NO LONGER PRINTED [08-09-2026]. This "
+                           "note used to give four of them to a decimal place, and NOTHING IN "
+                           "THIS REPOSITORY CARRIES THE SERIES THEY COME FROM: the three "
+                           "committed filings are two December-2025 statements and one June-2025, "
+                           "note 14-A gives one half's tonnage by line with a value-only "
+                           "comparative, and FY2022 to FY2024 per-line tonnage is in filings this "
+                           "study does not hold. The prose check caught one of the four and the "
+                           "other three were unflagged rather than verified. Under SIGCM a figure "
+                           "this desk cannot source is a figure it does not print, so the "
+                           "DIRECTION survives — six lines down, two up, and that is what the "
+                           "argument needs — and the decimals go. The five annual totals above "
+                           "stand on the same footing and are ESCALATED rather than removed, "
+                           "because the bear case is anchored to them. "
                            "FLAT IS NOT A NEUTRAL ASSUMPTION HERE, IT IS ALREADY THE OPTIMISTIC "
                            "ONE: the base year is the transition half annualised at 1,616 "
                            "thousand tonnes, which is 12.5% ABOVE the five-year mean of 1,437 and "
                            "above every full year in the record. Holding it flat assumes the "
-                           "rebound printed in one half persists. The bear case reverts toward "
-                           "the five-year mean and the lever is sensitised end to end",
+                           "rebound printed in one half persists. The bear case cuts tonnage "
+                           "harder than that mean requires and the lever is sensitised end to "
+                           "end",
                            "2026-08-18", "Company")
 INP['us_infl'] = I(0.025, "Long-run United States consumer price inflation, the foreign leg of "
                           "the purchasing-power-parity relation used to derive the currency path",
@@ -2006,11 +2019,22 @@ assert abs(_chk - dcf_ps) < 0.01, f"scenario engine does not reproduce the base:
 # range, which is the only kind that says anything.
 GM_FILED_LOW = 0.05053          # quarter to 31-Mar-2025, the worst in the audited record
 _GM_FILED_HIGH = 0.1384         # full year to 30-Jun-2022, the best full year filed
+# THE TONNAGE ARITHMETIC THE BEAR LEG'S DESCRIPTION RESTS ON, computed rather than
+# asserted [08-09-2026]. The sentence below used to say the bear leg "carries the base
+# year's tonnage back to the five-year mean by year five". It does not: -4.5% a year for
+# five years lands well BELOW that mean. The description was gentler than the dial, which
+# is the direction that flatters nothing and misleads anyway. These four are ESCALATED as
+# typed figures — no committed filing carries the five-year series — and they are computed
+# here so that the sentence describing the dial cannot drift from the dial again.
+_BASE_T, _MEAN_T, _LAST_T = 1616.0, 1437.0, 1262.0
 SCEN = dict(
     bear=dict(vol_adj=-0.045, gm_shift=GM_FILED_LOW - BASE_GM,
               fx_mult=1.0, wacc_shift=0.0),
     bull=dict(vol_adj=+0.030, gm_shift=_GM_FILED_HIGH - BASE_GM,
               fx_mult=1.0, wacc_shift=0.0))
+_BEAR_T5 = _BASE_T * (1 + SCEN['bear']['vol_adj']) ** 5
+_RATE_TO_MEAN = (_MEAN_T / _BASE_T) ** 0.2 - 1
+assert _BEAR_T5 < _MEAN_T, (_BEAR_T5, _MEAN_T)   # the claim the sentence now makes
 dcf_bear = dcf_scenario(**SCEN['bear'])
 dcf_bull = dcf_scenario(**SCEN['bull'])
 SCEN['bear']['ps'], SCEN['bull']['ps'], SCEN['base_ps'] = dcf_bear, dcf_bull, dcf_ps
@@ -2026,9 +2050,14 @@ say(f"[Scenarios on the cash-flow lens — BUSINESS DRIVERS ONLY] bear EGP {dcf_
     f"{GM_FILED_LOW:.2%} — the quarter to 31 March 2025, the worst in the record — to "
     f"{_GM_FILED_HIGH:.2%}, the full year to 30 June 2022 and the best FULL YEAR filed, against a "
     f"base year of {BASE_GM:.2%}; and volume {SCEN['bear']['vol_adj']:+.1%} / "
-    f"{SCEN['bull']['vol_adj']:+.1%} a year against a flat base path, where the bear leg carries "
-    f"the base year's tonnage back to the five-year mean by year five, which is where the audited "
-    f"record sits. THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency "
+    f"{SCEN['bull']['vol_adj']:+.1%} a year against a flat base path. WHAT THE BEAR LEG "
+    f"ACTUALLY DOES, because this sentence used to describe a gentler one: at "
+    f"{SCEN['bear']['vol_adj']:+.1%} a year it takes the base year's "
+    f"{_BASE_T:,.0f} thousand tonnes to {_BEAR_T5:,.0f} by year five — BELOW the five-year "
+    f"mean of {_MEAN_T:,.0f} and close to the {_LAST_T:,.0f} of the last audited year. "
+    f"Reverting to the mean itself would need only {_RATE_TO_MEAN:+.1%} a year, so the bear "
+    f"leg is the harsher of the two readings and the earlier description understated it. "
+    f"THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency "
     f"path, the cost of capital at both anchors and terminal growth; all three carry the same "
     f"Egyptian inflation, so the old bull corner needed inflation high and low at the same time "
     f"and the old bear corner needed the mirror image. The width of a range built that way is "

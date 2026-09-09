@@ -1,16 +1,16 @@
 {
- "standard_built_against": "2026.09.01",
+ "standard_built_against": "2026.09.07",
  "beta_record": {
   "ticker": "TMGH",
   "market": "EG",
   "exchange": "EGX",
-  "beta": 1.4717523730674444,
-  "r2": 0.3260974007269647,
-  "se": 0.18481225647980962,
-  "n": 251,
+  "beta": 1.4686659268986124,
+  "r2": 0.32523720520416977,
+  "se": 0.18326339438365372,
+  "n": 256,
   "ci90": [
-   1.1677362111581577,
-   1.7757685349767312
+   1.1671976431375022,
+   1.7701342106597227
   ],
   "usable": true,
   "gate_msg": "passes minimum usability gate",
@@ -18,19 +18,20 @@
   "frequency": "weekly",
   "weak": false,
   "warnings": [],
-  "window_years": 4.85,
+  "window_years": 4.94,
   "first_obs": "2021-09-09",
-  "last_obs": "2026-07-16",
-  "blume_crosscheck": 1.3145015820449628,
+  "last_obs": "2026-08-20",
+  "blume_crosscheck": 1.3124439512657415,
   "index_file": "raw_indices/EG/EGX30.csv",
-  "index_asof": "2026-07-22",
+  "index_asof": "2026-09-08",
   "index_dq": [],
   "stock_dq": [
    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
   ],
   "week_rule": "W-THU",
   "interim_note": null,
-  "conforming": true
+  "conforming": true,
+  "asof": null
  },
  "ground_up": {
   "ticker": "TMGH",
@@ -42,7 +43,7 @@
    "topdown": 0
   },
   "unit_share": 0,
-  "standard_version": "2026.09.01"
+  "standard_version": "2026.09.07"
  },
  "sigcm_failures": [],
  "model_study_failures": [],
@@ -86,7 +87,7 @@
    }
   },
   "scrub_hits": [],
-  "document_chars": 64074,
+  "document_chars": 64346,
   "column_audit": [],
   "recalc_mismatches": 0,
   "recalc_checks": 85,

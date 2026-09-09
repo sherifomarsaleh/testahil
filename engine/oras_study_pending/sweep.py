@@ -122,11 +122,17 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 
+from datetime import date  # noqa: E402
 from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,   # noqa: E402
                             SourceType, DriverMode)
 
 SWEEP_DATE = "2026-09-08"
-DELIVERY_DATE = "2026-09-08"
+# The date the freshness check is measured against. SWEEP_DATE above is a FACT — the day
+# the searches were actually run — and never moves. This one is the study's intended
+# delivery date and MUST be reset to the real delivery date at build time; leaving it
+# stale would turn the freshness line into a claim about the world that has rotted.
+# The company ring is re-run if the gap exceeds 14 calendar days.
+DELIVERY_DATE = "2026-09-09"
 
 R = SweepRegister("ORAS", AssetClass.STOCK, SWEEP_DATE)
 
@@ -1612,5 +1618,6 @@ else:
     print("\nVALIDATOR WARNINGS (0)")
 
 fr = R.check_freshness(DELIVERY_DATE)
+_gap = (date.fromisoformat(DELIVERY_DATE) - date.fromisoformat(SWEEP_DATE)).days
 print(f"\nfreshness vs delivery {DELIVERY_DATE}: "
-      f"{fr or 'OK — sweep and intended delivery on the same date'}")
+      f"{fr or f'OK — {_gap} calendar day(s) since the sweep, inside the 14-day window'}")

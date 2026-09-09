@@ -66,15 +66,53 @@ USAGE
     python3 scripts/check_workbook_values.py --prune
 """
 import glob
-import json
+import io, json, re
 import os
 import subprocess
+import sys as _sys
+_sys.path.insert(0, os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine'))
+import ratchet_shape as rshape                                    # noqa: E402  [R-ENF-08]
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RATCHET = os.path.join(ROOT, 'engine', 'build_depth_audit', 'workbook_values_outstanding.json')
 # The two names a study's recalculation goes by, in the order they are looked for.
 SCRIPTS = ('recalc.py', 'lo_recalc_gate.py')
+
+# A SUPERSEDED RECALCULATOR MUST NOT BE ABLE TO STAND IN FOR A RED ONE [08-09-2026].
+# AMOC's recalc.py refuses outright — correctly, because it was pinned by name to a
+# workbook two editions old — and names recalc_v5.py as the live gate. This check ran the
+# refusing file, read a non-zero exit, and parked AMOC on the ratchet against the
+# REFUSAL MESSAGE. Underneath it the live recalculator was red with 1,867 cells
+# disagreeing and a delivered workbook publishing a fair value 35% below the study's own
+# answer, and nothing in the book was measuring that. An unreadable result sitting where
+# a failing result belongs is exactly the shape [R-ENF-04] names, and here it was inside a
+# gate written to stop the same thing.
+#
+# So a study may DECLARE its successor and this check follows the declaration. The line is
+# read, never executed, and the successor must exist — a declaration pointing at nothing
+# fails rather than falling back, because falling back is how the refusal became a
+# substitute in the first place.
+SUPERSEDED_RE = re.compile(r"^SUPERSEDED_BY\s*=\s*['\"]([A-Za-z0-9_.\-]+)['\"]", re.M)
+
+
+def resolve_script(sdir, name):
+    """The script to run: the declared successor where there is one, else `name` itself."""
+    path = os.path.join(sdir, name)
+    try:
+        head = io.open(path, encoding='utf-8').read(4000)
+    except Exception:                                                  # noqa: BLE001
+        return name, None
+    m = SUPERSEDED_RE.search(head)
+    if not m:
+        return name, None
+    succ = m.group(1)
+    if not os.path.exists(os.path.join(sdir, succ)):
+        return name, ('%s declares SUPERSEDED_BY = %r and that file does not exist. A '
+                      'declaration pointing at nothing is worse than none: it reads as a '
+                      'live check and runs a dead one.' % (name, succ))
+    return succ, None
 TIMEOUT = 600
 
 
@@ -90,15 +128,26 @@ def studies():
 
 
 def script_for(d):
+    """The recalculation to RUN, following a declared successor where one exists.
+
+    A study whose recalculator has been superseded declares SUPERSEDED_BY; without that
+    this check runs the refusing file and reads its refusal as the study's result. See the
+    note on SUPERSEDED_RE above — that is not hypothetical, it hid a 35% discrepancy.
+    """
     for name in SCRIPTS:
         p = os.path.join(d, name)
         if os.path.exists(p):
-            return name
+            run, err = resolve_script(d, name)
+            if err:
+                return ('!' + err)          # a broken declaration is a failure, not a skip
+            return run
     return None
 
 
 def run_one(d, name):
     """(ok, tail). A crash, a timeout and a nonzero exit are all NOT ok."""
+    if name.startswith('!'):
+        return False, name[1:][:160]
     try:
         r = subprocess.run([sys.executable, name], cwd=d, timeout=TIMEOUT,
                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
@@ -150,9 +199,26 @@ def main(argv):
     if clean:
         print('CLEAN (%d): %s' % (len(clean), ', '.join(t for t, _, _ in clean)))
 
+    # [R-ENF-08] AN ENTRY EXCUSES THE FAILURE IT RECORDED, NOT EVERY FAILURE OF ITS CLASS.
+    # This loop excused a study by NAME, so AMOC — listed against a recalculator that
+    # refuses because it is superseded — went on being excused once the successor ran and
+    # returned a real failure of 1,870 disagreeing cells. Those are two different facts and
+    # only one of them was ever recorded. ratchet_shape compares the SHAPE with live
+    # figures stripped, so an entry with no signature behaves exactly as before and this
+    # change makes no existing list red except where the failure has genuinely changed.
     problems = []
     for tk, name, tail in red:
-        if tk in rat['failing']:
+        entry = rat['failing'].get(tk)
+        if entry is not None:
+            # UNPACK THE PAIR. excused() returns (ok, why_not) and a two-tuple is ALWAYS
+            # truthy, so `if excused(...)` excuses everything — the rule switched off by
+            # the shape of its own return value. Two gates in this repository had exactly
+            # that line, and both were written by the same hand that wrote the rule.
+            ok, why = rshape.excused(entry, tail)
+            if ok:
+                continue
+            problems.append(('failing', tk, '%s exits nonzero: %s   [%s]'
+                             % (name, tail, why)))
             continue
         problems.append(('failing', tk, '%s exits nonzero: %s' % (name, tail)))
     for tk in missing:
@@ -176,7 +242,10 @@ def main(argv):
         print()
         print('RED (%d):' % len(red))
         for tk, name, tail in red:
-            mark = '  [on the ratchet] ' if tk in rat['failing'] else '  ** NEW ** '
+            _e = rat['failing'].get(tk)
+            mark = ('  [on the ratchet] '
+                    if _e is not None and rshape.excused(_e, tail)[0]
+                    else '  ** NEW ** ')
             print('%s%-12s %s — %s' % (mark, tk, name, tail))
     if missing:
         print()

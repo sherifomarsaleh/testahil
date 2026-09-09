@@ -203,11 +203,18 @@ def main(argv=None):
         entry = known.get(tk)
         if entry is None:
             fresh.append((tk, state, msg))
-        elif rshape.excused(entry, msg):
-            listed.append((tk, state, msg))
         else:
-            fresh.append((tk, state, msg + "   [on the ratchet for a DIFFERENT failure: %s]"
-                          % rshape.signature_of(entry)))
+            # THE PAIR IS UNPACKED. This line read `elif rshape.excused(entry, msg):` from
+            # the day the gate was written, and excused() returns (ok, why_not) — a
+            # two-tuple, always truthy. So EVERY listed study was excused for EVERY
+            # failure, and [R-ENF-08] was switched off in the gate that cites it. Nothing
+            # about the output said so: a ratchet that excuses too much looks exactly like
+            # a book with no new breaches in it.
+            ok, why = rshape.excused(entry, msg)
+            if ok:
+                listed.append((tk, state, msg))
+            else:
+                fresh.append((tk, state, msg + "   [%s]" % why))
 
     print("[R-GAP-01] the struck price is the latest one, and it carries its date")
     print("  study directories examined : %d" % len(dirs))

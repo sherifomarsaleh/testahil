@@ -1,0 +1,317 @@
+[
+ {
+  "attempted": "2026-09-09",
+  "name": "FS_FY2020_Jun.pdf",
+  "note": "Wayback snapshot of abuqir.net old IR shelf; expected audited FS year ended 30-Jun-2020",
+  "reason": "no content-range; server would not report length",
+  "result": "FAIL",
+  "stderr": "curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to web.archive.org:443 \n",
+  "url": "https://web.archive.org/web/20200930085839id_/http://abuqir.net/employees/uploads/financial_reports/4f9fb-30-6-2020.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "name": "FS_FY2021_Jun.pdf",
+  "note": "expected audited FS year ended 30-Jun-2021",
+  "reason": "no content-range; server would not report length",
+  "result": "FAIL",
+  "stderr": "",
+  "url": "https://web.archive.org/web/20211026091630id_/http://abuqir.net/employees/uploads/financial_reports/b8a62-30-6-2021.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "name": "FS_FY2022_Jun.pdf",
+  "note": "expected audited FS year ended 30-Jun-2022",
+  "reason": "no content-range; server would not report length",
+  "result": "FAIL",
+  "stderr": "curl: (35) Recv failure: Connection reset by peer\n",
+  "url": "https://web.archive.org/web/20220928155702id_/http://abuqir.net/employees/uploads/financial_reports/2ecfc-30-6-2022-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "name": "DOC_2022_2023.pdf",
+  "note": "unidentified, archived Dec-2022",
+  "reason": "range 0-1048575 failed rc=35",
+  "result": "FAIL",
+  "stderr": "curl: (35) Recv failure: Connection reset by peer\n",
+  "url": "https://web.archive.org/web/20221204113807id_/http://abuqir.net/employees/uploads/financial_reports/efa9e-2022-2023.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "name": "DOC_ffile.pdf",
+  "note": "unidentified, archived Sep-2020",
+  "reason": "range 0-1048575 failed rc=35",
+  "result": "FAIL",
+  "stderr": "curl: (35) Recv failure: Connection reset by peer\n",
+  "url": "https://web.archive.org/web/20200930082246id_/http://abuqir.net/employees/uploads/financial_reports/ddb14-ffile.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 3958800,
+  "magic": "%PDF-",
+  "name": "AR_FY2020_Jun.pdf",
+  "note": "abuqir.net old IR shelf via Internet Archive; results report FY ended 30-Jun-2020",
+  "result": "OK",
+  "sha256": "d3fedba44a2eb151",
+  "url": "https://web.archive.org/web/20240410072846id_/https://abuqir.net/employees/uploads/financial_reports/4f9fb-30-6-2020.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 5254826,
+  "magic": "%PDF-",
+  "name": "AR_FY2021_Jun.pdf",
+  "note": "results report FY ended 30-Jun-2021",
+  "result": "OK",
+  "sha256": "dfc17972e8fc12bd",
+  "url": "https://web.archive.org/web/20240422202525id_/https://abuqir.net/employees/uploads/financial_reports/b8a62-30-6-2021.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1016621,
+  "magic": "%PDF-",
+  "name": "AR_FY2022_Jun.pdf",
+  "note": "results report FY ended 30-Jun-2022",
+  "result": "OK",
+  "sha256": "f12eb864a8878539",
+  "url": "https://web.archive.org/web/20240505202137id_/https://abuqir.net/employees/uploads/financial_reports/2ecfc-30-6-2022-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2820664,
+  "magic": "%PDF-",
+  "name": "DOC_ffile.pdf",
+  "note": "unidentified, archived Sep-2020",
+  "result": "OK",
+  "sha256": "bb88d4440c101e65",
+  "url": "https://web.archive.org/web/20240421004610id_/https://abuqir.net/employees/uploads/financial_reports/ddb14-ffile.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 4915200,
+  "magic": "%PDF-",
+  "name": "IR_H1_FY2022.pdf",
+  "note": "six months ended 31-Dec-2021",
+  "result": "OK",
+  "sha256": "a7deaecf2adab646",
+  "url": "https://web.archive.org/web/20240411131154id_/https://abuqir.net/employees/uploads/financial_reports/34e13-31-12-2021.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2890080,
+  "magic": "%PDF-",
+  "name": "IR_H1_FY2021.pdf",
+  "note": "six months ended 31-Dec-2020",
+  "result": "OK",
+  "sha256": "4521081947ce5263",
+  "url": "https://web.archive.org/web/20240422181904id_/https://abuqir.net/employees/uploads/financial_reports/8e905-31-12-2020.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 3143260,
+  "magic": "%PDF-",
+  "name": "IR_9M_FY2021.pdf",
+  "note": "nine months ended 31-Mar-2021",
+  "result": "OK",
+  "sha256": "943305c1e1fb88ae",
+  "url": "https://web.archive.org/web/20240419102430id_/https://abuqir.net/employees/uploads/financial_reports/0ec49-f31032021.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 4236707,
+  "magic": "%PDF-",
+  "name": "IR_Q1_FY2022.pdf",
+  "note": "three months ended 30-Sep-2021",
+  "result": "OK",
+  "sha256": "5e7091df2b83ed97",
+  "url": "https://web.archive.org/web/20240411123418id_/https://abuqir.net/employees/uploads/financial_reports/e285b-30-9-2021.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 810554,
+  "magic": "%PDF-",
+  "name": "IR_9M_FY2022.pdf",
+  "note": "nine months ended 31-Mar-2022 earnings release",
+  "result": "OK",
+  "sha256": "601c444397c3d328",
+  "url": "https://web.archive.org/web/20240411125002id_/https://abuqir.net/employees/uploads/financial_reports/32be3-abu-qir-fertilizers-arabic-earnings-release-9m-2021-2022-combined.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1140652,
+  "magic": "%PDF-",
+  "name": "AR_FY2018_Jun.pdf",
+  "note": "expected FY ended 30-Jun-2018",
+  "result": "OK",
+  "sha256": "509afd6c96cf533d",
+  "url": "https://web.archive.org/web/20200131141321id_/http://abuqir.net:80/employees/uploads/disclosure/884fa-3062018.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2100334,
+  "magic": "%PDF-",
+  "name": "DISC_2022.pdf",
+  "note": "unidentified disclosure archived Sep-2022",
+  "result": "OK",
+  "sha256": "15e6895da0647c2b",
+  "url": "https://web.archive.org/web/20240411145349id_/https://abuqir.net/employees/uploads/disclosure/2d12f-30-2022.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2294512,
+  "magic": "%PDF-",
+  "name": "DISC_c318b.pdf",
+  "note": "unidentified disclosure archived Sep-2020",
+  "result": "OK",
+  "sha256": "e8eb27d209820afa",
+  "url": "https://web.archive.org/web/20240216172318id_/https://abuqir.net/employees/uploads/disclosure/c318b-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1756074,
+  "magic": "%PDF-",
+  "name": "DISC_d5a8e.pdf",
+  "note": "unidentified disclosure archived May-2022",
+  "result": "OK",
+  "sha256": "de66d52e5cad66b1",
+  "url": "https://web.archive.org/web/20250507152653id_/https://abuqir.net/employees/uploads/disclosure/d5a8e-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2253051,
+  "magic": "%PDF-",
+  "name": "AR_FY2019_Jun.pdf",
+  "note": "expected FY ended 30-Jun-2019",
+  "result": "OK",
+  "sha256": "442618173187ae94",
+  "url": "https://web.archive.org/web/20200131141316id_/http://abuqir.net:80/employees/uploads/disclosure/55086-30-6-2019.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1543340,
+  "magic": "%PDF-",
+  "name": "DISC_76870.pdf",
+  "note": "unidentified disclosure archived Oct-2021",
+  "result": "OK",
+  "sha256": "7714dfb4482b3c40",
+  "url": "https://web.archive.org/web/20240216185131id_/https://abuqir.net/employees/uploads/disclosure/76870-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2697071,
+  "magic": "%PDF-",
+  "name": "IR_Q1_FY2021.pdf",
+  "note": "three months ended 30-Sep-2020",
+  "result": "OK",
+  "sha256": "f62ad54aa6ab3790",
+  "url": "https://web.archive.org/web/20240422140504id_/https://abuqir.net/employees/uploads/financial_reports/74fc7-30-9-2020.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 4973067,
+  "magic": "%PDF-",
+  "name": "DOC_2022_2023.pdf",
+  "note": "unidentified 2022/2023 document",
+  "result": "OK",
+  "sha256": "30d68af64611d92f",
+  "url": "https://web.archive.org/web/20240619081025id_/https://abuqir.net/employees/uploads/financial_reports/efa9e-2022-2023.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 945797,
+  "magic": "%PDF-",
+  "name": "FS_FY2017_Jun.pdf",
+  "note": "audited FS year ended 30-Jun-2017",
+  "result": "OK",
+  "sha256": "0237927fc715775a",
+  "url": "https://web.archive.org/web/20200131141412id_/http://abuqir.net:80/employees/uploads/statements/2ee7b-30-6-2017.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 8161608,
+  "magic": "%PDF-",
+  "name": "FS_FY2018_Jun.pdf",
+  "note": "audited FS year ended 30-Jun-2018",
+  "result": "OK",
+  "sha256": "5190d742c6dad629",
+  "url": "https://web.archive.org/web/20240712004934id_/https://abuqir.net/employees/uploads/statements/cd0e3-30-6-2018.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 9486178,
+  "magic": "%PDF-",
+  "name": "FS_FY2019_Jun.pdf",
+  "note": "audited FS year ended 30-Jun-2019",
+  "result": "OK",
+  "sha256": "0064ae062784363a",
+  "url": "https://web.archive.org/web/20240721150146id_/https://abuqir.net/employees/uploads/statements/e40e0-30-6-2019.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1652240,
+  "magic": "%PDF-",
+  "name": "FS_FY2020_Jun.pdf",
+  "note": "audited FS year ended 30-Jun-2020",
+  "result": "OK",
+  "sha256": "fa8eba904fce7d0b",
+  "url": "https://web.archive.org/web/20240719093059id_/https://abuqir.net/employees/uploads/statements/e836e-30-6-2020.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 10798061,
+  "magic": "%PDF-",
+  "name": "FS_FY2021_Jun.pdf",
+  "note": "audited FS year ended 30-Jun-2021",
+  "result": "OK",
+  "sha256": "3988b961b8073dd9",
+  "url": "https://web.archive.org/web/20230731201419id_/https://abuqir.net/employees/uploads/statements/25bb9-30-6-2021-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 5147163,
+  "magic": "%PDF-",
+  "name": "FS_FY2022_Jun.pdf",
+  "note": "audited FS year ended 30-Jun-2022",
+  "result": "OK",
+  "sha256": "3cfe585caba64dc5",
+  "url": "https://web.archive.org/web/20240420201159id_/https://abuqir.net/employees/uploads/statements/7753b-30-6-2022-_compressed_compressed_compressed-1-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 992414,
+  "magic": "%PDF-",
+  "name": "FS_FY2016_Jun.pdf",
+  "note": "audited FS year ended 30-Jun-2016",
+  "result": "OK",
+  "sha256": "779b724a5e1c23e0",
+  "url": "https://web.archive.org/web/20200131141347id_/http://abuqir.net:80/employees/uploads/statements/0a353-30-6-2016.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1048576,
+  "magic": "%PDF-",
+  "name": "FS_FY2020_Jun_b.pdf",
+  "note": "statements shelf 30-6-2020 alternate",
+  "result": "OK",
+  "sha256": "fe8bf4a834c09373",
+  "url": "https://web.archive.org/web/20200930090833id_/http://abuqir.net/employees/uploads/statements/c11ea-30-6-2020.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1328658,
+  "magic": "%PDF-",
+  "name": "FS_3060_alt.pdf",
+  "note": "statements shelf '3060' unidentified",
+  "result": "OK",
+  "sha256": "1ec2032636ddb8a7",
+  "url": "https://web.archive.org/web/20250504063930id_/https://abuqir.net/employees/uploads/statements/29bdc-3060.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 18486059,
+  "magic": "%PDF-",
+  "name": "FS_be540.pdf",
+  "note": "statements shelf unidentified, 17.7MB",
+  "result": "OK",
+  "sha256": "c7d8fd83321469a1",
+  "url": "https://web.archive.org/web/20250517080848id_/https://abuqir.net/employees/uploads/statements/be540-.pdf"
+ }
+]

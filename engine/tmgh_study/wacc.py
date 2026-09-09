@@ -38,16 +38,34 @@ DAMODARAN_EGYPT = {
 }
 
 # --- Risk-free: observed EGP sovereign yield --------------------------------
+# THE CROSS-CHECK RATES ARE CONSTANTS, NOT PROSE [08-09-2026]. They were typed into the
+# source string below and printed to a reader from there, so the prose check found three
+# figures in the delivered documents that no committed record carried. They ARE sourced —
+# the CBE's August 2026 decision, read through Trading Economics on 1 September — and a
+# sourced figure a reader is shown belongs in the record, where it can be checked and
+# where it ages visibly. The sentence is now built from them rather than the other way
+# round, so the two cannot disagree.
+CBE_POLICY = 0.1900
+CBE_OVERNIGHT_LENDING = 0.2000
+CBE_INTERBANK = 0.1951
+CBE_MEETING = "August 2026"
+CBE_READ_ON = "2026-09-01"
+CBE_SOURCE = ("Central Bank of Egypt August 2026 monetary policy decision, read "
+              "1-Sep-2026 via Trading Economics, Egypt interest rate")
+
 RF_OBSERVED = 0.2300
+_pc = lambda x: "%.2f%%" % (100 * x)
 RF_SOURCE = (
-    "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026, "
-    "the same sourced quote this repository's current Egyptian editions carry. "
+    "Egypt 10-year EGP government bond yield " + _pc(RF_OBSERVED) + ", market quote dated "
+    "6-Aug-2026, the same sourced quote this repository's current Egyptian editions carry. "
     "CROSS-CHECKS taken 1-Sep-2026: the Central Bank of Egypt held its policy rate at "
-    "19.00% at its August 2026 meeting with an overnight lending rate of 20.00% and an "
-    "interbank rate of 19.51% (Trading Economics, Egypt interest rate); Investing.com's "
+    + _pc(CBE_POLICY) + " at its " + CBE_MEETING + " meeting with an overnight lending "
+    "rate of " + _pc(CBE_OVERNIGHT_LENDING) + " and an interbank rate of "
+    + _pc(CBE_INTERBANK) + " (Trading Economics, Egypt interest rate); Investing.com's "
     "Egypt 10-year page quotes 22.880%, but its own timestamp reads 2-Feb-2026 and it is "
     "therefore recorded as a stale second reading rather than a refresh. A 10-year at "
-    "23.00% against a 19.00% policy rate implies a term premium of about four points, "
+    + _pc(RF_OBSERVED) + " against a " + _pc(CBE_POLICY) + " policy rate implies a term "
+    "premium of about " + ("%.0f" % round((RF_OBSERVED - CBE_POLICY) * 100)) + " points, "
     "which is plausible for this curve. FLAGGED: the adopted quote is 26 days old at "
     "this build date. Section 1.9 prices the sensitivity of fair value to it."
 )
@@ -143,6 +161,16 @@ def main():
                    "spot": SPOT, "spot_source": SPOT_SOURCE,
                    "shares_mn": shares, "interest_bearing_debt": debt,
                    "market_cap": SPOT * shares,
+                   # THE CROSS-CHECK RATES REACH THE RECORD [08-09-2026]. Two delivered
+                   # documents printed them and nothing committed carried them, so the
+                   # prose check found three figures it could not trace. They are one
+                   # decision by one central bank on one date, so they travel together.
+                   "cbe": {"policy": CBE_POLICY,
+                           "overnight_lending": CBE_OVERNIGHT_LENDING,
+                           "interbank": CBE_INTERBANK,
+                           "meeting": CBE_MEETING,
+                           "read_on": CBE_READ_ON,
+                           "source": CBE_SOURCE},
                    "damodaran": DAMODARAN_EGYPT},
     }
     # [R-COC-01] the SCHEDULE, from the one module. The flat rates above are kept

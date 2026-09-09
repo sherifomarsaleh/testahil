@@ -63,9 +63,22 @@ vals += PF.relative_to(PF.numbers_from(HERE, files=['technicals.json']),
 vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']),
                           (SN.get('spot'),))
 
+# THE BAND RECORD IS THE OTHER LEGITIMATE SOURCE ON THIS STUDY'S PAGES, and until
+# 08-09-2026 nothing told this check so. [R-CAL-02] is explicit that the record a reader
+# is shown is resolved from the committed panel rather than from the study's own numbers,
+# so its figures are correct and reach no study_numbers.json — the width ratio of 1.194x
+# was reported unmatched for exactly that reason. It is read here through the SAME
+# resolver the document uses, never re-derived: a checker that models what a document
+# ought to say rather than reading what it reads is checking a different document.
+sys.path.insert(0, os.path.join(HERE, '..'))
+import band_record as _br                                             # noqa: E402
+_BR = _br.resolve('AMOC', _br.by_key())
+
 RENDER = PF.rendering_set(vals, extra=[
     # the statutory rate and the tax basis a reader sees quoted directly
     SN['inputs']['tax_stat']['value'] if 'tax_stat' in SN['inputs'] else 0.225,
+    # the published band record, which the study quotes and does not own
+    _BR.n, _BR.hits, _BR.cov50, _BR.cov80, _BR.cov90, _BR.width,
 ])
 
 if __name__ == '__main__':

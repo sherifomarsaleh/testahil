@@ -1,0 +1,568 @@
+   Fawry for Banking Technology and
+   Electronic Payments S.A.E (FWRY.CA)
+   Press Release
+   5 March 2024
+
+
+
+
+Fawry Releases FY2023 Results
+Fawry achieves a record-breaking top line exceeding EGP 3.2 billion in FY2023, while the bottom line experienced rapid
+expansion, growing by 198.0% y-o-y closing the year at EGP 715.3 million, driven by the continued development of the
+Company’s diversified and synergistic business along with diligent cost control measures.
+
+FY2023 Highlights
+      Revenues                                                        Gross Profit                                                    Throughput Value
+      EGP 3,272 MN                                                    EGP 2,062 MN                                                    EGP 348,068 MN
+      ▲ 43.6% y-o-y                                                   ▲ 51.5% y-o-y / 63.0% margin                                    ▲ 69.5% y-o-y
+
+
+      EBITDA1                                                         Net Profit                                                      Number of Transactions
+      EGP 1,318.2 MN                                                  EGP 715.3 MN                                                    1,607.8 MN
+      ▲ 88.7% y-o-y / 40.3% margin                                    ▲ 198.0% y-o-y / 21.9% margin                                   ▲ 22.3% y-o-y
+
+
+
+5 March 2024 – (Cairo, Egypt) Fawry (the “Company”, FWRY.CA on the Egyptian Exchange), Egypt’s leading provider of e-
+payments and digital finance solutions, announced today its consolidated results for the year ended 31 December 2023. The
+Company’s top-line came in at EGP 3,272.0 million during FY2023, an increase of 43.6% year-on-year (y-o-y). Net profit for the
+year stood at EGP 715.3 million, up by 198.0% y-o-y to yield an associated net profit margin (NPM) of 21.9%. On a quarterly basis,
+Fawry reported total revenues of EGP 954.7 million in 4Q2023, a 46.6% increase y-o-y, with the bottom-line amounting to EGP
+228.8 million, an 97.3% y-o-y increase, yielding a NPM of 24.0%.
+
+Summary Profit & Loss Statement – Fourth Quarter
+ (EGP 000s)                                                4Q2022                    3Q2023                    4Q2023                    y-o-y Change %            q-o-q Change %
+ Total Revenues                                            651,325                   873,155                   954,691                   46.6 %                    9.3%
+     Alternative Digital Payments (ADP)                    285,150                   349,406                   336,448                   18.0%                     (3.7%)
+     Banking Services                                      236,223                   329,264                   384,453                   62.7%                     16.8%
+        Acceptance                                         106,632                   164,782                   188,537                   76.8%                     14.4%
+        Agent Banking                                      129,591                   164,482                   195,916                   51.2%                     19.1%
+     Financial services2                                   84,477                    106,828                   142,301                   68.4%                     33.2%
+     Supply Chain Solutions                                39,928                    65,438                    64,912                    62.6%                     (0.8%)
+     Technology & others                                   5,546                     22,219                    26,577                    379.2%                    19.6%
+ Gross Profit                                              408,346                   556,701                   612,727                   50.1%                     10.1%
+ Gross Profit Margin                                       62.7%                     63.8%                     64.2%                     1.5 pts                   0.4 pts
+ EBITDA1                                                   236,595                   366,201                   406,669                   71.9%                     11.1%
+ EBITDA Margin                                             36.3%                     41.9%                     42.6%                     6.3 pts                   0.7 pts
+ Net Profit Before NCI                                     134,124                   231,363                   259,757                   93.7%                     12.3%
+ Net Profit After NCI                                      115,988                   203,484                   228,797                   97.3%                     12.4%
+ Net Profit Margin                                         17.8%                     23.3%                     24.0%                     6.2 pts                   0.7 pts
+
+1 EBITDA - The Company defines EBITDA as its EAS operating profit, excluding: (a) depreciation, amortization, provisions; (b) noncash ESOP expense included in EAS net profit; (c) interest
+
+income not related to the operating cycle; (d) taxes; (e) leasing charges; and certain other non-operating costs including provisions.
+2 Financial services Revenue – Include Microfinance, Consumer finance, Insurance, Prepaid Card and Money market fund revenues. All except for Microfinance have been reallocated
+
+from Others.
+
+
+
+
+  FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                                                                                                  1
+   Fawry for Banking Technology and
+   Electronic Payments S.A.E (FWRY.CA)
+   Press Release
+   5 March 2024
+
+
+
+
+Summary Profit & Loss Statement – Year to Date
+ (EGP 000s)                                                                                     FY2022                        FY2023                         Change %
+ Total Revenues                                                                                 2,279,335                     3,272,016                      43.6%
+     Alternative Digital Payments (ADP)                                                         1,084,955                     1,268,491                      16.9%
+     Banking Services                                                                           760,594                       1,261,384                      65.8%
+        Acceptance                                                                              321,053                       609,304                        89.8%
+        Agent Banking                                                                           439,541                       652,080                        48.4%
+     Financial services2                                                                        265,959                       426,407                        60.3%
+     Supply Chain Solutions                                                                     128,512                       226,309                        76.1%
+     Technology & others                                                                        39,314                        89,424                         127.5%
+ Gross Profit                                                                                   1,361,228                     2,061,822                      51.5%
+ Gross Profit Margin                                                                            59.7%                         63.0%                          3.3 pts
+ EBITDA1                                                                                        698,479                       1,318,230                      88.7%
+ EBITDA Margin                                                                                  30.6%                         40.3%                          9.6 pts
+ Net Profit Before NCI                                                                          327,055                       815,968                        149.5%
+ Net Profit After NCI                                                                           240,054                       715,338                        198.0%
+ Net Profit Margin                                                                              10.5%                         21.9%                          11.3 pts
+
+1 EBITDA - The Company defines EBITDA as its EAS operating profit, excluding: (a) depreciation, amortization, provisions; (b) noncash ESOP expense included in EAS net profit; (c) interest
+
+income not related to the operating cycle; (d) taxes; (e) leasing charges; and certain other non-operating costs including provisions.
+2 Financial services Revenue – Include Microfinance, Consumer finance, Insurance, Prepaid Card and Money market fund revenues. All except for Microfinance have been reallocated
+
+from Others.
+
+
+
+Financial & Operational Highlights
+   •     Fawry’s top-line reached an all-time high of EGP 3,272 million in FY2023, driven by a strong performance of
+         Fawry’s Banking Services, with Acceptance and Agent Banking segments growing by 89.8% and 48.4% y-o-y,
+         respectively, contributing to 50% of revenue growth.
+   •     EBITDA increased by 88.7% y-o-y in FY2023 to EGP 1,318 million, reflecting the Company’s success in growing its
+         revenue streams while capitalizing on service synergy, and improving operational cost efficiency.
+   •     The Company booked a record-breaking bottom line at EGP 715.3 million in FY2023, up by 198.0% y-o-y.
+   •     Mobile wallet processed value rose by an impressive 113.9% y-o-y, reaching EGP 190.2 billion in FY2023,
+         primarily attributed to the Company’s efforts in the fintech infrastructure in Egypt.
+   •     myfawry's annualized throughput more than doubled in FY2023 to EGP 7.9 billion from the EGP 3.8 billion
+         recorded in FY2022, reflecting a substantial 108.3% y-o-y surge. This reflects Fawry’s commitment to diversify
+         its portfolio and cater to a broad user base in Egypt.
+
+
+
+
+  FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                                                                                                  2
+  Fawry for Banking Technology and
+  Electronic Payments S.A.E (FWRY.CA)
+  Press Release
+  5 March 2024
+
+
+
+
+Chief Executive’s Review
+
+With a challenging 2023 now behind us, I am delighted to announce that our team's steadfast commitment to
+expanding our loyal customer base, diversifying revenue streams, and enhancing service offerings, coupled with
+operational success and effective cost control measures, has not only turned challenges into opportunities but also
+resulted in a remarkable year of growth. This dedication played a pivotal role in maintaining our upward trajectory
+and driving Egypt's digital transformation, all the while empowering us to explore previously untapped segments in
+the Egyptian market.
+
+The results speak volumes, with record-breaking revenues demonstrating a solid year-on-year increase of 43.6% to
+EGP 3,272 million for the year ended 31 December 2023. Across our four primary business segments, the Banking
+Services division led the way, up by 65.8% year-on-year, contributing an impressive 50.4% to total revenue growth.
+Meanwhile, our financial services and supply chain segments also showed dynamic performance with year-on-year
+growth of 60.3% and 76.1%, respectively, highlighting the ongoing successful evolution of the business towards an
+ecosystem model that integrates a diverse range of value-added services beyond our core business segment.
+Additionally, our legacy business segment, Alternative Digital Payments, experienced solid growth of 16.9% year-on-
+year during the full year, signifying its maturing status and emphasizes its pivotal role as the bedrock on which our
+interconnected ecosystem rests.
+
+Amidst the challenges posed by the prevailing market conditions, including record inflation and supply chain
+disruptions, we successfully navigated through by implementing vigilant cost control measures and adopting a
+synergistic approach to business development. As such, the strong expansion in our top-line performance was
+complemented by effective cost optimization strategies, resulting in robust profitability with a gross profit of EGP
+2,062 million, up an impressive 51.5% year-on-year increase and yielding a gross profit margin of 63.0%. Additionally,
+2023 marked a notable upswing in our EBITDA, soaring by 88.7% to EGP 1,318 million, primarily attributed to our
+diligent cost control measures and adept operational leverage management, contributing to an impressive 9.6
+percentage points boost in EBITDA margin over the year. Furthermore, it is noteworthy that these financial
+achievements surpass any previous year, with our bottom line exhibiting an exceptional year-on-year increase of
+198.0%, closing the year at EGP 715.3 million.
+
+The sustained growth in revenue and market penetration that we have achieved can be attributed to our strategic
+focus on innovation and expansion of services tailored to our diverse customer community. Within the Fawry
+ecosystem, our new products are set to revolutionize digital services in Egypt, offering instant solutions for both
+entrepreneurs and citizens. Notably, a pivotal stride in our strategic evolution has been the full implementation of
+Prepaid card, BNPL services and MMF through the myFawry App, propelling Fawry into a comprehensive financial
+services platform in 2023. This transition equips us to provide users with an extensive range of financial services,
+spanning payments, consumer lending, savings, and investments. Concurrently, our unwavering commitment to
+diversifying our portfolio is evident as we extend our services to Small and Medium Enterprises (SMEs). This expansion
+incorporates innovative solutions such as the yellowcard, employee insurance packages, and HR solutions, broadening
+our microfinance capabilities to evolve to a full financial services platform catering to SMEs.
+
+Our strategic initiatives have manifested in a substantial increase in mobile wallet transactions, demonstrating a
+noteworthy 82.6% year-on-year growth over the past year. This surge resulted in a staggering 156.0 million
+transactions, amounting to EGP 190,153 million in processed value. The myFawry app has emerged as a pivotal
+element, serving as a consolidated platform for bill payments, promotions, and an array of services. With an impressive
+12.2 million cumulative downloads, the app experienced a substantial 49.4% year-on-year increase, underlining its
+integral role in our success. Furthermore, the annualized throughput for myFawry more than doubled during FY2023,
+
+
+
+ FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                               3
+  Fawry for Banking Technology and
+  Electronic Payments S.A.E (FWRY.CA)
+  Press Release
+  5 March 2024
+
+
+
+
+reaching EGP 7.9 billion, showcasing a remarkable 108.3% year-on-year increase, mirroring the rapid adoption of
+digital payment methods in Egypt, driven by increased internet and smartphone usage, as well as enhanced financial
+inclusion nationwide.
+
+As we continue growing our business and diversifying our services portfolio, we remain resolute in our commitment
+to the highest security standards and safeguarding both our customers’ data and their trust in our organization. Our
+proactive collaboration with Group-IB and strategic partnerships with global consultancy firms underscore this
+unwavering dedication, placing robust security practices and the implementation of the highest cybersecurity
+standards within the core of our business model.
+
+Heading into 2024, I am filled with optimism for what lies ahead. Our dedication to innovation, coupled with persistent
+efforts to connect with a broader audience nationwide positions us for continued growth and success. A significant
+milestone in this trajectory occurred in February 2024, when we proudly secured the SME financing license through
+our subsidiary, Fawry SME and Microfinance. This strategic move seamlessly aligns with our ongoing commitment to
+deliver cutting-edge technology and flexible solutions, addressing the financial needs of SMEs in Egypt and aligning
+with the government's emphasis on empowering this crucial sector.
+
+This accomplishment serves as the first step in our comprehensive plan to spearhead the Embedded Finance era, with
+initiatives set to unfold throughout the year to include the introduction of medical insurance for consumers leveraging
+the myFawry prepaid card, the implementation of Buy Now, Pay Later (BNPL) solutions, the provision of Payout and
+Payroll solutions tailored for SMEs, the facilitation of SME lending through our recently acquired SME financing license,
+and the launch of corporate cards specifically designed to cater to the needs of SMEs. These strategic moves reflect
+our commitment to staying at the forefront of the financial landscape, delivering valuable solutions to our customers,
+and actively contributing to the broader digital empowerment of financial services.
+
+Reflecting on the milestones of 2023, I am proud of our achievements and excited about the path we are paving in the
+dynamic realm of digital finance with Fawry at the forefront. Thanks to the milestones and the record-breaking
+performance in the past year, I am confident in the Company's ability to not only maintain but elevate both its financial
+and operational success. We are committed to consistently expanding and enhancing our services, enabling us to
+continuously deliver value to our stakeholders as we collectively move forward in realizing the vision of a more
+inclusive and digitally empowered financial landscape.
+
+Eng. Ashraf Sabry
+Chief Executive Officer
+
+
+
+
+ FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                                 4
+  Fawry for Banking Technology and
+  Electronic Payments S.A.E (FWRY.CA)
+  Press Release
+  5 March 2024
+
+
+
+
+        Throughput Value                      Operational Developments
+            (EGP bn)
+                                               Operational KPIs                               FY2022             FY2023                Change %
+                                               Active Network Customers (mn)                  49.4               51.7                  4.7%
+                             348               Total POS Terminals (‘000)                     280.1              331.4                 18.3%
+                                               Acceptance Enabled POSs (‘000)                 235.0              287.2                 22.2%
+             205                               Banks Active and Contracted                    36                 36                     n/a
+                                               myFawry App Total Downloads (‘000)             8,142.6            12,165.6              49.4%
+                                               Services Provided                              2,269              3,165                 39.5%
+        FY2022            FY2023               Transactions (mn)                              1,315.2            1,607.8               22.3%
+               Throughput Value
+                                               Mobile Wallet Transactions (mn)                85.4               156.0                 82.6%
+                                               Mobile Wallet Processed Value (EGP mn)         88,904.5           190,153.5             113.9%
+                                               Total Throughput Value (EGP mn)                205,329.3          348,067.7             69.5%
+
+           Number of                          Fawry sustained its upward trajectory in FY2023, achieving a total throughput
+        Transactions (mn)                     value of EGP 348.1 billion—a significant increase of 69.5% from the EGP 205.3
+                                              billion recorded in FY2022.
+                                                • Fawry handled a total of 1,607.8 million transactions during FY2023,
+                                                     marking an increase of 22.3% y-o-y from the 1,315.2 million handled one
+                           1,608
+                                                     year prior.
+         1,315
+                                                • Fawry’s total retail network stood at 331.4 thousand POS terminals in
+                                                     FY2023, up by 18.3% from 280.1 thousand in FY2022. This growth
+                                                     underscores Fawry's substantial expansion in its merchant network,
+        FY2022            FY2023                     coupled with successful initiatives aimed at equipping partners with POS
+                                                     technology.
+                                                • Acceptance-enabled POSs throughout the Company’s network stood at
+                                                     287.2 thousand in FY2023, an increase of 22.2% y-o-y from the 235
+      Network KPIs ('000)                            thousand recorded in FY2022. Acceptance-enabled POS terminals empower
+                                                     merchants and small businesses to embrace a wider range of payment
+                                                     methods, including but not limited to debit and credit cards.
+                                331
+                                                • Mobile wallet transactions powered by Fawry for FY2023 rose to 156.3
+             287          280
+                                                     million, increasing by a significant 82.6% y-o-y from 85.4 million transactions
+       235                                           booked in FY2022. In monetary figures, the total mobile wallet processed
+                                                     value came in at EGP 190.2 billion for the year, up by a notable 113.9% y-o-
+                                                     y.1
+                                                • As of 31 December 2023, cumulative downloads of Fawry’s consumer-facing
+                                                     myfawry mobile application rose to 12.2 million, reflecting a 49.4% y-o-y
+  Acceptance-Enabled Total POS Terminals
+                                                     increase from the 8.1 million downloads as of December 2022. The
+         POSs                                        myFawry app functions as a consolidated platform for bill payments,
+             FY2022      FY2023                      promotions, and various services. With the full implementation of Prepaid
+
+
+1 These figures reflect total processed value and transactions from bank and operators’ wallets processed on the Fawry Network and not included in the
+company’s total throughput.
+
+
+
+ FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                                                              5
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Press Release
+5 March 2024
+
+
+
+
+                                        card and BNPL services, Fawry is solidifying its transition into a
+                                        comprehensive Neobank in 2023, offering users a broad spectrum of
+                                        financial services such as payments, consumer lending, savings, and
+                                        investments.
+                                    •   myfawry’s annualized throughput more than doubled during FY2023 to
+                                        EGP 7.9 billion from the EGP 3.8 billion booked in FY2022, marking a 108.3%
+                                        y-o-y increase. The annualized throughput growth reflects the swift
+                                        adoption of digital payment methods by Egyptian consumers, a trend
+                                        magnified by rising internet and smartphone usage rates, coupled with
+                                        enhanced financial inclusion nationwide and the integration of embedded
+                                        financial services.
+                                    •   Concurrently, the company remains committed to broadening its portfolio
+                                        to address a diverse user base in Egypt, including Small and Medium
+                                        Enterprises (SMEs). This expansion includes services like Yellowcard,
+                                        employee insurance packages, and HR solutions, extending its lending
+                                        capabilities beyond the microfinance framework.
+
+             Revenue              Consolidated Financial Performance
+             (EGP mn)
+                                    •   Fawry reported total revenues of EGP 3,272.0 million in FY2023, marking a
+                     3,272
+                                        significant increase of 43.6% from the EGP 2,279.3 million recorded during
+       2,279
+                                        FY2022. This growth was primarily driven by the expansion of all main
+                                        business lines, notably the Banking Services segment, which experienced
+                                        remarkable year-on-year growth of 65.8%. The Supply Chain Solutions
+      FY2022         FY2023
+                                        segment and Financial services also exhibited significant growth rates of
+                                        76.1% and 60.3%, respectively, underscoring Fawry's success in diversifying
+   Revenue Breakdown by
+                                        its revenue streams. On a quarterly basis, Fawry achieved a top-line of EGP
+         Segment
+                                        954.7 million in 4Q23, reflecting a robust 46.6% y-o-y increase compared to
+                                        the same period in the previous year.
+                                    •   During FY2023, the Banking Services segment experienced remarkable
+             7% 3%                      growth, with revenues surging by 65.8% y-o-y. This impressive performance
+       13%                              positioned it as the second-largest contributor to the Company's
+              FY2023 39%
+             EGP 3,272                  consolidated top-line during the period, comprising 38.6% of consolidated
+                mn                      revenues in FY2023, up from 33.4% in the previous year. As a result, it
+                                        emerged as the primary driver of top-line growth, contributing to 50.4% of
+          39%
+                                        the total revenue growth for the year.
+                                    •   Fawry’s core business segment, Alternative Digital Payments (ADP), grew
+                                        by 16.9% y-o-y, at a higher rate vs. guidance, maintaining its position as the
+       ADP                              primary contributor to total revenues throughout the period at 38.8% of
+       Banking Services                 consolidated revenues in FY2023. However, the segment's contribution to
+       Financial Services               consolidated revenues has gradually decreased from 47.6% in the previous
+       Supply Chain Solutions
+                                        year, showcasing Fawry's strategic diversification efforts and expanded
+                                        service offerings nationwide.
+       Technology & others
+
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                               6
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Press Release
+5 March 2024
+
+
+
+
+                                      •   Fawry's Supply Chain solutions recorded a notable growth rate of 76.1% in
+                                          FY2023. These strong outcomes highlight the growing significance of this
+   Gross Profit (EGP mn)
+                                          segment in Fawry's portfolio, contributing 6.9% to the consolidated top-line
+                        63.0%             in FY2023, up from 5.6% in FY2022.
+    59.7%
+                        2,062
+                                      •   As of the year-end in 2023, the Financial Services segment witnessed
+                                          significant growth, posting an impressive 60.3% year-on-year increase,
+      1,361                               solidifying its position as a crucial component in the company's diverse
+                                          range of offerings. The segment contributed 13.0% to the company’s
+                                          consolidated top-line for the year, emphasizing the company's successful
+                                          efforts to diversify revenue streams.
+     FY2022           FY2023
+            Gross Profit              •   Gross profit for FY2023 rose to EGP 2,061.8 million, up by 51.5% y-o-y
+            Gross Profit Margin           against the EGP 1,361.2 million recorded in FY2022. The Company achieved
+                                          a gross profit margin of 63.0% in FY2023, reflecting a 3.3 percentage point
+      EBITDA (EGP mn)                     increase y-o-y. The enhanced profitability margins result from accelerated
+                                          revenue growth and overall expansion across the four main business
+                      40.3%               segments, along with successful revenue and cost synergies between
+      30.6%                               Fawry’s businesses. On a quarterly basis, Fawry's gross profit for 4Q2023
+                                          amounted to EGP 612.7 million, marking a significant 50.1% year-on-year
+      698             1,318               increase and yielding a gross profit margin of 64.2% for the quarter, up by
+                                          1.5 points y-o-y.
+     FY2022          FY2023           •   EBITDA for the full year amounted to EGP 1,318.2 million, up by 88.7% from
+      EBITDA          EBITDA Margin       the EGP 698.5 million recorded during FY2022. Fawry booked an EBITDA
+                                          margin of 40.3% during the full year, expanding by 9.6 percentage points y-
+                                          o-y, highlighting the resulting benefits from the Company’s strategic cost
+                                          control measures and enhanced operational efficiency. On a quarterly basis,
+    Net Profit After NCI
+                                          Fawry recorded an EBITDA of EGP 406.7 million, marking an increase of
+         (EGP mn)
+                                          71.9% y-o-y from the EGP 236.5 million booked in 4Q2022. The EBITDA
+                       21.9%              margin in 42023 rose to 42.6%, up by 6.3 percentage points compared to
+     10.5%                                the 36.3% booked in 4Q2022.
+      240               715           •   Net profit after NCI amounted to EGP 715.3 million in FY2023, a substantial
+                                          198.0% y-o-y increase from the EGP 240.0 million reported in the previous
+     FY2022           FY2023
+                                          year. Fawry’s NPM stood at 21.9% in FY2023, showing an 11.3 percentage
+            Net Profit After NCI          point improvement from the 10.5% booked the previous year. In 4Q2023,
+            Net Profit Margin             net profit after NCI reached EGP 228.8 million, expanding by 97.3% y-o-y
+                                          from the EGP 115.9 million booked in 4Q2022, with NPM at 24.0% versus
+                                          17.8% recorded in 4Q2023.
+
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                               7
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Press Release
+5 March 2024
+
+
+
+
+       ADP Revenue                Segments Overview
+        (EGP mn)
+                                  Alternative Digital Payments
+                 1,268              •   Fawry's Alternative Digital Payments (ADP) achieved a top-line growth of
+                                        16.9% year-on-year, reaching EGP 1,268 million in FY23, compared to the
+                                        EGP 1,084 million booked in the previous year. Despite remaining Fawry’s
+      1,084                             largest single business line, it is worth noting that the difference between
+                                        revenue contribution from ADP and the Banking Services segment is now
+                                        only 0.2%, highlighting the growth of other segments and Fawry's successful
+                                        expansion of its business lines beyond the core segment. On a quarterly
+      FY2022    FY2023
+                                        basis, the ADP segment reported revenues of EGP 336 million in 4Q2023,
+                                        indicating an 18.0% y-o-y increase from the EGP 285 million booked in the
+                                        corresponding period in the previous year.
+     Banking Services               •   The growth in ADP is fueled by Fawry's consistent addition of new billers,
+    Revenue (EGP mn)                    POS expansion, heightened activity on existing POS through customer and
+                                        merchant engagement, and increased average ticket sizes in certain
+                 1,261                  industries.
+                                    •   The segment's growth accounted for 18.5% of the y-o-y increase in Fawry's
+                                        overall top-line growth for the full year, further highlighting the ongoing
+       760
+                                        successful evolution of the business towards an ecosystem model that
+                                        integrates a diverse range of value-added services beyond ADP.
+                                  Banking Services
+      FY2022    FY2023              •   Fawry offers a variety of financial services through agency agreements with
+                                        36 banks nationwide in its Banking Services segment. Banking Services
+                                        revenues rose to EGP 1,261 million for the full year, up by 65.8% y-o-y from
+                                        the EGP 760 million recorded in the previous year, propelled by both the
+     Financial services                 Agent Banking and Acceptance segments. Banking services throughput
+     Revenue (EGP mn)                   value expanded by an impressive 82.2% y-o-y during FY2023. On a three-
+                                        month basis, Banking Services generated revenues of EGP 384 million in
+                  426
+                                        4Q2023, representing a 62.7% y-o-y increase.
+                                            o The Agent Banking business recorded revenues of EGP 652 million
+       266
+                                                in FY2023, an increase of 48.4% y-o-y, with throughput value
+                                                expanding by 50.5% y-o-y to EGP 106.6 billion during the year.
+                                            o Fawry’s Acceptance business booked revenues of EGP 609 million
+      FY2022    FY2023                          in FY2023, nearly doubling the EGP 321 million booked in the
+                                                previous year. Acceptance throughput for the year amounted to
+                                                EGP 76.4 billion, a substantial 158% y-o-y growth from the EGP 29.6
+                                                billion booked in FY2022. The increase in the number of
+                                                acceptance-enabled POS contributed to growth, but an equally
+                                                significant role was the rise in acceptance throughput per POS and
+                                                online transactions in driving the Acceptance business’ overall
+                                                growth.
+
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                             8
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Press Release
+5 March 2024
+
+
+
+
+        Supply Chain              Financial Services
+     Solutions Revenue
+                                    •   Fawry has diversified its service offerings to encompass a range of financial
+          (EGP mn)
+                                        services, including microfinance, consumer finance (BNPL), insurance
+                  226                   brokerage, and the myFawry prepaid card.
+                                    •   In FY2023, the Financial Services segment demonstrated impressive
+       129                              performance, recording revenues of EGP 426.4 million, marking a 60.3% y-
+                                        o-y increase. This growth can be attributed to Fawry's effective strategic
+                                        expansion, particularly in the domains of insurance brokerage, the newly
+                                        launched consumer finance, as well as the successful introduction of the
+      FY2022    FY2023
+                                        prepaid card.
+                                    •   As part of its microfinance services, Fawry provides microfinance loans to
+                                        retailers in its merchant network, directly extending credits through POS
+                                        terminals and digitally allocating them for supplier payments. Fawry’s
+                                        Microfinance segment booked revenues of EGP 370.1 million in FY2023, up
+                                        by 47.4% y-o-y from the EGP 251.0 million booked in FY2022. On a quarterly
+                                        basis, the Microfinance segment’s revenues rose to EGP 109.3 million in
+                                        4Q23, a 38.7% y-o-y increase from the EGP 78.7 million booked in the
+                                        corresponding period of the previous year.
+                                    •   Outstanding loans in Fawry’s microfinance portfolio exceeded EGP 1,000
+                                        million as of 31 December 2023, up by 33% from EGP 777 million recorded
+                                        in the previous year.
+                                    •   Insurance Brokerage revenue rose to EGP 20.7 million in FY2023, up by 39%
+                                        y-o-y.
+                                    •   The newly launched Consumer Finance (BNPL) services was a huge success
+                                        with loan portfolio reaching EGP 179.6 million as of 31 December 2023.
+
+
+                                  Supply Chain Solutions
+                                    •   Fawry capitalizes on the substantial alignment between its retail network
+                                        and the merchant base of FMCG, manufacturing and E-commerce
+                                        companies, offering Supply Chain Solutions that digitize B2B transactions
+                                        and payments between merchants, sales agents and suppliers. Fawry’s
+                                        Supply Chain Solutions segment reported revenues of EGP 226.3 million
+                                        during FY2023, up from the EGP 128.5 million booked in FY2022 to record a
+                                        growth rate of 76.1% y-o-y. On a quarterly basis, the Supply Chain Solutions
+                                        segment’s revenues rose to EGP 64.9 million during 4Q2023, a 62.6% y-o-y
+                                        increase from the EGP 39.9 million booked in 4Q2022.
+                                    •
+
+
+
+                                                    – Ends –
+
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                              9
+  Fawry for Banking Technology and
+  Electronic Payments S.A.E (FWRY.CA)
+  Press Release
+  5 March 2024
+
+
+
+
+About Fawry for Banking Technology and Electronic Payments
+
+                                                                                           INVESTOR RELATIONS
+                                                                                           CONTACT
+                                             12.23%
+
+                                                                                           For further information, please
+                                                       9.74%                               contact:
+                   42.75%            Fawry                                                 Hassan Abdelgelil
+                                 Shareholders’                                             Head of Investor Relations
+                                                          8.48%
+                                   Structure                                               investor.relations@fawry.com
+
+                                                       7.94%                               Building 221 – F12 – Financial
+                                                                                           district – Smart Village
+                                             6.05%
+                                2.5%
+                                   4.74%5.54%
+
+
+
+       Alpha Oryx Limited UAE                   Banque Misr
+       Egyptian American Enterprise Fund        Link Holdco
+       National Bank of Egypt                   Black Sparrow
+       Responsability Participations AG         ESOP
+       Free Float
+
+
+Founded in 2008, Fawry is the largest e-payment platform in Egypt serving the banked and unbanked population.
+Fawry’s primary services include enabling electronic bill payments, mobile top-ups and provisions for millions of
+Egyptian users. Other digital services also include e-ticketing, cable TV, and variety of other services. Through its peer-
+to-peer model, Fawry is enabling corporates and SMEs to accept electronic payments through a number of platforms
+including websites, mobile phones, and POSs. With a network of 36 member banks, its mobile platform and 331
+thousand agents, Fawry processes more than 5 million transactions per day, serving an estimated customer base of
+51.7 million users monthly. Learn more at www.fawry.com.
+
+
+
+
+ FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I PRESS RELEASE                                                  10
+
