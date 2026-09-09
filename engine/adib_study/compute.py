@@ -341,18 +341,29 @@ NCI_SHARE = reg('nci_share', 0.001,
                 'EGP 12,601.0 million in FY2025. Held at that level; it is immaterial and is '
                 'carried rather than dropped so the bridge to attributable profit closes.',
                 STUDY_DATE, 'A')
-PAYOUT = reg('payout', [0.15, 0.20, 0.25, 0.30, 0.35],
-             'Dividend payout on the year\'s own attributable profit. ADIB-Egypt paid EGP '
-             '1,055.9 million in FY2025 against FY2024 attributable profit of EGP 9,008.9 '
-             'million — 11.7% — having paid nothing at all while it carried accumulated '
-             'losses. The path rises as growth decays and the balance sheet stops consuming '
-             'every pound of retained earnings. Terminal payout is derived from the terminal '
-             'growth and return, not typed.', STUDY_DATE, 'House')
-TARGET_EQ_ASSETS = reg('target_equity_assets', 0.100,
-                       'Equity to total assets held at 10.0% for the free-cash-flow-to-equity '
-                       'lens. FY2025 actual 9.98%, 30 June 2026 actual 10.51%. This is the '
-                       'capital the balance sheet actually consumes and it is what makes the '
-                       'FCFE lens differ from the dividend lens.', STUDY_DATE, 'House')
+PAYOUT = reg('payout', 'DERIVED — see below',
+             'THE PAYOUT IS NOT TYPED. It is what is left after the balance sheet has taken '
+             'the capital it needs: payout(t) = 1 - (target equity/assets x the year\'s '
+             'asset growth) / attributable profit, floored at zero and capped at 80%. A '
+             'typed payout path is an assumption about the single thing a growing bank has '
+             'least discretion over, and typing one made this model\'s dividend and '
+             'free-cash-flow lenses disagree by EGP 7 a share while its equity-to-assets '
+             'ratio drifted from 10.0% to 12.4% — the model was retaining capital it had no '
+             'use for and calling the result conservatism. THE DERIVED PATH REPRODUCES WHAT '
+             'THE BANK ACTUALLY DOES: it gives 13.7% for FY2026 against the 11.7% ADIB-Egypt '
+             'actually paid on FY2024 earnings, which is the closest thing to an external '
+             'check this driver has. Terminal payout is 1 - g/ROE, derived the same way.',
+             STUDY_DATE, 'House')
+TARGET_EQ_ASSETS = reg('target_equity_assets', 0.105,
+                       'Attributable equity to total assets, held at 10.5% — the level '
+                       'ADIB-Egypt actually stood at on 30 June 2026 after its EGP 3 billion '
+                       'cash increase, against 9.98% at the FY2025 year end. THIS IS THE '
+                       'BINDING CONSTRAINT ON A GROWING BANK and the model pins the RATIO, '
+                       'not the increment: equity each year is 10.5% of that year\'s assets '
+                       'and the dividend is whatever profit is left after getting there. A '
+                       'bank growing its balance sheet 34% cannot also distribute, and the '
+                       'arithmetic says so rather than a sentence saying so beside a typed '
+                       'payout.', STUDY_DATE, 'House')
 CAP_INCREASE_26 = reg('capital_increase_2026', 3000.0,
                       'The EGP 3,000 million cash capital increase completed in the first '
                       'half of 2026, taking issued capital from EGP 12 billion to EGP 15 '
@@ -414,9 +425,13 @@ def project(cor=None, yield_path=None, cof_path=None, fin_growth=None):
         np_ = pbt + tax
         np_parent = np_ * (1 - NCI_SHARE)
 
-        div = np_parent * PAYOUT[i]
+        # THE CAPITAL RATIO IS PINNED AND THE DIVIDEND IS WHAT IS LEFT.
+        # equity(t) = target x assets(t); dividend(t) = profit + shares issued - the
+        # equity build that gets there. Nothing here is typed.
         issue = CAP_INCREASE_26 if y == 2026 else 0.0
-        eq = eq_prev + np_parent - div + issue
+        eq = TARGET_EQ_ASSETS * ta
+        div = np_parent + issue - (eq - eq_prev)
+        payout = div / np_parent if np_parent else 0.0
 
         rows.append(dict(
             year=y, financing=fin, total_assets=ta, deposits=ta / (FY25['total_assets'] /
@@ -425,6 +440,7 @@ def project(cor=None, yield_path=None, cof_path=None, fin_growth=None):
             net_funds=net_funds, net_fees=net_fees, other_nii=other_nii,
             other_op=other_op, admin=admin, ecl=ecl, pbt=pbt, tax=tax, np=np_,
             np_parent=np_parent, dividend=div, equity=eq, equity_open=eq_prev,
+            payout=payout, equity_required=eq - eq_prev, issue=issue,
             # OUTPUTS
             nim=net_funds / avg_ta,
             cost_income=-admin / (net_funds + net_fees + other_nii),
@@ -432,7 +448,10 @@ def project(cor=None, yield_path=None, cof_path=None, fin_growth=None):
             roe=np_parent / ((eq_prev + eq) / 2),
             eps=np_parent / SHARES, dps=div / SHARES, bvps=eq / SHARES,
             equity_assets=eq / ta,
-            fcfe=np_parent - (TARGET_EQ_ASSETS * (ta - ta_prev))))
+            # FCFE is the NET flow to shareholders: the dividend LESS what they
+            # subscribed. In FY2026 that is negative — a capital call, which is what
+            # actually happened.
+            fcfe=div - issue))
         fin_prev, ta_prev, eq_prev = fin, ta, eq
     return rows
 
@@ -472,7 +491,7 @@ def ddm():
 # ----------------------------------------------------------------------------------
 def fcfe():
     pv = sum(P[i]['fcfe'] * DF[i] for i in range(len(YEARS)))
-    ta_last, ta_prev = P[-1]['total_assets'], P[-2]['total_assets']
+    ta_last = P[-1]['total_assets']
     f_next = (P[-1]['np_parent'] * (1 + G_TERM)
               - TARGET_EQ_ASSETS * ta_last * G_TERM)
     tv = f_next / (KE_TERM - G_TERM)

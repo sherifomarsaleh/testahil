@@ -1,0 +1,96 @@
+{
+ "market": "EG",
+ "series": "ADIB",
+ "close": 54.4,
+ "data_date": "2026-08-23",
+ "computed_on": "2026-09-09",
+ "sessions": 3762,
+ "rows_in": 3762,
+ "repairs": [],
+ "ma": {
+  "20": 53.464,
+  "50": 49.40240000000001,
+  "200": 39.6597
+ },
+ "ma_slope": {
+  "20": "rising",
+  "50": "rising",
+  "200": "rising"
+ },
+ "rsi": 62.13612665652252,
+ "atr": 1.3042224220175878,
+ "macd": {
+  "macd": 1.4899673372208042,
+  "signal": 1.6646201473247546,
+  "hist": -0.1746528101039504
+ },
+ "ma_cross": {
+  "ago": 509,
+  "kind": "golden"
+ },
+ "atr_pct": 0.023974676875323304,
+ "hi_52w": 55.65,
+ "lo_52w": 20.01,
+ "pct_off_high": 0.022461814914645103,
+ "pct_off_low": 1.7186406796601699,
+ "levels": {
+  "res": [
+   55.65,
+   57.0,
+   58.0
+  ],
+  "sup": [
+   50.04,
+   48.24,
+   44.06
+  ]
+ },
+ "level_detail": {
+  "res": [
+   {
+    "level": 55.65,
+    "score": 0.84472049689441,
+    "kind": "52w high",
+    "touches": 0
+   },
+   {
+    "level": 57.0,
+    "score": 0.25319148936170205,
+    "kind": "round",
+    "touches": 0
+   },
+   {
+    "level": 58.0,
+    "score": 0.22884615384615378,
+    "kind": "round",
+    "touches": 0
+   }
+  ],
+  "sup": [
+   {
+    "level": 50.0404620775644,
+    "score": 2.8139766382065203,
+    "kind": "swing",
+    "touches": 2
+   },
+   {
+    "level": 48.23944056772444,
+    "score": 8.810527272472056,
+    "kind": "swing",
+    "touches": 4
+   },
+   {
+    "level": 44.05586632692346,
+    "score": 2.0170301663320327,
+    "kind": "swing",
+    "touches": 2
+   }
+  ]
+ },
+ "tech": {
+  "trend": "Trading above the whole moving-average stack, on a rising 200-day",
+  "summary": "The price closed 54.40 above a rising 20-day (53.46), a rising 50-day (49.40) and a rising 200-day (39.66). Momentum is firm: RSI(14) is ~62 and the daily ATR near 1.30 (~2.4%) points to a normal tape. MACD (12\u00b726\u00b79) is above zero but rolling over (+1.49 / +1.66 / \u22120.17). Over the last year it has ranged 20.01\u201355.65; the last close sits 2% below that high and 172% above that low.",
+  "bull": "A daily close back above 55.65 would clear the nearest resistance; the next charted level above it is 58.00.",
+  "bear": "A close below 50.04 would break the nearest support; the next charted level below it is 44.06."
+ }
+}

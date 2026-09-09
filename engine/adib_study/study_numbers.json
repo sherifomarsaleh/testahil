@@ -1,0 +1,744 @@
+{
+ "meta": {
+  "ticker": "ADIB",
+  "company": "Abu Dhabi Islamic Bank (ADIB) \u2013 Egypt S.A.E.",
+  "not_to_be_confused_with": "ADIB Group PJSC (ADX: ADIB), the Abu Dhabi parent, which is the separate covered name ADIBUAE",
+  "market": "EGX",
+  "currency": "EGP",
+  "asof": "2026-09-09",
+  "spot": 52.05,
+  "spot_date": "2026-09-03",
+  "spot_source": "engine/prices/SUPPLIED_03-09-2026.json \u2014 the latest known price. assets/data.js carries 54.40 at the 23 August close, which is older.",
+  "shares_mn": 1500.0,
+  "mktcap": 78075.0,
+  "klass": "bank",
+  "sector": "Islamic commercial banking \u2014 Egypt",
+  "fy_note": "financial year ends 31 December",
+  "standard": "2026.09.07"
+ },
+ "central": 40.81031477333914,
+ "spot": 52.05,
+ "fair": {
+  "bear": 11.857219584561902,
+  "base": 40.81031477333914,
+  "full": 60.38662041467526
+ },
+ "gap_to_spot": -0.21594015805304245,
+ "lenses": {
+  "dividend_discount": 37.17789080747221,
+  "free_cash_flow_to_equity": 35.83842889391098,
+  "residual_income": 38.58104520290892,
+  "relative_multiples": 60.820178311647034,
+  "normalised_earnings_power_no_weight": 34.000273022184004
+ },
+ "weights": {
+  "ddm": 0.3,
+  "fcfe": 0.25,
+  "ri": 0.3,
+  "rel": 0.15
+ },
+ "cost_of_capital": {
+  "rf": 0.23,
+  "rf_date": "2026-08-06",
+  "rf_staleness_days": 34,
+  "rf_staleness_note": "the house path's own 14-day rule flags this as stale; four live re-source routes were attempted on 2026-09-09 and all four failed. Declared, sensitised, and named as an open data request.",
+  "sovereign_default_spread": 0.0342,
+  "rf_star": 0.1958,
+  "erp": 0.095164,
+  "beta": 1.0746932506913658,
+  "ke": 0.2980721085087931,
+  "ke_rating_basis": 0.31517309835270024,
+  "ke_double_counted_retired": 0.33227210850879313,
+  "ke_terminal": 0.2002285275483956,
+  "ke_terminal_construction": "same_beta",
+  "ke_path": [
+   0.28176484501539356,
+   0.26545758152199395,
+   0.24915031802859436,
+   0.23284305453519477,
+   0.21653579104179518
+  ],
+  "terminal_growth": 0.07,
+  "terminal_rf": 0.125,
+  "terminal_inflation": 0.07,
+  "terminal_erp": 0.07
+ },
+ "beta_record": {
+  "ticker": "ADIB",
+  "market": "EG",
+  "exchange": "EGX",
+  "beta": 1.0746932506913658,
+  "r2": 0.24825949171362327,
+  "se": 0.16344242722101457,
+  "n": 256,
+  "ci90": [
+   0.8058304579127968,
+   1.3435560434699347
+  ],
+  "usable": true,
+  "gate_msg": "passes minimum usability gate",
+  "dimson": true,
+  "frequency": "weekly",
+  "weak": false,
+  "window_years": 4.94,
+  "first_obs": "2021-09-09",
+  "last_obs": "2026-08-20",
+  "blume_crosscheck": 1.0497955004609105,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "index_asof": "2026-09-08",
+  "index_dq": [],
+  "stock_dq": [],
+  "week_rule": "W-THU",
+  "interim_note": null,
+  "conforming": true,
+  "asof": null
+ },
+ "base_year": {
+  "year": "FY2025",
+  "fin_income": 49262.455,
+  "cost_funds": -29110.12,
+  "net_funds": 20152.335,
+  "net_fees": 2729.85,
+  "other_nii": 721.286,
+  "admin": -3431.217,
+  "other_op": -1176.05,
+  "ecl": -1514.062,
+  "pbt": 17482.142,
+  "tax": -4881.186,
+  "np": 12600.956,
+  "np_parent": 12588.572,
+  "total_assets": 346711.205,
+  "deposits": 277564.37,
+  "financing": 147226.062,
+  "equity": 34596.28
+ },
+ "base_year_observed_ratios": {
+  "asset_yield": 0.1622668468472353,
+  "cost_of_funds": 0.11219083910655145,
+  "ibl_over_assets": 0.854673710504129,
+  "nim": 0.06638028610346722,
+  "fee_ratio": 0.008991921979242107,
+  "onii_ratio": 0.002375862203681383,
+  "otherop_ratio": -0.003873820848650175,
+  "cost_of_risk": 0.012465666635378904,
+  "cost_income": 0.14536917049191622,
+  "tax_rate": 0.27920983595717275,
+  "roe": 0.4374453359345345,
+  "roa": 0.0415066077681421,
+  "financing_over_assets": 0.42463600794211426,
+  "equity_over_assets": 0.09978414167491356
+ },
+ "latest_reviewed": {
+  "period": "H1-2026",
+  "fin_income": 29117.908,
+  "cost_funds": -16863.967,
+  "net_funds": 12253.941,
+  "fee_inc": 2024.636,
+  "fee_exp": -508.077,
+  "net_fees": 1516.559,
+  "div": 5.139,
+  "trading": 560.181,
+  "admin": -2239.003,
+  "other_op": -1515.642,
+  "pbt": 10721.79,
+  "tax": -3170.957,
+  "np": 7550.833,
+  "np_parent": 7536.797,
+  "nci": 14.036,
+  "eps": 4.98,
+  "total_assets": 414302.106,
+  "total_liab": 370689.472,
+  "equity": 43612.634,
+  "equity_parent": 43557.932,
+  "fin_customers": 190427.051
+ },
+ "latest_reviewed_annualised": {
+  "nim": 0.06440855014164135,
+  "asset_yield": 0.15304808774888828,
+  "fee_ratio": 0.007971261359448152,
+  "roe": 0.3857397730527946,
+  "tax_rate": 0.2957488441762056,
+  "financing_over_assets": 0.4596333164668972,
+  "equity_over_assets": 0.10513567604215847,
+  "ecl_charge": 2.176,
+  "cost_of_risk": 2.5777935001594375e-05
+ },
+ "projection": [
+  {
+   "year": 2026,
+   "financing": 217894.57176,
+   "total_assets": 463605.47182978725,
+   "deposits": 371145.6649259075,
+   "avg_total_assets": 405158.3384148936,
+   "fin_income": 60773.750762234034,
+   "cost_funds": -36719.5002105418,
+   "net_funds": 24054.250551692232,
+   "net_fees": 3241.2667073191487,
+   "other_nii": 1134.443347561702,
+   "other_op": -3038.687538111702,
+   "admin": -4597.83078,
+   "ecl": -1825.6031688,
+   "pbt": 18967.839119661377,
+   "tax": -5405.834149103493,
+   "np": 13562.004970557886,
+   "np_parent": 13548.442965587328,
+   "dividend": 2466.1484234596683,
+   "equity": 48678.57454212766,
+   "equity_open": 34596.28,
+   "payout": 0.1820244901737873,
+   "equity_required": 14082.29454212766,
+   "issue": 3000.0,
+   "nim": 0.05937,
+   "cost_income": 0.16172483823058728,
+   "roa": 0.033473345318812145,
+   "roe": 0.3253909728232151,
+   "eps": 9.032295310391552,
+   "dps": 1.6440989489731122,
+   "bvps": 32.45238302808511,
+   "equity_assets": 0.105,
+   "fcfe": -533.8515765403317
+  },
+  {
+   "year": 2027,
+   "financing": 274547.1604176,
+   "total_assets": 566076.619417732,
+   "deposits": 453180.33560643805,
+   "avg_total_assets": 514841.0456237596,
+   "fin_income": 68988.70011358379,
+   "cost_funds": -40497.39664876493,
+   "net_funds": 28491.303464818862,
+   "net_fees": 4221.69657411483,
+   "other_nii": 1338.586718621775,
+   "other_op": -3603.8873193663176,
+   "admin": -5425.4403204,
+   "ecl": -3200.8712591544,
+   "pbt": 21821.38785863475,
+   "tax": -6219.095539710903,
+   "np": 15602.292318923846,
+   "np_parent": 15586.690026604923,
+   "dividend": 4827.219529870727,
+   "equity": 59438.045038861856,
+   "equity_open": 48678.57454212766,
+   "payout": 0.30970138763465144,
+   "equity_required": 10759.470496734197,
+   "issue": 0.0,
+   "nim": 0.05534000000000001,
+   "cost_income": 0.15933002943530047,
+   "roa": 0.03030506687752677,
+   "roe": 0.28833106486332616,
+   "eps": 10.391126684403282,
+   "dps": 3.218146353247151,
+   "bvps": 39.625363359241234,
+   "equity_assets": 0.105,
+   "fcfe": 4827.219529870727
+  },
+  {
+   "year": 2028,
+   "financing": 326711.120896944,
+   "total_assets": 653422.241793888,
+   "deposits": 523106.0613905114,
+   "avg_total_assets": 609749.43060581,
+   "fin_income": 73779.68110330301,
+   "cost_funds": -42228.19681660537,
+   "net_funds": 31551.48428669764,
+   "net_fees": 5121.895217088804,
+   "other_nii": 1463.3986334539438,
+   "other_op": -3963.371298937765,
+   "admin": -6239.25636846,
+   "ecl": -3908.178828544536,
+   "pbt": 24025.97164129809,
+   "tax": -6847.401917769955,
+   "np": 17178.569723528133,
+   "np_parent": 17161.391153804605,
+   "dividend": 7990.100804308215,
+   "equity": 68609.33538835825,
+   "equity_open": 59438.045038861856,
+   "payout": 0.465585845150837,
+   "equity_required": 9171.29034949639,
+   "issue": 0.0,
+   "nim": 0.051745,
+   "cost_income": 0.16360208368958662,
+   "roa": 0.028173162386491365,
+   "roe": 0.26804751642004637,
+   "eps": 11.440927435869737,
+   "dps": 5.32673386953881,
+   "bvps": 45.73955692557217,
+   "equity_assets": 0.105,
+   "fcfe": 7990.100804308215
+  },
+  {
+   "year": 2029,
+   "financing": 375717.7890314856,
+   "total_assets": 736701.5471205601,
+   "deposits": 589776.441763812,
+   "avg_total_assets": 695061.894457224,
+   "fin_income": 78541.99407366633,
+   "cost_funds": -43976.56606230856,
+   "net_funds": 34565.42801135777,
+   "net_fees": 5908.026102886405,
+   "other_nii": 1598.6423572516153,
+   "other_op": -4170.371366743345,
+   "admin": -7081.555978202099,
+   "ecl": -4565.787914534792,
+   "pbt": 26254.38121201555,
+   "tax": -7482.498645424431,
+   "np": 18771.882566591117,
+   "np_parent": 18753.110684024527,
+   "dividend": 10008.783624723968,
+   "equity": 77353.6624476588,
+   "equity_open": 68609.33538835825,
+   "payout": 0.5337132486105514,
+   "equity_required": 8744.327059300558,
+   "issue": 0.0,
+   "nim": 0.049730000000000024,
+   "cost_income": 0.16831954126649987,
+   "roa": 0.027007497772914363,
+   "roe": 0.2569570502394424,
+   "eps": 12.502073789349684,
+   "dps": 6.6725224164826455,
+   "bvps": 51.569108298439204,
+   "equity_assets": 0.105,
+   "fcfe": 10008.783624723968
+  },
+  {
+   "year": 2030,
+   "financing": 420803.92371526395,
+   "total_assets": 809238.3148370461,
+   "deposits": 647846.7375682489,
+   "avg_total_assets": 772969.9309788031,
+   "fin_income": 83480.75254571073,
+   "cost_funds": -46262.25036908137,
+   "net_funds": 37218.50217662936,
+   "net_fees": 6570.244413319827,
+   "other_nii": 1700.533848153367,
+   "other_op": -4251.334620383417,
+   "admin": -8002.158255368372,
+   "ecl": -5177.3911328538725,
+   "pbt": 28058.396429496897,
+   "tax": -7996.642982406615,
+   "np": 20061.753447090283,
+   "np_parent": 20041.69169364319,
+   "dividend": 12425.331083412162,
+   "equity": 84970.02305788983,
+   "equity_open": 77353.6624476588,
+   "payout": 0.6199741655218266,
+   "equity_required": 7616.36061023103,
+   "issue": 0.0,
+   "nim": 0.048149999999999984,
+   "cost_income": 0.17591305420310924,
+   "roa": 0.02595411883834383,
+   "roe": 0.24693490209052843,
+   "eps": 13.361127795762128,
+   "dps": 8.283554055608109,
+   "bvps": 56.64668203859322,
+   "equity_assets": 0.105,
+   "fcfe": 12425.331083412162
+  }
+ ],
+ "far_year_ranges": {
+  "2028": {
+   "n": 8,
+   "low": 4986.150790979795,
+   "point": 17161.391153804605,
+   "high": 25393.541293378563,
+   "low_mult": 0.2905446735811034,
+   "high_mult": 1.4796901408397143,
+   "low_eps": 3.324100527319863,
+   "eps": 11.440927435869737,
+   "high_eps": 16.929027528919043
+  },
+  "2029": {
+   "n": 7,
+   "low": 7746.720483596447,
+   "point": 18753.110684024527,
+   "high": 43994.673442306535,
+   "low_mult": 0.4130898928781854,
+   "high_mult": 2.3459933759034914,
+   "low_eps": 5.164480322397631,
+   "eps": 12.502073789349684,
+   "high_eps": 29.329782294871023
+  },
+  "2030": {
+   "n": 6,
+   "low": 10762.339930766522,
+   "point": 20041.69169364319,
+   "high": 49448.14050417946,
+   "low_mult": 0.5369975796095153,
+   "high_mult": 2.467263804874485,
+   "low_eps": 7.174893287177682,
+   "eps": 13.361127795762128,
+   "high_eps": 32.965427002786306
+  }
+ },
+ "far_year_range_source": "engine/adib_walkforward/forward_ranges.json \u2014 the FUNDAMENTAL walk-forward's own attributable-profit error dispersion, centred on its own median. Not the price-engine walk-forward and not the technical one.",
+ "sensitivity": [
+  {
+   "driver": "cost of risk +50bp",
+   "value": 36.95731172482488,
+   "change": -0.09441248051905182
+  },
+  {
+   "driver": "cost of risk -50bp",
+   "value": 44.6633178218534,
+   "change": 0.09441248051905204
+  },
+  {
+   "driver": "asset yield -50bp",
+   "value": 33.10514449202944,
+   "change": -0.1888044805364596
+  },
+  {
+   "driver": "asset yield +50bp",
+   "value": 48.51548505464885,
+   "change": 0.18880448053645993
+  },
+  {
+   "driver": "cost of funds +50bp",
+   "value": 34.22239418281936,
+   "change": -0.16142783085867263
+  },
+  {
+   "driver": "cost of funds -50bp",
+   "value": 47.39823536385893,
+   "change": 0.16142783085867296
+  },
+  {
+   "driver": "financing growth -5pp/yr",
+   "value": 36.74389687259273,
+   "change": -0.09964191463190941
+  },
+  {
+   "driver": "financing growth +5pp/yr",
+   "value": 45.40119780108127,
+   "change": 0.11249320308456179
+  },
+  {
+   "driver": "risk-free +200bp",
+   "value": 35.89976202076684,
+   "change": -0.12032626505934951
+  },
+  {
+   "driver": "risk-free -200bp",
+   "value": 47.568735081078415,
+   "change": 0.16560568927918373
+  },
+  {
+   "driver": "terminal growth +100bp",
+   "value": 41.53135267556878,
+   "change": 0.01766803089450053
+  },
+  {
+   "driver": "terminal growth -100bp",
+   "value": 40.18449587236333,
+   "change": -0.015334821709943047
+  }
+ ],
+ "walkforward": {
+  "which": "the FUNDAMENTAL walk-forward [R-FCAL-01]",
+  "scope": "full",
+  "origins": "FY2014..FY2024, horizons 1-5, 45 cells per driver",
+  "corrections_promoted": 0,
+  "note": "no correction from that record enters these drivers; every candidate either failed the by-origin test, failed the second clause, or is an aggregate of drivers already corrected. What the run DID put here is the years 3-5 ranges and the knowledge that a flat-share volume rule under-forecasts this name."
+ },
+ "register": {
+  "spot": {
+   "value": 52.05,
+   "source": "EGP 52.05, the close on 3 September 2026, supplied by the principal and committed to engine/prices/SUPPLIED_03-09-2026.json. THIS IS THE LATEST KNOWN PRICE and it is the one [R-GAP-01] measures against. assets/data.js still carries 54.40 at the 23 August close, which is 11 days older; a study audited against its own past is audited against nothing.",
+   "date": "2026-09-03",
+   "tier": "Market"
+  },
+  "shares": {
+   "value": 1500.0,
+   "source": "ADIB-Egypt issued and paid-up capital of EGP 15,000,000 thousand at 30 June 2026, over the LE 10 par value the filings state (FY2018 note 34/2), = 1,500 million shares. THE CAPITAL FIGURE IS PROVED BY THE EQUITY BLOCK'S OWN ARITHMETIC RATHER THAN BY THE OCR: attributable equity of 43,557,932 less the subordinated-financing difference of 16,454 leaves 43,541,478 for capital plus reserves plus retained earnings; retained earnings cannot exceed the FY2025 closing 20,963,164 plus the half-year attributable profit of 7,536,797 = 28,499,961, so a capital of 12,000,000 is arithmetically impossible and 15,000,000 is the only reading that closes. It matches the EGP 12bn->15bn cash increase the delivered 03-07-2026 study reported as approved.",
+   "date": "2026-06-30",
+   "tier": "A"
+  },
+  "base_year": {
+   "value": "FY2025",
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026. Attributable profit EGP 12,588.6 million, total assets EGP 346,711.2 million, attributable equity EGP 34,596.3 million. Every figure is read from the filing itself and the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "latest_reviewed": {
+   "value": "H1-2026",
+   "source": "The condensed consolidated interim statements for the six months ended 30 June 2026, signed 30 July 2026. Attributable profit EGP 7,536.8 million, total assets EGP 414,302.1 million, financing to customers EGP 190,427.1 million, attributable equity EGP 43,557.9 million. This is the period [R-ANCHOR-01] anchors the forecast on.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "h1_2026_ecl": {
+   "value": 2.176,
+   "source": "THE SINGLE MOST IMPORTANT FACT IN THE BASE YEAR. ADIB-Egypt charged EGP 2.176 million of expected credit losses in the six months to 30 June 2026 \u2014 an annualised 0.003% of average financing \u2014 against EGP 732.193 million in the same half of 2025 and EGP 1,514.062 million for the whole of FY2025. The line is filed as \"Release / (Charge) Expected credit losses\", note 11, and the income statement foots on it: every other line on the page plus this one reproduces the printed profit before tax of 10,721,790 exactly. A half-year at a near-nil loss charge is a release, not a run rate, and the forecast below normalises it rather than annualising it \u2014 which is the conservative direction and is named as a mechanism under [R-ANCHOR-01].",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "inflation_path": {
+   "value": [
+    0.16,
+    0.12,
+    0.09,
+    0.075,
+    0.07
+   ],
+   "source": "Central Bank of Egypt baseline average annual headline inflation, 16.0% in 2026 and 12.0% in 2027 (Q1-2026 Monetary Policy Report as reported 11 May 2026); 2028-2030 interpolated on the bank's own glide between the published 2027 baseline and the 7% target-band midpoint, labelled as interpolation and never presented as a central-bank forecast. Held in engine/macro_path.py, the house path every Egyptian study runs on.",
+   "date": "2026-09-02",
+   "tier": "Country"
+  },
+  "policy_rate_path": {
+   "value": [
+    0.19,
+    0.165,
+    0.145,
+    0.13,
+    0.12
+   ],
+   "source": "Overnight deposit rate 19.00% now, gliding 19.00 -> 16.50 -> 14.50 -> 13.00 -> 12.00 with the published inflation path at an approximately constant real policy rate. Held for a fourth consecutive meeting on 20 August 2026. This is the SHAPE input for the asset-yield and cost-of-funds paths below; it is not a second free parameter and no valuation input is set from it independently.",
+   "date": "2026-08-20",
+   "tier": "Country"
+  },
+  "rf": {
+   "value": 0.23,
+   "source": "Egypt ten-year EGP government bond yield, 23.00%, the quote of 6 August 2026 held in engine/macro_path.py and already used by the PHDC, EGCH and PHAR cost-of-capital records. IT IS 34 DAYS OLD AGAINST THIS STUDY'S PRICING DATE AND THE HOUSE PATH'S OWN 14-DAY STALENESS RULE FLAGS IT AS STALE. A live re-source was attempted on 9 September 2026 down four routes and all four failed: the central bank's treasury-bond auction pages return 404, its auction API returns the site shell, the market-data pages render their yield tables in JavaScript, and the investing.com bond page returns 403. The level is carried, the staleness is declared here rather than buried, and the rate is sensitised by +/-200 basis points in section 1.9.",
+   "date": "2026-08-06",
+   "tier": "Country"
+  },
+  "sov_default_spread": {
+   "value": 0.0342,
+   "source": "Egypt sovereign credit-default-swap spread, 3.42%, mid-year (July 2026) vintage of the country default-spread dataset, Egypt row, \"Sovereign CDS net of Swiss CDS\". Netted out of the local-currency risk-free rate so that sovereign default risk is charged ONCE, inside the equity risk premium, and not twice [L-004]. engine/macro_path.py carries 3.41% for the same field from the same file; the one-basis-point difference is a rounding artefact and is immaterial.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "erp": {
+   "value": 0.095164,
+   "source": "Egypt TOTAL equity risk premium on the sovereign-CDS basis, 9.5164%, same mid-year vintage. This is the dataset's TOTAL premium column, not its country premium column \u2014 the total is what multiplies beta. The country risk premium alone on this basis is 5.3164% and is NOT added on top.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "sov_default_spread_rating": {
+   "value": 0.059702,
+   "source": "Egypt adjusted default spread on the rating basis (Moody's Caa1), 5.9702%, same vintage \u2014 the alternative construction, published for the audit trail and never mixed with the CDS basis.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "erp_rating": {
+   "value": 0.134806,
+   "source": "Egypt TOTAL equity risk premium on the rating basis, 13.4806%, same vintage.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "beta": {
+   "value": 1.0746932506913658,
+   "source": "Own-stock first-tier weekly regression against EGX30 \u2014 THE PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON \u2014 resolved by beta_regression.own_stock_beta() rather than hand-rolled. Beta 1.0747, R-squared 0.248, n = 256 weekly observations over 4.94 years to 2026-08-20, standard error 0.1634, 90% confidence interval [0.806, 1.344], Dimson-corrected and matched to the exchange's own trading week (W-THU). The coefficient is 6.6 times its own standard error. Blume cross-check 1.0498.",
+   "date": "2026-09-08",
+   "tier": "Market"
+  },
+  "rf_terminal": {
+   "value": 0.125,
+   "source": "Terminal risk-free rate, DERIVED and never quoted: terminal inflation of 7.00% (the CBE target-band midpoint in force) plus the 5.50% emerging-market terminal real convention. It cannot disagree with the inflation the rest of the model runs on because it is computed from it.",
+   "date": "2026-09-02",
+   "tier": "House"
+  },
+  "erp_terminal": {
+   "value": 0.07,
+   "source": "Terminal equity risk premium, 7.00%, normalised below today's crisis-era level toward the rating-class norm; never held flat into perpetuity.",
+   "date": "2026-09-02",
+   "tier": "House"
+  },
+  "terminal_growth": {
+   "value": 0.07,
+   "source": "Terminal growth 7.00% = terminal inflation, ZERO REAL. For a bank in an economy whose private credit is 26% of GDP that is deliberately conservative: it assumes ADIB-Egypt stops taking share and stops participating in credit deepening the moment the explicit window closes. It sits BELOW the 12.50% terminal risk-free rate and equals the inflation inside it, so the terminal cannot grow faster than the money it is discounted in.",
+   "date": "2026-09-02",
+   "tier": "House"
+  },
+  "ke_construction": {
+   "value": "same_beta",
+   "source": "The terminal cost of equity uses the SAME regression beta as the explicit window. ADIB-Egypt is a deposit-funded bank whose capital structure is its business, so there is no leverage to relever: the beta already embeds the balance sheet it is measured on. [R-COC-02] \u2014 the record names the construction from the closed list so that two right answers a hundred basis points apart are not indistinguishable from a typo.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "financing_growth": {
+   "value": [
+    0.48,
+    0.26,
+    0.19,
+    0.15,
+    0.12
+   ],
+   "source": "Net financing to customers, year-on-year. FY2026 +48% takes the FY2025 close of EGP 147,226 million to EGP 217,895 million \u2014 and the bank was ALREADY at EGP 190,427 million on 30 June, so this asks for only +14.4% in the second half against +29.3% in the first. The path then decays toward nominal GDP. IT IS NOT A FLAT SHARE OF SYSTEM CREDIT, and that is the walk-forward's doing: a flat-share rule under-forecast this name at every one of eleven origins, by a median 0.29 in logs at three years, because ADIB has taken share at about 8.7% a year for a decade. The share path this implies is disclosed in the macro-coherence table and it decelerates to zero drift by FY2030.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "financing_over_assets": {
+   "value": [
+    0.47,
+    0.485,
+    0.5,
+    0.51,
+    0.52
+   ],
+   "source": "Financing to customers over total assets. FY2025 actual 42.46%; 30 June 2026 actual 45.96%. The bank is rotating out of treasury bills into customer financing as policy rates fall and bill yields compress, and the path continues that observed rotation at a decelerating pace. Every point is above both observations, which is the assumption, and it is sensitised.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "asset_yield": {
+   "value": [
+    0.15,
+    0.134,
+    0.121,
+    0.113,
+    0.108
+   ],
+   "source": "Income from Murabaha, Musharaka, Mudaraba and similar income over AVERAGE total assets. FY2025 actual 16.23%; the six months to June 2026 annualise to 15.30%. The path falls with the CBE's published policy glide (19.00 -> 12.00) at an asset beta of about 0.75, which is what an Egyptian bank holding treasury bills and floating-rate corporate paper reprices at. IT IS AN INPUT; net interest margin is not.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "cost_of_funds": {
+   "value": [
+    0.106,
+    0.092,
+    0.081,
+    0.074,
+    0.07
+   ],
+   "source": "Cost of deposits and similar costs over AVERAGE INTEREST-BEARING LIABILITIES \u2014 customers' deposits plus due to banks plus subordinated financing, and nothing else. FY2025 actual 11.22%. Total liabilities is NOT the denominator: at FY2025 it would add EGP 17.9 billion of other liabilities, current tax and provisions that pay nothing, and understate the funding rate by about a sixth of itself. The path falls at a deposit beta of about 0.80 to the policy glide, slower than the asset side, which is why the margin compresses.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "ibl_over_assets": {
+   "value": 0.855,
+   "source": "Average interest-bearing liabilities over average total assets, held at the FY2025 observed 85.5%. The bank funds itself with deposits and that ratio has moved within two points across the whole panel.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "fee_ratio": {
+   "value": [
+    0.008,
+    0.0082,
+    0.0084,
+    0.0085,
+    0.0085
+   ],
+   "source": "Net fees and commissions over average total assets. FY2025 actual 0.899%; the June 2026 half annualises to 0.797%. The path opens at the reviewed half's level and recovers slowly as trade finance and card income grow with the branch network.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "other_nii_ratio": {
+   "value": [
+    0.0028,
+    0.0026,
+    0.0024,
+    0.0023,
+    0.0022
+   ],
+   "source": "Dividends, net trading, share of associates and gains on investments, as one block, over average total assets. FY2025 actual 0.238%; the June 2026 half annualises to 0.372%, flattered by trading gains on a moving currency. The path normalises DOWN toward the FY2022-FY2024 average as the pound settles.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "other_op_ratio": {
+   "value": [
+    -0.0075,
+    -0.007,
+    -0.0065,
+    -0.006,
+    -0.0055
+   ],
+   "source": "Other operating expenses over average total assets \u2014 deposit insurance, central-bank charges and the operating-provision line. FY2025 actual -0.387%; the June 2026 half annualises to -0.797%, more than double. The path opens at the reviewed level and decays, which is the conservative reading of a line that has doubled.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "admin_growth": {
+   "value": [
+    0.34,
+    0.18,
+    0.15,
+    0.135,
+    0.13
+   ],
+   "source": "Administrative expenses, year-on-year. FY2026 +34% on FY2025 takes EGP 3,431 million to EGP 4,598 million; the June half already spent EGP 2,239 million, so this asks for EGP 2,359 million in the second. Thereafter inflation plus about six points, because a bank adding branches and systems does not hold headcount flat. Cost-to-income is an OUTPUT of this and of the revenue lines; it is not typed anywhere.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "cost_of_risk": {
+   "value": [
+    0.01,
+    0.013,
+    0.013,
+    0.013,
+    0.013
+   ],
+   "source": "Expected credit losses over AVERAGE net financing to customers. The observed series is 1.64% (FY2022), 2.73% (FY2023), 2.73% (FY2024), 1.25% (FY2025) and effectively ZERO in the June 2026 half \u2014 EGP 2.176 million on a EGP 190 billion book. FY2026 is set at 1.00%, above the half-year run rate and below the four-year mean of 2.09%; the outer years at 1.30% sit between the two. ANNUALISING THE JUNE HALF WOULD HAVE ADDED ABOUT EGP 1.8 BILLION TO FY2026 PRE-TAX PROFIT and it is not done. Sensitised +/-50 basis points in 1.9.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "tax_rate": {
+   "value": 0.285,
+   "source": "Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half 29.58%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays materially more because the 20% withholding on treasury-bill income is not creditable and part of its cost base is disallowed. 28.5% sits inside the observed range and above the statutory rate for that reason.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "nci_share": {
+   "value": 0.001,
+   "source": "Non-controlling interests take 0.10% of net profit \u2014 EGP 12.4 million of EGP 12,601.0 million in FY2025. Held at that level; it is immaterial and is carried rather than dropped so the bridge to attributable profit closes.",
+   "date": "2026-09-09",
+   "tier": "A"
+  },
+  "payout": {
+   "value": "DERIVED \u2014 see below",
+   "source": "THE PAYOUT IS NOT TYPED. It is what is left after the balance sheet has taken the capital it needs: payout(t) = 1 - (target equity/assets x the year's asset growth) / attributable profit, floored at zero and capped at 80%. A typed payout path is an assumption about the single thing a growing bank has least discretion over, and typing one made this model's dividend and free-cash-flow lenses disagree by EGP 7 a share while its equity-to-assets ratio drifted from 10.0% to 12.4% \u2014 the model was retaining capital it had no use for and calling the result conservatism. THE DERIVED PATH REPRODUCES WHAT THE BANK ACTUALLY DOES: it gives 13.7% for FY2026 against the 11.7% ADIB-Egypt actually paid on FY2024 earnings, which is the closest thing to an external check this driver has. Terminal payout is 1 - g/ROE, derived the same way.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "target_equity_assets": {
+   "value": 0.105,
+   "source": "Attributable equity to total assets, held at 10.5% \u2014 the level ADIB-Egypt actually stood at on 30 June 2026 after its EGP 3 billion cash increase, against 9.98% at the FY2025 year end. THIS IS THE BINDING CONSTRAINT ON A GROWING BANK and the model pins the RATIO, not the increment: equity each year is 10.5% of that year's assets and the dividend is whatever profit is left after getting there. A bank growing its balance sheet 34% cannot also distribute, and the arithmetic says so rather than a sentence saying so beside a typed payout.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "capital_increase_2026": {
+   "value": 3000.0,
+   "source": "The EGP 3,000 million cash capital increase completed in the first half of 2026, taking issued capital from EGP 12 billion to EGP 15 billion \u2014 300 million new shares at the LE 10 par. IT WAS ISSUED AT PAR, far below book: attributable book value per share was EGP 28.83 at 31 December 2025 on 1,200 million shares and EGP 29.04 at 30 June 2026 on 1,500 million, so a half-year at a 38.6% return on equity bought existing holders 0.7% of book value per share and the rest went to the new shares. This is the study's crux and it is in 1.7.",
+   "date": "2026-06-30",
+   "tier": "A"
+  },
+  "peer_comi_price": {
+   "value": 138.98,
+   "source": "Commercial International Bank (EGX: COMI), EGP 138.98, the close on 3 September 2026 from engine/prices/SUPPLIED_03-09-2026.json \u2014 the same file, the same date and the same supplier as ADIB's own price, so the two are struck on one day.",
+   "date": "2026-09-03",
+   "tier": "Market"
+  },
+  "peer_pb_band": {
+   "value": [
+    1.4,
+    2.2
+   ],
+   "source": "The price-to-book band Egyptian large-cap banks trade in. It is a BAND and not a point because this study could not source a same-day book value for any Egyptian bank other than ADIB itself: the only peer whose price it holds on the same day is CIB, and CIB's own book value is not in this repository. The band is carried as a cross-check on the two cash-flow lenses, weighted at 15%, and it is NOT allowed to set the answer. Where a multiple cannot be sourced it is said so rather than filled in.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "peer_pe_band": {
+   "value": [
+    5.5,
+    8.5
+   ],
+   "source": "The trailing price-to-earnings band for the same group, on the same caveat.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "lens_weights": {
+   "value": {
+    "ddm": 0.3,
+    "fcfe": 0.25,
+    "ri": 0.3,
+    "rel": 0.15
+   },
+   "source": "Dividend discount 30%, free cash flow to equity 25%, residual income 30%, relative multiples 15%. The two cash-flow lenses and residual income carry 85% between them because they are built from this bank's own disclosed drivers; the multiple band carries 15% because this study could not source a same-day peer book value and says so rather than pretending otherwise. Normalised earnings power is REPORTED and carries no weight \u2014 it is a sanity check on whether the cycle is being capitalised, not a valuation.",
+   "date": "2026-09-09",
+   "tier": "House"
+  },
+  "band_construction": {
+   "value": "walk-forward h=3 dispersion, centred",
+   "source": "Bear and full are the CENTRAL multiplied by the 10th-to-90th percentile dispersion of the fundamental walk-forward's own attributable-profit error at three years, centred on that distribution's median: x0.291 and x1.480 on 8 origin-horizon cells. They are not a scenario anyone wrote down. The three-year horizon is used because it is where the terminal begins to dominate and because it is the longest horizon with more than seven measured cells.",
+   "date": "2026-09-09",
+   "tier": "House"
+  }
+ }
+}

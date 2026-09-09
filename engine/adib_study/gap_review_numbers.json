@@ -1,0 +1,71 @@
+{
+ "central": 40.81031477333914,
+ "spot": 52.05,
+ "gap": -0.21594015805304245,
+ "h1_cost_of_risk": 2.5777935001594375e-05,
+ "central_if_h1_cor_holds_2026": 41.84054973810676,
+ "central_if_h1_cor_holds_throughout": 50.49838893863077,
+ "rf_held": 0.23,
+ "rf_apr_may_2026_market": 0.2129,
+ "central_at_rf_2129": 46.436440050773726,
+ "central_at_rf_1929": 55.71632354369599,
+ "rf_that_reaches_spot": 0.19987409809198942,
+ "ke_that_reaches_spot": 0.14161929711921772,
+ "market_pb_on_jun26_book": 1.7924404675593872,
+ "market_implied_ke_gordon": 0.24615077251782339,
+ "central_rf2129_and_h1cor": 47.47444995325992,
+ "implied_pb_2026": 1.2575444687073014,
+ "implied_pe_2026": 4.518266218154685,
+ "implied_pb_on_jun26_book": 1.4053805896939437,
+ "implied_pe_trailing_fy25": 4.862781271776394,
+ "gordon_pb_at_terminal": 1.3586493329948446,
+ "gordon_pb_at_ke0_on_fy26_roe": 1.206012134850099,
+ "ri_book0": 34596.28,
+ "ri_capital_added": 3000.0,
+ "fy26_fcfe": -533.8515765403317,
+ "fy26_dividend": 2466.1484234596683,
+ "equity_assets_path": [
+  0.105,
+  0.105,
+  0.105,
+  0.105,
+  0.105
+ ],
+ "terminal_growth": 0.07,
+ "terminal_rf": 0.125,
+ "terminal_inflation": 0.07,
+ "terminal_ke": 0.2002285275483956,
+ "terminal_roe": 0.24693490209052843,
+ "tv_share_ddm": 0.6962476071348632,
+ "tv_share_fcfe": 0.7284332773407652,
+ "tv_share_ri": 0.21273237602454176,
+ "nominal_gdp_growth": [
+  0.21219999999999994,
+  0.1704000000000001,
+  0.1390499999999999,
+  0.12337499999999979,
+  0.11814999999999998
+ ],
+ "financing_growth": [
+  0.48,
+  0.26,
+  0.19,
+  0.15,
+  0.12
+ ],
+ "growth_multiple_of_nominal_gdp": [
+  2.262016965127239,
+  1.5258215962441306,
+  1.3664149586479695,
+  1.215805471124622,
+  1.0156580617858655
+ ],
+ "share_of_system_credit_fy2025": 0.03141412121316315,
+ "share_of_system_credit_path": [
+  0.0383541489815884,
+  0.041290351774437274,
+  0.04313727984862856,
+  0.04415967226075251,
+  0.04423273526096036
+ ]
+}
