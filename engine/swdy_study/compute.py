@@ -73,6 +73,18 @@ assert _BETA.get('conforming'), 'beta_result.json is not a conforming regression
 assert str(_BETA.get('index_file', '')).startswith('raw_indices/'), \
     'the regressor is not a registered published index'
 
+# THE HOUSE TERMINAL RATES, READ LIVE FROM THE PATH AND NEVER COPIED [09-09-2026].
+# engine/macro_paths/EG.json is the one source of an inflation rate in this study, which
+# is what the terminal growth line has always claimed and what the terminal risk-free line
+# did not do until today.
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+import macro_path as _MP
+_MACRO_EG = _MP.load('EG')
+_PI_T_HOUSE = _MACRO_EG.terminal_inflation
+_RRC_HOUSE = _MACRO_EG.real_rate_convention
+_RF_TERM_HOUSE = _PI_T_HOUSE + _RRC_HOUSE
+
 H126 = ("Reviewed condensed interim consolidated financial statements for the six months "
         "ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board "
         "on 11 August 2026 (note 2-1), published on the company's own investor-relations "
@@ -852,10 +864,42 @@ INP = dict(
               "WEIGHTS updated to the actual FY2025 composition (formerly modelled 45%/55%, now "
               "measured at roughly 28%/72% from the Kd-integrity back-solve); the long-run rate "
               "norms themselves are unchanged policy assumptions", "2026-08-05", "House"),
-    rf_term=I(0.105, "Terminal risk-free rate, norm-built: the CBE's own stated medium-term "
-              "inflation target of 5% plus the standard ~5.5pp emerging-market real-rate "
-              "convention. Never a raw historical average and never reverse-engineered from a price",
-              "2026-08-05", "House"),
+    # TWO INFLATION RATES SAT IN ONE TERMINAL, FOUR ROWS APART [09-09-2026].
+    # g_term above reads "(1 + 0.0 real growth) x (1 + 7.0% long-run Egyptian inflation)"
+    # and states, in its own source string, that "the house macroeconomic path is the ONLY
+    # source of an inflation rate in this study". This line then built the terminal
+    # risk-free on a typed 5%. Both numbers are in the same register block and they
+    # describe the same perpetuity, so one of them was false and it was this one -- the
+    # claim four rows up is what makes it false rather than merely different.
+    #
+    # THE HOUSE PATH SETS OUT THE RULE ITSELF, in engine/macro_paths/EG.json, under
+    # real_rate_convention: "The terminal NOMINAL risk-free rate is DERIVED as this plus
+    # the inflation target in force, so the single most terminal-value-sensitive number in
+    # a model cannot" be typed. The inflation target in force on that path is 7.0% -- the
+    # 2030 step, "the target band midpoint in force, held", sourced to the CBE's own Q1-2026
+    # Monetary Policy Report. 7.0 + 5.5 = 12.50%.
+    #
+    # ARCC FOUGHT THIS EXACT ARGUMENT AND SETTLED IT. That study carried 10.50% built the
+    # same way, argued for the central bank's LONGEST-dated published target of 5% against
+    # revision 3's NEAR-dated 7%, and the resolution was to stop choosing: derive from the
+    # house macro path, "and so no longer this study's own reading of which published
+    # target to use". If 5% is the right terminal inflation for Egypt that is an argument
+    # for amending engine/macro_paths/EG.json, which every study would then inherit -- not
+    # for one study substituting its own number and the next one substituting a different
+    # one [R-MACRO-01].
+    #
+    # IT COSTS ABOUT EGP 7.7 A SHARE AND WIDENS THIS STUDY'S GAP TO THE MARKET, which is
+    # the only direction that proves the discipline is not fitting to a price. The same
+    # sentence is already written eleven lines below, about the terminal flows correction.
+    rf_term=I(_RF_TERM_HOUSE, "Terminal risk-free rate, DERIVED from the house macro path "
+              "as the inflation target in force plus the real-rate convention, never "
+              "typed: %.2f%% + %.2f%% = %.2f%%. Revisions to 08-09-2026 carried 10.50%%, "
+              "built on a 5%% inflation this study chose for itself while the terminal "
+              "growth line four rows above used the house 7%% and said the house path was "
+              "the only source of an inflation rate here. Never a raw historical average "
+              "and never reverse-engineered from a price"
+              % (100 * _PI_T_HOUSE, 100 * _RRC_HOUSE, 100 * _RF_TERM_HOUSE),
+              "2026-09-09", "House"),
     erp_term=I(0.070, "Terminal equity risk premium, normalised below the currently elevated "
                "crisis-era level toward the rating-class norm; never held flat into perpetuity",
                "2026-08-05", "House"),
@@ -932,7 +976,12 @@ INP = dict(
                   "holding its real scale in perpetuity; real growth costs incremental capital "
                   "and none is assumed. The nominal rate is DERIVED from this and the house "
                   "path's terminal inflation, never quoted beside it", "2026-09-04", "House"),
-    g_term=I(0.07, "Terminal NOMINAL growth, DERIVED rather than chosen: (1 + 0.0 real "
+    # DERIVED IN FACT AND NOT ONLY IN THE SENTENCE [09-09-2026]. This read 0.07 typed,
+    # under a source string that calls it DERIVED and says the house path is the only
+    # source of an inflation rate here. The number was right and the claim was still
+    # unbacked: nothing connected it to the path, so a house amendment would have moved
+    # the terminal risk-free and left this behind. Same value, now actually read.
+    g_term=I(_PI_T_HOUSE, "Terminal NOMINAL growth, DERIVED rather than chosen: (1 + 0.0 real "
              "growth) x (1 + 7.0% long-run Egyptian inflation) - 1 = 7.0%. The house "
              "macroeconomic path is the only source of an inflation rate in this study. The "
              "first edition's 5.0% was struck against an assumed 5% inflation and was "
