@@ -234,6 +234,40 @@ def main(argv):
         for tk in lack:
             print('   %-12s %s' % (tk, detail.get(tk, '')[:110]))
 
+    # [R-ENF-08] THE LIST EXCUSED BY NAME, SO A STUDY COULD GET WORSE AND STAY EXCUSED.
+    # A listed study going from 4 unmatched figures to 40 read exactly like one holding
+    # steady, which is the third gate today found excusing more than it recorded. It is
+    # also worse than it looks: eight of the nine entries recorded "no script reconciles
+    # the delivered documents" and ALL EIGHT of those studies carry a prose_check.py that
+    # runs — so the recorded failure had been fixed and the entry went on excusing a
+    # different one that was never written down.
+    #
+    # WHY NOT ratchet_shape.worsened(): it speaks in percentage deviations, and an
+    # unmatched figure is a discrete thing rather than a measurement with noise. One more
+    # unmatched figure is one more typed number a reader cannot check, so the comparison
+    # is on the COUNT and the tolerance is zero. An entry with no recorded count behaves
+    # exactly as before, so this makes no existing list red on adoption.
+    def _count(line):
+        m = re.search(r'unmatched:\s*(\d+)', line or '')
+        return int(m.group(1)) if m else None
+
+    worse = []
+    for tk in sorted(red):
+        e = known.get(tk)
+        if not isinstance(e, dict):
+            continue
+        rec = e.get('unmatched')
+        now = _count(detail.get(tk, ''))
+        if isinstance(rec, int) and isinstance(now, int) and now > rec:
+            worse.append((tk, rec, now))
+    if worse:
+        print()
+        print('WORSE THAN THE RATCHET RECORDS (%d):' % len(worse))
+        for tk, rec, now in worse:
+            print('   %-12s the list excuses %d unmatched figure(s); there are now %d. '
+                  'A study that got worse on a listed failure is a NEW breach [R-ENF-08].'
+                  % (tk, rec, now))
+
     now_have = sorted(set(known) & set(have))
     if now_have:
         print('\nNOW CARRYING ONE — remove from the list (%d): %s'

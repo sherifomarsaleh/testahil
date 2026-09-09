@@ -74,12 +74,24 @@ SOURCING EXCEPTIONS, RECORDED RATHER THAN HIDDEN
     audited or reviewed statement. Four fiscal years — FY2021 through FY2024 — DO rest on
     the audited statements themselves.
 
-(5) THE AUDITED STATEMENTS ARE IMAGE-ONLY SCANS WITH NO TEXT LAYER. All four annual sets
-    extract to fewer than 60 characters through pdftotext. Every figure taken from them is
-    therefore read by OCR off the rendered pixels (tesseract, 150 dpi, --psm 6) and is
-    subject to engine/fwry_study_pending/footing_check.py, which re-adds each page against
-    the subtotal the company itself printed. Arithmetic is the arbiter; the route each
-    figure came by is recorded beside it.
+(5) THE AUDITED STATEMENTS ARE IMAGE-ONLY SCANS AND WERE READ OFF THE RENDERED PIXELS.
+    All four annual sets extract to fewer than 60 characters through pdftotext; pdffonts
+    reports no font at all, so there is no text layer and no character map to break —
+    every page is a JPEG or CCITT image. Tesseract could not be used: at this environment's
+    CPU throughput a 400x200 pixel crop took 44 seconds and a full page did not finish
+    inside 300 seconds, so twelve pages of OCR was not feasible. The statement pages were
+    extracted with pdfimages at their native 200 dpi and READ VISUALLY off the rendered
+    image instead, which is the same route by a different reader. EVERY FIGURE SO READ IS
+    SUBJECT TO engine/fwry_study_pending/footing_check.py, which re-adds each page against
+    the subtotal the company itself printed. TWO PAGES FAILED THAT TEST ON THE FIRST READ
+    and were re-read at 3x-6x zoom until they footed: the FY2024 income statement (the
+    customer-financing provision read 134,600,000 against a true 134,600,555, and the
+    FY2023 health contribution read 11,099,750 against a true 11,599,755) and the FY2024
+    balance sheet (eight glyphs). Both corrections are recorded in footing_check.py rather
+    than silently applied, and the FY2023 English set independently confirms the corrected
+    FY2023 figure. Three audited fiscal years — FY2022, FY2023 and FY2024 — are read and
+    footed in full, income statement and balance sheet, 78 checks in all. The FY2021 set is
+    held but NOT read, and no FY2021 line item appears anywhere in this register.
 
 (6) THE CENTRAL BANK OF EGYPT'S OWN MONETARY POLICY REPORT WAS REACHED DIRECTLY. The CBE
     site rejects its own HTML paths at this egress (404/rejection page) but serves its
@@ -393,63 +405,133 @@ f_efih = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)", Findi
                  "cross-check on the lending arm's value.")
 
 # --------------------------------------------------------------- RING 4 COMPANY
-f_fs21 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
-    "FY2021 audited consolidated financial statements (EAS), Fawry for Banking Technology "
-    "and Electronic Payments S.A.E. and subsidiaries, year ended 31 December 2021 — 51 "
-    "pages, image-only scan, retrieved as an Internet Archive capture of the company's own "
-    "PDF (fawry.com/wp-content/uploads/2023/03/Fawry-Consolidated-Financials-Q4-2021-"
-    "English.pdf, capture 20240217155800)",
+f_fs21 = R.add(Ring.COMPANY, "official financial statements", FindingClass.C,
+    "FY2021 audited consolidated financial statements (EAS), year ended 31 December 2021 — "
+    "51 pages, image-only scan, HELD BUT NOT READ. Retrieved as an Internet Archive capture "
+    "of the company's own PDF (fawry.com/wp-content/uploads/2023/03/"
+    "Fawry-Consolidated-Financials-Q4-2021-English.pdf, capture 20240217155800) and stored "
+    "at engine/fwry_study_pending/filings/FS_CONS_FY2021_EN.pdf",
     "Fawry FY2021 audited consolidated financial statements", CO, "2022-03-31",
-    detail="Earliest of the four audited years held. Read by OCR off the rendered pixels; "
-           "every figure used is footed in footing_check.py.",
-    model_impact="First of the four historical years the driver history is regressed on; "
-                 "carries the pre-devaluation cost base.",
-    is_fs_data=True, fiscal_period="FY2021")
+    detail="NO FY2021 LINE ITEM IS QUOTED ANYWHERE IN THIS REGISTER and none is footed in "
+           "footing_check.py. The document is logged so a later pass can read it; it is not "
+           "tagged is_fs_data because nothing has been extracted from it, and a flag that "
+           "asserted otherwise would let the FS-depth gate pass on a document nobody read.",
+    model_impact="")
 
 f_fs22 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
-    "FY2022 audited consolidated financial statements (EAS), year ended 31 December 2022 — "
-    "46 pages, image-only scan, retrieved as an Internet Archive capture of the company's "
-    "own PDF (fawry.com/wp-content/uploads/2023/03/FB.Cons_.Eng_.-FSs-YE-2022.pdf, capture "
-    "20240217170700, 10.1 MB full-fidelity capture rather than the 1 MB truncated one)",
-    "Fawry FY2022 audited consolidated financial statements", CO, "2023-03-01",
-    detail="OCR route; figures footed in footing_check.py. A first attempt pulled the "
-           "archive's 1,048,576-byte truncated capture, which pdfinfo refused; the "
-           "full-length capture was located by listing every capture of the URL and "
-           "downloaded instead. The truncated file is retained with a .TRUNCATED suffix so "
-           "the discarded route is visible.",
-    model_impact="Second historical year; the devaluation year, and the base against which "
-                 "the FY2023-25 margin expansion is measured.",
+    "FY2022 AUDITED CONSOLIDATED, read and footed: operating revenue EGP 2,279,335,174; "
+    "operating costs (918,106,893); gross margin 1,361,228,281 (59.7%); G&A (567,883,468); "
+    "selling and marketing (385,919,177); ESOP (99,115,167); provisions formed (16,638,949); "
+    "impairment loss on customer loans (29,509,883); expected credit loss (1,674,415); credit "
+    "interest 211,071,914; finance costs (42,118,143); operating profit 448,149,871; tax "
+    "(117,487,788); net profit 327,055,161, of which parent 240,054,320 and NCI 87,000,841; "
+    "EPS 0.08. Balance sheet: total assets 6,423,757,906, total equity 2,595,244,934, issued "
+    "capital 1,653,652,060",
+    "Fawry FY2023 audited consolidated financial statements — FY2022 comparative column "
+    "(English translation of the Arabic original; the standalone FY2022 set is also held)",
+    CO, "2024-03-04",
+    detail="ROUTE: read off the rendered pixels of the scanned page (pdfimages -> visual "
+           "read), because the file has no text layer at all. Every subtotal on the page is "
+           "re-added in footing_check.py and foots exactly. The standalone FY2022 audited "
+           "set is held at filings/FS_CONS_FY2022_EN.pdf (46pp, 10.1 MB full-fidelity "
+           "archive capture after a first attempt returned the archive's 1,048,576-byte "
+           "truncated copy, which is retained with a .TRUNCATED suffix so the discarded "
+           "route stays visible); the figures above come from the FY2023 set's audited "
+           "comparative column, which is what was read.",
+    model_impact="Earliest historical year the study uses. It is the pre-scale cost base: "
+                 "59.7% gross margin against 68.9% in FY2025, which is the whole operating-"
+                 "leverage story the forecast has to justify or fade.",
     is_fs_data=True, fiscal_period="FY2022")
 
 f_fs23 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
-    "FY2023 audited consolidated financial statements (EAS), year ended 31 December 2023 — "
-    "44 pages, image-only scan (Xerox D125 copier, created 4 March 2024), retrieved as an "
-    "Internet Archive capture of the company's own PDF (fawry.com/pdfs/FB Consolidated EN "
-    "31-12-2023.pdf, capture 20241115072247)",
-    "Fawry FY2023 audited consolidated financial statements", CO, "2024-03-04",
-    detail="OCR route; figures footed in footing_check.py. Page 1 OCR confirms the "
-           "document: 'Fawry for Banking Technology and Electronic Payments (S.A.E.) / "
-           "Consolidated financial statements / Together with the auditor's Report / For "
-           "the year Ended December 31, 2023'.",
-    model_impact="Third historical year, and the comparative base printed in the FY2024 "
-                 "statements — used to tie the two audited sets to each other.",
+    "FY2023 AUDITED CONSOLIDATED, read and footed: operating revenue EGP 3,272,016,083; "
+    "operating costs (1,210,193,626); gross margin 2,061,822,457 (63.0%); G&A (758,592,564); "
+    "selling and marketing (480,982,338); ESOP (105,986,256); board allowances (7,988,000); "
+    "health/social contribution (11,599,755); provisions formed (36,549,258); impairment on "
+    "customer loans (49,738,948); expected credit loss (13,612,074); credit interest "
+    "464,413,386; finance costs (40,214,267); FX gain 11,777,126; operating profit "
+    "1,065,736,046; tax (278,653,009); net profit 815,968,937, of which parent 715,338,691 "
+    "and NCI 100,630,246; EPS 0.18. Balance sheet: total assets 8,971,583,645; customer loans "
+    "231,244,380 non-current + 920,552,076 current; treasury bills 2,342,600,551; cash "
+    "2,758,635,418; total equity 3,469,848,632",
+    "Fawry FY2023 audited consolidated financial statements (English translation of the "
+    "Arabic original), 44pp, Xerox scan created 4 March 2024", CO, "2024-03-04",
+    detail="ROUTE: read off the rendered pixels; no text layer. All fifteen subtotals on the "
+           "income statement and balance sheet foot exactly (footing_check.py), and the same "
+           "FY2023 figures appear as the comparative column of the FY2024 Arabic set, giving "
+           "an independent cross-document tie.",
+    model_impact="Second historical year and the hinge of the margin story: gross margin "
+                 "63.0% against 59.7% in FY2022 and 65.7% in FY2024.",
     is_fs_data=True, fiscal_period="FY2023")
 
 f_fs24 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
-    "FY2024 audited consolidated financial statements, year ended 31 December 2024 — 43 "
-    "pages, ARABIC set, image-only scan, retrieved as an Internet Archive capture of the "
-    "company's own PDF (the Arabic-titled file under fawry.com/wp-content/uploads/2025/03/, "
-    "capture 20250514222048). The ENGLISH consolidated set for the same year exists at the "
-    "sibling URL but the archive's only capture of it recorded a 403, so the Arabic set is "
-    "what is held",
-    "Fawry FY2024 audited consolidated financial statements (Arabic)", CO, "2025-03-02",
-    detail="OCR route, Arabic+English language pack; the figures are in Western digits. "
-           "Footed in footing_check.py. THE LANGUAGE OF THE SET IS RECORDED because a "
-           "label read from an Arabic column and a label read from an English one must not "
-           "be silently equated.",
-    model_impact="Fourth and most recent audited year — the base the forecast rolls "
-                 "forward from, and the last year whose balance sheet, cash flow and note "
-                 "disclosure are audited rather than released.",
+    "FY2024 AUDITED CONSOLIDATED, read and footed: revenue EGP 5,510,620,184; cost of "
+    "activity (1,888,316,913); gross profit 3,622,303,271 (65.7%); G&A (1,053,620,943); "
+    "selling and marketing (666,676,441); ESOP (80,719,154); board allowances (11,315,012); "
+    "health contribution (19,994,772); provisions formed (86,302,287); net provision for "
+    "customer financing risk (134,600,555); expected credit loss (7,273,087); credit interest "
+    "691,243,802; finance costs (56,537,004); FX gain 32,089,292; gain on disposal 40,937,035; "
+    "other income 14,105,209; operating profit 2,296,060,131; associates 5,162,235; profit "
+    "before tax 2,301,222,366; tax (552,160,176); net profit 1,749,062,190, of which parent "
+    "1,606,651,692 and NCI 142,410,498; EPS 0.41",
+    "Fawry FY2024 audited consolidated financial statements (ARABIC original), 43pp",
+    CO, "2025-03-02",
+    detail="ROUTE: read off the rendered pixels of the Arabic scan; Arabic-Indic digits, no "
+           "text layer. THE PAGE FAILED ITS FIRST READ and was re-read at 3x-6x zoom until it "
+           "footed — the customer-financing provision was first read 134,600,000 against a "
+           "true 134,600,555, and eight balance-sheet glyphs were corrected the same way. "
+           "footing_check.py records every corrected line. THE LANGUAGE OF THE SET IS "
+           "RECORDED because a label read from an Arabic column must not be silently equated "
+           "with one read from an English column; the English FY2024 set exists at the "
+           "sibling URL but the archive's only capture of it recorded a 403.",
+    model_impact="The most recent AUDITED year, and the last balance sheet the study has. "
+                 "Every FY2025 and 2026 balance-sheet item has to be rolled from here, "
+                 "because no later statement could be obtained.",
+    is_fs_data=True, fiscal_period="FY2024")
+
+f_cost = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "THE COST STACK, WHICH IS WHY MARGIN CAN BE AN OUTPUT. The audited income statement "
+    "discloses cost of activity, G&A, selling and marketing, ESOP, board allowances, the "
+    "health contribution, provisions formed, the customer-financing provision and expected "
+    "credit loss as separate lines for FY2022, FY2023 and FY2024. Cost of activity as a share "
+    "of revenue: 40.3% FY2022, 37.0% FY2023, 34.3% FY2024. G&A: 24.9% / 23.2% / 19.1%. "
+    "Selling and marketing: 16.9% / 14.7% / 12.1%. Credit interest ran EGP 211.1m / 464.4m / "
+    "691.2m and finance costs 42.1m / 40.2m / 56.5m",
+    "Fawry FY2023 and FY2024 audited consolidated financial statements", CO, "2025-03-02",
+    detail="No earnings release carries any of these lines — the releases stop at gross "
+           "profit and at the company's own adjusted EBITDA. This finding is the ONLY route "
+           "to a cost-per-unit build, and it exists for three years and stops there.",
+    model_impact="MARGIN IS AN OUTPUT. Each cost line is projected on its own driver — cost "
+                 "of activity against throughput, G&A and marketing against revenue with the "
+                 "measured operating leverage — and gross and EBITDA margins fall out. Setting "
+                 "a margin as an input where these lines exist would be a QC fail.",
+    is_fs_data=True, fiscal_period="FY2024")
+
+f_bs = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "THE BALANCE SHEET AT 31-DEC-2024, AND THE FLOAT NOBODY DISCLOSES IN A RELEASE. Total "
+    "assets EGP 13,256,776,370. On the asset side, cash and bank balances 4,267,441,022 plus "
+    "treasury bills 2,240,138,857 = EGP 6.51bn of liquid assets; customer loans and facilities "
+    "725,040,807 non-current + 2,233,166,351 current = EGP 2,958,207,158 NET of provisions "
+    "(against the release's gross portfolio of 'above EGP 3.1bn' at the same date — the "
+    "difference is the provision, and the two bases must not be equated). On the liability "
+    "side, long-term loans 381,159,804, short-term loans 886,794,276 and bank facilities "
+    "279,364,012 = EGP 1.55bn of debt, so the group is roughly EGP 4.96bn NET CASH before "
+    "counting float. THE FLOAT IS THE LARGEST LIABILITY: billers payable 2,303,120,832 plus "
+    "merchant advances 2,602,659,644 plus retailer POS security deposits 108,901,634 = EGP "
+    "5.01bn of other people's money on the balance sheet. Total equity 5,162,996,252",
+    "Fawry FY2024 audited consolidated financial statements, statement of financial position",
+    CO, "2025-03-02",
+    detail="Read off the rendered pixels and footed line by line; the FY2023 comparative in "
+           "the English set foots independently. Credit interest of EGP 691.2m in FY2024 is "
+           "the income earned on this pool and on the T-bills, and the company's own EBITDA "
+           "definition explicitly EXCLUDES 'interest income not related to the operating "
+           "cycle' — so the release's EBITDA and this income are different things.",
+    model_impact="Three consequences. (1) The equity bridge ADDS net cash and must decide "
+                 "explicitly how much of the EGP 5.01bn float is genuinely free. (2) Credit "
+                 "interest is modelled bottom-up as a yield on the float and T-bill balances "
+                 "rather than as a plug, and is kept OUT of operating value to avoid double-"
+                 "counting. (3) The CBE policy rate feeds earnings directly through this "
+                 "line, which is why a slower cut path is not unambiguously bad for FWRY.",
     is_fs_data=True, fiscal_period="FY2024")
 
 f_fs25 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
@@ -663,21 +745,29 @@ f_own = R.add(Ring.COMPANY, "ownership / stake changes (named-transaction rule)"
                  "(ADQ) at 12.23% is the anchor holder and has not moved across three years.")
 
 f_cap = R.add(Ring.COMPANY, "management & capital actions", FindingClass.D,
-    "Share capital from the company's own governance report: authorised EGP 3,000,000,000; "
-    "issued and paid EGP 1,703,261,622; nominal value EGP 0.50 per share — implying "
-    "3,406,523,244 shares. Listed on the EGX 22 July 2019 under law 159/1981. An ESOP "
-    "committee exists at board level and the ESOP holds 1.06% (Jan-2025) falling to 0.41% "
-    "(Jul-2026) of the register",
-    "Fawry corporate governance report YE2023 (company's own PDF, capture 20240814005639)",
-    CO, "2024-03-04",
-    detail="THE SHARE COUNT IS TAKEN FROM THE COMPANY DOCUMENT AND NOT FROM AN AGGREGATOR. "
-           "A press report of a 'capital hike of EGP 100mn on 200mn shares taking capital to "
-           "EGP 453.65mn' surfaced in search and is INTERNALLY INCONSISTENT with a company "
-           "capital of EGP 1.703bn; it is not carried, and the post-YE2023 capital history "
-           "is left open (see the negative search on capital actions).",
-    model_impact="Fixes the denominator for every per-share figure. Any capital action after "
-                 "31-Dec-2023 — including the stock dividend reported for March 2026 — must "
-                 "be confirmed from a company document before the count is changed.")
+    "SHARE CAPITAL FROM THE AUDITED BALANCE SHEETS AND THE GOVERNANCE REPORT, AND A GAP THE "
+    "STUDY MUST CLOSE. Issued and paid-up capital: EGP 1,653,652,060 at 31-Dec-2022, rising "
+    "to EGP 1,703,261,622 at 31-Dec-2023 and UNCHANGED at 31-Dec-2024. Nominal value EGP 0.50 "
+    "per share, so 3,307,304,120 shares at end-2022 and 3,406,523,244 from end-2023. "
+    "Authorised capital EGP 3,000,000,000. Listed on the EGX 22 July 2019 under law 159/1981. "
+    "An ESOP committee sits at board level; ESOP shares are carried as a negative equity item "
+    "(EGP 31,429,709 at FY2024) with a matching ESOP reserve (EGP 150,837,104), and the ESOP "
+    "holds 1.06% of the register at 31-Jan-2025 falling to 0.41% at 31-Jul-2026",
+    "Fawry FY2023 and FY2024 audited consolidated statements of financial position; Fawry "
+    "corporate governance report YE2023", CO, "2025-03-02",
+    detail="THE SHARE COUNT DOES NOT RECONCILE TO THE PRINTED EPS AND THE STUDY MUST RESOLVE "
+           "IT BEFORE ANY PER-SHARE NUMBER IS PUBLISHED. Parent net profit divided by issued "
+           "shares gives EGP 0.472 for FY2024 and 0.210 for FY2023, against printed EPS of "
+           "0.41 and 0.18 — implying a weighted-average denominator near 3.92bn and 3.97bn "
+           "shares, and an FY2022 implied denominator near 3.0bn that moves the other way. "
+           "The EPS note (note 42 in the Arabic set, note 43 in the English) has NOT been "
+           "read and is the open item. Separately, a press report of a 'capital hike of EGP "
+           "100mn on 200mn shares taking capital to EGP 453.65mn' is internally inconsistent "
+           "with a company capital of EGP 1.703bn and is NOT carried.",
+    model_impact="Fixes the denominator for every per-share figure at 3,406,523,244 shares "
+                 "as last CONFIRMED by a company document, and flags that the audited EPS "
+                 "implies a larger weighted count. No per-share value is published until the "
+                 "EPS note reconciles.")
 
 f_fund = R.add(Ring.COMPANY, "management & capital actions", FindingClass.D,
     "How the lending book is funded, from the company's own announcements: Fawry MSME "
@@ -741,11 +831,24 @@ f_neg_capex = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
     "estate was deliberately shrunk in 1H2026", SWEEP_DATE)
 
 f_neg_float = R.add_negative(Ring.COMPANY, "regular disclosures",
-    "'Fawry settlement float customer balances interest income treasury EGP' — Fawry's own "
-    "EBITDA definition excludes 'interest income not related to the operating cycle', which "
-    "says such income exists, but no release quantifies the settlement float, the customer "
-    "balances held, or the interest earned on them. At a 19.5% policy rate this is a "
-    "material unquantified line", SWEEP_DATE)
+    "'Fawry settlement float customer balances interest income treasury EGP' in the earnings "
+    "releases — NO release or presentation quantifies the settlement float, the billers and "
+    "merchant balances held, or the income earned on them, and the company's own EBITDA "
+    "definition excludes 'interest income not related to the operating cycle' without saying "
+    "how large it is. The search is recorded because it is the release series that is silent: "
+    "the AUDITED STATEMENTS do disclose both sides (credit interest EGP 691.2m in FY2024; "
+    "billers payable, merchant advances and POS deposits totalling EGP 5.01bn), which is why "
+    "the float driver is built bottom-up off the statements and NOT off the releases",
+    SWEEP_DATE)
+
+f_neg_vat = R.add_negative(Ring.COUNTRY, "fiscal / political events with sector read-through",
+    "'Fawry VAT exemption impact on revenue guidance quantified company statement Egypt draft "
+    "law 2026' — the Cabinet draft law naming Fawry is real and dated, but NO company "
+    "document quantifies what an exemption would be worth: it is absent from the FY2025 "
+    "presentation's guidance page, from the 1H2026 release and from every press release held. "
+    "There is nothing of the company's own to build the event from, which is why it is carried "
+    "as a dual-framed scenario rather than as a driver",
+    "2026-09-09")
 
 f_neg_merch = R.add_negative(Ring.INDUSTRY, "demand drivers & capacity/supply balance",
     "'Fawry merchant count acceptance merchants number 2026 versus agents' — the company "
@@ -814,7 +917,7 @@ R.add_driver("Cost stack and gross margin", DriverMode.BOTTOM_UP,
     "documents that carry any cost line — the releases stop at gross profit. Gross margin "
     "and EBITDA margin fall out of revenue less the built cost lines and are reported "
     "against the released actuals (68.9% GPM and 57.4% EBITDA margin FY2025) as a check.",
-    [f_fs21, f_fs22, f_fs23, f_fs24, f_neg_cost])
+    [f_cost, f_fs22, f_fs23, f_fs24, f_neg_cost])
 
 R.add_driver("Funding cost of the lending arm", DriverMode.BOTTOM_UP,
     "Taken from the company's own named transactions: the EGP 497.5mn 13-month A- rated "
@@ -829,12 +932,14 @@ R.add_driver("Risk-free rate, explicit window and terminal", DriverMode.BOTTOM_U
     "average and never backed out of a price.",
     [f_cbe, f_hold])
 
-R.add_driver("Settlement-float / interest income", DriverMode.TOP_DOWN,
-    "The company's own EBITDA definition excludes interest income not related to the "
-    "operating cycle, so the income exists, but neither the float balance nor the income is "
-    "quantified in any release. Modelled as a yield on the modelled cash balance, excluded "
-    "from operating value, and handled in the equity bridge.",
-    [f_neg_float, f_cbe])
+R.add_driver("Settlement float and credit interest", DriverMode.BOTTOM_UP,
+    "Both halves are in the audited statements: the float itself (billers payable EGP 2.30bn "
+    "+ merchant advances EGP 2.60bn + POS security deposits EGP 0.11bn at 31-Dec-2024) and "
+    "the income it earns (credit interest EGP 211.1m FY2022, 464.4m FY2023, 691.2m FY2024, "
+    "alongside T-bills of EGP 2.24bn). Modelled as a yield on the modelled float and T-bill "
+    "balances, kept out of operating value and handled in the equity bridge. The releases are "
+    "silent on it, which is what the negative search records.",
+    [f_bs, f_cost, f_neg_float, f_cbe])
 
 R.add_driver("Capex", DriverMode.TOP_DOWN,
     "No capital-expenditure figure or guidance exists in any company document. Set as a "
@@ -852,7 +957,7 @@ R.add_driver("VAT-exemption event", DriverMode.TOP_DOWN,
     "The draft law naming Fawry is Cabinet-approved and not enacted, so there is no "
     "company disclosure to build from. Carried as an explicit dated scenario, dual-framed, "
     "with the base case assuming NO enactment.",
-    [f_vat, f_neg_capital])
+    [f_vat, f_neg_vat])
 
 # ------------------------------------------------------------------------ OUTPUT
 errors, warnings = R.validate()
@@ -875,5 +980,6 @@ if warnings:
     print(f"\nwarnings ({len(warnings)}):")
     for w in warnings:
         print(f"  - {w}")
-fr = R.check_freshness(SWEEP_DATE)
-print(f"\nfreshness (delivery {SWEEP_DATE}): {fr or 'OK — sweep and delivery same day'}")
+DELIVERY_DATE = "2026-09-09"
+fr = R.check_freshness(DELIVERY_DATE)
+print(f"\nfreshness (delivery {DELIVERY_DATE}): {fr or 'OK — 1 calendar day between sweep and delivery, well inside the 14-day window'}")

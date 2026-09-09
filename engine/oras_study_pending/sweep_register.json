@@ -314,12 +314,27 @@
    "source_date": "2025-03-25",
    "detail": "ROUTE AND ERROR RECORDED IN FULL. Same pattern as F20: zero characters of text, one embedded image, pdftoppm -r 300 -gray then tesseract --psm 6 --oem 1. FY2023 foots in every block: 126.4 + 27.7 + 22.1 + 464.7 + 60.4 = 701.3; 248.8 + 1,281.1 + 737.8 + 0.4 + 696.6 = 2,964.7; 701.3 + 2,964.7 = 3,666.0; 110.2 + 467.3 - 421.7 + 533.3 = 689.1, + 22.3 = 711.4; 0.7 + 43.8 + 2.3 = 46.8; 249.1 + 1,391.8 + 841.6 + 345.4 + 41.0 + 38.9 = 2,907.8; 46.8 + 2,907.8 = 2,954.6; 711.4 + 2,954.6 = 3,666.0. THE ONE FIGURE THIS PAGE GOT WRONG WAS IN THE FY2024 COLUMN AND IT LOOKED PERFECT: 'Billing in excess of construction contracts' extracted as 955.6, a clean number in the right position. Current liabilities then came to 3,658.5 against a printed 3,258.5 \u2014 out by exactly 400.0. The true figure is 555.6, which makes the column foot and which the FY2025 filing's own comparative column prints on a separate OCR pass; a 5 was read as a 9. Independent confirmations of the FY2023 column against the text layer: loans and borrowings 0.7 + 249.1 = 249.8 and cash 696.6, exactly the FY2023 capital-management note; retained earnings 533.3, reserves (421.7) and NCI 22.3 all match the FY2025 filing's own 1-January-2024 opening balances; equity-accounted investees 464.7 matches note 10's opening for 2024.",
    "url": "https://orascom.com/wp-content/uploads/Audited-Financial-Statements-FY-2024.pdf",
-   "model_impact": "Extends the balance-sheet history to three consecutive audited year-ends (FY2023, FY2024, FY2025), which is what the working-capital driver needs: DSO, DIO, DPO, retention and advance ratios can now be computed across two full year-on-year moves rather than one. FY2022 balance-sheet detail remains the single open item.",
+   "model_impact": "Extends the balance-sheet history to three consecutive audited year-ends (FY2023, FY2024, FY2025), which is what the working-capital driver needs: DSO, DIO, DPO, retention and advance ratios can now be computed across two full year-on-year moves rather than one. The fourth year is added by F22 below.",
    "is_fs_data": true,
    "fiscal_period": "FY2023"
   },
   {
    "fid": "F22",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2022 balance sheet, completing all four audited year-ends: total assets USD 3,531.4m, total equity 691.3, total liabilities 2,840.1. Non-current assets 708.7 including equity-accounted investees 462.5; current assets 2,822.7 including cash 537.7, trade and other receivables 1,294.0 and contracts work in progress 742.5. Current liabilities 2,793.2 include loans and borrowings 212.0, advances 777.0 and billings in excess 298.4, with NIL non-current borrowings",
+   "source_name": "Orascom Construction PLC FY2023 audited consolidated financial statements, printed page 9 / PDF page 11 (signed 20 March 2024) \u2014 FY2022 comparative column",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-03-20",
+   "detail": "ROUTE: this page has no text layer and is assembled from 22 embedded images. THREE tesseract runs on it all produced zero-byte output \u2014 one inside a batch job that died, one standalone at 300dpi still unreturned after 50 minutes and terminated, one at 200dpi that exited 144 \u2014 so the page was rendered at 200dpi with pdftoppm and READ DIRECTLY OFF THE RENDERED PIXELS. That is a different recogniser on the same rendering step and is recorded as its own route, not described as OCR. NO FIGURE BELOW CAME FROM TESSERACT. Every block foots: 146.5 + 27.7 + 24.6 + 462.5 + 47.4 = 708.7; 247.6 + 1,294.0 + 742.5 + 0.9 + 537.7 = 2,822.7; 708.7 + 2,822.7 = 3,531.4; 116.8 + 480.2 - 377.5 + 432.2 = 651.7, + 39.6 = 691.3; 0 + 41.9 + 5.0 = 46.9; 212.0 + 1,438.4 + 777.0 + 298.4 + 31.5 + 35.9 = 2,793.2; 46.9 + 2,793.2 = 2,840.1; 691.3 + 2,840.1 = 3,531.4. It cross-ties to the FY2022 filing's own text layer (loans 212.0, cash 537.7, net cash (325.7), equity 691.3) and the FY2023 column on the same page reproduces the FY2024-page OCR figure for figure \u2014 a third independent reading of FY2023.",
+   "url": "https://orascom.com/wp-content/uploads/FY-2023-Audited-Financial-Statements.pdf",
+   "model_impact": "Completes the four-year balance-sheet history, so every working-capital ratio is computed across THREE year-on-year moves. It also surfaces the share-count step in F49: share capital of 116.8 here against 110.2 from FY2023 onward.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F23",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -334,7 +349,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F23",
+   "fid": "F24",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -349,7 +364,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F24",
+   "fid": "F25",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -364,7 +379,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F25",
+   "fid": "F26",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -379,7 +394,7 @@
    "fiscal_period": "Q2-2026"
   },
   {
-   "fid": "F26",
+   "fid": "F27",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -394,7 +409,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F27",
+   "fid": "F28",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -409,7 +424,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F28",
+   "fid": "F29",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -424,7 +439,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F29",
+   "fid": "F30",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -439,7 +454,7 @@
    "fiscal_period": "Q1-2026"
   },
   {
-   "fid": "F30",
+   "fid": "F31",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -454,7 +469,7 @@
    "fiscal_period": "Q2-2026"
   },
   {
-   "fid": "F31",
+   "fid": "F32",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -469,7 +484,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F32",
+   "fid": "F33",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -484,7 +499,7 @@
    "fiscal_period": "Q2-2026"
   },
   {
-   "fid": "F33",
+   "fid": "F34",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -499,7 +514,7 @@
    "fiscal_period": "Q1-2026"
   },
   {
-   "fid": "F34",
+   "fid": "F35",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -514,7 +529,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F35",
+   "fid": "F36",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -529,7 +544,7 @@
    "fiscal_period": "H1-2026"
   },
   {
-   "fid": "F36",
+   "fid": "F37",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -544,7 +559,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F37",
+   "fid": "F38",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "COLOR",
@@ -559,7 +574,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F38",
+   "fid": "F39",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -574,7 +589,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F39",
+   "fid": "F40",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -589,7 +604,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F40",
+   "fid": "F41",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "STRUCTURAL",
@@ -604,7 +619,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F41",
+   "fid": "F42",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "STRUCTURAL",
@@ -619,7 +634,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F42",
+   "fid": "F43",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "STRUCTURAL",
@@ -634,7 +649,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F43",
+   "fid": "F44",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "DRIVER_UNLOCK",
@@ -649,7 +664,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F44",
+   "fid": "F45",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "DRIVER_UNLOCK",
@@ -657,14 +672,14 @@
    "source_name": "FY2025 audited consolidated financial statements, notes 15, 24 and 21(ii)",
    "source_type": "COMPANY_OFFICIAL",
    "source_date": "2026-03-30",
-   "detail": "The cash-settled LTIP matters: it is a LIABILITY that grew USD 37.5m in FY2025, not a dilution. Share count is clean at 110,243,935 and is confirmed independently by the IR page's share-information block and by the circular.",
+   "detail": "The cash-settled LTIP matters: it is a LIABILITY that grew USD 37.5m in FY2025, not a dilution. Share count is clean at 110,243,935 and is confirmed independently by the IR page's share-information block and by the circular. BUT THE COUNT IS NOT CONSTANT ACROSS THE FOUR AUDITED YEARS, and the balance sheets are what show it: share capital was 116.8 at 31-Dec-2022 against 110.2 from 31-Dec-2023 onward, with share premium 480.2 falling to 467.3 over the same step. That is 6.6m shares of USD 1 nominal CANCELLED, and capital plus premium down 19.5 against the USD 19.6m June-2023 buyback in the company's own history table \u2014 a 0.1 difference that is rounding on figures presented to 0.1m, not a break. The buyback was a cancellation, not a treasury purchase.",
    "url": "",
-   "model_impact": "Fixes the denominator at 110,243,935 for the standalone case and 207,445,294 for the combination case. The LTIP is modelled as a cash cost inside employee benefit expense and NOT as share dilution \u2014 getting this the wrong way round would both overstate the share count and understate the cost.",
+   "model_impact": "Fixes the denominator at 110,243,935 for the standalone case and 207,445,294 for the combination case. The LTIP is modelled as a cash cost inside employee benefit expense and NOT as share dilution \u2014 getting this the wrong way round would both overstate the share count and understate the cost. AND ANY PER-SHARE HISTORY MUST USE THE YEAR'S OWN COUNT: FY2022 EPS is struck on roughly 116.8m shares, not on today's 110.2m, so a normalised per-share series built off a single count would overstate FY2022 by ~6%.",
    "is_fs_data": true,
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F45",
+   "fid": "F46",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "DRIVER_UNLOCK",
@@ -679,7 +694,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F46",
+   "fid": "F47",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "NEGATIVE_SEARCH",
@@ -694,7 +709,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F47",
+   "fid": "F48",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "STRUCTURAL",
@@ -709,7 +724,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F48",
+   "fid": "F49",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -724,7 +739,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F49",
+   "fid": "F50",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -739,7 +754,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F50",
+   "fid": "F51",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -754,7 +769,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F51",
+   "fid": "F52",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "NEGATIVE_SEARCH",
@@ -769,7 +784,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F52",
+   "fid": "F53",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "NEGATIVE_SEARCH",
@@ -784,7 +799,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F53",
+   "fid": "F54",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "NEGATIVE_SEARCH",
@@ -799,7 +814,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F54",
+   "fid": "F55",
    "ring": "INDUSTRY",
    "category": "pricing",
    "klass": "NEGATIVE_SEARCH",
@@ -814,7 +829,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F55",
+   "fid": "F56",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "NEGATIVE_SEARCH",
@@ -835,10 +850,10 @@
    "mode": "BOTTOM_UP",
    "justification": "Built from the disclosed MEA backlog of USD 6,915.3m at 30-Jun-2026, the disclosed MEA new awards of 2,067.2 in H1-2026, and the four years of audited MEA revenue (2,812.9 / 1,809.7 / 1,611.3 / 2,849.3) that calibrate the burn rate. The Egypt and other-MEA legs are split using the presentation's finer revenue geography (Egypt 36.2%, other MEA 14.2% of H1-2026 revenue), which the audited MENA/USA split does not give. The Egypt leg is capped by the public investment ceiling and the 31.9% government-customer concentration.",
    "sweep_refs": [
-    "F32",
+    "F33",
     "F16",
     "F19",
-    "F35",
+    "F36",
     "F10",
     "F09"
    ]
@@ -848,7 +863,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Built from the disclosed USA backlog of USD 3,963.7m at 30-Jun-2026 (+50.3% y/y), USA new awards of 2,762.6 in H1-2026, and four years of audited USA revenue (1,364.4 / 1,557.8 / 1,643.6 / 2,200.5). The award growth rate is sanity-checked against hyperscaler capex and the ENR rank move from #40 to #29 internationally with a new #8 in the USA; the CONVERSION rate is slowed for the grid and long-lead-equipment constraint rather than the award being cut.",
    "sweep_refs": [
-    "F32",
+    "F33",
     "F16",
     "F19",
     "F04",
@@ -861,8 +876,8 @@
    "mode": "BOTTOM_UP",
    "justification": "Note 21 discloses this line for four years (FY2025 USD 3,970.7m, 78.6% of revenue) and it ties exactly to cost of sales plus SG&A. Because progress is measured cost-to-cost, this line IS the percentage-of-completion input, so it is projected as cost incurred against the estimated total contract cost and escalated on its own index \u2014 with the Section 232 tariff schedule setting the USA leg's escalator separately from the MEA leg's.",
    "sweep_refs": [
-    "F22",
-    "F24",
+    "F23",
+    "F25",
     "F03"
    ]
   },
@@ -871,8 +886,8 @@
    "mode": "BOTTOM_UP",
    "justification": "The filing pairs USD 679.5m of employee benefit expense with 60,231 employees (56,119 a year earlier), split permanent/temporary and engineering/non-engineering, and splits the cost into wages, profit sharing, pension, social security and other. Cost per head is USD 11,282 in FY2025 against 10,460 in FY2024. Headcount is driven off the backlog; the rate is escalated on Egyptian and US wage inflation SEPARATELY, never on one blended index.",
    "sweep_refs": [
+    "F24",
     "F23",
-    "F22",
     "F06"
    ]
   },
@@ -881,7 +896,7 @@
    "mode": "BOTTOM_UP",
    "justification": "All four lines are disclosed by nature for four years and foot to the total (FY2025: 32.8 + 38.9 + 27.5 + 0.9 + 43.6). D&A is projected off the PP&E roll-forward and the disclosed investment in PP&E; the rest are projected on their own historic relationship to activity rather than folded into an overhead rate.",
    "sweep_refs": [
-    "F22",
+    "F23",
     "F16"
    ]
   },
@@ -890,11 +905,11 @@
    "mode": "BOTTOM_UP",
    "justification": "Gross margin is revenue less the built cost stack, full stop. The four audited years give 8.30% / 7.95% / 9.31% / 9.14% and the study year has printed 10.02% in Q1-2026 and 9.43% in Q2-2026 \u2014 a range wide enough that typing a margin in would decide the answer. The printed regional EBITDA margins (MEA 8.7%, USA 4.7% in H1-2026) are RECONCILIATION TARGETS the build has to reproduce, not inputs to it [Lessons Register L-005].",
    "sweep_refs": [
-    "F22",
+    "F23",
     "F16",
     "F19",
-    "F29",
     "F30",
+    "F31",
     "F12"
    ]
   },
@@ -903,7 +918,7 @@
    "mode": "BOTTOM_UP",
    "justification": "SG&A is not a separate cost pool in this issuer: note 21's expenses by nature covers cost of sales AND SG&A together and ties exactly. SG&A is therefore built as the residual of the same by-nature build (FY2025 205.6 on a 4,793.9 total) with its own labour and consultancy components, rather than as a percentage of revenue.",
    "sweep_refs": [
-    "F22",
+    "F23",
     "F16"
    ]
   },
@@ -912,9 +927,9 @@
    "mode": "TOP_DOWN",
    "justification": "TOP-DOWN BY NECESSITY AND THE GAP IS FLAGGED. The segment note stops at revenue, D&A, interest and profit before tax \u2014 it discloses NO cost of sales and NO gross profit by segment, and expenses by nature is group-wide only. The segment split is therefore allocated from the group cost stack using the disclosed regional EBITDA and PBT as the constraint, and the allocation is shown as an assumption rather than a disclosure. Dropping a level and saying so is the rule; going quiet about it is not.",
    "sweep_refs": [
-    "F51",
+    "F52",
     "F12",
-    "F32"
+    "F33"
    ]
   },
   {
@@ -922,9 +937,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Built from BESIX's OWN disclosed figures at 100% \u2014 construction revenue 4,849.6, construction cost (4,800.2), net profit 49.4, net assets 919.8 \u2014 taken at the disclosed 50.0%, with the standalone backlog of EUR 6,293.9m at 30-Jun-2026 driving the revenue path. BESIX's 1.02% construction margin is an order of magnitude below the parent's, so it is never blended into group margin, and its EUR 209.1m net cash sits outside the parent's net-cash line.",
    "sweep_refs": [
-    "F28",
-    "F32",
-    "F35"
+    "F29",
+    "F33",
+    "F36"
    ]
   },
   {
@@ -932,9 +947,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Every operational concession is disclosed with its capacity, ownership percentage, contract duration and its own H1-2026 revenue: Red Sea Wind 650 MW at 25% (USD 30.4m), Ras Ghareb 263 MW at 20% (20.7m), Orasqualia 250 m3/day at 50% (5.5m), plus Dammam ISTP and the Fayoum warehouse. Ras Shukheir 900 MW at 25% is modelled from its own PPA date and expected Q3-2026 financial close, not assumed into the base. Distributions received were USD 6.1m in H1-2026.",
    "sweep_refs": [
-    "F36",
-    "F28",
-    "F35"
+    "F37",
+    "F29",
+    "F36"
    ]
   },
   {
@@ -942,9 +957,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Each unit is disclosed with ownership, capacity and its own H1-2026 revenue at 100%: National Steel Fabrication (50k tons/year, USD 31.8m), Orascom Services (25.1m), Contrack FM (13.9m), Integrated Facade Solutions (11.4m), National Pipe (86 km/yr, 5.9m at 40%), Orascom Industrial Parks (15.5m sqm, 2.7m at 60.5%). Built per unit against capacity, with the segment's disclosed USD 8.0m H1-2026 net profit contribution as the check.",
    "sweep_refs": [
+    "F37",
     "F36",
-    "F35",
-    "F34"
+    "F35"
    ]
   },
   {
@@ -952,9 +967,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Kd is built from the named facilities in note 18 \u2014 six borrowers, USD 314.9m at FY2025 rising to 499.1m at 30-Jun-2026, 100% floating \u2014 at each borrower's own market rate, and NOT from interest expense over total current liabilities [Lessons Register L-002]. Treasury income is modelled on the disclosed cash of 1,230.1m plus the 139.4m reclassified to FVTPL. The disclosed sensitivity of USD 9.2m of PBT per 10% rate move is the calibration check.",
    "sweep_refs": [
-    "F26",
-    "F25",
     "F27",
+    "F26",
+    "F28",
     "F01"
    ]
   },
@@ -972,12 +987,13 @@
    "mode": "BOTTOM_UP",
    "justification": "Every component is disclosed. At 30-Jun-2026 receivables split into USD 1,079.4m accounts receivable, 333.0 retentions and 569.8 supplier and subcontractor advances, with 71% of gross trade receivables not yet due; payables into 583.8 trade, 1,043.8 accrued and 232.6 retentions payable; contract assets 745.5 against billings in excess 990.2 and customer advances 726.8. Three consecutive audited year-end balance sheets (FY2023, FY2024, FY2025) are now held, so the ratios are computed across two full year-on-year moves rather than asserted. Projected from DSO, retention and advance ratios off the revenue build, with no plug [SIGCM clause 4].",
    "sweep_refs": [
-    "F35",
-    "F24",
+    "F36",
+    "F25",
+    "F31",
     "F30",
-    "F29",
     "F20",
-    "F21"
+    "F21",
+    "F22"
    ]
   },
   {
@@ -985,9 +1001,9 @@
    "mode": "TOP_DOWN",
    "justification": "TOP-DOWN ON EVIDENCED ABSENCE. No forward capex plan, maintenance-capex disclosure or capital-commitments figure is published \u2014 only history (USD 52.3m FY2025, 75.1m FY2024, 50.9m H1-2026, plus associate contributions of 45.8m and 53.1m). Capex is therefore set as a percentage of revenue benchmarked to that history, split between maintenance and the named concession commitments, and sensitised.",
    "sweep_refs": [
-    "F49",
+    "F50",
     "F16",
-    "F36"
+    "F37"
    ]
   },
   {
@@ -995,9 +1011,9 @@
    "mode": "TOP_DOWN",
    "justification": "TOP-DOWN ON EVIDENCED ABSENCE. The company paid twice a year without a break from 2020 to August 2025 (USD 0.47 per share, 51.8m, in FY2025) and then stopped: the 13 May 2026 AGM notice and board resolution carry NO distribution resolution, the IR history table's last entry is August 2025, and H1-2026 paid nil against 24.2m in H1-2025. The pause is modelled explicitly through the OCI combination window rather than a payout ratio being extrapolated.",
    "sweep_refs": [
+    "F47",
     "F46",
-    "F45",
-    "F38"
+    "F39"
    ]
   },
   {
@@ -1005,9 +1021,10 @@
    "mode": "BOTTOM_UP",
    "justification": "Both cases come from the circular itself, not from an estimate: 110,243,935 shares standalone, and 207,445,294 after issuing 97,201,359 new shares at USD 1 nominal plus a USD 12.79 premium, with consideration shares at about 47% of the enlarged capital. The two cases are PUBLISHED SEPARATELY and dual-framed; the cash-settled LTIP adds no dilution to either.",
    "sweep_refs": [
-    "F38",
+    "F39",
+    "F45",
     "F44",
-    "F43"
+    "F22"
    ]
   },
   {
@@ -1015,9 +1032,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Disclosed on both sides. Revenue: 88.7% of backlog is foreign currency or FCY-pegged against 11.3% EGP, with 75.2% of the Egypt backlog itself in FCY. Debt: the note-18 borrower list gives the tranche domiciles and note 6.3 gives the EUR and EGP monetary positions and their sensitivities. FX-denominated debt is carried at its local-equivalent cost rather than a raw coupon [SIGCM clause 3], and the net EGP monetary SHORT is modelled as a gain on devaluation alongside the equity translation loss.",
    "sweep_refs": [
-    "F35",
+    "F36",
+    "F28",
     "F27",
-    "F26",
     "F02"
    ]
   },
@@ -1026,9 +1043,9 @@
    "mode": "BOTTOM_UP",
    "justification": "Calibrated from the disclosed backlog and award series against audited revenue: backlog 5.5 / 8.1 / 7.6 / 9.0 / 10.9 USD bn at FY2022 through H1-2026 and new awards 3.6 / 5.8 / 3.0 / 5.6 / 4.8, against audited revenue of 4,177.3 / 3,367.5 / 3,254.9 / 5,049.8. Current cover is 2.15 years and H1-2026 book-to-bill is 1.62x. The burn rate is solved per region, not group-wide, because MEA and USA convert at visibly different speeds.",
    "sweep_refs": [
-    "F32",
     "F33",
     "F34",
+    "F35",
     "F16",
     "F19"
    ]
@@ -1038,8 +1055,8 @@
    "mode": "BOTTOM_UP",
    "justification": "The build is USD-based to match the reporting currency and the 88.7% FCY backlog. Two disclosed corridors bracket it and are used as CROSS-CHECKS, never as inputs: management's own goodwill-test WACCs of 9.0% USA and 22.2% MENA with terminal growth of 2.1% and 5.1%, and the independent valuer BDO's OC-wide range of 14.6%-17.6% with 3.0% terminal growth used to strike the OCI exchange ratio. A study WACC outside that corridor has to be argued in the text.",
    "sweep_refs": [
-    "F31",
-    "F38",
+    "F32",
+    "F39",
     "F01"
    ]
   },
@@ -1048,8 +1065,8 @@
    "mode": "BOTTOM_UP",
    "justification": "The company's own filings and IR page establish which regressors are even eligible: ADX in AED (primary, ISIN AEE01702O253) and EGX in EGP (secondary, ISIN EGS95001C011). The series held in this repo, engine/raw_ohlc/EG/ORAS.csv, closes at 782.25 \u2014 the EGP magnitude, against the company's own simultaneous quotes of EGP 855.85 and AED 60.30 \u2014 so it is the EGX series and its conforming regressor is engine/raw_indices/EG/EGX30.csv. THE BETA ITSELF IS NOT COMPUTED HERE and must come from engine/beta_regression.own_stock_beta(); the build must also handle the Nasdaq-Dubai-to-ADX migration inside the window and the EGP's own move over it.",
    "sweep_refs": [
-    "F50",
-    "F41",
+    "F51",
+    "F42",
     "F02"
    ]
   }
@@ -1109,5 +1126,5 @@
   "Q1-2026",
   "Q2-2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [ORAS, 2026-09-08]: PASS \u2014 4/4 rings, 55 findings (2 B \u00b7 13 S \u00b7 30 D \u00b7 2 C \u00b7 8 NEG), driver gate 21 rows (18 bottom-up / 3 top-down) | primary access: attempted (8) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 12"
+ "qc_line": "QC(m) \u2014 Information Sweep [ORAS, 2026-09-08]: PASS \u2014 4/4 rings, 56 findings (2 B \u00b7 13 S \u00b7 31 D \u00b7 2 C \u00b7 8 NEG), driver gate 21 rows (18 bottom-up / 3 top-down) | primary access: attempted (8) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 12"
 }

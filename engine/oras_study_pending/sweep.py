@@ -86,16 +86,28 @@ Route recorded per document, not per company:
          have caught it.
     Every corrected value is confirmed on a second, independent route before it is
     used. Arithmetic is the arbiter, not the extractor's confidence.
-  * NOT OBTAINED, AND SAID SO. The FY2022 balance-sheet column — page 11 of the
-    FY2023 filing — was not read. Repeated OCR attempts were killed by this
-    environment's CPU contention (`Terminated` after 500s at 300dpi and again at
-    150dpi, with up to 20 unrelated tesseract processes resident), and the run that
-    finally cleared produced FY2024 and FY2023 only. FY2022 balance-sheet DETAIL is
-    therefore an OPEN ITEM, named in the final report rather than filled from
-    anywhere else. What IS held for FY2022, from the text layer of that filing's own
-    capital-management note and footing exactly: loans and borrowings 212.0, cash
-    537.7, net cash (325.7) and total equity 691.3 — plus the same four items for
-    FY2021 (64.1 / 505.7 / (441.6) / 688.6).
+  * A THIRD ROUTE, USED WHEN THE SECOND ONE STALLED, AND NAMED AS ITS OWN ROUTE.
+    The FY2022 column sits on page 11 of the FY2023 filing, a page assembled from 22
+    separate embedded images with no text layer. THREE tesseract runs were made on
+    that page and ALL THREE produced a zero-byte output file: one inside a batch job
+    that died, one standalone at 300dpi that was still unreturned after 50 minutes
+    and was terminated, and one at 200dpi that exited 144. (Separately, runs on the
+    FY2024 filing's page 11 were `Terminated` after 500s at 300dpi and again at
+    150dpi before a later 300dpi run finally cleared, with up to 20 unrelated
+    tesseract processes resident throughout.) The page was therefore rendered at
+    200dpi with pdftoppm and READ DIRECTLY OFF THE RENDERED PIXELS rather than
+    through tesseract. Same rendering step, different recogniser, and it is recorded
+    as such rather than described as OCR. EVERY BLOCK OF THE
+    FY2022 COLUMN FOOTS: non-current assets 708.7, current assets 2,822.7, total
+    assets 3,531.4, equity attributable 651.7 plus NCI 39.6 = 691.3, non-current
+    liabilities 46.9, current liabilities 2,793.2, total liabilities 2,840.1, total
+    equity and liabilities 3,531.4. It also cross-ties to that filing's own text
+    layer: nil non-current plus 212.0 current loans = the 212.0 in note 6.4, cash
+    537.7, net cash (325.7), total equity 691.3. And the FY2023 column on the same
+    page reproduces the FY2024-page OCR figure for figure — a THIRD independent
+    reading of FY2023.
+    ALL FOUR AUDITED BALANCE SHEETS ARE THEREFORE HELD: FY2022, FY2023, FY2024 and
+    FY2025, each footed, none substituted.
   * A HARMLESS EXTRACTOR WARNING, RECORDED SO IT IS NOT MISTAKEN FOR A DEFECT LATER:
     pdftotext emits "Syntax Warning: Invalid Font Weight" ~64 times on each of the
     FY2022/FY2023/FY2024 files. It did not corrupt any figure — every page used from
@@ -633,7 +645,40 @@ f_bs23 = R.add(
                  "year-ends (FY2023, FY2024, FY2025), which is what the working-"
                  "capital driver needs: DSO, DIO, DPO, retention and advance ratios "
                  "can now be computed across two full year-on-year moves rather than "
-                 "one. FY2022 balance-sheet detail remains the single open item.")
+                 "one. The fourth year is added by F22 below.")
+
+f_bs22 = R.add(
+    Ring.COMPANY, "official financial statements", D,
+    "FY2022 balance sheet, completing all four audited year-ends: total assets USD "
+    "3,531.4m, total equity 691.3, total liabilities 2,840.1. Non-current assets "
+    "708.7 including equity-accounted investees 462.5; current assets 2,822.7 "
+    "including cash 537.7, trade and other receivables 1,294.0 and contracts work in "
+    "progress 742.5. Current liabilities 2,793.2 include loans and borrowings 212.0, "
+    "advances 777.0 and billings in excess 298.4, with NIL non-current borrowings",
+    "Orascom Construction PLC FY2023 audited consolidated financial statements, "
+    "printed page 9 / PDF page 11 (signed 20 March 2024) — FY2022 comparative column",
+    CO, "2024-03-20", is_fs_data=True, fiscal_period="FY2022",
+    url="https://orascom.com/wp-content/uploads/FY-2023-Audited-Financial-Statements.pdf",
+    detail="ROUTE: this page has no text layer and is assembled from 22 embedded "
+           "images. THREE tesseract runs on it all produced zero-byte output — one "
+           "inside a batch job that died, one standalone at 300dpi still unreturned "
+           "after 50 minutes and terminated, one at 200dpi that exited 144 — so the "
+           "page was rendered at 200dpi with pdftoppm and READ DIRECTLY OFF THE "
+           "RENDERED PIXELS. That is a different recogniser on the same rendering "
+           "step and is recorded as its own route, not described as OCR. NO FIGURE "
+           "BELOW CAME FROM TESSERACT. Every block foots: "
+           "146.5 + 27.7 + 24.6 + 462.5 + 47.4 = 708.7; 247.6 + 1,294.0 + 742.5 + "
+           "0.9 + 537.7 = 2,822.7; 708.7 + 2,822.7 = 3,531.4; 116.8 + 480.2 - 377.5 "
+           "+ 432.2 = 651.7, + 39.6 = 691.3; 0 + 41.9 + 5.0 = 46.9; 212.0 + 1,438.4 "
+           "+ 777.0 + 298.4 + 31.5 + 35.9 = 2,793.2; 46.9 + 2,793.2 = 2,840.1; "
+           "691.3 + 2,840.1 = 3,531.4. It cross-ties to the FY2022 filing's own text "
+           "layer (loans 212.0, cash 537.7, net cash (325.7), equity 691.3) and the "
+           "FY2023 column on the same page reproduces the FY2024-page OCR figure for "
+           "figure — a third independent reading of FY2023.",
+    model_impact="Completes the four-year balance-sheet history, so every working-"
+                 "capital ratio is computed across THREE year-on-year moves. It also "
+                 "surfaces the share-count step in F49: share capital of 116.8 here "
+                 "against 110.2 from FY2023 onward.")
 
 # ---- regular disclosures ---------------------------------------------------
 f_cost = R.add(
@@ -1153,12 +1198,22 @@ f_cap = R.add(
     detail="The cash-settled LTIP matters: it is a LIABILITY that grew USD 37.5m in "
            "FY2025, not a dilution. Share count is clean at 110,243,935 and is "
            "confirmed independently by the IR page's share-information block and by "
-           "the circular.",
+           "the circular. BUT THE COUNT IS NOT CONSTANT ACROSS THE FOUR AUDITED "
+           "YEARS, and the balance sheets are what show it: share capital was 116.8 "
+           "at 31-Dec-2022 against 110.2 from 31-Dec-2023 onward, with share premium "
+           "480.2 falling to 467.3 over the same step. That is 6.6m shares of USD 1 "
+           "nominal CANCELLED, and capital plus premium down 19.5 against the USD "
+           "19.6m June-2023 buyback in the company's own history table — a 0.1 "
+           "difference that is rounding on figures presented to 0.1m, not a break. "
+           "The buyback was a cancellation, not a treasury purchase.",
     model_impact="Fixes the denominator at 110,243,935 for the standalone case and "
                  "207,445,294 for the combination case. The LTIP is modelled as a "
                  "cash cost inside employee benefit expense and NOT as share "
                  "dilution — getting this the wrong way round would both overstate "
-                 "the share count and understate the cost.")
+                 "the share count and understate the cost. AND ANY PER-SHARE HISTORY "
+                 "MUST USE THE YEAR'S OWN COUNT: FY2022 EPS is struck on roughly "
+                 "116.8m shares, not on today's 110.2m, so a normalised per-share "
+                 "series built off a single count would overstate FY2022 by ~6%.")
 
 f_div = R.add(
     Ring.COMPANY, "management & capital actions", D,
@@ -1495,7 +1550,7 @@ R.add_driver(
     "FY2025) are now held, so the ratios are computed across two full year-on-year "
     "moves rather than asserted. Projected from DSO, retention and advance ratios "
     "off the revenue build, with no plug [SIGCM clause 4].",
-    [f_deck, f_poc, f_h1, f_q1, f_bs25, f_bs23])
+    [f_deck, f_poc, f_h1, f_q1, f_bs25, f_bs23, f_bs22])
 
 R.add_driver(
     "Capital expenditure",
@@ -1527,7 +1582,7 @@ R.add_driver(
     "nominal plus a USD 12.79 premium, with consideration shares at about 47% of the "
     "enlarged capital. The two cases are PUBLISHED SEPARATELY and dual-framed; the "
     "cash-settled LTIP adds no dilution to either.",
-    [f_oci, f_cap, f_reg])
+    [f_oci, f_cap, f_reg, f_bs22])
 
 R.add_driver(
     "Currency mix of revenue and of debt",
