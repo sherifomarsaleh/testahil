@@ -93,6 +93,13 @@ def _sandbox():
     if os.path.exists(rat):
         shutil.copy(rat, os.path.join(eng, "build_depth_audit"))
     shutil.copy(os.path.join(SRC_ENGINE, "range_disclosure.py"), eng)
+    # THE SANDBOX MUST REPRODUCE EVERY PIECE OF STATE THE GATE READS. Since
+    # [R-FCAL-01 §6 AMENDED 09-09-2026] the gate consults calibration_only.declared(),
+    # so the module and each run's declaration are part of the fixture. Without them
+    # a declared run reads as no_study in here and three CLEAN cases fire on a
+    # condition the book is not in — the control failing for a reason that is about
+    # the harness rather than the gate.
+    shutil.copy(os.path.join(SRC_ENGINE, "calibration_only.py"), eng)
     open(os.path.join(eng, "__init__.py"), "w").close()
     missing_study = []
     for run in sorted(glob.glob(os.path.join(SRC_ENGINE, "*_walkforward"))):
@@ -102,6 +109,9 @@ def _sandbox():
         os.makedirs(os.path.join(eng, os.path.basename(run)))
         open(os.path.join(eng, os.path.basename(run), "forward_ranges.json"),
              "w").write("{}")
+        _decl = os.path.join(run, "CALIBRATION_ONLY.json")
+        if os.path.exists(_decl):
+            shutil.copy(_decl, os.path.join(eng, os.path.basename(run)))
         src = os.path.join(SRC_ENGINE, "%s_study" % tk)
         dst = os.path.join(eng, "%s_study" % tk)
         # A RUN WITH NO STUDY DIRECTORY IS A REAL STATE AND THE SANDBOX MUST REPRODUCE IT,

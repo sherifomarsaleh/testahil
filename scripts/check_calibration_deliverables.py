@@ -44,6 +44,9 @@ import glob
 import json
 import os
 import re
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine'))
+import calibration_only as _cal            # [R-FCAL-01 §6 AMENDED]
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -185,6 +188,12 @@ def main(argv):
     stale = [tk for tk in outstanding if tk not in found]
     ok, failed = [], {}
     for tk in sorted(found):
+        # [R-FCAL-01 §6 AMENDED 09-09-2026] — a run that DECLARES it struck no fair
+        # value ships no edition to be complete, so there is nothing here to check.
+        # Only a declaration is honoured; a run merely missing its study still fails.
+        _ok, _why = _cal.declared(tk)
+        if _ok:
+            continue
         sdir = os.path.join(engine, "%s_study" % tk.lower())
         bad, dates = check_study(sdir)
         if bad:

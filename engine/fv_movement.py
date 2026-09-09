@@ -26,6 +26,9 @@ JSON and is never hand-edited.
 
 import json
 import os
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import calibration_only as _cal            # [R-FCAL-01 §6 AMENDED]
 import sys
 from datetime import date
 
@@ -319,8 +322,17 @@ def check():
                          'baseline — its old fair value may already be '
                          'unrecoverable' % tk)
         elif not e['editions']:
-            fails.append('%s has a baseline and a run but no delivered fair '
-                         'value recorded' % tk)
+            # A RUN MAY DECLARE THAT IT STRUCK NOTHING [R-FCAL-01 §6 AMENDED
+            # 09-09-2026]. Only a DECLARATION is read — silence still fails, exactly
+            # as before, and the exemption is refused to any name whose study already
+            # publishes a central. The rule was amended because it required an
+            # "UPDATED" analysis from a run with nothing to update; the gate was right
+            # and is not widened here, it is told where to look [R-COC-01].
+            ok, why = _cal.declared(tk)
+            if not ok:
+                fails.append('%s has a baseline and a run but no delivered fair '
+                             'value recorded, and no calibration-only declaration '
+                             '(%s)' % (tk, why))
     for tk in sorted(d['entries']):
         if tk not in runs:
             fails.append('%s carries a record with no walk-forward run '

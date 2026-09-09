@@ -1,0 +1,21 @@
+{
+ "ticker": "ABUK",
+ "declared_on": "2026-09-09",
+ "rule": "[R-FCAL-01 §6 AMENDED 09-09-2026]",
+ "struck_no_fair_value": true,
+ "why": "ABUK carries NO current-standard study. It is campaign entry #11 and the first EGX name beyond the ten that criterion 3 scores, so there was no delivered fundamental analysis for this run to UPDATE — which is the word §6 uses, and the gap the amendment closes. The published fair{bear 50, base 60, full 72} on the live site came from no current-standard study at all and is untouched by this run.",
+ "produced": [
+  "PRE_REGISTRATION_09-09-2026.md — scope FULL, origins FY2019..FY2024, horizons 1-5, committed before any score",
+  "panel.json — eleven complete fiscal years, FY-Jun-2015 to FY-Jun-2025",
+  "valuation_inputs.json — six origins, per [R-FCAL-01 AMENDED]",
+  "scores.json — 20 scoreable cells per driver, scored against both naive benchmarks",
+  "TRAINING_RECORD_09-09-2026.md",
+  "MACRO_DECOMPOSITION_09-09-2026.md — the revenue error decomposed to machine precision",
+  "BASIS_BREAKS_09-09-2026.md",
+  "lessons_draft.json — 17 drafts, all scope-ruled",
+  "beta_result.json — 0.646309 via own_stock_beta('ABUK','EG','EGX'), the published index of the exchange it is listed on"
+ ],
+ "still_owed": "The study document (.docx) and the Excel model, per the principal's condition of 09-09-2026: 'we need a study in docx and the model in excel format as well.' What this declaration exempts is the STRUCK FAIR VALUE, never the work product. This entry does not excuse those two deliverables and must not be read as doing so.",
+ "self_reported_by_the_run": "TRAINING_RECORD_09-09-2026.md section 13 already says this in prose — 'The delivered valuation study — Document 1 of [R-FCAL-01] §6 — is NOT built ... no fair value has been struck.' This file makes that declaration machine-readable; it invents no new claim.",
+ "the_finding_this_run_exists_for": "Nine of ten completed runs under-forecast revenue, two-sided sign test p=0.0215, mean -0.2995 log across 280 cells and six industries. Substituting the actual exchange rate ALONE takes this run's revenue bias from -0.469 to -0.001. Every origin holds FX at its origin-dated value because that is the only thing knowable there — defensible, and a systematic downward lean in a currency that stepped three times in six years. That is a property of the METHOD and not of Abu Qir, which is why this run earns its place without striking a value."
+}

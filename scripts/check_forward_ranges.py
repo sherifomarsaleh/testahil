@@ -74,6 +74,8 @@ ENGINE = os.path.join(ROOT, 'engine')
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'forward_ranges_outstanding.json')
 
 from engine import range_disclosure as RD          # noqa: E402
+sys.path.insert(0, os.path.join(ROOT, 'engine'))
+import calibration_only as _cal                    # noqa: E402  [R-FCAL-01 §6]
 
 STUDY_DOC = re.compile(r'valuation[_ ]study.*\.docx$', re.I)
 DATE = re.compile(r'(\d{2})-(\d{2})-(\d{4})')
@@ -122,7 +124,14 @@ def census():
         tk = os.path.basename(run)[:-len('_walkforward')].upper()
         study_dir = os.path.join(ENGINE, '%s_study' % tk.lower())
         if not os.path.isdir(study_dir):
-            rows.append(dict(ticker=tk, state='no_study'))
+            # [R-FCAL-01 §6 AMENDED 09-09-2026] — a run that DECLARES it struck no fair
+            # value publishes no study, so it prints no far-year range and owes none.
+            # A declaration is required: a run merely missing its study is still
+            # no_study, and no_study is still a failure [R-ENF-04].
+            _ok, _why = _cal.declared(tk)
+            rows.append(dict(ticker=tk,
+                             state='calibration_only' if _ok else 'no_study',
+                             why=None if _ok else _why))
             continue
         doc = latest_study(study_dir)
         if not doc:
@@ -173,6 +182,14 @@ def main(argv):
     breaching = []
     for r in sorted(rows, key=lambda r: r['ticker']):
         tk = r['ticker']
+        # A DECLARED CALIBRATION-ONLY RUN PUBLISHES NO STUDY AND OWES NO PRINTED RANGE
+        # [R-FCAL-01 §6 AMENDED 09-09-2026]. It is reported rather than hidden, so the
+        # population stays visible and a reader can see the run was examined — an
+        # exemption nobody can count is the shape [R-ENF-02] refuses.
+        if r['state'] == 'calibration_only':
+            print('    %-8s calibration-only — declared, strikes no fair value, so it '
+                  'publishes no study and owes no printed range' % tk)
+            continue
         if r['state'] == 'read' and r['shapes']:
             print('    %-8s prints a far-year range   shape %s   (%s)'
                   % (tk, '+'.join(r['shapes']), r['doc'][:44]))

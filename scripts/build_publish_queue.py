@@ -17,6 +17,8 @@ staging early is that the batch publication is mechanical when it comes.
     python3 scripts/build_publish_queue.py --check    verify only, no writes
 """
 import argparse, glob, json, os, re, shutil, subprocess, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "engine"))
+import calibration_only as _cal            # [R-FCAL-01 §6 AMENDED]
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENGINE = os.path.join(ROOT, 'engine')
@@ -126,8 +128,15 @@ def build(check_only=False):
     for t, run in calibrated():
         sd = study_dir(t)
         if not os.path.isdir(sd):
-            problems.append('%s: a walk-forward ran but there is no %s_study directory'
-                            % (t, t.lower()))
+            # [R-FCAL-01 §6 AMENDED 09-09-2026] — a calibration-only run strikes no fair
+            # value and therefore stages nothing. Only a DECLARATION is honoured; a run
+            # that is merely missing its study still refuses, as it did before.
+            ok, why = _cal.declared(t)
+            if ok:
+                continue
+            problems.append('%s: a walk-forward ran but there is no %s_study directory, '
+                            'and no calibration-only declaration (%s)'
+                            % (t, t.lower(), why))
             continue
         report = newest_of(sd, STUDY_PDF)
         book = newest_of(sd, MODEL_XLSX)

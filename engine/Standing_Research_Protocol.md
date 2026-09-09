@@ -1804,6 +1804,89 @@ panel, the error tables and the pre-registration are INTERNAL and never shown to
 reader; the two documents above are the deliverables. Nothing reaches the live site
 without a separate explicit publish request.
 
+### [R-FCAL-01 §6 AMENDED 09-Sep-2026] A calibration run on a name with no study may strike no fair value, and has to declare that it struck none (09-Sep-2026, per instruction — "i agree with you but in this case we need a study in docx and the model in excel format as well")
+
+**YOU CANNOT UPDATE WHAT DOES NOT EXIST.** The section above names Document 1 as the
+UPDATED fundamental analysis, and that word was written when every run had a delivered
+study behind it. The campaign runs this walk-forward across the whole book, and most
+covered names carry no current-standard study at all, so on those names the rule as
+written asks for an update of nothing. THIS IS A GAP RATHER THAN A WEAKENING: the case
+was never contemplated, not decided the other way, and ABUK is the first name to reach it
+rather than the last.
+
+**THE AMENDMENT.** A campaign walk-forward on a name with NO current-standard study may be
+CALIBRATION-ONLY. It still produces the lessons register, its own run records, the study
+document (.docx) and the Excel model. What it need not do is STRIKE A FAIR VALUE. Three
+conditions bind it, and each one is part of the rule rather than a note about it:
+
+1. **THE RUN DECLARES, MACHINE-READABLY, THAT IT STRUCK NOTHING.** A `CALIBRATION_ONLY.json`
+   in the run's own directory, carrying its ticker, the date declared, `struck_no_fair_value`,
+   why the name has no study to update, and what the run did produce.
+   **SILENCE IS NOT A DECLARATION.** A run that simply omits a fair value and says nothing
+   is unfinished exactly as it was before this amendment — the exemption is the declaration,
+   and nothing else is the exemption.
+
+2. **THE EXEMPTION IS UNAVAILABLE TO ANY NAME THAT ALREADY HAS A CURRENT-STANDARD STUDY.**
+   There the rule binds unchanged: the analysis is an update and must be one. The test is
+   keyed on the STRUCK VALUE and not on a directory, and the difference is the whole of it —
+   a study directory appears the moment the docx and the workbook are built, while the run
+   still, correctly, strikes nothing. So what is read is whether the study publishes a
+   central. A name that strikes a fair value may not quietly drop it behind this clause.
+
+3. **THE DELIVERABLE STANDARD IS NOT REDUCED.** Per the instruction this amendment was
+   written from, the docx and the Excel model are owed on a calibration-only run exactly as
+   on any other, and so are the bibliography and the QC gate that go with them.
+   **WHAT IS OPTIONAL IS THE STRUCK VALUE, NEVER THE WORK.**
+
+**WHY, AND IT IS THE PURPOSE OF THE EXERCISE RATHER THAN A CONVENIENCE.** Fundamental
+calibration exists to test the METHOD against a company's own history. It does not exist to
+generate reports. Requiring a struck fair value out of every calibration run inverts that —
+it makes the report the output and the measurement the by-product — and it collides head-on
+with the standing instruction of 08-09-2026 not to issue new reports while the framework is
+being finished. A rule that forces a study to be issued in order to measure a method is a
+rule that will be worked around, and a worked-around rule teaches nothing.
+
+**THE GATES WERE RIGHT, WHICH IS WHY THE RULE MOVED AND NOT THEM.** On 09-Sep-2026 five
+gates went red on ABUK on one fact — a run with no struck value behind it: the campaign
+queue and the fair-value register, the staged publish queue,
+`scripts/check_calibration_deliverables.py`, `scripts/check_forward_ranges.py` and
+`scripts/check_forward_ranges_negative_control.py`. Every one of them was reading the rule
+correctly, so widening or waiving any of them would have bought a green board by making the
+gates worse. Per [R-COC-01]'s lesson a red gate is RE-POINTED at what it should have been
+reading, never widened; here the thing that needed re-pointing was the rule itself, and the
+gates now read a declaration instead of an absence.
+
+**THE RUN HAD ALREADY SAID SO IN PROSE, WHERE NO GATE COULD READ IT.**
+`engine/abuk_walkforward/TRAINING_RECORD_09-09-2026.md` section 13 states in terms that
+Document 1 is not built and that no fair value has been struck. This amendment invents no
+new claim; it moves an honest statement the run had already made out of prose and into a
+form a gate can read. THAT IS THE GENERAL SHAPE: a run that tells the truth in a paragraph
+and a run that hides an omission are indistinguishable to every check in this repository,
+and the fix is never to trust the paragraph.
+
+**WHAT THIS DELIBERATELY DOES NOT CHANGE.** Document 2, the lessons register, is owed in
+full and is not touched by any of this. The scope decision, the pre-registration, the
+point-in-time discipline, the two naive benchmarks and every scoring requirement above are
+untouched. The internal-record rule stands — the training record, the panel, the error
+tables and the pre-registration are still never shown to a reader — and nothing reaches the
+live site without a separate explicit publish request. Nor is any published `fair{}` moved
+by a declaration: a name declaring calibration-only leaves whatever the site already carries
+exactly where it stood, and where that baseline came from no current-standard study the
+movement column measures a new study against a number of unknown provenance, which is said
+wherever the column is quoted. And `research_protocol.STANDARD_VERSION` is NOT bumped: the
+declaration is an artefact of a walk-forward RUN, not of a delivered study, it adds nothing
+a delivered study must carry and it moves no delivered number.
+
+**Enforced from outside, per [R-ENF-01].** `engine/calibration_only.py` holds the rule —
+`declared(ticker)` returns a PAIR and refuses on a missing file, an unparseable file, a
+missing field, a declaration that does not assert `struck_no_fair_value`, a study whose
+numbers file will not parse, or a name that already publishes a central; `all_declared()`
+names every run directory that is not properly declared. `engine/fv_movement.py`'s `check()`
+reads it rather than trusting a boolean. Re-check the wiring against the repository rather
+than against this sentence: `python3 engine/fv_movement.py check`, and
+`grep -rln calibration_only engine scripts` names every gate that reads the declaration
+[R-DOC-02].
+
 ### The honest limits, stated in the rule rather than discovered later
 
 **THIS METHOD IS NOT YET VALIDATED, AND THE PROTOCOL SAYS SO.** As at adoption, one
