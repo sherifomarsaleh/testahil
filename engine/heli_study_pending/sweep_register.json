@@ -1,0 +1,886 @@
+{
+ "ticker": "HELI",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-09-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "EGP/USD 50.9786 buy / 51.0786 sell at the CBE's own published average market rate, 08-Sep-2026 \u2014 a pound that has been broadly stable through 2026 rather than sliding",
+   "source_name": "Central Bank of Egypt \u2014 Exchange Rates (Average Market Rate in EGP), page dated 08 Sep 2026",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-09-08",
+   "detail": "Read direct from the CBE with a browser user agent. Euro 59.1810/59.4350, Saudi riyal 13.5747/13.6017, UAE dirham 13.8793/13.9080 on the same table.",
+   "url": "https://www.cbe.org.eg/en/economic-research/statistics/exchange-rates",
+   "model_impact": "DRIVER UNLOCK for the currency frame: a stable EGP is what allows the Gulf-partner and USD-referenced land-value commentary to be compared with EGP contract minimums without an implicit devaluation assumption. Sets the FX line of any USD cross-check and the sensitivity axis.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Egyptian construction costs kept rising through H1-2026 on imported inputs, reduced energy subsidies and restrictive financing; FX, domestic liquidity and GDP are the strongest drivers of local material prices, not the CPI",
+   "source_name": "Gleeds Egypt Construction Market Report Q1/Q2 2026; Emerald/SASBE vector-autoregression study of Egyptian construction material prices (steel, cement, bricks, gypsum board, ceramic tiles)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-06-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the direction of the self-development cost line: build cost per sqm rises with FX and energy reform and does not deflate with headline inflation. On the partnership model this pressure sits with the PARTNER developer, which is the mechanism that makes HELI's disclosed gross margin structurally higher than a self-building peer's.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "Gulf capital is rotating from outright acquisitions into revenue-share partnerships with Egyptian landowners \u2014 an estimated USD 35-40bn of Gulf-linked projects live in 2026, Qatari Diar launching phase one of a USD 30bn Egyptian development and transferring USD 3.5bn to the state in late 2025",
+   "source_name": "Ahram Online, 'Egypt's real estate market shifts from Gulf acquisitions to strategic partnerships'; AGBI, 'Qatari Diar launches phase one of $30bn Egypt development'; Arabian Business on 2026 Gulf inflows",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "This is the demand side of HELI's entire business model. The company monetises land by contracting it to developers for a revenue share, so partner appetite IS the driver of new contract signings. Sets the probability and pace of further partnership announcements in the explicit window, and the bear case if that appetite cools.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "COLOR",
+   "headline": "Regional geopolitics and Red Sea shipping disruption continued to lengthen and price up imported construction inputs into Egypt in H1-2026; Suez activity remains a drag on the national accounts even as non-oil manufacturing and tourism offset it",
+   "source_name": "Gleeds Egypt Construction Market Report Q1/Q2 2026; IMF commentary relayed by Ahram Online and Amwal Al Ghad on the 2026 growth upgrade",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-07-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "CBE overnight deposit rate 19.00% and overnight lending rate 20.00%, effective from 15 Feb 2026, page last updated 12 Feb 2026 \u2014 no change published since",
+   "source_name": "Central Bank of Egypt \u2014 Overnight Deposit and Lending Rate",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-02-12",
+   "detail": "Read direct from the CBE with a browser user agent; the page prints both its 'Last Updated' and 'Effective from' dates, which is why both are carried.",
+   "url": "https://www.cbe.org.eg/en/economic-research/statistics/overnight-deposit-and-lending-rate",
+   "model_impact": "DRIVER UNLOCK: fixes the explicit-window local-currency risk-free anchor at the CBE's published corridor rather than at a vendor's number, and dates it. Any Ke or Kd build in a later study starts here.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "The CBE's own inflation target for Q4-2026 is 7% (+/- 2pp); the Bank paused its easing cycle in 2026 after inflation fell to 11.9% in January 2026, and the IMF lifted Egypt's 2026 growth forecast to 4.6% in its July-2026 WEO update",
+   "source_name": "Central Bank of Egypt \u2014 Inflation page (last updated 10 Aug 2026) for the framework and target; IMF July-2026 WEO update relayed by Amwal Al Ghad and Arab Finance for growth",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-10",
+   "detail": "",
+   "url": "https://www.cbe.org.eg/en/monetary-policy/inflation",
+   "model_impact": "Sets the TERMINAL risk-free build: the norm is constructed off the CBE's own published medium-term target plus an EM real-rate convention, never off a historical average and never off a spot yield. Also sets the direction of the discount-rate glide.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "The FRA amended Decision 179/2025 to ease developer-to-REIT conversion: a single test of net equity of at least EGP 500m per the latest approved statements replaces the old twin test, with borrowing capped at 60% of fund NAV; separately the housing ministry is drafting a real-estate development governance law and an Egyptian Federation of Developers that would license and grade developers, and broker registration was made compulsory by Ministerial Decision 578/2025 (published in Al-Waqa'i Al-Masriya on 17-Jan-2026)",
+   "source_name": "Ahram Online on the FRA board amendment; Daily News Egypt, 'Egypt drafts new real estate governance law, plans unified body for developers' (24-May-2026); Shalakany Law Office and Property Finder on Ministerial Decision 578/2025",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-05-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "Two live channels. (1) A REIT-conversion route is a real alternative monetisation of a land bank and belongs in the optionality discussion rather than the base case. (2) Developer licensing and grading raises the barrier for the small partners HELI contracts with, which concentrates future partnership tenders on the large names it has already signed \u2014 supports contract continuity, narrows partner choice.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "The Ministry of Public Business Sector reported EGP 126bn of revenue across its companies, up about 20%, and roughly EGP 24bn of net profit in FY2024-25, and presents asset monetisation as policy; separately the housing ministry is offering 10,000 feddans of serviced land to individuals under the 'Maskan' programme in 2026",
+   "source_name": "Ministry of Public Business Sector year review, republished by the company itself in its own media centre; Al Arabiya on the 10,000-feddan land offering",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-01-31",
+   "detail": "Carried as company-official because the company republished the ministry review on its own site; the underlying claims are the ministry's.",
+   "url": "http://misr-algadida.com/media/33",
+   "model_impact": "Sets the policy backdrop for the controlling shareholder's intentions: asset monetisation is the stated objective of HELI's owner, which is the political mechanism behind the partnership programme. The state's own serviced-land offerings are simultaneously the competing supply into the same buyer pool \u2014 carried as a cap on land-price escalation.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "STRUCTURAL",
+   "headline": "Around 221,000 residential units across 139 projects are on the market in Cairo, apartments 66% of supply and 51% of stock sold unfinished; the Egyptian residential market is put at USD 9.81bn in 2025 rising to USD 10.71bn in 2026, a 9.09% CAGR to 2031",
+   "source_name": "Mordor Intelligence \u2014 Residential Real Estate Market in Egypt; corroborated on the supply count by Sands of Wealth's 2026 market analysis",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-06-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the absorption assumption behind HELI's partner developers' revenue, which is what the guaranteed-minimum contracts are struck against. A supply glut is the mechanism by which a partner falls back on the minimum rather than the share \u2014 the single most important sensitivity on the partnership revenue driver.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "Egyptian residential prices are expected up roughly 10-18% in nominal EGP over the next twelve months, with Mostakbal City 15-22%, New Zayed 14-20% and Ras El Hekma 16-25% at the top of the range \u2014 i.e. nominal escalation broadly at or a little below inflation, not the 2023-24 step-change",
+   "source_name": "Sands of Wealth, 'Property Price Forecasts Egypt (2026)'; Buildex market report on New Cairo / NAC / Zayed pricing",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-07-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the price leg of any volume x price build for self-developed units and the escalation applied to partner revenue above the guaranteed minimum. Nominal escalation below the discount rate is what makes the guaranteed minimums, not the share, the binding case in the bear scenario.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "STRUCTURAL",
+   "headline": "Named new capacity entering HELI's own catchment: Qatari Diar at Alam El-Roum, VIE Communities (Egyptian-Emirati) with over EGP 150bn of mixed-use in New Cairo and the North Coast, and PARAGON with Saudi Arabia's ADEER on 'Sumou Boulevard' in Mostakbal City at about EGP 70bn",
+   "source_name": "Arabian Business and Ahram Online on 2026 Gulf-linked project pipeline; AGBI on Qatari Diar",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-31",
+   "detail": "",
+   "url": "",
+   "model_impact": "These are the alternatives HELI's future partners can take their capital to. Sets the competitive tension in the terms of the NEXT partnership contract \u2014 the revenue-share percentage and the guaranteed minimum \u2014 rather than the ones already signed.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: 'Egypt real estate technology substitution modular construction prefab proptech disrupting developers 2026', '\u0628\u062f\u0627\u0626\u0644 \u062a\u0643\u0646\u0648\u0644\u0648\u062c\u064a\u0629 \u0627\u0644\u062a\u0637\u0648\u064a\u0631 \u0627\u0644\u0639\u0642\u0627\u0631\u064a \u0645\u0635\u0631 2026', and the construction-materials and residential-market reports above for any substitution threat to conventional developed-plot housing. Nothing found. The land-monetisation model HELI runs is a legal and planning construct, not a technology; the live technology questions in the reports are BIM, digital sales channels and the e& Business smart-city agreement HELI itself signed, all of which are cost or service items rather than demand substitution)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "STRUCTURAL",
+   "headline": "Named EGX peers posted the same 2026 step-change and are simultaneously HELI's counterparties: Madinet Masr is both a listed competitor and HELI's 491-feddan partner and was buying 411,200 treasury shares on 30-Aug-2026 while reporting H1-2026 infrastructure spend of EGP 3.5bn; Cairo Housing multiplied H1-2026 profit 13.5x (+1,249%); SODIC has been HELI's partner on 655 feddans since 2016",
+   "source_name": "Al Borsa News (30-Aug-2026 treasury purchase; 09-Aug-2026 infrastructure spend; 20-Aug-2026 Cairo Housing H1-2026); the company's own partnerships page for the SODIC and Madinet Masr relationships",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-30",
+   "detail": "",
+   "url": "",
+   "model_impact": "Fixes the relative-multiple peer set AND flags that the peer set is contaminated: two of the closest comparables are counterparties whose own results embed the other side of HELI's contracts. Any multiple lens must be applied to normalised earnings and must say which peers are counterparties.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "CEO statement 02-Aug-2026: the company targets ~30% ANNUAL PROFIT GROWTH across 2026 and 2027, has contracted about 2,500 feddans in New Heliopolis to partner developers over the last three years, still owns about 700 feddans inside the city, and holds a developable land portfolio of about 1,450 feddans, roughly 70% of which is monetised through partnerships and 30% self-developed",
+   "source_name": "Company statement by Managing Director & CEO Dr Sameh El Sayed, relayed by Masrawy, '\u0645\u0635\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u0644\u0644\u0625\u0633\u0643\u0627\u0646 \u062a\u0633\u062a\u0647\u062f\u0641 \u0646\u0645\u0648 \u0627\u0644\u0623\u0631\u0628\u0627\u062d 30% \u0633\u0646\u0648\u064a\u064b\u0627 \u062e\u0644\u0627\u0644 2026 \u06482027'",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-02",
+   "detail": "PROVENANCE FLAG: this is the company's own statement reaching the register through the press because the company's own IR channel could not serve it. The 30% growth target and every land figure in it must be re-sourced from the company's filing or release before any of it is modelled. ARITHMETIC CHECK PERFORMED: ~700 feddans retained in New Heliopolis plus the ~766 feddans acquired at Hadayek El Asema equals ~1,466, which reconciles to the stated ~1,450 developable feddans within rounding. The two independent statements are therefore consistent with each other.",
+   "url": "https://www.masrawy.com/news/news_economy/details/2026/8/2/3026796/",
+   "model_impact": "THE ASSET BASE ITSELF and the growth frame. Sets (a) the land quantity any RNAV or land-monetisation lens starts from, dated 02-Aug-2026; (b) the 70/30 split that decides how much of forward revenue is contracted share versus self-developed volume x price; (c) a management growth target that is REPORTED and never adopted as a forecast input.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Self-development pipeline, from the company's own project pages: Jadinah, a 300-feddan fully integrated community delivered in three phases, phase one launched September 2025 and the first Egyptian compound to win the Green Pyramid (GPRS) Gold rating; plus named New Heliopolis schemes with unit counts \u2014 Bronze Villas (24 villas, 297 sqm built-up each, Block 52F), Jewels (10 buildings, third phase of a 28-building block), Medallion (85 residential units and 29 commercial shops across six buildings), Scarlet",
+   "source_name": "Company website \u2014 Our Projects and media releases",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "Pages are undated on the company's site; source_date is the retrieval date and is labelled as such rather than invented.",
+   "url": "http://misr-algadida.com/our-projects",
+   "model_impact": "DRIVER UNLOCK: gives a unit-level base for the self-developed 30% of the portfolio \u2014 countable units and built-up areas by scheme rather than a blended revenue growth rate. This is the finest sourced level available for the self-development leg.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The company's own New Heliopolis page publishes the retail terms it sells on: starting price EGP 6,100,000, 10% down payment, 10 years to pay, across villa, chalet, townhouse and apartment product; the city is stated at 5,406 feddans, established by presidential decree, planned for up to 250,000 residents",
+   "source_name": "Company website \u2014 New Heliopolis (IR/marketing product page)",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-09-09",
+   "detail": "Undated page; retrieval date carried. This is the price-per-unit and payment-terms data no financial statement carries, which is exactly why the IR channel is a mandatory source and not an optional one.",
+   "url": "http://misr-algadida.com/new-heliopolis",
+   "model_impact": "DRIVER UNLOCK for the price leg of the self-development build and for the collections profile: a 10% down payment over a 10-year plan sets the cash-conversion lag between a recognised sale and cash, which is the single largest difference between HELI's profit and its cash flow.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "STRUCTURAL",
+   "headline": "The company's IR channel exists and publishes twelve categories \u2014 Stock Performance, Financial Statements, Latest Announcements, Stock News, Corporate Actions, Insider Transactions, Disclosure, Governance Report, Board of Directors, Company Data, IR Contacts and a Calculator \u2014 all served through EGID's hosted widget, and NONE of them can be read from this environment because the widget's data API is on port 8080",
+   "source_name": "Company website \u2014 Investor Relations, and ir.egidegypt.com config.json",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-09-09",
+   "detail": "The tab list is itself the finding: it tells a later run exactly which documents exist and where, so the ask to the principal can name them.",
+   "url": "http://misr-algadida.com/investor-relations",
+   "model_impact": "Gate consequence, not a number: every driver that would need a filing is forced TOP_DOWN or blocked outright by this one access failure. It is the reason this register carries no is_fs_data finding.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The company's own 9M-2025 results release: total revenue EGP 1.274bn for the period ended 30 September 2025, up 42% year on year, with Q3-2025 alone at EGP 1.156bn against EGP 722m a year earlier (+60.18%); the company attributes the fall in net profit to moving away from parking liquidity in treasury bills and into expanding its land portfolio and self-financing projects; Jadinah phase one (300 feddans) launched in September 2025",
+   "source_name": "Company media centre \u2014 'Misr Al Gadida achieves revenues exceeding EGP 1.27 billion, marking 42% growth during the first nine months of 2025'",
+   "source_type": "COMPANY_IR",
+   "source_date": "2025-11-15",
+   "detail": "THE ONLY RESULTS COMMUNICATION OF ANY PERIOD OBTAINED FROM A COMPANY CHANNEL. The page is undated; 2025-11-15 is a conservative placement inside the Egyptian 9M filing window and is flagged as inferred, not printed. No statement backs it, so it is NOT tagged is_fs_data.",
+   "url": "http://misr-algadida.com/media/32",
+   "model_impact": "DRIVER UNLOCK, with a caveat: gives the only company-sourced revenue shape in the register \u2014 quarterly revenue is violently lumpy (Q3-2025 alone was 91% of the first nine months), which rules out any smoothed quarterly glide and forces a contract-event revenue model. Also names the treasury-income leg that a later P&L reconstruction must separate from operating profit.",
+   "is_fs_data": false,
+   "fiscal_period": "9M-2025"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The company's own Ordinary General Assembly invitation convenes the meeting for Saturday 2 May 2026 over the financial year ENDED 31 DECEMBER 2025, with a ten-item agenda: board report, EXTERNAL AUDITOR's report, a SEPARATE report of the state accountability authority (the Central Auditing Organization), approval of the financial statements, the corporate governance report with an independent assurance report and ESG and TCFD sustainability reports, board discharge, a cash dividend out of FY2025 profits with payment dates to be set with MCDR and EGX, board remuneration for FY2026, donations, and reappointment of the external auditor for FY2026",
+   "source_name": "Company media centre \u2014 OGM invitation (E-Magles registration at https://emagles.com/voterinformation/HELI)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-04-01",
+   "detail": "THE FISCAL-YEAR QUESTION IS SETTLED HERE, FROM THE COMPANY'S OWN DOCUMENT: HELI reports on a 31 DECEMBER year end, not the 30 June year end that Law 203 public-sector companies often carry. A study must not assume a June year. DEFECT IN THE COMPANY'S OWN PAGE, RECORDED RATHER THAN CORRECTED: the item is headlined 'Saturday, May 2, 2025' while its body convenes 'Saturday, May 2, 2026' and its agenda covers FY2025 \u2014 body and agenda agree, the headline is wrong. source_date 2026-04-01 is an inferred publication date inside the statutory notice period, not a printed one.",
+   "url": "http://misr-algadida.com/media/38",
+   "model_impact": "DRIVER UNLOCK: fixes the reporting calendar (Q1/H1/9M/FY on calendar quarters), confirms the dividend is a live annual event decided at the OGM, and names the CAO as a second statutory auditor whose separate report is part of the disclosure set a build must read.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "COLOR",
+   "headline": "Price series held in this repository: engine/raw_ohlc/EG/HELI.csv, 3,763 daily rows, 02-Jan-2011 to 23-Aug-2026, last close EGP 7.75 (open 7.78, high 7.90, low 7.74, volume 9.25m); the EG/EGX index file engine/raw_indices/EG/EGX30.csv runs to 08-Sep-2026, sixteen calendar days longer than the stock file",
+   "source_name": "engine/raw_ohlc/EG/HELI.csv and engine/raw_indices/EG/EGX30.csv (vendor market data, permitted for market data only)",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-08-23",
+   "detail": "Recorded so a later build starts from the real state of the data rather than assuming it. The stock file is STALE relative to the index file, which matters for any weekly grid.",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "BASE CHANGER \u2014 LAND ADDED. The company reached a final settlement with the New Urban Communities Authority over the EXCESS AREA at New Heliopolis: about 710,000 sqm held on an undivided basis, a dispute running since 1995, closed by payment of the remaining EGP 96m claim on 22-Jan-2026 and announced 27-Jan-2026",
+   "source_name": "Al Borsa News, '\"\u0645\u0635\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629\" \u062a\u064f\u0646\u0647\u064a \u0646\u0632\u0627\u0639\u064b\u0627 \u062a\u0627\u0631\u064a\u062e\u064a\u064b\u0627 \u0639\u0644\u0649 710 \u0622\u0644\u0627\u0641 \u0645\u062a\u0631 \u0628\u0640 \"\u0647\u0644\u064a\u0648\u0628\u0648\u0644\u064a\u0633 \u0627\u0644\u062c\u062f\u064a\u062f\u0629\"', quoting CEO Sameh El Sayed",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-01-27",
+   "detail": "PROVENANCE FLAG: company statement relayed by press; not verified against a filing. THIRTY-ONE YEARS OF DISPUTE CLOSED INSIDE THE STUDY WINDOW.",
+   "url": "https://www.alborsaanews.com/2026/01/27/1945686",
+   "model_impact": "BASE CHANGER, modelled explicitly and dual-framed: 710,000 sqm moves from contingent to owned-and-developable, against a known EGP 96m closing payment. The land base must be stated with and without it, and the FY2025 balance sheet (pre-settlement) will NOT contain it while the H1-2026 interim (post-settlement) should \u2014 which is exactly the ordering [R-ASSET-01] exists to police.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "BASE CHANGER \u2014 the Madinet Masr partnership on two New Heliopolis plots totalling 491 feddans (Plot 1 245.1 fd, Plot 2 246.31 fd): total project revenue expected at EGP 194.4bn over 12 years, of which HELI's share is EGP 70.9bn with a GUARANTEED MINIMUM of EGP 53.18bn payable over 9 years; HELI's participation is 36.5% of semi-finished units plus 20% of finishing cost on fully finished units",
+   "source_name": "Company media centre \u2014 'Misr Al Gadida and Madinet Masr Sign Partnership Agreement for 491 Feddans in New Heliopolis'",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-15",
+   "detail": "Undated page; date inferred from the release's own reference to four partnerships secured 'since November 2023' and from the partnerships page dating the Talala scheme to 2024 \u2014 flagged as inferred. The partnerships page gives the plot as 491.49 'acres' where this release says 491 feddans: the unit ambiguity is live in the company's own English text.",
+   "url": "http://misr-algadida.com/media/22",
+   "model_impact": "BASE CHANGER and the single largest contracted revenue line. Gives a contract-level bottom-up build: a floor (EGP 53.18bn over 9 years) and an expected case (EGP 70.9bn over 12 years) for one named counterparty. Dual-framed against the floor, never straight-lined.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "BASE CHANGER \u2014 two contracts with Middle East for Development & Real Estate Investment (marketed as G Developments, project 'New Kairo'): the SOUTHERN 865 feddans signed Sunday 21-Jan-2024 at 28% of semi-finished unit revenue plus 3% of finishing value, guaranteed minimum EGP 23bn and expected return EGP 39.7bn over a 10-year build and 14-year sales period; and a later addendum over the NORTHERN 894 feddans with a guaranteed minimum of EGP 23.806bn, an advance payment of EGP 155.25m and a bank guarantee of EGP 134.55m",
+   "source_name": "Company media centre \u2014 '...Signs 865-Feddan Development Partnership...' and '...Approves Contract Addendum for 894 Feddans Development in New Heliopolis' (the latter citing the company's own statement to the Egyptian Exchange)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-01-21",
+   "detail": "Two releases, both on the company's own site; the addendum release is undated on the page and post-dates the January-2024 signing.",
+   "url": "http://misr-algadida.com/media/30",
+   "model_impact": "BASE CHANGER: EGP 46.8bn of combined guaranteed minimums on 1,759 feddans, with a named advance and a named bank guarantee that fix the early cash profile. Builds the second and third contracted revenue streams bottom-up and dates the start of each.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The fourth partnership: Ajad Developments on 77.91 feddans (the partnerships page says 77.19 acres) for the Elaia compound, Ajad's first Egyptian project, signed 2023; and the company's own aggregate \u2014 four partnerships with three developers since November 2023 carrying total GUARANTEED MINIMUM revenue of EGP 106bn, total projected revenue of EGP 166bn, expected to reach EGP 200bn over 15 years",
+   "source_name": "Company media centre and partnerships page",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-15",
+   "detail": "The EGP 106bn aggregate minimum is the company's own arithmetic across its four contracts and is the cleanest single anchor in the register. NOTE the unit inconsistency inside the company's own text (77.91 feddans vs 77.19 acres) \u2014 recorded, not reconciled.",
+   "url": "http://misr-algadida.com/partnerships",
+   "model_impact": "DRIVER UNLOCK: converts partnership revenue from a growth rate into a contracted schedule with a company-stated floor of EGP 106bn. The floor, its 9-15 year spreads and its counterparty concentration are the backbone of any revenue build.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F25",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "BASE CHANGER \u2014 LAND ADDED: about 766 feddans acquired at Hadayek El Asema (Capital Gardens) during 2025, the company's first major land purchase outside New Heliopolis, with master-plan design and the ministerial decree under way; and a further ~52,000 sqm plot in the East District of Mansoura contracted to a Al-Safi / Jebal consortium for mixed-use development with partnership revenue estimated at about EGP 10bn",
+   "source_name": "Daily News Egypt, 'Heliopolis Company for Housing to develop 766 Feddans in Hadayek Al-Asima' (01-Jun-2025), and the company's own media release on the Mansoura contracting",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-06-01",
+   "detail": "The Mansoura half of this finding is company-official (media centre, http://misr-algadida.com/media/34); the Capital Gardens half is press. The consideration is reported at USD 241m in one relay and appears in the CAO report at EGP 13bn (about USD 255m at 51 EGP/USD) \u2014 the two are consistent, and neither is primary.",
+   "url": "https://www.dailynewsegypt.com/2025/06/01/heliopolis-company-for-housing-to-develop-766-feddans-in-hadayek-al-asima/",
+   "model_impact": "BASE CHANGER for the asset base: the land bank GREW by roughly half its developable area in 2025-26, which is the exact defect [R-ASSET-01] was adopted on. It also changes the geography of the story from a single-city land holder to a two-city one. Dual-framed with and without Capital Gardens until the balance-sheet classification is read.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F26",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "STRUCTURAL",
+   "headline": "Prior-cycle monetisation, unverified: the sale of a 7.12m sqm Heliopark plot to the National Organization for Social Insurance for a reported EGP 15bn, approved in October 2023 \u2014 a single transaction larger than any partnership minimum and the likely explanation of the FY2023-24 revenue and cash shape",
+   "source_name": "HC Securities note 'Heliopolis Housing, Accelerated monetization underway' (broker research; recorded as a lead, never as a figure)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2023-10-31",
+   "detail": "QUARANTINED. A broker note is not a permitted source for a company-reported figure under SIGCM clause 1. It is logged so a later build knows to look for this transaction in the FY2023 and FY2024 statements, not so the number can be used.",
+   "url": "",
+   "model_impact": "If confirmed, this resets the FY2023/FY2024 revenue base and makes any growth rate computed off those years meaningless. Flagged as the first thing to check when the audited statements arrive.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F27",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "STRUCTURAL",
+   "headline": "The company's own history page states that Misr Al Gadida was established as a subsidiary of the state-owned HOLDING COMPANY FOR CONSTRUCTION AND DEVELOPMENT in 1991 and that on 27 September 1995 10% of its shares were offered for public trading; its own board page lists Essam Abdel Fattah Mohamed, Managing Director for Financial and Administrative Affairs AT HCCD, as a board member, and Dr Gihan Saleh, Economic Advisor to the Prime Minister, as a non-executive member",
+   "source_name": "Company website \u2014 About Us (History & Company Timeline; Board of Directors)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "This is the strongest COMPANY-OFFICIAL evidence of control obtainable. It establishes the controlling relationship and board representation; it does NOT state a percentage.",
+   "url": "http://misr-algadida.com/about",
+   "model_impact": "Sets the governance frame that every other company driver sits inside: a state-controlled issuer whose land is allocated by, and disputed with, other arms of the same state. Feeds the discount for minority position and the governance discussion, not a cash-flow line.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F28",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "COLOR",
+   "headline": "The state's holding is widely reported at 72.3% through HCCD, sourced to Q1-2026 data, implying a free float of about 27.7%",
+   "source_name": "African Markets / Simply Wall St / press repetition of the same figure",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-03-31",
+   "detail": "QUARANTINED \u2014 NOT A COMPANY SOURCE. No company-official shareholder structure could be read: the IR portal's Company Data tab is behind the port-8080 API and the EGX profile is behind the CAPTCHA. A build must confirm the percentage and the share count from the FY2025 governance report or the filing before using either.",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F29",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched, per the named-transaction rule and never as an estimate: '\u0645\u0635\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u0644\u0644\u0625\u0633\u0643\u0627\u0646 \u0637\u0631\u062d \u062d\u0635\u0629 \u062d\u0643\u0648\u0645\u064a\u0629 \u0628\u0631\u0646\u0627\u0645\u062c \u0627\u0644\u0637\u0631\u0648\u062d\u0627\u062a \u0628\u064a\u0639 \u062d\u0635\u0629 \u0627\u0644\u0634\u0631\u0643\u0629 \u0627\u0644\u0642\u0627\u0628\u0636\u0629 \u0644\u0644\u062a\u0634\u064a\u064a\u062f \u0648\u0627\u0644\u062a\u0639\u0645\u064a\u0631 2025 2026 \u0646\u0633\u0628\u0629 \u0645\u0644\u0643\u064a\u0629', 'Heliopolis Housing HELI state stake sale privatisation programme offering', and the company's own media centre and IR announcement tabs. NO named transaction exists: no stake sale, no secondary offering, no strategic-investor agreement and no announced intention to sell HCCD's holding was found on any date. The 72.3% figure above therefore stands unconfirmed and unchanged rather than being modelled as in play)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F30",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "STRUCTURAL",
+   "headline": "The 2 May 2026 OGM approved a FY2025 cash distribution of about EGP 1.78bn paid in two equal instalments of EGP 0.223 per share (first within a month of the meeting, second in December 2026) AND a capital increase from EGP 333.8m to EGP 1,001.4m (+EGP 667.6m) by issuing 2.67bn bonus shares at EGP 0.25 par \u2014 two bonus shares for every share held; the prior year's OGM (15-May-2025) had approved EGP 1.34 per share plus one bonus share",
+   "source_name": "Amwal Al Ghad, '\u0645\u0635\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u0644\u0644\u0625\u0633\u0643\u0627\u0646 \u062a\u0642\u0631 \u062a\u0648\u0632\u064a\u0639\u0627\u062a \u0646\u0642\u062f\u064a\u0629 \u0628\u06401.78 \u0645\u0644\u064a\u0627\u0631 \u062c\u0646\u064a\u0647 \u0639\u0646 \u0639\u0627\u0645 2025' (03-May-2026); Al Borsa News, '\u0639\u0645\u0648\u0645\u064a\u0629 \u0645\u0635\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u062a\u064f\u0642\u0631 \u062a\u0648\u0632\u064a\u0639 1.34 \u062c\u0646\u064a\u0647 \u0648\u0633\u0647\u0645 \u0645\u062c\u0627\u0646\u064a' (15-May-2025)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-05-03",
+   "detail": "QUARANTINED \u2014 the OGM minutes themselves could not be reached. ARITHMETIC CHECK PERFORMED AND IT TIES: EGP 333.8m at EGP 0.25 par = 1,335.2m shares; two bonus shares each gives 4,005.6m shares = EGP 1,001.4m of capital; and EGP 1.78bn / (2 x EGP 0.223) = 3.99bn shares, which reproduces the post-bonus count. The three reported figures are mutually consistent, which raises confidence in the relay without making it primary.",
+   "url": "",
+   "model_impact": "Sets the share count for EVERY per-share figure and the dividend path. ALSO A DATA-QUALITY TRAP: at EGP 7.75 the post-bonus count implies a market capitalisation near EGP 31bn, and any per-share history computed off an unadjusted price series will be wrong by a factor of three at the 2026 bonus and six across both. Step 0.0 must settle the adjustment before a beta or a multiple is computed.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F31",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "COLOR",
+   "headline": "Management and governance: Dr Sameh El Sayed is Managing Director and CEO; the company issued a full ISO 37000:2021 governance policy set on 1 July 2025 \u2014 Related Party Transactions (HHD-GOV-POL-002), Insider Trading (003), Conflict of Interest (004), Disclosure (006) and Succession Planning (007), each downloadable and each carrying an issue number and issue date; the CSR policy and the Code of Conduct are image-only scans and the 'all policies' download link is broken (HTTP 404)",
+   "source_name": "Company website \u2014 Corporate Governance Compliance Policies (seven PDFs retrieved into engine/heli_study_pending/src/)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-07-01",
+   "detail": "",
+   "url": "http://misr-algadida.com/corporate-governance-compliance-policies",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F32",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched for a COMPANY-OFFICIAL record of the capital increase and the dividend: the IR portal's Corporate Actions and Disclosure tabs (port-8080 API, unreachable), the EGX disclosure portal (F5 CAPTCHA), the company's own media centre (30 items, none of them the OGM minutes or the corporate-action notice), and the E-Magles voter portal referenced in the OGM invitation. Nothing company-official found. The dividend, the bonus issue and the resulting share count are therefore press-relayed only and are quarantined in F(div))",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F33",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (THE CENTRAL FAILURE OF THIS SWEEP, searched exhaustively and closed negative. Tried, in this order: (1) the company's own site misr-algadida.com \u2014 reached over http, carries no financial statement, no annual report and no earnings release beyond the 9M-2025 item; (2) its IR page's twelve EGID tabs including Financial Statements \u2014 Angular shells whose data API is https://ir.egidegypt.com:8080, which returns 'curl: (35) Recv failure: Connection reset by peer' over https and 'curl: (28) Connection timed out after 30002 milliseconds' over http; (3) the EGID attachment host data.egidegypt.com \u2014 HTTP 403 root, HTTP 404 on every guessed path, and paths are only issued by that same API; (4) the EGX disclosure portal \u2014 'curl: (52) Empty reply from server' with a default UA and, with a browser UA, HTTP 200 carrying an F5/TSPD CAPTCHA ('...Your support ID is: 6431284897889349852 ... What code is in the image?'), including on static /downloads/ PDFs; (5) web.archive.org save-page-now on the EGX index \u2014 HTTP 520 'Sorry Job failed'; (6) Wayback CDX \u2014 HELI documents on egx.com.eg only 2011-2013, zero egx.com.eg PDFs archived since 2024; (7) the expired corporate domain heliopoliscompany.com in the archive \u2014 PDFs only 2007-2014; (8) FRA (reachable, no listed-company statement library); (9) the state parent hccd.com.eg and the ministry mpbs.gov.eg \u2014 both 502 at the proxy; (10) searches in Arabic and English for the filings as PDFs ('\u0645\u0635\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u0644\u0644\u0625\u0633\u0643\u0627\u0646 \u0627\u0644\u0642\u0648\u0627\u0626\u0645 \u0627\u0644\u0645\u0627\u0644\u064a\u0629 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629 \u0627\u0644\u0645\u062f\u0642\u0642\u0629 31 \u062f\u064a\u0633\u0645\u0628\u0631 2025 pdf', '\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u0645\u0631\u0643\u0632 \u0627\u0644\u0645\u0627\u0644\u064a', 'Heliopolis Housing audited financial statements FY2025 pdf') \u2014 every hit was a vendor page, a broker page or a login wall. NO AUDITED OR REVIEWED STATEMENT OF ANY PERIOD WAS OBTAINED. Nothing in this register is tagged is_fs_data and the FS-DEPTH invariant is left to fire)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F34",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched for the primary text of the Central Auditing Organization's report on the FY2025 statements and for the company's own reply to it: asa.gov.eg (reachable, publishes no company-level audit reports), the EGX disclosure portal (CAPTCHA), the company's media centre (not published there) and the IR Disclosure tab (port-8080). Only press relays of both documents were obtainable, and they are recorded as press in F(cao) and F(caoreply) rather than promoted)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F35",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "STRUCTURAL",
+   "headline": "The Central Auditing Organization's report on the FY2025 financial statements raises three findings that go to the asset base itself: (1) land carried under PROJECTS UNDER CONSTRUCTION rather than land inventory although no project had been built and no partnership struck on it at the reporting date \u2014 EGP 13bn for the Hadayek El Asema land, EGP 96.33m for a 4,945 sqm Obour plot bought from Maadi for Construction and EGP 821k for a 60-feddan Obour barter plot; (2) land inventory held for sale not measured at the lower of cost and net realisable value; (3) ENCROACHMENTS by individuals and entities on company land and buildings covering, so far as could be counted, about 2,074 FEDDANS \u2014 over 8 million sqm \u2014 limiting the company's ability to use them. It also flags EGP 46.283m of returned customer cheques, some dating to 2019, with no legal action taken on part of them",
+   "source_name": "Osoul Misr Magazine and Al Dostor, both reporting the CAO report on the FY2025 statements and the company's reply",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-04-27",
+   "detail": "QUARANTINED: press relay of a state-audit document that could not be read directly (see the negative search above). The encroachment area alone is larger than the entire ~1,450-feddan developable portfolio the CEO cites, so the two numbers cannot both be describing the same land \u2014 reconciling them is a first-order task for the build, not a footnote.",
+   "url": "https://www.osoulmisrmagazine.com/436444",
+   "model_impact": "STRUCTURAL, and it points straight at the land driver. It (a) puts a question over which land sits in inventory at what carrying value, which is the input to any RNAV; (b) puts ~2,074 feddans of the estate in dispute or occupation, which must be deducted or provisioned before any land quantity is valued; (c) means the EGP 13bn Capital Gardens land is NOT in land inventory in the FY2025 balance sheet, so a naive read of that line will understate the land base.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F36",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "STRUCTURAL",
+   "headline": "The company's reply: the classification of the Hadayek El Asema land as work in progress follows the start of master-plan design and the ministerial decree and does not affect shareholders' equity in any way; land is valued at CURRENT value by CBE-accredited valuers at each partnership and the guaranteed minimum is calculated from that valuation; land value has roughly QUADRUPLED over the last three years as more developers entered the city; disputes with Zahraa El Maadi, Maadi for Construction and the National Company for Asset Management have been settled and the Nadi El Shams land was compensated with alternative land in New Obour; legal proceedings are taken on returned cheques after the permitted period",
+   "source_name": "Al Dostor, '\u0645\u0635\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629 \u0644\u0644\u0625\u0633\u0643\u0627\u0646 \u062a\u0631\u062f \u0639\u0644\u0649 \u0645\u0644\u0627\u062d\u0638\u0627\u062a \u0627\u0644\u062c\u0647\u0627\u0632 \u0627\u0644\u0645\u0631\u0643\u0632\u064a \u0644\u0644\u0645\u062d\u0627\u0633\u0628\u0627\u062a' (26-Apr-2026); Osoul Misr Magazine (27-Apr-2026)",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-04-26",
+   "detail": "QUARANTINED as press. Note what the reply concedes: the balance-sheet land value is a HISTORIC cost figure and the economic value used in contracts is a separate, four-times-higher, valuer-set number.",
+   "url": "https://www.dostor.org/5526408",
+   "model_impact": "STRUCTURAL and it decides the valuation lens: if contract minimums are struck off independent current valuations, then the guaranteed-minimum schedule is a better read on land value than the balance sheet is, and an RNAV built on book land cost would be badly low. The '4x in three years' claim is REPORTED, never adopted as an escalation input.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F37",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "The company's own corporate page states '1400 + Acres of land for development', '120 + Years of Urban Development', '3rd Oldest Real Estate Company in the world' and '+15 BEGP Market Value of assets'; its partnerships page states New Heliopolis at 5,400 acres and its New Heliopolis page at 5,406 feddans",
+   "source_name": "Company website \u2014 About Us and Partnerships",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "UNDATED ON THE SITE \u2014 this is the vintage problem in its purest form. The figure agrees with the CEO's dated ~1,450 feddans (02-Aug-2026), which is what allows it to be used at all; on its own it carries no as-at date and must never be quoted as current without one. The company's own English text uses 'acres' where its Arabic uses 'feddan' for the same plots, a 3.8% difference that is 221,000 sqm at this size.",
+   "url": "http://misr-algadida.com/about",
+   "model_impact": "DRIVER UNLOCK, conditional: this is the only COMPANY-OFFICIAL statement of total developable land in the register and it is the anchor for the land-quantity driver. It must be dated from the filing before it is used, and the unit must be resolved from the Arabic filing, not from the English marketing page.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F38",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "[R-ASSET-01] ORDERING, STATED EXPLICITLY: newest land-bank figure sourced is dated 02-Aug-2026 (~1,450 developable feddans, CEO statement via press); newest COMPANY-OWN land statement is an UNDATED corporate page retrieved 09-Sep-2026; newest FILING sourced is NONE. The asset base is therefore not older than the information set \u2014 it is newer than every company document here \u2014 but the test passes on an information set that contains no financial statement at all",
+   "source_name": "This register's own retrieval log",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "Land ADDED inside the window and therefore not in older figures: ~766 feddans at Hadayek El Asema (2025), ~52,000 sqm at Mansoura (2026), ~710,000 sqm of excess area regularised with NUCA (22-Jan-2026). Land COMMITTED and therefore not separately valuable: ~2,500 feddans under partnership contracts. Land CONTESTED: ~2,074 feddans of encroachment per the CAO.",
+   "url": "",
+   "model_impact": "Governs the asset-base record any later study must commit under [R-ASSET-01]: quantity ~1,450 feddans, unit FEDDAN (to be confirmed against the Arabic filing), as_at 2026-08-02, disclosure 'CEO statement relayed by press \u2014 NOT a filing'. That last field is the reason this study cannot yet be built: the asset base has no primary disclosure behind it.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F39",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "COLOR",
+   "headline": "Listing: the Egyptian Exchange (EGX), ticker HELI, Reuters HELI.CA, quoted in EGP, listed since 1995 with the first 10% offered on 27-Sep-1995 per the company's own history page; ISIN reported as EGS65591C017. NO SECOND LISTING, GDR OR DEPOSITARY LINE WAS FOUND, so the dual-listing trap is not live on this name",
+   "source_name": "Company history page (listing and 1995 offering) for the company facts; MarketScreener and Arab Finance for the ISIN string",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-09-09",
+   "detail": "The ISIN is NOT confirmed from a company document and is flagged: the EGID widget bundle embedded on the company's own IR page carries the string EGS30031C016 in a TradingView URL, which is the widget's default symbol and not this issuer's \u2014 a trap for anyone reading the page source. The absence of a second listing is a negative search result, not a company confirmation.",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F40",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "STRUCTURAL",
+   "headline": "ARITHMETIC CHECK ON THE RELAYED FY2025 FIGURES, AND IT CAUGHT A DEFECT. Press relays give FY2025 revenue of EGP 3.137bn against EGP 1.055bn in FY2024. One outlet prints that as '+97%' and others as '+197%'; 3.137 / 1.055 = 2.973, so the increase is 197.3% and the '97%' is wrong. The same relays print gross profit of EGP 2.867bn (gross margin 91.4% against 72% in FY2024) and net profit after tax of EGP 2.705bn in one outlet and EGP 2.711bn in another against EGP 2.559bn in FY2024",
+   "source_name": "Osoul Misr Magazine, Al Mezan, Amwal Al Ghad, Zawya and Arab Finance relays of the company's FY2025 filing",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-03-01",
+   "detail": "QUARANTINED AND NOT USED. Recorded for two reasons: it is evidence that the relays disagree with each other at the pound level on the single most important line, and it demonstrates why a relayed figure is not a substitute for a filing. A 91% gross margin on a land-monetisation model is plausible and is exactly the kind of figure that must be verified rather than believed.",
+   "url": "",
+   "model_impact": "Gate consequence: the margin CANNOT be set as an input on this evidence, and a build that did so would be a QC fail. Margin is an output of a cost-per-unit build once the statements are in hand.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F41",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "STRUCTURAL",
+   "headline": "SECOND ARITHMETIC CHECK, ON THE SHAPE OF THE YEAR. The company's own 9M-2025 release gives revenue of EGP 1.274bn to 30-Sep-2025; the relayed FY2025 revenue is EGP 3.137bn; so Q4-2025 alone carried about EGP 1.863bn, roughly 59% of the year, on top of a Q3 that was itself 91% of the first nine months. H1-2026 is separately relayed at EGP 2.24bn of revenue and EGP 1.35bn of net profit against EGP 732.79m and EGP 640.29m a year earlier, announced 09-Aug-2026",
+   "source_name": "Company 9M-2025 release (company-official) combined with press relays of the FY2025 and H1-2026 filings \u2014 Hapi Journal, Masrawy and Amwal Al Ghad, 09-Aug-2026",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-09",
+   "detail": "QUARANTINED for the relayed halves. The arithmetic itself is this register's and is what a later build must not skip: two consecutive periods in which one quarter carries most of the year's revenue means revenue recognition here is EVENT-DRIVEN \u2014 contract signings, plot handovers and milestone recognitions \u2014 not a smooth delivery flow.",
+   "url": "",
+   "model_impact": "Forbids a quarterly or annual growth-rate model outright. Revenue must be built as dated contract events with their own recognition triggers, and any cone or scenario must widen for the lumpiness rather than assume a glide.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F42",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "COLOR",
+   "headline": "Company-published context: ranked among Forbes Middle East's 50 most valuable companies in Egypt for a third consecutive year and sixth by value among the top ten real-estate names; a 120th-anniversary event attended by the Prime Minister; a strategic agreement with e& Business for a smart-city digital layer at New Heliopolis; an asset-management contract with Al Qalaa for the Ghurnata heritage venue at 30% of revenue with an EGP 1.8m annual minimum rising 40% from year two",
+   "source_name": "Company media centre",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "http://misr-algadida.com/media",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F43",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Unit-level sales datapoint from the company's own release: 90 residential units of varying sizes sold at the Azure compound in New Heliopolis for total sales of about EGP 428m, of which about EGP 60m collected as advances \u2014 five times the EGP 91m sold in Q1-2024 \u2014 with 200 further units planned for launch at end-October 2024",
+   "source_name": "Company media centre \u2014 'Misr Al Gadida Sells 90 Residential Units in Azure Compound'",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-10-01",
+   "detail": "Undated page; placed at October 2024 from its own forward reference to an end-October 2024 launch. EGP 428m over 90 units implies about EGP 4.76m per unit, which sits below the EGP 6.1m starting price now published \u2014 consistent with two years of price escalation.",
+   "url": "http://misr-algadida.com/media/19",
+   "model_impact": "DRIVER UNLOCK: the only units-times-price datapoint in the register, and it also gives the cash-conversion ratio at the point of sale (EGP 60m collected on EGP 428m sold, about 14%). Sets the self-development volume x price build and its collections lag.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Land bank \u2014 developable area and its as-at date",
+   "mode": "BOTTOM_UP",
+   "justification": "A company-official statement of total developable land exists ('1400 + Acres', F(landsite)) and is corroborated by a dated CEO statement of ~1,450 feddans and by the plot-level partnership contracts, which sum consistently. BOTTOM-UP AT PLOT LEVEL IS AVAILABLE. THE GAP IS FLAGGED RATHER THAN HIDDEN: the anchor page is undated, the unit (feddan vs acre) is inconsistent in the company's own English text, and ~2,074 feddans are reported encroached \u2014 so the quantity must be re-struck against the filing before it is valued.",
+   "sweep_refs": [
+    "F37",
+    "F14",
+    "F22",
+    "F23",
+    "F24",
+    "F25",
+    "F21",
+    "F38",
+    "F35"
+   ]
+  },
+  {
+   "driver": "Partnership revenue \u2014 per contract, guaranteed minimum and revenue share",
+   "mode": "BOTTOM_UP",
+   "justification": "Four named contracts with named counterparties, each with its own area, revenue-share percentage, guaranteed minimum, expected case and tenor, all from the company's own releases: Madinet Masr 491 fd (36.5% + 20% of finishing, min EGP 53.18bn/9yr, expected EGP 70.9bn/12yr); G Developments 865 fd (28% + 3%, min EGP 23bn, expected EGP 39.7bn) and 894 fd (min EGP 23.806bn, advance EGP 155.25m, bank guarantee EGP 134.55m); Ajad 77.91 fd. Company-stated aggregate minimum EGP 106bn. This is the finest sourced level and it is contract level.",
+   "sweep_refs": [
+    "F22",
+    "F23",
+    "F24",
+    "F18"
+   ]
+  },
+  {
+   "driver": "Self-development revenue \u2014 units x price, and the collections lag",
+   "mode": "BOTTOM_UP",
+   "justification": "Unit counts and built-up areas are published per scheme (Bronze Villas 24 villas at 297 sqm, Jewels 10 buildings, Medallion 85 units + 29 shops, Jadinah 300 feddans in three phases), the retail terms are published (from EGP 6.1m, 10% down, 10 years), and one realised sale is disclosed (90 Azure units for EGP 428m with EGP 60m collected). Volume AND price are both projectable from company sources.",
+   "sweep_refs": [
+    "F15",
+    "F16",
+    "F43",
+    "F18"
+   ]
+  },
+  {
+   "driver": "Revenue recognition timing \u2014 event-driven, not a glide",
+   "mode": "BOTTOM_UP",
+   "justification": "The company's own 9M-2025 release plus arithmetic against the relayed full year shows one quarter carrying most of the year twice over. The recognition pattern is therefore built from dated contract events, which the company's own releases date.",
+   "sweep_refs": [
+    "F18",
+    "F41",
+    "F22",
+    "F23"
+   ]
+  },
+  {
+   "driver": "Cost of sales and cost per unit",
+   "mode": "TOP_DOWN",
+   "justification": "FORCED TOP-DOWN BY AN ACCESS FAILURE, not by choice. No statement of any period could be obtained, so no cost line exists to build from. Until the filings arrive this driver cannot be built at all, and a top-down benchmark would be an invention rather than a floor \u2014 it is recorded here as BLOCKED so the build cannot proceed past it.",
+   "sweep_refs": [
+    "F33"
+   ]
+  },
+  {
+   "driver": "Gross and operating margin \u2014 OUTPUT, never an input",
+   "mode": "TOP_DOWN",
+   "justification": "The only margin evidence is a press-relayed 91.4% FY2025 gross margin whose own source disagrees with itself on the revenue growth rate beside it. Setting a margin as an input on this evidence would be a QC fail; margin must fall out of a cost-per-unit build once the statements are in hand. Recorded as blocked pending the filings.",
+   "sweep_refs": [
+    "F33",
+    "F40"
+   ]
+  },
+  {
+   "driver": "Balance sheet, net cash/debt and the EV-to-equity bridge",
+   "mode": "TOP_DOWN",
+   "justification": "No balance sheet of any date could be obtained, so the bridge cannot stand on the latest disclosed balance sheet as [R-BRIDGE-01] requires. Blocked.",
+   "sweep_refs": [
+    "F33"
+   ]
+  },
+  {
+   "driver": "Land carrying value and the RNAV base",
+   "mode": "TOP_DOWN",
+   "justification": "The CAO reports that the largest land parcel sits in projects-under-construction rather than land inventory and that inventory is not held at the lower of cost and NRV, and the company replies that economic value is set by independent valuers at each partnership and has quadrupled in three years. Neither document could be read directly. The carrying value cannot be sourced, so the RNAV base is blocked pending the filings.",
+   "sweep_refs": [
+    "F33",
+    "F34"
+   ]
+  },
+  {
+   "driver": "Encroachment and dispute provision (~2,074 feddans)",
+   "mode": "TOP_DOWN",
+   "justification": "The area is reported by the state auditor through the press and exceeds the entire stated developable portfolio, so it cannot be netted off the land quantity without the primary text. Blocked pending the CAO report and the FY2025 statements.",
+   "sweep_refs": [
+    "F34",
+    "F35"
+   ]
+  },
+  {
+   "driver": "Share count, per-share metrics and the dividend path",
+   "mode": "TOP_DOWN",
+   "justification": "Two bonus issues (one share in 2025, two shares per share in 2026) and a capital increase from EGP 333.8m to EGP 1,001.4m are press-relayed only; the three relayed figures reconcile arithmetically but no company document could be read. Every per-share figure is blocked until the count is confirmed, and the stored price series must be tested for bonus adjustment first.",
+   "sweep_refs": [
+    "F32",
+    "F30",
+    "F20"
+   ]
+  },
+  {
+   "driver": "State shareholding and free float",
+   "mode": "TOP_DOWN",
+   "justification": "Control is company-confirmed (HCCD parentage and an HCCD executive on the board) but the percentage is not; no named stake transaction exists on any date, so the holding is carried as unchanged rather than as in play.",
+   "sweep_refs": [
+    "F29",
+    "F27",
+    "F28"
+   ]
+  },
+  {
+   "driver": "Risk-free rate and the discount-rate glide",
+   "mode": "BOTTOM_UP",
+   "justification": "Built from the CBE's own published corridor (19.00% deposit / 20.00% lending, effective 15-Feb-2026) for the explicit window and normed to the CBE's own published Q4-2026 target of 7% (+/-2pp) for the terminal, with the EGP frame set by the CBE's own 08-Sep-2026 exchange-rate table. Never averaged from history, never backed out of a price.",
+   "sweep_refs": [
+    "F05",
+    "F06",
+    "F01"
+   ]
+  },
+  {
+   "driver": "Partner-demand and absorption sensitivity on the guaranteed minimums",
+   "mode": "BOTTOM_UP",
+   "justification": "The contracts give an explicit floor and an expected case, and the market evidence gives the absorption and pricing conditions under which a partner falls back on the floor. The sensitivity is therefore built between two sourced numbers rather than assumed as a percentage haircut.",
+   "sweep_refs": [
+    "F22",
+    "F23",
+    "F09",
+    "F10",
+    "F03"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "http://misr-algadida.com/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200 over PLAIN HTTP. This is the company's live corporate site (Misr Al Gadida = Heliopolis Company for Housing and Development). Apache/2.4.63 (Ubuntu)."
+  },
+  {
+   "url": "https://misr-algadida.com/",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "curl: (60) SSL certificate problem: certificate has expired. The company's own TLS certificate is expired; the site is only readable over http. A run that tries https and stops will wrongly conclude the company has no website."
+  },
+  {
+   "url": "http://misr-algadida.com/investor-relations",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200. Twelve IR tabs, every one an iframe onto ir.egidegypt.com with appKey l2CcUsLEX0X_jNgUyU870fBLV0SPpysHh_i22D-IFog! \u2014 the page itself hosts no document."
+  },
+  {
+   "url": "https://ir.egidegypt.com/en/financialstatement/l2CcUsLEX0X_jNgUyU870fBLV0SPpysHh_i22D-IFog!",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200 but 22,613 bytes of Angular shell with no data. The financial-statement library is rendered client-side from an API this environment cannot reach."
+  },
+  {
+   "url": "https://ir.egidegypt.com/assets/config.json",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200. Names the reason the library cannot be read: {\"frontUrl\":\"https://ir.egidegypt.com\",\"baseUrl\":\"https://ir.egidegypt.com:8080\",\"authUrl\":\"/api/identity/Auth/token\"} \u2014 the document API is on port 8080."
+  },
+  {
+   "url": "https://ir.egidegypt.com:8080/api/identity/Settings/getCompanySettings/l2CcUsLEX0X_jNgUyU870fBLV0SPpysHh_i22D-IFog!",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "https -> 'curl: (35) Recv failure: Connection reset by peer' (4 attempts); http -> 'curl: (28) Connection timed out after 30002 milliseconds'. Proxy log: kind 'ws_closed_mid_exchange', detail 'tunnel closed (code 1006, Connection ended) after 6s; 517 B sent, 39 B received, client reading'. Port 8080 does not pass."
+  },
+  {
+   "url": "https://data.egidegypt.com/",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 403 on root; /api/Feed/GetCompanyProfile?SYMBOL_CODE=HELI -> HTTP 404 (IIS). This is the EGID attachment host and it answers, but attachment paths are only issued by the port-8080 API, so no document can be addressed on it."
+  },
+  {
+   "url": "https://www.heliopoliscompany.com/",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, 114 bytes: a JavaScript redirect to /lander which 302s to forsale.godaddy.com. The domain aggregators and brokers still publish as this issuer's website is EXPIRED AND PARKED FOR SALE. It is not the company."
+  },
+  {
+   "url": "https://www.egx.com.eg/en/DisclosureAll.aspx",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "Default curl UA -> 'curl: (52) Empty reply from server'. WITH A BROWSER UA -> HTTP 200 carrying an F5/TSPD bot-defence CAPTCHA: 'Please enable JavaScript to view the page content. Your support ID is: 6431284897889349852 ... What code is in the image?' A 200 that is not a page. No CAPTCHA was solved."
+  },
+  {
+   "url": "https://www.egx.com.eg/downloads/Bulletins/302003_2.pdf",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200 with a browser UA but content_type text/html, 6,139 bytes \u2014 the same F5 challenge. Static files behind the portal are gated too, so even a known filing path would not fetch."
+  },
+  {
+   "url": "https://web.archive.org/save/https://www.egx.com.eg/en/DisclosureAll.aspx",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 520, body 'Sorry Job failed'. The Internet Archive cannot fetch the EGX disclosure index either. CDX search itself works and shows HELI documents on egx.com.eg only for 2011-2013 and zero egx.com.eg PDFs archived since 2024-01-01."
+  },
+  {
+   "url": "https://www.mubasher.info/markets/EGX/stocks/HELI/financial-statements",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 403, Cloudflare 'Attention Required!'. Logged for completeness only \u2014 an aggregator is not a permitted source for this company's own reported figures."
+  },
+  {
+   "url": "https://www.hccd.com.eg/ (state parent) and https://mpbs.gov.eg/ (ministry)",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "Both: 'gateway answered 502 to CONNECT (policy denial or upstream failure)'. The controlling shareholder's own site and the supervising ministry's site are both unreachable, so neither could corroborate the shareholding."
+  },
+  {
+   "url": "https://fra.gov.eg/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200. Reached and searched: the Financial Regulatory Authority publishes its own decisions and registers but no listed-company financial-statement library, so it is not a route to the filings."
+  },
+  {
+   "url": "https://www.cbe.org.eg/en/economic-research/statistics/overnight-deposit-and-lending-rate",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200 WITH A BROWSER USER AGENT. Recorded because earlier registers in this repository logged cbe.org.eg as a WAF interstitial: the block is user-agent gated, not absolute. The rate and FX pages read cleanly once a browser UA is sent."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "Q2-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [HELI, 2026-09-09]: FAIL (2 errors) \u2014 4/4 rings, 43 findings (4 B \u00b7 19 S \u00b7 9 D \u00b7 6 C \u00b7 5 NEG), driver gate 13 rows (6 bottom-up / 7 top-down) | primary access: attempted (15) | FS years: 0 [] | IR findings: 3"
+}
