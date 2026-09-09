@@ -20,6 +20,13 @@ import subprocess
 import sys
 import tempfile
 
+
+# THE GATE'S OWN EDITION RESOLVER, imported rather than reimplemented, so this
+# control cannot disagree with the gate about which file is the deliverable —
+# which is exactly how case 8 came to empty the current edition and call it
+# superseded.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import check_delivered_pdf_currency as _gate
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXPECTED_CASES = 8
 
@@ -144,14 +151,29 @@ def _clean_superseded_edition(root):
     Only the latest delivered edition is the deliverable. An older one is a dated record and
     is never rewritten — the same append-only discipline the ledgers and gap reviews obey.
     """
+    # THE CURRENT EDITION IS RESOLVED THE WAY THE GATE RESOLVES IT, NOT TYPED.
+    # This fixture named 03-09-2026 as the current ARCC edition in a string. On
+    # 09-09-2026 that study was re-issued, so the fixture emptied the CURRENT PDF
+    # while claiming to have left it untouched, the gate correctly went red, and the
+    # control reported itself broken. The typed date made a fixture that tests
+    # "supersededness" depend on which edition happened to be newest the day it was
+    # written — which is the one thing it must not depend on.
+    #
+    # It now asks the gate's own resolver which file is current and empties everything
+    # else, so the case keeps meaning what its name says through every future
+    # re-issue, and a fixture that finds no superseded edition still refuses.
     import glob
-    olds = [f for f in glob.glob(os.path.join(root, 'engine', 'arcc_study', '*.pdf'))
+    sdir = os.path.join(root, 'engine', 'arcc_study')
+    current = _gate.latest_study_doc(sdir)
+    assert current, 'fixture found no delivered ARCC study PDF at all'
+    olds = [f for f in glob.glob(os.path.join(sdir, '*.pdf'))
             if 'Valuation_Study' in os.path.basename(f)
-            and '03-09-2026' not in os.path.basename(f)]
+            and os.path.basename(f) != os.path.basename(current)]
     assert olds, 'fixture found no superseded ARCC edition'
     for f in olds:
         open(f, 'wb').write(b'%PDF-1.4\n%%EOF\n')
-    return 'emptied %d SUPERSEDED ARCC edition(s); the current one is untouched' % len(olds)
+    return ('emptied %d SUPERSEDED ARCC edition(s); the current one, %s, is '
+            'untouched' % (len(olds), os.path.basename(current)))
 
 
 
