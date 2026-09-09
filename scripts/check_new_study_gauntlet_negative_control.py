@@ -104,8 +104,26 @@ case("1. the resolver's stray-directory refusal switched off — one line, and a
      'check_valuation_gap.py')
 case('2. the document ratchet seeded with the unknown study', True,
      _over_ratchet('document_outstanding.json'), 'check_document_structure.py')
-case('3. the prose ratchet seeded with the unknown study', True,
-     _over_ratchet('prose_outstanding.json'), 'check_prose_figures.py')
+# CASE 3 IS NOW A CLEAN CASE, AND THAT IS THE POINT OF IT.
+#
+# It asserted that seeding the prose ratchet BLINDS check_prose_figures and that the
+# gauntlet must catch the gate failing to refuse a new study. On 09-09-2026 that gate
+# was hardened: it had read `tk not in known`, so BARE PRESENCE on the ratchet excused a
+# study having no prose check at all, whatever the entry recorded. It now requires the
+# entry to record a MEASUREMENT — every real one carries the day it was measured, and
+# the seed here is a bare string that records nothing.
+#
+# So the premise of the old case is false: there is no longer a blinding to catch, the
+# gauntlet is satisfied, and it returns 0. The case is INVERTED rather than deleted,
+# because what it now proves is worth more than what it proved before — that this
+# particular one-line edit no longer works on this particular gate.
+#
+# CASES 2 AND 4 STILL PASS AS FAILURES, AND THEY ARE THE HONEST PART. The same hole is
+# open in the other ratchets: seeding document_outstanding.json still blinds the
+# document gate, and case 4 defeats the whole design in one edit per list. prose is the
+# FIRST gate immune to it and the others are debt, recorded here rather than implied.
+case('3. the prose ratchet seeded with the unknown study — NO LONGER BLINDS IT',
+     False, _over_ratchet('prose_outstanding.json'))
 case('4. EVERY ratchet seeded — the whole design defeated in one edit per list', True,
      _over_ratchet('gap_outstanding.json', 'document_outstanding.json',
                    'prose_outstanding.json', 'bridge_outstanding.json',
