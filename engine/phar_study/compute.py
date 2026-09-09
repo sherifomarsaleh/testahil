@@ -96,6 +96,37 @@ _HOUSE_FX = [round(x, 4) for x in _EG.fx_path(5)]
 _HOUSE_RF_TERM = round(_EG.terminal_inflation
                        + _EG.raw['real_rate_convention']['value'], 6)
 
+# THE RISK-FREE RATE AND THE CORPORATE SPREAD ARE NAMED ONCE, ABOVE THE REGISTER,
+# because the cost of local-currency debt is BUILT from them and was typed instead.
+#
+# WHAT THIS FIXES. The 09-Aug-2026 edition corrected rf from a 22.31% print dated 21 July
+# to the 23.00% observable on the study's own pricing date, and said so in rf's own source
+# string: the old print was "both stale against the pricing date and 39 basis points below
+# the observable level on its own date". kd_egp was not moved with it. It stayed at
+# 0.2481 -- 22.31% plus 250bp -- so the study's cost of debt went on resting on a number
+# the study itself had WITHDRAWN, and its source string went on quoting "the ten-year
+# sovereign yield of 22.31%" three hundred lines below the register entry that retired it.
+#
+# A figure derived by hand from another figure falls out of step the first time the other
+# one moves, and nothing says so: both were internally consistent, individually sourced,
+# and 69 basis points apart. It is derived now, so the floor argument in its source string
+# ("a same-currency corporate cannot borrow below its own sovereign") is enforced by the
+# arithmetic rather than asserted beside it.
+_RF_EGY = 0.2300
+_KD_CORP_SPREAD = 0.0250
+
+# THE CONTRACT-MANUFACTURING REVENUE, LIFTED OUT so the growth rate quoted in the driver's
+# source string is DERIVED from it. It was typed as "37.8%" and it was right -- 49.366365
+# over 35.835829 less one is 37.76% -- but a rate typed into a source string that the
+# bibliography prints verbatim is a figure a reader meets and cannot trace to any committed
+# number. It happened to satisfy the prose check by COINCIDENCE, matching an unrelated
+# sensitivity cell of 37.81 EGP per share; correcting the cost of debt moved that cell and
+# the coincidence with it, which is how a typed figure that was never really reconciled
+# came to light. The share of revenue in the same sentence is derived here too.
+_CH_TOLL_FY25 = 49.366365
+_CH_TOLL_FY24 = 35.835829
+_REV_FY25 = 9441.379305
+
 INP = dict(
     # ---- market anchors -------------------------------------------------
     spot=I(127.30, "Egyptian Exchange close, 3 September 2026 — the latest price available "
@@ -114,7 +145,7 @@ INP = dict(
     # ---- audited consolidated income statement --------------------------
     rev_fy23=I(5231.665571, AUD23, "2024-03-01", "Company"),
     rev_fy24=I(7590.545643, AUD24, "2025-03-01", "Company"),
-    rev_fy25=I(9441.379305, AUD25, "2026-03-01", "Company"),
+    rev_fy25=I(_REV_FY25, AUD25, "2026-03-01", "Company"),
     cogs_fy23=I(2896.343413, AUD23, "2024-03-01", "Company"),
     cogs_fy24=I(4184.382863, AUD24, "2025-03-01", "Company"),
     cogs_fy25=I(5287.140903, AUD25, "2026-03-01", "Company"),
@@ -322,7 +353,7 @@ INP = dict(
     ch_export_fy25=I(3103.975448 - 136.495540, AUD25 + ", revenue note (25): export sales "
                      "3,103.975 less export distributor incentives 136.496", "2026-03-01",
                      "Company"),
-    ch_toll_fy25=I(49.366365, AUD25 + ", revenue note (25): contract-manufacturing revenue",
+    ch_toll_fy25=I(_CH_TOLL_FY25, AUD25 + ", revenue note (25): contract-manufacturing revenue",
                    "2026-03-01", "Company"),
     # ---- PRODUCT-LINE DISCLOSURE: the board report splits the SAME total two ways —
     # by channel (below) and by product line (here). Both are used: the channel split drives
@@ -428,7 +459,7 @@ INP = dict(
     ch_tender_fy24=I(634.048710, AUD24 + ", revenue note (25)", "2025-03-01", "Company"),
     ch_export_fy24=I(2587.241752 - 87.085806, AUD24 + ", revenue note (25): export sales less "
                      "export distributor incentives", "2025-03-01", "Company"),
-    ch_toll_fy24=I(35.835829, AUD24 + ", revenue note (25)", "2025-03-01", "Company"),
+    ch_toll_fy24=I(_CH_TOLL_FY24, AUD24 + ", revenue note (25)", "2025-03-01", "Company"),
     units_prod_fy24=I(2143.68, BOARD25 + " — comparative production by pharmaceutical dosage "
                       "form, million units. NOTE the FY2024 Annual Report's own tablet line "
                       "read 1,513.38 million against the 1,351.75 million restated in the "
@@ -502,9 +533,12 @@ INP = dict(
                            "and broadly flat in hard currency; 1% a year is a nominal-dollar "
                            "drift, not a real gain", "2026-08-09", "House"),
     toll_growth=I([0.15, 0.12, 0.10, 0.08, 0.07],
-                  "Contract-manufacturing revenue growth. A small line (0.5% of revenue) that "
-                  "grew 37.8% in FY2025 off a low base as the company let third parties use "
-                  "idle capacity", "2026-08-09", "House"),
+                  "Contract-manufacturing revenue growth. A small line (%.1f%% of revenue) that "
+                  "grew %.1f%% in FY2025 off a low base as the company let third parties use "
+                  "idle capacity"
+                  % (100 * _CH_TOLL_FY25 / _REV_FY25,
+                     100 * (_CH_TOLL_FY25 / _CH_TOLL_FY24 - 1.0)),
+                  "2026-08-09", "House"),
 
     # ---- forecast drivers: the cost stack, one escalator per driver class ---
     cost_shares=I(dict(materials=0.5488, packaging=0.2456, labour=0.0977, energy=0.0342,
@@ -771,7 +805,7 @@ INP = dict(
                   "for disallowed items", "2026-08-09", "House"),
 
     # ---- cost of capital ----------------------------------------------------
-    rf=I(0.2300, "Egypt ten-year local-currency government bond yield, 23.00%, the observable "
+    rf=I(_RF_EGY, "Egypt ten-year local-currency government bond yield, 23.00%, the observable "
          "print on the SAME date as the equity price used throughout this study (6 August "
          "2026). The earlier edition carried a 22.31% print dated 21 July 2026, which was both "
          "stale against the pricing date and 39 basis points below the observable level on its "
@@ -829,10 +863,17 @@ INP = dict(
               _BETA['ci90'][0], _BETA['ci90'][1], _BETA['week_rule'],
               _BETA['withdrawn_composite']['beta'], _BETA['withdrawn_composite']['r2']),
            str(_BETA['index_asof']), "House"),
-    kd_egp=I(0.2481, "Marginal cost of local-currency debt: the ten-year sovereign yield of "
-             "22.31% plus a 250 basis-point corporate credit spread. A same-currency corporate "
+    kd_egp=I(_RF_EGY + _KD_CORP_SPREAD,
+             "Marginal cost of local-currency debt: the ten-year sovereign yield of %.2f%% "
+             "plus a %.0f basis-point corporate credit spread. A same-currency corporate "
              "cannot borrow below its own sovereign, so this is floored at the sovereign yield "
-             "by construction", "2026-08-09", "House"),
+             "by construction -- and it is now DERIVED from the same risk-free rate the "
+             "discount rate uses rather than typed, so the floor holds by arithmetic. Until "
+             "09-09-2026 this read 24.81%%, being the WITHDRAWN 22.31%% print of 21 July plus "
+             "the same spread: the risk-free was corrected to the pricing-date observable and "
+             "the cost of debt built on it was not moved with it, leaving the two 69 basis "
+             "points apart with nothing to say so"
+             % (100 * _RF_EGY, 10000 * _KD_CORP_SPREAD), "2026-08-06", "House"),
     kd_fx_coupon=I(0.075, "Marginal coupon on the group's hard-currency borrowings. Half the "
                    "term-loan book is US-dollar and euro paper from Qatar National Bank Alahli "
                    "and the National Bank of Kuwait; 7.5% is the dollar-funding cost for an "
@@ -2240,7 +2281,13 @@ OUT = dict(
               spot=V['spot'], shares_mn=V['shares_mn'], mcap=mcap),
     inputs=INP,
     history=hist,
-    unit_build=dict(dom_packs_fy24=dom_packs24, dom_packs_fy25=dom_packs25,
+    unit_build=dict(
+                    # THE CONTRACT-MANUFACTURING LINE'S OWN RATES, COMMITTED. Both are
+                    # printed in the delivered bibliography and neither was a committed
+                    # figure, so a reader met them and could not trace either.
+                    toll_growth_fy25=_CH_TOLL_FY25 / _CH_TOLL_FY24 - 1.0,
+                    toll_share_of_revenue_fy25=_CH_TOLL_FY25 / _REV_FY25,
+                    dom_packs_fy24=dom_packs24, dom_packs_fy25=dom_packs25,
                     exp_packs_fy24=exp_packs24, exp_packs_fy25=exp_packs25,
                     dom_price_fy24=dom_ppp24, dom_price_fy25=dom_ppp25,
                     exp_price_usd_fy25=exp_ppp_usd25,
