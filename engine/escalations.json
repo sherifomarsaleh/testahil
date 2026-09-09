@@ -1157,6 +1157,48 @@
     "file": "engine/build_depth_audit/published_gap_outstanding.json",
     "must_contain": "FERTIGLB_ruled_09_2026"
    }
+  },
+  {
+   "key": "HELI-primary-financial-statements",
+   "opened": "2026-09-09",
+   "cls": "missing_data",
+   "question": "Heliopolis Housing and Development (EGX: HELI) — audited annual statements for FY2022-FY2025 with BOTH the auditor's report and the Central Auditing Organization's separate report, the reviewed interims for Q1-2026 and H1-2026, the EGX results announcements for FY2025/Q1-2026/H1-2026 where the land and partnership anchors live, and the FY2025 governance report. Not one page of any statement was obtained, so SIGCM clause 1 blocks this study outright: zero fiscal years carry statement data and seven of thirteen drivers are top-down.",
+   "routes": [
+    {
+     "route": "https://www.heliopoliscompany.com/ — the domain aggregators print",
+     "when": "2026-09-09",
+     "outcome": "HTTP 200, 114 bytes, JS redirect to /lander then 302 to forsale.godaddy.com. THE DOMAIN IS EXPIRED AND PARKED FOR SALE. Anything citing it as this issuer's site is citing a parking page.",
+     "rerun": true
+    },
+    {
+     "route": "misr-algadida.com — the real corporate site",
+     "when": "2026-09-09",
+     "outcome": "https fails with 'certificate has expired'; plain http returns 200 and IS the real site. Seven governance PDFs and two docx were retrieved from it — but it carries no statement library.",
+     "rerun": true
+    },
+    {
+     "route": "ir.egidegypt.com:8080 — where the IR document library actually lives, named as baseUrl in the company's own assets/config.json",
+     "when": "2026-09-09",
+     "outcome": "https: 'Recv failure: Connection reset by peer' on four tries; http: timed out after 30s; the proxy log records ws_closed_mid_exchange, tunnel closed code 1006 after 6s. This port is the block.",
+     "rerun": true
+    },
+    {
+     "route": "www.egx.com.eg, with a browser user-agent as well as the default",
+     "when": "2026-09-09",
+     "outcome": "default UA gives 'Empty reply from server'; a BROWSER UA gives HTTP 200 carrying an F5/TSPD CAPTCHA — 'What code is in the image?'. Not solved. Same on static PDF paths. web.archive.org/save returns 520 trying to fetch EGX; the CDX index holds HELI docs only for 2011-2013 and no EGX PDF since 2024.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 15,
+   "why_only_the_principal": "Pure access, and every route is exhausted from here. The company's own document host refuses on both schemes, its aggregator-listed domain is for sale, the exchange serves a CAPTCHA and the Internet Archive cannot fetch the exchange either. SIGCM forbids taking the figures from a vendor or the press, and the press disagrees with itself here on the one number everyone quotes — FY2025 revenue growth printed as both +97% and +197%, where the arithmetic gives 197%.",
+   "done_meanwhile": "the sweep closed all four rings on 43 findings anyway, and the material it did reach is not marginal: the state auditor's count of about 2,074 feddans of encroachment, three land additions inside the window, an English/Arabic acre-versus-feddan unit trap worth 3.8%, about 2,500 feddans already committed under revenue-share contracts, and two bonus issues taking the share count from about 1.335bn to about 4.006bn. Both validator errors are left FIRING rather than suppressed.",
+   "default_if_no_answer": "HELI is not built. A developer valued on a land bank with no statement behind it, against a state auditor alleging encroachment larger than the stated portfolio, is not a study this house issues.",
+   "default_date": "2026-09-23",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/heli_study_pending/sweep_register.json",
+    "must_contain": "HELI_statements_received"
+   }
   }
  ]
 }
