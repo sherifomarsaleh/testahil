@@ -185,7 +185,9 @@ def fmt(v):
 items = sorted(INP.items(), key=lambda kv: (RING_ORDER.get(kv[1]['ring'], 9), kv[0]))
 for i, (k, v) in enumerate(items, 1):
     rows.append([str(i), k, fmt(v['value']), v['ring'], v['source'], v['date']])
-table(rows, [0.30, 1.70, 0.92, 0.74, 4.98, 0.84], size=7.4)
+# THE ROW-NUMBER COLUMN WRAPPED ON ITS OWN WIDEST NUMBER: 0.76cm declared against
+# 0.84cm needed. Widened from the source column, total unchanged.
+table(rows, [0.34, 1.70, 0.92, 0.74, 4.94, 0.84], size=7.4)
 
 # ---------------------------------------------------- source catalogue
 doc.add_page_break()

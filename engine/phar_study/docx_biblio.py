@@ -8,7 +8,9 @@ disagrees with, or reports beyond, the audited filing.
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import edition as _ed                      # the edition date, written once
+import edition as _ed
+sys.path.insert(0, os.path.join(HERE, '..'))
+import col_width as _cw    # size tables with the helper, never by eye                      # the edition date, written once
 sys.path.insert(0, HERE)
 import docx_base as B
 from docx.shared import Pt
@@ -157,7 +159,10 @@ for layer in LAYERS:
         else:
             vs = str(val)
         rows.append([k.replace('_', ' '), vs, v['date'], v['source']])
-    table(rows, [1.55, 1.05, 0.66, 3.34], size=7.2)
+    # THE DATE COLUMN WRAPPED: 1.68cm declared against 1.83cm needed for its widest
+    # date. Widened from the source column, which has the slack; the total is
+    # unchanged so nothing else on the page moves.
+    table(rows, [1.55, 1.05, 0.73, 3.27], size=7.2)
 P(f'Total: {len(INP)} inputs, every one carrying a value, a source, a date and a layer.',
   size=9, italic=True, color=GREY)
 
@@ -420,13 +425,25 @@ table(rows, [1.7, 0.7, 1.0, 1.0, 1.0, 1.35], size=8.4)
 caption('Table B7 — all THREE window sets, not a selection from them. The distribution of '
         'realised outcomes within each set is printed below it as a ten-bin histogram so a '
         'reader can run the uniformity test independently.')
-rows = [['Window set'] + [f'{i * 10}-{(i + 1) * 10}%' for i in range(10)]]
+# SIZED BY THE HELPER, NOT BY EYE, AND THE HEADERS LOST A CHARACTER TO MAKE IT FIT.
+# Eleven columns at the typed widths left every decile 1.35cm where its own header
+# needs 1.55cm, so ten of them wrapped. The DATA are single digits; it is the headers
+# that are wide, and at "0-10%" through "90-100%" the table needs 18.06cm inside a
+# 17.78cm block and cannot fit at any allocation. The per-cent sign moves into the
+# caption, where it is said once instead of ten times, and fit_widths does the rest --
+# it RAISES rather than returning a table that squeezes, which is the point of using
+# it instead of nudging numbers until nothing complains.
+_hdr = ['Window set'] + [f'{i * 10}-{(i + 1) * 10}' for i in range(10)]
+rows = [_hdr]
 for key, label in (('five_year', 'Last five years'), ('full', 'Full history'),
                    ('production', 'Post-break')):
     rows.append([label] + [str(x) for x in BT[key]['pit_hist']])
-table(rows, [1.35] + [0.53] * 10, size=7.6)
+_w_cm = _cw.fit_widths(_hdr, rows[1:], total_cm=17.78, size=7.6)
+table(rows, [w / 2.54 for w in _w_cm], size=7.6)
 caption('Table B8 — where each window\'s realised outcome fell inside its own forecast '
-        'distribution, in ten equal bins. A well-sized band spreads these evenly.')
+        'distribution, in ten equal bins. The column headings are percentage bands: '
+        '0-10 is the lowest tenth of the forecast distribution and 90-100 the highest. '
+        'A well-sized band spreads these evenly.')
 
 H1('7. How to check this study')
 P('The valuation model is a live spreadsheet. Open the Assumptions sheet, change any driver, '

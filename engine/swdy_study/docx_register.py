@@ -215,7 +215,11 @@ for ring in ['Market', 'Company', 'Country', 'House']:
     rows = [['Input', 'Value', 'Date', 'Source and construction']]
     for k, v in items:
         rows.append([k.replace('_', ' '), fmt(v['value']), v['date'], v['source']])
-    table(rows, [1.15, 0.95, 0.72, 4.18], size=7.6)
+    # THE DATE COLUMN WAS 0.05in TOO NARROW AND ITS WIDEST DATE WRAPPED. Widened
+    # from the source column beside it, which has slack; the total is unchanged, so
+    # nothing else on the page moves. Measured, not nudged: 1.83cm declared against
+    # 1.94cm needed.
+    table(rows, [1.15, 0.95, 0.78, 4.12], size=7.6)
 
 # ---- judgements ---------------------------------------------------------------
 H1('The judgements, stated separately')
