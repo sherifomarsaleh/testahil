@@ -66,7 +66,37 @@ gas_standard = reprice(gas_m3_per_t_ammonia=V('gas_standard_m3_t'))
 kd_floored = reprice(glide=True, kd_floor=W['sovereign_floor'])
 project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0])
 
+# THE EXPORT DUTY, PRICED. It was in NO alternatives table until 09-09-2026 while being
+# the largest single line anyone has priced in this study: a 10% ad-valorem duty applied
+# to every export tonne in perpetuity, worth EGP 2.68 a share against a central of 4.04.
+# Its source names no decree, no ministry and no rate document, and the study's own sweep
+# register records it as press reporting while the three policy inputs beside it cite
+# cabinet decision 170 of 2021 and trade-ministry decree 241 of 2021 by number. It has
+# been re-tiered L3 -> L4 in inputs.py for that reason. Here it is priced rather than
+# argued about, at the rate adopted, at no duty at all, and at half.
+_duty_zero = reprice(export_duty_pct=0.0)
+_duty_half = reprice(export_duty_pct=0.05)
+
 ALTS = [
+    dict(key="export_duty_2026",
+         made="A 10% ad-valorem export duty charged on every export tonne, for ever",
+         alt="No duty at all (%.4f) or half the rate (%.4f)" % (_duty_zero, _duty_half),
+         value=_duty_zero,
+         why="THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND ITS SOURCE NAMES NO "
+             "INSTRUMENT. The two cabinet decisions and the ministry decree it sits "
+             "beside are each cited by number and date; this one cites a description of a "
+             "change, dated 2026-01-01, which is a placeholder rather than a publication "
+             "date. The study's own sweep register says where it actually comes from -- "
+             "'Mada Masr and Edge Consultancy reporting on the Sep-2025 redistribution "
+             "and 2026 duty change' -- against the 2021 decisions, which come as cited in "
+             "the auditor's own reports. Press about a sector is industry context and the "
+             "input is tiered L4 now, not L3 'Official external'. THE DIRECTION IS "
+             "AGAINST THIS STUDY: removing the duty RAISES the value and narrows the gap "
+             "to the market, and it is priced for that reason rather than despite it "
+             "[R-GAP-04]. What would settle it: the 2026 decree with its number, date and "
+             "rate, or the FY2025/26 auditor's report disclosing a duty actually charged, "
+             "the way the FY2024/25 report disclosed the EGP 437.5m shortfall levy on "
+             "175kt."),
     dict(key="premium_basis",
          made="Country risk priced off the sovereign's traded default swap",
          alt="Priced off the sovereign's credit rating instead, which is the wider of "

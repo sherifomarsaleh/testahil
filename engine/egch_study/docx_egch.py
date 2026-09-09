@@ -830,7 +830,18 @@ P(f"A spot cost of capital embeds today's {PC(V('cpi_latest'))} inflation in eve
 figure('fig7_glide.png', 6.9,
        "{F}.  The rate glides from its spot build to a terminal rate made from its own "
        "parts. The dotted line is the rate the traded price implies.")
-P(f"{['Seven','Eight','Nine','Ten','Eleven'][len(AL['alternatives']) - 7]} choices in the construction above are legitimately arguable, and every one of "
+# THE COUNT IS SPELLED FROM THE COUNT, NOT INDEXED OUT OF A TYPED LIST. This read
+# ['Seven','Eight','Nine','Ten','Eleven'][len(alternatives) - 7], so the document builder
+# CRASHED the moment the contested register grew past eleven -- which is the one thing a
+# register is meant to do. It did, on 09-09-2026, when the export duty was priced into it
+# for the first time. A word list indexed by an offset is a typed constant wearing a
+# lookup: it encodes today's length and fails on tomorrow's.
+_N_WORDS = ('Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
+            'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen',
+            'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty')
+_n_alts = len(AL['alternatives'])
+_n_word = _N_WORDS[_n_alts] if _n_alts < len(_N_WORDS) else str(_n_alts)
+P(f"{_n_word} choices in the construction above are legitimately arguable, and every one of "
   f"them has been priced rather than defended in prose. Each row below is a complete "
   f"re-run of the model with that single component moved and everything else held, so the "
   f"figure in the third column is what this study would have published had it made the "

@@ -59,6 +59,14 @@
  "spot": 14.41,
  "alternatives": [
   {
+   "key": "export_duty_2026",
+   "made": "A 10% ad-valorem export duty charged on every export tonne, for ever",
+   "alt": "No duty at all (6.7226) or half the rate (5.3811)",
+   "value": 6.722645205388227,
+   "why": "THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND ITS SOURCE NAMES NO INSTRUMENT. The two cabinet decisions and the ministry decree it sits beside are each cited by number and date; this one cites a description of a change, dated 2026-01-01, which is a placeholder rather than a publication date. The study's own sweep register says where it actually comes from -- 'Mada Masr and Edge Consultancy reporting on the Sep-2025 redistribution and 2026 duty change' -- against the 2021 decisions, which come as cited in the auditor's own reports. Press about a sector is industry context and the input is tiered L4 now, not L3 'Official external'. THE DIRECTION IS AGAINST THIS STUDY: removing the duty RAISES the value and narrows the gap to the market, and it is priced for that reason rather than despite it [R-GAP-04]. What would settle it: the 2026 decree with its number, date and rate, or the FY2025/26 auditor's report disclosing a duty actually charged, the way the FY2024/25 report disclosed the EGP 437.5m shortfall levy on 175kt.",
+   "delta": 2.6830643888966668
+  },
+  {
    "key": "premium_basis",
    "made": "Country risk priced off the sovereign's traded default swap",
    "alt": "Priced off the sovereign's credit rating instead, which is the wider of the two spreads and gives a cost of capital 113 basis points higher",
