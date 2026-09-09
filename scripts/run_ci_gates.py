@@ -117,6 +117,39 @@ MUTATES_THE_REPO = (
 )
 
 
+def _head_sha():
+    """The commit this tree is on, or None if git cannot say.
+
+    THE RUN NEEDS THIS BECAUSE IT CANNOT TELL ITS OWN WRITES FROM THE OPERATOR'S.
+    _carry/_restore below attribute every content change during a step to that step.
+    That is right when the run has the tree to itself and wrong when it does not, and
+    on 09-09-2026 it was wrong twice in one hour: an operator committed
+    engine/study_population.py while a run was somewhere in the middle of seventy-odd
+    steps, and _restore wrote the PRE-COMMIT bytes back over the committed file. No
+    step had touched it. The guard built to stop a step clobbering the operator
+    clobbered the operator instead, and it did it silently, reporting the step GREEN.
+
+    It happened a second time because the first kill hit the wrapper and not the
+    interpreter, so a run nobody could see kept restoring for another half hour. The
+    lock is a lock on STARTING, not on running, which is why this check is per-step.
+    """
+    r = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                       capture_output=True, text=True)
+    return r.stdout.strip() if r.returncode == 0 else None
+
+
+def _clean_vs_head(rel):
+    """True where this path currently matches HEAD.
+
+    A path that matches HEAD was not left dirty by the step that just ran: either the
+    step never touched it, or it was COMMITTED while the run was going. Writing carried
+    bytes over either one is wrong, and over the second it is the exact failure above.
+    """
+    r = subprocess.run(["git", "status", "--porcelain", "--", rel], cwd=ROOT,
+                       capture_output=True, text=True)
+    return r.returncode == 0 and not r.stdout.strip()
+
+
 def _dirty_set():
     """The tracked paths that differ from HEAD right now, as a set.
 
@@ -164,6 +197,9 @@ def _restore(carried):
     back = []
     for rel, blob in carried.items():
         if blob is None:
+            continue
+        # A PATH THAT NOW MATCHES HEAD IS NOT THIS STEP'S DOING — see _clean_vs_head.
+        if _clean_vs_head(rel):
             continue
         full = os.path.join(ROOT, rel)
         try:
@@ -289,6 +325,8 @@ def _run(a):
             # that record saw "no CI run has been recorded". A run that cannot say what
             # it found is worth less than one that says it timed out.
             before_dirty = _dirty_set()
+            _head_before = _head_sha()
+            head_moved = False
             carried = _carry(before_dirty or ())
             try:
                 r = subprocess.run(["bash", "-e", "-c", script], cwd=ROOT,
@@ -319,13 +357,34 @@ def _run(a):
             # be read at all the step is reported as UNVERIFIED rather than clean
             # [R-ENF-04]: not knowing whether a step wrote to the tree is not the same
             # as knowing it did not.
+            # HEAD MOVED WHILE THE STEP RAN, SO EVERY CARRIED SNAPSHOT IS VOID.
+            # A commit during a run means the operator is working in this tree and the
+            # run no longer knows which content changes are its own. Restoring on that
+            # basis is guessing with a write. It says so out loud and touches nothing.
+            _head_after = _head_sha()
+            if _head_before is not None and _head_after != _head_before:
+                head_moved = True
+                print("  NOTE   HEAD moved during this step (%s -> %s). Carried content "
+                      "for %d path(s) DISCARDED unrestored: a commit landed while the run "
+                      "was going, so this run cannot tell its own writes from the "
+                      "operator's and will not guess with a write."
+                      % ((_head_before or '?')[:9], (_head_after or '?')[:9],
+                         len(carried)))
+                carried = {}
             clobbered = _restore(carried)
             now_dirty = _dirty_set()
             if before_dirty is None or now_dirty is None:
                 mutated = None
             else:
                 mutated = sorted(now_dirty - before_dirty)
-                if mutated:
+                # SAME REASON, AND MORE DANGEROUS: this one reverts to HEAD. A path the
+                # operator created or edited during the step reads as newly dirty and is
+                # indistinguishable from a step's own output.
+                if mutated and head_moved:
+                    print("  NOTE   %d path(s) newly dirty and NOT reverted, because HEAD "
+                          "moved during this run: %s"
+                          % (len(mutated), ", ".join(mutated[:4])))
+                elif mutated:
                     subprocess.run(["git", "checkout", "--"] + mutated, cwd=ROOT,
                                    capture_output=True, text=True)
                     now_dirty = _dirty_set()
