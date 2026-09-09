@@ -1,0 +1,42 @@
+{
+ "_ticker": "ABUK",
+ "_rule": "[R-TERM-01] — every terminal is built on a DISCLOSED useful life, and a life this desk chose is not a disclosed life.",
+ "_built": "2026-09-09",
+ "route_one_policy_note": {
+  "attempted": true,
+  "result": "FAILED — a range, not a life",
+  "what_the_note_states": {
+   "Buildings, construction and facilities": "2% - 6%",
+   "Production equipment and machineries": "5% - 11%",
+   "Machineries for Plastic Bags Plant": "4% - 6%",
+   "Vehicles and means of transportation": "10% - 20%",
+   "Tools and equipment": "7.5% - 10%",
+   "Furniture and office equipment": "10%",
+   "Computers": "25%",
+   "Photocopiers": "17%",
+   "Catalyst Abu Qir Plants": "10% - 33%"
+  },
+  "implied_span_years": [3.0, 50.0],
+  "source": "audited financial statements for the year ended 30 June 2025, accounting-policies note 3-7 C; the identical table appears in the FY-Jun-2024 filing",
+  "route": "text layer (pdftotext -layout)",
+  "why_it_fails": "The note discloses a rate BAND for seven of its nine asset classes and no weighting between them. Finding a range is not finding a life, and picking a point inside one is the choice this rule exists to forbid. This is the fifth name read under the rule and route one has now given a usable scalar exactly once."
+ },
+ "route_two_derived": {
+  "identity": "depreciable gross cost / annual depreciation charge",
+  "labelled": "DERIVED",
+  "observations": [
+   {"year": "FY-Jun-2025", "gross_cost": 5319035505, "charge": 168591319, "implied_life_years": 31.55},
+   {"year": "FY-Jun-2024", "gross_cost": 4708272369, "charge": 120504043, "implied_life_years": 39.07}
+  ],
+  "source": "audited financial statements for the year ended 30 June 2025, note 4 'Fixed assets' — the cost block and the accumulated-depreciation block, both years",
+  "route": "text layer (pdftotext -layout), arithmetic-confirmed: the cost roll-forward and the accumulated-depreciation roll-forward each foot to their printed closing balances",
+  "held_against_route_one": "31.6 to 39.1 years sits inside the 3-to-50-year span the policy note discloses, near its long end. That is consistent with a nitrogen complex whose buildings depreciate at 2% and whose machinery block is the largest single class.",
+  "two_reasons_the_derived_life_is_OVERSTATED_and_both_are_disclosed": [
+   "Land is not depreciated and is not separable — the note prints a single 'Lands & Buildings' column of EGP 599,243,706 at 30-Jun-2025 — so the numerator includes a non-depreciable amount and the ratio is too long by that share.",
+   "The company discloses EGP 2.3bn of FULLY DEPRECIATED fixed assets still in operation. Those sit in gross cost and contribute nothing to the charge, which lengthens the ratio further and is also the reason reported depreciation understates true replacement capex on this issuer."
+  ],
+  "adopted_for_the_terminal": null,
+  "adopted_note": "No life is adopted here. The terminal is the STUDY's construction and this run does not build one; the record is committed so the study, when it is built, has a disclosed life and its two overstatement adjustments in front of it rather than choosing a number."
+ },
+ "what_would_overturn_this": "A filing that discloses land separately from buildings, or a single weighted-average useful life or remaining-life figure in the fixed-asset or impairment note. Either would replace the derived ratio outright."
+}

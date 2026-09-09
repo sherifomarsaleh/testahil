@@ -93,8 +93,86 @@ def main():
                        ("macro_perfect", "model on the actual macro path"),
                        ("foresight", "model on perfect foresight")]:
         out[key] = summarise(panel, proj[key], label)
+    out = harvest_view(out)
     json.dump(out, open(os.path.join(HERE, "scores.json"), "w"), indent=1,
               sort_keys=True, default=float)
+    return out
+
+
+
+
+
+# ---------------------------------------------------------------------------
+# The harvest view.
+#
+# `lessons_harvest.py` reads a run's OWN committed numbers and fills a lesson's
+# evidence clause from them, so that a lesson's "what it cost" cannot drift from
+# what the run measured.  It expects a fixed shape, and this writes it — no
+# figure here is retyped, every one is computed from the same cells the tables
+# above are computed from.
+# ---------------------------------------------------------------------------
+PRETTY_DRV = {"vol_proxy": "volume proxy", "rev": "revenue",
+              "cogs": "cost of sales", "gp": "gross profit",
+              "sell": "selling and distribution", "admin": "overheads",
+              "nonop": "non-operating income", "pbt": "profit before tax",
+              "np": "net profit"}
+
+
+def harvest_view(out):
+    m = out["model"]["drivers"]
+    f = out["freeze"]["drivers"]
+    t = out["trend"]["drivers"]
+    mp = out["macro_perfect"]["drivers"]
+    fs = out["foresight"]["drivers"]
+    by_driver, by_horizon, macro_split, by_era = {}, {}, {}, {}
+    for d, s in m.items():
+        name = PRETTY_DRV[d]
+        ci = s["ci90_bias"]
+        by_driver[name] = dict(
+            n=s["n"], n_cells=s["n"], bias=round(s["bias"], 4),
+            mae=round(s["mae"], 4), over=round(s["over"], 3),
+            excluded_nonpositive=0,
+            boot={"origin": {"lo": round(ci[0], 4), "hi": round(ci[1], 4)}},
+            robust_sign=bool(ci[0] * ci[1] > 0))
+        by_horizon[name] = {}
+        for h in range(1, 6):
+            a, b, c = s["by_h"][h], f[d]["by_h"][h], t[d]["by_h"][h]
+            if not a:
+                continue
+            by_horizon[name][str(h)] = {
+                "summary": dict(n=a["n"], bias=round(a["bias"], 4),
+                                mae=round(a["mae"], 4), over=round(a["over"], 3),
+                                robust_sign=bool(ci[0] * ci[1] > 0)),
+                "skill_freeze": dict(n=a["n"], model_mae=round(a["mae"], 4),
+                                     bench_mae=round(b["mae"], 4),
+                                     skill=round(1 - a["mae"] / b["mae"], 4)
+                                     if b["mae"] else 0.0),
+                "skill_trend": dict(n=a["n"], model_mae=round(a["mae"], 4),
+                                    bench_mae=round(c["mae"], 4),
+                                    skill=round(1 - a["mae"] / c["mae"], 4)
+                                    if c["mae"] else 0.0)}
+        macro_split[name] = dict(
+            as_known_mae=round(s["mae"], 4),
+            perfect_mae=round(fs[d]["mae"], 4),
+            cpi_only_mae=round(mp[d]["mae"], 4),
+            macro_share=round((s["mae"] - mp[d]["mae"]) / s["mae"], 4)
+            if s["mae"] else 0.0)
+        by_era[name] = {}
+        for era, label in (("pre", "E1 pre-spike FY2020-FY2021"),
+                           ("post", "E2 spike and after FY2022-FY2025")):
+            e = s["by_era"][era]
+            if e:
+                by_era[name][label] = dict(n=e["n"], bias=round(e["bias"], 4))
+    out["by_driver"] = by_driver
+    out["by_horizon"] = by_horizon
+    out["macro_split"] = macro_split
+    out["by_era"] = by_era
+    out["origins"] = ORIGINS
+    out["horizons"] = [1, 2, 3, 4, 5]
+    out["seed"] = 20260909
+    out["nboot"] = NBOOT
+    out["blocks"] = "whole origins, with all their horizons"
+    out["drivers"] = list(PRETTY_DRV.values())
     return out
 
 

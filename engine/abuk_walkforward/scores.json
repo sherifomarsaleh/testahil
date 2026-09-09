@@ -1,4 +1,1210 @@
 {
+ "blocks": "whole origins, with all their horizons",
+ "by_driver": {
+  "cost of sales": {
+   "bias": -0.3101,
+   "boot": {
+    "origin": {
+     "hi": -0.182,
+     "lo": -0.4216
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.3377,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.2,
+   "robust_sign": true
+  },
+  "gross profit": {
+   "bias": -0.6428,
+   "boot": {
+    "origin": {
+     "hi": -0.2808,
+     "lo": -0.878
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.7111,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.2,
+   "robust_sign": true
+  },
+  "net profit": {
+   "bias": -0.6903,
+   "boot": {
+    "origin": {
+     "hi": -0.3612,
+     "lo": -0.9222
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.7728,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.15,
+   "robust_sign": true
+  },
+  "non-operating income": {
+   "bias": -0.6124,
+   "boot": {
+    "origin": {
+     "hi": -0.2884,
+     "lo": -0.849
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.8446,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.3,
+   "robust_sign": true
+  },
+  "overheads": {
+   "bias": -0.5591,
+   "boot": {
+    "origin": {
+     "hi": -0.2847,
+     "lo": -0.7985
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.6463,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.3,
+   "robust_sign": true
+  },
+  "profit before tax": {
+   "bias": -0.6949,
+   "boot": {
+    "origin": {
+     "hi": -0.3462,
+     "lo": -0.9281
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.7759,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.15,
+   "robust_sign": true
+  },
+  "revenue": {
+   "bias": -0.4686,
+   "boot": {
+    "origin": {
+     "hi": -0.2425,
+     "lo": -0.6399
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.4973,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.15,
+   "robust_sign": true
+  },
+  "selling and distribution": {
+   "bias": -0.458,
+   "boot": {
+    "origin": {
+     "hi": -0.3264,
+     "lo": -0.5771
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.4743,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.1,
+   "robust_sign": true
+  },
+  "volume proxy": {
+   "bias": 0.225,
+   "boot": {
+    "origin": {
+     "hi": 0.3272,
+     "lo": 0.1038
+    }
+   },
+   "excluded_nonpositive": 0,
+   "mae": 0.2686,
+   "n": 20,
+   "n_cells": 20,
+   "over": 0.85,
+   "robust_sign": true
+  }
+ },
+ "by_era": {
+  "cost of sales": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": 0.0877,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.3803,
+    "n": 17
+   }
+  },
+  "gross profit": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": -0.1132,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.7363,
+    "n": 17
+   }
+  },
+  "net profit": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": -0.035,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.806,
+    "n": 17
+   }
+  },
+  "non-operating income": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": 0.3095,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.7751,
+    "n": 17
+   }
+  },
+  "overheads": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": 0.1101,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.6772,
+    "n": 17
+   }
+  },
+  "profit before tax": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": -0.0142,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.815,
+    "n": 17
+   }
+  },
+  "revenue": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": 0.0063,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.5524,
+    "n": 17
+   }
+  },
+  "selling and distribution": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": 0.0413,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": -0.5462,
+    "n": 17
+   }
+  },
+  "volume proxy": {
+   "E1 pre-spike FY2020-FY2021": {
+    "bias": 0.0081,
+    "n": 3
+   },
+   "E2 spike and after FY2022-FY2025": {
+    "bias": 0.2632,
+    "n": 17
+   }
+  }
+ },
+ "by_horizon": {
+  "cost of sales": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.1616,
+     "model_mae": 0.117,
+     "n": 6,
+     "skill": 0.2757
+    },
+    "skill_trend": {
+     "bench_mae": 0.1714,
+     "model_mae": 0.117,
+     "n": 6,
+     "skill": 0.3172
+    },
+    "summary": {
+     "bias": -0.0754,
+     "mae": 0.117,
+     "n": 6,
+     "over": 0.333,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.3364,
+     "model_mae": 0.2312,
+     "n": 5,
+     "skill": 0.3129
+    },
+    "skill_trend": {
+     "bench_mae": 0.339,
+     "model_mae": 0.2312,
+     "n": 5,
+     "skill": 0.3181
+    },
+    "summary": {
+     "bias": -0.1759,
+     "mae": 0.2312,
+     "n": 5,
+     "over": 0.2,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 0.551,
+     "model_mae": 0.3863,
+     "n": 4,
+     "skill": 0.299
+    },
+    "skill_trend": {
+     "bench_mae": 0.5801,
+     "model_mae": 0.3863,
+     "n": 4,
+     "skill": 0.334
+    },
+    "summary": {
+     "bias": -0.3801,
+     "mae": 0.3863,
+     "n": 4,
+     "over": 0.25,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 0.7347,
+     "model_mae": 0.6396,
+     "n": 3,
+     "skill": 0.1295
+    },
+    "skill_trend": {
+     "bench_mae": 0.5479,
+     "model_mae": 0.6396,
+     "n": 3,
+     "skill": -0.1673
+    },
+    "summary": {
+     "bias": -0.6396,
+     "mae": 0.6396,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 0.7991,
+     "model_mae": 0.7155,
+     "n": 2,
+     "skill": 0.1046
+    },
+    "skill_trend": {
+     "bench_mae": 0.4792,
+     "model_mae": 0.7155,
+     "n": 2,
+     "skill": -0.4931
+    },
+    "summary": {
+     "bias": -0.7155,
+     "mae": 0.7155,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "gross profit": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.382,
+     "model_mae": 0.3817,
+     "n": 6,
+     "skill": 0.0008
+    },
+    "skill_trend": {
+     "bench_mae": 0.4507,
+     "model_mae": 0.3817,
+     "n": 6,
+     "skill": 0.1531
+    },
+    "summary": {
+     "bias": -0.2138,
+     "mae": 0.3817,
+     "n": 6,
+     "over": 0.5,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.607,
+     "model_mae": 0.5725,
+     "n": 5,
+     "skill": 0.0569
+    },
+    "skill_trend": {
+     "bench_mae": 0.9376,
+     "model_mae": 0.5725,
+     "n": 5,
+     "skill": 0.3894
+    },
+    "summary": {
+     "bias": -0.501,
+     "mae": 0.5725,
+     "n": 5,
+     "over": 0.2,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 0.8447,
+     "model_mae": 0.9034,
+     "n": 4,
+     "skill": -0.0696
+    },
+    "skill_trend": {
+     "bench_mae": 0.7046,
+     "model_mae": 0.9034,
+     "n": 4,
+     "skill": -0.2822
+    },
+    "summary": {
+     "bias": -0.9034,
+     "mae": 0.9034,
+     "n": 4,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 1.1147,
+     "model_mae": 1.1116,
+     "n": 3,
+     "skill": 0.0028
+    },
+    "skill_trend": {
+     "bench_mae": 0.3644,
+     "model_mae": 1.1116,
+     "n": 3,
+     "skill": -2.0502
+    },
+    "summary": {
+     "bias": -1.1116,
+     "mae": 1.1116,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 1.0859,
+     "model_mae": 1.0602,
+     "n": 2,
+     "skill": 0.0236
+    },
+    "skill_trend": {
+     "bench_mae": 0.7311,
+     "model_mae": 1.0602,
+     "n": 2,
+     "skill": -0.4502
+    },
+    "summary": {
+     "bias": -1.0602,
+     "mae": 1.0602,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "net profit": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.3687,
+     "model_mae": 0.4117,
+     "n": 6,
+     "skill": -0.1167
+    },
+    "skill_trend": {
+     "bench_mae": 0.5082,
+     "model_mae": 0.4117,
+     "n": 6,
+     "skill": 0.1897
+    },
+    "summary": {
+     "bias": -0.2282,
+     "mae": 0.4117,
+     "n": 6,
+     "over": 0.333,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.7011,
+     "model_mae": 0.6715,
+     "n": 5,
+     "skill": 0.0422
+    },
+    "skill_trend": {
+     "bench_mae": 0.9353,
+     "model_mae": 0.6715,
+     "n": 5,
+     "skill": 0.282
+    },
+    "summary": {
+     "bias": -0.562,
+     "mae": 0.6715,
+     "n": 5,
+     "over": 0.2,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 1.0197,
+     "model_mae": 0.9713,
+     "n": 4,
+     "skill": 0.0475
+    },
+    "skill_trend": {
+     "bench_mae": 0.8828,
+     "model_mae": 0.9713,
+     "n": 4,
+     "skill": -0.1003
+    },
+    "summary": {
+     "bias": -0.9713,
+     "mae": 0.9713,
+     "n": 4,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 1.3596,
+     "model_mae": 1.1949,
+     "n": 3,
+     "skill": 0.1211
+    },
+    "skill_trend": {
+     "bench_mae": 0.6193,
+     "model_mae": 1.1949,
+     "n": 3,
+     "skill": -0.9295
+    },
+    "summary": {
+     "bias": -1.1949,
+     "mae": 1.1949,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 1.3479,
+     "model_mae": 1.0786,
+     "n": 2,
+     "skill": 0.1997
+    },
+    "skill_trend": {
+     "bench_mae": 0.6832,
+     "model_mae": 1.0786,
+     "n": 2,
+     "skill": -0.5788
+    },
+    "summary": {
+     "bias": -1.0786,
+     "mae": 1.0786,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "non-operating income": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.6122,
+     "model_mae": 0.6102,
+     "n": 6,
+     "skill": 0.0033
+    },
+    "skill_trend": {
+     "bench_mae": 0.7475,
+     "model_mae": 0.6102,
+     "n": 6,
+     "skill": 0.1837
+    },
+    "summary": {
+     "bias": -0.1394,
+     "mae": 0.6102,
+     "n": 6,
+     "over": 0.5,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 1.0106,
+     "model_mae": 0.7913,
+     "n": 5,
+     "skill": 0.217
+    },
+    "skill_trend": {
+     "bench_mae": 1.4073,
+     "model_mae": 0.7913,
+     "n": 5,
+     "skill": 0.4378
+    },
+    "summary": {
+     "bias": -0.4797,
+     "mae": 0.7913,
+     "n": 5,
+     "over": 0.4,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 1.324,
+     "model_mae": 0.946,
+     "n": 4,
+     "skill": 0.2855
+    },
+    "skill_trend": {
+     "bench_mae": 1.4433,
+     "model_mae": 0.946,
+     "n": 4,
+     "skill": 0.3446
+    },
+    "summary": {
+     "bias": -0.8811,
+     "mae": 0.946,
+     "n": 4,
+     "over": 0.25,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 1.7654,
+     "model_mae": 1.1949,
+     "n": 3,
+     "skill": 0.3231
+    },
+    "skill_trend": {
+     "bench_mae": 1.2569,
+     "model_mae": 1.1949,
+     "n": 3,
+     "skill": 0.0493
+    },
+    "summary": {
+     "bias": -1.1949,
+     "mae": 1.1949,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 1.6857,
+     "model_mae": 0.9526,
+     "n": 2,
+     "skill": 0.4349
+    },
+    "skill_trend": {
+     "bench_mae": 0.8584,
+     "model_mae": 0.9526,
+     "n": 2,
+     "skill": -0.1098
+    },
+    "summary": {
+     "bias": -0.9526,
+     "mae": 0.9526,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "overheads": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.2863,
+     "model_mae": 0.2979,
+     "n": 6,
+     "skill": -0.0405
+    },
+    "skill_trend": {
+     "bench_mae": 0.391,
+     "model_mae": 0.2979,
+     "n": 6,
+     "skill": 0.2382
+    },
+    "summary": {
+     "bias": -0.1472,
+     "mae": 0.2979,
+     "n": 6,
+     "over": 0.667,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.6389,
+     "model_mae": 0.5808,
+     "n": 5,
+     "skill": 0.0909
+    },
+    "skill_trend": {
+     "bench_mae": 0.639,
+     "model_mae": 0.5808,
+     "n": 5,
+     "skill": 0.091
+    },
+    "summary": {
+     "bias": -0.4129,
+     "mae": 0.5808,
+     "n": 5,
+     "over": 0.4,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 1.1692,
+     "model_mae": 0.8361,
+     "n": 4,
+     "skill": 0.2849
+    },
+    "skill_trend": {
+     "bench_mae": 0.7718,
+     "model_mae": 0.8361,
+     "n": 4,
+     "skill": -0.0834
+    },
+    "summary": {
+     "bias": -0.8361,
+     "mae": 0.8361,
+     "n": 4,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 1.559,
+     "model_mae": 1.0603,
+     "n": 3,
+     "skill": 0.3199
+    },
+    "skill_trend": {
+     "bench_mae": 1.0929,
+     "model_mae": 1.0603,
+     "n": 3,
+     "skill": 0.0299
+    },
+    "summary": {
+     "bias": -1.0603,
+     "mae": 1.0603,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 1.5973,
+     "model_mae": 0.8547,
+     "n": 2,
+     "skill": 0.4649
+    },
+    "skill_trend": {
+     "bench_mae": 1.0047,
+     "model_mae": 0.8547,
+     "n": 2,
+     "skill": 0.1493
+    },
+    "summary": {
+     "bias": -0.8547,
+     "mae": 0.8547,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "profit before tax": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.3727,
+     "model_mae": 0.4126,
+     "n": 6,
+     "skill": -0.107
+    },
+    "skill_trend": {
+     "bench_mae": 0.5209,
+     "model_mae": 0.4126,
+     "n": 6,
+     "skill": 0.208
+    },
+    "summary": {
+     "bias": -0.2293,
+     "mae": 0.4126,
+     "n": 6,
+     "over": 0.333,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.6995,
+     "model_mae": 0.6688,
+     "n": 5,
+     "skill": 0.0438
+    },
+    "skill_trend": {
+     "bench_mae": 0.9692,
+     "model_mae": 0.6688,
+     "n": 5,
+     "skill": 0.3099
+    },
+    "summary": {
+     "bias": -0.5646,
+     "mae": 0.6688,
+     "n": 5,
+     "over": 0.2,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 1.0277,
+     "model_mae": 0.9809,
+     "n": 4,
+     "skill": 0.0455
+    },
+    "skill_trend": {
+     "bench_mae": 0.9202,
+     "model_mae": 0.9809,
+     "n": 4,
+     "skill": -0.066
+    },
+    "summary": {
+     "bias": -0.9809,
+     "mae": 0.9809,
+     "n": 4,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 1.3702,
+     "model_mae": 1.2023,
+     "n": 3,
+     "skill": 0.1225
+    },
+    "skill_trend": {
+     "bench_mae": 0.6851,
+     "model_mae": 1.2023,
+     "n": 3,
+     "skill": -0.7551
+    },
+    "summary": {
+     "bias": -1.2023,
+     "mae": 1.2023,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 1.3453,
+     "model_mae": 1.0839,
+     "n": 2,
+     "skill": 0.1943
+    },
+    "skill_trend": {
+     "bench_mae": 0.7741,
+     "model_mae": 1.0839,
+     "n": 2,
+     "skill": -0.4002
+    },
+    "summary": {
+     "bias": -1.0839,
+     "mae": 1.0839,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "revenue": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.2441,
+     "model_mae": 0.2386,
+     "n": 6,
+     "skill": 0.0226
+    },
+    "skill_trend": {
+     "bench_mae": 0.2545,
+     "model_mae": 0.2386,
+     "n": 6,
+     "skill": 0.0622
+    },
+    "summary": {
+     "bias": -0.1462,
+     "mae": 0.2386,
+     "n": 6,
+     "over": 0.333,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.3673,
+     "model_mae": 0.3385,
+     "n": 5,
+     "skill": 0.0785
+    },
+    "skill_trend": {
+     "bench_mae": 0.5502,
+     "model_mae": 0.3385,
+     "n": 5,
+     "skill": 0.3848
+    },
+    "summary": {
+     "bias": -0.3345,
+     "mae": 0.3385,
+     "n": 5,
+     "over": 0.2,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 0.6832,
+     "model_mae": 0.6368,
+     "n": 4,
+     "skill": 0.0678
+    },
+    "skill_trend": {
+     "bench_mae": 0.4414,
+     "model_mae": 0.6368,
+     "n": 4,
+     "skill": -0.4429
+    },
+    "summary": {
+     "bias": -0.6368,
+     "mae": 0.6368,
+     "n": 4,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 0.9109,
+     "model_mae": 0.8533,
+     "n": 3,
+     "skill": 0.0633
+    },
+    "skill_trend": {
+     "bench_mae": 0.451,
+     "model_mae": 0.8533,
+     "n": 3,
+     "skill": -0.8918
+    },
+    "summary": {
+     "bias": -0.8533,
+     "mae": 0.8533,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 0.9183,
+     "model_mae": 0.8571,
+     "n": 2,
+     "skill": 0.0666
+    },
+    "skill_trend": {
+     "bench_mae": 0.5745,
+     "model_mae": 0.8571,
+     "n": 2,
+     "skill": -0.4918
+    },
+    "summary": {
+     "bias": -0.8571,
+     "mae": 0.8571,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "selling and distribution": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.2017,
+     "model_mae": 0.1841,
+     "n": 6,
+     "skill": 0.0869
+    },
+    "skill_trend": {
+     "bench_mae": 0.1812,
+     "model_mae": 0.1841,
+     "n": 6,
+     "skill": -0.0163
+    },
+    "summary": {
+     "bias": -0.154,
+     "mae": 0.1841,
+     "n": 6,
+     "over": 0.167,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.4283,
+     "model_mae": 0.3324,
+     "n": 5,
+     "skill": 0.2239
+    },
+    "skill_trend": {
+     "bench_mae": 0.3408,
+     "model_mae": 0.3324,
+     "n": 5,
+     "skill": 0.0245
+    },
+    "summary": {
+     "bias": -0.3037,
+     "mae": 0.3324,
+     "n": 5,
+     "over": 0.2,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 0.6926,
+     "model_mae": 0.5415,
+     "n": 4,
+     "skill": 0.2181
+    },
+    "skill_trend": {
+     "bench_mae": 0.6297,
+     "model_mae": 0.5415,
+     "n": 4,
+     "skill": 0.14
+    },
+    "summary": {
+     "bias": -0.5415,
+     "mae": 0.5415,
+     "n": 4,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 0.9235,
+     "model_mae": 0.85,
+     "n": 3,
+     "skill": 0.0796
+    },
+    "skill_trend": {
+     "bench_mae": 0.5691,
+     "model_mae": 0.85,
+     "n": 3,
+     "skill": -0.4936
+    },
+    "summary": {
+     "bias": -0.85,
+     "mae": 0.85,
+     "n": 3,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 1.0677,
+     "model_mae": 1.0011,
+     "n": 2,
+     "skill": 0.0624
+    },
+    "skill_trend": {
+     "bench_mae": 0.4363,
+     "model_mae": 1.0011,
+     "n": 2,
+     "skill": -1.2947
+    },
+    "summary": {
+     "bias": -1.0011,
+     "mae": 1.0011,
+     "n": 2,
+     "over": 0.0,
+     "robust_sign": true
+    }
+   }
+  },
+  "volume proxy": {
+   "1": {
+    "skill_freeze": {
+     "bench_mae": 0.2142,
+     "model_mae": 0.2196,
+     "n": 6,
+     "skill": -0.0251
+    },
+    "skill_trend": {
+     "bench_mae": 0.2216,
+     "model_mae": 0.2196,
+     "n": 6,
+     "skill": 0.009
+    },
+    "summary": {
+     "bias": 0.0824,
+     "mae": 0.2196,
+     "n": 6,
+     "over": 0.667,
+     "robust_sign": true
+    }
+   },
+   "2": {
+    "skill_freeze": {
+     "bench_mae": 0.1961,
+     "model_mae": 0.2051,
+     "n": 5,
+     "skill": -0.0459
+    },
+    "skill_trend": {
+     "bench_mae": 0.2294,
+     "model_mae": 0.2051,
+     "n": 5,
+     "skill": 0.106
+    },
+    "summary": {
+     "bias": 0.195,
+     "mae": 0.2051,
+     "n": 5,
+     "over": 0.8,
+     "robust_sign": true
+    }
+   },
+   "3": {
+    "skill_freeze": {
+     "bench_mae": 0.2173,
+     "model_mae": 0.2636,
+     "n": 4,
+     "skill": -0.2132
+    },
+    "skill_trend": {
+     "bench_mae": 0.3022,
+     "model_mae": 0.2636,
+     "n": 4,
+     "skill": 0.1275
+    },
+    "summary": {
+     "bias": 0.2636,
+     "mae": 0.2636,
+     "n": 4,
+     "over": 1.0,
+     "robust_sign": true
+    }
+   },
+   "4": {
+    "skill_freeze": {
+     "bench_mae": 0.2897,
+     "model_mae": 0.3474,
+     "n": 3,
+     "skill": -0.1989
+    },
+    "skill_trend": {
+     "bench_mae": 0.2913,
+     "model_mae": 0.3474,
+     "n": 3,
+     "skill": -0.1924
+    },
+    "summary": {
+     "bias": 0.3474,
+     "mae": 0.3474,
+     "n": 3,
+     "over": 1.0,
+     "robust_sign": true
+    }
+   },
+   "5": {
+    "skill_freeze": {
+     "bench_mae": 0.4055,
+     "model_mae": 0.4667,
+     "n": 2,
+     "skill": -0.1508
+    },
+    "skill_trend": {
+     "bench_mae": 0.3794,
+     "model_mae": 0.4667,
+     "n": 2,
+     "skill": -0.2301
+    },
+    "summary": {
+     "bias": 0.4667,
+     "mae": 0.4667,
+     "n": 2,
+     "over": 1.0,
+     "robust_sign": true
+    }
+   }
+  }
+ },
+ "drivers": [
+  "volume proxy",
+  "revenue",
+  "cost of sales",
+  "gross profit",
+  "selling and distribution",
+  "overheads",
+  "non-operating income",
+  "profit before tax",
+  "net profit"
+ ],
  "foresight": {
   "cells": [
    {
@@ -3541,6 +4747,13 @@
   },
   "label": "naive benchmark FREEZE (flat at last actual)"
  },
+ "horizons": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
  "macro_perfect": {
   "cells": [
    {
@@ -5311,6 +6524,62 @@
    }
   },
   "label": "model on the actual macro path"
+ },
+ "macro_split": {
+  "cost of sales": {
+   "as_known_mae": 0.3377,
+   "cpi_only_mae": 0.4254,
+   "macro_share": -0.2599,
+   "perfect_mae": 0.0
+  },
+  "gross profit": {
+   "as_known_mae": 0.7111,
+   "cpi_only_mae": 0.2517,
+   "macro_share": 0.646,
+   "perfect_mae": 0.0
+  },
+  "net profit": {
+   "as_known_mae": 0.7728,
+   "cpi_only_mae": 0.3419,
+   "macro_share": 0.5576,
+   "perfect_mae": 0.018
+  },
+  "non-operating income": {
+   "as_known_mae": 0.8446,
+   "cpi_only_mae": 0.7612,
+   "macro_share": 0.0987,
+   "perfect_mae": 0.0
+  },
+  "overheads": {
+   "as_known_mae": 0.6463,
+   "cpi_only_mae": 0.5854,
+   "macro_share": 0.0942,
+   "perfect_mae": 0.5854
+  },
+  "profit before tax": {
+   "as_known_mae": 0.7759,
+   "cpi_only_mae": 0.3411,
+   "macro_share": 0.5604,
+   "perfect_mae": 0.018
+  },
+  "revenue": {
+   "as_known_mae": 0.4973,
+   "cpi_only_mae": 0.2686,
+   "macro_share": 0.4598,
+   "perfect_mae": 0.0
+  },
+  "selling and distribution": {
+   "as_known_mae": 0.4743,
+   "cpi_only_mae": 0.3585,
+   "macro_share": 0.2442,
+   "perfect_mae": 0.0
+  },
+  "volume proxy": {
+   "as_known_mae": 0.2686,
+   "cpi_only_mae": 0.2686,
+   "macro_share": 0.0,
+   "perfect_mae": 0.0
+  }
  },
  "model": {
   "cells": [
@@ -7083,6 +8352,16 @@
   },
   "label": "pre-registered ground-up model"
  },
+ "nboot": 5000,
+ "origins": [
+  "FY2019",
+  "FY2020",
+  "FY2021",
+  "FY2022",
+  "FY2023",
+  "FY2024"
+ ],
+ "seed": 20260909,
  "trend": {
   "cells": [
    {

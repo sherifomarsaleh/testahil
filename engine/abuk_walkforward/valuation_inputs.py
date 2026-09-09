@@ -47,6 +47,10 @@ DEP_DERIVED = {
 }
 
 DEP_MISSING = {
+    "FY2018": ("the FY-Jun-2018 charge needs the FY-Jun-2017 fixed-asset balance "
+               "to derive, and the FY-Jun-2018 filing is not the origin's own "
+               "year — it is the prior-year anchor. It was not derived and the "
+               "fixed-asset note of the FY-Jun-2018 Arabic scan was not read."),
     "FY2020": ("the identity capex = dPP&E + D&A does not hold across FY-Jun-2020 "
                "on this issuer: net fixed assets rose EGP 448.4m against capex of "
                "EGP 229.3m, so a revaluation or a transfer sits inside the "
@@ -119,7 +123,8 @@ def block(year, is_anchor=False):
         out["dep"] = dict(value=d["value"], derived=False, source=d["src"],
                           route=d["route"], tier="A")
     else:
-        out["dep"] = {"missing": DEP_MISSING[year]}
+        out["dep"] = {"missing": DEP_MISSING.get(
+            year, "the depreciation charge for this year was not sourced")}
 
     inv, recv, pay = bs.get("inventory"), bs.get("receivable"), bs.get("payable")
     if inv is not None and recv is not None and pay is not None:
@@ -142,6 +147,9 @@ def block(year, is_anchor=False):
                                 "recorded wrong"}
 
     out["shares"] = dict(P.SHARES)
+    out["shares"]["source"] = out["shares"].pop("src")
+    out["shares"]["tier"] = "A"
+    out["shares"]["document_date"] = "2024-08-29"
     out["shares"]["note"] = (
         "The count is footed in the document that states it: issued capital EGP "
         "1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. "
