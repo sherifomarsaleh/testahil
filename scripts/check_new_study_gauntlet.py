@@ -451,6 +451,13 @@ EXCLUDED = {
     # price, so there is correctly nothing of its to contradict. Its own population guard
     # is stricter than a refusal here -- it goes red when the price file is absent or
     # carries no entries, so the layout moving cannot read as every price agreeing.
+    # A new EMPTY study directory carries no study_numbers.json, so it has no terminal to
+    # build one way or the other. Its own population guard is stricter than a refusal here:
+    # it goes red when the study glob finds nothing at all, so the layout moving cannot
+    # read as every terminal being sanctioned.
+    'check_terminal_module_use.py':
+        'anchors on a study\'s committed terminal; a new empty study has none, so there '
+        'is correctly no construction to hold against the module',
     'check_supplied_prices.py':
         'anchors on the supplied price files and the OHLC libraries, not on study '
         'directories; a new empty study supplies no price',

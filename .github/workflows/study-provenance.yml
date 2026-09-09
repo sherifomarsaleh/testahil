@@ -967,6 +967,16 @@ jobs:
       - name: Supplied prices — the falsifier [R-ENF-07]
         run: python3 scripts/check_supplied_prices_negative_control.py
 
+      # FOUR GATES POLICE THE TERMINAL AND EVERY ONE READS A COMMITTED RECORD, so a study
+      # that builds its terminal by hand and commits none is examined by NONE of them and
+      # passes all four. Measured 09-09-2026: 24 study directories, 12 carrying a record,
+      # four with a terminal and no terminal_value import anywhere.
+      - name: Terminal construction — built through the sanctioned module
+        run: python3 scripts/check_terminal_module_use.py
+
+      - name: Terminal construction — the falsifier [R-ENF-07]
+        run: python3 scripts/check_terminal_module_use_negative_control.py
+
       # THE LARGEST BLIND SPOT IN THE SYSTEM, and the gauntlet above cannot see it either:
       # every construction gate here takes a STUDY DIRECTORY as its subject, so a name with
       # no study directory is examined by NONE of them. Measured through a real node load of
