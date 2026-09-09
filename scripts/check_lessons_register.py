@@ -133,13 +133,14 @@ def main():
     # the marker AND a harvest, scores or a lessons draft is a FINISHED run wearing an
     # unfinished label, and that is red -- with no threshold to argue about, because the
     # test is the run's own artefacts rather than a clock.
+    import run_state as _rs          # ONE reader for the declaration, three gates
     inflight = {}
     for d in wf:
-        mp = os.path.join(ENGINE, d, "RUN_IN_PROGRESS.json")
-        if not os.path.exists(mp):
+        rdir = os.path.join(ENGINE, d)
+        if not _rs.in_flight(path=rdir):
             continue
         try:
-            m = _json.load(open(mp, encoding="utf-8"))
+            m = _rs.declaration(path=rdir)
         except Exception as e:
             fails.append("%s/RUN_IN_PROGRESS.json will not parse (%s); an unreadable "
                          "declaration is not a declaration" % (d, e))

@@ -70,6 +70,9 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), 'engine'))
+import run_state as _run_state          # noqa: E402
 ENGINE = os.path.join(ROOT, 'engine')
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'forward_ranges_outstanding.json')
 
@@ -122,6 +125,16 @@ def census():
         if not os.path.exists(os.path.join(run, BAND)):
             continue
         tk = os.path.basename(run)[:-len('_walkforward')].upper()
+        # A RUN STILL UNDER WAY HAS NO DELIVERED STUDY YET, BY DEFINITION. This is the
+        # third gate anchoring on a run directory's existence, and the third to report a
+        # FINISHED run missing its work when one file of an unfinished one was committed.
+        # The declaration is read from engine/run_state.py so all three get the same
+        # answer; whether the marker is HONEST is tested in check_lessons_register.py,
+        # against the run's own artefacts rather than a clock.
+        if _run_state.in_flight(path=run):
+            rows.append(dict(ticker=tk, state='in_flight',
+                             why=(_run_state.declaration(path=run) or {}).get('waiting_on')))
+            continue
         study_dir = os.path.join(ENGINE, '%s_study' % tk.lower())
         if not os.path.isdir(study_dir):
             # [R-FCAL-01 §6 AMENDED 09-09-2026] — a run that DECLARES it struck no fair
@@ -189,6 +202,14 @@ def main(argv):
         if r['state'] == 'calibration_only':
             print('    %-8s calibration-only — declared, strikes no fair value, so it '
                   'publishes no study and owes no printed range' % tk)
+            continue
+        # A RUN STILL UNDER WAY OWES ITS RANGE WHEN IT DELIVERS, NOT NOW. Reported rather
+        # than hidden, with what it is waiting on, so the population stays visible and the
+        # debt is countable — an exemption nobody can count is the shape [R-ENF-02]
+        # refuses, and it is why this prints the reason rather than skipping quietly.
+        if r['state'] == 'in_flight':
+            print('    %-8s IN FLIGHT — declared unfinished, owes its printed range when '
+                  'it delivers a study: %s' % (tk, str(r.get('why'))[:70]))
             continue
         if r['state'] == 'read' and r['shapes']:
             print('    %-8s prints a far-year range   shape %s   (%s)'

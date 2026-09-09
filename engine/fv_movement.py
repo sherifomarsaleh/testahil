@@ -323,9 +323,8 @@ def check():
     # the run has produced nothing (checked in scripts/check_lessons_register.py against
     # the run's own artefacts, not a clock), and the baseline it still owes is named
     # inside it, so the debt is written down rather than waived.
-    inflight = {tk for tk in runs
-                if os.path.exists(os.path.join(ENGINE, tk.lower() + '_walkforward',
-                                               'RUN_IN_PROGRESS.json'))}
+    import run_state as _rs          # ONE reader for the declaration, three gates
+    inflight = {tk for tk in runs if _rs.in_flight(tk)}
     if inflight:
         print('  in flight, declared unfinished and exempt: %s'
               % ', '.join(sorted(inflight)))
