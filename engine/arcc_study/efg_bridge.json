@@ -1,6 +1,6 @@
 {
  "start": 69.7549,
- "end": 66.53,
+ "end": 69.2217,
  "reviewer": {
   "source": "EFG Hermes, \"Arabian Cement Company \u2014 initiation\", reconciled 02-Sep-2026",
   "basis": "figures produced by a THIRD PARTY's model. This study cannot compute them and does not adopt them; they are registered so that quoting them is checkable.",
@@ -8,7 +8,7 @@
   "year5_discount_factor": 0.4813
  },
  "market": 77.0,
- "published_central": 66.5300405232932,
+ "published_central": 69.22170258351841,
  "published_spot": 77.0,
  "steps": [
   {
@@ -36,7 +36,7 @@
    "driver": "operating build",
    "off": "OPEN",
    "receipt": "Two errors pointing opposite ways and no referee. Our FY2028 revenue is 15,350 against their 13,792 (+11.3%) because we build tonnes from kiln utilisation 91.7%->93.5%; they have volume FALLING 3%. But our EBITDA margin glides 39.3%->34.3% while Q1-2026 gross margin was 42.9% and widening, which is their side of it.",
-   "value": 9.7711
+   "value": 9.7362
   },
   {
    "key": "terminal",
@@ -44,8 +44,8 @@
    "sub": "capital maintained\nover its disclosed life",
    "driver": "terminal block",
    "off": "EFG",
-   "receipt": "They grow FY2030 free cash flow at 2.5% for ever with no charge for keeping the plant standing. A perpetuity has to maintain its own capital: on replacement-cost capital of EGP 51,191 and the 20-year machinery life ARCC's own audited accounting-policies note discloses, that maintenance is EGP 2,560 a year, against book depreciation of EGP 643 already inside terminal profit. CAVEAT: the USD 130 per annual tonne behind that capital base is this model's least-verified single input.",
-   "value": 11.6704
+   "receipt": "They grow FY2030 free cash flow at 2.5% for ever with no charge for keeping the plant standing. A perpetuity has to maintain its own capital: on replacement-cost capital of EGP 45,911 and the 20-year machinery life ARCC's own audited accounting-policies note discloses, that maintenance is EGP 2,296 a year, against book depreciation of EGP 643 already inside terminal profit. CAVEAT: the USD 130 per annual tonne behind that capital base is this model's least-verified single input.",
+   "value": 14.8211
   },
   {
    "key": "discount_rate",
@@ -53,17 +53,17 @@
    "sub": "their flat 20.06%\nvs our 27.60%->18.34%",
    "driver": "discount rate",
    "off": "OPEN",
-   "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% -- below the risk-free rate, which is hard to defend. Late in the window it runs the other way. On THEIR calendar, which is the only way to compare a rate against a rate, their year-five factor is 0.4813 against ours of 0.4353, so ours discounts the far end harder. The two work against each other and what is LEFT is this bar, -6.19 a share, which is the number to argue with rather than either convention.",
-   "value": -6.1863
+   "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% -- below the risk-free rate, which is hard to defend. Late in the window it runs the other way. On THEIR calendar, which is the only way to compare a rate against a rate, their year-five factor is 0.4813 against ours of 0.4353, so ours discounts the far end harder. The two work against each other and what is LEFT is this bar, -6.48 a share, which is the number to argue with rather than either convention.",
+   "value": -6.4848
   },
   {
    "key": "valuation_date",
    "label": "Valuation date\n1 Jan -> 30 Jun",
-   "sub": "-5.33 out of window,\n+1.37 back as cash",
+   "sub": "-5.46 out of window,\n+1.37 back as cash",
    "driver": "valuation date",
    "off": "EFG",
    "receipt": "A price is what you pay today. Only the remainder of the current fiscal year sits inside the discounted window, so the rest of that year's free cash flow leaves it -- and arrives in the bridge as cash already earned. This step REMOVES value on net. The +1.37 of accumulated cash is INSIDE the answer; it is not owed on top.",
-   "value": -3.9614
+   "value": -4.088
   },
   {
    "key": "balance_sheet",
@@ -81,7 +81,7 @@
    "driver": "share count and reconciliation",
    "off": "NEITHER",
    "receipt": "Not an error on either side, and not a lens weighting: this study's central IS the cash-flow lens, published alongside the other reads rather than averaged with them. Two things sit in this step. The share count (374.867mn against their 375.0mn), and the residual between walking one driver at a time down this bridge and running the whole model at once, which is what the published central is. A previous edition weighted four lenses 50/20/22/8 and this step carried those weights; the weights are retired and so is the description.",
-   "value": -0.0374
+   "value": -0.0364
   }
  ]
 }
