@@ -686,8 +686,15 @@ band(wsD, 21, 8); wsD['A21'] = 'TERMINAL BLOCK'
 # new one, which is precisely what this study's own recalculation gate caught the moment
 # the model changed and the builder did not.
 _TB_LIFE = _TERMREC['inputs']['useful_life_years']
+# THE ROLL RUNS FROM THE FY2026 INDEX POINT, NOT FROM THE FY2025 BASE [09-09-2026].
+# repl_usd_t and fx are both dated 2026-08-06, so their product is an August-2026 EGP
+# figure, and cost_infl is indexed to FY2025 = 1.0 -- multiplying by infl5 alone charged
+# the FY2026 step of 11.5% twice. The model was corrected; this formula was not, and the
+# recalculator caught the two disagreeing on the first run after the rebuild, exactly as
+# the comment above this block says it is meant to.
 TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B22',
-       f"={A['capcem']}*{A['repl']}*{A['fx']}*{A['infl5']}", DCF['ic_repl'], NUM0),
+       f"={A['capcem']}*{A['repl']}*{A['fx']}*{A['infl5']}/{A['infl1']}",
+       DCF['ic_repl'], NUM0),
       ('Terminal NOPAT  (year 5 NOPAT grown at g)', 'B23', f"=F11*(1+{A['g']})",
        DCF['nopat_term'], NUM0),
       # THE LABEL NAMED THE ADOPTED QUANTITY AND CARRIED THE RETIRED ONE, WHICH IS HOW

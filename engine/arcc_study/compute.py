@@ -805,6 +805,20 @@ INP = dict(
     # utilisation of a provision, not an investment in trade working capital; this model
     # already carries provisions on their own line in the EBITDA bridge, so counting them
     # here would charge them twice. Named rather than silently dropped.
+    # THE TWO YEARS, REGISTERED SEPARATELY so a reader can audit each and so the study's
+    # own prose gate can match them: a figure quoted in a delivered source string has to
+    # exist as a number this study computes, or prose_check reports it as unreconciled —
+    # which is exactly what it did on the first rebuild after this rate was derived.
+    wc_pct_drev_fy25=I(round(-_WC_SUM_25 / _DREV_25, 6),
+                       "The FY2025 outturn alone: EGP %.3fmn invested in working capital "
+                       "against EGP %.3fmn of revenue growth. NOT USED — it is half again "
+                       "the pooled rate and the sentence claiming 12%% was close to it was "
+                       "false" % (-_WC_SUM_25, _DREV_25), "2025-12-31", "Company"),
+    wc_pct_drev_fy24=I(round(-_WC_SUM_24 / _DREV_24, 6),
+                       "The FY2024 outturn alone: EGP %.3fmn against EGP %.3fmn. NOT USED "
+                       "— it is a quarter of the FY2025 figure, and two years that "
+                       "disagree four-fold are why neither is a basis on its own"
+                       % (-_WC_SUM_24, _DREV_24), "2024-12-31", "Company"),
     wc_pct_drev=I(_WC_PCT_DREV, "Change in working capital over change in revenue, "
                   "DERIVED from the six working-capital movement lines the issuer's own "
                   "statement of cash flows discloses for FY2025 and FY2024, pooled and "
