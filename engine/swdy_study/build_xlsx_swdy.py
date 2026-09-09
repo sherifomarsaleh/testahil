@@ -348,7 +348,16 @@ block('Segment gross margins and corporate cost load', [
      IN['opex_pct'], PCT)])
 block('Capital intensity', [
     ('nwc_pct', 'Working capital / revenue', IN['nwc_pct'], PCT),
-    ('capex_pct', 'Capital expenditure / revenue', IN['capex_pct'], PCT),
+    # DERIVED FROM THE MODEL'S OWN DELIVERED CAPEX, NOT FROM THE INPUT REGISTER.
+    # IN['capex_pct'] is the RETIRED House taper; the model re-anchored capex on the
+    # reviewed half on 09-09-2026 and this row went on writing the retired path, so the
+    # DCF sheet below (which computes capex as revenue x this row) charged a capex the
+    # model does not. The recalculator caught it -- 175 formula cells disagreeing and the
+    # enterprise value out by 9,178 -- which is the one thing that check exists for.
+    # Taking the ratio out of F['capex'] and F['rev'] makes the row the model's own capex
+    # by construction, so it cannot drift from it again [R-ENF-03].
+    ('capex_pct', 'Capital expenditure / revenue',
+     [F['capex'][i] / F['rev'][i] for i in range(5)], PCT),
     ('dna_pct', 'Depreciation and amortisation / revenue', IN['dna_pct'], PCT)])
 block('Cost of capital', [
     ('rf', 'Risk-free rate (10-year local currency)', IN['rf'], PCT),
