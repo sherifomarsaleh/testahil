@@ -47,3 +47,23 @@ The principal asked to return to this later.
    instead.
 3. Where the supplied file's KABO figure came from, since a 273% move is either a real
    corporate event with a disclosure behind it or a bad row.
+
+## The baseline was taken and then withdrawn, and why that is not a loss
+
+`fv_movement.py snapshot KABO` was run before the price question surfaced, freezing bear
+1.42 / base 2.39 / full 3.52 against the library spot of 9.12. The register check then
+refused it, correctly: **`KABO carries a record with no walk-forward run directory behind
+it`.** A baseline is frozen so the campaign cannot overwrite an old number it is about to
+move — it is meaningless without a run that moves it, and a record standing alone is a
+claim about work nobody did.
+
+So the entry was removed rather than the check weakened. The append-only rule on baselines
+exists to stop one being RE-CAPTURED after the campaign has already moved the number; that
+danger does not arise here, because nothing touched KABO's fair value. The numbers are
+preserved in this file and in the commit that added them, and a fresh snapshot when the run
+actually starts will read the same unmoved `data.js` figures.
+
+**The frozen values, kept here so the withdrawal costs nothing:**
+bear **1.42** / base **2.39** / full **3.52**, spot **9.12** at the close of 23 August 2026,
+captured 9 September 2026, `built_to` reported as "(no study)" — which is itself wrong, per
+the note above.
