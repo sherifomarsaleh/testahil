@@ -935,6 +935,15 @@ jobs:
       - name: New-study gauntlet — negative control
         run: python3 scripts/check_new_study_gauntlet_negative_control.py
 
+      # A DATE THE RECORD HOLDS MAY NOT BE TYPED AGAIN. Adopted 09-09-2026 after three
+      # studies were re-issued and every one shipped a date that had been written down
+      # instead of read — a masthead a month behind its own price, a bibliography headed
+      # with the wrong August, a roll to an anchor the model had left. Each was a
+      # one-line repair; the cost was that each surfaced only when something downstream
+      # disagreed, roughly one per CI cycle. A sweep found 150 in two minutes.
+      - name: Typed dates — a date the record states is never typed again
+        run: python3 scripts/check_typed_dates.py
+
       # THE LARGEST BLIND SPOT IN THE SYSTEM, and the gauntlet above cannot see it either:
       # every construction gate here takes a STUDY DIRECTORY as its subject, so a name with
       # no study directory is examined by NONE of them. Measured through a real node load of
