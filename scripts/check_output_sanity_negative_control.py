@@ -95,10 +95,24 @@ def case(name, studies, ratchet, expect_red, landed, results):
 
 
 def central_below_floor(lr):
+    """Mirrors the gate, INCLUDING the two-sided read added 09-09-2026.
+
+    This case stopped landing on EGCH and the reason was worth finding rather than
+    working around: EGCH went two-sided, so it publishes branches and no scalar central,
+    and both this predicate and the gate itself read a scalar. The study was passing the
+    floor check BY BEING UNREADABLE — while its own record carried a below_floor_reason
+    explaining that both branches sit under its disclosed book equity. The gate was
+    re-pointed to read the HIGHEST branch [R-COC-01], and this follows it: a control that
+    does not mirror the gate stops testing it.
+    """
     c = lr.get("central")
     c = c.get("value") if isinstance(c, dict) else c
     if not isinstance(c, (int, float)):
         c = (lr.get("primary") or {}).get("value")
+    if not isinstance(c, (int, float)):
+        vals = [b.get("value") for b in ((lr.get("primary") or {}).get("branches") or [])
+                if isinstance(b, dict) and isinstance(b.get("value"), (int, float))]
+        c = max(vals) if vals else None
     for x in (lr.get("cross_checks") or []):
         if x.get("kind") == "book_value" and isinstance(x.get("value"), (int, float)):
             return isinstance(c, (int, float)) and c < x["value"]
