@@ -389,8 +389,13 @@ PVR = r; r += 1
 put(ws, r, 1, 'Opening book value plus capital paid in', LBL)
 put(ws, r, 2, "='%s'!B11+'%s'!$B$%d" % (BAL, A, ASS['issue']), fmt=N); B0 = r; r += 1
 put(ws, r, 1, 'Terminal residual income, discounted', LBL)
-put(ws, r, 2, "=(H%d*(1+'%s'!$B$%d)/('%s'!$B$%d-'%s'!$B$%d))*H%d"
-    % (RI_R, A, ASS['g'], A, ASS['keterm'], A, ASS['g'], DF_R), fmt=N)
+# THE TERMINAL RESIDUAL INCOME IS CHARGED AT THE TERMINAL COST OF EQUITY, not at the
+# final explicit year's rate. Using the year-5 figure understates it by the difference
+# between the two rates applied to the whole closing book — EGP 3.4 billion here — and
+# the independent recalculation is what caught it.
+put(ws, r, 2, "=(('%s'!I%d-'%s'!$B$%d*'%s'!G10)*(1+'%s'!$B$%d)/('%s'!$B$%d-'%s'!$B$%d))*H%d"
+    % (IS_, IS_ROW['np_parent'], A, ASS['keterm'], BAL, A, ASS['g'], A, ASS['keterm'],
+       A, ASS['g'], DF_R), fmt=N)
 TVR = r; r += 1
 put(ws, r, 1, 'Equity value', LBL)
 put(ws, r, 2, '=B%d+SUM(D%d:H%d)+B%d' % (B0, PVR, PVR, TVR), fmt=N)
@@ -588,7 +593,7 @@ put(ws, r, 1, 'plus capital raised from shareholders', LBL)
 for j in range(5):
     put(ws, r, 3 + j, "='%s'!%s14" % (BAL, get_column_letter(3 + j)), fmt=N)
 r += 1
-put(ws, r, 1, '= Dividend', LBL)
+put(ws, r, 1, 'equals the Dividend', LBL)
 for j in range(5):
     put(ws, r, 3 + j, "='%s'!%s13" % (BAL, get_column_letter(3 + j)), fmt=N)
 r += 1
@@ -596,7 +601,7 @@ put(ws, r, 1, 'less what shareholders paid in', LBL)
 for j in range(5):
     put(ws, r, 3 + j, "=-'%s'!%s14" % (BAL, get_column_letter(3 + j)), fmt=N)
 r += 1
-put(ws, r, 1, '= NET FLOW TO SHAREHOLDERS', LBL)
+put(ws, r, 1, 'equals the NET FLOW TO SHAREHOLDERS', LBL)
 for j in range(5):
     put(ws, r, 3 + j, "='%s'!%s15" % (BAL, get_column_letter(3 + j)), fmt=N)
 r += 2

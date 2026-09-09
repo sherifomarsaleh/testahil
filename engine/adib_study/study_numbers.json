@@ -16,26 +16,34 @@
   "fy_note": "financial year ends 31 December",
   "standard": "2026.09.07"
  },
- "central": 40.81031477333914,
+ "central": 37.17789080747221,
  "spot": 52.05,
  "fair": {
-  "bear": 11.857219584561902,
-  "base": 40.81031477333914,
-  "full": 60.38662041467526
+  "bear": 35.83842889391098,
+  "base": 37.17789080747221,
+  "full": 38.58104520290892
  },
- "gap_to_spot": -0.21594015805304245,
+ "gap_to_spot": -0.2857273620082188,
+ "primary": "ddm",
+ "lens_architecture": "[R-LENS-03] one class primary IS the central; the others are cross-checks. bank -> ddm primary, with residual income, a relative multiple and book value beside it. No typed weights.",
  "lenses": {
   "dividend_discount": 37.17789080747221,
   "free_cash_flow_to_equity": 35.83842889391098,
   "residual_income": 38.58104520290892,
   "relative_multiples": 60.820178311647034,
-  "normalised_earnings_power_no_weight": 34.000273022184004
+  "book_value_and_sustainable_return": 39.453303505623204,
+  "book_value_floor": 29.038621333333335,
+  "normalised_earnings_power": 34.000273022184004
  },
- "weights": {
-  "ddm": 0.3,
-  "fcfe": 0.25,
-  "ri": 0.3,
-  "rel": 0.15
+ "present_value_reads": {
+  "ddm": 37.17789080747221,
+  "fcfe": 35.83842889391098,
+  "residual_income": 38.58104520290892
+ },
+ "envelope": {
+  "bear": 35.83842889391098,
+  "full": 38.58104520290892,
+  "construction": "the range of the present-value reads on one clock"
  },
  "cost_of_capital": {
   "rf": 0.23,
@@ -374,63 +382,63 @@
  "sensitivity": [
   {
    "driver": "cost of risk +50bp",
-   "value": 36.95731172482488,
-   "change": -0.09441248051905182
+   "value": 32.91341683027851,
+   "change": -0.11470456996276412
   },
   {
    "driver": "cost of risk -50bp",
-   "value": 44.6633178218534,
-   "change": 0.09441248051905204
+   "value": 41.44236478466592,
+   "change": 0.11470456996276446
   },
   {
    "driver": "asset yield -50bp",
-   "value": 33.10514449202944,
-   "change": -0.1888044805364596
+   "value": 28.708805084249853,
+   "change": -0.22779898319353276
   },
   {
    "driver": "asset yield +50bp",
-   "value": 48.51548505464885,
-   "change": 0.18880448053645993
+   "value": 45.64697653069459,
+   "change": 0.2277989831935332
   },
   {
    "driver": "cost of funds +50bp",
-   "value": 34.22239418281936,
-   "change": -0.16142783085867263
+   "value": 29.936822514117104,
+   "change": -0.19476813063047027
   },
   {
    "driver": "cost of funds -50bp",
-   "value": 47.39823536385893,
-   "change": 0.16142783085867296
+   "value": 44.41895910082733,
+   "change": 0.19476813063047071
   },
   {
    "driver": "financing growth -5pp/yr",
-   "value": 36.74389687259273,
-   "change": -0.09964191463190941
+   "value": 33.03170349049848,
+   "change": -0.11152293007812075
   },
   {
    "driver": "financing growth +5pp/yr",
-   "value": 45.40119780108127,
-   "change": 0.11249320308456179
+   "value": 41.83250048989517,
+   "change": 0.12519832570726286
   },
   {
    "driver": "risk-free +200bp",
-   "value": 35.89976202076684,
-   "change": -0.12032626505934951
+   "value": 31.445033000222505,
+   "change": -0.1542007274414149
   },
   {
    "driver": "risk-free -200bp",
-   "value": 47.568735081078415,
-   "change": 0.16560568927918373
+   "value": 45.064786595644044,
+   "change": 0.2121394091185691
   },
   {
    "driver": "terminal growth +100bp",
-   "value": 41.53135267556878,
-   "change": 0.01766803089450053
+   "value": 37.993452318246014,
+   "change": 0.02193673425416298
   },
   {
    "driver": "terminal growth -100bp",
-   "value": 40.18449587236333,
-   "change": -0.015334821709943047
+   "value": 36.453253053496844,
+   "change": -0.01949109371825164
   }
  ],
  "walkforward": {
@@ -723,20 +731,15 @@
    "date": "2026-09-09",
    "tier": "House"
   },
-  "lens_weights": {
-   "value": {
-    "ddm": 0.3,
-    "fcfe": 0.25,
-    "ri": 0.3,
-    "rel": 0.15
-   },
-   "source": "Dividend discount 30%, free cash flow to equity 25%, residual income 30%, relative multiples 15%. The two cash-flow lenses and residual income carry 85% between them because they are built from this bank's own disclosed drivers; the multiple band carries 15% because this study could not source a same-day peer book value and says so rather than pretending otherwise. Normalised earnings power is REPORTED and carries no weight \u2014 it is a sanity check on whether the cycle is being capitalised, not a valuation.",
+  "lens_architecture": {
+   "value": "class primary = dividend discount; no typed blend",
+   "source": "The bank class is keyed to a dividend-discount PRIMARY with residual income, a relative multiple and book value beside it. The central IS the primary. The envelope is the range of the three present-value reads and no spread is invented around it [R-LENS-03].",
    "date": "2026-09-09",
    "tier": "House"
   },
   "band_construction": {
-   "value": "walk-forward h=3 dispersion, centred",
-   "source": "Bear and full are the CENTRAL multiplied by the 10th-to-90th percentile dispersion of the fundamental walk-forward's own attributable-profit error at three years, centred on that distribution's median: x0.291 and x1.480 on 8 origin-horizon cells. They are not a scenario anyone wrote down. The three-year horizon is used because it is where the terminal begins to dominate and because it is the longest horizon with more than seven measured cells.",
+   "value": "the range of the present-value reads [R-LENS-03]",
+   "source": "Bear is the free-cash-flow-to-equity read, full the residual-income read, and the central the dividend-discount primary between them. THE ENVELOPE IS NARROW BECAUSE THE THREE LENSES AGREE, AND THAT IS A STATEMENT ABOUT LENS AGREEMENT RATHER THAN ABOUT FORECAST CONFIDENCE. The fundamental walk-forward beneath this study measured a three-year attributable-profit dispersion of x0.29 to x1.48 on eight cells; that distribution sets the YEARS 3-5 PROFIT RANGES in Appendix A and nothing else, and section 7 says so in terms rather than letting a tight envelope imply a precision this record does not have.",
    "date": "2026-09-09",
    "tier": "House"
   }
