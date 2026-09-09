@@ -6,16 +6,16 @@
   "market": "EG",
   "currency": "EGP",
   "edition_date": "2026-09-02",
-  "standard_version": "2026.09.01",
+  "standard_version": "2026.09.07",
   "spot": 96.6,
   "spot_source": "Egyptian Exchange close for 2 September 2026, the latest price this repository holds for this name, read from the committed supplied price file through gap_today.latest_price_per_ticker(). SUPERSEDES the 23 August 2026 close of 97.80 the study was struck at: a fair value put against a price ten days old is a comparison a reader cannot use, however good the fair value is.",
   "spot_date": "2026-09-02",
   "shares_mn": 2060.6538,
   "market_cap": 199059.15708,
-  "class": "real-estate developer, off-plan \u2014 point-in-time on handover",
+  "class": "real-estate developer, off-plan — point-in-time on handover",
   "central": 91.97283407061008,
   "gap_vs_spot": -0.047900268420185466,
-  "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL \u2014 the four cases are never averaged. The figure is the median of the four cases on the adopted minority basis (its share of value), exposed only so [R-GAP-01]'s gate can read the answer; 2 of the four sit above the price and 2 below."
+  "central_note": "THIS STUDY DELIBERATELY PUBLISHES NO CENTRAL — the four cases are never averaged. The figure is the median of the four cases on the adopted minority basis (its share of value), exposed only so [R-GAP-01]'s gate can read the answer; 2 of the four sit above the price and 2 below."
  },
  "inputs": {
   "IS": {
@@ -1068,7 +1068,7 @@
    "index_asof": "2026-09-08",
    "index_dq": [],
    "stock_dq": [
-    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
+    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) — vendor fills, not tradeable prices"
    ],
    "week_rule": "W-THU",
    "interim_note": null,
@@ -6399,7 +6399,7 @@
    },
    "note": "four cases: two premium bases x two readings of the crux, on the cost-of-capital SCHEDULE rather than a flat rate. They are never averaged.",
    "range_basis": {
-    "driver": "two readings of the crux crossed with the two published equity-risk-premium bases \u2014 four cases, never averaged",
+    "driver": "two readings of the crux crossed with the two published equity-risk-premium bases — four cases, never averaged",
     "low": 63.80234923099227,
     "high": 123.19675533733282,
     "units": "EGP per share, the four cases' own present values",
@@ -6413,7 +6413,7 @@
     "kind": "book_value",
     "value": 44.48631788610003,
     "present_value": false,
-    "note": "shareholders' funds attributable to the parent, per share, at 30 June 2026 \u2014 a disclosed floor, published as such and carrying no weight"
+    "note": "shareholders' funds attributable to the parent, per share, at 30 June 2026 — a disclosed floor, published as such and carrying no weight"
    }
   ],
   "retired_lenses": [
@@ -6473,7 +6473,7 @@
    "basis": "value_share",
    "deduction": 35701.20328096312,
    "applied_to": "equity_value",
-   "proxy_source": "the minority's filed share of FY2025 profit after tax (20.98%) \u2014 the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
+   "proxy_source": "the minority's filed share of FY2025 profit after tax (20.98%) — the company does not disclose the subsidiaries carrying the minority with their own economics, so their value cannot be built directly",
    "book": 75652.8,
    "profit_share": 0.20976266344357763,
    "proportional": 0.45213466600049246
@@ -6514,22 +6514,22 @@
    0.3033900226275268,
    0.30392205071916634
   ],
-  "note": "No margin in this model is an input. Each cost line is a disclosed ratio of its own segment's revenue taken from the reviewed half just filed, so the three segment rates are held at their 30-June-2026 actuals for the whole explicit window and none of them drifts: development 26.58%, hospitality 45.37%, other recurring 31.91%. The group rate is a revenue-weighted mean of those three constants, so every movement in it is MIX and nothing else. It opens at 31.63% against the reviewed half's 32.26%, 1.96% relative below it, because development \u2014 the lowest-margin leg \u2014 is 61.3% of the first forecast year's revenue against 56.2% of the reviewed half's. The filed group record is FY2023 30.38%, FY2024 35.86% as first reported and 32.81% restated, FY2025 33.37%, and the reviewed H1 2026 32.26%; the forecast opens below all of them but FY2023. The path recorded here is the slower-conversion reading of the crux, the steeper of the two this study publishes and never averages: it falls to 30.30% in 2032, 4.21% relative below its own opening year. The faster reading falls only to 31.48%, 0.49% relative below its own. Both movements are the same mix effect \u2014 handovers grow faster than the two recurring legs, so the lowest-margin business takes share. Neither the opening year nor either path reaches the materiality line, so no mechanism is claimed; the steeper reading sits inside it rather than clear of it, and this record says so rather than reporting a pass."
+  "note": "No margin in this model is an input. Each cost line is a disclosed ratio of its own segment's revenue taken from the reviewed half just filed, so the three segment rates are held at their 30-June-2026 actuals for the whole explicit window and none of them drifts: development 26.58%, hospitality 45.37%, other recurring 31.91%. The group rate is a revenue-weighted mean of those three constants, so every movement in it is MIX and nothing else. It opens at 31.63% against the reviewed half's 32.26%, 1.96% relative below it, because development — the lowest-margin leg — is 61.3% of the first forecast year's revenue against 56.2% of the reviewed half's. The filed group record is FY2023 30.38%, FY2024 35.86% as first reported and 32.81% restated, FY2025 33.37%, and the reviewed H1 2026 32.26%; the forecast opens below all of them but FY2023. The path recorded here is the slower-conversion reading of the crux, the steeper of the two this study publishes and never averages: it falls to 30.30% in 2032, 4.21% relative below its own opening year. The faster reading falls only to 31.48%, 0.49% relative below its own. Both movements are the same mix effect — handovers grow faster than the two recurring legs, so the lowest-margin business takes share. Neither the opening year nor either path reaches the materiality line, so no mechanism is claimed; the steeper reading sits inside it rather than clear of it, and this record says so rather than reporting a pass."
  },
  "walkforward_scope": {
   "rule": "R-FCAL-01",
   "scope": "FULL",
   "sourceable_fiscal_years": 16,
   "earliest_sourceable": "FY2009",
-  "basis": "this name's own walk-forward pre-registration, section 0: \"FULL run. The panel holds 16 sourceable fiscal years \u2014 FY2009 and FY2011-FY2025\". The run built origins 2015-2024 on that archive",
+  "basis": "this name's own walk-forward pre-registration, section 0: \"FULL run. The panel holds 16 sourceable fiscal years — FY2009 and FY2011-FY2025\". The run built origins 2015-2024 on that archive",
   "status": "run",
-  "note": "The fundamental walk-forward HAS been run on this name (engine/tmgh_walkforward/, 01-09-2026): 10 origins, 2015-2024, 466 scored cells on the as-known macro setting. Its adopted list is empty \u2014 every candidate is a watch flag."
+  "note": "The fundamental walk-forward HAS been run on this name (engine/tmgh_walkforward/, 01-09-2026): 10 origins, 2015-2024, 466 scored cells on the as-known macro setting. Its adopted list is empty — every candidate is a watch flag."
  },
  "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
  "fair_value_range": {
   "low": 63.80234923099227,
   "high": 123.19675533733282,
-  "note": "the envelope of four published cases \u2014 two ERP bases x two readings of the crux \u2014 on the minority framed both ways. It is a range, not a target, and the cases are never averaged"
+  "note": "the envelope of four published cases — two ERP bases x two readings of the crux — on the minority framed both ways. It is a range, not a target, and the cases are never averaged"
  },
  "statements": {
   "reported": {
@@ -9308,6 +9308,16 @@
   }
  },
  "central": 91.97283407061008,
- "standard_version": "2026.09.01",
- "spot": 96.6
+ "standard_version": "2026.09.07",
+ "spot": 96.6,
+ "asset_base_record": {
+  "rule": "R-ASSET-01",
+  "quantity": "land bank",
+  "unit": "million square metres",
+  "value": 20.0,
+  "as_at": "2026-06-30",
+  "disclosure": "TMG Holding 1H 2026 earnings release, Cairo, 12 August 2026, via https://talaatmoustafa.com/investor-relations/. Stated on the release's own indicator panel as \"c.20 mn sqm\", so the figure carries the company's own rounding and this record carries it unrounded further. It is the quantity the whole present-value view is built out of: absorption runs on the delivery rate ACROSS THIS AREA, so a land bank that has grown understates the value and one consumed overstates it.",
+  "note": "THE ASSET BASE AND THE INFORMATION SET ARE THE SAME DAY, 2026-06-30. The land bank is disclosed as at that date in the 1H 2026 earnings release and the bridge stands on the reviewed balance sheet of the same date, so the ordering this rule tests is satisfied with no gap at all rather than with an acceptable one. No not_restated_since is declared and none is needed: a release is not being stretched forward here, it is contemporaneous."
+ },
+ "information_set_ends": "2026-06-30"
 }

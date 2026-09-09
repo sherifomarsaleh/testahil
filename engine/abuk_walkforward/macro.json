@@ -155,6 +155,30 @@
    "urea_usd_t": 529.5416666666667
   }
  },
+ "population_cy": {
+  "2004": 79477443,
+  "2005": 81101004,
+  "2006": 82700403,
+  "2007": 84276225,
+  "2008": 85864789,
+  "2009": 87501636,
+  "2010": 89196072,
+  "2011": 91093059,
+  "2012": 93161001,
+  "2013": 95333553,
+  "2014": 97528654,
+  "2015": 99597342,
+  "2016": 101644589,
+  "2017": 103696057,
+  "2018": 105682094,
+  "2019": 107553158,
+  "2020": 109315124,
+  "2021": 110957008,
+  "2022": 112618250,
+  "2023": 114535772,
+  "2024": 116538258,
+  "2025": 118365995
+ },
  "sources": {
   "cpi_eg_pct": {
    "basis": "calendar year",
@@ -163,6 +187,10 @@
   "egp_usd": {
    "basis": "calendar year",
    "url": "https://api.worldbank.org/v2/country/EGY/indicator/PA.NUS.FCRF?format=json&per_page=300&date=2004:2026"
+  },
+  "population": {
+   "basis": "calendar year",
+   "url": "https://api.worldbank.org/v2/country/EGY/indicator/SP.POP.TOTL?format=json&per_page=300&date=2004:2026"
   },
   "urea_usd_t": {
    "basis": "monthly",

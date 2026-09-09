@@ -53,14 +53,21 @@ def build():
             "instrument": "Talaat Moustafa Group Holding", "ticker": "TMGH",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
             "edition_date": "2026-09-02",
-            # THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT. [R-STD-02]: a version read
-            # from research_protocol.STANDARD_VERSION re-asserts everything that version requires on
-            # EVERY rebuild, with nobody deciding — and this study is listed as not meeting one of
-            # them (an asset-base record whose vintage is at least as new as the information set it
-            # claims to have read). Claiming the newer standard would be the study asserting a
-            # conformance the ratchet records it does not have. It moves back to the live constant in
-            # the same pass that meets the requirement, and not before.
-            "standard_version": "2026.09.01",
+            # THE STAMP WAS FROZEN AND THIS IS THE PASS THAT UNFREEZES IT [R-STD-02].
+            # It read a hard 2026.09.01 because this study was listed as not meeting one
+            # requirement of the newer standard: an asset-base record whose vintage is at
+            # least as new as the information set it claims to have read. That requirement
+            # is met as of 09-09-2026 — asset_base_record.py commits the land bank at
+            # 20.0 million sqm as at 30 June 2026 against an information set ending the
+            # SAME DAY, check_asset_base passes it, and the ratchet entry is pruned.
+            # The freeze note said in terms that it moves back to the live constant "in
+            # the same pass that meets the requirement, and not before"; this is that pass.
+            #
+            # IT IS READ NOW, NOT RE-TYPED. A stamp taken from the live constant re-asserts
+            # everything that version requires on every rebuild — which is exactly why it
+            # was frozen while a requirement was unmet, and exactly what makes it the right
+            # form once the requirement is met.
+            "standard_version": RP.STANDARD_VERSION,
             "spot": spot, "spot_source": WC.SPOT_SOURCE,
             # [R-GAP-01] the price carries its date, so a reader can age the
             # comparison and a checker can hold it to the latest supplied figure.
@@ -489,7 +496,8 @@ def main():
     cases = sorted(d["per_share_nci_value_share"].values())
     med = (cases[len(cases) // 2 - 1] + cases[len(cases) // 2]) / 2 if len(cases) % 2 == 0 else cases[len(cases) // 2]
     d["central"] = med
-    d["standard_version"] = "2026.09.01"   # read by campaign_queue.py; never typed
+    # read by campaign_queue.py. It said "never typed" while being typed; it is read now.
+    d["standard_version"] = RP.STANDARD_VERSION
     d["spot"] = d["meta"]["spot"]
     d["meta"]["central"] = med
     d["meta"]["gap_vs_spot"] = med / d["spot"] - 1

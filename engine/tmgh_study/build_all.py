@@ -34,6 +34,13 @@ STEPS = [
     ("lenses.py", "lenses.json", "the cross-checks, the sensitivity grid and the reverse "
                                  "read — all read by build_numbers"),
     ("build_numbers.py", "study_numbers.json", "the one file every builder reads"),
+    # APPENDS TO study_numbers.json, SO IT MUST FOLLOW build_numbers AND NOT PRECEDE IT.
+    # build_numbers rebuilds that file from scratch; an appended record written before it
+    # is silently reverted and the tree is left byte-identical to HEAD, which reads like
+    # nothing was done rather than like something was lost. That is the defect this whole
+    # file exists for, and it applies to the asset-base record like any other append.
+    ("asset_base_record.py", "study_numbers.json (asset_base_record)",
+     "[R-ASSET-01] the land bank's vintage against the information set that read it"),
     ("reverse.py", "diagnostics.json", "[R-ENF-05] reverse read, outside the numbers file"),
     ("contested.py", "contested_judgements.json", "[R-ENF-05] sign-test record"),
     ("experts.py", "experts.json", "the panel; its cross-examination quotes the reverse "

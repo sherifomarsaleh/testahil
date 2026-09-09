@@ -6,10 +6,6 @@
    "reason": "MEASURED: commits land_bank_sqm_mn = 33.0 dated 2024-12-31, sourced to the FY2024 earnings release, in a study edition-dated 2026-09-02 whose information set ends 1Q2026 and whose bridge stands on the 31-March-2026 balance sheet. Printed to the delivered workbook at build_xlsx_phdc.py:336. This is the defect the rule was adopted on and it comes off at PHDC's next rebuild.",
    "signature": "no asset_base_record committed"
   },
-  "TMGH": {
-   "reason": "commits landbank_msqm = 20.0 from the 1H 2026 earnings release, which is current — but carries no asset_base_record, so nothing states its vintage in a form a gate can read.",
-   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
-  },
   "MODON": {
    "reason": "no asset_base_record; developer.",
    "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
@@ -48,6 +44,11 @@
   {
    "removed": [
     "EGCH"
+   ]
+  },
+  {
+   "removed": [
+    "TMGH"
    ]
   }
  ]
