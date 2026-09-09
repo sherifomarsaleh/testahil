@@ -22,6 +22,8 @@ reference: FCFF DCF primary, book value and sustainable return, relative
 multiples, and normalised earnings power.
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -2503,8 +2505,10 @@ OUT = dict(
 )
 
 _out_path = os.environ.get('PHAR_OUT', os.path.join(HERE, 'study_numbers.json'))
-with open(_out_path, 'w') as f:
-    json.dump(OUT, f, indent=1, default=float)
+_carried = write_preserving(_out_path, OUT)
+if _carried:
+    print('[R-REPAIR-01] carried forward downstream-owned record(s): %s'
+          % ', '.join(_carried))
 print('\nwrote study_numbers.json')
 print(f"FAIR VALUE FIELD  bear {fair_bear:,.2f} · centre A {centre_A:,.2f} · centre B "
       f"{centre_B:,.2f} · bull {fair_bull:,.2f} | spot {V['spot']:,.2f}")

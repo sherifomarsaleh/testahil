@@ -6,6 +6,8 @@ figure in the delivered study can always be traced to the registry entry it came
 from, and an independent recalculation has one place to check.
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
@@ -563,8 +565,10 @@ def main():
         "the cash-flow lens — the class primary — which IS the central under the lens "
         "architecture of 02-Sep-2026. The cross-checks are published beside it and define "
         "the range; nothing is averaged. Written by the builder, never by hand.")
-    json.dump(out, open(os.path.join(HERE, "study_numbers.json"), "w"),
-              indent=1, default=str)
+    _carried = write_preserving(os.path.join(HERE, "study_numbers.json"), out)
+    if _carried:
+        print("[R-REPAIR-01] carried forward downstream-owned record(s): %s"
+              % ", ".join(_carried))
     n = sum(1 for _ in json.dumps(out))
     print("study_numbers.json written (%d chars)" % n)
     print("  registry entries : %d" % len(out["registry"]))

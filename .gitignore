@@ -110,3 +110,18 @@ engine/*_study_pending/src/txt_*.txt
 /.o.txt
 /.rerun.txt
 /.rerun_res.txt
+
+# CAPTURED THIRD-PARTY SOURCE PAGES ARE EVIDENCE, NOT PAGES WE PUBLISH.
+# GitHub Pages serves the whole repository (there is a .nojekyll), so any .html
+# committed anywhere is a page a reader can land on — check_page_integrity.py says
+# so in its own docstring, and it was right to fire. It caught the favicon; the
+# larger fact it exposed is that three captured sodic.com pages were being SERVED
+# FROM OUR DOMAIN, 1.8MB of somebody else's markup, linked from nothing.
+#
+# The remedy is not to brand a supplier's page with our favicon — that would be
+# editing captured evidence to satisfy a check. It is to stop publishing it. The
+# provenance that matters is the URL, the access date and the finding, all of which
+# live in the sweep register; the byte copy was only ever convenience, and the same
+# reasoning already excludes ocr/ and txt/ under these directories.
+*_study_pending/src/*.html
+*_study_pending/src/**/*.html

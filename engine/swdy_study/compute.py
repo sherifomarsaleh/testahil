@@ -48,6 +48,8 @@ digital solutions). Lens set follows the operating-company reference: FCFF DCF
 primary, relative multiples, normalized earnings power, and a book/ROE lens.
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -2152,8 +2154,9 @@ OUT = dict(
 # measured. The date is not invented here: it is the spot input's own, surfaced.
 OUT['spot_date'] = INP['spot']['date']
 
-with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
-    json.dump(OUT, f, indent=1, default=float)
+_carried = write_preserving(os.path.join(HERE, 'study_numbers.json'), OUT)
+if _carried:
+    say('[R-REPAIR-01] carried forward downstream-owned record(s): %s' % ', '.join(_carried))
 say("=" * 78)
 say(f"WROTE study_numbers.json | central EGP {central:.2f} [{lo:.2f} - {hi:.2f}] vs spot "
     f"{SPOT:.2f} | DCF {dcf_ps:.2f} | TV {tv_share:.0%} of EV | WACC {wacc_exp:.2%} -> "

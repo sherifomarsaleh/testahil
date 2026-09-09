@@ -7,6 +7,8 @@ independent evaluator recalculate the delivered workbook against a file that
 was produced by the model rather than transcribed from it.
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.dirname(HERE)
@@ -509,7 +511,10 @@ def main():
         "read the answer; %d of the four sit above the price and %d below."
         % (_above, len(cases) - _above))
     p = os.path.join(HERE, "study_numbers.json")
-    json.dump(d, open(p, "w"), indent=1)
+    _carried = write_preserving(p, d)
+    if _carried:
+        print("[R-REPAIR-01] carried forward downstream-owned record(s): %s"
+              % ", ".join(_carried))
     print("wrote %s (%d bytes)" % (p, os.path.getsize(p)))
     print("fair-value envelope %.2f - %.2f against spot %.2f"
           % (d["fair_value_range"]["low"], d["fair_value_range"]["high"],

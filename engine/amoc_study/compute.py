@@ -26,6 +26,8 @@ rather than asserted in the narrative:
      out the holding-company lens.
 """
 import math, sys, os, json
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -3257,8 +3259,9 @@ say(f"[Gates] beta {BETA_REC['beta']:.4f} vs {BETA_REC['index_file']} (conformin
 # measured. The date is not invented here: it is the spot input's own, surfaced.
 OUT['spot_date'] = INP['spot']['date']
 
-with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
-    json.dump(OUT, f, indent=1)
+_carried = write_preserving(os.path.join(HERE, 'study_numbers.json'), OUT)
+if _carried:
+    say('[R-REPAIR-01] carried forward downstream-owned record(s): %s' % ', '.join(_carried))
 say("=" * 78)
 say(f"ASSERT BLOCK PASSED — study_numbers.json emitted. Terminal value "
     f"{tv_share:.1%} of enterprise value; fair value EGP {central:.2f} against spot EGP "
