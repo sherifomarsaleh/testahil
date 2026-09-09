@@ -1127,3 +1127,92 @@ conclusion from it before asking what wrote the field. It is now committed as
 `working_capital_closing_fy30e`. A FIELD WHOSE NAME SAYS ONE YEAR AND WHOSE VALUE IS
 ANOTHER IS WORSE THAN A MISSING FIELD, because a missing field stops a reader and a
 mislabelled one does not.
+
+---
+
+## ABUK · Abu Qir Fertilizers and Chemical Industries · EGX · 09-09-2026
+**Class:** provisionally `petrochemical` — a poor fit, and the entry says why below.
+**Context:** fundamental walk-forward training run, `engine/abuk_walkforward/`.
+Scope FULL, eleven sourceable fiscal years FY-Jun-2015 to FY-Jun-2025, six
+origins FY2019-FY2024, horizons 1-5, 20 scoreable cells per driver.
+**Nothing in this entry has been published. No fair value has been struck and
+`fair{}` in `assets/data.js` is untouched.**
+
+### Drivers set, and from what
+
+| # | driver | rule as set | set from | tested? |
+|---|---|---|---|---|
+| D1 | volume proxy | `min(v(o) x (1+g)^h, max v over the 5 years to o)`, g = Egypt population CAGR over the five calendar years to the origin | revenue deflated by the world urea price and the exchange rate — ABUK discloses NO tonnage anywhere | yes — bias **+0.225**, robust, sign holds across eras |
+| D2 | world urea price, USD/t | held FLAT at the FY-origin average (random walk) | World Bank Commodity Markets monthly pink sheet, tier C | inside D1's error |
+| D3 | EGP per USD | held FLAT at the FY-origin average | World Bank WDI PA.NUS.FCRF, tier C | inside D1's error |
+| D4 | cost-of-sales ratio | trailing three-year mean of COGS/revenue, held flat | filed statements, both presentations, scored inside each window | yes — bias −0.310, **SIGN CHANGES between eras** |
+| D5 | selling & distribution ratio | trailing three-year mean of the ratio to revenue | filed statements | yes — bias −0.458, **SIGN CHANGES** |
+| D6 | general & administrative | origin level escalated on trailing three-year Egyptian CPI | filed statements + World Bank WDI | yes — bias −0.559, **SIGN CHANGES**, 91% specification residual |
+| D7 | non-operating income | trailing three-year mean yield ON THE INVESTABLE BALANCE, times that balance, escalated on inflation | filed statements: cash at banks plus investments held to maturity or at amortised cost | yes — bias −0.612, **SIGN CHANGES** |
+| D8 | effective tax rate | trailing three-year mean of tax/PBT | filed statements — the company's own printed charge, never the statutory rate | not separately scored; it is a ratio inside net profit |
+
+Gross profit, profit before tax and net profit are OUTPUTS. No margin is typed
+anywhere in the model.
+
+### Decisions worth carrying to the next same-class study
+
+1. **On a debt-free issuer the interest trap runs the other way.** ABUK
+   discloses "no loans at the reporting date" and carried EGP 45,506 of
+   borrowings at FY-Jun-2021. The rule "interest comes from the borrowings that
+   actually bear it" has a mirror image on a net-cash name: financial income
+   must be built on the balances that actually EARN — cash at banks plus
+   investments held to maturity or at amortised cost — and not on total assets.
+   D7 does that. Had it divided by total assets the implied yield would have
+   been understated by roughly a third at FY2019 and the resulting bias would
+   have been arithmetic rather than evidence.
+
+2. **A flat exchange rate is the only honest origin-dated assumption and it is
+   the largest single source of error.** 56% of the net-profit error and 65% of
+   the gross-profit error is macro. The naive trend benchmark beats the model at
+   every horizon from three years out purely because extrapolating nominal
+   growth happens to track a serially devaluing currency. That is a bet, not a
+   model, and the record says so rather than adopting it.
+
+3. **The calibrated band must be macro-conditioned before a study with its own
+   FX path uses it.** The raw band on net profit over horizons 3-5 is x2.19 to
+   x4.13; the macro-conditioned band is x0.80 to x1.86. Applying the raw band to
+   a forward model that already forecasts the pound counts the same devaluation
+   twice.
+
+4. **Where an issuer discloses no tonnage, say so and price what the proxy
+   costs.** ABUK's volume driver is revenue deflated by price, so it conflates
+   volume with realisation. On the company's own charts roughly half the proxy's
+   32% decline over the window is tonnes and roughly half is realisation. A
+   haircut derived from it is NOT the same object as the flat-tonne haircut
+   EGCH and AMOC measured off disclosed tonnage, and treating it as confirmation
+   would be superstition.
+
+5. **The gas bill is a named, separately quantified purchase from a named
+   counterparty, and its price is a disclosed FORMULA.** GASCO is a related
+   party; the contract price is set "according to a price formula that takes
+   into consideration the selling prices of the Ministry of Agriculture and
+   export prices according to the average price of international bulletins and
+   the average selling price of the USD against EGP." So the single largest cost
+   moves WITH the revenue it funds, and a fixed USD/mmBtu assumption misstates
+   both the level and the volatility. Prime Minister Decree 928 of 2026 puts a
+   USD 8.50/mmBtu FLOOR under it, which binds precisely when a post-spike urea
+   price pushes the formula output below it. This driver is not used in the
+   walk-forward — the cost ratio is — and it is recorded here because any study
+   built on this name must build cost from it.
+
+### Why the class is recorded as provisional
+
+`petrochemical` is the nearest registered class and it is a poor fit. ABUK's
+feedstock price is contractually linked by formula to the export price of its
+own output and to the exchange rate, with a regulatory floor underneath. That
+is neither a petrochemical producer whose input and output prices move
+independently for long stretches, nor the thin-spread refiner AMOC was
+separated out as. Whether it earns its own class is a scope question for the
+principal, not a decision this run makes.
+
+### What was NOT set
+
+No terminal, no cost of capital, no fair value. The delivered study is not
+built; the beta was re-derived through the sanctioned route and is recorded
+(0.6463 against EGX30, weekly, n=256, Dimson-adjusted, R² 0.193, usable and
+conforming) but nothing consumes it yet.

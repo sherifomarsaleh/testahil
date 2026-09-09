@@ -151,10 +151,20 @@ def harvest_view(out):
                                     bench_mae=round(c["mae"], 4),
                                     skill=round(1 - a["mae"] / c["mae"], 4)
                                     if c["mae"] else 0.0)}
+        # `perfect_mae` is the error with PERFECT FORESIGHT OF THE MACRO PATH —
+        # the actual urea price, exchange rate and inflation substituted and every
+        # company driver left as the origin projected it. It is NOT the
+        # full-foresight run, which also substitutes the company's own ratios and
+        # on some drivers collapses to zero by construction; reporting that as
+        # "perfect foresight of inflation" would put a meaningless zero into a
+        # lesson's evidence clause. The full-foresight figure is carried
+        # separately as `full_foresight_mae` and is what the specification
+        # residual in diagnostics.json is built from.
         macro_split[name] = dict(
             as_known_mae=round(s["mae"], 4),
-            perfect_mae=round(fs[d]["mae"], 4),
+            perfect_mae=round(mp[d]["mae"], 4),
             cpi_only_mae=round(mp[d]["mae"], 4),
+            full_foresight_mae=round(fs[d]["mae"], 4),
             macro_share=round((s["mae"] - mp[d]["mae"]) / s["mae"], 4)
             if s["mae"] else 0.0)
         by_era[name] = {}

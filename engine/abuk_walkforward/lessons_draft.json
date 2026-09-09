@@ -137,7 +137,7 @@
    "ticker": "ABUK",
    "headline": "The non-operating income error is the company, not the currency.",
    "plain": "Re-running every forecast with perfect foresight of inflation barely improves it. So devaluation is not the explanation, and looking for a macro fix would waste the effort.",
-   "evidence": "Average miss 0.845 as known, 0.000 with perfect foresight of inflation \u2014 the macro share is only 9.9%.",
+   "evidence": "Average miss 0.845 as known, 0.761 with perfect foresight of inflation \u2014 the macro share is only 9.9%.",
    "scope": "UNSCOPED",
    "why_scope": "Almost always ALL \u2014 'check whether the macro explains it before assuming it does' is a method rule \u2014 but the specific finding may be about this market.",
    "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",

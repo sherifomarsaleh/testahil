@@ -1,0 +1,38 @@
+{
+ "_consumed_by": "nothing yet \u2014 the delivered study is not built",
+ "_dual_listing_checked": "ABUK is listed on the Egyptian Exchange ONLY \u2014 it identifies itself as ABUK.CA in its own earnings releases, files exclusively to EGX, reports solely in EGP, and no second listing appears on its investor-relations pages. ISIN EGS38191C010.",
+ "_how": "engine/beta_regression.own_stock_beta('ABUK','EG','EGX') and nothing else. The regressor is the published index of the exchange the stock is listed on, read from engine/raw_indices/EG/EGX30.csv. A constituent composite is a hard fail under SIGCM clause 6 and was not built.",
+ "_recorded": "2026-09-09",
+ "asof": null,
+ "beta": 0.646309118467053,
+ "blume_crosscheck": 0.7642060789780353,
+ "ci90": [
+  0.3544878336972119,
+  0.938130403236894
+ ],
+ "conforming": true,
+ "dimson": true,
+ "exchange": "EGX",
+ "first_obs": "2021-09-09",
+ "frequency": "weekly",
+ "gate_msg": "passes minimum usability gate",
+ "index_asof": "2026-09-08",
+ "index_dq": [],
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "interim_note": null,
+ "last_obs": "2026-08-20",
+ "market": "EG",
+ "n": 256,
+ "r2": 0.19306528827865876,
+ "se": 0.17739895730689428,
+ "stock_dq": [
+  "dropped 1 interior stale/no-trade rows",
+  "dropped 13 rows carrying a non-positive or non-finite OHLC value (2011-03-29..2011-07-20) \u2014 vendor fills, not tradeable prices"
+ ],
+ "ticker": "ABUK",
+ "usable": true,
+ "warnings": [],
+ "weak": false,
+ "week_rule": "W-THU",
+ "window_years": 4.94
+}

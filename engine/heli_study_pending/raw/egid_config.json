@@ -1,0 +1,6 @@
+{
+  "frontUrl": "https://ir.egidegypt.com",
+  "baseUrl": "https://ir.egidegypt.com:8080",
+  "authUrl": "/api/identity/Auth/token",
+  "appKey": "_7kkxW8Y96g7Z9cZJMx29NLDL_bF7lIwWRtnwMquorI!"
+}

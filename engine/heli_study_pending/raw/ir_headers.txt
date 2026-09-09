@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+date: Wed, 09 Sep 2026 01:19:17 GMT
+server: Apache/2.4.63 (Ubuntu)
+cache-control: no-cache, private
+set-cookie: XSRF-TOKEN=eyJpdiI6IitxUWlUTXpQdGs3c3ZhQTcycWR4TlE9PSIsInZhbHVlIjoiVnJDZEVYSlh4NVZQeE1HRi9VcndERjZZNTdweTFXMVhPa2V5TFVocjZodENPVE5kTnpwVWYzb2RsejRwOGdZRUxZUlU4akM5aDdHV04wMjFBUUw3bHVMdUorVXdiV3dGeEppRnZIdVYzdTArM2VsOWZZVjJMTTVVNnNVZkdtTkMiLCJtYWMiOiJjMDhmODlmM2VjZWJiNjY1OWI2ZTkxNzgzMDA3YTFhNDBhODVhZGQxNWNkNWUyMTcwNDM1NjZkMzIwYzE3ZWRlIiwidGFnIjoiIn0%3D; expires=Wed, 09-Sep-2026 03:19:17 GMT; Max-Age=7200; path=/; samesite=lax
+set-cookie: misr_algadida_session=eyJpdiI6ImNoR2gwbUhteCtsVUx2U25hMGpKd3c9PSIsInZhbHVlIjoiY24vMGlnTmhDdVdrMW1adkhGNlZlSUdQTGRxL3RUT3NSVmRZcjhnQmtRN2RJV1QzSGRWa1VZVlk5U1UyNUVPMnd4b1doQ3FWa05oWm1PZXdRVDlTcnRnbU5lUFl6YzJWOXNQTUxlbzJRcE84UlFoRTRsK0FRWktBU2ZjM3k3azUiLCJtYWMiOiJjNDAxMzJhZjExN2Y0NTNhNmQ4NjliNDc1NDMyZjYyOGIxYzI3NWQ4YWQ5YWRhMmZmOGViZDY5ODgyYTU0MzYxIiwidGFnIjoiIn0%3D; expires=Wed, 09-Sep-2026 03:19:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+vary: Accept-Encoding
+content-type: text/html; charset=UTF-8
+transfer-encoding: chunked
+
