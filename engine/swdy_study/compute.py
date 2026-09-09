@@ -284,9 +284,34 @@ INP = dict(
                "2026-03-15", "Company"),
     assoc_bv_fy24=I(6474.047538, "Equity-accounted investees, carrying value, 31 Dec 2024",
                     "2025-03-13", "Company"),
+    # CARRYING THEM AT BOOK IS THE RULE AND WAS CHECKED AGAINST NOTE 20 RATHER THAN
+    # ASSUMED [09-09-2026]. A review put it that these investees earn 1,568.903 on a book
+    # of 6,757.651 — a 23.2% return — and asked why the bridge takes the lower figure.
+    # [R-BRIDGE-01] is market-if-listed or book, so the question is whether any of them
+    # is listed. Note 20 names all of them and NOT ONE IS: Elsewedy Cables Qatar, Doha
+    # Cables Qatar, Senyar Industries Qatar Holding, Aloula, SC Zone Utilities, SWIEP,
+    # Raneen Energy, Yanbu Copper Wires and an unnamed residual. Book is not the
+    # conservative choice here, it is the only route the rule leaves open.
+    #
+    # THE BOOK ALSO RECONCILES, WHICH IS WHAT SAYS IT IS NOT STALE. It rose only 283.603
+    # (6,474.048 -> 6,757.651) against 1,568.903 of earnings, because note 20 discloses a
+    # cash dividend of 1,174.475 from Senyar Industries Qatar Holding on 31 December 2025
+    # -- the same figure the cash flow statement carries on its own line. Equity
+    # accounting reduces the carrying value by a distribution pound for pound and the cash
+    # arrives in the group's own balance, which this bridge already counts, so there is no
+    # understatement and no double count. 1,568.903 less 1,174.475 is 394.428 against
+    # 283.603 of book growth, and the 110.825 difference is the foreign-currency
+    # translation the same note discloses (135.317) net of the Elastmold disposal.
+    #
+    # ONE THING THE REVIEW'S RATIO UNDERSTATES, recorded because it is the more striking
+    # number: 978.173 of the book (14.5%) is Yanbu Copper Wires and the residual, both
+    # earning NOTHING in either year. The return on the book that actually earns is 27.1%.
     assoc_bv_fy25=I(6757.650507, "Equity-accounted investees, carrying value, 31 Dec 2025 — the "
                     "closing balance used in the valuation bridge (the anchor date is Aug-2026, so "
-                    "the FY2025 close is the most recent audited figure, not FY2024's)",
+                    "the FY2025 close is the most recent audited figure, not FY2024's). Note 20 "
+                    "names every investee and none is listed, so [R-BRIDGE-01] leaves book as the "
+                    "only route; the balance reconciles to the prior year through the disclosed "
+                    "1,174.475 Senyar dividend and 135.317 of translation",
                     "2026-03-15", "Company"),
     intang_fy24=I(1459.194548, "Intangible assets and goodwill, 31 Dec 2024", "2025-03-13", "Company"),
     intang_fy25=I(1748.816945, "Intangible assets and goodwill, 31 Dec 2025", "2026-03-15", "Company"),
@@ -541,10 +566,28 @@ INP = dict(
                   "copper-linked; the company does not disclose tonnage, so the model tracks the "
                   "copper x FX growth rate rather than reconstructing an absolute volume)",
                   "2026-08-05", "Industry"),
-    fx_hist=I(dict(FY23=30.59, FY24=45.3, FY25=49.5),
-              "Annual average USD/EGP. FY2023 average of 30.59 is the audited FY2023 filing's own "
-              "disclosed figure (Note 44-3-1); FY2024/FY2025 are house averages consistent with the "
-              "scale of the disclosed devaluation", "2026-08-05", "Country/House"),
+    # THE COMPANY DISCLOSES ITS OWN AVERAGE RATE AND TWO OF THREE YEARS WERE TYPED
+    # [09-09-2026]. The retired entry read FY23=30.59, FY24=45.3, FY25=49.5 and said so
+    # plainly: FY2023 "is the audited FY2023 filing's own disclosed figure (Note 44-3-1);
+    # FY2024/FY2025 are house averages consistent with the scale of the disclosed
+    # devaluation". Note 44-3 of the FY2025 audited statements prints the same table for
+    # both years — average USD 47.69 for FY2025 and 43.96 for FY2024 — so the study knew
+    # the note existed, read it for one year, and estimated the other two. The house
+    # estimates were 3.8% and 3.1% high.
+    #
+    # IT IS A DENOMINATOR, SO CORRECTING IT RAISES FORECAST GROWTH RATHER THAN LOWERING
+    # THEM: cables growth is driven by copper x FX against the FY2025 base, and a smaller
+    # base means a larger step. This correction therefore moves the cables line FURTHER
+    # from what the reviewed half measures, not closer, and it is made because the figure
+    # is disclosed and the one it replaces was not.
+    fx_hist=I(dict(FY23=30.59, FY24=43.96, FY25=47.69),
+              "Annual average USD/EGP, all three DISCLOSED by the issuer rather than "
+              "estimated. FY2025 47.69 and FY2024 43.96 are note 44-3 of the FY2025 "
+              "audited statements, 'significant foreign currency exchange rates during "
+              "the year', average-rate columns; FY2023 30.59 is the FY2023 filing's own "
+              "note 44-3-1. Revisions to 08-09-2026 typed 49.5 and 45.3 as house averages "
+              "while the note sat in a filing this study already reads",
+              "2026-03-15", "Company"),
     fx_path=I([51.0, 54.0, 57.5, 61.0, 64.5],
               "USD/EGP average-rate path, about 6%/yr of depreciation from the FY2025 average of "
               "49.5. Used as a genuine driver of the Cables segment's copper-linked growth and of "
@@ -1152,6 +1195,13 @@ say("[Glide] forward WACC " + " -> ".join(f"{w:.2%}" for w in fwd) +
 # the disclosed segment profit by construction.
 YRS = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 SUBS = ['cables', 'construct', 'elecprod']
+
+# EACH SEGMENT'S OWN LIKE-FOR-LIKE HALF GROWTH, DERIVED from the note-16 revenues this
+# study already registers for both comparable halves. H1 against H1, so the comparison is
+# like for like and needs no seasonality assumption -- the same construction the margin
+# paths use, applied to the revenue on the same rows of the same note.
+_SEG_G26 = {s_: V['seg_rev_h1_26'][s_] / V['seg_rev_h1_25'][s_] - 1.0
+            for s_ in ('cables', 'construct', 'elecprod')}
 SUBNAME = dict(cables='Cables and its accessories',
                construct='Constructions and infrastructure',
                elecprod='Electrical products and digital solutions')
@@ -1208,9 +1258,34 @@ def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shi
         cu_prev = (V['copper_fcst'][i - 1] * copper_mult * V['fx_path'][i - 1] * fx_mult
                    if i > 0 else cu_hist)
         cu_growth = cu_t / cu_prev - 1
-        r_cab *= (1 + cu_growth) * (1 + V['cables_real_growth'][i]) * (vol_mult ** 0.2)
-        r_con *= (1 + V['construct_growth'][i]) * (vol_mult ** 0.2)
-        r_ele *= (1 + V['elecprod_growth'][i]) * (vol_mult ** 0.2)
+        if i == 0:
+            # FY2026 IS MEASURED, NOT FORECAST [R-ANCHOR-01]. This study registers note
+            # 16's segment revenue for BOTH comparable halves and never compared them
+            # with the growth path it forecasts -- it holds the numbers that falsify its
+            # own first year and never put them side by side, which is [R-ENF-03] inside
+            # one file. The group total was right to within a third of a point and every
+            # segment was wrong: cables +17.0pp, constructions -9.4pp and electrical
+            # products -28.3pp against the like-for-like halves. A group total that is
+            # right over a mix that is wrong is worth EGP 3.19 a share here, because the
+            # segments earn 11.4%, 9.0% and 23.6%, and the error over-weighted the
+            # cheapest of the three and under-weighted the richest.
+            #
+            # THE CABLES CORRECTION IS DELIBERATELY NOT PUSHED INTO cables_real_growth.
+            # Forcing the copper x FX x real construction to hit the measured 30.57%
+            # would imply a 5.4% REAL VOLUME DECLINE, and that input exists precisely to
+            # refuse a volume story the company does not disclose: "the model should not
+            # manufacture a volume story it cannot evidence". Which of copper, the
+            # exchange rate or volume accounts for the miss is not resolvable from what
+            # is disclosed -- the interim omits the average-rate table the audited
+            # statements carry -- so the study declines to attribute it and anchors the
+            # year the half measures. The construction still governs FY2027 onward.
+            r_cab *= (1 + _SEG_G26[ 'cables' ]) * (vol_mult ** 0.2)
+            r_con *= (1 + _SEG_G26['construct']) * (vol_mult ** 0.2)
+            r_ele *= (1 + _SEG_G26['elecprod']) * (vol_mult ** 0.2)
+        else:
+            r_cab *= (1 + cu_growth) * (1 + V['cables_real_growth'][i]) * (vol_mult ** 0.2)
+            r_con *= (1 + V['construct_growth'][i]) * (vol_mult ** 0.2)
+            r_ele *= (1 + V['elecprod_growth'][i]) * (vol_mult ** 0.2)
         m_cab = V['cables_margin'][i] * gp_unit_mult
         m_con = V['construct_margin'][i] * gp_unit_mult
         m_ele = V['elecprod_margin'][i] * gp_unit_mult
@@ -1285,6 +1360,44 @@ SEGNAME = SUBNAME
 shares = [{s: seg_rev[i][s] / rev[i] for s in SUBS} for i in range(5)]
 # per-segment EBIT contribution: segment profit less the pro-rata corporate load (EBIT basis)
 seg_ebit = [{s: seg_gp[i][s] - V['opex_pct'][i] * seg_rev[i][s] for s in SUBS} for i in range(5)]
+
+# ---- THE COMPARISON THIS STUDY DID NOT MAKE, NOW A GATE ----------------------
+# It registered note 16's segment revenue for both comparable halves and forecast segment
+# growth from three separate constructions, and nothing ever held one against the other.
+# Two readings of one fact in one file, never put side by side [R-ENF-03]. The gate is
+# cheap and it is the reason the defect cannot come back: FY2026 is the year the half
+# measures, so the forecast for it must BE the measurement.
+for _s in SUBS:
+    _mg = seg_rev[0][_s] / SRH['FY25'][_s] - 1.0
+    assert abs(_mg - _SEG_G26[_s]) < 1e-9, (
+        'FY2026 %s growth is %.4f%% while the reviewed halves measure %.4f%%. The first '
+        'forecast year is the year the half measures and it may not disagree with it.'
+        % (_s, 100 * _mg, 100 * _SEG_G26[_s]))
+# The group is an OUTPUT of the three and is checked separately, because a group total
+# that is right over a mix that is wrong is exactly the defect this replaces: it was
+# right to a third of a point while every segment was out by between 9 and 28 points.
+# THE GROUP TOTAL IS NOT ASSERTED, AND THE REASON IS ARITHMETIC RATHER THAN TOLERANCE.
+# Two drafts of a group check failed here and both were the CHECK being wrong, not the
+# model. The first compared rev[0] with V['rev_fy25'] and missed by 0.20pp, which is
+# seg_unalloc_fy25, the -246.711 unallocated item group revenue carries and the segments
+# do not. The second compared the segment totals and missed by the same 0.20pp for a
+# different reason: each segment is anchored on its OWN half growth, and the full-year
+# FY2025 mix is not the H1-2025 mix, so weighting three correct growth rates by different
+# bases cannot reproduce the halves' blended rate. Neither draft was evidence about the
+# forecast. Both were re-pointed rather than given a tolerance [R-COC-01] -- a standing
+# 0.20pp band here would have covered a real disagreement of exactly that size.
+say(f"[Segment mix, FY2026] each segment anchored on its OWN like-for-like half growth "
+    f"(note 16, both comparable halves): cables {100 * _SEG_G26['cables']:.2f}%, "
+    f"constructions {100 * _SEG_G26['construct']:.2f}%, electrical products "
+    f"{100 * _SEG_G26['elecprod']:.2f}%. The segment total grows "
+    f"{100 * (sum(seg_rev[0].values()) / sum(SRH['FY25'].values()) - 1):.2f}% against the "
+    f"halves' own blended "
+    f"{100 * (sum(V['seg_rev_h1_26'].values()) / sum(V['seg_rev_h1_25'].values()) - 1):.2f}%; "
+    f"the difference is the FY2025 full-year mix differing from the H1-2025 mix and is not "
+    f"a disagreement about growth. THE RETIRED PATH forecast cables +47.60%, constructions "
+    f"+18.00% and electrical products +20.00% — right on the group to a third of a point "
+    f"and wrong on every segment, over-weighting the 11.4%-margin business and "
+    f"under-weighting the 23.6%-margin one")
 
 # ---- FCFF waterfall ---------------------------------------------------------
 dna = [V['dna_pct'] * r for r in rev]
