@@ -1199,6 +1199,42 @@
     "file": "engine/heli_study_pending/sweep_register.json",
     "must_contain": "HELI_statements_received"
    }
+  },
+  {
+   "key": "JBIG2-symbol-substitution-risk-on-30-filings",
+   "opened": "2026-09-09",
+   "cls": "contradiction",
+   "question": "Thirty committed filings are JBIG2 scans carrying a SYMBOL DICTIONARY — the coding mode in which a scanner replaces one digit's bitmap with a visually similar one AT SCAN TIME. Fifteen of the thirty name a XEROX device as producer (WorkCentre 7845/7835, AltaLink B8045/B8055/C8135/C8155, VersaLink C415), which is the exact family of the confirmed 2013 defect. They include five filings under scem_study, which is DELIVERED, and sixteen under swdy_walkforward and phdc_walkforward, which are completed runs feeding criterion 3. Does the book verify the load-bearing figures on those filings against a second route, and does SCEM hold until it is done?",
+   "routes": [
+    {
+     "route": "engine/scanned_filing_integrity.py run across 400 committed filings",
+     "when": "2026-09-09",
+     "outcome": "29 generic-region-only and safe; 30 carrying a symbol dictionary with text regions; the rest not JBIG2. The module reproduces FWRY's own independent finding on the file that prompted it.",
+     "rerun": true
+    },
+    {
+     "route": "each refusing file's /Producer string",
+     "when": "2026-09-09",
+     "outcome": "15 Xerox devices, 13 with no producer string, 2 iLovePDF. The Xerox ones are the confirmed-defect family.",
+     "rerun": true
+    },
+    {
+     "route": "the footing discipline itself, tested against this failure mode as a matter of reasoning rather than probe",
+     "when": "2026-09-09",
+     "outcome": "it CANNOT detect it. Symbol substitution is consistent — the same wrong bitmap is replayed everywhere that glyph occurred — so a column of substituted digits foots against a subtotal of substituted digits. The check this house leans on hardest is blind to exactly this.",
+     "rerun": false
+    }
+   ],
+   "refs_searched": 3,
+   "why_only_the_principal": "It is a question about what to do with DELIVERED work and with the runs criterion 3 is scored on, not about how to read a file. Re-reading is not the remedy here and cannot be: the pixels are already wrong if the defect fired. The options are to verify the load-bearing figures against a second route, to obtain the documents in another form, or to accept the risk explicitly — and the third is a judgement this desk does not make about a delivered study.",
+   "done_meanwhile": "the test is written, committed and runs across the whole book in one command, so the population is countable rather than remembered. NOTHING was withdrawn, no figure was changed, and no study was re-issued on this — it establishes a RISK, not an error. FWRY's own FY2021 scan was cleared by the same test, which is why its seven re-reads were the correct remedy there.",
+   "default_if_no_answer": "run the check as a standing gate on every new sweep so no future filing enters the book unexamined, and leave the thirty recorded and unverified rather than silently trusted",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/escalations.json",
+    "must_contain": "JBIG2_ruled_09_2026"
+   }
   }
  ]
 }
