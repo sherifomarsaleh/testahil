@@ -117,6 +117,70 @@ MUTATES_THE_REPO = (
 )
 
 
+def _dirty_set():
+    """The tracked paths that differ from HEAD right now, as a set.
+
+    A SET, not a count: what matters after a step is which files it dirtied that
+    were clean before, and a count cannot answer that.
+    """
+    r = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        return None
+    return {l[3:].strip() for l in r.stdout.splitlines() if l.strip()}
+
+
+#: a file already dirty when a step starts cannot be restored from HEAD -- HEAD is
+#: not what the operator had. So its CONTENT is copied first. Bounded, because only
+#: dirty files are copied and a working tree with more than this many is not a tree
+#: anyone is running a careful local CI sweep against.
+_CARRY_LIMIT = 200
+
+
+def _carry(paths):
+    """Copy the current content of these paths so a step cannot clobber them.
+
+    THE HOLE THIS CLOSES, found by testing the guard rather than by reasoning about
+    it. Reverting only newly-dirty paths correctly leaves an operator's own edits
+    alone -- but a step that OVERWRITES an already-dirty file destroys those edits
+    outright, and the guard then has nothing to restore from, because restoring from
+    HEAD would throw the edits away just as surely. Measured on the probe: an edit
+    appended to assets/data.js was gone after the regenerate step, and the run said
+    only that legacy/assets/data.js had been reverted.
+    """
+    out = {}
+    for rel in list(paths)[:_CARRY_LIMIT]:
+        full = os.path.join(ROOT, rel)
+        try:
+            with open(full, "rb") as fh:
+                out[rel] = fh.read()
+        except OSError:
+            out[rel] = None          # deleted or unreadable; nothing to restore
+    return out
+
+
+def _restore(carried):
+    """Put back any carried file a step changed. Returns the paths restored."""
+    back = []
+    for rel, blob in carried.items():
+        if blob is None:
+            continue
+        full = os.path.join(ROOT, rel)
+        try:
+            with open(full, "rb") as fh:
+                if fh.read() == blob:
+                    continue
+        except OSError:
+            pass
+        try:
+            with open(full, "wb") as fh:
+                fh.write(blob)
+            back.append(rel)
+        except OSError:
+            pass
+    return back
+
+
 def steps(path):
     doc = yaml.safe_load(open(path, encoding="utf-8"))
     for jobname, job in (doc.get("jobs") or {}).items():
@@ -139,7 +203,7 @@ def main():
     files = [os.path.join(WORKFLOWS, a.workflow)]
     started = _now()
 
-    red, green, skipped = [], 0, []
+    red, green, skipped, mutating = [], 0, [], []
     for f in files:
         if not os.path.exists(f):
             print("FAIL — no such workflow: %s" % f)
@@ -173,6 +237,8 @@ def main():
             # timeout produced NO evidence at all, and the acceptance criteria that read
             # that record saw "no CI run has been recorded". A run that cannot say what
             # it found is worth less than one that says it timed out.
+            before_dirty = _dirty_set()
+            carried = _carry(before_dirty or ())
             try:
                 r = subprocess.run(["bash", "-e", "-c", script], cwd=ROOT,
                                    capture_output=True, text=True, timeout=1800)
@@ -181,18 +247,66 @@ def main():
                                     "established about this step."]))
                 print("  RED    %s   TIMED OUT" % label[:90])
                 continue
+            # WHAT A STEP ACTUALLY DID TO THE TREE, MEASURED, NOT GUESSED FROM ITS
+            # COMMAND NAMES. MUTATES_THE_REPO is a hand-typed list of substrings, so
+            # it can only ever refuse what somebody thought of. On 09-09-2026
+            # testahil-calibration's "Regenerate the price and funnel blocks onto the
+            # current library" walked straight past it -- its commands are
+            # build_prices_block.py, build_screen_block.py and a cp -- and rewrote
+            # assets/data.js and legacy/assets/data.js, the LIVE SITE's data file,
+            # recomputing every screen z-score. It reported GREEN and the operator
+            # found the change only because a commit hook noticed the dirty tree.
+            #
+            # A list guard and a measurement guard fail differently: the list misses
+            # what it does not name, and the measurement misses nothing, because it
+            # asks the tree instead of the script. The list is kept -- refusing BEFORE
+            # a step runs is better than undoing after it -- and this catches the rest.
+            #
+            # THE REVERT IS DELIBERATE AND IT IS SAFE. Only paths this step made dirty
+            # are restored, never anything already dirty when the run began, so a
+            # working tree with edits in it survives untouched. Where the tree cannot
+            # be read at all the step is reported as UNVERIFIED rather than clean
+            # [R-ENF-04]: not knowing whether a step wrote to the tree is not the same
+            # as knowing it did not.
+            clobbered = _restore(carried)
+            now_dirty = _dirty_set()
+            if before_dirty is None or now_dirty is None:
+                mutated = None
+            else:
+                mutated = sorted(now_dirty - before_dirty)
+                if mutated:
+                    subprocess.run(["git", "checkout", "--"] + mutated, cwd=ROOT,
+                                   capture_output=True, text=True)
+                    now_dirty = _dirty_set()
+                    before_dirty = now_dirty if now_dirty is not None else before_dirty
+
             if r.returncode == 0:
                 green += 1
-                print("  GREEN  %s" % label[:90])
+                _touched = sorted(set(mutated or []) | set(clobbered))
+                print("  GREEN  %s%s" % (label[:90],
+                      "" if not _touched else
+                      "   [MUTATED and RESTORED: %s]" % ", ".join(_touched[:3])))
             else:
                 red.append((label, (r.stdout + r.stderr).strip().splitlines()[-6:]))
                 print("  RED    %s   exit %d" % (label[:90], r.returncode))
+            if mutated or clobbered:
+                mutating.append((label, sorted(set(mutated or []) | set(clobbered))))
+            elif mutated is None:
+                mutating.append((label, ["UNVERIFIED — the tree could not be read"]))
 
     _record(a.workflow, green, red, skipped, started, _now())
     print("\nran %d steps from %d workflow(s): %d green, %d red, %d skipped"
           % (green + len(red), len(files), green, len(red), len(skipped)))
     for label, why in skipped:
         print("  skipped  %-60s %s" % (label[:60], why))
+    if mutating:
+        print("\n%d step(s) WROTE TO THE TREE and were reverted. They ran, so their "
+              "verdict stands; what they wrote does not:" % len(mutating))
+        for label, paths in mutating:
+            print("  %-58s %s" % (label[:58], ", ".join(paths[:4])))
+        print("  MUTATES_THE_REPO did not name these. It is a list of command "
+              "substrings and cannot refuse what nobody thought of; the tree was "
+              "measured instead.")
     for label, tail in red:
         print("\nRED — %s" % label)
         for line in tail:
