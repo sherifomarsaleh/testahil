@@ -205,6 +205,25 @@ AFS25 = ("Audited consolidated financial statements for the year ended 31 Decemb
 # "950 times too much" against the register's computed 949, because the workbook was in no
 # study's prose population until 05-09-2026. One study, two figures, for the same fact.
 NCI_V1 = 150.0
+
+# THE WORKING-CAPITAL RATE, MEASURED OFF THE ISSUER'S OWN CASH-FLOW STATEMENT [09-09-2026].
+# Computed HERE because the register entry below both carries the number and prints the
+# workings, and a number a source string describes must be the number the model uses --
+# the declared-versus-used shape [R-MACRO-01 AMENDED] names. The figures themselves are
+# registered one line each below, with their note references, so each is auditable on its
+# own; this block only adds them up.
+#
+# Sign convention is the statement's own: a negative movement is cash INVESTED. The rate
+# a valuation consumes is the investment per unit of revenue growth, so the sums are
+# negated on the way in.
+_WC_MOVES_25 = (-201.156175, -433.385613, -87.971822, 0.156657, 471.357979, -420.277505)
+_WC_MOVES_24 = (133.615986, -412.570426, 69.674226, -0.061289, 22.853568, 71.000142)
+_WC_SUM_25 = sum(_WC_MOVES_25)
+_WC_SUM_24 = sum(_WC_MOVES_24)
+_DREV_25 = 12447.320081 - 8729.782821
+_DREV_24 = 8729.782821 - 6042.831338
+_WC_PCT_DREV = (-_WC_SUM_25 - _WC_SUM_24) / (_DREV_25 + _DREV_24)
+
 AFS24 = ("Audited consolidated financial statements for the year ended 31 December 2024, "
          "Deloitte (Wafik, Ramy & Partners), signed 23 March 2025")
 IH26 = ("Reviewed condensed consolidated interim financial statements for the six months "
@@ -738,9 +757,66 @@ INP = dict(
                       "USD 3/t. Worth EGP 1.77 a share against revision 3's figure, and the "
                       "whole range is published as a sensitivity",
                       "2025-12-31", "Company"),
-    wc_pct_drev=I(0.12, "Change in working capital over change in revenue. The FY2025 "
-                  "outturn on the disclosed movements is close to this",
-                  "2026-08-06", "House"),
+    # ---- THE DISCLOSED WORKING-CAPITAL MOVEMENTS, BOTH YEARS [added 09-09-2026]
+    # THE SENTENCE THAT USED TO SIT HERE WAS FALSE AND THE NUMBER IT DEFENDED WAS RIGHT.
+    # wc_pct_drev was typed 0.12 with the justification "the FY2025 outturn on the
+    # disclosed movements is close to this". The FY2025 outturn on the disclosed movements
+    # is 18.06%. It is not close to 12%; it is half again as large, and nothing in the
+    # study had ever opened the cash-flow statement to find out — this is the same defect
+    # SWDY carried on its backlog and its employees' cap, a delivered sentence asserting
+    # something the issuer's own filing contradicts.
+    #
+    # What supports 12% is the TWO disclosed years pooled, and the two years are 4.30% and
+    # 18.06% — a four-fold disagreement, so one year is not a basis for anything. Pooling
+    # weights each year by its own revenue growth, which is the weighting a driver
+    # expressed PER UNIT OF REVENUE GROWTH already implies, and returns 12.29%.
+    #
+    # IT IS NOW DERIVED RATHER THAN TYPED, and the derived figure is LARGER than the typed
+    # one, so this correction moves the answer AWAY from the traded price and widens the
+    # gap it was found while trying to close. It is applied for that reason and not in
+    # spite of it: declining a correction because of where it lands is the same offence as
+    # making one because of where it lands [R-GAP-04].
+    wc_inv_fy25=I(-201.156175, AFS25 + " — statement of cash flows, '(Increase)/decrease "
+                  "in inventories'", "2025-12-31", "Company"),
+    wc_inv_fy24=I(133.615986, AFS25 + " — statement of cash flows, comparative column",
+                  "2024-12-31", "Company"),
+    wc_dr_fy25=I(-433.385613, AFS25 + " — statement of cash flows, '(Increase) in debtors "
+                 "and other debit balances'", "2025-12-31", "Company"),
+    wc_dr_fy24=I(-412.570426, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_tr_fy25=I(-87.971822, AFS25 + " — statement of cash flows, '(Increase)/decrease in "
+                 "trade receivables'", "2025-12-31", "Company"),
+    wc_tr_fy24=I(69.674226, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_rp_fy25=I(0.156657, AFS25 + " — statement of cash flows, 'Decrease/(increase) in "
+                 "amounts due from related parties'", "2025-12-31", "Company"),
+    wc_rp_fy24=I(-0.061289, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_cr_fy25=I(471.357979, AFS25 + " — statement of cash flows, 'Increase in creditors "
+                 "and other credit balances'", "2025-12-31", "Company"),
+    wc_cr_fy24=I(22.853568, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_tp_fy25=I(-420.277505, AFS25 + " — statement of cash flows, '(Decrease)/increase in "
+                 "trade and notes payable'", "2025-12-31", "Company"),
+    wc_tp_fy24=I(71.000142, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    # PROVISIONS USED IS DELIBERATELY NOT IN THE SUM. It sits on the same block of the
+    # cash-flow statement (EGP -40.721mn in FY2025, -32.599mn in FY2024) and it is the
+    # utilisation of a provision, not an investment in trade working capital; this model
+    # already carries provisions on their own line in the EBITDA bridge, so counting them
+    # here would charge them twice. Named rather than silently dropped.
+    wc_pct_drev=I(_WC_PCT_DREV, "Change in working capital over change in revenue, "
+                  "DERIVED from the six working-capital movement lines the issuer's own "
+                  "statement of cash flows discloses for FY2025 and FY2024, pooled and "
+                  "divided by the revenue growth of the same two years: EGP "
+                  "%.3fmn invested against EGP %.3fmn of revenue growth. The two years "
+                  "SEPARATELY are %.2f%% and %.2f%%, which is why neither is used alone. "
+                  "Revisions 1-4 typed 0.12 and justified it as the FY2025 outturn; the "
+                  "FY2025 outturn is %.2f%%"
+                  % (-_WC_SUM_25 - _WC_SUM_24, _DREV_25 + _DREV_24,
+                     100 * -_WC_SUM_24 / _DREV_24, 100 * -_WC_SUM_25 / _DREV_25,
+                     100 * -_WC_SUM_25 / _DREV_25),
+                  "2025-12-31", "Company"),
     payout=I(0.556, "Dividend payout ratio from FY2026E, held at the FY2025 outturn: EGP "
              "2,001.792mn declared on EGP 3,599.586mn of attributable profit",
              "2026-08-06", "House"),
@@ -1534,7 +1610,31 @@ dwc = [(rev_f[i] - prev_rev[i]) * V['wc_pct_drev'] for i in range(5)]
 # own EGP cost inflation (+9.1%/yr), i.e. it embeds a real appreciation of the pound that
 # is nowhere defended. The cost of building a plant in pounds tracks the pound cost of
 # building it. Rolled at the model's own cost index.
-ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * V['cost_infl'][5]
+# AND THE ROLL ITSELF STARTED A YEAR EARLY, WHICH IS THE SAME DEFECT ONE LEVEL DOWN.
+# repl_usd_t (130.0) and fx (50.30) are BOTH dated 2026-08-06, so their product is an
+# AUGUST-2026 EGP figure. cost_infl is indexed to FY2025 = 1.0. Multiplying the first by
+# the second charged the FY2025-to-FY2026 step of 11.5% TWICE — once inside the August
+# exchange rate and the replacement quote that was taken beside it, and again in the
+# index. The vintage of a figure is carried by its own source date and both source dates
+# say the same thing, so this is arithmetic rather than judgement: it would be an error
+# in whichever direction it moved the answer.
+#
+# THE ENDPOINT IS RIGHT AND WAS CHECKED RATHER THAN ASSUMED. terminal_value.build takes
+# FCFF = NOPAT + D&A - maintenance - pi.WC at the level of the LAST EXPLICIT YEAR and
+# grows the whole of it by (1+g) inside the perpetuity, so every term in that sum must be
+# FY2030-nominal. nopat[-1], dna_f[-1] and _WC_LEVEL all are. cost_infl[5] is the FY2030
+# index — BU runs i=0..5 over FY2025..FY2030 — so the destination never moved; only the
+# origin was wrong.
+#
+# The base is taken as cost_infl[1], the FY2026 index point, and that is the CONSERVATIVE
+# reading rather than the precise one: August is month eight of a calendar year, so the
+# true August-2026 price level sits ABOVE the FY2026 average, the true roll is therefore
+# SHORTER than the one used here, and the capital base and the maintenance charge that
+# comes out of it are if anything still a little too large. Stated so nobody has to infer
+# which way the remaining approximation runs.
+_IC_ROLL = V['cost_infl'][5] / V['cost_infl'][1]
+ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * _IC_ROLL
+_IC_REPL_RETIRED = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * V['cost_infl'][5]
 fcff = [nopat[i] + dna_f[i] - capex[i] - dwc[i] for i in range(5)]
 fcff[0] *= REM
 pv = [fcff[i] * df_[i] for i in range(5)]
@@ -1575,6 +1675,28 @@ sum_pv = float(np.sum(pv))
 # STATED rather than left implicit.
 _UL = json.load(open(os.path.join(HERE, 'useful_lives.json')))
 _LIFE = float(_UL['adopted_for_terminal']['years'])
+# THE ADOPTED LIFE, CHECKED AGAINST THE ISSUER'S OWN CHARGE [09-09-2026]. The life above
+# comes from the accounting-policies note, which is what [R-TERM-01] requires. What it did
+# NOT come with was any test that the policy is what the company actually books — and the
+# study's own useful_lives.json named the evidence that would overturn it ("a disclosed
+# asset-class breakdown of PP&E by cost") while nobody opened note 12 of the same filing,
+# where that breakdown is printed. Read now: gross cost less freehold land, which is not
+# depreciated, over the year's own depreciation expense.
+#
+# It is an ORDERING and a ratio off two disclosed blocks, not a life this desk chose, so
+# it does not become the input — it tests the input. The alternative the contested
+# register carries, 50 years, cannot be reached by any weighting of these classes.
+_N12 = _UL['note12_cost_and_charge']
+_N12_COST = _N12['gross_cost_egp_2025']
+_N12_CHG = _N12['depreciation_expense_egp_2025']
+_LIFE_IMPLIED = ((sum(_N12_COST.values()) - _N12_COST['freehold_land'])
+                 / sum(_N12_CHG.values()))
+assert abs(sum(_N12_CHG.values()) / 1e6 - 259.089682) < 1e-6, (
+    'note 12 depreciation expense must foot to the cash-flow statement figure')
+assert abs(_LIFE_IMPLIED / _LIFE - 1.0) < 0.10, (
+    'the disclosed life the terminal uses (%.1fy) and the life the company\'s own charge '
+    'implies (%.2fy) differ by more than 10%%. One of the two is wrong and the terminal '
+    'may not be struck until it is known which.' % (_LIFE, _LIFE_IMPLIED))
 # The working-capital LEVEL this model implies: its own convention is dWC = dRev x
 # wc_pct_drev, and in a steady state dRev = pi x Rev, so the level is Rev x wc_pct_drev.
 _WC_LEVEL = rev_f[-1] * V['wc_pct_drev']
