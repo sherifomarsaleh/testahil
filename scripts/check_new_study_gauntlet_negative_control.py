@@ -20,13 +20,45 @@ GAUNTLET = os.path.join('scripts', 'check_new_study_gauntlet.py')
 
 
 def sandbox():
+    """A HARDLINKED COPY, WHICH COSTS DIRECTORY ENTRIES AND NOT GIGABYTES.
+
+    A full copy is 1.6GB and it is almost all PDFs. Three of them at once took the
+    filesystem to 3.0GB free and falling, because the gauntlet copies AGAIN inside
+    each sandbox, so the real cost per case is over 3GB and not the 2.5GB the disk
+    bound assumed. That is the second time this control has died of disk rather
+    than of a finding, and a run that dies is not a verdict [R-ENF-04].
+
+    Hardlinks remove the cost outright: the sandbox is a tree of directory entries
+    pointing at the same inodes. THE DANGER IS EXACTLY ONE THING — a write through
+    a link changes the file in the real repository — so every write inside a
+    sandbox has to break the link first. Those writes are enumerated in this file
+    and nowhere else: _over_ratchet, _weaken_resolver, and _delete (which unlinks
+    the entry and never touches the inode). They all go through _write below.
+
+    The assumption that no GATE writes is not taken on trust either: main() checks
+    the working tree is unchanged after the run, so if one ever does, this control
+    says so instead of quietly corrupting the repository it is testing.
+    """
     tmp = tempfile.mkdtemp(prefix='gauntlet_nc_')
     def ignore(d, names):
         return [n for n in names
                 if n in ('.git', '__pycache__', 'raw_ohlc', 'panels', 'node_modules',
                          'filings')]
-    shutil.copytree(ROOT, os.path.join(tmp, 'repo'), ignore=ignore, symlinks=True)
+    shutil.copytree(ROOT, os.path.join(tmp, 'repo'), ignore=ignore, symlinks=True,
+                    copy_function=os.link)
     return tmp, os.path.join(tmp, 'repo')
+
+
+def _write(path, data):
+    """Replace a file inside a sandbox WITHOUT writing through its hardlink.
+
+    open(path, 'w') truncates the shared inode and edits the real repository. The
+    entry is removed first, so the write creates a NEW inode and the original is
+    untouched."""
+    if os.path.exists(path):
+        os.remove(path)
+    with open(path, 'w', encoding='utf-8') as fh:
+        fh.write(data)
 
 
 def run(repo):
@@ -71,7 +103,7 @@ def _over_ratchet(*ratchets):
                 d['unreadable'] = sorted(set(d.get('unreadable', [])) | {'ZZTEST'})
             else:
                 raise AssertionError('unknown ratchet shape in %s: %s' % (r, list(d)))
-            _j.dump(d, open(p, 'w', encoding='utf-8'), indent=1)
+            _write(p, _j.dumps(d, indent=1))
             assert _j.dumps(d) != before, 'the mutation did not land in %s' % r
     return go
 
@@ -97,7 +129,7 @@ def _weaken_resolver(repo):
     s = open(p).read()
     old = "        if undeclared:\n            raise SystemExit("
     assert s.count(old) == 1, 'the mutation did not land: the resolver refusal moved'
-    open(p, 'w').write(s.replace(old, "        if False:\n            raise SystemExit(", 1))
+    _write(p, s.replace(old, "        if False:\n            raise SystemExit(", 1))
 
 
 case("1. the resolver's stray-directory refusal switched off — one line, and an "
@@ -169,8 +201,8 @@ EXPECTED_CASES = 7          # a dropped case is a green that proves nothing
 # The bound is therefore arithmetic: reserve headroom, divide what is left by the
 # measured cost of one sandbox, and never exceed the CPU bound. A machine with room
 # for one case runs them serially and still reports all seven.
-SANDBOX_COST = 2.5 * 1024 ** 3      # 1.6GB measured, plus the gauntlet's own scratch
-DISK_RESERVE = 4 * 1024 ** 3        # never spend the last of the disk on a control
+SANDBOX_COST = 350 * 1024 ** 2      # hardlinked: directory entries, plus write-through scratch
+DISK_RESERVE = 3 * 1024 ** 3        # never spend the last of the disk on a control
 
 
 def _workers():
@@ -205,7 +237,22 @@ def _one(idx):
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def _tree_state():
+    """The set of paths git reports as not-clean, as a set of paths.
+
+    A SET AND NOT THE RAW OUTPUT, because the question is narrow: did a sandbox
+    write reach a file in this repository through a hardlink? The first cut compared
+    the whole porcelain output and would have called a run VOID because somebody
+    committed while it ran — a commit takes paths OUT of this set, which is the
+    opposite of corruption. Only a path that was clean before and is dirty after is
+    evidence of a write, so that is what is compared."""
+    out = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
+                         capture_output=True, text=True).stdout
+    return {ln[3:].strip() for ln in out.splitlines() if len(ln) > 3}
+
+
 def main():
+    before_tree = _tree_state()
     assert len(CASES) == EXPECTED_CASES, (
         'this file declares %d cases and %d are registered — a case lost to an edit is '
         'a green that proves nothing, which has now happened three times in this '
@@ -233,6 +280,19 @@ def main():
         for fut in futures.as_completed([pool.submit(_one, i) for i in range(len(CASES))]):
             idx, ok, name, detail = fut.result()
             results[idx] = (ok, name, detail)
+
+    # THE SANDBOXES ARE HARDLINKED, SO THE ONE THING THAT COULD GO WRONG IS CHECKED
+    # RATHER THAN ASSUMED. Every write inside a sandbox breaks its link first, and no
+    # gate is supposed to write at all [R-ENF-01]. If one ever does, it would edit this
+    # repository through the link — so the working tree is compared before and after,
+    # and a difference FAILS the control instead of being discovered later.
+    newly_dirty = sorted(_tree_state() - before_tree)
+    if newly_dirty:
+        print('FAIL  %d file(s) that were clean when this control started are dirty now '
+              '— a sandbox write reached the real repository through a hardlink. Treat '
+              'the run as void.\n      %s'
+              % (len(newly_dirty), '\n      '.join(newly_dirty[:12])))
+        return 1
 
     bad = 0
     for ok, name, detail in results:
