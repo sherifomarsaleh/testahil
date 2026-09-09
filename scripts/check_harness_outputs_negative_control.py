@@ -62,15 +62,28 @@ case('DU committed file is a harness run, exactly as it occurred',
 
 # --- 2: a harness that CAN overwrite the committed file ---------------------------
 def c2(d):
+    """Plant a harness whose output name cannot depend on the override.
+
+    THE MUTATION USED TO MATCH THE TWO LINES AS ADJACENT TEXT, and on 08-09-2026 a
+    [R-GAP-01] repair inserted a comment block and one statement between them. The
+    mutation stopped landing, this control reported THE MUTATION DID NOT LAND, and it
+    was right to: a control that quietly plants nothing and then reports the gate green
+    is worse than one that fails, because it certifies a detection nobody tested. The
+    two edits are now made INDEPENDENTLY and each is asserted, so any future line
+    between them is irrelevant and any future rename fails loudly here instead.
+    """
     p = compute(d, 'du')
     s = open(p).read()
-    s = s.replace("_out_name = 'study_numbers.override.json' if OVERRIDE_RECORD is not None "
-                  "else 'study_numbers.json'\n_out_path = os.environ.get('DU_OUT', "
-                  "os.path.join(HERE, _out_name))",
-                  "_out_path = os.path.join(HERE, 'study_numbers.json')")
+    a = ("_out_name = 'study_numbers.override.json' if OVERRIDE_RECORD is not None "
+         "else 'study_numbers.json'")
+    b = "_out_path = os.environ.get('DU_OUT', os.path.join(HERE, _out_name))"
+    assert a in s, 'the harness no longer names _out_name as this control expects'
+    assert b in s, 'the harness no longer builds _out_path as this control expects'
+    s = s.replace(a, "_out_name = 'study_numbers.json'")
+    s = s.replace(b, "_out_path = os.path.join(HERE, 'study_numbers.json')")
     open(p, 'w').write(s)
 case('a harness whose output name does not depend on the override',
-     c2, True, lambda d: "_out_name = 'study_numbers.override.json'" not in open(compute(d, 'du')).read()
+     c2, True, lambda d: "study_numbers.override.json" not in open(compute(d, 'du')).read()
                          and "_out_path = os.path.join(HERE, 'study_numbers.json')" in open(compute(d, 'du')).read())
 
 
