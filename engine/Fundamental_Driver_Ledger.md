@@ -1216,3 +1216,82 @@ No terminal, no cost of capital, no fair value. The delivered study is not
 built; the beta was re-derived through the sanctioned route and is recorded
 (0.6463 against EGX30, weekly, n=256, Dimson-adjusted, R² 0.193, usable and
 conforming) but nothing consumes it yet.
+
+---
+
+## ADIB — Abu Dhabi Islamic Bank – Egypt S.A.E. (EGX: ADIB), 09-Sep-2026
+
+Class `bank`. **The first bank in the fundamental walk-forward campaign**, so this entry
+is mostly about what a bank's driver set IS, and about the two protocol traps that do not
+survive the move from an industrial company unchanged.
+
+**Not ADIB Group PJSC (ADX: ADIB).** That is the Abu Dhabi parent and the separate covered
+name ADIBUAE. This is the Cairo listing, in Egyptian pounds, formerly National Bank for
+Development.
+
+### The driver set — and what an industrial list gets wrong
+
+A bank has no units times price, no capex driving volume and depreciation, and no
+working-capital cycle. Its drivers are:
+
+1. **Customer financing volume** — anchored on system credit times share. The protocol's own
+   volume clause names this case explicitly and it transfers unchanged.
+2. **Deposits and total assets** — from financing via the disclosed loan-to-deposit and
+   assets-to-deposits ratios.
+3. **Asset yield** on average total assets — an INPUT.
+4. **Cost of funds** on average interest-bearing liabilities — an INPUT.
+5. **Net interest margin** — an OUTPUT of 3 and 4, and never typed. This is [L-005] in its
+   bank form and it is the driver a bank study is most tempted to set directly.
+6. **Cost of risk** on average financing.
+7. **Net fees**, and other non-interest income as one block, as rates on average assets.
+8. **Administrative expenses** — a two-part overhead, fixed escalated with inflation plus a
+   variable component per unit of average assets, with a pure-inflation fallback.
+9. **Effective tax rate** — for an Egyptian bank this runs well above the 22.5 per cent
+   statutory rate because withholding on treasury-bill income is not creditable.
+10. **The capital ratio** — the binding constraint, and the reason a bank's dividend is
+    DERIVED rather than chosen. Equity pinned at a target share of assets; the dividend is
+    whatever profit is left after getting there.
+
+### TRAP 1 INVERTS FOR A BANK AND THE RULE STILL HOLDS
+
+"Interest comes from the borrowings that actually bear it" EXCLUDES customer deposits for an
+industrial company; the protocol says so in terms. For a bank, customers' deposits are the
+LARGEST thing that bears the charge. The denominator is customers' deposits plus due to
+banks plus subordinated financing, and nothing wider: at ADIB's FY2025 that is EGP 293.7bn
+against total liabilities of EGP 312.1bn, and using the wider figure understates the funding
+rate by about a sixth of itself. **The principle transfers; the example is class-specific,
+and reading it literally on a bank would have excluded 94 per cent of the right denominator.**
+
+### TRAP 2 HAS A BANK-SHAPED ANALOGUE AND IT IS THE ONE THAT BITES
+
+Financing income and the cost of deposits already accrue on the same effective-yield clock,
+so percentage-of-completion cannot go wrong on a bank. What can: **income accrues on AVERAGE
+balances, not closing ones.** ADIB grew financing 54 per cent in FY2025. Applying a yield to
+a closing balance credits a full year of income to half a year of assets and inflates every
+projected profit — the same shape as the PHDC error, in different clothing. Every rate in the
+build must reach its base through an opening/closing average and by no other route.
+
+### What the run found, and what it did NOT put into the live study
+
+Eleven origins, horizons 1–5, 45 cells per driver, 14 drivers, on sixteen consolidated fiscal
+years that all foot. The method beats "no change" on thirteen of fourteen drivers and by
+40 per cent on attributable profit, with a bootstrap interval clear of zero — the first name
+in this campaign to beat the freeze benchmark on net profit. It is a dead heat against a
+trailing-CAGR benchmark on profit and materially WORSE than it on balance-sheet volume.
+
+The volume finding is a SPECIFICATION finding and no multiplier may hide it: holding the
+share of system credit flat, which is how this book anchors every name's volume, was wrong in
+the same direction at all eleven origins because ADIB has taken share for a decade. The
+correction passes its own by-origin test and is REFUSED on the second clause. **Zero
+corrections promoted; four watch flags.**
+
+### What was set
+
+Cost of equity 29.81 per cent (a 23.00 per cent ten-year yield less a 3.42 per cent sovereign
+spread, plus a 1.0747 beta against EGX30 times a 9.5164 per cent total equity premium),
+gliding to a 20.02 per cent terminal on a 12.50 per cent terminal risk-free rate. Terminal
+growth 7.00 per cent, equal to terminal inflation, zero real. Class primary is the dividend
+discount [R-LENS-03]; central EGP 37.18 against a 3 September close of EGP 52.05.
+
+**The risk-free rate is 34 days old and four live re-source routes failed.** It is declared
+stale on the face of the register, sensitised, and named as this study's first data request.
