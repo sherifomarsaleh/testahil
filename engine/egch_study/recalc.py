@@ -96,5 +96,11 @@ print(f"\n{'PASS' if ok else 'FAIL'}: "
 json.dump({"pass": bool(ok), "formula_cells": nform, "reproduce": checked - _bad,
            "mismatches": len(mism), "unresolvable": len(unresolvable), "orphans": len(orphan),
            "headline_checks": len(checks), "headline_failures": len(bad)},
-          open("recalc_result.json", "w"), indent=1)
+          # BESIDE THE STUDY, NOT BESIDE THE OPERATOR. This wrote to the CURRENT WORKING
+          # DIRECTORY, so where the result landed depended on where somebody happened to
+          # stand when they ran it: run from the repo root on 09-09-2026 it dropped
+          # recalc_result.json at the top of the tree, untracked, where
+          # check_artefact_currency looks for a study's own result and finds none. Every
+          # other path in this file already resolves through HERE.
+          open(os.path.join(HERE, "recalc_result.json"), "w"), indent=1)
 sys.exit(0 if ok else 1)
