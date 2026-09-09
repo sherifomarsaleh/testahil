@@ -1,0 +1,594 @@
+{
+ "stability": {
+  "fin_customers": true,
+  "cust_deposits": true,
+  "total_assets": true,
+  "fin_income": true,
+  "cost_funds": true,
+  "net_funds": true,
+  "net_fees": true,
+  "other_nii": false,
+  "admin": true,
+  "other_op": true,
+  "ecl": false,
+  "pbt": true,
+  "np": true,
+  "np_parent": true
+ },
+ "log": {
+  "2014": {
+   "fin_customers": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "cust_deposits": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "total_assets": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "fin_income": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "cost_funds": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "net_fees": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "admin": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "other_op": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   }
+  },
+  "2015": {
+   "fin_customers": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "cust_deposits": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "total_assets": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "fin_income": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "cost_funds": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "net_fees": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "admin": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   },
+   "other_op": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (1)"
+   }
+  },
+  "2016": {
+   "fin_customers": {
+    "factor": 1.1959934312574692,
+    "n_resolved": 3,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.0762471889024139,
+    "n_resolved": 3,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1280984924229673,
+    "n_resolved": 3,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.1674923540027415,
+    "n_resolved": 3,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.0202711769472141,
+    "n_resolved": 3,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.2296108388436564,
+    "n_resolved": 3,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 3,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 1.088695074596712,
+    "n_resolved": 3,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (0)"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (2)"
+   }
+  },
+  "2017": {
+   "fin_customers": {
+    "factor": 1.197366460493537,
+    "n_resolved": 6,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.1037673314949878,
+    "n_resolved": 6,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1507987103339319,
+    "n_resolved": 6,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.2614204455887876,
+    "n_resolved": 6,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.1464311690841393,
+    "n_resolved": 6,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.2639282016604956,
+    "n_resolved": 6,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 6,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 1.1085479819923567,
+    "n_resolved": 6,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.0,
+    "n_resolved": 0,
+    "why": "too few resolved cells (2)"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 4,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  },
+  "2018": {
+   "fin_customers": {
+    "factor": 1.2327193988915632,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.1318553678855927,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1710934729935885,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.3300622318208466,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.262191581526224,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.205846971595134,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 10,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 1.093537593313897,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.1893338337700978,
+    "n_resolved": 4,
+    "why": "applied"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 7,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  },
+  "2019": {
+   "fin_customers": {
+    "factor": 1.2504095270465616,
+    "n_resolved": 15,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.1519494685448575,
+    "n_resolved": 15,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1750342214187819,
+    "n_resolved": 15,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.3427659584708416,
+    "n_resolved": 15,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.2991173002929008,
+    "n_resolved": 15,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.1190666050809772,
+    "n_resolved": 15,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 15,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 1.0790801880133927,
+    "n_resolved": 15,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.3245525656066737,
+    "n_resolved": 7,
+    "why": "applied"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 11,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  },
+  "2020": {
+   "fin_customers": {
+    "factor": 1.242449908520041,
+    "n_resolved": 20,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.1453239303566602,
+    "n_resolved": 20,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1577812964180971,
+    "n_resolved": 20,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.2871624439384248,
+    "n_resolved": 20,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.2673790264740903,
+    "n_resolved": 20,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.045445512374514,
+    "n_resolved": 20,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 20,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 1.0440930319161565,
+    "n_resolved": 20,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.3165236267880567,
+    "n_resolved": 10,
+    "why": "applied"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 15,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  },
+  "2021": {
+   "fin_customers": {
+    "factor": 1.2095120042556435,
+    "n_resolved": 25,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.128511505719757,
+    "n_resolved": 25,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1353835935796912,
+    "n_resolved": 25,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.2222601798257782,
+    "n_resolved": 25,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.2184363121903607,
+    "n_resolved": 25,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.0072897691916127,
+    "n_resolved": 25,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 25,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 1.014718487348075,
+    "n_resolved": 25,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.2793919917528978,
+    "n_resolved": 13,
+    "why": "applied"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 20,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  },
+  "2022": {
+   "fin_customers": {
+    "factor": 1.178139612483375,
+    "n_resolved": 30,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.1132886202676602,
+    "n_resolved": 30,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1169994465465332,
+    "n_resolved": 30,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.177159910095441,
+    "n_resolved": 30,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.1791909615650145,
+    "n_resolved": 30,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.0110245574408008,
+    "n_resolved": 30,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 30,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 0.989814909034811,
+    "n_resolved": 30,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.2205028897002435,
+    "n_resolved": 17,
+    "why": "applied"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 25,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  },
+  "2023": {
+   "fin_customers": {
+    "factor": 1.1524911229924466,
+    "n_resolved": 35,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.1126895404441963,
+    "n_resolved": 35,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.1200339226480358,
+    "n_resolved": 35,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.181188523137954,
+    "n_resolved": 35,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.1819580540779906,
+    "n_resolved": 35,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.0390460440141915,
+    "n_resolved": 35,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 35,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 0.9913937096687998,
+    "n_resolved": 35,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.2369149219011313,
+    "n_resolved": 22,
+    "why": "applied"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 30,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  },
+  "2024": {
+   "fin_customers": {
+    "factor": 1.1526161738796212,
+    "n_resolved": 40,
+    "why": "applied"
+   },
+   "cust_deposits": {
+    "factor": 1.1329262503764006,
+    "n_resolved": 40,
+    "why": "applied"
+   },
+   "total_assets": {
+    "factor": 1.145060983485462,
+    "n_resolved": 40,
+    "why": "applied"
+   },
+   "fin_income": {
+    "factor": 1.2205170271473873,
+    "n_resolved": 40,
+    "why": "applied"
+   },
+   "cost_funds": {
+    "factor": 1.2251776056385346,
+    "n_resolved": 40,
+    "why": "applied"
+   },
+   "net_fees": {
+    "factor": 1.0661742084731578,
+    "n_resolved": 40,
+    "why": "applied"
+   },
+   "other_nii": {
+    "factor": 1.0,
+    "n_resolved": 40,
+    "why": "bias changes sign between eras - NOT a bias"
+   },
+   "admin": {
+    "factor": 1.001678928426832,
+    "n_resolved": 40,
+    "why": "applied"
+   },
+   "other_op": {
+    "factor": 1.2324104827945417,
+    "n_resolved": 27,
+    "why": "applied"
+   },
+   "ecl": {
+    "factor": 1.0,
+    "n_resolved": 35,
+    "why": "bias changes sign between eras - NOT a bias"
+   }
+  }
+ },
+ "strength": 0.5,
+ "reset_after": 2013
+}
