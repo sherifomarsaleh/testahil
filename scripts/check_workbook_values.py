@@ -68,6 +68,8 @@ USAGE
 import glob
 import io, json, re
 import os
+import shutil
+import tempfile
 import subprocess
 import sys as _sys
 _sys.path.insert(0, os.path.join(
@@ -76,6 +78,7 @@ import ratchet_shape as rshape                                    # noqa: E402  
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENGINE = os.path.join(ROOT, 'engine')
 RATCHET = os.path.join(ROOT, 'engine', 'build_depth_audit', 'workbook_values_outstanding.json')
 # The two names a study's recalculation goes by, in the order they are looked for.
 SCRIPTS = ('recalc.py', 'lo_recalc_gate.py')
@@ -145,18 +148,63 @@ def script_for(d):
 
 
 def run_one(d, name):
-    """(ok, tail). A crash, a timeout and a nonzero exit are all NOT ok."""
+    """(ok, tail). A crash, a timeout and a nonzero exit are all NOT ok.
+
+    THE RECALCULATOR RUNS IN A COPY OF THE STUDY DIRECTORY, NEVER IN THE STUDY.
+    A study's recalc.py writes its result beside itself — that is right for the
+    generator and wrong for a CHECK that invokes it, because [R-ENF-01] says no check
+    modifies the tree it checks. It went unnoticed while the rewritten bytes happened
+    to match the committed ones; on 09-09-2026 a rebuilt workbook made TMGH's result
+    differ, the tree-unmodified gate saw a tracked file change mid-run, and CI went red
+    on a check doing exactly what that gate forbids.
+
+    The sandbox is a copy of the ONE study directory, not the repository: recalculators
+    open the workbook and the numbers file beside them and nothing further up. Anything
+    the script writes lands in the copy and dies with it, so the answer this returns is
+    the recalculation's verdict and nothing else.
+    """
     if name.startswith('!'):
         return False, name[1:][:160]
+    # THE SANDBOX IS AN ENGINE DIRECTORY OF SYMLINKS WITH ONE REAL COPY IN IT, and it
+    # has to be, because a recalculator's imports reach SIDEWAYS as well as up: SAVOLA's
+    # opens xlcalc out of ../du_study. A copy of one study directory cannot see its
+    # siblings, and the first cut turned that into ModuleNotFoundError — a harness fault
+    # wearing the costume of a broken study, which is the failure this file exists to
+    # tell apart. Every sibling is linked, so imports resolve exactly as they do in the
+    # tree; only the directory under test is a real copy, so only its writes are caught.
+    tmp = tempfile.mkdtemp(prefix='recalc_')
     try:
-        r = subprocess.run([sys.executable, name], cwd=d, timeout=TIMEOUT,
-                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    except subprocess.TimeoutExpired:
-        return False, 'TIMED OUT after %ds — an absent answer is not a clean one' % TIMEOUT
-    except Exception as e:                                          # noqa: BLE001
-        return False, 'could not run: %s' % e
-    out = r.stdout.decode('utf-8', 'replace').strip().splitlines()
-    return r.returncode == 0, (out[-1][:160] if out else '(no output)')
+        shadow = os.path.join(tmp, 'engine')
+        os.makedirs(shadow)
+        for entry in os.listdir(ENGINE):
+            if entry != os.path.basename(d):
+                os.symlink(os.path.join(ENGINE, entry), os.path.join(shadow, entry))
+        work = os.path.join(shadow, os.path.basename(d))
+        shutil.copytree(d, work, symlinks=True,
+                        ignore=shutil.ignore_patterns('__pycache__', 'filings',
+                                                      'research', '*.npy'))
+        # THE SHARED ENGINE MODULES STILL COME FROM THE REAL TREE. A recalculator
+        # imports macro_path, xlcalc and their like from the directory above it, and a
+        # sandbox holding only the study directory cannot resolve them — the first cut
+        # turned two working recalculators into ModuleNotFoundError, which would have
+        # read as a broken study rather than a broken harness. Reads resolve against
+        # the real engine, which no check may write to anyway; only WRITES land in the
+        # copy, which is the whole property being bought here.
+        env = dict(os.environ)
+        env['PYTHONPATH'] = os.pathsep.join(
+            [ENGINE, ROOT] + ([env['PYTHONPATH']] if env.get('PYTHONPATH') else []))
+        try:
+            r = subprocess.run([sys.executable, name], cwd=work, timeout=TIMEOUT, env=env,
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        except subprocess.TimeoutExpired:
+            return False, ('TIMED OUT after %ds — an absent answer is not a clean one'
+                           % TIMEOUT)
+        except Exception as e:                                      # noqa: BLE001
+            return False, 'could not run: %s' % e
+        out = r.stdout.decode('utf-8', 'replace').strip().splitlines()
+        return r.returncode == 0, (out[-1][:160] if out else '(no output)')
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def main(argv):
