@@ -70,9 +70,34 @@ Expanding window only (errors resolved before the origin). Corrections per drive
 
 Every walk-forward run ends by producing both of the following. A run that produces one and not the other is not finished.
 
+**[R-FCAL-01 §6 AMENDED 09-Sep-2026] A RUN ON A NAME WITH NO CURRENT-STANDARD STUDY MAY BE
+CALIBRATION-ONLY — AND HAS TO DECLARE THAT IT STRUCK NOTHING.** Document 1 below says the
+UPDATED fundamental analysis, and you cannot update what does not exist: the campaign runs
+this walk-forward across the whole book and most covered names have no current-standard
+study behind them. Such a run still produces the lessons register, its own run records, the
+study document (.docx) and the Excel model — **what is optional is the STRUCK FAIR VALUE,
+never the work.** Three conditions, all three:
+
+1. **Declare it machine-readably.** Write `CALIBRATION_ONLY.json` in the run's own
+   directory with `ticker`, `declared_on`, `struck_no_fair_value: true`, `why` (the name
+   has no current-standard study to update) and `produced` (what the run did deliver).
+   **Silence is not a declaration** — a run that just omits a fair value is unfinished
+   exactly as it was before. `engine/calibration_only.py`'s `declared(ticker)` returns a
+   PAIR, so unpack it; the gate that reads it is `python3 engine/fv_movement.py check`.
+2. **Not available where a study already exists.** If the name carries a current-standard
+   study, this section binds unchanged: the analysis is an UPDATE and must be one. The test
+   reads whether the study publishes a central, not whether a directory exists — the
+   directory appears as soon as the docx and workbook are built, while the run correctly
+   still strikes nothing.
+3. **The deliverable standard is not reduced.** Per instruction of 09-Sep-2026 — *"we need
+   a study in docx and the model in excel format as well"* — Document 1's docx, its
+   workbook, its bibliography and its QC gate are all still owed. A calibration-only run
+   builds every one of them; it simply does not strike `fair{bear,base,full}`, and the
+   published numbers stay exactly where they stood.
+
 ### Document 1 — the updated fundamental analysis, at full model-report depth
 
-The delivered valuation study, rebuilt to carry this run's results. **The depth standard is the PHDC study of 30-Aug-2026** (`engine/phdc_study/`), which was itself built to the model report and passes `assert_model_study()`. Match it exactly:
+The delivered valuation study, rebuilt to carry this run's results — or, on a run declared calibration-only above, built to the same depth without a struck fair value. **The depth standard is the PHDC study of 30-Aug-2026** (`engine/phdc_study/`), which was itself built to the model report and passes `assert_model_study()`. Match it exactly:
 
 - **16-section Word document**, in this order: Masthead + READ FIRST · Headline · Valuation summary · Company overview · §1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall and the EV→equity bridge; 1.2 book value and sustainable return; 1.3 relative multiples; 1.4 normalised earnings power; 1.5 synthesis; 1.6 drivers — each disclosed segment on its own driver, margins as OUTPUTS; 1.7 the crux; 1.8 macro and cost of capital; 1.9 sensitivity) · §2 Technical and price structure · §3 Probabilistic price map · §4 Comparison of the lenses · §5 Catalysts · §6 Reading the probability zones · §7 Caveats and what would change our mind · Appendix A financial statements (A.1 income statement, 3 years reported + 5 forecast; A.2 balance sheet as reported; A.3 the FULL projected balance sheet and cash flow) · Appendix B peers, risk register, research register · Appendix C expert panel (C.1–C.3 by method, C.4 cross-examination, C.5 the three in one room, C.6 divergence table) · About · Disclosure.
 - **16-sheet workbook**, same order: READ FIRST, Summary, Fundamental Valuation, Assumptions, SOTP Bridge, Segments, Relative & Normalized, DCF, Income Statement, Balance Sheet, Cash Flow, Summary Financials, Monte Carlo, Sensitivity, Per-Share & Ratios, Peer & Sector. Live formulas throughout — change a blue input and the value per share recomputes.
