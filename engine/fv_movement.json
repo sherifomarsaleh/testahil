@@ -21,6 +21,27 @@
    "ticker": "ABUK",
    "tier": "first-build"
   },
+  "ADIB": {
+   "baseline": {
+    "built_to": "delivered 03-07-2026; no engine directory",
+    "captured": "2026-09-09",
+    "fair": {
+     "base": 54.3,
+     "bear": 31.6,
+     "full": 95.3
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 54.4,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "ADIB",
+   "tier": "first-build"
+  },
   "AMOC": {
    "baseline": {
     "built_to": "(study carries no stamp)",
