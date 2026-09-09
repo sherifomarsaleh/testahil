@@ -16,6 +16,8 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
 import prose_figures as PF                                             # noqa: E402
@@ -41,8 +43,10 @@ def latest_ddmmyyyy(pat):
 # prose_figures.texts_of() reads a workbook's STRING cells only: a numeric cell is a model
 # output the recalculation gate already reconciles, and a numeral inside a label is prose
 # that happens to live in a spreadsheet.
-DOCS = [d for d in ('ARCC_Valuation_Study_03-09-2026_public.docx',
-                    'ARCC_Bibliography_03-09-2026.docx',
+# POINTED AT THE EDITION MODULE. It named the 03-09 files, and a check that opens a
+# SUPERSEDED file reports that file's defects as current [L-066/L-067].
+DOCS = [d for d in (_ed.STUDY_DOCX,
+                    _ed.BIBLIO_DOCX,
                     latest_ddmmyyyy(r'ARCC_Valuation_Model_\d{8}_public\.xlsx$')) if d]
 
 SN = json.load(open('study_numbers.json'))

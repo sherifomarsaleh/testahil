@@ -13,6 +13,8 @@ and never rebuilt drifts away from the model it is supposed to draw.
 import json, os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, ENGINE)
 sys.path.insert(0, HERE)
@@ -23,9 +25,11 @@ import inputs as IN
 import model as MOD
 
 STANDARD_BUILT_AGAINST = RP.STANDARD_VERSION
-STUDY = os.path.join(HERE, "TMGH_Valuation_Study_02-09-2026.docx")
-BIB = os.path.join(HERE, "TMGH_Sources_02-09-2026.docx")
-BOOK = os.path.join(HERE, "TMGH_Valuation_Model_02092026.xlsx")
+# ALL THREE FROM THE EDITION MODULE. A check that opens a SUPERSEDED file
+# reports that file's defects as current [L-066/L-067].
+STUDY = os.path.join(HERE, _ed.STUDY_DOCX)
+BIB = os.path.join(HERE, _ed.SOURCES_DOCX)
+BOOK = os.path.join(HERE, _ed.MODEL_XLSX)
 
 
 def beta_gate():
@@ -189,7 +193,7 @@ def main():
          "%d top-level sections in the document, %d sheets in the workbook in the "
          "required order" % (ev["h1_count"], len(ev["sheets"]))),
         ("Standalone source document",
-         "TMGH_Sources_02-09-2026.docx — primary documents, every input with its "
+         _ed.SOURCES_DOCX + " — primary documents, every input with its "
          "source, judgements with what would overturn each, what was looked for "
          "and not found, and where two sources disagree"),
         ("Every input four-field complete",

@@ -16,6 +16,8 @@ from docx.shared import Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 ROOT = os.path.dirname(ENGINE)
 sys.path.insert(0, HERE)
@@ -56,7 +58,7 @@ SPOT = M["spot"]
 # read "1 September 2026" while the file shipped as 02-09-2026. Nothing was wrong with the
 # study; a person had to remember two strings and remembered one. A date is a figure a
 # reader sees, so the standing rule applies to it — COMPUTED, NOT TYPED.
-EDITION_FILE = "TMGH_Valuation_Study_02-09-2026.docx"
+EDITION_FILE = _ed.STUDY_DOCX
 
 
 def _edition_words(fname=EDITION_FILE):

@@ -107,33 +107,6 @@
     "asof"
    ]
   ],
-  "ARCC": [
-   [
-    "build_xlsx_arcc.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "footing_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "label_gate.py",
-    "03092026",
-    "spot_date"
-   ],
-   [
-    "prose_check.py",
-    "03-09-2026",
-    "spot_date"
-   ],
-   [
-    "recalc.py",
-    "03092026",
-    "spot_date"
-   ]
-  ],
   "RIYADHCABLE": [
    [
     "build_xlsx.py",
@@ -238,38 +211,6 @@
     "docx_scem.py",
     "07-09-2026",
     "asof"
-   ]
-  ],
-  "TMGH": [
-   [
-    "build_xlsx_tmgh.py",
-    "02092026",
-    "edition_date"
-   ],
-   [
-    "docx_bibliography.py",
-    "02-09-2026",
-    "edition_date"
-   ],
-   [
-    "docx_tmgh.py",
-    "02-09-2026",
-    "edition_date"
-   ],
-   [
-    "gate_check.py",
-    "02-09-2026",
-    "edition_date"
-   ],
-   [
-    "gate_check.py",
-    "02092026",
-    "edition_date"
-   ],
-   [
-    "recalc.py",
-    "02092026",
-    "edition_date"
    ]
   ]
  }

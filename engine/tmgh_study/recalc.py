@@ -12,11 +12,13 @@ from openpyxl import load_workbook
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+sys.path.insert(0, HERE)
 import model as M
 import valuation as VAL
 
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
-BOOK = os.path.join(HERE, "TMGH_Valuation_Model_02092026.xlsx")
+BOOK = os.path.join(HERE, _ed.MODEL_XLSX)
 TOL = 1e-6
 
 

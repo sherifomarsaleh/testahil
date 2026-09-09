@@ -12,6 +12,8 @@ from docx import Document
 from docx.shared import Cm
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, ".."))
@@ -247,7 +249,7 @@ def build(path):
 
 def main():
     doc = build(None)
-    out = os.path.join(HERE, "TMGH_Sources_02-09-2026.docx")
+    out = os.path.join(HERE, _ed.SOURCES_DOCX)
     doc.save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)
