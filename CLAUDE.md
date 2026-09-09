@@ -86,7 +86,7 @@ This repo runs the TESTAHIL Standing Research Protocol: valuation studies, calib
 probability cones, and a public ledger, published to the live site. Read this before
 doing any research, study-build, critique-response, or publishing work here.
 
-**Full governing rules — `engine/PROJECT_INSTRUCTIONS_08-09-2026.md`. NOT auto-loaded**
+**Full governing rules — `engine/PROJECT_INSTRUCTIONS_09-09-2026.md`. NOT auto-loaded**
 (~55k characters; injecting it into every session is what makes ordinary answers long and
 ornate). READ IT IN FULL, with `cat`, before any of: starting or re-issuing a study, a
 walk-forward run, a critique response, a roll-forward, a publish, or amending a rule. For
