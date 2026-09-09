@@ -95,3 +95,12 @@ engine/*_walkforward/txt/
 # being failed probes saved under a .json name, which is exactly what scratch looks like.
 engine/*_study_pending/raw/
 engine/*_study/raw/
+
+# Transient gate scratch that lands in the repository ROOT. No committed script writes
+# these — they are shell redirections from gate runs in a session, exit-code/command pairs
+# and captured output. They have been deleted by hand three times tonight, which is the
+# signal to stop deleting and start ignoring. The repository root is not a scratch
+# directory; anything that belongs is named and committed.
+/.o.txt
+/.rerun.txt
+/.rerun_res.txt

@@ -631,6 +631,14 @@ f_rel26q2 = R.add(Ring.COMPANY, "IR communications (calls, presentations, releas
            "driver still carrying the FY2025 figures is stale by one reporting cycle. COGS EGP "
            "6.0bn +10% YoY on manufacturing overheads +15% and labour +21% with raw materials "
            "+4%; G&A EGP 283m, +55%.",
+    model_impact="SUPERSEDES the FY2025 anchors in three drivers at once and resets each of "
+                 "them: the international revenue and volume shares move to 70% and 67%, the "
+                 "destination mix to Americas 34% / Europe 25%, and the Egypt channel mix to "
+                 "wholesale 45% / showrooms 40%. It also splits the 2Q-2026 volume and ASP "
+                 "changes by leg, which is what the ASP driver is projected on, and it sets "
+                 "the labour and overhead escalators (+21% and +15%) apart from raw materials "
+                 "(+4%) so the three are not blended. Direction: export volume UP, Egypt woven "
+                 "volume DOWN with Egypt ASP sharply UP.",
     fiscal_period="Q2-2026")
 
 f_irp = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
@@ -650,6 +658,14 @@ f_irp = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)"
            "31.1, moving FY2025 volume to 111.0m sqm. (2) The 2Q-2026 revenue-mix donut prints "
            "woven 78% / tufted 17% / non-woven 22%, which sums to 117 — a printing error in the "
            "deck, not a reading error; prefer the 2Q-2026 release's own segment split.",
+    model_impact="Supplies the quarterly VOLUME denominator without which no realised price "
+                 "exists after FY2024: it is what turns audited revenue into EGP 239.4/sqm for "
+                 "FY2025 and gives the 2026 quarters their own volume base. It also sets the "
+                 "seasonality shape of the volume driver — fourth quarters run ~31m sqm against "
+                 "second quarters at ~25.5m — and the product mix that weights the three cost "
+                 "legs. Direction: FY2025 group volume is revised DOWN from 111.2 to 111.0m sqm "
+                 "on the 2Q-2026 restatement, so the FY2025 realised price is revised slightly "
+                 "UP, and the study must state which vintage it used.",
     fiscal_period="Q2-2026")
 
 f_pp_own = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
