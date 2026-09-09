@@ -2,6 +2,24 @@
 
 Questions and deliveries that arose overnight, each with the evidence and the recommended answer. Empty means nothing needs you.
 
+### Later on 09 Sep — four more CI reds closed, each larger than its own error line
+
+**Nothing here needs you.** Recorded so the next session does not rediscover it.
+
+| red | what it actually was |
+|---|---|
+| record-survives-rebuild | **Five primary generators were deleting records they do not own.** AMOC, PHAR, PHDC, SWDY, TMGH each ended in a wholesale `json.dump`, so re-running the primary alone silently destroyed the asset-base vintage, the cost-of-capital reproduction, the bridge and the information-set date. Now 23 rebuilds, 0 lost. |
+| page-integrity | **We were serving SODIC's own web pages from our domain** — 1.8MB of captured third-party markup, linked from nothing, published because GitHub Pages serves the whole repository. The favicon it reported was the small half. |
+| artefact-currency | **Four re-struck studies had two stale artefacts each** (ADNOCDIST, AMR, ELEC, FERTIGLOBE). The gate's own line is the lesson: the re-strike reached the valuation and not the paper. |
+| — | Fixing the first one **broke the detector that finds it**, and the gate failed again for a different reason. It was right both times. A detector that knows one spelling of an act goes blind the next time the spelling changes. |
+
+**Still red, and none of it touches a valuation:** the delivered-PDF currency failure on AMR,
+the published-gap worsening on FERTIGLB, and the output-sanity negative control whose EGCH
+mutation does not land. The five ABUK gates stay red on purpose — they are escalated, and
+widening them to clear them is the one thing refused.
+
+**Your ten referred documents are unchanged and waiting.** Nothing was published.
+
 ## 09 Sep 2026 — Phase 1 is proven, and the bar that blocked it was never yours
 
 **One thing needs you, and it is ten documents rather than a decision about the method.**
