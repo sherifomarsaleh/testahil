@@ -776,21 +776,23 @@ caption(f'Table {tnum()} — the level-touch ladder. Touching a level at any poi
         'is far more likely than finishing beyond it.')
 figure(os.path.join(HERE, 'fig5_cone.png'), 6.9,
        'Figure 7 — the price history and the one- and three-month bands.')
+# THE COMPARISON AGAINST A RANDOM WALK IS GONE, AND WHAT REPLACES IT SAYS LESS.
+# [R-CAL-02] retires that verdict from every public surface, and a delivered study is as
+# public as a web page. This paragraph published it three times — five-year, full-history
+# and post-break — with the number on each. The three window sets and their honesty tests
+# stay, because those are what the rule says a reader gets: how often the outcome landed
+# inside the band, whether it landed uniformly within it, and how wide the band is against
+# a naive one. What goes is the claim that the method beat, matched or lost to anything.
 P(f'How much should a reader trust this? The method was tested by re-running it every quarter '
   f'across the whole cleaned price history, without ever letting it see the future, and '
-  f'scoring each forecast against what actually happened. Over the last five years of those '
-  f'tests — 19 non-overlapping three-month windows — it scored marginally better than a '
-  f'random walk anchored on the same carry, by {BT["five_year"]["skill_norm"]:+.4f} on a '
-  f'scale where zero means no better and one means perfect. Over the full '
-  f'{BT["full"]["span_years"]:.1f}-year history and {BT["full"]["windows"]} windows it scored '
-  f'{BT["full"]["skill_norm"]:+.4f}. A third set was run on the period AFTER the currency '
-  f'break that dominates the older history — {BT["production"]["windows"]} windows from '
-  f'{BT["production"]["first_origin"]} to {BT["production"]["last_origin"]}, scoring '
-  f'{BT["production"]["skill_norm"]:+.4f} — and it is published here because it is the set '
-  f'that matches the period the bands shown above are built on. All three are reported '
-  f'together; reporting only two of three would be a choice about which evidence a reader '
-  f'sees. In plain terms: on this single share the method is indistinguishable from a random '
-  f'walk, and this study says so rather than claiming an edge it cannot demonstrate.')
+  f'checking each forecast against what actually happened. Three window sets are reported: '
+  f'the last five years, {BT["five_year"]["windows"]} non-overlapping three-month windows; '
+  f'the full {BT["full"]["span_years"]:.1f}-year history, {BT["full"]["windows"]} windows; '
+  f'and the period AFTER the currency break that dominates the older history — '
+  f'{BT["production"]["windows"]} windows from {BT["production"]["first_origin"]} to '
+  f'{BT["production"]["last_origin"]}. The third is published because it is the set that '
+  f'matches the period the bands shown above are built on. All three are reported together; '
+  f'reporting only two of three would be a choice about which evidence a reader sees.')
 P(f'What the tests DO show is that the bands are honestly sized, which is the property that '
   f'matters for reading them. Across the five-year window set the outcome fell inside the 90% '
   f'band {pc(BT["five_year"]["cov90"], 0)} of the time and inside the 50% band '
@@ -1535,8 +1537,9 @@ P('This is an independent, educational valuation study. It was prepared from the
   'and each input was perturbed in place to confirm the answer moves in the right direction.')
 P('The probability map in section 3 comes from a simulation engine calibrated on the Egyptian '
   'market as a whole and tested by re-running it across the full price history without '
-  'letting it see the future. Its performance on this individual share is reported honestly '
-  'in section 3, including where it is no better than a random walk.')
+  'letting it see the future. What that testing establishes about this individual share — how '
+  'often the outcome fell inside the band, whether it fell uniformly within it, and how wide '
+  'the band is — is reported in section 3, with the window counts behind each figure.')
 
 # ================================ 16. DISCLOSURE ===============================
 H1('Disclosure')
