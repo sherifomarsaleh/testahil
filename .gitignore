@@ -87,3 +87,11 @@ engine/*_study_pending/filings/pages/
 engine/*_study_pending/filings/*_OCR.txt
 engine/*_walkforward/ocr/
 engine/*_walkforward/txt/
+# Raw probe output — web-archive CDX index dumps and the like. A query RESULT is not a
+# source document: what SIGCM wants reachable is the filing, which lands in filings/ or
+# src/ and IS committed, and what the protocol wants logged is the access attempt with its
+# real outcome, which lands in the sweep register. These are the scratch behind both, and
+# they are not even a clean artefact set — two of HELI's six do not parse as JSON at all,
+# being failed probes saved under a .json name, which is exactly what scratch looks like.
+engine/*_study_pending/raw/
+engine/*_study/raw/
