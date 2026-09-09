@@ -67,3 +67,46 @@ actually starts will read the same unmoved `data.js` figures.
 bear **1.42** / base **2.39** / full **3.52**, spot **9.12** at the close of 23 August 2026,
 captured 9 September 2026, `built_to` reported as "(no study)" — which is itself wrong, per
 the note above.
+
+---
+
+## MEASURED ACROSS ALL NINETY, LATER THE SAME DAY — KABO IS NOT ALONE
+
+The section above says the question "reaches further than KABO". It does, and the reach is
+now measured rather than asserted. `scripts/check_supplied_prices.py` holds every supplied
+price against that name's own OHLC library, and asks not "how big is the difference" but
+**"is a move this big, over this many sessions, something this stock has ever done"** — so
+there is no threshold to argue about. Four names sit outside their own record:
+
+| name | supplied | library | library date | implies | the name's own 99.5th pct |
+|---|---:|---:|---|---:|---:|
+| KABO | 34.060 | 9.120 | 23-Aug | **+273.5%** over 8 sessions | 37.5% |
+| SABIC | 81.400 | 50.100 | 01-Sep | **+62.5%** over 1 session | 7.1% |
+| IQCD | 13.170 | 9.965 | 01-Sep | **+32.2%** over 1 session | 6.7% |
+| QGTS | 4.850 | 4.310 | 01-Sep | **+12.5%** over 1 session | 7.1% |
+
+All four come from `SUPPLIED_03-09-2026.json`. SABIC's is the one to look at after KABO:
++62.5% in a single session, against a library that ends two days before the supplied date
+and has never moved more than 10.1% in a day in its whole recorded history.
+
+**What each one changes, if the library is right.** SABIC shows on the pipeline as REFERRED
+at −31.8%; on the library price the same fair value is about **+10.8%** and it would CLEAR.
+IQCD shows REFERRED at −17.2%; on the library price about **+9.4%**, and it would CLEAR.
+That is the wrong-routing consequence this note predicted, now with names on it.
+
+**Nothing has been changed.** All four are on the gate's ratchet, which may only shorten,
+because which record is right is a sourcing question for the principal and not an edit.
+
+## A SEPARATE DEFECT, IN OUR OWN DATA
+
+Building that gate surfaced something that is nobody's supplied figure. **The Qatari
+libraries carry unadjusted corporate actions**: IQCD's largest single-session move reads
+**894.7%** and QGTS's **908.3%**, against 99.5th percentiles of 6.7% and 7.1%. A price
+series does not do that; a split recorded as a price change does.
+
+It matters beyond tidiness. The first cut of the gate used each name's LARGEST historical
+move as its bar — which sounds like the strictest possible empirical test and is close to
+the most permissive one, because a bar of 894.7% is a bar no supplied price could ever
+exceed. **The gate could not have fired on either Qatari name, whatever was supplied.**
+That is why the bar is a percentile. The artefacts are named in the gate and are NOT fixed
+there: adjusting a price series is a sourcing job, not a gate's.

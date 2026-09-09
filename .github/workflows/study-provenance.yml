@@ -955,6 +955,18 @@ jobs:
       - name: Recalculator target — the falsifier [R-ENF-07]
         run: python3 scripts/check_recalculator_target_negative_control.py
 
+      # A SUPPLIED PRICE IS A HAND-OFF, NOT A SOURCE. Ten studies read
+      # engine/prices/SUPPLIED_*.json and so does the traded-price gate, which is Phase 1's
+      # criterion 4 -- the one that decides which names PASS and which are REFERRED. A wrong
+      # price there produces a wrong ROUTING, not a wrong fair value. Found 09-09-2026 when
+      # the principal said "Noo Kabo is not 34 EGP"; running the comparison across all
+      # ninety names found four, not one.
+      - name: Supplied prices — each held against its own OHLC library
+        run: python3 scripts/check_supplied_prices.py
+
+      - name: Supplied prices — the falsifier [R-ENF-07]
+        run: python3 scripts/check_supplied_prices_negative_control.py
+
       # THE LARGEST BLIND SPOT IN THE SYSTEM, and the gauntlet above cannot see it either:
       # every construction gate here takes a STUDY DIRECTORY as its subject, so a name with
       # no study directory is examined by NONE of them. Measured through a real node load of

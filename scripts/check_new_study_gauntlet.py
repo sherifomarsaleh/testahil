@@ -447,6 +447,13 @@ EXCLUDED = {
     # no typed workbook name that could be stale. Its own population guard is stricter
     # than a refusal here would be -- it goes red when the recalculator glob finds
     # NOTHING, so the layout moving cannot read as every study being clean.
+    # Anchors on engine/prices/, not on study directories: a new study adds no supplied
+    # price, so there is correctly nothing of its to contradict. Its own population guard
+    # is stricter than a refusal here -- it goes red when the price file is absent or
+    # carries no entries, so the layout moving cannot read as every price agreeing.
+    'check_supplied_prices.py':
+        'anchors on the supplied price files and the OHLC libraries, not on study '
+        'directories; a new empty study supplies no price',
     'check_recalculator_target.py':
         'anchors on each study\'s recalc.py and the workbooks beside it; a new empty '
         'study has no recalculator, so there is correctly no typed target to hold '
