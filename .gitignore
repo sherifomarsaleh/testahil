@@ -77,3 +77,13 @@ engine/*_study_pending/ocr/
 engine/*_study_pending/txt/
 engine/*_study/ocr/
 engine/*_study/txt/
+# The same files also land UNDER filings/ and beside them, because each sweep agent
+# picks its own layout. The rule is about what the file IS, not where it sits: a
+# rendered page and a pdftotext dump are readings of a source, regenerable from the PDF
+# committed next to them, and the sweep register records which route produced each
+# figure. FWRY put its renders under filings/ocr/ and the first pattern missed them.
+engine/*_study_pending/filings/ocr/
+engine/*_study_pending/filings/pages/
+engine/*_study_pending/filings/*_OCR.txt
+engine/*_walkforward/ocr/
+engine/*_walkforward/txt/

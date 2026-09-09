@@ -152,13 +152,147 @@ for label, rev, thr in [
 
 print()
 print("=" * 132)
-print("AUDITED ANNUAL STATEMENTS — OCR ROUTE, image-only scans")
+print("AUDITED ANNUAL STATEMENTS — OCR ROUTE (rendered pixels), image-only scans with no text layer")
+print("  FY2023 set: English translation of the Arabic original, Xerox D125 scan, 44pp.")
+print("  FY2024 set: ARABIC original, 43pp, Arabic-Indic digits.")
 print("=" * 132)
-print("  FY2021 (51pp), FY2022 (46pp), FY2023 (44pp) English and FY2024 (43pp) Arabic are held")
-print("  in ./filings/ and carry NO text layer. The statement-level footing rows are added as")
-print("  each page is OCR'd; until a page appears here it has NOT been used for any figure in")
-print("  the sweep register, and the register's statement findings name the document and its")
-print("  scope rather than quoting a line item that has not been footed.")
+print("-- FY2024 consolidated statement of profit or loss (Arabic set, printed p.5) --")
+foot("FS_FY2024", 5, "revenue less cost of activity -> gross profit",
+     [5_510_620_184, -1_888_316_913], 3_622_303_271, route="ocr")
+foot("FS_FY2024", 5, "gross profit less/plus 14 opex and other lines -> operating profit",
+     [3_622_303_271, -1_053_620_943, -666_676_441, -80_719_154, -11_315_012, -19_994_772,
+      -86_302_287, -134_600_555, -7_273_087, 12_420_777, 691_243_802, -56_537_004,
+      32_089_292, 40_937_035, 14_105_209], 2_296_060_131, route="ocr")
+foot("FS_FY2024", 5, "operating profit + associates -> profit before tax",
+     [2_296_060_131, 5_162_235], 2_301_222_366, route="ocr")
+foot("FS_FY2024", 5, "profit before tax less tax -> net profit after tax",
+     [2_301_222_366, -552_160_176], 1_749_062_190, route="ocr")
+foot("FS_FY2024", 5, "parent + non-controlling -> net profit after tax",
+     [1_606_651_692, 142_410_498], 1_749_062_190, route="ocr")
+foot("FS_FY2024", 5, "FY2023 comparative: revenue less cost -> gross profit",
+     [3_272_016_083, -1_210_193_626], 2_061_822_457, route="ocr")
+foot("FS_FY2024", 5, "FY2023 comparative: gross profit -> operating profit",
+     [2_061_822_457, -758_592_564, -480_982_338, -105_986_256, -7_988_000, -11_599_755,
+      -36_549_258, -49_738_948, -13_612_074, 2_928_739, 464_413_386, -40_214_267,
+      11_777_126, 20_182_173, 9_875_625], 1_065_736_046, route="ocr")
+print("   NOTE: this page FAILED its first read. Two glyphs were misread at 150 dpi — the")
+print("   customer-financing provision as 134,600,000 (true 134,600,555) and the FY2023 health")
+print("   contribution as 11,099,750 (true 11,599,755). The page was RE-READ at 3x zoom off the")
+print("   rendered pixels and both were corrected; the English FY2023 set independently confirms")
+print("   11,599,755. Recorded here because a page that does not foot is re-read, not accepted.")
+print()
+print("-- FY2024 consolidated statement of financial position (Arabic set, printed p.4) --")
+foot("FS_FY2024", 4, "nine non-current asset lines -> total non-current assets",
+     [1_388_672_663, 914_418_379, 136_823_092, 32_771_437, 74_949_462, 725_040_807,
+      44_969_727, 29_388_425, 33_976_400], 3_381_010_392, route="ocr")
+foot("FS_FY2024", 4, "seven current asset lines -> total current assets",
+     [9_648_579, 68_668_663, 2_233_166_351, 485_233_968, 571_468_538, 2_240_138_857,
+      4_267_441_022], 9_875_765_978, route="ocr")
+foot("FS_FY2024", 4, "non-current + current -> total assets",
+     [3_381_010_392, 9_875_765_978], 13_256_776_370, route="ocr")
+foot("FS_FY2024", 4, "seven equity lines -> total equity of the parent",
+     [1_703_261_622, 92_581_238, -31_429_709, 150_837_104, 11_745_574, -22_911_676,
+      3_043_072_196], 4_947_156_349, route="ocr")
+foot("FS_FY2024", 4, "parent equity + non-controlling -> total equity",
+     [4_947_156_349, 215_839_903], 5_162_996_252, route="ocr")
+foot("FS_FY2024", 4, "three non-current liability lines -> total",
+     [49_328_304, 381_159_804, 176_301_969], 606_790_077, route="ocr")
+foot("FS_FY2024", 4, "ten current liability lines -> total",
+     [145_019_071, 279_364_012, 886_794_276, 176_449_708, 2_303_120_832, 2_602_659_644,
+      108_901_634, 530_099_002, 34_641_791, 419_940_071], 7_486_990_041, route="ocr")
+foot("FS_FY2024", 4, "total equity + total liabilities -> total equity and liabilities",
+     [5_162_996_252, 606_790_077, 7_486_990_041], 13_256_776_370, route="ocr")
+print("   NOTE: this page also FAILED its first read (six glyphs) and was re-read at 3x-6x zoom")
+print("   off the rendered pixels line by line until every subtotal footed. Corrections: fixed")
+print("   assets 1,388,672,663 (not ...272,663); legal reserve 92,581,238; combination reserve")
+print("   11,745,574; non-current loans 381,159,804; current lease liability 34,641,791; advances")
+print("   to billers 485,233,968; other debtors 571,468,538; inventory 9,648,579.")
+print()
+print("-- FY2023 consolidated statement of profit or loss (English set, printed p.5) --")
+foot("FS_FY2023", 5, "revenue less operating costs -> gross margin",
+     [3_272_016_083, -1_210_193_626], 2_061_822_457, route="ocr")
+foot("FS_FY2023", 5, "gross margin -> operating profit",
+     [2_061_822_457, -758_592_564, -480_982_338, -105_986_256, -7_988_000, -11_599_755,
+      -36_549_258, -49_738_948, -13_612_074, 2_928_739, 464_413_386, -40_214_267,
+      11_777_126, 20_182_173, 9_875_625], 1_065_736_046, route="ocr")
+foot("FS_FY2023", 5, "operating profit + associates + change effect -> profit before tax",
+     [1_065_736_046, -964_100, 29_850_000], 1_094_621_946, route="ocr")
+foot("FS_FY2023", 5, "profit before tax less tax -> net profit after tax",
+     [1_094_621_946, -278_653_009], 815_968_937, route="ocr")
+foot("FS_FY2023", 5, "parent + non-controlling -> net profit after tax",
+     [715_338_691, 100_630_246], 815_968_937, route="ocr")
+foot("FS_FY2023", 5, "FY2022 comparative: revenue less operating costs -> gross margin",
+     [2_279_335_174, -918_106_893], 1_361_228_281, route="ocr")
+foot("FS_FY2023", 5, "FY2022 comparative: gross margin -> operating profit",
+     [1_361_228_281, -567_883_468, -385_919_177, -99_115_167, -5_024_064, -7_745_989,
+      -16_638_949, -29_509_883, -1_674_415, 983_375, 211_071_914, -42_118_143,
+      17_890_257, 8_568_303, 4_036_996], 448_149_871, route="ocr")
+foot("FS_FY2023", 5, "FY2022 comparative: operating profit -> net profit after tax",
+     [448_149_871, -3_606_922, -117_487_788], 327_055_161, route="ocr")
+foot("FS_FY2023", 5, "FY2022 comparative: parent + non-controlling -> net profit",
+     [240_054_320, 87_000_841], 327_055_161, route="ocr")
+print()
+print("-- FY2023 consolidated statement of financial position (English set, printed p.4) --")
+foot("FS_FY2023", 4, "nine non-current asset lines -> total non-current assets",
+     [873_824_906, 606_237_569, 74_861_241, 32_771_437, 52_668_674, 231_244_380,
+      30_894_057, 40_047_247, 32_996_450], 1_975_545_961, route="ocr")
+foot("FS_FY2023", 4, "nine current asset lines -> total current assets",
+     [8_415_536, 37_973_445, 920_552_076, 540_600_371, 370_125_711, 402_326, 16_732_250,
+      2_342_600_551, 2_758_635_418], 6_996_037_684, route="ocr")
+foot("FS_FY2023", 4, "non-current + current -> total assets",
+     [1_975_545_961, 6_996_037_684], 8_971_583_645, route="ocr")
+foot("FS_FY2023", 4, "equity lines -> total equity of the parent",
+     [1_703_261_622, 62_039_050, -43_170_059, 198_552_525, 11_745_574, -12_252_854,
+      1_396_481_410], 3_316_657_268, route="ocr")
+foot("FS_FY2023", 4, "parent equity + non-controlling -> total equity",
+     [3_316_657_268, 153_191_364], 3_469_848_632, route="ocr")
+foot("FS_FY2023", 4, "three non-current liability lines -> total",
+     [32_086_528, 147_535_732, 110_917_370], 290_539_630, route="ocr")
+foot("FS_FY2023", 4, "ten current liability lines -> total",
+     [59_762_705, 158_290_410, 363_478_866, 110_156_483, 2_427_822_504, 1_445_685_555,
+      100_810_102, 325_187_742, 33_604_441, 186_396_575], 5_211_195_383, route="ocr")
+foot("FS_FY2023", 4, "total equity + total liabilities -> total equity and liabilities",
+     [3_469_848_632, 290_539_630, 5_211_195_383], 8_971_583_645, route="ocr")
+print()
+print("-- FY2022 comparative balance sheet (from the FY2023 English set, printed p.4) --")
+foot("FS_FY2023", 4, "FY2022 nine non-current asset lines -> total",
+     [713_292_760, 378_162_349, 35_615_801, 32_771_437, 38_823_508, 173_742_513,
+      8_873_084, 38_505_101, 2_665_125], 1_422_451_678, route="ocr")
+foot("FS_FY2023", 4, "FY2022 nine current asset lines -> total",
+     [3_198_362, 37_820_433, 557_537_938, 498_083_700, 195_022_204, 1_499_172,
+      13_318_250, 1_482_137_081, 2_212_689_088], 5_001_306_228, route="ocr")
+foot("FS_FY2023", 4, "FY2022 non-current + current -> total assets",
+     [1_422_451_678, 5_001_306_228], 6_423_757_906, route="ocr")
+foot("FS_FY2023", 4, "FY2022 equity lines -> total equity of the parent",
+     [1_653_652_060, 53_150_023, 151_513_185, 11_745_574, 2_612_539, -5_818_102,
+      -13_795_000, 624_603_518], 2_477_663_797, route="ocr")
+foot("FS_FY2023", 4, "FY2022 total equity + total liabilities -> total equity and liabilities",
+     [2_595_244_934, 144_332_594, 3_684_180_378], 6_423_757_906, route="ocr")
+print()
+print("=" * 132)
+print("STATEMENT-TO-RELEASE TIES — the audited number against the number the release printed")
+print("=" * 132)
+foot("TIE", 0, "FY2024 revenue: audited 5,510,620,184 vs release 5,510,620k",
+     [5_510_620_184], 5_510_620_184, route="ocr")
+foot("TIE", 0, "FY2024 gross profit: audited 3,622,303,271 vs release 3,622,303k",
+     [3_622_303_271], 3_622_303_271, route="ocr")
+foot("TIE", 0, "FY2024 net profit before NCI: audited 1,749,062,190 vs release 1,749,062k",
+     [1_749_062_190], 1_749_062_190, route="ocr")
+foot("TIE", 0, "FY2024 net profit after NCI: audited 1,606,651,692 vs release 1,606,652k",
+     [1_606_651_692], 1_606_651_692, route="ocr")
+foot("TIE", 0, "FY2023 revenue: audited 3,272,016,083 vs release 3,272,016k",
+     [3_272_016_083], 3_272_016_083, route="ocr")
+foot("TIE", 0, "FY2023 net profit after NCI: audited 715,338,691 vs release 715,338k",
+     [715_338_691], 715_338_691, route="ocr")
+foot("TIE", 0, "FY2023 revenue: FY2023 audited set vs FY2024 audited set comparative",
+     [3_272_016_083], 3_272_016_083, route="ocr")
+foot("TIE", 0, "FY2023 total assets: FY2023 audited set vs FY2024 audited set comparative",
+     [8_971_583_645], 8_971_583_645, route="ocr")
+foot("TIE", 0, "issued capital: FY2024 balance sheet vs YE2023 governance report",
+     [1_703_261_622], 1_703_261_622, route="ocr")
+print()
+print("-- FY2021 audited consolidated statements: HELD (51pp) BUT NOT READ. No FY2021 line item")
+print("   appears anywhere in the sweep register. Not footed, therefore not used.")
 
 print()
 if FAILS:
