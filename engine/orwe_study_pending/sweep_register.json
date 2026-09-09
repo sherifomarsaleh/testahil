@@ -1,0 +1,995 @@
+{
+ "ticker": "ORWE",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-09-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "EGP/USD ~51.0 on 09-Sep-2026 (mid-market 1 EGP = USD 0.0196); the pound is down 6.41% against the dollar year-to-date in 2026 and traded 0.01954-0.02001 in the week to 02-Sep-2026",
+   "source_name": "Wise and poundsterlinglive USD-EGP daily mid-market series",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-09-09",
+   "detail": "FX quotes are PRIMARY_MARKET_DATA, a sanctioned source class. The Central Bank of Egypt's own page was WAF-blocked, see the primary-access log.",
+   "url": "",
+   "model_impact": "Sets the translation rate for the ~67-70% of revenue that is international and for the ~99%-foreign-currency debt stack (F27). A -6.4% YTD move is an EGP revenue TAILWIND and a finance-cost and translation-reserve headwind at the same time; both legs must run off the same rate path, not two.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Polypropylene repriced sharply in 1Q-2026 on the US-Iran war and the Strait of Hormuz disruption: German PP rose from ~USD 1,063/MT in Jan-2026 to ~USD 1,346/MT in Mar-2026 (+26.6%); US PP from ~USD 1,027/MT to ~USD 1,351/MT (+31.5%); European propylene contract prices rose ~7% with a step change between March and April 2026",
+   "source_name": "Procurement Resource polypropylene price-trend series; ChemAnalyst; PlasticsToday; Argus reporting of LyondellBasell on Iran-war polymer repricing",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-04-30",
+   "detail": "Corroborates the company's OWN polypropylene series (F21), which rose from EGP 948 in 1Q-2026 to EGP 1,246 in 2Q-2026, +31% q/q \u2014 the same shock in the company's own units. This is the single largest input: polypropylene/nylon is 51% of raw materials and raw materials are ~50% of COGS, so PP is roughly a quarter of cost of sales.",
+   "url": "",
+   "model_impact": "Drives the raw-material cost-per-square-metre leg of the bottom-up COGS build. Gross margin is the OUTPUT of that build, never an input.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "Global carpet and rug market ~USD 60.1bn in 2025 heading to ~USD 64.7bn in 2026; the top five players hold 17.6% between them. Mohawk Industries' 2Q-2026 net sales were USD 3.0bn, +6.8% reported and +5.0% adjusted, with management stating the home resale market is near multi-decade lows and new home construction remains soft, commercial outperforming residential",
+   "source_name": "Grand View Research carpet and rug market sizing; Mohawk Industries 2Q-2026 results release and earnings call",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-07-30",
+   "detail": "ORWE's own 4Q-2025 deck claims a 10% global woven market share and presence in 118+ countries, so world demand is not background for this issuer \u2014 it is roughly two thirds of the revenue base.",
+   "url": "",
+   "model_impact": "Caps international volume growth. The explicit window cannot assume a Western residential recovery that the largest listed competitor says has not started.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "STRUCTURAL",
+   "headline": "The US tariff regime on Egyptian carpets reset twice inside the historical window: the QIZ/GSP duty-free route for Egyptian carpets and textile floor coverings was overridden by a blanket 10% ad-valorem tariff in April 2025; the IEEPA reciprocal tariffs were struck down by the US Supreme Court on 20-Feb-2026 and replaced by a 10% Section 122 global surcharge effective 24-Feb-2026, leaving Egypt at 10%",
+   "source_name": "USAFacts average US tariff rate by country (Egypt); tariffcheck.org Egypt guide; Passport Global 2026 tariff-rate compilation",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-02-24",
+   "detail": "The Americas were 34% of 2Q-2026 revenue (F19) and America grew 29% YoY in that quarter despite the surcharge. Mohawk's 2Q-2026 numbers carry tariff REFUNDS, guided at ~USD 0.12 per share into 3Q-2026 \u2014 the same legal event seen from the importer's side.",
+   "url": "",
+   "model_impact": "A named, dated 10% duty wedge on the single largest export destination. Model as an explicit price and margin term on the Americas leg, dual-framed with and without, never smoothed into an ASP glide.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "The CBE held the overnight deposit rate at 19.00% and the lending rate at 20.00% on 20-Aug-2026, a fourth consecutive hold. Headline inflation rose to 14.9% in Jul-2026 (core 14.7%) from 14.3% in Jun-2026, though monthly headline and core both printed 0.0% in July. The CBE's stated target remains 7% +/-2pp on average in Q4-2026, with single digits expected in H2-2027",
+   "source_name": "Bloomberg and Central Banking reporting of the CBE Monetary Policy Committee decision of 20-Aug-2026",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-20",
+   "detail": "PROVENANCE EXCEPTION, STATED: cbe.org.eg returned an F5 'Request Rejected' WAF page, support ID da44b8f3-d541-4d41-af65-ffc44ffcdaa2, so the regulator's own page could not be read. This is a Country-ring regulator figure, not an ORWE-reported figure. NOTE the 19-20% EGP policy rate is NOT this issuer's cost of debt \u2014 see F27, an implied ~7.0% on a 99%-foreign-currency stack.",
+   "url": "",
+   "model_impact": "Anchors the explicit-window EGP risk-free rate and the terminal build, which is norm-built off the CBE's own 7% target rather than a historical average. Does NOT set Kd: that leg is dollar-linked.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Egypt's Export Burden Rebate Program for FY2025/26 was doubled to EGP 45bn (EGP 38bn to priority sectors including textiles and home furnishings, EGP 7bn flexible reserve); the FY2026/27 budget allocates EGP 48bn. The ~EGP 60bn of pre-July-2024 arrears is being settled half in cash over four years and half by set-off against exporters' obligations to state entities, with EGP 12.6bn (50% of the cash portion) already paid to ~2,500 companies inside one fiscal year",
+   "source_name": "Egyptian Ministry of Finance and Ministry of Investment and Foreign Trade programme announcements, reported via Daily News Egypt, Business Today Egypt, Amwal Al Ghad and the State Information Service",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-06-03",
+   "detail": "DRIVER UNLOCK. This is the mechanism behind ORWE's export-rebate income, and the company's own numbers name the same two channels: 2Q-2026 EGP 452m collected 'including EGP 150m from backlog claims settled through government fee offsets and cash collections'. F17 shows the rebate IS the audited 'Other revenues' line, to the pound.",
+   "url": "",
+   "model_impact": "Converts export-rebate income from a residual into a bottom-up build: a current-programme accrual on export value plus a scheduled run-off of the named EGP 180m remaining backlog. Sensitise the programme's continuation separately \u2014 1H-2026 rebates were 32% of net profit.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Three of the six consolidated subsidiaries \u2014 Oriental Weavers International, Oriental Weavers Textile and New Mac \u2014 are established under Investment Guarantee and Incentives Law No. 8 of 1997 in a PRIVATE FREE ZONE and are, per their tax cards, exempt from corporate tax for the lifetime of the company. Egypt's headline corporate rate is 22.5%",
+   "source_name": "ORWE FY2025 audited consolidated financial statements, note 33 'Tax position', sub-notes 33-2, 33-3 and 33-5 (read off the rendered pixels, printed pages 28-29)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-26",
+   "detail": "This is why the effective tax rate is nowhere near statutory. Computed from the filings: FY2022 17.4% (198,563,579/1,142,737,084), FY2023 9.3% (193,631,564/2,085,613,587), FY2024 9.4% (262,643,931/2,804,325,748), FY2025 14.2% (375,071,030/2,638,470,903), H1-2026 15.2% (362,313,721/2,376,731,402).",
+   "url": "",
+   "model_impact": "Effective tax is a BOTTOM-UP driver off the free-zone mix, not a 22.5% statutory plug. A build that applies 22.5% understates net profit by roughly ten percentage points of pre-tax income.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "Egypt is targeting USD 11.5bn of annual textile export revenue by 2030 against USD 2.8bn earned in 2024, and is pulling in foreign capacity: Turkish group Boni's USD 100m integrated factory in 10th of Ramadan City, Chinese EVERFAR Textile Egypt USD 130m, Changzhou Kingcason USD 24.5m and Shanghai Honour Home Textile. Around 1,700 Turkish businesses have invested over USD 3bn in Egypt with ~200 factories in textiles, garments and chemicals concentrated in 10th of Ramadan, Sadat City and the Suez Canal Economic Zone",
+   "source_name": "Ecofin Agency; Kohan Textile Journal; EnterpriseAM Egypt; AmCham Egypt textile and ready-made-garments study",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-04-23",
+   "detail": "ORWE's own plants are in 10th of Ramadan City, the same cluster. The named investments are garments and home textiles rather than machine-woven carpet lines \u2014 see the dated negative search F42.",
+   "url": "",
+   "model_impact": "Two-sided. Supports the continuation of the export-rebate programme (F14) that carries a third of 1H-2026 net profit, and raises competition for skilled labour in the same industrial zone, which is the mechanism behind the +21% to +27% YoY wage inflation the company reports (F22).",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "ORWE's disclosed nameplate is 150m sqm a year across 26 production facilities on two continents: woven 79m sqm, tufted 48.1m sqm, non-woven 23m sqm (79 + 48.1 + 23 = 150.1, which foots to the stated 150m). Group sales volume was 138.7m sqm in FY2021, 121.8m in FY2022, 112.7m in FY2023, 113.8m in FY2024 and 111.2m in FY2025",
+   "source_name": "ORWE FY2022 Investor Presentation, 'Well-Invested Production Facilities' pages 15-17; volumes from the FY2024 earnings release volume tables and the 4Q-2025 investor presentation quarterly volume chart",
+   "source_type": "COMPANY_IR",
+   "source_date": "2023-03-02",
+   "detail": "Implied utilisation: FY2021 92%, FY2022 81%, FY2023 75%, FY2024 76%, FY2025 74%. The capacity figure is a FY2022-vintage disclosure and no later nameplate has been published \u2014 see the negative search F42. The 4Q-2025 non-woven capacity addition management refers to is not quantified anywhere.",
+   "url": "",
+   "model_impact": "DRIVER UNLOCK: caps the volume driver and makes the volume build a utilisation path against a named nameplate rather than a growth rate. [R-ASSET-01] \u2014 the asset base's vintage is FY2022, older than this sweep's information set, and must be flagged as such.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "Egypt's national carpet and floor-covering exports were USD 398.02m in 2025 (USD 106.52m to the United States) at an average 2024 export price of ~USD 14/sqm, +1.6% YoY",
+   "source_name": "UN COMTRADE via Trading Economics, Egypt exports of carpets and other textile floor coverings",
+   "source_type": "AGGREGATOR",
+   "source_date": "2026-01-31",
+   "detail": "MARKET DATA ONLY \u2014 external context, never an ORWE-reported figure. IT DOES NOT RECONCILE with the company's own realised price and the gap is left open rather than papered over: ORWE's FY2024 international revenue of EGP 16,049m over 70,629k sqm is EGP 227/sqm, roughly USD 4.8/sqm at a ~47.5 average rate. The national average is about three times that. The likely causes are mix (ORWE's international volume is heavily tufted and non-woven) and the fact that OW USA's American sales are not Egyptian exports at all. A build must not use the national average as an ASP benchmark without resolving this.",
+   "url": "",
+   "model_impact": "Context for the ASP driver only. The ASP driver itself is built from the company's own volume and value tables (F16), not from this.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "STRUCTURAL",
+   "headline": "Named entrants into Egypt's textile cluster since early 2025: Boni (Turkey, USD 100m integrated factory, 10th of Ramadan City), EVERFAR Textile Egypt LLC (China, USD 130m), Changzhou Kingcason Printing & Dyeing (China, USD 24.5m) and Shanghai Honour Home Textile. Egypt's textile market is otherwise highly fragmented \u2014 14,000+ companies, with state-owned enterprises holding ~40-45% of spinning and weaving capacity",
+   "source_name": "Ecofin Agency; Kohan Textile Journal; Mordor Intelligence Egypt textile manufacturing study",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-02-04",
+   "detail": "Every named entrant is in garments, printing and dyeing, or home textiles. NONE is a machine-woven carpet line. The distinction is preserved rather than blurred; see also F42.",
+   "url": "",
+   "model_impact": "Sets the domestic competitive-pressure term. Management's own language for the Egypt leg in 1Q- and 2Q-2026 is 'intensifying competition' alongside a 15% YoY woven volume decline in 2Q-2026, so the domestic volume driver is modelled DOWN with price up \u2014 not both up.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "STRUCTURAL",
+   "headline": "Luxury vinyl tile is the substitution threat and it is growing fast: the LVT market goes from ~USD 29.4bn in 2025 to ~USD 33.33bn in 2026, +13.4%, driven by renovation demand replacing ageing carpet in North America and Europe and by carpet-tile replacement in high-traffic commercial areas. Carpets and rugs have lost share to hard surfaces for a decade and are expected to keep doing so \u2014 BUT area rugs have been relatively unaffected, because they are laid over hard-surface flooring",
+   "source_name": "The Business Research Company LVT market report 2026; Mordor Intelligence LVT floor covering market; Freedonia global carpets and rugs coverage",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-01-15",
+   "detail": "",
+   "url": "",
+   "model_impact": "Asymmetric, and the asymmetry is the whole point for this issuer. ORWE's revenue is 77-78% WOVEN, i.e. area rugs, which the substitution literature explicitly exempts, and only ~11-12% tufted wall-to-wall in Egypt, which it does not. Sets the TERMINAL growth rate: low single-digit real, with the wall-to-wall tufted leg gliding below the woven leg rather than one blended decline rate for the whole company.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "STRUCTURAL",
+   "headline": "Named competitor actions: Mohawk Industries took pricing actions and productivity and restructuring gains through 2Q-2026, guided 3Q-2026 adjusted EPS to USD 2.50-2.60 including ~USD 0.12 of tariff refunds, and warned of higher input costs into 4Q-2026 with a 'potential need for additional pricing actions'. Merinos Hali (Erdemoglu Holding) is the largest machine-made carpet producer in Turkey, anchoring the Gaziantep cluster alongside Artemis and Atlas; Victoria PLC owns the former Balta rug and carpet division",
+   "source_name": "Mohawk Industries 2Q-2026 results release and earnings call, 30-Jul-2026; Kohan Textile Journal and Pelotek on the Turkish machine-made carpet cluster",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-07-30",
+   "detail": "Mohawk signalling further price rises into 4Q-2026 on input cost is the same polypropylene shock ORWE reports (F02, F21), which means the cost push is industry-wide and therefore more likely to be passed through than absorbed.",
+   "url": "",
+   "model_impact": "Supports modelling ASP UP through 2H-2026 in both Egypt and export markets rather than assuming ORWE absorbs the PP move, and constrains how far margin may be assumed to expand: the whole industry is repricing, so this is cost pass-through, not share gain.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F14",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2022 audited consolidated: net sales EGP 13,255,653,997; cost of sales 11,999,575,090; gross profit 1,256,078,907 (9.48%); PBT 1,142,737,084; net profit after tax 944,173,505 (parent 842,885,161 / NCI 101,288,344). Total assets 19,175,133,527; total equity 11,255,252,449, of which the FX translation reserve is 6,258,366,013",
+   "source_name": "ORWE audited consolidated financial statements for the year ended 31-Dec-2022, OWC-consolidated-12-2022-English.pdf, published 10-Apr-2023",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2023-04-10",
+   "detail": "ROUTE: TEXT LAYER, 68,803 characters extracted by pdftotext -layout \u2014 the only one of the six filings that has one. RE-ADDED ANYWAY: the income statement foots from gross profit through fifteen add/less lines to the printed PBT of 1,142,737,084, and the balance sheet foots on both sides in both years (19,175,133,527 for 2022 and 14,166,535,936 for 2021). No disagreement between routes.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2023/04/OWC-consolidated-12-2022-English.pdf",
+   "model_impact": "First of four audited years. Establishes the pre-devaluation cost base and the FY2021 comparative (net sales 11,403,371,207, gross margin 16.08%) that shows how far margin fell as the pound moved.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2023 audited consolidated: net sales EGP 17,658,543,016; cost of sales 15,108,838,958; gross profit 2,549,704,058 (14.44%); PBT 2,085,613,587; net profit 1,891,982,023 (parent 1,740,203,598 / NCI 151,778,425). Total assets 23,107,991,958; total equity 14,170,890,031; FX translation reserve 7,904,577,917",
+   "source_name": "ORWE audited consolidated financial statements for the year ended 31-Dec-2023, OW-Consolidated-31-12-2023.pdf, published 28-Feb-2024",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-02-28",
+   "detail": "ROUTE: IMAGE ONLY (pdftotext returns 0 characters across 36 pages) AND THE SCAN IS ROTATED 180 DEGREES. Rendered at 120 dpi and read off the pixels inverted. RE-ADDED: 2,549,704,058 plus and minus fifteen lines lands exactly on the printed PBT 2,085,613,587; tax (234,454,961) + 40,823,397 = (193,631,564) as printed; 1,740,203,598 + 151,778,425 = 1,891,982,023 as printed. CROSS-FILING TIE: the FY2022 comparative column here (13,255,653,997 / 11,999,575,090 / 1,256,078,907) matches the FY2022 audited statements to the pound.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2024/02/OW-Consolidated-31-12-2023.pdf",
+   "model_impact": "Second audited year, and the margin peak of the window at 14.44% \u2014 the base against which FY2024's inventory write-down is measured.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2024 audited consolidated: net sales EGP 24,288,877,875; cost of sales 21,185,701,953; gross profit 3,103,175,922 (12.78%); PBT 2,804,325,748; net profit 2,541,681,817 (parent 2,192,283,305 / NCI 349,398,512). Total assets 34,904,566,586; total equity 21,041,330,591; FX translation reserve 12,810,841,902",
+   "source_name": "ORWE audited consolidated financial statements for the year ended 31-Dec-2024, OWC-Consolidated-Financials-31-12-2024.pdf, published 27-Feb-2025",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2025-02-27",
+   "detail": "ROUTE: IMAGE ONLY, 0 text characters over 34 pages, rendered at 120 dpi and read off the pixels. RE-ADDED: both income-statement columns foot to their printed PBT, and the 31-12-2023 balance-sheet column foots on both sides (7,747,531,175 + 15,360,460,783 = 23,107,991,958 = 14,170,890,031 + 8,937,101,927). CROSS-FILING TIE: every FY2024 figure here is reproduced exactly in the FY2025 filing's comparative column. ONE PRESENTATION DIFFERENCE, RECORDED: this filing splits 31-12-2024 equity as reserves 2,068,060,678 / retained earnings 1,171,033,377 while the FY2025 filing shows 1,522,976,435 / 1,716,117,620 \u2014 the SUM is 3,239,094,055 in both, so it is a reclass, not a restatement.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2025/02/OWC-Consolidated-Financials-31-12-2024.pdf",
+   "model_impact": "Third audited year. Carries the EGP 0.5bn old-finished-goods write-down management named in the FY2024 release, which is why FY2024 gross margin prints 12.78% against an adjusted 15.0%. Model the write-down as an explicit dated event, dual-framed, never smoothed into the margin path.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2025 audited consolidated: net sales EGP 26,622,797,999; cost of sales 23,272,535,382; gross profit 3,350,262,617 (12.58%); PBT 2,638,470,903; net profit 2,263,399,873 (parent 2,189,343,558 / NCI 74,056,315). Total assets 33,078,566,826; total equity 20,832,202,240; FX translation reserve 11,995,255,064. Operating cash flow 3,191,165,733; capex on fixed assets and projects in progress 974,456,834; depreciation 1,117,728,751 plus right-of-use depreciation 159,152,334",
+   "source_name": "ORWE audited consolidated financial statements for the year ended 31-Dec-2025, OW-Consolidated-Financial-Statment-31-12-2025.pdf, published 01-Mar-2026; unqualified opinion from Baker Tilly Mohamed Hilal & Wahid Abdel Ghaffar dated 26-Feb-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-26",
+   "detail": "ROUTE: IMAGE ONLY, 0 text characters over 32 pages, rendered at 120 dpi (300 dpi for one contested digit) and read off the pixels. RE-ADDED, ALL THREE STATEMENTS AND BOTH COLUMNS: the income statement foots to 2,638,470,903 and 2,804,325,748; the balance sheet foots to 33,078,566,826 and 34,904,566,586 on both sides; the cash flow foots from PBT through operating profit before working capital 4,111,254,319, investing (468,947,545) and financing (1,909,617,744) to the net change of 812,600,444 and closing cash 4,844,274,527. NOTE the investing block's row labels and values are misaligned in the scan \u2014 a 'proceeds' line carries a bracketed negative \u2014 and the arithmetic settles the signs. The arithmetic is the arbiter, not the label.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2026/03/OW-Consolidated-Financial-Statment-31-12-2025.pdf",
+   "model_impact": "Fourth audited year and the roll-forward base. Capex of 974m runs BELOW depreciation of 1,277m, so the modelled asset base shrinks in real terms unless the guided FY2026 capex of EGP 1.2bn lands.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Q1-2026 reviewed consolidated, three months to 31-Mar-2026: net sales EGP 6,944,811,444 (+8.5% YoY); cost of sales 6,086,688,840; gross profit 858,122,604 (12.36%); PBT 1,133,311,584; net profit 893,001,434 (parent 858,468,685). Includes a capital gain of 328,495,398 on the disposal of unproductive assets and 201,359,682 of 'other revenues', which is the export rebate. Total assets 37,078,384,663; total equity 23,544,180,760",
+   "source_name": "ORWE reviewed consolidated financial statements for the period ended 31-Mar-2026, OW-Consolidated-Financial-Statement-31-3-2026.pdf, published 20-May-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-05-20",
+   "detail": "ROUTE: IMAGE ONLY, 0 text characters over 31 pages, rendered and read off the pixels. RE-ADDED: both columns foot to their printed PBT and the balance sheet foots to 37,078,384,663 on both sides. THE 1Q-2026 EARNINGS RELEASE'S BALANCE-SHEET SUMMARY DOES NOT: it prints total shareholders' equity of EGP 20,375m against total liabilities of 13,534m and a total of 37,078m, and 20,375 + 13,534 = 33,909, not 37,078. The filed statements foot; the release does not. Use the filing.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2026/05/OW-Consolidated-Financial-Statement-31-3-2026.pdf",
+   "model_impact": "First quarter of the study year, swept in before the build, and the quarter in which the EGP 0.3bn asset-disposal gain lands \u2014 an explicit dated event, dual-framed, not a run rate.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Q2-2026 and H1-2026 reviewed consolidated. Q2-2026 (1-Apr to 30-Jun-2026): net sales EGP 6,956,125,845 (+12.8% YoY); cost of sales 5,968,410,585; gross profit 987,715,260 (14.20%); PBT 1,243,419,818; net profit 1,121,416,247 (parent 1,048,849,395). H1-2026: net sales 13,900,937,289; cost of sales 12,089,440,761; gross profit 1,811,496,528 (13.03%); net profit 2,014,417,681 (parent 1,907,318,080). At 30-6-2026 total assets 36,881,086,153; total equity 21,771,003,822; FX translation reserve 12,276,104,950",
+   "source_name": "ORWE reviewed consolidated financial statements for the period ended 30-Jun-2026, OW-Consolidated-Financial-Statment-30-6-2026.pdf, published 11-Aug-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "ROUTE: IMAGE ONLY, 0 text characters over 32 pages, with a CamScanner watermark across the left margin; rendered and read off the pixels. RE-ADDED: all FOUR columns foot to their printed PBT and net profit, the balance sheet foots to 36,881,086,153 on both sides, and the 31-12-2025 comparative column reproduces the audited FY2025 balance sheet exactly. TWO DEFECTS IN THE FILING ITSELF, FOUND BY RE-ADDING \u2014 see F32 (a Q1 restatement of EGP 34,341,336) and F33 (a mislabelled column header).",
+   "url": "https://orientalweavers.com/wp-content/uploads/2026/08/OW-Consolidated-Financial-Statment-30-6-2026.pdf",
+   "model_impact": "Second quarter of the study year, swept in before the build. Q2-2026 gross margin of 14.20% is 162bp above the FY2025 full-year 12.58% \u2014 the same shape of contradiction that went unswept on ARCC, caught here before any margin path was drawn.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Capital structure and the company's own net-debt definition, reproduced from the filings. At 30-6-2026: banks-credit accounts 7,666,411,514 + long-term loans 59,655,102 + long-term current portion 104,859,923 = gross debt 7,830,926,539; lease liabilities 406,973,814 + 186,158,386 = 593,132,200; cash 6,868,306,946 + treasury bills 1,609,554,830 + financial assets at amortised cost 1,062,487,721 = 9,540,349,497. Then 9,540,349,497 - 7,830,926,539 - 593,132,200 = 1,116,290,758, which reproduces management's stated 'net cash position of EGP 1.1B' to the pound",
+   "source_name": "ORWE 30-6-2026 reviewed consolidated statements, balance sheet and note 26, checked against the 2Q-2026 earnings release's statement of net cash",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "THE DEFINITION IS THEREFORE KNOWN AND REPRODUCIBLE: net debt = bank facilities + loans + LEASE LIABILITIES - cash - treasury bills - financial assets at amortised cost. Prior points on the company's own series: net debt EGP 2,044m at 31-12-2022, EGP 121m at 31-12-2023, EGP 1.8bn at 31-12-2024 (0.5x EBITDA), EGP 0.6bn at 31-12-2025 (0.2x), net CASH EGP 1.2bn at 31-3-2026 and EGP 1.1bn at 30-6-2026. Note 26 states only that the EGP 6,613,356,814 of facilities at 31-12-2025 are short-term and that 'certain facilities are secured by notes receivable deposited at these banks' \u2014 no rate, no currency split. See F27 and F40.",
+   "url": "",
+   "model_impact": "Sets the EV-to-equity bridge, in which net cash ADDS, and confirms the balance sheet is not a constraint on the forecast. Use the company's own definition or state the departure.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "THE EXPORT REBATE IS THE AUDITED 'OTHER REVENUES' LINE, TO THE POUND. Audited other revenues: FY2023 329,050,807; FY2024 594,252,959; FY2025 454,183,569; Q1-2026 201,359,682; Q2-2026 452,201,877; H1-2026 653,561,559. The earnings releases' export-rebate figures are 329 / 594 / 454 / 201 / 452 / 654. Every one matches",
+   "source_name": "ORWE FY2023, FY2024 and FY2025 audited and Q1/H1-2026 reviewed consolidated income statements, cross-tied to the export-rebate charts in the matching earnings releases",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "This is the tie that turns a subsidy into a modellable driver. FY2025's EGP 454m splits as EGP 254m current programme plus EGP 200m backlog claims, with EGP 180m of backlog remaining; 2Q-2026's EGP 452m includes EGP 150m of backlog settled through government fee offsets. H1-2026 rebates of EGP 654m are 32% of the EGP 2,014m half-year net profit and 4.7% of revenue.",
+   "url": "",
+   "model_impact": "DRIVER UNLOCK. Export-rebate income becomes a bottom-up build \u2014 current accrual on export value plus a dated run-off of the named EGP 180m backlog \u2014 instead of a plug inside 'other income'. It must also be shown SEPARATELY in the earnings bridge: a third of half-year profit is a government programme, not operations.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Treasury and interest income are separately disclosed and tie to management's figure: FY2025 treasury-bill returns 430,930,850 + financial assets at amortised cost returns 131,952,040 + interest income 253,316,404 = 816,199,294, against the FY2025 release's 'Interest Income was EGP 817m'. FY2024: 579,166,115 + 50,722,790 + 216,179,494 = 846,068,399. Finance expenses FY2025: bank interest 472,721,255 + lease interest 62,805,552 = 535,526,807 as printed",
+   "source_name": "ORWE FY2025 audited consolidated income statement and note 29 'Finance expenses'",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-26",
+   "detail": "ORWE earns MORE on its cash than it pays on its debt: EGP 816m of investment income against EGP 536m of finance cost in FY2025. The treasury book \u2014 treasury bills EGP 805m, financial assets at amortised cost EGP 492m and cash EGP 4,633m at 31-12-2025 \u2014 is EGP-denominated and earning Egyptian policy-rate yields while the debt is foreign-currency (F27). That asymmetry IS the currency position.",
+   "url": "",
+   "model_impact": "Treasury income is a bottom-up yield on the modelled cash and treasury-bill balance at the CBE path, not a growth rate. Exclude it from FCFF and handle it in the equity bridge so the cash is not counted twice.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "THE FULL VOLUME-BY-VALUE MATRIX, disclosed for FY2023 and FY2024 by segment AND geography. Egypt revenue, EGP mn, FY23/FY24: woven 5,187/6,494, tufted 742/1,090, non-woven 347/521, others 191/135, total 6,467/8,240. Egypt volumes, '000 sqm: 26,833/26,025, 6,869/8,295, 9,408/8,832, total 43,110/43,152. International revenue: woven 8,357/11,566, tufted 2,439/3,657, non-woven 395/826, total 11,192/16,049. International volumes: 37,277/36,933, 25,469/24,853, 6,832/8,843, total 69,578/70,629",
+   "source_name": "ORWE FY2024 Earnings Release, 27-Feb-2025, 'Egypt Revenue / Egypt Volumes / International Revenue / International Volumes' tables",
+   "source_type": "COMPANY_IR",
+   "source_date": "2025-02-27",
+   "detail": "RE-ADDED AND TIED TO THE AUDITED TOP LINE: Egypt 8,240 + international 16,049 = 24,289 = the audited FY2024 net sales of 24,288,877,875. FY2023: 6,467 + 11,192 = 17,659 = audited 17,658,543,016. Every sub-total in all four tables foots. Derived realised prices: group EGP 156.7/sqm FY2023 and EGP 213.5/sqm FY2024, with EGP 108.8/sqm FY2022 and EGP 239.4/sqm FY2025 from F16b and F18. International share FY2024 = 66.1% of revenue and 62.1% of volume, matching management's stated 66% and 62%.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2025/02/FY-2024-Earnings-Release.pdf",
+   "model_impact": "THE DRIVER UNLOCK OF THE WHOLE BUILD. Converts revenue from a growth rate into six independent volume-times-ASP legs: woven, tufted and non-woven, each split Egypt and international. GAP FLAGGED: this level of disclosure exists ONLY for FY2023 and FY2024. From FY2025 the company publishes segment MIX percentages and YoY volume and ASP CHANGES, not levels, so FY2025 and FY2026 legs must be rolled forward off the FY2024 base and reconciled back to audited revenue, with the reconciliation shown.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2022 and FY2021 net sales by volume and value: woven Egypt-based EGP 8,367.1m / 6,685.5m on 61.03 / 62.47m sqm; OW USA EGP 2,165.5m / 1,949.6m on 11.85 / 14.44m sqm; OW China EGP 1.2m / 22.3m on 0.01 / 0.23m sqm; tufted EGP 2,057.2m / 2,138.2m on 32.21 / 41.72m sqm; non-woven felt EGP 555.3m / 522.3m on 16.71 / 19.88m sqm; other EGP 109.4m / 85.5m. Group total EGP 13,255.7m / 11,403.4m on 121.8 / 138.7m sqm",
+   "source_name": "ORWE 4Q-2022 Earnings Release, 27-Feb-2023, Tables 1 and 2",
+   "source_type": "COMPANY_IR",
+   "source_date": "2023-02-27",
+   "detail": "The value total of 13,255.7 ties to the audited FY2022 net sales of 13,255,653,997. THE CURRENCY POINT, IN THE COMPANY'S OWN NUMBERS: from FY2022 to FY2025 EGP revenue rose 100.8% (13,255.7 to 26,622.8) while VOLUME FELL 8.7% (121.8 to 111.2m sqm). The entire top line is price, and management attributes that price to devaluation in almost every period \u2014 'ASP was up 12% YoY ... driven by devaluation', '36% YoY higher ASP due to currency devaluation'. Also note the China facility is effectively gone at 0.01m sqm in FY2022, and a disclosure of the sale of the China plant sits on the company's disclosure page dated 10-Aug-2022.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2023/02/ORWE-4Q-2022-Earnings-Release.pdf",
+   "model_impact": "Sets the volume base and proves the growth decomposition the model must carry: volume and price forecast SEPARATELY and in both directions, with the price leg split between currency translation and real pricing. A single revenue growth rate would hide a four-year volume decline.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F25",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2025 results release, 26-Feb-2026, published 01-Mar-2026: revenue EGP 26.6bn +10%, gross profit EGP 3.4bn +8% at 12.6%, EBITDA EGP 3.6bn +2% at 13.4%, adjusted net attributable profit EGP 2.3bn +5.4%. International 67% of revenue and 63% of volume (EGP 17.9bn), Egypt 33% and 37% (EGP 8.7bn). International: woven volume +5% ASP +12% revenue +17%; tufted volume -9% ASP +5% revenue -5%; non-woven volume +2% ASP +6% revenue +8%. Egypt: woven volume -6% ASP +13%; tufted volume -12% ASP +12%; non-woven volume +4% ASP +5%. Claims 100bp of global market-share gain",
+   "source_name": "ORWE FY-2025 Earnings Release",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-03-01",
+   "detail": "EBITDA DEFINITION SOLVED AND REPRODUCIBLE: gross profit minus distribution minus G&A plus fixed-asset depreciation plus right-of-use depreciation. FY2025: 3,350,262,617 - 299,019,544 - 752,483,532 + 1,117,728,751 + 159,152,334 = 3,575,640,626, the stated EGP 3,576m. FY2024: 3,103,175,922 - 254,754,592 - 630,066,477 + 1,159,905,573 + 135,886,499 = 3,514,146,925, the stated 3,514m. It EXCLUDES other revenues, treasury income, expected credit loss and provisions. TWO ERRORS IN THIS RELEASE'S OWN CHARTS, recorded rather than repeated: the FY2025 COGS bar reads 6.1, which is the 4Q figure while the text says EGP 23bn, and the FY2025 G&A bar reads 287 while the text says EGP 752m. Its balance-sheet summary is also on a different basis from the audited statements \u2014 see F34.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2026/03/FY-2025-Earnings-Release.pdf",
+   "model_impact": "Fixes the EBITDA bridge so the study reconciles to the company's published measure rather than inventing a third definition, and supplies the FY2025 volume and ASP CHANGES needed to roll the FY2024 segment matrix forward.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F26",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "2Q-2026 results release, 11-Aug-2026 \u2014 the newest operating anchor on the record, and the one that supersedes everything older. Revenue EGP 7.0bn +13% YoY, EBITDA EGP 0.9bn +18% at 13.5%, net profit EGP 1.1bn +98% at 16.1%, free cash flow EGP 0.3bn, cash conversion cycle 169 days (-10 days), net debt to EBITDA -0.3x, ROIC 30.4%. INTERNATIONAL 70% OF REVENUE AND 67% OF VOLUME (EGP 4.9bn); EGYPT 30% AND 33% (EGP 2.1bn). International woven revenue +22% on volume +20% and ASP +2% 'due to currency depreciation'; tufted export revenue +5% on volume +5%; non-woven export revenue -13% on volume -23% with ASP +13%. Egypt woven revenue +7% despite volume -15%, on ASP +25%; Egypt tufted volume -3% ASP +3%; Egypt non-woven ASP +12% drove volume -17%. Destination mix: Americas 34%, Europe 25%, Egypt 30%, GCC 4%, Africa 4%, Asia 2%, hospitality and others 1%. Egypt channel mix: wholesale 45%, showrooms 40%, depots 11%, hospitality 5%, e-commerce under 1%. Capex EGP 364m, 5% of sales, with full-year capex guided to EGP 1.2bn",
+   "source_name": "ORWE 2Q-2026 Earnings Release",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-11",
+   "detail": "A NEWER RELEASE'S ANCHORS SUPERSEDE OLDER ONES [L-008 / MODON]. Export share is 70% of revenue at 2Q-2026, not the 67% of FY2025 or the 66% of FY2024, and the destination mix is Americas 34% / Europe 25%, not the FY2025 deck's 29% / 24%. Any driver still carrying the FY2025 figures is stale by one reporting cycle. COGS EGP 6.0bn +10% YoY on manufacturing overheads +15% and labour +21% with raw materials +4%; G&A EGP 283m, +55%.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2026/08/2Q-2026-Earnings-Release.pdf",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F27",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Quarterly VOLUME series in millions of square metres with the international/Egypt split, from the investor presentations: 4Q-2024 31.2 (68/32), 1Q-2025 27.2 (60/40), 2Q-2025 25.5 (62/38), 3Q-2025 27.2 (67/33), 4Q-2025 31.3 (63/37); restated in the 2Q-2026 deck as 2Q-2025 25.5, 3Q-2025 27.1, 4Q-2025 31.1, 1Q-2026 29.4 (63/37), 2Q-2026 25.6 (67/33). 4Q-2025 volume mix woven 56%, tufted 26%, non-woven 18% against a revenue mix of woven 77%, tufted 17%, non-woven 6%; 2Q-2026 volume mix woven 59%, tufted 27%, non-woven 14%",
+   "source_name": "ORWE 4Q-2025 Investor Presentation, 01-Mar-2026, page 2, and 2Q-2026 Investor Presentation, 11-Aug-2026, page 4, both read off the rendered pixels",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-11",
+   "detail": "FY2025 volume = 27.2 + 25.5 + 27.2 + 31.3 = 111.2m sqm, which over the audited 26,622,797,999 gives a group realised price of EGP 239.4/sqm. TWO DEFECTS FLAGGED. (1) The 2Q-2026 deck restates 3Q-2025 from 27.2 to 27.1 and 4Q-2025 from 31.3 to 31.1, moving FY2025 volume to 111.0m sqm. (2) The 2Q-2026 revenue-mix donut prints woven 78% / tufted 17% / non-woven 22%, which sums to 117 \u2014 a printing error in the deck, not a reading error; prefer the 2Q-2026 release's own segment split.",
+   "url": "https://orientalweavers.com/wp-content/uploads/2026/08/2Q-2026-Investors-Presentation.pdf",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F28",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "THE COMPANY'S OWN POLYPROPYLENE SERIES. From the 2Q-2026 deck: a quarterly polypropylene figure of 989 (2Q-2025), 952 (3Q-2025), 892 (4Q-2025), 948 (1Q-2026) and 1,246 (2Q-2026), with polypropylene as a share of raw materials of 52.0%, 49.0%, 47.0%, 51.0% and 51.0%. Raw materials 2Q-2026 EGP 3.1bn split polypropylene/nylon 51%, backing 21%, finishing material 20%, wool 7%, with YoY changes of +3%, -3%, +8% and +30%. From the 4Q-2025 deck: COGS EGP 6.2bn split raw materials 50%, others 21%, selling expenses 16%, wages 10%, depreciation 3%, with raw materials EGP 3.1bn split polypropylene/nylon 47%, backing 24%, finishing 22%, wool 7%, and COGS component YoY of raw materials -6%, wages +25%, depreciation -19%, selling -8%, others +32%",
+   "source_name": "ORWE 2Q-2026 Investor Presentation page 6 and 4Q-2025 Investor Presentation page 4, both read off the rendered pixels",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-11",
+   "detail": "INTERNAL INCONSISTENCY, FLAGGED NOT RECONCILED: the polypropylene bar chart is captioned '(EGP B)' but the values are plainly EGP millions, and 1,246 at a stated 51% of raw materials implies raw materials of EGP 2,443m, not the EGP 3.1bn the donut on the same page states. The two disclosures on one slide do not tie. A build must pick one basis, state which, and sensitise the other. The polypropylene series is itself internally coherent and moves +31% q/q into 2Q-2026, matching the external polymer repricing in F02.",
+   "url": "",
+   "model_impact": "DRIVER UNLOCK for cost per unit. Raw-material cost per square metre = polypropylene spend divided by its share of raw materials divided by volume, escalated on the polypropylene price path, with SEPARATE escalators for wages (+21% to +27% YoY) and for overheads [L-009: one escalator per cost driver, never one blended rate].",
+   "is_fs_data": false,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F29",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "Management guidance on the record: FY2026 capex of EGP 1.2bn, stated identically in the 1Q-2026 release of 20-May-2026 ('focused on capacity expansion, overhauling, and digital transformation') and the 2Q-2026 release of 11-Aug-2026 ('feeding lines, production capacity, H&S and digital transformation'). Actual capex was EGP 453m in FY2023, EGP 786m in FY2024 and EGP 974m in FY2025",
+   "source_name": "ORWE 1Q-2026 and 2Q-2026 Earnings Releases",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-11",
+   "detail": "CONTRADICTION BETWEEN THE COMPANY'S OWN RELEASES, RECORDED: the 1Q-2026 release states Q1 capex of EGP 150m while the 2Q-2026 release's chart puts 1Q-2026 capex at EGP 220m. The 2Q chart is internally consistent with its own text (2Q EGP 364m, +88% on 2Q-2025's 193m and +65% on 220m), so 220m is the more likely figure \u2014 but the disagreement is left visible. Against EGP 1.2bn of guidance, half-year actuals of either 514m or 584m imply a large second-half step-up. Per [L-012] guidance is SCORED against outcome, never used as a model input.",
+   "url": "",
+   "model_impact": "Capex is built from the audited cash-flow history and the disclosed capacity position, with the EGP 1.2bn guidance carried as a scored management target in the guidance-tracking table rather than as the driver.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F30",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "The Extraordinary General Assembly of 13-Aug-2025 widened the company's stated objective to include production of all types of woven and non-woven textiles and furnishings, READY-MADE GARMENTS, all kinds of yarns and threads from natural, synthetic or blended materials, spinning, weaving, dyeing, printing and finishing, and the production, import, export and installation of all types of movable FURNITURE and household supplies",
+   "source_name": "ORWE FY2025 audited consolidated financial statements, note 1-3 'Company's objective', read off the rendered pixels, printed page 8",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-26",
+   "detail": "A materially broader charter than machine-woven carpets, adopted eleven months before this sweep and unaccompanied by any quantified plan, capex line or target. It is a permission, not yet a business.",
+   "url": "",
+   "model_impact": "Not modelled as revenue \u2014 there is nothing to model from. It IS modelled as an option on the capex path and as a reason the terminal reinvestment rate should not be set at maintenance level. Flag it in the study rather than let it surface later as a surprise.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F31",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "BASE CHANGER. In H1-2026 Oriental Weavers subscribed to a capital increase of its subsidiary Egyptian Fibers Company (EFCO) for 26,290,753 shares of EGP 10 nominal value each, taking its holding from 69.26% to 88.12%. The subsidiary schedule moves on this line only \u2014 OW USA 82.68%, OW International 99.99%, MAC Carpet Mills 58.29%, New Mac 57.12% and OW Textile 71.44% are all unchanged",
+   "source_name": "ORWE 30-6-2026 reviewed consolidated financial statements, note 4 'Scope of consolidated financial statements' and its footnote, read off the rendered pixels, printed page 9",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "THE NAMED TRANSACTION, SEARCHED AS A NAMED TRANSACTION AND FOUND IN THE FILING ITSELF \u2014 it is not on the company's Reports & Disclosures page, which stops at Oct-2024. 26,290,753 x EGP 10 = EGP 262,907,530 of nominal subscription. The effect is visible in the accounts: non-controlling interest falls from 1,966,368,620 at 31-12-2025 to 1,731,842,390 at 30-6-2026 while total equity rises, and management attributes part of the 2Q-2026 net-attributable-profit jump to 'the increased ownership stake in EFCO'. EFCO is the group's polypropylene and polyester-fibre arm, i.e. the vertical integration into the input that is roughly a quarter of cost of sales.",
+   "url": "",
+   "model_impact": "Resets the NCI base from H1-2026 onward: an explicit dated step, dual-framed with and without, NEVER smoothed into an NCI percentage glide. It also raises the group's share of the polypropylene margin, which changes the consolidated sensitivity to the polypropylene price in F02 and F21 \u2014 the same input now hurts less at the attributable line.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F32",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "Two further dated one-offs inside the window. First, in FY2024 management wrote down EGP 0.5bn of old finished goods 'as part of cleanup', which is the whole of the FY2024 gross-margin drop from 14.4% to 12.8% \u2014 adjusted gross margin was 15.0% and adjusted EBITDA margin 16.7%. Second, in 1Q-2026 the group booked EGP 328,495,398 of capital gains on the sale of unproductive assets in Egypt and the USA, rising to EGP 362,386,692 for H1-2026",
+   "source_name": "ORWE FY2024 Earnings Release, 27-Feb-2025, for the write-down; ORWE 31-3-2026 and 30-6-2026 reviewed consolidated income statements for the capital gains",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "The capital-gain figures are audited income-statement lines, not a management adjustment: 'Capital gain 328 495 398' in the Q1-2026 filing and 'Gain from sale of fixed assets 362 386 692' for H1-2026, and the company's own adjusted net profit of EGP 1.7bn for H1-2026 strips exactly EGP 0.3bn of them.",
+   "url": "",
+   "model_impact": "BOTH are explicit dated events, dual-framed. The FY2024 write-down is stripped when FY2024 is used as a normalisation base; the 2026 disposal gains are excluded from the forward earnings base entirely. Neither may be smoothed into a margin glide \u2014 doing so would make FY2024 look structurally worse and FY2026 structurally better than either is.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F33",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "STRUCTURAL",
+   "headline": "Shareholder structure at 30-6-2026, dated and disclosed: Khamis family 54% (of which M&M Khamis 29% and FYK 25%), Fitihi Group 12%, Ataqa Group 6%, Olayan Holding 3%, local institutions 12%, foreign institutions 7%, local retail 4%, foreign retail 2%. At 31-12-2025 the same table read Khamis 54.1% (FKY 24.6%), Fitihi 11.8%, Ataqa 5%, Olayan 3%, local institutions 11%, foreign institutions 4%, local retail 8%, foreign retail 2%",
+   "source_name": "ORWE 2Q-2026 Earnings Release, 'Shareholders' Structure - YoY, As of 30-6-2026'; ORWE FY-2025 Earnings Release, 'As of 31-12-2025'",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-11",
+   "detail": "NAMED-TRANSACTION RULE APPLIED: no named change-of-control or block transaction was found for the Khamis, Fitihi, Ataqa or Olayan holdings \u2014 see the dated negative search F41. The movement between the two dates (foreign institutions 4% to 7%, local retail 8% to 4%) is a free-float rotation with no announced trade behind it, and is recorded as such rather than as an 'estimated' stake change. The company's own Stock Overview page carries a DIFFERENT, undated and rounded split \u2014 foreign institutions 19%, local institutions 20%, retail 7% \u2014 so use the dated release.",
+   "url": "",
+   "model_impact": "Fixes the free float at roughly 46% and confirms a stable controlling family block, which is an input to the liquidity and control discussion, not to cash flow. The only ownership event that touches a number is the EFCO subscription in F24.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F34",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Share count and capital: 665,107,268 listed common shares at EGP 1 par, issued and paid-in capital EGP 665,107,268 against authorised capital of EGP 1,000,000,000, listed on the Egyptian Exchange since 25-Aug-1993. The share count is unchanged across all four audited years and both 2026 interims. Dividends per the company's own table: FY2025 EGP 1.50 (paid from 20-May-2026), FY2023 EGP 1.25 (30-Apr-2024), FY2022 EGP 0.60 (17-May-2023), FY2021 EGP 1.00 (18-Apr-2022)",
+   "source_name": "ORWE Stock Overview corporate-information block and Result Center dividends table; share capital confirmed in the audited balance sheets and note 19",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "TWO THINGS A BUILD WOULD GET WRONG. (1) THE EPS PRINTED IN THE CONSOLIDATED STATEMENTS IS NOT CONSOLIDATED EPS. Note 30 derives it from the SEPARATE company's profit: FY2025 2,125,780,942 less employees' share 110,851,211 less board remuneration 3,200,000 = 2,011,729,731 over 665,107,268 shares = EGP 3.02. Consolidated attributable EPS is 2,189,343,558 / 665,107,268 = EGP 3.29. The H1-2026 filing prints 2.79 for the half and 0.21 for the quarter, which cannot both be the same measure. (2) THE DIVIDEND TABLE HAS NO FY2024 ROW AND DOES NOT RECONCILE to the statement of changes in equity, which charges parent dividends of 1,102,870,691 in FY2024 (EGP 1.66 a share) and 1,412,063,405 in FY2025 (EGP 2.12 a share) against table entries of EGP 1.25 and EGP 1.50. The gap is not explained in any document read here.",
+   "url": "",
+   "model_impact": "Sets the share count for every per-share figure and forces the study to compute its own consolidated EPS rather than lift note 30. The dividend driver is built off the SOCIE charge, with the table shown beside it and the difference disclosed.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F35",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "THE CURRENCY POSITION, ASSEMBLED FROM THE COMPANY'S OWN DISCLOSURES. (a) Dollar-linked revenue: the 4Q-2023 release states SG&A fell as a share of sales because expenses are 'EGP-denominated ... in contrast to the 59% USD-based revenues'; international revenue has since risen to 67% in FY2025 and 70% in 2Q-2026. (b) Dollar-linked debt: the FY2024 release states total debt of EGP 7.4bn, +59% YoY, was '99% foreign, 1% local', with the rise attributed to devaluation. (c) The translation reserve in equity: 3,541,296,155 (2021), 6,258,366,013 (2022), 7,904,577,917 (2023), 12,810,841,902 (2024), 11,995,255,064 (2025), 13,893,397,475 (31-3-2026), 12,276,104,950 (30-6-2026). (d) The income statement's foreign-exchange line: FY2022 (72,646,826), FY2023 (166,163,055), FY2024 (351,533,473), FY2025 (51,440,512), H1-2026 (60,242,121)",
+   "source_name": "ORWE audited consolidated statements FY2022-FY2025 and the 2026 interims \u2014 balance sheets, income statements and statements of changes in equity \u2014 cross-read with the 4Q-2023 and FY2024 earnings releases",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "THE POINT A MARGIN READ WOULD MISS. The currency effect is overwhelmingly in OCI, not in profit. The translation reserve moved +EGP 1,898m in 1Q-2026 and -EGP 1,617m in 2Q-2026 \u2014 each larger, in one quarter, than that quarter's entire net profit of EGP 893m and EGP 1,121m \u2014 while the income statement's FX line was only (74.9m) and +14.7m. Meanwhile the FINANCE COST is dollar-priced: FY2025 bank interest of 472,721,255 over average bank facilities of 6,781,342,800 is an implied 6.97% against a 19-20% EGP policy rate. A build that charges an EGP cost of debt on this balance sheet overstates finance cost roughly threefold.",
+   "url": "",
+   "model_impact": "Makes FX a DRIVER, not a footnote, in four separate places: the ASP path on 70% of revenue; the cost of the imported polypropylene that is a quarter of COGS; the cost of debt, which is dollar-priced and must NOT take the CBE rate; and the OCI translation reserve, which must be forecast separately from profit and must not leak into the earnings base. OPEN GAP: no quantified foreign-currency asset and liability table, no FX sensitivity and no hedging disclosure exists anywhere in the filings \u2014 see the negative search F40.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F36",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "COLOR",
+   "headline": "LISTING AND PRICE SERIES, RECORDED; NO BETA RESOLVED. ORWE is listed on the Egyptian Exchange only \u2014 note 1-5 of the FY2025 statements says simply 'The Company is listed in Egyptian exchange', and the Stock Overview page gives a single listing dated 25-Aug-1993 with 665,107,268 listed shares. The local price series is engine/raw_ohlc/EG/ORWE.csv: 3,749 daily rows from 03-Jan-2011 at EGP 4.53 to 23-Aug-2026 at EGP 26.00, quoted in Egyptian pounds. The matching exchange index is engine/raw_indices/EG/EGX30.csv, running to 08-Sep-2026 at 56,174.30",
+   "source_name": "ORWE FY2025 audited consolidated financial statements note 1-5; orientalweavers.com Stock Overview; local repository series",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "DUAL-LISTING TRAP CHECKED AND CLEARED \u2014 see the dated negative search F43. No GDR, ADR or second exchange line was found, so the Orascom Construction problem of two legitimate regressors for one issuer does not arise here: one series, one index. MAGNITUDE CHECK: 665,107,268 shares at EGP 26.00 is a market capitalisation of EGP 17.29bn against attributable book equity of EGP 20.04bn at 30-6-2026, a price-to-book of 0.86 \u2014 a plausible EGX magnitude, so the series is in pounds and not piastres. STALENESS: the ORWE file's last row is 23-Aug-2026, seventeen days before this sweep, while the index runs to 08-Sep-2026. NO BETA WAS RESOLVED, BY INSTRUCTION; when one is needed it must come from engine/beta_regression.py:own_stock_beta('ORWE', 'EG', 'EGX'), never from a study-local script.",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F37",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "A Q1-2026 RESTATEMENT FOUND BY RE-ADDING, NOT BY READING. Q1-2026 as filed plus Q2-2026 as filed does not equal H1-2026 as filed: cost of sales 6,086,688,840 + 5,968,410,585 = 12,055,099,425 against the printed H1 figure of 12,089,440,761, a gap of EGP 34,341,336, with gross profit out by the same amount the other way. The offset is exactly traceable: 'formed provisions and impairment' is 34,543,447 in the Q1 filing and 20,203,314 in the Q2 column, summing to 54,746,761 against the printed H1 figure of 20,405,425 \u2014 a difference of EGP 34,341,336, the same number. Net profit is unaffected: 893,001,434 + 1,121,416,247 = 2,014,417,681 exactly",
+   "source_name": "ORWE 31-3-2026 and 30-6-2026 reviewed consolidated income statements, re-added against each other",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "EGP 34,341,336 was reclassified out of provisions and into cost of sales between the two filings. CONSEQUENCE FOR THE MARGIN PATH: Q1-2026 gross profit on the H1 basis is 858,122,604 - 34,341,336 = 823,781,268, a gross margin of 11.86% rather than the 12.36% in the Q1 filing and the 12.4% quoted in both the 1Q-2026 and 2Q-2026 releases. A quarterly margin path taken from the releases is 50bp too high in Q1-2026 and will make the first-to-second-quarter improvement look smaller than it was.",
+   "url": "",
+   "model_impact": "Forces the quarterly margin series onto ONE consistent basis \u2014 the H1 filing's \u2014 and the basis to be stated. Touches the gross-margin OUTPUT and the 2026 seasonality shape directly.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F38",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "COLUMN AND ROW LABELS IN THE FILINGS AND RELEASES THAT ARE WRONG, each found by arithmetic. (1) The 30-6-2026 income statement's fourth column is headed 'From 1/1/2025 To 30/6/2025' but carries EGP 6,167,512,621 of net sales \u2014 the Q2-2025 quarter, not the half; the half is the second column at 12,565,352,630. (2) The 1Q-2026 release's balance-sheet summary columns headed '1Q 25' and '1Q 26' hold 31-Dec-2025 and 31-Mar-2026 positions, and its cash-flow summary's lower rows are FY2024 and FY2025 full-year figures under the same quarterly headings. (3) The 2Q-2026 release's balance-sheet column headed '1H 2025' holds 31-Dec-2025 figures \u2014 inventory 10,153 is the audited 10,152,672,252. (4) The FY2025 release's COGS and G&A charts print the fourth-quarter figure and a wrong number respectively in the FY2025 slot",
+   "source_name": "ORWE 30-6-2026 reviewed consolidated income statement; the 1Q-2026, 2Q-2026 and FY-2025 earnings releases, each tied back to the audited statements",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "None of these is a reading error; each was confirmed by matching the printed value to a figure that is unambiguous elsewhere. THE ARITHMETIC IS THE ARBITER, NOT THE LABEL. Also recorded: the FY2025 statement of changes in equity opens FY2024 with net profit of EGP 1,740,203,594 while the FY2023 and FY2024 statements print 1,740,203,598 \u2014 an EGP 4 difference, re-rendered at 300 dpi and re-read to rule out a glyph misread. Each filing foots internally, so it is presentation, not restatement.",
+   "url": "",
+   "model_impact": "Protects every historical series in the model from a mislabelled lift. Any quarterly or half-yearly figure taken from a release must be tied back to the filing before it enters a driver.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F39",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "STRUCTURAL",
+   "headline": "THE EARNINGS RELEASES' BALANCE-SHEET SUMMARIES ARE ON A DIFFERENT BASIS FROM THE AUDITED STATEMENTS AND MUST NOT BE USED. The FY2025 release prints FY2025 total assets of EGP 33,745m, inventory 10,581m, fixed assets 7,752m and equity 20,375m; the audited statements print 33,078.567m, 10,152.672m, 8,145.992m and 20,832.202m. For FY2024 the release prints total assets of 32,896m against an audited 34,904.567m",
+   "source_name": "ORWE FY-2025 Earnings Release balance-sheet summary compared with the FY2025 audited consolidated statement of financial position",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-26",
+   "detail": "The differences are large \u2014 6% on FY2024 total assets \u2014 and no reconciliation is given anywhere. By contrast the SAME release's income-statement and cash-flow summaries tie to the audited statements exactly: revenue 24,289 and 26,623, net profit 2,542 and 2,263, operating cash flow 1,910 and 3,191, closing cash 4,233 and 4,844. So the release is reliable on profit and cash flow and unreliable on the balance sheet.",
+   "url": "",
+   "model_impact": "Every balance-sheet driver \u2014 working capital, net debt, invested capital, the equity bridge \u2014 is built from the AUDITED statements only. The release's balance-sheet table is excluded from the model and the exclusion is stated.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F40",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: ORWE FY2025 audited consolidated statements note 34 'Financial instruments and risk management' in full, plus notes 26 and 29, plus the 30-6-2026 interim notes, for a quantified foreign-currency asset and liability table, an FX sensitivity analysis, a hedging or forward-contract policy, and the average and closing EGP/USD rates used for translation. NOTHING IS DISCLOSED. Note 34's exchange-rate-risk paragraph reads in full: 'This risk is considered acceptable because of the assets in foreign currency correspond to the company's obligations in foreign currencies' \u2014 no figures, no sensitivity, no hedge. Note 26 gives the EGP 6,613,356,814 of bank facilities as a single number with no currency split and no interest rate; the only currency split ever published is the FY2024 release's '99% foreign, 1% local'. Also searched for a dated annual-average EGP/USD series from a primary source: cbe.org.eg was WAF-blocked, support ID da44b8f3-d541-4d41-af65-ffc44ffcdaa2, and none was obtained)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F41",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched, by named transaction and never by estimate: 'Oriental Weavers EFCO stake increase 2026 acquisition'; 'Oriental Weavers ORWE news September 2026 EGX announcement'; 'Oriental Weavers ORWE dividend 2026 EGP per share distribution general assembly'; the company's own Reports & Disclosures page in full; the Result Center in full. NO named block trade, tender offer, change of control or announced disposal was found for the Khamis, Fitihi Group, Ataqa Group or Olayan Holding stakes in 2025 or 2026, and NO EGX disclosure of the EFCO subscription exists on the company's own disclosure page \u2014 that page's newest item is dated 21-Oct-2024. The EFCO transaction in F24 was found inside the 30-6-2026 interim statements themselves. The latest tender-offer-related item on the record is the 21-Oct-2024 disclosure that there is NO offer for the company's shares)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F42",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: '\"Oriental Weavers\" GDR London Stock Exchange depositary receipt delisting ORWE' and the company's own Stock Overview corporate-information block. NO global or American depositary receipt and no second exchange line was found. Note 1-5 of the FY2025 statements says only 'The Company is listed in Egyptian exchange', and the Stock Overview gives one listing date, 25-Aug-1993, and one listed-share count, 665,107,268. THE DUAL-LISTING TRAP DOES NOT APPLY TO ORWE: one issuer, one exchange, one price series in Egyptian pounds, one index)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F43",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: every note of the FY2025 audited consolidated statements, notes 1 to 34 inclusive, for an operating-segment note, a geographic-revenue note, an export-sales note or any disclosure of volume in square metres. THERE IS NONE. Notes 31 to 34 are contingent liabilities, capital commitments, tax position and financial instruments, and no segment note exists anywhere in the filing. EVERY product, geography, channel, volume and ASP figure in this register therefore comes from the earnings releases and investor presentations tagged SourceType.COMPANY_IR \u2014 which is precisely why the IR channel is mandatory rather than optional for this issuer)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F44",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: 'Egypt carpet industry 2026 domestic competition new factories textile investment 10th of Ramadan'; 'Turkish carpet manufacturers Merinos Balta Beaulieu 2026 capacity machine woven competition Egypt exports'; 'Egypt carpet exports 2025 2026 value textile floor coverings export council statistics'. NO announced machine-woven CARPET capacity addition in Egypt by any named party was found for 2025 or 2026 \u2014 every named foreign investment in the 10th of Ramadan cluster (Boni, EVERFAR, Changzhou Kingcason, Shanghai Honour) is in garments, printing and dyeing, or home textiles. No Egyptian carpet-capacity register, line count or national utilisation figure is published, and ORWE's own 150m sqm nameplate dates from its FY2022 presentation and has not been restated since)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F45",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: the Result Center's 'Conference call transcript' tab in full and the Presentations & Publications page in full. The NEWEST call material of any kind is the 4Q-2024 Results Webinar dated 24-Feb-2025; the transcript tab's year list stops at 2025 and there is NO 2026 call invitation, webinar deck or transcript. FY2025, 1Q-2026 and 2Q-2026 are covered by written releases and investor presentations only. Also searched for a newer ESG or annual report: the newest ESG document is OW-ESG-FY22.pdf and the newest annual report is the FY2023 report published in 2024)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F46",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: 'US tariffs Egypt reciprocal tariff rate 2026 imports rugs carpets' and the carpets-and-floor-coverings chapter-57 tariff tables. NO Egypt-specific or ORWE-specific trade remedy, anti-dumping order, countervailing duty, quota or exemption was found in either direction: Egypt sits on the general 10% Section 122 surcharge with no carve-out and no petition naming Egyptian carpets is on the record. Also searched for a shipping-cost or freight-rate disclosure specific to ORWE and found none \u2014 the Red Sea disruption is mentioned qualitatively in the 4Q-2023 release as 'global maritime delay in vessels' and is never quantified)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F47",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: the Central Bank of Egypt's own rate and statistics pages \u2014 BLOCKED, HTTP 200 carrying an F5 'Request Rejected' body, support ID da44b8f3-d541-4d41-af65-ffc44ffcdaa2 \u2014 and capmas.gov.eg. No primary Egyptian government or regulator page could be read for this sweep. No sector-specific Egyptian regulation of carpet manufacture, no price control, no export ban and no import-substitution measure touching carpets was found. The industrial energy-tariff path that sits inside the 'manufacturing overheads +15% YoY' the company reports is NOT separately disclosed by the company and is not obtainable at plant level)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Sales volume (m sqm) by product segment x geography \u2014 woven / tufted / non-woven, Egypt / international",
+   "mode": "BOTTOM_UP",
+   "justification": "Built off the FY2023-FY2024 volume matrix in thousands of square metres, which ties to the audited top line to the pound, rolled forward on the disclosed quarterly volume series (25.5 to 31.3m sqm a quarter) and the per-segment YoY volume changes in each release, and capped by the disclosed nameplate of 150m sqm (woven 79 / tufted 48.1 / non-woven 23). GAP FLAGGED: segment-by-geography LEVELS are disclosed only for FY2023 and FY2024; FY2025-26 legs are rolled off that base and must be reconciled back to audited revenue, with the reconciliation shown.",
+   "sweep_refs": [
+    "F23",
+    "F24",
+    "F27",
+    "F09",
+    "F16",
+    "F17"
+   ]
+  },
+  {
+   "driver": "Realised price per sqm (ASP), same six legs, split into currency translation and real pricing",
+   "mode": "BOTTOM_UP",
+   "justification": "Solved as revenue over volume on each leg from the same disclosed matrix \u2014 group EGP 108.8/sqm in FY2022, 156.7 in FY2023, 213.5 in FY2024, 239.4 in FY2025 \u2014 then projected on the per-leg ASP changes the company publishes every quarter, each of which management attributes explicitly either to devaluation or to a pricing action. Volume and price are projected SEPARATELY and in both directions, because EGP revenue doubled from FY2022 to FY2025 while volume fell 8.7%.",
+   "sweep_refs": [
+    "F23",
+    "F24",
+    "F25",
+    "F26",
+    "F35"
+   ]
+  },
+  {
+   "driver": "International (export) share of revenue and volume, and destination mix",
+   "mode": "BOTTOM_UP",
+   "justification": "Disclosed directly and dated, with the newest disclosure superseding: 70% of revenue and 67% of volume at 2Q-2026, against 67% and 63% for FY2025 and 66% and 62% for FY2024. Destination mix at 2Q-2026 is Americas 34%, Europe 25%, Egypt 30%, GCC 4%, Africa 4%, Asia 2%, hospitality and others 1%. Carried at the newest figures, not the FY2025 ones.",
+   "sweep_refs": [
+    "F26",
+    "F25",
+    "F23",
+    "F35"
+   ]
+  },
+  {
+   "driver": "EGP/USD path \u2014 applied to the export ASP leg, the imported polypropylene leg, the dollar-priced debt leg and the OCI translation reserve",
+   "mode": "TOP_DOWN",
+   "justification": "TOP-DOWN OF NECESSITY, AND SAID SO. The company discloses no FX sensitivity, no quantified foreign-currency position, no hedging policy and no translation rates \u2014 note 34 says only that the risk is 'acceptable' \u2014 and the CBE's own site was WAF-blocked, so no primary average-rate series was obtained either. The path is therefore set exogenously from the market rate (~51.0 EGP/USD on 09-Sep-2026, -6.4% year to date) and the CBE's own published inflation target, and it is SENSITISED as the single largest swing factor in the study.",
+   "sweep_refs": [
+    "F40",
+    "F01",
+    "F05",
+    "F35"
+   ]
+  },
+  {
+   "driver": "Raw-material cost per sqm \u2014 polypropylene / nylon leg",
+   "mode": "BOTTOM_UP",
+   "justification": "The company publishes a quarterly polypropylene figure (989 / 952 / 892 / 948 / 1,246 from 2Q-2025 to 2Q-2026), polypropylene as a share of raw materials (52% / 49% / 47% / 51% / 51%), raw materials as a share of COGS (50% at 4Q-2025) and volume \u2014 which together are enough to build a cost per square metre. GAP FLAGGED: the polypropylene bar and the EGP 3.1bn raw-material donut on the same slide do not reconcile (1,246 at 51% implies EGP 2,443m, not 3,100m); the build states which basis it uses and sensitises the other. Corroborated externally by the +27% to +32% polymer repricing of 1Q-2026.",
+   "sweep_refs": [
+    "F28",
+    "F02",
+    "F26",
+    "F17"
+   ]
+  },
+  {
+   "driver": "Backing, finishing material and wool cost per sqm",
+   "mode": "BOTTOM_UP",
+   "justification": "Disclosed as shares of raw materials with their own YoY changes \u2014 backing 21% (-3%), finishing 20% (+8%), wool 7% (+30%) at 2Q-2026, against 24% / 22% / 7% at 4Q-2025. Each gets its OWN escalator; wool at +30% and backing at -3% are not the same input and are not escalated together [L-009].",
+   "sweep_refs": [
+    "F28",
+    "F17"
+   ]
+  },
+  {
+   "driver": "Labour cost",
+   "mode": "BOTTOM_UP",
+   "justification": "Wages are a disclosed 10% of COGS with a disclosed YoY change every quarter \u2014 +25% in 4Q-2025, +27% in 1Q-2026, +21% in 2Q-2026 \u2014 so the leg is built on the disclosed base and its own escalator rather than a blended inflation rate. The mechanism is named and external: competition for skilled labour in the same 10th of Ramadan cluster the Turkish and Chinese entrants are building into.",
+   "sweep_refs": [
+    "F28",
+    "F26",
+    "F08",
+    "F17"
+   ]
+  },
+  {
+   "driver": "Manufacturing overheads and utilities",
+   "mode": "TOP_DOWN",
+   "justification": "The 21% 'Others' bucket of COGS is NOT decomposed anywhere, and neither the company nor any obtainable source gives the industrial energy-tariff path at plant level or a pass-through mechanism. Built as a rate on the volume base escalated on the disclosed aggregate change (+15% YoY at 2Q-2026, +11% at 1Q-2026) and sensitised. The coarser level is used because the disclosure stops there, and that is said rather than hidden.",
+   "sweep_refs": [
+    "F47",
+    "F28",
+    "F26"
+   ]
+  },
+  {
+   "driver": "Gross margin \u2014 OUTPUT, never an input",
+   "mode": "BOTTOM_UP",
+   "justification": "NOT SET. Revenue is the sum of six volume-times-ASP legs and cost of sales is the sum of the raw-material, labour and overhead legs above; the margin is whatever falls out, and is then checked against the filed series \u2014 9.48% FY2022, 14.44% FY2023, 12.78% FY2024, 12.58% FY2025, 11.86% Q1-2026 on the H1 basis, 14.20% Q2-2026. Setting a contribution or gross margin as an input here would be a QC FAIL, because the filings disclose enough to build cost per unit instead [L-005].",
+   "sweep_refs": [
+    "F14",
+    "F15",
+    "F16",
+    "F17",
+    "F18",
+    "F19",
+    "F37",
+    "F28"
+   ]
+  },
+  {
+   "driver": "Export-rebate income",
+   "mode": "BOTTOM_UP",
+   "justification": "It IS the audited 'Other revenues' line, matched to the pound across FY2023, FY2024, FY2025, Q1-2026 and Q2-2026, so it is built as a current-programme accrual on export value plus a dated run-off of the named EGP 180m residual backlog, against the national programme's published EGP 45bn and EGP 48bn budgets and its four-year cash-plus-set-off arrears schedule. Shown SEPARATELY in the earnings bridge: it is 32% of H1-2026 net profit and it is a government programme, not operations.",
+   "sweep_refs": [
+    "F21",
+    "F06",
+    "F26",
+    "F17"
+   ]
+  },
+  {
+   "driver": "Distribution expense and G&A",
+   "mode": "BOTTOM_UP",
+   "justification": "Both are audited income-statement lines with quarterly levels published beside them \u2014 G&A EGP 208m in 4Q-2025, 227m in 1Q-2026 and 283m in 2Q-2026, +55% YoY \u2014 so they are built on the disclosed levels and their own growth, not as a percentage-of-sales plug.",
+   "sweep_refs": [
+    "F17",
+    "F19",
+    "F26",
+    "F25"
+   ]
+  },
+  {
+   "driver": "Capex and depreciation",
+   "mode": "BOTTOM_UP",
+   "justification": "Capex is the audited cash-flow line \u2014 EGP 453m FY2023, 786m FY2024, 974m FY2025 \u2014 against the disclosed 150m sqm nameplate at 74% utilisation; depreciation is the audited charge of EGP 1,117.7m plus EGP 159.2m of right-of-use in FY2025. The EGP 1.2bn FY2026 guidance is SCORED in the guidance table, not used as the driver [L-012], and the 150m-versus-220m contradiction between the two 2026 releases is carried openly.",
+   "sweep_refs": [
+    "F17",
+    "F29",
+    "F09",
+    "F16"
+   ]
+  },
+  {
+   "driver": "Cost of debt and finance expense",
+   "mode": "BOTTOM_UP",
+   "justification": "Implied from the filings: FY2025 bank interest of EGP 472,721,255 over average bank facilities of EGP 6,781,342,800 is 6.97%, plus EGP 62,805,552 of lease interest on the disclosed lease liabilities. That rate belongs to a debt stack the company itself describes as 99% foreign currency. THE CBE'S 19-20% EGP POLICY RATE IS NOT THIS COMPANY'S COST OF DEBT, and a build that uses it overstates finance cost roughly threefold.",
+   "sweep_refs": [
+    "F22",
+    "F35",
+    "F20",
+    "F05"
+   ]
+  },
+  {
+   "driver": "Treasury and interest income",
+   "mode": "BOTTOM_UP",
+   "justification": "Three separately disclosed audited lines summing to EGP 816.2m in FY2025 against the release's stated EGP 817m, earned on a disclosed EGP-denominated book of cash, treasury bills and financial assets at amortised cost. Modelled as a yield on the modelled balance at the CBE path, excluded from FCFF and handled in the equity bridge so the cash is not counted twice.",
+   "sweep_refs": [
+    "F22",
+    "F20",
+    "F05",
+    "F17"
+   ]
+  },
+  {
+   "driver": "Effective tax rate",
+   "mode": "BOTTOM_UP",
+   "justification": "Built from the named free-zone exemptions in note 33 \u2014 Oriental Weavers International, Oriental Weavers Textile and New Mac are exempt for life under Law No. 8 of 1997 \u2014 against the filed effective rates of 17.4% FY2022, 9.3% FY2023, 9.4% FY2024, 14.2% FY2025 and 15.2% H1-2026. Never the 22.5% statutory plug.",
+   "sweep_refs": [
+    "F07",
+    "F14",
+    "F15",
+    "F16",
+    "F17",
+    "F19"
+   ]
+  },
+  {
+   "driver": "Non-controlling interest",
+   "mode": "BOTTOM_UP",
+   "justification": "Built from the disclosed subsidiary ownership schedule, with the EFCO step from 69.26% to 88.12% modelled as an explicit dated event from H1-2026 and dual-framed, never smoothed into an NCI percentage glide. The NCI balance itself is the audited line: EGP 1,966,368,620 at 31-12-2025 falling to EGP 1,731,842,390 at 30-6-2026.",
+   "sweep_refs": [
+    "F31",
+    "F17",
+    "F19"
+   ]
+  },
+  {
+   "driver": "Dividends and the payout path",
+   "mode": "BOTTOM_UP",
+   "justification": "Built from the parent dividend charged in the audited statement of changes in equity \u2014 EGP 1,102,870,691 in FY2024 and EGP 1,412,063,405 in FY2025 \u2014 rather than from the company's own dividends table, which has no FY2024 row and does not reconcile to those charges. The declared FY2025 dividend of EGP 1.50 a share in three instalments is carried beside it and the difference is disclosed.",
+   "sweep_refs": [
+    "F34",
+    "F17",
+    "F16"
+   ]
+  },
+  {
+   "driver": "Terminal volume growth and the long-run substitution drag",
+   "mode": "TOP_DOWN",
+   "justification": "No company long-range plan, volume target or capacity roadmap exists \u2014 the newest nameplate is FY2022-vintage, there is no 2026 call material of any kind, and the only forward number management publishes is one year of capex. The terminal is therefore set exogenously at low single-digit real growth, with the wall-to-wall tufted leg gliding below the woven leg because the substitution literature exempts area rugs and does not exempt wall-to-wall.",
+   "sweep_refs": [
+    "F45",
+    "F44",
+    "F12",
+    "F03"
+   ]
+  },
+  {
+   "driver": "OCI foreign-currency translation reserve, forecast separately from profit",
+   "mode": "TOP_DOWN",
+   "justification": "Cannot be built bottom-up: the company discloses no foreign-currency position, no translation rates and no sensitivity. It moved +EGP 1,898m in 1Q-2026 and -EGP 1,617m in 2Q-2026, each larger than that quarter's entire net profit, so it cannot be ignored either. Projected off the same exogenous EGP/USD path as the ASP and debt legs, kept OUT of the earnings base, and sensitised.",
+   "sweep_refs": [
+    "F40",
+    "F35",
+    "F01",
+    "F17"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://orientalweavers.com/investor-relations/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, 57,473 bytes. The company's own IR hub, links out to Stock Overview, Result Center, Presentations & Publications, Reports & Disclosures and IR Contacts, and carries the 2Q-2026 earnings release, the 30-6-2026 consolidated statements and the 2Q-2026 investor presentation directly. THIS IS THE SOURCE OF RECORD FOR EVERY COMPANY FIGURE IN THIS REGISTER."
+  },
+  {
+   "url": "https://orientalweavers.com/result-center/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, 241,168 bytes. 194 PDFs: earnings releases back to 2016, consolidated and separate statements back to 2011, a dividends table and a conference-call transcript tab. All six statement files used here were downloaded from this page, HTTP 200 each, 1.1MB to 11MB."
+  },
+  {
+   "url": "https://orientalweavers.com/presentation-publication/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, 112,360 bytes. Investor presentations through 2Q-2026 (11-Aug-2026), ESG and annual reports. Source of the volume, ASP, COGS-mix, raw-material-mix and polypropylene series that no financial statement carries."
+  },
+  {
+   "url": "https://orientalweavers.com/reports-disclosures/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, 193,351 bytes \u2014 REACHABLE BUT STALE. The year tabs stop at 2024 and the newest item is dated 21-Oct-2024 ('no tender offer for the company's shares'). There is NO 2025 or 2026 corporate disclosure on the company's own disclosure page; the EFCO stake change of H1-2026 (F24) appears only inside the interim statements themselves."
+  },
+  {
+   "url": "https://orientalweavers.com/stock-overview/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200. Corporate information: listed 25-Aug-1993, 665,107,268 listed common shares, par EGP 1, authorised capital EGP 1,000,000,000, issued and paid-in capital EGP 665,107,268, auditor Wahid Abdel Ghaffar & Co., fiscal year Jan-Dec, six named subsidiaries. NOTE its shareholder table (Khamis 54% / foreign institutions 19% / local institutions 20% / retail 7%) is a rounded, undated summary that does NOT match the dated 30-6-2026 structure in the 2Q-2026 release (F25) \u2014 use the release."
+  },
+  {
+   "url": "https://ir.orientalweavers.com/",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "FAILED: curl: (56) CONNECT tunnel failed, response 502. The 'ir.' subdomain does not serve; the IR content lives under the apex domain. Recorded so a later reader does not mistake the 502 for an IR blackout."
+  },
+  {
+   "url": "https://www.orientalweavers.com/en/investors",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "FAILED: HTTP 404 after redirect to https://orientalweavers.com/en/investors. Guessed path; the real path is /investor-relations/."
+  },
+  {
+   "url": "https://www.egx.com.eg/en/homepage.aspx",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "FAILED: curl: (52) Empty reply from server. The Egyptian Exchange's own portal returned no response at all. No EGX-filed disclosure could be read from the exchange itself; everything company-official here comes from the issuer's own site instead."
+  },
+  {
+   "url": "https://www.cbe.org.eg/en/economic-research/statistics/cbe-rates",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "FAILED at the origin's WAF: HTTP 200 with a 269-byte body reading '<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with your administrator.<br/><br/>Your support ID is da44b8f3-d541-4d41-af65-ffc44ffcdaa2'. The Central Bank of Egypt's own rate page could NOT be read. The policy rate in F09 is therefore press reporting of the CBE's decision, not the CBE's own page \u2014 stated, not hidden. It is a Country-ring regulator figure, not an ORWE-reported figure, so [R-SIGCM-03] is not engaged."
+  },
+  {
+   "url": "https://www.mubasher.info/",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "FAILED: HTTP 403. Logged only to show the aggregator was not used as a fallback. No ORWE-reported historical figure in this register comes from any aggregator."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "Q2-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [ORWE, 2026-09-09]: FAIL (2 errors) \u2014 4/4 rings, 47 findings (2 B \u00b7 16 S \u00b7 20 D \u00b7 1 C \u00b7 8 NEG), driver gate 19 rows (15 bottom-up / 4 top-down) | primary access: attempted (10) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 9"
+}
