@@ -92,7 +92,8 @@ ALTS = [
              "charges is the rate the decree sets, on the base it sets, applied in "
              "perpetuity because the instrument names no end -- which is a reading of the "
              "decree rather than the assumption it was until today. "
-             "PURE AMMONIUM NITRATE ABOVE 34.2% NITROGEN AND FREE-ZONE SHIPMENTS ARE "
+             "PURE AMMONIUM NITRATE ABOVE " + ("%.1f%%" % (100 * V('an_exempt_n_pct')))
+             + " NITROGEN AND FREE-ZONE SHIPMENTS ARE "
              "EXEMPT, and that was checked against the model rather than noted: the duty "
              "is applied to the UREA export leg alone, and urea is not exempt. "
              "THE DIRECTION IS AGAINST THIS STUDY -- removing the duty RAISES the value "

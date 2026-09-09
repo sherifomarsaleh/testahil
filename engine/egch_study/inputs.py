@@ -335,6 +335,9 @@ I("quota_domestic_share_2021", 0.55, "ratio",
 I("quota_free_local_2021", 0.10, "ratio", "Cabinet decision 170 of 24 November 2021", "2021-11-24", "L3")
 I("export_levy_egp_t", 2500.0, "EGP/t",
   "Trade and industry ministry decree 241 of 2021 — levy on the quota shortfall", "2021-06-03", "L3")
+_AN_EXEMPT_N = 0.342
+_AN_EXEMPT_TXT = "%.1f%%" % (100 * _AN_EXEMPT_N)
+
 # THE INSTRUMENT WAS FOUND. RE-TIERED L3 -> L4 EARLIER ON 09-09-2026 AND BACK TO L3 THE
 # SAME DAY, AND THE SECOND MOVE IS THE ONE THAT MATTERS.
 #
@@ -387,10 +390,25 @@ I("export_duty_2026", 0.10, "ratio",
   "the Official Gazette on 25 June 2026 — 10% ad valorem on the FOB invoice value of "
   "nitrogen fertiliser exports, the invoice certified by the Chamber of Chemical "
   "Industries. It replaced a temporary US$90/t duty imposed in May 2026 for three months; "
-  "the 10% carries no stated expiry. Pure ammonium nitrate above 34.2% nitrogen and free "
+  "the 10% carries no stated expiry. Pure ammonium nitrate above " + _AN_EXEMPT_TXT +
+  " nitrogen and free "
   "zone shipments are exempt — urea is neither. Read from two independent reports of the "
   "instrument rather than the Gazette text, which is the remaining gap in this citation",
   "2026-06-25", "L3")
+# THE DECREE'S OWN EXEMPTION THRESHOLD, REGISTERED AS A FACT [09-09-2026]. It is quoted
+# in the delivered study and the workbook, and a figure in delivered text has to exist as
+# a number this study holds or prose_check reports it as unreconciled — which it did,
+# twice, the moment the decree was cited. It is a DISCLOSED FACT this model does not
+# compute: nothing here consumes it, because the duty is applied to the urea export leg
+# and urea is not exempt. Registered so the citation is auditable rather than floating.
+I("an_exempt_n_pct", _AN_EXEMPT_N, "ratio",
+  "Decree No. 258 of 2026, exemption clause — pure ammonium nitrate whose nitrogen "
+  "content EXCEEDS " + _AN_EXEMPT_TXT + " is outside the 10% export duty, verified by "
+  "joint Customs "
+  "Authority and export-control sampling of the shipment. Free-zone shipments to "
+  "productive enterprises are likewise exempt. A fact about the instrument, consumed by "
+  "no calculation in this study: the duty is charged on the urea export leg, and urea is "
+  "not exempt", "2026-06-25", "L3")
 I("subsidised_price", 6000.0, "EGP/t", "Cooperative supply price for subsidised fertilizer", "2025-09-08", "L3")
 I("quota_revision_sep2025", 0.53, "ratio",
   "Cabinet decision of 8 September 2025 — industry export share after the revision", "2025-09-08", "L3")

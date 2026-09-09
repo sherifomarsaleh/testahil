@@ -1738,6 +1738,15 @@
    "layer": "L3",
    "note": ""
   },
+  "an_exempt_n_pct": {
+   "key": "an_exempt_n_pct",
+   "value": 0.342,
+   "unit": "ratio",
+   "source": "Decree No. 258 of 2026, exemption clause \u2014 pure ammonium nitrate whose nitrogen content EXCEEDS 34.2% is outside the 10% export duty, verified by joint Customs Authority and export-control sampling of the shipment. Free-zone shipments to productive enterprises are likewise exempt. A fact about the instrument, consumed by no calculation in this study: the duty is charged on the urea export leg, and urea is not exempt",
+   "date": "2026-06-25",
+   "layer": "L3",
+   "note": ""
+  },
   "subsidised_price": {
    "key": "subsidised_price",
    "value": 6000.0,
