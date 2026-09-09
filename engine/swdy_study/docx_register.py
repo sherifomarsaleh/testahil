@@ -190,8 +190,14 @@ table([['Document', 'Publisher', 'Date', 'What was taken from it'],
        # THE MARKET PROXY IS THE PUBLISHED INDEX AND HAS BEEN SINCE THE BETA WAS
        # RE-DERIVED. This row still credited the withdrawn 31-name composite, which is
        # a source register naming a source the study does not use.
-       ['Published index of the exchange this share is listed on',
-        'engine/' + _BETA['index_file'], 'to ' + str(_BETA['index_asof']),
+       # NAMED FOR A READER, NOT BY ITS PATH IN THIS REPOSITORY. The first cut printed
+       # the file the series is stored in, which is internal machinery on a delivered
+       # page: the reader wants the INDEX, and the file name is how we happen to keep
+       # it. The gate that caught this says so in its own words — rewrite the sentence,
+       # do not add the path to a list, because the next hole is a different shape.
+       ['%s, the published index of the exchange this share is listed on'
+        % os.path.splitext(os.path.basename(_BETA['index_file']))[0],
+        'Published index series', 'to ' + str(_BETA['index_asof']),
         'The regressor in the beta regression']],
       [1.55, 1.25, 0.95, 3.25], size=8.0)
 
