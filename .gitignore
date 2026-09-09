@@ -95,6 +95,12 @@ engine/*_walkforward/txt/
 # being failed probes saved under a .json name, which is exactly what scratch looks like.
 engine/*_study_pending/raw/
 engine/*_study/raw/
+# OCDI's agent nests its derived output one level deeper again — src/ocr/ and src/txt.
+# Fifth layout tonight. Same rule, same reason: a render and an extraction are readings
+# of a source, and the source itself (src/pdf/) is committed.
+engine/*_study_pending/src/ocr/
+engine/*_study_pending/src/txt/
+engine/*_study_pending/src/txt_*.txt
 
 # Transient gate scratch that lands in the repository ROOT. No committed script writes
 # these — they are shell redirections from gate runs in a session, exit-code/command pairs

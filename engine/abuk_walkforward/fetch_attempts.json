@@ -326,16 +326,6 @@
  },
  {
   "attempted": "2026-09-09",
-  "bytes": 1788718,
-  "magic": "%PDF-",
-  "name": "FS_FY2025_Jun_EN.pdf",
-  "note": "company website, audited FS year ended 30-Jun-2025 (English)",
-  "result": "OK",
-  "sha256": "e4e19ff4b9dfed04",
-  "url": "https://abuqir.net/wp-content/uploads/2025/11/Financial-statements-for-the-year-ended-June-30-2025.pdf"
- },
- {
-  "attempted": "2026-09-09",
   "bytes": 17572313,
   "magic": "%PDF-",
   "name": "FS_TP_Dec2025_EN.pdf",
@@ -403,5 +393,15 @@
   "result": "OK",
   "sha256": "fdbc777667d79500",
   "url": "https://abuqir.net/wp-content/uploads/2026/08/h1-2026.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1788718,
+  "magic": "%PDF-",
+  "name": "FS_FY2025_Jun_EN.pdf",
+  "note": "company website, audited FS year ended 30-Jun-2025 (English)",
+  "result": "OK",
+  "sha256": "e4e19ff4b9dfed04",
+  "url": "https://abuqir.net/wp-content/uploads/2025/11/Financial-statements-for-the-year-ended-June-30-2025.pdf"
  }
 ]

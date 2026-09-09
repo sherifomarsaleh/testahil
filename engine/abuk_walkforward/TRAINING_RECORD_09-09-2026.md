@@ -328,7 +328,20 @@ observations and the study says so beside them.
 
 ---
 
-## 12 · What this run did NOT produce
+## 12 · One housekeeping fact, recorded rather than left as an absence
+
+The 40 source PDFs this run parsed totalled 145 MB. `engine/*_walkforward/filings/`
+is gitignored, so they were never committed; the container's root filesystem
+then filled to 100% and they were deleted to free it. **The deletion is provably
+lossless.** `fetch_attempts.json` records for every file its exact URL, its byte
+count and the first sixteen hex digits of its SHA-256, and `refetch_filings.py`
+re-fetches each one and VERIFIES both before accepting it. It was tested on one
+file and returned it byte-identical. Run it before re-reading any figure sourced
+to a filing.
+
+---
+
+## 13 · What this run did NOT produce
 
 **The delivered valuation study — Document 1 of [R-FCAL-01] §6 — is NOT built.**
 The walk-forward, its panel, its scoring, its diagnosis, its corrections test,
