@@ -23,8 +23,8 @@
     "bear": 24.6116,
     "full": 72.1254
    },
-   "report_bytes": 1383989,
-   "workbook_bytes": 49963
+   "report_bytes": 1385991,
+   "workbook_bytes": 50125
   },
   {
    "ticker": "EGCH",
@@ -88,21 +88,21 @@
    "workbook": "engine/phar_study/EIPICO_Valuation_Model_09092026.xlsx",
    "fair": {
     "base": null,
-    "bear": 31.3738,
+    "bear": 31.29765587745293,
     "branches": [
      {
       "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
-      "value": 31.3738
+      "value": 31.29765587745293
      },
      {
       "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
-      "value": 47.6035
+      "value": 47.50628127175547
      }
     ],
-    "full": 47.6035
+    "full": 47.50628127175547
    },
-   "report_bytes": 1137743,
-   "workbook_bytes": 46396
+   "report_bytes": 1137095,
+   "workbook_bytes": 46402
   },
   {
    "ticker": "PHDC",
@@ -137,8 +137,8 @@
     "bear": 16.1816200566,
     "full": 83.7987634305
    },
-   "report_bytes": 1001721,
-   "workbook_bytes": 39370
+   "report_bytes": 1005969,
+   "workbook_bytes": 39375
   },
   {
    "ticker": "TMGH",
@@ -150,7 +150,7 @@
     "full": 123.1967553373
    },
    "report_bytes": 764445,
-   "workbook_bytes": 28578
+   "workbook_bytes": 28579
   }
  ]
 }

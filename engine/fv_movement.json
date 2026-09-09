@@ -837,6 +837,38 @@
       "bear": -4.9,
       "full": -4.2
      }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 3,
+     "fair": {
+      "base": null,
+      "bear": 31.29765587745293,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 31.29765587745293
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 47.50628127175547
+       }
+      ],
+      "full": 47.50628127175547
+     },
+     "lessons": [],
+     "origins": "FY2020-FY2024, 5 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -46.1,
+      "full": -34.9
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -0.2,
+      "full": -0.2
+     }
     }
    ],
    "exchange": "EGX",
