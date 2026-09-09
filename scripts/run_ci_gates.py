@@ -19,6 +19,7 @@ evidence, not a substitute.
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import subprocess
 import sys
@@ -27,6 +28,56 @@ import yaml
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WORKFLOWS = os.path.join(ROOT, ".github", "workflows")
+
+# WHERE THE EVIDENCE LANDS, so that something OTHER than the acceptance record can
+# say whether the gates are green [R-ENF-01].
+#
+# Part E criterion 1 read `"state": "MET"` as a TYPED CONSTANT in progress.py — a
+# claim the acceptance instrument made about itself, which is the exact shape the
+# rule forbids everywhere else in this repository. Criterion 3 had the same defect
+# and was made a call; 1 and 2 were left behind. This file is what they now read.
+#
+# IT CARRIES THE COMMIT IT WAS PRODUCED AT [R-ENF-06]. A green run is evidence about
+# the tree it ran on and nothing else, so a result from an earlier commit is STALE
+# rather than green, and a run on a dirty tree is evidence about a tree nobody else
+# can reproduce. Both are refused by the reader rather than being quietly reused.
+RESULT = os.path.join(ROOT, "engine", "build_depth_audit", "ci_gate_run.json")
+
+
+def _head():
+    try:
+        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                             capture_output=True, text=True, check=True).stdout.strip()
+        dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
+                               capture_output=True, text=True, check=True).stdout.strip()
+        return sha, [l for l in dirty.splitlines() if l.strip()]
+    except (OSError, subprocess.CalledProcessError):
+        return None, None
+
+
+def _record(workflow, green, red, skipped, started, finished):
+    """Write the run down. Never a verdict — the numbers, and what they were of."""
+    sha, dirty = _head()
+    doc = {
+        "_": "Written by scripts/run_ci_gates.py. READ BY engine/method_reassessment/"
+             "progress.py for Part E criteria 1 and 2, which may not assert their own "
+             "state [R-ENF-01]. Never hand-edit: a hand-written green here is the "
+             "typed constant this file was created to replace.",
+        "workflow": workflow,
+        "commit": sha,
+        "tree_dirty": dirty if dirty is not None else "unknown",
+        "started": started, "finished": finished,
+        "green": green,
+        "red": [label for label, _tail in red],
+        "skipped": [{"step": label, "why": why} for label, why in skipped],
+    }
+    os.makedirs(os.path.dirname(RESULT), exist_ok=True)
+    with open(RESULT, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, indent=1, sort_keys=True)
+    print("\nrecorded to %s at %s%s"
+          % (os.path.relpath(RESULT, ROOT), (sha or "unknown")[:9],
+             "" if not dirty else "  (TREE DIRTY — %d file(s); this run is evidence "
+                                  "about a tree nobody else has)" % len(dirty)))
 
 # Steps that cannot run outside the runner (they need the network, a token, or a
 # deploy target). Skipped LOUDLY and counted, because a silent skip is how a
@@ -74,6 +125,11 @@ def steps(path):
                 yield jobname, st.get("name") or "(unnamed)", st["run"], st.get("if")
 
 
+def _now():
+    import datetime
+    return datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("workflow", nargs="?", default="study-provenance.yml",
@@ -81,6 +137,7 @@ def main():
                          "MUTATES_THE_REPO above.")
     a = ap.parse_args()
     files = [os.path.join(WORKFLOWS, a.workflow)]
+    started = _now()
 
     red, green, skipped = [], 0, []
     for f in files:
@@ -119,6 +176,7 @@ def main():
                 red.append((label, (r.stdout + r.stderr).strip().splitlines()[-6:]))
                 print("  RED    %s   exit %d" % (label[:90], r.returncode))
 
+    _record(a.workflow, green, red, skipped, started, _now())
     print("\nran %d steps from %d workflow(s): %d green, %d red, %d skipped"
           % (green + len(red), len(files), green, len(red), len(skipped)))
     for label, why in skipped:

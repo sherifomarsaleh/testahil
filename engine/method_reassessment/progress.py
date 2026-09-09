@@ -287,13 +287,72 @@ def phase1() -> dict:
             "acceptance": accept}
 
 
+
+CI_RESULT = os.path.join(ENGINE, "build_depth_audit", "ci_gate_run.json")
+
+
+def _recorded_ci_run():
+    """The recorded CI run, or a string saying why there is none."""
+    if not os.path.exists(CI_RESULT):
+        return "no CI run has been recorded — run scripts/run_ci_gates.py"
+    try:
+        with open(CI_RESULT, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError) as exc:
+        return "the recorded CI run will not parse (%s)" % type(exc).__name__
+
+
+def _ci_verdict(run, needs_step=None):
+    """(state, waits_on) for a criterion resolved from the recorded run."""
+    if isinstance(run, str):
+        return "NOT MET", run
+    try:
+        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                              capture_output=True, text=True,
+                              check=True).stdout.strip()
+    except Exception:
+        head = None
+    if head and run.get("commit") != head:
+        return "NOT MET", ("the recorded run is at %s and HEAD is %s — a green run is "
+                           "evidence about the tree it ran on, so this is STALE rather "
+                           "than green [R-ENF-06]"
+                           % (str(run.get("commit"))[:9], head[:9]))
+    dirty = run.get("tree_dirty")
+    if isinstance(dirty, list) and dirty:
+        return "NOT MET", ("the recorded run was made on a DIRTY tree (%d file(s) "
+                           "modified), so it is evidence about a tree nobody else has"
+                           % len(dirty))
+    red = run.get("red") or []
+    if red:
+        return "NOT MET", ("%d step(s) RED in the recorded run: %s"
+                           % (len(red), "; ".join(r[:52] for r in red[:4])))
+    if not run.get("green"):
+        return "NOT MET", ("the recorded run went green on ZERO steps — an empty "
+                           "result is not a clean result [R-ENF-04]")
+    skipped = [x.get("step", "") for x in (run.get("skipped") or [])]
+    if needs_step and any(needs_step in x for x in skipped):
+        return "NOT MET", ("the step this criterion rests on (%s) was SKIPPED in the "
+                           "recorded run, so nothing was established about it"
+                           % needs_step)
+    return "MET", ("%d step(s) green, 0 red, in the run recorded at %s"
+                   % (run["green"], str(run.get("commit"))[:9]))
+
+
 def acceptance() -> list:
     """Part E's six criteria, each with what it waits on and whether that has a date."""
     items = [
+        # THESE TWO WERE TYPED CONSTANTS AND THAT IS THE WHOLE DEFECT [R-ENF-01].
+        # Both read `"state": "MET"` as a literal — the acceptance instrument
+        # asserting its own state, which is the shape this repository refuses
+        # everywhere else, and which the note below records being fixed on criterion 3
+        # while 1 and 2 were left behind. On 09-09-2026 criterion 1 reported MET while
+        # the branch carried fifteen red gates. A claim that cannot go false is not a
+        # claim. They are resolved below from engine/build_depth_audit/ci_gate_run.json,
+        # which scripts/run_ci_gates.py writes and neither of them can.
         {"n": 1, "text": "construction gates green in CI with negative controls",
-         "state": "MET", "waits_on": "re-checked by status.py --gates and by CI on every push"},
+         "state": None, "waits_on": "resolved from the recorded CI run"},
         {"n": 2, "text": "forward drivers inside each name's own walk-forward record",
-         "state": "MET", "waits_on": "the walk-forward actuation gate, green in CI"},
+         "state": None, "waits_on": "resolved from the recorded CI run"},
         # READ, NEVER TRANSCRIBED [R-ENF-03]. This entry carried its own copy of
         # criterion 3 -- its text and a hardcoded BLOCKED -- and went on stating
         # both after [R-VCAL-02 CLAUSE ONE] moved the maturity-bound clauses out of
@@ -431,6 +490,14 @@ def acceptance() -> list:
     items[5]["state"] = "MET" if not staged_issues else "NOT MET"
     items[5]["waits_on"] = ("the queue matches every committed answer"
                             if not staged_issues else "; ".join(staged_issues))
+
+    # 1 AND 2 — READ THE RECORDED RUN, NEVER ASSERT. Four ways this stays NOT MET and
+    # each is a different thing being wrong: no run recorded; a run at a DIFFERENT
+    # COMMIT, which is evidence about another tree [R-ENF-06]; a run on a DIRTY tree,
+    # which nobody else can reproduce; or a run carrying reds.
+    _ci = _recorded_ci_run()
+    items[0]["state"], items[0]["waits_on"] = _ci_verdict(_ci)
+    items[1]["state"], items[1]["waits_on"] = _ci_verdict(_ci, 'check_walkforward_actuation.py')
 
     if gaps:
         # PASSES: above the price, or below it by less than 10%. REFERRED: 10% or more
