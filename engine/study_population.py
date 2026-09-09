@@ -141,7 +141,22 @@ def delivered():
 def record_dirs():
     """ticker -> engine/{x}_study directory, for the names that have one.
     THIS IS THE OLD POPULATION and it is returned here as ONE FIELD of the
-    answer rather than as the answer."""
+    answer rather than as the answer.
+
+    A DIRECTORY A RUN IS STILL BUILDING IS NOT A RECORD, and the filter belongs HERE
+    rather than one level up in examinable().  It was written there first and the
+    consequence was visible within the hour: coverage_outstanding.json is the ratchet of
+    covered names with NO study directory, its maintainer resolves readability through
+    population() -> record_dirs(), and the moment engine/adib_study/ appeared holding a
+    single compute.py the gate struck ADIB off it.  A ratchet may only ever SHORTEN, so
+    nothing would ever have put it back -- the list would have got shorter on the strength
+    of a study that does not exist yet.  Filtered here, a name whose run is in flight
+    reads readable=False and STAYS on the ratchet it belongs on, which is the honest
+    state: a covered name this desk cannot yet read.
+
+    The excluded set is stashed on the function rather than returned, so the callers that
+    want to NAME it can and the dozen that just want the mapping are unchanged.
+    """
     out = {}
     for d in sorted(os.listdir(ENGINE)):
         if not d.endswith('_study') or not os.path.isdir(os.path.join(ENGINE, d)):
@@ -150,7 +165,15 @@ def record_dirs():
         out[DIR_ALIAS.get(tk, tk)] = os.path.join(ENGINE, d)
     if not out:
         raise SystemExit('FATAL: no engine/*_study directories. [R-ENF-04].')
+    out, record_dirs.in_flight = drop_in_flight(out)
+    if not out:
+        raise SystemExit('FATAL: every study directory belongs to a run that declares '
+                         'itself unfinished. An empty result is not a clean result '
+                         '[R-ENF-04].')
     return out
+
+
+record_dirs.in_flight = []
 
 
 def population():
@@ -282,6 +305,52 @@ def readable(pop=None):
     return {k: v for k, v in pop.items() if v['readable']}
 
 
+def drop_in_flight(dirs):
+    """Remove the study directories a RUN IS STILL BUILDING, and name what was removed.
+
+    A STUDY DIRECTORY A RUN IS STILL BUILDING IS NOT A STUDY WITH AN UNREADABLE
+    ANSWER. It is a study that does not exist yet, and the difference is the whole of
+    [R-ENF-04]: an absent result is not a clean result, but a result that was never
+    claimed is not an absent one either. On 09-09-2026 the ADIB run created
+    engine/adib_study/ holding a single compute.py, and every gate reading records off
+    this resolver reported a delivered study whose numbers could not be found.
+
+    The declaration is engine/run_state.py's, the SAME reader the four gates that meet
+    this on a walk-forward directory already use, so a fifth gate cannot get a different
+    answer from a fourth.
+
+    THIS IS A FUNCTION AND NOT FOUR LINES INSIDE examinable() FOR ONE REASON. The
+    terminal census has a second, sanctioned way of resolving its population -- the
+    sandboxed fixture escape its negative control takes -- and that branch globs instead
+    of coming through here. Written inline, the exclusion would exist on the real path
+    and not the fixture one, so the control would be testing a gate that does not ship
+    [R-ENF-03]. Both branches call this.
+
+    IT IS NOT SILENT. Callers name the exclusion in the population line they print, so a
+    run parked behind this marker is visible in the output of every gate it removes a
+    name from -- and whether the marker is HONEST is tested against the run's own
+    artefacts in check_lessons_register.py, not here.
+
+    Accepts a {ticker: dir} mapping or a list of directories; returns the same shape it
+    was given, plus the sorted tickers excluded.
+    """
+    import sys as _s
+    if ENGINE not in _s.path:
+        _s.path.insert(0, ENGINE)
+    import run_state as _run_state
+
+    def _tk(d):
+        b = os.path.basename(d.rstrip(os.sep))
+        t = b[:-len('_study')].upper() if b.endswith('_study') else b.upper()
+        return DIR_ALIAS.get(t, t)
+
+    if isinstance(dirs, dict):
+        gone = sorted(tk for tk in dirs if _run_state.in_flight(tk))
+        return {k: v for k, v in dirs.items() if k not in set(gone)}, gone
+    gone = sorted({_tk(d) for d in dirs if _run_state.in_flight(_tk(d))})
+    return [d for d in dirs if _tk(d) not in set(gone)], gone
+
+
 def examinable(pop=None):
     """What a RECORD-READING gate should iterate, and what it should say it did.
 
@@ -312,6 +381,7 @@ def examinable(pop=None):
     # gate reads every record that exists; what the covered population decides is
     # the DENOMINATOR and the deferred set, not which records to skip.
     _dirs = record_dirs()
+    _in_flight = list(record_dirs.in_flight)
     dirs = sorted(_dirs.values())
     deferred = sorted(k for k, v in pop.items() if not v['readable'])
     _uncovered = sorted(set(_dirs) - set(pop))
@@ -321,11 +391,17 @@ def examinable(pop=None):
                          'result, not a clean one [R-ENF-04].' % len(pop))
     line = ('population: %d covered names, every one carrying a delivered study — %d '
             'records on disk to read%s, %d covered names deferred to %s (reported by the '
-            'valuation-gap gate, never re-listed here)'
+            'valuation-gap gate, never re-listed here)%s'
             % (len(pop), len(dirs),
                '' if not _uncovered else ' (incl. %s, which the site does not carry)'
                % ', '.join(_uncovered),
-               len(deferred), os.path.basename(NO_RECORD_RATCHET)))
+               len(deferred), os.path.basename(NO_RECORD_RATCHET),
+               '' if not _in_flight else
+               ('; of which %d (%s) is deferred because a run DECLARES ITSELF '
+                'UNFINISHED there — a directory being built is not a record, and the '
+                'name stays on the ratchet it belongs on rather than being struck off '
+                'on the strength of a study that does not exist yet'
+                % (len(_in_flight), ', '.join(_in_flight)))))
     return dirs, deferred, line
 
 

@@ -63,6 +63,9 @@ import sys
 from dataclasses import fields
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), 'engine'))
+import run_state as _run_state          # noqa: E402
 ENGINE = os.path.join(ROOT, 'engine')
 sys.path.insert(0, ENGINE)
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'terminal_record_outstanding.json')
@@ -123,6 +126,21 @@ def census(top, inp):
     rows = []
     for d in sorted(glob.glob(os.path.join(ENGINE, '*_study'))):
         tk = os.path.basename(d)[:-len('_study')].upper()
+        # A STUDY DIRECTORY BEING BUILT BY A RUN THAT DECLARES ITSELF UNFINISHED HAS NO
+        # COMMITTED NUMBERS YET, and that is not an unreadable study -- it is a study
+        # that does not exist yet. This is the FOURTH gate to meet the same shape today
+        # and the first to meet it on a STUDY directory rather than a walk-forward one:
+        # ADIB's run created engine/adib_study/ holding a single compute.py, and this gate
+        # read it as a delivered study whose numbers could not be found.
+        #
+        # The declaration is read from engine/run_state.py, the same reader the other
+        # three use, so a fifth gate meeting this tomorrow gets the same answer. Whether
+        # the marker is HONEST is tested in check_lessons_register.py against the run's
+        # own artefacts.
+        if _run_state.in_flight(tk):
+            rows.append(dict(ticker=tk, state='in_flight',
+                             why=(_run_state.declaration(tk) or {}).get('waiting_on')))
+            continue
         nf = numbers_file(d)
         if nf is None:
             rows.append(dict(ticker=tk, state='unreadable',

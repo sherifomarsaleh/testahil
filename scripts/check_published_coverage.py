@@ -105,9 +105,20 @@ def main(argv):
     # import broke somebody else's sandbox.
     sys.path.insert(0, ENGINE)
     from study_aliases import DIR_ALIAS
-    studies = {DIR_ALIAS.get(t, t) for t in
-               (os.path.basename(d)[:-len('_study')].upper()
-                for d in glob.glob(os.path.join(ENGINE, '*_study')))}
+    # A DIRECTORY A RUN IS STILL BUILDING IS NOT A STUDY. This gate's answer is "which
+    # published fair values now have one", and a name whose run is mid-flight has a
+    # directory and no study — reading it as studied says REMOVE FROM THE LIST, and this
+    # list may only ever shorten, so nothing would put it back when the run ends or fails.
+    # run_state.py is dependency-free for the same reason study_aliases.py is: this gate
+    # runs inside a sandbox that a full resolver import would kill.
+    import run_state as _run_state
+    _stems = [os.path.basename(d)[:-len('_study')].upper()
+              for d in glob.glob(os.path.join(ENGINE, '*_study'))]
+    _flight = sorted(t for t in _stems if _run_state.in_flight(t))
+    studies = {DIR_ALIAS.get(t, t) for t in _stems if t not in set(_flight)}
+    if _flight:
+        print('  IN FLIGHT, not counted as studied: %s — a run declares itself unfinished '
+              'in that directory' % ', '.join(DIR_ALIAS.get(t, t) for t in _flight))
     if not studies:
         print('FAIL — no study directories found. The comparison has no second population '
               '[R-ENF-04].')
