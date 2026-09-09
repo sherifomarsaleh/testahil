@@ -758,6 +758,27 @@
    "ticker": "GBCO",
    "tier": "reissue"
   },
+  "KABO": {
+   "baseline": {
+    "built_to": "(no study)",
+    "captured": "2026-09-09",
+    "fair": {
+     "base": 2.39,
+     "bear": 1.42,
+     "full": 3.52
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 9.12,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "KABO",
+   "tier": "first-build"
+  },
   "PHAR": {
    "baseline": {
     "built_to": "(study carries no stamp)",
