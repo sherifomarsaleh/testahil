@@ -7,6 +7,17 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import edition as _ed                      # the edition date, written once
+
+
+def edition_words(d):
+    """The edition date in words, from the edition module — so the companion
+    document cannot name a date the study is not filed under. It said '5 August
+    2026' through two later editions."""
+    return '%d %s %d' % (d.day, d.strftime('%B'), d.year)
+
+
+_BETA = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    'beta_result.json'), encoding='utf-8'))
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -15,6 +26,7 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+M = D['meta']                       # the anchor date, read rather than typed
 INP = D['inputs']
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77); WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 F_DARK, F_PANEL, F_CREAM = '1C3A36', 'EAF0EE', 'F6F1E6'
@@ -105,7 +117,7 @@ def fmt(v):
 # ============================================================================
 masthead()
 H1('Elsewedy Electric Company S.A.E. (EGX: SWDY) — Bibliography and Source Register')
-P('Companion document to the valuation study dated 5 August 2026. It records where every number '
+P(f'Companion document to the valuation study dated {edition_words(_ed.EDITION)}. It records where every number '
   'in that study came from.', size=9.5, color=GREY)
 
 H2('READ FIRST')
@@ -175,9 +187,12 @@ table([['Document', 'Publisher', 'Date', 'What was taken from it'],
         'to 5 August 2026',
         'The anchor price, the volatility estimate, the moving-average structure, the beta '
         'regression and the price distributions'],
-       ['Daily price history for the covered Egyptian equity library', 'House data library',
-        'to August 2026', 'The 31-name equal-weight composite used as the market proxy in the '
-        'beta regression']],
+       # THE MARKET PROXY IS THE PUBLISHED INDEX AND HAS BEEN SINCE THE BETA WAS
+       # RE-DERIVED. This row still credited the withdrawn 31-name composite, which is
+       # a source register naming a source the study does not use.
+       ['Published index of the exchange this share is listed on',
+        'engine/' + _BETA['index_file'], 'to ' + str(_BETA['index_asof']),
+        'The regressor in the beta regression']],
       [1.55, 1.25, 0.95, 3.25], size=8.0)
 
 # ---- the four-field input register ------------------------------------------
@@ -219,8 +234,11 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'though FY2025 improved (24.1% -> 23.1% -> 19.9% of revenue)',
         'Two consecutive years of operating cash flow above 60% of EBITDA'],
        ['Valuation date rolled to the anchor',
-        'Every lens value, dated 31 December 2025 by construction, is rolled 217/365 of a year '
-        'to the 5-Aug-2026 anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
+        # THE ROLL IS READ OFF THE RECORD. Typed, it said 217/365 to a 5-August anchor
+        # through two later editions while the model rolled 246 days to 3 September.
+        f'Every lens value, dated 31 December 2025 by construction, is rolled '
+        f'{D["dcf"]["anchor_days"]}/365 of a year '
+        f'to the {M["asof"]} anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
         'window',
         'The comparison price is dated 5 August 2026; comparing an end-2025 value to it would '
         'leave seven months of accretion out of the comparison — an external review flagged the '

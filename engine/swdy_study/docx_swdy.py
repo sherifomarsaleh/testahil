@@ -303,7 +303,7 @@ rows = [['Step', 'EGP mn', 'Note'],
          f"bridge subtracts net debt at"],
         [f"Rolled {DCF['anchor_days']:.0f}/365 of a year to the anchor", f"×{DCF['roll']:.4f}",
          f"fair value accretes at the {pc(W['ke_exp'])} cost of equity between the valuation "
-         f"date and the 5-Aug-2026 anchor — one date, one price of time, applied to the "
+         f"date and the {M['asof']} anchor — one date, one price of time, applied to the "
          f"comparison itself"],
         [f"Less the FY2025 dividend paid in the window", f"({p2(IN['dps_fy25'])}/sh)",
          'EGP 1.85, ex 1 June 2026 — value that left the share before the anchor date'],
@@ -625,9 +625,18 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          'an earlier wording implied the netting removed the charge outright. The un-netted '
          'construction (cost of equity 31.8%) is retired but retained in the audit trail'],
         ['Adjusted risk-free rate', pc(W['rf_star']), pc(IN['rf_term']), ''],
+        # THE REGRESSOR IS NAMED FROM THE RECORD, NOT TYPED, AND IT USED TO BE WRONG.
+        # This cell printed the LIVE statistics -- which come from the published EGX30
+        # regression -- under the description "a 31-name equal-weight local composite
+        # over five years". That composite is the construction this house WITHDREW, so
+        # the row attached correct numbers to a false account of where they came from.
+        # The same defect was found and fixed on another name today; typed provenance
+        # goes stale the moment the record beneath it moves, and nothing compares them.
         ['Beta', f"{IN['beta']:.3f}", f"{IN['beta']:.3f}",
-         f"own-stock weekly regression against a 31-name equal-weight local composite over five "
-         f"years: R-squared {W['beta']['r2']:.3f}, n = {W['beta']['n']}, standard error "
+         f"own-stock weekly regression against the published "
+         f"{os.path.basename(W['beta']['index_file']).replace('.csv', '')} index of the "
+         f"exchange this share is listed on, over {W['beta']['window_years']:.2f} years: "
+         f"R-squared {W['beta']['r2']:.3f}, n = {W['beta']['n']}, standard error "
          f"{W['beta']['se']:.3f}, 90% interval [{W['beta']['ci90'][0]:.2f}, "
          f"{W['beta']['ci90'][1]:.2f}]"],
         ['Equity risk premium', pc(IN['erp_cds']), pc(IN['erp_term']),

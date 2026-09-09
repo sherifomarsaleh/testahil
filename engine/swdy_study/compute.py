@@ -1450,7 +1450,8 @@ assert abs(_eps_implied - V['eps_fy25']) < 0.005, (
 # ---- one date, one price of time: roll every lens to the anchor date ----------
 # Every lens produces an equity value dated 31 December 2025 — the audited balance-sheet
 # date the bridge subtracts net debt at, with FY2026 discounted a full year. The comparison
-# price is dated 5 August 2026. So every per-share value is rolled 217/365 of a year forward
+# price is the anchor this edition is struck at. So every per-share value is rolled forward
+# by DCF['anchor_days']/365 of a year (this edition: 246 days, to 3 September 2026)
 # at the cost of equity, less the EGP 1.85 FY2025 dividend paid inside the window (ex
 # 1-Jun-2026) — fair value grows at the required return net of distributions, by the
 # discount identity itself. Added after external critique correctly showed the previous
