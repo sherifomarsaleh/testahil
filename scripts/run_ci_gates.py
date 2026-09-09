@@ -194,12 +194,63 @@ def _now():
     return datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
 
 
+#: One run at a time. This became necessary the moment the runner started REVERTING
+#: files: two concurrent runs on one working tree will undo each other's steps
+#: mid-write, and each will then report a verdict about a tree the other was editing.
+#: Before the mutation guard existed, concurrent runs were merely wasteful; now they
+#: corrupt. Found by running two at once on 09-09-2026 and noticing both alive.
+LOCK = os.path.join(ROOT, ".git", "run_ci_gates.lock")
+
+
+def _take_lock():
+    """Refuse to start if another run holds the lock. Returns True if taken."""
+    try:
+        fd = os.open(LOCK, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        try:
+            with open(LOCK) as fh:
+                held = fh.read().strip()
+        except OSError:
+            held = "unknown"
+        # A STALE LOCK IS NOT A RUNNING ONE. A killed run leaves the file behind, and
+        # a tool that then refuses for ever is a tool people delete the lock for
+        # without reading it -- which is the same as having no lock.
+        pid = held.split()[0] if held else ""
+        if pid.isdigit():
+            try:
+                os.kill(int(pid), 0)
+            except OSError:
+                os.unlink(LOCK)
+                return _take_lock()
+            print("REFUSED — another run_ci_gates is running (%s). Two runs on one "
+                  "working tree revert each other's steps mid-write, and each then "
+                  "reports a verdict about a tree the other was editing." % held)
+            return False
+        os.unlink(LOCK)
+        return _take_lock()
+    os.write(fd, ("%d started %s" % (os.getpid(), _now())).encode())
+    os.close(fd)
+    return True
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("workflow", nargs="?", default="study-provenance.yml",
                     help="one workflow file. There is deliberately no --all: see "
                          "MUTATES_THE_REPO above.")
     a = ap.parse_args()
+    if not _take_lock():
+        return 1
+    try:
+        return _run(a)
+    finally:
+        try:
+            os.unlink(LOCK)
+        except OSError:
+            pass
+
+
+def _run(a):
     files = [os.path.join(WORKFLOWS, a.workflow)]
     started = _now()
 
