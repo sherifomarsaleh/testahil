@@ -8,6 +8,10 @@ from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+# The committed strike and its date, so the workbook cannot describe a price the
+# study has stopped using. Both were typed here until 09-09-2026.
+_SPOT = D['spot']
+_SPOT_DATE = D['spot_date']
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
 FILL_T = PatternFill('solid', start_color='1C3A36'); FILL_H = PatternFill('solid', start_color='EAF0EE')
@@ -60,7 +64,11 @@ for i, ln in enumerate([
  'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 21.5% -> 15.0% on the',
  'same easing calendar as the interest forecast; the terminal value is capitalised at the terminal WACC and',
  'discounted at the year-5 cumulative factor. One date, one price of time.', '',
- 'Currency. EGP million unless stated. Spot EGP 2.19 (5 Aug 2026 close). Sheets: Summary · Fundamental',
+ # THE WORKBOOK TYPED THE PRICE TWICE AND THE STUDY WAS RE-STRUCK AROUND IT [09-09-2026].
+ # Both lines now read the committed spot and its committed date, so a re-strike reaches
+ # the delivered workbook instead of leaving it describing a price nobody uses.
+ ('Currency. EGP million unless stated. Spot EGP %.2f (%s close). Sheets: Summary · Fundamental'
+  % (_SPOT, _SPOT_DATE)),
  'Valuation · Assumptions · SOTP Bridge · Segments · Relative & Normalized · DCF · Income Statement ·',
  'Balance Sheet · Cash Flow · Summary Financials · Monte Carlo · Sensitivity · Per-Share & Ratios · Peer & Sector.']
  , start=3):
@@ -77,7 +85,8 @@ def inp(ws_, row, label, val, fmt=NUM0, note=None):
     if note: put(ws_, f'C{row}', note, SUB, None)
     return row + 1
 r = hdr(wa, 4, 'ANCHORS')
-r = inp(wa, r, 'Spot price (EGP/share)', 2.19, PX, '5-Aug-2026 close, uploaded EGX history')             # B5
+r = inp(wa, r, 'Spot price (EGP/share)', _SPOT, PX,
+        '%s close, uploaded EGX history' % _SPOT_DATE)                                       # B5
 r = inp(wa, r, 'Shares outstanding (mn)', 3313.540373, NUM0, 'Mubasher paid-in capital 662,708,074.60 / par 0.20; EPS arithmetic confirms')  # B6
 r = inp(wa, r, 'Tax rate', 0.225, PCT, 'PwC Tax Summaries Egypt — 22.5% unchanged')                       # B7
 r = hdr(wa, r, 'COST OF CAPITAL — sovereign double-count removed; sliding schedule below')                # 8

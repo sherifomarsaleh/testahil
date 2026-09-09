@@ -15,7 +15,18 @@ def I(value, source, date, ring):
 
 INP = dict(
     # ---- anchors ----
-    spot=I(2.19, "uploaded EGX daily history, last close", "2026-08-05", "Market"),
+    # RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. Struck at
+    # EGP 2.19 of 5 August against a latest supplied EGP 2.08 of 3 September. THE FAIR
+    # VALUE IS UNTOUCHED: a re-strike moves the price the answer is compared with, never
+    # the answer. THE SIGCM BLOCK ON THIS STUDY IS UNAFFECTED AND STILL STANDS — its
+    # income statement and balance sheet rest on vendor data because the company serves
+    # none of the filings it lists, re-tested on 09-09-2026 and still refused (CONNECT
+    # tunnel 502 over https, no DNS over http). A price is not a fundamental; fixing the
+    # one does not touch the other, and neither excuses the other.
+    spot=I(2.08, "uploaded EGX daily history, last close — the latest price supplied to "
+           "this repository (SUPPLIED_03-09-2026.json). Superseded: EGP 2.19 of "
+           "5 August 2026, on which every edition before this one was struck",
+           "2026-09-03", "Market"),
     shares_mn=I(3313.540373, "Mubasher ELEC profile (paid-in capital EGP 662,708,074.60 / par 0.20); "
                 "verified 3 ways: SWS holder sum; FY24 EPS 0.40=1,327.8/3,313.5; FY25 EPS 0.15=500.3/3,313.5",
                 "2026 (mid)", "Company"),
@@ -572,7 +583,12 @@ zone_edges = [0, 1.80, 2.05, 2.35, 2.70, 1e9]
 zones = [float(np.mean((term3 >= a) & (term3 < b))) for a, b in zip(zone_edges[:-1], zone_edges[1:])]
 fan = np.array([np.percentile(p3, p, axis=0) for p in (5, 25, 50, 75, 95)])
 np.save(os.path.join(HERE, 'fan.npy'), fan)
-levels = [3.00, 2.75, 2.50, 2.35, 2.19, 2.05, 1.90, 1.70]
+# THE LADDER'S SPOT RUNG IS THE SPOT, NOT A COPY OF IT. These are round price levels
+# plus the traded price, and the traded price was typed as 2.19 — so a re-strike would
+# have left the touch probabilities reporting against a rung the study no longer sits on,
+# with nothing to say which of the eight was meant to be the spot.
+levels = sorted({3.00, 2.75, 2.50, 2.35, 2.05, 1.90, 1.70, round(float(SPOT), 2)},
+                reverse=True)
 touch = {}
 rmax1, rmin1 = p1.max(axis=1), p1.min(axis=1)
 rmax3, rmin3 = p3.max(axis=1), p3.min(axis=1)
@@ -832,7 +848,15 @@ out = dict(
     # weight while producing 4.2% of the answer; unfloored the same blend is -0.7055. The
     # figure below is what a reader receives today, which is what the gate audits.
     central=lens['central']['base'],
-    spot=SPOT, spot_date=tech['spot_date'], shares=SH, mktcap=MKTCAP, fx=V['fx'], tax=TAX,
+    # TWO DATES, AND THIS RECORD USED TO PUBLISH ONE OF THEM UNDER THE OTHER'S NAME
+    # [09-09-2026]. spot_date read tech['spot_date'], which is the TECHNICAL read's
+    # anchor — the price library's last session — while the study is struck on the latest
+    # supplied price. They are different quantities and were the same day only by
+    # accident; after the re-strike they are a month apart, and the record would have aged
+    # the strike by the wrong clock. The strike date is now the spot input's OWN, and the
+    # technical anchor keeps its own name so nothing is lost.
+    spot=SPOT, spot_date=INP['spot']['date'], tech_anchor_date=tech['spot_date'],
+    shares=SH, mktcap=MKTCAP, fx=V['fx'], tax=TAX,
     inputs={k: INP[k] for k in INP},
     hist_is=hist_is,
     hist_bs=dict(assets={'FY22': V['assets_fy22'], 'FY23e': V['assets_fy23_est'],
