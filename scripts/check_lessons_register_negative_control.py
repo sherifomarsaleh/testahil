@@ -33,10 +33,18 @@ def _unresolve_a_draft():
         p = os.path.join(ENGINE, d, "lessons_draft.json")
         if not os.path.exists(p):
             continue
-        doc = json.load(open(p))
+        # THE BACKUP IS THE RAW BYTES, NEVER A RE-SERIALISATION OF THE PARSED DOC.
+        # This line read `json.dumps(doc)` and restored that string, which produced a
+        # file semantically identical to the committed one and BYTE-DIFFERENT from it:
+        # 260 indented lines came back as one compact line with escaped em-dashes. The
+        # control then exited 0 while leaving the tree modified, which is exactly the
+        # [R-ENF-01] failure it exists alongside — and check_tree_unmodified.py caught
+        # it. A restore that goes through json can only ever restore the MEANING.
+        raw = open(p, "rb").read()
+        doc = json.loads(raw.decode("utf-8"))
         for x in doc.get("drafts", []):
             if x.get("registered") or x.get("declined"):
-                DRAFTS_TOUCHED.append((p, json.dumps(doc)))
+                DRAFTS_TOUCHED.append((p, raw))
                 x.pop("registered", None)
                 x.pop("declined", None)
                 json.dump(doc, open(p, "w"), indent=1)
@@ -90,7 +98,7 @@ def main():
         shutil.copy2(os.path.join(backup, os.path.basename(MD)), MD)
         shutil.copy2(os.path.join(backup, os.path.basename(PY)), PY)
         for path, original in DRAFTS_TOUCHED:
-            open(path, "w").write(original)
+            open(path, "wb").write(original)
         DRAFTS_TOUCHED.clear()
         inject()
         rc, out = run()
@@ -103,7 +111,7 @@ def main():
     shutil.copy2(os.path.join(backup, os.path.basename(MD)), MD)
     shutil.copy2(os.path.join(backup, os.path.basename(PY)), PY)
     for path, original in DRAFTS_TOUCHED:
-        open(path, "w").write(original)
+        open(path, "wb").write(original)
     shutil.rmtree(backup, ignore_errors=True)
 
     rc, out = run()

@@ -373,6 +373,16 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
+    'check_fetch_authenticity.py': 'its population is the TRACKED TREE — git ls-files — '
+                                   'because its subject is whether a committed file is the '
+                                   'type it claims and whether a stored source is a block '
+                                   'page. It reaches into study directories, so the '
+                                   'detector is right to see it, but a study planted in '
+                                   'this sandbox is UNTRACKED and the gate therefore says '
+                                   'nothing about it, correctly. Demanding a nonzero exit '
+                                   'would make it claim a new study had committed a WAF '
+                                   'page under a filing\'s name when it has committed '
+                                   'nothing at all',
     'check_tree_unmodified.py': 'its subject is THE RUN rather than any study — it asks '
                                 'whether the checks that ran modified the tracked tree, '
                                 'and a planted study directory is untracked, which this '
