@@ -1,4 +1,4 @@
-"""EIPICO_Valuation_Study_09-08-2026.docx — the 16-section study.
+"""EIPICO_Valuation_Study_{edition}.docx — the 16-section study.
 
 Written for an EXTERNAL reader: no internal procedure vocabulary anywhere, no verdict
 tokens, no calibration appendix. The calibration evidence appears inside section 3 as
@@ -6,6 +6,8 @@ plain-language sentences with the statistics inline. Experts are labelled Expert
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))
 import docx_base as B
@@ -628,9 +630,18 @@ rows += [
      'The dataset\'s separate COUNTRY risk premium column, shown so a reader checking that '
      'column finds the same numbers this study calls by that name. It is NOT added to the '
      'cost of equity — the total premium above already contains it'],
+    # EVERY STATISTIC IN THIS CELL IS NOW READ OFF THE BETA RECORD, AND THAT IS A REPAIR.
+    # It used to be typed, and it described the WITHDRAWN composite regression — "a 36-name
+    # local composite, five years; R-squared 0.235, n = 257, standard error 0.071" — beside
+    # the LIVE coefficient in the same row. So the document paired the number this study
+    # uses with the diagnostics of the method this study withdrew, which is a false
+    # statement of provenance and exactly the shape a typed figure takes when the record
+    # beneath it moves.
     ['Beta', f"{V['beta']:.3f}", f"{V['beta']:.3f}",
-     'Own-stock weekly regression against a 36-name local composite, five years; '
-     'R-squared 0.235, n = 257, standard error 0.071'],
+     f"Own-stock weekly regression against the published "
+     f"{os.path.basename(BETAJ['index_file']).replace('.csv', '')} index of the exchange "
+     f"this share is listed on, {BETAJ['window_years']} years; R-squared "
+     f"{BETAJ['r2']:.3f}, n = {BETAJ['n']}, standard error {BETAJ['se']:.3f}"],
     ['COST OF EQUITY', pc(W['ke'], 2), pc(W['ke_rating'], 2),
      f"The two bases agree to {abs(W['ke'] - W['ke_rating']) * 1e4:.0f} basis points"],
     ['Cost of debt, local currency', pc(V['kd_egp'], 2), pc(V['kd_egp'], 2),
@@ -1546,6 +1557,6 @@ P('Past performance and back-tested performance are not guides to future results
   'probability band is not a guarantee: one outcome in ten is designed to fall outside a 90% '
   'band.', size=9.4)
 
-OUT = os.path.join(HERE, 'EIPICO_Valuation_Study_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 doc.save(OUT)
 print('wrote', os.path.basename(OUT))

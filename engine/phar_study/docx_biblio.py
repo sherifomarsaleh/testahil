@@ -1,4 +1,4 @@
-"""EIPICO_Bibliography_09-08-2026.docx — the standalone bibliography document.
+"""EIPICO_Bibliography_{edition}.docx — the standalone bibliography document.
 
 Five things, in order: the primary documents actually read; the FULL input register (every
 input with its value, date and construction, grouped by research layer); the judgements, each
@@ -7,6 +7,8 @@ disagrees with, or reports beyond, the audited filing.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 sys.path.insert(0, HERE)
 import docx_base as B
 from docx.shared import Pt
@@ -354,36 +356,48 @@ caption(f'Table B6 — the twenty sessions behind the twenty-day moving average 
         f'non-trading days are absent rather than carried forward.')
 
 H2('6.2 The index the beta was regressed against')
+# THIS SECTION DESCRIBED A CONSTRUCTION THIS STUDY NO LONGER USES, AND IT FAILED LOUDLY.
+# It was written for an equal-weighted composite of covered Egyptian names, and priced the
+# subject's own weight inside that composite as the interesting caveat. The beta is now
+# produced by beta_regression.own_stock_beta() against the PUBLISHED EGX30 index, which the
+# source mandate requires and which makes a constituent composite a hard failure rather than
+# a fallback. The old text referenced BETA["composite_names"], that key stopped existing when
+# the record changed, and the build died on a KeyError instead of printing a false account of
+# the method — which is the failure mode this house prefers and the reason the prose is
+# rewritten here rather than patched around.
 P(f'The beta of {BETA["beta"]:.3f} is a weekly regression of this company\'s own returns '
-  f'against an equal-weighted composite of {BETA["composite_names"]} Egyptian listed names, '
-  f'over {BETA["window_years"]} years and {BETA["n"]} weekly observations, with an R-squared '
-  f'of {BETA["r2"]:.3f} and a standard error of {BETA["se"]:.3f}. The composite is '
-  f'equal-weighted across the following constituents, and both the constituent list and the '
-  f'weekly return series are supplied alongside this document so the coefficient can be '
-  f're-estimated rather than taken on trust:')
-P(', '.join(BETA['constituents']) + '.')
-P(f'THE SUBJECT IS IN ITS OWN INDEX, and publishing the list makes that visible, so it is '
-  f'priced here rather than left for a reader to notice. An equal-weighted composite of '
-  f'{BETA["composite_names"]} names gives this company a weight of about '
-  f'{1 / BETA["composite_names"] * 100:.1f}% in the very index it is being regressed against, '
-  f'which biases the coefficient toward one. That is how a real local index behaves and it is '
-  f'the construction used, but the regression was also re-run with the subject removed from '
-  f'the composite: the coefficient falls from {BETA["beta"]:.4f} to '
-  f'{BETA["beta_ex_subject"]:.4f}, with an R-squared of {BETA["r2_ex_subject"]:.3f} and a '
-  f'standard error of {BETA["se_ex_subject"]:.4f}. Carried through the whole model, the '
-  f'ex-subject coefficient would RAISE the two fundamental centres to EGP '
-  f'{XB["beta_ex_subject_centre_A"]:,.2f} and EGP {XB["beta_ex_subject_centre_B"]:,.2f} from '
-  f'EGP {D["lenses"]["centre_A"]:,.2f} and EGP {D["lenses"]["centre_B"]:,.2f}. The study '
-  f'carries the in-index coefficient because it is the more conservative of the two and '
-  f'because it is what a local-index construction actually produces; the alternative and its '
-  f'price are stated here so the choice is visible rather than silent.')
+  f'against the published {os.path.basename(BETA["index_file"]).replace(".csv", "")} index of '
+  f'the exchange this share is listed on, over {BETA["window_years"]} years and '
+  f'{BETA["n"]} weekly observations, with an R-squared of {BETA["r2"]:.3f} and a standard '
+  f'error of {BETA["se"]:.3f}. The index series was read as at {BETA["index_asof"]} and the '
+  f'regression window runs {BETA["first_obs"]} to {BETA["last_obs"]}. The weekly grid is '
+  f'matched to the exchange\'s real trading week rather than to calendar Fridays, and both '
+  f'series are cleaned the same way before either is differenced.')
+P(f'THE REGRESSOR IS THE PUBLISHED INDEX AND NOT A BASKET OF THIS HOUSE\'S OWN COVERAGE, '
+  f'which is the whole of the improvement. An equal-weighted composite of covered names is '
+  f'what every study in this book once used, and it is not a weaker version of an index — it '
+  f'is a different quantity, whose membership moves whenever coverage moves and which gives '
+  f'the subject a large weight in the very series it is regressed against. On one name in '
+  f'this book that construction understated the coefficient by about 40% and overstated fair '
+  f'value by 21.6%. There is therefore no ex-subject variant to report here: the subject is '
+  f'one constituent of a published index it does not control, and its weight there is set by '
+  f'the index\'s own rules.')
+P(f'{"The regression carries a Dimson adjustment for non-synchronous trading. " if BETA.get("dimson") else ""}'
+  f'A Blume cross-check shrinking the raw coefficient toward one gives '
+  f'{BETA["blume_crosscheck"]:.3f}, published beside the regression rather than substituted '
+  f'for it. The coefficient is comfortably larger than its own standard error, which is '
+  f'the test applied before any regression beta is used here.'
+  + (f' Data-quality notes on the stock series: {"; ".join(BETA["stock_dq"])}.'
+     if BETA.get('stock_dq') else '')
+  + (f' On the index series: {"; ".join(BETA["index_dq"])}.' if BETA.get('index_dq') else ''))
 P(f'Two statistics a reader can check without the series at all. The standard error implied '
   f'by the reported coefficient, R-squared and sample size is '
   f'{BETA["beta"] * ((1 - BETA["r2"]) / (BETA["r2"] * (BETA["n"] - 2))) ** 0.5:.5f}, against '
   f'the {BETA["se"]:.5f} reported — they agree, so the three statistics are mutually '
   f'consistent rather than separately asserted. And the standard error is well below the '
   f'coefficient, which is the usability test this study applies before a regression beta is '
-  f'used at all.')
+  f'used at all. The 90% interval on the coefficient runs {BETA["ci90"][0]:.3f} to '
+  f'{BETA["ci90"][1]:.3f}.')
 
 H2('6.3 The window outcomes behind the coverage statistics')
 P('The coverage figures quoted in the study are counts over a finite number of test windows, '
@@ -424,6 +438,6 @@ P('The claim that the workbook calculates was tested on the delivered file rathe
   'direction the mechanism implies. The evidence is reported in the study\'s quality-control '
   'table.')
 
-OUT = os.path.join(HERE, 'EIPICO_Bibliography_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.BIBLIO_DOCX)
 doc.save(OUT)
 print('wrote', os.path.basename(OUT))

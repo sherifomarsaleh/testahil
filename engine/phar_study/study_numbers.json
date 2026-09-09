@@ -1,6 +1,6 @@
 {
  "adopted_corrections": [],
- "adopted_corrections_note": "the walk-forward on this name adopted NO correction — see engine/phar_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work.",
+ "adopted_corrections_note": "the walk-forward on this name adopted NO correction \u2014 see engine/phar_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work.",
  "meta": {
   "company": "Egyptian International Pharmaceutical Industries Company",
   "short": "EIPICO",
@@ -8,11 +8,11 @@
   "market": "EG",
   "exchange": "The Egyptian Exchange",
   "currency": "EGP",
-  "sector": "Pharmaceuticals — generic and branded manufacturing",
+  "sector": "Pharmaceuticals \u2014 generic and branded manufacturing",
   "company_class": "Operating company (vertically integrated pharmaceutical manufacturer and exporter)",
   "reference_pattern": "Operating company",
-  "study_date": "2026-08-09",
-  "price_date": "2026-08-06",
+  "study_date": "2026-09-09",
+  "price_date": "2026-09-03",
   "fy_end": "31 December",
   "audited_years": [
    "FY2022",
@@ -27,7 +27,7 @@
  "inputs": {
   "spot": {
    "value": 127.3,
-   "source": "Egyptian Exchange close, 3 September 2026 — the latest price available when this edition was struck. A valuation compared against a month-old quote is measured against the past rather than the market, so this edition re-strikes on the current close. The previous edition was struck at EGP 130.05 on 6 August 2026.",
+   "source": "Egyptian Exchange close, 3 September 2026 \u2014 the latest price available when this edition was struck. A valuation compared against a month-old quote is measured against the past rather than the market, so this edition re-strikes on the current close. The previous edition was struck at EGP 130.05 on 6 August 2026.",
    "date": "2026-09-03",
    "layer": "Market"
   },
@@ -333,7 +333,7 @@
   },
   "parent_fy22": {
    "value": 587.040623,
-   "source": "Audited consolidated financial statements for FY2022, profit attributable to the holding company (587.041) — read from the comparative column of the FY2023 filing",
+   "source": "Audited consolidated financial statements for FY2022, profit attributable to the holding company (587.041) \u2014 read from the comparative column of the FY2023 filing",
    "date": "2024-03-01",
    "layer": "Company"
   },
@@ -387,7 +387,7 @@
   },
   "cip_fy25": {
    "value": 4901.223806,
-   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (6) projects under construction — predominantly the EIPICO 3 biologicals and biosimilars facility",
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (6) projects under construction \u2014 predominantly the EIPICO 3 biologicals and biosimilars facility",
    "date": "2026-03-01",
    "layer": "Company"
   },
@@ -429,7 +429,7 @@
   },
   "afs_fy25": {
    "value": 12.33,
-   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (8/1) non-current assets held for sale — the investment in EIPICO Tech Pharmaceuticals, in liquidation",
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (8/1) non-current assets held for sale \u2014 the investment in EIPICO Tech Pharmaceuticals, in liquidation",
    "date": "2026-03-01",
    "layer": "Company"
   },
@@ -615,37 +615,37 @@
   },
   "packs_sold_fy23": {
    "value": 279.716,
-   "source": "Board of Directors' report for FY2024, published inside the 2025 Annual Report — the company's own disclosed operating statistics — packs sold, million: 273.750 own preparations plus 5.966 contract manufacturing",
+   "source": "Board of Directors' report for FY2024, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold, million: 273.750 own preparations plus 5.966 contract manufacturing",
    "date": "2025-03-01",
    "layer": "Company"
   },
   "packs_sold_fy24": {
    "value": 307.846,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — packs sold, million: 298.972 own preparations plus 8.874 contract manufacturing",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold, million: 298.972 own preparations plus 8.874 contract manufacturing",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "packs_sold_fy25": {
    "value": 357.295,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — packs sold, million: 351.810 own preparations plus 5.485 contract manufacturing",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold, million: 351.810 own preparations plus 5.485 contract manufacturing",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "packs_own_fy24": {
    "value": 298.972,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — packs sold of the company's own preparations",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold of the company's own preparations",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "packs_own_fy25": {
    "value": 351.81,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — packs sold of the company's own preparations",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold of the company's own preparations",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "packs_toll_fy25": {
    "value": 5.485,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — packs sold under contract-manufacturing agreements",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 packs sold under contract-manufacturing agreements",
    "date": "2026-03-28",
    "layer": "Company"
   },
@@ -657,7 +657,7 @@
   },
   "export_usd_fy25": {
    "value": 60.0,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics: exports of EGP 2,967 million, stated in the same paragraph as USD 60 million (2024: EGP 2,500 million / USD 55 million)",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics: exports of EGP 2,967 million, stated in the same paragraph as USD 60 million (2024: EGP 2,500 million / USD 55 million)",
    "date": "2026-03-28",
    "layer": "Company"
   },
@@ -711,7 +711,7 @@
   },
   "contract_value_fy25": {
    "value": 142.321,
-   "source": "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table: value of sales of preparations made under contract-manufacturing agreements. NOT the same line as the contract-manufacturing REVENUE the company books — that is the manufacturing fee only, disclosed separately below",
+   "source": "Board of directors' report for FY2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), sales-indicators table: value of sales of preparations made under contract-manufacturing agreements. NOT the same line as the contract-manufacturing REVENUE the company books \u2014 that is the manufacturing fee only, disclosed separately below",
    "date": "2026-03-01",
    "layer": "Company"
   },
@@ -879,7 +879,7 @@
   },
   "w_dcf": {
    "value": 0.5,
-   "source": "Weight on the discounted-cash-flow reading inside each weighted centre. Carried IN FULL on one provision frame at a time — never split across both, because splitting it across both averages the two frames",
+   "source": "Weight on the discounted-cash-flow reading inside each weighted centre. Carried IN FULL on one provision frame at a time \u2014 never split across both, because splitting it across both averages the two frames",
    "date": "2026-08-09",
    "layer": "House"
   },
@@ -939,37 +939,37 @@
   },
   "units_prod_fy24": {
    "value": 2143.68,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — comparative production by pharmaceutical dosage form, million units. NOTE the FY2024 Annual Report's own tablet line read 1,513.38 million against the 1,351.75 million restated in the FY2025 report; the later filing is used and the restatement disclosed",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 comparative production by pharmaceutical dosage form, million units. NOTE the FY2024 Annual Report's own tablet line read 1,513.38 million against the 1,351.75 million restated in the FY2025 report; the later filing is used and the restatement disclosed",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "units_prod_fy25": {
    "value": 2207.95,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — production by pharmaceutical dosage form, million units, summed across all twenty-one disclosed forms",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 production by pharmaceutical dosage form, million units, summed across all twenty-one disclosed forms",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "units_cap": {
    "value": 3383.06,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — available capacity in the period, million units, summed across all disclosed dosage forms (unchanged 2024 and 2025)",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 available capacity in the period, million units, summed across all disclosed dosage forms (unchanged 2024 and 2025)",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "employees_fy25": {
    "value": 4981,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — average headcount",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 average headcount",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "prod_value_fy25": {
    "value": 10811.924,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — value of production",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 value of production",
    "date": "2026-03-28",
    "layer": "Company"
   },
   "products_fy25": {
    "value": 414,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics — number of registered preparations produced (2024: 401)",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics \u2014 number of registered preparations produced (2024: 401)",
    "date": "2026-03-28",
    "layer": "Company"
   },
@@ -999,7 +999,7 @@
   },
   "fx_net_monetary_usd_fy25": {
    "value": -0.540092,
-   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (36): net monetary position in US dollars at the balance-sheet date — bank balances 10.510 plus receivables 40.068 less creditor banks 51.118, in millions of US dollars",
+   "source": "Audited consolidated financial statements for the year ended 31 December 2025, published in the company's 2025 Annual Report (eipico.com.eg -> Investor Relations -> Annual Reports), note (36): net monetary position in US dollars at the balance-sheet date \u2014 bank balances 10.510 plus receivables 40.068 less creditor banks 51.118, in millions of US dollars",
    "date": "2026-03-01",
    "layer": "Company"
   },
@@ -1011,7 +1011,7 @@
     67.1652,
     70.1139
    ],
-   "source": "Egyptian pound per US dollar, FY2026E-FY2030E period averages, DERIVED by relative purchasing-power parity from the house inflation path above against long-run United States inflation of 2.5% — never hand-set, because escalating costs at domestic inflation while holding the currency still is one event counted once and ignored once. The path compounds from the quote of 50.25 to the dollar on 6 August 2026. The previous edition ended the window at 57.7 against the 69.7 the differential produces — it escalated domestic costs at Egyptian inflation while depreciating the pound at roughly a third of the gap, which is two views of one economy inside one model.",
+   "source": "Egyptian pound per US dollar, FY2026E-FY2030E period averages, DERIVED by relative purchasing-power parity from the house inflation path above against long-run United States inflation of 2.5% \u2014 never hand-set, because escalating costs at domestic inflation while holding the currency still is one event counted once and ignored once. The path compounds from the quote of 50.25 to the dollar on 6 August 2026. The previous edition ended the window at 57.7 against the 69.7 the differential produces \u2014 it escalated domestic costs at Egyptian inflation while depreciating the pound at roughly a third of the gap, which is two views of one economy inside one model.",
    "date": "2026-09-03",
    "layer": "House"
   },
@@ -1132,7 +1132,7 @@
     0.075,
     0.07
    ],
-   "source": "Egyptian consumer price inflation, FY2026E-FY2030E, applied to genuinely domestic service and consumable lines. THIS IS THE HOUSE PATH AND NOT THIS STUDY'S OWN: 16.0 / 12.0 / 9.0 / 7.5 / 7.0, the central bank's own published baseline for 2026 and 2027 and its stated glide to the target band thereafter. The previous edition carried 12.0 / 10.0 / 8.5 / 7.0 / 6.0 — a path that compounds 7.3% lower over the window and terminates a point below the long-run rate this same valuation uses in its terminal value. A company cannot be valued in an economy the study beside it does not recognise, and the divergence was invisible because the number was derived rather than typed and nobody asked derived from what.",
+   "source": "Egyptian consumer price inflation, FY2026E-FY2030E, applied to genuinely domestic service and consumable lines. THIS IS THE HOUSE PATH AND NOT THIS STUDY'S OWN: 16.0 / 12.0 / 9.0 / 7.5 / 7.0, the central bank's own published baseline for 2026 and 2027 and its stated glide to the target band thereafter. The previous edition carried 12.0 / 10.0 / 8.5 / 7.0 / 6.0 \u2014 a path that compounds 7.3% lower over the window and terminates a point below the long-run rate this same valuation uses in its terminal value. A company cannot be valued in an economy the study beside it does not recognise, and the divergence was invisible because the number was derived rather than typed and nobody asked derived from what.",
    "date": "2026-09-03",
    "layer": "House"
   },
@@ -1174,7 +1174,7 @@
   },
   "prov_pct_permanent": {
    "value": 0.0525,
-   "source": "Credit losses, inventory write-downs and other provisions as a permanent share of revenue — the FRAME A reading. LABEL CORRECTED: this is NOT 'the three-year average', which the earlier edition called it. The disclosed charge runs 5.07% (FY2023), 9.24% (FY2024), 5.23% (FY2025); the mean of those three ratios is 6.52% and the mean of the two years either side of the FY2024 spike is 5.15%. 5.25% IS STRUCK MARGINALLY ABOVE THE TWO NON-OUTLIER YEARS, and that is what it should be called. Both the 6.52% three-year mean and the 3.03% expected-credit-loss-only three-year mean are published beside it and the frame is sensitised across them. Context that neither reading carries: the first quarter of 2026 booked NO expected credit loss at all — one of the three matters the auditor qualified — so 6.52% is more than twice a quarter that charged nothing",
+   "source": "Credit losses, inventory write-downs and other provisions as a permanent share of revenue \u2014 the FRAME A reading. LABEL CORRECTED: this is NOT 'the three-year average', which the earlier edition called it. The disclosed charge runs 5.07% (FY2023), 9.24% (FY2024), 5.23% (FY2025); the mean of those three ratios is 6.52% and the mean of the two years either side of the FY2024 spike is 5.15%. 5.25% IS STRUCK MARGINALLY ABOVE THE TWO NON-OUTLIER YEARS, and that is what it should be called. Both the 6.52% three-year mean and the 3.03% expected-credit-loss-only three-year mean are published beside it and the frame is sensitised across them. Context that neither reading carries: the first quarter of 2026 booked NO expected credit loss at all \u2014 one of the three matters the auditor qualified \u2014 so 6.52% is more than twice a quarter that charged nothing",
    "date": "2026-08-09",
    "layer": "House"
   },
@@ -1510,7 +1510,7 @@
   },
   "tablets_fy24_restated": {
    "value": 1351.75,
-   "source": "The same year restated in the FY2025 board of directors' report — a disclosed restatement, resolved in favour of the later filing",
+   "source": "The same year restated in the FY2025 board of directors' report \u2014 a disclosed restatement, resolved in favour of the later filing",
    "date": "2026-03-28",
    "layer": "Company"
   },
@@ -1528,7 +1528,7 @@
   },
   "export_countries": {
    "value": 67,
-   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report — the company's own disclosed operating statistics: countries exported to in FY2025",
+   "source": "Board of Directors' report for FY2025, published inside the 2025 Annual Report \u2014 the company's own disclosed operating statistics: countries exported to in FY2025",
    "date": "2026-03-28",
    "layer": "Company"
   },
@@ -1576,7 +1576,7 @@
   },
   "q1_fin": {
    "value": 312.861801,
-   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: financing expenses (Q1-2025: 335.979) — DOWN 6.9% year on year despite a larger debt book",
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: financing expenses (Q1-2025: 335.979) \u2014 DOWN 6.9% year on year despite a larger debt book",
    "date": "2026-05-14",
    "layer": "Company"
   },
@@ -1612,13 +1612,13 @@
   },
   "q1_ppe": {
    "value": 4209.663874,
-   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: fixed assets net, against 3,069.748 at 31 December 2025 — a rise of 1,139.916 in one quarter",
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: fixed assets net, against 3,069.748 at 31 December 2025 \u2014 a rise of 1,139.916 in one quarter",
    "date": "2026-05-14",
    "layer": "Company"
   },
   "q1_cip": {
    "value": 3983.624093,
-   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: projects under construction, against 4,901.224 at 31 December 2025 — a TRANSFER OUT of 917.600 in one quarter, which is the study's central mechanism arriving on schedule",
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: projects under construction, against 4,901.224 at 31 December 2025 \u2014 a TRANSFER OUT of 917.600 in one quarter, which is the study's central mechanism arriving on schedule",
    "date": "2026-05-14",
    "layer": "Company"
   },
@@ -1648,13 +1648,13 @@
   },
   "q1_ar": {
    "value": 4123.00431,
-   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: accounts and notes receivable net, against 3,325.044 — a rise of 797.960 against which no credit-loss charge was taken",
+   "source": "Reviewed consolidated interim financial statements for the three months ended 31 March 2026, English translation issued by the auditor, review report dated 14 May 2026. THE REVIEW CONCLUSION IS QUALIFIED: accounts and notes receivable net, against 3,325.044 \u2014 a rise of 797.960 against which no credit-loss charge was taken",
    "date": "2026-05-14",
    "layer": "Company"
   },
   "q1_share_of_year_rev": {
    "value": 0.2436,
-   "source": "Q1-2025 net sales of 2,299.890 as a share of FY2025 net sales of 9,441.379 — the seasonal shape used to read the quarter into a full year",
+   "source": "Q1-2025 net sales of 2,299.890 as a share of FY2025 net sales of 9,441.379 \u2014 the seasonal shape used to read the quarter into a full year",
    "date": "2026-05-14",
    "layer": "Company"
   },
@@ -1666,7 +1666,7 @@
   },
   "arab_api_cost": {
    "value": 228.48641800000007,
-   "source": "The active-ingredient company's carrying value after deconsolidation, taken as the movement in investments in associates across the first quarter. It is pre-revenue — the company indicates trial batches in 2027 — so carrying cost, not an earnings multiple, is the right proxy for it",
+   "source": "The active-ingredient company's carrying value after deconsolidation, taken as the movement in investments in associates across the first quarter. It is pre-revenue \u2014 the company indicates trial batches in 2027 \u2014 so carrying cost, not an earnings multiple, is the right proxy for it",
    "date": "2026-05-14",
    "layer": "Company"
   },
@@ -1678,7 +1678,7 @@
   },
   "tax_stat": {
    "value": 0.225,
-   "source": "Egyptian corporate income tax rate, 22.5% — confirmed in the corporate tax-rate column of the country risk-premium file read for this study",
+   "source": "Egyptian corporate income tax rate, 22.5% \u2014 confirmed in the corporate tax-rate column of the country risk-premium file read for this study",
    "date": "2026-01-05",
    "layer": "Country"
   },
@@ -1690,7 +1690,7 @@
   },
   "rf": {
    "value": 0.23,
-   "source": "Egypt ten-year local-currency government bond yield, 23.00%, the observable print on the SAME date as the equity price used throughout this study (6 August 2026). The earlier edition carried a 22.31% print dated 21 July 2026, which was both stale against the pricing date and 39 basis points below the observable level on its own date; the risk-free rate and the share price are now struck on one date. A live re-read of the central bank's own fixed-coupon treasury bond auction page was attempted on 09-Aug-2026 and rejected by that site's web application firewall, so the level is indicated by a market-data series rather than proven from the auction curve — and it is sensitised",
+   "source": "Egypt ten-year local-currency government bond yield, 23.00%, the observable print on the SAME date as the equity price used throughout this study (6 August 2026). The earlier edition carried a 22.31% print dated 21 July 2026, which was both stale against the pricing date and 39 basis points below the observable level on its own date; the risk-free rate and the share price are now struck on one date. A live re-read of the central bank's own fixed-coupon treasury bond auction page was attempted on 09-Aug-2026 and rejected by that site's web application firewall, so the level is indicated by a market-data series rather than proven from the auction curve \u2014 and it is sensitised",
    "date": "2026-08-06",
    "layer": "Country"
   },
@@ -1702,37 +1702,37 @@
   },
   "sov_spread_rating": {
    "value": 0.059702,
-   "source": "Egypt adjusted default spread on the rating basis (Moody's Caa1), 5.9702%, same mid-year (July 2026) vintage, 'Rating-based Default Spread' column — the alternative construction, published for the audit trail. The January-2026 vintage carried 6.3725%",
+   "source": "Egypt adjusted default spread on the rating basis (Moody's Caa1), 5.9702%, same mid-year (July 2026) vintage, 'Rating-based Default Spread' column \u2014 the alternative construction, published for the audit trail. The January-2026 vintage carried 6.3725%",
    "date": "2026-07-02",
    "layer": "Country"
   },
   "erp_cds": {
    "value": 0.095164,
-   "source": "Egypt TOTAL equity risk premium on the sovereign-CDS basis, 9.5164%, same mid-year vintage. This is the dataset's TOTAL equity risk premium column, not its country risk premium column — the total premium is what multiplies beta. The CDS-basis country risk premium alone is 5.3164%",
+   "source": "Egypt TOTAL equity risk premium on the sovereign-CDS basis, 9.5164%, same mid-year vintage. This is the dataset's TOTAL equity risk premium column, not its country risk premium column \u2014 the total premium is what multiplies beta. The CDS-basis country risk premium alone is 5.3164%",
    "date": "2026-07-02",
    "layer": "Country"
   },
   "erp_rating": {
    "value": 0.134806,
-   "source": "Egypt TOTAL equity risk premium on the rating basis, 13.4806%, same mid-year vintage — again the TOTAL equity risk premium column, being the 9.2806% country risk premium over a 4.20% mature-market premium. The January-2026 vintage carried 13.9377% total over a 9.7077% country premium",
+   "source": "Egypt TOTAL equity risk premium on the rating basis, 13.4806%, same mid-year vintage \u2014 again the TOTAL equity risk premium column, being the 9.2806% country risk premium over a 4.20% mature-market premium. The January-2026 vintage carried 13.9377% total over a 9.7077% country premium",
    "date": "2026-07-02",
    "layer": "Country"
   },
   "crp_rating": {
    "value": 0.092806,
-   "source": "Egypt COUNTRY risk premium on the rating basis, 9.2806%, mid-year (July 2026) vintage — carried separately and published beside the total premium so that a reader checking the dataset's own 'Country Risk Premium' column finds the figure this study calls by that name. It is NOT added to the cost of equity; the total premium above already contains it",
+   "source": "Egypt COUNTRY risk premium on the rating basis, 9.2806%, mid-year (July 2026) vintage \u2014 carried separately and published beside the total premium so that a reader checking the dataset's own 'Country Risk Premium' column finds the figure this study calls by that name. It is NOT added to the cost of equity; the total premium above already contains it",
    "date": "2026-07-02",
    "layer": "Country"
   },
   "crp_cds": {
    "value": 0.053164,
-   "source": "Egypt COUNTRY risk premium on the sovereign-CDS basis, 5.3164%, mid-year vintage, disclosure only — see the note above",
+   "source": "Egypt COUNTRY risk premium on the sovereign-CDS basis, 5.3164%, mid-year vintage, disclosure only \u2014 see the note above",
    "date": "2026-07-02",
    "layer": "Country"
   },
   "beta": {
    "value": 0.6658188407423365,
-   "source": "Own-stock first-tier weekly regression against raw_indices/EG/EGX30.csv as at 2026-09-08 — THE PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() rather than hand-rolled. R-squared 0.143, n = 256, standard error 0.1355, 90% confidence interval [0.443, 0.889], Dimson-corrected and matched to the exchange's own trading week (W-THU). Clears the usability gate. WITHDRAWN AND KEPT FOR COMPARISON: the previous edition regressed against a 36-name equal-weight composite of the covered library and got 0.6295 at an R-squared of 0.235. THE COMPOSITE FIT BETTER, which is what a coverage artefact does — it shares constituents with the panel it prices — and a better fit against the wrong regressor is not evidence for the wrong regressor. A beta below one is still what a defensive, price-regulated, domestically-consumed staple should produce.",
+   "source": "Own-stock first-tier weekly regression against raw_indices/EG/EGX30.csv as at 2026-09-08 \u2014 THE PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() rather than hand-rolled. R-squared 0.143, n = 256, standard error 0.1355, 90% confidence interval [0.443, 0.889], Dimson-corrected and matched to the exchange's own trading week (W-THU). The coefficient is comfortably larger than its own standard error, which is the test applied before any regression beta is used. WITHDRAWN AND KEPT FOR COMPARISON: the previous edition regressed against a 36-name equal-weight basket of the covered library and got 0.6295 at an R-squared of 0.235. THE BASKET FIT BETTER, which is what a basket built out of our own coverage does \u2014 it shares members with the very set it is used to price \u2014 and a better fit against the wrong regressor is not evidence for the wrong regressor. A beta below one is still what a defensive, price-regulated, domestically-consumed staple should produce.",
    "date": "2026-09-08",
    "layer": "House"
   },
@@ -1762,7 +1762,7 @@
     1090.0,
     1030.0
    ],
-   "source": "Finance cost charged to the income statement, EGP million. This is NOT the marginal cost of debt used in the discount rate — that is a forward, local-equivalent, currency-blended rate; this is what the profit and loss account actually bears, and part of the group's interest is still being capitalised into the remaining construction balance. CALIBRATED TO THE FIRST QUARTER OF 2026: 312.862 of financing expense in three months, DOWN 6.9% year on year, an annual run-rate of about 1,251 against the 1,548 the first cut of this model implied. It then declines with the central bank's easing cycle",
+   "source": "Finance cost charged to the income statement, EGP million. This is NOT the marginal cost of debt used in the discount rate \u2014 that is a forward, local-equivalent, currency-blended rate; this is what the profit and loss account actually bears, and part of the group's interest is still being capitalised into the remaining construction balance. CALIBRATED TO THE FIRST QUARTER OF 2026: 312.862 of financing expense in three months, DOWN 6.9% year on year, an annual run-rate of about 1,251 against the 1,548 the first cut of this model implied. It then declines with the central bank's easing cycle",
    "date": "2026-08-11",
    "layer": "House"
   },
@@ -1780,7 +1780,7 @@
   },
   "rf_term": {
    "value": 0.125,
-   "source": "Terminal risk-free rate, DERIVED and never quoted: the long-run inflation this valuation carries throughout, 7.0%, plus the standard 5.5-point emerging-market real-rate convention. The previous edition used 10.5%, built the same way but on a 5% inflation assumption that appears nowhere else in the model — the same valuation escalated costs on one long-run rate and discounted the terminal on another, two points apart. THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most terminal-value-sensitive number in the model cannot be typed, and it cannot disagree with the inflation the rest of the model uses because it is computed from it.",
+   "source": "Terminal risk-free rate, DERIVED and never quoted: the long-run inflation this valuation carries throughout, 7.0%, plus the standard 5.5-point emerging-market real-rate convention. The previous edition used 10.5%, built the same way but on a 5% inflation assumption that appears nowhere else in the model \u2014 the same valuation escalated costs on one long-run rate and discounted the terminal on another, two points apart. THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most terminal-value-sensitive number in the model cannot be typed, and it cannot disagree with the inflation the rest of the model uses because it is computed from it.",
    "date": "2026-09-03",
    "layer": "House"
   },
@@ -1792,7 +1792,7 @@
   },
   "kd_term_lc": {
    "value": 0.15,
-   "source": "Terminal local-currency corporate borrowing rate — the long-run Egyptian norm of roughly 10 points above the 5% inflation target",
+   "source": "Terminal local-currency corporate borrowing rate \u2014 the long-run Egyptian norm of roughly 10 points above the 5% inflation target",
    "date": "2026-08-09",
    "layer": "House"
   },
@@ -1804,49 +1804,49 @@
   },
   "wd_term_basis": {
    "value": "market",
-   "source": "Basis on which the TERMINAL debt weight is set. It is no longer an asserted 20%. The earlier edition claimed 20% was 'reconciled to the model's own forecast balance sheet'; it was not — that sheet, once it is made to balance, carries a book net-debt weight near 39% at FY2030E, and today's market-value net-debt weight is near 25%. Neither is 20%, and the stated deleveraging never happens once the forecast is funded. This input selects which reconcilable reading is used: 'market' takes today's market-value net-debt weight (the weighting basis a weighted average cost of capital requires), 'book' takes the forecast terminal book weight. Both are computed below and both are published",
+   "source": "Basis on which the TERMINAL debt weight is set. It is no longer an asserted 20%. The earlier edition claimed 20% was 'reconciled to the model's own forecast balance sheet'; it was not \u2014 that sheet, once it is made to balance, carries a book net-debt weight near 39% at FY2030E, and today's market-value net-debt weight is near 25%. Neither is 20%, and the stated deleveraging never happens once the forecast is funded. This input selects which reconcilable reading is used: 'market' takes today's market-value net-debt weight (the weighting basis a weighted average cost of capital requires), 'book' takes the forecast terminal book weight. Both are computed below and both are published",
    "date": "2026-08-09",
    "layer": "House"
   },
   "g_term_real": {
    "value": 0.0,
-   "source": "Terminal REAL growth of zero: the business is assumed to hold its scale in real terms in perpetuity, with the nominal rate computed from the long-run Egyptian inflation this valuation uses throughout. The previous edition typed 5% nominal and justified it as 'approximately zero real terminal growth' — WHICH IT WAS NOT. Against the 7% long-run inflation this valuation carries elsewhere, 5% nominal is a real DECLINE of 1.87% a year, for ever, for a company with a third of its revenue in hard currency and a biosimilars plant just entering service. Nothing in the study argued for a perpetual contraction; the sentence asserted the opposite of what the arithmetic did, and a rate quoted only in nominal terms is where that hides. Sensitised 3-7% nominal.",
+   "source": "Terminal REAL growth of zero: the business is assumed to hold its scale in real terms in perpetuity, with the nominal rate computed from the long-run Egyptian inflation this valuation uses throughout. The previous edition typed 5% nominal and justified it as 'approximately zero real terminal growth' \u2014 WHICH IT WAS NOT. Against the 7% long-run inflation this valuation carries elsewhere, 5% nominal is a real DECLINE of 1.87% a year, for ever, for a company with a third of its revenue in hard currency and a biosimilars plant just entering service. Nothing in the study argued for a perpetual contraction; the sentence asserted the opposite of what the arithmetic did, and a rate quoted only in nominal terms is where that hides. Sensitised 3-7% nominal.",
    "date": "2026-08-09",
    "layer": "House"
   },
   "asset_life_weighted": {
    "value": 13.8,
-   "source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 — buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated — weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
+   "source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 \u2014 buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated \u2014 weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
    "date": "2024-12-31",
    "layer": "Company"
   },
   "roic_term_source": {
    "value": "model_fy2030",
-   "source": "Terminal return on invested capital is no longer an input. The earlier edition asserted 20% while the model's own FY2030E return on invested capital was 16.36% — a 364 basis-point step up, taken at exactly the point where three quarters of core enterprise value sits. The terminal return is now COMPUTED as the model's own final forecast year, so terminal reinvestment (growth divided by return) cannot assume a return the forecast does not earn. This input records that choice; there is no numeric assumption left to make",
+   "source": "Terminal return on invested capital is no longer an input. The earlier edition asserted 20% while the model's own FY2030E return on invested capital was 16.36% \u2014 a 364 basis-point step up, taken at exactly the point where three quarters of core enterprise value sits. The terminal return is now COMPUTED as the model's own final forecast year, so terminal reinvestment (growth divided by return) cannot assume a return the forecast does not earn. This input records that choice; there is no numeric assumption left to make",
    "date": "2026-08-09",
    "layer": "House"
   },
   "assoc_multiple": {
    "value": 11.0,
-   "source": "Earnings multiple applied to the equity-accounted associate stream in the enterprise-to-equity bridge. The associates contributed EGP 495.5 million in FY2025 — 36% of attributable profit — against a carrying value of only EGP 675.9 million, so carrying value is not a usable proxy. The larger holding is a 30% interest in a Saudi Arabian pharmaceutical manufacturer; 11 times is struck below the Gulf listed-pharmaceutical range to allow for the minority, unlisted and non-controlled nature of the stake. CROSS-CHECK: the one associate in the group that is itself listed trades on roughly 9.3 times trailing earnings, so 11 times is above the only observable comparable in the portfolio and the enterprise-to-equity bridge is sensitised on it",
+   "source": "Earnings multiple applied to the equity-accounted associate stream in the enterprise-to-equity bridge. The associates contributed EGP 495.5 million in FY2025 \u2014 36% of attributable profit \u2014 against a carrying value of only EGP 675.9 million, so carrying value is not a usable proxy. The larger holding is a 30% interest in a Saudi Arabian pharmaceutical manufacturer; 11 times is struck below the Gulf listed-pharmaceutical range to allow for the minority, unlisted and non-controlled nature of the stake. CROSS-CHECK: the one associate in the group that is itself listed trades on roughly 9.3 times trailing earnings, so 11 times is above the only observable comparable in the portfolio and the enterprise-to-equity bridge is sensitised on it",
    "date": "2026-08-09",
    "layer": "House"
   },
   "assoc_norm": {
    "value": 250.0,
-   "source": "Normalised annual contribution of the EARNING associates, used with the multiple above; the pre-revenue active-ingredient company is carried separately at cost, on its own line. EGP million. BASIS, RECONCILED TO THIS STUDY'S OWN INCOME STATEMENT (the earlier edition's basis note quoted 74.5 / 147.1 / 495.5, two of which did not match it): the disclosed share of associates' and subsidiaries' results is 74.508 (FY2023), 151.581 (FY2024) and 512.085 (FY2025). Those three average 246.058, and 250 is struck there — not at the level the FY2025 print alone would support. REVISED DOWN from 320 after the first quarter of 2026 reported only 13.118 against 33.445 a year earlier, an annualised 52.5. That quarter is EVIDENCE, NOT A RUN-RATE: the auditor states in the review report that the periodic financial statements of two of the holdings were not received, so the quarter's associate line is incomplete by construction. Both the 250 carried and the 52.5 the quarter annualises to are published, and the leg is sensitised across them",
+   "source": "Normalised annual contribution of the EARNING associates, used with the multiple above; the pre-revenue active-ingredient company is carried separately at cost, on its own line. EGP million. BASIS, RECONCILED TO THIS STUDY'S OWN INCOME STATEMENT (the earlier edition's basis note quoted 74.5 / 147.1 / 495.5, two of which did not match it): the disclosed share of associates' and subsidiaries' results is 74.508 (FY2023), 151.581 (FY2024) and 512.085 (FY2025). Those three average 246.058, and 250 is struck there \u2014 not at the level the FY2025 print alone would support. REVISED DOWN from 320 after the first quarter of 2026 reported only 13.118 against 33.445 a year earlier, an annualised 52.5. That quarter is EVIDENCE, NOT A RUN-RATE: the auditor states in the review report that the periodic financial statements of two of the holdings were not received, so the quarter's associate line is incomplete by construction. Both the 250 carried and the 52.5 the quarter annualises to are published, and the leg is sensitised across them",
    "date": "2026-08-11",
    "layer": "House"
   },
   "peer_ke": {
    "value": 0.1,
-   "source": "Cost of equity faced by the struck reference companies — a listed Saudi Arabian generics manufacturer and larger international generic manufacturers, all of them in hard-currency or pegged economies. It is the ONE difference the peer multiple is adjusted for, and it is registered rather than typed inside the adjustment so a reader can see what the adjustment is made of.",
+   "source": "Cost of equity faced by the struck reference companies \u2014 a listed Saudi Arabian generics manufacturer and larger international generic manufacturers, all of them in hard-currency or pegged economies. It is the ONE difference the peer multiple is adjusted for, and it is registered rather than typed inside the adjustment so a reader can see what the adjustment is made of.",
    "date": "2026-08-09",
    "layer": "House"
   },
   "peer_pe_regional": {
    "value": 21.35,
-   "source": "A STRUCK REFERENCE, not a median of a disclosed peer set — the earlier edition called it a 'peer median', which it was not, because only two reference points are disclosed. Those two are: a listed Saudi Arabian generics manufacturer at 26.7 times, and larger, more liquid regional and international generic manufacturers at about 16.0 times. 21.35 is the midpoint of those two observations — which for a two-element set is also their median — rather than a figure struck between them by judgement. MARKET DATA, cross-check layer, never a source for any company historical. The peers are not named and their financials are not published, so this multiple cannot be rebuilt from peer filings; that gap is recorded as an open research item and the lens is run across a 13-26 times band rather than on a point",
+   "source": "A STRUCK REFERENCE, not a median of a disclosed peer set \u2014 the earlier edition called it a 'peer median', which it was not, because only two reference points are disclosed. Those two are: a listed Saudi Arabian generics manufacturer at 26.7 times, and larger, more liquid regional and international generic manufacturers at about 16.0 times. 21.35 is the midpoint of those two observations \u2014 which for a two-element set is also their median \u2014 rather than a figure struck between them by judgement. MARKET DATA, cross-check layer, never a source for any company historical. The peers are not named and their financials are not published, so this multiple cannot be rebuilt from peer filings; that gap is recorded as an open research item and the lens is run across a 13-26 times band rather than on a point",
    "date": "2026-08-09",
    "layer": "Market"
   },
@@ -2515,7 +2515,7 @@
    "index_asof": "2026-09-08",
    "index_dq": [],
    "stock_dq": [
-    "dropped 3 rows carrying a non-positive or non-finite OHLC value (2011-06-15..2011-09-21) — vendor fills, not tradeable prices"
+    "dropped 3 rows carrying a non-positive or non-finite OHLC value (2011-06-15..2011-09-21) \u2014 vendor fills, not tradeable prices"
    ],
    "week_rule": "W-THU",
    "interim_note": null,
@@ -2527,14 +2527,14 @@
     "n": 257,
     "se": 0.0711167095609022,
     "regressor": "36-name equal-weight composite of the covered EGX library",
-    "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle — only an inherited pattern."
+    "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle \u2014 only an inherited pattern."
    },
    "delta_vs_withdrawn": 0.05772159769242613
   }
  },
  "dcf": {
   "frame_A": {
-   "label": "Frame A — provision charge permanent at 5.25% of revenue",
+   "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
    "per_share_superseded_grown_basis": 34.897389158786346,
    "ebitda": [
     2414.8976984773417,
@@ -2588,7 +2588,7 @@
      "nominal_growth": 0.07000000000000006,
      "dna_book": 423.0857284827946,
      "useful_life_years": 13.8,
-     "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 — buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated — weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
+     "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 \u2014 buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated \u2014 weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
      "maintenance_basis": "book_dna_escalated",
      "working_capital": 10249.288195405567,
      "incremental_capital_per_unit_growth": 9563.148834369189
@@ -2614,7 +2614,7 @@
       "dna_book": 423.0857284827946,
       "ic_replacement": null,
       "useful_life_years": 13.8,
-      "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 — buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated — weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
+      "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 \u2014 buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated \u2014 weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
       "average_age_years": null,
       "average_age_source": "",
       "maintenance_basis": "book_dna_escalated",
@@ -2671,7 +2671,7 @@
    "tv_share_total": 0.6069512937898884
   },
   "frame_B": {
-   "label": "Frame B — provision charge normalising to 2.5% of revenue",
+   "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
    "per_share_superseded_grown_basis": 52.018165424419934,
    "ebitda": [
     2495.1062848558063,
@@ -2725,7 +2725,7 @@
      "nominal_growth": 0.07000000000000006,
      "dna_book": 423.0857284827946,
      "useful_life_years": 13.8,
-     "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 — buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated — weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
+     "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 \u2014 buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated \u2014 weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
      "maintenance_basis": "book_dna_escalated",
      "working_capital": 10249.288195405567,
      "incremental_capital_per_unit_growth": 9563.148834369189
@@ -2751,7 +2751,7 @@
       "dna_book": 423.0857284827946,
       "ic_replacement": null,
       "useful_life_years": 13.8,
-      "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 — buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated — weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
+      "useful_life_source": "Weighted useful life of the depreciable asset base, derived from the FY2024 audited consolidated statements' own composition: the estimated lives in note 3.1 \u2014 buildings and structures 50 years, production and service machines 15, means of transportation and tools 5, office furniture and equipment 10, land not depreciated \u2014 weighted by the gross cost by class in note 4.1 at 31 December 2024. Every life the company discloses is a single figure rather than a band, so the weighting is unambiguous. The depreciable base of EGP 2,701,916,171 foots to the note's stated total of 2,785,102,203 once land of 83,186,032 is excluded. Annual depreciation rates add rather than lives, so the weighted life is the reciprocal of the weighted rate.",
       "average_age_years": null,
       "average_age_source": "",
       "maintenance_basis": "book_dna_escalated",
@@ -2813,7 +2813,7 @@
   "g_term_real": 0.0,
   "pi_term": 0.07,
   "rf_term": 0.125,
-  "note": "the terminal nominal growth and the terminal risk-free rate are both computed from the house long-run inflation of 7.0% — the growth as (1+inflation)(1+real)-1 at 0.00% real, the risk-free as inflation plus the 5.5-point real-rate convention. Neither can be typed, so neither can disagree with the inflation the rest of the model uses."
+  "note": "the terminal nominal growth and the terminal risk-free rate are both computed from the house long-run inflation of 7.0% \u2014 the growth as (1+inflation)(1+real)-1 at 0.00% real, the risk-free as inflation plus the 5.5-point real-rate convention. Neither can be typed, so neither can disagree with the inflation the rest of the model uses."
  },
  "macro_record": {
   "market": "EG",
@@ -2852,7 +2852,7 @@
    "mapping": "calendar",
    "first_year": 2026,
    "exempt_head": 0,
-   "registered_tension": "The derivation compounds a full year of purchasing-power depreciation onto a quote taken EIGHT MONTHS INTO that year, so the FY2026 average comes out at 56.87 while the same house path reads 50.25 on 6 August 2026 — which would need roughly 70 by December. The study CONFORMS rather than inventing an anchor, and this is registered as a property of the house path's first year that will reach every Egyptian study committing a currency path.",
+   "registered_tension": "The derivation compounds a full year of purchasing-power depreciation onto a quote taken EIGHT MONTHS INTO that year, so the FY2026 average comes out at 56.87 while the same house path reads 50.25 on 6 August 2026 \u2014 which would need roughly 70 by December. The study CONFORMS rather than inventing an anchor, and this is registered as a property of the house path's first year that will reach every Egyptian study committing a currency path.",
    "derivation": "relative purchasing-power parity on the house inflation ladder against long-run United States inflation of 2.5%, compounded year by year from that anchor"
   },
   "terminal": {
@@ -2892,12 +2892,12 @@
   "why": "the provision charge is the study's single most consequential contested judgement and the two readings of it are published side by side, never averaged: averaging them would state a number neither branch supports.",
   "branches": [
    {
-    "label": "Frame A — provision charge permanent at 5.25% of revenue",
+    "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
     "value": 31.373799027335803,
     "condition": "the elevated receivable-provision charge of the last two years is the new normal"
    },
    {
-    "label": "Frame B — provision charge normalising to 2.5% of revenue",
+    "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
     "value": 47.603462879592065,
     "condition": "the charge reverts toward the level the company ran before the currency devaluation"
    }
@@ -2940,12 +2940,12 @@
    "value": null,
    "branches": [
     {
-     "label": "Frame A — provision charge permanent at 5.25% of revenue",
+     "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
      "value": 31.373799027335803,
      "condition": "the elevated receivable-provision charge of the last two years is the new normal"
     },
     {
-     "label": "Frame B — provision charge normalising to 2.5% of revenue",
+     "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
      "value": 47.603462879592065,
      "condition": "the charge reverts toward the level the company ran before the currency devaluation"
     }
@@ -2954,7 +2954,7 @@
     "low": 31.373799027335803,
     "high": 47.603462879592065
    },
-   "range_note": "the two published frames of the contested provision judgement, each its own present-value read on one clock — not a spread across methods and not a spread invented around a point",
+   "range_note": "the two published frames of the contested provision judgement, each its own present-value read on one clock \u2014 not a spread across methods and not a spread invented around a point",
    "range_basis": {
     "driver": "the receivable-provision charge as a share of revenue, 5.25% against 2.5%",
     "low": 31.373799027335803,
@@ -2993,9 +2993,9 @@
      "net_debt": 7364.298738,
      "metric_value": 1457.893015
     },
-    "value_adjustment": "TWO REASONS, AND EACH ONE ALONE WOULD BREAK THE IDENTITY. (1) THIS IS AN EARNINGS MULTIPLE, NOT AN ENTERPRISE ONE: a multiple applied to attributable profit gives the EQUITY value directly, so deducting net debt from it charges the debt twice — the identity's deduction is right for an enterprise multiple and wrong for this lens. (2) THE PUBLISHED VALUE IS THE MEAN OF THE THREE LEGS' OWN VALUES, not one mean multiple applied to one metric: each leg is struck on the earnings of ITS OWN period — the justified multiple of 6.168x on forward earnings, the company's own four-year mean of 6.572x on trailing earnings, and the cost-of-equity-adjusted peer reference of 6.304x on trailing earnings — giving 33.675, 56.145 and 53.851 a share, whose mean is the published 47.8906. Averaging the multiples first and applying that average to one period's earnings is a different lens and gives 54.842. The three leg values are committed above, so this reproduces from what the record already carries.",
-    "multiple_source": "three multiples applied to the earnings of their own periods — one justified by this model's own economics, one the company's own four-year mean of year-end close over audited attributable profit, and one struck reference adjusted for the cost-of-equity difference; never a multiple read off the current price",
-    "note": "the peers behind the third leg are not named and their financials are not published, so that leg cannot be rebuilt from peer filings — a stated limitation of the leg"
+    "value_adjustment": "TWO REASONS, AND EACH ONE ALONE WOULD BREAK THE IDENTITY. (1) THIS IS AN EARNINGS MULTIPLE, NOT AN ENTERPRISE ONE: a multiple applied to attributable profit gives the EQUITY value directly, so deducting net debt from it charges the debt twice \u2014 the identity's deduction is right for an enterprise multiple and wrong for this lens. (2) THE PUBLISHED VALUE IS THE MEAN OF THE THREE LEGS' OWN VALUES, not one mean multiple applied to one metric: each leg is struck on the earnings of ITS OWN period \u2014 the justified multiple of 6.168x on forward earnings, the company's own four-year mean of 6.572x on trailing earnings, and the cost-of-equity-adjusted peer reference of 6.304x on trailing earnings \u2014 giving 33.675, 56.145 and 53.851 a share, whose mean is the published 47.8906. Averaging the multiples first and applying that average to one period's earnings is a different lens and gives 54.842. The three leg values are committed above, so this reproduces from what the record already carries.",
+    "multiple_source": "three multiples applied to the earnings of their own periods \u2014 one justified by this model's own economics, one the company's own four-year mean of year-end close over audited attributable profit, and one struck reference adjusted for the cost-of-equity difference; never a multiple read off the current price",
+    "note": "the peers behind the third leg are not named and their financials are not published, so that leg cannot be rebuilt from peer filings \u2014 a stated limitation of the leg"
    },
    {
     "kind": "book_value",
@@ -3038,7 +3038,7 @@
  "lenses": {
   "items_A": [
    {
-    "name": "Discounted cash flow — Frame A (THE CENTRE)",
+    "name": "Discounted cash flow \u2014 Frame A (THE CENTRE)",
     "value": 31.373799027335803,
     "weight": 1.0,
     "role": "primary"
@@ -3064,7 +3064,7 @@
   ],
   "items_B": [
    {
-    "name": "Discounted cash flow — Frame B (THE CENTRE)",
+    "name": "Discounted cash flow \u2014 Frame B (THE CENTRE)",
     "value": 47.603462879592065,
     "weight": 1.0,
     "role": "primary"
@@ -3397,7 +3397,7 @@
   "grid_hi": 45.68528385393408,
   "prov_readings": [
    [
-    "Carried — struck above the two non-outlier years",
+    "Carried \u2014 struck above the two non-outlier years",
     0.0525,
     31.373799027335856
    ],
@@ -3511,7 +3511,7 @@
     "windows": 494
    },
    "dq_log": [
-    "dropped 3 rows carrying a non-positive or non-finite OHLC value (2011-06-15..2011-09-21) — vendor fills, not tradeable prices"
+    "dropped 3 rows carrying a non-positive or non-finite OHLC value (2011-06-15..2011-09-21) \u2014 vendor fills, not tradeable prices"
    ],
    "clean_rows": 3225,
    "raw_rows": 3228,
@@ -3700,16 +3700,16 @@
  },
  "narrative": [
   "[History] the audited consolidated income statement reconstructs line-by-line for all three years: revenue less cost of sales less operating expenses less the provision charge, plus associates, interest income, exchange differences and other income, less finance costs, equals disclosed pre-tax profit to within EGP 0.02 million in each year.",
-  "  FY2023: revenue 5,232 · gross margin 44.6% · provision charge 5.07% of revenue · EBIT 1,229 (23.5%) · EBITDA 1,335 · net profit 823 · effective tax 24.0%",
-  "  FY2024: revenue 7,591 · gross margin 44.9% · provision charge 9.25% of revenue · EBIT 1,529 (20.1%) · EBITDA 1,631 · net profit 1,097 · effective tax 28.3%",
-  "  FY2025: revenue 9,441 · gross margin 44.0% · provision charge 5.23% of revenue · EBIT 2,366 (25.1%) · EBITDA 2,484 · net profit 1,458 · effective tax 18.8%",
+  "  FY2023: revenue 5,232 \u00b7 gross margin 44.6% \u00b7 provision charge 5.07% of revenue \u00b7 EBIT 1,229 (23.5%) \u00b7 EBITDA 1,335 \u00b7 net profit 823 \u00b7 effective tax 24.0%",
+  "  FY2024: revenue 7,591 \u00b7 gross margin 44.9% \u00b7 provision charge 9.25% of revenue \u00b7 EBIT 1,529 (20.1%) \u00b7 EBITDA 1,631 \u00b7 net profit 1,097 \u00b7 effective tax 28.3%",
+  "  FY2025: revenue 9,441 \u00b7 gross margin 44.0% \u00b7 provision charge 5.23% of revenue \u00b7 EBIT 2,366 (25.1%) \u00b7 EBITDA 2,484 \u00b7 net profit 1,458 \u00b7 effective tax 18.8%",
   "",
-  "[Unit build] The board report splits the same separate-company revenue two ways, and the two only reconcile once contract manufacturing is separated out. FY2025 sales of the company's OWN preparations were EGP 9,160.148 million on 351.810 million packs; preparations made under CONTRACT for third parties were EGP 142.321 million of product value on 5.485 million packs, of which the company books only the manufacturing fee of EGP 49.366 million — EGP 9.00 a pack — while the remaining EGP 92.955 million reaches the market through its own domestic channels at EGP 16.95 a pack. The two splits sum to the same EGP 9,302.469 million.",
-  "  LINE 1, own preparations sold at home: 291.810 million packs carrying EGP 6,192.668 million, EGP 21.2216 a pack against EGP 18.8479 in FY2024 — realised price +12.59% on volume +19.46%. Dividing the CHANNEL domestic figure of EGP 6,286 million by these packs instead would read EGP 21.5401 a pack, because that figure carries the contract-made product as well; the difference is 1.50% on the price and it flows into every forecast year.",
-  "  LINE 2, own preparations exported: 60.000 million packs at EGP 49.46 a pack, which is USD 0.9996 at the disclosed average rate of 49.48 — against USD 0.9574 in FY2024.",
-  "  LINE 3, contract manufacturing: packs fell 38.2% to 5.485 million while the fee per pack rose 122.9% to EGP 9.00. This is a small line — 1.53% of revenue — but it is forecast on its own volume and its own price rather than folded into the domestic book.",
-  "  Production ran at 2,208 million units against 3,383 million of disclosed capacity — 65% utilisation, so the volume path below is not capacity-constrained.",
-  "  Reconstructed channel revenue 9,302.469 against the disclosed separate-company revenue total of 9,302.469 — a difference of 0.000, which is rounding on the incentive lines.",
+  "[Unit build] The board report splits the same separate-company revenue two ways, and the two only reconcile once contract manufacturing is separated out. FY2025 sales of the company's OWN preparations were EGP 9,160.148 million on 351.810 million packs; preparations made under CONTRACT for third parties were EGP 142.321 million of product value on 5.485 million packs, of which the company books only the manufacturing fee of EGP 49.366 million \u2014 EGP 9.00 a pack \u2014 while the remaining EGP 92.955 million reaches the market through its own domestic channels at EGP 16.95 a pack. The two splits sum to the same EGP 9,302.469 million.",
+  "  LINE 1, own preparations sold at home: 291.810 million packs carrying EGP 6,192.668 million, EGP 21.2216 a pack against EGP 18.8479 in FY2024 \u2014 realised price +12.59% on volume +19.46%. Dividing the CHANNEL domestic figure of EGP 6,286 million by these packs instead would read EGP 21.5401 a pack, because that figure carries the contract-made product as well; the difference is 1.50% on the price and it flows into every forecast year.",
+  "  LINE 2, own preparations exported: 60.000 million packs at EGP 49.46 a pack, which is USD 0.9996 at the disclosed average rate of 49.48 \u2014 against USD 0.9574 in FY2024.",
+  "  LINE 3, contract manufacturing: packs fell 38.2% to 5.485 million while the fee per pack rose 122.9% to EGP 9.00. This is a small line \u2014 1.53% of revenue \u2014 but it is forecast on its own volume and its own price rather than folded into the domestic book.",
+  "  Production ran at 2,208 million units against 3,383 million of disclosed capacity \u2014 65% utilisation, so the volume path below is not capacity-constrained.",
+  "  Reconstructed channel revenue 9,302.469 against the disclosed separate-company revenue total of 9,302.469 \u2014 a difference of 0.000, which is rounding on the incentive lines.",
   "",
   "[Consolidation] the reconstructed channel build is a separate-company total; the audited consolidated revenue is 1.0149 times it, the subsidiary's external sales. That measured factor, not an assumption, carries the build to a consolidated basis.",
   "",
@@ -3719,33 +3719,33 @@
   "[Depreciation] the EGP 4,901 million construction balance stops being free. Transfers of 3,400 / 1,100 million in the first two years take the depreciation charge from an audited FY2025 118 million to 304 then 423 million. That step is the single largest mechanical change in the forecast income statement and it is a consequence of the company's own disclosed licensing timetable, not a view.",
   "  EBITDA (cash costs only) FY2026E 2,415 -> FY2030E 3,713 on Frame A; EBIT 2,111 -> 3,290 after the depreciation step.",
   "",
-  "[Asset-conversion cycle] the audited FY2025 balance sheet implies 268 inventory days, 129 receivable days and 54 payable days — a cash cycle of 343 days. The inventory position is policy: the company stated at its March-2026 general assembly that it holds a strategic raw-material stockpile sufficient for at least eight months. Working capital is PROJECTED from those three ratios, not plugged.",
+  "[Asset-conversion cycle] the audited FY2025 balance sheet implies 268 inventory days, 129 receivable days and 54 payable days \u2014 a cash cycle of 343 days. The inventory position is policy: the company stated at its March-2026 general assembly that it holds a strategic raw-material stockpile sufficient for at least eight months. Working capital is PROJECTED from those three ratios, not plugged.",
   "",
   "[Funding] the forecast balance sheet is FUNDED, not frozen. Cash is held at the audited 1,433 million operating minimum and gross borrowings carry the difference, so total assets equal total liabilities and equity in every forecast year by construction. Borrowings run 10,500 -> 11,052 -> 11,194 -> 11,179 -> 10,975 against an audited 8,798: the working-capital build and the first year's capital expenditure are debt-funded while a 40% payout continues, and the book only returns to its opening level in the final year. The earlier edition held both cash and borrowings flat, which left the statement out by up to 11.7% of total assets.",
   "  CONSEQUENCE, STATED RATHER THAN HIDDEN: on this funded book the finance cost charged in the income statement implies an average borrowing rate of 12.95% / 11.23% / 10.34% / 9.74% / 9.30%, against a blended MARGINAL cost of debt of 18.55% used in the discount rate. The charged path is calibrated to the first quarter of 2026 and is right for FY2026E; the later years assume an easing cycle the debt schedule does not evidence. That gap is an open item, it is not resolved in this edition, and the EARNINGS-BASED lenses are sensitised across it.",
   "",
-  "[Cost of equity] the quoted ten-year local-currency government yield is 23.00%. That yield is not riskless: it embeds the sovereign's own default risk. Subtracting the sovereign credit-default-swap spread of 3.42% leaves a normalised risk-free rate of 19.58%; adding beta 0.666 times the country equity risk premium of 9.52% gives a cost of equity of 25.92%. On the rating basis the same construction gives 26.01% — the two agree to 9 basis points, which is reassuring because they are built from different columns of the same source. Charging the raw 23.00% yield AND a country-loaded premium would give 29.34% and would count sovereign risk twice; that construction is not used.",
-  "[Cost of debt] the term-loan note splits the book 50% local currency / 50% hard currency. The local-currency leg is priced at 24.81% — the sovereign yield plus 250 basis points, and above the sovereign by construction. The hard-currency leg carries a 7.50% coupon but is charged at its LOCAL-EQUIVALENT cost of 12.34%, coupon compounded with expected currency depreciation of 4.50%. Blended marginal cost of debt 18.55%, 14.38% after tax.",
+  "[Cost of equity] the quoted ten-year local-currency government yield is 23.00%. That yield is not riskless: it embeds the sovereign's own default risk. Subtracting the sovereign credit-default-swap spread of 3.42% leaves a normalised risk-free rate of 19.58%; adding beta 0.666 times the country equity risk premium of 9.52% gives a cost of equity of 25.92%. On the rating basis the same construction gives 26.01% \u2014 the two agree to 9 basis points, which is reassuring because they are built from different columns of the same source. Charging the raw 23.00% yield AND a country-loaded premium would give 29.34% and would count sovereign risk twice; that construction is not used.",
+  "[Cost of debt] the term-loan note splits the book 50% local currency / 50% hard currency. The local-currency leg is priced at 24.81% \u2014 the sovereign yield plus 250 basis points, and above the sovereign by construction. The hard-currency leg carries a 7.50% coupon but is charged at its LOCAL-EQUIVALENT cost of 12.34%, coupon compounded with expected currency depreciation of 4.50%. Blended marginal cost of debt 18.55%, 14.38% after tax.",
   "[Cost-of-debt integrity] the company expensed 1,275 million of interest and capitalised a further 551 million into the construction balance in FY2025. On average gross debt of 8,999 million that is 14.2% expensed and 20.3% all-in. The 18.5% marginal rate sits inside that pair, which is the test: a marginal rate below the expensed rate or above the all-in rate would not be credible.",
   "  Two FY2025 figures are in play here and they are not the same line: INTEREST ON CREDIT FACILITIES of 1,275.312 million, which is what an interest RATE must be computed on, and the income statement's FINANCE COSTS of 1,332.947 million, which is that interest plus 57.634 million of bank commissions and charges. Both come from the same note; the bridge between them is stated here so that neither reads as a contradiction of the other.",
-  "[Weighted average cost of capital] market capitalisation 21,483 against net debt 7,364 gives weights 74.5% equity / 25.5% debt and a starting discount rate of 22.97%. On GROSS debt the weights are 70.9%/29.1% and the rate 22.56%; both are published. Note the starting rate sits close to the quoted sovereign yield — that is arithmetic, not an error: the quoted yield contains default risk that the normalised build strips out and re-charges inside the equity premium.",
+  "[Weighted average cost of capital] market capitalisation 21,483 against net debt 7,364 gives weights 74.5% equity / 25.5% debt and a starting discount rate of 22.97%. On GROSS debt the weights are 70.9%/29.1% and the rate 22.56%; both are published. Note the starting rate sits close to the quoted sovereign yield \u2014 that is arithmetic, not an error: the quoted yield contains default risk that the normalised build strips out and re-charges inside the equity premium.",
   "[Terminal] cost of equity 17.16% (risk-free 12.50% plus beta times a normalised 7.00% premium); cost of debt 12.34%, 9.56% after tax; DERIVED debt weight 25.5% on today's market values (47.9% on the funded forecast balance sheet at FY2030E) -> terminal discount rate 15.22% (13.52% on the book weight).",
-  "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints — 1.000, 0.732, 0.439, 0.195, 0.000 — so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 22.97%, 20.89%, 18.62%, 16.73%, 15.22%; the factors compound.",
+  "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints \u2014 1.000, 0.732, 0.439, 0.195, 0.000 \u2014 so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 22.97%, 20.89%, 18.62%, 16.73%, 15.22%; the factors compound.",
   "",
-  "[Terminal consistency] terminal reinvestment is growth 7% divided by the model's OWN FY2030E return on invested capital — 12.73% on Frame A and 14.71% on Frame B — so 55.0% of terminal operating profit after tax is reinvested on Frame A. There is no terminal return assumption left to make. The earlier edition asserted 20% here, a 727 basis-point step above the last forecast year, taken at exactly the point where three quarters of core enterprise value sits.",
+  "[Terminal consistency] terminal reinvestment is growth 7% divided by the model's OWN FY2030E return on invested capital \u2014 12.73% on Frame A and 14.71% on Frame B \u2014 so 55.0% of terminal operating profit after tax is reinvested on Frame A. There is no terminal return assumption left to make. The earlier edition asserted 20% here, a 727 basis-point step above the last forecast year, taken at exactly the point where three quarters of core enterprise value sits.",
   "  The terminal year is also charged the depreciation the forecast never charged: 3,108 million of construction is still parked at FY2030E and has never entered the depreciable base, so at the model's own 6.2% rate a further 193 million a year is deducted before the perpetuity is struck. A steady state cannot capitalise profit on capital it never charges.",
-  "[Terminal weight] the terminal value is 79% of CORE enterprise value on Frame A and 79% on Frame B — 61% and 64% of TOTAL enterprise value, which carries the associates and the assets held for sale as well. Both readings are published; the earlier edition dropped the word 'core' outside the workbook, which made the concentration look higher than the whole bridge supports. It is high either way, as it is for any growing manufacturer discounted over five explicit years, and the terminal grid in the sensitivity section runs the whole range rather than quoting a comfortable part of it.",
+  "[Terminal weight] the terminal value is 79% of CORE enterprise value on Frame A and 79% on Frame B \u2014 61% and 64% of TOTAL enterprise value, which carries the associates and the assets held for sale as well. Both readings are published; the earlier edition dropped the word 'core' outside the workbook, which made the concentration look higher than the whole bridge supports. It is high either way, as it is for any growing manufacturer discounted over five explicit years, and the terminal grid in the sensitivity section runs the whole range rather than quoting a comfortable part of it.",
   "  The terminal DEBT WEIGHT is derived, not asserted. Today's market-value net-debt weight is 25.5%; the forecast balance sheet, once funded, carries a book net-debt weight of 47.9% at FY2030E. The valuation uses the market-value reading, 25.5%, because a weighted average cost of capital weights market values; the book reading gives a terminal rate of 13.52% against 15.22% and is published beside it. The earlier edition used 20%, which is neither reading, and said it was reconciled to a balance sheet that did not balance.",
   "",
-  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025. The forecast path is 13.7% / 14.5% / 17.1% / 19.1% / 20.1% — it RISES THROUGH the window rather than settling, so the sustainable return used here is the MEAN OF ITS LAST THREE YEARS, 18.75%, computed from that path and not asserted. (The earlier edition described the same number as the level the forecast 'settles at', which the path does not do.) A sustainable-return multiple of (return 18.8% less growth 7%) over (perpetual cost of equity 17.16% less growth) is 1.157 times book, or 42.80 a share. Every term in that multiple is live: change beta, the terminal risk-free rate, the terminal premium or growth and the lens moves.",
+  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025. The forecast path is 13.7% / 14.5% / 17.1% / 19.1% / 20.1% \u2014 it RISES THROUGH the window rather than settling, so the sustainable return used here is the MEAN OF ITS LAST THREE YEARS, 18.75%, computed from that path and not asserted. (The earlier edition described the same number as the level the forecast 'settles at', which the path does not do.) A sustainable-return multiple of (return 18.8% less growth 7%) over (perpetual cost of equity 17.16% less growth) is 1.157 times book, or 42.80 a share. Every term in that multiple is live: change beta, the terminal risk-free rate, the terminal premium or growth and the lens moves.",
   "",
-  "[Relative multiples] the company's OWN traded history is computable entirely from primary material — year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 8.7 times (2025), a four-year mean of 6.6. Each year divides that year's audited attributable profit by that year's WEIGHTED-AVERAGE share count, so the FY2025 reading uses 162.016 million shares rather than the 168.756 million now in issue — the capital increase completed during that year. At 127.30 the shares trade on 14.9 times trailing attributable earnings measured on the count in issue today, or 14.3 times on the audited weighted average; both readings are legitimate and both are published. The shares also trade on 11.6 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
-  "  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics justify: retention must equal growth 7% over sustainable return 18.8%, so the payout the multiple can assume is 63%, and 63% over (perpetual cost of equity 17.16% less growth) is 6.17 times — applied to 5.46 of FY2026E earnings a share. (2) The company's own four-year mean, 6.57 times, a TRAILING multiple applied to 8.54 of trailing earnings. (3) A struck reference of 21.35 times — the midpoint of the only two comparable observations available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 times for larger international generic manufacturers, and NOT a median of a disclosed peer set — but those companies are Gulf-listed and face a cost of equity near 10%, not 17.2%; adjusted for that single difference the same reference implies 6.30 times, also on trailing earnings. The three give 33.67 / 56.15 / 53.85, averaging 47.89. Left unadjusted, the struck reference alone would give 182.39 — the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple. The peers are not named and their financials are not published, so this third leg cannot be rebuilt from peer filings; that is a stated limitation of the leg, not a hidden one.",
-  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 — so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,612 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.97 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 17.16% less 7% growth, on the 63% payout that growth rate permits: 55.34 a share. Using today's crisis-level cost of equity of 25.92% in a perpetuity would be a category error — a steady-state multiple takes a steady-state rate.",
+  "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 8.7 times (2025), a four-year mean of 6.6. Each year divides that year's audited attributable profit by that year's WEIGHTED-AVERAGE share count, so the FY2025 reading uses 162.016 million shares rather than the 168.756 million now in issue \u2014 the capital increase completed during that year. At 127.30 the shares trade on 14.9 times trailing attributable earnings measured on the count in issue today, or 14.3 times on the audited weighted average; both readings are legitimate and both are published. The shares also trade on 11.6 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
+  "  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics justify: retention must equal growth 7% over sustainable return 18.8%, so the payout the multiple can assume is 63%, and 63% over (perpetual cost of equity 17.16% less growth) is 6.17 times \u2014 applied to 5.46 of FY2026E earnings a share. (2) The company's own four-year mean, 6.57 times, a TRAILING multiple applied to 8.54 of trailing earnings. (3) A struck reference of 21.35 times \u2014 the midpoint of the only two comparable observations available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 times for larger international generic manufacturers, and NOT a median of a disclosed peer set \u2014 but those companies are Gulf-listed and face a cost of equity near 10%, not 17.2%; adjusted for that single difference the same reference implies 6.30 times, also on trailing earnings. The three give 33.67 / 56.15 / 53.85, averaging 47.89. Left unadjusted, the struck reference alone would give 182.39 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple. The peers are not named and their financials are not published, so this third leg cannot be rebuilt from peer filings; that is a stated limitation of the leg, not a hidden one.",
+  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 12,612 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 8.97 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 17.16% less 7% growth, on the 63% payout that growth rate permits: 55.34 a share. Using today's crisis-level cost of equity of 25.92% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
   "",
-  "[Synthesis — one lens per frame, not a blend] the centre of each frame IS its own cash-flow read: Frame A 31.37, Frame B 47.60, against a 127.30 market price (-75.4% and -62.6%). The three lenses that do not turn on the contested judgement are published beside both and averaged into neither: Book value and sustainable return 42.80 · Relative multiples 47.89 · Normalised earnings power 55.34. The retired 50/20/15/15 blend read 39.73 and 47.85 — it pulled BOTH frames toward the same three shared numbers, which damps precisely the disagreement a two-sided answer exists to show, and its weights had never cleared an out-of-sample test. NORMALISED EARNINGS POWER, at 55.34, is computed and published and is NOT one of the lenses: the registry does not permit it for this class. The field across all five readings runs 31.37 to 55.34.",
+  "[Synthesis \u2014 one lens per frame, not a blend] the centre of each frame IS its own cash-flow read: Frame A 31.37, Frame B 47.60, against a 127.30 market price (-75.4% and -62.6%). The three lenses that do not turn on the contested judgement are published beside both and averaged into neither: Book value and sustainable return 42.80 \u00b7 Relative multiples 47.89 \u00b7 Normalised earnings power 55.34. The retired 50/20/15/15 blend read 39.73 and 47.85 \u2014 it pulled BOTH frames toward the same three shared numbers, which damps precisely the disagreement a two-sided answer exists to show, and its weights had never cleared an out-of-sample test. NORMALISED EARNINGS POWER, at 55.34, is computed and published and is NOT one of the lenses: the registry does not permit it for this class. The field across all five readings runs 31.37 to 55.34.",
   "",
-  "[The crux] the base build charges the new biologicals facility's depreciation and its interest — both mechanical consequences of the company's own disclosed December-2025 licensing — but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 9,322 million of revenue by FY2030E at a 45% contribution margin closes the gap from 31.37 to 127.30. That is 33% of FY2030E revenue, or about USD 133 million a year — 1.33 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue.",
+  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 9,322 million of revenue by FY2030E at a 45% contribution margin closes the gap from 31.37 to 127.30. That is 33% of FY2030E revenue, or about USD 133 million a year \u2014 1.33 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue.",
   "  Two things that must be published for that hurdle to be auditable, and were not before. THE RAMP: the incremental revenue is not dropped into the final year, it is phased 0% / 10% / 30% / 60% / 100% across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital expenditure at the same share of revenue as the existing business and working capital on the same day ratios, so it faces the identical reinvestment discipline. The earlier edition let it arrive free of both and published a hurdle of about USD 115 million; charged properly it is USD 133 million.",
   "",
   "[Forecast anchor] gross margin: latest reviewed period Q1-2026 at 42.39%, first forecast year 39.19%, -3.20 points and -7.5% relative. Path low 36.46%. Mechanism named: input cost outpacing price; measured cost per unit of revenue 0.5430 -> 0.5761 in the company's own quarter pair."

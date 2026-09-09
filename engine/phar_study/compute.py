@@ -25,7 +25,9 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from numbers_file import write_preserving          # [R-REPAIR-01]
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))
+import edition as _ed                      # the edition date, written once
 import numpy as np
 
 import terminal_value as TV          # [R-TERM-01] — verified by import, not by parse
@@ -813,11 +815,14 @@ INP = dict(
            "THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() "
            "rather than hand-rolled. R-squared %.3f, n = %d, standard error %.4f, 90%% "
            "confidence interval [%.3f, %.3f], Dimson-corrected and matched to the exchange's "
-           "own trading week (%s). Clears the usability gate. WITHDRAWN AND KEPT FOR "
-           "COMPARISON: the previous edition regressed against a 36-name equal-weight composite "
-           "of the covered library and got %.4f at an R-squared of %.3f. THE COMPOSITE FIT "
-           "BETTER, which is what a coverage artefact does — it shares constituents with the "
-           "panel it prices — and a better fit against the wrong regressor is not evidence for "
+           "own trading week (%s). The coefficient is comfortably larger than its own "
+           "standard error, which is the test applied before any regression beta is used. "
+           "WITHDRAWN AND KEPT FOR "
+           "COMPARISON: the previous edition regressed against a 36-name equal-weight basket "
+           "of the covered library and got %.4f at an R-squared of %.3f. THE BASKET FIT "
+           "BETTER, which is what a basket built out of our own coverage does — it shares "
+           "members with the very set it is used to price — and a better fit against the "
+           "wrong regressor is not evidence for "
            "the wrong regressor. A beta below one is still what a defensive, price-regulated, "
            "domestically-consumed staple should produce."
            % (_BETA['index_file'], _BETA['index_asof'], _BETA['r2'], _BETA['n'], _BETA['se'],
@@ -2223,7 +2228,14 @@ OUT = dict(
               company_class='Operating company (vertically integrated pharmaceutical '
                             'manufacturer and exporter)',
               reference_pattern='Operating company',
-              study_date='2026-08-09', price_date='2026-08-06', fy_end='31 December',
+              # NEITHER DATE IS TYPED. The edition comes from edition.py and the price
+              # date is read off the spot input's OWN registered date. Typed, they
+              # disagreed with the model: this block said the price was struck on
+              # 2026-08-06 while the registered spot input said the close of
+              # 3 September 2026, and the document went out under an August edition
+              # name carrying a September valuation.
+              study_date=_ed.EDITION.isoformat(), price_date=INP['spot']['date'],
+              fy_end='31 December',
               audited_years=['FY2022', 'FY2023', 'FY2024', 'FY2025'],
               spot=V['spot'], shares_mn=V['shares_mn'], mcap=mcap),
     inputs=INP,
