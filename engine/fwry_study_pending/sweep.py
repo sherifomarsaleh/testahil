@@ -412,10 +412,21 @@ f_fs21 = R.add(Ring.COMPANY, "official financial statements", FindingClass.C,
     "Fawry-Consolidated-Financials-Q4-2021-English.pdf, capture 20240217155800) and stored "
     "at engine/fwry_study_pending/filings/FS_CONS_FY2021_EN.pdf",
     "Fawry FY2021 audited consolidated financial statements", CO, "2022-03-31",
-    detail="NO FY2021 LINE ITEM IS QUOTED ANYWHERE IN THIS REGISTER and none is footed in "
-           "footing_check.py. The document is logged so a later pass can read it; it is not "
-           "tagged is_fs_data because nothing has been extracted from it, and a flag that "
-           "asserted otherwise would let the FS-depth gate pass on a document nobody read.",
+    detail="NO FY2021 LINE ITEM IS QUOTED ANYWHERE IN THIS REGISTER and none is accepted in "
+           "footing_check.py. A late OCR pass DID return a readable page (the FY2021 balance "
+           "sheet and income statement with FY2020 comparatives, held at "
+           "filings/FS_CONS_FY2021_EN_OCR.txt) and MOST of it foots — total non-current "
+           "assets, total assets, parent and total equity, both liability totals, gross "
+           "margin and the net-profit split all tie exactly. THREE LINES DID NOT FOOT and "
+           "the page is therefore not accepted: current assets ran 10,000,000 light, "
+           "operating profit 14,999,700 light and net profit 5 light. Two of the three were "
+           "resolved by re-reading off the rendered pixels — accounts and notes receivable is "
+           "63,746,140 not 53,746,140; the medical contribution is 5,505,997, formed "
+           "provisions 11,628,500, impairment on customer loans 12,749,394 and the ECL "
+           "reversal 1,770,520 — which closes the asset and operating-profit gaps exactly. "
+           "The remaining 5-pound gap sits in deferred tax and could not be re-read because "
+           "the host filesystem filled. FY2021 stays OUT until that line is read: a figure "
+           "derived to make a page foot is not a figure the company printed.",
     model_impact="")
 
 f_fs22 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
