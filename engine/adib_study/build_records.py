@@ -28,12 +28,20 @@ def main():
         central=C.CENTRAL, spot=C.SPOT,
         fair=dict(bear=C.BEAR, base=C.CENTRAL, full=C.FULL),
         gap_to_spot=C.CENTRAL / C.SPOT - 1,
+        primary=C.PRIMARY,
+        lens_architecture=('[R-LENS-03] one class primary IS the central; the others are '
+                           'cross-checks. bank -> ddm primary, with residual income, a '
+                           'relative multiple and book value beside it. No typed weights.'),
         lenses=dict(dividend_discount=C.DDM['per_share'],
                     free_cash_flow_to_equity=C.FCFE['per_share'],
                     residual_income=C.RI['per_share'],
                     relative_multiples=C.REL['per_share'],
-                    normalised_earnings_power_no_weight=C.NORM['per_share']),
-        weights=C.WEIGHTS,
+                    book_value_and_sustainable_return=C.BOOK['per_share'],
+                    book_value_floor=C.BOOK['floor'],
+                    normalised_earnings_power=C.NORM['per_share']),
+        present_value_reads=C.PV_READS,
+        envelope=dict(bear=C.BEAR, full=C.FULL,
+                      construction='the range of the present-value reads on one clock'),
         cost_of_capital=dict(
             rf=C.RF, rf_date='2026-08-06',
             rf_staleness_days=34,

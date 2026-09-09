@@ -554,20 +554,51 @@ def normalised():
                 per_share=np_ / (KE0 - G_TERM) / SHARES)
 
 
+def book_value():
+    """Lens 6 — book value and the return it sustains. The bank class's third named
+    cross-check in research_protocol.LENS_REGISTRY.
+
+    Two reads. The FLOOR is attributable book value per share as filed at 30 June 2026 —
+    what the shareholder owns if the bank stops compounding tomorrow. The
+    SUSTAINABLE-RETURN read capitalises that same book at the price-to-book a Gordon
+    inversion supports on the terminal return and the terminal cost of equity, which is
+    the most a book-based lens can honestly say about a compounder.
+    """
+    bvps_filed = H1['equity_parent'] / SHARES
+    pb_sustainable = (P[-1]['roe'] - G_TERM) / (KE_TERM - G_TERM)
+    return dict(bvps_filed=bvps_filed, pb_sustainable=pb_sustainable,
+                floor=bvps_filed, per_share=bvps_filed * pb_sustainable)
+
+
 DDM, FCFE, RI, REL, NORM = ddm(), fcfe(), residual_income(), relative(), normalised()
+BOOK = book_value()
 
-WEIGHTS = reg('lens_weights', dict(ddm=0.30, fcfe=0.25, ri=0.30, rel=0.15),
-              'Dividend discount 30%, free cash flow to equity 25%, residual income 30%, '
-              'relative multiples 15%. The two cash-flow lenses and residual income carry '
-              '85% between them because they are built from this bank\'s own disclosed '
-              'drivers; the multiple band carries 15% because this study could not source '
-              'a same-day peer book value and says so rather than pretending otherwise. '
-              'Normalised earnings power is REPORTED and carries no weight — it is a '
-              'sanity check on whether the cycle is being capitalised, not a valuation.',
-              STUDY_DATE, 'House')
+# ----------------------------------------------------------------------------------
+# [R-LENS-03] ONE CLASS PRIMARY IS THE CENTRAL. THERE IS NO TYPED BLEND HERE.
+#
+# research_protocol.LENS_REGISTRY['bank'] = ('ddm', ['residual_income',
+# 'relative_multiple', 'book_value']). The dividend discount IS the central; the others
+# are cross-checks published beside it in one table. The typed blend is RETIRED: PHDC's
+# four-lens weighted answer landed 28% below a market its own cash-flow lens matched
+# within 2.2%, and the weights had never cleared any out-of-sample test.
+#
+# THE ENVELOPE IS THE RANGE OF THE PRESENT-VALUE READS ON ONE CLOCK, and nothing is
+# invented around it. Three of the six lenses discount a flow; the relative multiple, the
+# book-value read and normalised earnings power are not present-value reads, are
+# published, and do not enter the envelope.
+# ----------------------------------------------------------------------------------
+PRIMARY = 'ddm'
+PV_READS = dict(ddm=DDM['per_share'], fcfe=FCFE['per_share'],
+                residual_income=RI['per_share'])
+CENTRAL = PV_READS[PRIMARY]
+BEAR = min(PV_READS.values())
+FULL = max(PV_READS.values())
 
-CENTRAL = (WEIGHTS['ddm'] * DDM['per_share'] + WEIGHTS['fcfe'] * FCFE['per_share']
-           + WEIGHTS['ri'] * RI['per_share'] + WEIGHTS['rel'] * REL['per_share'])
+reg('lens_architecture', 'class primary = dividend discount; no typed blend',
+    'The bank class is keyed to a dividend-discount PRIMARY with residual income, a '
+    'relative multiple and book value beside it. The central IS the primary. The envelope '
+    'is the range of the three present-value reads and no spread is invented around it '
+    '[R-LENS-03].', STUDY_DATE, 'House')
 
 
 # ----------------------------------------------------------------------------------
@@ -605,20 +636,18 @@ def far_year_band():
 
 FAR = far_year_band()
 
-# BEAR and FULL come from the SAME distribution, applied to the value rather than to a
-# year: the h=3 band is the one that reaches the terminal, and it is the widest thing
-# this record actually measured.
 _b3 = FAR[2028]
-BEAR = CENTRAL * _b3['low_mult']
-FULL = CENTRAL * _b3['high_mult']
 
-reg('band_construction', 'walk-forward h=3 dispersion, centred',
-    'Bear and full are the CENTRAL multiplied by the 10th-to-90th percentile dispersion of '
-    'the fundamental walk-forward\'s own attributable-profit error at three years, centred '
-    'on that distribution\'s median: x%.3f and x%.3f on 8 origin-horizon cells. They are '
-    'not a scenario anyone wrote down. The three-year horizon is used because it is where '
-    'the terminal begins to dominate and because it is the longest horizon with more than '
-    'seven measured cells.' % (_b3['low_mult'], _b3['high_mult']), STUDY_DATE, 'House')
+reg('band_construction', 'the range of the present-value reads [R-LENS-03]',
+    'Bear is the free-cash-flow-to-equity read, full the residual-income read, and the '
+    'central the dividend-discount primary between them. THE ENVELOPE IS NARROW BECAUSE '
+    'THE THREE LENSES AGREE, AND THAT IS A STATEMENT ABOUT LENS AGREEMENT RATHER THAN '
+    'ABOUT FORECAST CONFIDENCE. The fundamental walk-forward beneath this study measured a '
+    'three-year attributable-profit dispersion of x{lo:.2f} to x{hi:.2f} on eight cells; '
+    'that distribution sets the YEARS 3-5 PROFIT RANGES in Appendix A and nothing else, '
+    'and section 7 says so in terms rather than letting a tight envelope imply a precision '
+    'this record does not have.'.format(lo=_b3['low_mult'], hi=_b3['high_mult']),
+    STUDY_DATE, 'House')
 
 
 # ----------------------------------------------------------------------------------
@@ -633,10 +662,8 @@ def sensitivity():
         keep = P
         P = project(**kw)
         d, f, r, rl = ddm(), fcfe(), residual_income(), relative()
-        v = (WEIGHTS['ddm'] * d['per_share'] + WEIGHTS['fcfe'] * f['per_share']
-             + WEIGHTS['ri'] * r['per_share'] + WEIGHTS['rel'] * rl['per_share'])
         P = keep
-        return v
+        return d['per_share']            # the PRIMARY [R-LENS-03], never a blend
 
     for lab, kw in [
         ('cost of risk +50bp', dict(cor=[c + 0.005 for c in COST_OF_RISK])),
@@ -658,9 +685,7 @@ def sensitivity():
         KE_TERM = kt + dke
         KE_PATH = [k + dke for k in k0]
         DF = discount_factors(KE_PATH)
-        d, f, r = ddm(), fcfe(), residual_income()
-        v = (WEIGHTS['ddm'] * d['per_share'] + WEIGHTS['fcfe'] * f['per_share']
-             + WEIGHTS['ri'] * r['per_share'] + WEIGHTS['rel'] * REL['per_share'])
+        v = ddm()['per_share']
         KE_PATH, KE_TERM, DF = k0, kt, df
         out.append((lab, v, v / base - 1))
 
@@ -668,9 +693,7 @@ def sensitivity():
         global G_TERM
         g0 = G_TERM
         G_TERM = g0 + dg
-        d, f, r = ddm(), fcfe(), residual_income()
-        v = (WEIGHTS['ddm'] * d['per_share'] + WEIGHTS['fcfe'] * f['per_share']
-             + WEIGHTS['ri'] * r['per_share'] + WEIGHTS['rel'] * REL['per_share'])
+        v = ddm()['per_share']
         G_TERM = g0
         out.append((lab, v, v / base - 1))
     return out
@@ -686,9 +709,10 @@ def summary():
                 central=CENTRAL, bear=BEAR, full=FULL,
                 gap_to_spot=CENTRAL / SPOT - 1,
                 ke=KE0, ke_rating=KE_RATING, ke_terminal=KE_TERM, beta=BETA,
+                primary=PRIMARY,
                 lenses=dict(ddm=DDM['per_share'], fcfe=FCFE['per_share'],
                             ri=RI['per_share'], relative=REL['per_share'],
-                            normalised=NORM['per_share']))
+                            book=BOOK['per_share'], normalised=NORM['per_share']))
 
 
 if __name__ == '__main__':
@@ -732,7 +756,10 @@ if __name__ == '__main__':
     print('   relative multiples     %8.2f   (P/B %.1f-%.1f x BVPS %.2f; P/E %.1f-%.1f x '
           'EPS %.2f)' % (REL['per_share'], PEER_PB[0], PEER_PB[1], REL['bvps_2026'],
                          PEER_PE[0], PEER_PE[1], REL['eps_2026']))
-    print('   normalised (no weight) %8.2f' % NORM['per_share'])
+    print('   book value + sustainable return %8.2f   (filed BVPS %.2f x sustainable '
+          'P/B %.2fx)' % (BOOK['per_share'], BOOK['bvps_filed'], BOOK['pb_sustainable']))
+    print('   normalised earnings power %8.2f' % NORM['per_share'])
+    print('   PRIMARY = %s [R-LENS-03]; every other lens is a cross-check' % PRIMARY)
     print()
     print('CENTRAL %.2f   BEAR %.2f   FULL %.2f   against spot %.2f -> %+.1f%%'
           % (CENTRAL, BEAR, FULL, SPOT, 100 * (CENTRAL / SPOT - 1)))
