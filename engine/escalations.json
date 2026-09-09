@@ -1049,7 +1049,8 @@
     "file": "engine/oras_study_pending/REGRESSOR_RULING.md",
     "must_contain": "ruled_08_09_2026"
    },
-   "note": "RULED: strike on EGX against engine/raw_indices/EG/EGX30.csv. The ADX primary listing is disclosed in the study, and so is the fact that the beta is measured on the secondary line. TWO COMPLICATIONS THE BUILD CARRIES: the ADX listing REPLACED Nasdaq Dubai inside the regression window — the January-2025 shareholding disclosure still names AEDFXA14NUL7 — and the pound moved from about 47.6 to about 52 to the dollar across it."
+   "note": "RULED: strike on EGX against engine/raw_indices/EG/EGX30.csv. The ADX primary listing is disclosed in the study, and so is the fact that the beta is measured on the secondary line. TWO COMPLICATIONS THE BUILD CARRIES: the ADX listing REPLACED Nasdaq Dubai inside the regression window — the January-2025 shareholding disclosure still names AEDFXA14NUL7 — and the pound moved from about 47.6 to about 52 to the dollar across it.",
+   "answered_by": "the principal, in session on 08-09-2026, answering a direct question put to them through the interactive question tool — one option selected per question, not inferred from anything they had said before"
   },
   {
    "key": "ORAS-OCI-combination-dual-frame",
@@ -1076,7 +1077,8 @@
     "file": "engine/oras_study_pending/REGRESSOR_RULING.md",
     "must_contain": "ruled_08_09_2026"
    },
-   "note": "RULED: DUAL-FRAME. The study is built on the standalone company and the combined case is carried as a fully separate valuation with its own share count. Neither is blended into the other and NO PROBABILITY IS APPLIED to the outcome — a weighted single number would be a view on a vote."
+   "note": "RULED: DUAL-FRAME. The study is built on the standalone company and the combined case is carried as a fully separate valuation with its own share count. Neither is blended into the other and NO PROBABILITY IS APPLIED to the outcome — a weighted single number would be a view on a vote.",
+   "answered_by": "the principal, in session on 08-09-2026, answering a direct question put to them through the interactive question tool — one option selected per question, not inferred from anything they had said before"
   },
   {
    "key": "AMOC-volume-history-series",

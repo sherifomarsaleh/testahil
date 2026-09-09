@@ -204,6 +204,37 @@ def main() -> int:
     case("clean: an instruction class needs no route ladder", c_instruction(),
          False, results)
 
+    # --- WHO ANSWERED, on instruction rulings opened once the rule existed -----
+    # The marker check proves a DOCUMENT was written, not that a person replied: the
+    # entry and the file it points at are written by the same agent. Attribution cannot
+    # close that gap and does not pretend to — it makes the claim explicit. The rule
+    # binds FORWARD by opened-date, so these two cases must behave oppositely on the
+    # same defect depending only on when the entry was opened.
+    def _ruling(opened, answered_by=None):
+        e = copy.deepcopy(GOOD)
+        e["key"] = "NC-a-ruling-taken"
+        e["cls"] = "instruction"
+        e["opened"] = opened
+        e["status"] = "resolved"
+        e["resolved"] = opened
+        e["answer_written_to"] = "engine/macro_history/EG.json"
+        e["resolves_when"] = {"file": "engine/macro_history/EG.json",
+                              "must_contain": "resolved_03_09_2026"}
+        if answered_by is not None:
+            e["answered_by"] = answered_by
+        return [e]
+
+    case("an instruction resolved after the rule with no answered_by",
+         _ruling("2026-09-08"), True, results)
+    case("an instruction resolved after the rule with a token answered_by",
+         _ruling("2026-09-08", "the boss"), True, results)
+    case("clean: the same ruling, attributed",
+         _ruling("2026-09-08", "the principal, in session, answering a direct question "
+                               "put through the interactive question tool"),
+         False, results)
+    case("clean: an instruction opened BEFORE the rule is unchanged",
+         _ruling("2026-09-03"), False, results)
+
     # an empty register is a legitimate state — nothing has been escalated
     case("clean: an empty register", [], False, results)
 
