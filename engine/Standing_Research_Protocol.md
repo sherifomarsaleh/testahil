@@ -5367,9 +5367,14 @@ applied to nothing, moving no fair value. **Three findings anchor this rule:**
   the swing is EGP 2.59 a share, several times the entire published fair value.
 - **SWDY.** The delivered study's driver says *"no order book or backlog figure is disclosed
   in any of the audited filings or the Q1-2026 interim"*. **Six of the issuer's own quarterly
-  releases, sitting in the study's own `engine/swdy_walkforward/filings/` directory, disclose
-  it** — 196bn rising to 346bn. The taper that sentence defends is worth 0.17% of the gap,
-  and the finding was reported anyway, because the defect is the sweep.
+  earnings releases — already downloaded into the study's own walk-forward filings
+  directory, which `.gitignore` excludes from the repository — disclose it**, 196bn rising
+  to 346bn, with the E&C figure of EGP 346bn as at 30 June 2026 read directly off the
+  Q2-2026 release. The measurement is recorded in
+  `engine/gap_challenges/CHALLENGE_FINDINGS_09-09-2026.md`, which is committed; the filings
+  themselves are not, and this account cites the record rather than the directory for that
+  reason. The taper that sentence defends is worth 0.17% of the gap, and the finding was
+  reported anyway, because the defect is the sweep.
 - **PHAR.** The largest single driver contradicts its own committed source string: the
   domestic price escalator runs below the house inflation ladder while the source it cites
   says price growth tracks inflation with no real gain — a permanent, compounding real price

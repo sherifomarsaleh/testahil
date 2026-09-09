@@ -100,11 +100,46 @@ PRESCRIPTIVE = re.compile(
     r'|\[R-[A-Z]{2,6}-\d{2}[,\]]', re.I)
 
 
+def _tracked_paths():
+    """Every path git tracks, as a set, or None if git cannot be consulted.
+
+    Directories are not tracked by git, so a named directory is present when anything
+    under it is; the caller tests the prefix.
+    """
+    import subprocess
+    try:
+        r = subprocess.run(['git', 'ls-files'], cwd=ROOT, capture_output=True, text=True)
+    except OSError:
+        return None
+    if r.returncode != 0:
+        return None
+    out = {l.strip() for l in r.stdout.splitlines() if l.strip()}
+    return out or None
+
+
 def check_paths(text, label, fails):
     named = {p.rstrip('.,;:)') for p in PATH.findall(text) if '{' not in p}
     # a dotted module reference (engine/beta_regression.own_stock_beta) is a symbol, not a path
     named = {p for p in named if not re.search(r'\.py\.\w|\.\w+$', p) or p.endswith(('.py', '.js', '.md', '.json', '.csv', '.yml'))}
-    missing = sorted(p for p in named if not os.path.exists(os.path.join(ROOT, p)))
+    # EXISTS ON DISK IS NOT EXISTS FOR A READER. This asked the filesystem, so a path
+    # that .gitignore excludes -- present in the author's working tree and in nobody
+    # else's checkout -- passed here and failed in CI. It did, on 09-09-2026:
+    # [R-GAP-04]'s own account cited engine/swdy_walkforward/filings/, which is real on
+    # the machine that wrote it and absent everywhere the document is actually read.
+    #
+    # A governing document is read from a CHECKOUT, so the test is whether git tracks the
+    # path, not whether the author happens to have it. Where git cannot be consulted the
+    # check falls back to the filesystem and SAYS SO, rather than reporting clean on a
+    # question it could not ask [R-ENF-04].
+    _tracked = _tracked_paths()
+    if _tracked is None:
+        print('  NOTE: git could not be consulted; path existence fell back to the '
+              'filesystem, which passes on files this checkout has and a reader does not')
+        missing = sorted(p for p in named if not os.path.exists(os.path.join(ROOT, p)))
+    else:
+        missing = sorted(p for p in named
+                         if not (p.rstrip('/') in _tracked
+                                 or any(t.startswith(p.rstrip('/') + '/') for t in _tracked)))
     print(f'  paths named {len(named):3d}   missing {len(missing)}')
     for m in missing:
         print(f'      MISSING PATH  {m}')
