@@ -7,11 +7,6 @@
    "kind": "no_date",
    "signature": "commits a spot of 5.94 and NO READABLE DATE (None). The latest supplied price is 5.8 of 2026-09-03."
   },
-  "AMR": {
-   "reason": "the study commits no readable date for the price it was struck at",
-   "kind": "no_date",
-   "signature": "commits a spot of 2.23 and NO READABLE DATE (None). The latest supplied price is 2.39 of 2026-09-03."
-  },
   "ELEC": {
    "reason": "the study is struck against a price that is no longer the latest supplied",
    "kind": "stale_price",
@@ -39,6 +34,11 @@
    "removed": [
     "ADNOCDIST",
     "FERTIGLOBE"
+   ]
+  },
+  {
+   "removed": [
+    "AMR"
    ]
   }
  ]

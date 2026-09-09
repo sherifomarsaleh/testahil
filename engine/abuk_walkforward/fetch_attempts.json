@@ -313,5 +313,95 @@
   "result": "OK",
   "sha256": "c7d8fd83321469a1",
   "url": "https://web.archive.org/web/20250517080848id_/https://abuqir.net/employees/uploads/statements/be540-.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2616732,
+  "magic": "%PDF-",
+  "name": "FS_FY2024_Jun_EN.pdf",
+  "note": "company website, audited FS year ended 30-Jun-2024 (English)",
+  "result": "OK",
+  "sha256": "e4bcb7233cf02019",
+  "url": "https://abuqir.net/wp-content/uploads/2025/11/Financial-statements-for-the-year-ended-June-30-2024.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1788718,
+  "magic": "%PDF-",
+  "name": "FS_FY2025_Jun_EN.pdf",
+  "note": "company website, audited FS year ended 30-Jun-2025 (English)",
+  "result": "OK",
+  "sha256": "e4e19ff4b9dfed04",
+  "url": "https://abuqir.net/wp-content/uploads/2025/11/Financial-statements-for-the-year-ended-June-30-2025.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 17572313,
+  "magic": "%PDF-",
+  "name": "FS_TP_Dec2025_EN.pdf",
+  "note": "company website, audited FS transitional six months to 31-Dec-2025 (English)",
+  "result": "OK",
+  "sha256": "a03673d49854f3d1",
+  "url": "https://abuqir.net/wp-content/uploads/2026/03/Abu-Qir-FS-as-of-31-12-2025-English-version.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 2199563,
+  "magic": "%PDF-",
+  "name": "FS_H1_2026_EN.pdf",
+  "note": "company website, reviewed interim FS six months to 30-Jun-2026 (English)",
+  "result": "OK",
+  "sha256": "4689402c82c97500",
+  "url": "https://abuqir.net/wp-content/uploads/2026/08/Financial-statements-30-6-2026.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 7155465,
+  "magic": "%PDF-",
+  "name": "FS_Q1_2026_EN.pdf",
+  "note": "company website, reviewed interim FS three months to 31-Mar-2026 (English)",
+  "result": "OK",
+  "sha256": "8eb2eb7f728e5b34",
+  "url": "https://abuqir.net/wp-content/uploads/2026/04/Abu-Qir-english-Q1-2026.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 3978775,
+  "magic": "%PDF-",
+  "name": "ER_H1_2026.pdf",
+  "note": "company website, earnings release H1-2026",
+  "result": "OK",
+  "sha256": "9849d5683a56918b",
+  "url": "https://abuqir.net/wp-content/uploads/2026/08/Earnings-release-30-6-2026.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 4897294,
+  "magic": "%PDF-",
+  "name": "ER_FY2025_Jun.pdf",
+  "note": "company website, earnings release FY ended 30-Jun-2025",
+  "result": "OK",
+  "sha256": "f4ec08bd76da0e5c",
+  "url": "https://abuqir.net/wp-content/uploads/2025/11/Earnings-Release-for-FY-ended-30-06-2025.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 3714625,
+  "magic": "%PDF-",
+  "name": "ER_FY2024_Jun.pdf",
+  "note": "company website, earnings release FY ended 30-Jun-2024",
+  "result": "OK",
+  "sha256": "dd62fcd6ac4bb071",
+  "url": "https://abuqir.net/wp-content/uploads/2025/11/Earnings-Release-FY-ended-30-6-2024.pdf"
+ },
+ {
+  "attempted": "2026-09-09",
+  "bytes": 1389110,
+  "magic": "%PDF-",
+  "name": "KPI_H1_2026.pdf",
+  "note": "company website, unaudited financial indicators H1-2026",
+  "result": "OK",
+  "sha256": "fdbc777667d79500",
+  "url": "https://abuqir.net/wp-content/uploads/2026/08/h1-2026.pdf"
  }
 ]
