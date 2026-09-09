@@ -52,8 +52,14 @@ SCANNED FILINGS AND THE ARITHMETIC ARBITER.
         340-dpi render gave 3,700,595,014. Only 3,700,595,014 + 771,424,343 reproduces
         the printed "Total Loans and overdraft" of 4,472,019,357. A 9 had been read
         where a 5 is printed — the same failure the protocol names.
-  Every other statement column re-added to the pound on the first read; the checks are
-  listed in FOOTING_CHECKS below.
+    (c) FY2025 EAS financial-risk note, interest-rate sensitivity. A 62-dpi render gave
+        42,727,096; renders at 400 and 700 dpi both give 42,727,098. A 6 had been read
+        where an 8 is printed. Found on the re-read pass, and it corrected a figure this
+        register had already published.
+  Every other statement column re-added to the pound on the first read. The FX sensitivity
+  note was re-read at 340-700 dpi on a second pass and re-added against its own exposure
+  table; that pass found three defects in the FILINGS themselves, all listed in
+  FOOTING_CHECKS below.
 
 NO BETA IS RESOLVED HERE, by instruction. The exchange, the listing structure and the
 price series that exists are recorded as a finding; the regressor ruling is not this
@@ -375,14 +381,17 @@ f_fs25eas = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
            "adjustment as EGP 253.5m against a measured 253,025,557 — a 0.5m rounding in "
            "the release, not a discrepancy in the filings. The EGX wire reports the EAS "
            "number (2,695,301,670) as 'Net Profit' for FY2025.",
-    model_impact="BASE CHANGER for basis selection, and the most dangerous single trap on "
-                 "this name. The two bases differ by 10.4% of net profit and 0.5pp of "
-                 "gross margin. The 2026 INTERIMS ARE FILED UNDER EAS ({f_q1}, {f_q2}) "
-                 "while the EARNINGS RELEASES ARE IFRS ({f_vol}, {f_segp}, {f_costmix}). "
-                 "A study that anchors history on IFRS and rolls it forward on interim "
-                 "EAS actuals, or that quotes a release margin beside a statement margin, "
-                 "is wrong by construction. Declare one basis, carry it throughout, and "
-                 "reconcile the other.")
+    model_impact="BASE CHANGER, AND A PRECONDITION: THIS IS RESOLVED BEFORE ANY DRIVER IS "
+                 "SET, NOT CARRIED AS CONTEXT. The two bases differ by 10.4% of net profit "
+                 "and 0.5pp of gross margin. The 2026 INTERIMS ARE FILED UNDER EAS "
+                 "({f_q1}, {f_q2}) while the EARNINGS RELEASES ARE IFRS ({f_vol}, "
+                 "{f_segp}, {f_costmix}). A study that anchors history on IFRS and rolls "
+                 "it forward on interim EAS actuals, or that quotes a release margin "
+                 "beside a statement margin, is WRONG BY CONSTRUCTION — and no gate in "
+                 "this repository would catch it, because every individual figure is "
+                 "company-official, audited and correct. Declare one basis in writing "
+                 "before the first driver is set, carry it throughout, and reconcile the "
+                 "other with the company's own published bridge.")
 
 # ---- study-year quarters: BOTH filed, both re-added ----------------------------
 f_q1 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
@@ -481,13 +490,18 @@ f_netdebt = R.add(Ring.COMPANY, "regular disclosures", FindingClass.B,
            "reproducing the release's 266.5m to the pound. The release's 'total loans and "
            "borrowings' of 4,474.6m differs from the note's 4,472,019,357 by 2,580,643, "
            "which is the government-grant element.",
-    model_impact="BASE CHANGER for the equity bridge and for the WACC weights. On the "
-                 "note's definition Edita is 38% geared; on the release's definition it "
-                 "is net cash. The study must state which definition it uses, use the "
-                 "company's own release definition for the bridge (because the T-bills "
-                 "are the treasury asset generating the 575,446,672 of FY2025 finance "
-                 "income), and must NOT let a 38% gearing ratio drive the debt weight "
-                 "while a net-cash bridge adds the same T-bills back.")
+    model_impact="BASE CHANGER, AND A PRECONDITION: THIS IS RESOLVED BEFORE ANY DRIVER IS "
+                 "SET, NOT CARRIED AS CONTEXT. On the note's definition Edita is 38% "
+                 "geared; on the release's definition it is net cash. Both are "
+                 "company-official, both reconcile exactly, and they differ by EGP 4.02bn "
+                 "on the same date — enough to move the WACC weights, the equity bridge "
+                 "and the terminal structure at once. No gate in this repository would "
+                 "catch a study that used one for the weights and the other for the "
+                 "bridge. The study states which definition it uses before the first "
+                 "driver is set, uses the company's own release definition for the bridge "
+                 "(the T-bills are the treasury asset generating the 575,446,672 of "
+                 "FY2025 finance income), and must NOT let a 38% gearing ratio drive the "
+                 "debt weight while a net-cash bridge adds the same T-bills back.")
 
 f_cf = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
     "FY2025 audited IFRS cash flow: net cash from operations 4,377,352,771 (FY2024 "
@@ -509,27 +523,53 @@ f_cf = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
                  "reconciling accrual must be named.")
 
 f_fxsens = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
-    "THE COMPANY'S OWN FX AND CREDIT EXPOSURE NOTES EXIST AND ARE LOCATED. The FY2025 EAS "
-    "financial-risk-management note carries a per-currency plus/minus 10% sensitivity of "
-    "post-tax profit for EUR/EGP, USD/EGP, MAD/EGP, GBP/EGP and IQD/EGP with prior-year "
-    "comparatives, a table of net monetary assets and liabilities by currency, and a "
-    "counterparty credit-rating table naming each bank (QNB, Credit Agricole Egypt, CIB, "
-    "NBK, ADIB, Citibank Egypt, NBE, Banque du Caire, Standard Chartered, Bank of Iraq, "
-    "BNP Paribas Morocco, Bank of Cyprus)",
-    "FY2025 EAS consolidated statements, financial-risk-management note (market risk, "
-    "credit risk, liquidity risk)", CO, "2026-03-11",
+    "PER-CURRENCY FX EXPOSURE AND SENSITIVITY, READ AT 340-700 DPI AND RE-ADDED. Net "
+    "monetary position at 31-Dec-2025 (assets less liabilities): EUR +12,263,029 "
+    "(171,339,160 less 159,076,131); USD -379,016,579 (1,773,924,906 less 2,152,941,485); "
+    "MAD -453,138,562 (91,401,415 less 544,539,977); GBP +6,053,624 (6,079,005 less "
+    "25,381); IQD -132,391,422 (2,159,318 less 134,550,740). Prior-year nets: EUR "
+    "+73,409,680; USD -842,986,857; MAD -183,432,207; GBP +4,779,750; IQD nil. The stated "
+    "effect of a 10% move, per currency, 2025 (2024): EUR 1,226,303 (7,340,968); USD "
+    "37,901,658 (84,298,686); MAD 45,313,856 (18,343,221); GBP 605,362 (447,975); IQD "
+    "13,239,142 (nil). Also disclosed: net FX loss in P&L (9,406,494) against a 2024 gain "
+    "of 100,318,882, translation differences in OCI +66,673,936 against (104,127,255), no "
+    "quoted equity investments, and a counterparty credit-rating table naming QNB, Credit "
+    "Agricole Egypt, CIB, NBK, ADIB, Citibank Egypt, NBE, Banque du Caire, Standard "
+    "Chartered, Bank of Iraq, BNP Paribas Morocco and Bank of Cyprus",
+    "FY2025 EAS consolidated statements, financial-risk-management note — market risk "
+    "(foreign-exchange and interest-rate), price risk, credit risk", CO, "2026-03-11",
     url=f"{IRF}/Edita-consolidated-English-Signed-FY25.pdf",
-    detail="DELIBERATELY CARRIES NO FIGURES. These pages were seen at 62 dpi while "
-           "locating the gearing note and have NOT been re-read at verification "
-           "resolution or re-added, so quoting the sensitivities here would put unverified "
-           "numbers into the register. The note is registered as LOCATED, with its page "
-           "identified, so the build reads it at 300+ dpi and foots it before use rather "
-           "than substituting a house assumption. is_fs_data is False precisely because "
-           "no line item is asserted.",
-    model_impact="DRIVER UNLOCK, conditional on that re-read: it converts the FX driver "
-                 "from a house shock into the company's own measured elasticity, and it "
-                 "gives the counterparty quality behind the EGP 4.02bn treasury book that "
-                 "{f_netdebt} turns on.")
+    is_fs_data=True, fiscal_period="FY2025",
+    detail="RE-READ AND FOOTED, replacing the earlier 'located but unverified' entry. "
+           "All five exposure rows foot: assets less liabilities equals the printed net, "
+           "exactly, in both years. Each sensitivity was then tested against 10% of its "
+           "OWN net exposure and EIGHT OF NINE reproduce to the pound. TWO DEFECTS IN THE "
+           "FILING FALL OUT OF THAT TEST. (1) THE 'POST-TAX' LABEL IS WRONG. Every "
+           "paragraph says 'post-tax profit for the year would have been ...', but every "
+           "figure is exactly 10% of the net monetary exposure with NO tax gross-down: "
+           "12,263,029 x 10% = 1,226,303; 379,016,579 x 10% = 37,901,658; 453,138,562 x "
+           "10% = 45,313,856; and the same on all four 2024 cells that foot. At the FY2025 "
+           "effective rate of 29.23% a genuine post-tax EUR figure would be 867,903, not "
+           "1,226,303. The disclosed numbers are PRE-TAX. Taken at face value as post-tax "
+           "they overstate the after-tax effect by 1/(1-t) = 1.413x. (2) THE GBP 2024 "
+           "COMPARATIVE IS A TRANSPOSITION. The exposure table prints a 2024 GBP net of "
+           "4,779,750, whose 10% is 477,975; the sentence prints 447,975. Both figures "
+           "were re-rendered at 600 dpi and both are as described, so this is the "
+           "FILING's typo, not the reader's — a 4 and a 7 swapped, EGP 30,000, immaterial "
+           "to any model but proof that the prior-year comparatives in this note are "
+           "hand-keyed. The same hand shows in the Moroccan Dirham paragraph, which dates "
+           "its comparative '31 December 2023' while the figure it prints (18,343,221) is "
+           "exactly 10% of the 31-December-2024 net exposure.",
+    model_impact="DRIVER UNLOCK, now unconditional. The FX driver is built on the "
+                 "company's own measured per-currency exposure instead of a house shock, "
+                 "WITH the two corrections above applied: the sensitivities are used as "
+                 "PRE-TAX and taxed by the model, and GBP 2024 is carried at 477,975. The "
+                 "shape matters as much as the size — the USD and MAD books are net "
+                 "LIABILITIES (-379.0m and -453.1m) while EUR and GBP are net assets, so "
+                 "a weaker pound HURTS on the dollar and dirham legs and helps on the "
+                 "euro and sterling legs. A single-signed FX assumption would be wrong "
+                 "on two of the four legs. The note also gives the counterparty quality "
+                 "behind the EGP 4.02bn treasury book that {f_netdebt} turns on.")
 
 f_series = R.add(Ring.COMPANY, "regular disclosures", FindingClass.C,
     "PRICE SERIES AND LISTING, RECORDED, NO BETA RESOLVED. EFID.CA on the EGX, ISIN "
@@ -827,13 +867,29 @@ f_debt = R.add(Ring.COMPANY, "management & capital actions", FindingClass.D,
     "year: a 7-year medium-term loan of EGP 600 million (announced 19-Apr-2026) and a "
     "7-year medium-term loan of EGP 500 million (announced 03-May-2026). Earlier: a USD "
     "45 million IFC loan (Oct-2023) and a loan agreement of May-2024. At 31-Dec-2025 "
-    "variable-rate borrowings were EGP 3,552,268,699 (2024: 2,186,887,887) and the "
-    "audited sensitivity states that a 1% move in EGP rates changes post-tax profit by "
-    "EGP 42,727,096 (2024: 29,952,569)",
+    "variable-rate borrowings were EGP 3,552,268,699 (2024: 2,186,887,887) against an "
+    "overdraft of 771,424,343 (2024: 808,368,965), and the audited sensitivity states "
+    "that a 1% move in EGP rates changes profit by EGP 42,727,098 (2024: 29,952,569)",
     "Edita EGX releases 19-Apr-2026 and 03-May-2026 (company IR mirror); FY2025 EAS "
     "consolidated statements, financial-risk-management note", CO, "2026-05-03",
     url="https://ir.edita.com.eg/en/news-and-disclosures",
     is_fs_data=True, fiscal_period="FY2025",
+    detail="THE SENSITIVITY FIGURE WAS CORRECTED ON RE-READ. A 62-dpi render gave "
+           "42,727,096; renders at 400 and 700 dpi both give 42,727,098. A 6 had been "
+           "read where an 8 is printed — the third glyph error caught on this name, after "
+           "the FY2022 revenue 8-for-1 and the gearing-note 5-for-9. The variable-rate "
+           "borrowing and overdraft figures were re-rendered at 700 dpi and stand. "
+           "PARTIAL RECONCILIATION, recorded rather than forced: the 2024 comparative "
+           "reproduces EXACTLY as 1% of variable-rate borrowings plus overdraft "
+           "(2,186,887,887 + 808,368,965 = 2,995,256,852; 1% = 29,952,569), which "
+           "validates the reading method and shows the intended base. The 2025 figure "
+           "does NOT: 3,552,268,699 + 771,424,343 = 4,323,693,042 and 1% of that is "
+           "43,236,930, leaving EGP 509,832 — 1.19% of the figure — unexplained by the "
+           "two disclosed lines. Like every sensitivity in this note the label says "
+           "'post-tax' and the arithmetic is PRE-TAX (a genuine post-tax 2024 figure "
+           "would be 21,194,382, not 29,952,569). The study uses the printed 42,727,098, "
+           "treats it as pre-tax, and states that its 2025 base is not fully "
+           "reconcilable from the disclosed lines.",
     model_impact="DRIVER UNLOCK for interest. The debt is built facility by facility off "
                  "named tranches, not as a ratio on a liabilities base — the exact "
                  "mis-specification the PHDC walk-forward recorded as a defect [L-002, "
@@ -952,9 +1008,11 @@ R.add_driver("SG&A — three separate legs", DriverMode.BOTTOM_UP,
 R.add_driver("Interest expense — facility by facility", DriverMode.BOTTOM_UP,
     "Built off the named tranches (EGP 600m 7-year, EGP 500m 7-year, IFC USD 45m) and the "
     "disclosed EGP 3,552,268,699 of variable-rate borrowing, with the CBE path ({f_cbe}) "
-    "moving only the variable leg and the company's own 1% sensitivity (EGP 42,727,096 of "
-    "post-tax profit) sizing the shock. Explicitly NOT a ratio on a liabilities base — "
-    "that is the recorded PHDC defect [L-002].",
+    "moving only the variable leg and the company's own 1% sensitivity (EGP 42,727,098, "
+    "verified at 700 dpi) sizing the shock. That sensitivity is used PRE-TAX and taxed by "
+    "the model, because the note's 'post-tax' label is arithmetically wrong ({f_debt}). "
+    "Explicitly NOT a ratio on a liabilities base — that is the recorded PHDC defect "
+    "[L-002].",
     [f_debt, f_cbe, f_bs])
 
 R.add_driver("Finance income on the treasury book", DriverMode.BOTTOM_UP,
@@ -1011,22 +1069,41 @@ R.add_driver("Frozen (Forni) segment path", DriverMode.BOTTOM_UP,
     "assumed.",
     [f_fancy, f_segp, f_vol])
 
-R.add_driver("FX translation of the Morocco and Iraq legs", DriverMode.BOTTOM_UP,
-    "The company publishes a per-currency plus/minus 10% sensitivity of post-tax profit "
-    "for EUR, USD, MAD, GBP and IQD ({f_fxsens}); the market rate comes from the Global "
-    "ring ({f_fx}). CONDITIONAL: {f_fxsens} is registered as located but NOT re-read at "
-    "verification resolution, so this row is bottom-up only once that note is read at "
-    "300+ dpi and footed. If it cannot be, this row drops to top-down and says so.",
+R.add_driver("FX, per currency, on the disclosed net monetary position", DriverMode.BOTTOM_UP,
+    "UNCONDITIONAL. The company publishes its net monetary position and a 10% sensitivity "
+    "for EUR, USD, MAD, GBP and IQD; the note has been read at 340-700 dpi and every "
+    "exposure row and eight of nine sensitivity cells re-add exactly ({f_fxsens}). Built "
+    "per currency on the disclosed net, with the market rate from the Global ring "
+    "({f_fx}) and the shape the note actually shows: USD -379.0m and MAD -453.1m are net "
+    "LIABILITIES while EUR +12.3m and GBP +6.1m are net assets, so a weaker pound cuts "
+    "two legs and helps two. TWO CORRECTIONS ARE APPLIED, both evidenced in {f_fxsens}: "
+    "the sensitivities are PRE-TAX despite the note's 'post-tax' wording and are taxed by "
+    "the model, and GBP 2024 is carried at 477,975 rather than the printed 447,975.",
     [f_fxsens, f_fx, f_q2])
 
-R.add_driver("Accounting basis for the whole model (EAS vs IFRS)", DriverMode.BOTTOM_UP,
-    "Not a forecast driver but a gate every other driver passes through, so it is on the "
-    "table. FY2025 differs by EGP 253,025,557 of net profit and 0.5pp of gross margin "
-    "between the two audited bases ({f_fs25eas}); the 2026 interims are EAS ({f_q1}, "
-    "{f_q2}) and the earnings releases are IFRS ({f_vol}, {f_costmix}). One basis is "
-    "declared, carried throughout, and the other reconciled using the company's own "
-    "published bridge.",
+R.add_driver("PRECONDITION 1 — accounting basis for the whole model (EAS vs IFRS)",
+    DriverMode.BOTTOM_UP,
+    "NOT A FORECAST DRIVER: A GATE EVERY OTHER DRIVER PASSES THROUGH, AND IT IS SETTLED "
+    "IN WRITING BEFORE THE FIRST DRIVER IS SET. FY2025 differs by EGP 253,025,557 of net "
+    "profit and 0.5pp of gross margin between the two audited bases ({f_fs25eas}); the "
+    "2026 interims are EAS ({f_q1}, {f_q2}) and the earnings releases are IFRS ({f_vol}, "
+    "{f_costmix}). Anchoring history on IFRS and rolling forward on EAS interims is wrong "
+    "by construction and every repository gate would pass it, because each figure is "
+    "audited and correct on its own basis. One basis is declared, carried throughout, and "
+    "the other reconciled using the company's own published bridge.",
     [f_fs25, f_fs25eas, f_q1, f_q2, f_costmix])
+
+R.add_driver("PRECONDITION 2 — net-debt definition for the bridge and the WACC weights",
+    DriverMode.BOTTOM_UP,
+    "NOT A FORECAST DRIVER: A GATE, SETTLED BEFORE THE FIRST DRIVER IS SET. Two "
+    "company-official net-debt figures exist for 31-Dec-2025 and both reconcile exactly "
+    "({f_netdebt}): the audited gearing note's NET DEBT of 3,755,254,163 at 38% gearing, "
+    "which counts only cash and bank balances, and the release's NET CASH of 266.5m, "
+    "which counts the EGP 4,024,350,774 treasury-bill and FVTPL book as cash. The gap is "
+    "EGP 4.02bn on one date. One definition is declared and used for BOTH the WACC "
+    "weights and the equity bridge; using one for each is the failure this row exists to "
+    "stop, and no gate would catch it.",
+    [f_netdebt, f_bs, f_cf, f_cov])
 
 R.add_driver("Ownership/stake overhang", DriverMode.TOP_DOWN,
     "The 31-Dec-2025 register is audited and exact ({f_own}), but the TRANSACTION that "
@@ -1096,8 +1173,28 @@ Every figure below was re-added in Python against the filing's own printed subto
   Q1-2026 vs Q2-2026 cross-document identity (6M minus 3M) ................ EXACT, to the pound
   FY2025 EAS-to-IFRS bridge vs the company's published reconciliation ...... EXACT (253,025,557)
   FY2025 release net-cash arithmetic vs the audited balance sheet .......... EXACT (266,515,968)
-NOT RE-READ AT VERIFICATION RESOLUTION, and registered as such: the FY2025 EAS
-financial-risk note's per-currency FX sensitivities and bank credit-rating table.
+  FY2025 EAS   note FX exposure: assets - liabilities = net, 5 currencies x 2 yrs  FOOTS
+  FY2025 EAS   note FX sensitivity vs 10% of its own net exposure .......... 8 of 9 EXACT
+                 the ninth (GBP 2024) DISAGREES by 30,000 — see below
+
+THREE DEFECTS IN THE FILINGS, all found by re-adding rather than by reading:
+  1. GBP 2024 sensitivity. Exposure table net 4,779,750 -> 10% = 477,975; the sentence
+     prints 447,975. Both re-rendered at 600 dpi; both are as described. A 4/7
+     transposition in the FILING, EGP 30,000, immaterial but proof the prior-year
+     comparatives in that note are hand-keyed. The same hand dates the Moroccan Dirham
+     comparative "31 December 2023" while its figure is exactly 10% of the 2024 net.
+  2. "Post-tax profit" is the wrong label on every sensitivity in that note. All nine FX
+     cells and both interest-rate cells are 10% (or 1%) of the exposure with NO tax
+     gross-down. At the 29.23% FY2025 effective rate a true post-tax EUR figure would be
+     867,903 against the printed 1,226,303. Used as post-tax they overstate by 1.413x.
+  3. The FY2025 interest-rate sensitivity base does not fully reconcile. The 2024 cell is
+     EXACTLY 1% of variable borrowings plus overdraft (2,186,887,887 + 808,368,965);
+     the 2025 cell leaves EGP 509,832 unexplained against the same construction.
+
+THREE GLYPH ERRORS CAUGHT BY THE SAME METHOD, each recorded with both routes:
+  FY2022 revenue 7,678,100,869 -> 7,671,100,869 (8 read where 1 is printed)
+  FY2025 EAS total borrowings 3,700,995,014 -> 3,700,595,014 (9 read where 5 is printed)
+  FY2025 EAS rate sensitivity 42,727,096 -> 42,727,098 (6 read where 8 is printed)
 """
 
 errors, warnings = R.validate()
