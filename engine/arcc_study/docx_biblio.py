@@ -118,7 +118,13 @@ c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(9.8)
 p = c.paragraphs[0]
 r = p.add_run('Testahil · Arabian Cement Company S.A.E. (EGX: ARCC) — Source Register')
 r.bold = True; r.font.size = Pt(12); r.font.color.rgb = WHITE
-r2 = p.add_run('   6 August 2026')
+# THE MASTHEAD DATE WAS TYPED, INSIDE THE ONE MODULE THAT IMPORTS edition.py. It used
+# the module for the FILENAME and typed the date in the heading, so this document went
+# out named 09-09-2026 and headed "6 August 2026" — the exact split the module was
+# introduced to end, surviving inside the fix for it. An outside audit found it;
+# nothing here compares a heading with the filename beside it.
+r2 = p.add_run('   %d %s %d' % (_ed.EDITION.day, _ed.EDITION.strftime('%B'),
+                                _ed.EDITION.year))
 r2.font.size = Pt(10); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
 doc.add_paragraph().paragraph_format.space_after = Pt(4)
 
