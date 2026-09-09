@@ -798,6 +798,21 @@ jobs:
       - name: Source-integrity gate — negative control
         run: python3 scripts/check_source_integrity_negative_control.py
 
+      # EVERY SOURCE GATE ABOVE READS WHAT A STUDY SAYS ITS SOURCE WAS. NONE OF THEM EVER
+      # OPENED THE FILE. A fetch a firewall refuses does not fail loudly — it returns 200
+      # with a rejection page in the body, and the fetcher writes that body to the filename
+      # it intended. On 09-09-2026 three of those were found in the tree, one of them real
+      # HTML under a correct .html extension, where only the CONTENT was a lie. So this
+      # gate has two tests: magic bytes against extension, and a CLOSED list of block-page
+      # signatures over what studies fetched. Exceptions are exact paths with reasons.
+      - name: Fetch-authenticity gate
+        run: python3 scripts/check_fetch_authenticity.py
+
+      # Weighted toward the clean cases: the same IMF bytes at another path still fail, a
+      # 300 KB filing that quotes a rejection page does not, and an empty run goes red.
+      - name: Fetch-authenticity gate — negative control
+        run: python3 scripts/check_fetch_authenticity_negative_control.py
+
       # [L-290] A SOURCE IS A STRING AND EVERY GATE HERE CHECKS ONLY THAT ONE EXISTS. A
       # study assigned a new source constant to a name sixty lines after that name already
       # held a different document; twelve inputs registered afterwards were re-sourced to a
