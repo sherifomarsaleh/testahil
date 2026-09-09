@@ -1121,6 +1121,42 @@
     "file": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
     "must_contain": "annual_tonnage_FY2021_FY2025"
    }
+  },
+  {
+   "key": "FERTIGLB-published-fair-value-no-current-review",
+   "opened": "2026-09-09",
+   "cls": "contradiction",
+   "question": "The LIVE SITE publishes a FERTIGLB fair value of AED 2.15, stamped fairAsof 2026-08-07. The study now asserts a TWO-SIDED answer — framing A at 1.8095 and framing B at 2.6831 — and 2.15 is NEITHER. compute.py's own print names it: 'the retired blend published 2.17, a number neither framing asserts'. Against a price that has risen to 2.84 the published number is 24.3% below, and check_published_gap reads that as a NEW breach because the ratchet records 15.4%. Does the published number stand until the batch publication, or is a site carrying a retired blend a thing to correct now?",
+   "routes": [
+    {
+     "route": "assets/data.js, read directly for the FERTIGLB record",
+     "when": "2026-09-09",
+     "outcome": "carries fair 2.15, fairAsof 2026-08-07, px 2.67 and its own stored gap -0.1948, which is internally consistent with ITS price but not with the study behind it",
+     "rerun": false
+    },
+    {
+     "route": "engine/fertiglobe_study/study_numbers.json, the committed answer",
+     "when": "2026-09-09",
+     "outcome": "bridge_A ps_aed 1.8094690, bridge_B ps_aed 2.6830601 — 2.15 is neither",
+     "rerun": false
+    },
+    {
+     "route": "engine/fertiglobe_study/GAP_REVIEW_04-09-2026.md",
+     "when": "2026-09-09",
+     "outcome": "audits central 1.8105 at -32.2% against AED 2.67 of 3 September. So an audit EXISTS and covers a LARGER gap on a LOWER fair value than the site publishes — the published breach is covered a fortiori by a review of a more extreme case, but no document says so and no gate can infer it",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 4,
+   "why_only_the_principal": "Two defensible readings and the house has already ruled once in this area. Publish_Protocol and build_publish_queue.py say the campaign publishes as ONE BATCH at the end and that until then assets/data.js deliberately carries the PRE-CALIBRATION range — on that reading 2.15 is correct-by-design and the widening gap is just the market. The other reading is that a retired blend is not a pre-calibration number, it is a WITHDRAWN one, and publishing a figure the study explicitly no longer asserts is different from publishing an older one it does. Correcting it would be a publish, which needs the explicit word.",
+   "done_meanwhile": "the study itself was re-struck onto the latest supplied price today with no change to fair value, its gap review already audits the more extreme case, and NOTHING was published. The ratchet was NOT widened to absorb the new magnitude: the breach is left red, because a magnitude ratchet that gets bumped whenever the measurement worsens is not a ratchet.",
+   "default_if_no_answer": "leave the site untouched and the gate red, with this entry as the reason. A red gate with a written cause is better than a green one bought by editing the ratchet it is measured against.",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/build_depth_audit/published_gap_outstanding.json",
+    "must_contain": "FERTIGLB_ruled_09_2026"
+   }
   }
  ]
 }
