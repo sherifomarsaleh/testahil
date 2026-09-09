@@ -944,6 +944,17 @@ jobs:
       - name: Typed dates — a date the record states is never typed again
         run: python3 scripts/check_typed_dates.py
 
+      # THE RECALCULATOR IS THE ONLY PROOF THAT THE DELIVERED WORKBOOK REPRODUCES THE
+      # MODEL, so a recalculator pointed at a superseded workbook is a proof about the
+      # wrong file that passes every time. Found on SWDY 09-09-2026: recalc.py named the
+      # 5-August workbook and kept naming it through a 2-September edition and a
+      # 9-September one, and the check went on printing RECALC OK.
+      - name: Recalculator target — the workbook each study actually delivers
+        run: python3 scripts/check_recalculator_target.py
+
+      - name: Recalculator target — the falsifier [R-ENF-07]
+        run: python3 scripts/check_recalculator_target_negative_control.py
+
       # THE LARGEST BLIND SPOT IN THE SYSTEM, and the gauntlet above cannot see it either:
       # every construction gate here takes a STUDY DIRECTORY as its subject, so a name with
       # no study directory is examined by NONE of them. Measured through a real node load of

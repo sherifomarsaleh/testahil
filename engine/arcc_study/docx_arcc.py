@@ -69,6 +69,14 @@ FA = D['forecast_anchor']          # [R-ANCHOR-01]: the record is printed for ev
 TERMREC = D['terminal_record']     # [R-TERM-01]: the terminal's own committed record
 
 BU, UC, KDG, CON = D['bottom_up'], D['unit_calibration'], D['kd_gate'], D['contested']
+# THE LARGEST CONTESTED JUDGEMENT IS FOUND, NOT INDEXED. Two sentences in this
+# document called CON[1] -- the beta -- the study's most consequential contested
+# judgement. That was true of a register with three entries and false the moment a
+# fourth was added, and nothing would have said so: CON[1] would simply have gone on
+# printing the beta's number under a superlative that had moved to another row.
+CON_BIG = max(CON, key=lambda c: abs(c['effect']))
+CON_BETA = next(c for c in CON if c['choice'].lower().startswith('beta'))
+_beta_is_big = CON_BIG is CON_BETA
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 # THE DATE BESIDE THE PRICE WAS TYPED AND THE PRICE WAS NOT [corrected 03-Sep-2026].
@@ -175,9 +183,13 @@ P(f'Three things about the company matter more than anything else in the model. 
   f'capacity queuing to restart inside the forecast window.')
 P(f'What would change the answer is stated in section 7 and not buried: a cost of capital '
   f'that normalises faster than the central bank\'s published path would raise this value '
-  f'materially, and beta is the input it would arrive through — the study\'s own most '
-  f'consequential contested judgement, worth {sg(CON[1]["effect"])} of value and published '
-  f'both ways rather than averaged.')
+  f'materially, and beta is the input it would arrive through — worth '
+  f'{sg(CON_BETA["effect"])} of value and published both ways rather than averaged. '
+  + ('It is the study\'s largest contested judgement.'
+     if _beta_is_big else
+     f'The study\'s LARGEST contested judgement is a different one — '
+     f'{CON_BIG["choice"].split(":")[0].strip().lower()}, worth {sg(CON_BIG["effect"])} — '
+     f'and it is set out with the rest in section 1.9.'))
 
 # ---- valuation summary ------------------------------------------------------
 H1('Valuation summary — every read at a glance')
@@ -682,8 +694,8 @@ P('One step could not be completed and it is flagged rather than passed over. Th
   'at a point.')
 P(f'The consequence is large and is published as a value rather than described: on the '
   f'withdrawn basket figure the cash-flow lens would read '
-  f'{n2(CON[1]["fv_alternative"])} against {n2(CON[1]["fv_adopted"])} on the adopted one, '
-  f'a difference of {sg(CON[1]["effect"])}.')
+  f'{n2(CON_BETA["fv_alternative"])} against {n2(CON_BETA["fv_adopted"])} on the adopted '
+  f'one, a difference of {sg(CON_BETA["effect"])}.')
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
@@ -1867,11 +1879,13 @@ rows.append([
 rows.append([
     'The beta is a peer median, not this company\'s own regression, so the discount rate is '
     'borrowed.', 'Experts 1 and 2', 'CONCEDED — AND PUBLISHED BOTH WAYS',
-    f'The own-stock regression against the EGX30 returns {CON[1]["alternative"]} on an '
+    f'The own-stock regression against the EGX30 returns {CON_BETA["alternative"]} on an '
     f'R-squared of 4.7%, below the usability floor, so tier 1 is not available. On the '
-    f'regression the lens would read EGP {n2(CON[1]["fv_alternative"])} against '
-    f'EGP {n2(CON[1]["fv_adopted"])} — {sg(CON[1]["effect"])}, the study\'s most '
-    f'consequential contested judgement.'])
+    f'regression the lens would read EGP {n2(CON_BETA["fv_alternative"])} against '
+    f'EGP {n2(CON_BETA["fv_adopted"])} — {sg(CON_BETA["effect"])}'
+    + (', the study\'s largest contested judgement.' if _beta_is_big else
+       f'. The study\'s largest is '
+       f'{CON_BIG["choice"].split(":")[0].strip().lower()} at {sg(CON_BIG["effect"])}.')])
 rows.append([
     'Peer betas are used as published, without unlevering and re-levering.', 'Expert 3',
     'CONCEDED — WITH THE DIRECTION NAMED',

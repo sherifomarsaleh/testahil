@@ -3,44 +3,37 @@
   "ADNOCDIST": {
    "checked": 779,
    "measured_on": "2026-09-09",
-   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" — and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
+   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" \u2014 and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
    "reason": "carries a prose check that RUNS and is red: 779 figures checked, 6 unmatched.",
    "unmatched": 6
   },
   "BOROUGE": {
    "checked": 329,
    "measured_on": "2026-09-09",
-   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" — and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
+   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" \u2014 and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
    "reason": "carries a prose check that RUNS and is red: 329 figures checked, 7 unmatched.",
    "unmatched": 7
   },
   "ELEC": {
    "checked": 568,
    "measured_on": "2026-09-09",
-   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" — and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
+   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" \u2014 and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
    "reason": "carries a prose check that RUNS and is red: 568 figures checked, 16 unmatched.",
    "unmatched": 16
   },
   "PHAR": {
    "checked": 495,
    "measured_on": "2026-09-09",
-   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" — and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
+   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" \u2014 and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
    "reason": "carries a prose check that RUNS and is red: 495 figures checked, 7 unmatched.",
    "unmatched": 7
-  },
-  "SWDY": {
-   "checked": 544,
-   "measured_on": "2026-09-09",
-   "note": "THE ENTRY THIS REPLACES SAID \"no script reconciles the delivered documents \"\"against the numbers\" — and this study has carried one all along. Eight of the nine entries on this list said that and all eight were wrong, so the list was excusing a failure that had been fixed while a different one went unrecorded. The count binds now: one more unmatched figure is one more typed number a reader cannot check, and it reads as a NEW breach.",
-   "reason": "carries a prose check that RUNS and is red: 544 figures checked, 4 unmatched.",
-   "unmatched": 4
   },
   "XPT": {
    "checked": null,
    "measured_on": "2026-09-09",
-   "reason": "no script reconciles the delivered documents' figures against the committed numbers. VERIFIED 09-09-2026 rather than carried forward: engine/xpt_study/ holds no prose_check.py, which is the one entry on this list where that sentence is still true — the other eight said it and all eight had one.",
+   "reason": "no script reconciles the delivered documents' figures against the committed numbers. VERIFIED 09-09-2026 rather than carried forward: engine/xpt_study/ holds no prose_check.py, which is the one entry on this list where that sentence is still true \u2014 the other eight said it and all eight had one.",
    "unmatched": null
   }
  },
- "note": "Studies with no prose-figure verification when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. Run --measure for the advisory unmatched rate per study. MEASURED AND COUNT-BOUND 09-09-2026: each entry records the unmatched count it excuses, and a study that gets worse goes red [R-ENF-08]. GBCO was pruned — its check now reports 0 unmatched."
+ "note": "Studies with no prose-figure verification when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. Run --measure for the advisory unmatched rate per study."
 }

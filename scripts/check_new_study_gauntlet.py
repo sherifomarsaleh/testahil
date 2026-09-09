@@ -443,6 +443,14 @@ EXCLUDED = {
     'check_typed_dates.py': 'compares typed artefact names against the dates a '
                             'study RECORD already states; a new empty study has no '
                             'record, so there is correctly nothing to contradict',
+    # Anchors on recalc.py, not on the study directory: a study with no recalculator has
+    # no typed workbook name that could be stale. Its own population guard is stricter
+    # than a refusal here would be -- it goes red when the recalculator glob finds
+    # NOTHING, so the layout moving cannot read as every study being clean.
+    'check_recalculator_target.py':
+        'anchors on each study\'s recalc.py and the workbooks beside it; a new empty '
+        'study has no recalculator, so there is correctly no typed target to hold '
+        'against an artefact',
 }
 
 

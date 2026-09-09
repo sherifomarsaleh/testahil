@@ -85,6 +85,22 @@ FY24 = ("Audited consolidated financial statements of El Sewedy Electric Company
         "financial year ended 31 December 2024, published on the company's own "
         "investor-relations portal at ir.elsewedyelectric.com")
 
+# THE SEGMENT REVENUE HISTORY IS LIFTED OUT OF THE INPUT DICT so that the growth rates
+# quoted in the source strings below can be DERIVED FROM IT rather than typed beside it.
+# A rate typed into a source string is a figure a reader sees, cannot trace to any
+# committed number, and the prose check therefore cannot reconcile -- which is exactly
+# what happened to the Constructions segment's "+28.3% (FY2024: +32.6%)". Both were
+# right, and being right by hand is not the same as being right by construction.
+_SEG_REV_HIST = dict(
+    FY23=dict(cables=82421.265314, construct=53482.804001, elecprod=16282.178230),
+    FY24=dict(cables=137189.798892, construct=70921.447985, elecprod=23870.588700),
+    FY25=dict(cables=155792.929738, construct=90958.550228, elecprod=34297.601753))
+
+
+def _seg_growth(seg, year, prior):
+    return _SEG_REV_HIST[year][seg] / _SEG_REV_HIST[prior][seg] - 1.0
+
+
 INP = dict(
     # ---- anchors --------------------------------------------------------
     spot=I(130.00, "Closing price supplied by the principal for 3 September 2026. "
@@ -452,10 +468,7 @@ INP = dict(
     # ---- segment structure — THE DISCLOSED THREE SEGMENTS ------------------
     # Revenue by product/service line (Note 5-3 in every filing) ties EXACTLY to
     # consolidated revenue for all three years — no elimination, no estimation.
-    seg_rev_hist=I(dict(
-        FY23=dict(cables=82421.265314, construct=53482.804001, elecprod=16282.178230),
-        FY24=dict(cables=137189.798892, construct=70921.447985, elecprod=23870.588700),
-        FY25=dict(cables=155792.929738, construct=90958.550228, elecprod=34297.601753)),
+    seg_rev_hist=I(_SEG_REV_HIST,
         "Revenue by product/service line, Note 5-3, all three audited financial statements. "
         "Sums EXACTLY to consolidated revenue in every year (152,186.247545 / 231,981.835577 / "
         "281,049.081719). This REPLACES a seven-way sub-segment split (cables, raw material, "
@@ -573,7 +586,9 @@ INP = dict(
 
     construct_growth=I([0.18, 0.14, 0.11, 0.09, 0.08],
                        "Constructions segment revenue growth, tapering from the FY2025 disclosed "
-                       "rate of +28.3% (FY2024: +32.6%) toward a more sustainable long-run pace. No "
+                       "rate of %+.1f%% (FY2024: %+.1f%%) toward a more sustainable long-run pace. No "
+                       % (100 * _seg_growth('construct', 'FY25', 'FY24'),
+                          100 * _seg_growth('construct', 'FY24', 'FY23')) +
                        "order book or backlog figure is disclosed in any of the audited filings or "
                        "the Q1-2026 interim, so — unlike the previous build — this is NOT a "
                        "burn-rate-on-a-backlog construction; it is a direct taper on the segment's "
@@ -1741,25 +1756,51 @@ g_grid = [0.03, 0.04, 0.05, 0.06, 0.07]
 wt_grid = [wacc_term - 0.02, wacc_term - 0.01, wacc_term, wacc_term + 0.01, wacc_term + 0.02]
 we_grid = [wacc_exp - 0.03, wacc_exp - 0.015, wacc_exp, wacc_exp + 0.015, wacc_exp + 0.03]
 
-def dcf_at(we_, wt_, g_):
-    _fwd = [we_ - (we_ - wt_) * f for f in glide_frac]
-    _df, cc = [], 1.0
-    for w in _fwd:
-        cc /= (1 + w); _df.append(cc)
-    _rr = min(g_ / roic_term, 0.95)
-    _tv = nopat[-1] * (1 + g_) * (1 - _rr) / max(wt_ - g_, 0.02)
-    _ev = sum(fcff[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
-
-grid_wacc_g = [[dcf_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
-grid_exp_term = [[dcf_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
-beta_grid = [0.60, 0.80, round(V['beta'], 3), 1.15, 1.30]
+# dcf_at WAS DELETED HERE, AND EVERY GRID BELOW NOW GOES THROUGH _val_at.
+#
+# dcf_at was a second valuation function living beside _val_at and disagreeing with it in
+# two ways at once. It re-implemented the terminal INLINE on the retired g x IC
+# construction, which _val_at had already been moved off and onto terminal_value.build();
+# and it omitted the employees' statutory share of distributable profits, which the
+# headline bridge charges. So every sensitivity grid in section 1.9 was quoted on a claim
+# the study does not value, discounted through a terminal the study does not use.
+#
+# The size of it: the wacc x g grid's own centre cell read 49.71 against a published
+# central of 43.51 -- the grid whose job is to show what moves the answer was centred
+# 14.2% above the answer. A reader checking the study against its own sensitivity table
+# would have found the central outside it.
+#
+# _val_at CARRIED THE ASSERTION THAT WOULD HAVE CAUGHT THIS FROM THE START -- it asserts
+# it reproduces dcf_ps when nothing is changed -- and dcf_at carried none. That assertion
+# is what makes a scenario function honest, and it is now the only such function here.
+# This is [L-016] again, and ARCC's revision 4 found the identical shape on the identical
+# day: one document, two models, the second one hiding inside the block whose whole job is
+# to test the first.
+grid_wacc_g = [[_val_at(wacc_exp, wt, g) for g in g_grid] for wt in wt_grid]
+grid_exp_term = [[_val_at(we, wt, V['g_term']) for wt in wt_grid] for we in we_grid]
+# THE BETA GRID IS SORTED. It read [0.60, 0.80, 1.225, 1.15, 1.30] -- the adopted beta
+# inserted at the centre POSITION rather than in its place in the order -- so the printed
+# row ran 0.80, 1.225, 1.15 and the fair values beside it went 75.26, 49.70, 53.21: down,
+# then UP, in a table a reader reads as monotone. The adopted figure is marked instead.
+_beta_adopted = round(V['beta'], 3)
+beta_grid = sorted({0.60, 0.80, _beta_adopted, 1.15, 1.30})
 def dcf_beta(b):
     ke = rf_star + b * V['erp_cds']
     we_ = we_exp * ke + wd_exp * kd_at
     wt_ = (1 - V['wd_term']) * (V['rf_term'] + b * V['erp_term']) + V['wd_term'] * kd_term_at
-    return dcf_at(we_, wt_, V['g_term'])
+    return _val_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]
+# THE GRIDS REPRODUCE THE HEADLINE WHERE THEY CROSS IT, or they are testing another model.
+assert abs(_val_at(wacc_exp, wacc_term, V['g_term']) - dcf_ps) < 0.01, \
+    'the grid helper does not reproduce the published central'
+assert abs(dcf_beta(_beta_adopted) - dcf_ps) < 0.05, \
+    f"beta grid at the adopted {_beta_adopted} reads {dcf_beta(_beta_adopted):.2f}, not {dcf_ps:.2f}"
+say(f"[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation "
+    f"function as the headline: the sanctioned terminal module and the employees' statutory "
+    f"share both. At the adopted rates and growth the helper returns "
+    f"{_val_at(wacc_exp, wacc_term, V['g_term']):.2f} against the published "
+    f"{dcf_ps:.2f}, and at the adopted beta {_beta_adopted:.3f} it returns "
+    f"{dcf_beta(_beta_adopted):.2f} — asserted, not eyeballed.")
 fx_grid = [0.90, 1.00, 1.20, 1.45, 1.70]
 grid_fx = [dcf_scenario(fx_mult=m) for m in fx_grid]
 mg_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
@@ -1876,7 +1917,14 @@ OUT = dict(
               debt_fy25=debt_fy25, nwc_fy25=nwc_fy25, dna_fy25=V['dna_fy25'],
               nopat_fy25=nopat_fy25, ic_fy25=ic_fy25),
     seg_fy25=dict(rev=SRH['FY25'], gp=SPH['FY25'], names=SEGNAME,
-                  gp_margin=unit_hist['FY25']['margin']),
+                  gp_margin=unit_hist['FY25']['margin'],
+                  # THE DISCLOSED SEGMENT GROWTH RATES, COMMITTED AS NUMBERS. They were
+                  # quoted in a driver's source string -- which the bibliography prints
+                  # verbatim -- and appeared in no committed figure, so a reader met a rate
+                  # they could not trace and the prose check could not reconcile. They are
+                  # derived from seg_rev_hist above; the string now formats these.
+                  growth_fy25={k: _seg_growth(k, 'FY25', 'FY24') for k in SEGNAME},
+                  growth_fy24={k: _seg_growth(k, 'FY24', 'FY23') for k in SEGNAME}),
     bottomup=dict(unit_hist=unit_hist, subs=SUBS, subnames=SUBNAME, gp=gp, gp_margin=gp_margin,
                   opex=opex, seg_gp=seg_gp,
                   q1_26_implied_fy=V['q1_26_rev'] / (V['q1_25_rev'] / V['rev_fy25'])),
@@ -1889,6 +1937,23 @@ OUT = dict(
               wacc_usd_alt=WACC_USD, beta=beta_res),
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
+             # THE EMPLOYEES' STATUTORY SHARE IS COMMITTED, because the bridge does not
+             # foot without it and a reader has to be able to add the printed steps up.
+             # It was charged in the model from the first edition and asserted at the
+             # identity below, but it was never written to this record -- so the delivered
+             # §1.1 table went enterprise value, less net debt, plus associates, less
+             # minorities, and then straight to an equity 11,273 lower than those four
+             # lines produce, with no row to explain the drop. The arithmetic was right
+             # and the table was unfootable, which is the worse of the two failures: a
+             # reader checking the study finds a number that does not add up and has no
+             # way to tell a missing row from a wrong one.
+             emp_rate=emp_rate, emp_charge=emp_charge, eq_attr_pre_emp=eq_attr_pre_emp,
+             # THE FY2025 PAYOUT RATIO, COMMITTED. The document computed it inline from
+             # two committed numbers and printed 22.9%, which no committed figure matched,
+             # so the prose check could not reconcile it -- a figure a reader sees and
+             # cannot trace [R-REPAIR-01]. Arithmetic done in a document builder is
+             # arithmetic no gate reads.
+             dps_payout_fy25=V['dps_fy25'] / (V['npa_fy25'] / SH),
              eq_attr=eq_attr, ps=dcf_ps, ps_dec=dcf_ps_dec, roll=ROLL,
              anchor_days=V['anchor_days'], roic_term=roic_term, rr_term=rr_term,
              # THE TERMINAL'S OWN RECORD, committed rather than described. Without

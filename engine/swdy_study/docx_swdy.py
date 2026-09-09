@@ -217,7 +217,7 @@ rows = [['Item', 'Detail'],
          f"({pc(IN['dps_fy24']*SH/HI['FY24']['npa'])} of attributable profit), then EGP "
          f"{p2(IN['dps_fy25'])} on FY2025 — ratified by the general assembly on 6 May 2026, rights "
          f"with the share through 1 June, paid from 4 June 2026 — "
-         f"{pc(IN['dps_fy25']/(HI['FY25']['npa']/SH))} of FY2025 attributable EPS, an "
+         f"{pc(DCF['dps_payout_fy25'])} of FY2025 attributable EPS, an "
          f"{sgn(IN['dps_fy25']/IN['dps_fy24']-1,0)} step-up. An earlier revision of this study "
          f"wrongly stated no FY2025 dividend existed, reasoning from the silence of the annual "
          f"and interim filings; the interim covers a period ending before the assembly met, so "
@@ -298,6 +298,18 @@ rows = [['Step', 'EGP mn', 'Note'],
         ['Less minority interests', f"({n0(DCF['nci_val'])})",
          f"minorities take {pc(DCF['nci_share'])} of group profit, so they are charged the same "
          f"share of the value"],
+        # THE ROW WITHOUT WHICH THIS TABLE DOES NOT ADD UP. It was charged in the model
+        # from the first edition and printed in none of them, so the four steps above
+        # summed to 92,458 against a printed equity of 81,185 and nothing in the document
+        # accounted for the 11,273 difference.
+        ["Less the employees' statutory share of distributable profits",
+         f"({n0(DCF['emp_charge'])})",
+         f"Egyptian company law gives employees a share of distributable profits; measured "
+         f"at {pc(DCF['emp_rate'])} of profit attributable to owners, the mean of FY2024, "
+         f"FY2025 and H1-2026. It is disclosed only in the earnings-per-share note, below "
+         f"the attributable line, and appears in no line of the income statement. The "
+         f"statutory share is capped at total annual wages and no filing discloses the "
+         f"cap's headroom, so the charge is an UPPER bound"],
         ['Equity attributable, at 31 December 2025', n0(DCF['eq_attr']),
          f"EGP {p2(DCF['ps_dec'])} per share — dated at the audited balance-sheet date the "
          f"bridge subtracts net debt at"],
@@ -309,7 +321,7 @@ rows = [['Step', 'EGP mn', 'Note'],
          'EGP 1.85, ex 1 June 2026 — value that left the share before the anchor date'],
         ['Fair value per share at the anchor (EGP)', p2(DCF['ps']),
          f"against a spot of {p2(SPOT)} ({sgn(DCF['ps']/SPOT-1,0)})"]]
-table(rows, [2.55, 1.05, 3.40], size=8.4, band_rows={4, 12}, align_right_from=1)
+table(rows, [2.55, 1.05, 3.40], size=8.4, band_rows={4, 13}, align_right_from=1)
 caption("Every lens in this study — not only the cash-flow model — is rolled to the anchor on "
         "the same two lines, so no value dated 31 December 2025 is ever compared to an August "
         "price. An earlier revision omitted the roll; an external review correctly flagged the "
@@ -802,6 +814,17 @@ caption("Every row is a full re-run of the segment build, not a multiplier appli
         "contradicts (a review caught it); what remains true is that the two cost-of-capital "
         "grids jointly span the widest surface, and a ±15% margin shock is a far larger "
         "displacement of the base case than any one row's parameter step.")
+P(f"Every grid above is produced by the SAME valuation function as the headline, and it is "
+  f"asserted to reproduce it: at the adopted rates, growth and beta the function returns "
+  f"EGP {p2(SN['grid_exp_term'][2][2])} against the published central of {p2(D['central'])}. Until "
+  f"this edition the grids ran through a second function that re-implemented the terminal on "
+  f"a construction the study had already retired and omitted the employees' statutory share "
+  f"of profit that the bridge charges, so the surface was centred "
+  f"{pc(49.7076 / D['central'] - 1, 1)} above the answer it was supposed to be testing. Note also "
+  f"where the adopted point SITS in each range rather than assuming it is the middle: "
+  f"terminal growth is adopted at {pc(IN['g_term'],0)}, the TOP of the "
+  f"{pc(SN['g_grid'][0],0)}–{pc(SN['g_grid'][-1],0)} range tested, so the terminal-growth "
+  f"row runs from the answer downwards and not symmetrically around it.", space_after=10)
 
 P(f"The beta deserves a note. At {IN['beta']:.3f} with an R-squared of {W['beta']['r2']:.3f} over "
   f"{W['beta']['n']} weekly observations and a standard error of {W['beta']['se']:.3f}, this is a "

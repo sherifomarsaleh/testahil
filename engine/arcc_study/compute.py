@@ -1738,7 +1738,7 @@ say(f"[Counterweight 3 — is the uplift permanent?] the local price factor of "
     f"document says so in those words")
 
 # ==================== 7. SENSITIVITY ========================================
-def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal):
+def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal, life_=None):
     """The terminal at an arbitrary rate and nominal growth, through [R-TERM-01].
 
     A sensitivity grid is quoted in NOMINAL growth because that is what a reader of this
@@ -1752,14 +1752,22 @@ def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal):
     return terminal_value.build(terminal_value.TerminalInputs(
         nopat=float(nopat_last), wacc=float(wacc_t), inflation=float(_PI_T),
         real_growth=float(g_real), dna_book=float(dna_last),
-        ic_replacement=float(ic_repl), useful_life_years=_LIFE,
+        ic_replacement=float(ic_repl),
+        useful_life_years=(_LIFE if life_ is None else float(life_)),
         useful_life_source=_UL['_source'], maintenance_basis='disclosed_life',
         working_capital=float(_WC_LEVEL),
         incremental_capital_per_unit_growth=float(ic_repl))).tv
 
 
 def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
-          dna_shift=0.0, nci=None, kd_=None):
+          dna_shift=0.0, nci=None, kd_=None, life_=None):
+    # life_ EXISTS BECAUSE A JUDGEMENT THAT CANNOT BE REVALUED CANNOT BE CONTESTED.
+    # The terminal's maintenance charge rests on a DISCLOSED useful life [R-TERM-01] and
+    # ARCC's accounting-policies note discloses EIGHT of them, from 3 years to 50. This
+    # study consumes ONE. Until this parameter existed there was no way to price the
+    # other seven through the same bridge as the headline, so the choice sat in
+    # useful_lives.json -- which says in its own words that it "belongs in the
+    # [R-ENF-05] register" -- and did not appear in that register at all.
     nc = net_cash if nc is None else nc
     g = V['g_term'] if g is None else g
     nci_ = V['nci_h1_26'] if nci is None else nci
@@ -1790,7 +1798,7 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
     # re-derived the g x IC terminal here, so every sensitivity and every contested
     # judgement was quoted against a construction that was consistent with the headline and
     # consistently wrong. Both now go through [R-TERM-01].
-    tvl = _terminal_at(np_[-1], dn[-1], wt, g)
+    tvl = _terminal_at(np_[-1], dn[-1], wt, g, life_=life_)
     # THE TERMINAL VALUE DISCOUNTS AT THE END-OF-WINDOW FACTOR, NOT AT THE LAST
     # EXPLICIT YEAR'S MID-YEAR FACTOR. Revision 4 found this the hard way: with
     # d_[-1] here, reval() returned 57.27 against a headline of 55.21 — every
@@ -1912,6 +1920,63 @@ say(f"\n[The export subsidy, priced across the range rather than caveated] at th
     f"{SUBSIDY[3]['fv'] - SUBSIDY[0]['fv']:.2f} a share and is published as a number")
 
 fv_taxstat = None
+
+# ---- THE TERMINAL USEFUL LIFE, PRICED ACROSS EVERY LIFE THE FILING DISCLOSES ----
+# ARCC's accounting-policies note discloses EIGHT distinct useful lives across the parent
+# and two subsidiaries -- 3, 5, 10, 16, 20 and 50 years. The terminal consumes exactly one
+# of them, and useful_lives.json states in its own words that the choice "is a material
+# contested judgement and belongs in the [R-ENF-05] register". It did not appear in that
+# register. That is the defect this block closes: not that 20 years is wrong -- the
+# reasoning for it is on the record and stands -- but that a choice the study itself calls
+# material was resolved without ever being priced beside its alternatives.
+_LIFE_MENU = sorted({float(y) for _e in ([_UL['parent']] + list(_UL['subsidiaries'].values()))
+                     for _cls in _e.get('lives_years', _e).values()
+                     if isinstance(_cls, list) for y in _cls})
+# A SHORT LIFE IS NOT A LOW VALUE, IT IS A REFUSAL, AND THE REFUSAL IS THE EVIDENCE.
+# On the three- and five-year lives the terminal builder raises TerminalRefused: the
+# maintenance charge to replace a whole cement plant every three years exceeds NOPAT, so
+# terminal free cash flow is negative and [R-TERM-01] will not call that a going concern.
+# That is recorded as a refusal, not swallowed and not turned into a number -- it is the
+# strongest available evidence that the short lives in the note belong to computers and
+# office furniture and not to the asset base this terminal represents.
+def _price_life(y):
+    try:
+        return dict(years=y, fv=reval(life_=y), refused=None)
+    except terminal_value.TerminalRefused as e:
+        return dict(years=y, fv=None, refused=str(e))
+
+LIFE_CHOICE = dict(
+    adopted_years=_LIFE, disclosed_lives=_LIFE_MENU,
+    source=_UL['_source'],
+    priced=[_price_life(y) for y in _LIFE_MENU],
+    basis=_UL['adopted_for_terminal']['basis'],
+)
+_lf_ok = [x for x in LIFE_CHOICE['priced'] if x['fv'] is not None]
+_lf_lo = min(x['fv'] for x in _lf_ok)
+_lf_hi = max(x['fv'] for x in _lf_ok)
+LIFE_CHOICE.update(fv_at_shortest=_lf_lo, fv_at_longest=_lf_hi, swing=_lf_hi - _lf_lo,
+                   refused_years=[x['years'] for x in LIFE_CHOICE['priced']
+                                  if x['fv'] is None])
+# The ALTERNATIVE carried into the register is the LONGEST life disclosed in the same
+# note, because that is the challenge a reader can actually make from the filing: you had
+# 50 years in front of you and you took 20. The short end is shown too, and it is the
+# larger move, but nobody would argue a cement plant is a three-year asset.
+_LIFE_ALT = _LIFE_MENU[-1]
+fv_life_alt = reval(life_=_LIFE_ALT)
+say(f"\n[The terminal useful life, priced across every life the filing discloses] the note "
+    f"gives {len(_LIFE_MENU)} lives ({', '.join(f'{y:g}' for y in _LIFE_MENU)} years) and the "
+    f"terminal consumes one. On the adopted {_LIFE:g} years the cash-flow lens reads "
+    f"{fv_dcf:.2f}; across the lives that produce a going concern at all it runs "
+    f"{_lf_lo:.2f} to {_lf_hi:.2f}, a swing of EGP {_lf_hi-_lf_lo:.2f} a share against a "
+    f"central of {fv_central:.2f}. The "
+    + (f"{', '.join(f'{y:g}' for y in LIFE_CHOICE['refused_years'])}-year "
+       f"{'lives are' if len(LIFE_CHOICE['refused_years'])>1 else 'life is'} REFUSED by "
+       f"[R-TERM-01] outright — replacing the plant that often costs more than it earns, "
+       f"which is the arithmetic proof that those lives belong to computers and office "
+       f"furniture and not to this asset base. "
+       if LIFE_CHOICE['refused_years'] else "")
+    + "choice is now in the contested register, where useful_lives.json always said it belonged")
+
 CONTESTED = [
     dict(choice='Cost of debt: the POUND-EQUIVALENT cost of a euro debt book (adopted) '
                 'vs the contracted euro rate',
@@ -1929,8 +1994,11 @@ CONTESTED = [
          adopted=f"{beta_used:.3f}", alternative=f"{BETA['own_stock']['beta']:.3f}",
          fv_adopted=fv_dcf, fv_alternative=fv_beta_own,
          effect=fv_beta_own / fv_dcf - 1,
-         note=('THIS IS THE STUDY\'S MOST CONSEQUENTIAL CONTESTED JUDGEMENT AND IT IS '
-               'PUBLISHED BOTH WAYS. The only conforming regressor for an EGX listing is '
+         note=('THIS JUDGEMENT IS PUBLISHED BOTH WAYS. It was the study\'s largest '
+               'contested judgement until the terminal useful life was priced beside it '
+               'on 09-09-2026 and turned out to be larger; the ranking is computed in '
+               'diagnostics_arcc.py rather than typed here, so it cannot go stale again. '
+               'The only conforming regressor for an EGX listing is '
                'the EGX30, and ARCC regressed against it returns an R-squared of 4.7% — '
                'below the 5% usability floor, so tier 1 is not available. Revisions 1-3 '
                'carried 0.628 from an equal-weight COMPOSITE of the covered Egyptian '
@@ -1950,6 +2018,25 @@ CONTESTED = [
          note=('Setting capex equal to book depreciation would flatter free cash flow by '
                'construction. The adopted treatment is the conservative one and the size '
                'of the conservatism is published.')),
+    dict(choice='Terminal useful life: the disclosed 20 years of machinery and equipment, '
+                'the class the replacement-cost base actually represents (adopted), vs the '
+                'longest life disclosed in the same accounting-policies note, 50 years',
+         adopted=f"{_LIFE:g} years", alternative=f"{_LIFE_ALT:g} years",
+         fv_adopted=fv_dcf, fv_alternative=fv_life_alt,
+         effect=fv_life_alt / fv_dcf - 1,
+         note=('[R-TERM-01] requires the terminal maintenance charge to rest on a DISCLOSED '
+               'life, and ARCC discloses EIGHT of them (3, 5, 10, 16, 20 and 50 years across '
+               'the parent and two subsidiaries). The terminal consumes ONE, and a longer '
+               'life means a smaller maintenance charge and a larger value: across the full '
+               f'disclosed menu the cash-flow lens runs {_lf_lo:.2f} to {_lf_hi:.2f}, a swing '
+               f'of EGP {_lf_hi-_lf_lo:.2f} a share. The adopted 20 years is defended on the '
+               'ground that the base is capacity x replacement cost per tonne -- a greenfield '
+               'cement plant, overwhelmingly machinery and civil works, disclosed at 20 -- '
+               'and the 50-year figure is a ready-mix subsidiary\'s BUILDINGS, which is not '
+               'what a capacity-based replacement cost measures. That reasoning stands. What '
+               'did not stand was resolving it without pricing it: useful_lives.json called '
+               'this a material contested judgement and named this register as where it '
+               'belonged, and it was absent from this register until 09-09-2026.')),
 ]
 say("\n[Contested choices, each computed]")
 for c in CONTESTED:
