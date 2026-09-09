@@ -42,14 +42,48 @@ def main():
                                 "not exist on any basis in hand",
         },
 
+        # RE-PROBED 09-09-2026 AND ONE FIELD OF THE FIRST PROBE WAS WRONG.
+        #
+        # The 07-09 probe recorded dead_host_resolves False and stopped there. The host
+        # RESOLVES — https://www.ececables.com answers 200 with a rebuilt WordPress site.
+        # What is dead is the UPLOADS: every statement URL the old index pointed at now
+        # 404s against a page of HTML, which is the failure that reads as a dead host to
+        # anything checking a status code and not a content type. Correcting it matters
+        # because the wrong reason is the recoverable one, and a later session reading
+        # "dead host" would try the archive, find statements, and think the skip was
+        # premature. It is not, and the paragraph below is why.
+        #
+        # THE ARCHIVE ROUTE WAS THEN WALKED TO ITS END RATHER THAN SAMPLED. All 926
+        # unique ececables.com URLs the Wayback CDX index holds were enumerated, not the
+        # 61 the issuer's own index listed. The result is decisive in both directions:
+        #   * ZERO consolidated statements were ever archived, at any date. Every
+        #     recoverable statement is standalone (القوائم المالية المستقلة). The
+        #     consolidation wedge below is therefore not closable from any public source
+        #     — 1.73x revenue and 34.5x operating profit at the FY2020 overlap.
+        #   * ZERO filings of ANY basis exist for 2018, 2019 or 2020. The archive holds
+        #     2013-2017 on the retired /download/ path and 2021-2023 under wp-content,
+        #     with a three-year hole between them.
+        # The hole falls exactly where the origins would be. FY2022 at h=1 needs
+        # FY2018-FY2022, so the missing years are not a thinner sample, they are the
+        # reason the sample is empty. THE SKIP IS NOT A SOURCING EFFORT NOT YET MADE;
+        # it is a sourcing effort completed with a negative result [R-ENF-04].
         "issuer_archive": {
-            "probed": "2026-09-07", "index_http": 200,
+            "probed": "2026-09-07", "reprobed": "2026-09-09", "index_http": 200,
             "statement_files_listed": 61,
             "on_live_host": 19, "fetchable_on_live_host": 0,
-            "on_dead_host": 42, "dead_host_resolves": False,
+            "on_dead_host": 42,
+            "dead_host_resolves": True,
+            "dead_host_correction": "the host resolves; the uploads 404 into HTML. The "
+                                    "07-09 field was wrong and the wrong reason was the "
+                                    "recoverable one.",
             "index_last_period": "2025-09-30",
             "consolidated_files_all_on_dead_host": True,
             "last_consolidated_statement_issued": "FY2020",
+            "wayback_urls_enumerated": 926,
+            "wayback_consolidated_statements": 0,
+            "wayback_filings_2018_2019_2020": 0,
+            "wayback_recoverable_basis": "standalone only, 2013-2017 and 2021-2023",
+            "recovery_route_closed": True,
         },
 
         "footing": {"checks": len(foot),
