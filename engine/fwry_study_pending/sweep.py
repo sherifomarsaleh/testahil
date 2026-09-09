@@ -72,7 +72,7 @@ SOURCING EXCEPTIONS, RECORDED RATHER THAN HIDDEN
     FIRES on each of them. THE FLAG IS NOT DOWNGRADED TO MAKE THE RUN LOOK CLEAN: three
     disclosed errors are the honest count of the periods whose numbers do not rest on an
     audited or reviewed statement. Four fiscal years — FY2021 through FY2024 — DO rest on
-    the audited statements themselves.
+    the audited statements themselves, read off the pixels and footed (exception 5).
 
 (5) THE AUDITED STATEMENTS ARE IMAGE-ONLY SCANS AND WERE READ OFF THE RENDERED PIXELS.
     All four annual sets extract to fewer than 60 characters through pdftotext; pdffonts
@@ -89,9 +89,21 @@ SOURCING EXCEPTIONS, RECORDED RATHER THAN HIDDEN
     FY2023 health contribution read 11,099,750 against a true 11,599,755) and the FY2024
     balance sheet (eight glyphs). Both corrections are recorded in footing_check.py rather
     than silently applied, and the FY2023 English set independently confirms the corrected
-    FY2023 figure. Three audited fiscal years — FY2022, FY2023 and FY2024 — are read and
-    footed in full, income statement and balance sheet, 78 checks in all. The FY2021 set is
-    held but NOT read, and no FY2021 line item appears anywhere in this register.
+    FY2023 figure. THE FY2021 SET FAILED THE SAME TEST ON THREE SUBTOTALS and was accepted
+    only after every figure on both statement pages was re-read at the scan's native 200 dpi;
+    six OCR glyph errors were caught and corrected, and the five-pound net-profit gap that
+    survived the first two rounds of correction turned out NOT to be the deferred-tax line
+    it appeared to be, but two further errors either side of it. Had that gap been closed by
+    subtraction the register would carry a deferred-tax figure the company never printed and
+    would still have been wrong about two other lines. FY2021's scanner provenance was also
+    checked, because the file was produced by a Xerox WorkCentre 5330 — a device family
+    subject to the 2013 JBIG2 symbol-substitution defect, where the SCANNER swaps digit
+    bitmaps and no re-read can recover the truth. The JBIG2 segment headers were parsed and
+    every page carries only an immediate generic region, with no symbol dictionary and no
+    text region, so that failure mode is ruled out on this file and the pixels can be
+    trusted. FOUR audited fiscal years — FY2021, FY2022, FY2023 and FY2024 — are read and
+    footed in full, income statement and balance sheet, 91 checks in all, which takes the
+    FS-depth invariant from its two-year floor to its four-year target.
 
 (6) THE CENTRAL BANK OF EGYPT'S OWN MONETARY POLICY REPORT WAS REACHED DIRECTLY. The CBE
     site rejects its own HTML paths at this egress (404/rejection page) but serves its
@@ -405,29 +417,64 @@ f_efih = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)", Findi
                  "cross-check on the lending arm's value.")
 
 # --------------------------------------------------------------- RING 4 COMPANY
-f_fs21 = R.add(Ring.COMPANY, "official financial statements", FindingClass.C,
-    "FY2021 audited consolidated financial statements (EAS), year ended 31 December 2021 — "
-    "51 pages, image-only scan, HELD BUT NOT READ. Retrieved as an Internet Archive capture "
-    "of the company's own PDF (fawry.com/wp-content/uploads/2023/03/"
-    "Fawry-Consolidated-Financials-Q4-2021-English.pdf, capture 20240217155800) and stored "
-    "at engine/fwry_study_pending/filings/FS_CONS_FY2021_EN.pdf",
-    "Fawry FY2021 audited consolidated financial statements", CO, "2022-03-31",
-    detail="NO FY2021 LINE ITEM IS QUOTED ANYWHERE IN THIS REGISTER and none is accepted in "
-           "footing_check.py. A late OCR pass DID return a readable page (the FY2021 balance "
-           "sheet and income statement with FY2020 comparatives, held at "
-           "filings/FS_CONS_FY2021_EN_OCR.txt) and MOST of it foots — total non-current "
-           "assets, total assets, parent and total equity, both liability totals, gross "
-           "margin and the net-profit split all tie exactly. THREE LINES DID NOT FOOT and "
-           "the page is therefore not accepted: current assets ran 10,000,000 light, "
-           "operating profit 14,999,700 light and net profit 5 light. Two of the three were "
-           "resolved by re-reading off the rendered pixels — accounts and notes receivable is "
-           "63,746,140 not 53,746,140; the medical contribution is 5,505,997, formed "
-           "provisions 11,628,500, impairment on customer loans 12,749,394 and the ECL "
-           "reversal 1,770,520 — which closes the asset and operating-profit gaps exactly. "
-           "The remaining 5-pound gap sits in deferred tax and could not be re-read because "
-           "the host filesystem filled. FY2021 stays OUT until that line is read: a figure "
-           "derived to make a page foot is not a figure the company printed.",
-    model_impact="")
+f_fs21 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
+    "FY2021 AUDITED CONSOLIDATED, read and footed: operating revenue EGP 1,658,156,677; "
+    "operating costs (725,893,276); gross margin 932,263,401 (56.2%); G&A (379,711,786); "
+    "ESOP (52,398,016); board compensation (3,972,600); selling and marketing (279,254,967); "
+    "medical contribution (5,505,997); formed provisions (11,628,500); net impairment loss on "
+    "customers' loans (12,749,394); reversal of expected credit loss 1,770,520; other "
+    "operating expenses (7,020,000); net gain on CBE POS-spreading incentives 21,725,295; "
+    "credit interest 126,766,483; finance costs (39,439,470); FX 310,283; gain on disposal of "
+    "fixed assets 7,168,024; other revenues 5,871,268; operating profit 304,194,544; share of "
+    "losses of associates and JVs (5,549,798); gain on step-up from associate to subsidiary "
+    "22,800,000; profit before tax 321,444,746; current income tax (75,726,644); deferred tax "
+    "(3,596,019); net profit 242,122,083, of which parent 177,177,542 and NCI 64,944,541; EPS "
+    "0.12 basic and diluted. Balance sheet: total assets 4,124,074,928 (non-current "
+    "1,003,356,023 + current 3,120,718,905), total equity 1,458,019,334 (parent 1,379,010,558 "
+    "+ NCI 79,008,776), issued capital 853,652,060, non-current liabilities 165,251,717, "
+    "current liabilities 2,500,803,877",
+    "Fawry FY2021 audited consolidated financial statements (English translation of the "
+    "Arabic original), pages 4-6",
+    CO, "2022-03-31",
+    detail="ROUTE: image-only scan with no text layer at all (51pp, retrieved as an Internet "
+           "Archive capture of the company's own PDF, fawry.com/wp-content/uploads/2023/03/"
+           "Fawry-Consolidated-Financials-Q4-2021-English.pdf, capture 20240217155800, stored "
+           "at filings/FS_CONS_FY2021_EN.pdf). A first OCR pass produced "
+           "filings/FS_CONS_FY2021_EN_OCR.FAILED_FIRST_PASS.txt, retained under that name so "
+           "the discarded route stays visible, and it FAILED its footing test on three "
+           "subtotals; every figure above was then re-read off the rendered pixels at the "
+           "scan's native 200 dpi and the page now foots on all 13 subtotals across both "
+           "columns (footing_check.py). SIX OCR GLYPH ERRORS were caught by the footing test "
+           "and corrected against the pixels: accounts and notes receivable 63,746,140 read as "
+           "53,746,140; medical contribution 5,505,997 read as 505,997; formed provisions "
+           "11,628,500 read as 41,628,500; net impairment on customer loans 12,749,394 read as "
+           "2,749,394; profit before tax 321,444,746 read as 321,444,745; and current income "
+           "tax 75,726,644 read as 75,726,648. THE 5-POUND NET-PROFIT GAP WAS NOT DEFERRED TAX "
+           "— deferred tax reads (3,596,019) at native resolution, exactly as the first pass "
+           "had it. It was the last two errors in that list, sitting either side of the "
+           "deferred-tax line and summing to precisely the 5 observed. SCANNER PROVENANCE CHECKED: the file was produced by "
+           "a Xerox WorkCentre 5330, a device family subject to the 2013 JBIG2 symbol-"
+           "substitution defect in which the SCANNER silently swaps one digit's bitmap for a "
+           "similar one, which no amount of re-reading can recover. The JBIG2 segment headers "
+           "were parsed and every page carries only an immediate generic region (type 38), "
+           "with no symbol dictionary (type 0) and no text region (type 6/7). Generic-region "
+           "coding is lossless at the pixel level, so scanner-side substitution is ruled out "
+           "on this file and the pixels are the pixels the scanner saw. Every error found here "
+           "was the extractor's, and re-reading is the correct and sufficient remedy. ONE "
+           "RESIDUAL, DISCLOSED: the FY2020 comparative column foots on every subtotal except "
+           "operating profit, which is 2,000 out. It traces to the medical-contribution cell, "
+           "whose fourth digit is physically damaged in the scan (ink dropout) and reads "
+           "equally as 4,063,677 or 4,065,677; arithmetic implies 4,065,677 but the glyph is "
+           "not legible and NO FY2020 FIGURE IS ADMITTED TO THE REGISTER on the strength of "
+           "it. FY2020 is a comparative here, not a year this study carries.",
+    model_impact="Earliest historical year the study uses, and the fourth audited year, which "
+                 "takes the FS-depth invariant from its floor to its target. It anchors the "
+                 "bottom of the operating-leverage path the forecast has to justify: gross "
+                 "margin 56.2% in FY2021, 59.7% FY2022, 63.0% FY2023, rising to 68.9% by "
+                 "FY2025. A fourth point turns that from a three-point line into a trend with "
+                 "a testable shape, and it is the only year in the set that predates the "
+                 "2022 devaluation.",
+    is_fs_data=True, fiscal_period="FY2021")
 
 f_fs22 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
     "FY2022 AUDITED CONSOLIDATED, read and footed: operating revenue EGP 2,279,335,174; "
@@ -449,7 +496,7 @@ f_fs22 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
            "truncated copy, which is retained with a .TRUNCATED suffix so the discarded "
            "route stays visible); the figures above come from the FY2023 set's audited "
            "comparative column, which is what was read.",
-    model_impact="Earliest historical year the study uses. It is the pre-scale cost base: "
+    model_impact="Second historical year. It is the pre-scale cost base: "
                  "59.7% gross margin against 68.9% in FY2025, which is the whole operating-"
                  "leverage story the forecast has to justify or fade.",
     is_fs_data=True, fiscal_period="FY2022")
@@ -471,8 +518,8 @@ f_fs23 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
            "income statement and balance sheet foot exactly (footing_check.py), and the same "
            "FY2023 figures appear as the comparative column of the FY2024 Arabic set, giving "
            "an independent cross-document tie.",
-    model_impact="Second historical year and the hinge of the margin story: gross margin "
-                 "63.0% against 59.7% in FY2022 and 65.7% in FY2024.",
+    model_impact="Third historical year and the hinge of the margin story: gross margin "
+                 "63.0% against 56.2% in FY2021, 59.7% in FY2022 and 65.7% in FY2024.",
     is_fs_data=True, fiscal_period="FY2023")
 
 f_fs24 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
@@ -927,8 +974,12 @@ R.add_driver("Cost stack and gross margin", DriverMode.BOTTOM_UP,
     "statements' own income statement and notes for FY2021-FY2024, which are the only "
     "documents that carry any cost line — the releases stop at gross profit. Gross margin "
     "and EBITDA margin fall out of revenue less the built cost lines and are reported "
-    "against the released actuals (68.9% GPM and 57.4% EBITDA margin FY2025) as a check.",
-    [f_cost, f_fs22, f_fs23, f_fs24, f_neg_cost])
+    "against the released actuals (68.9% GPM and 57.4% EBITDA margin FY2025) as a check. "
+    "FY2021 is now read and footed alongside the other three, which gives the cost stack a "
+    "four-year history and, more usefully, one PRE-DEVALUATION year: FY2021 is the only "
+    "point in the set struck before the March-2022 float, so the cost lines can be tested "
+    "for FX pass-through rather than having it assumed.",
+    [f_cost, f_fs21, f_fs22, f_fs23, f_fs24, f_neg_cost])
 
 R.add_driver("Funding cost of the lending arm", DriverMode.BOTTOM_UP,
     "Taken from the company's own named transactions: the EGP 497.5mn 13-month A- rated "

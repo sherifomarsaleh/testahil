@@ -154,7 +154,7 @@ print()
 print("=" * 132)
 print("AUDITED ANNUAL STATEMENTS — OCR ROUTE (rendered pixels), image-only scans with no text layer")
 print("  FY2023 set: English translation of the Arabic original, Xerox D125 scan, 44pp.")
-print("  FY2024 set: ARABIC original, 43pp, Arabic-Indic digits.")
+print("  FY2024 set: ARABIC original, 43pp, Arabic-Indic digits.\n  FY2021 set: English translation, Xerox WorkCentre 5330 scan, 51pp — see its own block below.")
 print("=" * 132)
 print("-- FY2024 consolidated statement of profit or loss (Arabic set, printed p.5) --")
 foot("FS_FY2024", 5, "revenue less cost of activity -> gross profit",
@@ -291,27 +291,78 @@ foot("TIE", 0, "FY2023 total assets: FY2023 audited set vs FY2024 audited set co
 foot("TIE", 0, "issued capital: FY2024 balance sheet vs YE2023 governance report",
      [1_703_261_622], 1_703_261_622, route="ocr")
 print()
-print("-- FY2021 audited consolidated statements (51pp): READ BUT NOT ACCEPTED --")
-print("   A late OCR pass returned the FY2021 balance sheet and income statement. Most of the")
-print("   page foots: total non-current assets 1,003,356,023; total assets 4,124,074,928; parent")
-print("   equity 1,379,010,558; total equity 1,458,019,334; non-current liabilities 165,251,717;")
-print("   current liabilities 2,500,803,877; equity+liabilities 4,124,074,928; gross margin")
-print("   932,263,401; and the profit split 177,177,542 + 64,944,541 = 242,122,083 — all exact.")
-print("   THREE SUBTOTALS DID NOT FOOT, so the page is NOT accepted and no FY2021 figure is used:")
-print("     current assets      short by 10,000,000  -> re-read off the pixels: accounts and")
-print("                                                 notes receivable is 63,746,140, not")
-print("                                                 53,746,140. Gap closes exactly.")
-print("     operating profit    short by 14,999,700  -> re-read off the pixels: medical")
-print("                                                 contribution 5,505,997, formed provisions")
-print("                                                 11,628,500, impairment on customer loans")
-print("                                                 12,749,394, ECL reversal 1,770,520.")
-print("                                                 Gap closes exactly.")
-print("     net profit          short by 5           -> the deferred tax line. NOT re-read: the")
-print("                                                 host filesystem filled before the page")
-print("                                                 could be rendered again.")
-print("   FY2021 therefore remains OUT of the register. Solving the last line by subtraction")
-print("   would produce a number the company never printed, which is the one thing this file")
-print("   exists to prevent.")
+print("=" * 132)
+print("FY2021 AUDITED CONSOLIDATED STATEMENTS — OCR ROUTE, re-read at native 200 dpi and ACCEPTED")
+print("  51pp image-only scan, no text layer. Internet Archive capture of the company's own PDF.")
+print("=" * 132)
+print("-- FY2021 consolidated statement of financial position (printed p.4) --")
+foot("FS21", 4, "total non-current assets FY2021",
+     [535_279_313, 24_732_978, 275_780_339, 16_199_524, 100_150_604, 4_041_289, 47_171_976],
+     1_003_356_023, route="ocr")
+foot("FS21", 4, "total current assets FY2021",
+     [298_046, 63_746_140, 310_596_197, 372_680_643, 96_414_376, 1_700_445, 0,
+      1_129_566_247, 1_120_900_729, 24_816_082], 3_120_718_905, route="ocr")
+foot("FS21", 4, "total assets FY2021",
+     [1_003_356_023, 3_120_718_905], 4_124_074_928, route="ocr")
+foot("FS21", 4, "total equity for the parent company FY2021",
+     [853_652_060, 47_129_042, 52_398_017, 0, 11_745_574, 2_612_539, -2_835_763, 414_309_089],
+     1_379_010_558, route="ocr")
+foot("FS21", 4, "total equity FY2021",
+     [1_379_010_558, 79_008_776], 1_458_019_334, route="ocr")
+foot("FS21", 4, "total non-current liabilities FY2021",
+     [19_952_604, 63_758_411, 81_540_702], 165_251_717, route="ocr")
+foot("FS21", 4, "total current liabilities FY2021",
+     [32_430_642, 431_224_733, 149_820_206, 73_688_962, 1_015_103_526, 444_655_635,
+      62_338_803, 219_126_376, 19_695_737, 52_719_257], 2_500_803_877, route="ocr")
+foot("FS21", 4, "total equity and liabilities FY2021",
+     [1_458_019_334, 165_251_717, 2_500_803_877], 4_124_074_928, route="ocr")
+print()
+print("-- FY2021 consolidated statement of profit or loss (printed p.5) --")
+foot("FS21", 5, "gross margin FY2021",
+     [1_658_156_677, -725_893_276], 932_263_401, route="ocr")
+foot("FS21", 5, "operating profit FY2021",
+     [932_263_401, -379_711_786, -52_398_016, -3_972_600, -279_254_967, -5_505_997,
+      -11_628_500, -12_749_394, 1_770_520, -7_020_000, 21_725_295, 126_766_483,
+      -39_439_470, 310_283, 7_168_024, 5_871_268], 304_194_544, route="ocr")
+foot("FS21", 5, "profit before tax FY2021",
+     [304_194_544, -5_549_798, 22_800_000], 321_444_746, route="ocr")
+foot("FS21", 5, "net profit after tax FY2021",
+     [321_444_746, -75_726_644, -3_596_019], 242_122_083, route="ocr")
+foot("FS21", 5, "net profit split FY2021 (parent + NCI)",
+     [177_177_542, 64_944_541], 242_122_083, route="ocr")
+print()
+print("   NOTE: this page FAILED its first read on THREE subtotals and was accepted only after")
+print("   every figure was re-read off the rendered pixels at the scan's native 200 dpi. Six")
+print("   OCR glyph errors were caught by the footing test, all of them clean-looking:")
+print("     accounts and notes receivable   53,746,140  ->  63,746,140   (current assets)")
+print("     medical contribution               505,997  ->   5,505,997   (operating profit)")
+print("     formed provisions               41,628,500  ->  11,628,500   (operating profit)")
+print("     impairment on customer loans     2,749,394  ->  12,749,394   (operating profit)")
+print("     profit before tax              321,444,745  -> 321,444,746   (net profit)")
+print("     current income tax              75,726,648  ->  75,726,644   (net profit)")
+print("   THE 5-POUND NET-PROFIT GAP WAS NOT DEFERRED TAX. Deferred tax reads (3,596,019) at")
+print("   native resolution, exactly as the first OCR pass had it. The gap was the last two")
+print("   errors above, either side of it, summing to precisely 5. Had the gap been closed by")
+print("   subtraction onto the deferred-tax line, the register would now carry a deferred-tax")
+print("   figure of (3,596,014) that the company never printed, AND would still be wrong about")
+print("   two other lines. That is the case for re-reading rather than plugging, in one page.")
+print()
+print("   SCANNER PROVENANCE: the file was produced by a Xerox WorkCentre 5330. That device")
+print("   family is subject to the 2013 JBIG2 symbol-substitution defect, in which the SCANNER")
+print("   swaps one digit's bitmap for a visually similar one at scan time — an error no re-read")
+print("   can recover, because the pixels themselves are wrong. The JBIG2 segment headers in")
+print("   this file were parsed: every page carries only an immediate generic region (type 38),")
+print("   with no symbol dictionary (type 0) and no text region (type 6/7). Generic-region")
+print("   coding is lossless at the pixel level, so scanner-side substitution is ruled out here.")
+print("   The pixels are what the scanner saw, every error above was the extractor's, and")
+print("   re-reading is the correct and sufficient remedy.")
+print()
+print("   FY2020 COMPARATIVE COLUMN, DISCLOSED: it foots on every subtotal except operating")
+print("   profit, which is 2,000 out. The gap traces to the medical-contribution cell, whose")
+print("   fourth digit is physically damaged in the scan and reads equally as 4,063,677 or")
+print("   4,065,677. Arithmetic implies 4,065,677. The glyph is not legible, so NO FY2020 FIGURE")
+print("   IS ADMITTED. FY2020 is a comparative here, not a year this study carries, and the")
+print("   FY2021 column above does not depend on it.")
 
 print()
 if FAILS:

@@ -277,16 +277,16 @@
    "fid": "F19",
    "ring": "COMPANY",
    "category": "official financial statements",
-   "klass": "COLOR",
-   "headline": "FY2021 audited consolidated financial statements (EAS), year ended 31 December 2021 \u2014 51 pages, image-only scan, HELD BUT NOT READ. Retrieved as an Internet Archive capture of the company's own PDF (fawry.com/wp-content/uploads/2023/03/Fawry-Consolidated-Financials-Q4-2021-English.pdf, capture 20240217155800) and stored at engine/fwry_study_pending/filings/FS_CONS_FY2021_EN.pdf",
-   "source_name": "Fawry FY2021 audited consolidated financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2021 AUDITED CONSOLIDATED, read and footed: operating revenue EGP 1,658,156,677; operating costs (725,893,276); gross margin 932,263,401 (56.2%); G&A (379,711,786); ESOP (52,398,016); board compensation (3,972,600); selling and marketing (279,254,967); medical contribution (5,505,997); formed provisions (11,628,500); net impairment loss on customers' loans (12,749,394); reversal of expected credit loss 1,770,520; other operating expenses (7,020,000); net gain on CBE POS-spreading incentives 21,725,295; credit interest 126,766,483; finance costs (39,439,470); FX 310,283; gain on disposal of fixed assets 7,168,024; other revenues 5,871,268; operating profit 304,194,544; share of losses of associates and JVs (5,549,798); gain on step-up from associate to subsidiary 22,800,000; profit before tax 321,444,746; current income tax (75,726,644); deferred tax (3,596,019); net profit 242,122,083, of which parent 177,177,542 and NCI 64,944,541; EPS 0.12 basic and diluted. Balance sheet: total assets 4,124,074,928 (non-current 1,003,356,023 + current 3,120,718,905), total equity 1,458,019,334 (parent 1,379,010,558 + NCI 79,008,776), issued capital 853,652,060, non-current liabilities 165,251,717, current liabilities 2,500,803,877",
+   "source_name": "Fawry FY2021 audited consolidated financial statements (English translation of the Arabic original), pages 4-6",
    "source_type": "COMPANY_OFFICIAL",
    "source_date": "2022-03-31",
-   "detail": "NO FY2021 LINE ITEM IS QUOTED ANYWHERE IN THIS REGISTER and none is accepted in footing_check.py. A late OCR pass DID return a readable page (the FY2021 balance sheet and income statement with FY2020 comparatives, held at filings/FS_CONS_FY2021_EN_OCR.txt) and MOST of it foots \u2014 total non-current assets, total assets, parent and total equity, both liability totals, gross margin and the net-profit split all tie exactly. THREE LINES DID NOT FOOT and the page is therefore not accepted: current assets ran 10,000,000 light, operating profit 14,999,700 light and net profit 5 light. Two of the three were resolved by re-reading off the rendered pixels \u2014 accounts and notes receivable is 63,746,140 not 53,746,140; the medical contribution is 5,505,997, formed provisions 11,628,500, impairment on customer loans 12,749,394 and the ECL reversal 1,770,520 \u2014 which closes the asset and operating-profit gaps exactly. The remaining 5-pound gap sits in deferred tax and could not be re-read because the host filesystem filled. FY2021 stays OUT until that line is read: a figure derived to make a page foot is not a figure the company printed.",
+   "detail": "ROUTE: image-only scan with no text layer at all (51pp, retrieved as an Internet Archive capture of the company's own PDF, fawry.com/wp-content/uploads/2023/03/Fawry-Consolidated-Financials-Q4-2021-English.pdf, capture 20240217155800, stored at filings/FS_CONS_FY2021_EN.pdf). A first OCR pass produced filings/FS_CONS_FY2021_EN_OCR.FAILED_FIRST_PASS.txt, retained under that name so the discarded route stays visible, and it FAILED its footing test on three subtotals; every figure above was then re-read off the rendered pixels at the scan's native 200 dpi and the page now foots on all 13 subtotals across both columns (footing_check.py). SIX OCR GLYPH ERRORS were caught by the footing test and corrected against the pixels: accounts and notes receivable 63,746,140 read as 53,746,140; medical contribution 5,505,997 read as 505,997; formed provisions 11,628,500 read as 41,628,500; net impairment on customer loans 12,749,394 read as 2,749,394; profit before tax 321,444,746 read as 321,444,745; and current income tax 75,726,644 read as 75,726,648. THE 5-POUND NET-PROFIT GAP WAS NOT DEFERRED TAX \u2014 deferred tax reads (3,596,019) at native resolution, exactly as the first pass had it. It was the last two errors in that list, sitting either side of the deferred-tax line and summing to precisely the 5 observed. SCANNER PROVENANCE CHECKED: the file was produced by a Xerox WorkCentre 5330, a device family subject to the 2013 JBIG2 symbol-substitution defect in which the SCANNER silently swaps one digit's bitmap for a similar one, which no amount of re-reading can recover. The JBIG2 segment headers were parsed and every page carries only an immediate generic region (type 38), with no symbol dictionary (type 0) and no text region (type 6/7). Generic-region coding is lossless at the pixel level, so scanner-side substitution is ruled out on this file and the pixels are the pixels the scanner saw. Every error found here was the extractor's, and re-reading is the correct and sufficient remedy. ONE RESIDUAL, DISCLOSED: the FY2020 comparative column foots on every subtotal except operating profit, which is 2,000 out. It traces to the medical-contribution cell, whose fourth digit is physically damaged in the scan (ink dropout) and reads equally as 4,063,677 or 4,065,677; arithmetic implies 4,065,677 but the glyph is not legible and NO FY2020 FIGURE IS ADMITTED TO THE REGISTER on the strength of it. FY2020 is a comparative here, not a year this study carries.",
    "url": "",
-   "model_impact": "",
-   "is_fs_data": false,
-   "fiscal_period": ""
+   "model_impact": "Earliest historical year the study uses, and the fourth audited year, which takes the FS-depth invariant from its floor to its target. It anchors the bottom of the operating-leverage path the forecast has to justify: gross margin 56.2% in FY2021, 59.7% FY2022, 63.0% FY2023, rising to 68.9% by FY2025. A fourth point turns that from a three-point line into a trend with a testable shape, and it is the only year in the set that predates the 2022 devaluation.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2021"
   },
   {
    "fid": "F20",
@@ -299,7 +299,7 @@
    "source_date": "2024-03-04",
    "detail": "ROUTE: read off the rendered pixels of the scanned page (pdfimages -> visual read), because the file has no text layer at all. Every subtotal on the page is re-added in footing_check.py and foots exactly. The standalone FY2022 audited set is held at filings/FS_CONS_FY2022_EN.pdf (46pp, 10.1 MB full-fidelity archive capture after a first attempt returned the archive's 1,048,576-byte truncated copy, which is retained with a .TRUNCATED suffix so the discarded route stays visible); the figures above come from the FY2023 set's audited comparative column, which is what was read.",
    "url": "",
-   "model_impact": "Earliest historical year the study uses. It is the pre-scale cost base: 59.7% gross margin against 68.9% in FY2025, which is the whole operating-leverage story the forecast has to justify or fade.",
+   "model_impact": "Second historical year. It is the pre-scale cost base: 59.7% gross margin against 68.9% in FY2025, which is the whole operating-leverage story the forecast has to justify or fade.",
    "is_fs_data": true,
    "fiscal_period": "FY2022"
   },
@@ -314,7 +314,7 @@
    "source_date": "2024-03-04",
    "detail": "ROUTE: read off the rendered pixels; no text layer. All fifteen subtotals on the income statement and balance sheet foot exactly (footing_check.py), and the same FY2023 figures appear as the comparative column of the FY2024 Arabic set, giving an independent cross-document tie.",
    "url": "",
-   "model_impact": "Second historical year and the hinge of the margin story: gross margin 63.0% against 59.7% in FY2022 and 65.7% in FY2024.",
+   "model_impact": "Third historical year and the hinge of the margin story: gross margin 63.0% against 56.2% in FY2021, 59.7% in FY2022 and 65.7% in FY2024.",
    "is_fs_data": true,
    "fiscal_period": "FY2023"
   },
@@ -810,9 +810,10 @@
   {
    "driver": "Cost stack and gross margin",
    "mode": "BOTTOM_UP",
-   "justification": "MARGIN IS AN OUTPUT, NOT AN INPUT. The cost stack is built from the audited statements' own income statement and notes for FY2021-FY2024, which are the only documents that carry any cost line \u2014 the releases stop at gross profit. Gross margin and EBITDA margin fall out of revenue less the built cost lines and are reported against the released actuals (68.9% GPM and 57.4% EBITDA margin FY2025) as a check.",
+   "justification": "MARGIN IS AN OUTPUT, NOT AN INPUT. The cost stack is built from the audited statements' own income statement and notes for FY2021-FY2024, which are the only documents that carry any cost line \u2014 the releases stop at gross profit. Gross margin and EBITDA margin fall out of revenue less the built cost lines and are reported against the released actuals (68.9% GPM and 57.4% EBITDA margin FY2025) as a check. FY2021 is now read and footed alongside the other three, which gives the cost stack a four-year history and, more usefully, one PRE-DEVALUATION year: FY2021 is the only point in the set struck before the March-2022 float, so the cost lines can be tested for FX pass-through rather than having it assumed.",
    "sweep_refs": [
     "F23",
+    "F19",
     "F20",
     "F21",
     "F22",
@@ -985,5 +986,5 @@
   "Q1-2026",
   "Q2-2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [FWRY, 2026-09-08]: FAIL (3 errors) \u2014 4/4 rings, 49 findings (3 B \u00b7 12 S \u00b7 17 D \u00b7 8 C \u00b7 9 NEG), driver gate 14 rows (10 bottom-up / 4 top-down) | primary access: attempted (17) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 18"
+ "qc_line": "QC(m) \u2014 Information Sweep [FWRY, 2026-09-08]: FAIL (3 errors) \u2014 4/4 rings, 49 findings (3 B \u00b7 12 S \u00b7 18 D \u00b7 7 C \u00b7 9 NEG), driver gate 14 rows (10 bottom-up / 4 top-down) | primary access: attempted (17) | FS years: 5 ['FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 18"
 }
