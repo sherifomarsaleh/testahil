@@ -35,7 +35,10 @@ PX_CLOSE = [float(x) for x in _PX['Price']]
 masthead()
 P('Egyptian International Pharmaceutical Industries Company (EIPICO)', size=19, bold=True,
   space_after=1)
-P('Bibliography and complete list of inputs — the companion to the valuation study of 9 August 2026',
+# THE COMPANION LINE NAMED A DATE THE STUDY IS NOT FILED UNDER — the same typed
+# masthead the study itself carried, in the document beside it.
+P(f'Bibliography and complete list of inputs — the companion to the valuation study '
+  f'of {_ed.EDITION.day} {_ed.EDITION.strftime("%B")} {_ed.EDITION.year}',
   size=11, color=GREY, space_after=12)
 
 # ---------------------------------------------------------------- 1. DOCUMENTS

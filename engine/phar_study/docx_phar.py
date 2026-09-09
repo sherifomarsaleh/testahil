@@ -1,3 +1,4 @@
+import datetime as _dt
 """EIPICO_Valuation_Study_{edition}.docx — the 16-section study.
 
 Written for an EXTERNAL reader: no internal procedure vocabulary anywhere, no verdict
@@ -48,6 +49,13 @@ def tnum():
     return _TN[0]
 
 
+def _words(iso):
+    """An ISO date as a reader reads it. The masthead states the edition and the price
+    date, and both are records: neither is ever typed here again."""
+    d = _dt.date.fromisoformat(str(iso))
+    return '%d %s %d' % (d.day, d.strftime('%B'), d.year)
+
+
 def n0(x): return f'{x:,.0f}'
 def n1(x): return f'{x:,.1f}'
 def n2(x): return f'{x:,.2f}'
@@ -60,8 +68,15 @@ P('Egyptian International Pharmaceutical Industries Company (EIPICO)', size=21, 
   space_after=1)
 P('Independent valuation study · The Egyptian Exchange · ticker PHAR · Egyptian pounds',
   size=11.5, color=GREY, space_after=2)
-P(f'Prepared 9 August 2026 · share price EGP {n2(SPOT)} at the close of 6 August 2026 · '
-  f'{SH:,.3f} million shares in issue', size=10, color=GREY, space_after=12)
+# BOTH DATES WERE TYPED, ON THE ONE LINE A READER SEES FIRST. The edition and the
+# price date were derived into the filename and into the meta block, and this line
+# still said "Prepared 9 August 2026 ... at the close of 6 August 2026" on a September
+# edition anchored to a September price. An outside audit found it; the same shape was
+# found in ARCC's bibliography the same hour. A date a reader reads is the last place
+# to leave one typed, not the first.
+P(f'Prepared {_words(M["study_date"])} · share price EGP {n2(SPOT)} at the close of '
+  f'{_words(M["price_date"])} · {SH:,.3f} million shares in issue',
+  size=10, color=GREY, space_after=12)
 
 H1('Read first')
 box([('What this is. ',
