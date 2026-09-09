@@ -14,7 +14,7 @@
    "source_date": "2026-09-02",
    "detail": "",
    "url": "",
-   "model_impact": "Sets the translation rate for the two foreign-currency earnings legs (Edita Morocco, MAD; Edita Iraq/Ahramat El Nile, IQD) and the EGP cost of the imported quarter of the direct-material bill. F14 gives the company's own audited \u00b110% FX sensitivity by currency, so this ring sets the shock and F14 sizes it \u2014 the study must not invent its own.",
+   "model_impact": "Sets the translation rate for the two foreign-currency earnings legs (Edita Morocco, MAD; Edita Iraq/Ahramat El Nile, IQD) and the EGP cost of the imported quarter of the direct-material bill. F23 locates the company's OWN per-currency plus/minus 10% sensitivity, so this ring sets the shock and the company's note sizes it \u2014 the study must not invent its own elasticity.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -29,7 +29,7 @@
    "source_date": "2026-08-31",
    "detail": "",
    "url": "",
-   "model_impact": "These are the exogenous half of the cost-per-unit build. The COMPANY half is F21: direct material fell to 55.0% of revenue in 1H2026 from 56.2% in 1H2025, and is 76% locally sourced / 24% imported. Cost per pack must be built from F21 escalated on THESE indices one at a time \u2014 one escalator per input, never a single blended CPI [L-009].",
+   "model_impact": "These are the exogenous half of the cost-per-unit build. The COMPANY half is F28: direct material fell to 55.0% of revenue in 1H2026 from 56.2% in 1H2025, and is 76% locally sourced / 24% imported. Cost per pack must be built from F28 escalated on THESE indices one at a time \u2014 one escalator per input, never a single blended CPI [L-009].",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -59,7 +59,7 @@
    "source_date": "2026-08-31",
    "detail": "",
    "url": "",
-   "model_impact": "Prices the 24% imported share of the direct-material bill (F21) and the landed cost of imported machinery under the EGP 320m four-line purchase (F24). Carried as a cost-per-unit adder on the imported leg only, never smeared across the whole COGS line.",
+   "model_impact": "Prices the 24% imported share of the direct-material bill (F28) and the landed cost of imported machinery under the EGP 320m four-line purchase (F31). Carried as a cost-per-unit adder on the imported leg only, never smeared across the whole COGS line.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -74,7 +74,7 @@
    "source_date": "2026-08-20",
    "detail": "",
    "url": "",
-   "model_impact": "Two places. (1) The explicit-window risk-free rate and the direction of the Kd path against which Edita's own floating-rate book is priced \u2014 F26 gives the company's audited 1% rate sensitivity (EGP 42.7m of post-tax profit at 31-Dec-2025), so the shock is exogenous and the impact is the company's own number. (2) The price-per-pack path: Edita's FY2025 average price per pack rose 31.3% against ~14-15% CPI, so the price driver is NOT an inflation pass-through and must not be modelled as one.",
+   "model_impact": "Two places. (1) The explicit-window risk-free rate and the direction of the Kd path against which Edita's own floating-rate book is priced \u2014 F39 gives the company's audited 1% rate sensitivity (EGP 42.7m of post-tax profit at 31-Dec-2025), so the shock is exogenous and the impact is the company's own number. (2) The price-per-pack path: Edita's FY2025 average price per pack rose 31.3% against ~14-15% CPI, so the price driver is NOT an inflation pass-through and must not be modelled as one.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -104,7 +104,7 @@
    "source_date": "2026-08-31",
    "detail": "",
    "url": "",
-   "model_impact": "Sits behind the packs-sold path. Edita's own record shows the tension resolved by MIX rather than by units: FY2025 total packs FELL 1.4% to 3,788mn while tons ROSE 19.3% to 154.7k and average price per pack rose 31.3% (F20). Any volume driver that assumes packs track population or real income is contradicted by the company's own FY2025.",
+   "model_impact": "Sits behind the packs-sold path. Edita's own record shows the tension resolved by MIX rather than by units: FY2025 total packs FELL 1.4% to 3,788mn while tons ROSE 19.3% to 154.7k and average price per pack rose 31.3% (F26). Any volume driver that assumes packs track population or real income is contradicted by the company's own FY2025.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -119,7 +119,7 @@
    "source_date": "2026-06-30",
    "detail": "",
    "url": "",
-   "model_impact": "Bounds the top-down sanity check ONLY. The volume build is bottom-up off F20's per-segment packs and tons; this finding is the ceiling test the bottom-up build must not breach, not an input to it.",
+   "model_impact": "Bounds the top-down sanity check ONLY. The volume build is bottom-up off F26's per-segment packs and tons; this finding is the ceiling test the bottom-up build must not breach, not an input to it.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -179,7 +179,7 @@
    "source_date": "2026-03-11",
    "detail": "",
    "url": "",
-   "model_impact": "Capacity driver, both directions. It adds ~15% to Edita's core-segment capacity (F24) AND removes four lines of competing supply. The study must model the capacity add and must NOT also assume the vendor replaces the lines, because the counterparty is unidentified and the replacement cannot be sourced.",
+   "model_impact": "Capacity driver, both directions. It adds ~15% to Edita's core-segment capacity (F31) AND removes four lines of competing supply. The study must model the capacity add and must NOT also assume the vendor replaces the lines, because the counterparty is unidentified and the replacement cannot be sourced.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -254,7 +254,7 @@
    "source_date": "2026-03-11",
    "detail": "Scanned; every column re-added and FOOTS. The difference is employees' profit share, expensed under IFRS and treated as a distribution under EAS. The company's own FY2025 release publishes the bridge and gives the profit-share adjustment as EGP 253.5m against a measured 253,025,557 \u2014 a 0.5m rounding in the release, not a discrepancy in the filings. The EGX wire reports the EAS number (2,695,301,670) as 'Net Profit' for FY2025.",
    "url": "https://irfiles.technologyverse.com/efid/Edita-consolidated-English-Signed-FY25.pdf",
-   "model_impact": "BASE CHANGER for basis selection, and the most dangerous single trap on this name. The two bases differ by 10.4% of net profit and 0.5pp of gross margin. The 2026 INTERIMS ARE FILED UNDER EAS (F18, F19) while the EARNINGS RELEASES ARE IFRS (F20, F21). A study that anchors history on IFRS and rolls it forward on interim EAS actuals, or that quotes a release margin beside a statement margin, is wrong by construction. Declare one basis, carry it throughout, and reconcile the other.",
+   "model_impact": "BASE CHANGER for basis selection, and the most dangerous single trap on this name. The two bases differ by 10.4% of net profit and 0.5pp of gross margin. The 2026 INTERIMS ARE FILED UNDER EAS (F18, F19) while the EARNINGS RELEASES ARE IFRS (F26, F27, F28). A study that anchors history on IFRS and rolls it forward on interim EAS actuals, or that quotes a release margin beside a statement margin, is wrong by construction. Declare one basis, carry it throughout, and reconcile the other.",
    "is_fs_data": true,
    "fiscal_period": "FY2025"
   },
@@ -267,7 +267,7 @@
    "source_name": "EDITA Food Industries (S.A.E.) and its Subsidiaries, Review Report and Condensed Consolidated Interim Financial Statements for the three months ended 31 March 2026 \u2014 Saleh, Barsoum & Abdel Aziz (Grant Thornton), Kamel M. Saleh FCA, Cairo 17-May-2026, EAS No. 30",
    "source_type": "COMPANY_OFFICIAL",
    "source_date": "2026-05-18",
-   "detail": "Scanned. Re-added and FOOTS. Independently cross-checked by subtraction from the Q2-2026 filing: 6M revenue 12,250,402,687 minus 3M revenue 6,479,903,702 = 5,770,498,985 exactly, and the same identity holds for COGS, gross profit and net profit. Two separately-filed documents agree to the pound.",
+   "detail": "Scanned. Re-added and FOOTS. Independently cross-checked by subtraction from the Q2-2026 filing: 6M revenue 12,250,402,687 minus 3M revenue 6,479,903,702 = 5,770,498,985 exactly, and the same identity holds for COGS, gross profit and net profit. Two separately-filed documents agree to the pound. NOTE the EAS/IFRS balance-sheet gap here too: this filing states 31-Dec-2025 total assets of 14,723,822,091 where the IFRS set states 14,827,856,625.",
    "url": "https://irfiles.technologyverse.com/efid/Edita-Food-Industries-Consolidated-Condesned-Q1-2026-English-Signed-Version.pdf",
    "model_impact": "First actual of the study year. Its 35.20% EAS gross margin is ABOVE the FY2025 EAS full-year 34.39% \u2014 the ARCC failure pattern in reverse. Any forecast margin path must start above the prior-year average, not at it.",
    "is_fs_data": true,
@@ -282,7 +282,7 @@
    "source_name": "EDITA Food Industries (S.A.E.) and its Subsidiaries, Review Report and Condensed Consolidated Interim Financial Statements for the six months ended 30 June 2026 \u2014 Saleh, Barsoum & Abdel Aziz (Grant Thornton), Kamel M. Saleh FCA, Cairo Aug-2026; approved by the Board 12-Aug-2026, EAS No. 30",
    "source_type": "COMPANY_OFFICIAL",
    "source_date": "2026-08-13",
-   "detail": "Scanned. All FOUR printed columns (6M-26, 6M-25, 3M-26, 3M-25) were re-added line by line and every one FOOTS to its printed gross profit, PBT, net profit and owners/NCI split. Prior-year comparatives inside this filing: 6M-2025 revenue 9,247,121,351 and net profit 1,017,686,279; 3M-2025 revenue 4,963,742,378 and net profit 587,903,803.",
+   "detail": "Scanned. All FOUR printed columns (6M-26, 6M-25, 3M-26, 3M-25) were re-added line by line and every one FOOTS to its printed gross profit, PBT, net profit and owners/NCI split. Prior-year comparatives inside this filing: 6M-2025 revenue 9,247,121,351 and net profit 1,017,686,279; 3M-2025 revenue 4,963,742,378 and net profit 587,903,803. Subsidiary ownership at 30-Jun-2026 is disclosed entity by entity: Edita for Trade and Distribution 99.8%, Edita Confectionery Industries 99.98%, Edita Participation Cyprus 100%, Edita Food Industries-Morocco 78.67%, Edita For Food Investments 100%, Edita Frozen Food Industries 100%, Edita International LTD (UAE) 100%, Edita Investment Holding LTD (UAE) 100%, Edita TJA LTD (UAE) 51%, Ahramat El Nile For Trading and Food Industries (Iraq) 49%.",
    "url": "https://irfiles.technologyverse.com/efid/Edita-Consolidated-English-Q2-2026.pdf",
    "model_impact": "Second actual of the study year, and the one that resets the base. 1H-2026 revenue is 58.6% of the whole of FY2025 and 1H-2026 net profit is 59.9% of FY2025's EAS net profit. Q2 EAS margin (33.26%) is BELOW Q1's (35.20%): the intra-year margin path is not flat and must be modelled quarterly, not annually.",
    "is_fs_data": true,
@@ -299,7 +299,7 @@
    "source_date": "2026-03-10",
    "detail": "Both columns re-added; every subtotal FOOTS. Note the inventory direction: FY2024 3,034,025,532 fell to FY2025 2,315,050,051 while revenue rose 29.5%, which is why FY2025 operating cash flow (4,377,352,771) is 5.1x FY2024's (854,487,748) on 69% more net profit.",
    "url": "https://irfiles.technologyverse.com/efid/Edita-Food-Industries-FY-2025-IFRS.pdf",
-   "model_impact": "Sets the opening balance sheet, the working-capital driver and the EV-to-equity bridge. The T-bill and FVTPL holdings (4,024,350,774 combined) are the reason F17's net-debt definition matters.",
+   "model_impact": "Sets the opening balance sheet, the working-capital driver and the EV-to-equity bridge. The T-bill and FVTPL holdings (4,024,350,774 combined) are the reason F21's net-debt definition matters.",
    "is_fs_data": true,
    "fiscal_period": "FY2025"
   },
@@ -337,14 +337,14 @@
    "fid": "F23",
    "ring": "COMPANY",
    "category": "regular disclosures",
-   "klass": "COLOR",
-   "headline": "PRICE SERIES AND LISTING, RECORDED, NO BETA RESOLVED. EFID.CA on the EGX, ISIN EGS305I1C011, sector Food/Beverages/Tobacco, listed 11-Dec-2014, first trading day 02-Apr-2015 at an offer price of EGP 18.50. 1,400,027,312 listed shares at EGP 0.20 par. The repository holds engine/raw_ohlc/EG/EFID.csv, 2,555 daily EGP bars from 02-Apr-2015 to 23-Aug-2026 (last close 33.20, range 3.30-34.92), and the EGX index at engine/raw_indices/EG/EGX30.csv running to 08-Sep-2026",
-   "source_name": "Edita IR, Share and Corporate Information + Listing Information; repository price and index files",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "THE COMPANY'S OWN FX AND CREDIT EXPOSURE NOTES EXIST AND ARE LOCATED. The FY2025 EAS financial-risk-management note carries a per-currency plus/minus 10% sensitivity of post-tax profit for EUR/EGP, USD/EGP, MAD/EGP, GBP/EGP and IQD/EGP with prior-year comparatives, a table of net monetary assets and liabilities by currency, and a counterparty credit-rating table naming each bank (QNB, Credit Agricole Egypt, CIB, NBK, ADIB, Citibank Egypt, NBE, Banque du Caire, Standard Chartered, Bank of Iraq, BNP Paribas Morocco, Bank of Cyprus)",
+   "source_name": "FY2025 EAS consolidated statements, financial-risk-management note (market risk, credit risk, liquidity risk)",
    "source_type": "COMPANY_OFFICIAL",
-   "source_date": "2026-09-09",
-   "detail": "THE REGRESSOR RULING IS NOT TAKEN HERE, by instruction. Two things a later build must settle before it does. (1) DUAL LISTING: Edita also has GDRs on the LONDON STOCK EXCHANGE, one GDR = five ordinary shares, priced at USD 12.28 at IPO against EGP 18.50 per ordinary share; the FY2022-FY2024 IFRS audit reports state the IFRS accounts exist specifically for 'the Group meeting its continuing obligations under the Listing Rules of the London Stock Exchange'. Same issuer, two venues, two legitimate regressors \u2014 the series' currency and magnitude must be checked against the venue it is filed under. The held series is EGP and matches the EGX ordinary line. (2) BONUS ADJUSTMENT: issued capital went 72,536,290 -> 140,002,731 -> 280,005,462 via two bonus issues, a 3.86x cumulative increase in share count, and the held series starts at 5.37 against an 18.50 offer price, so it is provider-adjusted. Its first row also carries a Change% of -81.80%, which is a first-row artefact, not a price move. Step 0.0 must run before any use.",
-   "url": "https://ir.edita.com.eg/en/share-corporate-information-overview",
-   "model_impact": "",
+   "source_date": "2026-03-11",
+   "detail": "DELIBERATELY CARRIES NO FIGURES. These pages were seen at 62 dpi while locating the gearing note and have NOT been re-read at verification resolution or re-added, so quoting the sensitivities here would put unverified numbers into the register. The note is registered as LOCATED, with its page identified, so the build reads it at 300+ dpi and foots it before use rather than substituting a house assumption. is_fs_data is False precisely because no line item is asserted.",
+   "url": "https://irfiles.technologyverse.com/efid/Edita-consolidated-English-Signed-FY25.pdf",
+   "model_impact": "DRIVER UNLOCK, conditional on that re-read: it converts the FX driver from a house shock into the company's own measured elasticity, and it gives the counterparty quality behind the EGP 4.02bn treasury book that F21 turns on.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -353,18 +353,33 @@
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "COLOR",
-   "headline": "The EGX disclosure wire for EFID.CA, mirrored on the company's own IR site, is complete and current: FY2025 consolidated results filed 12-Mar-2026 (EAS net profit 2,695,301,670 against 1,606,727,698); Q1-2026 filed 18-May-2026 (852,053,729 against 429,782,476); 1H-2026 filed 13-Aug-2026 (consolidated 1,613,909,444 against 1,017,686,279; standalone 1,515,542,650 against 938,788,090); EGM decisions 16-Aug-2026 and certified minutes 01-Sep-2026 for the assembly of 13-Aug-2026",
-   "source_name": "Edita IR, News and Disclosures \u2014 the EGX wire reproduced verbatim by the company ([R-SIGCM-03] named fallback: egx.com.eg itself returns 'curl: (52) Empty reply from server')",
+   "headline": "PRICE SERIES AND LISTING, RECORDED, NO BETA RESOLVED. EFID.CA on the EGX, ISIN EGS305I1C011, sector Food/Beverages/Tobacco, listed 11-Dec-2014, first trading day 02-Apr-2015 at an offer price of EGP 18.50. 1,400,027,312 listed shares at EGP 0.20 par. The repository holds engine/raw_ohlc/EG/EFID.csv, 2,555 daily EGP bars from 02-Apr-2015 to 23-Aug-2026 (last close 33.20, range 3.30-34.92), and the EGX index at engine/raw_indices/EG/EGX30.csv running to 08-Sep-2026",
+   "source_name": "Edita IR, Share and Corporate Information + Listing Information; repository price and index files",
    "source_type": "COMPANY_OFFICIAL",
-   "source_date": "2026-09-01",
-   "detail": "The FY2024 EAS comparative on the wire is 1,606,727,698, which is neither of the two IFRS FY2024 figures (1,415,374,273 as filed, 1,446,757,252 restated). Three FY2024 net profits are in circulation, all company-official, on two accounting bases and two vintages.",
-   "url": "https://ir.edita.com.eg/en/news-and-disclosures",
+   "source_date": "2026-09-09",
+   "detail": "THE REGRESSOR RULING IS NOT TAKEN HERE, by instruction. Two things a later build must settle before it does. (1) DUAL LISTING: Edita also has GDRs on the LONDON STOCK EXCHANGE, one GDR = five ordinary shares, priced at USD 12.28 at IPO against EGP 18.50 per ordinary share; the FY2022-FY2024 IFRS audit reports state the IFRS accounts exist specifically for 'the Group meeting its continuing obligations under the Listing Rules of the London Stock Exchange'. Same issuer, two venues, two legitimate regressors \u2014 the series' currency and magnitude must be checked against the venue it is filed under. The held series is EGP and matches the EGX ordinary line, so market 'EG' / exchange 'EGX' is the indicated pairing, but the ruling is the build's to take through own_stock_beta(). (2) BONUS ADJUSTMENT: issued capital went 72,536,290 -> 140,002,731 -> 280,005,462 via two bonus issues, a 3.86x cumulative increase in share count, and the held series starts at 5.37 against an 18.50 offer price, so it is provider-adjusted. Its first row also carries a Change% of -81.80%, which is a first-row artefact, not a price move. Step 0.0 must run before any use.",
+   "url": "https://ir.edita.com.eg/en/share-corporate-information-overview",
    "model_impact": "",
    "is_fs_data": false,
    "fiscal_period": ""
   },
   {
    "fid": "F25",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "COLOR",
+   "headline": "The EGX disclosure wire for EFID.CA, mirrored on the company's own IR site, is complete and current: FY2025 consolidated results filed 12-Mar-2026 (EAS net profit 2,695,301,670 against 1,606,727,698); Q1-2026 filed 18-May-2026 (852,053,729 against 429,782,476); 1H-2026 filed 13-Aug-2026 (consolidated 1,613,909,444 against 1,017,686,279; standalone 1,515,542,650 against 938,788,090); EGM decisions 16-Aug-2026 and certified minutes 01-Sep-2026 for the assembly of 13-Aug-2026",
+   "source_name": "Edita IR, News and Disclosures \u2014 the EGX wire reproduced verbatim by the company ([R-SIGCM-03] named fallback: egx.com.eg itself returns 'curl: (52) Empty reply from server')",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-01",
+   "detail": "The FY2024 EAS comparative on the wire is 1,606,727,698, which is neither of the two IFRS FY2024 figures (1,415,374,273 as filed, 1,446,757,252 restated). Three FY2024 net profits are in circulation, all company-official, on two accounting bases and two vintages. Two 2026 items are flagged as NOT read because their attachments sit on the blocked EGX host: the 15-Jul-2026 FRA no-objection to an Article-48 disclosure report on the board meeting of 12-Jul-2026, and the 13-Aug-2026 EGM decisions. Article 48 is the material-transaction gate, so the build should retry that document before it opens.",
+   "url": "https://ir.edita.com.eg/en/news-and-disclosures",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F26",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -379,7 +394,7 @@
    "fiscal_period": "Q2-2026"
   },
   {
-   "fid": "F26",
+   "fid": "F27",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -394,7 +409,7 @@
    "fiscal_period": "Q2-2026"
   },
   {
-   "fid": "F27",
+   "fid": "F28",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -404,12 +419,12 @@
    "source_date": "2026-08-12",
    "detail": "",
    "url": "https://irfiles.technologyverse.com/efid/Edita-2Q2026-Earnings-Release-E2.pdf",
-   "model_impact": "DRIVER UNLOCK for opex. Splits SG&A into three separately-disclosed legs so each gets its own driver instead of one percentage-of-sales glide, and splits direct material 76/24 local/imported so the FX and freight shocks (F1, F4) hit only the leg they actually touch. The advertising and marketing leg is IDENTICAL under both bases, so it is the one opex line that needs no basis decision.",
+   "model_impact": "DRIVER UNLOCK for opex. Splits SG&A into three separately-disclosed legs so each gets its own driver instead of one percentage-of-sales glide, and splits direct material 76/24 local/imported so the FX and freight shocks (F01, F04) hit only the leg they actually touch. The advertising and marketing leg is IDENTICAL under both bases, so it is the one opex line that needs no basis decision.",
    "is_fs_data": false,
    "fiscal_period": "Q2-2026"
   },
   {
-   "fid": "F28",
+   "fid": "F29",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "COLOR",
@@ -424,7 +439,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F29",
+   "fid": "F30",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -432,14 +447,14 @@
    "source_name": "EDITA Annual Report 2024, 'At a Glance' and 'Production Facilities'",
    "source_type": "COMPANY_IR",
    "source_date": "2025-09-14",
-   "detail": "This is the vintage the asset-base ordering test [R-ASSET-01] must run against. NOTE THE STALENESS: the 2024 Annual Report is the LATEST \u2014 no FY2025 Annual Report has been published as of the sweep date, so the newest full asset-base description is 12 months older than the newest financials, and it PREDATES the four lines bought in Oct-2025 (F24). The line count a build uses must be 36 plus those four, not 36.",
+   "detail": "This is the vintage the asset-base ordering test [R-ASSET-01] must run against. NOTE THE STALENESS: the 2024 Annual Report is the LATEST \u2014 no FY2025 Annual Report has been published as of the sweep date, so the newest full asset-base description is 12 months older than the newest financials, and it PREDATES the four lines bought in Oct-2025 (F31). The line count a build uses must be 36 plus those four, not 36.",
    "url": "https://irfiles.technologyverse.com/efid/EDITA-Annual-Report-2024-Screen-Res-compressed-1-.pdf",
    "model_impact": "Anchors capacity and the utilisation denominator per segment, and gives the D&A base a physical counterpart. Tons per line per segment is the capacity ceiling the volume driver may not breach.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
   {
-   "fid": "F30",
+   "fid": "F31",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -454,7 +469,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F31",
+   "fid": "F32",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -469,7 +484,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F32",
+   "fid": "F33",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -484,7 +499,7 @@
    "fiscal_period": "Q2-2026"
   },
   {
-   "fid": "F33",
+   "fid": "F34",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -499,7 +514,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F34",
+   "fid": "F35",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "STRUCTURAL",
@@ -514,7 +529,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F35",
+   "fid": "F36",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "DRIVER_UNLOCK",
@@ -529,7 +544,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F36",
+   "fid": "F37",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "BASE_CHANGER",
@@ -539,12 +554,12 @@
    "source_date": "2026-03-11",
    "detail": "",
    "url": "https://irfiles.technologyverse.com/efid/Edita-consolidated-English-Signed-FY25.pdf",
-   "model_impact": "BASE CHANGER for every per-share number in the history table. EPS is reported 2.16 for FY2025 and 1.05 for restated FY2024 on the post-bonus count, while the FY2024 filing itself printed 2.06 and the FY2023 filing 2.17 on the PRE-bonus count. Dividends per share are on the same two bases. Any DPS or EPS series stitched across the 2025 bonus without restating the earlier years is wrong by roughly 2x, and the held price series appears provider-adjusted for the same event (F30).",
+   "model_impact": "BASE CHANGER for every per-share number in the history table. EPS is reported 2.16 for FY2025 and 1.05 for restated FY2024 on the post-bonus count, while the FY2024 filing itself printed 2.06 and the FY2023 filing 2.17 on the PRE-bonus count. Dividends per share are on the same two bases. Any DPS or EPS series stitched across the 2025 bonus without restating the earlier years is wrong by roughly 2x, and the held price series appears provider-adjusted for the same event (F24).",
    "is_fs_data": true,
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F37",
+   "fid": "F38",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "NEGATIVE_SEARCH",
@@ -559,7 +574,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F38",
+   "fid": "F39",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "DRIVER_UNLOCK",
@@ -569,12 +584,12 @@
    "source_date": "2026-05-03",
    "detail": "",
    "url": "https://ir.edita.com.eg/en/news-and-disclosures",
-   "model_impact": "DRIVER UNLOCK for interest. The debt is built facility by facility off named tranches, not as a ratio on a liabilities base \u2014 the exact mis-specification the PHDC walk-forward recorded as a defect [L-002, Driver Ledger PHDC decision 2]. The 1% sensitivity converts the CBE path (F5) into a profit effect using the company's own elasticity.",
+   "model_impact": "DRIVER UNLOCK for interest. The debt is built facility by facility off named tranches, not as a ratio on a liabilities base \u2014 the exact mis-specification the PHDC walk-forward recorded as a defect [L-002, Driver Ledger PHDC decision 2]. The 1% sensitivity converts the CBE path (F05) into a profit effect using the company's own elasticity.",
    "is_fs_data": true,
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F39",
+   "fid": "F40",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "STRUCTURAL",
@@ -589,7 +604,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F40",
+   "fid": "F41",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "DRIVER_UNLOCK",
@@ -599,12 +614,12 @@
    "source_date": "2026-04-27",
    "detail": "",
    "url": "https://ir.edita.com.eg/en/dividends",
-   "model_impact": "DRIVER UNLOCK for the payout and the cash bridge: EGP 0.8639177376 x 1,400,027,312 shares is EGP 1,209.5m, which against FY2025 EAS net profit attributable of 2,749.6m is a 44.0% payout \u2014 inside the stated 35-50% band and therefore usable as a forward rule. The per-share history straddles the 2025 bonus (F29) and must be restated before any DPS series is drawn.",
+   "model_impact": "DRIVER UNLOCK for the payout and the cash bridge: EGP 0.8639177376 x 1,400,027,312 shares is EGP 1,209.5m, which against FY2025 EAS net profit attributable of 2,749.6m is a 44.0% payout \u2014 inside the stated 35-50% band and therefore usable as a forward rule. The per-share history straddles the 2025 bonus (F37) and must be restated before any DPS series is drawn.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
   {
-   "fid": "F41",
+   "fid": "F42",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "STRUCTURAL",
@@ -614,12 +629,12 @@
    "source_date": "2026-03-10",
    "detail": "",
    "url": "https://irfiles.technologyverse.com/efid/Edita-Food-Industries-FY-2025-IFRS.pdf",
-   "model_impact": "Explains why the FY2024 comparative moved (F13) without any accounting-policy change being announced, and is the reason the study reconciles the FY2024 column across two filings rather than trusting one. No forecast driver changes; the history table's provenance does.",
+   "model_impact": "Explains why the FY2024 comparative moved (F14) without any accounting-policy change being announced, and is the reason the study reconciles the FY2024 column across two filings rather than trusting one. No forecast driver changes; the history table's provenance does.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
   {
-   "fid": "F42",
+   "fid": "F43",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "STRUCTURAL",
@@ -629,12 +644,12 @@
    "source_date": "2026-08-12",
    "detail": "",
    "url": "https://irfiles.technologyverse.com/efid/Edita-Press-Release-Solar-PV-Project-E.pdf",
-   "model_impact": "Each item is a dated, explicit event in the volume or cost driver rather than a growth assumption. The energy items (PV, ISO 50001, EV fleet) land in manufacturing overhead and distribution cost, which are separately disclosed (F21), so their effect is testable against a disclosed line rather than asserted.",
+   "model_impact": "Each item is a dated, explicit event in the volume or cost driver rather than a growth assumption. The energy items (PV, ISO 50001, EV fleet) land in manufacturing overhead and distribution cost, which are separately disclosed (F28), so their effect is testable against a disclosed line rather than asserted.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
   {
-   "fid": "F43",
+   "fid": "F44",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -653,41 +668,41 @@
   {
    "driver": "Volume \u2014 packs and tons, by segment, quarterly",
    "mode": "BOTTOM_UP",
-   "justification": "Edita discloses packs sold, tons sold and average price per pack for every one of seven segments every quarter (F20). Built at segment level in BOTH packs and tons, because the two diverge violently \u2014 FY2025 packs -1.4% against tons +19.3% \u2014 and a packs-only build would show a shrinking business. Capacity ceiling per segment comes from the 36-line facility register (F23) plus the four lines bought in Oct-2025 (F24).",
+   "justification": "Edita discloses packs sold, tons sold and average price per pack for every one of seven segments every quarter (F26). Built at segment level in BOTH packs and tons, because the two diverge violently \u2014 FY2025 packs -1.4% against tons +19.3% \u2014 and a packs-only build would show a shrinking business. Capacity ceiling per segment comes from the 36-line facility register (F30) plus the four lines bought in Oct-2025 (F31).",
    "sweep_refs": [
-    "F25",
-    "F29",
+    "F26",
     "F30",
+    "F31",
     "F19"
    ]
   },
   {
    "driver": "Price per pack, by segment, as ladder migration",
    "mode": "BOTTOM_UP",
-   "justification": "Disclosed per segment per quarter (F17, F20). Projected as price-point migration up named ladders (Molto Gold EGP 20, TODO BOMB EGP 15, HoHos Coated and Freska Chocobar EGP 10), which is the mechanism the company itself names, NOT as a CPI pass-through \u2014 FY2025 price per pack rose 31.3% against ~14-15% inflation (F5), so an inflation index would have missed more than half the move.",
+   "justification": "Disclosed per segment per quarter (F09, F26). Projected as price-point migration up named ladders (Molto Gold EGP 20, TODO BOMB EGP 15, HoHos Coated and Freska Chocobar EGP 10), which is the mechanism the company itself names, NOT as a CPI pass-through \u2014 FY2025 price per pack rose 31.3% against ~14-15% inflation (F05), so an inflation index would have missed more than half the move.",
    "sweep_refs": [
     "F09",
-    "F25",
+    "F26",
     "F05"
    ]
   },
   {
    "driver": "Cost per ton, by segment \u2014 margin is the OUTPUT",
    "mode": "BOTTOM_UP",
-   "justification": "Segment revenue and segment gross profit are both disclosed quarterly (F21), and segment tons with them (F20), so cost per ton is a subtraction, not an assumption. Gross margin is COMPUTED from the volume x price and cost-per-ton legs and is never set as an input [L-005]. Escalated one input at a time on F2's separate sugar, palm oil and flour indices with the 76/24 local/imported split from F21 \u2014 never one blended rate [L-009].",
+   "justification": "Segment revenue and segment gross profit are both disclosed quarterly (F27), and segment tons with them (F26), so cost per ton is a subtraction, not an assumption. Gross margin is COMPUTED from the volume x price and cost-per-ton legs and is never set as an input [L-005]. Escalated one input at a time on F02's separate sugar, palm oil and flour indices with the 76/24 local/imported split from F28 \u2014 never one blended rate [L-009].",
    "sweep_refs": [
-    "F26",
-    "F25",
     "F27",
+    "F26",
+    "F28",
     "F02"
    ]
   },
   {
    "driver": "SG&A \u2014 three separate legs",
    "mode": "BOTTOM_UP",
-   "justification": "The EAS-to-IFRS bridge breaks total SG&A into selling and distribution, advertising and marketing, and general and administrative, each printed separately every quarter (F21). Each gets its own driver. Advertising and marketing is identical under both accounting bases, so it needs no basis decision; the other two do.",
+   "justification": "The EAS-to-IFRS bridge breaks total SG&A into selling and distribution, advertising and marketing, and general and administrative, each printed separately every quarter (F28). Each gets its own driver. Advertising and marketing is identical under both accounting bases, so it needs no basis decision; the other two do.",
    "sweep_refs": [
-    "F27",
+    "F28",
     "F19",
     "F13"
    ]
@@ -695,9 +710,9 @@
   {
    "driver": "Interest expense \u2014 facility by facility",
    "mode": "BOTTOM_UP",
-   "justification": "Built off the named tranches (EGP 600m 7-year, EGP 500m 7-year, IFC USD 45m) and the disclosed EGP 3,552,268,699 of variable-rate borrowing, with the CBE path (F5) moving only the variable leg and the company's own 1% sensitivity (EGP 42,727,096 of post-tax profit) sizing the shock. Explicitly NOT a ratio on a liabilities base \u2014 that is the recorded PHDC defect [L-002].",
+   "justification": "Built off the named tranches (EGP 600m 7-year, EGP 500m 7-year, IFC USD 45m) and the disclosed EGP 3,552,268,699 of variable-rate borrowing, with the CBE path (F05) moving only the variable leg and the company's own 1% sensitivity (EGP 42,727,096 of post-tax profit) sizing the shock. Explicitly NOT a ratio on a liabilities base \u2014 that is the recorded PHDC defect [L-002].",
    "sweep_refs": [
-    "F38",
+    "F39",
     "F05",
     "F20"
    ]
@@ -716,17 +731,17 @@
   {
    "driver": "Capex and the D&A roll-forward",
    "mode": "BOTTOM_UP",
-   "justification": "Company-disclosed totals (FY2025 EGP 1,392.8m; 1H2026 EGP 726m) plus the named EGP 320m four-line purchase and the 390 kWp PV station. THE DEFINITION MUST BE STATED: the release figure is accrual and the audited cash-flow lines sum to EGP 1,081.8m, a gap the interims attribute to credit purchases of PP&E (EGP 60,632,474 in Q1-2026, EGP 59,241,027 in Q2-2026). Whichever basis the FCF bridge subtracts, the reconciling accrual is named.",
+   "justification": "Company-disclosed totals (FY2025 EGP 1,392.8m; 1H2026 EGP 726m) plus the named EGP 320m four-line purchase and the 390 kWp PV station. THE DEFINITION MUST BE STATED: the release figure is accrual and the audited cash-flow lines sum to EGP 1,081.8m, a gap the interims attribute to credit purchases of PP&E (EGP 60,632,474 in Q1-2026, EGP 59,241,027 in Q2-2026). Whichever basis the FCF bridge subtracts, the reconciling accrual is named (F22).",
    "sweep_refs": [
     "F22",
-    "F30",
-    "F42"
+    "F31",
+    "F43"
    ]
   },
   {
    "driver": "Tax",
    "mode": "BOTTOM_UP",
-   "justification": "Built from the filed charge, not the statutory rate. FY2025 IFRS: EGP 1,008,535,910 on PBT 3,450,812,023 = 29.2% effective, against a 22.5% statutory rate (F6); on the EAS PBT the same charge is 27.2%. The gap is real and persistent and the study names it rather than defaulting to 22.5%.",
+   "justification": "Built from the filed charge, not the statutory rate. FY2025 IFRS: EGP 1,008,535,910 on PBT 3,450,812,023 = 29.2% effective, against a 22.5% statutory rate (F06); on the EAS PBT the same charge is 27.2%. The gap is real and persistent and the study names it rather than defaulting to 22.5%.",
    "sweep_refs": [
     "F13",
     "F17",
@@ -736,79 +751,89 @@
   {
    "driver": "Non-controlling interest",
    "mode": "BOTTOM_UP",
-   "justification": "Ownership is disclosed entity by entity in the interim notes: Edita Morocco 78.67% (21.33% NCI), Ahramat El Nile Iraq 49% (51% NCI), Edita TJA LTD 51%, Digma 99.8%, Edita Confectionery 99.98%. The NCI drag scales with the Iraq ramp \u2014 1H2026 NCI is (55,999,999) against (8,745,156) a year earlier \u2014 so it is projected off the Iraq volume path, not held flat.",
+   "justification": "Ownership is disclosed entity by entity in the interim notes (F19): Edita Morocco 78.67% (21.33% NCI), Ahramat El Nile Iraq 49% (51% NCI), Edita TJA LTD 51%, Edita for Trade and Distribution 99.8%, Edita Confectionery 99.98%. The NCI drag scales with the Iraq ramp \u2014 1H2026 NCI is (55,999,999) against (8,745,156) a year earlier \u2014 so it is projected off the Iraq volume path, not held flat.",
    "sweep_refs": [
     "F19",
-    "F32",
-    "F33"
+    "F33",
+    "F34"
    ]
   },
   {
    "driver": "Free float and share count",
    "mode": "BOTTOM_UP",
-   "justification": "1,400,027,312 shares at EGP 0.20 par, free float 36.00%, from the audited share-capital note that foots share-by-share (F28) \u2014 NOT from the release pie charts, which fold different holders into 'Others' in different quarters and would put the float at 41-46%. Every per-share series is restated across the 2025 one-for-one bonus (F29) before it is drawn.",
+   "justification": "1,400,027,312 shares at EGP 0.20 par, free float 36.00%, from the audited share-capital note that foots share-by-share (F36) \u2014 NOT from the release pie charts, which fold different holders into 'Others' in different quarters and would put the float at 41-46%. Every per-share series is restated across the 2025 one-for-one bonus (F37) before it is drawn.",
    "sweep_refs": [
-    "F35",
-    "F36"
+    "F36",
+    "F37"
    ]
   },
   {
    "driver": "Dividend payout",
    "mode": "BOTTOM_UP",
-   "justification": "Stated policy 35-50%, and the latest declaration lands inside it: EGP 0.8639177376 x 1,400,027,312 shares = EGP 1,209.5m against FY2025 EAS attributable profit of 2,749.6m, i.e. 44.0%. The rule is the company's own band anchored on its own most recent actual.",
+   "justification": "Stated policy 35-50%, and the latest declaration lands inside it: EGP 0.8639177376 x 1,400,027,312 shares = EGP 1,209.5m against FY2025 EAS attributable profit of 2,749.6m, i.e. 44.0%. The rule is the company's own band anchored on its own most recent actual (F41).",
    "sweep_refs": [
-    "F40",
+    "F41",
     "F17",
-    "F35"
+    "F36"
    ]
   },
   {
    "driver": "Frozen (Forni) segment path",
    "mode": "BOTTOM_UP",
-   "justification": "Built on the same cost-per-ton method as every other segment, which yields a NEGATIVE gross margin (1H2026 gross loss EGP 18.4m, margin -45.7%) and that negative is carried. Breakeven is modelled only against the dated mechanisms the company names \u2014 the 2Q2026 B2B partnership and the SKU rationalisation \u2014 and never assumed.",
+   "justification": "Built on the same cost-per-ton method as every other segment, which yields a NEGATIVE gross margin (1H2026 gross loss EGP 18.4m, margin -45.7%) and that negative is carried (F35). Breakeven is modelled only against the dated mechanisms the company names \u2014 the 2Q2026 B2B partnership and the SKU rationalisation \u2014 and never assumed.",
    "sweep_refs": [
-    "F34",
-    "F26",
-    "F25"
+    "F35",
+    "F27",
+    "F26"
+   ]
+  },
+  {
+   "driver": "FX translation of the Morocco and Iraq legs",
+   "mode": "BOTTOM_UP",
+   "justification": "The company publishes a per-currency plus/minus 10% sensitivity of post-tax profit for EUR, USD, MAD, GBP and IQD (F23); the market rate comes from the Global ring (F01). CONDITIONAL: F23 is registered as located but NOT re-read at verification resolution, so this row is bottom-up only once that note is read at 300+ dpi and footed. If it cannot be, this row drops to top-down and says so.",
+   "sweep_refs": [
+    "F23",
+    "F01",
+    "F19"
    ]
   },
   {
    "driver": "Accounting basis for the whole model (EAS vs IFRS)",
    "mode": "BOTTOM_UP",
-   "justification": "Not a forecast driver but a gate every other driver passes through, so it is on the table. FY2025 differs by EGP 253,025,557 of net profit and 0.5pp of gross margin between the two audited bases (F16); the 2026 interims are EAS (F18, F19) and the earnings releases are IFRS (F20, F21). One basis is declared, carried throughout, and the other reconciled using the company's own published bridge.",
+   "justification": "Not a forecast driver but a gate every other driver passes through, so it is on the table. FY2025 differs by EGP 253,025,557 of net profit and 0.5pp of gross margin between the two audited bases (F17); the 2026 interims are EAS (F18, F19) and the earnings releases are IFRS (F26, F28). One basis is declared, carried throughout, and the other reconciled using the company's own published bridge.",
    "sweep_refs": [
     "F13",
     "F17",
     "F18",
     "F19",
-    "F27"
+    "F28"
    ]
   },
   {
    "driver": "Ownership/stake overhang",
    "mode": "TOP_DOWN",
-   "justification": "The 31-Dec-2025 register is audited and exact (F28), but the TRANSACTION that put RIMCO E G T Investment LLC at 10.08% and moved Kingsway is not sourced: the Article-30 Disclosure Forms that would carry it sit on egx.com.eg, which returns 'curl: (52) Empty reply from server'. Per the named-transaction rule the stake is carried at its audited level and any lock-up, overhang or follow-on assumption is refused rather than estimated.",
+   "justification": "The 31-Dec-2025 register is audited and exact (F36), but the TRANSACTION that put RIMCO E G T Investment LLC at 10.08% and moved Kingsway is not sourced: the Article-30 Disclosure Forms that would carry it sit on egx.com.eg, which returns 'curl: (52) Empty reply from server' (F38). Per the named-transaction rule the stake is carried at its audited level and any lock-up, overhang or follow-on assumption is refused rather than estimated.",
    "sweep_refs": [
-    "F37",
-    "F35"
+    "F38",
+    "F36"
    ]
   },
   {
    "driver": "Management guidance",
    "mode": "TOP_DOWN",
-   "justification": "There is none to consume. The negative search covers both 2026 releases, the FY2025 release, the 2024 Annual Report and every EGX release title from Jan-2025 to 01-Sep-2026: Edita publishes no numeric forward target of any kind. Every forward number in the model is therefore the model's own, which is the [L-012] condition met by construction rather than by discipline.",
+   "justification": "There is none to consume. The negative search (F44) covers both 2026 releases, the FY2025 release, the 2024 Annual Report and every EGX release title from Jan-2025 to 01-Sep-2026: Edita publishes no numeric forward target of any kind. Every forward number in the model is therefore the model's own, which is the [L-012] condition met by construction rather than by discipline.",
    "sweep_refs": [
-    "F43",
-    "F42"
+    "F44",
+    "F43"
    ]
   },
   {
    "driver": "Technology-substitution risk to the category",
    "mode": "TOP_DOWN",
-   "justification": "Closed by dated negative search. No substitution threat to packaged sweet baked snacks was found on any horizon a five-year forecast reaches; the live technology items in Edita's own disclosures are cost-side (solar PV, ISO 50001, EV fleet). Carried as zero in the demand driver, with the absence recorded rather than assumed.",
+   "justification": "Closed by dated negative search (F11). No substitution threat to packaged sweet baked snacks was found on any horizon a five-year forecast reaches; the live technology items in Edita's own disclosures are cost-side (solar PV, ISO 50001, EV fleet). Carried as zero in the demand driver, with the absence recorded rather than assumed.",
    "sweep_refs": [
     "F11",
-    "F42"
+    "F43"
    ]
   }
  ],
@@ -867,5 +892,5 @@
   "Q1-2026",
   "Q2-2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [EFID, 2026-09-09]: PASS \u2014 4/4 rings, 43 findings (8 B \u00b7 12 S \u00b7 15 D \u00b7 5 C \u00b7 3 NEG), driver gate 16 rows (13 bottom-up / 3 top-down) | primary access: attempted (8) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 12"
+ "qc_line": "QC(m) \u2014 Information Sweep [EFID, 2026-09-09]: PASS \u2014 4/4 rings, 44 findings (8 B \u00b7 12 S \u00b7 16 D \u00b7 5 C \u00b7 3 NEG), driver gate 17 rows (14 bottom-up / 3 top-down) | primary access: attempted (8) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 12"
 }

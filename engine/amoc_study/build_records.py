@@ -56,7 +56,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # FILE PASS -- a gate edited to admit the thing in front of it is the defect wearing
 # the fix's clothes. The filenames live in the generator that emits them, which is
 # where a reader looks for them anyway.
-STEPS = ('compute.py', 'diagnostics_amoc.py', 'adversarial.py')
+# asset_base_record.py APPENDS to study_numbers.json, so it must run AFTER everything
+# that rebuilds that file — and the rebuilder is not only compute.py. adversarial.py calls
+# runpy.run_path on compute.py to get a clean computed record to perturb, which rewrites
+# study_numbers.json as a side effect. Placing the append after compute but before
+# adversarial looked correct, ran clean, printed "every step ran in order", and left the
+# record GONE: the file was byte-identical to the state before it, which is an absent
+# answer in a clean answer's clothes [R-ENF-04] arriving through a build order that was
+# written down and still wrong. It is last now, and a step that rebuilds the numbers file
+# indirectly is as much a rebuilder as one that does it in its own code.
+STEPS = ('compute.py', 'diagnostics_amoc.py', 'adversarial.py', 'asset_base_record.py')
 
 
 def main():

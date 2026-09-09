@@ -9,6 +9,11 @@ WRITE LOCATION. This module and its JSON live in `engine/efid_study_pending/`, w
 deliberately OUTSIDE the `engine/*_study` glob every repository gate walks. There is no
 `engine/efid_study/` and none should be created until a study is actually built.
 
+CROSS-REFERENCES. Prose below cites other findings by SYMBOLIC token ("{f_vol}"), not by
+a hand-typed "F25". A resolution pass at the bottom substitutes the real ids and asserts
+that none is left dangling, so a reordered or inserted finding can never silently point
+a reader at the wrong evidence.
+
 PRIMARY SOURCE ACCESS, recorded rather than hidden.
   REACHED, and everything the company reports about itself comes from here:
     - https://ir.edita.com.eg/            (company IR site, HTTP 200)
@@ -51,12 +56,12 @@ SCANNED FILINGS AND THE ARITHMETIC ARBITER.
   listed in FOOTING_CHECKS below.
 
 NO BETA IS RESOLVED HERE, by instruction. The exchange, the listing structure and the
-price series that exists are recorded as findings (F30, F31); the regressor ruling is
-not this sweep's to take. Note that EFID carries a SECOND listing — GDRs on the London
-Stock Exchange, one GDR = five ordinary shares — so the dual-listing trap is live and
-is flagged rather than assumed away.
+price series that exists are recorded as a finding; the regressor ruling is not this
+sweep's to take. Note that EFID carries a SECOND listing — GDRs on the London Stock
+Exchange, one GDR = five ordinary shares — so the dual-listing trap is live and is
+flagged rather than assumed away.
 """
-import sys, os
+import sys, os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
@@ -126,9 +131,10 @@ f_fx = R.add(Ring.GLOBAL, "rate cycle & USD/FX regime", FindingClass.S,
     "figure)", AGG, "2026-09-02",
     model_impact="Sets the translation rate for the two foreign-currency earnings legs "
                  "(Edita Morocco, MAD; Edita Iraq/Ahramat El Nile, IQD) and the EGP cost "
-                 "of the imported quarter of the direct-material bill. F14 gives the "
-                 "company's own audited ±10% FX sensitivity by currency, so this ring "
-                 "sets the shock and F14 sizes it — the study must not invent its own.")
+                 "of the imported quarter of the direct-material bill. {f_fxsens} locates "
+                 "the company's OWN per-currency plus/minus 10% sensitivity, so this ring "
+                 "sets the shock and the company's note sizes it — the study must not "
+                 "invent its own elasticity.")
 
 f_inputs = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.S,
     "Soft-commodity input complex through Aug-2026: Egyptian sugar ~USD 0.61/kg, DOWN "
@@ -138,10 +144,10 @@ f_inputs = R.add(Ring.GLOBAL, "commodity complex (input/output)", FindingClass.S
     "IMARC palm-oil pricing report; Selina Wamucii Egypt sugar price series; Trendtype / "
     "IFPRI on Egyptian flour policy", PRESS, "2026-08-31",
     model_impact="These are the exogenous half of the cost-per-unit build. The COMPANY "
-                 "half is F21: direct material fell to 55.0% of revenue in 1H2026 from "
-                 "56.2% in 1H2025, and is 76% locally sourced / 24% imported. Cost per "
-                 "pack must be built from F21 escalated on THESE indices one at a time — "
-                 "one escalator per input, never a single blended CPI [L-009].")
+                 "half is {f_costmix}: direct material fell to 55.0% of revenue in 1H2026 "
+                 "from 56.2% in 1H2025, and is 76% locally sourced / 24% imported. Cost "
+                 "per pack must be built from {f_costmix} escalated on THESE indices one "
+                 "at a time — one escalator per input, never a single blended CPI [L-009].")
 
 f_gdem = R.add(Ring.GLOBAL, "global sector demand", FindingClass.C,
     "Packaged sweet snacks is a domestically-consumed, locally-manufactured category: "
@@ -158,10 +164,10 @@ f_trade = R.add(Ring.GLOBAL, "trade / sanctions / supply chains", FindingClass.S
     "insurance and surcharges; regional port congestion adds transit delays",
     "Zencargo / Suaid Global / Hillebrand Gori Red Sea trackers; USDA FAS on Egyptian "
     "export disruption", PRESS, "2026-08-31",
-    model_impact="Prices the 24% imported share of the direct-material bill (F21) and "
-                 "the landed cost of imported machinery under the EGP 320m four-line "
-                 "purchase (F24). Carried as a cost-per-unit adder on the imported leg "
-                 "only, never smeared across the whole COGS line.")
+    model_impact="Prices the 24% imported share of the direct-material bill ({f_costmix}) "
+                 "and the landed cost of imported machinery under the EGP 320m four-line "
+                 "purchase ({f_lines}). Carried as a cost-per-unit adder on the imported "
+                 "leg only, never smeared across the whole COGS line.")
 
 # =============================================================== RING 2 — COUNTRY
 f_cbe = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval risk)",
@@ -176,8 +182,8 @@ f_cbe = R.add(Ring.COUNTRY, "sovereign macro (inflation, policy rate, FX/deval r
     "primary-access log)", PRESS, "2026-08-20",
     model_impact="Two places. (1) The explicit-window risk-free rate and the direction "
                  "of the Kd path against which Edita's own floating-rate book is priced "
-                 "— F26 gives the company's audited 1% rate sensitivity (EGP 42.7m of "
-                 "post-tax profit at 31-Dec-2025), so the shock is exogenous and the "
+                 "— {f_debt} gives the company's audited 1% rate sensitivity (EGP 42.7m "
+                 "of post-tax profit at 31-Dec-2025), so the shock is exogenous and the "
                  "impact is the company's own number. (2) The price-per-pack path: "
                  "Edita's FY2025 average price per pack rose 31.3% against ~14-15% CPI, "
                  "so the price driver is NOT an inflation pass-through and must not be "
@@ -207,8 +213,8 @@ f_pol = R.add(Ring.COUNTRY, "fiscal / political events with sector read-through"
     model_impact="Sits behind the packs-sold path. Edita's own record shows the tension "
                  "resolved by MIX rather than by units: FY2025 total packs FELL 1.4% to "
                  "3,788mn while tons ROSE 19.3% to 154.7k and average price per pack rose "
-                 "31.3% (F20). Any volume driver that assumes packs track population or "
-                 "real income is contradicted by the company's own FY2025.")
+                 "31.3% ({f_vol}). Any volume driver that assumes packs track population "
+                 "or real income is contradicted by the company's own FY2025.")
 
 # ============================================================== RING 3 — INDUSTRY
 f_mkt = R.add(Ring.INDUSTRY, "demand drivers & capacity/supply balance", FindingClass.S,
@@ -218,8 +224,8 @@ f_mkt = R.add(Ring.INDUSTRY, "demand drivers & capacity/supply balance", Finding
     "rather than measuring Edita's share",
     "Euromonitor International, Snacks in Egypt (country report)", AGG, "2026-06-30",
     model_impact="Bounds the top-down sanity check ONLY. The volume build is bottom-up "
-                 "off F20's per-segment packs and tons; this finding is the ceiling test "
-                 "the bottom-up build must not breach, not an input to it.")
+                 "off {f_vol}'s per-segment packs and tons; this finding is the ceiling "
+                 "test the bottom-up build must not breach, not an input to it.")
 
 f_price = R.add(Ring.INDUSTRY, "pricing", FindingClass.D,
     "Edita discloses average price per pack every quarter, by segment and in total: FY2025 "
@@ -264,8 +270,8 @@ f_comp = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)", Findi
     "named in any company document swept",
     "Edita FY2025 Earnings Release, Operational Developments", IR, "2026-03-11",
     model_impact="Capacity driver, both directions. It adds ~15% to Edita's core-segment "
-                 "capacity (F24) AND removes four lines of competing supply. The study "
-                 "must model the capacity add and must NOT also assume the vendor "
+                 "capacity ({f_lines}) AND removes four lines of competing supply. The "
+                 "study must model the capacity add and must NOT also assume the vendor "
                  "replaces the lines, because the counterparty is unidentified and the "
                  "replacement cannot be sourced.")
 
@@ -371,11 +377,12 @@ f_fs25eas = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
            "number (2,695,301,670) as 'Net Profit' for FY2025.",
     model_impact="BASE CHANGER for basis selection, and the most dangerous single trap on "
                  "this name. The two bases differ by 10.4% of net profit and 0.5pp of "
-                 "gross margin. The 2026 INTERIMS ARE FILED UNDER EAS (F18, F19) while "
-                 "the EARNINGS RELEASES ARE IFRS (F20, F21). A study that anchors history "
-                 "on IFRS and rolls it forward on interim EAS actuals, or that quotes a "
-                 "release margin beside a statement margin, is wrong by construction. "
-                 "Declare one basis, carry it throughout, and reconcile the other.")
+                 "gross margin. The 2026 INTERIMS ARE FILED UNDER EAS ({f_q1}, {f_q2}) "
+                 "while the EARNINGS RELEASES ARE IFRS ({f_vol}, {f_segp}, {f_costmix}). "
+                 "A study that anchors history on IFRS and rolls it forward on interim "
+                 "EAS actuals, or that quotes a release margin beside a statement margin, "
+                 "is wrong by construction. Declare one basis, carry it throughout, and "
+                 "reconcile the other.")
 
 # ---- study-year quarters: BOTH filed, both re-added ----------------------------
 f_q1 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
@@ -394,7 +401,9 @@ f_q1 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
     detail="Scanned. Re-added and FOOTS. Independently cross-checked by subtraction from "
            "the Q2-2026 filing: 6M revenue 12,250,402,687 minus 3M revenue 6,479,903,702 "
            "= 5,770,498,985 exactly, and the same identity holds for COGS, gross profit "
-           "and net profit. Two separately-filed documents agree to the pound.",
+           "and net profit. Two separately-filed documents agree to the pound. NOTE the "
+           "EAS/IFRS balance-sheet gap here too: this filing states 31-Dec-2025 total "
+           "assets of 14,723,822,091 where the IFRS set states 14,827,856,625.",
     model_impact="First actual of the study year. Its 35.20% EAS gross margin is ABOVE "
                  "the FY2025 EAS full-year 34.39% — the ARCC failure pattern in reverse. "
                  "Any forecast margin path must start above the prior-year average, not "
@@ -417,7 +426,13 @@ f_q2 = R.add(Ring.COMPANY, "official financial statements", FindingClass.D,
            "line by line and every one FOOTS to its printed gross profit, PBT, net profit "
            "and owners/NCI split. Prior-year comparatives inside this filing: 6M-2025 "
            "revenue 9,247,121,351 and net profit 1,017,686,279; 3M-2025 revenue "
-           "4,963,742,378 and net profit 587,903,803.",
+           "4,963,742,378 and net profit 587,903,803. Subsidiary ownership at 30-Jun-2026 "
+           "is disclosed entity by entity: Edita for Trade and Distribution 99.8%, Edita "
+           "Confectionery Industries 99.98%, Edita Participation Cyprus 100%, Edita Food "
+           "Industries-Morocco 78.67%, Edita For Food Investments 100%, Edita Frozen Food "
+           "Industries 100%, Edita International LTD (UAE) 100%, Edita Investment Holding "
+           "LTD (UAE) 100%, Edita TJA LTD (UAE) 51%, Ahramat El Nile For Trading and Food "
+           "Industries (Iraq) 49%.",
     model_impact="Second actual of the study year, and the one that resets the base. "
                  "1H-2026 revenue is 58.6% of the whole of FY2025 and 1H-2026 net profit "
                  "is 59.9% of FY2025's EAS net profit. Q2 EAS margin (33.26%) is BELOW "
@@ -442,7 +457,7 @@ f_bs = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
            "(854,487,748) on 69% more net profit.",
     model_impact="Sets the opening balance sheet, the working-capital driver and the "
                  "EV-to-equity bridge. The T-bill and FVTPL holdings (4,024,350,774 "
-                 "combined) are the reason F17's net-debt definition matters.")
+                 "combined) are the reason {f_netdebt}'s net-debt definition matters.")
 
 f_netdebt = R.add(Ring.COMPANY, "regular disclosures", FindingClass.B,
     "TWO COMPANY-OFFICIAL NET-DEBT FIGURES FOR THE SAME DATE, EGP 4.02bn APART. The "
@@ -493,6 +508,29 @@ f_cf = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
                  "definition is chosen must be the one the FCF bridge subtracts, and the "
                  "reconciling accrual must be named.")
 
+f_fxsens = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
+    "THE COMPANY'S OWN FX AND CREDIT EXPOSURE NOTES EXIST AND ARE LOCATED. The FY2025 EAS "
+    "financial-risk-management note carries a per-currency plus/minus 10% sensitivity of "
+    "post-tax profit for EUR/EGP, USD/EGP, MAD/EGP, GBP/EGP and IQD/EGP with prior-year "
+    "comparatives, a table of net monetary assets and liabilities by currency, and a "
+    "counterparty credit-rating table naming each bank (QNB, Credit Agricole Egypt, CIB, "
+    "NBK, ADIB, Citibank Egypt, NBE, Banque du Caire, Standard Chartered, Bank of Iraq, "
+    "BNP Paribas Morocco, Bank of Cyprus)",
+    "FY2025 EAS consolidated statements, financial-risk-management note (market risk, "
+    "credit risk, liquidity risk)", CO, "2026-03-11",
+    url=f"{IRF}/Edita-consolidated-English-Signed-FY25.pdf",
+    detail="DELIBERATELY CARRIES NO FIGURES. These pages were seen at 62 dpi while "
+           "locating the gearing note and have NOT been re-read at verification "
+           "resolution or re-added, so quoting the sensitivities here would put unverified "
+           "numbers into the register. The note is registered as LOCATED, with its page "
+           "identified, so the build reads it at 300+ dpi and foots it before use rather "
+           "than substituting a house assumption. is_fs_data is False precisely because "
+           "no line item is asserted.",
+    model_impact="DRIVER UNLOCK, conditional on that re-read: it converts the FX driver "
+                 "from a house shock into the company's own measured elasticity, and it "
+                 "gives the counterparty quality behind the EGP 4.02bn treasury book that "
+                 "{f_netdebt} turns on.")
+
 f_series = R.add(Ring.COMPANY, "regular disclosures", FindingClass.C,
     "PRICE SERIES AND LISTING, RECORDED, NO BETA RESOLVED. EFID.CA on the EGX, ISIN "
     "EGS305I1C011, sector Food/Beverages/Tobacco, listed 11-Dec-2014, first trading day "
@@ -511,12 +549,14 @@ f_series = R.add(Ring.COMPANY, "regular disclosures", FindingClass.C,
            "meeting its continuing obligations under the Listing Rules of the London "
            "Stock Exchange'. Same issuer, two venues, two legitimate regressors — the "
            "series' currency and magnitude must be checked against the venue it is filed "
-           "under. The held series is EGP and matches the EGX ordinary line. (2) BONUS "
-           "ADJUSTMENT: issued capital went 72,536,290 -> 140,002,731 -> 280,005,462 via "
-           "two bonus issues, a 3.86x cumulative increase in share count, and the held "
-           "series starts at 5.37 against an 18.50 offer price, so it is provider-"
-           "adjusted. Its first row also carries a Change% of -81.80%, which is a "
-           "first-row artefact, not a price move. Step 0.0 must run before any use.",
+           "under. The held series is EGP and matches the EGX ordinary line, so market "
+           "'EG' / exchange 'EGX' is the indicated pairing, but the ruling is the build's "
+           "to take through own_stock_beta(). (2) BONUS ADJUSTMENT: issued capital went "
+           "72,536,290 -> 140,002,731 -> 280,005,462 via two bonus issues, a 3.86x "
+           "cumulative increase in share count, and the held series starts at 5.37 "
+           "against an 18.50 offer price, so it is provider-adjusted. Its first row also "
+           "carries a Change% of -81.80%, which is a first-row artefact, not a price "
+           "move. Step 0.0 must run before any use.",
     model_impact="")
 
 f_egxwire = R.add(Ring.COMPANY, "regular disclosures", FindingClass.C,
@@ -533,7 +573,11 @@ f_egxwire = R.add(Ring.COMPANY, "regular disclosures", FindingClass.C,
     detail="The FY2024 EAS comparative on the wire is 1,606,727,698, which is neither of "
            "the two IFRS FY2024 figures (1,415,374,273 as filed, 1,446,757,252 restated). "
            "Three FY2024 net profits are in circulation, all company-official, on two "
-           "accounting bases and two vintages.",
+           "accounting bases and two vintages. Two 2026 items are flagged as NOT read "
+           "because their attachments sit on the blocked EGX host: the 15-Jul-2026 FRA "
+           "no-objection to an Article-48 disclosure report on the board meeting of "
+           "12-Jul-2026, and the 13-Aug-2026 EGM decisions. Article 48 is the material-"
+           "transaction gate, so the build should retry that document before it opens.",
     model_impact="")
 
 # ---- IR communications (COMPANY_IR — mandatory) ---------------------------------
@@ -590,9 +634,9 @@ f_costmix = R.add(Ring.COMPANY, "IR communications (calls, presentations, releas
     model_impact="DRIVER UNLOCK for opex. Splits SG&A into three separately-disclosed "
                  "legs so each gets its own driver instead of one percentage-of-sales "
                  "glide, and splits direct material 76/24 local/imported so the FX and "
-                 "freight shocks (F1, F4) hit only the leg they actually touch. The "
-                 "advertising and marketing leg is IDENTICAL under both bases, so it is "
-                 "the one opex line that needs no basis decision.")
+                 "freight shocks ({f_fx}, {f_trade}) hit only the leg they actually "
+                 "touch. The advertising and marketing leg is IDENTICAL under both bases, "
+                 "so it is the one opex line that needs no basis decision.")
 
 f_call = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
     FindingClass.C,
@@ -626,8 +670,8 @@ f_ar = R.add(Ring.COMPANY, "IR communications (calls, presentations, releases)",
            "against. NOTE THE STALENESS: the 2024 Annual Report is the LATEST — no FY2025 "
            "Annual Report has been published as of the sweep date, so the newest full "
            "asset-base description is 12 months older than the newest financials, and it "
-           "PREDATES the four lines bought in Oct-2025 (F24). The line count a build uses "
-           "must be 36 plus those four, not 36.",
+           "PREDATES the four lines bought in Oct-2025 ({f_lines}). The line count a "
+           "build uses must be 36 plus those four, not 36.",
     model_impact="Anchors capacity and the utilisation denominator per segment, and gives "
                  "the D&A base a physical counterpart. Tons per line per segment is the "
                  "capacity ceiling the volume driver may not breach.")
@@ -762,7 +806,7 @@ f_bonus = R.add(Ring.COMPANY, "ownership / stake changes (named-transaction rule
                  "filing 2.17 on the PRE-bonus count. Dividends per share are on the same "
                  "two bases. Any DPS or EPS series stitched across the 2025 bonus without "
                  "restating the earlier years is wrong by roughly 2x, and the held price "
-                 "series appears provider-adjusted for the same event (F30).")
+                 "series appears provider-adjusted for the same event ({f_series}).")
 
 f_neg_rimco = R.add_negative(Ring.COMPANY, "ownership / stake changes (named-transaction rule)",
     "searched, as a SPECIFIC NAMED TRANSACTION and never as an estimate: 'RIMCO E G T "
@@ -794,7 +838,7 @@ f_debt = R.add(Ring.COMPANY, "management & capital actions", FindingClass.D,
                  "named tranches, not as a ratio on a liabilities base — the exact "
                  "mis-specification the PHDC walk-forward recorded as a defect [L-002, "
                  "Driver Ledger PHDC decision 2]. The 1% sensitivity converts the CBE "
-                 "path (F5) into a profit effect using the company's own elasticity.")
+                 "path ({f_cbe}) into a profit effect using the company's own elasticity.")
 
 f_cov = R.add(Ring.COMPANY, "management & capital actions", FindingClass.S,
     "BINDING FINANCIAL COVENANTS, disclosed and currently met. Under the major borrowing "
@@ -823,8 +867,8 @@ f_div = R.add(Ring.COMPANY, "management & capital actions", FindingClass.D,
                  "1,400,027,312 shares is EGP 1,209.5m, which against FY2025 EAS net "
                  "profit attributable of 2,749.6m is a 44.0% payout — inside the stated "
                  "35-50% band and therefore usable as a forward rule. The per-share "
-                 "history straddles the 2025 bonus (F29) and must be restated before any "
-                 "DPS series is drawn.")
+                 "history straddles the 2025 bonus ({f_bonus}) and must be restated "
+                 "before any DPS series is drawn.")
 
 f_audit = R.add(Ring.COMPANY, "management & capital actions", FindingClass.S,
     "THE AUDITOR CHANGED. FY2022, FY2023 and FY2024 IFRS consolidated statements were "
@@ -836,10 +880,10 @@ f_audit = R.add(Ring.COMPANY, "management & capital actions", FindingClass.S,
     "are unmodified",
     "FY2025 and FY2024 IFRS consolidated statements, Independent Auditor's Reports",
     CO, "2026-03-10", url=f"{IRF}/Edita-Food-Industries-FY-2025-IFRS.pdf",
-    model_impact="Explains why the FY2024 comparative moved (F13) without any accounting-"
-                 "policy change being announced, and is the reason the study reconciles "
-                 "the FY2024 column across two filings rather than trusting one. No "
-                 "forecast driver changes; the history table's provenance does.")
+    model_impact="Explains why the FY2024 comparative moved ({f_fs24r}) without any "
+                 "accounting-policy change being announced, and is the reason the study "
+                 "reconciles the FY2024 column across two filings rather than trusting "
+                 "one. No forecast driver changes; the history table's provenance does.")
 
 # ---- strategic plans & guidance ---------------------------------------------------
 f_strat = R.add(Ring.COMPANY, "strategic plans & guidance", FindingClass.S,
@@ -856,8 +900,8 @@ f_strat = R.add(Ring.COMPANY, "strategic plans & guidance", FindingClass.S,
     model_impact="Each item is a dated, explicit event in the volume or cost driver "
                  "rather than a growth assumption. The energy items (PV, ISO 50001, EV "
                  "fleet) land in manufacturing overhead and distribution cost, which are "
-                 "separately disclosed (F21), so their effect is testable against a "
-                 "disclosed line rather than asserted.")
+                 "separately disclosed ({f_costmix}), so their effect is testable against "
+                 "a disclosed line rather than asserted.")
 
 f_neg_guid = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
     "searched: the FY2025 and both 2026 earnings releases end to end, the 2024 Annual "
@@ -874,40 +918,41 @@ f_neg_guid = R.add_negative(Ring.COMPANY, "strategic plans & guidance",
 # D-finding that unlocked them; top-down rows cite the negative search that forced them.
 R.add_driver("Volume — packs and tons, by segment, quarterly", DriverMode.BOTTOM_UP,
     "Edita discloses packs sold, tons sold and average price per pack for every one of "
-    "seven segments every quarter (F20). Built at segment level in BOTH packs and tons, "
-    "because the two diverge violently — FY2025 packs -1.4% against tons +19.3% — and a "
-    "packs-only build would show a shrinking business. Capacity ceiling per segment comes "
-    "from the 36-line facility register (F23) plus the four lines bought in Oct-2025 (F24).",
+    "seven segments every quarter ({f_vol}). Built at segment level in BOTH packs and "
+    "tons, because the two diverge violently — FY2025 packs -1.4% against tons +19.3% — "
+    "and a packs-only build would show a shrinking business. Capacity ceiling per segment "
+    "comes from the 36-line facility register ({f_ar}) plus the four lines bought in "
+    "Oct-2025 ({f_lines}).",
     [f_vol, f_ar, f_lines, f_q2])
 
 R.add_driver("Price per pack, by segment, as ladder migration", DriverMode.BOTTOM_UP,
-    "Disclosed per segment per quarter (F17, F20). Projected as price-point migration up "
-    "named ladders (Molto Gold EGP 20, TODO BOMB EGP 15, HoHos Coated and Freska Chocobar "
-    "EGP 10), which is the mechanism the company itself names, NOT as a CPI pass-through — "
-    "FY2025 price per pack rose 31.3% against ~14-15% inflation (F5), so an inflation "
-    "index would have missed more than half the move.",
+    "Disclosed per segment per quarter ({f_price}, {f_vol}). Projected as price-point "
+    "migration up named ladders (Molto Gold EGP 20, TODO BOMB EGP 15, HoHos Coated and "
+    "Freska Chocobar EGP 10), which is the mechanism the company itself names, NOT as a "
+    "CPI pass-through — FY2025 price per pack rose 31.3% against ~14-15% inflation "
+    "({f_cbe}), so an inflation index would have missed more than half the move.",
     [f_price, f_vol, f_cbe])
 
 R.add_driver("Cost per ton, by segment — margin is the OUTPUT", DriverMode.BOTTOM_UP,
-    "Segment revenue and segment gross profit are both disclosed quarterly (F21), and "
-    "segment tons with them (F20), so cost per ton is a subtraction, not an assumption. "
-    "Gross margin is COMPUTED from the volume x price and cost-per-ton legs and is never "
-    "set as an input [L-005]. Escalated one input at a time on F2's separate sugar, palm "
-    "oil and flour indices with the 76/24 local/imported split from F21 — never one "
-    "blended rate [L-009].",
+    "Segment revenue and segment gross profit are both disclosed quarterly ({f_segp}), "
+    "and segment tons with them ({f_vol}), so cost per ton is a subtraction, not an "
+    "assumption. Gross margin is COMPUTED from the volume x price and cost-per-ton legs "
+    "and is never set as an input [L-005]. Escalated one input at a time on {f_inputs}'s "
+    "separate sugar, palm oil and flour indices with the 76/24 local/imported split from "
+    "{f_costmix} — never one blended rate [L-009].",
     [f_segp, f_vol, f_costmix, f_inputs])
 
 R.add_driver("SG&A — three separate legs", DriverMode.BOTTOM_UP,
     "The EAS-to-IFRS bridge breaks total SG&A into selling and distribution, advertising "
     "and marketing, and general and administrative, each printed separately every quarter "
-    "(F21). Each gets its own driver. Advertising and marketing is identical under both "
-    "accounting bases, so it needs no basis decision; the other two do.",
+    "({f_costmix}). Each gets its own driver. Advertising and marketing is identical under "
+    "both accounting bases, so it needs no basis decision; the other two do.",
     [f_costmix, f_q2, f_fs25])
 
 R.add_driver("Interest expense — facility by facility", DriverMode.BOTTOM_UP,
     "Built off the named tranches (EGP 600m 7-year, EGP 500m 7-year, IFC USD 45m) and the "
-    "disclosed EGP 3,552,268,699 of variable-rate borrowing, with the CBE path (F5) moving "
-    "only the variable leg and the company's own 1% sensitivity (EGP 42,727,096 of "
+    "disclosed EGP 3,552,268,699 of variable-rate borrowing, with the CBE path ({f_cbe}) "
+    "moving only the variable leg and the company's own 1% sensitivity (EGP 42,727,096 of "
     "post-tax profit) sizing the shock. Explicitly NOT a ratio on a liabilities base — "
     "that is the recorded PHDC defect [L-002].",
     [f_debt, f_cbe, f_bs])
@@ -925,77 +970,115 @@ R.add_driver("Capex and the D&A roll-forward", DriverMode.BOTTOM_UP,
     "the release figure is accrual and the audited cash-flow lines sum to EGP 1,081.8m, a "
     "gap the interims attribute to credit purchases of PP&E (EGP 60,632,474 in Q1-2026, "
     "EGP 59,241,027 in Q2-2026). Whichever basis the FCF bridge subtracts, the reconciling "
-    "accrual is named.",
+    "accrual is named ({f_cf}).",
     [f_cf, f_lines, f_strat])
 
 R.add_driver("Tax", DriverMode.BOTTOM_UP,
     "Built from the filed charge, not the statutory rate. FY2025 IFRS: EGP 1,008,535,910 "
-    "on PBT 3,450,812,023 = 29.2% effective, against a 22.5% statutory rate (F6); on the "
-    "EAS PBT the same charge is 27.2%. The gap is real and persistent and the study names "
-    "it rather than defaulting to 22.5%.",
+    "on PBT 3,450,812,023 = 29.2% effective, against a 22.5% statutory rate ({f_tax}); on "
+    "the EAS PBT the same charge is 27.2%. The gap is real and persistent and the study "
+    "names it rather than defaulting to 22.5%.",
     [f_fs25, f_fs25eas, f_tax])
 
 R.add_driver("Non-controlling interest", DriverMode.BOTTOM_UP,
-    "Ownership is disclosed entity by entity in the interim notes: Edita Morocco 78.67% "
-    "(21.33% NCI), Ahramat El Nile Iraq 49% (51% NCI), Edita TJA LTD 51%, Digma 99.8%, "
-    "Edita Confectionery 99.98%. The NCI drag scales with the Iraq ramp — 1H2026 NCI is "
-    "(55,999,999) against (8,745,156) a year earlier — so it is projected off the Iraq "
-    "volume path, not held flat.",
+    "Ownership is disclosed entity by entity in the interim notes ({f_q2}): Edita Morocco "
+    "78.67% (21.33% NCI), Ahramat El Nile Iraq 49% (51% NCI), Edita TJA LTD 51%, Edita "
+    "for Trade and Distribution 99.8%, Edita Confectionery 99.98%. The NCI drag scales "
+    "with the Iraq ramp — 1H2026 NCI is (55,999,999) against (8,745,156) a year earlier — "
+    "so it is projected off the Iraq volume path, not held flat.",
     [f_q2, f_iraq, f_morocco])
 
 R.add_driver("Free float and share count", DriverMode.BOTTOM_UP,
     "1,400,027,312 shares at EGP 0.20 par, free float 36.00%, from the audited "
-    "share-capital note that foots share-by-share (F28) — NOT from the release pie charts, "
-    "which fold different holders into 'Others' in different quarters and would put the "
-    "float at 41-46%. Every per-share series is restated across the 2025 one-for-one bonus "
-    "(F29) before it is drawn.",
+    "share-capital note that foots share-by-share ({f_own}) — NOT from the release pie "
+    "charts, which fold different holders into 'Others' in different quarters and would "
+    "put the float at 41-46%. Every per-share series is restated across the 2025 "
+    "one-for-one bonus ({f_bonus}) before it is drawn.",
     [f_own, f_bonus])
 
 R.add_driver("Dividend payout", DriverMode.BOTTOM_UP,
     "Stated policy 35-50%, and the latest declaration lands inside it: EGP 0.8639177376 x "
     "1,400,027,312 shares = EGP 1,209.5m against FY2025 EAS attributable profit of "
     "2,749.6m, i.e. 44.0%. The rule is the company's own band anchored on its own most "
-    "recent actual.",
+    "recent actual ({f_div}).",
     [f_div, f_fs25eas, f_own])
 
 R.add_driver("Frozen (Forni) segment path", DriverMode.BOTTOM_UP,
     "Built on the same cost-per-ton method as every other segment, which yields a NEGATIVE "
     "gross margin (1H2026 gross loss EGP 18.4m, margin -45.7%) and that negative is "
-    "carried. Breakeven is modelled only against the dated mechanisms the company names — "
-    "the 2Q2026 B2B partnership and the SKU rationalisation — and never assumed.",
+    "carried ({f_fancy}). Breakeven is modelled only against the dated mechanisms the "
+    "company names — the 2Q2026 B2B partnership and the SKU rationalisation — and never "
+    "assumed.",
     [f_fancy, f_segp, f_vol])
+
+R.add_driver("FX translation of the Morocco and Iraq legs", DriverMode.BOTTOM_UP,
+    "The company publishes a per-currency plus/minus 10% sensitivity of post-tax profit "
+    "for EUR, USD, MAD, GBP and IQD ({f_fxsens}); the market rate comes from the Global "
+    "ring ({f_fx}). CONDITIONAL: {f_fxsens} is registered as located but NOT re-read at "
+    "verification resolution, so this row is bottom-up only once that note is read at "
+    "300+ dpi and footed. If it cannot be, this row drops to top-down and says so.",
+    [f_fxsens, f_fx, f_q2])
 
 R.add_driver("Accounting basis for the whole model (EAS vs IFRS)", DriverMode.BOTTOM_UP,
     "Not a forecast driver but a gate every other driver passes through, so it is on the "
     "table. FY2025 differs by EGP 253,025,557 of net profit and 0.5pp of gross margin "
-    "between the two audited bases (F16); the 2026 interims are EAS (F18, F19) and the "
-    "earnings releases are IFRS (F20, F21). One basis is declared, carried throughout, and "
-    "the other reconciled using the company's own published bridge.",
+    "between the two audited bases ({f_fs25eas}); the 2026 interims are EAS ({f_q1}, "
+    "{f_q2}) and the earnings releases are IFRS ({f_vol}, {f_costmix}). One basis is "
+    "declared, carried throughout, and the other reconciled using the company's own "
+    "published bridge.",
     [f_fs25, f_fs25eas, f_q1, f_q2, f_costmix])
 
 R.add_driver("Ownership/stake overhang", DriverMode.TOP_DOWN,
-    "The 31-Dec-2025 register is audited and exact (F28), but the TRANSACTION that put "
-    "RIMCO E G T Investment LLC at 10.08% and moved Kingsway is not sourced: the "
+    "The 31-Dec-2025 register is audited and exact ({f_own}), but the TRANSACTION that "
+    "put RIMCO E G T Investment LLC at 10.08% and moved Kingsway is not sourced: the "
     "Article-30 Disclosure Forms that would carry it sit on egx.com.eg, which returns "
-    "'curl: (52) Empty reply from server'. Per the named-transaction rule the stake is "
-    "carried at its audited level and any lock-up, overhang or follow-on assumption is "
-    "refused rather than estimated.",
+    "'curl: (52) Empty reply from server' ({f_neg_rimco}). Per the named-transaction rule "
+    "the stake is carried at its audited level and any lock-up, overhang or follow-on "
+    "assumption is refused rather than estimated.",
     [f_neg_rimco, f_own])
 
 R.add_driver("Management guidance", DriverMode.TOP_DOWN,
-    "There is none to consume. The negative search covers both 2026 releases, the FY2025 "
-    "release, the 2024 Annual Report and every EGX release title from Jan-2025 to "
-    "01-Sep-2026: Edita publishes no numeric forward target of any kind. Every forward "
-    "number in the model is therefore the model's own, which is the [L-012] condition met "
-    "by construction rather than by discipline.",
+    "There is none to consume. The negative search ({f_neg_guid}) covers both 2026 "
+    "releases, the FY2025 release, the 2024 Annual Report and every EGX release title "
+    "from Jan-2025 to 01-Sep-2026: Edita publishes no numeric forward target of any kind. "
+    "Every forward number in the model is therefore the model's own, which is the [L-012] "
+    "condition met by construction rather than by discipline.",
     [f_neg_guid, f_strat])
 
 R.add_driver("Technology-substitution risk to the category", DriverMode.TOP_DOWN,
-    "Closed by dated negative search. No substitution threat to packaged sweet baked "
-    "snacks was found on any horizon a five-year forecast reaches; the live technology "
-    "items in Edita's own disclosures are cost-side (solar PV, ISO 50001, EV fleet). "
-    "Carried as zero in the demand driver, with the absence recorded rather than assumed.",
+    "Closed by dated negative search ({f_neg_tech}). No substitution threat to packaged "
+    "sweet baked snacks was found on any horizon a five-year forecast reaches; the live "
+    "technology items in Edita's own disclosures are cost-side (solar PV, ISO 50001, EV "
+    "fleet). Carried as zero in the demand driver, with the absence recorded rather than "
+    "assumed.",
     [f_neg_tech, f_strat])
+
+# ------------------------------------------------ RESOLVE SYMBOLIC CROSS-REFERENCES
+# Prose above cites findings as "{f_name}". Substitute the real ids and assert that
+# nothing is left dangling, so an inserted or reordered finding can never point a
+# reader at the wrong evidence.
+_FIDS = {k: v for k, v in list(globals().items())
+         if k.startswith('f_') and isinstance(v, str) and re.fullmatch(r'F\d+', v)}
+
+
+def _resolve(text: str) -> str:
+    for _name, _fid in _FIDS.items():
+        text = text.replace('{' + _name + '}', _fid)
+    return text
+
+
+for _f in R.findings:
+    _f.headline = _resolve(_f.headline)
+    _f.detail = _resolve(_f.detail)
+    _f.model_impact = _resolve(_f.model_impact)
+for _d in R.drivers:
+    _d.justification = _resolve(_d.justification)
+
+_dangling = set()
+for _t in ([f.headline + f.detail + f.model_impact for f in R.findings] +
+           [d.justification for d in R.drivers]):
+    _dangling |= set(re.findall(r'\{f_[a-z0-9_]+\}', _t))
+assert not _dangling, f"unresolved sweep cross-references: {sorted(_dangling)}"
 
 # ------------------------------------------------------------------------ OUTPUT
 FOOTING_CHECKS = """
@@ -1007,12 +1090,14 @@ Every figure below was re-added in Python against the filing's own printed subto
   FY2022 IFRS  P&L  gross profit / PBT / NPAT, both cols .................. FOOTS after glyph arbitration
   FY2025 EAS   P&L  gross profit / PBT / NPAT / attribution ............... FOOTS
   FY2025 EAS   note gearing: loans+OD / net debt / total capital, both cols  FOOTS after glyph arbitration
-  FY2025 EAS   note share register: shares / value / percent .............. FOOTS
+  FY2025 EAS   note share register: shares / value / percent ............... FOOTS
   Q1-2026 EAS  P&L  gross profit / PBT / NPAT / attribution ............... FOOTS
   Q2-2026 EAS  P&L  all FOUR columns, gross profit / PBT / NPAT / split ... FOOTS
   Q1-2026 vs Q2-2026 cross-document identity (6M minus 3M) ................ EXACT, to the pound
-  FY2025 EAS-to-IFRS bridge vs the company's published reconciliation ..... EXACT (253,025,557)
-  FY2025 release net-cash arithmetic vs the audited balance sheet ......... EXACT (266,515,968)
+  FY2025 EAS-to-IFRS bridge vs the company's published reconciliation ...... EXACT (253,025,557)
+  FY2025 release net-cash arithmetic vs the audited balance sheet .......... EXACT (266,515,968)
+NOT RE-READ AT VERIFICATION RESOLUTION, and registered as such: the FY2025 EAS
+financial-risk note's per-currency FX sensitivities and bank credit-rating table.
 """
 
 errors, warnings = R.validate()
