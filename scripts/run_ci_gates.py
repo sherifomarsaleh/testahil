@@ -167,8 +167,20 @@ def main():
             if any(t in script for t in CANNOT_RUN_LOCALLY):
                 skipped.append((label, "needs the runner (network, token or deploy)"))
                 continue
-            r = subprocess.run(["bash", "-e", "-c", script], cwd=ROOT,
-                               capture_output=True, text=True, timeout=1800)
+            # A TIMEOUT IS A RED, NOT A CRASH, AND CERTAINLY NOT A PASS [R-ENF-04].
+            # This raised TimeoutExpired straight out of main(), so a single slow step
+            # killed the run BEFORE the result was recorded — sixty green steps and a
+            # timeout produced NO evidence at all, and the acceptance criteria that read
+            # that record saw "no CI run has been recorded". A run that cannot say what
+            # it found is worth less than one that says it timed out.
+            try:
+                r = subprocess.run(["bash", "-e", "-c", script], cwd=ROOT,
+                                   capture_output=True, text=True, timeout=1800)
+            except subprocess.TimeoutExpired:
+                red.append((label, ["TIMED OUT after 1800s. Not a pass: nothing was "
+                                    "established about this step."]))
+                print("  RED    %s   TIMED OUT" % label[:90])
+                continue
             if r.returncode == 0:
                 green += 1
                 print("  GREEN  %s" % label[:90])
