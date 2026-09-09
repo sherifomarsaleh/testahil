@@ -6,13 +6,15 @@ reference-set invariant holds at import.
 """
 import json, os, sys, re
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 import openpyxl
 from docx import Document
 import research_protocol as rp
 
-STUDY = os.path.join(HERE, 'ADNOCDRILL_Valuation_Study_09-08-2026.docx')
-XLSX = os.path.join(HERE, 'ADNOCDRILL_Valuation_Model_09082026.xlsx')
+STUDY = os.path.join(HERE, _ed.STUDY_DOCX)
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 
 # The section headings this study actually emits, in order, mapped to the
 # reference skeleton. The reference names some sections descriptively; the

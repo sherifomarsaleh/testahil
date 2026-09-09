@@ -25,6 +25,8 @@ SUPERSEDES = (_dt.date(2026, 8, 5),)      # the delivered public edition
 _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')           # the workbook drops the separators
 
+ISO = EDITION.isoformat()
+WORDS = '%d %s %d' % (EDITION.day, EDITION.strftime('%B'), EDITION.year)
 STUDY_DOCX = 'SWDY_Valuation_Study_%s_public.docx' % _D
 STUDY_PDF = 'SWDY_Valuation_Study_%s_public.pdf' % _D
 MODEL_XLSX = 'SWDY_Valuation_Model_%s_public.xlsx' % _C

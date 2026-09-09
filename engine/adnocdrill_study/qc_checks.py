@@ -10,11 +10,13 @@ from docx.shared import Inches
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-STUDY = os.path.join(HERE, 'ADNOCDRILL_Valuation_Study_09-08-2026.docx')
-BIB = os.path.join(HERE, 'ADNOCDRILL_Bibliography_09-08-2026.docx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+STUDY = os.path.join(HERE, _ed.STUDY_DOCX)
+BIB = os.path.join(HERE, _ed.BIBLIO_DOCX)
 # THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK EXCLUDED IT [L-350]. A
 # reader receives three files and this scrub named two, so the third was scanned by nothing.
-XLSX = os.path.join(HERE, 'ADNOCDRILL_Valuation_Model_09082026.xlsx')
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 TEXT_WIDTH = 7.0            # 8.5in page less 0.75in margins each side
 BIB_WIDTH = 7.0             # bibliography uses 0.7in margins
 

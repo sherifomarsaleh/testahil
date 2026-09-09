@@ -9,6 +9,8 @@ from docx.shared import Pt, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 SRC = json.load(open(os.path.join(HERE, 'source_financials.json')))
 M, HI, HB, F = D['meta'], D['hist_is'], D['hist_bs'], D['fcst']
@@ -564,6 +566,6 @@ P('This document is an independent educational analysis and is not investment ad
   'appropriate, take professional advice. Past performance and modelled scenarios are not guarantees of future '
   f'results. Currency is Saudi riyals unless stated. Prices as at {M["asof"]}.', size=8.6, color=GREY)
 
-OUT = os.path.join(HERE, 'RIYADHCABLE_Valuation_Study_18-08-2026_public.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 doc.save(OUT)
 print('wrote', os.path.basename(OUT), '| paragraphs', len(doc.paragraphs), '| tables', len(doc.tables))

@@ -1,3 +1,4 @@
+import sys
 """Prove the workbook is a LIVE DRIVER model, not a pasted register.
 
 READ FIRST tells the reader that changing a blue cell on Assumptions reprices the model.
@@ -11,7 +12,9 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx'))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+wb = openpyxl.load_workbook(os.path.join(HERE, _ed.MODEL_XLSX))
 # [L-067] The builder publishes the row it wrote the headline on; this test used to
 # hard-code DCF!C51 beside that map and read a different figure the moment the terminal
 # gained rows. It reads the map, and refuses rather than guessing an address.

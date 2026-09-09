@@ -17,6 +17,8 @@ from docx_base import (P, H1, H2, rich, caption, bullet, table, figure, box, mas
                        INK, GREY)                                      # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 CENSUS = json.load(open(os.path.join(HERE, 'workbook_census.json')))
 ADV = json.load(open(os.path.join(HERE, 'case_adversarial.json')))
@@ -1521,6 +1523,6 @@ box([
      'turn out wrong.'),
 ])
 
-OUT = os.path.join(HERE, 'AMOC_Valuation_Study_03-09-2026_public.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 doc.save(OUT)
 print('wrote', OUT)

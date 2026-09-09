@@ -14,7 +14,9 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'SAVOLA_Valuation_Model_19082026_public.xlsx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

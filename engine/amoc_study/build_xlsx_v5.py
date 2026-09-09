@@ -1,4 +1,4 @@
-"""AMOC_Valuation_Model_03092026_public.xlsx — the workbook CALCULATES.
+"""AMOC_Valuation_Model_{edition}_public.xlsx — the workbook CALCULATES.
 
 The previous edition shipped 488 formulas against 186 pasted cells: 72.4% formula. The pasted
 27.6% was not incidental — it was the sensitivity grids, the beta sweep and the bear/bull
@@ -22,6 +22,8 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 # the escalation convention comes from the study's committed record, not from a
@@ -1298,7 +1300,7 @@ assert not missing and not extra, (
     % (missing, extra))
 wb._sheets = [wb[n] for n in WANT]
 assert wb.sheetnames == WANT, wb.sheetnames
-OUT = os.path.join(HERE, 'AMOC_Valuation_Model_03092026_public.xlsx')
+OUT = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT)
 json.dump({'expected': EXPECT, 'n_formula': NFORM[0], 'n_pasted': NPASTE[0]},
           open(os.path.join(HERE, 'xlsx_expected_v5.json'), 'w'), indent=1)

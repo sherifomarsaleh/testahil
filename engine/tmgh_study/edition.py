@@ -30,6 +30,14 @@ MODEL_XLSX = 'TMGH_Valuation_Model_%s.xlsx' % _C
 SOURCES_DOCX = 'TMGH_Sources_%s.docx' % _D
 
 
+# THE PDF IS THE FILE A READER ACTUALLY OPENS, so it is named here too rather than
+# spelled out again wherever one is baked or checked.
+STUDY_PDF = STUDY_DOCX[:-len('.docx')] + '.pdf'
+MODEL_PDF = MODEL_XLSX[:-len('.xlsx')] + '.pdf'
+# THIS STUDY'S REGISTER IS CALLED SOURCES, NOT BIBLIOGRAPHY, and a generic helper
+# assuming the other name is exactly why each study states its own filenames here.
+SOURCES_PDF = SOURCES_DOCX[:-len('.docx')] + '.pdf'
+
 def prior(pattern):
     """The same artefact under a superseded edition, oldest first."""
     return [pattern.replace(_D, d.strftime('%d-%m-%Y')).replace(_C, d.strftime('%d%m%Y'))

@@ -26,10 +26,18 @@ SUPERSEDES = (_dt.date(2026, 8, 9),)
 _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')
 
+ISO = EDITION.isoformat()
+WORDS = '%d %s %d' % (EDITION.day, EDITION.strftime('%B'), EDITION.year)
 STUDY_DOCX = 'EIPICO_Valuation_Study_%s.docx' % _D
 MODEL_XLSX = 'EIPICO_Valuation_Model_%s.xlsx' % _C
 BIBLIO_DOCX = 'EIPICO_Bibliography_%s.docx' % _D
 
+
+# THE PDF IS THE FILE A READER ACTUALLY OPENS, so it is named here too rather than
+# spelled out again wherever one is baked or checked.
+STUDY_PDF = STUDY_DOCX[:-len('.docx')] + '.pdf'
+MODEL_PDF = MODEL_XLSX[:-len('.xlsx')] + '.pdf'
+BIBLIO_PDF = BIBLIO_DOCX[:-len('.docx')] + '.pdf'
 
 def prior(pattern):
     """The same artefact under a superseded edition, oldest first."""

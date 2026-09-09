@@ -1,4 +1,4 @@
-"""SCEM_Valuation_Study_07-09-2026_public.docx — TMPV house structure.
+"""SCEM_Valuation_Study_{edition}_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -8,6 +8,8 @@ process references appear anywhere in the output.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 os.chdir(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))   # the shared instruments live in engine/
@@ -1042,6 +1044,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'SCEM_Valuation_Study_07-09-2026_public.docx'
+OUT = _ed.STUDY_DOCX
 doc.save(OUT)
 print('wrote', OUT)

@@ -1,3 +1,4 @@
+import sys
 """Riyadh Cables — standalone bibliography document. Primary-documents table, the full
 input register (every input with value / date / source-and-construction, grouped by
 research layer), a judgements table (each with what would overturn it), a negative-results
@@ -8,6 +9,8 @@ from docx_base import (doc, P, rich, H1, H2, caption, bullet, table, box, masthe
                        INK, GREY, BRASS)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 SW = json.load(open(os.path.join(HERE, 'sweep_register.json')))
 INP = D['inputs']
@@ -148,6 +151,6 @@ for pa in SW['primary_access']:
     rich([(f'{pa["url"]} ', {'bold': True}), (f'({status}, {pa["attempt_date"]}) — {pa.get("note","")}', {})],
          size=8.4, space_after=4)
 
-OUT = os.path.join(HERE, 'RIYADHCABLE_Bibliography_18-08-2026.docx')
+OUT = os.path.join(HERE, _ed.BIBLIO_DOCX)
 doc.save(OUT)
 print('wrote', os.path.basename(OUT), '| tables', len(doc.tables), '| inputs registered', len(INP))

@@ -9,6 +9,8 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 ROOT = os.path.dirname(ENGINE)
 sys.path.insert(0, ROOT)
@@ -86,7 +88,7 @@ print("SIGCM OK — all 8 clauses + stop-and-inform attested and evidenced")
 # ---------------------------------------------------------------- 5. model-study depth bar
 ms = ModelStudyChecklist(
     structure_matches_model=True,        # 16-section Word (SWDY order) + 16-sheet Excel (SWDY names/order)
-    bibliography_document=True,          # standalone SAVOLA_Bibliography_19-08-2026 (primary docs + 184-input register + judgements/negative/aggregator tables)
+    bibliography_document=True,          # standalone bibliography (primary docs + 184-input register + judgements/negative/aggregator tables)
     provenance_four_field=True,          # asserted in step 2 above
     numeric_traceability=True,           # builders read study_numbers.json only; recalc.py: 778/778 formula cells reproduced, 0 unresolvable, 22 headline reconciliations
     external_reader_scrub=True,          # qc_checks.py scrub: 0 hits in both documents; calibration evidence as plain language in §3, no appendix
@@ -100,12 +102,12 @@ print("MODEL-STUDY BAR OK — all 9 standards attested against SWDY_Valuation_St
 
 # ---------------------------------------------------------------- 6. deliverables exist
 DELIVER = [
-    "SAVOLA_Valuation_Study_19-08-2026_public.docx",
-    "SAVOLA_Valuation_Study_19-08-2026_public.pdf",
-    "SAVOLA_Valuation_Model_19082026_public.xlsx",
-    "SAVOLA_Valuation_Model_19082026_public.pdf",
-    "SAVOLA_Bibliography_19-08-2026.docx",
-    "SAVOLA_Bibliography_19-08-2026.pdf",
+    _ed.STUDY_DOCX,
+    _ed.STUDY_PDF,
+    _ed.MODEL_XLSX,
+    _ed.MODEL_PDF,
+    _ed.BIBLIO_DOCX,
+    _ed.BIBLIO_PDF,
     "study_numbers.json", "xlsx_expected.json", "sweep_register.json",
     "step0_result.json", "backtest_5y.json", "beta_result.json",
     "strike_result.json", "tech_read.json",

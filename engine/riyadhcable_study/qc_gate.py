@@ -4,6 +4,8 @@ this study relies on by IMPORT (not parse), and prints the filled evidence table
 Raises on any hard-gate failure so a non-conforming study cannot be declared clean."""
 import json, os, sys, importlib
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 
 from research_protocol import (SIGCMChecklist, assert_sigcm, ModelStudyChecklist, assert_model_study,
@@ -76,7 +78,7 @@ _XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 _ANCH, _EXP = _XP.get('anchors') or {}, _XP['expected']
 assert _ANCH, 'the builder publishes no row map; rebuild the workbook rather than guessing'
 _wb = openpyxl.load_workbook(os.path.join(
-    HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx'))
+    HERE, _ed.MODEL_XLSX))
 _nform = _nval = 0
 for _ws in _wb.worksheets:
     for _row in _ws.iter_rows():
@@ -126,7 +128,8 @@ rows = [
     ("(k)/(m) no internal-procedure vocabulary",
      "Programmatic scrub of the delivered study returns zero hits on step/gate/ring/sweep/verdict/engine jargon"),
     ("(l) standalone bibliography document",
-     "RIYADHCABLE_Bibliography_18-08-2026: primary-documents table + full 105-input register + judgements + "
+     _ed.BIBLIO_DOCX[:-len(".docx")] + ": primary-documents table"
+     " + full 105-input register + judgements + "
      "negatives + primary-access log"),
     ("(l2) every deliverable ships as a PDF",
      "Study 13pp/14 figures · Workbook 38pp · Bibliography 7pp — rendered with the complete LibreOffice toolchain"),
