@@ -87,6 +87,14 @@ engine/*_study_pending/filings/pages/
 engine/*_study_pending/filings/*_OCR.txt
 engine/*_walkforward/ocr/
 engine/*_walkforward/txt/
+# Same class under a third name. The ADIB run called its extraction directory pages/,
+# and it holds both the per-page text dumps and a _tmp.png the renderer overwrites once
+# per page -- 1.9 MB of scratch that would enter history on every page of every filing.
+# The RULE is the one already written above for ocr/ and txt/: the extraction OUTPUT is
+# an intermediate, the extraction SCRIPT and the filings are the artefacts, and the
+# script records the route each figure came by [R-FCAL-01 §1] so the output is
+# reproducible from what is committed. Named here rather than left to whoever notices.
+engine/*_walkforward/pages/
 # Raw probe output — web-archive CDX index dumps and the like. A query RESULT is not a
 # source document: what SIGCM wants reachable is the filing, which lands in filings/ or
 # src/ and IS committed, and what the protocol wants logged is the access attempt with its
