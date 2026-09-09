@@ -146,8 +146,27 @@ Two things are now on the record about that:
    disclosure-grade leverage here, and a median taken over one sourced peer and three
    derived ones would be worse than not taking it.
 
+**HOW MUCH OF THE SOURCING JOB IS ACTUALLY OUTSTANDING — measured, not estimated.** One
+of the four peers CAN be sourced from what this repository holds, and it was worth
+checking before the item was written off as unsourceable. EGCH carries a full study whose
+bridge takes cash and debt from the reviewed 31-March-2026 balance sheet, registered line
+by line: cash 4,606.5 against debt of 14,639.0, so net debt 10,032.5 against a market
+capitalisation of 28,626.6 — a net debt-to-equity of 0.3505. Unlevering its regression
+beta on Hamada at Egypt's 22.5% statutory rate takes **1.0302 to 0.8102**.
+
+That is one leg of four, done to standard, and it says the outstanding job is THREE names
+rather than four: LCSW, EGAL and ORAS. It also says the item is worth chasing rather than
+parking, because a peer unlevering by 21% is not a rounding difference.
+
+**IT ALSO SHARPENS WHY THE DIRECTION IS NOT KNOWN.** Unlevering does not move every peer
+the same way. EGCH is levered and unlevers DOWNWARD; this book's own EGAL study shows debt
+of 600 against cash and short-term investments of 9,600, so EGAL is net cash and would
+unlever UPWARD. A median taken across a mixed set can land either side of 0.9275, which is
+precisely why the study's claim that the step "could only lower the beta" does not follow
+and why no number is adopted here on a guess.
+
 The contested register already prices the whole distance: the own-stock regression at
-0.698 is worth **+8.01 a share** against the adopted 0.9275, and a properly relevered
+0.698 is worth **+8.57 a share** on the corrected central against the adopted 0.9275 — which would put this name at EGP 77.79, ABOVE the 76.60 close — and a properly relevered
 figure would land between them. **This is recorded as open debt rather than actioned**, and
 what would settle it is named: the four peers' own audited balance sheets, at one date.
 
