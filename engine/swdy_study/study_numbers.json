@@ -632,6 +632,42 @@
    "date": "2026-03-01",
    "ring": "Company"
   },
+  "salaries_cogs_fy25": {
+   "value": 12646.918355,
+   "source": "FY2025 audited financial statements, cost of sales note: 'Salaries and its equivalents'",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "salaries_selling_fy25": {
+   "value": 1588.065415,
+   "source": "FY2025 audited financial statements, selling and distribution note: 'Salaries and its equivalents'",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "salaries_admin_fy25": {
+   "value": 4670.811665,
+   "source": "FY2025 audited financial statements, general and administrative note: 'Salaries and its equivalents'",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "salaries_cogs_fy24": {
+   "value": 7898.895209,
+   "source": "FY2025 audited financial statements, cost of sales note, FY2024 comparative",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "salaries_selling_fy24": {
+   "value": 1216.037561,
+   "source": "FY2025 audited financial statements, selling and distribution note, FY2024 comparative",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "salaries_admin_fy24": {
+   "value": 3639.052338,
+   "source": "FY2025 audited financial statements, general and administrative note, FY2024 comparative",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
   "emp_share_h1_26": {
    "value": 1291.202008,
    "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 38: employees' share in profit (expected) \u2014 13.01% of the 9,921.669274 attributable to owners (H1-2025 1,104.834367 on 8,694.611825, 12.71%)",
@@ -886,7 +922,7 @@
     0.09,
     0.08
    ],
-   "source": "Constructions segment revenue growth, tapering from the FY2025 disclosed rate of +28.3% (FY2024: +32.6%) toward a more sustainable long-run pace. No order book or backlog figure is disclosed in any of the audited filings or the Q1-2026 interim, so \u2014 unlike the previous build \u2014 this is NOT a burn-rate-on-a-backlog construction; it is a direct taper on the segment's own revenue history",
+   "source": "Constructions segment revenue growth, tapering from the FY2025 disclosed rate of +28.3% (FY2024: +32.6%) toward a more sustainable long-run pace. No order book or backlog figure is disclosed in any of the AUDITED filings or the Q1-2026 interim -- but the ISSUER discloses one, in its own quarterly earnings releases, and this driver said for two editions that no such figure existed anywhere. The engineering and construction backlog runs EGP 196bn (Dec-24), 261, 276, 293 (Dec-25), 307 and 346bn at 30 June 2026, read off the Q2-2026 release; wires and cables 43.5bn and meters 8.8bn are disclosed beside it. The taper below is NOT built as a burn rate on that backlog and is not changed by it -- priced across its whole defensible range the taper is worth 0.17% of this study's gap to the market, because at a 9% segment margin against 20% working capital incremental Constructions revenue is very nearly free cash flow neutral. It is corrected because the sentence was false, not because the number moves [R-GAP-04]. So \u2014 unlike the previous build \u2014 this is NOT a burn-rate-on-a-backlog construction; it is a direct taper on the segment's own revenue history",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -1746,6 +1782,16 @@
   "dna_fy25": 3008.977627,
   "nopat_fy25": 19631.7768967917,
   "ic_fy25": 93562.42815899997
+ },
+ "employees_cap": {
+  "wages_fy25": 18905.795435,
+  "wages_fy24": 12753.985107999999,
+  "share_fy25": 2073.104844,
+  "share_fy24": 2025.840035,
+  "headroom_fy25": 9.119555863138006,
+  "headroom_fy24": 6.2956526120780305,
+  "binds": false,
+  "note": "the statutory share is capped at total annual wages; the wage bill is disclosed in three notes of the same audited statements and the charge sits at roughly a ninth of it, so the cap cannot bind and is worth nothing rather than being an unmodelled upper bound"
  },
  "seg_fy25": {
   "rev": {

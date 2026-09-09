@@ -403,6 +403,22 @@ INP = dict(
                      "15,257.140146 that remains, over a weighted-average 2,139,355,716 shares "
                      "(issued 2,140,777,876 less 1,422,160 ESOP shares issued not granted)",
                      "2026-03-01", "Company"),
+    # THE WAGE BILL THE STATUTORY CAP IS SET AGAINST, read off the same audited statements
+    # the charge itself comes from. Registered because the study asserted for two editions
+    # that "nothing in the filings discloses the cap's headroom" while these three lines
+    # sat in the notes it was already reading.
+    salaries_cogs_fy25=I(12646.918355, "FY2025 audited financial statements, cost of sales note: 'Salaries and "
+                         "its equivalents'", "2026-03-01", "Company"),
+    salaries_selling_fy25=I(1588.065415, "FY2025 audited financial statements, selling and distribution note: "
+                            "'Salaries and its equivalents'", "2026-03-01", "Company"),
+    salaries_admin_fy25=I(4670.811665, "FY2025 audited financial statements, general and administrative note: "
+                          "'Salaries and its equivalents'", "2026-03-01", "Company"),
+    salaries_cogs_fy24=I(7898.895209, "FY2025 audited financial statements, cost of sales note, FY2024 comparative",
+                         "2026-03-01", "Company"),
+    salaries_selling_fy24=I(1216.037561, "FY2025 audited financial statements, selling and distribution note, FY2024 "
+                            "comparative", "2026-03-01", "Company"),
+    salaries_admin_fy24=I(3639.052338, "FY2025 audited financial statements, general and administrative note, FY2024 "
+                          "comparative", "2026-03-01", "Company"),
     emp_share_h1_26=I(1291.202008, H126 + ", note 38: employees' share in profit (expected) — "
                       "13.01% of the 9,921.669274 attributable to owners (H1-2025 1,104.834367 "
                       "on 8,694.611825, 12.71%)", "2026-08-11", "Company"),
@@ -589,8 +605,19 @@ INP = dict(
                        "rate of %+.1f%% (FY2024: %+.1f%%) toward a more sustainable long-run pace. No "
                        % (100 * _seg_growth('construct', 'FY25', 'FY24'),
                           100 * _seg_growth('construct', 'FY24', 'FY23')) +
-                       "order book or backlog figure is disclosed in any of the audited filings or "
-                       "the Q1-2026 interim, so — unlike the previous build — this is NOT a "
+                       "order book or backlog figure is disclosed in any of the AUDITED filings "
+                       "or the Q1-2026 interim -- but the ISSUER discloses one, in its own "
+                       "quarterly earnings releases, and this driver said for two editions that "
+                       "no such figure existed anywhere. The engineering and construction "
+                       "backlog runs EGP 196bn (Dec-24), 261, 276, 293 (Dec-25), 307 and 346bn "
+                       "at 30 June 2026, read off the Q2-2026 release; wires and cables 43.5bn "
+                       "and meters 8.8bn are disclosed beside it. The taper below is NOT built "
+                       "as a burn rate on that backlog and is not changed by it -- priced "
+                       "across its whole defensible range the taper is worth 0.17% of this "
+                       "study's gap to the market, because at a 9% segment margin against 20% "
+                       "working capital incremental Constructions revenue is very nearly free "
+                       "cash flow neutral. It is corrected because the sentence was false, not "
+                       "because the number moves [R-GAP-04]. So — unlike the previous build — this is NOT a "
                        "burn-rate-on-a-backlog construction; it is a direct taper on the segment's "
                        "own revenue history", "2026-08-05", "House"),
     construct_margin=I([0.089871] * 5,
@@ -1432,10 +1459,40 @@ eq_attr = eq_pre_nci - nci_val
 # 13.01% in the reviewed H1-2026. The three-period mean is used rather than the latest,
 # because this is a rate on profit rather than a driver and one half is not a trend.
 #
-# THE CAP IS STATED AND IS WHY THIS IS AN UPPER BOUND: the statutory share is capped at
-# total annual wages, so as profit grows faster than the wage bill the percentage falls.
-# Nothing in the filings discloses the cap's headroom, so it is not modelled — the charge
-# is held at the measured rate and the direction of the unmodelled cap is recorded.
+# THE CAP IS DISCLOSED AND IT CANNOT BIND. This block said for two editions that "the
+# statutory share is capped at total annual wages ... nothing in the filings discloses the
+# cap's headroom, so it is not modelled", and called the charge an UPPER BOUND on that
+# ground. The headroom IS disclosed, in the same audited statements this study already
+# reads for the charge itself: 'Salaries and its equivalents' appears in three notes --
+# cost of sales, selling and distribution, and general and administrative -- and they sum
+# to the wage bill the cap is set against.
+#
+# Measured: FY2025 wages 18,905.80 against an employees' share of 2,073.10, which is 9.12
+# times headroom; FY2024 12,753.99 against 2,025.84, 6.30 times. THE CHARGE IS NOWHERE
+# NEAR THE CAP AND WOULD HAVE TO RISE BY A FACTOR OF NINE TO REACH IT.
+#
+# So the charge is NOT an upper bound and the unmodelled cap is worth EGP 0.00, not the
+# roughly 6.30 a share the "upper bound" framing implied. The claim was not a rounding
+# error in a number; it was a statement that a disclosure does not exist, made while the
+# disclosure sat in a note the study was already open at. [R-GAP-04](3): a study that says
+# a disclosure does not exist while the issuer publishes it has a hole in its sweep, and
+# the hole is reported whatever the number turns out to be worth.
+_WAGES_FY25 = (V['salaries_cogs_fy25'] + V['salaries_selling_fy25']
+               + V['salaries_admin_fy25'])
+_WAGES_FY24 = (V['salaries_cogs_fy24'] + V['salaries_selling_fy24']
+               + V['salaries_admin_fy24'])
+EMP_CAP = dict(wages_fy25=_WAGES_FY25, wages_fy24=_WAGES_FY24,
+               share_fy25=V['emp_share_fy25'], share_fy24=V['emp_share_fy24'],
+               headroom_fy25=_WAGES_FY25 / V['emp_share_fy25'],
+               headroom_fy24=_WAGES_FY24 / V['emp_share_fy24'],
+               binds=False,
+               note=('the statutory share is capped at total annual wages; the wage bill is '
+                     'disclosed in three notes of the same audited statements and the '
+                     'charge sits at roughly a ninth of it, so the cap cannot bind and is '
+                     'worth nothing rather than being an unmodelled upper bound'))
+assert EMP_CAP['headroom_fy25'] > 1.0 and EMP_CAP['headroom_fy24'] > 1.0, \
+    'the employees share exceeds the disclosed wage bill — the cap would bind and the ' \
+    'charge could not be held at the measured rate'
 emp_rate = (V['emp_share_fy24'] / V['npa_fy24']
             + V['emp_share_fy25'] / V['npa_fy25']
             + V['emp_share_h1_26'] / V['h1_26_npa']) / 3.0
@@ -1916,6 +1973,7 @@ OUT = dict(
               ppe_fy25=ppe_fy25, eqp_fy25=eqp_fy25, assoc_fy25=V['assoc_fy25'],
               debt_fy25=debt_fy25, nwc_fy25=nwc_fy25, dna_fy25=V['dna_fy25'],
               nopat_fy25=nopat_fy25, ic_fy25=ic_fy25),
+    employees_cap=EMP_CAP,
     seg_fy25=dict(rev=SRH['FY25'], gp=SPH['FY25'], names=SEGNAME,
                   gp_margin=unit_hist['FY25']['margin'],
                   # THE DISCLOSED SEGMENT GROWTH RATES, COMMITTED AS NUMBERS. They were
