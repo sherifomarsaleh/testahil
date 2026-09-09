@@ -1,0 +1,17 @@
+{
+ "_": "THE PRINCIPAL'S OWN CONFIRMATIONS. Two facts about a study can only be established by the principal and never inferred from the repository: whether it WENT THROUGH AUDIT, and whether TESTAHIL READ THAT AUDIT AND RESPONDED. Per instruction 09-09-2026: 'this is an activity that I have to confirm and then you add to the table.'",
+ "_why_this_file_exists": "On 09-09-2026 both columns were filled by reading each study directory for an AUDIT_*.md and a *critique*.py|md, and eleven names came back audited and twelve responded. That was WRONG. A file existing is evidence that some document was written; it is not evidence that the audit the principal commissions took place, nor that the house answered it. The correct answer was ONE name. Inference was substituted for confirmation, which is the same failure as a study attesting its own gate [R-ENF-01] — the claim was made by the thing that wanted it to be true.",
+ "_rule": "A row is added here ONLY on the principal's explicit word, quoting it. Nothing else may write to this file, and no gate or board may fill these two columns from the repository.",
+ "confirmations": {
+  "DU": {
+   "went_through_audit": true,
+   "testahil_read_and_responded": true,
+   "confirmed_by": "the principal",
+   "confirmed_on": "2026-09-09",
+   "their_words": "Du | Yes | Yes | Yes confirmed by principal | Yes confirmed by principal | No",
+   "source": "the principal's own recalibration sheet, supplied 09-09-2026",
+   "published": false
+  }
+ },
+ "_everything_else": "UNCONFIRMED. Not 'no' — unconfirmed. The distinction matters: a name absent from this file has not been ruled either way, and a board must show it blank rather than negative."
+}
