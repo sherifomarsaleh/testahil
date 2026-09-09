@@ -130,3 +130,13 @@ engine/*_study_pending/src/txt_*.txt
 # engine`, and check_page_integrity went red again on a fix that had already landed.
 engine/*_study_pending/src/*.html
 engine/*_study_pending/src/**/*.html
+
+# THE CI VERDICT AND THE PROGRESS SNAPSHOT ARE ATTESTATIONS ABOUT A COMMIT, so
+# committing either guarantees it is stale: the commit that ADDS the record is not the
+# commit the record describes, and [R-ENF-06] would correctly call it out on arrival.
+# Both regenerate in seconds — record_ci_verdict.py reads the checks API for HEAD, and
+# progress.py --json rebuilds its own snapshot — so neither is a fact anyone needs
+# stored. A file that states something which moves must not be the thing that remembers
+# it.
+engine/build_depth_audit/ci_gate_run.json
+engine/method_reassessment/progress.json
