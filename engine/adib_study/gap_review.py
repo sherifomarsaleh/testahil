@@ -28,9 +28,7 @@ def central_with(**over):
                                                       'fin_growth')}
     if proj_kw:
         C.P = C.project(**proj_kw)
-    d, f, r, rl = C.ddm(), C.fcfe(), C.residual_income(), C.relative()
-    v = (C.WEIGHTS['ddm'] * d['per_share'] + C.WEIGHTS['fcfe'] * f['per_share']
-         + C.WEIGHTS['ri'] * r['per_share'] + C.WEIGHTS['rel'] * rl['per_share'])
+    v = C.ddm()['per_share']          # the PRIMARY [R-LENS-03], never a blend
     for k, val in keep.items():
         setattr(C, k, val)
     return v
