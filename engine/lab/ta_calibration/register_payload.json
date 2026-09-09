@@ -130,7 +130,7 @@
    "fig2": null,
    "figcap": "The same test at four horizons. The grey bar is the one the first calibration reported.",
    "figcap2": null,
-   "title": "Judge a tool over the time it is meant for. (edited by hand)",
+   "title": "Judge a tool over the time it is meant for.",
    "body": "In this project the chart read is for the weeks ahead, the probability cone owns one to three months, and the fundamental study owns the year. The first calibration graded the chart read on what prices did three months later \u2014 the cone's exam, not the chart's. Everything scored poorly, and one wrong conclusion was drawn from that before the mistake was caught.",
    "know": "The test: draw a support or resistance line, draw a fake line the same distance away where the chart shows nothing, and count how often price closes through each. The real line is beaten less often \u2014 by +9.8 in 100 tests over one week, +7.1 in 100 over two weeks, +5.0 in 100 over one month, and only about +3.4 in 100 over three months. Graded at three months, we reported that weakest number and concluded a per-stock level record could never be built. Grading weekly also multiplied the evidence: about 60 tests per stock became a median of 636.",
    "over": "Nothing about one week being special. The rule is that the test must match the tool's own horizon \u2014 a tool that genuinely makes three-month claims should be tested at three months."
