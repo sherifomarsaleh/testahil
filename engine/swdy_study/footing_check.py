@@ -53,7 +53,33 @@ DOCS = [d for d in (_latest('SWDY_Valuation_Study_*_public.docx'), _latest('SWDY
 # one). The index is corrected AND asserted below, so the next insertion breaks loudly
 # instead of moving an exemption onto a table nobody chose. [L-066/L-067] applied to a
 # position rather than to a filename.
-_BS_TABLE = 27
+# AND IT MOVED AGAIN, WHICH IS THE ARGUMENT FOR NOT KEYING IT ON A POSITION AT ALL
+# [10-Sep-2026]. Two tables were inserted into section 1.1 — the one-page valuation
+# table and the terminal grid [R-DCF-01] — and the balance sheet went from 27 to 29.
+# The assertion below was written to catch exactly this and it did NOT, because it
+# returned quietly when the table reader it wanted was absent: a guard whose failure
+# mode is silence is not a guard [R-ENF-04]. So the subject is now found BY ITS OWN
+# CONTENT and the index is derived from it. An allowance is granted to a TABLE, and
+# the only thing that identifies a table across an edition is what is in it.
+def _tables(doc):
+    """Every table in a delivered document, as rows of cell text."""
+    import docx
+    return [TF.grid(t) for t in docx.Document(doc).tables]
+
+
+def _find_balance_sheet(doc):
+    """The index of the table carrying a 'Total assets' row, found not assumed."""
+    hits = [i for i, rows in enumerate(_tables(doc))
+            if any((r[0] or '').strip() == 'Total assets' for r in rows if r)]
+    if len(hits) != 1:
+        raise AssertionError(
+            'expected exactly one table with a "Total assets" row in %s, found %d %s. '
+            'The footing allowance is granted to ONE table and cannot be resolved.'
+            % (os.path.basename(doc), len(hits), hits))
+    return hits[0]
+
+
+_BS_TABLE = _find_balance_sheet(_latest('SWDY_Valuation_Study_*_public.docx'))
 DECLARED = [
     (_latest('SWDY_Valuation_Study_*_public.docx'), _BS_TABLE, "Total assets",
      "A CONDENSED LAYOUT against a disclosed total: between 6.3% and 6.9% of assets are not "
@@ -66,9 +92,7 @@ def _assert_declaration_points_at_the_balance_sheet():
     moved. An exception is granted to a SUBJECT and is spent by a CLAIM [R-ENF-08]; an
     index-keyed one silently changes subject the moment a table is inserted above it."""
     doc = _latest('SWDY_Valuation_Study_*_public.docx')
-    tabs = TF.tables_of(doc) if hasattr(TF, 'tables_of') else None
-    if tabs is None:
-        return
+    tabs = _tables(doc)
     rows = tabs[_BS_TABLE] if _BS_TABLE < len(tabs) else []
     labels = {(r[0] or '').strip() for r in rows if r}
     assert 'Total assets' in labels, (

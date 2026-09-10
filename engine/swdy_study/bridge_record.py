@@ -75,7 +75,13 @@ PS = float(DCF['ps'])
 EQ_PRE_NCI = EV - ND + ASSOC
 EMP_CHARGE = EQ_PRE_NCI - NCI_VAL - EQ_ATTR
 ACCRETION = EQ_ATTR * (ROLL - 1.0)
-DIVIDEND = float(V['dps_fy25']) * SH
+# THE ROLLED DIVIDEND, READ FROM THE MODEL AND NOT RE-DERIVED. This line used to
+# read `V['dps_fy25'] * SH`, which deducts the dividend as if it left at the anchor.
+# It left on 4 June 2026 and the model rolls it forward from that date; re-deriving
+# it here made the bridge record disagree with the study it records by 12 piastres a
+# share. A second reader of one fact is a defect even when it is three characters
+# long [R-ENF-03] — so there is one reader now, and it is the model.
+DIVIDEND = float(DCF['div_at_anchor']) * SH
 EQUITY_AT_ANCHOR = EQ_ATTR + ACCRETION - DIVIDEND
 
 # ARITHMETIC IS THE ARBITER. The bridge must reach the published central from the

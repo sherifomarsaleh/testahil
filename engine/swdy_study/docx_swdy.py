@@ -294,11 +294,13 @@ H2('The valuation, on one page')
 # the module refuses to render a table whose present values do not sum to the
 # enterprise value the study published.
 import dcf_table as _DT
-_vt_rows, _vt_rec = _DT.dcf_table(D, currency='EGP', unit='mn')
+_vt_rows, _vt_bridge, _vt_rec = _DT.dcf_table(D, currency='EGP', unit='mn')
 table(_vt_rows, [2.10, 0.62, 0.62, 0.62, 0.62, 0.62], size=7.6,
       band_rows={_i for _i, _r in enumerate(_vt_rows)
-                 if _r[0] in ('Free cash flow to the firm', 'ENTERPRISE VALUE',
-                              'EQUITY VALUE', 'VALUE PER SHARE')})
+                 if _r[0] == 'Free cash flow to the firm'})
+table(_vt_bridge, [3.60, 1.10], size=7.6,
+      band_rows={_i for _i, _r in enumerate(_vt_bridge)
+                 if _r[0] in ('ENTERPRISE VALUE', 'EQUITY VALUE', 'VALUE PER SHARE')})
 caption("Every line is read from this study's own committed numbers, not recomputed for the "
         "table: the present values sum to the enterprise value above them, and the bridge "
         "runs to the value per share the rest of this document carries. Free cash flow is "

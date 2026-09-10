@@ -128,6 +128,12 @@ def _seg_growth(seg, year, prior):
     return _SEG_REV_HIST[year][seg] / _SEG_REV_HIST[prior][seg] - 1.0
 
 
+# DERIVED, NOT TYPED, because these figures appear in prose a reader will check and a
+# typed one goes stale the first time its source moves [R-DOC-02].
+_TONNES = dict(FY22=144997, FY23=156748, FY24=167665, FY25=185449)
+_TONNE_CAGR = (_TONNES['FY25'] / _TONNES['FY22']) ** (1 / 3) - 1
+_DNA_FY25 = 3009.0 / 281049.081719
+
 INP = dict(
     # ---- anchors --------------------------------------------------------
     spot=I(130.00, "Closing price supplied by the principal for 3 September 2026. "
@@ -604,6 +610,7 @@ INP = dict(
                    "sheets. FY2025 shows a genuine, disclosed IMPROVEMENT in working-capital "
                    "intensity, not an assumption", "2026-03-15", "Company"),
 
+
     # ---- forecast drivers — THREE REAL SEGMENTS -----------------------------
     copper_hist=I(dict(FY23=8478.0, FY24=9147.0, FY25=10000.0),
                   "LME copper cash, annual average USD/tonne (house commodity reference) — used "
@@ -667,11 +674,11 @@ INP = dict(
     # evidence was two pages from the backlog figures read off the same releases on
     # the same day. A driver justified by the ABSENCE of a disclosure is void the
     # moment the disclosure is found, whichever way the number then moves [R-GAP-04].
-    cables_tonnage_hist=I(dict(FY22=144997, FY23=156748, FY24=167665, FY25=185449),
+    cables_tonnage_hist=I(dict(_TONNES),
                           "Cables sales volumes in tonnes, from Elsewedy Electric's own "
                           "Q4 earnings releases (4Q2023, 4Q2024, 4Q2025), each printed "
-                          "beside its own prior-year comparative: +8.1%, +7.0%, +10.6%. "
-                          "A compound 8.55% a year over FY2022-25",
+                          "beside its own prior-year comparative: +8.1%%, +7.0%%, +10.6%%. "
+                          "A compound %.2f%% a year over FY2022-25" % (100 * _TONNE_CAGR),
                           "2026-02-15", "Company"),
     cables_tonnage_h1=I(dict(H1_25=89636, H1_26=99239),
                         "Cables sales volumes, reviewed half: 99,239 tonnes against "
@@ -912,7 +919,8 @@ INP = dict(
                 "measures the cycle directly: see capex_pct_measured below",
                 "2026-08-05", "House"),
     dna_pct=I(0.0107, "Depreciation and amortisation as a share of revenue, AT the "
-              "disclosed level rather than above it: FY2025 3,009/281,049 = 1.071% and "
+              "disclosed level rather than above it: FY2025 3,009/281,049 = %.3f%% and "
+              "" % (100 * _DNA_FY25) +
               "the reviewed half 1,748/163,316 = 1.070%, two periods agreeing to a "
               "thousandth. The retired 1.25% was the FY2025 level plus a house uplift "
               "for the capex ramp, which the reviewed half then measured and did not "
@@ -2562,7 +2570,8 @@ OUT = dict(
               kd_eff_fy24=kd_eff_fy25, kd_eff_q1_25=kd_eff_fy25, w_egp_implied=w_egp,
               wacc_usd_alt=WACC_USD, beta=beta_res),
     star_case=STAR_CASE,
-    dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
+    dcf=dict(div_at_anchor=_DIV_AT_ANCHOR, div_days=_DIV_DAYS,
+             pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
              # THE EMPLOYEES' STATUTORY SHARE IS COMMITTED, because the bridge does not
              # foot without it and a reader has to be able to add the printed steps up.

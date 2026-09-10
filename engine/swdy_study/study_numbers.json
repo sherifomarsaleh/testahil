@@ -1,6 +1,6 @@
 {
  "adopted_corrections": [],
- "adopted_corrections_note": "the walk-forward on this name adopted NO correction \u2014 see engine/swdy_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work.",
+ "adopted_corrections_note": "the walk-forward on this name adopted NO correction — see engine/swdy_walkforward/corrections_log.json. Empty rather than absent: silence and 'none adopted' are the same file to a reader and different facts about the work.",
  "meta": {
   "ticker": "SWDY",
   "company": "Elsewedy Electric Company S.A.E.",
@@ -34,7 +34,7 @@
   },
   "tax_eff": {
    "value": 0.245,
-   "source": "Group effective tax rate used for the forecast. Audited effective rates: FY2023 31.3%, FY2024 30.1%, FY2025 22.6% (all now EXACT \u2014 tax expense / profit before tax, audited statement of profit or loss); Q1-2026 interim 25.75%. No statutory-vs-effective reconciliation is disclosed anywhere in the filings (Egyptian Accounting Standards do not require the IFRS-style table); the group operates in 15+ tax jurisdictions plus Free-Zone entities that pay 1% of revenue to GAFI instead of corporate tax. 24.5% sits between the FY2025 print and the historical average, allowing for the Q1-2026 uptick rather than extrapolating one low year",
+   "source": "Group effective tax rate used for the forecast. Audited effective rates: FY2023 31.3%, FY2024 30.1%, FY2025 22.6% (all now EXACT — tax expense / profit before tax, audited statement of profit or loss); Q1-2026 interim 25.75%. No statutory-vs-effective reconciliation is disclosed anywhere in the filings (Egyptian Accounting Standards do not require the IFRS-style table); the group operates in 15+ tax jurisdictions plus Free-Zone entities that pay 1% of revenue to GAFI instead of corporate tax. 24.5% sits between the FY2025 print and the historical average, allowing for the Q1-2026 uptick rather than extrapolating one low year",
    "date": "2026-05-13",
    "ring": "Company/House"
   },
@@ -112,7 +112,7 @@
   },
   "dna_fy25": {
    "value": 3008.977627,
-   "source": "Audited FY2025 consolidated statement of cash flows: PP&E depreciation 2,733.671862 + investment property 1.687166 + intangibles amortisation 78.072847 + right-of-use assets 195.545752 \u2014 the depreciable base stepped up with the FY2025 capex ramp",
+   "source": "Audited FY2025 consolidated statement of cash flows: PP&E depreciation 2,733.671862 + investment property 1.687166 + intangibles amortisation 78.072847 + right-of-use assets 195.545752 — the depreciable base stepped up with the FY2025 capex ramp",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -130,7 +130,7 @@
   },
   "netfin_fy25": {
    "value": -2145.438755,
-   "source": "Net finance costs, FY2025 audited financial statements: finance income 3,713.003271 less finance costs 5,858.442026. REPLACES a previous estimate of -3,400 struck when the filing was not reachable \u2014 this is the exact audited figure and it is materially smaller (net finance improved even as gross debt grew, because the CBE's easing cycle and a larger cash pile both cut the net charge)",
+   "source": "Net finance costs, FY2025 audited financial statements: finance income 3,713.003271 less finance costs 5,858.442026. REPLACES a previous estimate of -3,400 struck when the filing was not reachable — this is the exact audited figure and it is materially smaller (net finance improved even as gross debt grew, because the CBE's easing cycle and a larger cash pile both cut the net charge)",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -148,7 +148,7 @@
   },
   "assoc_fy25": {
    "value": 1568.902975,
-   "source": "Group's share of profit of equity-accounted investees, FY2025 audited financial statements \u2014 reconciles exactly to the sum of the per-investee shares in Note 20 (Doha Cables 940.3, Elsewedy Cables-Qatar 259.2, SC Zone Utilities 255.5, SWIEP 73.4, Aloula 96.9, Raneen 15.5, Senyar -71.9). REPLACES a previous 1.15x uplift on the FY2024 figure, no longer needed now the actual number is disclosed",
+   "source": "Group's share of profit of equity-accounted investees, FY2025 audited financial statements — reconciles exactly to the sum of the per-investee shares in Note 20 (Doha Cables 940.3, Elsewedy Cables-Qatar 259.2, SC Zone Utilities 255.5, SWIEP 73.4, Aloula 96.9, Raneen 15.5, Senyar -71.9). REPLACES a previous 1.15x uplift on the FY2024 figure, no longer needed now the actual number is disclosed",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -166,7 +166,7 @@
   },
   "tax_fy25": {
    "value": -5591.139782,
-   "source": "Income tax expense, FY2025 audited financial statements: current tax 6,312.161650 less deferred tax credit 721.021868. Effective rate 22.57% against 24,777.689839 pre-tax profit \u2014 REPLACES a previous house assumption of 25.9%",
+   "source": "Income tax expense, FY2025 audited financial statements: current tax 6,312.161650 less deferred tax credit 721.021868. Effective rate 22.57% against 24,777.689839 pre-tax profit — REPLACES a previous house assumption of 25.9%",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -382,7 +382,7 @@
   },
   "nd_fy25": {
    "value": 20560.003173,
-   "source": "Net financial debt, 31 Dec 2025: total loans and borrowings including leases 62,509.211797 less cash 41,949.208624. The company's OWN 'net debt' figure (Note 29-1) is EGP 180,102.969196 \u2014 total liabilities LESS deferred tax and provisions, less cash \u2014 a capital-structure leverage ratio (net debt/equity 2.50x) that nets trade payables and contract liabilities against cash. Using it in an EV-to-equity bridge would double-count operating liabilities already reflected in working capital; the interest-bearing figure above is the correct bridge quantity and is used throughout",
+   "source": "Net financial debt, 31 Dec 2025: total loans and borrowings including leases 62,509.211797 less cash 41,949.208624. The company's OWN 'net debt' figure (Note 29-1) is EGP 180,102.969196 — total liabilities LESS deferred tax and provisions, less cash — a capital-structure leverage ratio (net debt/equity 2.50x) that nets trade payables and contract liabilities against cash. Using it in an EV-to-equity bridge would double-count operating liabilities already reflected in working capital; the interest-bearing figure above is the correct bridge quantity and is used throughout",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -400,7 +400,7 @@
   },
   "eqp_fy25": {
    "value": 66870.86655,
-   "source": "Equity attributable to owners of the parent, 31 Dec 2025 \u2014 now the audited closing figure, not derived from the prior year plus profit less an assumed dividend",
+   "source": "Equity attributable to owners of the parent, 31 Dec 2025 — now the audited closing figure, not derived from the prior year plus profit less an assumed dividend",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -430,7 +430,7 @@
   },
   "assoc_bv_fy25": {
    "value": 6757.650507,
-   "source": "Equity-accounted investees, carrying value, 31 Dec 2025 \u2014 the closing balance used in the valuation bridge (the anchor date is Aug-2026, so the FY2025 close is the most recent audited figure, not FY2024's). Note 20 names every investee and none is listed, so [R-BRIDGE-01] leaves book as the only route; the balance reconciles to the prior year through the disclosed 1,174.475 Senyar dividend and 135.317 of translation",
+   "source": "Equity-accounted investees, carrying value, 31 Dec 2025 — the closing balance used in the valuation bridge (the anchor date is Aug-2026, so the FY2025 close is the most recent audited figure, not FY2024's). Note 20 names every investee and none is listed, so [R-BRIDGE-01] leaves book as the only route; the balance reconciles to the prior year through the disclosed 1,174.475 Senyar dividend and 135.317 of translation",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -454,7 +454,7 @@
   },
   "dps_fy25": {
    "value": 1.85,
-   "source": "FY2025 cash dividend of EGP 1.85/share: recommended with the FY2025 results, ratified by the ordinary general assembly on 6 May 2026, rights with the share through 1 June, paid from 4 June 2026 (EGX disclosure, corroborated by Arab Finance coverage and the quoted ~2.0% trailing yield). RESTORED after external critique: an earlier revision removed this figure because neither the FY2025 annual filing (board-approved 12 Mar 2026) nor the Q1-2026 interim disclosed it \u2014 an absence-of-evidence error, since the interim covers a period ending 31 March and carries no subsequent-events note, so its silence was never evidence. Payout = 1.85 / 8.10 attributable EPS = 22.8%",
+   "source": "FY2025 cash dividend of EGP 1.85/share: recommended with the FY2025 results, ratified by the ordinary general assembly on 6 May 2026, rights with the share through 1 June, paid from 4 June 2026 (EGX disclosure, corroborated by Arab Finance coverage and the quoted ~2.0% trailing yield). RESTORED after external critique: an earlier revision removed this figure because neither the FY2025 annual filing (board-approved 12 Mar 2026) nor the Q1-2026 interim disclosed it — an absence-of-evidence error, since the interim covers a period ending 31 March and carries no subsequent-events note, so its silence was never evidence. Payout = 1.85 / 8.10 attributable EPS = 22.8%",
    "date": "2026-05-06",
    "ring": "Company"
   },
@@ -472,7 +472,7 @@
   },
   "capex_fy25": {
    "value": 13112.049791,
-   "source": "Audited FY2025 consolidated cash flow statement: 'paid for acquisition of property, plant and equipment and projects under construction' \u2014 a 55% step-up on FY2024, the capacity-expansion cycle referenced throughout this study",
+   "source": "Audited FY2025 consolidated cash flow statement: 'paid for acquisition of property, plant and equipment and projects under construction' — a 55% step-up on FY2024, the capacity-expansion cycle referenced throughout this study",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -490,7 +490,7 @@
   },
   "ocf_fy25": {
    "value": 12765.922545,
-   "source": "Net cash flows from operating activities, FY2025 (after interest and tax) \u2014 12,765.9 against house EBITDA of 28,363.2, still well below full conversion but a sharp recovery from FY2024's 3,979.4, as the pace of working-capital absorption slowed",
+   "source": "Net cash flows from operating activities, FY2025 (after interest and tax) — 12,765.9 against house EBITDA of 28,363.2, still well below full conversion but a sharp recovery from FY2024's 3,979.4, as the pace of working-capital absorption slowed",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -556,7 +556,7 @@
   },
   "q1_26_nd": {
    "value": 28768.787222,
-   "source": "Net financial debt, 31 Mar 2026: total loans and borrowings including leases 89,533.539777 less cash 60,764.752555 \u2014 up sharply from FY2025-close as working capital absorbed cash (net operating cash flow was NEGATIVE 1,665.1 in the quarter) funded by 30,364.3 of new loan drawdowns",
+   "source": "Net financial debt, 31 Mar 2026: total loans and borrowings including leases 89,533.539777 less cash 60,764.752555 — up sharply from FY2025-close as working capital absorbed cash (net operating cash flow was NEGATIVE 1,665.1 in the quarter) funded by 30,364.3 of new loan drawdowns",
    "date": "2026-05-13",
    "ring": "Company"
   },
@@ -592,13 +592,13 @@
   },
   "h1_26_assoc_oneoff": {
    "value": 542.976117,
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 20-3: gains on sale and revaluation of investments in equity-accounted investees. Disclosed on its own line with no comparative, i.e. nothing in H1-2025 \u2014 a one-off",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 20-3: gains on sale and revaluation of investments in equity-accounted investees. Disclosed on its own line with no comparative, i.e. nothing in H1-2025 — a one-off",
    "date": "2026-08-11",
    "ring": "Company"
   },
   "h1_26_tax": {
    "value": -4748.555104,
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, income tax expense. Effective rate 30.85% on pre-tax profit of 15,395.270255, against 19.39% in H1-2025 and the 24.5% the forecast carries \u2014 a material step this re-issue must price rather than average away",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, income tax expense. Effective rate 30.85% on pre-tax profit of 15,395.270255, against 19.39% in H1-2025 and the 24.5% the forecast carries — a material step this re-issue must price rather than average away",
    "date": "2026-08-11",
    "ring": "Company"
   },
@@ -610,7 +610,7 @@
   },
   "h1_26_nci": {
    "value": 725.045877,
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, profit attributable to non-controlling interests \u2014 6.81% of the period's total profit after tax of 10,646.715151",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, profit attributable to non-controlling interests — 6.81% of the period's total profit after tax of 10,646.715151",
    "date": "2026-08-11",
    "ring": "Company"
   },
@@ -622,13 +622,13 @@
   },
   "emp_share_fy24": {
    "value": 2025.840035,
-   "source": "Audited FY2025 consolidated financial statements, note 39 (FY2024 comparative): employees' share in profit (estimated), deducted from profit attributable to owners to reach profit attributable to ordinary shareholders \u2014 11.60% of the 17,461.358714 attributable",
+   "source": "Audited FY2025 consolidated financial statements, note 39 (FY2024 comparative): employees' share in profit (estimated), deducted from profit attributable to owners to reach profit attributable to ordinary shareholders — 11.60% of the 17,461.358714 attributable",
    "date": "2026-03-01",
    "ring": "Company"
   },
   "emp_share_fy25": {
    "value": 2073.104844,
-   "source": "Audited FY2025 consolidated financial statements, note 39: employees' share in profit (estimated) \u2014 11.96% of the 17,330.244990 attributable to owners. The reported EPS of 7.13 is struck on the 15,257.140146 that remains, over a weighted-average 2,139,355,716 shares (issued 2,140,777,876 less 1,422,160 ESOP shares issued not granted)",
+   "source": "Audited FY2025 consolidated financial statements, note 39: employees' share in profit (estimated) — 11.96% of the 17,330.244990 attributable to owners. The reported EPS of 7.13 is struck on the 15,257.140146 that remains, over a weighted-average 2,139,355,716 shares (issued 2,140,777,876 less 1,422,160 ESOP shares issued not granted)",
    "date": "2026-03-01",
    "ring": "Company"
   },
@@ -670,13 +670,13 @@
   },
   "emp_share_h1_26": {
    "value": 1291.202008,
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 38: employees' share in profit (expected) \u2014 13.01% of the 9,921.669274 attributable to owners (H1-2025 1,104.834367 on 8,694.611825, 12.71%)",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 38: employees' share in profit (expected) — 13.01% of the 9,921.669274 attributable to owners (H1-2025 1,104.834367 on 8,694.611825, 12.71%)",
    "date": "2026-08-11",
    "ring": "Company"
   },
   "eps_fy25": {
    "value": 7.13,
-   "source": "Audited FY2025 consolidated financial statements, note 39: basic and diluted earnings per share. REGISTERED SO THAT IT CAN BE RECONCILED \u2014 17,330.244990 attributable over 2,140.777876 shares gives 8.095, and the difference from 7.13 is the employees' share above plus the ESOP adjustment to the weighted-average count. Neither figure was wrong in the first edition; nothing compared them",
+   "source": "Audited FY2025 consolidated financial statements, note 39: basic and diluted earnings per share. REGISTERED SO THAT IT CAN BE RECONCILED — 17,330.244990 attributable over 2,140.777876 shares gives 8.095, and the difference from 7.13 is the employees' share above plus the ESOP adjustment to the weighted-average count. Neither figure was wrong in the first edition; nothing compared them",
    "date": "2026-03-01",
    "ring": "Company"
   },
@@ -734,7 +734,7 @@
     "construct": 3115.513212,
     "elecprod": 3636.809874
    },
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 16 H1-2025 comparative, segment profit \u2014 THE HALF THIS STUDY MUST COMPARE AGAINST, because FY2025's group margin of 12.18% sits well below H1-2025's 14.06%: this company's halves are not alike and a half-against-full-year comparison is a basis error. Both figures are COMPUTED from the note-16 figures registered here and above rather than typed beside them \u2014 they were typed until 09-09-2026, and a figure in a delivered source string that the model does not produce is one prose_check cannot reconcile",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 16 H1-2025 comparative, segment profit — THE HALF THIS STUDY MUST COMPARE AGAINST, because FY2025's group margin of 12.18% sits well below H1-2025's 14.06%: this company's halves are not alike and a half-against-full-year comparison is a basis error. Both figures are COMPUTED from the note-16 figures registered here and above rather than typed beside them — they were typed until 09-09-2026, and a figure in a delivered source string that the model does not produce is one prose_check cannot reconcile",
    "date": "2026-08-11",
    "ring": "Company"
   },
@@ -764,7 +764,7 @@
   },
   "h1_26_nci_eq": {
    "value": 5677.269855,
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, non-controlling interests \u2014 7.47% of total equity of 76,024.598402, against the 9.7% value share this study's bridge deducts and 6.81% of the half's profit. The study's figure is conservative on all three readings",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, non-controlling interests — 7.47% of total equity of 76,024.598402, against the 9.7% value share this study's bridge deducts and 6.81% of the half's profit. The study's figure is conservative on all three readings",
    "date": "2026-08-11",
    "ring": "Company"
   },
@@ -808,7 +808,7 @@
      "elecprod": 7604.808509
     }
    },
-   "source": "Segment profit by the same three segments, Note 16 (operating segments), all three audited financial statements \u2014 the inside-Egypt and outside-Egypt columns summed. This is computed on the segment note's OWN (pre-elimination) revenue base, which is larger than the Note 5-3 external-revenue view because it includes inter-segment sales (chiefly cable output consumed by the Constructions segment on turnkey projects); FY2025 also carries a disclosed unallocated/corporate item of -246.710877 not attributed to any segment. FY2023's three segments sum to 26,415.925233 against a disclosed total of 26,406.917233 (a 9.0 EGP thousand rounding residual in the filing's own inside/outside table, immaterial); FY2024 and FY2025 tie exactly",
+   "source": "Segment profit by the same three segments, Note 16 (operating segments), all three audited financial statements — the inside-Egypt and outside-Egypt columns summed. This is computed on the segment note's OWN (pre-elimination) revenue base, which is larger than the Note 5-3 external-revenue view because it includes inter-segment sales (chiefly cable output consumed by the Constructions segment on turnkey projects); FY2025 also carries a disclosed unallocated/corporate item of -246.710877 not attributed to any segment. FY2023's three segments sum to 26,415.925233 against a disclosed total of 26,406.917233 (a 9.0 EGP thousand rounding residual in the filing's own inside/outside table, immaterial); FY2024 and FY2025 tie exactly",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -818,13 +818,13 @@
     "FY24": 0.04298,
     "FY25": 0.03163
    },
-   "source": "Net corporate cost load = (G&A + net impairment on receivables + other expenses - other income) / revenue, computed from the audited income statements. This is the bridge from segment profit (Note 16) to consolidated operating profit and it reconciles EXACTLY in all three years: e.g. FY2025 segment profit 34,490.095562 less the -246.710877 unallocated/corporate item = 34,243.384685, less 3.163% x revenue 281,049.081719 = 25,354.225619 = the audited operating profit to the EGP. The load has been FALLING \u2014 operating leverage improving at the corporate level even as segment margins compressed",
+   "source": "Net corporate cost load = (G&A + net impairment on receivables + other expenses - other income) / revenue, computed from the audited income statements. This is the bridge from segment profit (Note 16) to consolidated operating profit and it reconciles EXACTLY in all three years: e.g. FY2025 segment profit 34,490.095562 less the -246.710877 unallocated/corporate item = 34,243.384685, less 3.163% x revenue 281,049.081719 = 25,354.225619 = the audited operating profit to the EGP. The load has been FALLING — operating leverage improving at the corporate level even as segment margins compressed",
    "date": "2026-03-15",
    "ring": "Company"
   },
   "seg_unalloc_fy25": {
    "value": -246.710877,
-   "source": "Unallocated/corporate segment item, Note 16, FY2025 audited financial statements \u2014 not attributed to any of the three segments; netted against the three segments' summed profit before the corporate-load bridge is applied. No equivalent unallocated item is disclosed for FY2023 or FY2024",
+   "source": "Unallocated/corporate segment item, Note 16, FY2025 audited financial statements — not attributed to any of the three segments; netted against the three segments' summed profit before the corporate-load bridge is applied. No equivalent unallocated item is disclosed for FY2023 or FY2024",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -844,7 +844,7 @@
     "FY24": 0.0366,
     "FY25": 0.04665
    },
-   "source": "Capital expenditure (cash paid for PP&E and projects under construction, audited cash flow statements) as a share of revenue \u2014 a clear, rising capacity-investment cycle",
+   "source": "Capital expenditure (cash paid for PP&E and projects under construction, audited cash flow statements) as a share of revenue — a clear, rising capacity-investment cycle",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -864,7 +864,7 @@
     "FY24": 9147.0,
     "FY25": 10000.0
    },
-   "source": "LME copper cash, annual average USD/tonne (house commodity reference) \u2014 used only as a GROWTH driver for the Cables segment (Cables revenue is genuinely copper-linked; the company DOES disclose tonnage, quarterly, and the series is registered below \u2014 an earlier edition of this line said it did not. The model tracks the copper x FX growth rate rather than reconstructing an absolute volume)",
+   "source": "LME copper cash, annual average USD/tonne (house commodity reference) — used only as a GROWTH driver for the Cables segment (Cables revenue is genuinely copper-linked; the company DOES disclose tonnage, quarterly, and the series is registered below — an earlier edition of this line said it did not. The model tracks the copper x FX growth rate rather than reconstructing an absolute volume)",
    "date": "2026-08-05",
    "ring": "Industry"
   },
@@ -886,7 +886,7 @@
     61.0,
     64.5
    ],
-   "source": "USD/EGP average-rate path, about 6%/yr of depreciation from the FY2025 average of 49.5. Used as a genuine driver of the Cables segment's copper-linked growth and of the currency-of-discounting alternative \u2014 not a translation convenience. DELIBERATELY BELOW covered-interest parity, which on the roughly 22% pound rate against a ~4-5% dollar rate implies materially faster depreciation; the base case assumes disinflation closes most of that gap. The parity case is carried as an explicit sensitivity",
+   "source": "USD/EGP average-rate path, about 6%/yr of depreciation from the FY2025 average of 49.5. Used as a genuine driver of the Cables segment's copper-linked growth and of the currency-of-discounting alternative — not a translation convenience. DELIBERATELY BELOW covered-interest parity, which on the roughly 22% pound rate against a ~4-5% dollar rate implies materially faster depreciation; the base case assumes disinflation closes most of that gap. The parity case is carried as an explicit sensitivity",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -898,7 +898,7 @@
     15076.468749999995,
     15453.380468749994
    ],
-   "source": "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually realised and the current cash price of about 14,000 (early August 2026); thereafter the current level is held flat \u2014 copper is the largest single input into the Cables segment and a directional view on it would dominate the valuation. The -10% column of the sensitivity carries the mean-reversion case",
+   "source": "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually realised and the current cash price of about 14,000 (early August 2026); thereafter the current level is held flat — copper is the largest single input into the Cables segment and a directional view on it would dominate the valuation. The -10% column of the sensitivity carries the mean-reversion case",
    "date": "2026-08-05",
    "ring": "Industry"
   },
@@ -918,7 +918,7 @@
     "H1_25": 89636,
     "H1_26": 99239
    },
-   "source": "Cables sales volumes, reviewed half: 99,239 tonnes against 89,636, +10.71% \u2014 the Q2-2026 earnings release. The most recent volume disclosure and the anchor for FY2026 [R-ANCHOR-01]",
+   "source": "Cables sales volumes, reviewed half: 99,239 tonnes against 89,636, +10.71% — the Q2-2026 earnings release. The most recent volume disclosure and the anchor for FY2026 [R-ANCHOR-01]",
    "date": "2026-08-14",
    "ring": "Company"
   },
@@ -954,7 +954,7 @@
     -0.0672,
     0.0
    ],
-   "source": "THE CONTESTED ALTERNATIVE: FY2025's measured shortfall persists two more years before closing \u2014 the case that pricing power lost in a copper spike takes a cycle to recover rather than a year. Published beside the adopted case and NEVER averaged with it. A third case was tried and rejected as not serious: holding -13.43% flat for ever makes cables revenue FALL in nominal pounds from FY2028 while volume grows 5-9% a year, which is not a view anybody holds",
+   "source": "THE CONTESTED ALTERNATIVE: FY2025's measured shortfall persists two more years before closing — the case that pricing power lost in a copper spike takes a cycle to recover rather than a year. Published beside the adopted case and NEVER averaged with it. A third case was tried and rejected as not serious: holding -13.43% flat for ever makes cables revenue FALL in nominal pounds from FY2028 while volume grows 5-9% a year, which is not a view anybody holds",
    "date": "2026-08-14",
    "ring": "Company"
   },
@@ -966,7 +966,7 @@
     0.03,
     0.03
    ],
-   "source": "Real (ex-copper, ex-FX) volume/market-share growth for the Cables segment \u2014 modest and flat. HELD, AND NOW MEASURED RATHER THAN ASSERTED. Backing copper and the pound out of the segment's own audited revenue gives a REALISED real growth of +4.18% in FY2024 and -4.94% in FY2025, a two-year mean of about -0.4%. So 3.0% is already above what this segment has demonstrated, not below it, and it is not raised. The group's headline 35.9% revenue CAGR over FY2023-25 is 27.2 points of currency a year: the growth is real in pounds and largely absent in tonnes. Cables segment revenue growth = (1+copper growth)(1+FX growth)(1+this) - 1",
+   "source": "Real (ex-copper, ex-FX) volume/market-share growth for the Cables segment — modest and flat. HELD, AND NOW MEASURED RATHER THAN ASSERTED. Backing copper and the pound out of the segment's own audited revenue gives a REALISED real growth of +4.18% in FY2024 and -4.94% in FY2025, a two-year mean of about -0.4%. So 3.0% is already above what this segment has demonstrated, not below it, and it is not raised. The group's headline 35.9% revenue CAGR over FY2023-25 is 27.2 points of currency a year: the growth is real in pounds and largely absent in tonnes. Cables segment revenue growth = (1+copper growth)(1+FX growth)(1+this) - 1",
    "date": "2026-09-10",
    "ring": "Company/House"
   },
@@ -978,7 +978,7 @@
     0.114341,
     0.114341
    ],
-   "source": "Cables segment profit margin (Note 5-3 external-revenue base), RE-ANCHORED and held flat. FY2025 13.49% plus the measured like-for-like half change of -2.06pp (H1-2025 14.54% -> H1-2026 12.49%, note 16 of the reviewed interim statements). THE MEASURED DIRECTION IS DOWN, against the first edition's assumed recovery to 14.0-15.5%: cables revenue is copper-linked, so a rising copper price inflates the revenue base faster than the spread, and the FY2023-24 levels carried devaluation gains on cheaply bought inventory that will not repeat. No further decline is projected either \u2014 one measured half is a direction, not a trend",
+   "source": "Cables segment profit margin (Note 5-3 external-revenue base), RE-ANCHORED and held flat. FY2025 13.49% plus the measured like-for-like half change of -2.06pp (H1-2025 14.54% -> H1-2026 12.49%, note 16 of the reviewed interim statements). THE MEASURED DIRECTION IS DOWN, against the first edition's assumed recovery to 14.0-15.5%: cables revenue is copper-linked, so a rising copper price inflates the revenue base faster than the spread, and the FY2023-24 levels carried devaluation gains on cheaply bought inventory that will not repeat. No further decline is projected either — one measured half is a direction, not a trend",
    "date": "2026-08-11",
    "ring": "Company/House"
   },
@@ -990,7 +990,7 @@
     0.115,
     0.09
    ],
-   "source": "Constructions segment revenue growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01] and then tapered. FY2026 is the segment's OWN measured like-for-like half growth, H1-2025 34,393 -> H1-2026 43,831 = +27.44%; the taper runs to +9.0%. THE RETIRED PATH OPENED AT +18% while the company's own reviewed interim was running at +27.4% \u2014 a forecast contradicting the most recent disclosure this study read, in the direction that lowered the valuation. The margins in this segment were re-anchored on that same half on 11-Aug-2026 and the growth rates were not, so the rule was applied to one half of the segment build and not the other. THE BACKLOG, WHICH THIS DRIVER SAID FOR TWO EDITIONS DID NOT EXIST: no order book is disclosed in any AUDITED filing or in the Q1-2026 interim, but the ISSUER discloses one in its own quarterly earnings releases. Engineering and construction backlog runs EGP 196bn (Dec-24), 261, 276, 293 (Dec-25), 307 and 346bn at 30 June 2026, read off the Q2-2026 release; wires and cables 43.5bn and meters 8.8bn are disclosed beside it. That is +18% over the half against the +27.4% revenue growth this driver is anchored on, so the backlog CORROBORATES the level without being burnt down to produce it \u2014 the taper is still a taper on the segment's own revenue record, not a burn rate. Priced across its whole defensible range the taper is worth 0.17% of this study's gap to the market, because at a 9% segment margin against 20% working capital incremental Constructions revenue is very nearly free cash flow neutral. The false sentence was corrected because it was false, not because the number moves [R-GAP-04]",
+   "source": "Constructions segment revenue growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01] and then tapered. FY2026 is the segment's OWN measured like-for-like half growth, H1-2025 34,393 -> H1-2026 43,831 = +27.44%; the taper runs to +9.0%. THE RETIRED PATH OPENED AT +18% while the company's own reviewed interim was running at +27.4% — a forecast contradicting the most recent disclosure this study read, in the direction that lowered the valuation. The margins in this segment were re-anchored on that same half on 11-Aug-2026 and the growth rates were not, so the rule was applied to one half of the segment build and not the other. THE BACKLOG, WHICH THIS DRIVER SAID FOR TWO EDITIONS DID NOT EXIST: no order book is disclosed in any AUDITED filing or in the Q1-2026 interim, but the ISSUER discloses one in its own quarterly earnings releases. Engineering and construction backlog runs EGP 196bn (Dec-24), 261, 276, 293 (Dec-25), 307 and 346bn at 30 June 2026, read off the Q2-2026 release; wires and cables 43.5bn and meters 8.8bn are disclosed beside it. That is +18% over the half against the +27.4% revenue growth this driver is anchored on, so the backlog CORROBORATES the level without being burnt down to produce it — the taper is still a taper on the segment's own revenue record, not a burn rate. Priced across its whole defensible range the taper is worth 0.17% of this study's gap to the market, because at a 9% segment margin against 20% working capital incremental Constructions revenue is very nearly free cash flow neutral. The false sentence was corrected because it was false, not because the number moves [R-GAP-04]",
    "date": "2026-09-10",
    "ring": "Company/House"
   },
@@ -1002,7 +1002,7 @@
     0.089871,
     0.089871
    ],
-   "source": "Constructions and infrastructure segment profit margin, RE-ANCHORED and held flat. FY2025 6.45% plus the measured like-for-like half change of +2.53pp (H1-2025 9.06% -> H1-2026 11.59%). THE MEASURED DIRECTION IS UP and sharply, against the first edition's cautious 6.8% opening \u2014 the improvement is real and reviewed. It is NOT projected forward: a contracting margin turns on which projects reach their profitable phases in which period, no disclosure establishes that this mix is durable, and the half is held rather than extrapolated",
+   "source": "Constructions and infrastructure segment profit margin, RE-ANCHORED and held flat. FY2025 6.45% plus the measured like-for-like half change of +2.53pp (H1-2025 9.06% -> H1-2026 11.59%). THE MEASURED DIRECTION IS UP and sharply, against the first edition's cautious 6.8% opening — the improvement is real and reviewed. It is NOT projected forward: a contracting margin turns on which projects reach their profitable phases in which period, no disclosure establishes that this mix is durable, and the half is held rather than extrapolated",
    "date": "2026-08-11",
    "ring": "Company/House"
   },
@@ -1014,7 +1014,7 @@
     0.16,
     0.11
    ],
-   "source": "Electrical products and digital solutions segment revenue growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01]. FY2026 is the segment's own measured like-for-like half growth, H1-2025 15,504 -> H1-2026 22,989 = +48.28%; it then tapers to +11%. THE RETIRED PATH OPENED AT +20% \u2014 against a disclosed FY2025 of +43.7%, an FY2024 of +46.6% and a reviewed half running at +48.3%. Three consecutive disclosures said the same thing and the forecast halved the rate in year one with no named mechanism. THE MECHANISM FOR THE LEVEL IS NAMED AND DATED: this is the segment that makes transformers, and in August 2026 Elsewedy Electric \u2014 the listed company \u2014 signed a pre-purchase agreement to manufacture four high-voltage transformers of up to 360 MVA for Datagrid's Southland AI data centre via Transpower New Zealand, commissioning late 2027. The global grid-equipment cycle driving that order is the same one running through this segment's disclosed numbers. It is NOT extrapolated: the path halves the growth rate over four years",
+   "source": "Electrical products and digital solutions segment revenue growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01]. FY2026 is the segment's own measured like-for-like half growth, H1-2025 15,504 -> H1-2026 22,989 = +48.28%; it then tapers to +11%. THE RETIRED PATH OPENED AT +20% — against a disclosed FY2025 of +43.7%, an FY2024 of +46.6% and a reviewed half running at +48.3%. Three consecutive disclosures said the same thing and the forecast halved the rate in year one with no named mechanism. THE MECHANISM FOR THE LEVEL IS NAMED AND DATED: this is the segment that makes transformers, and in August 2026 Elsewedy Electric — the listed company — signed a pre-purchase agreement to manufacture four high-voltage transformers of up to 360 MVA for Datagrid's Southland AI data centre via Transpower New Zealand, commissioning late 2027. The global grid-equipment cycle driving that order is the same one running through this segment's disclosed numbers. It is NOT extrapolated: the path halves the growth rate over four years",
    "date": "2026-09-10",
    "ring": "Company/House"
   },
@@ -1038,7 +1038,7 @@
     0.0307,
     0.0307
    ],
-   "source": "Net corporate cost load, stated on the SEGMENT-PROFIT-TO-EBIT basis \u2014 the same basis as the audited historical bridge (FY2023 5.70%, FY2024 4.30%, FY2025 3.16%). RE-ANCHORED: FY2025's 3.16% plus the measured like-for-like half change of -0.09pp (H1-2025 3.96% -> H1-2026 3.87%, both computed as segment profit less operating profit over revenue from the reviewed interim statements), held FLAT. The first edition glided it up toward 5.0% on the view that FY2025 was unusually low; the reviewed half measures the level holding, and no disclosure names a mechanism that would take it back up",
+   "source": "Net corporate cost load, stated on the SEGMENT-PROFIT-TO-EBIT basis — the same basis as the audited historical bridge (FY2023 5.70%, FY2024 4.30%, FY2025 3.16%). RE-ANCHORED: FY2025's 3.16% plus the measured like-for-like half change of -0.09pp (H1-2025 3.96% -> H1-2026 3.87%, both computed as segment profit less operating profit over revenue from the reviewed interim statements), held FLAT. The first edition glided it up toward 5.0% on the view that FY2025 was unusually low; the reviewed half measures the level holding, and no disclosure names a mechanism that would take it back up",
    "date": "2026-08-11",
    "ring": "Company/House"
   },
@@ -1080,7 +1080,7 @@
   },
   "foreign_share_fy25": {
    "value": 0.7,
-   "source": "'Over 70% of revenues generated abroad' (company commentary); the audited Note 5-2 geographic split gives Outside Egypt 40.7% of FY2025 revenue (114,461.030 / 281,049.082) \u2014 geography and hard-currency pricing are different questions, addressed explicitly below",
+   "source": "'Over 70% of revenues generated abroad' (company commentary); the audited Note 5-2 geographic split gives Outside Egypt 40.7% of FY2025 revenue (114,461.030 / 281,049.082) — geography and hard-currency pricing are different questions, addressed explicitly below",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -1092,7 +1092,7 @@
   },
   "nwc_pct": {
    "value": 0.1967,
-   "source": "Net working capital as a share of revenue, RE-ANCHORED on the REVIEWED 30-Jun-2026 sheet: inventories 79,140 + contract assets 40,121 + receivables 130,221 - payables 79,553 - contract liabilities 106,860 = 63,069 on last-twelve-month revenue of 320,564 = 19.67%. Retired: 19.90%, the FY2025 disclosed level (19.87%) \u2014 a genuine improvement on FY2023 (24.1%) and FY2024 (23.1%), carried forward without assuming further improvement or reversion",
+   "source": "Net working capital as a share of revenue, RE-ANCHORED on the REVIEWED 30-Jun-2026 sheet: inventories 79,140 + contract assets 40,121 + receivables 130,221 - payables 79,553 - contract liabilities 106,860 = 63,069 on last-twelve-month revenue of 320,564 = 19.67%. Retired: 19.90%, the FY2025 disclosed level (19.87%) — a genuine improvement on FY2023 (24.1%) and FY2024 (23.1%), carried forward without assuming further improvement or reversion",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -1104,7 +1104,7 @@
   },
   "capex_h1_25": {
    "value": 5386.809066,
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, same line, comparative column \u2014 and independently in the reviewed interim statements for the six months ended 30 June 2025, where it is the current-period figure. Two readings of one fact agreeing [R-ENF-03]",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, same line, comparative column — and independently in the reviewed interim statements for the six months ended 30 June 2025, where it is the current-period figure. Two readings of one fact agreeing [R-ENF-03]",
    "date": "2025-06-30",
    "ring": "Company"
   },
@@ -1128,7 +1128,7 @@
     0.033,
     0.031
    ],
-   "source": "THE RETIRED PATH, superseded 09-09-2026 and kept because the depth bar requires a displaced construction to be published beside the one that replaced it. It tapered from the FY2025 disclosed level of 4.7% (up from 3.1% FY2023 and 3.7% FY2024) toward a lower maintenance-plus-modest-capacity level as the expansion cycle completes \u2014 a House glide, on a story about the cycle, set before the reviewed half was read. The half measures the cycle directly: see capex_pct_measured below",
+   "source": "THE RETIRED PATH, superseded 09-09-2026 and kept because the depth bar requires a displaced construction to be published beside the one that replaced it. It tapered from the FY2025 disclosed level of 4.7% (up from 3.1% FY2023 and 3.7% FY2024) toward a lower maintenance-plus-modest-capacity level as the expansion cycle completes — a House glide, on a story about the cycle, set before the reviewed half was read. The half measures the cycle directly: see capex_pct_measured below",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -1152,25 +1152,25 @@
   },
   "sov_spread_rating": {
    "value": 0.0637,
-   "source": "Damodaran adjusted default spread on the rating basis (Caa1), January-2026 \u2014 the alternative construction, disclosed for the audit trail",
+   "source": "Damodaran adjusted default spread on the rating basis (Caa1), January-2026 — the alternative construction, disclosed for the audit trail",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "erp_cds": {
    "value": 0.0941,
-   "source": "Damodaran original country-premium file, Egypt row, CDS column, last updated 5 January 2026 \u2014 total equity risk premium",
+   "source": "Damodaran original country-premium file, Egypt row, CDS column, last updated 5 January 2026 — total equity risk premium",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "erp_rating": {
    "value": 0.1394,
-   "source": "Damodaran original country-premium file, Egypt row, rating basis, January-2026 \u2014 the alternative",
+   "source": "Damodaran original country-premium file, Egypt row, rating basis, January-2026 — the alternative",
    "date": "2026-01-05",
    "ring": "Country"
   },
   "lambda_country": {
    "value": 0.5928,
-   "source": "Damodaran's lambda: the share of operations exposed to the HOME sovereign, taken from the audited Note 5-2 geographic disaggregation \u2014 revenue outside Egypt 114,461.030219 / 281,049.081719 = 40.72%, so 59.28% sits in Egypt. A typical Egyptian listed company earns essentially all of its revenue at home, so the ratio Damodaran defines collapses to the domestic share itself. NOT the 30/70 the retired operations-weighted premium used: that number came from company commentary ('over 70% of revenues generated abroad'), the audited note says 40.72%, and a study may not hold two answers to one question",
+   "source": "Damodaran's lambda: the share of operations exposed to the HOME sovereign, taken from the audited Note 5-2 geographic disaggregation — revenue outside Egypt 114,461.030219 / 281,049.081719 = 40.72%, so 59.28% sits in Egypt. A typical Egyptian listed company earns essentially all of its revenue at home, so the ratio Damodaran defines collapses to the domestic share itself. NOT the 30/70 the retired operations-weighted premium used: that number came from company commentary ('over 70% of revenues generated abroad'), the audited note says 40.72%, and a study may not hold two answers to one question",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -1188,37 +1188,37 @@
   },
   "beta": {
    "value": 1.2249065740479688,
-   "source": "Own-stock tier-1 weekly regression against raw_indices/EG/EGX30.csv as at 2026-09-08 \u2014 THE PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() rather than hand-rolled. R-squared 0.368, n = 256, standard error 0.1699, 90% confidence interval [0.945, 1.504]; Dimson-corrected for thin trading, matched to the exchange's own trading week (W-THU). Clears the usability gate and is not weak-instrument flagged. WITHDRAWN AND KEPT FOR COMPARISON: the previous edition regressed against a 31-name equal-weight composite of the covered library and got 1.0087 at an R-squared of 0.291 \u2014 +21.4% against the conforming figure, explaining less of the stock. A constituent composite is a coverage artefact rather than a market and SIGCM calls it a hard fail, not a tier.",
+   "source": "Own-stock tier-1 weekly regression against raw_indices/EG/EGX30.csv as at 2026-09-08 — THE PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() rather than hand-rolled. R-squared 0.368, n = 256, standard error 0.1699, 90% confidence interval [0.945, 1.504]; Dimson-corrected for thin trading, matched to the exchange's own trading week (W-THU). Clears the usability gate and is not weak-instrument flagged. WITHDRAWN AND KEPT FOR COMPARISON: the previous edition regressed against a 31-name equal-weight composite of the covered library and got 1.0087 at an R-squared of 0.291 — +21.4% against the conforming figure, explaining less of the stock. A constituent composite is a coverage artefact rather than a market and SIGCM calls it a hard fail, not a tier.",
    "date": "2026-09-08",
    "ring": "House"
   },
   "kd": {
    "value": 0.095,
-   "source": "Marginal cost of debt, CURRENCY-BLENDED, rolled forward to the most recently disclosed rates. The audited FY2025 note (32) discloses 21.30% on Egyptian-pound financial liabilities and 5.29% blended on 'US dollars and foreign currencies' \u2014 a simpler two-way split than FY2024's three-way EGP/USD/EUR disclosure, which the company itself has moved away from. The Kd-integrity effective-rate back-solve below implies an Egyptian-pound weight of roughly 28% (down sharply from FY2024's ~44%, as the hard-currency share of the book grew), giving a blended marginal rate of about 9.8% on the FY2025 print and 9.6% on the Q1-2026 print (EGP 20.32%, foreign 5.28%). 9.5% is struck just below both, allowing for the CBE's continuing easing",
+   "source": "Marginal cost of debt, CURRENCY-BLENDED, rolled forward to the most recently disclosed rates. The audited FY2025 note (32) discloses 21.30% on Egyptian-pound financial liabilities and 5.29% blended on 'US dollars and foreign currencies' — a simpler two-way split than FY2024's three-way EGP/USD/EUR disclosure, which the company itself has moved away from. The Kd-integrity effective-rate back-solve below implies an Egyptian-pound weight of roughly 28% (down sharply from FY2024's ~44%, as the hard-currency share of the book grew), giving a blended marginal rate of about 9.8% on the FY2025 print and 9.6% on the Q1-2026 print (EGP 20.32%, foreign 5.28%). 9.5% is struck just below both, allowing for the CBE's continuing easing",
    "date": "2026-05-13",
    "ring": "Company/House"
   },
   "kd_egp_note": {
    "value": 0.213,
-   "source": "Average interest rate on Egyptian-pound financial liabilities, audited FY2025 Note 32 (loans and borrowings) and Note 43-3-2 (interest-rate risk) \u2014 both give 21.30%/21.3%. DOWN from 28.68% at FY2024-end and further to 20.32% at Q1-2026",
+   "source": "Average interest rate on Egyptian-pound financial liabilities, audited FY2025 Note 32 (loans and borrowings) and Note 43-3-2 (interest-rate risk) — both give 21.30%/21.3%. DOWN from 28.68% at FY2024-end and further to 20.32% at Q1-2026",
    "date": "2026-03-15",
    "ring": "Company"
   },
   "kd_fy24_egp": {
    "value": 0.2868,
-   "source": "Audited consolidated financial statements of El Sewedy Electric Company for the financial year ended 31 December 2025, published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 43-3-2 comparative \u2014 average interest rate on EGYPTIAN POUND financial liabilities, FY2024, under the three-way split the company published before FY2025",
+   "source": "Audited consolidated financial statements of El Sewedy Electric Company for the financial year ended 31 December 2025, published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 43-3-2 comparative — average interest rate on EGYPTIAN POUND financial liabilities, FY2024, under the three-way split the company published before FY2025",
    "date": "2024-12-31",
    "ring": "Company"
   },
   "kd_fy24_usd": {
    "value": 0.0649,
-   "source": "Audited consolidated financial statements of El Sewedy Electric Company for the financial year ended 31 December 2025, published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 43-3-2 comparative \u2014 US DOLLAR leg of the same superseded three-way split",
+   "source": "Audited consolidated financial statements of El Sewedy Electric Company for the financial year ended 31 December 2025, published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 43-3-2 comparative — US DOLLAR leg of the same superseded three-way split",
    "date": "2024-12-31",
    "ring": "Company"
   },
   "kd_fy24_eur": {
    "value": 0.0392,
-   "source": "Audited consolidated financial statements of El Sewedy Electric Company for the financial year ended 31 December 2025, published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 43-3-2 comparative \u2014 EURO leg of the same superseded three-way split",
+   "source": "Audited consolidated financial statements of El Sewedy Electric Company for the financial year ended 31 December 2025, published on the company's own investor-relations portal at ir.elsewedyelectric.com, note 43-3-2 comparative — EURO leg of the same superseded three-way split",
    "date": "2024-12-31",
    "ring": "Company"
   },
@@ -1266,7 +1266,7 @@
   },
   "kd_term": {
    "value": 0.0888,
-   "source": "Terminal blended cost of debt: 28% Egyptian pound at the 15% long-run Egyptian corporate-borrowing norm and 72% hard currency at 6.5% \u2014 the currency WEIGHTS updated to the actual FY2025 composition (formerly modelled 45%/55%, now measured at roughly 28%/72% from the Kd-integrity back-solve); the long-run rate norms themselves are unchanged policy assumptions",
+   "source": "Terminal blended cost of debt: 28% Egyptian pound at the 15% long-run Egyptian corporate-borrowing norm and 72% hard currency at 6.5% — the currency WEIGHTS updated to the actual FY2025 composition (formerly modelled 45%/55%, now measured at roughly 28%/72% from the Kd-integrity back-solve); the long-run rate norms themselves are unchanged policy assumptions",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -1290,25 +1290,25 @@
   },
   "wd_term": {
    "value": 0.15,
-   "source": "Terminal debt weight D/(D+E) on a net basis, NORMALISED \u2014 but reconciled to the model's OWN forecast balance sheet rather than asserted. REVISED from 25% after external critique (and the same finding in this study's own re-audit): at a 25% payout the forecast still deleverages toward a mid-single-digit net-debt weight by FY2030E, so a 25% terminal weight contradicted the model's own trajectory in the direction that flattered the valuation. 15% sits between today's 8.4% net weight and the old 25%, acknowledging that a working-capital-heavy industrial retains structural gross leverage. Worth about -5.3/share on the DCF lens versus the old 25%",
+   "source": "Terminal debt weight D/(D+E) on a net basis, NORMALISED — but reconciled to the model's OWN forecast balance sheet rather than asserted. REVISED from 25% after external critique (and the same finding in this study's own re-audit): at a 25% payout the forecast still deleverages toward a mid-single-digit net-debt weight by FY2030E, so a 25% terminal weight contradicted the model's own trajectory in the direction that flattered the valuation. 15% sits between today's 8.4% net weight and the old 25%, acknowledging that a working-capital-heavy industrial retains structural gross leverage. Worth about -5.3/share on the DCF lens versus the old 25%",
    "date": "2026-08-07",
    "ring": "House"
   },
   "pi_term": {
    "value": 0.07,
-   "source": "Long-run Egyptian inflation, taken from this house's single dated macroeconomic path for Egypt rather than set inside this study \u2014 one path is used by every Egyptian company we cover, so two studies cannot value companies in economies that disagree with each other. It is registered here so that the terminal growth rate below is DERIVED from it rather than typed beside it",
+   "source": "Long-run Egyptian inflation, taken from this house's single dated macroeconomic path for Egypt rather than set inside this study — one path is used by every Egyptian company we cover, so two studies cannot value companies in economies that disagree with each other. It is registered here so that the terminal growth rate below is DERIVED from it rather than typed beside it",
    "date": "2026-09-04",
    "ring": "Country"
   },
   "ppe_gross_depreciable_fy25": {
    "value": 50775.950574,
-   "source": "Audited FY2025 consolidated financial statements, note 17: gross cost at 31-Dec-2025 of the DEPRECIABLE property, plant and equipment \u2014 buildings and constructions 13,357.135195 + machinery and equipment 32,960.824267 + furniture and fixtures 2,464.375061 + vehicles 1,630.540975 + leasehold improvements 363.075076. EXCLUDES land (2,312.648624), which the note states is not depreciated, and projects under construction (8,915.910071), which are not yet in use. The note foots three ways: components to the 53,088.599198 subtotal, subtotal plus projects to the 62,004.509269 total, and the component charges to the 2,733.671862 total charge",
+   "source": "Audited FY2025 consolidated financial statements, note 17: gross cost at 31-Dec-2025 of the DEPRECIABLE property, plant and equipment — buildings and constructions 13,357.135195 + machinery and equipment 32,960.824267 + furniture and fixtures 2,464.375061 + vehicles 1,630.540975 + leasehold improvements 363.075076. EXCLUDES land (2,312.648624), which the note states is not depreciated, and projects under construction (8,915.910071), which are not yet in use. The note foots three ways: components to the 53,088.599198 subtotal, subtotal plus projects to the 62,004.509269 total, and the component charges to the 2,733.671862 total charge",
    "date": "2026-03-01",
    "ring": "Company"
   },
   "asset_life_derived": {
    "value": 17.2627,
-   "source": "DERIVED BY IDENTITY, not chosen: the AVERAGE depreciable gross cost across the year ((43,605.306327 opening + 50,775.950574 closing) / 2) over the year's own depreciation charge of 2,733.671862. The average is used rather than the closing balance because the base grew 16% in the year and a closing-cost ratio overstates the life on a fast-growing base (that reading is 18.5743 years). THE FIGURE IS CARRIED AT FULL PRECISION: it was registered as 17.26 and a rounded record is its own failure - the identity resolves to 17.2627 and nothing about the note is uncertain to two decimal places. Per component the closing-cost readings are buildings 29.00y, machinery 18.72y, furniture 8.45y, vehicles 8.45y, leasehold improvements 13.13y, against disclosed ranges of 8-50, 5-15, 4-17, 5-8 and 'over 3 years or the lease period' \u2014 the disclosed ranges are RANGES, and a life this desk picked from inside one would not be a disclosed life (SIGCM clause 1), which is why the identity is used instead. CORROBORATED TWICE: the same note read a year earlier gives 17.9761, and the composite implied by charging every class at the LONG END of its own disclosed range is 17.3041, agreement to 0.24% - the company depreciates at the top of every range it discloses and the identity recovers that without anybody choosing a point. The full record is in useful_lives.json beside this study.",
+   "source": "DERIVED BY IDENTITY, not chosen: the AVERAGE depreciable gross cost across the year ((43,605.306327 opening + 50,775.950574 closing) / 2) over the year's own depreciation charge of 2,733.671862. The average is used rather than the closing balance because the base grew 16% in the year and a closing-cost ratio overstates the life on a fast-growing base (that reading is 18.5743 years). THE FIGURE IS CARRIED AT FULL PRECISION: it was registered as 17.26 and a rounded record is its own failure - the identity resolves to 17.2627 and nothing about the note is uncertain to two decimal places. Per component the closing-cost readings are buildings 29.00y, machinery 18.72y, furniture 8.45y, vehicles 8.45y, leasehold improvements 13.13y, against disclosed ranges of 8-50, 5-15, 4-17, 5-8 and 'over 3 years or the lease period' — the disclosed ranges are RANGES, and a life this desk picked from inside one would not be a disclosed life (SIGCM clause 1), which is why the identity is used instead. CORROBORATED TWICE: the same note read a year earlier gives 17.9761, and the composite implied by charging every class at the LONG END of its own disclosed range is 17.3041, agreement to 0.24% - the company depreciates at the top of every range it discloses and the identity recovers that without anybody choosing a point. The full record is in useful_lives.json beside this study.",
    "date": "2026-03-01",
    "ring": "Company/derived"
   },
@@ -1320,7 +1320,7 @@
   },
   "g_term_real": {
    "value": 0.02,
-   "source": "STATED real terminal growth: 2.0%, held BELOW the house path's long-run Egyptian real GDP growth of 4.5% [R-MACRO-02] \u2014 the gap is the share of the economy this company is assumed to cede in perpetuity. THE RETIRED FIGURE WAS ZERO, and zero was wrong on its own terms rather than merely conservative: an economy growing 4.5% a year in real terms with a company growing 0% means the company shrinks to nothing relative to it, forever, which is not what 'a mature diversified industrial holding its real scale' meant. It is also not what this group has done \u2014 Constructions grew 32.6% then 28.3% and Electrical Products 46.6% then 43.7% in nominal terms, neither of them copper-linked. 2.0% is under half the economy's rate and well under the Cables segment's own forward real driver",
+   "source": "STATED real terminal growth: 2.0%, held BELOW the house path's long-run Egyptian real GDP growth of 4.5% [R-MACRO-02] — the gap is the share of the economy this company is assumed to cede in perpetuity. THE RETIRED FIGURE WAS ZERO, and zero was wrong on its own terms rather than merely conservative: an economy growing 4.5% a year in real terms with a company growing 0% means the company shrinks to nothing relative to it, forever, which is not what 'a mature diversified industrial holding its real scale' meant. It is also not what this group has done — Constructions grew 32.6% then 28.3% and Electrical Products 46.6% then 43.7% in nominal terms, neither of them copper-linked. 2.0% is under half the economy's rate and well under the Cables segment's own forward real driver",
    "date": "2026-09-10",
    "ring": "House"
   },
@@ -1338,7 +1338,7 @@
   },
   "usd_erp": {
    "value": 0.075,
-   "source": "Equity risk premium for the hard-currency leg: mature-market premium plus a reduced operating-exposure country premium \u2014 deliberately NOT the full Egypt premium, since this alternative's whole point is to price the hard-currency cash flows as hard-currency cash flows",
+   "source": "Equity risk premium for the hard-currency leg: mature-market premium plus a reduced operating-exposure country premium — deliberately NOT the full Egypt premium, since this alternative's whole point is to price the hard-currency cash flows as hard-currency cash flows",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -1356,13 +1356,13 @@
   },
   "usd_g_term": {
    "value": 0.035,
-   "source": "Terminal growth of the USD-denominated leg \u2014 real growth plus dollar inflation, below the EGP terminal growth by the inflation differential",
+   "source": "Terminal growth of the USD-denominated leg — real growth plus dollar inflation, below the EGP terminal growth by the inflation differential",
    "date": "2026-08-05",
    "ring": "House"
   },
   "anchor_days": {
    "value": 246,
-   "source": "Days from the DCF's construction date (31 Dec 2025, the audited balance-sheet date the bridge is built on) to the anchor date 5 Aug 2026. All lens values are rolled to the anchor at the cost of equity, net of the EGP 1.85 FY2025 dividend paid inside the window \u2014 added after external critique correctly noted the model was dated 31-Dec-2025 while the comparison price was dated 5-Aug-2026, breaching the study's own one-date rule by ~7 months of accretion",
+   "source": "Days from the DCF's construction date (31 Dec 2025, the audited balance-sheet date the bridge is built on) to the anchor date 5 Aug 2026. All lens values are rolled to the anchor at the cost of equity, net of the EGP 1.85 FY2025 dividend paid inside the window — added after external critique correctly noted the model was dated 31-Dec-2025 while the comparison price was dated 5-Aug-2026, breaching the study's own one-date rule by ~7 months of accretion",
    "date": "2026-08-07",
    "ring": "House"
   },
@@ -1402,7 +1402,7 @@
     "other": 0.1307,
     "esop": 0.0007
    },
-   "source": "EXACT capital restructuring table, Note 29, audited FY2025 financial statements, as at 31 December 2025: Sadek Ahmed Sadek Elsewedy 24.99% (534,980,391 shares), Ahmed Ahmed Sadek Elsewedy 24.99% (534,980,391), Mohamed Ahmed Sadek Elsewedy 18.01% (385,602,690) \u2014 family combined 67.99%; Electra Investment Holding Restricted Limited 18.87% (403,997,835); other shareholders 13.07% (279,794,409); ESOP shares issued not granted 0.07% (1,422,160). REPLACES a previous house estimate (family ~68.0%, Electra ~20.4%, float ~11.6%) with the company's own disclosed table. Electra's stake FELL over 2025 \u2014 the FY2024 table (same note, prior year) shows Electra at 20.37% (436,109,503 shares) and other shareholders at 11.57% (247,682,741): Electra placed exactly 32,111,668 shares into the free float during the year",
+   "source": "EXACT capital restructuring table, Note 29, audited FY2025 financial statements, as at 31 December 2025: Sadek Ahmed Sadek Elsewedy 24.99% (534,980,391 shares), Ahmed Ahmed Sadek Elsewedy 24.99% (534,980,391), Mohamed Ahmed Sadek Elsewedy 18.01% (385,602,690) — family combined 67.99%; Electra Investment Holding Restricted Limited 18.87% (403,997,835); other shareholders 13.07% (279,794,409); ESOP shares issued not granted 0.07% (1,422,160). REPLACES a previous house estimate (family ~68.0%, Electra ~20.4%, float ~11.6%) with the company's own disclosed table. Electra's stake FELL over 2025 — the FY2024 table (same note, prior year) shows Electra at 20.37% (436,109,503 shares) and other shareholders at 11.57% (247,682,741): Electra placed exactly 32,111,668 shares into the free float during the year",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -2186,13 +2186,13 @@
     "n": 258,
     "se": 0.09834241826281419,
     "regressor": "31-name equal-weight composite of the covered EGX library",
-    "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle \u2014 only an inherited pattern."
+    "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle — only an inherited pattern."
    },
    "delta_vs_withdrawn": 0.21432591261554967
   }
  },
  "star_case": {
-  "case": "The market is capitalising earnings; this model says the earnings are not yet cash. On the model's own first forecast year free cash flow to the firm is NEGATIVE on NOPAT of about EGP 26bn, because revenue growing by a third absorbs working capital faster than the margin generates it. That single difference \u2014 the reinvestment charge \u2014 is where the whole disagreement lives, and it is why the cross-checks in this study that CAPITALISE earnings rather than discount cash sit at or above the traded price while the cash-flow lens does not. PRICED ALONE ON A FULL RE-RUN, ONE ASSUMPTION REACHES THE MARKET AND NOTHING ELSE COMES CLOSE: all three segment margins permanently about 46% higher, back at FY2023-24 levels. Copper and the currency move the answer by almost nothing, because they pass through to cost as well as to revenue. WHAT ARGUES AGAINST THAT MARGIN RECOVERY IS THE COMPANY'S OWN DISCLOSURE RATHER THAN OUR OPINION: cables revenue per tonne tracked copper and the pound almost exactly in FY2024 (+55.6% against +55.0%) and then failed to in FY2025 (+2.7% against +18.6%) \u2014 a measured pass-through shortfall of 15.9 points, computed from audited segment revenue and the company's own disclosed tonnage. The FY2023-24 margins were earned on inventory bought before a devaluation. A REPEAT REQUIRES THAT PRICING POWER TO RETURN, AND THE MOST RECENT FULL YEAR MEASURES IT LEAVING.",
+  "case": "The market is capitalising earnings; this model says the earnings are not yet cash. On the model's own first forecast year free cash flow to the firm is NEGATIVE on NOPAT of about EGP 26bn, because revenue growing by a third absorbs working capital faster than the margin generates it. That single difference — the reinvestment charge — is where the whole disagreement lives, and it is why the cross-checks in this study that CAPITALISE earnings rather than discount cash sit at or above the traded price while the cash-flow lens does not. PRICED ALONE ON A FULL RE-RUN, ONE ASSUMPTION REACHES THE MARKET AND NOTHING ELSE COMES CLOSE: all three segment margins permanently about 46% higher, back at FY2023-24 levels. Copper and the currency move the answer by almost nothing, because they pass through to cost as well as to revenue. WHAT ARGUES AGAINST THAT MARGIN RECOVERY IS THE COMPANY'S OWN DISCLOSURE RATHER THAN OUR OPINION: cables revenue per tonne tracked copper and the pound almost exactly in FY2024 (+55.6% against +55.0%) and then failed to in FY2025 (+2.7% against +18.6%) — a measured pass-through shortfall of 15.9 points, computed from audited segment revenue and the company's own disclosed tonnage. The FY2023-24 margins were earned on inventory bought before a devaluation. A REPEAT REQUIRES THAT PRICING POWER TO RETURN, AND THE MOST RECENT FULL YEAR MEASURES IT LEAVING.",
   "decomposition": {
    "all three segment margins permanently back at FY2023-24 levels": 83.84251436096244,
    "cost of capital two points lower throughout": 24.17545851190289,
@@ -2201,9 +2201,11 @@
    "the pound weaker than the house path": -2.1316282072803006e-14
   },
   "hunt_recorded": true,
-  "falsifier": "TWO CONSECUTIVE REPORTED HALVES in which cables revenue per tonne grows at or above copper x the pound while volume holds \u2014 that is pricing power returning and this study is wrong about the margin. Equally: a group segment margin at or above 18%% for two consecutive full years. Either one and the market's read is the right one and this one is not."
+  "falsifier": "TWO CONSECUTIVE REPORTED HALVES in which cables revenue per tonne grows at or above copper x the pound while volume holds — that is pricing power returning and this study is wrong about the margin. Equally: a group segment margin at or above 18%% for two consecutive full years. Either one and the market's read is the right one and this one is not."
  },
  "dcf": {
+  "div_at_anchor": 1.9677812737319353,
+  "div_days": 91,
   "pv_explicit": 22453.119784110444,
   "tv": 350783.77690452785,
   "pv_tv": 131268.95775922778,
@@ -2341,7 +2343,7 @@
   ],
   "charged_in_the_valuation": true,
   "charged_at": 0.12192719166454939,
-  "charged_note": "charged in the bridge below the minority, at the mean of the three measured periods rather than the latest, because this is a rate on profit and one half is not a trend. The statutory cap at total annual wages is NOT modelled \u2014 nothing in the filings discloses its headroom \u2014 so the charge is an upper bound and the direction of the unmodelled cap is recorded rather than guessed"
+  "charged_note": "charged in the bridge below the minority, at the mean of the three measured periods rather than the latest, because this is a rate on profit and one half is not a trend. The statutory cap at total annual wages is NOT modelled — nothing in the filings discloses its headroom — so the charge is an upper bound and the direction of the unmodelled cap is recorded rather than guessed"
  },
  "lenses": {
   "dcf": {
@@ -2399,7 +2401,7 @@
  "lens_record": {
   "class": "diversified industrial with a contracting arm",
   "central": 59.28245930736961,
-  "below_floor_reason": "The cross-check labelled a floor is the book lens AT ITS JUSTIFIED PRICE-TO-BOOK of 1.3443x (EGP 47.6485), a construction from a sustainable return of 23.5% against the perpetual cost of equity \u2014 not a disclosed figure. The floor that IS disclosed is equity attributable to the parent over shares in issue, EGP 31.2367 per share at 31-Dec-2025, rolled to the anchor on the same clock as every other lens = EGP 34.9408. The central of EGP 59.2825 sits 69.7% ABOVE that disclosed floor and -24.4% below the justified-multiple read. The gap widened on 7 September 2026 when the terminal was rebuilt onto the last-explicit-year basis the sanctioned module specifies (-6.34%): the correction moved the cash-flow lens and left the justified multiple where it was, so what this records is two lenses disagreeing, which [R-LENS-03] says to PUBLISH rather than average. Registered for the next re-issue: a book_value cross-check should carry the disclosed book value and the sustainable-return read should be published beside it as its own lens, which this record conflates into one entry.",
+  "below_floor_reason": "The cross-check labelled a floor is the book lens AT ITS JUSTIFIED PRICE-TO-BOOK of 1.3443x (EGP 47.6485), a construction from a sustainable return of 23.5% against the perpetual cost of equity — not a disclosed figure. The floor that IS disclosed is equity attributable to the parent over shares in issue, EGP 31.2367 per share at 31-Dec-2025, rolled to the anchor on the same clock as every other lens = EGP 34.9408. The central of EGP 59.2825 sits 69.7% ABOVE that disclosed floor and -24.4% below the justified-multiple read. The gap widened on 7 September 2026 when the terminal was rebuilt onto the last-explicit-year basis the sanctioned module specifies (-6.34%): the correction moved the cash-flow lens and left the justified multiple where it was, so what this records is two lenses disagreeing, which [R-LENS-03] says to PUBLISH rather than average. Registered for the next re-issue: a book_value cross-check should carry the disclosed book value and the sustainable-return read should be published beside it as its own lens, which this record conflates into one entry.",
   "primary": {
    "kind": "dcf",
    "two_sided": false,
@@ -2439,7 +2441,7 @@
     "value": 47.64854429653073,
     "present_value": false,
     "floor": true,
-    "note": "the book lens at its JUSTIFIED price-to-book of 1.3443x \u2014 the model report's \"book value and sustainable return\" read, built from a sustainable return of 23.5% against the perpetual cost of equity, rolled to the anchor. Never weighted. It is a construction and not a disclosed figure, and the note said \"a disclosed FLOOR\" until 7 September 2026, which described the DISCLOSED BOOK VALUE sitting inside it rather than the number published here.",
+    "note": "the book lens at its JUSTIFIED price-to-book of 1.3443x — the model report's \"book value and sustainable return\" read, built from a sustainable return of 23.5% against the perpetual cost of equity, rolled to the anchor. Never weighted. It is a construction and not a disclosed figure, and the note said \"a disclosed FLOOR\" until 7 September 2026, which described the DISCLOSED BOOK VALUE sitting inside it rather than the number published here.",
     "disclosed_book_value_per_share": 34.94080987615936,
     "disclosed_book_value_note": "the floor that IS disclosed: equity attributable to the parent at 31-Dec-2025 over shares in issue, EGP 31.2367 per share, rolled to the anchor on the same clock as every other lens (x1.1816 less the EGP 1.85 dividend paid inside the window) = EGP 34.9408."
    }
@@ -2451,7 +2453,7 @@
    },
    {
     "kind": "sotp",
-    "why": "the disciplined sum of the parts this class row calls for is NOT built. It is the reason the class exists \u2014 three legs on materially different contract structures \u2014 and it needs segment-level invested capital and segment-level net debt, neither of which note 16 discloses: the segment note stops at segment profit. Building it on allocated group capital would be a construction rather than a measurement, and SIGCM clause 8 says stop rather than invent. It is the first thing this study should gain when the disclosure allows."
+    "why": "the disciplined sum of the parts this class row calls for is NOT built. It is the reason the class exists — three legs on materially different contract structures — and it needs segment-level invested capital and segment-level net debt, neither of which note 16 discloses: the segment note stops at segment profit. Building it on allocated group capital would be a construction rather than a measurement, and SIGCM clause 8 says stop rather than invent. It is the first thing this study should gain when the disclosure allows."
    }
   ],
   "retired": {
@@ -2898,49 +2900,49 @@
  },
  "assert_log": [
   "==============================================================================",
-  "SWDY \u2014 ASSERT / derivation log (rebuilt on the audited FY23-25 + Q1-2026 filings)",
+  "SWDY — ASSERT / derivation log (rebuilt on the audited FY23-25 + Q1-2026 filings)",
   "==============================================================================",
-  "[Historical income statement] every FY2023-25 line is now the audited figure \u2014 no P&L closure or derivation is needed for any year, including FY2025, because the full filing is in hand. House EBITDA = operating profit + depreciation and amortisation: FY23 20,035, FY24 31,601, FY25 28,363 (10.09% of revenue). Effective tax rate: FY23 31.3%, FY24 30.1%, FY25 22.6%. This REPLACES a previous FY2025 EBITDA of 30,622 built by closing the P&L to two disclosed anchors (profit after tax and after minority) at an ASSUMED 25% effective rate and an ASSUMED -3,400 net finance cost; the actual audited figures (22.57% and -2,145) combine to a MATERIALLY LOWER house EBITDA of 28,363.",
-  "[Working capital, audited] FY23 36,655 (24.1% of revenue), FY24 53,495 (23.1%), FY25 55,853 (19.9%) \u2014 a genuine IMPROVEMENT in FY2025, not an assumption. Industrial real-estate-development land holdings (Note 24) are excluded as a separate quasi-investment item, consistent across all three years.",
-  "[FY2025 balance sheet] every line is the audited closing figure at 31 December 2025 \u2014 no triangulation is needed. Equity attributable to owners 66,871; gross loans and borrowings including leases 62,509; cash 41,949; net financial debt 20,560.",
-  "[Kd integrity] (i) CURRENCY COMPOSITION \u2014 audited FY2025 note rates: EGP 21.30%, hard-currency blend 5.29%. The blended effective rate implies an Egyptian-pound share of 28.4% and a hard-currency share of 71.6% \u2014 DOWN sharply from the roughly 44% pound share implied a year earlier, consistent with the FY2025-26 drawdown of hard-currency facilities (the Afreximbank USD 200mn line among them) to fund a growing hard-currency-linked working-capital book.",
-  "[Kd integrity] (ii) INDEPENDENT EFFECTIVE RATE \u2014 FY2025 interest expense on loans and credit facilities 5,967 / average balance 60,629 = 9.84%.",
-  "[Kd integrity] (iii) BOUNDS \u2014 adopted Kd 9.50%: within 150bp of the FY2025 effective rate (34bp) and does not exceed it by more than 50bp.",
+  "[Historical income statement] every FY2023-25 line is now the audited figure — no P&L closure or derivation is needed for any year, including FY2025, because the full filing is in hand. House EBITDA = operating profit + depreciation and amortisation: FY23 20,035, FY24 31,601, FY25 28,363 (10.09% of revenue). Effective tax rate: FY23 31.3%, FY24 30.1%, FY25 22.6%. This REPLACES a previous FY2025 EBITDA of 30,622 built by closing the P&L to two disclosed anchors (profit after tax and after minority) at an ASSUMED 25% effective rate and an ASSUMED -3,400 net finance cost; the actual audited figures (22.57% and -2,145) combine to a MATERIALLY LOWER house EBITDA of 28,363.",
+  "[Working capital, audited] FY23 36,655 (24.1% of revenue), FY24 53,495 (23.1%), FY25 55,853 (19.9%) — a genuine IMPROVEMENT in FY2025, not an assumption. Industrial real-estate-development land holdings (Note 24) are excluded as a separate quasi-investment item, consistent across all three years.",
+  "[FY2025 balance sheet] every line is the audited closing figure at 31 December 2025 — no triangulation is needed. Equity attributable to owners 66,871; gross loans and borrowings including leases 62,509; cash 41,949; net financial debt 20,560.",
+  "[Kd integrity] (i) CURRENCY COMPOSITION — audited FY2025 note rates: EGP 21.30%, hard-currency blend 5.29%. The blended effective rate implies an Egyptian-pound share of 28.4% and a hard-currency share of 71.6% — DOWN sharply from the roughly 44% pound share implied a year earlier, consistent with the FY2025-26 drawdown of hard-currency facilities (the Afreximbank USD 200mn line among them) to fund a growing hard-currency-linked working-capital book.",
+  "[Kd integrity] (ii) INDEPENDENT EFFECTIVE RATE — FY2025 interest expense on loans and credit facilities 5,967 / average balance 60,629 = 9.84%.",
+  "[Kd integrity] (iii) BOUNDS — adopted Kd 9.50%: within 150bp of the FY2025 effective rate (34bp) and does not exceed it by more than 50bp.",
   "[Cost of equity] rf 22.31% less the sovereign default spread 3.40% = 18.91% (country risk out of the risk-free rate); + beta 1.225 x the MATURE-MARKET premium 4.24% = 5.20%; + a country premium of 3.98% (59.3% of operations in Egypt at 5.17%, 40.7% outside at 2.26%) -> Ke 28.09%.",
-  "[Cost of equity, what changed] the RETIRED construction multiplied the country premium by beta as well \u2014 rf* + beta x the TOTAL premium 9.41% = 30.44%, +235bp above this build. Beta measures a stock's exposure to its own equity market, not to its sovereign; charging a 1.22-beta company 22% more Egypt risk than the market is a separate claim and this study never made it. Alternatives still disclosed: rating basis 33.02%; the RETIRED un-netted construction 33.84% (audit trail only).",
+  "[Cost of equity, what changed] the RETIRED construction multiplied the country premium by beta as well — rf* + beta x the TOTAL premium 9.41% = 30.44%, +235bp above this build. Beta measures a stock's exposure to its own equity market, not to its sovereign; charging a 1.22-beta company 22% more Egypt risk than the market is a separate claim and this study never made it. Alternatives still disclosed: rating basis 33.02%; the RETIRED un-netted construction 33.84% (audit trail only).",
   "[WACC explicit] weights on NET financial debt 6.9% / equity 93.1% -> 26.65%. On gross debt the weights would be 18.3% / 81.7% -> 24.25%; the net-debt basis is used because it is the same quantity the enterprise-to-equity bridge subtracts, and it is the more conservative of the two.",
   "[WACC terminal] Ke 19.82% (rf 12.50% READ FROM THE HOUSE PATH = 7.0% terminal inflation + 5.5% real convention, the SAME inflation the terminal growth of 9.1% is built on; + beta x mature premium 4.24% + country 2.13%); Kd after tax 6.70%; weights 85%/15% -> 17.85%",
   "[Glide] forward WACC 26.65% -> 23.72% -> 21.28% -> 19.32% -> 17.85%; cumulative discount factors 0.7896, 0.6382, 0.5262, 0.4410, 0.3742. The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is inherited rather than being a second free parameter.",
-  "[Segment build \u2014 the disclosed structure] Cables, Constructions and Electrical products and digital solutions, Note 5-3 revenue reconciling EXACTLY to the consolidated P&L in all three years. FY2025 revenue split: Cables 155,793 (55.4%), Constructions 90,959 (32.4%), Electrical products 34,298 (12.2%). Segment margins (profit / this revenue base) FY2023 -> FY2025: Cables 19.5% -> 13.5%; Constructions 11.6% -> 6.5%; Electrical products 25.4% -> 22.2%. Every segment compressed in FY2025; Cables and Constructions compressed the most.",
-  "[Corporate load \u2014 the bridge from segment profit to EBIT] (G&A + net impairment on receivables + other expenses - other income) / revenue: FY2023 5.70%, FY2024 4.30%, FY2025 3.16% \u2014 DECLINING, i.e. operating leverage improving at the corporate level even as segment margins fell. This reconciles EXACTLY: e.g. FY2025 segment profit 34,490 less the unallocated/corporate item of 247 = 34,243, less 3.16% x revenue 281,049 = 25,354, against the audited operating profit of 25,354.",
+  "[Segment build — the disclosed structure] Cables, Constructions and Electrical products and digital solutions, Note 5-3 revenue reconciling EXACTLY to the consolidated P&L in all three years. FY2025 revenue split: Cables 155,793 (55.4%), Constructions 90,959 (32.4%), Electrical products 34,298 (12.2%). Segment margins (profit / this revenue base) FY2023 -> FY2025: Cables 19.5% -> 13.5%; Constructions 11.6% -> 6.5%; Electrical products 25.4% -> 22.2%. Every segment compressed in FY2025; Cables and Constructions compressed the most.",
+  "[Corporate load — the bridge from segment profit to EBIT] (G&A + net impairment on receivables + other expenses - other income) / revenue: FY2023 5.70%, FY2024 4.30%, FY2025 3.16% — DECLINING, i.e. operating leverage improving at the corporate level even as segment margins fell. This reconciles EXACTLY: e.g. FY2025 segment profit 34,490 less the unallocated/corporate item of 247 = 34,243, less 3.16% x revenue 281,049 = 25,354, against the audited operating profit of 25,354.",
   "[Forecast, three real segments] revenue 370,194 -> 441,712 -> 506,834 -> 573,563 -> 643,070 (growth +31.7%, +19.3%, +14.7%, +13.2%, +12.1%)",
   "[Forecast margins are OUTPUTS] gross margin 12.34% -> 12.53% -> 12.66% -> 12.72% -> 12.72%; EBITDA margin 10.34% -> 10.53% -> 10.66% -> 10.72% -> 10.72%. Segment mix FY2030E: Cables 53%, Constructions 30%, Electrical products 17%.",
-  "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share of FY2025, implies a full year of 356,323. The build produces 370,194, +3.9% against it \u2014 an independent check that the segment build is not running ahead of the company's own trading.",
-  "[Q1-2026 EBITDA margin check] the disclosed Q1-2026 operating profit 8,247 on revenue 75,298 implies an EBITDA margin (at the model's D&A ratio) of 12.02%, against FY2026E's 10.34% \u2014 consistent, not contradicted.",
-  "[Currency split \u2014 two different questions] the audited Note 5-2 shows 40.7% of FY2025 revenue booked OUTSIDE Egypt, which is a geographic statement about where the customer sits. The model derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 51% in FY2025 and 51% -> 51% -> 51% -> 51% -> 51% thereafter, using segment-level export-intensity weights (Cables 65%, Constructions 30%, Electrical products 45%) rather than the blanket geographic split, because a project executed abroad for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
-  "[Segment mix, FY2026] each segment anchored on its OWN like-for-like half growth (note 16, both comparable halves): cables 30.57%, constructions 27.44%, electrical products 48.28%. The segment total grows 31.72% against the halves' own blended 31.92%; the difference is the FY2025 full-year mix differing from the H1-2025 mix and is not a disagreement about growth. THE RETIRED PATH forecast cables +47.60%, constructions +18.00% and electrical products +20.00% \u2014 right on the group to a third of a point and wrong on every segment, over-weighting the 11.4%-margin business and under-weighting the 23.6%-margin one",
-  "[Forecast interest] net finance cost path 1,743 -> 2,116 -> 2,029 -> 1,640 -> 1,097 as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed to yield 10% \u2014 a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book (7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather than hidden. Payout ratio 25% \u2014 struck at the ACTUAL FY2025 payout: EGP 1.85/share ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable EPS, up from 12.3% a year earlier.",
+  "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share of FY2025, implies a full year of 356,323. The build produces 370,194, +3.9% against it — an independent check that the segment build is not running ahead of the company's own trading.",
+  "[Q1-2026 EBITDA margin check] the disclosed Q1-2026 operating profit 8,247 on revenue 75,298 implies an EBITDA margin (at the model's D&A ratio) of 12.02%, against FY2026E's 10.34% — consistent, not contradicted.",
+  "[Currency split — two different questions] the audited Note 5-2 shows 40.7% of FY2025 revenue booked OUTSIDE Egypt, which is a geographic statement about where the customer sits. The model derives the share that is HARD-CURRENCY LINKED — dollar-priced by construction — at 51% in FY2025 and 51% -> 51% -> 51% -> 51% -> 51% thereafter, using segment-level export-intensity weights (Cables 65%, Constructions 30%, Electrical products 45%) rather than the blanket geographic split, because a project executed abroad for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
+  "[Segment mix, FY2026] each segment anchored on its OWN like-for-like half growth (note 16, both comparable halves): cables 30.57%, constructions 27.44%, electrical products 48.28%. The segment total grows 31.72% against the halves' own blended 31.92%; the difference is the FY2025 full-year mix differing from the H1-2025 mix and is not a disagreement about growth. THE RETIRED PATH forecast cables +47.60%, constructions +18.00% and electrical products +20.00% — right on the group to a third of a point and wrong on every segment, over-weighting the 11.4%-margin business and under-weighting the 23.6%-margin one",
+  "[Forecast interest] net finance cost path 1,743 -> 2,116 -> 2,029 -> 1,640 -> 1,097 as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed to yield 10% — a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book (7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather than hidden. Payout ratio 25% — struck at the ACTUAL FY2025 payout: EGP 1.85/share ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable EPS, up from 12.3% a year earlier.",
   "[Forecast equity] attributable profit 23,375, 28,300, 33,119, 38,098, 43,164; net debt path 28,039, 30,294, 28,901, 25,347, 19,867.",
   "[Terminal return on capital] taken as next year's NOPAT over the closing invested capital (22.5%), the standard convention, rather than the same year's NOPAT over closing capital (20.6%).",
   "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 21.0%; reinvestment rate 20.1% / 30.4% / 51.5%; implied g 4.5% / 7.6% / 10.8%. Check (a): actual NOPAT CAGR FY23-FY25 = +26.9%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 30%) = 7.6%. Adopted terminal g 9.1%.",
   "[Terminal value, sanctioned construction] terminal NOPAT 51,159 + book D&A 6,881 - maintenance at replacement cost 12,339 (on the DERIVED 17.26-year life) - growth capital 4,554 (growth capital at the stated real terminal growth) - inflation on working capital 8,854 = FCFF 28,009. TV 350,784 at 17.85% and 9.1% nominal, discounted at the YEAR-5 factor 0.3742 -> PV 131,269, 85% of enterprise value. Implied payout of terminal NOPAT 59.8%; TV against the NOPAT-perpetuity floor +33.6%.",
-  "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 348,250 (-0.7%), charging 20,811 a year for ever \u2014 an implied replacement cycle of 10.9 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
+  "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 348,250 (-0.7%), charging 20,811 a year for ever — an implied replacement cycle of 10.9 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
   "[Terminal ceiling] the domestic leg is 49% of FY30E revenue; a blended long-run nominal ceiling is 11.2% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 9% sits below it.",
-  "[Associates] carried at the audited FY2025 carrying value of 6,758 \u2014 the actual closing balance, not the prior year's carrying value scaled by an assumed growth factor. (Reviewed 30-Jun-2026: 7,120.)",
-  "[Net debt, and why the June sheet is NOT used] the bridge deducts 20,560 at 31-Dec-2025, the date this valuation is struck at. The reviewed 30-Jun-2026 sheet shows 28,629, +8,069 over the half \u2014 and that deterioration is the same working-capital absorption the model's own FY2026 forecast already carries (a working-capital movement of 16,965 against capex of 13,232, giving free cash flow to the firm of -319 in the first forecast year). Deducting it in the bridge as well would charge one cash outflow twice.",
-  "[Employees' statutory share of profit] measured at 11.60% (FY2024), 11.96% (FY2025) and 13.01% (H1-2026) of profit attributable to owners; mean 12.19%. It is disclosed only in the earnings-per-share note, below the attributable line, and appears in NO line of the income statement \u2014 which is why the first edition, whose cost stack is built from unit economics, could not have caught it there. Equity attributable 126,382 less 15,409 = 110,973. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered FY2025 attributable profit of 17,330.245 and the reported EPS of 7.13; 17,330.245 / 2,140.777876 = 8.095, and the difference is this charge plus the ESOP adjustment to the weighted-average count.",
+  "[Associates] carried at the audited FY2025 carrying value of 6,758 — the actual closing balance, not the prior year's carrying value scaled by an assumed growth factor. (Reviewed 30-Jun-2026: 7,120.)",
+  "[Net debt, and why the June sheet is NOT used] the bridge deducts 20,560 at 31-Dec-2025, the date this valuation is struck at. The reviewed 30-Jun-2026 sheet shows 28,629, +8,069 over the half — and that deterioration is the same working-capital absorption the model's own FY2026 forecast already carries (a working-capital movement of 16,965 against capex of 13,232, giving free cash flow to the firm of -319 in the first forecast year). Deducting it in the bridge as well would charge one cash outflow twice.",
+  "[Employees' statutory share of profit] measured at 11.60% (FY2024), 11.96% (FY2025) and 13.01% (H1-2026) of profit attributable to owners; mean 12.19%. It is disclosed only in the earnings-per-share note, below the attributable line, and appears in NO line of the income statement — which is why the first edition, whose cost stack is built from unit economics, could not have caught it there. Equity attributable 126,382 less 15,409 = 110,973. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered FY2025 attributable profit of 17,330.245 and the reported EPS of 7.13; 17,330.245 / 2,140.777876 = 8.095, and the difference is this charge plus the ESOP adjustment to the weighted-average count.",
   "[Bridge] EV 153,722 - net financial debt 20,560 + associates at carrying value 6,758 = 139,920; less minority interests at their 9.7% share of group profit = 13,537; less the employees' statutory share of profit at 12.19% = 15,409 -> equity attributable to ORDINARY SHAREHOLDERS 110,973 = EGP 51.84/share AT 31-DEC-2025; rolled 246/365 of a year to the 3-Sep-2026 anchor at the 28.1% cost of equity (x1.1816) less the EGP 1.85 dividend paid in the window = EGP 59.28/share against a spot of 130.00 (-54%).",
-  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (51% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 11.34% with 3.5% terminal growth, and only then translated back. Corrected result EGP 67.84/share (-48% vs spot).",
+  "[Currency-of-discounting alternative — UIP-corrected] the hard-currency leg (51% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 11.34% with 3.5% terminal growth, and only then translated back. Corrected result EGP 67.84/share (-48% vs spot).",
   "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 33.02% and the cost of capital 31.24% -> 23.60%, giving EGP 28.50/share against the CDS-basis 59.28.",
   "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 6.2%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 11.84% for that share, and a blended Kd of 14.53% against the currency-composition 9.50%. Cost of capital rises to 26.91% from 26.65%, giving EGP 58.97/share against 59.28. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
   "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (15,526) and deducting net debt afterwards gives EGP 66.69/share, against 59.28 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
-  "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 46,512 gives an enterprise value of 302,326 AS AT end-FY2027; discounted back at the year-2 factor 0.6382 plus the present value of the interim FY26-27 free cash flows (3,844) that is 196,788 at 31-Dec-2025 -> EGP 78.13/share at the anchor.",
-  "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.66% (FY2028E) on FY2026E revenue 370,194 -> normalised EPS 9.92 x 9.0 = EGP 103.51/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
-  "[Book lens] justified price-to-book 1.34x = (sustainable return 23.5% - growth 9%) / (PERPETUAL cost of equity 19.82% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 61%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
+  "[Relative lens — forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 46,512 gives an enterprise value of 302,326 AS AT end-FY2027; discounted back at the year-2 factor 0.6382 plus the present value of the interim FY26-27 free cash flows (3,844) that is 196,788 at 31-Dec-2025 -> EGP 78.13/share at the anchor.",
+  "[Normalised lens — current-scale earning power] mid-cycle EBITDA margin 10.66% (FY2028E) on FY2026E revenue 370,194 -> normalised EPS 9.92 x 9.0 = EGP 103.51/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee — a disclosed conservatism worth about +0.4/share on the central if removed.",
+  "[Book lens] justified price-to-book 1.34x = (sustainable return 23.5% - growth 9%) / (PERPETUAL cost of equity 19.82% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 61%, deliberately distinct from the five-year forecast payout of 25% — the two describe different horizons.",
   "[DCF scenarios] bear 21.61 / base 59.28 / bull 96.99 EGP per share",
   "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP 59.28, with its own bear-to-bull range of 21.61 - 96.99 on one clock. The cross-checks are published beside it at their own values (relative 78.13, book floor 47.65) and the span across all of them, 21.61 - 132.81, is a spread between METHODS and not a range around the answer. Spot 130.00 (-54% to the central).",
-  "[Retired blend, published unused] the 45/20/20/15 weights give EGP 70.15, -46% against the price where the cash-flow lens reads -54% \u2014 so the published number was showing about 85% of the disagreement this study actually holds. Normalised earnings power at 103.51 carried a fifth of it.",
-  "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 59.28 against the published 59.28, and at the adopted beta 1.225 it returns 59.28 \u2014 asserted, not eyeballed.",
+  "[Retired blend, published unused] the 45/20/20/15 weights give EGP 70.15, -46% against the price where the cash-flow lens reads -54% — so the published number was showing about 85% of the disagreement this study actually holds. Normalised earnings power at 103.51 carried a fifth of it.",
+  "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 59.28 against the published 59.28, and at the adopted beta 1.225 it returns 59.28 — asserted, not eyeballed.",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.29x over the forecast.",
   "[Expert panel] Expert 1 173.71 [127.48-219.94]; Expert 2 67.30 [31.35-50.02]; Expert 3 59.36 [50.01-67.84]; panel median 67.30 (-48% vs spot)",
   "[R-STAR-01] What the market must believe, each priced ALONE on a full re-run, from the central of EGP 59.28 toward the traded 130.00 (a gap of 70.72):",
@@ -2971,18 +2973,18 @@
   "nci": {
    "basis": "value_share",
    "applied_to": "equity_value",
-   "deduction": 9903.541261371354,
+   "deduction": 13537.279682455895,
    "share": 0.09675033090812221,
    "proxy_source": "The minority's share of GROUP PROFIT in the audited FY2025 consolidated financial statements -- profit attributable to non-controlling interests over profit for the year -- used as the proxy for its share of equity VALUE because the subsidiaries carrying the minority (Rowad for Modern Engineering and the Qatari and free-zone cable ventures) publish no separate financial statements in the group's filings, so their own economics cannot be valued directly.",
    "book": 5118.978381,
-   "profit_share": 9903.541261371354,
-   "proportional": 7278.637884500303,
-   "framing_note": "Book is the balance-sheet carrying amount at 31 December 2025 and is a COST, not a value -- the model capitalises 100% of the subsidiaries' cash flow, so the minority's claim is worth its share of that value. Deducting book (5,119) rather than the adopted 9,904 would overstate equity attributable to the parent by 4,785, which is EGP 2.23 a share before the roll."
+   "profit_share": 13537.279682455895,
+   "proportional": 9949.26503049231,
+   "framing_note": "Book is the balance-sheet carrying amount at 31 December 2025 and is a COST, not a value -- the model capitalises 100% of the subsidiaries' cash flow, so the minority's claim is worth its share of that value. Deducting book (5,119) rather than the adopted 13,537 would overstate equity attributable to the parent by 8,418, which is EGP 3.93 a share before the roll."
   },
   "cash": {
    "treatment": "added_at_face",
    "weights_basis": "net",
-   "note": "The bridge deducts NET financial debt, which is deducting gross borrowings and adding the cash back at face; the adopted discount-rate weights are also net (debt weight 6.88% against a gross 18.34%). That is the same cash reaching the answer twice, and on a net-DEBT company it runs the opposite way to the case the rule was written on: net weights understate the debt weight, and with a cost of debt of 9.50% against a cost of equity of 30.44% that RAISES the discount rate from 26.17% to 28.84% and LOWERS the value. The study already computes the gross-weighted rate and publishes it. Recorded, not corrected in this pass: it is one lever, it belongs in a rebuild ledger with its own audit point, and the fact that it moves the answer toward a price this study sits far below is neither a reason to take it nor a reason to leave it."
+   "note": "The bridge deducts NET financial debt, which is deducting gross borrowings and adding the cash back at face; the adopted discount-rate weights are also net (debt weight 6.88% against a gross 18.34%). That is the same cash reaching the answer twice, and on a net-DEBT company it runs the opposite way to the case the rule was written on: net weights understate the debt weight, and with a cost of debt of 9.50% against a cost of equity of 28.09% that RAISES the discount rate from 24.25% to 26.65% and LOWERS the value. The study already computes the gross-weighted rate and publishes it. Recorded, not corrected in this pass: it is one lever, it belongs in a rebuild ledger with its own audit point, and the fact that it moves the answer toward a price this study sits far below is neither a reason to take it nor a reason to leave it."
   },
   "associates": {
    "basis": "book",
@@ -2993,14 +2995,14 @@
   "dividend": {
    "deducted": true,
    "declared_date": "2026-05-06",
-   "value": 3960.4390706000004,
+   "value": 4212.582615612428,
    "per_share": 1.85,
    "note": "The FY2025 cash dividend of EGP 1.85 a share was recommended with the FY2025 results and RATIFIED BY THE ORDINARY GENERAL ASSEMBLY ON 6 MAY 2026 -- after the 31 December 2025 balance sheet the bridge stands on, so it is still inside the equity being valued and comes out exactly once, in the roll to the anchor date. A dividend declared before the sheet would already be out of that equity and deducting it would take it twice."
   },
   "lines": [
    {
     "name": "Enterprise value, discounted cash flow at 31 December 2025",
-    "value": 116164.1861441318
+    "value": 153722.07754333824
    },
    {
     "name": "Less net financial debt at 31 December 2025",
@@ -3012,28 +3014,28 @@
    },
    {
     "name": "Less minority interests at their share of equity value",
-    "value": -9903.541261371354
+    "value": -13537.279682455895
    },
    {
     "name": "Less the employees' statutory share of profit",
-    "value": -11273.179916089866
+    "value": -15409.456618310825
    },
    {
     "name": "Plus accretion at the cost of equity over 246/365 of a year to the 3 September 2026 anchor",
-    "value": 15922.206385080006
+    "value": 20150.171359128053
    },
    {
     "name": "Less the FY2025 dividend paid inside that window",
-    "value": -3960.4390706000004
+    "value": -4212.582615612428
    }
   ],
-  "equity_value": 93146.87961515058,
+  "equity_value": 126910.57732008715,
   "shares_mn": 2140.777876,
-  "per_share": 43.51076338157681,
-  "published_central": 43.51076338157681,
+  "per_share": 59.28245930736961,
+  "published_central": 59.28245930736961,
   "published_spot": 130.0,
-  "equity_value_at_balance_sheet_date": 81185.11230067057,
-  "per_share_at_balance_sheet_date": 37.923183535679705
+  "equity_value_at_balance_sheet_date": 110972.98857657153,
+  "per_share_at_balance_sheet_date": 51.83769405536005
  },
  "cost_of_capital_record": {
   "rule": "R-COC-01",
@@ -3043,16 +3045,16 @@
   "default_spread": 0.034,
   "rf_star": 0.1891,
   "rf_normalisation_note": "The risk-free rate is the local government-bond yield less THIS sovereign's own default spread on the SAME basis as the premium added back (credit-default-swap against credit-default-swap), so country risk is counted exactly once. Using the raw 22.31% local yield beside an equity premium that already carries country risk would charge Egypt twice.",
-  "rf_terminal": 0.105,
-  "rf_terminal_note": "COMMITTED AS THE STUDY CARRIES IT, WHICH IS NOT WHAT THE HOUSE PATH DERIVES. The house Egyptian path derives a terminal risk-free of 12.50% -- its terminal inflation of 7.00% plus the real-rate convention of 5.50% -- and this study carries 10.50%, 200bp below it. A lower terminal risk-free lowers the terminal discount rate and RAISES the value, and 82% of this company's enterprise value sits in the terminal, so the effect is not second-order. It is recorded here rather than conformed in passing: conforming it is a lever, it moves the answer, and a lever is taken one at a time with its own ledger entry and its own audit point.",
-  "wacc_exp": 0.2883594439130608,
-  "wacc_terminal": 0.17218854115585414,
+  "rf_terminal": 0.125,
+  "rf_terminal_note": "COMMITTED AS THE STUDY CARRIES IT, WHICH IS NOT WHAT THE HOUSE PATH DERIVES. The house Egyptian path derives a terminal risk-free of 12.50% -- its terminal inflation of 7.00% plus the real-rate convention of 5.50% -- and this study carries 12.50%, 0bp below it. A lower terminal risk-free lowers the terminal discount rate and RAISES the value, and 85% of this company's enterprise value sits in the terminal, so the effect is not second-order. It is recorded here rather than conformed in passing: conforming it is a lever, it moves the answer, and a lever is taken one at a time with its own ledger entry and its own audit point.",
+  "wacc_exp": 0.26650912810363125,
+  "wacc_terminal": 0.1785445900562371,
   "forward_wacc": [
-   0.2883594439130608,
-   0.24963580966065854,
-   0.21736611445032342,
-   0.19155035828205524,
-   0.17218854115585414
+   0.26650912810363125,
+   0.2371876154211665,
+   0.21275302151911263,
+   0.19320534639746945,
+   0.1785445900562371
   ],
   "glide_fractions": [
    0.0,
@@ -3063,14 +3065,14 @@
   ],
   "glide_note": "The glide fractions are the cost-of-debt path's OWN cumulative progress (0.0000, 0.3333, 0.6111, 0.8333, 1.0000), so the front-loading is inherited from the easing calendar rather than chosen. Egypt is a transition market on the house path, so the schedule must decline; a flat crisis-level rate for five years and a perpetuity asserts that this economy never normalises, against the central bank's own published disinflation path that this study's cost of debt already follows.",
   "discount_factors": [
-   0.7761809056661679,
-   0.6211256909138524,
-   0.5102209463044804,
-   0.42819923032049023,
-   0.3652989389388314
+   0.789571885279121,
+   0.638198988930497,
+   0.5262398671504271,
+   0.44103043012609083,
+   0.374216159360628
   ],
-  "terminal_discount_factor": 0.3652989389388314,
-  "discounting_note": "The terminal value is brought home on the SAME cumulative factor as the last explicit year's cash flow (0.365299). Two prices for one date is a premium for relabelling the same pound arriving on the same day.",
+  "terminal_discount_factor": 0.374216159360628,
+  "discounting_note": "The terminal value is brought home on the SAME cumulative factor as the last explicit year's cash flow (0.374216). Two prices for one date is a premium for relabelling the same pound arriving on the same day.",
   "kd_pretax": 0.095,
   "kd_after_tax": 0.071725,
   "kd_terminal": 0.0888,
@@ -3097,11 +3099,11 @@
     "note": "The adopted cost of debt is 34bp from the independently computed FY2025 effective rate, inside the 150bp bound, and does not exceed the peak by more than 50bp. Both are asserted in compute.py at the point the rate is set, not merely reported here."
    },
    "local_equivalent_alternative": {
-    "kd_local_equivalent": 0.13938079151915464,
-    "wacc_exp_local_equivalent": 0.2906645756098661,
-    "per_share": 43.300911593444155,
-    "fx_depreciation": 0.05436481112522373,
-    "note": "[R-COC-01 AMENDED] REQUIRES THE FOREIGN TRANCHE AT LOCAL-EQUIVALENT COST -- the foreign coupon plus the expected local depreciation the house path derives by relative purchasing-power parity, so nobody sets a currency view inside a cost of debt -- and NEVER at the raw foreign coupon. This study computes that blend (13.94% against the adopted 9.50%) and publishes it as an ALTERNATIVE. Adopting it raises the explicit-window cost of capital to 29.07% and takes the central to EGP 43.30, which is AWAY from the price this study already sits far below. Recorded and not applied in this pass: one lever at a time, each with its own ledger entry."
+    "kd_local_equivalent": 0.14532250411661926,
+    "wacc_exp_local_equivalent": 0.26912287146717107,
+    "per_share": 58.971611206456735,
+    "fx_depreciation": 0.06224936082900179,
+    "note": "[R-COC-01 AMENDED] REQUIRES THE FOREIGN TRANCHE AT LOCAL-EQUIVALENT COST -- the foreign coupon plus the expected local depreciation the house path derives by relative purchasing-power parity, so nobody sets a currency view inside a cost of debt -- and NEVER at the raw foreign coupon. This study computes that blend (14.53% against the adopted 9.50%) and publishes it as an ALTERNATIVE. Adopting it raises the explicit-window cost of capital to 26.91% and takes the central to EGP 58.97, which is AWAY from the price this study already sits far below. Recorded and not applied in this pass: one lever at a time, each with its own ledger entry."
    }
   },
   "erp_basis": "cds",
@@ -3144,20 +3146,20 @@
     "n": 258,
     "se": 0.09834241826281419,
     "regressor": "31-name equal-weight composite of the covered EGX library",
-    "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle \u2014 only an inherited pattern."
+    "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle — only an inherited pattern."
    },
    "delta_vs_withdrawn": 0.21432591261554967
   },
   "beta": 1.2249065740479688,
   "rf_star_flat": 0.1891,
   "erp": 0.0941,
-  "ke_exp": 0.30436370861791384,
-  "ke_terminal": 0.1907434601833578,
+  "ke_exp": 0.28089916087111483,
+  "ke_terminal": 0.19822116477204366,
   "erp_terminal": 0.07,
   "ke_terminal_construction": "same_beta",
-  "ke_terminal_construction_note": "The terminal cost of equity is the terminal risk-free plus the SAME beta times the terminal premium: 0.1050 + 1.224907 x 0.0700 = 0.190743. No relevering \u2014 the terminal debt weight of 15% differs from the explicit window's 6.88%, so a relevered construction would be defensible and is NOT used, and saying so is the point: a reader cannot tell a relevered beta from a typing error unless the record names which construction produced the number.",
+  "ke_terminal_construction_note": "The terminal cost of equity is the terminal risk-free plus the SAME beta times the terminal premium: 0.1250 + 1.224907 x 0.0700 = 0.198221. No relevering — the terminal debt weight of 15% differs from the explicit window's 6.88%, so a relevered construction would be defensible and is NOT used, and saying so is the point: a reader cannot tell a relevered beta from a typing error unless the record names which construction produced the number.",
   "beta_source": "own_stock_regression",
-  "beta_source_note": "beta_regression.own_stock_beta() against raw_indices/EG/EGX30.csv as at 2026-09-08 \u2014 the published index of the exchange this stock is listed on \u2014 giving 1.2249 at an R-squared of 0.368 over 256 weekly observations. IT REPLACES A COMPOSITE, and the composite was not a weaker tier but a hard fail: a 31-name equal-weight basket of the covered EGX library gave 1.0087 at an R-squared of 0.291, understating the beta by 21.4% and explaining less of the stock. The correction raises the cost of equity by 203 basis points and LOWERS this study's central, away from a price it already sits far below.",
+  "beta_source_note": "beta_regression.own_stock_beta() against raw_indices/EG/EGX30.csv as at 2026-09-08 — the published index of the exchange this stock is listed on — giving 1.2249 at an R-squared of 0.368 over 256 weekly observations. IT REPLACES A COMPOSITE, and the composite was not a weaker tier but a hard fail: a 31-name equal-weight basket of the covered EGX library gave 1.0087 at an R-squared of 0.291, understating the beta by 21.4% and explaining less of the stock. The correction raises the cost of equity by 203 basis points and LOWERS this study's central, away from a price it already sits far below.",
   "weight_equity": 0.9312054954227824,
   "weight_debt": 0.06879450457721753,
   "weight_debt_terminal": 0.15,
@@ -3175,8 +3177,8 @@
     "default_spread": 0.0637,
     "ke_exp": 0.33015197642228683,
     "wacc_exp": 0.3123736206099273,
-    "wacc_terminal": 0.21904121761318895,
-    "per_share": 25.233511231733836,
+    "wacc_terminal": 0.23604121761318897,
+    "per_share": 28.496117788005115,
     "note": "The rating-basis premium and its matching rating-basis default spread are published beside the adopted market basis, on the same basis at both ends so country risk is stripped and added back consistently. The market basis is named central because it is the market's own live pricing of this sovereign's credit, against an agency judgement updated in steps."
    },
    "usd_alternative": {
@@ -3184,7 +3186,22 @@
     "note": "A dollar-denominated cross-check for a high-inflation market, published rather than substituted."
    }
   },
-  "published_central": 43.51076338157681,
+  "published_central": 59.28245930736961,
   "published_spot": 130.0
+ },
+ "forecast_anchor": {
+  "rate_name": "group segment-profit margin",
+  "latest_reviewed_period": "H1-2026, six months ended 30 June 2026, reviewed condensed interim consolidated statements",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.13996645985428263,
+  "first_forecast_rate": 0.12342243167403245,
+  "forecast_path": [
+   0.12342243167403245,
+   0.12529850913982887,
+   0.1266243100111703,
+   0.12723903474830478,
+   0.12724611011888173
+  ],
+  "note": "MEASURED, NOT ASSERTED, AND NO MECHANISM IS NAMED BECAUSE NONE ON THE CLOSED LIST IS SUPPORTED BY THIS COMPANY'S FILINGS. The rate is the group segment-profit margin -- note 16 segment profit, which is gross profit less selling and distribution expenses, over the note 5-3 external revenue the same filings disclose -- and it is the basis the forecast is built on, not the gross-profit row above it. The forecast opens at 12.3422% against a reviewed half of 13.9966%, 1.6544 points and 11.82% relatively below, and it fires. On the wider basis that includes the unallocated column the half runs 13.9221% and the gap is 11.35%; the narrower like-for-like figure is recorded because it is the one the forecast is comparable to and because it makes the breach LARGER rather than smaller. Against the audited FY2025 year of 12.2719% the forecast opens only -0.57% low and nothing would fire -- the stale full-year rate is the flattering comparison, which is why it is not the one this record is struck on. THE PATH DOES NOT DECLINE: 12.3422% -> 12.5299% -> 12.6624% -> 12.7239% -> 12.7246%, so the opening year is the low point of the explicit window and the second clause does not fire. WHERE THE CLAIM ACTUALLY SITS, AND IT IS THE REASON NO MECHANISM FITS. The first forecast year already CONTAINS the filed half, so the only part still in question is the half not yet filed, and every like-for-like comparison this company's own filings permit is inside the tolerance: the filed half against its own filed comparative half, 13.9966% against 14.1369%, -0.99%; the implied second half against the company's own filed second half a year earlier, 11.0362% against 10.8036%, +2.15%; the forecast year against the audited year, +0.57%. What separates them is that THE HALVES ARE NOT ALIKE: on its own filed figures this issuer earned 14.1369% in the first half of FY2025 and 10.8036% in the second, 3.3333 points apart, the second half running at 0.7642x the first, and the forecast carries essentially that same shape at 0.7885x. Both second halves are DERIVED by one identity -- a full year less its own filed first half, on a single basis -- and are labelled derived rather than presented as filed periods. So the 11.82% this record reports is a half measured against a year on an issuer with a 3.3333-point seasonal step, and 'the latest reviewed period is a half' is not on the closed list. THE SIX MECHANISMS, TESTED AND REFUSED ONE BY ONE. (a) MIX. Holding mix constant -- the forecast rates applied to the reviewed half's own revenue mix -- gives 12.4930% against the realised 13.9966%, so mix carries 0.1508 points of the 1.6544-point gap and 10.74% relative survives it. It is refused anyway because the direction is wrong in the filings: the highest-margin segment, Electrical products and digital solutions at 24.9066% in the half, has been GAINING share -- 10.70% of revenue in FY2023, 10.29% in FY2024, 12.20% in FY2025, 14.08% in the reviewed half -- so a disclosed shift toward lower margin is contradicted by the record. (b) INPUT COST OUTPACING PRICE. This is the candidate that would have cleared the check and it is the one worth recording as refused: group cost per unit of revenue rose from 85.8631% to 86.0034% across the two comparable halves, +0.1403 points, so the direction test would pass. It is not claimed, for three reasons that are facts about the model rather than opinions about the company. The model projects no such drift at all -- all three segment margins are held FLAT across the whole explicit window, with a spread of 0.000000, 0.000000 and 0.000000 between their highest and lowest forecast years. The three measured half-on-half directions DISAGREE with each other -- Cables and accessories -2.0558 points, Constructions and infrastructure +2.5348 points, Electrical products and digital solutions +1.4491 points -- so there is no group trend to project and the study's own driver registration says so. And the measured drift is 0.1403 points of revenue against the 1.6544 points the claim would have to carry, 8.5% of it. A mechanism the model does not run, asserted on a measurement a small fraction of the size of the step it is offered to explain, is the assumption wearing one. (c) A ONE-OFF IN THE LATEST REVIEWED PERIOD. One is disclosed and quantified -- EGP 542.976mn of gains on sale and revaluation of equity-accounted investees, note 20-3, on its own line with no comparative -- and it sits on the associate line BELOW operating profit, outside segment profit entirely, so it moves this rate by nothing. The disclosure exists and does not establish the mechanism. (d) CONTRACTED PRICE STEP-DOWN, (e) SUBSIDY OR LEVY WITHDRAWAL, (f) CAPACITY COMMISSIONING DRAG: nothing in this study's own input register -- its record of what the filings disclose, four fields to a figure -- names a contracted or administered price step, a subsidy, levy or quota change, or a capacity programme whose commissioning costs land before its revenue. No order book or backlog figure is disclosed in any of the audited filings or the Q1-2026 interim either, which is the absence the constructions growth driver already records. WHAT THIS RECORD IS THEREFORE SAYING: the forecast is not declining away from what this company has filed -- on the company's own halves it is roughly flat, in both of them -- and it cannot be cleared through this gate, because the arithmetic the gap needs is seasonal and the list is closed. That is reported rather than resolved: the list is not extended from inside a study."
  }
 }

@@ -149,12 +149,20 @@ def dcf_table(numbers, currency="EGP", unit="mn", per_share_dp=2, blocks=None,
     if pv is not None:
         rows.append(["Present value of free cash flow"] + [fmt(v) for v in pv])
 
-    # ---- the bridge, one line at a time -----------------------------------
-    blank = [""] * n
+    # ---- the bridge, ITS OWN TABLE ----------------------------------------
+    # It used to share the waterfall's grid, with every bridge line's value in the
+    # last column. That put two different kinds of row under one set of column
+    # headers: the reader saw four columns of white space, and the footing checker
+    # — correctly — read "sum of present values" as a column total of the forecast
+    # years above it and reported that it did not foot. It does not foot down that
+    # column, because it is a sum ACROSS the row of present values. A table whose
+    # own totals do not follow from the rows above them is badly built even when
+    # every number in it is right, so it is two tables now.
+    bridge = [["The bridge to value per share", "%s %s" % (currency, unit)]]
 
     def one(label, value, dp=0, pct=False):
         cell = "{:.2%}".format(value) if pct else fmt(value, dp)
-        rows.append([label] + blank[:-1] + [cell])
+        bridge.append([label, cell])
 
     one("Sum of present values, explicit window", d["pv_explicit"])
     one("Terminal value, undiscounted", d["tv"])
@@ -204,7 +212,8 @@ def dcf_table(numbers, currency="EGP", unit="mn", per_share_dp=2, blocks=None,
             raise DCFTableError(
                 "explicit PV %.1f + terminal PV %.1f = %.1f against a published enterprise "
                 "value of %.1f" % (s, d["pv_tv"], ev_chk, d["ev"]))
-    return rows, rec
+    rec["bridge_rows"] = len(bridge)
+    return rows, bridge, rec
 
 
 def sensitivity_grid(numbers, currency="EGP"):
