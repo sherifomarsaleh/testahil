@@ -16,6 +16,13 @@ conforming beta produced by the sanctioned routine against `raw_indices/AE/FADGI
 > listed on, then reproduce the valuation study and the Excel model on the corrected
 > number. Follow the standing protocol; this is not a new study and not a roll-forward.
 >
+> **[R-PRIME-01] THE RESEARCH PRIMER COMES FIRST.** This rebuilds a delivered study, so the
+> primer rule binds. Generate the prompt with `python3 engine/research_primer_prompt.py {TICKER}`,
+> hand it over, and read what comes back before rebuilding. It is a LEAD AND NEVER AN INPUT:
+> traced to the primary source and read there before it moves anything; historicals from the
+> company's own issued statements alone; anything untraceable recorded as a dated negative
+> search rather than dropped.
+>
 > **1 — Read the live rules first.** the condensed digest (`engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md`, named for its latest amendment day) and the
 > BETA section of `engine/Standing_Research_Protocol.md`. Do not work from memory of them.
 >

@@ -11,6 +11,17 @@ delivered study, use `Critique_Response_Prompt.md` — a different procedure, no
 
 Run a full valuation study for **{COMPANY NAME}**, listed on **{EXCHANGE}**. This is NEW coverage — no existing study, ticker page or ledger cohort.
 
+**[R-PRIME-01] THE RESEARCH PRIMER COMES FIRST, BEFORE ANY OF THE BELOW.** Generate the
+prompt with `python3 engine/research_primer_prompt.py {TICKER}`, hand it to the principal,
+and read what comes back before the build starts. If the generator refuses the name, STOP
+AND SAY SO — do not hand-write the prompt instead. What comes back is a LEAD AND NEVER AN
+INPUT: every number is traced to the primary source it cites and read there before it
+moves anything, historicals still come from the company's own issued statements and from
+nowhere else, and every claim that does not survive tracing is written into the sweep
+register as a dated negative search rather than quietly dropped. A research report is a
+finding aid, not a source, and is cited in no bibliography as authority for anything.
+
+
 **Work out the rest yourself. Do not ask me for it.** Derive each of the following, state what you derived and on what evidence in your first response, then proceed without waiting for confirmation:
 
 - **Ticker and market code** — the exchange gives the market code (EGX→EG, Tadawul→SA, ADX/DFM→AE, QE→QA, LSE→GB, NSE/BSE→IN, KRX→KR, B3→BR, NYSE/Nasdaq→US).

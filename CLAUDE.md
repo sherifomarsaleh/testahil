@@ -190,6 +190,15 @@ diff-only summary leaves that copy silently behind.
   compiled, and that is stated in the file rather than implied.
 
 **Shared code every study should use, not reinvent:**
+- `engine/research_primer_prompt.py` — [R-PRIME-01]. **`python3 engine/research_primer_prompt.py
+  TICKER` BEFORE a study is built or re-issued**, then hand the prompt over and read what comes
+  back. Built from what the repo already holds: the company's registered name in English AND the
+  language its own regulator and trade press write it in, the driver headings its industry turns
+  on, and the study's OWN dated negative searches read live out of its sweep register. Never
+  hand-write it — if the generator refuses the name, stop and say so. What comes back is a LEAD
+  AND NEVER AN INPUT: traced to the primary source and read there before it moves anything,
+  historicals from the company's own issued statements alone, and every untraceable claim
+  written back as a dated negative search rather than dropped.
 - `engine/research_sweep.py` — the Step 2A Information Sweep register and its enforced
   invariants (coverage, provenance, consequence, gate linkage, primary access, FS depth,
   study-year quarter coverage, IR coverage). Import this rather than hand-rolling a

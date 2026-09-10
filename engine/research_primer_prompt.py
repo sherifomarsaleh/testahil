@@ -29,6 +29,11 @@ nothing typed by hand carries reliably:
 WHAT COMES BACK IS A LEAD AND NEVER AN INPUT. Nothing from a research pass enters a model
 until it is traced to the primary source it cites and read there. Historicals come from
 the company's own issued financial statements and from nowhere else.
+
+THIS MODULE IS THE GENERATOR [R-PRIME-01] CLAUSE TWO NAMES, and clause four — search in
+the language the source is written in — is built into what it emits rather than left to
+the researcher's memory: every generated prompt carries the company's registered name in
+the local language beside the English one, and asks which languages were searched.
 """
 import json, os, subprocess, sys
 
@@ -343,6 +348,85 @@ BLOCKS = {
  ],
 }
 
+# ---- THE REGULATORS, BY NAME --------------------------------------------------
+# Per instruction 10-09-2026. "The regulator concerned" is not an instruction a researcher
+# can act on; a NAMED body is. These are resolved for the company's own market and then
+# for its industry, so a cement company is pointed at the competition authority and a
+# pharmaceutical company at the drug authority, rather than at a list of everything.
+MARKET_REGULATORS = {
+ 'EGX': ["the Egyptian Exchange (EGX) disclosure portal", "the Financial Regulatory Authority (FRA)",
+         "the Central Bank of Egypt", "the General Authority for Investment (GAFI)"],
+ 'ADX': ["the ADX disclosure portal", "the Securities and Commodities Authority (SCA)",
+         "the Central Bank of the UAE"],
+ 'DFM': ["the DFM disclosure portal", "the Securities and Commodities Authority (SCA)",
+         "the Central Bank of the UAE"],
+ 'TADAWUL': ["the Tadawul disclosure portal", "the Capital Market Authority (CMA)",
+             "the Saudi Central Bank (SAMA)"],
+ 'QSE': ["the Qatar Stock Exchange disclosure portal",
+         "the Qatar Financial Markets Authority (QFMA)", "the Qatar Central Bank"],
+ 'NSE': ["the NSE and BSE disclosure portals", "the Securities and Exchange Board of India (SEBI)",
+         "the Reserve Bank of India"],
+ 'KRX': ["the DART electronic disclosure system", "the Financial Supervisory Service (FSS)",
+         "the Financial Services Commission (FSC)"],
+ 'NASDAQ': ["SEC EDGAR", "the Securities and Exchange Commission"],
+}
+# Industry regulators, named per market where the body differs by country.
+SECTOR_REGULATORS = {
+ ('EGX', 'pharma'): ["the Egyptian Drug Authority (EDA)",
+                     "the Egyptian Authority for Unified Procurement (UPA)"],
+ ('EGX', 'pharma_distribution'): ["the Egyptian Drug Authority (EDA)",
+                                  "the Egyptian Authority for Unified Procurement (UPA)"],
+ ('EGX', 'healthcare'): ["the Egyptian Healthcare Authority",
+                         "the General Authority for Healthcare Accreditation and Regulation"],
+ ('EGX', 'cement'): ["the Egyptian Competition Authority (ECA)",
+                     "the Ministry of Trade and Industry"],
+ ('EGX', 'fertiliser'): ["the Ministry of Petroleum and Mineral Resources", "EGPC",
+                         "the Ministry of Agriculture and Land Reclamation",
+                         "the Egyptian Customs Authority (for export duties and their repeal)"],
+ ('EGX', 'refining'): ["EGPC", "the Ministry of Petroleum and Mineral Resources"],
+ ('EGX', 'realestate'): ["the New Urban Communities Authority (NUCA)",
+                         "the Ministry of Housing, Utilities and Urban Communities"],
+ ('EGX', 'telecom'): ["the National Telecommunications Regulatory Authority (NTRA)"],
+ ('EGX', 'fintech'): ["the Central Bank of Egypt", "the Financial Regulatory Authority (FRA)"],
+ ('EGX', 'bank'): ["the Central Bank of Egypt"],
+ ('EGX', 'utility'): ["the Egyptian Electric Utility and Consumer Protection Regulatory Agency (EgyptERA)"],
+ ('EGX', 'cables'): ["the Egyptian Electric Utility and Consumer Protection Regulatory Agency (EgyptERA)",
+                     "the Ministry of Electricity and Renewable Energy"],
+ ('EGX', 'mining'): ["the Egyptian Mineral Resources Authority (EMRA)"],
+ ('EGX', 'textiles'): ["the Export Development Fund", "the Ministry of Trade and Industry"],
+ ('EGX', 'automotive'): ["the Egyptian Customs Authority", "the Ministry of Trade and Industry",
+                         "the Financial Regulatory Authority (FRA), for the financing arms"],
+ ('ADX', 'oilfield_services'): ["ADNOC", "the Abu Dhabi Department of Energy"],
+ ('ADX', 'gas'): ["ADNOC", "the Abu Dhabi Department of Energy"],
+ ('ADX', 'fuel_retail'): ["ADNOC", "the Abu Dhabi Department of Energy"],
+ ('ADX', 'telecom'): ["the Telecommunications and Digital Government Regulatory Authority (TDRA)"],
+ ('DFM', 'telecom'): ["the Telecommunications and Digital Government Regulatory Authority (TDRA)"],
+ ('DFM', 'utility'): ["the Dubai Supreme Council of Energy", "the Dubai Regulatory and Supervisory Bureau"],
+ ('DFM', 'realestate'): ["the Dubai Land Department", "RERA"],
+ ('ADX', 'realestate'): ["the Abu Dhabi Department of Municipalities and Transport"],
+ ('TADAWUL', 'pharma'): ["the Saudi Food and Drug Authority (SFDA)"],
+ ('TADAWUL', 'telecom'): ["the Communications, Space and Technology Commission (CST)"],
+ ('TADAWUL', 'mining'): ["the Ministry of Industry and Mineral Resources"],
+ ('TADAWUL', 'oil_gas'): ["the Ministry of Energy"],
+ ('TADAWUL', 'power_developer'): ["the Water and Electricity Regulatory Authority (WERA)",
+                                  "the Saudi Power Procurement Company"],
+ ('NSE', 'pharma'): ["the Central Drugs Standard Control Organisation (CDSCO)",
+                     "the National Pharmaceutical Pricing Authority (NPPA)"],
+ ('NSE', 'automotive'): ["the Ministry of Heavy Industries"],
+ ('NASDAQ', 'technology'): ["the Federal Trade Commission", "the Bureau of Industry and Security (export controls)"],
+ ('NASDAQ', 'automotive'): ["the National Highway Traffic Safety Administration (NHTSA)"],
+}
+
+
+def regulators(exch, sector):
+    """The bodies to name in the prompt, market first then industry, de-duplicated."""
+    out = list(MARKET_REGULATORS.get(exch, []))
+    for r in SECTOR_REGULATORS.get((exch, sector), []):
+        if r not in out:
+            out.append(r)
+    return out
+
+
 DISPLAY = {'realestate': 'real estate', 'oil_gas': 'oil and gas',
            'it_services': 'IT services', 'pharma_distribution': 'pharmaceutical distribution',
            'oilfield_services': 'oilfield services', 'fuel_retail': 'fuel retail',
@@ -431,16 +515,16 @@ def open_questions(tk):
     return out, None
 
 
-PART1 = """## PART 1 — paste this first, once per session
+PART1_HEAD = """## PART 1 — paste this first, once per session
 
 > You are a research assistant working on listed-equity valuation. I need
 > **forward-looking, source-backed** information only. Follow these rules exactly, for
 > every answer in this session.
 >
 > **1. Sources, in this order of preference:** the company's own investor-relations page,
-> its earnings-call transcripts and presentations, its stock-exchange disclosures, its own
-> press releases; then the regulator concerned, by name; then a named wire service. Never a
-> forum, a blog, an aggregator, or another analyst's price target or rating.
+> its earnings-call transcripts and presentations, its own press releases; then
+> %REGULATORS%; then a named wire service. Never a forum, a blog, an aggregator, or another
+> analyst's price target or rating.
 >
 > **2. SEARCH IN THE LANGUAGE THE SOURCE IS WRITTEN IN.** A ministerial decision, a decree
 > register, a customs circular and the trade press that covers them are usually in the
@@ -511,7 +595,18 @@ def build(tk):
     L.append("")
     L.append("---")
     L.append("")
-    L.append(PART1)
+    regs = regulators(exch, sector)
+    if regs:
+        reg_text = ('; '.join(regs[:-1]) + '; and ' + regs[-1]) if len(regs) > 1 else regs[0]
+    else:
+        # NAMED OR DECLARED, NEVER SILENTLY GENERIC [R-ENF-04]. A prompt that says "the
+        # regulator concerned" hands the researcher the job of working out which body that
+        # is, which is the job the repository is better placed to do. Where it cannot, it
+        # says so rather than emitting a generic phrase that reads like an instruction.
+        reg_text = ("the regulators that govern this company — I could not resolve them "
+                    "from my own records for this market and sector, so name the ones you "
+                    "used")
+    L.append(PART1_HEAD.replace('%REGULATORS%', reg_text))
     L.append("")
     L.append("---")
     L.append("")

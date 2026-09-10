@@ -6,6 +6,16 @@ Ticker: {TICKER} · Exchange: {EXCHANGE} · Market code: {MARKET} · Update date
 
 Train the fundamental method on this company's own history and carry the result into the update.
 
+**[R-PRIME-01] THE RESEARCH PRIMER COMES FIRST.** This exercise rebuilds the study, so the
+primer rule binds: generate the prompt with `python3 engine/research_primer_prompt.py {TICKER}`,
+hand it to the principal, and read what comes back before the rebuild starts. If the
+generator refuses the name, STOP AND SAY SO rather than hand-writing the prompt. What comes
+back is a LEAD AND NEVER AN INPUT — traced to the primary source it cites and read there
+before it moves anything, historicals still from the company's own issued statements alone,
+and anything that does not survive tracing written into the sweep register as a dated
+negative search rather than dropped.
+
+
 **TWO DIFFERENT TESTS ARE BOTH CALLED A WALK-FORWARD. THIS IS ONE OF THEM.** The FUNDAMENTAL walk-forward, below, tests the forecasting method: drivers projected from a past origin, scored against what the company actually reported. The PRICE-ENGINE walk-forward (`{ticker}_study/backtest_5y.py`, `backtest_rows.csv`) tests the probability cone: band coverage and a proper score against a naive rule. They test different machinery on different evidence and neither substitutes for the other. Say which one you mean, every time — conflating them once already understated the evidence base badly.
 
 The worked pattern is the PHDC run of 30-Aug-2026 (`engine/phdc_walkforward/`: `panel.py`, `bottom_up.py`, `score.py`, `diagnose.py`, `corrections.py`, `forward.py`, and `TRAINING_RECORD_30-08-2026.md`) — replicate its structure, never its numbers. An earlier du reference run is named in previous editions of this prompt (`du_panel.py`, `du_IS_projected_vs_actual_all_origins.md`); those files are not in this repository, so locate them before relying on them and do not assume their contents.
