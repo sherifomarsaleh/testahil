@@ -147,6 +147,17 @@ def main():
         no_wacc_reason=('bank: equity flows are discounted at the cost of equity and '
                         'there is no weighted average. Deposits are raw material, not '
                         'financing, and their cost is inside the net interest margin.'),
+        # THE SAME FACT, SAID TO THE OTHER GATE. With no enterprise value there is no
+        # invested capital to replace and no reinvestment rate, so this study publishes no
+        # enterprise terminal value and the 1/g construction test has nothing to bite on.
+        # Declared rather than left absent: a study that simply exposes no terminal reads
+        # as one that will not show its own [R-ENF-04], and the terminal gate corroborates
+        # the claim against the terminal cost of equity and growth published beside it.
+        no_terminal_value_reason=('bank: deposits are raw material rather than financing, '
+                                  'so there is no enterprise value and no invested capital '
+                                  'to replace. The terminal is an equity-side one — a '
+                                  'terminal cost of equity and a terminal growth rate, both '
+                                  'published in the cost-of-capital record.'),
     )
     p = os.path.join(HERE, 'study_numbers.json')
     json.dump(d, open(p, 'w'), indent=1, default=float)

@@ -1355,6 +1355,7 @@
    "rf_star_other_basis": 0.170298,
    "ke_other_basis": 0.31517309835270024
   },
-  "no_wacc_reason": "bank: equity flows are discounted at the cost of equity and there is no weighted average. Deposits are raw material, not financing, and their cost is inside the net interest margin."
+  "no_wacc_reason": "bank: equity flows are discounted at the cost of equity and there is no weighted average. Deposits are raw material, not financing, and their cost is inside the net interest margin.",
+  "no_terminal_value_reason": "bank: deposits are raw material rather than financing, so there is no enterprise value and no invested capital to replace. The terminal is an equity-side one \u2014 a terminal cost of equity and a terminal growth rate, both published in the cost-of-capital record."
  }
 }
