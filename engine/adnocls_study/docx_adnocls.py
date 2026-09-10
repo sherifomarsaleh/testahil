@@ -172,7 +172,7 @@ _we_ed, _wd_ed = W['mktcap'] / _cap_ed, W['debt'] / _cap_ed
 # COMMITTED, not recomputed here: a figure a reader sees must be one something
 # outside this document can check.
 WACC_PRIOR = W['wacc_ex_hybrid']
-WACC_TERM_PRIOR = _we_ed * W['ke_term'] + _wd_ed * W['kd_term'] * (1 - W['tax_stat'])
+WACC_TERM_PRIOR = W['wacc_term_ex_hybrid']      # committed, for the same reason as the line above
 # The justified-multiple form of the asset lens, on the SAME inputs the residual-income
 # construction uses, so the comparison between the two methods is a comparison of methods
 # and not of two different sets of assumptions.

@@ -859,6 +859,7 @@ IN('gdp_growth_26', 0.031, "International Monetary Fund World Economic Outlook d
 import sys as _sys                                                   # noqa: E402
 _sys.path.insert(0, os.path.join(HERE, '..'))
 import terminal_value as TV        # [R-TERM-01] the only sanctioned terminal
+import cost_of_capital as _coc
 import macro_path as _MP                                             # noqa: E402
 _PATH = _MP.load('AE')
 
@@ -1803,17 +1804,28 @@ def project(mode):
 mktcap = shares_mn * spot_aed / peg * 1000.0            # USD'000
 spot_usd = spot_aed / peg
 rf_star = V['rf_observed'] - V['sov_spread']            # country risk enters once, via the ERP
-ke = rf_star + V['beta'] * V['erp_total']
-ke_blume = rf_star + V['beta_blume'] * V['erp_total']
-ke_beta1 = rf_star + V['beta_composite'] * V['erp_total']
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. The retired line was
+# rf* + beta x the WHOLE premium, which multiplies the UAE's country risk by beta and so
+# charges it (beta - 1) times over. This beta is 1.1032, so the retired identity was
+# OVER-charging: the correction lowers the rate and raises the answer, by about 7bp of
+# discount rate. Small, and fixed for the same reason ARCC's was fixed when it ran the
+# other way — the identity is either right or it is not.
+_CRP, _ERP_MATURE = _coc.split_erp(V['erp_total'], V['sov_spread'])
+ke = rf_star + V['beta'] * _ERP_MATURE + _CRP
+# [R-ENF-03] EVERY BETA IS PRICED THROUGH THE SAME CONSTRUCTION OR THE COMPARISON IS
+# BETWEEN TWO THINGS AT ONCE. The adopted rate moved onto the split premium; the Blume
+# shrink, the composite alternative and both confidence bounds exist to be compared with
+# it, so a beta difference read across them would have been part beta and part identity.
+ke_blume = rf_star + V['beta_blume'] * _ERP_MATURE + _CRP
+ke_beta1 = rf_star + V['beta_composite'] * _ERP_MATURE + _CRP
 # The two bounds of the regressed beta's own 90% confidence interval, carried as costs of
 # equity. Every low/high bound in the study that moves with the discount rate uses these,
 # so the published span is the span the estimate itself supports. NOTE: ke_beta1 is the
 # ALTERNATIVE construction (a LOWER beta, so a HIGHER value) and must never be used as a
 # downside bound — it was, while it stood for a beta of one, and that silently inverted
 # the book lens's low bound and Expert 2's low bound when the regressor changed.
-ke_ci_hi = rf_star + V['beta_ci_hi'] * V['erp_total']   # high beta -> low value
-ke_ci_lo = rf_star + V['beta_ci_lo'] * V['erp_total']   # low beta  -> high value
+ke_ci_hi = rf_star + V['beta_ci_hi'] * _ERP_MATURE + _CRP   # high beta -> low value
+ke_ci_lo = rf_star + V['beta_ci_lo'] * _ERP_MATURE + _CRP   # low beta  -> high value
 
 # --- cost of debt: three independent constructions, averaged on the sheet ------
 kd_m1 = V['sofr'] + V['shldr_margin']                        # the marginal drawdown rate
@@ -1870,7 +1882,9 @@ wh = hybrid_cap / cap_total
 tax_stat = V['tax_stat']
 wacc = we * ke + wd * kd * (1 - tax_stat) + wh * kh   # the coupon is not tax-deductible: it is an equity distribution
 # terminal: the same construction on a long-run risk-free anchor
-ke_term = V['rf_terminal'] + V['beta'] * V['erp_total']
+# THE TERMINAL SPLITS TOO [R-ENF-03]. When a fix goes into one of two lines that do the
+# same job, the other one is now a defect. Same beta, same premium, same split.
+ke_term = V['rf_terminal'] + V['beta'] * _ERP_MATURE + _CRP
 kd_term = V['rf_terminal'] + (kd - rf_star)
 # the perpetual pays a floating coupon, so its cost normalises with the risk-free rate
 kh_term = V['rf_terminal'] + V['hybrid_margin']
@@ -1885,6 +1899,15 @@ wacc_blk = dict(
     kd_method1=kd_m1, kd_method2=kd_m2, kd_method3=kd_m3, kd=kd,
     wacc_ex_hybrid=((mktcap / (mktcap + debt_now)) * ke
                     + (debt_now / (mktcap + debt_now)) * kd * (1 - tax_stat)),
+    # THE TERMINAL SIBLING, COMMITTED RATHER THAN REBUILT IN THE DOCUMENT. The study's
+    # prose quotes both halves of this pair — the rate before the perpetual tranche is
+    # weighted in, explicit and terminal — and only the explicit one was committed. The
+    # document recomputed the terminal one from its parts, directly under a comment saying
+    # a figure a reader sees must be one something OUTSIDE the document can check, so the
+    # prose check could not match it and went red the moment the rate moved. A number
+    # computed in the document that prints it is a number nothing can verify [R-DCF-01].
+    wacc_term_ex_hybrid=((mktcap / (mktcap + debt_now)) * ke_term
+                         + (debt_now / (mktcap + debt_now)) * kd_term * (1 - tax_stat)),
     kd_balance_weighted=kd_balance_weighted,
     kd_retired_average=kd_retired_average, kd_construction='balance-weighted across the instruments actually outstanding; the average of three constructions is retired because it reproduces from no set of facility lines',
     kd_bank_mid=kd_bank_mid, kd_other_mid=kd_other_mid, kd_thirdparty=kd_thirdparty,
@@ -2302,8 +2325,12 @@ def dcf_scenario(beta_s, anchor_mult, capex_mult=1.0, hybrid_as_debt=False):
     old_mid, old_capex = dict(SPOT_MID), list(CAPEX)
     SPOT_MID.update({c: BASE_MID[c] * anchor_mult for c in BASE_MID})
     CAPEX[:] = [c * capex_mult for c in old_capex]
-    kes = rf_star + beta_s * V['erp_total']
-    ket = V['rf_terminal'] + beta_s * V['erp_total']
+    # [R-ENF-03] THE SCENARIO BUILDER IS THE FIFTH PLACE THIS IDENTITY LIVES, and it is the
+    # one every alternative, sensitivity and anchor case runs through — so leaving it on the
+    # retired construction would have priced the whole comparison set on one identity while
+    # the base ran on another. Beta on the mature leg, country risk flat and once.
+    kes = rf_star + beta_s * _ERP_MATURE + _CRP
+    ket = V['rf_terminal'] + beta_s * _ERP_MATURE + _CRP
     w = we * kes + wd * kd * (1 - tax_stat) + wh * kh   # the perpetual tranche too
     wt = we * ket + wd * kd_term * (1 - tax_stat) + wh * kh_term
     p = project('reversion')
@@ -2496,7 +2523,14 @@ sens = dict(betas=BETAS, gs=GS)
 grid = []
 for b in BETAS:
     row = []
-    kes = rf_star + b * V['erp_total']; ket = V['rf_terminal'] + b * V['erp_total']
+    # [R-ENF-03] ONE FACT, THREE NAMES. The comment below has said since this grid was
+    # written that every cost-of-capital construction in this file must carry the same
+    # tranches; the base and the terminal moved onto the split premium and this third copy
+    # did not, so the file's own assertion fired on a grid centred 5.07 fils from its base.
+    # It is the same identity as the other two now: beta on the mature leg, country risk
+    # flat and once.
+    kes = rf_star + b * _ERP_MATURE + _CRP
+    ket = V['rf_terminal'] + b * _ERP_MATURE + _CRP
     # every cost-of-capital construction in this file must carry the same three tranches,
     # or the sensitivity grid disagrees with the base it is supposed to be centred on
     w = we * kes + wd * kd * (1 - tax_stat) + wh * kh
@@ -2704,8 +2738,17 @@ A('the published interval, standard error and Blume check are the record\'s',
 A('the Blume cross-check is the adopted slope shrunk toward one',
   abs(V['beta_blume'] - (2 / 3 * beta_res['sanctioned']['beta'] + 1 / 3)) < 5e-5
   and abs(V['beta_blume'] - 1.0) < abs(V['beta'] - 1.0))
+# RE-POINTED, NOT RELAXED [R-COC-01]. What this asserts is that the DISCLOSED COMPOSITE
+# beta is published and discounted at nowhere — the rate is built on the ADOPTED beta and
+# on no other. It tested that by reproducing ke under rf* + beta x the WHOLE premium, which
+# was the construction at the time and is now the retired one, so it fired the moment the
+# rate moved onto the split. The claim is unchanged and the tolerance is unchanged; only
+# the identity it reproduces under has moved with the model. Relaxing the bound instead
+# would have been the free parameter, and deleting it would have retired a live check to
+# make a red thing green.
 A('the disclosed composite is published but discounted at nowhere',
-  V['beta_composite'] != V['beta'] and abs(ke - (rf_star + V['beta'] * V['erp_total'])) < 1e-12
+  V['beta_composite'] != V['beta']
+  and abs(ke - (rf_star + V['beta'] * _ERP_MATURE + _CRP)) < 1e-12
   and abs(wacc_blk['ke'] - ke) < 1e-12)
 # Every published range must bracket its own base. A bound built on an alternative cost of
 # equity silently inverts the moment that alternative stops being the demanding one, which
@@ -3633,6 +3676,14 @@ OUT = dict(
         market='AE', regime=_PATH.regime, years=5,
         rf_observed=V['rf_observed'], default_spread=V['sov_spread'], rf_star=rf_star,
         erp=V['erp_total'], erp_basis='rating', beta=V['beta'],
+        erp_mature=_ERP_MATURE, crp=_CRP, crp_effective=_CRP,
+        lambda_country=1.0, crp_foreign=0.0,
+        ke_construction='split_premium',
+        ke_construction_note=(
+            'rf* + beta x the MATURE premium + the country premium charged FLAT and once. '
+            'The fleet is UAE-flagged and UAE-domiciled and the counterparty is the UAE '
+            'national oil company, so lambda is 1.00 and the whole country premium is the '
+            'Emirati one. Beta multiplies only the mature leg.'),
         ke_exp=ke, kd_pretax=kd, kd_aftertax=kd * (1 - tax_stat),
         weight_equity=we, weight_debt=wd, wacc_exp=wacc,
         # THE THIRD TRANCHE IS DECLARED HERE BECAUSE THIS COMPANY HAS THREE. Equity and

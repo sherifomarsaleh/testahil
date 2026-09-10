@@ -118,6 +118,7 @@ from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 V = {k: v['value'] for k, v in D['inputs'].items()}
+COC = D['cost_of_capital_record']   # [R-COC-03] the split, as the study committed it
 
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
@@ -483,16 +484,23 @@ FCFF_F = [NOPAT_F[i] + DNA_F[i] - CAPEX[i] - DNWC_F[i] for i in range(5)]
 # --- cost of capital ---------------------------------------------------------
 MKTCAP = SH * SPOT / PEG * 1000.0
 RF_STAR = V['rf_observed'] - V['sov_spread']
-KE = RF_STAR + V['beta'] * V['erp_total']
+# [R-COC-03] SEVEN COPIES OF ONE IDENTITY, AND THE MODEL MOVED WITHOUT THEM. Every line
+# below read rf* + beta x the WHOLE premium, which multiplies the UAE's country risk by
+# beta. compute.py moved onto the split and this builder did not, so the workbook's own
+# rebuild assertion fired on a discount factor 24bp out. The legs are read from the study's
+# committed record and never retyped, so the seven cannot drift apart again.
+_CRP = COC['crp_effective']
+_ERP_MATURE = COC['erp_mature']
+KE = RF_STAR + V['beta'] * _ERP_MATURE + _CRP
 # The alternative construction is the SAME regression measured against a different market:
 # an equal-weight composite of the exchange's own names rather than its published index.
-KE_A = RF_STAR + V['beta_composite'] * V['erp_total']
+KE_A = RF_STAR + V['beta_composite'] * _ERP_MATURE + _CRP
 # The regression's own 90% confidence interval, and the same slope shrunk toward the
 # market, priced through the same cost-of-equity construction so the reader sees the span
 # the estimate supports.
-KE_CI_LO = RF_STAR + V['beta_ci_lo'] * V['erp_total']
-KE_CI_HI = RF_STAR + V['beta_ci_hi'] * V['erp_total']
-KE_BLUME = RF_STAR + V['beta_blume'] * V['erp_total']
+KE_CI_LO = RF_STAR + V['beta_ci_lo'] * _ERP_MATURE + _CRP
+KE_CI_HI = RF_STAR + V['beta_ci_hi'] * _ERP_MATURE + _CRP
+KE_BLUME = RF_STAR + V['beta_blume'] * _ERP_MATURE + _CRP
 KD1 = V['sofr'] + V['shldr_margin']
 KD_BANK = (V['bank_loan_lo'] + V['bank_loan_hi']) / 2
 KD_OTHER = (V['other_borr_lo'] + V['other_borr_hi']) / 2
@@ -524,8 +532,8 @@ HYBRID_CAP = V['h1_26_hybrid']
 CAP_TOT = MKTCAP + DEBT_NOW + HYBRID_CAP
 WE = MKTCAP / CAP_TOT; WD = DEBT_NOW / CAP_TOT; WH = HYBRID_CAP / CAP_TOT
 W_EXP = WE * KE + WD * KD_AT + WH * KH
-KE_T = V['rf_terminal'] + V['beta'] * V['erp_total']
-KE_T_A = V['rf_terminal'] + V['beta_composite'] * V['erp_total']
+KE_T = V['rf_terminal'] + V['beta'] * _ERP_MATURE + _CRP
+KE_T_A = V['rf_terminal'] + V['beta_composite'] * _ERP_MATURE + _CRP
 KD_T = V['rf_terminal'] + (KD - RF_STAR)
 KD_T_AT = KD_T * (1 - TAXS)
 # the perpetual pays a floating coupon, so its cost normalises with the risk-free rate
@@ -4097,7 +4105,8 @@ close(SN['grid_beta_g'][0][_gi], DA['fv_aed'], 1e-6)
 close(SN['anchor']['1.0'], DC['fv_aed'], 1e-6)
 close(SN['capex']['1.0'], DC['fv_aed'], 1e-6)
 for _bi, _b in enumerate(SN['betas']):
-    _kes = RF_STAR + _b * V['erp_total']; _ket = V['rf_terminal'] + _b * V['erp_total']
+    _kes = RF_STAR + _b * _ERP_MATURE + _CRP
+    _ket = V['rf_terminal'] + _b * _ERP_MATURE + _CRP
     close(SN['grid_beta_g'][_bi][_gi],
           dcf_legs(WE * _kes + WD * KD_AT + WH * KH,
                    WE * _ket + WD * KD_T_AT + WH * KH_T)['fv_aed'], 1e-6)

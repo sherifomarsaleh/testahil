@@ -17,7 +17,7 @@
   "spot_date": "2026-09-07",
   "engine_close": 6.16,
   "engine_close_date": "2026-08-07",
-  "central": 5.338494934992969,
+  "central": 5.389209857567612,
   "latest_known_price": {
    "value": 6.85,
    "date": "2026-09-03",
@@ -4696,13 +4696,13 @@
    "layer": "Industry"
   },
   "gas_vy_alt_fv": {
-   "value": 4.5614,
+   "value": 4.6052,
    "source": "ADNOC L&S plc, First Half 2026 Earnings Presentation (11 Aug 2026) \u2014 fair value per share on the first-half deck's own reading of the gas contract table, computed through the same model. Published beside the adopted figure; an input to nothing",
    "date": "2026-08-11",
    "layer": "Company"
   },
   "tnk_leverage_alt_fv": {
-   "value": 4.5244,
+   "value": 4.5723,
    "source": "Fair value per share if the tanker unit's earnings leverage on its own fleet's charter-equivalent revenue were 1.0 \u2014 the delivered edition's construction \u2014 with the fixed base re-solved on the audited 2025 year at that leverage. Computed through the same model; an input to nothing",
    "date": "2026-06-30",
    "layer": "Company"
@@ -6552,14 +6552,15 @@
   "erp": 0.0487,
   "crp": 0.0064,
   "erp_mature": 0.0423,
-  "ke": 0.09432584,
-  "ke_blume": 0.09265055999999999,
-  "ke_beta1": 0.07420299999999999,
+  "ke": 0.0936670112,
+  "ke_blume": 0.0922113408,
+  "ke_beta1": 0.07618203999999999,
   "kd_method1": 0.0445,
   "kd_method2": 0.06348536969420494,
   "kd_method3": 0.0733,
   "kd": 0.06348536969420494,
-  "wacc_ex_hybrid": 0.09230892812449136,
+  "wacc_ex_hybrid": 0.0916864508605159,
+  "wacc_term_ex_hybrid": 0.09084166685846201,
   "kd_balance_weighted": 0.06348536969420494,
   "kd_retired_average": 0.06042845656473498,
   "kd_construction": "balance-weighted across the instruments actually outstanding; the average of three constructions is retired because it reproduces from no set of facility lines",
@@ -6571,21 +6572,21 @@
   "tax_stat": 0.09,
   "we": 0.831370711421182,
   "wd": 0.04855053206756824,
-  "wacc": 0.08710844588946735,
+  "wacc": 0.08656071492130658,
   "rf_terminal": 0.039751,
-  "ke_term": 0.09347684,
+  "ke_term": 0.0928180112,
   "kd_term": 0.06263636969420494,
-  "wacc_term": 0.08675547853731877,
+  "wacc_term": 0.086207747569158,
   "kh": 0.049,
   "kh_term": 0.052251000000000006,
   "wh": 0.12007875651124976,
   "hybrid_cap": 1978619,
   "wacc_glide": [
-   0.08703785241903764,
-   0.08696725894860792,
-   0.0868966654781782,
-   0.08682607200774849,
-   0.08675547853731877
+   0.08649012145087687,
+   0.08641952798044715,
+   0.08634893451001743,
+   0.08627834103958772,
+   0.086207747569158
   ],
   "mktcap": 13699058.296855003,
   "debt": 800000,
@@ -6624,22 +6625,22 @@
   ]
  },
  "dcf": {
-  "wacc": 0.08710844588946735,
-  "wacc_term": 0.08675547853731877,
+  "wacc": 0.08656071492130658,
+  "wacc_term": 0.086207747569158,
   "g": 0.02,
   "glide": [
-   0.08703785241903764,
-   0.08696725894860792,
-   0.0868966654781782,
-   0.08682607200774849,
-   0.08675547853731877
+   0.08649012145087687,
+   0.08641952798044715,
+   0.08634893451001743,
+   0.08627834103958772,
+   0.086207747569158
   ],
   "df": [
-   0.9591304222382443,
-   0.8823912719928506,
-   0.8118446767012981,
-   0.7469867512485568,
-   0.6873549441443239
+   0.9593721544135473,
+   0.8830586432820577,
+   0.8128683291619824,
+   0.7483057504249352,
+   0.688915865403815
   ],
   "fcff": [
    305303.60447191214,
@@ -6649,54 +6650,54 @@
    1336642.8963082165
   ],
   "pv": [
-   292825.975068003,
-   1511504.6213926615,
-   1367899.5050677538,
-   1356502.8240686737,
-   918748.1033328414
+   292899.7767724399,
+   1512647.8044904987,
+   1369624.2853545703,
+   1358898.0822238026,
+   920834.4976460367
   ],
-  "pv_explicit": 5447481.028929934,
+  "pv_explicit": 5454904.4464873485,
   "roic_terminal": 0.09751691727205757,
   "reinvest": 0.20509261940882526,
   "nopat_t1": 1102855.347503326,
-  "tv": 13132522.972848572,
-  "pv_tv": 9026704.59447638,
-  "tv_share": 0.6236416216660389,
+  "tv": 13241167.199338807,
+  "pv_tv": 9122050.160089104,
+  "tv_share": 0.6257857286578675,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 14474185.623406313,
+  "ev_ops": 14576954.606576452,
   "jv": 522768,
-  "ev": 14996953.623406313,
+  "ev": 15099722.606576452,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 316661.7804748641,
+  "nci": 317262.13410522137,
   "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 10754757.84293145,
-  "fv_usd": 1.4536405541165336,
-  "fv_aed": 5.338494934992969,
+  "equity": 10856926.47247123,
+  "fv_usd": 1.4674499271797445,
+  "fv_aed": 5.389209857567612,
   "ic_terminal": 11087622.159239575
  },
  "dcf_beta_alt": {
-  "wacc": 0.07037890608285273,
-  "wacc_term": 0.07002593873070415,
+  "wacc": 0.07202422197558371,
+  "wacc_term": 0.07167125462343513,
   "g": 0.02,
   "glide": [
-   0.07030831261242301,
-   0.0702377191419933,
-   0.07016712567156358,
-   0.07009653220113386,
-   0.07002593873070415
+   0.071953628505154,
+   0.07188303503472428,
+   0.07181244156429456,
+   0.07174184809386484,
+   0.07167125462343513
   ],
   "df": [
-   0.9665972401411225,
-   0.9031612536661863,
-   0.8439441205030703,
-   0.7886616722017783,
-   0.7370491159656481
+   0.9658551518277617,
+   0.9010825997413721,
+   0.8407092181410539,
+   0.7844325754716852,
+   0.7319712757876667
   ],
   "fcff": [
    305303.60447191214,
@@ -6706,54 +6707,54 @@
    1336642.8963082165
   ],
   "pv": [
-   295105.6214876871,
-   1547082.855541086,
-   1421984.7439681373,
-   1432183.0792691743,
-   985171.4650857345
+   294879.0592507816,
+   1543522.1958730265,
+   1416534.1676855846,
+   1424503.1818037345,
+   978384.2060832472
   ],
-  "pv_explicit": 5681527.76535182,
+  "pv_explicit": 5657822.810696375,
   "roic_terminal": 0.09751691727205757,
   "reinvest": 0.20509261940882526,
   "nopat_t1": 1102855.347503326,
-  "tv": 17524265.964783803,
-  "pv_tv": 12916244.737290798,
-  "tv_share": 0.6945049325372427,
+  "tv": 16966258.354741637,
+  "pv_tv": 12418813.773263395,
+  "tv_share": 0.687009096829616,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 18597772.502642617,
+  "ev_ops": 18076636.58395977,
   "jv": 522768,
-  "ev": 19120540.502642617,
+  "ev": 18599404.58395977,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 340750.8614084022,
+  "nci": 337706.500833453,
   "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 14854255.641234215,
-  "fv_usd": 2.007739152909348,
-  "fv_aed": 7.373422039059579,
+  "equity": 14336164.083126316,
+  "fv_usd": 1.9377125739189103,
+  "fv_aed": 7.1162494277171975,
   "ic_terminal": 11087622.159239575
  },
  "dcf_sustained": {
-  "wacc": 0.08710844588946735,
-  "wacc_term": 0.08675547853731877,
+  "wacc": 0.08656071492130658,
+  "wacc_term": 0.086207747569158,
   "g": 0.02,
   "glide": [
-   0.08703785241903764,
-   0.08696725894860792,
-   0.0868966654781782,
-   0.08682607200774849,
-   0.08675547853731877
+   0.08649012145087687,
+   0.08641952798044715,
+   0.08634893451001743,
+   0.08627834103958772,
+   0.086207747569158
   ],
   "df": [
-   0.9591304222382443,
-   0.8823912719928506,
-   0.8118446767012981,
-   0.7469867512485568,
-   0.6873549441443239
+   0.9593721544135473,
+   0.8830586432820577,
+   0.8128683291619824,
+   0.7483057504249352,
+   0.688915865403815
   ],
   "fcff": [
    305303.60447191214,
@@ -6763,54 +6764,54 @@
    1667313.063902978
   ],
   "pv": [
-   292825.975068003,
-   1561984.8053047825,
-   1488881.6523579564,
-   1536645.004421815,
-   1146035.877910133
+   292899.7767724399,
+   1563166.1676395254,
+   1490758.978662905,
+   1539358.3503972697,
+   1148638.4223178064
   ],
-  "pv_explicit": 6026373.3150626905,
+  "pv_explicit": 6034821.695789946,
   "roic_terminal": 0.12847690471830067,
   "reinvest": 0.1556700018875154,
   "nopat_t1": 1466583.5311786684,
-  "tv": 18549495.820326444,
-  "pv_tv": 12750087.663485851,
-  "tv_share": 0.6790463697100527,
+  "tv": 18702954.19457409,
+  "pv_tv": 12884761.874562923,
+  "tv_share": 0.6810277735051972,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 18776460.97854854,
+  "ev_ops": 18919583.570352867,
   "jv": 522768,
-  "ev": 19299228.97854854,
+  "ev": 19442351.570352867,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 341794.71989472705,
+  "nci": 342630.81036604766,
   "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 15031900.258653814,
-  "fv_usd": 2.0317500533752626,
-  "fv_aed": 7.461602071020652,
+  "equity": 15174186.75998682,
+  "fv_usd": 2.0509818605123202,
+  "fv_aed": 7.532230882731496,
   "ic_terminal": 11191326.522881484
  },
  "dcf_bear": {
-  "wacc": 0.1080730047274757,
-  "wacc_term": 0.10772003737532712,
+  "wacc": 0.10477706547139204,
+  "wacc_term": 0.10442409811924346,
   "g": 0.02,
   "glide": [
-   0.10800241125704599,
-   0.10793181778661627,
-   0.10786122431618655,
-   0.10779063084575684,
-   0.10772003737532712
+   0.10470647200096232,
+   0.1046358785305326,
+   0.10456528506010289,
+   0.10449469158967317,
+   0.10442409811924346
   ],
   "df": [
-   0.9500132166000482,
-   0.8574654156046789,
-   0.7739826945689329,
-   0.698672360117386,
-   0.6307300911273992
+   0.9514293637415495,
+   0.8613058676015579,
+   0.7797690903844506,
+   0.7059962318715605,
+   0.6392437769818881
   ],
   "fcff": [
    167984.0688327162,
@@ -6820,24 +6821,24 @@
    1107446.542465449
   ],
   "pv": [
-   159587.08556933264,
-   1337966.691362511,
-   1150701.9452979956,
-   1136325.752111207,
-   698499.8586479558
+   159824.97572822784,
+   1343959.2325870187,
+   1159304.7434844447,
+   1148237.3498134979,
+   707928.3106111465
   ],
-  "pv_explicit": 4483081.332989002,
+  "pv_explicit": 4519254.612224336,
   "roic_terminal": 0.07660322199258378,
   "reinvest": 0.261085623812746,
   "nopat_t1": 896774.4432716119,
-  "tv": 7554026.972144163,
-  "pv_tv": 4764552.12051932,
-  "tv_share": 0.5152185307162848,
+  "tv": 7848938.195286145,
+  "pv_tv": 5017384.89725212,
+  "tv_share": 0.5261166569488548,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 9247633.453508321,
+  "ev_ops": 9536639.509476457,
   "jv": 522768,
-  "ev": 9770401.453508321,
+  "ev": 10059407.509476457,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
@@ -6846,28 +6847,28 @@
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 5555670.453508321,
-  "fv_usd": 0.7509186161578334,
-  "fv_aed": 2.757748617839643,
+  "equity": 5844676.509476457,
+  "fv_usd": 0.7899814132450474,
+  "fv_aed": 2.901206740142437,
   "ic_terminal": 11477201.712789059
  },
  "dcf_bull": {
-  "wacc": 0.06614793582682364,
-  "wacc_term": 0.06579496847467503,
+  "wacc": 0.0683478823995236,
+  "wacc_term": 0.06799491504737501,
   "g": 0.02,
   "glide": [
-   0.06607734235639393,
-   0.0660067488859642,
-   0.06593615541553448,
-   0.06586556194510475,
-   0.06579496847467503
+   0.06827728892909388,
+   0.06820669545866416,
+   0.06813610198823444,
+   0.06806550851780473,
+   0.06799491504737501
   ],
   "df": [
-   0.9685134212527673,
-   0.9085434236367803,
-   0.8523431905568513,
-   0.7996723235915464,
-   0.7503059661991149
+   0.9675156578993538,
+   0.90573824524094,
+   0.8479614569294996,
+   0.7939227043351003,
+   0.7433768580254736
   ],
   "fcff": [
    373963.37229151,
@@ -6877,54 +6878,54 @@
    1533908.6151282904
   ],
   "pv": [
-   362188.5451212727,
-   1638613.8142084512,
-   1552357.820904184,
-   1576182.6064258865,
-   1150900.7855349781
+   361815.41817288124,
+   1633554.5028413143,
+   1544377.445697462,
+   1564849.902269164,
+   1140272.166812274
   ],
-  "pv_explicit": 6280243.572194772,
+  "pv_explicit": 6244869.435793095,
   "roic_terminal": 0.11644179616821004,
   "reinvest": 0.17175963149098375,
   "nopat_t1": 1296827.845538018,
-  "tv": 23454217.973206796,
-  "pv_tv": 17597839.67783157,
-  "tv_share": 0.736987114650928,
+  "tv": 22379145.19946435,
+  "pv_tv": 16636138.64367367,
+  "tv_share": 0.7270719273336042,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 23878083.250026345,
+  "ev_ops": 22881008.079466764,
   "jv": 522768,
-  "ev": 24400851.250026345,
+  "ev": 23403776.079466764,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 371597.2668978665,
+  "nci": 365772.5746617521,
   "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 20103719.98312848,
-  "fv_usd": 2.717270168503671,
-  "fv_aed": 9.979174693829732,
+  "equity": 19112469.504805014,
+  "fv_usd": 2.583290220686859,
+  "fv_aed": 9.487133335472489,
   "ic_terminal": 10918758.473375313
  },
  "dcf_hybrid_pv": {
-  "wacc": 0.08710844588946735,
-  "wacc_term": 0.08675547853731877,
+  "wacc": 0.08656071492130658,
+  "wacc_term": 0.086207747569158,
   "g": 0.02,
   "glide": [
-   0.08703785241903764,
-   0.08696725894860792,
-   0.0868966654781782,
-   0.08682607200774849,
-   0.08675547853731877
+   0.08649012145087687,
+   0.08641952798044715,
+   0.08634893451001743,
+   0.08627834103958772,
+   0.086207747569158
   ],
   "df": [
-   0.9591304222382443,
-   0.8823912719928506,
-   0.8118446767012981,
-   0.7469867512485568,
-   0.6873549441443239
+   0.9593721544135473,
+   0.8830586432820577,
+   0.8128683291619824,
+   0.7483057504249352,
+   0.688915865403815
   ],
   "fcff": [
    305303.60447191214,
@@ -6934,49 +6935,49 @@
    1336642.8963082165
   ],
   "pv": [
-   292825.975068003,
-   1511504.6213926615,
-   1367899.5050677538,
-   1356502.8240686737,
-   918748.1033328414
+   292899.7767724399,
+   1512647.8044904987,
+   1369624.2853545703,
+   1358898.0822238026,
+   920834.4976460367
   ],
-  "pv_explicit": 5447481.028929934,
+  "pv_explicit": 5454904.4464873485,
   "roic_terminal": 0.09751691727205757,
   "reinvest": 0.20509261940882526,
   "nopat_t1": 1102855.347503326,
-  "tv": 13132522.972848572,
-  "pv_tv": 9026704.59447638,
-  "tv_share": 0.6236416216660389,
+  "tv": 13241167.199338807,
+  "pv_tv": 9122050.160089104,
+  "tv_share": 0.6257857286578675,
   "term_life_disclosed": 25.0,
   "term_gross_base_fy25": 7595070.0,
-  "ev_ops": 14474185.623406313,
+  "ev_ops": 14576954.606576452,
   "jv": 522768,
-  "ev": 14996953.623406313,
+  "ev": 15099722.606576452,
   "net_debt": 3840234,
   "deferred": 304297,
   "hybrid": 1978619,
-  "nci": 316661.7804748641,
+  "nci": 317262.13410522137,
   "dividend_declared": 85300,
   "nci_book": 289197,
   "nci_navig8": 251985,
   "nci_other_bv": 37212,
-  "equity": 11615841.297803946,
-  "fv_usd": 1.5700267943984676,
-  "fv_aed": 5.765923402428372,
+  "equity": 11710909.535054788,
+  "fv_usd": 1.582876460294667,
+  "fv_aed": 5.8131138004321645,
   "ic_terminal": 11087622.159239575
  },
  "lenses": {
   "dcf": {
-   "bear": 2.757748617839643,
-   "base": 5.338494934992969,
-   "bull": 9.979174693829732,
-   "tv_share": 0.6236416216660389
+   "bear": 2.901206740142437,
+   "base": 5.389209857567612,
+   "bull": 9.487133335472489,
+   "tv_share": 0.6257857286578675
   },
   "dcf_beta_alt": {
-   "bear": 2.757748617839643,
-   "base": 7.373422039059579,
-   "bull": 9.979174693829732,
-   "tv_share": 0.6945049325372427
+   "bear": 2.901206740142437,
+   "base": 7.1162494277171975,
+   "bull": 9.487133335472489,
+   "tv_share": 0.687009096829616
   },
   "relative": {
    "bear": 9.629111838165235,
@@ -6989,19 +6990,19 @@
    "bull": 14.029977403424986
   },
   "book": {
-   "bear": 2.462773181839795,
-   "base": 3.9077019807668094,
-   "bull": 5.9023494166048245
+   "bear": 2.564548632706371,
+   "base": 3.933459160461134,
+   "bull": 5.742686131148762
   },
   "central": {
-   "bear": 2.757748617839643,
-   "base": 5.338494934992969,
-   "bull": 9.979174693829732
+   "bear": 2.901206740142437,
+   "base": 5.389209857567612,
+   "bull": 9.487133335472489
   },
   "central_beta_alt": {
-   "bear": 2.757748617839643,
-   "base": 7.373422039059579,
-   "bull": 9.979174693829732
+   "bear": 2.901206740142437,
+   "base": 7.1162494277171975,
+   "bull": 9.487133335472489
   }
  },
  "lens_weights": {
@@ -7010,25 +7011,25 @@
   "normalized": 0.2,
   "book": 0.15
  },
- "retired_blend": 7.987854092248088,
- "central": 5.338494934992969,
- "central_beta_alt": 7.373422039059579,
+ "retired_blend": 8.012003638232093,
+ "central": 5.389209857567612,
+ "central_beta_alt": 7.1162494277171975,
  "spot": 6.8,
  "beta_framing": {
   "primary": {
    "beta": 1.1032,
    "label": "the published index of its own exchange",
-   "ke": 0.09432584,
-   "wacc": 0.08710844588946735,
-   "fv": 5.338494934992969,
-   "central": 5.338494934992969
+   "ke": 0.0936670112,
+   "wacc": 0.08656071492130658,
+   "fv": 5.389209857567612,
+   "central": 5.389209857567612
   },
   "alternative": {
    "beta": 0.69,
    "label": "an equal-weight composite of the same exchange's names",
-   "ke": 0.07420299999999999,
-   "fv": 7.373422039059579,
-   "central": 7.373422039059579
+   "ke": 0.07618203999999999,
+   "fv": 7.1162494277171975,
+   "central": 7.1162494277171975
   },
   "ci90": [
    0.5855,
@@ -7115,9 +7116,9 @@
  },
  "book": {
   "roe_sustainable": 0.1987641195466315,
-  "ke": 0.09432584,
+  "ke": 0.0936670112,
   "g": 0.02,
-  "pb_fair": 1.3381337224616705,
+  "pb_fair": 1.3469538809369384,
   "method": "residual income",
   "fade": 0.1,
   "roe_path": [
@@ -7132,55 +7133,55 @@
     "year": "FY2026",
     "opening_book": 5883.066,
     "roe": 0.2411962020785434,
-    "residual_income": 864.0480335519679,
-    "discount_factor": 0.9138046123447108,
-    "pv": 789.5710783471657
+    "residual_income": 867.9239668650687,
+    "discount_factor": 0.9143550914119407,
+    "pv": 793.5906980615241
    },
    {
     "year": "FY2027",
     "opening_book": 7303.687745344754,
     "roe": 0.23178140310582085,
-    "residual_income": 1003.9325117854463,
-    "discount_factor": 0.8350388695424672,
-    "pv": 838.3226697382487
+    "residual_income": 1008.7443916182866,
+    "discount_factor": 0.8360452331909385,
+    "pv": 843.3559401205619
    },
    {
     "year": "FY2028",
     "opening_book": 9041.225731094224,
     "roe": 0.1813067399759729,
-    "residual_income": 786.4139509764993,
-    "discount_factor": 0.7630623704750198,
-    "pv": 600.0828936067536
+    "residual_income": 792.3705708754452,
+    "discount_factor": 0.7644422156188179,
+    "pv": 605.7215147911729
    },
    {
     "year": "FY2029",
     "opening_book": 10584.273322147437,
     "roe": 0.1278073524002097,
-    "residual_income": 354.37747848268833,
-    "discount_factor": 0.6972899136467615,
-    "pv": 247.10384136955082
+    "residual_income": 361.3507025743907,
+    "discount_factor": 0.6989716319412907,
+    "pv": 252.57389028155384
    },
    {
     "year": "FY2030",
     "opening_book": 11682.652020959189,
     "roe": 0.08506514285687163,
-    "residual_income": -108.18950219465962,
-    "discount_factor": 0.6371867392318558,
-    "pv": -68.93691612253286
+    "residual_income": -100.49263458287354,
+    "discount_factor": 0.6391082704180323,
+    "pv": -64.22567387801165
    }
   ],
-  "pv_terminal": -416.88056087149664,
+  "pv_terminal": -389.8637888686512,
   "vessel_sale_price": 111000,
   "vessel_sale_book": 83000,
   "vessel_value_to_book": 1.3373493975903614,
   "bvps_usd": 0.7951702348895601,
   "bvps_aed": 2.9202626876319093,
-  "equity_value": 7872.32900606769,
-  "base": 3.9077019807668094,
-  "ke_bear": 0.1195427,
-  "ke_bull": 0.06911385,
-  "bear": 2.462773181839795,
-  "bull": 5.9023494166048245
+  "equity_value": 7924.21858050815,
+  "base": 3.933459160461134,
+  "ke_bear": 0.115578236,
+  "ke_bull": 0.071760018,
+  "bear": 2.564548632706371,
+  "bull": 5.742686131148762
  },
  "peers": [
   {
@@ -7286,15 +7287,15 @@
    "interest_after_tax": 39957.71716765028,
    "hybrid_coupon": 96952.331,
    "fcfe": 1371895.0619387631,
-   "ke": 0.09432584,
+   "ke": 0.0936670112,
    "g": 0.02,
-   "value": 18827005.025137134,
-   "base": 9.345433196698188,
-   "ke_lo": 0.1195427,
-   "ke_hi": 0.06911385,
+   "value": 18995381.24844596,
+   "base": 9.429012541620233,
+   "ke_lo": 0.115578236,
+   "ke_hi": 0.071760018,
    "rng": [
-    6.278805418053406,
-    15.822969648503081
+    6.514574635137859,
+    14.927541508401852
    ],
    "falsifier": "A year in which free cash flow to the firm falls below the ordinary distribution plus the perpetual coupon, without a matching fall in capital expenditure, would break the annuity this rests on."
   },
@@ -7302,32 +7303,32 @@
    "method_short": "cash returns against the cost of capital",
    "ic0": 7827165,
    "ep": [
-    1215286.2691733977,
-    1473240.8751191895,
-    1165652.532248098,
-    652492.3514284301,
-    115405.19794541819
+    1220701.7260068345,
+    1479100.1044454293,
+    1171831.5663523702,
+    658636.6351795697,
+    121478.23196529923
    ],
    "spread": [
-    0.12291667079624256,
-    0.13772112438905126,
-    0.10332747469153476,
-    0.05816630250826267,
-    0.010408471382590212
+    0.12346440176440333,
+    0.13826885535721206,
+    0.10387520565969553,
+    0.05871403347642344,
+    0.010956202350750982
    ],
-   "pv_ep": 3978649.2006257023,
-   "pv_ep_term": 1212047.6375622142,
-   "ev": 13017861.838187916,
-   "equity": 9411198.838187916,
-   "base": 4.671573090127655,
+   "pv_ep": 4006334.006533065,
+   "pv_ep_term": 1289306.0111881266,
+   "ev": 13122805.017721191,
+   "equity": 9516142.017721191,
+   "base": 4.7236652562723975,
    "rng": [
-    3.5807763747911,
-    5.504711667694399
+    3.6081966886762062,
+    5.576266469484299
    ],
    "falsifier": "A return on invested capital that settles below the cost of capital for two consecutive years would remove the premium to invested capital this method rests on entirely."
   }
  },
- "panel_centre": 7.9680282379519936,
+ "panel_centre": 8.013252074974256,
  "sens": {
   "betas": [
    0.69,
@@ -7344,53 +7345,53 @@
   ],
   "grid_beta_g": [
    [
-    6.938037692964431,
-    7.137781232079598,
-    7.373422039059579,
-    7.656918976576681
+    6.7280833787899885,
+    6.9068096004416315,
+    7.1162494277171975,
+    7.366274120519086
    ],
    [
-    5.959600015752238,
-    6.070595937395918,
-    6.197231672373617,
-    6.343889891279893
+    5.906348792912149,
+    6.013177127638978,
+    6.134806347064103,
+    6.275343312247685
    ],
    [
-    5.215043964560241,
-    5.273778672941666,
-    5.338494934992969,
-    5.410645630801445
+    5.259742527779303,
+    5.32125418366628,
+    5.389209857567612,
+    5.465188765743561
    ],
    [
-    4.496048415139696,
-    4.516240689244266,
-    4.53671263228333,
-    4.5575227133769864
+    4.6172823313626985,
+    4.643177472038053,
+    4.670102265596956,
+    4.698277698445229
    ],
    [
-    3.8710398056113786,
-    3.866770810871812,
-    3.860048052867076,
-    3.8504265795620176
+    4.0440610232336605,
+    4.045749698560035,
+    4.045566909808216,
+    4.043159213101122
    ]
   ],
   "anchor": {
-   "0.8": 3.9230901776411806,
-   "0.9": 4.630792556317077,
-   "1.0": 5.338494934992969,
-   "1.1": 6.046197313668863,
-   "1.2": 6.753899692344756
+   "0.8": 3.9605291741250235,
+   "0.9": 4.674869515846321,
+   "1.0": 5.389209857567612,
+   "1.1": 6.1035501992889065,
+   "1.2": 6.817890541010201
   },
   "capex": {
-   "0.9": 5.722931417958425,
-   "1.0": 5.338494934992969,
-   "1.1": 4.954058452027515,
-   "1.2": 4.5696219690620605
+   "0.9": 5.775643184894931,
+   "1.0": 5.389209857567612,
+   "1.1": 5.002776530240293,
+   "1.2": 4.616343202912974
   },
   "tax": {
-   "0.05": 5.229751393214664,
-   "0.09": 4.8359232702238835,
-   "0.15": 4.24518108573771
+   "0.05": 5.280150790035071,
+   "0.09": 4.883674482048688,
+   "0.15": 4.288960020069105
   },
   "market_cross_check": {
    "vlcc_1y_tc": 76900,
@@ -8006,19 +8007,19 @@
   }
  },
  "bridge": {
-  "ev": 14996953.623406313,
-  "ev_ops": 14474185.623406313,
+  "ev": 15099722.606576452,
+  "ev_ops": 14576954.606576452,
   "jv": 522768,
   "net_debt_company": 257318,
   "deferred": 304297,
   "net_debt": 1861615,
   "hybrid": 1978619,
-  "hybrid_pv_coupon": 1117535.545127504,
+  "hybrid_pv_coupon": 1124635.937416442,
   "nci": 289197,
-  "equity": 10754757.84293145,
-  "tv_share": 0.6236416216660389,
-  "pv_explicit": 5447481.028929934,
-  "pv_tv": 9026704.59447638
+  "equity": 10856926.47247123,
+  "tv_share": 0.6257857286578675,
+  "pv_explicit": 5454904.4464873485,
+  "pv_tv": 9122050.160089104
  },
  "macro_record": {
   "market": "AE",
@@ -8102,9 +8103,9 @@
    "choice": "the gas fleet's contracted vessel-year path",
    "adopted": "the composition the April 2026 contract table gives, whose components this study states and which foots",
    "alternative": "the same table as printed in the first-half 2026 deck, where the four liquefied-natural-gas carriers' firm period ends in June 2026 and the consolidated path falls to 10.0, 13.0, 17.5, 20.75 and 20.0 vessel-years",
-   "fv_adopted": 5.338494934992969,
-   "fv_alternative": 4.5613909296036885,
-   "effect": 0.14556612207225106,
+   "fv_adopted": 5.389209857567612,
+   "fv_alternative": 4.605206778664584,
+   "effect": 0.1454764426740811,
    "direction": "the adopted side is HIGHER",
    "note": "WHAT THE TABLE COUNTS IS AMBIGUOUS AND THE DIFFERENCE IS LARGE, so it is priced rather than decided. Its own column heading reads \"No. of Vessels Contracted\" rather than vessels in service, and a bullet on the same slide says five Das carriers were progressively moved to long-term contracts with the parent from June 2026 \u2014 so whether those four ships stop EARNING or merely stop being counted as contracted is not decidable from the page. The total row foots with both rows populated in the second quarter, which is consistent with two separate sets of ships and equally with one set counted twice. SIGCM clause 8: the coarser reading is kept, the finer one is published, and neither is invented. SETTLED ON EVIDENCE OUTSIDE THE PAGE, 7 September 2026, AND THE EVIDENCE WAS ALREADY IN THIS DIRECTORY. The first-quarter 2026 earnings call transcript this study holds describes THAT SAME CONTRACT MATRIX in management's own words: \"We are at a genuine inflection point for our gas carrier fleet. You can see the contract matrix here. Starting this month, May 2026, 5 Das LNG carriers are progressively commencing long-term contracts with ADNOC Gas, 4 on 15-year contracts and 1 on a 7-year contract ... These are vessels that until now have been earning at spot rates.\" The dates on that matrix are contract COMMENCEMENTS, and the alternative requires the company to be presenting a fleet-wide contraction of contracted vessel-years as an inflection point upward on the slide it is describing. THE ADOPTED SIDE IS THE EVIDENCED ONE AND THE ANSWER DOES NOT MOVE \u2014 it was already the adopted side. The alternative is RETAINED here rather than deleted, for two reasons: it remains a legitimate downside framing of a path the company has not disclosed vessel by vessel, and dropping a judgement from this list would shrink the population the sign test [R-ENF-05] is computed over, which is not a thing to do to a test of one's own leaning."
   },
@@ -8112,9 +8113,9 @@
    "choice": "the earnings leverage of the tanker unit on its own fleet's rate",
    "adopted": "solved from two disclosed periods together \u2014 the audited 2025 year and the reviewed six months to 30 June 2026 \u2014 with the reviewed six months to 30 June 2025 held out",
    "alternative": "exactly one, which is what the delivered edition assumed by setting earnings equal to the owned fleet's charter-equivalent revenue less a single running cost",
-   "fv_adopted": 5.338494934992969,
-   "fv_alternative": 4.524403960906954,
-   "effect": 0.15249447344227685,
+   "fv_adopted": 5.389209857567612,
+   "fv_alternative": 4.572252856702248,
+   "effect": 0.15159123924598714,
    "direction": "the adopted side is HIGHER",
    "note": "THE ALTERNATIVE IS NOT A VIEW, IT IS A CONSTRUCTION THAT THE COMPANY'S OWN HALF FALSIFIES: at the published rates the 52 owned tankers earned charter-equivalent revenue of USD 805.8 million in the six months to 30 June 2026 and the unit reported earnings of USD 994.2 million, more than the ships it owns can earn before any cost at all. A leverage of one cannot reproduce that. It is priced here because it is the construction this study shipped three weeks ago and a reader is entitled to see what it was worth."
   },
@@ -8122,9 +8123,9 @@
    "choice": "how the market is measured for the beta regression",
    "adopted": "the published index of the exchange this company is listed on",
    "alternative": "an equal-weight composite of the same exchange's names",
-   "fv_adopted": 5.338494934992969,
-   "fv_alternative": 7.373422039059579,
-   "effect": 0.3811799259615276,
+   "fv_adopted": 5.389209857567612,
+   "fv_alternative": 7.1162494277171975,
+   "effect": 0.3204624825890664,
    "direction": "the adopted side is LOWER",
    "note": "THE SINGLE LARGEST JUDGEMENT IN THIS STUDY, and the beta rule decides it rather than a preference: the regressor is the published index of the exchange the stock is listed on, and a constituent composite is a coverage artefact rather than a market. The two differ because a published index is weighted by size and is dominated by the same large-capitalisation group this company belongs to, while an equal-weight composite gives the exchange's smallest names the same say as its largest. The alternative is published rather than buried because a difference of this size is a fact about index construction that a reader is entitled to see."
   },
@@ -8132,9 +8133,9 @@
    "choice": "the charter-rate path through the forecast",
    "adopted": "reversion toward the mid-cycle rate",
    "alternative": "today's strength sustained, the company's own guidance path",
-   "fv_adopted": 5.338494934992969,
-   "fv_alternative": 7.461602071020652,
-   "effect": 0.39769769605119587,
+   "fv_adopted": 5.389209857567612,
+   "fv_alternative": 7.532230882731496,
+   "effect": 0.397650320140089,
    "direction": "the adopted side is LOWER",
    "note": "an independent one-year time charter fixed in early 2026 priced a very large crude carrier well below the spot rate of the moment, and a crude tanker order book near a quarter of the trading fleet is the supply reason why. A forward market that will not pay spot for a year of time is saying it does not expect spot to hold. GUIDANCE IS SCORED AND NEVER CONSUMED, so the sustained path is published as the alternative rather than adopted."
   },
@@ -8142,9 +8143,9 @@
    "choice": "how the perpetual capital securities are deducted",
    "adopted": "at carrying value",
    "alternative": "at the present value of their perpetual coupon",
-   "fv_adopted": 5.338494934992969,
-   "fv_alternative": 5.765923402428372,
-   "effect": 0.0800653503731321,
+   "fv_adopted": 5.389209857567612,
+   "fv_alternative": 5.8131138004321645,
+   "effect": 0.07865790237678355,
    "direction": "the adopted side is LOWER",
    "note": "the securities rank ahead of the ordinary shares whichever way they are classified, so they are deducted in both framings and only the AMOUNT is contested. Carrying value is what the balance sheet states; the present value of the coupon is what the claim is worth at the terminal cost of capital. Both are published and the deduction is weighted in the cost of capital in both."
   },
@@ -8152,9 +8153,9 @@
    "choice": "the tax relief on shipping earnings",
    "adopted": "the reliefs as currently legislated and disclosed",
    "alternative": "the whole group taxed at the 9 per cent statutory rate",
-   "fv_adopted": 5.338494934992969,
-   "fv_alternative": 4.8359232702238835,
-   "effect": 0.09414107738022,
+   "fv_adopted": 5.389209857567612,
+   "fv_alternative": 4.883674482048688,
+   "effect": 0.09380510109641453,
    "direction": "the adopted side is HIGHER",
    "note": "most of the shipping income is relieved under the regime as it stands. The alternative is the downside case for a global minimum tax reaching those earnings, and it is a scenario about the law rather than about the business \u2014 which is why the sensitivity centred on it does NOT reproduce the base case and says so in its own docstring."
   },
@@ -8162,9 +8163,9 @@
    "choice": "the day-rate anchor the reversion path converges to",
    "adopted": "the mid-cycle average as computed",
    "alternative": "that anchor 10 per cent lower",
-   "fv_adopted": 5.338494934992969,
-   "fv_alternative": 4.630792556317077,
-   "effect": 0.1325658986837315,
+   "fv_adopted": 5.389209857567612,
+   "fv_alternative": 4.674869515846321,
+   "effect": 0.13255010671336218,
    "direction": "the adopted side is HIGHER",
    "note": "the anchor is the single quantity the whole reversion path hangs on, and a ten per cent move in it is well inside the span the disclosed quarterly rates have printed."
   }
@@ -8215,7 +8216,7 @@
   "lines": [
    {
     "label": "Enterprise value of the operations",
-    "value": 14474185.623406313
+    "value": 14576954.606576452
    },
    {
     "label": "plus joint ventures and associates at carrying value",
@@ -8231,16 +8232,16 @@
    },
    {
     "label": "less non-controlling interests",
-    "value": -316661.78047486395
+    "value": -317262.1341052223
    },
    {
     "label": "less the interim dividend declared after the balance-sheet date",
     "value": -85300.0
    }
   ],
-  "equity_value": 10754757.84293145,
+  "equity_value": 10856926.47247123,
   "shares_mn": 7398498.7639999995,
-  "per_share": 1.4536405541165336,
+  "per_share": 1.4674499271797445,
   "units": {
    "currency": "USD",
    "scale": "thousands",
@@ -8258,8 +8259,8 @@
   "cash_note": "THE CASH IS NOT ADDED AT FACE ANYWHERE. It sits inside the net-debt figure deducted once, and the operating rate is weighted on the gross capital structure \u2014 equity, drawn debt AND the perpetual securities \u2014 so no tranche is deducted from value without also being allowed to price it. The company is net DEBT rather than net cash, so the negative-debt-weight trap does not arise here; the construction is stated anyway because a reader cannot tell from the number which way it was done.",
   "nci": {
    "basis": "value_share",
-   "value": 401961.78047486395,
-   "deduction": 401961.78047486395,
+   "value": 402562.1341052223,
+   "deduction": 402562.1341052223,
    "book": 289197.0,
    "profit_share": 289197.0,
    "proportional": 289197.0,
@@ -8280,7 +8281,7 @@
   "hybrid": {
    "treatment": "deducted_at_carrying_value_and_weighted_in_the_cost_of_capital",
    "carrying_value": 1978619.0,
-   "pv_of_coupon": 1117535.545127504,
+   "pv_of_coupon": 1124635.937416442,
    "note": "THE TWO HALVES OF ONE TREATMENT. The perpetual capital securities rank ahead of the ordinary shares, so they are deducted here; a claim deducted from enterprise value must also be WEIGHTED in the cost of capital at its own cost, or the model subtracts a cheap tranche of capital without letting it price the value. The present value of the perpetual coupon is published beside the carrying value as the alternative deduction, because which of the two a reader prefers is a judgement and the study does not hide it inside one number."
   }
  },
@@ -8288,10 +8289,10 @@
   "class": "marine logistics and shipping, chartered fleet on global day rates",
   "primary": {
    "kind": "dcf",
-   "value": 5.338494934992969,
+   "value": 5.389209857567612,
    "range": {
-    "low": 2.757748617839643,
-    "high": 9.979174693829732
+    "low": 2.901206740142437,
+    "high": 9.487133335472489
    },
    "range_note": "the cash-flow lens at the beta regression's OWN 90 per cent confidence bounds, with the rate anchor and capital expenditure moving with them",
    "range_basis": {
@@ -8355,15 +8356,15 @@
    },
    {
     "kind": "book_value",
-    "value": 3.9077019807668094,
+    "value": 3.933459160461134,
     "note": "the DISCLOSED floor. Published as a floor and NEVER weighted into a central \u2014 which the retired blend did, at 15 per cent."
    }
   ],
   "envelope": {
-   "low": 2.757748617839643,
-   "high": 9.979174693829732
+   "low": 2.901206740142437,
+   "high": 9.487133335472489
   },
-  "central": 5.338494934992969,
+  "central": 5.389209857567612,
   "retired": {
    "blend": {
     "dcf": 0.4,
@@ -8371,8 +8372,8 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "blend_value": 7.987854092248088,
-   "why": "40/25/20/15 across four reads, and two of the four weights are forbidden outright rather than merely unevidenced. BOOK VALUE carried 15 per cent and book value is a disclosed floor that is never weighted into an answer; NORMALISED EARNINGS carried 20 and the registry does not permit it for this class. The weights had cleared no out-of-sample test. Retiring the blend moves the published answer from AED 7.99 to AED 5.34, which is a LARGE move and is the point: the blend was averaging a cash-flow reading well below the market with three accounting readings well above it, and publishing the average told a reader neither thing.",
+   "blend_value": 8.012003638232093,
+   "why": "40/25/20/15 across four reads, and two of the four weights are forbidden outright rather than merely unevidenced. BOOK VALUE carried 15 per cent and book value is a disclosed floor that is never weighted into an answer; NORMALISED EARNINGS carried 20 and the registry does not permit it for this class. The weights had cleared no out-of-sample test. Retiring the blend moves the published answer from AED 8.01 to AED 5.39, which is a LARGE move and is the point: the blend was averaging a cash-flow reading well below the market with three accounting readings well above it, and publishing the average told a reader neither thing.",
    "normalised_earnings": {
     "value": 11.071993512034524,
     "why": "dropped as a lens for this class. Day rates are cyclical enough that a normalised year is a judgement about where the cycle sits rather than a reading of the business, and the cash-flow lens already carries that judgement explicitly in its rate path. It read AED 11.07 and carried 20 per cent of the retired blend."
@@ -8418,12 +8419,19 @@
   "erp": 0.0487,
   "erp_basis": "rating",
   "beta": 1.1032,
-  "ke_exp": 0.09432584,
+  "erp_mature": 0.042316,
+  "crp": 0.006384,
+  "crp_effective": 0.006384,
+  "lambda_country": 1.0,
+  "crp_foreign": 0.0,
+  "ke_construction": "split_premium",
+  "ke_construction_note": "rf* + beta x the MATURE premium + the country premium charged FLAT and once. The fleet is UAE-flagged and UAE-domiciled and the counterparty is the UAE national oil company, so lambda is 1.00 and the whole country premium is the Emirati one. Beta multiplies only the mature leg.",
+  "ke_exp": 0.0936670112,
   "kd_pretax": 0.06348536969420494,
   "kd_aftertax": 0.057771686421726504,
   "weight_equity": 0.831370711421182,
   "weight_debt": 0.04855053206756824,
-  "wacc_exp": 0.08710844588946735,
+  "wacc_exp": 0.08656071492130658,
   "other_tranches": [
    {
     "name": "perpetual_capital_securities",
@@ -8435,12 +8443,12 @@
   "beta_source": "own_stock_regression",
   "rf_terminal": 0.039751,
   "erp_terminal": 0.0487,
-  "ke_terminal": 0.09347684,
+  "ke_terminal": 0.0928180112,
   "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.06263636969420494,
   "kd_terminal_aftertax": 0.0569990964217265,
   "weight_debt_terminal": 0.04855053206756824,
-  "wacc_terminal": 0.08675547853731877,
+  "wacc_terminal": 0.086207747569158,
   "other_tranches_terminal": [
    {
     "name": "perpetual_capital_securities",
@@ -8457,20 +8465,20 @@
    1.0
   ],
   "forward_wacc": [
-   0.08703785241903764,
-   0.08696725894860792,
-   0.0868966654781782,
-   0.08682607200774849,
-   0.08675547853731877
+   0.08649012145087687,
+   0.08641952798044715,
+   0.08634893451001743,
+   0.08627834103958772,
+   0.086207747569158
   ],
   "discount_factors": [
-   0.9591304222382443,
-   0.8823912719928506,
-   0.8118446767012981,
-   0.7469867512485568,
-   0.6873549441443239
+   0.9593721544135473,
+   0.8830586432820577,
+   0.8128683291619824,
+   0.7483057504249352,
+   0.688915865403815
   ],
-  "terminal_discount_factor": 0.6873549441443239,
+  "terminal_discount_factor": 0.688915865403815,
   "discounting_convention": {
    "kind": "stub_then_annual",
    "cumulative_years": [
@@ -8558,7 +8566,7 @@
    "topdown": 0
   },
   "unit_share": 0.647948125191725,
-  "standard_version": "2026.09.07"
+  "standard_version": "2026.09.10"
  },
  "driver_lines": [
   {
@@ -12701,7 +12709,7 @@
   {
    "check": "the sensitivity grid is centred on the value it brackets",
    "passed": true,
-   "detail": "grid centre 5.3385 vs base 5.3385 \u2014 every cost-of-capital construction must carry the same three tranches"
+   "detail": "grid centre 5.3892 vs base 5.3892 \u2014 every cost-of-capital construction must carry the same three tranches"
   },
   {
    "check": "the terminal value share is computed, not asserted",
