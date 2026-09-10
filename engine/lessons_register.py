@@ -6855,6 +6855,89 @@ LESSONS = [
       "A run where two drivers are definitionally linked and their "
       "error legs do NOT cancel — which would mean the linkage is not "
       "load-bearing and the two can be scored apart after all."),
+
+    L("L-383", "ALL", None,
+      "Fin customers forecasts run about 37% too low for ADIB.",
+      "The method misses this driver in the same direction almost "
+      "every time, not at random. That is a fixable defect rather "
+      "than noise — find what is wired wrong before adding any "
+      "correction factor.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.311 log (about 37% too low), average miss 0.326, wrong "
+      "in the same direction in 84% of cases, and the sign holds "
+      "across every bootstrap block tested (n=45).",
+      "A later run of the same name where the sign no longer holds "
+      "across bootstrap blocks."),
+
+    L("L-384", "CLASS", "bank",
+      "The ecl bias changes direction between regimes.",
+      "It runs one way in one period and the other way in the next. "
+      "Averaging them produces a correction that is wrong in both. "
+      "Record it, do not correct for it.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "By era: E1 recapitalisation and the 2016 float (origins "
+      "FY2014-FY2017) +0.089; E2 the 2022-24 devaluation sequence "
+      "(origins FY2018-FY2024) -0.351.",
+      "A longer record in which one sign dominates across all "
+      "regimes."),
+
+    L("L-385", "CLASS", "bank",
+      "For a bank, the cost of funds is divided by the deposits — the "
+      "industrial rule says exclude them and it inverts.",
+      "The house rule says a borrowing cost is divided by the "
+      "borrowings that actually bear it, and it names customer "
+      "deposits as the thing to LEAVE OUT. For a bank that is "
+      "backwards: depositors are who the bank is paying. Divide the "
+      "cost of deposits by customers' deposits plus money owed to "
+      "banks plus subordinated financing, and by nothing wider. The "
+      "principle travels; the example does not.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "At ADIB-Egypt's FY2025 the balances that bear the charge are "
+      "EGP 293.7 billion against total liabilities of EGP 312.1 "
+      "billion. Reading the industrial rule literally would have "
+      "excluded customers' deposits — 94% of the correct denominator "
+      "— and dividing by total liabilities instead understates the "
+      "funding rate by about a sixth of itself. The build obeys it "
+      "structurally: bottom_up.interest_bearing() is the only route "
+      "to that denominator and total liabilities appears nowhere.",
+      "A deposit-taking institution whose disclosed funding charge is "
+      "levied on something other than its deposits, bank borrowings "
+      "and subordinated debt."),
+
+    L("L-386", "ALL", None,
+      "Apply every rate to the AVERAGE balance, never the closing "
+      "one. On anything growing fast the closing base inflates every "
+      "projected profit.",
+      "A bank earns its yield on the assets it held through the year, "
+      "not on the ones it finished with. Put a full year of yield on "
+      "a closing balance sheet that grew a third and you have "
+      "credited twelve months of income to assets the bank owned for "
+      "six. The error is large, it looks like evidence, and it "
+      "survives every check that does not go looking for it. WIDENED "
+      "FROM THE BANK CLASS TO EVERY COMPANY by the principal, "
+      "10-09-2026: \"For non banks when they borrow apply the average "
+      "debt as well.\" That is right and it is the same arithmetic. A "
+      "cost of debt is interest paid over the debt that bore it, and "
+      "an industrial that drew down a facility in November did not "
+      "pay a full year on it either. The bank case is where the error "
+      "is biggest, not where it is unique.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "ADIB-Egypt grew customer financing 54% in FY2025 and total "
+      "assets 33%, and 19.5% again in the first half of 2026. This is "
+      "the bank-shaped form of the recognition-clock trap that "
+      "produced a net-profit forecast several times too high on the "
+      "first name in this campaign. In this run every rate reaches "
+      "its base through _avg() and by no other route, which is why "
+      "the rate drivers came out close to unbiased (net fees 0.984x "
+      "actual, other income 1.106x, admin 0.897x at the FY2024 "
+      "origin) while the volume anchor carried the whole miss.",
+      "A company whose balance sheet grows slowly enough that the "
+      "average and the closing base give the same answer, in which "
+      "case the distinction is real and immaterial."),
 ]
 
 

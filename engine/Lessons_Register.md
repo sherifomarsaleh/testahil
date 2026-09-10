@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**301 lessons**, of which 260 bind on every study, 31 on a class of company, and 10 on a single name.
+**305 lessons**, of which 262 bind on every study, 33 on a class of company, and 10 on a single name.
 
-By how they were learned: 65 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 194 found while building.
+By how they were learned: 69 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2679,6 +2679,26 @@ Check the definitions before scoring two drivers as two findings. If one is comp
 
 > **What would overturn it.** A run where two drivers are definitionally linked and their error legs do NOT cancel — which would mean the linkage is not load-bearing and the two can be scored apart after all.
 
+### L-383 · Fin customers forecasts run about 37% too low for ADIB.
+
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** Bias -0.311 log (about 37% too low), average miss 0.326, wrong in the same direction in 84% of cases, and the sign holds across every bootstrap block tested (n=45).
+
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
+
+### L-386 · Apply every rate to the AVERAGE balance, never the closing one. On anything growing fast the closing base inflates every projected profit.
+
+A bank earns its yield on the assets it held through the year, not on the ones it finished with. Put a full year of yield on a closing balance sheet that grew a third and you have credited twelve months of income to assets the bank owned for six. The error is large, it looks like evidence, and it survives every check that does not go looking for it. WIDENED FROM THE BANK CLASS TO EVERY COMPANY by the principal, 10-09-2026: "For non banks when they borrow apply the average debt as well." That is right and it is the same arithmetic. A cost of debt is interest paid over the debt that bore it, and an industrial that drew down a facility in November did not pay a full year on it either. The bank case is where the error is biggest, not where it is unique.
+
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** ADIB-Egypt grew customer financing 54% in FY2025 and total assets 33%, and 19.5% again in the first half of 2026. This is the bank-shaped form of the recognition-clock trap that produced a net-profit forecast several times too high on the first name in this campaign. In this run every rate reaches its base through _avg() and by no other route, which is why the rate drivers came out close to unbiased (net fees 0.984x actual, other income 1.106x, admin 0.897x at the FY2024 origin) while the volume anchor carried the whole miss.
+
+> **What would overturn it.** A company whose balance sheet grows slowly enough that the average and the closing base give the same answer, in which case the distinction is real and immaterial.
+
 
 ---
 
@@ -2872,6 +2892,26 @@ For a bank, debt is raw material rather than financing, so the usual enterprise-
 > **What it cost, or how we know.** The reference bank study runs a dividend-discount model alongside free cash flow to equity and residual income. An enterprise-value discounted cash flow on a bank subtracts its own deposits as though they were borrowings.
 
 > **What would overturn it.** Nothing for a deposit-taking institution.
+
+### L-384 · The ecl bias changes direction between regimes.
+
+It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.
+
+**Applies to:** every bank  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** By era: E1 recapitalisation and the 2016 float (origins FY2014-FY2017) +0.089; E2 the 2022-24 devaluation sequence (origins FY2018-FY2024) -0.351.
+
+> **What would overturn it.** A longer record in which one sign dominates across all regimes.
+
+### L-385 · For a bank, the cost of funds is divided by the deposits — the industrial rule says exclude them and it inverts.
+
+The house rule says a borrowing cost is divided by the borrowings that actually bear it, and it names customer deposits as the thing to LEAVE OUT. For a bank that is backwards: depositors are who the bank is paying. Divide the cost of deposits by customers' deposits plus money owed to banks plus subordinated financing, and by nothing wider. The principle travels; the example does not.
+
+**Applies to:** every bank  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** At ADIB-Egypt's FY2025 the balances that bear the charge are EGP 293.7 billion against total liabilities of EGP 312.1 billion. Reading the industrial rule literally would have excluded customers' deposits — 94% of the correct denominator — and dividing by total liabilities instead understates the funding rate by about a sixth of itself. The build obeys it structurally: bottom_up.interest_bearing() is the only route to that denominator and total liabilities appears nowhere.
+
+> **What would overturn it.** A deposit-taking institution whose disclosed funding charge is levied on something other than its deposits, bank borrowings and subordinated debt.
 
 
 ## Holding company

@@ -17,7 +17,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-02",
@@ -34,7 +35,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-03",
@@ -42,12 +44,12 @@
    "headline": "Fin customers forecasts run about 37% too low for ADIB.",
    "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
    "evidence": "Bias -0.311 log (about 37% too low), average miss 0.326, wrong in the same direction in 84% of cases, and the sign holds across every bootstrap block tested (n=45).",
-   "scope": "UNSCOPED",
-   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "scope": "ALL",
+   "why_scope": "Ruled ALL by the principal, 10-09-2026: 'Of course it applies to everyone.' The point is methodological rather than about banks \u2014 a driver that misses in the SAME DIRECTION nearly every time is a defect to find, not noise to average away, and that is true of any driver on any company.",
    "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
    "origin": "walk_forward_fundamental",
    "rule": "robust_bias",
-   "confirmed": false,
+   "confirmed": true,
    "proposed_ruling": {
     "action": "REGISTER",
     "scope": "ALL",
@@ -56,7 +58,9 @@
     "plain": "We size a company by taking the market it sells into and holding its share of that market steady. For a company whose share has been climbing for years, that is not a neutral assumption \u2014 it is a forecast that will be too low every single time, not on average but at every origin. Say the share path out loud and defend it, or accept that the number is a floor and call it one.",
     "why": "THE FINDING IS ARITHMETIC RATHER THAN STATISTICAL, which is why it is filed at ALL on one name. If share drifts persistently in one direction and the rule holds it flat, the error must be one-directional; nothing about banks or about Egypt is doing the work. Every study in this book anchors volume this way, so the exposure is book-wide. The NARROWER alternative would be CLASS/bank, and it would be filing a property of the rule as though it were a property of banks.",
     "overturned": "A name where the share of the exogenous market driver has drifted persistently and the mechanical build shows no directional bias \u2014 or a market where share is genuinely mean-reverting, in which case the flat-share anchor is right and the drift is the error."
-   }
+   },
+   "falsifier": "A driver whose forecast error is one-directional across origins and which, on investigation, turns out to have no wiring defect behind it \u2014 the error surviving as genuine noise after the model has been read line by line.",
+   "registered": "L-383"
   },
   {
    "proposed_id": "DRAFT-ADIB-04",
@@ -73,7 +77,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-05",
@@ -90,7 +95,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-06",
@@ -107,7 +113,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-07",
@@ -124,7 +131,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-08",
@@ -141,7 +149,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-09",
@@ -158,7 +167,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-10",
@@ -175,7 +185,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
-   }
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
   },
   {
    "proposed_id": "DRAFT-ADIB-11",
@@ -192,7 +203,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "Other non-interest income is a DERIVED residual \u2014 dividends, trading, share of associates and disposal gains taken as one block \u2014 and it is 3.1% of FY2025 operating income. It has no disclosed volume driver, and its bias flips sign between eras (DRAFT-ADIB-14). A block with no information in it losing to \"no change\" is what a block with no information in it should do; filing it as a lesson would dress an absence of disclosure as a finding."
-   }
+   },
+   "declined": "Other non-interest income is a DERIVED residual \u2014 dividends, trading, share of associates and disposal gains taken as one block \u2014 and it is 3.1% of FY2025 operating income. It has no disclosed volume driver, and its bias flips sign between eras (DRAFT-ADIB-14). A block with no information in it losing to \"no change\" is what a block with no information in it should do; filing it as a lesson would dress an absence of disclosure as a finding."
   },
   {
    "proposed_id": "DRAFT-ADIB-12",
@@ -209,7 +221,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "MERGED INTO DRAFT-ADIB-13, which is registered. This draft and that one measure two halves of one fact about a bank's loss charge \u2014 that its error is the company rather than the currency, and that its sign flips with the cycle. They are filed once, together, rather than as two lessons about one driver."
-   }
+   },
+   "declined": "MERGED INTO DRAFT-ADIB-13, which is registered. This draft and that one measure two halves of one fact about a bank's loss charge \u2014 that its error is the company rather than the currency, and that its sign flips with the cycle. They are filed once, together, rather than as two lessons about one driver."
   },
   {
    "proposed_id": "DRAFT-ADIB-13",
@@ -217,12 +230,12 @@
    "headline": "The ecl bias changes direction between regimes.",
    "plain": "It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.",
    "evidence": "By era: E1 recapitalisation and the 2016 float (origins FY2014-FY2017) +0.089; E2 the 2022-24 devaluation sequence (origins FY2018-FY2024) -0.351.",
-   "scope": "UNSCOPED",
-   "why_scope": "A sign that flips with the regime is usually about the market or the period, not the company \u2014 but say which.",
+   "scope": "CLASS",
+   "why_scope": "Ruled by the principal, 10-09-2026: 'it applies for banks in countries that go through devaluation anywhere in the world. I can not see how this applies to non banks.' So the scope is the CLASS and not the country: the loss charge is a bank line, and the devaluation is the CONDITION under which the sign flips, not a restriction to Egypt.",
    "overturned_by": "A longer record in which one sign dominates across all regimes.",
    "origin": "walk_forward_fundamental",
    "rule": "era_flip",
-   "confirmed": false,
+   "confirmed": true,
    "proposed_ruling": {
     "action": "REGISTER",
     "scope": "CLASS",
@@ -231,7 +244,10 @@
     "plain": "The provision line is where a bank's profit is decided, so it is the first place anyone reaches for a correction. Do not. Its error changes direction with the credit cycle \u2014 too low in one era, too high in the next \u2014 so a correction averaged across them is wrong in both. And the currency does not explain it: giving the model perfect foresight of inflation barely moves the miss.",
     "why": "CLASS rather than ALL because the mechanism is a bank's: a loss charge lags the book that generates it by two or three years, so its error tracks a credit cycle that industrial provisions do not have. CLASS rather than STOCK because the mechanism is not about ADIB \u2014 any lender growing a book faster than it seasons it will show the same shape. This is the merge of drafts 12 and 13, which measure two halves of one thing.",
     "overturned": "A bank whose cost-of-risk bias holds its sign across a full credit cycle, or a decomposition that puts most of a loss-charge error on the macro path."
-   }
+   },
+   "applies_to": "bank",
+   "falsifier": "A bank carried through a devaluation whose loss-charge forecast error keeps the same sign either side of it \u2014 the bias not flipping \u2014 or one where the average of the two eras produces a correction that improves both.",
+   "registered": "L-384"
   },
   {
    "proposed_id": "DRAFT-ADIB-14",
@@ -248,7 +264,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "The other-non-interest-income bias does flip sign between eras, and the record says so \u2014 but the driver is a 3.1% derived residual with no disclosed volume behind it, so the flip is what an uninformative block does rather than a finding about method. Declined for the same reason as DRAFT-ADIB-11."
-   }
+   },
+   "declined": "The other-non-interest-income bias does flip sign between eras, and the record says so \u2014 but the driver is a 3.1% derived residual with no disclosed volume behind it, so the flip is what an uninformative block does rather than a finding about method. Declined for the same reason as DRAFT-ADIB-11."
   },
   {
    "proposed_id": "DRAFT-ADIB-15",
@@ -265,7 +282,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-16",
@@ -282,7 +300,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-17",
@@ -299,7 +318,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-18",
@@ -316,7 +336,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-19",
@@ -333,7 +354,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-20",
@@ -350,7 +372,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-21",
@@ -367,7 +390,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-22",
@@ -384,7 +408,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-23",
@@ -401,7 +426,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-24",
@@ -418,7 +444,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-25",
@@ -435,7 +462,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-26",
@@ -452,7 +480,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-27",
@@ -469,7 +498,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-28",
@@ -486,7 +516,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-29",
@@ -503,7 +534,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-30",
@@ -520,7 +552,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-31",
@@ -537,7 +570,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-32",
@@ -554,7 +588,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-33",
@@ -571,7 +606,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-34",
@@ -588,7 +624,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-35",
@@ -605,7 +642,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-36",
@@ -622,7 +660,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-37",
@@ -639,7 +678,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-38",
@@ -656,7 +696,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-39",
@@ -673,7 +714,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-40",
@@ -690,7 +732,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-41",
@@ -707,7 +750,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-42",
@@ -724,7 +768,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-43",
@@ -741,7 +786,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-44",
@@ -758,7 +804,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-45",
@@ -775,7 +822,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-46",
@@ -792,7 +840,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-47",
@@ -809,7 +858,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-48",
@@ -826,7 +876,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-49",
@@ -843,7 +894,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-50",
@@ -860,7 +912,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-51",
@@ -877,7 +930,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-52",
@@ -894,7 +948,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-53",
@@ -911,7 +966,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-54",
@@ -928,7 +984,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-55",
@@ -945,7 +1002,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-56",
@@ -962,7 +1020,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-57",
@@ -979,7 +1038,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-58",
@@ -996,7 +1056,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-59",
@@ -1013,7 +1074,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-60",
@@ -1030,7 +1092,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-61",
@@ -1047,7 +1110,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-62",
@@ -1064,7 +1128,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-63",
@@ -1081,7 +1146,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-64",
@@ -1098,7 +1164,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-65",
@@ -1115,7 +1182,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-66",
@@ -1132,7 +1200,8 @@
    "proposed_ruling": {
     "action": "DECLINE",
     "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
-   }
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
   },
   {
    "proposed_id": "DRAFT-ADIB-H1",
@@ -1143,10 +1212,10 @@
    "evidence": "At ADIB-Egypt's FY2025 the balances that bear the charge are EGP 293.7 billion against total liabilities of EGP 312.1 billion. Reading the industrial rule literally would have excluded customers' deposits \u2014 94% of the correct denominator \u2014 and dividing by total liabilities instead understates the funding rate by about a sixth of itself. The build obeys it structurally: bottom_up.interest_bearing() is the only route to that denominator and total liabilities appears nowhere.",
    "scope": "CLASS",
    "applies_to": "bank",
-   "origin": "fundamental walk-forward, ADIB, 09-Sep-2026",
-   "why_scope": "CLASS/bank. The inversion is a fact about deposit-taking institutions, and the campaign has now run one. Filing it at ALL would restate the general principle nobody disputes; filing it at STOCK would hide it from the next bank, which is the whole point of writing it down.",
+   "origin": "walk_forward_fundamental",
+   "why_scope": "Ruled by the principal, 10-09-2026: correct as proposed, banks. Depositors are who the bank pays, so a rule that excludes deposits from the borrowing base inverts the arithmetic for this class alone.",
    "overturned_by": "A deposit-taking institution whose disclosed funding charge is levied on something other than its deposits, bank borrowings and subordinated debt.",
-   "confirmed": false,
+   "confirmed": true,
    "hand_proposed": true,
    "why_not_harvested": "lessons_harvest.py reads biases, skill and macro shares. This is a SPECIFICATION finding \u2014 a rule read wrongly would have produced a large, robust and entirely spurious bias, and the whole point is that the run avoided producing one. There is no number for the harvester to see, which is exactly why it is proposed by hand and flagged as such.",
    "proposed_ruling": {
@@ -1157,7 +1226,9 @@
     "plain": "The house rule says a borrowing cost is divided by the borrowings that actually bear it, and it names customer deposits as the thing to LEAVE OUT. For a bank that is backwards: depositors are who the bank is paying. Divide the cost of deposits by customers' deposits plus money owed to banks plus subordinated financing, and by nothing wider. The principle travels; the example does not.",
     "why": "CLASS/bank. The inversion is a fact about deposit-taking institutions, and the campaign has now run one. Filing it at ALL would restate the general principle nobody disputes; filing it at STOCK would hide it from the next bank, which is the whole point of writing it down.",
     "overturned": "A deposit-taking institution whose disclosed funding charge is levied on something other than its deposits, bank borrowings and subordinated debt."
-   }
+   },
+   "falsifier": "A bank whose disclosed cost of funds reproduces from interest expense over borrowings EXCLUDING customer deposits.",
+   "registered": "L-385"
   },
   {
    "proposed_id": "DRAFT-ADIB-H2",
@@ -1168,10 +1239,10 @@
    "evidence": "ADIB-Egypt grew customer financing 54% in FY2025 and total assets 33%, and 19.5% again in the first half of 2026. This is the bank-shaped form of the recognition-clock trap that produced a net-profit forecast several times too high on the first name in this campaign. In this run every rate reaches its base through _avg() and by no other route, which is why the rate drivers came out close to unbiased (net fees 0.984x actual, other income 1.106x, admin 0.897x at the FY2024 origin) while the volume anchor carried the whole miss.",
    "scope": "CLASS",
    "applies_to": "bank",
-   "origin": "fundamental walk-forward, ADIB, 09-Sep-2026",
-   "why_scope": "CLASS/bank rather than ALL, on the narrower-when-unsure rule. The arithmetic is general \u2014 any rate applied to a growing base has it \u2014 but the SIZE of the error depends on growing 30-50% a year, which is a lender in a high-inflation economy and not a cement plant. Widen it to ALL when a second class shows the same magnitude.",
+   "origin": "walk_forward_fundamental",
+   "why_scope": "Ruled by the principal, 10-09-2026: correct as proposed, banks. It bites hardest on a fast-growing lender, where a closing balance sheet credits a full year of yield on assets held for part of one.",
    "overturned_by": "A company whose balance sheet grows slowly enough that the average and the closing base give the same answer, in which case the distinction is real and immaterial.",
-   "confirmed": false,
+   "confirmed": true,
    "hand_proposed": true,
    "why_not_harvested": "As DRAFT-ADIB-H1: a specification finding leaves no bias behind when it is obeyed, so there is nothing in the score file for the harvester to find. Proposed by hand and flagged.",
    "proposed_ruling": {
@@ -1182,8 +1253,10 @@
     "plain": "A bank earns its yield on the assets it held through the year, not on the ones it finished with. Put a full year of yield on a closing balance sheet that grew a third and you have credited twelve months of income to assets the bank owned for six. The error is large, it looks like evidence, and it survives every check that does not go looking for it.",
     "why": "CLASS/bank rather than ALL, on the narrower-when-unsure rule. The arithmetic is general \u2014 any rate applied to a growing base has it \u2014 but the SIZE of the error depends on growing 30-50% a year, which is a lender in a high-inflation economy and not a cement plant. Widen it to ALL when a second class shows the same magnitude.",
     "overturned": "A company whose balance sheet grows slowly enough that the average and the closing base give the same answer, in which case the distinction is real and immaterial."
-   }
+   },
+   "falsifier": "A lender whose disclosed yield reproduces more closely from the closing balance sheet than from the average of opening and closing.",
+   "registered": "L-386"
   }
  ],
- "_ruling_state": "PROPOSED, NOT SIGNED. Every draft carries proposed_ruling and every one has confirmed:false. lessons_add.py has NOT been run and must not be until the scopes are ruled."
+ "_ruling_state": "RULED AND SIGNED 10-09-2026 by the principal. DRAFT-ADIB-03 ALL; DRAFT-ADIB-13, -H1, -H2 CLASS/bank. The remaining 64 decline with the reasons already recorded against each."
 }
