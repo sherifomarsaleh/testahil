@@ -24,7 +24,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 | 2 | AMOC | EGP | full | 5.9500 | 17.6329 | +196.4% | -59.1% | +180.8% | (study carries no stamp) → 2026.09.10 | — |
 | 3 | ARCC | EGP | full | 54.6500 | 77.4854 | +41.8% | -39.5% | +26.6% | (study carries no stamp) → 2026.09.10 | L-386 |
 | 4 | EGCH | EGP | full | 3.6400 | 4.0396 / 8.0388 (two-sided) | n/a | n/a | -48.0% | (study carries no stamp) → 2026.09.10 | L-326, L-330, L-331, L-332, L-333 |
-| 5 | ELEC | EGP | skip | 0.3400 | 0.3357 | -1.3% | +1.4% | -0.1% | (study carries no stamp) → 2026.09.10 | — |
+| 5 | ELEC | EGP | full | 0.3400 | 0.3229 | -5.0% | -12.3% | +0.6% | (study carries no stamp) → 2026.09.10 | L-386 |
 | 6 | GBCO | EGP | full | 35.7000 | 41.3484 / 52.3453 (two-sided) | n/a | -17.2% | +2.6% | (study carries no stamp) → 2026.09.10 | — |
 | 7 | PHAR | EGP | full | 61.2100 | 85.2465 / 102.8915 (two-sided) | n/a | +46.9% | +40.9% | (study carries no stamp) → 2026.09.10 | L-386 |
 | 8 | PHDC | EGP | full | unrecoverable | 17.8617 | n/a | n/a | n/a | 2026.08.23 → 2026.09.10 | — |

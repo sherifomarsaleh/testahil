@@ -1,7 +1,7 @@
 {
  "adopted_corrections": [],
  "adopted_corrections_note": "the walk-forward on this name is a SCOPE SKIP under [R-FCAL-01] \u2014 four sourceable fiscal years against the five a LIGHT scope needs, recorded in engine/elec_walkforward/skip_record.json in the rule's own words. It scores nothing, so it adopts nothing, and this list is EMPTY rather than ABSENT: silence and 'none adopted' are the same file to a reader and different facts about the work.",
- "central": 0.3357186228503667,
+ "central": 0.32291115401779547,
  "spot": 2.08,
  "spot_date": "2026-09-03",
  "tech_anchor_date": "2026-08-05",
@@ -439,9 +439,9 @@
    "ring": "House"
   },
   "rf_term": {
-   "value": 0.105,
-   "source": "Terminal rf norm-built: CBE's own stated Q4-2028 inflation target 5%% (+/-2pp) + ~5.5pp EM real-rate convention (house standing construction)",
-   "date": "2026-08-05",
+   "value": 0.10500000000000001,
+   "source": "Terminal risk-free rate, READ FROM THE HOUSE EGYPTIAN PATH rather than typed: terminal inflation 7.0% plus the structural real rate 3.5% = 10.5%. THE RETIRED ENTRY WAS RIGHT BY ACCIDENT AND THAT IS WHY NOTHING CAUGHT IT. It typed 10.5% and justified it as the CBE's Q4-2028 inflation target of 5% plus a ~5.5pp emerging-market real-rate convention. BOTH components were wrong against the house path, which holds 7.0% inflation and, from 10-09-2026, a 3.5% structural real rate - and they cancelled exactly: 5 + 5.5 = 7 + 3.5 = 10.5. A number that is correct for two offsetting wrong reasons survives every check that looks at the number.",
+   "date": "2026-09-10",
    "ring": "House"
   },
   "erp_term": {
@@ -463,9 +463,9 @@
    "ring": "House"
   },
   "g_term": {
-   "value": 0.05,
-   "source": "Terminal growth center 5%% \u2014 standing convention for established Egyptian names post-disinflation; grid 3-7%%",
-   "date": "2026-08-05",
+   "value": 0.07000000000000006,
+   "source": "Terminal NOMINAL growth, DERIVED from the house path and not typed: zero STATED real growth on 7.0% long-run Egyptian inflation. THE RETIRED 5.0% was a standing convention for established Egyptian names that named no inflation rate at all - and against the house path's 7.0% it was a REAL DECLINE of about 1.9% a year in perpetuity, on the line carrying most of the value. The same defect was found and corrected on another Egyptian study earlier the same day.",
+   "date": "2026-09-10",
    "ring": "House"
   },
   "ev_ebitda_base": {
@@ -823,9 +823,9 @@
   "wd": 0.6029210771164328,
   "wacc_exp": 0.21390565004981762,
   "wacc_exp_rating": 0.21945252493936276,
-  "rf_term": 0.105,
+  "rf_term": 0.10500000000000001,
   "erp_term": 0.07,
-  "ke_term": 0.17248,
+  "ke_term": 0.17248000000000002,
   "kd_term": 0.15,
   "wd_term": 0.4,
   "we_term": 0.6,
@@ -963,20 +963,20 @@
    }
   ],
   "pv_sum": 695.5348258343764,
-  "tv": 7150.199785774294,
-  "pv_tv": 3127.2364401968093,
-  "ev": 3822.771266031186,
-  "tv_pct": 0.8180548148368597,
-  "fcff_T1": 714.9341761800001,
+  "tv": 4740.646215282283,
+  "pv_tv": 2073.385644972777,
+  "ev": 2768.9204708071534,
+  "tv_pct": 0.7488064994399696,
+  "fcff_T1": 379.19480946799905,
   "roic_T": 0.09170814583433977,
-  "rr_T": 0.5452078389014566,
+  "rr_T": 0.7632909744620399,
   "ic_T": 16325.10096,
   "net_debt": 9805.0,
   "nci": 0.0,
   "eq": 0.0,
   "ps": 0.01,
-  "eq_unfloored": -5982.228733968814,
-  "ps_unfloored": -1.8053888169627605,
+  "eq_unfloored": -7036.079529192846,
+  "ps_unfloored": -2.1234325637090543,
   "nd_fy26": 10925.615545600001
  },
  "is_fcst": [
@@ -1092,14 +1092,14 @@
    "bull": 1.3584880639171257
   },
   "book": {
-   "bear": 0.6061465852656549,
-   "base": 0.9092198778984824,
-   "bull": 1.3133176014089187
+   "bear": 0.4829614478489287,
+   "base": 0.8451825337356259,
+   "bull": 1.328143981584555
   },
   "central": {
-   "bear": 0.1825753729383991,
-   "base": 0.3357186228503667,
-   "bull": 0.9526140811620162
+   "bear": 0.15793834545505386,
+   "base": 0.32291115401779547,
+   "bull": 0.9555793571971434
   }
  },
  "weights": {
@@ -1208,39 +1208,39 @@
   ],
   "table": [
    [
-    -1.4541416373518647,
-    -1.6256654016021748,
-    -1.7626506960481656,
-    -1.8745197257508366,
-    -1.9675536818596815
+    -1.8303763571700942,
+    -1.9806776854857342,
+    -2.0935342899943707,
+    -2.1814178796426473,
+    -2.251811439841329
    ],
    [
-    -1.4819748584015187,
-    -1.6500555928135843,
-    -1.7842925450061462,
-    -1.8939183700060704,
-    -1.9850878986908054
+    -1.8507814968731586,
+    -1.998074730226166,
+    -2.1086730058536807,
+    -2.1947983260241286,
+    -2.2637838508673562
    ],
    [
-    -1.5091013402736444,
-    -1.673828687294087,
-    -1.8053888169627605,
-    -1.9128297802496659,
-    -2.0021833448822166
+    -1.8706707049616214,
+    -2.015033973597986,
+    -2.1234325637090543,
+    -2.2078452606660064,
+    -2.2754592932651017
    ],
    [
-    -1.5355435535754534,
-    -1.6970042652262478,
-    -1.825956787107523,
-    -1.9312693523000792,
-    -2.0188538559710065
+    -1.8900603666990756,
+    -2.031569286549452,
+    -2.1378249477592766,
+    -2.2205691995858414,
+    -2.2868471080368518
    ],
    [
-    -1.5613231091097106,
-    -1.7196011586799202,
-    -1.8460130715488126,
-    -1.9492518954531306,
-    -2.0351127411814574
+    -1.908966240614537,
+    -2.0476940102991485,
+    -2.151861685248712,
+    -2.232980258461594,
+    -2.2979562811413876
    ]
   ]
  },
@@ -1249,50 +1249,50 @@
    "beta": 0.6,
    "ke": 0.24556,
    "wacc_exp": 0.20030474395164055,
-   "wacc_term": 0.1347,
-   "dcf": -1.5915989668459634
+   "wacc_term": 0.13470000000000001,
+   "dcf": -1.9442330774635495
   },
   {
    "beta": 0.78,
    "ke": 0.262498,
    "wacc_exp": 0.2070304667474424,
    "wacc_term": 0.14226,
-   "dcf": -1.7062435318035163
+   "dcf": -2.0422837660163133
   },
   {
    "beta": 0.8,
    "ke": 0.26438,
    "wacc_exp": 0.20777776928030928,
    "wacc_term": 0.1431,
-   "dcf": -1.7178242456688257
+   "dcf": -2.0519314609525083
   },
   {
    "beta": 0.964,
    "ke": 0.27981239999999996,
    "wacc_exp": 0.21390565004981762,
    "wacc_term": 0.149988,
-   "dcf": -1.8053888169627605
+   "dcf": -2.1234325637090543
   },
   {
    "beta": 1.0,
    "ke": 0.2832,
    "wacc_exp": 0.215250794608978,
-   "wacc_term": 0.1515,
-   "dcf": -1.8230060214006134
+   "wacc_term": 0.15150000000000002,
+   "dcf": -2.137517803937451
   },
   {
    "beta": 1.15,
    "ke": 0.297315,
    "wacc_exp": 0.22085556360547956,
    "wacc_term": 0.1578,
-   "dcf": -1.8910423305239021
+   "dcf": -2.191010361912049
   },
   {
    "beta": 1.3,
    "ke": 0.31143,
    "wacc_exp": 0.22646033260198112,
    "wacc_term": 0.1641,
-   "dcf": -1.9514906806373553
+   "dcf": -2.237377326482187
   }
  ],
  "sens_mn": {
@@ -1312,77 +1312,77 @@
   ],
   "table": [
    [
-    -3.257990082614305,
-    -3.0158676759381575,
-    -2.7737452692620095,
-    -2.5316228625858614,
-    -2.289500455909714
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
    ],
    [
-    -2.7738118564646803,
-    -2.5316894497885327,
-    -2.289567043112385,
-    -2.047444636436237,
-    -1.8053222297600895
+    0.0,
+    0.0,
+    -2.702922787569136,
+    -2.403618011498717,
+    -2.1043132354282985
    ],
    [
-    -2.289633630315056,
-    -2.0475112236389084,
-    -1.8053888169627608,
-    -1.5632664102866125,
-    -1.3211440036104654
+    -2.722042115849892,
+    -2.4227373397794736,
+    -2.1234325637090548,
+    -1.8241277876386355,
+    -1.524823011568217
    ],
    [
-    -1.805455404165432,
-    -1.563332997489284,
-    -1.3212105908131362,
-    -1.0790881841369884,
-    -0.8369657774608408
+    -2.14255189198981,
+    -1.8432471159193922,
+    -1.543942339848973,
+    -1.2446375637785536,
+    -0.9453327877081354
    ],
    [
-    -1.3212771780158075,
-    -1.0791547713396592,
-    -0.8370323646635119,
-    -0.5949099579873641,
-    -0.35278755131121625
+    -1.5630616681297291,
+    -1.2637568920593107,
+    -0.9644521159888915,
+    -0.6651473399184725,
+    -0.3658425638480538
    ]
   ]
  },
  "sens_roic": [
   {
    "roic": 0.077,
-   "rr": 0.6493506493506493,
-   "tv": 5512.876268224915,
-   "ps": -2.021503749012557
+   "rr": 0.90909090909091,
+   "tv": 1820.664999036203,
+   "ps": -2.5088490897479736
   },
   {
    "roic": 0.085,
-   "rr": 0.5882352941176471,
-   "tv": 6473.726162468909,
-   "ps": -1.8946784714306437
+   "rr": 0.8235294117647065,
+   "tv": 3534.2320569526505,
+   "ps": -2.2826705585566174
   },
   {
    "roic": 0.09170814583433977,
-   "rr": 0.5452078389014566,
-   "tv": 7150.199785774294,
-   "ps": -1.8053888169627605
+   "rr": 0.7632909744620399,
+   "tv": 4740.646215282283,
+   "ps": -2.1234325637090543
   },
   {
    "roic": 0.12,
-   "rr": 0.4166666666666667,
-   "tv": 9171.11206349762,
-   "ps": -1.5386429265522512
+   "rr": 0.5833333333333339,
+   "tv": 8344.714578915997,
+   "ps": -1.6477214527642183
   },
   {
    "roic": 0.15,
-   "rr": 0.33333333333333337,
-   "tv": 10481.270929711565,
-   "ps": -1.3657113761827457
+   "rr": 0.4666666666666671,
+   "tv": 10681.234661012484,
+   "ps": -1.3393176013793382
   }
  ],
  "nd_challenge": {
   "nd": 10386.0,
-  "ps": -1.9807299731273906,
+  "ps": -2.298773719873685,
   "note": "the auditor-asserted (unverified) FY25 net-debt reading"
  },
  "scenarios": {
@@ -1470,7 +1470,7 @@
    },
    "note": "THE DRIVER TELLS THE SAME STORY AND IS NOT RECORDED AS THE GOVERNING RATE, for a reason worth stating: its denominator is a volume the company does not disclose, implied through a fabrication uplift that revenue alone does not identify, so it cannot be read off any filing. It opens at 40.0 against 11.3 in the quarter and rises to 135, while the filed years run 110.8 (FY2023), 145.6 (FY2024) and 182.2 (FY2025) \u2014 the same shape as the margin: above the quarter, far below every year."
   },
-  "note": "THE FORECAST OPENS ABOVE THE LATEST REVIEWED PERIOD AND RISES FROM THERE, SO NEITHER CLAUSE FIRES AND NO MECHANISM IS OWED OR CLAIMED. It opens at 4.09% against 1.26% in the three months to 31 March 2026 \u2014 +224% relative \u2014 and the path's minimum IS its opening year, running 4.09% / 8.91% / 11.07% / 11.99% / 12.30%.\n\nWHAT SITS EITHER SIDE OF THAT IS THE WHOLE OF THIS STUDY AND A READER SHOULD SEE IT. The anchor quarter is the worst the company has reported: revenue EGP 2,094 mn against EGP 3,723 mn a year earlier, gross margin 5.69% against 33.12%, operating profit EGP 1.429mn against EGP 1,124 mn, and a net loss of EGP 241.6mn against a profit of EGP 451.7mn. A forecast opening above that is the ordinary consequence of not projecting the worst quarter for ever, and it is not evidence of anything. The LAST forecast year is where the answer lives: 12.30% against a reported record of 30.68% (FY2023), 25.33% (FY2024) and 26.54% (FY2025) \u2014 51% relatively below the lowest of the three \u2014 and 82% of enterprise value sits in the terminal struck off it. THIS RULE'S TWO COMPARISONS CANNOT REACH THAT NUMBER: one holds the opening year against the latest reviewed period and the other holds the path's minimum against its own opening year, and on a rising path out of a collapsed quarter both pass while the single judgement carrying the valuation goes unexamined. It is examined instead by this study's own dated gap review, which solves the traded price back through these same drivers onto a terminal margin that sits inside the reported range in all three years \u2014 a figure that review computes and this model does not, so it is described rather than quoted.\n\nAND THE RECORD IS ONLY AS GOOD AS WHAT IT IS STRUCK ON. The full-year margins quoted above are not filed rates: revenue and net profit are vendor and press prints, and everything between them is solved or typed \u2014 the FY2025 EBITDA rests on a finance cost derived to close the profit and loss to a reported net profit, and this study's own review shows the FY2025 conversion rate the forecast is calibrated against moving materially with that single unsourced input, which is that review's arithmetic and not this model's. The comparison this record draws is therefore between a forecast and a reconstruction, and it is recorded in those terms."
+  "note": "THE FORECAST OPENS ABOVE THE LATEST REVIEWED PERIOD AND RISES FROM THERE, SO NEITHER CLAUSE FIRES AND NO MECHANISM IS OWED OR CLAIMED. It opens at 4.09% against 1.26% in the three months to 31 March 2026 \u2014 +224% relative \u2014 and the path's minimum IS its opening year, running 4.09% / 8.91% / 11.07% / 11.99% / 12.30%.\n\nWHAT SITS EITHER SIDE OF THAT IS THE WHOLE OF THIS STUDY AND A READER SHOULD SEE IT. The anchor quarter is the worst the company has reported: revenue EGP 2,094 mn against EGP 3,723 mn a year earlier, gross margin 5.69% against 33.12%, operating profit EGP 1.429mn against EGP 1,124 mn, and a net loss of EGP 241.6mn against a profit of EGP 451.7mn. A forecast opening above that is the ordinary consequence of not projecting the worst quarter for ever, and it is not evidence of anything. The LAST forecast year is where the answer lives: 12.30% against a reported record of 30.68% (FY2023), 25.33% (FY2024) and 26.54% (FY2025) \u2014 51% relatively below the lowest of the three \u2014 and 75% of enterprise value sits in the terminal struck off it. THIS RULE'S TWO COMPARISONS CANNOT REACH THAT NUMBER: one holds the opening year against the latest reviewed period and the other holds the path's minimum against its own opening year, and on a rising path out of a collapsed quarter both pass while the single judgement carrying the valuation goes unexamined. It is examined instead by this study's own dated gap review, which solves the traded price back through these same drivers onto a terminal margin that sits inside the reported range in all three years \u2014 a figure that review computes and this model does not, so it is described rather than quoted.\n\nAND THE RECORD IS ONLY AS GOOD AS WHAT IT IS STRUCK ON. The full-year margins quoted above are not filed rates: revenue and net profit are vendor and press prints, and everything between them is solved or typed \u2014 the FY2025 EBITDA rests on a finance cost derived to close the profit and loss to a reported net profit, and this study's own review shows the FY2025 conversion rate the forecast is calibrated against moving materially with that single unsourced input, which is that review's arithmetic and not this model's. The comparison this record draws is therefore between a forecast and a reconstruction, and it is recorded in those terms."
  },
  "step0": {
   "windows_scored": 17,
@@ -1711,7 +1711,7 @@
   "e3": {
    "method_short": "cash returns: ROIC vs the cost of capital",
    "base": 0.1,
-   "unfloored": -1.8630729076287533,
+   "unfloored": -2.1652144670377327,
    "floor": 0.1,
    "rng": [
     0.05,

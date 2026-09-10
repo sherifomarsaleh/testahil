@@ -4,6 +4,28 @@ truth for every builder). Code-first rule: INPUTS are four-field records
 block raises (no JSON emitted) unless the bridge closes, the glide is ordered,
 the Kd-integrity triple holds, and the terminal is ROIC-consistent."""
 import json, os, sys
+# THE HOUSE MACRO PATH, found wherever this file is run from. The diagnostics harness
+# COPIES compute.py into a temporary directory and runs it there, so a path derived
+# from __file__ alone resolves to /tmp and the import dies. Walk up from both this
+# file and the working directory until the engine root is found.
+def _engine_root():
+    seen = []
+    for start in (os.path.dirname(os.path.abspath(__file__)), os.getcwd()):
+        d = start
+        for _ in range(6):
+            if os.path.exists(os.path.join(d, 'macro_path.py')):
+                return d
+            seen.append(d)
+            d = os.path.dirname(d)
+    raise ImportError('macro_path.py not found above %s' % seen[:3])
+
+
+try:                                    # PYTHONPATH already carries the engine root
+    import macro_path as _MPmod
+except ImportError:                     # run from somewhere that does not
+    sys.path.insert(0, _engine_root())
+    import macro_path as _MPmod
+_MP_EG = _MPmod.load('EG')          # THE house Egyptian path; this study holds no macro view
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -243,8 +265,19 @@ INP = dict(
               "deleveraging, and current market-value weights are circular (the equity weight "
               "depends on the DCF's own output). 40% is the industry-normal structure for a "
               "working-capital-funded cable maker; sensitized via the terminal-WACC grid", "2026-08-05", "House"),
-    rf_term=I(0.105, "Terminal rf norm-built: CBE's own stated Q4-2028 inflation target 5%% (+/-2pp) "
-              "+ ~5.5pp EM real-rate convention (house standing construction)", "2026-08-05", "House"),
+    rf_term=I(_MP_EG.terminal_rf,
+              "Terminal risk-free rate, READ FROM THE HOUSE EGYPTIAN PATH rather than "
+              "typed: terminal inflation %.1f%% plus the structural real rate %.1f%% = "
+              "%.1f%%. THE RETIRED ENTRY WAS RIGHT BY ACCIDENT AND THAT IS WHY NOTHING "
+              "CAUGHT IT. It typed 10.5%% and justified it as the CBE's Q4-2028 inflation "
+              "target of 5%% plus a ~5.5pp emerging-market real-rate convention. BOTH "
+              "components were wrong against the house path, which holds 7.0%% inflation "
+              "and, from 10-09-2026, a 3.5%% structural real rate - and they cancelled "
+              "exactly: 5 + 5.5 = 7 + 3.5 = 10.5. A number that is correct for two "
+              "offsetting wrong reasons survives every check that looks at the number."
+              % (100 * _MP_EG.terminal_inflation, 100 * _MP_EG.real_rate_convention,
+                 100 * _MP_EG.terminal_rf),
+              "2026-09-10", "House"),
     erp_term=I(0.070, "Terminal ERP normalised below the crisis-era 9.41%% CDS-based level toward the "
                "B-rating-class norm; never held flat into perpetuity (house standing rule)", "2026-08-05", "House"),
     kd_path=I([0.220, 0.200, 0.185, 0.168, 0.155],
@@ -255,8 +288,16 @@ INP = dict(
               "terminal 15%%. Next MPC 20-Aug-26 (confirmed). A higher-for-longer path is the explicit "
               "+2pp column of the rate grid. The WACC glide shape is tied to this path by construction",
               "2026-08-05", "House"),
-    g_term=I(0.05, "Terminal growth center 5%% — standing convention for established Egyptian names "
-             "post-disinflation; grid 3-7%%", "2026-08-05", "House"),
+    g_term=I(_MP_EG.terminal_growth(0.0),
+             "Terminal NOMINAL growth, DERIVED from the house path and not typed: zero "
+             "STATED real growth on %.1f%% long-run Egyptian inflation. THE RETIRED 5.0%% "
+             "was a standing convention for established Egyptian names that named no "
+             "inflation rate at all - and against the house path's 7.0%% it was a REAL "
+             "DECLINE of about 1.9%% a year in perpetuity, on the line carrying most of "
+             "the value. The same defect was found and corrected on another Egyptian "
+             "study earlier the same day."
+             % (100 * _MP_EG.terminal_inflation),
+             "2026-09-10", "House"),
 
     # ---- lens inputs ----
     ev_ebitda_base=I(5.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA: SWDY trades ~6x (multiples.vc "
@@ -679,9 +720,15 @@ if V['kd'] > max(V['kd_eff_fy24'], V['kd_eff_fy25']) + 0.005:
 # terminal capital structure: normalized, and lighter on debt than today's distress weights
 if not (V['wd_term'] < wd):
     err.append('terminal debt weight not below the current distress weight')
-# terminal-growth procedure
-if V['g_term'] != 0.05:
-    err.append('terminal g center is not the standing 5%')
+# TERMINAL-GROWTH PROCEDURE. RE-POINTED, NOT WIDENED, on 10-09-2026. This tested
+# `g_term == 0.05` — it pinned the answer rather than the procedure, so it enforced the
+# very convention that was the defect and would have refused the correction. What the
+# rule actually requires is that a terminal growth is DERIVED from the one dated house
+# path and never typed, so that is what is checked now: the study's rate must reproduce
+# from the house path's own terminal-growth function at a stated real rate.
+if abs(V['g_term'] - _MP_EG.terminal_growth(0.0)) > 1e-9:
+    err.append('terminal g is not the house path\'s derived rate at zero stated real '
+               'growth (%.4f vs %.4f)' % (V['g_term'], _MP_EG.terminal_growth(0.0)))
 if rr_T >= 1.0 or rr_T <= 0:
     err.append('terminal reinvestment rate not in (0,1)')
 if abs(roic_T * rr_T - V['g_term']) > 1e-9:
