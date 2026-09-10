@@ -561,6 +561,16 @@ P(f'The same arithmetic read the other way is worth stating, because it is the p
   f'{(SPOT - A["per_share"]) * SH / (V["plant_cost_usd_mn"] * FC["fx"][-1]):.1f} times what '
   f'the plant cost to build. That is the proposition, stated as a multiple of an observable '
   f'outlay rather than as a valuation.')
+P('And the lead molecule is not first into its own market, which makes the hurdle harder '
+  'than the contribution margin above makes it look. The Egyptian Drug Authority approved a '
+  'competing adalimumab biosimilar — Alvotech\'s AVT02, marketed in Egypt as Adalimumab-EVA '
+  'and commercialised by Bioventure — on 29 August 2023. That is twenty-seven months before '
+  'this company launched its own adalimumab in December 2025, and adalimumab is the one '
+  'molecule of the fourteen in the published pipeline that has actually reached the market. '
+  'So the revenue above has to be won against an approved rival rather than into an empty '
+  'field, and the 45% contribution margin the solve assumes should be read as a ceiling. '
+  'This changes nothing in the answer, because the crux is stated rather than forecast. It '
+  'raises the bar a reader has to clear before agreeing with the market.', bold=True)
 box([('Why this number is useful. ',
       f'It is observable. Roughly USD {n0(CRUX["required_rev_usd_mn"])} million a year of '
       f'biosimilar revenue by 2030 is a figure the company will eventually disclose, and a '

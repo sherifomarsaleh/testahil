@@ -202,6 +202,92 @@ f_comp = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)", Findi
     "(13)", CO, "2026-03-28", url=AR25, fiscal_period="FY2025",
     model_impact="")
 
+# ---- ADDED 10 September 2026, after two external research passes -------------
+# WHAT THE PASSES WERE FOR, AND WHAT THEY ACTUALLY DID. Two deep-research reports on this
+# company were supplied. Most of what they carried did not survive tracing to a primary
+# source and is recorded as a negative search below rather than as a finding. But the
+# tracing turned up two things NEITHER report contained, and both bear on the crux. That
+# is the honest use of a search engine: it is a lead generator, and the value is in what
+# following the lead finds, which is not always what the lead said.
+
+f_biosim_comp = R.add(Ring.INDUSTRY, "competitor capacity / price moves (named)",
+    FindingClass.S,
+    "THE COMPANY'S FIRST BIOSIMILAR ENTERS A MARKET THAT ALREADY HAS AN APPROVED RIVAL. "
+    "The Egyptian Drug Authority approved AVT02, Alvotech's adalimumab biosimilar, for "
+    "manufacture and distribution in Egypt under the trade name Adalimumab-EVA, "
+    "commercialised by Bioventure. That approval is dated 29 August 2023 — twenty-seven "
+    "months BEFORE this company launched ADALIMAB in December 2025",
+    "Alvotech investor newsroom announcement, 29 August 2023, naming the Egyptian Drug "
+    "Authority as the approving regulator", PRESS, "2023-08-29",
+    url="https://www.alvotech.com/newsroom/alvotech-and-bioventure-announce-approval-of-"
+        "avt02-adalimumab-in-egypt",
+    model_impact="BEARS DIRECTLY ON THE CRUX. The required-revenue solve assumes the "
+                 "incremental biologicals revenue arrives at a 45% contribution margin. An "
+                 "approved competing adalimumab has been on the Egyptian register since "
+                 "2023, so the lead molecule is not entering an empty field and 45% is a "
+                 "ceiling rather than a base case. The crux is stated, not assumed, so this "
+                 "makes the published hurdle HARDER rather than moving the answer.")
+
+f_repricing_lag = R.add(Ring.INDUSTRY, "pricing", FindingClass.S,
+    "THE COMPANY'S OWN INVESTOR RELATIONS SAYS REPRICING DOES NOT RESTORE MARGIN AND LAGS "
+    "COST BY ABOUT A YEAR. Against the October 2024 round of 35-40% price increases, this "
+    "company's margin FELL over the nine months to September 2025, to 44.7% from 46.3% a "
+    "year earlier. Its investor-relations manager, named in the report, attributes it to "
+    "sales mix and states that price increases reflect cost increases that occurred up to a "
+    "year earlier rather than current ones",
+    "Al Borsa, 20 December 2025, quoting the company's investor-relations manager by name",
+    PRESS, "2025-12-20", url="https://www.alborsaanews.com/2025/12/20/1937253",
+    model_impact="CONFIRMS THE FORECAST MARGIN PATH RATHER THAN CHANGING IT. This model "
+                 "already runs gross margin DOWN from the FY2025 actual and never back to "
+                 "it. A company statement that repricing lags cost by a year is evidence "
+                 "for that path, and would have been evidence against a path that assumed "
+                 "recovery.")
+
+f_price_regime = R.add(Ring.COUNTRY, "regulatory / policy change", FindingClass.C,
+    "THE PRICING REGIME CHANGE IS UNDER STUDY AND IS NOT IN FORCE. The Drug Authority is "
+    "studying a mechanism that would link registered prices to the exchange rate, inflation "
+    "and the interest rate, replacing case-by-case applications. As at 28 July 2026 it is a "
+    "proposal being examined. Separately, companies have filed more than 170 applications "
+    "covering roughly 500 items seeking 10% to 30%, about 150 of which have been studied; "
+    "no decision has been announced, and an official said in January 2026 that a 2026 "
+    "increase is an unlikely scenario",
+    "Mada Masr, 28 July 2026, and Sky News Arabia on the proposal; Al Arabiya, 5 January "
+    "2026, on the official's remark", PRESS, "2026-07-28",
+    url="https://www.madamasr.com/2026/07/28/news/",
+    model_impact="NOTHING ENTERS THE MODEL. A proposal under study is not a rate, and an "
+                 "unresolved application is not a price. It is registered so the domestic "
+                 "price path is read as what it is — a forecast made without assuming "
+                 "either the pending round or an automatic pass-through mechanism.")
+
+f_ventures = R.add(Ring.COMPANY,
+    "announced projects, ventures and capacity (entity verified as the listed issuer)",
+    FindingClass.S,
+    "THE COMPANY'S OWN ANNOUNCEMENT, ISSUED IN ITS CHAIRMAN'S NAME. The EIPICO 3 plant has "
+    "the Egyptian Drug Authority licence and the Industrial Development Authority licence, "
+    "'paving the way for the start of its operational phase in the first quarter of 2026'. "
+    "The plant is described as the first in Egypt to produce biosimilars and biologicals "
+    "from cell culture through to finished product, at an investment of USD 100 million. Its "
+    "first product, ADALIMAB, 'has been awarded to be supplied to the Unified Procurement "
+    "Agency UPA'. A request was received to export ADALIMAB to Namibia. The same release "
+    "puts exports at over 60 countries and USD 60 million, 25% of Egypt's total "
+    "pharmaceutical exports. NO CAPACITY, VOLUME, PRICE OR UTILISATION FIGURE APPEARS "
+    "ANYWHERE IN IT",
+    "Company announcement in the chairman and managing director's name, carried 12 December "
+    "2025", IR, "2025-12-12",
+    url="https://meobserver.news/middle-east/egypt/2025/12/12/eipico-achieves-a-double-milestone/",
+    entity="Egyptian International Pharmaceutical Industries Company S.A.E. (EIPICO), the "
+           "EGX-listed issuer PHAR itself; the announcement is made in the name of its "
+           "chairman and managing director, and the plant, the licences and the procurement "
+           "award are the listed company's own, not a related party's",
+    entity_is_issuer=True,
+    model_impact="CLOSES THE ANNOUNCED-PROJECTS CATEGORY AND CONFIRMS WHY THE CRUX IS "
+                 "STATED RATHER THAN FORECAST. The operational phase begins in the first "
+                 "quarter of 2026, which is consistent with charging the plant's "
+                 "depreciation and interest from the December-2025 licence. The state "
+                 "procurement award and the Namibian export request establish that the "
+                 "product sells; neither says in what quantity or at what price, so still "
+                 "nothing supports a revenue line.")
+
 # ---------------------------------------------------------------- RING 4 COMPANY
 f_fs = R.add(Ring.COMPANY, "official financial statements", FindingClass.B,
     "Complete audited separate AND consolidated financial statements with the auditor's "
@@ -338,6 +424,31 @@ f_bio = R.add_negative(Ring.INDUSTRY, "pricing",
     "company's annual reports, its investor presentation and every 2026 press release on its "
     "own site. The plant's products and investment are described; nothing quantifies its "
     "expected revenue", SWEEP_DATE)
+
+f_ai_claims = R.add_negative(Ring.INDUSTRY, "technology substitution",
+    "A DISCLOSED THROUGHPUT FOR THE BIOLOGICALS PLANT, RE-SOUGHT ON 10 SEPTEMBER 2026 AFTER "
+    "TWO EXTERNAL DEEP-RESEARCH PASSES REPORTED ONE. One pass put the plant at 100,000 vials "
+    "a day; the other, run on the same question, stated explicitly that no standalone "
+    "throughput figure has been disclosed and that the 327 million packs a year in "
+    "circulation is the THREE-FACTORY GROUP figure rather than this plant's. The company's "
+    "own December 2025 announcement, its investor presentation and the Drug Authority's own "
+    "factory-licence record were re-read: the licence enumerates one combination sterile "
+    "line and two primary-biological-raw-material lines and states no capacity at all. "
+    "Searched in English and in Arabic. THE 100,000 FIGURE IS NOT TRACEABLE TO THE COMPANY "
+    "AND DOES NOT ENTER. Recorded because two independent passes disagreeing on a number is "
+    "itself the finding: one of them made it, and a study that took the higher of two "
+    "search results would have published it", "2026-09-10")
+
+f_ai_pricing = R.add_negative(Ring.COUNTRY, "regulatory / policy change",
+    "AN ADOPTED DYNAMIC DRUG-PRICING FORMULA AND AN ADOPTED PHARMACY-MARGIN CHANGE, both "
+    "reported by an external research pass as being in force — the formula 'operationalised "
+    "2025' with a 10% index threshold, and pharmacy margins raised from 20% to 23% on "
+    "essential local products and 25% to 27% on non-essential. NEITHER VERIFIES. Searched in "
+    "Arabic, which is the language the decree register and the trade press use: the pricing "
+    "formula is reported on 28 July 2026 as a proposal the authority is STUDYING, and the "
+    "standing margin framework remains the 2012 decision at 25% local and 18% imported with "
+    "an essential list at 20%, with the reported 2024-25 direction of travel being to REDUCE "
+    "pharmacists' margins rather than raise them. Neither number enters", "2026-09-10")
 
 f_ageing = R.add_negative(Ring.COMPANY, "official financial statements",
     "A counterparty-level or ageing-bucket breakdown of the expected-credit-loss allowance, "

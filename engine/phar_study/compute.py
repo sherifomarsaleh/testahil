@@ -2226,6 +2226,15 @@ say(f"[The crux] the base build charges the new biologicals facility's depreciat
     f"{crux['required_rev_usd_mn']:,.0f} million a year — {crux['asset_turn']:.2f} times the "
     f"USD 100 million the company says it invested in the plant. That number is observable: it "
     f"is testable against the first year the company discloses biosimilar revenue.")
+say(f"  AND THE HURDLE IS HARDER THAN THE 45% MARGIN MAKES IT LOOK, BECAUSE THE LEAD MOLECULE "
+    f"IS NOT FIRST. The Egyptian Drug Authority approved a competing adalimumab biosimilar — "
+    f"Alvotech's AVT02, marketed as Adalimumab-EVA — on 29 August 2023, twenty-seven months "
+    f"before this company launched its own in December 2025. So the required EGP "
+    f"{req_rev:,.0f} million has to be won in a market that already had an approved rival in "
+    f"the one molecule the company has actually launched, and the 45% contribution margin the "
+    f"solve assumes is a ceiling rather than a base case. This does not move the answer, "
+    f"because the crux is stated and not forecast; it raises the bar the reader is asked to "
+    f"clear before agreeing with the market.")
 say(f"  Two things that must be published for that hurdle to be auditable, and were not before. "
     f"THE RAMP: the incremental revenue is not dropped into the final year, it is phased "
     + ' / '.join(f'{r:.0%}' for r in CRUX_RAMP) +
