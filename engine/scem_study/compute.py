@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import terminal_value as TV   # [R-TERM-01] the only sanctioned way to build a terminal
+import cost_of_capital as _coc
 import macro_path as MP       # [R-MACRO-01] the ONE house path; a study carries no inflation of its own
 
 # [R-MACRO-01] EVERY INFLATION-CLASS INPUT IS DERIVED HERE, FROM THE HOUSE LADDER, AND
@@ -596,7 +597,17 @@ say(f"\n[FY2025, AS FILED] operating profit "
 
 # ============ 3. COST OF CAPITAL — Hamada re-levered terminal ==============
 rf_star = V['rf'] - V['sov_spread_cds']
-ke_exp = rf_star + V['beta'] * V['erp_cds']
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. The retired line was
+# rf* + beta x the WHOLE premium, which charges Egypt's country risk (beta - 1) times over.
+# THIS COMPANY'S BETA IS EXACTLY 1.000, so the two identities give the same number to the
+# last decimal and NOTHING MOVES HERE — which is the reason to fix it on this name first:
+# the change is a declaration of what the rate is made of, provable to be nothing else.
+# The components are published beside the rate because a leg that is computed and not
+# published is a leg nothing can verify.
+_crp, _erp_mature = _coc.split_erp(V['erp_cds'], V['sov_spread_cds'])
+ke_exp = rf_star + V['beta'] * _erp_mature + _crp
+assert abs(ke_exp - (rf_star + V['beta'] * V['erp_cds'])) < 1e-12, \
+    'beta is 1.000 here, so the split and the retired identity must agree exactly'
 kd_at = V['kd'] * (1 - TAX)
 mktcap = V['spot'] * V['shares_mn']
 wd_exp = V['debt_fy25'] / (V['debt_fy25'] + mktcap)
@@ -1143,6 +1154,17 @@ COC_RECORD = dict(
     market='EG', regime=_PATH.regime, years=5,
     rf_observed=V['rf'], default_spread=V['sov_spread_cds'], rf_star=rf_star,
     erp=V['erp_cds'], erp_basis='cds', beta=V['beta'],
+    erp_mature=_erp_mature, crp=_crp, crp_effective=_crp,
+    lambda_country=1.0, crp_foreign=0.0,
+    ke_construction='split_premium',
+    ke_construction_note=(
+        'rf* + beta x the MATURE premium + the country premium charged FLAT and once. '
+        'Every plant, every tonne and every customer is in Egypt, so lambda is 1.00 and '
+        'the whole country premium is the Egyptian one. The premium splits by Damodaran\'s '
+        'identity: the sovereign default spread scaled to equity volatility is the country '
+        'leg, the remainder is the mature leg, and beta multiplies only the mature leg. '
+        'This company\'s beta is exactly 1.000, so this construction and the retired '
+        'total-premium one agree to the last decimal and the rate is unchanged.'),
     ke_exp=ke_exp, kd_pretax=V['kd'], kd_aftertax=kd_at,
     weight_equity=1 - wd_exp, weight_debt=wd_exp, wacc_exp=wacc_exp,
     rf_terminal=V['rf_term'], erp_terminal=V['erp_term'], ke_terminal=ke_term,
