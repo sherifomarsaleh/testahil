@@ -671,9 +671,99 @@ def build(tk):
     return "\n".join(L)
 
 
+GENERIC_BLOCK = [
+ "COMPANY NEWS — everything the company itself has said or had said about it, newest first. "
+ "Results releases, board decisions, management changes, disputes, anything filed with its "
+ "exchange.",
+ "THE ORDER BOOK OR BACKLOG — the figure the company itself last published, the date it "
+ "published it, and its split by segment, product or geography if it gave one. If it "
+ "publishes no backlog, say so; some businesses have none and that is an answer.",
+ "NEW ORDERS, CONTRACTS AND TENDER AWARDS in the last 18 months, with the counterparty "
+ "named, the country, the value, and the delivery period.",
+ "THE PROJECT PIPELINE — everything announced but not yet finished. For each: what it is, "
+ "what it will produce, the sanctioned cost, how it is financed, the guided completion or "
+ "first-revenue date, and the percentage complete if stated.",
+ "FUTURE CAPACITY PLANS — capacity added, announced, mothballed or closed, in the unit the "
+ "company uses: tonnes, megawatts, units, square metres, beds, packs, lines, branches, "
+ "rooms, subscribers. Say whether a figure covers one asset or the whole group.",
+ "SLIPPAGE — any project or capacity target whose guided date has MOVED, with the old date, "
+ "the new date, and the reason given. A slipped project matters as much as a delivered one.",
+ "THE INDUSTRY IT SITS IN — capacity entering or leaving this market, named competitors' "
+ "announced expansions, and any consolidation, entry or exit.",
+ "PRICES AND TARIFFS SET BY SOMEONE OTHER THAN THE COMPANY — administered prices, "
+ "regulated tariffs, subsidies, quotas, export duties or levies, and every announced change "
+ "with the instrument that made it and its effective date. Include repeals, not only "
+ "impositions.",
+ "REGULATION AND POLICY affecting this business, from the bodies that actually govern it. "
+ "Label each item ANNOUNCED, UNDER STUDY or SPECULATED — a proposal a regulator is examining "
+ "is not a rule in force.",
+ "INPUT COSTS AND SUPPLY — the main raw materials, energy and feedstock, their announced "
+ "prices or allocation regimes, and any disruption, curtailment or shortage.",
+ "MONEY IN AND OUT — announced capital raises, debt issues, refinancings, dividend policy "
+ "statements, acquisitions, disposals, and any change in who controls the company.",
+ "STAKES IN THINGS NOT ON THE EXCHANGE — any material holding in an unlisted company, every "
+ "announced funding round or valuation event at it, and the percentage held after each.",
+]
+
+
+def build_generic():
+    """The reusable half, with no company resolved.
+
+    The point of a generator is one source of truth: this shares PART 1 verbatim with the
+    per-name prompt, so the rules cannot drift between the generic prompt and the specific
+    one. Only the question set is general, and it asks for the ground that is worth asking
+    about whatever the company does — news, backlog, pipeline, capacity, regulation."""
+    L = ["# Research primer — the generic prompt",
+         "",
+         "Use this for any company, on its own, without waiting for the company-specific "
+         "supplement. Fill in ONE thing: the company and its exchange. The company-specific "
+         "prompt that follows later adds the industry's own driver headings and the "
+         "questions our study has already recorded it could not answer — it does not "
+         "replace this.",
+         "", "---", "",
+         PART1_HEAD.replace('%REGULATORS%',
+             "the bodies that actually regulate this company — NAME THEM in your answer, "
+             "including the exchange's own disclosure portal, the securities regulator, the "
+             "central bank where it is a financial, and the industry regulator concerned"),
+         "", "---", "",
+         "## PART 2 — the company", "",
+         "> **Company:** {COMPANY NAME}, listed on {EXCHANGE}.",
+         ">",
+         "> If the company's own regulator, decree register or trade press publishes in a "
+         "language other than English, search in that language too and tell me which "
+         "languages you used.",
+         ">",
+         "> Give me, under these headings:", ">"]
+    for i, q in enumerate(GENERIC_BLOCK):
+        L.append("> **(%d)** %s" % (i + 1, q))
+    L += ["",
+          "---", "",
+          "## What happens to what comes back", "",
+          "Anything a research pass returns is a **lead, not an input**. Before a number "
+          "from it can enter a model it has to be traced to the primary source it cites and "
+          "read there. Historical financial figures come from the company's own issued "
+          "financial statements and from nowhere else, whatever a research pass says about "
+          "them.", "",
+          "Where two passes disagree on a figure, the disagreement is itself the finding: "
+          "one of them made the number up, and a study that took the higher of two search "
+          "results would have published it. Every claim that does not survive tracing is "
+          "recorded as a dated negative search rather than quietly dropped."]
+    return "\n".join(L)
+
+
 def main(argv):
     if not argv or argv[0] in ('-h', '--help'):
         raise SystemExit(__doc__)
+    if argv[0] == '--generic':
+        text = build_generic()
+        out = argv[argv.index('--out') + 1] if '--out' in argv else None
+        if out:
+            io_open = open(out, 'w', encoding='utf-8')
+            io_open.write(text + "\n"); io_open.close()
+            print("wrote %s (%d characters)" % (out, len(text)))
+        else:
+            print(text)
+        return
     tk = argv[0]
     text = build(tk)
     out = None
