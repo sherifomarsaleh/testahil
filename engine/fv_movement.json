@@ -797,6 +797,38 @@
       "bear": -0.0,
       "full": 11.8
      }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 9,
+     "fair": {
+      "base": null,
+      "bear": 0.9084,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": 5.0224
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 9.1288
+       }
+      ],
+      "full": 9.1288
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -41.0
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 0.0,
+      "full": 1.6
+     }
     }
    ],
    "exchange": "EGX",
@@ -962,6 +994,38 @@
       "base": null,
       "bear": -0.0,
       "full": 8.5
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 4,
+     "fair": {
+      "base": null,
+      "bear": 19.2911,
+      "branches": [
+       {
+        "label": "MNT-Halan at its reviewed carrying value",
+        "value": 45.7826
+       },
+       {
+        "label": "MNT-Halan at the June-2026 round price",
+        "value": 56.7795
+       }
+      ],
+      "full": 56.7795
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -17.2,
+      "full": 11.3
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 0.0,
+      "full": 0.0
      }
     }
    ],

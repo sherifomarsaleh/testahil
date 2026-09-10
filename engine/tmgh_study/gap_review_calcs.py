@@ -124,13 +124,52 @@ p("  against H1-2026 contracted sales of %.0fbn (%.0fbn annualised), FY2025 "
 
 # --- 5. what moves the answer -----------------------------------------------
 p("\n[5] SENSITIVITY — each lever alone, capacity mode, rating ERP")
-BASE_W = W["wacc_rating"]
+# THE SENSITIVITY PASSES A SCHEDULE, NOT A RATE [10-09-2026]. This block handed
+# valuation.discounted() a bare float, and that function has taken a SCHEDULE since the
+# glide replaced the single flat rate -- every explicit year on its own forward rate,
+# which matters more on this company than on almost any other because its order book
+# converts out to year nineteen. So the script raised AttributeError before printing a
+# line, and had done since the change: the gap review's own sensitivity could not be
+# produced at all, and nothing said so until the review came due.
+#
+# AND THE RATE IT COMPARED AGAINST WAS NOT THE RATE IT PERTURBED. BASE_W read
+# wacc["wacc_rating"] = 35.74% while the rating SCHEDULE this sensitivity moves opens at
+# 31.56% -- two readers of one rate, 418 basis points apart, with the label quoting one
+# and the arithmetic using the other. The schedule's own opening rate is the base now.
+#
+# The shift goes through the module's own shifted(), which moves the WHOLE ladder and
+# says so in the record. A sensitivity that swaps the glide for one flat number is not
+# asking "what if capital costs more"; it is also asking "what if Egypt never
+# normalises", and that second question is the assumption the glide exists to remove.
+import cost_of_capital as _COC
+BASE_SCHED = _COC.Schedule.from_record(N["wacc"]["schedule"]["rating"])
+BASE_W = BASE_SCHED.wacc_exp
+
+
+# THE RESTORE LINE WAS A TYPED NUMBER AND IT WAS THE WRONG ONE [10-09-2026]. This
+# function set M.SALES_FADE back to 0.85 after every call while the model's own default
+# is 1.15. So the FIRST call ran on 1.15 and reproduced the published case, and every
+# call after it ran on 0.85 -- a driver this study does not use. Every sensitivity row
+# this script has ever printed below the base line was computed on the wrong forecast,
+# and the 01-09-2026 gap review quotes them.
+#
+# The tell was in the output and nobody read it as one: the "fade 1.15" row returned
+# EXACTLY the published 138.21, because it was the only row that happened to put the
+# driver back where the study has it. A row that reproduces the base case while
+# claiming to change something is a row saying it changed nothing.
+#
+# The original value is captured from the module and restored, so the two can never
+# drift apart again.
+_FADE_DEFAULT = M.SALES_FADE
+
+
 def run(wacc=None, fade=None, nci_mode="book", nci_override=None):
     if fade is not None:
         M.SALES_FADE = fade
-    d = VAL.discounted("capacity", wacc if wacc else BASE_W)
+    d = VAL.discounted("capacity",
+                       BASE_SCHED.shifted(wacc - BASE_W) if wacc else BASE_SCHED)
     b = VAL.bridge(d)
-    M.SALES_FADE = 0.85
+    M.SALES_FADE = _FADE_DEFAULT
     if nci_override is not None:
         return (b["equity_before_minority"] * (1 - nci_override)) / SH, d
     return b["per_share_nci_%s" % nci_mode], d
@@ -154,10 +193,31 @@ def show(lbl, ps):
     return ps
 show("as published (rating | capacity)", base_ps)
 for w in (0.30, 0.25, 0.20):
-    show("WACC %.0f%% instead of %.2f%%" % (100 * w, 100 * BASE_W), run(wacc=w)[0])
+    # A PARALLEL SHIFT THAT PUTS THE TERMINAL AT OR BELOW GROWTH IS REFUSED RATHER
+    # THAN CAPPED. The perpetuity has no value at all in that world, and a capped
+    # denominator would print a finite number for an impossible assumption -- which
+    # is the free parameter the module names in its own refusal.
+    _t = BASE_SCHED.wacc_terminal + (w - BASE_W)
+    _spread = _t - M.TERMINAL_GROWTH
+    _lbl = "WACC %.0f%% instead of %.2f%%" % (100 * w, 100 * BASE_W)
+    if _spread <= 0:
+        # REFUSED, NOT CAPPED. The perpetuity has no finite value in that world, and a
+        # capped denominator would print one for an impossible assumption.
+        p("  %-52s %8s  terminal %.2f%% at or below growth %.2f%%"
+          % (_lbl, "n/a", 100 * _t, 100 * M.TERMINAL_GROWTH))
+        continue
+    _ps = show(_lbl, run(wacc=w)[0])
+    if _spread < 0.02:
+        # THE ROW IS ARITHMETICALLY RIGHT AND ECONOMICALLY EMPTY, and it is annotated
+        # rather than hidden or thresholded away. A parallel shift this large leaves the
+        # terminal only %.0f basis points above growth, so the perpetuity's DENOMINATOR
+        # is what produces the number, not the business. A reader is entitled to see
+        # that rather than to be handed a suspiciously large figure with no explanation.
+        p("       ^ terminal %.2f%% is only %.0fbp above growth: the denominator, not "
+          "the company, is what moves this row" % (100 * _t, 10000 * _spread))
 for f in (1.00, 1.15):
-    show("contracted sales fade %.2f (%+.0f%% nominal) instead of 0.85"
-         % (f, 100 * (f - 1)), run(fade=f)[0])
+    show("contracted sales fade %.2f (%+.0f%% nominal) instead of %.2f"
+         % (f, 100 * (f - 1), _FADE_DEFAULT), run(fade=f)[0])
 show("minority at its FILED PROFIT share (%.1f%%) not book" % (100 * nci_pr25),
      run(nci_override=nci_pr25)[0])
 show("minority proportional at book share (%.1f%%)" % (100 * nci_eq),
@@ -243,10 +303,29 @@ p("\n[9] WHAT DISCOUNT RATE THE PRICE IMPLIES")
 IR = N["lenses"]["implied_discount_rate"]
 p("  to reach the traded %.2f this model needs %.2f%% (capacity) or %.2f%% (recovery)"
   % (SPOT, 100 * IR["capacity"], 100 * IR["recovery"]))
-p("  the study uses %.2f%%; Egypt's own 10-year sovereign is %.2f%%"
-  % (100 * W["wacc_rating"], 100 * W["inputs"]["rf_observed"]))
-p("  so the price implies an equity return at or below the sovereign yield: either the")
-p("  market is charging no risk premium over the government bond, or this rate is high.")
+# THE THIRD READER OF THIS RATE, and it quoted the one the study does not discount
+# at. wacc["wacc_rating"] is 35.74% and the rating SCHEDULE opens at 31.56% and glides
+# to 18.88%; a reader told "the study uses 35.74%" beside an implied 32.32% would
+# conclude the market is 342bp cheap when on the rate actually used it is 76bp DEAR.
+# The glide is quoted end to end, because a single number cannot describe a schedule.
+p("  the study discounts on a GLIDE: %.2f%% in year one falling to %.2f%% at the "
+  "terminal, not one rate held for ever" % (100 * BASE_SCHED.wacc_exp,
+                                            100 * BASE_SCHED.wacc_terminal))
+p("  Egypt's own 10-year sovereign is %.2f%%" % (100 * W["inputs"]["rf_observed"],))
+# THE CONCLUSION UNDER THESE NUMBERS SAID THE OPPOSITE OF WHAT THEY SAY [10-09-2026].
+# It read "the price implies an equity return at or below the sovereign yield", which is
+# true of the RECOVERY mode's 17.58% and false of the CAPACITY mode's 32.32% -- the mode
+# this study publishes. It was written against the retired 35.74% comparison, where the
+# market looked 342bp cheap; on the rate the study actually discounts at, the market is
+# 76bp DEARER than we are. A sentence that survived the number it was drawn from.
+_gap_bp = 10000 * (IR["capacity"] - BASE_SCHED.wacc_exp)
+p("  ON THE PUBLISHED CAPACITY MODE the market discounts %.0fbp %s than this study's "
+  "own year-one rate, which is a narrow disagreement about the price of time and not "
+  "the source of the gap." % (abs(_gap_bp), "HARDER" if _gap_bp > 0 else "more softly"))
+p("  ON THE RECOVERY MODE it needs %.2f%%, below Egypt's own %.2f%% sovereign -- an "
+  "equity return under the government bond, which is where that mode stops being a "
+  "reading of the market and starts being a reading of a different company."
+  % (100 * IR["recovery"], 100 * W["inputs"]["rf_observed"]))
 out["implied_rate"] = IR
 
 json.dump(out, open(os.path.join(HERE, "gap_review_calcs.json"), "w"), indent=1)

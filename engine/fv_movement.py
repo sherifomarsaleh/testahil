@@ -152,6 +152,20 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None,
     # nobody is proposing. Such an entry carries base=None and its branches, and
     # the ordering check applies to the envelope it does have.
     two_sided = base is None
+    # A BASE AND BRANCHES TOGETHER IS A CONTRADICTION AND IT USED TO BE RESOLVED
+    # SILENTLY [10-09-2026]. `branches` was read only on the two_sided path, so a
+    # caller who passed --base AND --branches had the branches DROPPED without a
+    # word -- and the register then recorded a single base for a study that
+    # publishes two, which is precisely what check() exists to catch. It caught it,
+    # on EGCH and GBCO, one push later. The caller said the right thing and the
+    # function threw half of it away.
+    if branches and not two_sided:
+        raise SystemExit(
+            'FATAL: %s was given a base of %s AND %d branch(es). A study publishes '
+            'one central or it publishes branches; it cannot publish both, and '
+            'guessing which the caller meant is how a register comes to disagree '
+            'with the study it records. Omit --base for a two-sided answer.'
+            % (ticker, base, len(branches)))
     new = {'bear': float(bear),
            'base': (None if two_sided else float(base)),
            'full': float(full)}
