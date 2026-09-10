@@ -35,7 +35,7 @@ the language the source is written in — is built into what it emits rather tha
 the researcher's memory: every generated prompt carries the company's registered name in
 the local language beside the English one, and asks which languages were searched.
 """
-import json, os, subprocess, sys
+import json, os, re, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -434,7 +434,14 @@ def regulators(exch, sector):
     return out
 
 
-DISPLAY = {'realestate': 'real estate', 'oil_gas': 'oil and gas',
+DISPLAY = {'bank': 'banking', 'pharma': 'pharmaceuticals',
+           'fertiliser': 'fertilisers', 'cables': 'cables and electrical equipment',
+           'refining': 'oil refining', 'holding': 'a holding company',
+           'food': 'food and beverage', 'fintech': 'fintech and payments',
+           'financials': 'financial services', 'airline': 'aviation',
+           'utility': 'regulated utilities', 'telecom': 'telecoms',
+           'conglomerate': 'a diversified group', 'gas': 'gas',
+           'realestate': 'real estate', 'oil_gas': 'oil and gas',
            'it_services': 'IT services', 'pharma_distribution': 'pharmaceutical distribution',
            'oilfield_services': 'oilfield services', 'fuel_retail': 'fuel retail',
            'power_developer': 'power development', 'concession': 'infrastructure concession'}
@@ -549,6 +556,11 @@ COMPANY_FORWARD = [
  "Management changes, board decisions and any dispute, claim or arbitration disclosed.",
 ]
 
+# The language the local record is written in. Naming the LANGUAGE beats printing the
+# company's name in it and hoping the researcher infers the instruction.
+LANGUAGE = {'EGX': 'Arabic', 'ADX': 'Arabic', 'DFM': 'Arabic', 'TADAWUL': 'Arabic',
+            'QSE': 'Arabic', 'KRX': 'Korean', 'NSE': 'Hindi and the regional languages'}
+
 STUDY_DIR_ALIAS = {'SWDY': 'swdy_study', 'PHAR': 'phar_study', 'ADIB': 'adib_study'}
 
 
@@ -655,6 +667,10 @@ PART1_HEAD = """## PART 1 — paste this first, once per session
 
 
 def build(tk):
+    """ONE PROMPT, SHORT. Per instruction 10-09-2026: neither research tool takes a
+    two-part prompt, and one of them degrades on long ones. So the rules are compressed to
+    a line each and the SCOPE gets the room — the scope is the part that is specific to
+    this company and is the reason to generate the prompt at all."""
     tk = tk.upper()
     reg = _register()
     rec = reg.get(tk)
@@ -668,201 +684,170 @@ def build(tk):
     sector = SECTOR.get(tk)
     block = list(BLOCKS.get(sector or 'general', BLOCKS['general'])) + EXTRA.get(tk, [])
     negs, why = open_questions(tk)
-
-    L = []
-    L.append("# Research primer — %s (%s)" % (name, code))
-    L.append("")
-    L.append("Generated from the repository's own record of this name on the day it was run. "
-             "Two parts: the rules, which are the same for every company and are pasted once "
-             "per session, and the question set, which is specific to this company and to "
-             "the industry it operates in. Paste PART 1 first, then PART 2 as a single "
-             "message. Run it in Perplexity and in Gemini separately — they fail in "
-             "different directions and the disagreements are informative.")
-    L.append("")
-    L.append("---")
-    L.append("")
     regs = regulators(exch, sector)
-    if regs:
-        reg_text = ('; '.join(regs[:-1]) + '; and ' + regs[-1]) if len(regs) > 1 else regs[0]
-    else:
-        # NAMED OR DECLARED, NEVER SILENTLY GENERIC [R-ENF-04]. A prompt that says "the
-        # regulator concerned" hands the researcher the job of working out which body that
-        # is, which is the job the repository is better placed to do. Where it cannot, it
-        # says so rather than emitting a generic phrase that reads like an instruction.
-        reg_text = ("the regulators that govern this company — I could not resolve them "
-                    "from my own records for this market and sector, so name the ones you "
-                    "used")
-    L.append(PART1_HEAD.replace('%REGULATORS%', reg_text))
-    L.append("")
-    L.append("---")
-    L.append("")
-    L.append("## PART 2 — the company")
-    L.append("")
-    L.append("> **Company:** %s" % name)
-    if name_ar:
-        L.append("> **Its own name in Arabic, for searching the local record:** %s" % name_ar)
-    L.append("> **Listed on:** %s, ticker %s" % (exch or 'see code', tk))
-    L.append("> **Industry:** %s"
-             % (DISPLAY.get(sector, sector.replace('_', ' ')) if sector
-                else "NOT CLASSIFIED in this repository — said here rather than hidden, "
-                     "because an unclassified name should not get a generic prompt that "
-                     "looks tailored"))
-    L.append(">")
-    L.append("> Give me three things, in these three groups. Keep them separate — a policy "
-             "rate is not a company plan and I do not want them interleaved.")
-    L.append(">")
+    lang = LANGUAGE.get(exch)
+    ind = DISPLAY.get(sector, (sector or 'not classified').replace('_', ' '))
 
+    Q = []
+    Q.append("Research **%s** (%s%s) for a valuation I am building — it operates in %s. "
+             "Forward-looking only."
+             % (name, code, (', %s' % name_ar) if name_ar else '', ind))
+    Q.append("")
+    Q.append("**Rules.**")
+    src = '; '.join(regs[:4]) if regs else "its exchange, its securities regulator and its industry regulator"
+    Q.append("- Sources: the company's own filings, IR page, presentations and releases "
+             "first; then %s; then a named wire service. No forums, blogs, aggregators or "
+             "analyst price targets." % src)
+    if len(regs) > 4:
+        Q.append("- Also check: %s." % '; '.join(regs[4:]))
+    Q.append("- Every item: a date and a link. No date or link, leave it out.")
+    Q.append("- Found nothing? Say \"none located\". Never estimate or fill a gap.")
+    Q.append("- Tag every item ANNOUNCED, UNDER STUDY or SPECULATED.")
+    Q.append("- No historical revenue, profit, margins or balance-sheet lines — I have the "
+             "filings.")
+    Q.append("- Quantify in the source's own units, and say if a figure covers the whole "
+             "group rather than one asset.")
+    if lang:
+        Q.append("- Search in %s as well as English, and tell me which languages you used."
+                 % lang)
+    Q.append("- Last 18 months preferred. Newest first. No preamble, no summary.")
+    Q.append("")
+    Q.append("**A. Macro — only where it reaches this company.**")
     macro = MACRO.get(exch)
-    L.append("> ### A. MACRO — the country's own news, only where it reaches this company")
-    L.append(">")
     if macro:
-        for i, q in enumerate(macro):
-            L.append("> **A%d.** %s" % (i + 1, q))
+        for q in macro:
+            Q.append("- %s" % _tight(q))
     else:
-        # NAMED OR DECLARED [R-ENF-04]. A market with no macro block gets told so, rather
-        # than a silent omission that reads like "this company has no macro exposure".
-        L.append("> **A1.** I hold no macro checklist for this market, so build one: the "
-                 "policy rate and its path, the currency regime, administered energy and "
-                 "fuel prices, the corporate tax regime, and any trade instrument — duty, "
-                 "levy, quota, licence — introduced OR REMOVED. Say which bodies set each.")
-    L.append(">")
-
-    L.append("> ### B. INDUSTRY — %s" % (DISPLAY.get(sector, (sector or 'not classified').replace('_', ' '))))
-    L.append(">")
+        Q.append("- Policy rate and its path; currency regime; administered energy and fuel "
+                 "prices; corporate tax; any duty, levy, quota or licence imposed OR "
+                 "REMOVED. Name the body that set each.")
+    Q.append("")
+    Q.append("**B. Industry — %s.**" % ind)
     if not sector:
-        L.append("> **NOTE: I have not classified this company's industry.** The headings "
-                 "below are the general set rather than an industry-specific one. Say so in "
-                 "your answer if they miss the drivers that actually matter here.")
-        L.append(">")
-    for i, q in enumerate(block):
-        L.append("> **B%d.** %s" % (i + 1, q))
-    L.append(">")
-
-    L.append("> ### C. THE COMPANY'S OWN FORWARD PLANS")
-    L.append(">")
-    for i, q in enumerate(COMPANY_FORWARD):
-        L.append("> **C%d.** %s" % (i + 1, q))
-    L.append("")
-
-    L.append("## PART 3 — what our own study went looking for and could not find")
-    L.append("")
+        Q.append("- (I have not classified this industry; say if these headings miss what "
+                 "actually drives it.)")
+    for q in block:
+        Q.append("- %s" % _tight(q))
+    Q.append("")
+    Q.append("**C. The company's own plans.**")
+    for q in COMPANY_FORWARD:
+        Q.append("- %s" % _tight(q))
     if negs:
-        L.append("These are the highest-value questions on the page. Each one is something "
-                 "this company's study searched for, failed to find, and recorded with the "
-                 "date it searched. If a research pass closes any of them it is worth more "
-                 "than everything in PART 2.")
-        L.append("")
-        L.append("> Separately from the above, I have specific gaps. For each, tell me "
-                 "whether anything has been published since the date shown, and if not, say "
-                 "so explicitly:")
-        L.append(">")
-        for date, q in negs:
-            L.append("> - **[searched %s]** %s" % (date or 'undated', q))
-        L.append("")
-    else:
-        L.append("*%s.*" % (why or 'no recorded negative searches'))
-        L.append("")
-        L.append("So there is nothing to add here yet. On a re-issue this section fills "
-                 "itself from the study's own register.")
-        L.append("")
+        Q.append("")
+        Q.append("**D. Our own dead ends — we looked for each of these on the date shown "
+                 "and found nothing. Has anything been published since? A plain \"still "
+                 "nothing\" is a useful answer.**")
+        for date, q in negs[:6]:
+            Q.append("- [%s] %s" % (date or 'undated', _gap(q)))
 
-    L.append("---")
-    L.append("")
-    L.append("## What happens to what comes back")
-    L.append("")
-    L.append("Anything a research pass returns is a **lead, not an input**. Before a number "
-             "from it can enter a model it has to be traced to the primary source it cites "
-             "and read there. Historical financial figures come from the company's own "
-             "issued financial statements and from nowhere else, whatever a research pass "
-             "says about them.")
-    L.append("")
-    L.append("Where the two passes disagree on a figure, the disagreement is itself the "
-             "finding and it gets recorded: one of them made the number up, and a study that "
-             "took the higher of two search results would have published it. Every claim "
-             "that does not survive tracing is written into the study's sweep register as a "
-             "dated negative search rather than quietly dropped — otherwise the next pass "
-             "reports it again and it is investigated from scratch.")
-    return "\n".join(L)
+    body = '\n'.join(Q)
+    L = ["# Research primer — %s (%s)" % (name, code), "",
+         "One prompt, one paste — into Perplexity and into Gemini separately. "
+         "%d characters." % len(body), "",
+         "---", "", body, "", "---", "",
+         "*What comes back is a lead, not an input: every claim is traced to the primary "
+         "source it cites before it moves anything, historicals come from the filings "
+         "alone, and whatever does not survive tracing is recorded as a dated negative "
+         "search rather than dropped.*"]
+    return '\n'.join(L)
 
 
-GENERIC_BLOCK = [
- "COMPANY NEWS — everything the company itself has said or had said about it, newest first. "
- "Results releases, board decisions, management changes, disputes, anything filed with its "
- "exchange.",
- "THE ORDER BOOK OR BACKLOG — the figure the company itself last published, the date it "
- "published it, and its split by segment, product or geography if it gave one. If it "
- "publishes no backlog, say so; some businesses have none and that is an answer.",
- "NEW ORDERS, CONTRACTS AND TENDER AWARDS in the last 18 months, with the counterparty "
- "named, the country, the value, and the delivery period.",
- "THE PROJECT PIPELINE — everything announced but not yet finished. For each: what it is, "
- "what it will produce, the sanctioned cost, how it is financed, the guided completion or "
- "first-revenue date, and the percentage complete if stated.",
- "FUTURE CAPACITY PLANS — capacity added, announced, mothballed or closed, in the unit the "
- "company uses: tonnes, megawatts, units, square metres, beds, packs, lines, branches, "
- "rooms, subscribers. Say whether a figure covers one asset or the whole group.",
- "SLIPPAGE — any project or capacity target whose guided date has MOVED, with the old date, "
- "the new date, and the reason given. A slipped project matters as much as a delivered one.",
- "THE INDUSTRY IT SITS IN — capacity entering or leaving this market, named competitors' "
- "announced expansions, and any consolidation, entry or exit.",
- "PRICES AND TARIFFS SET BY SOMEONE OTHER THAN THE COMPANY — administered prices, "
- "regulated tariffs, subsidies, quotas, export duties or levies, and every announced change "
- "with the instrument that made it and its effective date. Include repeals, not only "
- "impositions.",
- "REGULATION AND POLICY affecting this business, from the bodies that actually govern it. "
- "Label each item ANNOUNCED, UNDER STUDY or SPECULATED — a proposal a regulator is examining "
- "is not a rule in force.",
- "INPUT COSTS AND SUPPLY — the main raw materials, energy and feedstock, their announced "
- "prices or allocation regimes, and any disruption, curtailment or shortage.",
- "MONEY IN AND OUT — announced capital raises, debt issues, refinancings, dividend policy "
- "statements, acquisitions, disposals, and any change in who controls the company.",
- "STAKES IN THINGS NOT ON THE EXCHANGE — any material holding in an unlisted company, every "
- "announced funding round or valuation event at it, and the percentage held after each.",
-]
+def _tight(q, cap=200):
+    """Trim a heading's explanatory tail. The reasoning in these strings is for the analyst
+    reading the source, not for the researcher reading the prompt, and one of the two tools
+    degrades on length."""
+    q = q.strip()
+    if len(q) <= cap:
+        return q
+    cut = q.rfind('. ', 0, cap)
+    if cut > 80:
+        return q[:cut + 1].strip()
+    cut = q.rfind(', ', 0, cap)
+    return (q[:cut] if cut > 80 else q[:cap - 1].rstrip()) + '…'
+
+
+def _gap(q, cap=170):
+    """A register entry carries its whole search history and is written in the register's
+    own voice — "Searched for X and found none". A researcher needs the ASK, so the voice
+    is turned round here rather than pasted at them as an internal note."""
+    q = q.strip()
+    q = re.sub(r'^Searched for\s+', '', q)
+    q = re.sub(r'^A\s+DISCLOSED\s+', 'a disclosed ', q)
+    q = re.sub(r'^(A|AN|THE)\s+', '', q)
+    m = re.search(r'\s+and (did not obtain|found no|was not)', q)
+    if m and m.start() > 40:
+        q = q[:m.start()]
+    q = q.rstrip(' ,;')
+    if len(q) <= cap:
+        return q
+    cut = q.rfind(', ', 0, cap)
+    return (q[:cut] if cut > 60 else q[:cap - 1].rstrip()) + '…'
+
 
 
 def build_generic():
-    """The reusable half, with no company resolved.
+    """The reusable half as ONE short prompt, the same shape as the per-name one.
 
-    The point of a generator is one source of truth: this shares PART 1 verbatim with the
-    per-name prompt, so the rules cannot drift between the generic prompt and the specific
-    one. Only the question set is general, and it asks for the ground that is worth asking
-    about whatever the company does — news, backlog, pipeline, capacity, regulation."""
-    L = ["# Research primer — the generic prompt",
-         "",
-         "Use this for any company, on its own, without waiting for the company-specific "
-         "supplement. Fill in ONE thing: the company and its exchange. The company-specific "
-         "prompt that follows later adds the industry's own driver headings and the "
-         "questions our study has already recorded it could not answer — it does not "
-         "replace this.",
-         "", "---", "",
-         PART1_HEAD.replace('%REGULATORS%',
-             "the bodies that actually regulate this company — NAME THEM in your answer, "
-             "including the exchange's own disclosure portal, the securities regulator, the "
-             "central bank where it is a financial, and the industry regulator concerned"),
-         "", "---", "",
-         "## PART 2 — the company", "",
-         "> **Company:** {COMPANY NAME}, listed on {EXCHANGE}.",
-         ">",
-         "> If the company's own regulator, decree register or trade press publishes in a "
-         "language other than English, search in that language too and tell me which "
-         "languages you used.",
-         ">",
-         "> Give me, under these headings:", ">"]
-    for i, q in enumerate(GENERIC_BLOCK):
-        L.append("> **(%d)** %s" % (i + 1, q))
-    L += ["",
-          "---", "",
-          "## What happens to what comes back", "",
-          "Anything a research pass returns is a **lead, not an input**. Before a number "
-          "from it can enter a model it has to be traced to the primary source it cites and "
-          "read there. Historical financial figures come from the company's own issued "
-          "financial statements and from nowhere else, whatever a research pass says about "
-          "them.", "",
-          "Where two passes disagree on a figure, the disagreement is itself the finding: "
-          "one of them made the number up, and a study that took the higher of two search "
-          "results would have published it. Every claim that does not survive tracing is "
-          "recorded as a dated negative search rather than quietly dropped."]
-    return "\n".join(L)
+    RESTORED 10-09-2026 after the single-prompt rewrite deleted it while main() went on
+    calling it — a NameError that only fires when --generic is actually run, so the module
+    imported cleanly and the per-name path passed every test. Import-not-parse catches a
+    module that cannot load; it does not catch a branch nothing exercised.
+
+    Shares the rule set and the forward-plans block with build() rather than carrying its
+    own copy, so the two cannot drift — which is the whole reason this is a generator."""
+    Q = ["Research **{COMPANY}** ({EXCHANGE}) for a valuation I am building. "
+         "Forward-looking only.", "",
+         "**Rules.**",
+         "- Sources: the company's own filings, IR page, presentations and releases first; "
+         "then its exchange's disclosure portal, its securities regulator, and the industry "
+         "regulator concerned — NAME the ones you used; then a named wire service. No "
+         "forums, blogs, aggregators or analyst price targets.",
+         "- Every item: a date and a link. No date or link, leave it out.",
+         '- Found nothing? Say "none located". Never estimate or fill a gap.',
+         "- Tag every item ANNOUNCED, UNDER STUDY or SPECULATED.",
+         "- No historical revenue, profit, margins or balance-sheet lines — I have the "
+         "filings.",
+         "- Quantify in the source's own units, and say if a figure covers the whole group "
+         "rather than one asset.",
+         "- If the regulator, decree register or trade press publishes in another language, "
+         "search in it too and tell me which languages you used.",
+         "- Last 18 months preferred. Newest first. No preamble, no summary.", "",
+         "**A. Macro — only where it reaches this company.**",
+         "- Policy rate and its path, with the guidance given at each decision.",
+         "- Currency regime and any announced change to it.",
+         "- Administered energy, fuel and electricity prices for industrial users.",
+         "- Corporate tax, including any sector-specific rate.",
+         "- Duties, levies, quotas and licences IMPOSED OR REMOVED, with the instrument and "
+         "its effective date. Repeals matter as much as impositions.",
+         "- Any IMF or state programme, and state-ownership or privatisation policy.", "",
+         "**B. Industry.**",
+         "- Capacity entering or leaving this market, and named competitors' announced "
+         "expansions, entries, exits or mergers.",
+         "- Prices, tariffs, quotas or subsidies set by anyone other than the company.",
+         "- Regulation specific to this industry, and the body that made each change.",
+         "- Input costs and supply — raw materials, energy, feedstock — with any "
+         "disruption, curtailment, allocation regime or shortage.", "",
+         "**C. The company's own plans.**"]
+    for q in COMPANY_FORWARD:
+        Q.append("- %s" % _tight(q))
+    Q += ["- The order book or backlog: the figure the COMPANY last published, its date and "
+          "its split by segment or geography. If it publishes none, say so.",
+          "- New orders, contracts and tender awards, with counterparty, country, value and "
+          "delivery period.",
+          "- Any material stake in an unlisted company, every announced funding round or "
+          "valuation event at it, and the percentage held after each."]
+    body = "\n".join(Q)
+    return "\n".join([
+        "# Research primer — the generic prompt", "",
+        "Any company, no waiting. Fill in the company and its exchange, then one paste into "
+        "Perplexity and one into Gemini. %d characters." % len(body), "",
+        "The company-specific version adds the named regulators for that market, the "
+        "industry's own driver headings, and the questions our study has already recorded "
+        "it could not answer. It does not replace this.", "",
+        "---", "", body, "", "---", "",
+        "*What comes back is a lead, not an input: traced to the primary source before it "
+        "moves anything, historicals from the filings alone, and whatever does not survive "
+        "tracing recorded as a dated negative search rather than dropped.*"])
 
 
 def main(argv):
