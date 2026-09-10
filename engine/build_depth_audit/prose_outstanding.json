@@ -26,8 +26,13 @@
    "measured_on": "2026-09-09",
    "reason": "no script reconciles the delivered documents' figures against the committed numbers. VERIFIED 09-09-2026 rather than carried forward: engine/xpt_study/ holds no prose_check.py, which is the one entry on this list where that sentence is still true — the other eight said it and all eight had one.",
    "unmatched": null
-  },
-  "__phar_removed_10-09-2026": "PHAR CARRIES A CLEAN PROSE CHECK AND IS OFF THIS LIST. Its entry recorded 495 figures checked with 7 unmatched; the study now reports 490 checked and 0 unmatched, after five figures a reader was shown and nothing could reach were registered -- the controlling shareholding, the superseded January-2026 country-risk vintage, and the rating-basis normalised risk-free rate -- and the check itself was taught to reach the technical read's distances from the close. A ratchet may only ever SHORTEN, and this is the shortening. Its previous entry read: carries a prose check that RUNS and is red: 495 figures checked, 7 unmatched."
+  }
  },
- "note": "Studies with no prose-figure verification when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. Run --measure for the advisory unmatched rate per study."
+ "note": "Studies with no prose-figure verification when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. Run --measure for the advisory unmatched rate per study. ENTRIES ARE TICKERS AND NOTHING ELSE. A removal note was written in as an entry KEY on 10-09-2026 and the gate reads every key as a ticker, so it refused a list naming a study that does not exist on disk -- correctly. What is removed and why belongs in 'removed' below, where it is preserved without pretending to be a study.",
+ "removed": {
+  "PHAR": {
+   "removed_on": "2026-09-10",
+   "why": "PHAR CARRIES A CLEAN PROSE CHECK AND IS OFF THIS LIST. Its entry recorded 495 figures checked with 7 unmatched; the study now reports 490 checked and 0 unmatched, after five figures a reader was shown and nothing could reach were registered -- the controlling shareholding, the superseded January-2026 country-risk vintage, and the rating-basis normalised risk-free rate -- and the check itself was taught to reach the technical read's distances from the close. A ratchet may only ever SHORTEN, and this is the shortening. Its previous entry read: carries a prose check that RUNS and is red: 495 figures checked, 7 unmatched."
+  }
+ }
 }
