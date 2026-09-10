@@ -1,4 +1,13 @@
-"""ADIB-Egypt — four-ring Information Sweep register [R-SWEEP-01].
+"""ADIB-Egypt — four-ring Information Sweep register.
+
+THE FIRST DRAFT OF THIS HEADING CITED A RULE IDENTIFIER THAT DOES NOT EXIST. I typed
+one while writing the line, and no such rule is defined in either governing document.
+scripts/check_protocol_sync.py refused it in the words that matter: to a later session
+an unresolvable identifier reads exactly like settled law. The requirement here is real
+and needs no new identifier — the Step 2A sweep belongs to the source-integrity and
+ground-up mandate, and it is enforced by engine/research_sweep.py's own invariants and
+by scripts/check_sweep_module.py. Adopting a rule to justify a tag already typed would
+have been the wrong way round, and the identifier is simply gone.
 
 Runs BEFORE any forecast driver is set. Every mandatory category of every ring is
 closed by a dated finding or a dated negative search, and what is NOT closed is
