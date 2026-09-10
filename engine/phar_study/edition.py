@@ -19,9 +19,9 @@ reader received on that day.
 """
 import datetime as _dt
 
-EDITION = _dt.date(2026, 9, 9)
+EDITION = _dt.date(2026, 9, 10)
 
-SUPERSEDES = (_dt.date(2026, 8, 9),)
+SUPERSEDES = (_dt.date(2026, 8, 9), _dt.date(2026, 9, 9),)
 
 _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')

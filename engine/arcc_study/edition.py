@@ -16,9 +16,9 @@ on the third, and rebuilding over its name would destroy the only record of it.
 """
 import datetime as _dt
 
-EDITION = _dt.date(2026, 9, 9)
+EDITION = _dt.date(2026, 9, 10)
 
-SUPERSEDES = (_dt.date(2026, 8, 6), _dt.date(2026, 8, 8),
+SUPERSEDES = (_dt.date(2026, 8, 6), _dt.date(2026, 9, 9), _dt.date(2026, 8, 8),
               _dt.date(2026, 9, 2), _dt.date(2026, 9, 3))
 
 _D = EDITION.strftime('%d-%m-%Y')
