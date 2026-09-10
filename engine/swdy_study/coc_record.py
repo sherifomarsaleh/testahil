@@ -99,6 +99,37 @@ KD_EGP = float(V['kd_egp_note'])
 KD_HARD = float(V['kd_hard_note'])
 W_EGP = (KD_EFF_FY25 - KD_HARD) / (KD_EGP - KD_HARD)
 
+# ---- [R-COC-03] THE COMPONENTS, DERIVED THROUGH THE SANCTIONED MODULE ----------
+# Never re-derived here: engine/cost_of_capital.py owns the split, and a second
+# implementation beside it is the shape that lets two readers of one fact disagree.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import cost_of_capital as _COC3
+_crp_home, _erp_mature = _COC3.split_erp(float(V['erp_cds']), float(V['sov_spread_cds']))
+# rf_star IS NOT REPEATED HERE. The record already carries it, and writing it again
+# raises `dict() got multiple values for keyword argument` -- the same collision that
+# stopped GBCO's compute.py running at all, one field over. A literal beside a value
+# that is already committed is a claim that can disagree with it.
+_SPLIT = dict(
+    erp_mature=_erp_mature,
+    crp=_crp_home,
+    lambda_country=float(V['lambda_country']),
+    crp_foreign=float(V['crp_foreign']),
+    crp_effective=(float(V['lambda_country']) * _crp_home
+                   + (1 - float(V['lambda_country'])) * float(V['crp_foreign'])),
+)
+# The effective country weight at the TERMINAL. The foreign leg is expressed as a
+# share of the home premium so the same weight applies to a terminal premium that has
+# normalised: charging a fixed foreign figure against a shrunken home one would raise
+# the foreign share silently as the country premium falls.
+_LAM_EFF = (_SPLIT['lambda_country']
+            + (1 - _SPLIT['lambda_country']) * (_SPLIT['crp_foreign'] / _crp_home))
+
+_ke_check = (float(W['rf_star']) + float(W['beta']['beta']) * _erp_mature
+             + _SPLIT['crp_effective'])
+assert abs(_ke_check - float(W['ke_exp'])) < 1e-6, (
+    'the published cost of equity does not reproduce from the split this record is '
+    'about to publish: %.10f vs %.10f' % (float(W['ke_exp']), _ke_check))
+
 record = dict(
     rule='R-COC-01',
     market='EG',
@@ -243,18 +274,54 @@ record = dict(
     rf_star_flat=float(W['rf_star']),
     erp=float(V['erp_cds']),
     ke_exp=float(W['ke_exp']),
+
+    # ---- [R-COC-03] THE SPLIT, PUBLISHED. This study charges Egypt's country risk at
+    # lambda -- the share of its operations that are actually in Egypt -- and the rest
+    # of the world's at crp_foreign, and it has done so since the rule was adopted. The
+    # record did not SAY so: it published only the total premium, so the verifier read
+    # the cost of equity under the retired identity that multiplies country risk by
+    # beta, found a 235bp discrepancy, and reported a study that is right as broken.
+    # Solving the split out of the published answer is not an option -- a check handed
+    # its own inputs reproduces anything -- so the components are stated here.
+    **_SPLIT,
+    ke_construction='split_premium',
+    ke_construction_note=(
+        "Ke = rf* + beta x mature equity premium + lambda x Egypt's country premium + "
+        "(1 - lambda) x the foreign premium: {0:.4f} + {1:.6f} x {2:.4f} + {3:.4f} x "
+        "{4:.4f} + {5:.4f} x {6:.4f} = {7:.6f}. Beta prices the EQUITY MARKET and lambda "
+        "prices the COUNTRY; the retired construction multiplied the two together, which "
+        "charges a high-beta company more for the same sovereign than a low-beta one "
+        "operating beside it. lambda is {3:.4f} because that share of this company's "
+        "revenue is earned in Egypt, from its own audited geographic disclosure."
+        .format(float(W['rf_star']), float(W['beta']['beta']), _SPLIT['erp_mature'],
+                _SPLIT['lambda_country'], _SPLIT['crp'],
+                1 - _SPLIT['lambda_country'], _SPLIT['crp_foreign'],
+                float(W['ke_exp']))),
     ke_terminal=float(W['ke_term']),
     erp_terminal=float(V['erp_term']),
-    ke_terminal_construction='same_beta',
+    # THE TERMINAL CONSTRUCTION WAS DECLARED 'same_beta' AND IT HAS NOT BEEN THAT SINCE
+    # this study adopted a terminal beta of one. The label was left behind by a change to
+    # the arithmetic, so the record named a construction it did not perform and the
+    # verifier read a terminal that is right as 220bp wrong. Two readers of one fact.
+    ke_terminal_construction='beta_to_one_split',
+    beta_terminal=1.0,
+    crp_terminal=float(V['erp_term']) - _erp_mature,
+    crp_effective_terminal=_LAM_EFF * (float(V['erp_term']) - _erp_mature),
     ke_terminal_construction_note=(
-        "The terminal cost of equity is the terminal risk-free plus the SAME beta times "
-        "the terminal premium: {0:.4f} + {1:.6f} x {2:.4f} = {3:.6f}. No relevering — "
-        "the terminal debt weight of {4:.0%} differs from the explicit window's {5:.2%}, "
-        "so a relevered construction would be defensible and is NOT used, and saying so "
-        "is the point: a reader cannot tell a relevered beta from a typing error unless "
-        "the record names which construction produced the number."
-        .format(float(V['rf_term']), float(W['beta']['beta']), float(V['erp_term']),
-                float(W['ke_term']), float(V['wd_term']), float(W['wd_exp']))),
+        "The terminal cost of equity carries a beta of ONE and splits the premium the "
+        "same way the explicit window does: {0:.4f} + 1.00 x {1:.4f} + {2:.4f} = {3:.6f}. "
+        "The beta reverts because a perpetuity is long enough for a company's sensitivity "
+        "to the market to be the market's own; carrying the measured {4:.4f} for ever "
+        "assumes this cable maker stays permanently more cyclical than the index, which "
+        "is an assumption and not a measurement. NO RELEVERING — the terminal debt weight "
+        "of {5:.0%} differs from the explicit window's {6:.2%}, so a relevered "
+        "construction would be defensible and is deliberately not used. Saying which of "
+        "the three it is, is the point: a reader cannot tell a reverted beta from a "
+        "relevered one from a typing error unless the record names it."
+        .format(float(V['rf_term']), _erp_mature,
+                _LAM_EFF * (float(V['erp_term']) - _erp_mature),
+                float(W['ke_term']), float(W['beta']['beta']),
+                float(V['wd_term']), float(W['wd_exp']))),
     beta_source='own_stock_regression',
     beta_source_note=(
         "beta_regression.own_stock_beta() against {0} as at {1} — the published index of "

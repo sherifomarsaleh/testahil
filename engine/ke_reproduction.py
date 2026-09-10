@@ -51,7 +51,21 @@ from __future__ import annotations
 FLOAT_NOISE = 1e-9
 
 # CLOSED. A construction not on this list is not a construction.
-TERMINAL_CONSTRUCTIONS = ("same_beta", "relevered", "split_premium")
+TERMINAL_CONSTRUCTIONS = ("same_beta", "relevered", "split_premium",
+                          "beta_to_one_split")
+
+# `beta_to_one_split` WAS ADDED 10-09-2026 BECAUSE THE BOOK RUNS IT, not because a
+# study asked to be let through. Two names -- SWDY and EIPICO -- carry a terminal
+# beta of exactly 1.00 on the reasoning that a beta reverts to the market over a
+# perpetuity, alongside [R-COC-03]'s split premium. Both reproduce to 0.0000bp
+# under it. That is the same ground on which `relevered` was added when two studies
+# were found doing Hamada and nothing could tell a relevered beta from a typo.
+#
+# THE LIST STAYS CLOSED AND THE RECORD MUST PUBLISH `beta_terminal`. A study that
+# reverts its beta and does not say so is indistinguishable from one that typed the
+# wrong beta, which is the whole reason this module exists; and a construction is
+# admitted here on evidence that the book performs it, never on the grounds that a
+# study would otherwise fail.
 
 # THE EXPLICIT WINDOW HAS A CLOSED LIST TOO, FROM 10-09-2026, and until it did this
 # check tested the RETIRED identity and nothing else. That is worse than not testing:
@@ -158,6 +172,21 @@ def ke_terminal(rec, construction, tax_rate=None):
                           "crp_effective_terminal; neither is derivable from the total "
                           "without assuming the answer")
         return rf_t + beta * em + ce
+    if construction == "beta_to_one_split":
+        em, ce = rec.get("erp_mature"), rec.get("crp_effective_terminal")
+        bt = rec.get("beta_terminal")
+        if None in (em, ce):
+            raise KeError("a beta_to_one_split terminal must record erp_mature and "
+                          "crp_effective_terminal")
+        if bt is None:
+            raise KeError("a beta_to_one_split terminal must record beta_terminal. A "
+                          "beta that reverts and does not say so cannot be told from a "
+                          "beta that was typed wrong")
+        if abs(bt - 1.0) > FLOAT_NOISE:
+            raise KeError("beta_to_one_split names a terminal beta of one and the record "
+                          "states %.6f. Reverting to something other than the market is a "
+                          "different construction and needs its own name" % bt)
+        return rf_t + bt * em + ce
     if construction == "same_beta":
         return rf_t + beta * erp_t
     if tax_rate is None:
