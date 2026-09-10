@@ -143,8 +143,38 @@ def enforce(*a, **kw):
     return rec
 
 
+# HOW A STUDY RECORDS ITS CASE. The gate reads THIS BLOCK from the numbers file and
+# nothing else -- deliberately, and it is the whole point. Every study below the
+# price already argues its case somewhere in its prose, at length and often well.
+# Prose is exactly what a gate cannot read, cannot count, and cannot tell apart
+# from a paragraph that sounds like a case and establishes nothing. So the claim
+# is made STRUCTURALLY, in the study's own committed numbers, where it can be
+# checked, and the prose then explains what the block asserts.
+#
+# It is not paperwork. Writing the decomposition forces the question the principal
+# actually asked -- if the market is wrong, WHERE is it wrong and by how much per
+# share -- and a gap that cannot be decomposed is a gap nobody has understood yet.
+STAR_CASE = dict(
+    case="What the market appears to be pricing that this model is not, in the "
+         "study's own words. A sentence that names a mechanism, not a mood.",
+    decomposition="{driver: currency per share}. Must account for at least half of "
+                  "the gap, or the study is saying most of its disagreement with "
+                  "the market is unexplained -- which may be true, and then it is "
+                  "the finding rather than the case.",
+    hunt_recorded="True only where an exhaustive search for OUR OWN error has been "
+                  "run and RECORDED [R-GAP-04]. Not 'we looked'.",
+    falsifier="Stated in advance: what would have to happen for this study to be "
+              "the one that is wrong.",
+)
+
+
 def from_numbers(ticker, numbers=None, **kw):
     """Assess a study from its committed numbers file.
+
+    The study's own `star_case` block supplies the case unless the caller overrides
+    it. A study with no such block is assessed as having made no case, which is the
+    honest reading: an argument a gate cannot find is an argument that is not there
+    as far as anything downstream is concerned [R-ENF-04].
 
     A TWO-SIDED CENTRAL IS ASSESSED ON BOTH BRANCHES AND NEVER COLLAPSED. Four
     studies in this book carry `central = None` and a `central_two_sided` record,
@@ -160,6 +190,10 @@ def from_numbers(ticker, numbers=None, **kw):
         p = os.path.join(HERE, "%s_study" % ticker.lower(), "study_numbers.json")
         with open(p) as fh:
             numbers = json.load(fh)
+    sc = numbers.get("star_case") or {}
+    for k in ("case", "decomposition", "hunt_recorded", "falsifier"):
+        if k in sc and k not in kw:
+            kw[k] = sc[k]
     spot = numbers.get("spot")
     central = numbers.get("central")
     if central is not None:
