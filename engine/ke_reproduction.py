@@ -314,9 +314,30 @@ def check(rec):
         return ["no cost_of_capital_record committed"]
 
     rs, b, ke = rec.get("rf_star"), rec.get("beta"), rec.get("ke_exp")
-    if None in (rs, b, ke):
-        fails.append("record carries no rf_star, beta or ke_exp, so the explicit cost "
-                     "of equity cannot be reproduced at all")
+    # NAME WHAT IS ACTUALLY MISSING. This said "carries no rf_star, beta or ke_exp" whenever
+    # ANY ONE of the three was absent — so it reported two fields as missing that the record
+    # plainly carries, and a reader chasing it had to open the file to find out which of the
+    # three the gate meant. The wording is also a ratchet SIGNATURE, so a message that names
+    # a fixed list changes shape every time the list does: narrowing this check from four
+    # fields to three on 10-09-2026 turned a knowingly-outstanding study into a "new breach"
+    # without anything about that study changing [R-ENF-08]. Derived from the record, it
+    # only changes when the record does.
+    # THE LEGS MUST ADD BACK TO THE TOTAL THEY WERE SPLIT FROM. Under the split identity
+    # the rate is built from erp_mature and the country premium, so the published TOTAL
+    # premium stops being an input to anything a reader checks — and a total quietly raised
+    # sails through. The negative control caught it the moment the fixtures moved across:
+    # "an ERP quietly raised" went green. The identity is erp = erp_mature + crp, it is
+    # Damodaran's own, and it costs one line to hold [R-COC-03].
+    _em, _crp, _erp = rec.get("erp_mature"), rec.get("crp"), rec.get("erp")
+    if None not in (_em, _crp, _erp) and abs((_em + _crp) - _erp) > FLOAT_NOISE:
+        fails.append("the split does not add back: erp_mature %.6f + crp %.6f is %.6f "
+                     "against a published total premium of %.6f. A total that no longer "
+                     "feeds the rate is a number nothing checks"
+                     % (_em, _crp, _em + _crp, _erp))
+    _absent = [n for n, v in (("rf_star", rs), ("beta", b), ("ke_exp", ke)) if v is None]
+    if _absent:
+        fails.append("record carries no %s, so the explicit cost of equity cannot be "
+                     "reproduced at all" % " or ".join(_absent))
     else:
         fails.extend(_check_explicit(rec, rs, b, ke))
 
