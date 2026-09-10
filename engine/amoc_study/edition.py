@@ -16,9 +16,13 @@ THE PREVIOUS EDITIONS ARE NAMED, NOT DELETED.
 """
 import datetime as _dt
 
-EDITION = _dt.date(2026, 9, 3)
+EDITION = _dt.date(2026, 9, 10)
 
-SUPERSEDES = ()
+# RECALIBRATION EDITION. The terminal risk-free rate came off the house Egyptian
+# macro path, having been derived inside this study from a real-rate convention
+# typed into its own input register. Fair value EGP 17.63 -> 20.05.
+SUPERSEDES = (_dt.date(2026, 8, 6), _dt.date(2026, 8, 8), _dt.date(2026, 9, 1),
+              _dt.date(2026, 9, 3))
 
 _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')

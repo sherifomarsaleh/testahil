@@ -11912,6 +11912,23 @@
    "panel_names": 30
   }
  },
+ "zones": {
+  "cuts": [
+   7.5,
+   11.0,
+   13.5,
+   20.05
+  ],
+  "p": [
+   0.137601,
+   0.669366,
+   0.15991,
+   0.030037,
+   0.003086
+  ],
+  "horizon": "3M",
+  "anchor": 9.1
+ },
  "assert_log": [
   "==============================================================================",
   "AMOC \u2014 ASSERT / derivation log",
@@ -11968,6 +11985,7 @@
   "[Expert 2 / Expert 3 decomposition \u2014 MEASURED] the gap is +3.59 a share. Discounting Expert 2's OWN cash flows on the weighted rate instead of the cost of equity's glide gives EGP 18.10 against 17.35, so the price of time is worth +0.74 \u2014 21% of it. The BRIDGE is what carries the rest: Expert 3 adds net cash of +2.32 a share at face, while Expert 2 lets the cash reach the holder only through the finance-income line. +0.52 is left over. THE FIRST DRAFT OF THE DIVERGENCE TABLE NAMED THE DISCOUNT RATE AS THE DRIVER; the measurement says it is the bridge, and the table now says so.",
   "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 68mn a year.",
   "[Expert panel] Expert 1 EGP 21.26 [15.18-28.85]; Expert 2 EGP 17.35 [0.59-23.04]; Expert 3 EGP 20.95 [0.53-28.30]; panel median EGP 20.95 (+55.1% against spot).",
+  "[Probability partition] cuts [7.5, 11.0, 13.5, 20.05] -> ['13.8%', '66.9%', '16.0%', '3.0%', '0.3%']. Computed HERE and published, so the document prints a number it read rather than one it invented.",
   "[Level-touch ladder] 11.00: 1M 9.7% / 3M 36.2% \u00b7 10.50: 1M 21.4% / 3M 49.7% \u00b7 10.00: 1M 41.8% / 3M 66.0% \u00b7 13.50: 1M 0.0% / 3M 5.0% \u00b7 8.50: 1M 51.4% / 3M 68.6% \u00b7 8.00: 1M 22.5% / 3M 45.5% \u00b7 7.50: 1M 7.1% / 3M 27.0% \u00b7 20.05: 1M 0.0% / 3M 0.0%. Computed on the cone's OWN anchor of EGP 9.10, not on the study spot of 13.50 \u2014 a fresh price moves the valuation without re-striking the cone.",
   "[Workbook blocks emitted] 31 complete forecast engines \u2014 the base case and 30 sensitivity grid points \u2014 each with the model's own value for every cell, so the workbook can write all 31 out as live formula chains and an independent evaluator can check each one. The previous edition pasted its sensitivity grids because a whole-model re-run could not be expressed inside a grid; that was 27.6% of the file and three of the pasted rows did not reproduce.",
   "[Reachability gate \u2014 rewritten] 180 registered inputs. 139 DRIVE the model. 41 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, awp_stake, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, gm_superseded_annualised, inv_jun25, leases, opex_pct, other_ca, pat_h1cy25, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, tv_share_superseded, us_infl, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input.",

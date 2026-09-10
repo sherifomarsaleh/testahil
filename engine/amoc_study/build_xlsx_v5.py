@@ -14,8 +14,12 @@ Exactly ONE class of cell is now pasted: a figure read off an audited or disclos
 Nothing else. There is no "too complex to flatten" class and no "whole-model re-run" class,
 because both were flattened.
 """
+# `sys` was used on line 25 and never imported, so this builder raised NameError
+# before it wrote a cell. The workbook could not be rebuilt at all; the file beside
+# the study was whatever an earlier build had left on disk.
 import json
 import os
+import sys
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill

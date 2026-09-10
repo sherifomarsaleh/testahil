@@ -95,47 +95,21 @@ def grid_vals(name):
     return [(p['label'], SC[f'{name}|{i}']['ps']) for i, p in enumerate(g[2])]
 
 
-# ---- probability partition, computed and asserted to sum to one -------------
-def cdf3m(x):
-    """Log-linear interpolation on the published 3-month percentiles."""
-    q = [0.05, 0.25, 0.50, 0.75, 0.95]
-    v = [H3M['pct'][k] for k in ('p5', 'p25', 'p50', 'p75', 'p95')]
-    lx = math.log(x)
-    if lx <= math.log(v[0]):
-        return q[0] * math.exp((lx - math.log(v[0])) * 6)
-    if lx >= math.log(v[-1]):
-        return 1 - (1 - q[-1]) * math.exp(-(lx - math.log(v[-1])) * 6)
-    for i in range(4):
-        a, b = math.log(v[i]), math.log(v[i + 1])
-        if a <= lx <= b:
-            return q[i] + (q[i + 1] - q[i]) * (lx - a) / (b - a)
-    return 0.5
+# ---- probability partition, READ from the strike ----------------------------
+# It used to be computed here, in the document builder, from a log-linear
+# interpolation on the published percentiles -- and printed straight out of this
+# file, so nothing else in the repository could see it. The prose check reports
+# every printed figure it cannot reach and reported 66.9% unmatched through every
+# edition, which means it could not have told a correct partition from a wrong one.
+# The arithmetic now lives in compute.py, where the level-touch ladder already
+# lives, and this builder READS the published block. Same corollary as the
+# valuation table: a line that is computed and not published is a line the
+# document cannot print.
+_Z = D['zones']
+CUTS = _Z['cuts']
+ZP = _Z['p']
+assert abs(sum(ZP) - 1.0) < 1e-6, 'published zones do not sum to one: %s' % sum(ZP)
 
-
-# THE ZONE CUTS MUST ASCEND, AND THE GUARD THAT WAS HERE COULD NOT SEE THAT THEY
-# DID NOT [corrected 03-Sep-2026]. The list was written [C, 7.50, SPOT, 11.00] --
-# the central first, then a low level, then spot, then a level below spot -- and
-# once the central moved to 11.83 the sequence read 11.83, 7.50, 13.50, 11.00.
-# Differences of a decreasing cumulative distribution are NEGATIVE, so the table
-# published probabilities of -74.6% and -16.0% under a caption promising a
-# partition.
-#
-# The assert could not catch it: consecutive differences of a cumulative function
-# TELESCOPE, so the sum is 1.0 for any ordering whatever, ascending or not. It is
-# a check that cannot fail, which is the [R-ENF-04] species -- a green light that
-# examined nothing. Both are fixed: the cuts are SORTED, and the guard now tests
-# what actually matters, which is that no zone is negative.
-_CUTSET = (C, 7.50, SPOT, 11.00)
-CUTS = sorted(_CUTSET)
-ZP = [cdf3m(CUTS[0])]
-for i in range(len(CUTS) - 1):
-    ZP.append(cdf3m(CUTS[i + 1]) - cdf3m(CUTS[i]))
-ZP.append(1 - cdf3m(CUTS[-1]))
-assert abs(sum(ZP) - 1.0) < 1e-9, f'probability zones do not sum to one: {sum(ZP)}'
-assert all(z >= -1e-9 for z in ZP), (
-    'a probability zone is NEGATIVE: %s at cuts %s. Consecutive differences of a '
-    'cumulative distribution telescope, so the sum-to-one assert above is 1.0 for '
-    'any ordering and cannot see this.' % ([round(z, 4) for z in ZP], CUTS))
 
 # ============================ FRONT MATTER ===================================
 masthead()

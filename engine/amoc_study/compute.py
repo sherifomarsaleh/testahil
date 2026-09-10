@@ -2428,6 +2428,50 @@ for _lv in _TOUCH_LEVELS:
     _TOUCH_P[f'{_lv:.2f}'] = {
         _hk: round(_p_touch(_lv, strike['horizons'][_hk], strike['spot']), 6)
         for _hk in ('1M', '3M')}
+# ---- THE PROBABILITY PARTITION, moved here from the document builder -----------
+# It was computed inside docx_v6.py and printed there, and nothing else in the
+# repository could see it. That is the corollary this house already carries in the
+# valuation table: A LINE THAT IS COMPUTED AND NOT PUBLISHED IS A LINE THE DOCUMENT
+# CANNOT PRINT. The prose check reports every printed figure it cannot reach, and
+# this table's five probabilities were unreachable by construction -- so 66.9% sat
+# unmatched through every edition, and the check could not have told the difference
+# between a correct partition and a wrong one. Computing it in the strike and
+# publishing it makes the document a READER of the number rather than its author.
+def _cdf3m(x):
+    """Log-linear interpolation on the published 3-month percentiles."""
+    _q = [0.05, 0.25, 0.50, 0.75, 0.95]
+    _v = [strike['horizons']['3M']['pct'][k]
+          for k in ('p5', 'p25', 'p50', 'p75', 'p95')]
+    _lx = math.log(x)
+    if _lx <= math.log(_v[0]):
+        return _q[0] * math.exp((_lx - math.log(_v[0])) * 6)
+    if _lx >= math.log(_v[-1]):
+        return 1 - (1 - _q[-1]) * math.exp(-(_lx - math.log(_v[-1])) * 6)
+    for _i in range(4):
+        _a, _b = math.log(_v[_i]), math.log(_v[_i + 1])
+        if _a <= _lx <= _b:
+            return _q[_i] + (_q[_i + 1] - _q[_i]) * (_lx - _a) / (_b - _a)
+    return 0.5
+
+
+# THE CUTS MUST ASCEND. Consecutive differences of a cumulative function telescope,
+# so a sum-to-one guard is 1.0 for ANY ordering and cannot see an unsorted list; the
+# guard that matters is that no zone is negative.
+_ZCUTS = sorted((round(dcf_ps, 2), 7.50, round(V['spot'], 2), 11.00))
+_ZP = [_cdf3m(_ZCUTS[0])]
+for _i in range(len(_ZCUTS) - 1):
+    _ZP.append(_cdf3m(_ZCUTS[_i + 1]) - _cdf3m(_ZCUTS[_i]))
+_ZP.append(1 - _cdf3m(_ZCUTS[-1]))
+assert abs(sum(_ZP) - 1.0) < 1e-9, 'probability zones do not sum to one: %s' % sum(_ZP)
+assert all(_z >= -1e-9 for _z in _ZP), (
+    'a probability zone is NEGATIVE: %s at cuts %s' % ([round(_z, 4) for _z in _ZP], _ZCUTS))
+ZONES = dict(cuts=[round(_c, 2) for _c in _ZCUTS],
+             p=[round(_z, 6) for _z in _ZP],
+             horizon='3M', anchor=strike['spot'])
+say('[Probability partition] cuts %s -> %s. Computed HERE and published, so the '
+    'document prints a number it read rather than one it invented.'
+    % (ZONES['cuts'], ['%.1f%%' % (100 * _z) for _z in ZONES['p']]))
+
 say('[Level-touch ladder] ' + ' · '.join(
     f"{_lv:.2f}: 1M {_TOUCH_P[f'{_lv:.2f}']['1M']:.1%} / 3M {_TOUCH_P[f'{_lv:.2f}']['3M']:.1%}"
     for _lv in _TOUCH_LEVELS)
@@ -3028,7 +3072,7 @@ OUT = dict(
                 divp=divp_val, inv=inv_val, eq=eq_attr, ps=dcf_ps),
     span_env=[lo_env, hi_env],
     blocks=BLOCKS,
-    step0=step0, strike=strike, backtest=bt5,
+    step0=step0, strike=strike, backtest=bt5, zones=ZONES,
     assert_log=LOG,
 )
 # ---- REACHABILITY GATE, rewritten -------------------------------------------

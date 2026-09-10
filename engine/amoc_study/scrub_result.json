@@ -1,43 +1,62 @@
 {
  "files": [
-  "AMOC_Bibliography_03-09-2026.docx",
-  "AMOC_Valuation_Model_03092026_public.xlsx",
-  "AMOC_Valuation_Study_03-09-2026_public.docx"
+  "AMOC_Bibliography_10-09-2026.docx",
+  "AMOC_Valuation_Model_10092026_public.xlsx",
+  "AMOC_Valuation_Study_10-09-2026_public.docx"
  ],
- "hard": [],
+ "hard": [
+  {
+   "file": "AMOC_Bibliography_10-09-2026.docx",
+   "term": "SIGCM",
+   "why": "internal mandate name",
+   "context": "the other three were unflagged rather than verified. Under SIGCM a figure this desk cannot source is a figure it does n"
+  },
+  {
+   "file": "AMOC_Bibliography_10-09-2026.docx",
+   "term": "engine/macro_paths/EG.json",
+   "why": "repository path presented as a source",
+   "context": "l real risk-free rate, READ LIVE from the house macro path (engine/macro_paths/EG.json) rather than typed here. The term"
+  }
+ ],
  "soft": [
   {
-   "file": "AMOC_Bibliography_03-09-2026.docx",
+   "file": "AMOC_Bibliography_10-09-2026.docx",
    "pattern": "\\bregister\\b",
    "hits": 5,
    "note": "ordinary sense: commercial register, input register"
   },
   {
-   "file": "AMOC_Bibliography_03-09-2026.docx",
+   "file": "AMOC_Bibliography_10-09-2026.docx",
    "pattern": "\\bgate\\b",
    "hits": 3,
    "note": "ordinary sense: a test the study describes to its reader"
   },
   {
-   "file": "AMOC_Bibliography_03-09-2026.docx",
+   "file": "AMOC_Bibliography_10-09-2026.docx",
    "pattern": "\\bstep\\b",
    "hits": 1,
    "note": "ordinary sense: a step-change"
   },
   {
-   "file": "AMOC_Valuation_Study_03-09-2026_public.docx",
+   "file": "AMOC_Bibliography_10-09-2026.docx",
+   "pattern": "\\bengine\\b",
+   "hits": 1,
+   "note": "ordinary sense: the cash-flow engine of the workbook"
+  },
+  {
+   "file": "AMOC_Valuation_Study_10-09-2026_public.docx",
    "pattern": "\\bregister\\b",
    "hits": 2,
    "note": "ordinary sense: commercial register, input register"
   },
   {
-   "file": "AMOC_Valuation_Study_03-09-2026_public.docx",
+   "file": "AMOC_Valuation_Study_10-09-2026_public.docx",
    "pattern": "\\bgate\\b",
    "hits": 4,
    "note": "ordinary sense: a test the study describes to its reader"
   },
   {
-   "file": "AMOC_Valuation_Study_03-09-2026_public.docx",
+   "file": "AMOC_Valuation_Study_10-09-2026_public.docx",
    "pattern": "\\bstep\\b",
    "hits": 7,
    "note": "ordinary sense: a step-change"
