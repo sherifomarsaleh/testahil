@@ -473,6 +473,18 @@
    "date": "2026-07-30",
    "tier": "A"
   },
+  "tax_rate_h1_2026": {
+   "value": 0.2957488441762056,
+   "source": "Effective tax rate for the six months ended 30 June 2026, DERIVED from the reviewed statement's own tax charge over its own profit before tax. It is the highest of the three readings this study holds and is why the forecast carries 28.5% rather than the 27.92% of the last full year.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "crp_cds_dataset": {
+   "value": 0.053164,
+   "source": "Egypt COUNTRY risk premium on the sovereign-credit-default-swap basis, 5.3164%, from the mid-year (July 2026) vintage of the country default-spread and risk-premium dataset, Egypt row, own column. IT IS NOT ADDED TO THE COST OF EQUITY: the TOTAL premium this study uses already contains it, and the figure is carried so a reader checking the dataset's own country column finds the number this study would call by that name.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
   "fin_income_fy2025": {
    "value": 49262.455,
    "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
@@ -805,7 +817,7 @@
   },
   "tax_rate": {
    "value": 0.285,
-   "source": "Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half 29.58%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays materially more because the 20% withholding on treasury-bill income is not creditable and part of its cost base is disallowed. 28.5% sits inside the observed range and above the statutory rate for that reason.",
+   "source": "Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half 29.57%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays materially more because the 20% withholding on treasury-bill income is not creditable and part of its cost base is disallowed. 28.5% sits inside the observed range and above the statutory rate for that reason.",
    "date": "2026-09-10",
    "tier": "House"
   },
@@ -895,6 +907,18 @@
    "date": "2026-07-30",
    "tier": "A"
   },
+  "tax_rate_h1_2026": {
+   "value": 0.2957488441762056,
+   "source": "Effective tax rate for the six months ended 30 June 2026, DERIVED from the reviewed statement's own tax charge over its own profit before tax. It is the highest of the three readings this study holds and is why the forecast carries 28.5% rather than the 27.92% of the last full year.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "crp_cds_dataset": {
+   "value": 0.053164,
+   "source": "Egypt COUNTRY risk premium on the sovereign-credit-default-swap basis, 5.3164%, from the mid-year (July 2026) vintage of the country default-spread and risk-premium dataset, Egypt row, own column. IT IS NOT ADDED TO THE COST OF EQUITY: the TOTAL premium this study uses already contains it, and the figure is carried so a reader checking the dataset's own country column finds the number this study would call by that name.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
   "fin_income_fy2025": {
    "value": 49262.455,
    "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
@@ -1227,7 +1251,7 @@
   },
   "tax_rate": {
    "value": 0.285,
-   "source": "Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half 29.58%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays materially more because the 20% withholding on treasury-bill income is not creditable and part of its cost base is disallowed. 28.5% sits inside the observed range and above the statutory rate for that reason.",
+   "source": "Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half 29.57%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays materially more because the 20% withholding on treasury-bill income is not creditable and part of its cost base is disallowed. 28.5% sits inside the observed range and above the statutory rate for that reason.",
    "date": "2026-09-10",
    "tier": "House"
   },

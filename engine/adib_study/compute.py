@@ -118,6 +118,27 @@ reg('latest_reviewed', 'H1-2026',
     'EGP 43,557.9 million. This is the period the forecast is anchored on.',
     '2026-07-30', 'A')
 
+# ---- TWO FIGURES THE DOCUMENTS QUOTE AND THE MODEL COMMITTED NOWHERE ---------------
+# Both are stated to a reader in the bibliography and neither could be reached by any
+# checker: the prose figure check reported them unmatched the first time it was ever
+# run on this study. A number a reader sees and nothing can reproduce is a number that
+# stays right only for as long as whoever typed it stays right.
+#
+# The effective rate is DERIVED from the reviewed half's own two lines rather than
+# registered as a third figure beside them.
+reg('tax_rate_h1_2026', -H1['tax'] / H1['pbt'],
+    'Effective tax rate for the six months ended 30 June 2026, DERIVED from the reviewed '
+    'statement\'s own tax charge over its own profit before tax. It is the highest of the '
+    'three readings this study holds and is why the forecast carries 28.5% rather than '
+    'the 27.92% of the last full year.', '2026-07-30', 'A')
+reg('crp_cds_dataset', 0.053164,
+    'Egypt COUNTRY risk premium on the sovereign-credit-default-swap basis, 5.3164%, from '
+    'the mid-year (July 2026) vintage of the country default-spread and risk-premium '
+    'dataset, Egypt row, own column. IT IS NOT ADDED TO THE COST OF EQUITY: the TOTAL '
+    'premium this study uses already contains it, and the figure is carried so a reader '
+    'checking the dataset\'s own country column finds the number this study would call '
+    'by that name.', '2026-07-02', 'Country')
+
 # ---- THE FILED LINES, REGISTERED ONE BY ONE [10-09-2026] -------------------------
 # The two entries above name the DOCUMENTS and carry their dates and tier, and that
 # looked like enough. It was not: every figure this study actually reads from those
@@ -373,9 +394,18 @@ COST_OF_RISK = reg('cost_of_risk', [0.0100, 0.0130, 0.0130, 0.0130, 0.0130],
                    'sit between the two. ANNUALISING THE JUNE HALF WOULD HAVE ADDED ABOUT '
                    'EGP 1.8 BILLION TO FY2026 PRE-TAX PROFIT and it is not done. Sensitised '
                    '+/-50 basis points in 1.9.', STUDY_DATE, 'House')
+# THE THREE OBSERVED RATES ARE DERIVED FROM THE FILINGS, NOT TYPED INTO THE SENTENCE
+# [10-09-2026]. The half-year figure was typed as 29.58% and the reviewed statement's own
+# two lines give 29.57% -- a hundredth of a point, and wrong is wrong: it is a figure a
+# reader was shown that the filing does not produce. The prose figure check caught it the
+# first time it was ever run on this study, which is the argument for the check.
+_TAX_FY25 = -FY25['tax'] / FY25['pbt']
+_TAX_FY24 = -_p(2024, 'tax') / _p(2024, 'pbt')
+_TAX_H1 = -H1['tax'] / H1['pbt']
 TAX_RATE = reg('tax_rate', 0.285,
-               'Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half '
-               '29.58%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays '
+               'Effective tax rate. FY2025 actual %.2f%%, FY2024 %.2f%%, the June 2026 half '
+               '%.2f%%. The Egyptian statutory corporate rate is 22.5%%; an Egyptian bank pays '
+               % (100 * _TAX_FY25, 100 * _TAX_FY24, 100 * _TAX_H1) +
                'materially more because the 20% withholding on treasury-bill income is not '
                'creditable and part of its cost base is disallowed. 28.5% sits inside the '
                'observed range and above the statutory rate for that reason.',

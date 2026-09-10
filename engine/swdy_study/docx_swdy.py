@@ -27,6 +27,21 @@ def n1(x): return f"{x:,.1f}"
 def p2(x): return f"{x:.2f}"
 def pc(x, dp=1): return f"{x*100:.{dp}f}%"
 def sgn(x, dp=0): return f"{x*100:+.{dp}f}%"
+
+
+def dirword(x, up="above", down="below", flat="level with"):
+    """The direction word for a signed quantity, DERIVED rather than typed.
+
+    A sentence saying "-6.9% ABOVE the primary reading" is not a rounding slip, it is
+    two readers of one fact: the figure computes and the word beside it was written
+    when the figure had the other sign. This study shipped exactly that on 10-09-2026
+    -- the hard-currency alternative had been above the primary reading and the
+    re-strike put it below, and the word stayed. The delivered-vocabulary gate's
+    sign-word check caught it, which is the only reason anybody knows.
+    """
+    if abs(x) < 5e-5:
+        return flat
+    return up if x > 0 else down
 def to_anchor_docx(v):
     """Mirror of the engine's anchor roll, for counterfactual display values only."""
     return v * DCF['roll'] - IN['dps_fy25']
@@ -109,10 +124,20 @@ P(f"On our primary construction the four lenses centre at EGP {p2(D['central'])}
   f"{pc(W['wacc_exp'])} to {pc(W['wacc_term'])}, the cash flows support roughly EGP "
   f"{p2(DCF['ps'])}. Discount the hard-currency share of those same cash flows at a hard-currency "
   f"cost of capital of about {pc(W['wacc_usd_alt'])} and the same model produces EGP "
-  f"{p2(DCF['ccy_alt_ps'])} — still {sgn(DCF['ccy_alt_ps']/SPOT-1,0)} against today's price, but "
-  f"{sgn(DCF['ccy_alt_ps']/DCF['ps']-1,0)} above the primary reading. The market appears to be "
-  f"applying something at least as generous as the second view. Both are shown, and neither is "
-  f"hidden inside an average.", space_after=10)
+  f"{p2(DCF['ccy_alt_ps'])} — {sgn(DCF['ccy_alt_ps']/SPOT-1,0)} against today's price, and "
+  f"{sgn(DCF['ccy_alt_ps']/DCF['ps']-1,0)} "
+  f"{dirword(DCF['ccy_alt_ps']/DCF['ps']-1)} the primary reading. "
+  # THE CONCLUSION IS DERIVED TOO, because it inverted with the number. This sentence
+  # read "the market appears to be applying something at least as generous as the
+  # second view" -- written when the hard-currency alternative sat ABOVE the primary.
+  # It now sits below it and further from the price, so the second view is the LESS
+  # generous of the two and the old sentence said the opposite of its own figures.
+  + (f"So the currency lens does not explain the gap: it is the harsher of the two "
+     f"readings, and the market is paying more than either. "
+     if DCF['ccy_alt_ps'] < DCF['ps'] else
+     f"So a reader who prefers the hard-currency construction closes part of the gap, "
+     f"though not all of it. ")
+  + f"Both are shown, and neither is hidden inside an average.", space_after=10)
 
 # =========================== VALUATION SUMMARY ===============================
 H2('Valuation summary — every read at a glance')
