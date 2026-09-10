@@ -1333,7 +1333,8 @@ for _ws in wb.worksheets:
             _c.alignment = _Alignment(horizontal=_a.horizontal, vertical='top',
                                       wrap_text=True, indent=_a.indent or 0)
 
-wb.save(os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx'))
+import edition as _EDN
+wb.save(os.path.join(HERE, _EDN.MODEL_XLSX))
 json.dump(EXPECT, open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)
 json.dump({"cost_of_equity": f"C{KE_C}", "wacc_year_one": f"C{W1}",
            "wacc_terminal": f"C{WT}", "rf_star": f"C{RFS_C}", "terminal_growth": f"C{r}"},

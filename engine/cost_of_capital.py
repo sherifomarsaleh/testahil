@@ -261,6 +261,21 @@ class Schedule:
     # to name it could name it anything and the field would be an attestation again.
     beta_source: str = ""
     beta_tier: Optional[int] = None
+    # [R-COC-03]: THE COMPONENTS OF THE COST OF EQUITY, PUBLISHED. They were computed
+    # inside cost_of_equity() and thrown away at the door: as_record() carried only the
+    # TOTAL premium, so a record could not be told apart from one built on the retired
+    # identity that multiplies the country premium by beta. ke_reproduction.check()
+    # therefore read every correct study as broken and would have passed the wrong
+    # construction. Same corollary this house already carries on the valuation table --
+    # a line that is computed and not published is a line nothing can verify.
+    erp_mature: Optional[float] = None
+    crp: Optional[float] = None
+    crp_terminal: Optional[float] = None
+    crp_effective_terminal: Optional[float] = None
+    crp_foreign: Optional[float] = None
+    lambda_country: Optional[float] = None
+    crp_effective: Optional[float] = None
+    ke_construction: str = "split_premium"
 
     def as_record(self) -> dict:
         """The shape a study commits and scripts/check_cost_of_capital.py reads."""
@@ -270,6 +285,13 @@ class Schedule:
             "rf_star": self.rf_star, "erp": self.erp, "erp_basis": self.erp_basis,
             "beta": self.beta, "beta_source": self.beta_source,
             "beta_tier": self.beta_tier, "ke_exp": self.ke_exp,
+            # [R-COC-03] the split, so the construction is readable from the record
+            "erp_mature": self.erp_mature, "crp": self.crp,
+            "crp_foreign": self.crp_foreign, "lambda_country": self.lambda_country,
+            "crp_effective": self.crp_effective,
+            "ke_construction": self.ke_construction,
+            "crp_terminal": self.crp_terminal,
+            "crp_effective_terminal": self.crp_effective_terminal,
             "kd_pretax": self.kd_pretax, "kd_aftertax": self.kd_aftertax,
             "weight_equity": self.weight_equity, "weight_debt": self.weight_debt,
             "wacc_exp": self.wacc_exp,
@@ -280,7 +302,14 @@ class Schedule:
             # and says so rather than leaving a reader to infer it; two studies in the
             # book relever instead, and until this field existed nothing distinguished a
             # relevered beta from a typo.
-            "ke_terminal_construction": "same_beta",
+            # THE LABEL WAS "same_beta" AND THE MODULE STOPPED DOING THAT ON 10-09-2026.
+            # It names the BETA treatment -- the same beta carried to the terminal, never
+            # relevered -- and that half is still true. But since [R-COC-03] the terminal
+            # premium is SPLIT the same way as the explicit one, so the record was
+            # declaring a construction the arithmetic no longer performed, and the
+            # verifier read a correct terminal as a 30bp error. The closed list's
+            # "split_premium" is the name for what this module actually does.
+            "ke_terminal_construction": "split_premium",
             "kd_terminal_pretax": self.kd_terminal_pretax,
             "kd_terminal_aftertax": self.kd_terminal_aftertax,
             "weight_debt_terminal": self.weight_debt_terminal,
@@ -645,6 +674,11 @@ def schedule(market: str,
         rf_observed=rf_observed, default_spread=spread, rf_star=rf_star,
         erp=erp, erp_basis=erp_basis, beta=beta.beta,
         beta_source=_beta_source(beta), beta_tier=beta.tier, ke_exp=ke_exp,
+        erp_mature=ke_parts['erp_mature'], crp=ke_parts['crp_home'],
+        crp_foreign=ke_parts['crp_foreign'],
+        lambda_country=ke_parts['lambda_country'],
+        crp_effective=ke_parts['crp_effective'],
+        crp_terminal=_crp_t, crp_effective_terminal=_lam_eff * _crp_t,
         kd_pretax=kd_pre, kd_aftertax=kd_at,
         weight_equity=we, weight_debt=wd, wacc_exp=wacc_exp,
         rf_terminal=rf_t, erp_terminal=erp_t, ke_terminal=ke_t,
@@ -767,6 +801,10 @@ def flat_schedule(rate: float, years: int, market: str = "EG",
         glide_fractions=[0.0] * years, forward_wacc=fwd,
         discount_factors=df, terminal_discount_factor=df[-1],
         kd_integrity={"note": "not applicable to a degenerate flat schedule"},
+        # A degenerate schedule has no cost of equity to decompose, and saying so
+        # explicitly keeps it out of the [R-COC-03] population rather than letting a
+        # NaN read as an undeclared construction.
+        ke_construction="not applicable",
         disclosures=["A FLAT schedule, used only to answer 'what one rate would "
                      "reproduce this price'. It is not a valuation construction. " + why])
 

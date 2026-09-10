@@ -38,7 +38,11 @@ import json, os, sys, copy
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx')
+# THE EDITION IS NOT NAMED HERE [10-09-2026]. Nine files in this directory each
+# typed the artefact names, so a reissue left every gate reading the superseded
+# edition -- examining something, but not the thing. edition.py owns the names.
+import edition as _EDN
+XLSX = os.path.join(HERE, _EDN.MODEL_XLSX)
 SHEET_A = 'Assumptions'
 HEAD = ('DCF', 'B44')          # value per share, programme carried through
 

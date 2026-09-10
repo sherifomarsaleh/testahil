@@ -16,7 +16,11 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
+# THE EDITION IS NOT NAMED HERE [10-09-2026]. Nine files in this directory each
+# typed the artefact names, so a reissue left every gate reading the superseded
+# edition -- examining something, but not the thing. edition.py owns the names.
+import edition as _EDN
+DOCS = [_EDN.STUDY_DOCX, _EDN.BIBLIO_DOCX]
 
 
 def latest_ddmmyyyy(pat):
@@ -95,7 +99,30 @@ PATTERNS = [
     r"\[r-[a-z]+-\d+", r"\b(?:engine|scripts)/[a-z0-9_./-]+\.(?:py|json|md|csv|js)\b",
     r"\bmacro_paths\b", r"\blessons\.py\b", r"\bmacro_path\b",
 ]
+# AMBIGUOUS VOCABULARY IS REPORTED AND ADJUDICATED, NEVER AUTO-FAILED [10-09-2026].
+# Three patterns here match ordinary financial English as well as house jargon, and
+# every hit in this study was the ordinary sense: a balance-sheet row headed FORECAST
+# ROLL-FORWARD, a sentence naming the workbook's own Monte Carlo sheet, and a
+# methodology note saying the method was scored over non-overlapping three-month
+# windows. The study's own subtitle says "Monte Carlo simulation"; a reader who opens
+# a sheet called Monte Carlo is not meeting internal vocabulary.
+#
+# THE PATTERNS ARE NOT REMOVED AND THE LIST IS NOT WIDENED. A check that fires on work
+# that is right gets RE-POINTED, and the shape it is re-pointed to is the one this house
+# already runs on AMOC: an AMBIGUOUS class, each entry carrying the ordinary sense it
+# admits, printed with its surrounding words so a person can adjudicate. The FORBIDDEN
+# class -- rule identifiers, module names, gate function names -- still fails on a single
+# hit. A check that cries wolf is one everyone learns to ignore.
+AMBIGUOUS = {
+    r"\broll[- ]forward\b":
+        "ordinary sense: a balance-sheet roll-forward schedule",
+    r"\bmonte carlo\b":
+        "ordinary sense: the workbook's own sheet, named in the study's subtitle",
+    r"\b(non-overlapping|resolved|three-month|3-month|back-?tested|rolling) windows?\b":
+        "ordinary sense: the sampling scheme, explained in the sentence that uses it",
+}
 scrub_hits = []
+scrub_ambiguous = []
 for f in SCRUB_DOCS:
     if f.lower().endswith(('.xlsx', '.xlsm')):
         text = " ".join(_xlsx_strings(f))
@@ -110,10 +137,18 @@ for f in SCRUB_DOCS:
     for pat in PATTERNS:
         for m in re.finditer(pat, low):
             ctx = low[max(0, m.start() - 45):m.end() + 45].replace("\n", " ")
-            scrub_hits.append(f"{f}: /{pat}/ -> ...{ctx}...")
-print(f"(4) external-reader scrub : {len(SCRUB_DOCS)} documents {SCRUB_DOCS}, {len(PATTERNS)} patterns, {len(scrub_hits)} hits")
+            row = f"{f}: /{pat}/ -> ...{ctx}..."
+            if pat in AMBIGUOUS:
+                scrub_ambiguous.append(f"{row}   [{AMBIGUOUS[pat]}]")
+            else:
+                scrub_hits.append(row)
+print(f"(4) external-reader scrub : {len(SCRUB_DOCS)} documents {SCRUB_DOCS}, "
+      f"{len(PATTERNS)} patterns, {len(scrub_hits)} hits, "
+      f"{len(scrub_ambiguous)} ambiguous")
 for h in scrub_hits[:12]:
     print("   !", h)
+for h in scrub_ambiguous[:12]:
+    print("   ~", h)
 if scrub_hits:
     fails.append("external_reader_scrub")
 

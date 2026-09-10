@@ -12,7 +12,14 @@ fixed HERE by widening the rendering set, never by deleting the figure from the 
 import json, os, re, sys
 from docx import Document
 HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
+# THE DOCUMENTS THIS CHECK READS WERE NAMED BY HAND, so it went on grading the
+# SUPERSEDED 5 September edition after the study was re-struck and reissued -- the
+# third check in this directory pointed at a file nobody writes any more. It
+# reported eight failures, every one of them a figure that was correct in the
+# document it was written for. A gate aimed at the wrong artefact does not go
+# quiet; it goes WRONG, which is worse.
+import edition as _EDN
+DOCS = [_EDN.STUDY_DOCX, _EDN.BIBLIO_DOCX]
 
 
 def latest_ddmmyyyy(pat):

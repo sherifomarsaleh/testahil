@@ -1,4 +1,4 @@
-"""EGCH_Bibliography_05-09-2026.docx — a standalone source register.
+"""EGCH_Bibliography_{DD-MM-YYYY}.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -105,7 +105,8 @@ r.bold = True; r.font.size = Pt(12); r.font.color.rgb = WHITE
 # 5 September edition — the identical defect docx_egch.py records fixing in its own
 # masthead, left open here, which is what a fix applied in one place and not the other
 # looks like.
-EDITION_FILE = 'EGCH_Bibliography_05-09-2026.docx'
+import edition as _EDN
+EDITION_FILE = _EDN.BIBLIO_DOCX
 _EDITION = _dt.datetime.strptime(EDITION_FILE.split('_')[-1][:10], '%d-%m-%Y').date()
 r2 = p.add_run('   Egyptian Chemical Industries (KIMA), EGX: EGCH — %d %s'
                % (_EDITION.day, _EDITION.strftime('%B %Y')))

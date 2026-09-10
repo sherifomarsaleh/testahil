@@ -53,6 +53,18 @@ FLOAT_NOISE = 1e-9
 # CLOSED. A construction not on this list is not a construction.
 TERMINAL_CONSTRUCTIONS = ("same_beta", "relevered", "split_premium")
 
+# THE EXPLICIT WINDOW HAS A CLOSED LIST TOO, FROM 10-09-2026, and until it did this
+# check tested the RETIRED identity and nothing else. That is worse than not testing:
+# rf* + beta x ERP_total multiplies the country premium by beta, which is the exact
+# double count [R-COC-03] was adopted to stop -- so the gate PASSED the construction
+# the standard forbids and FAILED all four studies in the book that had already been
+# rebuilt on the right one. A gate that is inverted is not a weak gate.
+#
+# `total_premium` is kept because a record struck before 10-09-2026 did that, and
+# rewriting history to match a later rule is not verification. It is reported as
+# SUPERSEDED rather than accepted silently.
+EXPLICIT_CONSTRUCTIONS = ("split_premium", "total_premium")
+
 
 class KeError(Exception):
     pass
@@ -68,6 +80,38 @@ def ke_explicit_split(rf_star, beta, erp_mature, crp_effective):
     reproducing only under `ke_explicit` is a defect, not an alternative.
     """
     return rf_star + beta * erp_mature + crp_effective
+
+
+def crp_effective(rec):
+    """The country premium a record actually charges, from components it PUBLISHES.
+
+    [R-COC-03] charges country risk once, at the weight of the operations: lambda of it
+    where the company operates, and the foreign country's own premium on the rest. Both
+    legs must be in the record. Nothing is solved here -- a check that solves lambda out
+    of the published answer reproduces whatever it is handed, which is the failure the
+    terminal side of this module already names.
+
+    Returns None when the record does not publish the split, which is a failure to be
+    REPORTED rather than a licence to fall back on the retired identity.
+    """
+    crp = rec.get("crp")
+    if crp is None:
+        return None
+    lam = rec.get("lambda_country")
+    if lam is None:
+        return None
+    if not 0.0 <= lam <= 1.0:
+        raise KeError("lambda_country %r is outside [0,1]" % lam)
+    if lam == 1.0:
+        return crp
+    foreign = rec.get("crp_foreign")
+    if foreign is None:
+        raise KeError("lambda_country is %.4f, so %.2f%% of the operations sit outside "
+                      "the country whose premium is charged, and the record states no "
+                      "crp_foreign for them. A lambda below one without a foreign "
+                      "premium charges nothing at all for that share of the business"
+                      % (lam, 100 * (1 - lam)))
+    return lam * crp + (1.0 - lam) * foreign
 
 
 def ke_explicit(rf_star, beta, erp):
@@ -155,6 +199,80 @@ def implied_relevering_tax(rec):
         return None
 
 
+def _check_explicit(rec, rs, b, ke):
+    """Reproduce the explicit-window Ke under the construction the record NAMES.
+
+    Same discipline as the terminal side: a closed list, and where the record declares
+    nothing the failure message says which construction it actually matches, so the fix
+    is one line rather than a puzzle.
+    """
+    cons = rec.get("ke_construction")
+    if cons is not None and cons not in EXPLICIT_CONSTRUCTIONS:
+        return ["ke_construction %r is not on the closed list %s"
+                % (cons, list(EXPLICIT_CONSTRUCTIONS))]
+
+    try:
+        ce = crp_effective(rec)
+    except KeError as exc:
+        return [str(exc)]
+    em = rec.get("erp_mature")
+    split = None
+    if ce is not None and em is not None:
+        split = ke_explicit_split(rs, b, em, ce)
+
+    e = rec.get("erp")
+    total = ke_explicit(rs, b, e) if e is not None else None
+
+    if cons == "split_premium":
+        if split is None:
+            return ["ke_construction says split_premium, so the record must publish "
+                    "erp_mature, crp and lambda_country (and crp_foreign where lambda "
+                    "is below one). It publishes %s"
+                    % ([k for k in ("erp_mature", "crp", "lambda_country", "crp_foreign")
+                        if rec.get(k) is not None] or "none of them")]
+        if abs(split - ke) > FLOAT_NOISE:
+            return ["ke_exp %.10f does not reproduce under its own declared "
+                    "split_premium construction = %.10f (%+.2f bp)"
+                    % (ke, split, (ke - split) * 1e4)]
+        return []
+
+    if cons == "total_premium":
+        if total is None:
+            return ["ke_construction says total_premium and the record publishes no erp"]
+        if abs(total - ke) > FLOAT_NOISE:
+            return ["ke_exp %.10f does not reproduce under its own declared "
+                    "total_premium construction = %.10f (%+.2f bp)"
+                    % (ke, total, (ke - total) * 1e4)]
+        return ["ke_construction is total_premium, the SUPERSEDED identity: it multiplies "
+                "the country premium by beta, which [R-COC-03] charges once and flat. The "
+                "arithmetic reproduces and the construction is retired; a record struck "
+                "after 10-09-2026 must be rebuilt on split_premium"]
+
+    # UNDECLARED. Name what it matches.
+    if split is not None and abs(split - ke) <= FLOAT_NOISE:
+        return ["ke_exp names no construction. It reproduces under 'split_premium' — "
+                "declare it, so a reader can tell the sanctioned construction from a "
+                "coincidence"]
+    if total is not None and abs(total - ke) <= FLOAT_NOISE:
+        return ["ke_exp names no construction. It reproduces under the SUPERSEDED "
+                "'total_premium' identity, which multiplies the country premium by beta"]
+    hint = ""
+    if e is not None and rec.get("default_spread") is not None:
+        try:
+            import cost_of_capital as _coc
+            _crp, _em = _coc.split_erp(e, rec["default_spread"])
+            if _crp:
+                lam = (ke - rs - b * _em) / _crp
+                hint = ("; splitting the committed erp gives a mature premium of %.4f and "
+                        "a country premium of %.4f, under which the published Ke implies "
+                        "lambda = %.4f. PUBLISH the components rather than leaving them to "
+                        "be solved out of the answer" % (_em, _crp, lam))
+        except Exception:                                            # noqa: BLE001
+            pass
+    return ["ke_exp %.10f reproduces under no construction on the closed list %s%s"
+            % (ke, list(EXPLICIT_CONSTRUCTIONS), hint)]
+
+
 def check(rec):
     """Return a list of failure strings. Empty means the record's Ke reproduces.
 
@@ -166,16 +284,12 @@ def check(rec):
     if not isinstance(rec, dict):
         return ["no cost_of_capital_record committed"]
 
-    rs, b, e, ke = (rec.get("rf_star"), rec.get("beta"),
-                    rec.get("erp"), rec.get("ke_exp"))
-    if None in (rs, b, e, ke):
-        fails.append("record carries no rf_star, beta, erp or ke_exp, so the explicit "
-                     "cost of equity cannot be reproduced at all")
+    rs, b, ke = rec.get("rf_star"), rec.get("beta"), rec.get("ke_exp")
+    if None in (rs, b, ke):
+        fails.append("record carries no rf_star, beta or ke_exp, so the explicit cost "
+                     "of equity cannot be reproduced at all")
     else:
-        want = ke_explicit(rs, b, e)
-        if abs(want - ke) > FLOAT_NOISE:
-            fails.append("ke_exp %.10f does not reproduce from rf_star + beta x erp "
-                         "= %.10f (%+.2f bp)" % (ke, want, (ke - want) * 1e4))
+        fails.extend(_check_explicit(rec, rs, b, ke))
 
     fails.extend(check_weights(rec))
     fails.extend(check_beta_source(rec))

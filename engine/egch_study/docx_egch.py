@@ -1,4 +1,4 @@
-"""EGCH_Valuation_Study_05-09-2026.docx — the MODEL STUDY structure.
+"""EGCH_Valuation_Study_{DD-MM-YYYY}.docx — the MODEL STUDY structure.
 
 Sixteen sections in the model order. No financial numeral is typed in this file: every
 number comes from study_numbers.json, lenses.json, experts.json, strike_result.json,
@@ -41,7 +41,11 @@ M3 = ST['horizons']['3M']; M1 = ST['horizons']['1M']
 masthead()
 import datetime as _dt
 # ONE PLACE THE EDITION IS NAMED, read by the masthead and by the save.
-EDITION_FILE = 'EGCH_Valuation_Study_05-09-2026.docx'
+# THE EDITION IS NOT TYPED HERE. It was, and this file then parsed the date back
+# out of the string it had just typed -- one source of truth in appearance, two in
+# fact, because docx_biblio.py typed its own. See egch_study/edition.py.
+import edition as _EDN
+EDITION_FILE = _EDN.STUDY_DOCX
 
 P("EGYPTIAN CHEMICAL INDUSTRIES (KIMA)", size=21, bold=True, space_after=1)
 P("Egyptian Exchange: EGCH  ·  Aswan  ·  Nitrogen fertilizers and industrial chemicals",
