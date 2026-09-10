@@ -47,6 +47,7 @@ manufacturer + engineering & construction contractor + electrical products and
 digital solutions). Lens set follows the operating-company reference: FCFF DCF
 primary, relative multiples, normalized earnings power, and a book/ROE lens.
 """
+import datetime as _dt
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import macro_path as _MPmod
@@ -607,7 +608,9 @@ INP = dict(
     copper_hist=I(dict(FY23=8478.0, FY24=9147.0, FY25=10000.0),
                   "LME copper cash, annual average USD/tonne (house commodity reference) — used "
                   "only as a GROWTH driver for the Cables segment (Cables revenue is genuinely "
-                  "copper-linked; the company does not disclose tonnage, so the model tracks the "
+                  "copper-linked; the company DOES disclose tonnage, quarterly, and the series is "
+                  "registered below — an earlier edition of this line said it did not. "
+                  "The model tracks the "
                   "copper x FX growth rate rather than reconstructing an absolute volume)",
                   "2026-08-05", "Industry"),
     # THE COMPANY DISCLOSES ITS OWN AVERAGE RATE AND TWO OF THREE YEARS WERE TYPED
@@ -640,13 +643,78 @@ INP = dict(
               "against a ~4-5% dollar rate implies materially faster depreciation; the base case "
               "assumes disinflation closes most of that gap. The parity case is carried as an "
               "explicit sensitivity", "2026-08-05", "House"),
-    copper_fcst=I([13400.0, 14000.0, 14000.0, 14000.0, 14000.0],
+    # HOLDING A DOLLAR PRICE FLAT IS NOT HOLDING IT [10-Sep-2026]. The path held
+    # 14,000 nominal USD for four years while this house's own macro path carries US
+    # long-run inflation of 2.5%. A flat NOMINAL price is a REAL decline of 2.5% a
+    # year, compounding to -9.5% by FY2030E — a directional view on copper held by
+    # nobody and arrived at by leaving a number alone. The level is still not a
+    # forecast: it is today's price escalated at the house's own inflation, which is
+    # what "held flat" was meant to say.
+    copper_fcst=I([13400.0] + [14000.0 * (1 + _MP_EG.raw['us_inflation_lt']['value']) ** k
+                               for k in range(1, 5)],
                   "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually "
                   "realised and the current cash price of about 14,000 (early August 2026); "
                   "thereafter the current level is held flat — copper is the largest single input "
                   "into the Cables segment and a directional view on it would dominate the "
                   "valuation. The -10% column of the sensitivity carries the mean-reversion case",
                   "2026-08-05", "Industry"),
+    # THE COMPANY DISCLOSES TONNAGE, AND THIS STUDY SAID IT DID NOT [10-Sep-2026].
+    # Elsewedy Electric's own quarterly earnings releases carry a table headed
+    # "Cables Sales Volumes (Tons)", and they have been committed in this repository
+    # since an earlier rebuild, at engine/swdy_walkforward/text/. Two rows of this
+    # file asserted the opposite and used the assertion to JUSTIFY a flat 3.0% --
+    # "the model should not manufacture a volume story it cannot evidence". The
+    # evidence was two pages from the backlog figures read off the same releases on
+    # the same day. A driver justified by the ABSENCE of a disclosure is void the
+    # moment the disclosure is found, whichever way the number then moves [R-GAP-04].
+    cables_tonnage_hist=I(dict(FY22=144997, FY23=156748, FY24=167665, FY25=185449),
+                          "Cables sales volumes in tonnes, from Elsewedy Electric's own "
+                          "Q4 earnings releases (4Q2023, 4Q2024, 4Q2025), each printed "
+                          "beside its own prior-year comparative: +8.1%, +7.0%, +10.6%. "
+                          "A compound 8.55% a year over FY2022-25",
+                          "2026-02-15", "Company"),
+    cables_tonnage_h1=I(dict(H1_25=89636, H1_26=99239),
+                        "Cables sales volumes, reviewed half: 99,239 tonnes against "
+                        "89,636, +10.71% — the Q2-2026 earnings release. The most recent "
+                        "volume disclosure and the anchor for FY2026 [R-ANCHOR-01]",
+                        "2026-08-14", "Company"),
+    # THE RESIDUAL WAS TWO OPPOSITE THINGS WEARING ONE NUMBER. Cables revenue was
+    # built as (1+copper)(1+FX)(1+real), which ASSERTS that price per tonne moves
+    # exactly with copper and the pound and leaves "real" to mean volume. Against the
+    # company's own disclosure that assertion held in FY2024 and failed in FY2025:
+    # price per tonne rose 55.6% against copper x FX of 55.1% (a pass-through of
+    # +0.4%), then 2.7% against 18.6% (a shortfall of 13.4 points). So the 3.0%
+    # residual was volume growth of 7-11% multiplied by a pass-through shortfall of
+    # nearly the same size, and neither could be seen or argued. They are separated
+    # now, and the pass-through — the contested half — is carried BOTH WAYS.
+    cables_volume_growth=I([0.1071, 0.090, 0.075, 0.065, 0.055],
+                           "Cables tonnage growth, RE-ANCHORED on the reviewed half "
+                           "[R-ANCHOR-01]: FY2026 is the disclosed +10.71%, tapering "
+                           "toward and below the FY2022-25 compound rate of 8.55%. The "
+                           "company's OWN disclosed volume series, not a residual and "
+                           "not a proxy", "2026-08-14", "Company"),
+    cables_passthrough=I([0.0, -0.0654, -0.0436, -0.0218, 0.0],
+                         "How much of the copper-and-currency move reaches price per "
+                         "tonne, as the gap from FULL pass-through. ADOPTED: the MEAN "
+                         "of the two disclosed years (FY2024 +0.36%, FY2025 -13.43%, "
+                         "mean -6.54%) applied to the first year the formula governs "
+                         "and closing straight-line to zero by FY2030E. It uses both "
+                         "observations rather than the convenient one, and it closes "
+                         "because a shortfall CANNOT persist indefinitely: compounded, "
+                         "it drives price per tonne below the cost of the metal in it. "
+                         "FY2026 is 0.0 because that year is anchored on the reviewed "
+                         "half's own measured revenue and the formula does not govern "
+                         "it", "2026-08-14", "Company/House"),
+    cables_passthrough_alt=I([0.0, -0.1343, -0.1343, -0.0672, 0.0],
+                             "THE CONTESTED ALTERNATIVE: FY2025's measured shortfall "
+                             "persists two more years before closing — the case that "
+                             "pricing power lost in a copper spike takes a cycle to "
+                             "recover rather than a year. Published beside the adopted "
+                             "case and NEVER averaged with it. A third case was tried "
+                             "and rejected as not serious: holding -13.43% flat for "
+                             "ever makes cables revenue FALL in nominal pounds from "
+                             "FY2028 while volume grows 5-9% a year, which is not a "
+                             "view anybody holds", "2026-08-14", "Company"),
     cables_real_growth=I([0.030, 0.030, 0.030, 0.030, 0.030],
                         "Real (ex-copper, ex-FX) volume/market-share growth for the Cables segment "
                         "— modest and flat. HELD, AND NOW MEASURED RATHER THAN ASSERTED. Backing "
@@ -807,7 +875,11 @@ INP = dict(
                          "Cables segment's copper linkage, since a project executed abroad for a "
                          "local utility is foreign revenue but not necessarily dollar-priced",
                          "2026-03-15", "Company"),
-    nwc_pct=I(0.199, "Net working capital as a share of revenue, held at the FY2025 disclosed "
+    nwc_pct=I(0.1967, "Net working capital as a share of revenue, RE-ANCHORED on the "
+              "REVIEWED 30-Jun-2026 sheet: inventories 79,140 + contract assets 40,121 + "
+              "receivables 130,221 - payables 79,553 - contract liabilities 106,860 = "
+              "63,069 on last-twelve-month revenue of 320,564 = 19.67%. Retired: 19.90%, "
+              "the FY2025 disclosed "
               "level (19.87%) — a genuine improvement on FY2023 (24.1%) and FY2024 (23.1%), "
               "carried forward without assuming further improvement or reversion",
               "2026-08-05", "House"),
@@ -839,7 +911,12 @@ INP = dict(
                 "story about the cycle, set before the reviewed half was read. The half "
                 "measures the cycle directly: see capex_pct_measured below",
                 "2026-08-05", "House"),
-    dna_pct=I(0.0125, "Depreciation and amortisation as a share of revenue, held near the FY2025 "
+    dna_pct=I(0.0107, "Depreciation and amortisation as a share of revenue, AT the "
+              "disclosed level rather than above it: FY2025 3,009/281,049 = 1.071% and "
+              "the reviewed half 1,748/163,316 = 1.070%, two periods agreeing to a "
+              "thousandth. The retired 1.25% was the FY2025 level plus a house uplift "
+              "for the capex ramp, which the reviewed half then measured and did not "
+              "show. Previously: held near the FY2025 "
               "disclosed level (1.07%) with a modest rise reflecting the larger capitalised asset "
               "base from the FY2025-26 capex ramp", "2026-08-05", "House"),
 
@@ -1434,6 +1511,11 @@ for y, key in (('FY23', 'op_fy23'), ('FY24', 'op_fy24'), ('FY25', 'op_fy25')):
     _ebit_check = _seg_profit_net - CL[y] * V[key.replace('op_', 'rev_')]
     assert abs(_ebit_check - V[key]) < 1.0, f'{y} segment profit less corporate load != operating profit'
 
+# THE CONTESTED HALF, SWITCHED IN ONE PLACE so the alternative is a re-run of the
+# whole model and not a scaled answer [contested_judgement_both_ways].
+_PASSTHRU = V['cables_passthrough']
+
+
 def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shift=0.0):
     """Re-run the whole three-segment build. Scenarios and sensitivity grids call
     THIS, so a currency or copper move flows through Cables' growth rate, and a
@@ -1460,20 +1542,26 @@ def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shi
             # segments earn 11.4%, 9.0% and 23.6%, and the error over-weighted the
             # cheapest of the three and under-weighted the richest.
             #
-            # THE CABLES CORRECTION IS DELIBERATELY NOT PUSHED INTO cables_real_growth.
-            # Forcing the copper x FX x real construction to hit the measured 30.57%
-            # would imply a 5.4% REAL VOLUME DECLINE, and that input exists precisely to
-            # refuse a volume story the company does not disclose: "the model should not
-            # manufacture a volume story it cannot evidence". Which of copper, the
-            # exchange rate or volume accounts for the miss is not resolvable from what
-            # is disclosed -- the interim omits the average-rate table the audited
-            # statements carry -- so the study declines to attribute it and anchors the
-            # year the half measures. The construction still governs FY2027 onward.
+# THE MISS IS NOW ATTRIBUTABLE, AND THIS COMMENT USED TO SAY IT WAS NOT.
+            # It read: "which of copper, the exchange rate or volume accounts for the
+            # miss is not resolvable from what is disclosed". It is resolvable, from a
+            # disclosure sitting in this repository: the reviewed half sold 99,239
+            # tonnes against 89,636, +10.71%, so of the measured +30.57% revenue growth
+            # 10.71pp is VOLUME and price per tonne carries the remaining +17.94%. The
+            # year is still anchored on what the half measured — that part was always
+            # right — but the attribution is no longer declined, and FY2027 onward is
+            # built on the split rather than on a residual that hid it.
             r_cab *= (1 + _SEG_G26[ 'cables' ]) * (vol_mult ** 0.2)
             r_con *= (1 + _SEG_G26['construct']) * (vol_mult ** 0.2)
             r_ele *= (1 + _SEG_G26['elecprod']) * (vol_mult ** 0.2)
         else:
-            r_cab *= (1 + cu_growth) * (1 + V['cables_real_growth'][i]) * (vol_mult ** 0.2)
+            # Cables = copper x FX (the metal and the currency) x pass-through (how much
+            # of that reaches price per tonne) x VOLUME (the company's own disclosed
+            # tonnage). The retired construction multiplied copper x FX by a single 3.0%
+            # "real" residual that was volume and pass-through wearing one number, in
+            # opposite directions, neither visible.
+            r_cab *= ((1 + cu_growth) * (1 + _PASSTHRU[i])
+                      * (1 + V['cables_volume_growth'][i]) * (vol_mult ** 0.2))
             r_con *= (1 + V['construct_growth'][i]) * (vol_mult ** 0.2)
             r_ele *= (1 + V['elecprod_growth'][i]) * (vol_mult ** 0.2)
         m_cab = V['cables_margin'][i] * gp_unit_mult
@@ -1776,7 +1864,7 @@ _tv_retired = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
 say(f"[Terminal value, sanctioned construction] terminal NOPAT {nopat_term:,.0f} + book D&A "
     f"{_terminal.dna_addback:,.0f} - maintenance at replacement cost {_terminal.maintenance:,.0f} "
     f"(on the DERIVED {V['asset_life_derived']:.2f}-year life) - growth capital "
-    f"{_terminal.growth_capex:,.0f} (zero, because real growth is zero) - inflation on working "
+    f"{_terminal.growth_capex:,.0f} (growth capital at the stated real terminal growth) - inflation on working "
     f"capital {_terminal.wc_charge:,.0f} = FCFF {_terminal.fcff:,.0f}. TV {tv:,.0f} at "
     f"{wacc_term:.2%} and {V['g_term']:.1%} nominal, discounted at the YEAR-5 factor "
     f"{df[-1]:.4f} -> PV {pv_tv:,.0f}, {tv_share:.0%} of enterprise value. Implied payout of "
@@ -1920,8 +2008,18 @@ assert abs(_eps_implied - V['eps_fy25']) < 0.005, (
 # one-date rule by about seven months of accretion.
 T_ANCHOR = V['anchor_days'] / 365.0
 ROLL = (1 + ke_exp) ** T_ANCHOR
+# THE DIVIDEND LEFT ON A DATE, AND WAS DEDUCTED AS IF IT LEFT AT THE END. It was
+# paid from 4 June 2026; the equity it left compounds from THAT date to the anchor,
+# not from the anchor itself, so deducting it flat credits the shareholder with three
+# months of accretion on money already gone. Worth about 12 piastres a share and it
+# runs AGAINST this study — which is the only reason worth noting it: an error found
+# while hunting for one that closes a gap, and fixed because it is an error [R-GAP-04].
+_DIV_DAYS = (_dt.date(2026, 9, 3) - _dt.date(2026, 6, 4)).days
+_DIV_AT_ANCHOR = V['dps_fy25'] * (1 + ke_exp) ** (_DIV_DAYS / 365.0)
+
+
 def to_anchor(v):
-    return v * ROLL - V['dps_fy25']
+    return v * ROLL - _DIV_AT_ANCHOR
 dcf_ps = to_anchor(dcf_ps_dec)
 say(f"[Bridge] EV {ev:,.0f} - net financial debt {V['nd_fy25']:,.0f} + associates at carrying "
     f"value {assoc_val:,.0f} = {eq_pre_nci:,.0f}; less minority interests at their "

@@ -864,7 +864,7 @@
     "FY24": 9147.0,
     "FY25": 10000.0
    },
-   "source": "LME copper cash, annual average USD/tonne (house commodity reference) \u2014 used only as a GROWTH driver for the Cables segment (Cables revenue is genuinely copper-linked; the company does not disclose tonnage, so the model tracks the copper x FX growth rate rather than reconstructing an absolute volume)",
+   "source": "LME copper cash, annual average USD/tonne (house commodity reference) \u2014 used only as a GROWTH driver for the Cables segment (Cables revenue is genuinely copper-linked; the company DOES disclose tonnage, quarterly, and the series is registered below \u2014 an earlier edition of this line said it did not. The model tracks the copper x FX growth rate rather than reconstructing an absolute volume)",
    "date": "2026-08-05",
    "ring": "Industry"
   },
@@ -893,14 +893,70 @@
   "copper_fcst": {
    "value": [
     13400.0,
-    14000.0,
-    14000.0,
-    14000.0,
-    14000.0
+    14349.999999999998,
+    14708.749999999998,
+    15076.468749999995,
+    15453.380468749994
    ],
    "source": "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually realised and the current cash price of about 14,000 (early August 2026); thereafter the current level is held flat \u2014 copper is the largest single input into the Cables segment and a directional view on it would dominate the valuation. The -10% column of the sensitivity carries the mean-reversion case",
    "date": "2026-08-05",
    "ring": "Industry"
+  },
+  "cables_tonnage_hist": {
+   "value": {
+    "FY22": 144997,
+    "FY23": 156748,
+    "FY24": 167665,
+    "FY25": 185449
+   },
+   "source": "Cables sales volumes in tonnes, from Elsewedy Electric's own Q4 earnings releases (4Q2023, 4Q2024, 4Q2025), each printed beside its own prior-year comparative: +8.1%, +7.0%, +10.6%. A compound 8.55% a year over FY2022-25",
+   "date": "2026-02-15",
+   "ring": "Company"
+  },
+  "cables_tonnage_h1": {
+   "value": {
+    "H1_25": 89636,
+    "H1_26": 99239
+   },
+   "source": "Cables sales volumes, reviewed half: 99,239 tonnes against 89,636, +10.71% \u2014 the Q2-2026 earnings release. The most recent volume disclosure and the anchor for FY2026 [R-ANCHOR-01]",
+   "date": "2026-08-14",
+   "ring": "Company"
+  },
+  "cables_volume_growth": {
+   "value": [
+    0.1071,
+    0.09,
+    0.075,
+    0.065,
+    0.055
+   ],
+   "source": "Cables tonnage growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01]: FY2026 is the disclosed +10.71%, tapering toward and below the FY2022-25 compound rate of 8.55%. The company's OWN disclosed volume series, not a residual and not a proxy",
+   "date": "2026-08-14",
+   "ring": "Company"
+  },
+  "cables_passthrough": {
+   "value": [
+    0.0,
+    -0.0654,
+    -0.0436,
+    -0.0218,
+    0.0
+   ],
+   "source": "How much of the copper-and-currency move reaches price per tonne, as the gap from FULL pass-through. ADOPTED: the MEAN of the two disclosed years (FY2024 +0.36%, FY2025 -13.43%, mean -6.54%) applied to the first year the formula governs and closing straight-line to zero by FY2030E. It uses both observations rather than the convenient one, and it closes because a shortfall CANNOT persist indefinitely: compounded, it drives price per tonne below the cost of the metal in it. FY2026 is 0.0 because that year is anchored on the reviewed half's own measured revenue and the formula does not govern it",
+   "date": "2026-08-14",
+   "ring": "Company/House"
+  },
+  "cables_passthrough_alt": {
+   "value": [
+    0.0,
+    -0.1343,
+    -0.1343,
+    -0.0672,
+    0.0
+   ],
+   "source": "THE CONTESTED ALTERNATIVE: FY2025's measured shortfall persists two more years before closing \u2014 the case that pricing power lost in a copper spike takes a cycle to recover rather than a year. Published beside the adopted case and NEVER averaged with it. A third case was tried and rejected as not serious: holding -13.43% flat for ever makes cables revenue FALL in nominal pounds from FY2028 while volume grows 5-9% a year, which is not a view anybody holds",
+   "date": "2026-08-14",
+   "ring": "Company"
   },
   "cables_real_growth": {
    "value": [
@@ -1035,8 +1091,8 @@
    "ring": "Company"
   },
   "nwc_pct": {
-   "value": 0.199,
-   "source": "Net working capital as a share of revenue, held at the FY2025 disclosed level (19.87%) \u2014 a genuine improvement on FY2023 (24.1%) and FY2024 (23.1%), carried forward without assuming further improvement or reversion",
+   "value": 0.1967,
+   "source": "Net working capital as a share of revenue, RE-ANCHORED on the REVIEWED 30-Jun-2026 sheet: inventories 79,140 + contract assets 40,121 + receivables 130,221 - payables 79,553 - contract liabilities 106,860 = 63,069 on last-twelve-month revenue of 320,564 = 19.67%. Retired: 19.90%, the FY2025 disclosed level (19.87%) \u2014 a genuine improvement on FY2023 (24.1%) and FY2024 (23.1%), carried forward without assuming further improvement or reversion",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -1077,8 +1133,8 @@
    "ring": "House"
   },
   "dna_pct": {
-   "value": 0.0125,
-   "source": "Depreciation and amortisation as a share of revenue, held near the FY2025 disclosed level (1.07%) with a modest rise reflecting the larger capitalised asset base from the FY2025-26 capex ramp",
+   "value": 0.0107,
+   "source": "Depreciation and amortisation as a share of revenue, AT the disclosed level rather than above it: FY2025 3,009/281,049 = 1.071% and the reviewed half 1,748/163,316 = 1.070%, two periods agreeing to a thousandth. The retired 1.25% was the FY2025 level plus a house uplift for the capex ramp, which the reviewed half then measured and did not show. Previously: held near the FY2025 disclosed level (1.07%) with a modest rise reflecting the larger capitalised asset base from the FY2025-26 capex ramp",
    "date": "2026-08-05",
    "ring": "House"
   },
@@ -1549,45 +1605,45 @@
  "fcst": {
   "tax": [
    8409.689588963593,
-   10172.009848883947,
-   11717.40832213423,
-   13137.237538066205,
-   14411.646102094935
+   10237.405752529583,
+   11911.326242180134,
+   13565.956263469365,
+   15211.05757825212
   ],
   "gp": [
    45690.21140176406,
-   54981.00426286565,
-   63095.42961596066,
-   70587.49020759774,
-   77367.6755843134
+   55345.898689885784,
+   64177.44797459536,
+   72979.64422547749,
+   81828.21173847905
   ],
   "pbt": [
    34276.22458310782,
-   41213.51770649899,
-   47872.089336858306,
-   54397.315689461044,
-   60591.331279546444
+   41498.94944912274,
+   48564.80182827218,
+   55865.83332442763,
+   63294.18082137824
   ],
   "tax_is": [
    8397.675022861415,
-   10097.311838092253,
-   11728.661887530285,
-   13327.342343917955,
-   14844.876163488878
+   10167.242615035071,
+   11898.376447926685,
+   13687.12916448477,
+   15507.07430123767
   ],
   "pat": [
    25878.549560246403,
-   31116.205868406738,
-   36143.427449328025,
-   41069.97334554309,
-   45746.455116057565
+   31331.70683408767,
+   36666.4253803455,
+   42178.70415994286,
+   47787.10652014057
   ],
   "nci_is": [
    2503.75823337608,
-   3010.503214373606,
-   3496.8885658761938,
-   3973.533511569053,
-   4425.98467035213
+   3031.3530041142562,
+   3547.488788766398,
+   4080.803584750263,
+   4623.418368965285
   ],
   "years": [
    "FY26E",
@@ -1598,94 +1654,94 @@
   ],
   "rev": [
    370193.7385453173,
-   438521.0656808,
-   497370.46251095243,
-   552642.1010164515,
-   604059.6179035895
+   441712.34813433926,
+   506833.5453826668,
+   573563.3280293319,
+   643070.4377684294
   ],
   "dom": [
    180311.3832778559,
-   215696.94714447652,
-   246708.6610924271,
-   275154.843541354,
-   300892.7188163022
+   216813.89600321528,
+   250020.74009752713,
+   282477.2729958622,
+   314546.50576899626
   ],
   "fgn_usd": [
    3723.1834366168905,
-   4126.372565487472,
-   4359.335676843919,
-   4548.971434017992,
-   4700.262001353291
+   4164.78615057637,
+   4466.309657132864,
+   4771.90254153229,
+   5093.394294564855
   ],
   "fgn_egp": [
    189882.35526746142,
-   222824.11853632348,
-   250661.80141852534,
-   277487.2574750975,
-   303166.8990872873
+   224898.45213112398,
+   256812.80528513968,
+   291086.0550334697,
+   328523.93199943315
   ],
   "ebitda": [
-   38952.68536023929,
-   46999.92086747509,
-   54043.28719826133,
-   60529.403969098326,
-   66373.79053846808
+   38286.33663085772,
+   46511.651727199,
+   54040.77706694202,
+   61508.377664890846,
+   68966.80298311045
   ],
   "ebitda_margin": [
-   0.10522243167403246,
-   0.10717825104823217,
-   0.10865801504461327,
-   0.10952731226551347,
-   0.10987953601139684
+   0.10342243167403246,
+   0.10529850913982888,
+   0.1066243100111703,
+   0.10723903474830476,
+   0.10724611011888172
   ],
   "dna": [
-   4627.4217318164665,
-   5481.51332101,
-   6217.130781386906,
-   6908.026262705644,
-   7550.745223794869
+   3961.073002434895,
+   4726.32212503743,
+   5423.118935594534,
+   6137.12760991385,
+   6880.853684122194
   ],
   "ebit": [
    34325.26362842282,
-   41518.40754646509,
-   47826.15641687442,
-   53621.37770639268,
-   58823.04531467321
+   41785.32960216157,
+   48617.65813134749,
+   55371.250054977,
+   62085.94929898826
   ],
   "nopat": [
    25915.57403945923,
-   31346.397697581142,
-   36108.74809474019,
-   40484.14016832648,
-   44411.399212578275
+   31547.923849631985,
+   36706.331889167355,
+   41805.29379150763,
+   46874.89172073614
   ],
   "capex": [
    13231.56342874307,
-   15673.736995649426,
-   17777.147847386757,
-   19752.681505978184,
-   21590.460120803004
+   15787.800665037694,
+   18115.379881619865,
+   20500.45358693188,
+   22984.795258607373
   ],
   "nwc": [
-   73668.55397051814,
-   87265.6920704792,
-   98976.72203967955,
-   109975.77810227385,
-   120207.86396281431
+   72817.10837186393,
+   86884.81887802454,
+   99694.15837677057,
+   112819.90662336959,
+   126491.95510905008
   ],
   "dnwc": [
-   17816.01937051816,
-   13597.138099961056,
-   11711.029969200346,
-   10999.056062594304,
-   10232.085860540465
+   16964.573771863943,
+   14067.710506160613,
+   12809.339498746034,
+   13125.748246599018,
+   13672.048485680483
   ],
   "fcff": [
-   -504.5870279855335,
-   7557.03592298066,
-   12837.701059539995,
-   16640.428862459634,
-   20139.598455029674
+   -319.49015871288793,
+   6418.73480347111,
+   11204.731444395988,
+   14316.219567890585,
+   17098.901660570475
   ],
   "df": [
    0.789571885279121,
@@ -1695,11 +1751,11 @@
    0.374216159360628
   ],
   "pv": [
-   -398.4077309739263,
-   4822.892685357702,
-   6755.710100089224,
-   7338.9354986931885,
-   7536.563184906442
+   -252.26044694306051,
+   4096.4300617882545,
+   5896.376386755158,
+   6313.8884738063425,
+   6398.685308703748
   ],
   "fwd_wacc": [
    0.26650912810363125,
@@ -1709,53 +1765,53 @@
    0.1785445900562371
   ],
   "ppe": [
-   44565.218310926604,
-   54757.44198556603,
-   66317.45905156588,
-   79162.11429483842,
-   93201.82919184655
+   45231.567040308175,
+   56293.04558030844,
+   68985.30652633376,
+   83348.6325033518,
+   99452.57407783697
   ],
   "ic": [
-   119982.58922644475,
-   143771.95100104524,
-   167042.99803624544,
-   190886.70934211227,
-   215158.51009966087
+   119797.4923571721,
+   144926.68140333297,
+   170428.28184810435,
+   197917.35607172138,
+   227693.34613188702
   ],
   "roic": [
-   0.21599445558345484,
-   0.2180286034885431,
-   0.21616439191845216,
-   0.21208464595494556,
-   0.2064124686121271
+   0.21632818458497308,
+   0.21768195851965777,
+   0.21537699899997928,
+   0.2112260118125174,
+   0.20586851797410344
   ],
   "np_attr": [
    23374.791326870323,
-   28105.70265403313,
-   32646.53888345183,
-   37096.43983397404,
-   41320.47044570543
+   28300.35382997341,
+   33118.9365915791,
+   38097.9005751926,
+   43163.68815117529
   ],
   "equity": [
    84401.96004515275,
-   105481.2370356776,
-   129966.14119826647,
-   157788.471073747,
-   188778.82390802607
+   105627.22541763281,
+   130466.42786131713,
+   159039.85329271157,
+   191412.61940609303
   ],
   "net_debt": [
-   28224.59599773094,
-   29305.80373211316,
-   26087.214296702907,
-   19746.59097400315,
-   10342.505286082167
+   28039.499128458294,
+   30293.695962705053,
+   28900.761432880314,
+   25347.135398835642,
+   19867.392035816178
   ],
   "interest": [
    1743.4542583149996,
-   2134.8582700060933,
-   1930.4329844593167,
-   1358.5371937302903,
-   536.9472260693146
+   2116.348583078829,
+   2029.222207518506,
+   1639.8919073480306,
+   1097.0016685525643
   ],
   "assoc": [
    1694.415213,
@@ -1766,10 +1822,10 @@
   ],
   "div": [
    5843.697831717581,
-   7026.425663508283,
-   8161.634720862958,
-   9274.10995849351,
-   10330.117611426358
+   7075.0884574933525,
+   8279.734147894775,
+   9524.47514379815,
+   10790.922037793822
   ],
   "seg_gp": [
    {
@@ -1778,22 +1834,22 @@
     "elecprod": 12013.513309248041
    },
    {
-    "cables": 26501.567837111954,
+    "cables": 26866.462264132086,
     "construct": 12501.4637244538,
     "elecprod": 15977.972701299897
    },
    {
-    "cables": 29065.839910239923,
+    "cables": 30147.858268874614,
     "construct": 14376.68328312187,
     "elecprod": 19652.906422598873
    },
    {
-    "cables": 31760.116896702166,
+    "cables": 34152.27091458192,
     "construct": 16030.001860680884,
     "elecprod": 22797.37145021469
    },
    {
-    "cables": 34589.891246432926,
+    "cables": 39050.42740059857,
     "construct": 17472.70202814217,
     "elecprod": 25305.082309738307
    }
@@ -1805,22 +1861,22 @@
     "elecprod": 50857.092761642874
    },
    {
-    "cables": 231776.59664610206,
+    "cables": 234967.87909964132,
     "construct": 139104.5356617129,
     "elecprod": 67639.93337298503
    },
    {
-    "cables": 254203.12845121106,
+    "cables": 263666.2113229254,
     "construct": 159970.21601096983,
     "elecprod": 83197.11804877159
    },
    {
-    "cables": 277766.6532276451,
+    "cables": 298687.8802405254,
     "construct": 178366.79085223135,
     "elecprod": 96508.65693657503
    },
    {
-    "cables": 302515.20667505905,
+    "cables": 341526.0265398988,
     "construct": 194419.8020289322,
     "elecprod": 107124.6091995983
    }
@@ -1832,22 +1888,22 @@
     "elecprod": 10452.200561465605
    },
    {
-    "cables": 19386.02632007662,
+    "cables": 19652.948375773096,
     "construct": 8230.954479639215,
     "elecprod": 13901.426746749257
    },
    {
-    "cables": 21261.803866787744,
+    "cables": 22053.305581260804,
     "construct": 9465.597651585096,
     "elecprod": 17098.754898501586
    },
    {
-    "cables": 23232.68064261346,
+    "cables": 24982.552991197786,
     "construct": 10554.141381517382,
     "elecprod": 19834.55568226184
    },
    {
-    "cables": 25302.674401508615,
+    "cables": 28565.578385823675,
     "construct": 11504.014105853948,
     "elecprod": 22016.35680731064
    }
@@ -1859,24 +1915,24 @@
     "elecprod": 0.1373796676342682
    },
    {
-    "cables": 0.5285415337716353,
-    "construct": 0.3172128924884244,
-    "elecprod": 0.15424557373994027
+    "cables": 0.5319477259172747,
+    "construct": 0.31492109344293595,
+    "elecprod": 0.15313118063978937
    },
    {
-    "cables": 0.5110941393018756,
-    "construct": 0.3216319183961335,
-    "elecprod": 0.1672739423019909
+    "cables": 0.5202224945940654,
+    "construct": 0.3156267328165699,
+    "elecprod": 0.1641507725893647
    },
    {
-    "cables": 0.5026158027351888,
-    "construct": 0.3227528096831001,
-    "elecprod": 0.174631387581711
+    "cables": 0.5207583289307691,
+    "construct": 0.31098011699086475,
+    "elecprod": 0.16826155407836604
    },
    {
-    "cables": 0.5008035592992441,
-    "construct": 0.3218553206779044,
-    "elecprod": 0.17734112002285152
+    "cables": 0.5310864976549938,
+    "construct": 0.3023304922919549,
+    "elecprod": 0.16658301005305118
    }
   ],
   "payout": 0.25,
@@ -2008,24 +2064,24 @@
   },
   "gp": [
    45690.21140176406,
-   54981.00426286565,
-   63095.42961596066,
-   70587.49020759774,
-   77367.6755843134
+   55345.898689885784,
+   64177.44797459536,
+   72979.64422547749,
+   81828.21173847905
   ],
   "gp_margin": [
    0.12342243167403245,
-   0.12537825104823216,
-   0.12685801504461325,
-   0.12772731226551348,
-   0.12807953601139682
+   0.12529850913982887,
+   0.1266243100111703,
+   0.12723903474830478,
+   0.12724611011888173
   ],
   "opex": [
    11364.947773341242,
-   13462.596716400561,
-   15269.273199086241,
-   16966.11250120506,
-   18544.630269640198
+   13560.569087724216,
+   15559.789843247872,
+   17608.39417050049,
+   19742.262439490783
   ],
   "seg_gp": [
    {
@@ -2034,22 +2090,22 @@
     "elecprod": 12013.513309248041
    },
    {
-    "cables": 26501.567837111954,
+    "cables": 26866.462264132086,
     "construct": 12501.4637244538,
     "elecprod": 15977.972701299897
    },
    {
-    "cables": 29065.839910239923,
+    "cables": 30147.858268874614,
     "construct": 14376.68328312187,
     "elecprod": 19652.906422598873
    },
    {
-    "cables": 31760.116896702166,
+    "cables": 34152.27091458192,
     "construct": 16030.001860680884,
     "elecprod": 22797.37145021469
    },
    {
-    "cables": 34589.891246432926,
+    "cables": 39050.42740059857,
     "construct": 17472.70202814217,
     "elecprod": 25305.082309738307
    }
@@ -2136,34 +2192,34 @@
   }
  },
  "dcf": {
-  "pv_explicit": 26055.69373807263,
-  "tv": 321925.3463509815,
-  "pv_tv": 120469.66671230427,
-  "ev": 146525.3604503769,
-  "tv_share": 0.8221762181100603,
+  "pv_explicit": 22453.119784110444,
+  "tv": 350783.77690452785,
+  "pv_tv": 131268.95775922778,
+  "ev": 153722.07754333824,
+  "tv_share": 0.853936922119854,
   "nd": 20560.003173,
   "assoc": 6757.650507,
   "nci_share": 0.09675033090812221,
-  "nci_val": 12840.994922259746,
+  "nci_val": 13537.279682455895,
   "emp_rate": 0.12192719166454939,
-  "emp_charge": 14616.877159371334,
-  "eq_attr_pre_emp": 119882.01286211716,
+  "emp_charge": 15409.45661831083,
+  "eq_attr_pre_emp": 126382.44519488236,
   "dps_payout_fy25": 0.22852758705288223,
-  "eq_attr": 105265.13570274583,
-  "ps": 56.24985807624428,
-  "ps_dec": 49.17144225137061,
+  "eq_attr": 110972.98857657153,
+  "ps": 59.28245930736961,
+  "ps_dec": 51.83769405536005,
   "roll": 1.1815772614362314,
   "anchor_days": 246,
-  "roic_term": 0.22527856824327552,
-  "rr_term": 0.40571990807975317,
+  "roic_term": 0.22468490051693651,
+  "rr_term": 0.40679191075908777,
   "terminal_record": {
    "rule": "R-TERM-01",
    "inputs": {
-    "nopat": 44411.399212578275,
+    "nopat": 46874.89172073614,
     "wacc": 0.1785445900562371,
     "inflation": 0.07,
     "real_growth": 0.02,
-    "dna_book": 7550.745223794869,
+    "dna_book": 6880.853684122194,
     "ic_replacement": null,
     "useful_life_years": 17.2627,
     "useful_life_source": "Audited FY2025 consolidated financial statements of El Sewedy Electric Company, note 17 (property, plant and equipment) read with the accounting-policies note on depreciation: average depreciable gross cost over the year's own charge, excluding land, which the policy note states is not depreciated, and projects under construction, which are not in use.",
@@ -2171,43 +2227,43 @@
     "average_age_source": "",
     "maintenance_basis": "book_dna_escalated",
     "maintenance_capex": null,
-    "working_capital": 120207.86396281431,
+    "working_capital": 126491.95510905008,
     "working_capital_source": "",
-    "incremental_capital_per_unit_growth": 215158.51009966087,
+    "incremental_capital_per_unit_growth": 227693.34613188702,
     "floor_exemption": "",
     "floor_exemption_disclosure": ""
    },
-   "fcff": 25704.647550365014,
-   "tv": 321925.3463509815,
-   "floor": 248741.22032255243,
-   "tv_vs_floor": 0.2942179262991811,
+   "fcff": 28008.895397401095,
+   "tv": 350783.77690452785,
+   "floor": 262538.8520927557,
+   "tv_vs_floor": 0.33612139349415204,
    "nominal_growth": 0.09140000000000015,
    "real_growth": 0.02,
-   "maintenance": 13539.776206617908,
+   "maintenance": 12338.546227185994,
    "maintenance_age_years": 8.63135,
    "maintenance_age_basis": "half_of_life",
    "maintenance_escalator": 1.7931708467595544,
-   "growth_capex": 4303.170201993217,
-   "wc_charge": 8414.550477397002,
+   "growth_capex": 4553.866922637741,
+   "wc_charge": 8854.436857633505,
    "wc_basis": "supplied_unsourced",
-   "wc_level": 120207.86396281431,
-   "dna_addback": 7550.745223794869,
-   "net_capital_charge": 18706.75166221326,
+   "wc_level": 126491.95510905008,
+   "dna_addback": 6880.853684122194,
+   "net_capital_charge": 18865.996323335043,
    "implied_cycle_years": null,
    "one_over_g": 10.940919037199107,
-   "payout_of_nopat": 0.5787849067156816,
+   "payout_of_nopat": 0.5975244820674592,
    "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
   },
-  "ps_rating_basis": 27.65944803622852,
+  "ps_rating_basis": 28.496117788005115,
   "wacc_exp_rating": 0.3123736206099273,
   "wacc_term_rating": 0.23604121761318897,
-  "ps_nci_alt": 63.21956361810894,
-  "nci_alt": 14830.18203271954,
+  "ps_nci_alt": 66.68961979356234,
+  "nci_alt": 15526.466792915688,
   "g": 0.09140000000000015,
-  "bear": 21.10619711498232,
-  "bull": 92.40704032082805,
-  "ccy_alt_ps": 66.18953203887361,
-  "ps_kd_egp_equiv": 55.95404501708564,
+  "bear": 21.607833064470228,
+  "bull": 96.98568399661953,
+  "ccy_alt_ps": 67.84301903343683,
+  "ps_kd_egp_equiv": 58.971611206456735,
   "kd_egp_equiv": 0.14532250411661926,
   "wacc_exp_kd_egp_equiv": 0.26912287146717107,
   "fx_dep_avg": 0.06224936082900179
@@ -2245,8 +2301,8 @@
   },
   "nopat_cagr": 0.2692156603847842,
   "stable_g": 0.0764245401115494,
-  "ceiling": 0.11235881896813774,
-  "crossover_years": 42.54718040714
+  "ceiling": 0.11168492057345958,
+  "crossover_years": 42.09726736942043
  },
  "eps_reconciliation": {
   "reported_eps": 7.13,
@@ -2278,73 +2334,73 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (the answer)",
-   "bear": 21.10619711498232,
-   "base": 56.24985807624428,
-   "bull": 92.40704032082805,
+   "bear": 21.607833064470228,
+   "base": 59.28245930736961,
+   "bull": 96.98568399661953,
    "w": null
   },
   "relative": {
    "name": "Relative multiples",
-   "bear": 66.26270103764627,
-   "base": 79.39322615861371,
-   "bull": 99.0890138400649,
+   "bear": 65.14063353661577,
+   "base": 78.13474927446391,
+   "bull": 97.62592288123612,
    "w": null
   },
   "normalized": {
    "name": "Normalised earnings power",
-   "bear": 80.39125027648477,
-   "base": 103.88875035548043,
-   "bull": 133.260625454225,
+   "bear": 80.07331191063125,
+   "base": 103.51362424902071,
+   "bull": 132.81401467200754,
    "w": null,
    "note": "RETIRED for this class: a contractor's reported earnings turn on completion timing, so normalising them normalises noise. Removed rather than re-weighted, and computed and shown so the move is visible."
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 34.255436662452276,
-   "base": 47.766325570262666,
-   "bull": 54.67667732099566,
+   "bear": 34.13765538872034,
+   "base": 47.64854429653073,
+   "bull": 54.55889604726372,
    "w": null,
    "note": "a disclosed FLOOR, published as such and never weighted"
   },
   "central": {
    "name": "Cash-flow lens (the central)",
-   "bear": 21.10619711498232,
-   "base": 56.24985807624428,
-   "bull": 92.40704032082805,
+   "bear": 21.607833064470228,
+   "base": 59.28245930736961,
+   "bull": 96.98568399661953,
    "w": null
   },
   "retired_blend": {
    "name": "RETIRED 45/20/20/15 blend, published unused",
    "bear": null,
-   "base": 69.13378027266816,
+   "base": 70.15406303749286,
    "bull": null,
    "w": 0.0
   }
  },
- "central": 56.24985807624428,
+ "central": 59.28245930736961,
  "span": [
-  21.10619711498232,
-  92.40704032082805
+  21.607833064470228,
+  96.98568399661953
  ],
  "spot": 130.0,
- "retired_blend_value": 69.13378027266816,
+ "retired_blend_value": 70.15406303749286,
  "lens_record": {
   "class": "diversified industrial with a contracting arm",
-  "central": 56.24985807624428,
-  "below_floor_reason": "The cross-check labelled a floor is the book lens AT ITS JUSTIFIED PRICE-TO-BOOK of 1.3443x (EGP 47.7663), a construction from a sustainable return of 23.5% against the perpetual cost of equity \u2014 not a disclosed figure. The floor that IS disclosed is equity attributable to the parent over shares in issue, EGP 31.2367 per share at 31-Dec-2025, rolled to the anchor on the same clock as every other lens = EGP 35.0586. The central of EGP 56.2499 sits 60.4% ABOVE that disclosed floor and -17.8% below the justified-multiple read. The gap widened on 7 September 2026 when the terminal was rebuilt onto the last-explicit-year basis the sanctioned module specifies (-6.34%): the correction moved the cash-flow lens and left the justified multiple where it was, so what this records is two lenses disagreeing, which [R-LENS-03] says to PUBLISH rather than average. Registered for the next re-issue: a book_value cross-check should carry the disclosed book value and the sustainable-return read should be published beside it as its own lens, which this record conflates into one entry.",
+  "central": 59.28245930736961,
+  "below_floor_reason": "The cross-check labelled a floor is the book lens AT ITS JUSTIFIED PRICE-TO-BOOK of 1.3443x (EGP 47.6485), a construction from a sustainable return of 23.5% against the perpetual cost of equity \u2014 not a disclosed figure. The floor that IS disclosed is equity attributable to the parent over shares in issue, EGP 31.2367 per share at 31-Dec-2025, rolled to the anchor on the same clock as every other lens = EGP 34.9408. The central of EGP 59.2825 sits 69.7% ABOVE that disclosed floor and -24.4% below the justified-multiple read. The gap widened on 7 September 2026 when the terminal was rebuilt onto the last-explicit-year basis the sanctioned module specifies (-6.34%): the correction moved the cash-flow lens and left the justified multiple where it was, so what this records is two lenses disagreeing, which [R-LENS-03] says to PUBLISH rather than average. Registered for the next re-issue: a book_value cross-check should carry the disclosed book value and the sustainable-return read should be published beside it as its own lens, which this record conflates into one entry.",
   "primary": {
    "kind": "dcf",
    "two_sided": false,
-   "value": 56.24985807624428,
+   "value": 59.28245930736961,
    "range": {
-    "low": 21.10619711498232,
-    "high": 92.40704032082805
+    "low": 21.607833064470228,
+    "high": 96.98568399661953
    },
    "range_note": "the cash-flow lens under its own bear and bull scenarios on one clock, not the widest spread across four methods",
    "range_basis": {
     "driver": "the segment margin paths, the corporate load and the copper and currency path the cables leg is built on",
-    "low": 21.10619711498232,
-    "high": 92.40704032082805,
+    "low": 21.607833064470228,
+    "high": 96.98568399661953,
     "units": "EGP per share, the present-value read under each scenario",
     "macro_held": true,
     "evidence": "both scenarios are re-runs of the same three-segment build through dcf_scenario(), which calls the sanctioned terminal module on the scenario's own terminal-year quantities so a scenario cannot run a different construction from the base"
@@ -2353,7 +2409,7 @@
   "cross_checks": [
    {
     "kind": "relative_multiple",
-    "value": 79.39322615861371,
+    "value": 78.13474927446391,
     "present_value": false,
     "multiple": 6.5,
     "multiple_source": "a justified enterprise multiple set against listed cable and electrical-equipment peers with an Egyptian-market discount, never one read off this company's own current price",
@@ -2361,19 +2417,19 @@
      "spot": 130.0,
      "shares": 2140.777876,
      "net_debt": 20560.003173,
-     "metric_value": 46999.92086747509
+     "metric_value": 46511.651727199
     },
-    "value_adjustment": "THE NAIVE IDENTITY IS NOT THIS LENS. (6.5000x x EGP 47000mn FY2027E EBITDA - EGP 20560mn net debt) / 2140.7779mn shares = EGP 133.1009, which is the forward enterprise value treated as though it stood at the valuation date and the equity treated as though it were all the ordinary shareholders'. The lens actually published runs: forward EV EGP 305499mn at end-FY2027, discounted at the year-two factor 0.6382 = EGP 194969mn; plus the present value of the interim FY2026-27 free cash flows EGP 4424mn = EGP 199394mn of enterprise value at 31-Dec-2025; less net debt EGP 20560mn; plus associates at carrying value EGP 6758mn = EGP 185592mn; less the minority's 9.68% share and the employees' statutory 12.19% share = EGP 147196mn attributable to ordinary shareholders, over 2140.7779mn shares = EGP 68.7583 at 31-Dec-2025; rolled to the anchor at the cost of equity (x1.1816) less the EGP 1.85 dividend paid inside the window = EGP 79.3932. The two differ by 1.676x and every step of the difference is named here.",
+    "value_adjustment": "THE NAIVE IDENTITY IS NOT THIS LENS. (6.5000x x EGP 46512mn FY2027E EBITDA - EGP 20560mn net debt) / 2140.7779mn shares = EGP 131.6184, which is the forward enterprise value treated as though it stood at the valuation date and the equity treated as though it were all the ordinary shareholders'. The lens actually published runs: forward EV EGP 302326mn at end-FY2027, discounted at the year-two factor 0.6382 = EGP 192944mn; plus the present value of the interim FY2026-27 free cash flows EGP 3844mn = EGP 196788mn of enterprise value at 31-Dec-2025; less net debt EGP 20560mn; plus associates at carrying value EGP 6758mn = EGP 182986mn; less the minority's 9.68% share and the employees' statutory 12.19% share = EGP 145130mn attributable to ordinary shareholders, over 2140.7779mn shares = EGP 67.7929 at 31-Dec-2025; rolled to the anchor at the cost of equity (x1.1816) less the EGP 1.85 dividend paid inside the window = EGP 78.1347. The two differ by 1.685x and every step of the difference is named here.",
     "note": "mid-cycle FY2027E EBITDA on a peer-anchored enterprise multiple"
    },
    {
     "kind": "book_value",
-    "value": 47.766325570262666,
+    "value": 47.64854429653073,
     "present_value": false,
     "floor": true,
     "note": "the book lens at its JUSTIFIED price-to-book of 1.3443x \u2014 the model report's \"book value and sustainable return\" read, built from a sustainable return of 23.5% against the perpetual cost of equity, rolled to the anchor. Never weighted. It is a construction and not a disclosed figure, and the note said \"a disclosed FLOOR\" until 7 September 2026, which described the DISCLOSED BOOK VALUE sitting inside it rather than the number published here.",
-    "disclosed_book_value_per_share": 35.0585911498913,
-    "disclosed_book_value_note": "the floor that IS disclosed: equity attributable to the parent at 31-Dec-2025 over shares in issue, EGP 31.2367 per share, rolled to the anchor on the same clock as every other lens (x1.1816 less the EGP 1.85 dividend paid inside the window) = EGP 35.0586."
+    "disclosed_book_value_per_share": 34.94080987615936,
+    "disclosed_book_value_note": "the floor that IS disclosed: equity attributable to the parent at 31-Dec-2025 over shares in issue, EGP 31.2367 per share, rolled to the anchor on the same clock as every other lens (x1.1816 less the EGP 1.85 dividend paid inside the window) = EGP 34.9408."
    }
   ],
   "cross_checks_not_built": [
@@ -2393,65 +2449,65 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "blend_value": 69.13378027266816,
-   "why": "the weights were typed and had never cleared an out-of-sample test. What they concealed here was the SIZE of the disagreement rather than its direction: the blend read -47% against the price where the cash-flow lens reads -57%, so a reader saw about 83% of the disagreement this study actually holds. Normalised earnings power, which this class does not permit at all, read 103.89 against a cash-flow 56.25 and carried a fifth of the weight."
+   "blend_value": 70.15406303749286,
+   "why": "the weights were typed and had never cleared an out-of-sample test. What they concealed here was the SIZE of the disagreement rather than its direction: the blend read -46% against the price where the cash-flow lens reads -54%, so a reader saw about 85% of the disagreement this study actually holds. Normalised earnings power, which this class does not permit at all, read 103.51 against a cash-flow 59.28 and carried a fifth of the weight."
   }
  },
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 170.99960907134235,
+   "base": 173.71205137667891,
    "rng": [
-    125.51286984204172,
-    216.48634830064296
+    127.48051646867606,
+    219.94358628468177
    ],
-   "eps": 15.39865084201453,
-   "margin": 0.10865801504461327,
-   "rev": 497370.46251095243,
-   "ebit": 47826.15641687442,
+   "eps": 15.650786932648813,
+   "margin": 0.1066243100111703,
+   "rev": 506833.5453826668,
+   "ebit": 48617.65813134749,
    "interest": 1055.8529285480008,
    "pe": 9.5
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 79.29541051873515,
+   "base": 67.29616575480996,
    "rng": [
-    37.18604580606112,
-    59.05720049952721
+    31.35253335195464,
+    50.021272476658666
    ],
-   "fcff": 16539.2427923431,
-   "fcfe": 14389.536482041942,
+   "fcff": 14206.617557619014,
+   "fcfe": 12282.593510662047,
    "ke": 0.19822116477204366,
    "int_at": 608.3911414267998
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 58.408579214794216,
+   "base": 59.36008732666913,
    "rng": [
-    49.510039414938404,
-    66.18953203887361
+    50.00749186839327,
+    67.84301903343683
    ],
    "ic0": 93562.42815899997,
-   "pv_ep": 13009.056882322646,
-   "pv_ep_term": 28101.43469318939,
-   "ev": 134672.91973451202,
+   "pv_ep": 14097.221126555352,
+   "pv_ep_term": 29158.120461731483,
+   "ev": 136817.7697472868,
    "ep": [
     980.3328875455081,
-    2888.0134669033687,
-    5520.831109570008,
-    8210.53986946187,
-    10329.609945906755
+    3133.442303998916,
+    5872.742521870474,
+    8877.638561119078,
+    11537.818515896332
    ],
    "spread": [
-    -0.05051467252017641,
-    -0.0191590119326234,
-    0.0034113703993395306,
-    0.01887929955747611,
-    0.027867878555889986
+    -0.05018094351865818,
+    -0.01950565690150874,
+    0.0026239774808666516,
+    0.01802066541504796,
+    0.027323927917866336
    ]
   }
  },
- "panel_centre": 79.29541051873515,
+ "panel_centre": 67.29616575480996,
  "sens_wg": {
   "g_grid": [
    0.07140000000000014,
@@ -2469,59 +2525,59 @@
   ],
   "table": [
    [
-    66.55827034363047,
-    70.5131476078511,
-    75.54323358038877,
-    82.21299571507856,
-    91.56582594312412
+    70.17570645147902,
+    74.5996246926746,
+    80.23247283501188,
+    87.7089198296294,
+    98.20212182238502
    ],
    [
-    58.63933904935087,
-    61.33543355536544,
-    64.64308989008572,
-    68.83555203110966,
-    74.37732894005556
+    61.616722949598966,
+    64.65660196377915,
+    68.39207774007043,
+    73.13394081045521,
+    79.41052848198404
    ],
    [
-    52.20773401174353,
-    54.05465766967322,
-    56.24985807624428,
-    58.92877314682579,
-    62.307525132044
+    54.67123187365499,
+    56.775391110868156,
+    59.282459307369585,
+    62.349119760974695,
+    66.22539660168512
    ],
    [
-    46.882226634154115,
-    48.139406355461986,
-    49.58914608026172,
-    51.29773563906381,
-    53.36583659497241
+    48.92547571168867,
+    50.37817812821243,
+    52.05983390850713,
+    54.049261495676106,
+    56.46614723712895
    ],
    [
-    42.401537488337034,
-    43.239733218059285,
-    44.175672521599715,
-    45.23954037593781,
-    46.47537688180119
+    44.09588838075481,
+    45.08446923626055,
+    46.19544432508298,
+    47.466611192071056,
+    48.95311672978444
    ]
   ]
  },
  "rel": {
-  "ebitda_mid": 46999.92086747509,
-  "ev_rel": 199393.94780771757,
-  "ev_rel_fwd": 305499.4856385881,
-  "pv_interim": 4424.484954383776,
+  "ebitda_mid": 46511.651727199,
+  "ev_rel": 196788.14880245295,
+  "ev_rel_fwd": 302325.7362267935,
+  "pv_interim": 3844.169614845194,
   "ev_ebitda_trailing": 10.536931405839985,
   "pe_trailing": 16.05869530641875,
   "just_mult": 6.5
  },
  "norm": {
-  "margin": 0.10865801504461327,
+  "margin": 0.1066243100111703,
   "rev": 370193.7385453173,
-  "ebitda": 40224.51681227872,
-  "ebit": 35597.095080462255,
+  "ebitda": 39471.65194285004,
+  "ebit": 35510.578940415144,
   "interest": 1743.4542583149996,
-  "np": 21286.347474763475,
-  "eps": 9.943277027197508,
+  "np": 21234.54119265912,
+  "eps": 9.919077280607658,
   "pe": 9.0,
   "year": "FY26E",
   "margin_year": "FY28E",
@@ -2558,76 +2614,76 @@
   ],
   "grid_wacc_g": [
    [
-    66.55827034363047,
-    70.5131476078511,
-    75.54323358038877,
-    82.21299571507856,
-    91.56582594312412
+    70.17570645147902,
+    74.5996246926746,
+    80.23247283501188,
+    87.7089198296294,
+    98.20212182238502
    ],
    [
-    58.63933904935087,
-    61.33543355536544,
-    64.64308989008572,
-    68.83555203110966,
-    74.37732894005556
+    61.616722949598966,
+    64.65660196377915,
+    68.39207774007043,
+    73.13394081045521,
+    79.41052848198404
    ],
    [
-    52.20773401174353,
-    54.05465766967322,
-    56.24985807624428,
-    58.92877314682579,
-    62.307525132044
+    54.67123187365499,
+    56.775391110868156,
+    59.282459307369585,
+    62.349119760974695,
+    66.22539660168512
    ],
    [
-    46.882226634154115,
-    48.139406355461986,
-    49.58914608026172,
-    51.29773563906381,
-    53.36583659497241
+    48.92547571168867,
+    50.37817812821243,
+    52.05983390850713,
+    54.049261495676106,
+    56.46614723712895
    ],
    [
-    42.401537488337034,
-    43.239733218059285,
-    44.175672521599715,
-    45.23954037593781,
-    46.47537688180119
+    44.09588838075481,
+    45.08446923626055,
+    46.19544432508298,
+    47.466611192071056,
+    48.95311672978444
    ]
   ],
   "grid_exp_term": [
    [
-    80.16718979991352,
-    68.64876354840234,
-    59.779635061245976,
-    52.741423827367505,
-    47.02128281693499
+    85.12948232873711,
+    72.61769026655179,
+    62.99176538945502,
+    55.35999435733649,
+    49.16358515317348
    ],
    [
-    77.81377926919849,
-    66.61012092069046,
-    57.983270064559896,
-    51.13724125727989,
-    45.57322148151689
+    82.63706811237466,
+    70.46708294623669,
+    61.1040067005519,
+    53.68052764295387,
+    47.653144839695166
    ],
    [
-    75.54323358038877,
-    64.64308989008572,
-    56.24985807624428,
-    49.58914608026172,
-    44.175672521599715
+    80.23247283501188,
+    68.39207774007043,
+    59.282459307369585,
+    52.05983390850713,
+    46.19544432508298
    ],
    [
-    73.35190115702912,
-    62.744520309927985,
-    54.576634642673824,
-    48.09467956270505,
-    42.8264253618077
+    77.91182515412919,
+    66.38934756098226,
+    57.52421432810792,
+    50.49533539472387,
+    44.788174307913636
    ],
    [
-    71.23632466737205,
-    60.91142938148285,
-    52.960981975234745,
-    46.65151324662073,
-    41.52338640314219
+    75.67145970797428,
+    64.45574211341432,
+    55.82651725053635,
+    48.98459096491411,
+    43.429147726202494
    ]
   ],
   "beta_grid": [
@@ -2638,11 +2694,11 @@
    1.3
   ],
   "grid_beta": [
-   82.7732013917977,
-   72.43925257390967,
-   58.66860833300868,
-   56.24693714918867,
-   53.97445527609176
+   87.9849315296462,
+   76.79028280980998,
+   61.895251660166856,
+   59.27930478869805,
+   56.82565682649614
   ],
   "fx_grid": [
    0.9,
@@ -2652,11 +2708,11 @@
    1.7
   ],
   "grid_fx": [
-   56.24985807624428,
-   56.24985807624428,
-   56.24985807624428,
-   56.24985807624428,
-   56.24985807624428
+   59.282459307369585,
+   59.282459307369585,
+   59.282459307369585,
+   59.282459307369585,
+   59.282459307369635
   ],
   "mg_grid": [
    0.85,
@@ -2666,11 +2722,11 @@
    1.15
   ],
   "grid_margin": [
-   30.121118198847242,
-   43.18548813754577,
-   56.24985807624428,
-   69.3142280149428,
-   82.37859795364125
+   31.942508972273124,
+   45.61248413982136,
+   59.282459307369585,
+   72.95243447491782,
+   86.62240964246601
   ],
   "cu_grid": [
    0.85,
@@ -2680,11 +2736,11 @@
    1.15
   ],
   "grid_copper": [
-   56.24985807624428,
-   56.24985807624428,
-   56.24985807624428,
-   56.24985807624428,
-   56.24985807624428
+   59.2824593073696,
+   59.282459307369585,
+   59.282459307369585,
+   59.2824593073696,
+   59.282459307369635
   ],
   "nwc_grid": [
    0.17,
@@ -2694,25 +2750,25 @@
    0.23
   ],
   "grid_nwc": [
-   64.69548851962922,
-   60.32705897994735,
-   56.24985807624428,
-   51.59019990058362,
-   47.221770360901736
+   67.45115350041955,
+   62.86199945938025,
+   58.578789021076894,
+   53.68369137730164,
+   49.09453733626231
   ],
   "roic_grid": [
    0.15,
    0.18,
-   0.22527856824327552,
+   0.22468490051693651,
    0.26,
    0.3
   ],
   "grid_roic": [
-   44.79702566342447,
-   55.33513076896579,
-   65.9253594555401,
-   71.5476001621063,
-   76.41134098004844
+   45.131874760921974,
+   56.25452670439153,
+   67.31478474654207,
+   73.36629892511395,
+   78.49983059133066
   ]
  },
  "step0": {
@@ -2845,36 +2901,36 @@
   "[Glide] forward WACC 26.65% -> 23.72% -> 21.28% -> 19.32% -> 17.85%; cumulative discount factors 0.7896, 0.6382, 0.5262, 0.4410, 0.3742. The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is inherited rather than being a second free parameter.",
   "[Segment build \u2014 the disclosed structure] Cables, Constructions and Electrical products and digital solutions, Note 5-3 revenue reconciling EXACTLY to the consolidated P&L in all three years. FY2025 revenue split: Cables 155,793 (55.4%), Constructions 90,959 (32.4%), Electrical products 34,298 (12.2%). Segment margins (profit / this revenue base) FY2023 -> FY2025: Cables 19.5% -> 13.5%; Constructions 11.6% -> 6.5%; Electrical products 25.4% -> 22.2%. Every segment compressed in FY2025; Cables and Constructions compressed the most.",
   "[Corporate load \u2014 the bridge from segment profit to EBIT] (G&A + net impairment on receivables + other expenses - other income) / revenue: FY2023 5.70%, FY2024 4.30%, FY2025 3.16% \u2014 DECLINING, i.e. operating leverage improving at the corporate level even as segment margins fell. This reconciles EXACTLY: e.g. FY2025 segment profit 34,490 less the unallocated/corporate item of 247 = 34,243, less 3.16% x revenue 281,049 = 25,354, against the audited operating profit of 25,354.",
-  "[Forecast, three real segments] revenue 370,194 -> 438,521 -> 497,370 -> 552,642 -> 604,060 (growth +31.7%, +18.5%, +13.4%, +11.1%, +9.3%)",
-  "[Forecast margins are OUTPUTS] gross margin 12.34% -> 12.54% -> 12.69% -> 12.77% -> 12.81%; EBITDA margin 10.52% -> 10.72% -> 10.87% -> 10.95% -> 10.99%. Segment mix FY2030E: Cables 50%, Constructions 32%, Electrical products 18%.",
+  "[Forecast, three real segments] revenue 370,194 -> 441,712 -> 506,834 -> 573,563 -> 643,070 (growth +31.7%, +19.3%, +14.7%, +13.2%, +12.1%)",
+  "[Forecast margins are OUTPUTS] gross margin 12.34% -> 12.53% -> 12.66% -> 12.72% -> 12.72%; EBITDA margin 10.34% -> 10.53% -> 10.66% -> 10.72% -> 10.72%. Segment mix FY2030E: Cables 53%, Constructions 30%, Electrical products 17%.",
   "[FY2026 cross-check against the print] the disclosed Q1-2026 revenue of 75,298, grossed up on the Q1-2025 seasonal share of FY2025, implies a full year of 356,323. The build produces 370,194, +3.9% against it \u2014 an independent check that the segment build is not running ahead of the company's own trading.",
-  "[Q1-2026 EBITDA margin check] the disclosed Q1-2026 operating profit 8,247 on revenue 75,298 implies an EBITDA margin (at the model's D&A ratio) of 12.20%, against FY2026E's 10.52% \u2014 consistent, not contradicted.",
-  "[Currency split \u2014 two different questions] the audited Note 5-2 shows 40.7% of FY2025 revenue booked OUTSIDE Egypt, which is a geographic statement about where the customer sits. The model derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 51% in FY2025 and 51% -> 51% -> 50% -> 50% -> 50% thereafter, using segment-level export-intensity weights (Cables 65%, Constructions 30%, Electrical products 45%) rather than the blanket geographic split, because a project executed abroad for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
+  "[Q1-2026 EBITDA margin check] the disclosed Q1-2026 operating profit 8,247 on revenue 75,298 implies an EBITDA margin (at the model's D&A ratio) of 12.02%, against FY2026E's 10.34% \u2014 consistent, not contradicted.",
+  "[Currency split \u2014 two different questions] the audited Note 5-2 shows 40.7% of FY2025 revenue booked OUTSIDE Egypt, which is a geographic statement about where the customer sits. The model derives the share that is HARD-CURRENCY LINKED \u2014 dollar-priced by construction \u2014 at 51% in FY2025 and 51% -> 51% -> 51% -> 51% -> 51% thereafter, using segment-level export-intensity weights (Cables 65%, Constructions 30%, Electrical products 45%) rather than the blanket geographic split, because a project executed abroad for a local utility is foreign revenue but not necessarily dollar-priced. The LOWER figure is used everywhere the currency question is valued, because it is the conservative one.",
   "[Segment mix, FY2026] each segment anchored on its OWN like-for-like half growth (note 16, both comparable halves): cables 30.57%, constructions 27.44%, electrical products 48.28%. The segment total grows 31.72% against the halves' own blended 31.92%; the difference is the FY2025 full-year mix differing from the H1-2025 mix and is not a disagreement about growth. THE RETIRED PATH forecast cables +47.60%, constructions +18.00% and electrical products +20.00% \u2014 right on the group to a third of a point and wrong on every segment, over-weighting the 11.4%-margin business and under-weighting the 23.6%-margin one",
-  "[Forecast interest] net finance cost path 1,743 -> 2,135 -> 1,930 -> 1,359 -> 537 as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed to yield 10% \u2014 a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book (7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather than hidden. Payout ratio 25% \u2014 struck at the ACTUAL FY2025 payout: EGP 1.85/share ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable EPS, up from 12.3% a year earlier.",
-  "[Forecast equity] attributable profit 23,375, 28,106, 32,647, 37,096, 41,320; net debt path 28,225, 29,306, 26,087, 19,747, 10,343.",
+  "[Forecast interest] net finance cost path 1,743 -> 2,116 -> 2,029 -> 1,640 -> 1,097 as the cash pile builds against a broadly static gross debt book. Surplus cash is assumed to yield 10% \u2014 a deliberate blend of Egyptian-pound deposit rates (~19-20%, falling) and hard-currency cash (~4-5%); the positive carry over the hard-currency-heavy debt book (7.7-9.5%) is real economics (borrow dollars cheap, hold pounds dear), disclosed rather than hidden. Payout ratio 25% \u2014 struck at the ACTUAL FY2025 payout: EGP 1.85/share ratified by the AGM on 6 May 2026 and paid from 4 June 2026 = 22.8% of FY2025 attributable EPS, up from 12.3% a year earlier.",
+  "[Forecast equity] attributable profit 23,375, 28,300, 33,119, 38,098, 43,164; net debt path 28,039, 30,294, 28,901, 25,347, 19,867.",
   "[Terminal return on capital] taken as next year's NOPAT over the closing invested capital (22.5%), the standard convention, rather than the same year's NOPAT over closing capital (20.6%).",
   "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 21.0%; reinvestment rate 20.1% / 30.4% / 51.5%; implied g 4.5% / 7.6% / 10.8%. Check (a): actual NOPAT CAGR FY23-FY25 = +26.9%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 30%) = 7.6%. Adopted terminal g 9.1%.",
-  "[Terminal value, sanctioned construction] terminal NOPAT 48,471 + book D&A 7,551 - maintenance at replacement cost 13,540 (on the DERIVED 17.26-year life) - growth capital 4,303 (zero, because real growth is zero) - inflation on working capital 8,415 = FCFF 25,705. TV 321,925 at 17.85% and 9.1% nominal, discounted at the YEAR-5 factor 0.3742 -> PV 120,470, 82% of enterprise value. Implied payout of terminal NOPAT 57.9%; TV against the NOPAT-perpetuity floor +29.4%.",
-  "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 330,544 (+2.7%), charging 19,665 a year for ever \u2014 an implied replacement cycle of 10.9 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
-  "[Terminal ceiling] the domestic leg is 50% of FY30E revenue; a blended long-run nominal ceiling is 11.2% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 9% sits below it.",
+  "[Terminal value, sanctioned construction] terminal NOPAT 51,159 + book D&A 6,881 - maintenance at replacement cost 12,339 (on the DERIVED 17.26-year life) - growth capital 4,554 (growth capital at the stated real terminal growth) - inflation on working capital 8,854 = FCFF 28,009. TV 350,784 at 17.85% and 9.1% nominal, discounted at the YEAR-5 factor 0.3742 -> PV 131,269, 85% of enterprise value. Implied payout of terminal NOPAT 59.8%; TV against the NOPAT-perpetuity floor +33.6%.",
+  "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 348,250 (-0.7%), charging 20,811 a year for ever \u2014 an implied replacement cycle of 10.9 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
+  "[Terminal ceiling] the domestic leg is 49% of FY30E revenue; a blended long-run nominal ceiling is 11.2% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 9% sits below it.",
   "[Associates] carried at the audited FY2025 carrying value of 6,758 \u2014 the actual closing balance, not the prior year's carrying value scaled by an assumed growth factor. (Reviewed 30-Jun-2026: 7,120.)",
-  "[Net debt, and why the June sheet is NOT used] the bridge deducts 20,560 at 31-Dec-2025, the date this valuation is struck at. The reviewed 30-Jun-2026 sheet shows 28,629, +8,069 over the half \u2014 and that deterioration is the same working-capital absorption the model's own FY2026 forecast already carries (a working-capital movement of 17,816 against capex of 13,232, giving free cash flow to the firm of -505 in the first forecast year). Deducting it in the bridge as well would charge one cash outflow twice.",
-  "[Employees' statutory share of profit] measured at 11.60% (FY2024), 11.96% (FY2025) and 13.01% (H1-2026) of profit attributable to owners; mean 12.19%. It is disclosed only in the earnings-per-share note, below the attributable line, and appears in NO line of the income statement \u2014 which is why the first edition, whose cost stack is built from unit economics, could not have caught it there. Equity attributable 119,882 less 14,617 = 105,265. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered FY2025 attributable profit of 17,330.245 and the reported EPS of 7.13; 17,330.245 / 2,140.777876 = 8.095, and the difference is this charge plus the ESOP adjustment to the weighted-average count.",
-  "[Bridge] EV 146,525 - net financial debt 20,560 + associates at carrying value 6,758 = 132,723; less minority interests at their 9.7% share of group profit = 12,841; less the employees' statutory share of profit at 12.19% = 14,617 -> equity attributable to ORDINARY SHAREHOLDERS 105,265 = EGP 49.17/share AT 31-DEC-2025; rolled 246/365 of a year to the 3-Sep-2026 anchor at the 28.1% cost of equity (x1.1816) less the EGP 1.85 dividend paid in the window = EGP 56.25/share against a spot of 130.00 (-57%).",
-  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (50% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 11.34% with 3.5% terminal growth, and only then translated back. Corrected result EGP 66.19/share (-49% vs spot).",
-  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 33.02% and the cost of capital 31.24% -> 23.60%, giving EGP 27.66/share against the CDS-basis 56.25.",
-  "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 6.2%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 11.84% for that share, and a blended Kd of 14.53% against the currency-composition 9.50%. Cost of capital rises to 26.91% from 26.65%, giving EGP 55.95/share against 56.25. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
-  "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (14,830) and deducting net debt afterwards gives EGP 63.22/share, against 56.25 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
-  "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 47,000 gives an enterprise value of 305,499 AS AT end-FY2027; discounted back at the year-2 factor 0.6382 plus the present value of the interim FY26-27 free cash flows (4,424) that is 199,394 at 31-Dec-2025 -> EGP 79.39/share at the anchor.",
-  "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.87% (FY2028E) on FY2026E revenue 370,194 -> normalised EPS 9.94 x 9.0 = EGP 103.89/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
+  "[Net debt, and why the June sheet is NOT used] the bridge deducts 20,560 at 31-Dec-2025, the date this valuation is struck at. The reviewed 30-Jun-2026 sheet shows 28,629, +8,069 over the half \u2014 and that deterioration is the same working-capital absorption the model's own FY2026 forecast already carries (a working-capital movement of 16,965 against capex of 13,232, giving free cash flow to the firm of -319 in the first forecast year). Deducting it in the bridge as well would charge one cash outflow twice.",
+  "[Employees' statutory share of profit] measured at 11.60% (FY2024), 11.96% (FY2025) and 13.01% (H1-2026) of profit attributable to owners; mean 12.19%. It is disclosed only in the earnings-per-share note, below the attributable line, and appears in NO line of the income statement \u2014 which is why the first edition, whose cost stack is built from unit economics, could not have caught it there. Equity attributable 126,382 less 15,409 = 110,973. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered FY2025 attributable profit of 17,330.245 and the reported EPS of 7.13; 17,330.245 / 2,140.777876 = 8.095, and the difference is this charge plus the ESOP adjustment to the weighted-average count.",
+  "[Bridge] EV 153,722 - net financial debt 20,560 + associates at carrying value 6,758 = 139,920; less minority interests at their 9.7% share of group profit = 13,537; less the employees' statutory share of profit at 12.19% = 15,409 -> equity attributable to ORDINARY SHAREHOLDERS 110,973 = EGP 51.84/share AT 31-DEC-2025; rolled 246/365 of a year to the 3-Sep-2026 anchor at the 28.1% cost of equity (x1.1816) less the EGP 1.85 dividend paid in the window = EGP 59.28/share against a spot of 130.00 (-54%).",
+  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (51% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 11.34% with 3.5% terminal growth, and only then translated back. Corrected result EGP 67.84/share (-48% vs spot).",
+  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 33.02% and the cost of capital 31.24% -> 23.60%, giving EGP 28.50/share against the CDS-basis 59.28.",
+  "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 6.2%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 11.84% for that share, and a blended Kd of 14.53% against the currency-composition 9.50%. Cost of capital rises to 26.91% from 26.65%, giving EGP 58.97/share against 59.28. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
+  "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (15,526) and deducting net debt afterwards gives EGP 66.69/share, against 59.28 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
+  "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 46,512 gives an enterprise value of 302,326 AS AT end-FY2027; discounted back at the year-2 factor 0.6382 plus the present value of the interim FY26-27 free cash flows (3,844) that is 196,788 at 31-Dec-2025 -> EGP 78.13/share at the anchor.",
+  "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.66% (FY2028E) on FY2026E revenue 370,194 -> normalised EPS 9.92 x 9.0 = EGP 103.51/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
   "[Book lens] justified price-to-book 1.34x = (sustainable return 23.5% - growth 9%) / (PERPETUAL cost of equity 19.82% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 61%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
-  "[DCF scenarios] bear 21.11 / base 56.25 / bull 92.41 EGP per share",
-  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP 56.25, with its own bear-to-bull range of 21.11 - 92.41 on one clock. The cross-checks are published beside it at their own values (relative 79.39, book floor 47.77) and the span across all of them, 21.11 - 133.26, is a spread between METHODS and not a range around the answer. Spot 130.00 (-57% to the central).",
-  "[Retired blend, published unused] the 45/20/20/15 weights give EGP 69.13, -47% against the price where the cash-flow lens reads -57% \u2014 so the published number was showing about 83% of the disagreement this study actually holds. Normalised earnings power at 103.89 carried a fifth of it.",
-  "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 56.25 against the published 56.25, and at the adopted beta 1.225 it returns 56.25 \u2014 asserted, not eyeballed.",
-  "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.16x over the forecast.",
-  "[Expert panel] Expert 1 171.00 [125.51-216.49]; Expert 2 79.30 [37.19-59.06]; Expert 3 58.41 [49.51-66.19]; panel median 79.30 (-39% vs spot)"
+  "[DCF scenarios] bear 21.61 / base 59.28 / bull 96.99 EGP per share",
+  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP 59.28, with its own bear-to-bull range of 21.61 - 96.99 on one clock. The cross-checks are published beside it at their own values (relative 78.13, book floor 47.65) and the span across all of them, 21.61 - 132.81, is a spread between METHODS and not a range around the answer. Spot 130.00 (-54% to the central).",
+  "[Retired blend, published unused] the 45/20/20/15 weights give EGP 70.15, -46% against the price where the cash-flow lens reads -54% \u2014 so the published number was showing about 85% of the disagreement this study actually holds. Normalised earnings power at 103.51 carried a fifth of it.",
+  "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 59.28 against the published 59.28, and at the adopted beta 1.225 it returns 59.28 \u2014 asserted, not eyeballed.",
+  "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.29x over the forecast.",
+  "[Expert panel] Expert 1 173.71 [127.48-219.94]; Expert 2 67.30 [31.35-50.02]; Expert 3 59.36 [50.01-67.84]; panel median 67.30 (-48% vs spot)"
  ],
  "macro_record": {
   "path": "EG",
