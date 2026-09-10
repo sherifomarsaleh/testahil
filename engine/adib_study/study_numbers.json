@@ -470,6 +470,18 @@
    "date": "2026-06-30",
    "tier": "A"
   },
+  "eps_fy25": {
+   "value": 11.25,
+   "source": "ADIB-Egypt audited consolidated financial statements for the year ended 31 December 2025, earnings-per-share note. The count it implies, 12,588,572 / 11.25 = 1,119mn, is the weighted average over a capital-increase year and is NOT the count this study divides by; the difference is named in the eps_reconciliation record rather than reconciled away.",
+   "date": "2025-12-31",
+   "tier": "A"
+  },
+  "np_fy25": {
+   "value": 12588.572,
+   "source": "ADIB-Egypt audited consolidated financial statements for the year ended 31 December 2025 \u2014 profit attributable to the bank's shareholders, EGP 12,588,572 thousand.",
+   "date": "2025-12-31",
+   "tier": "A"
+  },
   "base_year": {
    "value": "FY2025",
    "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026. Attributable profit EGP 12,588.6 million, total assets EGP 346,711.2 million, attributable equity EGP 34,596.3 million. Every figure is read from the filing itself and the statement foots.",
@@ -902,6 +914,18 @@
    "value": 1500.0,
    "source": "ADIB-Egypt issued and paid-up capital of EGP 15,000,000 thousand at 30 June 2026, over the LE 10 par value the filings state (FY2018 note 34/2), = 1,500 million shares. THE CAPITAL FIGURE IS PROVED BY THE EQUITY BLOCK'S OWN ARITHMETIC RATHER THAN BY THE OCR: attributable equity of 43,557,932 less the subordinated-financing difference of 16,454 leaves 43,541,478 for capital plus reserves plus retained earnings; retained earnings cannot exceed the FY2025 closing 20,963,164 plus the half-year attributable profit of 7,536,797 = 28,499,961, so a capital of 12,000,000 is arithmetically impossible and 15,000,000 is the only reading that closes. It matches the EGP 12bn->15bn cash increase the delivered 03-07-2026 study reported as approved.",
    "date": "2026-06-30",
+   "tier": "A"
+  },
+  "eps_fy25": {
+   "value": 11.25,
+   "source": "ADIB-Egypt audited consolidated financial statements for the year ended 31 December 2025, earnings-per-share note. The count it implies, 12,588,572 / 11.25 = 1,119mn, is the weighted average over a capital-increase year and is NOT the count this study divides by; the difference is named in the eps_reconciliation record rather than reconciled away.",
+   "date": "2025-12-31",
+   "tier": "A"
+  },
+  "np_fy25": {
+   "value": 12588.572,
+   "source": "ADIB-Egypt audited consolidated financial statements for the year ended 31 December 2025 \u2014 profit attributable to the bank's shareholders, EGP 12,588,572 thousand.",
+   "date": "2025-12-31",
    "tier": "A"
   },
   "base_year": {
@@ -1378,6 +1402,26 @@
   },
   "no_wacc_reason": "bank: equity flows are discounted at the cost of equity and there is no weighted average. Deposits are raw material, not financing, and their cost is inside the net interest margin.",
   "no_terminal_value_reason": "bank: deposits are raw material rather than financing, so there is no enterprise value and no invested capital to replace. The terminal is an equity-side one \u2014 a terminal cost of equity and a terminal growth rate, both published in the cost-of-capital record."
+ },
+ "eps_reconciliation": {
+  "reported_eps": 11.25,
+  "attributable_profit": 12588.572,
+  "shares_issued": 1500.0,
+  "naive_eps": 8.392381333333333,
+  "what": "the share count alone: the filed figure is struck on the weighted average over a capital-increase year, this study divides by the count in issue today",
+  "difference": 2.857618666666667,
+  "components": [
+   {
+    "item": "weighted-average versus current share count",
+    "amount": 0.0,
+    "per_share": 2.857618666666667,
+    "source": "ADIB-Egypt audited consolidated financial statements FY2025, earnings-per-share note, read with the paid-up capital note",
+    "note": "12,588,572 / 11.25 implies about 1,119mn shares \u2014 the weighted average across a year in which paid-up capital rose. The year ended at 1,200mn and 1,500mn are in issue now. NO PROFIT IS IN DISPUTE: the numerator is the same figure in both, and nothing is added to or taken from it."
+   }
+  ],
+  "charges_it": false,
+  "charged_at": 0.0,
+  "note": "This bank has raised capital in most years of its recent history, so the weighted-average count trails the closing count structurally rather than occasionally. The valuation divides by the current count because it values the bank as it stands; the filed per-share figure is reported beside it so a reader can see the two are not the same measure."
  },
  "walkforward_scope": {
   "scope": "FULL",

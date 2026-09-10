@@ -85,6 +85,26 @@ SHARES = reg('shares', 1500.0,
              'cash increase the delivered 03-07-2026 study reported as approved.',
              '2026-06-30', 'A')
 
+# [R-EPS-01] THE REPORTED EARNINGS PER SHARE, BESIDE THE PROFIT IT DIVIDES. A valuation
+# ends by dividing an equity value by a share count, and until this was registered nothing
+# in this study asked whether the count it divides by is the count the filed earnings per
+# share was struck on. It is not, and the difference is a real one rather than a rounding:
+# FY2025 EPS was reported at EGP 11.25 on attributable profit of EGP 12,588.572mn, which
+# implies about 1,119mn shares — the WEIGHTED AVERAGE across a year in which paid-up
+# capital rose — against a year-end 1,200mn and a current 1,500mn after the increase to
+# EGP 15bn completed in 2026. The bank has raised capital in most years of its recent
+# history, so this gap is structural here rather than incidental.
+EPS_FY25 = reg('eps_fy25', 11.25,
+    'ADIB-Egypt audited consolidated financial statements for the year ended 31 December '
+    '2025, earnings-per-share note. The count it implies, 12,588,572 / 11.25 = 1,119mn, '
+    'is the weighted average over a capital-increase year and is NOT the count this study '
+    'divides by; the difference is named in the eps_reconciliation record rather than '
+    'reconciled away.', '2025-12-31', 'A')
+NP_FY25 = reg('np_fy25', 12588.572,
+    'ADIB-Egypt audited consolidated financial statements for the year ended 31 December '
+    '2025 — profit attributable to the bank\'s shareholders, EGP 12,588,572 thousand.',
+    '2025-12-31', 'A')
+
 # ---- the base year and the latest reviewed period --------------------------------
 def _p(y, f):
     return WF.IS['FY%d' % y][f] / MN

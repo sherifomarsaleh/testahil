@@ -204,6 +204,43 @@ def main():
     # numbers said nothing — so check_walkforward_scope read a study that had decided
     # nothing. A decision recorded only in the document that acts on it is a decision no
     # gate can see, which is the same shape as a line computed and not published.
+    # [R-EPS-01] WHAT STANDS BETWEEN THE FILED EARNINGS PER SHARE AND THIS STUDY'S OWN
+    # ARITHMETIC, NAMED. Dividing FY2025 attributable profit by the share count this study
+    # carries gives EGP 8.39 against a filed 11.25 — a 25% gap, and it is entirely the
+    # SHARE COUNT rather than the profit. The filed figure is struck on the weighted
+    # average over a capital-increase year, about 1,119mn; the year ENDED at 1,200mn and
+    # the count today is 1,500mn after the increase to EGP 15bn completed in 2026. A study
+    # valuing the bank as it stands must divide by the count as it stands, and the filed
+    # per-share figure is not comparable to it. Named rather than reconciled away: an
+    # unnamed difference is indistinguishable from an error.
+    _cc_np = C.NP_FY25
+    _naive = _cc_np / C.SHARES
+    d['eps_reconciliation'] = dict(
+        reported_eps=C.EPS_FY25,
+        attributable_profit=_cc_np,
+        shares_issued=C.SHARES,
+        naive_eps=_naive,
+        what='the share count alone: the filed figure is struck on the weighted average '
+             'over a capital-increase year, this study divides by the count in issue today',
+        difference=C.EPS_FY25 - _naive,
+        components=[dict(
+            item='weighted-average versus current share count',
+            amount=0.0,
+            per_share=C.EPS_FY25 - _naive,
+            source='ADIB-Egypt audited consolidated financial statements FY2025, '
+                   'earnings-per-share note, read with the paid-up capital note',
+            note='12,588,572 / 11.25 implies about 1,119mn shares — the weighted average '
+                 'across a year in which paid-up capital rose. The year ended at 1,200mn '
+                 'and 1,500mn are in issue now. NO PROFIT IS IN DISPUTE: the numerator is '
+                 'the same figure in both, and nothing is added to or taken from it.')],
+        charges_it=False,
+        charged_at=0.0,
+        note='This bank has raised capital in most years of its recent history, so the '
+             'weighted-average count trails the closing count structurally rather than '
+             'occasionally. The valuation divides by the current count because it values '
+             'the bank as it stands; the filed per-share figure is reported beside it so a '
+             'reader can see the two are not the same measure.')
+
     d['walkforward_scope'] = dict(
         scope='FULL',
         sourceable_fiscal_years=16,
