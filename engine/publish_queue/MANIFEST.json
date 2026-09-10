@@ -145,9 +145,9 @@
    "report": "engine/swdy_study/SWDY_Valuation_Study_10-09-2026_public.pdf",
    "workbook": "engine/swdy_study/SWDY_Valuation_Model_10092026_public.xlsx",
    "fair": {
-    "base": 87.76327116068838,
-    "bear": 28.78407997537623,
-    "full": 133.77538500704136
+    "base": 87.8244467891,
+    "bear": 28.8051201823,
+    "full": 133.8678939303
    },
    "report_bytes": 1067731,
    "workbook_bytes": 40005
