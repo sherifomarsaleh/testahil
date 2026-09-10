@@ -454,6 +454,30 @@
       "bear": 10.9,
       "full": -3.3
      }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 8,
+     "fair": {
+      "base": 77.48543592414525,
+      "bear": 29.94612146115402,
+      "full": 78.10469032477832
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 41.8,
+      "bear": -39.5,
+      "full": 26.6
+     },
+     "vs_previous_pct": {
+      "base": 11.9,
+      "bear": 9.7,
+      "full": 11.9
+     }
     }
    ],
    "exchange": "EGX",
@@ -971,6 +995,74 @@
       "base": null,
       "bear": 182.8,
       "full": 124.6
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 5,
+     "fair": {
+      "base": null,
+      "bear": 112.79925543163876,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 112.79925543163876
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 134.78928520851622
+       }
+      ],
+      "full": 134.78928520851622
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2015-FY2025, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": 94.3,
+      "full": 84.6
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 27.4,
+      "full": 26.3
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 6,
+     "fair": {
+      "base": null,
+      "bear": 85.24648033266331,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 85.24648033266331
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 102.89147925242756
+       }
+      ],
+      "full": 102.89147925242756
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2015-FY2025, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": 46.9,
+      "full": 40.9
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -24.4,
+      "full": -23.7
      }
     }
    ],

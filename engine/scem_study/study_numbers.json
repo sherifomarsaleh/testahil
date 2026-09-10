@@ -545,7 +545,7 @@
    "ring": "House"
   },
   "g_term": {
-   "value": 0.07,
+   "value": 0.07000000000000006,
    "source": "Terminal growth, DERIVED as the house terminal inflation of 7.0% plus a STATED real growth of ZERO [R-MACRO-01]. Revision 3 held 5% against a terminal risk-free rate of 12.5% built on that same 7% inflation \u2014 a perpetual REAL DECLINE of about two points a year that nothing in the study disclosed and nothing supports. Real decline in perpetuity stays permitted and must be written down as the real number it is; this study assumes none",
    "date": "2026-09-02",
    "ring": "Country"
@@ -1090,7 +1090,7 @@
   "cash_reported": 4762.348666,
   "term_maintenance": 1241.175,
   "term_dna_addback": 341.4133163915285,
-  "term_wc_charge": 50.8992382528,
+  "term_wc_charge": 50.89923825280004,
   "term_fcff": 3677.0797038133646,
   "term_floor": 24378.445181055184,
   "term_life_years": 20.0,
@@ -1101,7 +1101,7 @@
    "inputs": {
     "nopat": 4627.740625674636,
     "wacc": 0.18982919506576718,
-    "inflation": 0.07,
+    "inflation": 0.07000000000000006,
     "real_growth": 0.0,
     "dna_book": 341.4133163915285,
     "ic_replacement": 24823.5,
@@ -1128,7 +1128,7 @@
    "maintenance_age_basis": "not_applicable",
    "maintenance_escalator": null,
    "growth_capex": 0.0,
-   "wc_charge": 50.8992382528,
+   "wc_charge": 50.89923825280004,
    "wc_basis": "supplied_unsourced",
    "wc_level": 727.1319750399999,
    "dna_addback": 341.4133163915285,
@@ -1323,7 +1323,7 @@
    70.113942
   ],
   "terminal": {
-   "g_nominal": 0.07,
+   "g_nominal": 0.07000000000000006,
    "real": 0.0,
    "rf": 0.125,
    "inflation_in_rf": 0.07

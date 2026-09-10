@@ -1486,7 +1486,14 @@ wd_gross = gross_debt / (mcap + gross_debt)
 wacc0 = we_net * ke + wd_net * kd_at
 wacc0_gross = (1 - wd_gross) * ke + wd_gross * kd_at
 
-ke_term = V['rf_term'] + V['beta'] * V['erp_term']
+# TODAY'S BETA DOES NOT SURVIVE INTO PERPETUITY [10-09-2026, by instruction].
+# A mature business in a mature economy converges toward the market, so the terminal
+# carries a beta of 1.0 and the explicit window keeps the measured one. APPLIED HERE
+# EVEN THOUGH IT COSTS THIS STUDY VALUE: EIPICO's measured beta is BELOW one, so
+# convergence RAISES its terminal cost of capital and LOWERS the answer. A rule that
+# were only applied where it helped would not be a rule.
+BETA_TERM = 1.0
+ke_term = V['rf_term'] + BETA_TERM * V['erp_term']
 kd_term = (1 - w_fx) * V['kd_term_lc'] + w_fx * ((1 + V['kd_term_fx']) * 1.03 - 1)
 kd_term_at = kd_term * (1 - TAX)
 # TERMINAL DEBT WEIGHT — DERIVED, both readings computed and published. The earlier edition
@@ -1542,7 +1549,7 @@ say(f"[Weighted average cost of capital] market capitalisation {mcap:,.0f} again
     f"Note the starting rate sits close to the quoted sovereign yield — that is arithmetic, not "
     f"an error: the quoted yield contains default risk that the normalised build strips out and "
     f"re-charges inside the equity premium.")
-say(f"[Terminal] cost of equity {ke_term:.2%} (risk-free {V['rf_term']:.2%} plus beta times a "
+say(f"[Terminal] cost of equity {ke_term:.2%} (risk-free {V['rf_term']:.2%} plus a TERMINAL beta of {BETA_TERM:.2f} — not the measured {V['beta']:.3f} — times a "
     f"normalised {V['erp_term']:.2%} premium); cost of debt {kd_term:.2%}, {kd_term_at:.2%} "
     f"after tax; DERIVED debt weight {wd_term:.1%} on today's market values "
     f"({wd_term_book:.1%} on the funded forecast balance sheet at FY2030E) -> terminal "
@@ -1968,7 +1975,12 @@ def dcf_at(wacc_shift=0.0, g=None, beta_override=None, prov_pct=None, fx_scale=1
     g = V['g_term'] if g is None else g
     b = V['beta'] if beta_override is None else beta_override
     ke_ = rf_star + b * V['erp_cds'] + wacc_shift
-    ket_ = V['rf_term'] + b * V['erp_term'] + wacc_shift
+    # THE TERMINAL USES BETA_TERM, NOT THE SENSITIVITY'S BETA. Terminal beta is 1.0 by
+    # construction, so a sensitivity on the MEASURED beta moves the explicit window
+    # only — which is the point of the convergence. This line read `b` and so
+    # re-implemented a terminal the base case had stopped using, the same twin-function
+    # defect the grid helper carried on another study the same day.
+    ket_ = V['rf_term'] + BETA_TERM * V['erp_term'] + wacc_shift
     w0 = we_net * ke_ + wd_net * kd_at
     wt = (1 - wd_term) * ket_ + wd_term * kd_term_at
     dr = [wt + (w0 - wt) * glide_frac[i] for i in range(n)]

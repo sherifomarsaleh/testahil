@@ -2082,7 +2082,7 @@
   },
   "real_rate_lt": {
    "key": "real_rate_lt",
-   "value": 0.055,
+   "value": 0.035,
    "unit": "ratio",
    "source": "The house real-rate convention, used to build the terminal risk-free rate from its own components rather than from a spot yield",
    "date": "2026-08-08",

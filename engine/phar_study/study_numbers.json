@@ -3,11 +3,11 @@
   "choice": "Domestic realised price per pack: the HOUSE CPI LADDER at zero real (adopted, [R-MACRO-01]) vs the typed path this study carried until 09-09-2026, which delivered a 15.9% real price CUT compounding over five years",
   "adopted": "house CPI ladder, real drift +0.0%",
   "alternative": "typed [5.0, 8.0, 7.5, 6.5, 5.5]% \u2014 a real cut of 9.5% in year one alone",
-  "fv_adopted_frame_a": 88.52006108866607,
-  "fv_adopted_frame_b": 106.68118434967798,
-  "fv_alternative_frame_a": 31.297655877452982,
-  "fv_alternative_frame_b": 47.50628127175552,
-  "effect_frame_a": -0.6464343167804222,
+  "fv_adopted_frame_a": 85.24648033266337,
+  "fv_adopted_frame_b": 102.89147925242764,
+  "fv_alternative_frame_a": 29.648985625071074,
+  "fv_alternative_frame_b": 45.39827994814592,
+  "effect_frame_a": -0.6521969527730677,
   "note": "The typed path was not a view anybody argued for; it contradicted this study in both of its own records. Its own source string said price growth \"tracks domestic inflation ... with no real price gain\", and the committed macro record says the escalator is \"the house calendar ladder exactly, at zero real: this study carries no inflation rate of its own\". The house rule requires the house path and forbids a typed rate; the rule had been applied to the escalators and not to the price they escalate. A REAL LAG IS REAL \u2014 the Egyptian Drug Authority sets prices in periodic approved adjustments and realised price per pack rose 12.59% in FY2025 \u2014 but its SIZE is nowhere evidenced, and a lag observed once is not a lag that compounds for ever. What would settle it: a disclosed EDA price-approval schedule, or an FY2026 filing carrying domestic revenue per pack. Note also that a permanent real price decline is not a going concern: under the retired path more volume DESTROYS value in this model, and terminal return on capital read 12.73% against a terminal cost of capital of 15.22% \u2014 a symptom of the price path, not an independent defect."
  },
  "adopted_corrections": [],
@@ -1790,7 +1790,7 @@
    "layer": "House"
   },
   "rf_term": {
-   "value": 0.125,
+   "value": 0.105,
    "source": "Terminal risk-free rate, DERIVED and never quoted: the long-run inflation this valuation carries throughout, 7.0%, plus the standard 5.5-point emerging-market real-rate convention. The previous edition used 10.5%, built the same way but on a 5% inflation assumption that appears nowhere else in the model \u2014 the same valuation escalated costs on one long-run rate and discounted the terminal on another, two points apart. THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most terminal-value-sensitive number in the model cannot be typed, and it cannot disagree with the inflation the rest of the model uses because it is computed from it.",
    "date": "2026-09-03",
    "layer": "House"
@@ -2463,10 +2463,10 @@
   "wd_gross": 0.2905425693917861,
   "wacc0": 0.2303784016021544,
   "wacc0_gross": 0.226403601040499,
-  "ke_term": 0.17160731885196356,
+  "ke_term": 0.175,
   "kd_term": 0.12336718070230483,
   "kd_term_at": 0.09560956504428625,
-  "wacc_term": 0.15220592557862905,
+  "wacc_term": 0.15473249242846326,
   "glide_frac": [
    1.0,
    0.7317073170731706,
@@ -2476,17 +2476,17 @@
   ],
   "disc_rate": [
    0.2303784016021544,
-   0.20940529827876952,
-   0.18652554919871336,
-   0.16745909163199987,
-   0.15220592557862905
+   0.21008315767750554,
+   0.18794289157788865,
+   0.16949266982820788,
+   0.15473249242846326
   ],
   "df": [
    0.8127580902735582,
-   0.6720311970108604,
-   0.5663857785992874,
-   0.4851440043244106,
-   0.42105668227732385
+   0.671654741343126,
+   0.5653931229396041,
+   0.4834516175485369,
+   0.41866979644074337
   ],
   "kd_path": [
    0.189,
@@ -2498,7 +2498,7 @@
   "wd_term": 0.2552890355474502,
   "wd_term_market": 0.2552890355474502,
   "wd_term_book": 0.36225436262571126,
-  "wacc_term_book_basis": 0.14407680098537767,
+  "wacc_term_book_basis": 0.1462404685865399,
   "tax_fcff": 0.235,
   "tax_stat": 0.225,
   "crp_rating": 0.092806,
@@ -2549,7 +2549,7 @@
  "dcf": {
   "frame_A": {
    "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
-   "per_share_superseded_grown_basis": 95.22592063978679,
+   "per_share_superseded_grown_basis": 91.71550284442547,
    "ebitda": [
     3021.626241064474,
     3665.8278366089544,
@@ -2580,23 +2580,23 @@
    ],
    "pv": [
     -130.9964613848743,
-    771.9219633236269,
-    1071.2660131855205,
-    1135.0543146113398,
-    1196.2353927384613
+    771.4895512578858,
+    1069.3884973452662,
+    1131.094766735196,
+    1189.454174350712
    ],
-   "pv_sum": 4043.4812224740745,
+   "pv_sum": 4030.4305283041854,
    "nopat_term": 3793.5412435357575,
    "reinvest_rate": 0.3652254116576745,
    "roic_term": 0.191662457664942,
    "term_dep_catchup": 213.2790277441038,
    "fcff_term": 2786.649715553483,
-   "tv": 36271.292788866565,
-   "tv_retired": 31431.510960499683,
+   "tv": 35189.74964839597,
+   "tv_retired": 30494.281199436708,
    "terminal_record": {
     "inputs": {
      "nopat": 3793.5412435357575,
-     "wacc": 0.15220592557862905,
+     "wacc": 0.15473249242846326,
      "inflation": 0.07,
      "real_growth": 0.0,
      "nominal_growth": 0.07000000000000006,
@@ -2609,8 +2609,8 @@
     },
     "outputs": {
      "fcff": 2786.649715553483,
-     "tv": 36271.292788866565,
-     "floor": 24923.74215467733,
+     "tv": 35189.74964839597,
+     "floor": 24516.77203667877,
      "maintenance": 674.8021257026145,
      "growth_capex": 0.0,
      "wc_charge": 755.1751307624545,
@@ -2622,7 +2622,7 @@
      "rule": "R-TERM-01",
      "inputs": {
       "nopat": 3793.5412435357575,
-      "wacc": 0.15220592557862905,
+      "wacc": 0.15473249242846326,
       "inflation": 0.07,
       "real_growth": 0.0,
       "dna_book": 423.0857284827946,
@@ -2640,9 +2640,9 @@
       "floor_exemption_disclosure": ""
      },
      "fcff": 2786.649715553483,
-     "tv": 36271.292788866565,
-     "floor": 24923.74215467733,
-     "tv_vs_floor": 0.4552908051995592,
+     "tv": 35189.74964839597,
+     "floor": 24516.77203667877,
+     "tv_vs_floor": 0.4353337215743449,
      "nominal_growth": 0.07000000000000006,
      "real_growth": 0.0,
      "maintenance": 674.8021257026145,
@@ -2662,31 +2662,31 @@
     },
     "retired_construction": {
      "form": "NOPAT_term(1 - g/ROIC)/(W-g)",
-     "tv": 31431.510960499683,
+     "tv": 30494.281199436708,
      "implied_cycle_years": 14.285714285714272
     },
     "superseded_grown_basis": {
      "form": "every flow input handed in already grown by (1+g), then grown again inside the module",
-     "tv": 38958.94128270688,
+     "tv": 37797.25741470751,
      "fcff": 2993.1362875779237
     }
    },
-   "pv_tv": 15272.270203589576,
-   "ev_core": 19315.751426063653,
-   "tv_share": 0.7906640475286912,
+   "pv_tv": 14732.88532209466,
+   "ev_core": 18763.315850398845,
+   "tv_share": 0.785196254199467,
    "assoc_value": 2978.486418,
    "assoc_earnings_value": 2750.0,
    "arab_api_cost": 228.48641800000007,
-   "ev_total": 22306.567844063655,
+   "ev_total": 21754.132268398847,
    "net_debt": 7364.298738,
    "nci": 3.999807,
-   "equity": 14938.269299063653,
-   "per_share": 88.52006108866603,
-   "tv_share_total": 0.6846535204497592
+   "equity": 14385.833723398846,
+   "per_share": 85.24648033266331,
+   "tv_share_total": 0.6772453683889932
   },
   "frame_B": {
    "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
-   "per_share_superseded_grown_basis": 114.38713117110908,
+   "per_share_superseded_grown_basis": 110.32526802808853,
    "ebitda": [
     3107.4423001101027,
     3866.2952343484203,
@@ -2717,23 +2717,23 @@
    ],
    "pv": [
     -77.6394737423574,
-    874.9830274509737,
-    1214.973542759127,
-    1303.4831361288525,
-    1381.4681471079557
+    874.4928830628553,
+    1212.8441630869042,
+    1298.9360375303015,
+    1373.6368814071368
    ],
-   "pv_sum": 4697.268379704552,
+   "pv_sum": 4682.270491344841,
    "nopat_term": 4233.464802918894,
    "reinvest_rate": 0.32868116995138624,
    "roic_term": 0.21297234645463092,
    "term_dep_catchup": 213.2790277441038,
    "fcff_term": 3226.5732749366193,
-   "tv": 41997.378897947834,
-   "tv_retired": 37085.06577674879,
+   "tv": 40745.0944169612,
+   "tv_retired": 35979.257424721836,
    "terminal_record": {
     "inputs": {
      "nopat": 4233.464802918894,
-     "wacc": 0.15220592557862905,
+     "wacc": 0.15473249242846326,
      "inflation": 0.07,
      "real_growth": 0.0,
      "nominal_growth": 0.07000000000000006,
@@ -2746,8 +2746,8 @@
     },
     "outputs": {
      "fcff": 3226.5732749366193,
-     "tv": 41997.378897947834,
-     "floor": 27814.06037133489,
+     "tv": 40745.0944169612,
+     "floor": 27359.89536829914,
      "maintenance": 674.8021257026145,
      "growth_capex": 0.0,
      "wc_charge": 755.1751307624545,
@@ -2759,7 +2759,7 @@
      "rule": "R-TERM-01",
      "inputs": {
       "nopat": 4233.464802918894,
-      "wacc": 0.15220592557862905,
+      "wacc": 0.15473249242846326,
       "inflation": 0.07,
       "real_growth": 0.0,
       "dna_book": 423.0857284827946,
@@ -2777,9 +2777,9 @@
       "floor_exemption_disclosure": ""
      },
      "fcff": 3226.5732749366193,
-     "tv": 41997.378897947834,
-     "floor": 27814.06037133489,
-     "tv_vs_floor": 0.5099334055242881,
+     "tv": 40745.0944169612,
+     "floor": 27359.89536829914,
+     "tv_vs_floor": 0.48922698235794315,
      "nominal_growth": 0.07000000000000006,
      "real_growth": 0.0,
      "maintenance": 674.8021257026145,
@@ -2799,35 +2799,35 @@
     },
     "retired_construction": {
      "form": "NOPAT_term(1 - g/ROIC)/(W-g)",
-     "tv": 37085.06577674879,
+     "tv": 35979.257424721836,
      "implied_cycle_years": 14.285714285714272
     },
     "superseded_grown_basis": {
      "form": "every flow input handed in already grown by (1+g), then grown again inside the module",
-     "tv": 45085.853419423845,
+     "tv": 43741.47631707231,
      "fcff": 3463.85449611788
     }
    },
-   "pv_tv": 17683.277023113606,
-   "ev_core": 22380.545402818156,
-   "tv_share": 0.7901182346024029,
+   "pv_tv": 17058.740385508012,
+   "ev_core": 21741.01087685285,
+   "tv_share": 0.7846341866131926,
    "assoc_value": 2978.486418,
    "assoc_earnings_value": 2750.0,
    "arab_api_cost": 228.48641800000007,
-   "ev_total": 25371.361820818158,
+   "ev_total": 24731.827294852854,
    "net_debt": 7364.298738,
    "nci": 3.999807,
-   "equity": 18003.063275818156,
-   "per_share": 106.68118434967789,
-   "tv_share_total": 0.6969778424981433
+   "equity": 17363.528749852852,
+   "per_share": 102.89147925242756,
+   "tv_share_total": 0.6897484840943495
   }
  },
  "derived": {
   "g_term": 0.07000000000000006,
   "g_term_real": 0.0,
   "pi_term": 0.07,
-  "rf_term": 0.125,
-  "note": "the terminal nominal growth and the terminal risk-free rate are both computed from the house long-run inflation of 7.0% \u2014 the growth as (1+inflation)(1+real)-1 at 0.00% real, the risk-free as inflation plus the 5.5-point real-rate convention. Neither can be typed, so neither can disagree with the inflation the rest of the model uses."
+  "rf_term": 0.105,
+  "note": "the terminal nominal growth and the terminal risk-free rate are both computed from the house long-run inflation of 7.0% \u2014 the growth as (1+inflation)(1+real)-1 at 0.00% real, the risk-free as inflation plus the 3.5-point real-rate convention. Neither can be typed, so neither can disagree with the inflation the rest of the model uses."
  },
  "macro_record": {
   "market": "EG",
@@ -2872,7 +2872,7 @@
   "terminal": {
    "g_nominal": 0.07000000000000006,
    "real": 0.0,
-   "rf": 0.125,
+   "rf": 0.105,
    "inflation_in_rf": 0.07,
    "inflation": 0.07,
    "real_growth": 0.0,
@@ -2907,12 +2907,12 @@
   "branches": [
    {
     "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
-    "value": 88.52006108866603,
+    "value": 85.24648033266331,
     "condition": "the elevated receivable-provision charge of the last two years is the new normal"
    },
    {
     "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
-    "value": 106.68118434967789,
+    "value": 102.89147925242756,
     "condition": "the charge reverts toward the level the company ran before the currency devaluation"
    }
   ]
@@ -2955,24 +2955,24 @@
    "branches": [
     {
      "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
-     "value": 88.52006108866603,
+     "value": 85.24648033266331,
      "condition": "the elevated receivable-provision charge of the last two years is the new normal"
     },
     {
      "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
-     "value": 106.68118434967789,
+     "value": 102.89147925242756,
      "condition": "the charge reverts toward the level the company ran before the currency devaluation"
     }
    ],
    "range": {
-    "low": 88.52006108866603,
-    "high": 106.68118434967789
+    "low": 85.24648033266331,
+    "high": 102.89147925242756
    },
    "range_note": "the two published frames of the contested provision judgement, each its own present-value read on one clock \u2014 not a spread across methods and not a spread invented around a point",
    "range_basis": {
     "driver": "the receivable-provision charge as a share of revenue, 5.25% against 2.5%",
-    "low": 88.52006108866603,
-    "high": 106.68118434967789,
+    "low": 85.24648033266331,
+    "high": 102.89147925242756,
     "units": "EGP per share, the present-value read under each frame",
     "macro_held": true,
     "evidence": "both frames re-run the same unit build with only the provision charge changed; the cost of capital, the inflation path, the derived terminal growth and the terminal construction are identical in both, so the spread is the judgement and nothing else"
@@ -2981,14 +2981,14 @@
   "cross_checks": [
    {
     "kind": "relative_multiple",
-    "value": 56.67460629556513,
+    "value": 55.44808848273298,
     "present_value": false,
-    "multiple": 6.725455542025647,
+    "multiple": 6.578932996219199,
     "multiple_legs": [
      {
       "basis": "Justified forward multiple from this model, on FY2026E earnings",
-      "multiple": 7.300487531957628,
-      "value": 60.02691365350403
+      "multiple": 7.064599661280031,
+      "value": 58.08736909800828
      },
      {
       "basis": "The company's own four-year mean multiple, on trailing earnings",
@@ -2997,8 +2997,8 @@
      },
      {
       "basis": "Struck peer reference, cost-of-equity adjusted, on trailing earnings",
-      "multiple": 6.303679766741739,
-      "value": 53.85148935107356
+      "multiple": 6.099999999999993,
+      "value": 52.111480468072884
      }
     ],
     "circularity": {
@@ -3007,13 +3007,13 @@
      "net_debt": 7364.298738,
      "metric_value": 1457.893015
     },
-    "value_adjustment": "TWO REASONS, AND EACH ONE ALONE WOULD BREAK THE IDENTITY. (1) THIS IS AN EARNINGS MULTIPLE, NOT AN ENTERPRISE ONE: a multiple applied to attributable profit gives the EQUITY value directly, so deducting net debt from it charges the debt twice \u2014 the identity's deduction is right for an enterprise multiple and wrong for this lens. (2) THE PUBLISHED VALUE IS THE MEAN OF THE THREE LEGS' OWN VALUES, not one mean multiple applied to one metric: each leg is struck on the earnings of ITS OWN period \u2014 the justified multiple of 7.300x on forward earnings, the company's own four-year mean of 6.572x on trailing earnings, and the cost-of-equity-adjusted peer reference of 6.304x on trailing earnings \u2014 giving 60.027, 56.145 and 53.851 a share, whose mean is the published 56.6746. Averaging the multiples first and applying that average to one period's earnings is a different lens and gives 58.102. The three leg values are committed above, so this reproduces from what the record already carries.",
+    "value_adjustment": "TWO REASONS, AND EACH ONE ALONE WOULD BREAK THE IDENTITY. (1) THIS IS AN EARNINGS MULTIPLE, NOT AN ENTERPRISE ONE: a multiple applied to attributable profit gives the EQUITY value directly, so deducting net debt from it charges the debt twice \u2014 the identity's deduction is right for an enterprise multiple and wrong for this lens. (2) THE PUBLISHED VALUE IS THE MEAN OF THE THREE LEGS' OWN VALUES, not one mean multiple applied to one metric: each leg is struck on the earnings of ITS OWN period \u2014 the justified multiple of 7.065x on forward earnings, the company's own four-year mean of 6.572x on trailing earnings, and the cost-of-equity-adjusted peer reference of 6.100x on trailing earnings \u2014 giving 58.087, 56.145 and 52.111 a share, whose mean is the published 55.4481. Averaging the multiples first and applying that average to one period's earnings is a different lens and gives 56.836. The three leg values are committed above, so this reproduces from what the record already carries.",
     "multiple_source": "three multiples applied to the earnings of their own periods \u2014 one justified by this model's own economics, one the company's own four-year mean of year-end close over audited attributable profit, and one struck reference adjusted for the cost-of-equity difference; never a multiple read off the current price",
     "note": "the peers behind the third leg are not named and their financials are not published, so that leg cannot be rebuilt from peer filings \u2014 a stated limitation of the leg"
    },
    {
     "kind": "book_value",
-    "value": 73.21649162831832,
+    "value": 70.85077533429201,
     "present_value": false,
     "floor": true,
     "note": "a disclosed FLOOR on a justified price-to-book, published as such and never weighted"
@@ -3028,13 +3028,13 @@
   "lenses_excluded": [
    {
     "kind": "normalized_earnings",
-    "value": 74.69666853750094,
+    "value": 72.28312587875519,
     "why": "not a permitted lens for any class in the registry. It is computed and published as an observation; it does not enter either centre."
    }
   ],
   "envelope": {
-   "low": 88.52006108866603,
-   "high": 106.68118434967789
+   "low": 85.24648033266331,
+   "high": 102.89147925242756
   },
   "central": null,
   "retired_blend": {
@@ -3044,8 +3044,8 @@
     "relative": 0.15,
     "normalized": 0.15
    },
-   "value_frame_A": 78.60902009495658,
-   "value_frame_B": 87.68958172546252,
+   "value_frame_A": 75.95307738741329,
+   "value_frame_B": 84.77557684729541,
    "why_retired": "typed weights that had never cleared an out-of-sample test, one of the four lenses is not permitted for any class, and blending each frame against three readings that do NOT depend on the contested judgement damps precisely the disagreement a two-sided answer exists to show"
   }
  },
@@ -3053,25 +3053,25 @@
   "items_A": [
    {
     "name": "Discounted cash flow \u2014 Frame A (THE CENTRE)",
-    "value": 88.52006108866603,
+    "value": 85.24648033266331,
     "weight": 1.0,
     "role": "primary"
    },
    {
     "name": "Book value and sustainable return",
-    "value": 73.21649162831832,
+    "value": 70.85077533429201,
     "weight": 0.0,
     "role": "cross_check"
    },
    {
     "name": "Relative multiples",
-    "value": 56.67460629556513,
+    "value": 55.44808848273298,
     "weight": 0.0,
     "role": "cross_check"
    },
    {
     "name": "Normalised earnings power",
-    "value": 74.69666853750094,
+    "value": 72.28312587875519,
     "weight": 0.0,
     "role": "cross_check"
    }
@@ -3079,25 +3079,25 @@
   "items_B": [
    {
     "name": "Discounted cash flow \u2014 Frame B (THE CENTRE)",
-    "value": 106.68118434967789,
+    "value": 102.89147925242756,
     "weight": 1.0,
     "role": "primary"
    },
    {
     "name": "Book value and sustainable return",
-    "value": 73.21649162831832,
+    "value": 70.85077533429201,
     "weight": 0.0,
     "role": "cross_check"
    },
    {
     "name": "Relative multiples",
-    "value": 56.67460629556513,
+    "value": 55.44808848273298,
     "weight": 0.0,
     "role": "cross_check"
    },
    {
     "name": "Normalised earnings power",
-    "value": 74.69666853750094,
+    "value": 72.28312587875519,
     "weight": 0.0,
     "role": "cross_check"
    }
@@ -3105,41 +3105,41 @@
   "shared": [
    {
     "name": "Book value and sustainable return",
-    "value": 73.21649162831832,
+    "value": 70.85077533429201,
     "weight": 0.2
    },
    {
     "name": "Relative multiples",
-    "value": 56.67460629556513,
+    "value": 55.44808848273298,
     "weight": 0.15
    },
    {
     "name": "Normalised earnings power",
-    "value": 74.69666853750094,
+    "value": 72.28312587875519,
     "weight": 0.15
    }
   ],
   "w_dcf": 0.5,
-  "centre_A": 88.52006108866603,
-  "centre_B": 106.68118434967789,
-  "blend_A": 78.60902009495658,
-  "blend_B": 87.68958172546252,
-  "fair_bear": 56.67460629556513,
-  "fair_bull": 106.68118434967789,
-  "book_ps": 73.21649162831832,
+  "centre_A": 85.24648033266331,
+  "centre_B": 102.89147925242756,
+  "blend_A": 75.95307738741329,
+  "blend_B": 84.77557684729541,
+  "fair_bear": 55.44808848273298,
+  "fair_bull": 102.89147925242756,
+  "book_ps": 70.85077533429201,
   "bv_ps": 36.995074135251684,
-  "just_pb": 1.9790875769201972,
+  "just_pb": 1.9151407853722902,
   "roe_sust": 0.2710897824640904,
   "roe_fy24": 0.2459197116522333,
   "roe_fy25": 0.264599584335609,
-  "rel_ps": 56.67460629556513,
-  "rel_lo": 53.85148935107356,
-  "rel_hi": 60.02691365350403,
+  "rel_ps": 55.44808848273298,
+  "rel_lo": 52.111480468072884,
+  "rel_hi": 58.08736909800828,
   "rel_triangulation": [
    [
     "Justified forward multiple from this model, on FY2026E earnings",
-    7.300487531957628,
-    60.02691365350403
+    7.064599661280031,
+    58.08736909800828
    ],
    [
     "The company's own four-year mean multiple, on trailing earnings",
@@ -3148,13 +3148,13 @@
    ],
    [
     "Struck peer reference, cost-of-equity adjusted, on trailing earnings",
-    6.303679766741739,
-    53.85148935107356
+    6.099999999999993,
+    52.111480468072884
    ]
   ],
   "rel_peer_unadjusted": 182.39018163825529,
-  "just_fwd_pe": 7.300487531957628,
-  "peer_adj_pe": 6.303679766741739,
+  "just_fwd_pe": 7.064599661280031,
+  "peer_adj_pe": 6.099999999999993,
   "payout_implied": 0.7417829644344027,
   "eps_26_A": 8.027805982279139,
   "eps_26_B": 8.416825527805177,
@@ -3197,7 +3197,7 @@
   "eps_ttm": 8.54286565050376,
   "eps_27_A": 10.580151176571583,
   "eps_27_B": 11.488905748019912,
-  "norm_ps": 74.69666853750094,
+  "norm_ps": 72.28312587875519,
   "norm_margin": 0.2289860686127799,
   "norm_pat_ps": 10.231737019003033
  },
@@ -3205,192 +3205,192 @@
   "wacc": [
    [
     -0.02,
-    116.88986308350422
+    111.89701978886936
    ],
    [
     -0.01,
-    101.2789720165504
+    97.27518652578942
    ],
    [
     0.0,
-    88.52006108866607
+    85.24648033266337
    ],
    [
     0.01,
-    77.90184598932781
+    75.18184914786232
    ],
    [
     0.02,
-    68.93126868579441
+    66.64034543916641
    ]
   ],
   "g": [
    [
     0.03,
-    64.67936187349869
+    62.881579224481555
    ],
    [
     0.04,
-    69.1098870735999
+    67.07295775526596
    ],
    [
     0.05,
-    74.36062734942834
+    72.01935510321825
    ],
    [
     0.06,
-    80.69844681104422
+    77.95987153831324
    ],
    [
     0.07,
-    88.52006108866607
+    85.24648033266337
    ]
   ],
   "beta": [
    [
     0.45,
-    109.90924676029098
+    88.59403146910748
    ],
    [
     0.55,
-    99.19778949436856
+    87.02663693440269
    ],
    [
     0.6658188407423365,
-    88.52006108866607
+    85.24648033266337
    ],
    [
     0.75,
-    81.71242135425572
+    83.97576515160245
    ],
    [
     0.9,
-    71.18563258213437
+    81.75858809871139
    ]
   ],
   "prov": [
    [
     0.025,
-    108.48485430581532
+    104.69390654107855
    ],
    [
     0.035,
-    101.22492949957922
+    97.62211519256394
    ],
    [
     0.0525,
-    88.52006108866607
+    85.24648033266337
    ],
    [
     0.065,
-    79.44515508087099
+    76.40674114702009
    ],
    [
     0.08,
-    68.55526787151685
+    65.79905412424819
    ]
   ],
   "fx": [
    [
     0.9,
-    101.77046655492684
+    98.2098508172061
    ],
    [
     0.95,
-    95.14526382179639
+    91.72816557493466
    ],
    [
     1.0,
-    88.52006108866607
+    85.24648033266337
    ],
    [
     1.05,
-    81.89485835553559
+    78.76479509039191
    ],
    [
     1.1,
-    75.26965562240521
+    72.28310984812053
    ]
   ],
   "volume": [
    [
     -0.04,
-    85.52224705897167
+    82.45938147348832
    ],
    [
     -0.02,
-    86.95665722192979
+    83.79246589461503
    ],
    [
     0.0,
-    88.52006108866607
+    85.24648033266337
    ],
    [
     0.02,
-    90.22015131507219
+    86.8286485079402
    ],
    [
     0.04,
-    92.06491659119241
+    88.54647231967209
    ]
   ],
   "dep": [
    [
     0.045,
-    94.0580532864329
+    90.58215156252788
    ],
    [
     0.055,
-    90.73122059789067
+    87.37679410780088
    ],
    [
     0.062,
-    88.52006108866607
+    85.24648033266337
    ],
    [
     0.07,
-    86.10739228390462
+    82.92213412642026
    ],
    [
     0.08,
-    83.25689216681162
+    80.1761478719565
    ]
   ],
   "grid": [
    [
-    80.02315964013067,
-    86.47691859854055,
-    94.35069829981471,
-    104.1955229591783,
-    116.88986308350422
+    77.62715389634869,
+    83.69626264945717,
+    91.06014984352457,
+    100.20534094686778,
+    111.89701978886936
    ],
    [
-    71.83801766073219,
-    77.16111252125518,
-    83.5556605690013,
-    91.40089781927408,
-    101.2789720165504
+    69.77120454458131,
+    74.7930454970627,
+    80.7968705152677,
+    88.12018767938225,
+    97.27518652578942
    ],
    [
-    64.67936187349869,
-    69.1098870735999,
-    74.36062734942834,
-    80.69844681104422,
-    88.52006108866607
+    62.881579224481555,
+    67.07295775526596,
+    72.01935510321825,
+    77.95987153831324,
+    85.24648033266337
    ],
    [
-    58.369411235626245,
-    62.08627940604708,
-    66.43883146809664,
-    71.61843657281135,
-    77.90184598932781
+    56.794067286332215,
+    60.31883324517074,
+    64.43094947944664,
+    69.30286242568583,
+    75.18184914786232
    ],
    [
-    52.76904724352868,
-    55.90889564950249,
-    59.54665847378946,
-    63.82180735359283,
-    68.93126868579441
+    51.379525670925304,
+    54.3634422097047,
+    57.80889741833875,
+    61.8421940918188,
+    66.64034543916641
    ]
   ],
   "grid_wacc": [
@@ -3407,28 +3407,28 @@
    0.06,
    0.07
   ],
-  "grid_lo": 52.76904724352868,
-  "grid_hi": 116.88986308350422,
+  "grid_lo": 51.379525670925304,
+  "grid_hi": 111.89701978886936,
   "prov_readings": [
    [
     "Carried \u2014 struck above the two non-outlier years",
     0.0525,
-    88.52006108866607
+    85.24648033266337
    ],
    [
     "Mean of the three disclosed years, including the FY2024 spike",
     0.06516084923158967,
-    79.3283797482228
+    76.292991926583
    ],
    [
     "Expected-credit-loss component alone, three-year mean",
     0.03025705493737288,
-    104.66827195105736
+    100.97622697860056
    ],
    [
     "The two non-outlier years, FY2023 and FY2025",
     0.05149953886438073,
-    89.24638835028182
+    85.95398557300312
    ]
   ],
   "prov_3yr_mean": 0.06516084923158967,
@@ -3436,14 +3436,14 @@
   "prov_2yr_mean": 0.05149953886438073
  },
  "crux": {
-  "required_fy30_revenue": 3773.5729419287973,
-  "required_share_of_fy30": 0.15286924083135525,
-  "required_ebit": 1698.1078238679588,
+  "required_fy30_revenue": 4238.94571426909,
+  "required_share_of_fy30": 0.16854423822132028,
+  "required_ebit": 1907.5255714210905,
   "assumed_margin": 0.45,
   "facility_investment_usd_mn": 100.0,
-  "required_rev_usd_mn": 53.820611061840765,
-  "asset_turn": 0.5382061106184076,
-  "at_base": 88.52006108866603,
+  "required_rev_usd_mn": 60.45799355433216,
+  "asset_turn": 0.6045799355433216,
+  "at_base": 85.24648033266331,
   "spot": 127.3
  },
  "crux_ramp": [
@@ -3743,25 +3743,25 @@
   "[Cost-of-debt integrity] the company expensed 1,275 million of interest and capitalised a further 551 million into the construction balance in FY2025. On average gross debt of 8,999 million that is 14.2% expensed and 20.3% all-in. The 18.9% marginal rate sits inside that pair, which is the test: a marginal rate below the expensed rate or above the all-in rate would not be credible.",
   "  Two FY2025 figures are in play here and they are not the same line: INTEREST ON CREDIT FACILITIES of 1,275.312 million, which is what an interest RATE must be computed on, and the income statement's FINANCE COSTS of 1,332.947 million, which is that interest plus 57.634 million of bank commissions and charges. Both come from the same note; the bridge between them is stated here so that neither reads as a contradiction of the other.",
   "[Weighted average cost of capital] market capitalisation 21,483 against net debt 7,364 gives weights 74.5% equity / 25.5% debt and a starting discount rate of 23.04%. On GROSS debt the weights are 70.9%/29.1% and the rate 22.64%; both are published. Note the starting rate sits close to the quoted sovereign yield \u2014 that is arithmetic, not an error: the quoted yield contains default risk that the normalised build strips out and re-charges inside the equity premium.",
-  "[Terminal] cost of equity 17.16% (risk-free 12.50% plus beta times a normalised 7.00% premium); cost of debt 12.34%, 9.56% after tax; DERIVED debt weight 25.5% on today's market values (36.2% on the funded forecast balance sheet at FY2030E) -> terminal discount rate 15.22% (14.41% on the book weight).",
-  "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints \u2014 1.000, 0.732, 0.439, 0.195, 0.000 \u2014 so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 23.04%, 20.94%, 18.65%, 16.75%, 15.22%; the factors compound.",
+  "[Terminal] cost of equity 17.50% (risk-free 10.50% plus a TERMINAL beta of 1.00 \u2014 not the measured 0.666 \u2014 times a normalised 7.00% premium); cost of debt 12.34%, 9.56% after tax; DERIVED debt weight 25.5% on today's market values (36.2% on the funded forecast balance sheet at FY2030E) -> terminal discount rate 15.47% (14.62% on the book weight).",
+  "[Discount-rate glide] the fractions are the cost-of-debt path normalised to its own endpoints \u2014 1.000, 0.732, 0.439, 0.195, 0.000 \u2014 so the glide has the shape of the easing cycle rather than a shape invented for it. Discount rates 23.04%, 21.01%, 18.79%, 16.95%, 15.47%; the factors compound.",
   "",
   "[Terminal consistency] terminal reinvestment is growth 7% divided by the model's OWN FY2030E return on invested capital \u2014 19.17% on Frame A and 21.30% on Frame B \u2014 so 36.5% of terminal operating profit after tax is reinvested on Frame A. There is no terminal return assumption left to make. The earlier edition asserted 20% here, a 83 basis-point step above the last forecast year, taken at exactly the point where three quarters of core enterprise value sits.",
   "  The terminal year is also charged the depreciation the forecast never charged: 3,440 million of construction is still parked at FY2030E and has never entered the depreciable base, so at the model's own 6.2% rate a further 213 million a year is deducted before the perpetuity is struck. A steady state cannot capitalise profit on capital it never charges.",
-  "[Terminal weight] the terminal value is 79% of CORE enterprise value on Frame A and 79% on Frame B \u2014 68% and 70% of TOTAL enterprise value, which carries the associates and the assets held for sale as well. Both readings are published; the earlier edition dropped the word 'core' outside the workbook, which made the concentration look higher than the whole bridge supports. It is high either way, as it is for any growing manufacturer discounted over five explicit years, and the terminal grid in the sensitivity section runs the whole range rather than quoting a comfortable part of it.",
-  "  The terminal DEBT WEIGHT is derived, not asserted. Today's market-value net-debt weight is 25.5%; the forecast balance sheet, once funded, carries a book net-debt weight of 36.2% at FY2030E. The valuation uses the market-value reading, 25.5%, because a weighted average cost of capital weights market values; the book reading gives a terminal rate of 14.41% against 15.22% and is published beside it. The earlier edition used 20%, which is neither reading, and said it was reconciled to a balance sheet that did not balance.",
+  "[Terminal weight] the terminal value is 79% of CORE enterprise value on Frame A and 78% on Frame B \u2014 68% and 69% of TOTAL enterprise value, which carries the associates and the assets held for sale as well. Both readings are published; the earlier edition dropped the word 'core' outside the workbook, which made the concentration look higher than the whole bridge supports. It is high either way, as it is for any growing manufacturer discounted over five explicit years, and the terminal grid in the sensitivity section runs the whole range rather than quoting a comfortable part of it.",
+  "  The terminal DEBT WEIGHT is derived, not asserted. Today's market-value net-debt weight is 25.5%; the forecast balance sheet, once funded, carries a book net-debt weight of 36.2% at FY2030E. The valuation uses the market-value reading, 25.5%, because a weighted average cost of capital weights market values; the book reading gives a terminal rate of 14.62% against 15.47% and is published beside it. The earlier edition used 20%, which is neither reading, and said it was reconciled to a balance sheet that did not balance.",
   "",
-  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025. The forecast path is 20.4% / 23.5% / 26.1% / 27.4% / 27.8% \u2014 it RISES THROUGH the window rather than settling, so the sustainable return used here is the MEAN OF ITS LAST THREE YEARS, 27.11%, computed from that path and not asserted. (The earlier edition described the same number as the level the forecast 'settles at', which the path does not do.) A sustainable-return multiple of (return 27.1% less growth 7%) over (perpetual cost of equity 17.16% less growth) is 1.979 times book, or 73.22 a share. Every term in that multiple is live: change beta, the terminal risk-free rate, the terminal premium or growth and the lens moves.",
+  "[Book value and sustainable return] book value per share 37.00. Return on average equity was 24.6% in FY2024 and 26.5% in FY2025. The forecast path is 20.4% / 23.5% / 26.1% / 27.4% / 27.8% \u2014 it RISES THROUGH the window rather than settling, so the sustainable return used here is the MEAN OF ITS LAST THREE YEARS, 27.11%, computed from that path and not asserted. (The earlier edition described the same number as the level the forecast 'settles at', which the path does not do.) A sustainable-return multiple of (return 27.1% less growth 7%) over (perpetual cost of equity 17.50% less growth) is 1.915 times book, or 70.85 a share. Every term in that multiple is live: change beta, the terminal risk-free rate, the terminal premium or growth and the lens moves.",
   "",
   "[Relative multiples] the company's OWN traded history is computable entirely from primary material \u2014 year-end closes against audited attributable profit: 4.7 times (2022), 6.6 times (2023), 6.2 times (2024), 8.7 times (2025), a four-year mean of 6.6. Each year divides that year's audited attributable profit by that year's WEIGHTED-AVERAGE share count, so the FY2025 reading uses 162.016 million shares rather than the 168.756 million now in issue \u2014 the capital increase completed during that year. At 127.30 the shares trade on 14.9 times trailing attributable earnings measured on the count in issue today, or 14.3 times on the audited weighted average; both readings are legitimate and both are published. The shares also trade on 11.6 times trailing EBITDA. The re-rating is the single most important fact about this share price: the earnings multiple has more than doubled against its own four-year history.",
-  "  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics justify: retention must equal growth 7% over sustainable return 27.1%, so the payout the multiple can assume is 74%, and 74% over (perpetual cost of equity 17.16% less growth) is 7.30 times \u2014 applied to 8.22 of FY2026E earnings a share. (2) The company's own four-year mean, 6.57 times, a TRAILING multiple applied to 8.54 of trailing earnings. (3) A struck reference of 21.35 times \u2014 the midpoint of the only two comparable observations available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 times for larger international generic manufacturers, and NOT a median of a disclosed peer set \u2014 but those companies are Gulf-listed and face a cost of equity near 10%, not 17.2%; adjusted for that single difference the same reference implies 6.30 times, also on trailing earnings. The three give 60.03 / 56.15 / 53.85, averaging 56.67. Left unadjusted, the struck reference alone would give 182.39 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple. The peers are not named and their financials are not published, so this third leg cannot be rebuilt from peer filings; that is a stated limitation of the leg, not a hidden one.",
-  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 13,825 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 10.23 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 17.16% less 7% growth, on the 74% payout that growth rate permits: 74.70 a share. Using today's crisis-level cost of equity of 25.92% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
+  "  The lens triangulates three multiples rather than asserting one, and EACH IS APPLIED TO THE EARNINGS OF ITS OWN PERIOD. (1) The forward multiple this model's own economics justify: retention must equal growth 7% over sustainable return 27.1%, so the payout the multiple can assume is 74%, and 74% over (perpetual cost of equity 17.50% less growth) is 7.06 times \u2014 applied to 8.22 of FY2026E earnings a share. (2) The company's own four-year mean, 6.57 times, a TRAILING multiple applied to 8.54 of trailing earnings. (3) A struck reference of 21.35 times \u2014 the midpoint of the only two comparable observations available, 26.7 times for a listed Saudi Arabian generics manufacturer and about 16 times for larger international generic manufacturers, and NOT a median of a disclosed peer set \u2014 but those companies are Gulf-listed and face a cost of equity near 10%, not 17.5%; adjusted for that single difference the same reference implies 6.10 times, also on trailing earnings. The three give 58.09 / 56.15 / 52.11, averaging 55.45. Left unadjusted, the struck reference alone would give 182.39 \u2014 the size of that gap IS the country-risk discount, and it is shown rather than hidden inside a chosen multiple. The peers are not named and their financials are not published, so this third leg cannot be rebuilt from peer filings; that is a stated limitation of the leg, not a hidden one.",
+  "[Normalised earnings power] the three-year average operating margin is 22.9%, against 25.1% in FY2025 \u2014 so this lens deliberately gives back part of the best year. Applied to FY2027E revenue of 13,825 million, financed at the FY2027E cost of debt and taxed at 23.5%, with the normalised associate contribution added, that is EGP 10.23 a share of sustainable earnings. Capitalised at the PERPETUAL cost of equity of 17.50% less 7% growth, on the 74% payout that growth rate permits: 72.28 a share. Using today's crisis-level cost of equity of 25.92% in a perpetuity would be a category error \u2014 a steady-state multiple takes a steady-state rate.",
   "",
-  "[Synthesis \u2014 one lens per frame, not a blend] the centre of each frame IS its own cash-flow read: Frame A 88.52, Frame B 106.68, against a 127.30 market price (-30.5% and -16.2%). The three lenses that do not turn on the contested judgement are published beside both and averaged into neither: Book value and sustainable return 73.22 \u00b7 Relative multiples 56.67 \u00b7 Normalised earnings power 74.70. The retired 50/20/15/15 blend read 78.61 and 87.69 \u2014 it pulled BOTH frames toward the same three shared numbers, which damps precisely the disagreement a two-sided answer exists to show, and its weights had never cleared an out-of-sample test. NORMALISED EARNINGS POWER, at 74.70, is computed and published and is NOT one of the lenses: the registry does not permit it for this class. The field across all five readings runs 56.67 to 106.68.",
-  "\n[The contested price path, computed both ways] the adopted house ladder at zero real gives Frame A 88.52 and Frame B 106.68; the retired typed path, a 15.9% real cut over five years, gives 31.30 and 47.51. The difference is EGP 57.22 a share on Frame A \u2014 the largest single judgement in this study, published both ways and never averaged. It was not a view anybody argued for: it contradicted this study's own source string and its own committed macro record, and the house rule forbids a typed rate where the house path exists",
+  "[Synthesis \u2014 one lens per frame, not a blend] the centre of each frame IS its own cash-flow read: Frame A 85.25, Frame B 102.89, against a 127.30 market price (-33.0% and -19.2%). The three lenses that do not turn on the contested judgement are published beside both and averaged into neither: Book value and sustainable return 70.85 \u00b7 Relative multiples 55.45 \u00b7 Normalised earnings power 72.28. The retired 50/20/15/15 blend read 75.95 and 84.78 \u2014 it pulled BOTH frames toward the same three shared numbers, which damps precisely the disagreement a two-sided answer exists to show, and its weights had never cleared an out-of-sample test. NORMALISED EARNINGS POWER, at 72.28, is computed and published and is NOT one of the lenses: the registry does not permit it for this class. The field across all five readings runs 55.45 to 102.89.",
+  "\n[The contested price path, computed both ways] the adopted house ladder at zero real gives Frame A 85.25 and Frame B 102.89; the retired typed path, a 15.9% real cut over five years, gives 29.65 and 45.40. The difference is EGP 55.60 a share on Frame A \u2014 the largest single judgement in this study, published both ways and never averaged. It was not a view anybody argued for: it contradicted this study's own source string and its own committed macro record, and the house rule forbids a typed rate where the house path exists",
   "",
-  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 3,774 million of revenue by FY2030E at a 45% contribution margin closes the gap from 88.52 to 127.30. That is 15% of FY2030E revenue, or about USD 54 million a year \u2014 0.54 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue.",
-  "  Two things that must be published for that hurdle to be auditable, and were not before. THE RAMP: the incremental revenue is not dropped into the final year, it is phased 0% / 10% / 30% / 60% / 100% across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital expenditure at the same share of revenue as the existing business and working capital on the same day ratios, so it faces the identical reinvestment discipline. The earlier edition let it arrive free of both and published a hurdle of about USD 115 million; charged properly it is USD 54 million.",
+  "[The crux] the base build charges the new biologicals facility's depreciation and its interest \u2014 both mechanical consequences of the company's own disclosed December-2025 licensing \u2014 but carries NO revenue line for it, because the company has published no volume, price or utilisation guidance for the plant. So the crux is not what the plant is worth; it is how much it must sell. Solving the same model for the market price: an additional EGP 4,239 million of revenue by FY2030E at a 45% contribution margin closes the gap from 85.25 to 127.30. That is 17% of FY2030E revenue, or about USD 60 million a year \u2014 0.60 times the USD 100 million the company says it invested in the plant. That number is observable: it is testable against the first year the company discloses biosimilar revenue.",
+  "  Two things that must be published for that hurdle to be auditable, and were not before. THE RAMP: the incremental revenue is not dropped into the final year, it is phased 0% / 10% / 30% / 60% / 100% across FY2026E-FY2030E, and the same total placed entirely in FY2030E would be a lower and easier hurdle. THE REINVESTMENT: the incremental revenue is charged capital expenditure at the same share of revenue as the existing business and working capital on the same day ratios, so it faces the identical reinvestment discipline. The earlier edition let it arrive free of both and published a hurdle of about USD 115 million; charged properly it is USD 60 million.",
   "",
   "[Forecast anchor] gross margin: latest reviewed period Q1-2026 at 42.39%, first forecast year 43.17%, +0.77 points and +1.8% relative. Path low 42.79%. Mechanism named: input cost outpacing price; measured cost per unit of revenue 0.5430 -> 0.5761 in the company's own quarter pair."
  ],
