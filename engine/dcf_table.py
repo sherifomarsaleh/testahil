@@ -53,16 +53,71 @@ def _series(f, key, n):
     return list(v)[:n]
 
 
-def dcf_table(numbers, currency="EGP", unit="mn", per_share_dp=2):
+# THE CONTRACT. A study supplies these, and where its own numbers file names them
+# differently it SAYS SO by passing `blocks`/`fields` from its own builder. The
+# mapping is declared by the study, never guessed here: a shared module that
+# pattern-matches nine private shapes is nine silent assumptions wearing one name,
+# and the first time a study renames a key the table would quietly print a
+# different company's kind of number.
+CONTRACT = dict(
+    blocks=("fcst", "dcf"),
+    forecast_required=("years", "rev", "ebitda", "capex", "dnwc", "dna", "fcff"),
+    forecast_optional=("tax", "df", "pv", "fwd_wacc"),
+    bridge_required=("pv_explicit", "tv", "pv_tv", "ev", "nd", "eq_attr", "ps"),
+    bridge_optional=("tv_share", "assoc", "nci_val", "emp_val", "shares", "ps_dec"),
+)
+
+
+def probe(numbers, blocks=None):
+    """What this study already carries against the contract, and what it is missing.
+
+    A study that cannot render the table is not a study without a valuation — it is
+    a study whose valuation is spread across privately-named keys. This makes that
+    difference COUNTABLE rather than a vague backlog: it returns the list of keys a
+    person has to publish, per study, so the remaining work is a number.
+
+    NOT EVERY CLASS OWES THIS TABLE. The contract describes a cash-flow lens, and
+    the class primary is not a cash-flow lens everywhere — a bank is valued on
+    equity flows and a holdco on a sum of its parts [R-LENS-03]. A bank probing as
+    "missing a forecast block" is not a defect in the bank; it is this probe being
+    asked a question about a lens the study does not run. Read the missing list
+    against LENS_REGISTRY before calling any of it work.
+    """
+    fb, db = blocks or CONTRACT["blocks"]
+    f, d = numbers.get(fb) or {}, numbers.get(db) or {}
+    miss_f = [k for k in CONTRACT["forecast_required"] if k not in f]
+    miss_d = [k for k in CONTRACT["bridge_required"] if k not in d]
+    return dict(forecast_block=fb, bridge_block=db,
+                forecast_present=bool(f), bridge_present=bool(d),
+                missing_forecast=miss_f, missing_bridge=miss_d,
+                renders=not (miss_f or miss_d),
+                missing_total=len(miss_f) + len(miss_d))
+
+
+def dcf_table(numbers, currency="EGP", unit="mn", per_share_dp=2, blocks=None,
+              fields=None):
     """(rows, record) -- the valuation table, read from a study's numbers file.
 
     `numbers` is the parsed study_numbers.json. Returns rows ready for a document
     table (first row is the header) and a record carrying the reconciliation so a
     gate can check the table against the study without re-reading the document.
     """
-    f = numbers.get("fcst") or {}
-    d = numbers.get("dcf") or {}
-    w = numbers.get("wacc") or {}
+    fb, db = blocks or CONTRACT["blocks"]
+    alias = dict(fields or {})
+
+    def K(name):
+        """The key THIS study uses for a contract field."""
+        return alias.get(name, name)
+
+    f = numbers.get(fb) or {}
+    d = numbers.get(db) or {}
+    w = numbers.get("wacc") or numbers.get("cost_of_capital_record") or {}
+    f = {k: f[K(k)] for k in set(list(CONTRACT["forecast_required"])
+                                 + list(CONTRACT["forecast_optional"]))
+         if K(k) in f}
+    d = {k: d[K(k)] for k in set(list(CONTRACT["bridge_required"])
+                                 + list(CONTRACT["bridge_optional"]))
+         if K(k) in d}
     if not f or not d:
         raise DCFTableError("the numbers file carries no fcst/dcf block; this table is "
                             "read from the study, never recomputed")
