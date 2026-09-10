@@ -192,13 +192,15 @@ rows = [['Item', 'Detail'],
          f"Cables 65% / Constructions 30% / Electrical products 45% (house judgements, stated so "
          f"they can be disputed; the forecast-year share runs ~53% as Cables' weight in the mix "
          f"rises); that is the figure used wherever the currency question is valued"],
-        ['Order book', 'Not disclosed in any of the audited FY2023-25 statements or the Q1-2026 '
-         'interim, which are the primary sources this build is confined to. The company\'s '
-         'quarterly earnings releases have historically disclosed order-book and volume data '
-         '(the FY2024 release, for example, disclosed 167,665 tons of cable sold); those releases '
-         'were not reachable from this research environment, so the forecast is built on segment '
-         'revenue growth rather than a backlog figure — a cross-check against the released '
-         'backlog is the first refinement to make when they become obtainable'],
+        ['Order book and volumes',
+         'Not disclosed in any of the audited FY2023-25 statements or the Q1-2026 interim. '
+         'THE COMPANY DISCLOSES BOTH IN ITS OWN QUARTERLY EARNINGS RELEASES, and those '
+         'releases are read. Engineering and construction backlog runs EGP 293bn at '
+         'December 2025 and 346bn at 30 June 2026, with wires and cables 43.5bn and meters '
+         '8.8bn beside it; cable volumes run 144,997 / 156,748 / 167,665 / 185,449 tonnes '
+         'over FY2022-25 and 99,239 in the reviewed half against 89,636. The volume series '
+         'sets the Cables segment growth driver directly. The backlog is read and NOT burnt '
+         'down: it corroborates the Constructions growth rate without producing it'],
         ['Shares outstanding', f"{n0(SH)}mn"],
         ['Market capitalisation', f"EGP {n0(M['mktcap'])}mn at the anchor price"],
         ['Ownership', f"El Sewedy family ~{pc(own['family'])} · Electra Investment Holding "
@@ -1125,15 +1127,19 @@ P("The bands are wide and they are honest about why: the twelve years they are m
   "the outturn has landed between 0.55 and 2.60 times what this method projected.")
 
 for head, body in [
-    ("No order book, backlog or unit-volume figure is disclosed in the audited statements. ",
+    ("The audited statements carry no volumes; the company's own releases do, and they are read. ",
      f"All three audited financial statements and the Q1-2026 interim disclose segment revenue "
      f"and segment profit, but no tonnage, MVA, meter count or order-book figure for any segment. "
-     f"The company's quarterly EARNINGS RELEASES have historically carried backlog and volume "
-     f"data; they were not reachable from this research environment, so the forecast is built as "
-     f"a taper on each segment's own recent revenue growth and margin path rather than a "
-     f"backlog-burn model. An earlier wording said 'disclosed anywhere', which overclaimed — the "
-     f"scope of the negative result is the audited statements, and cross-checking the "
-     f"Constructions taper against the released backlog is the first refinement to make when "
+     f"THE COMPANY'S QUARTERLY EARNINGS RELEASES CARRY BOTH, and this edition reads them. Cable "
+     f"volumes run 144,997 / 156,748 / 167,665 / 185,449 tonnes over FY2022-25 and 99,239 in the "
+     f"reviewed half against 89,636, and that series now sets the Cables growth driver instead of "
+     f"a residual. Engineering backlog reaches EGP 346bn at 30 June 2026, read and NOT burnt down "
+     f"— it corroborates the Constructions taper rather than producing it. TWO EARLIER WORDINGS "
+     f"ARE WITHDRAWN: one said this data was 'disclosed anywhere', which overclaimed the scope of "
+     f"a negative result, and one said the releases 'were not reachable from this research "
+     f"environment', which was simply wrong — they were held here the whole time. Cross-checking "
+     f"the Constructions taper against the released backlog was named as the first refinement to "
+     f"make when "
      f"those releases become obtainable."),
     ("The valuation is dated, and the dating is now explicit. ",
      f"The cash-flow model is constructed at 31 December 2025 (the audited balance-sheet date); "

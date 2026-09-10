@@ -35,6 +35,7 @@ is built from, and if they do not amount to a case, that is the finding.
 """
 from __future__ import annotations
 
+import datetime as _dt
 import json
 import os
 import sys
@@ -68,6 +69,45 @@ BANDS = (
      "wrong NAMED, and the falsifier stated in advance -- what would have to "
      "happen for this study to be the one that is wrong."),
 )
+
+
+
+def _latest_close(ticker):
+    """(price, ISO date) of the most recent close in the library, or (None, None).
+
+    Reads the committed OHLC series directly rather than any study's own copy of a
+    price: a study records the quote it was struck at, which is the question this
+    function is NOT asking.
+    """
+    root = os.path.join(HERE, "raw_ohlc")
+    if not os.path.isdir(root):
+        return None, None
+    for mkt in sorted(os.listdir(root)):
+        p = os.path.join(root, mkt, "%s.csv" % ticker.upper())
+        if not os.path.exists(p):
+            continue
+        try:
+            with open(p, encoding="utf-8-sig") as fh:
+                rows = [r for r in fh.read().splitlines() if r.strip()]
+        except OSError:
+            return None, None
+        if len(rows) < 2:
+            return None, None
+        best = None
+        for r in rows[1:]:
+            f = [c.strip().strip('"') for c in r.split(",")]
+            if len(f) < 2:
+                continue
+            try:
+                d = _dt.datetime.strptime(f[0], "%m/%d/%Y").date()
+                v = float(f[1].replace(",", ""))
+            except ValueError:
+                continue
+            if best is None or d > best[0]:
+                best = (d, v)
+        if best:
+            return best[1], best[0].isoformat()
+    return None, None
 
 
 def band(gap_down: float):
@@ -190,14 +230,27 @@ def from_numbers(ticker, numbers=None, **kw):
         p = os.path.join(HERE, "%s_study" % ticker.lower(), "study_numbers.json")
         with open(p) as fh:
             numbers = json.load(fh)
+    # THE NORTHERN STAR IS THE LATEST TRADED PRICE, NOT THE ONE THE STUDY WAS
+    # STRUCK AT. They are different dates by construction [R-DOC-03] and a study
+    # is not re-struck every time the market moves. But the bar this rule sets is
+    # a claim about what investors ARE paying, and a stale quote makes that bar
+    # EASIER to clear — which is precisely the wrong direction for a rule about
+    # burden of proof. Where the price library holds a later close than the study,
+    # the later one is used and both are recorded.
     sc = numbers.get("star_case") or {}
     for k in ("case", "decomposition", "hunt_recorded", "falsifier"):
         if k in sc and k not in kw:
             kw[k] = sc[k]
     spot = numbers.get("spot")
+    struck = spot
+    latest, latest_date = _latest_close(ticker)
+    if latest and (not spot or latest != spot):
+        spot = latest
     central = numbers.get("central")
     if central is not None:
-        return assess(central, spot, ticker=ticker, **kw)
+        r = assess(central, spot, ticker=ticker, **kw)
+        r["spot_struck"], r["spot_latest"], r["spot_latest_date"] = struck, latest, latest_date
+        return r
 
     two = numbers.get("central_two_sided") or {}
     branches = two.get("branches") or []
