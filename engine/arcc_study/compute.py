@@ -135,6 +135,7 @@ sys.path.insert(0, HERE)
 import edition as _ed                      # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
+import cost_of_capital as _coc
 import macro_path as MP
 # [R-TERM-01] — the terminal comes from the shared builder, never from a local
 # construction. Every study once hand-rolled its own beta and every one was wrong the same
@@ -1519,7 +1520,18 @@ beta_used = BETA['adopted']['beta_used']
 # a reading of it, and would go on being true after the beta changed.
 _BETA_TIER = BETA['adopted']['tier']
 assert int(_BETA_TIER) in (1, 2, 3), _BETA_TIER
-ke_exp = rf_star + beta_used * V['erp_cds']
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. The retired line was
+# rf* + beta x the WHOLE premium, which multiplies Egypt's country risk by beta and so
+# charges it (beta - 1) times over. Every kiln, tonne and customer of this company is in
+# Egypt, so lambda is 1.00 and the whole country premium is the Egyptian one.
+#
+# THIS ONE MOVES AGAINST US AND IS FIXED ANYWAY. The beta here is BELOW one, so the
+# retired identity was charging LESS country risk than the flat charge, not more: the
+# correction RAISES the cost of equity by (1 - beta) x CRP and LOWERS the answer. An
+# error found while correcting a class of errors is corrected because it is an error,
+# whichever way it runs [R-GAP-04].
+_CRP, _ERP_MATURE = _coc.split_erp(V['erp_cds'], V['sov_spread_cds'])
+ke_exp = rf_star + beta_used * _ERP_MATURE + _CRP
 # THE SAME CONSTRUCTION ON THE FILE'S OTHER PUBLISHED BASIS [audit finding 9]. Not an
 # input to anything — it exists so the choice between two published bases can be priced
 # on the page instead of being one a reader never learns was made. BOTH LEGS MOVE: the
@@ -1527,7 +1539,12 @@ ke_exp = rf_star + beta_used * V['erp_cds']
 # goes back on. Mixing a CDS-netted risk-free with a rating premium would charge Egypt's
 # default risk once at one price and once at another, which is not either basis.
 _RF_STAR_RATING = V['rf'] - V['sov_spread_rating']
-_KE_RATING = _RF_STAR_RATING + beta_used * V['erp_rating']
+# THE OTHER BASIS SPLITS TOO [R-ENF-03]. When a fix goes into one of two lines that do
+# the same job, the other one is now a defect: leaving the rating basis on the retired
+# identity would price the choice between the two bases on a difference that is partly
+# just the two constructions disagreeing.
+_CRP_RATING, _ERP_MATURE_RATING = _coc.split_erp(V['erp_rating'], V['sov_spread_rating'])
+_KE_RATING = _RF_STAR_RATING + beta_used * _ERP_MATURE_RATING + _CRP_RATING
 kd_at = KD * (1 - TAX)
 net_cash_bs = V['cash_fy25'] - debt_tot
 wd_gross = debt_tot / (debt_tot + MKTCAP)
@@ -2926,6 +2943,16 @@ COC_RECORD = dict(
     beta_source={1: 'own_stock_regression', 2: 'peer_relevered',
                  3: 'tier3_fallback'}[int(_BETA_TIER)],
     beta_tier=int(_BETA_TIER),
+    erp_mature=_ERP_MATURE, crp=_CRP, crp_effective=_CRP,
+    lambda_country=1.0, crp_foreign=0.0,
+    ke_construction='split_premium',
+    ke_construction_note=(
+        'rf* + beta x the MATURE premium + the country premium charged FLAT and once. '
+        'The premium splits by Damodaran\'s identity: the sovereign default spread scaled '
+        'to equity volatility is the country leg, the remainder is the mature leg, and '
+        'beta multiplies only the mature leg. This beta is below one, so the retired '
+        'total-premium identity was UNDER-charging country risk here and the correction '
+        'raises the rate.'),
     ke_exp=ke_exp, kd_pretax=KD, kd_aftertax=kd_at,
     weight_equity=1 - wd_gross, weight_debt=wd_gross, wacc_exp=wacc_exp,
     rf_terminal=V['rf_term'], erp_terminal=V['erp_term'], ke_terminal=ke_term,

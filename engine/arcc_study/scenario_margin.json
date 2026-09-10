@@ -1,5 +1,5 @@
 {
- "published_central": 77.48543592414525,
+ "published_central": 77.17814396333017,
  "published_spot": 77.0,
  "wedge_pct": 0.010560407954853492,
  "wedge_egp": 131.448778,
@@ -58,8 +58,8 @@
  "scenarios": [
   {
    "name": "Testahil base \u2014 our margin, our volumes",
-   "dcf": 77.48543592414525,
-   "central": 77.48543592414525,
+   "dcf": 77.17814396333017,
+   "central": 77.17814396333017,
    "reinvest": 0.33702156634918257,
    "mgn_path": [
     0.3902818820901488,
@@ -73,8 +73,8 @@
   },
   {
    "name": "Half way between the two margin paths",
-   "dcf": 76.62212294764674,
-   "central": 76.62212294764674,
+   "dcf": 76.31848772493464,
+   "central": 76.31848772493464,
    "reinvest": 0.3402665532151966,
    "mgn_path": [
     0.3850828916629002,
@@ -88,8 +88,8 @@
   },
   {
    "name": "EFG margin, OUR volumes",
-   "dcf": 75.75880997114827,
-   "central": 75.75880997114827,
+   "dcf": 75.45883148653913,
+   "central": 75.45883148653913,
    "reinvest": 0.343574635818946,
    "mgn_path": [
     0.3798839012356517,
@@ -103,8 +103,8 @@
   },
   {
    "name": "EFG margin, EFG volumes \u2014 their view whole",
-   "dcf": 52.66053286760368,
-   "central": 52.66053286760368,
+   "dcf": 52.462533598953996,
+   "central": 52.462533598953996,
    "reinvest": 0.46582747056910323,
    "mgn_path": [
     0.3798839012356517,
@@ -124,8 +124,8 @@
   },
   {
    "name": "EFG margin, our volumes, mid-cycle lifted too",
-   "dcf": 75.75880997114827,
-   "central": 75.75880997114827,
+   "dcf": 75.45883148653913,
+   "central": 75.45883148653913,
    "reinvest": 0.343574635818946,
    "mgn_path": [
     0.3798839012356517,

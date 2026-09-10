@@ -127,6 +127,15 @@ def main():
     out['share_of_system_credit_fy2025'] = share25
     out['share_of_system_credit_path'] = path
 
+    # WHAT THIS ARTEFACT WAS CURRENT WITH, IN A FIELD NAMED FOR THE PURPOSE. It carried
+    # `central` and `spot`, which the currency gate does not read as a declaration — those
+    # are figures the review computes, not a statement of the edition it stands on. An
+    # artefact that does not say what it was current WITH cannot be told from a stale one,
+    # and this one went stale twice today without any gate being able to say so.
+    _committed = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+    out['published_central'] = _committed['central']
+    out['published_spot'] = _committed['spot']
+
     json.dump(out, open(os.path.join(HERE, 'gap_review_numbers.json'), 'w'), indent=1,
               default=float)
     for k, v in out.items():

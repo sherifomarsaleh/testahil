@@ -64,6 +64,7 @@ UC, KDG, CON = D['unit_calibration'], D['kd_gate'], D['contested']
 GDV = D['growth_destroys_value']
 CAL = D['calibration']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+COC = D['cost_of_capital_record']   # [R-COC-03] the split, as the study committed it
 SPOT, SH, TAX, TAXE = M['spot'], M['shares_mn'], IN['tax_stat'], IN['tax_eff']
 YH, YF = H['years'], F['years']
 HC = ['B', 'C', 'D']
@@ -317,7 +318,16 @@ inp('Dividend payout ratio', 'payout', IN['payout'], PCT, '')
 sect('COST OF CAPITAL')
 inp('Risk-free rate (EGP 10-year government)', 'rf', IN['rf'], PCT2)
 inp('Sovereign default spread (netted out)', 'sov', IN['sov_spread_cds'], PCT2)
-inp('Equity risk premium', 'erp', IN['erp_cds'], PCT2)
+inp('Equity risk premium, TOTAL (split into the two legs below)', 'erp', IN['erp_cds'], PCT2)
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. The DCF sheet's cost of
+# equity read rf* + beta x the WHOLE premium, which multiplies Egypt's country risk by beta.
+# The model moved onto the split identity and the workbook did not, so it published a rate
+# 37bp below the study's and 51 formula cells disagreed. The legs are read from the study's
+# own committed record and never retyped; the DCF cell recomputes the rate from them.
+inp('   of which the MATURE premium — beta applies to this leg only', 'erpm',
+    COC['erp_mature'], PCT2)
+inp('Egypt country premium — charged FLAT, once, never multiplied by beta', 'crp',
+    COC['crp_effective'], PCT2)
 inp('Euribor (EBRD and NBE reference rate)', 'eur', IN['euribor'], PCT2)
 inp('EGP marginal borrowing rate (corridor + 0.6%)', 'kdegp', IN['kd_egp_marginal'], PCT2)
 inp('Expected EGP depreciation against the euro', 'dep', IN['egp_dep_vs_eur'], PCT2)
@@ -802,8 +812,8 @@ wsD['E36'] = 'this block shares rows with the bridge above, whose labels are in 
 CC2 = [('Risk-free rate (observed EGP 10-year)', 'C36', f"={A['rf']}", IN['rf'], PCT2),
        ('Less sovereign default spread', 'C37', f"=-{A['sov']}", -IN['sov_spread_cds'], PCT2),
        ('Normalised risk-free rate', 'C38', "=C36+C37", W['rf_star'], PCT2),
-       ('Cost of equity  (rf* + beta × premium)', 'C39',
-        f"=C38+{A['beta']}*{A['erp']}", W['ke_exp'], PCT2),
+       ('Cost of equity  (rf* + beta × MATURE premium + country premium, flat)', 'C39',
+        f"=C38+{A['beta']}*{A['erpm']}+{A['crp']}", W['ke_exp'], PCT2),
        ('WACC — explicit window', 'C40', "=(1-C43)*C39+C43*C42", W['wacc_exp'], PCT2),
        # THE POUND-EQUIVALENT cost of the euro book: the euro legs carry the
        # expected pound depreciation, because these cash flows are in pounds and
