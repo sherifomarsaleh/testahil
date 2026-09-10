@@ -3,7 +3,7 @@
  "adopted_corrections_note": "the walk-forward on this name measured seven drivers over 225 cells and adopted NONE of them. Two drivers are robust at every block size and both are aggregates, which corrections may not be applied to; the one driver passing the cut-invariance clause at all six admissible boundaries (sga) has its block-2 bootstrap interval covering zero. Recorded in engine/gbco_walkforward/corrections_log.json; empty rather than absent.",
  "central": null,
  "central_bear": 19.291145633198383,
- "central_full": 52.345259974418816,
+ "central_full": 56.77947453492587,
  "spot": 28.98,
  "spot_date": "2026-09-03",
  "shares": 1085.5,
@@ -481,9 +481,9 @@
     "dwc": 1898.6338134000107,
     "fcff": 150.53200367679074,
     "wc": 20815.63381340001,
-    "wacc_y": 0.2287554134378177,
-    "df": 0.8138316129181439,
-    "pv": 122.50770334808257
+    "wacc_y": 0.23116628409049556,
+    "df": 0.8122379673016582,
+    "pv": 122.26780868028224
    },
    {
     "year": "FY27E",
@@ -497,9 +497,9 @@
     "dwc": 3118.451608872001,
     "fcff": 980.1312649832953,
     "wc": 23934.08542227201,
-    "wacc_y": 0.1976861075812545,
-    "df": 0.6795032586306685,
-    "pv": 666.0023884419484
+    "wacc_y": 0.19665744726500617,
+    "df": 0.6787556197958327,
+    "pv": 665.2696042450101
    },
    {
     "year": "FY28E",
@@ -513,9 +513,9 @@
     "dwc": 2493.877239866146,
     "fcff": 2963.7510068270267,
     "wc": 26427.962662138158,
-    "wacc_y": 0.17283066289600388,
-    "df": 0.5793703047913241,
-    "pv": 1717.1093241509682
+    "wacc_y": 0.16905037780461463,
+    "df": 0.5806042516922861,
+    "pv": 1720.7664355210654
    },
    {
     "year": "FY29E",
@@ -529,9 +529,9 @@
     "dwc": 2532.6072382514612,
     "fcff": 4067.844034992313,
     "wc": 28960.56990038962,
-    "wacc_y": 0.154189079382066,
-    "df": 0.5019717437471419,
-    "pv": 2041.9427635365012
+    "wacc_y": 0.14834507570932104,
+    "df": 0.505600854633049,
+    "pv": 2056.7054206060643
    },
    {
     "year": "FY30E",
@@ -545,37 +545,37 @@
     "dwc": 2163.0651731882717,
     "fcff": 5384.457780576135,
     "wc": 31123.63507357789,
-    "wacc_y": 0.14176135703944068,
-    "df": 0.43964681468003297,
-    "pv": 2367.2597120094174
+    "wacc_y": 0.13454154097912527,
+    "df": 0.4456433161510405,
+    "pv": 2399.54762101122
    }
   ],
-  "pv_sum": 6914.821891486918,
-  "tv": 80285.1292520843,
-  "pv_tv": 35297.1013418536,
-  "ev": 42211.92323334052,
-  "tv_pct": 0.8361879449732027,
-  "wacc": 0.2287554134378177,
+  "pv_sum": 6964.556890063642,
+  "tv": 89266.07170845006,
+  "pv_tv": 39780.82821593027,
+  "ev": 46745.38510599391,
+  "tv_pct": 0.8510108137033914,
+  "wacc": 0.23116628409049556,
   "tg": 0.07,
   "auto_nd": 14623.699999999997,
   "auto_nci": 590.7,
-  "auto_eq": 26997.523233340526,
-  "wacc_terminal": 0.14176135703944068,
+  "auto_eq": 31530.985105993914,
+  "wacc_terminal": 0.13454154097912527,
   "forward_wacc": [
-   0.2287554134378177,
-   0.1976861075812545,
-   0.17283066289600388,
-   0.154189079382066,
-   0.14176135703944068
+   0.23116628409049556,
+   0.19665744726500617,
+   0.16905037780461463,
+   0.14834507570932104,
+   0.13454154097912527
   ],
   "discount_factors": [
-   0.8138316129181439,
-   0.6795032586306685,
-   0.5793703047913241,
-   0.5019717437471419,
-   0.43964681468003297
+   0.8122379673016582,
+   0.6787556197958327,
+   0.5806042516922861,
+   0.505600854633049,
+   0.4456433161510405
   ],
-  "terminal_discount_factor": 0.43964681468003297,
+  "terminal_discount_factor": 0.4456433161510405,
   "wacc_build": {
    "rf_observed": 0.23,
    "default_spread": 0.0341,
@@ -583,14 +583,14 @@
    "erp_rating": 0.1394,
    "erp_cds": 0.0941,
    "beta": 0.8906822450333004,
-   "ke_cds": 0.2797131992576336,
-   "ke_rating": 0.2904611049576421,
+   "ke_cds": 0.28537935713306756,
+   "ke_rating": 0.3010456872645378,
    "kd_pretax": 0.2653,
    "kd_aftertax": 0.191016,
    "we": 0.425485965212929,
    "wd": 0.5745140347870709,
-   "wacc_cds": 0.2287554134378177,
-   "wacc_rating": 0.23332849646860332,
+   "wacc_cds": 0.23116628409049556,
+   "wacc_rating": 0.23783208768782854,
    "rf_source": "engine/macro_paths/EG.json \u2014 Egypt 10-year EGP government bond yield, market quote 6 August 2026, NORMALISED by Egypt's own default spread so country risk is counted exactly once",
    "erp_source": "Damodaran country-risk file, Egypt row, read for this sovereign and never borrowed from a neighbour",
    "kd_source": "GB Corp's own FY2025 effective borrowing rate, computed independently from the filings on the borrowings that actually bear the interest.",
@@ -599,16 +599,16 @@
   }
  },
  "sotp": {
-  "auto_eq": 26997.523233340526,
-  "cap_val": 1655.6644688910892,
+  "auto_eq": 31530.985105993914,
+  "cap_val": 1935.5425016681145,
   "assoc": 28167.592000000004,
-  "total": 56820.77970223162,
+  "total": 61634.11960766203,
   "disc": 0.0,
-  "eq": 56820.77970223162,
-  "ps": 52.345259974418816,
-  "prediscount_ps": 52.345259974418816,
-  "bear": 28.527333598168454,
-  "bull": 85.48490917836006,
+  "eq": 61634.11960766203,
+  "ps": 56.77947453492587,
+  "prediscount_ps": 56.77947453492587,
+  "bear": 30.377319325202397,
+  "bull": 96.13362279612545,
   "mnt_halan_stake": 0.4161,
   "mnt_halan_stake_prior": 0.4258,
   "mnt_halan_stake_source": "GB Corp's own press release of 9 June 2026 on MNT-Halan's Al Ahly Capital-led capital increase: the stake 'will be adjusted to 41.61%, compared to 42.58% prior to the transaction'",
@@ -619,14 +619,14 @@
  },
  "lenses": {
   "sotp": {
-   "bear": 28.527333598168454,
-   "base": 52.345259974418816,
-   "bull": 85.48490917836006
+   "bear": 30.377319325202397,
+   "base": 56.77947453492587,
+   "bull": 96.13362279612545
   },
   "prediscount": {
-   "bear": 28.527333598168454,
-   "base": 52.345259974418816,
-   "bull": 85.48490917836006
+   "bear": 30.377319325202397,
+   "base": 56.77947453492587,
+   "bull": 96.13362279612545
   },
   "relative": {
    "bear": 19.291145633198383,
@@ -637,7 +637,7 @@
   "central": {
    "bear": 19.291145633198383,
    "base": null,
-   "bull": 52.345259974418816
+   "bull": 56.77947453492587
   },
   "weights": null
  },
@@ -717,34 +717,34 @@
   ],
   "table": [
    [
-    22.7342175124369,
-    24.4829029108708,
-    29.107006549746895,
-    35.4797955870569
+    25.552366824718472,
+    27.30105222315237,
+    31.92515586202847,
+    38.29794489933847
    ],
    [
-    31.16694970611785,
-    32.91563510455175,
-    37.539738743427854,
-    43.91252778073785
+    34.79313164251217,
+    36.54181704094607,
+    41.16592067982217,
+    47.53870971713217
    ],
    [
-    39.59968189979882,
-    41.348367298232716,
-    45.97247093710882,
-    52.345259974418816
+    44.03389646030588,
+    45.78258185873978,
+    50.406685497615875,
+    56.77947453492587
    ],
    [
-    48.03241409347977,
-    49.78109949191367,
-    54.40520313078977,
-    60.77799216809976
+    53.274661278099586,
+    55.023346676533485,
+    59.64745031540958,
+    66.02023935271957
    ],
    [
-    56.465146287160735,
-    58.213831685594634,
-    62.83793532447073,
-    69.21072436178072
+    62.51542609589327,
+    64.26411149432717,
+    68.88821513320326,
+    75.26100417051326
    ]
   ],
   "axis": "the auto leg's gross-margin shift against the basis on which the associate is carried; the centre-right cell IS the round-price branch and the carrying-value rung IS the other branch"
@@ -1248,36 +1248,36 @@
    "roe_h126": 0.10100017982462638,
    "roe_fy25": 0.1470831036976577,
    "roe_adopted": 0.10100017982462638,
-   "justified_pb": 0.2641736031169691,
-   "ke_terminal": 0.18734775715233104,
+   "justified_pb": 0.30883022874445276,
+   "ke_terminal": 0.17037935713306757,
    "g": 0.07,
-   "value": 1655.6644688910892,
-   "value_fy25_framing": 4116.871471909191,
+   "value": 1935.5425016681145,
+   "value_fy25_framing": 4812.798642180304,
    "basis": "residual income in its terminal form, (ROE - g) / (Ke - g), on the segment's own shareholders' equity before NCI LESS the associates carried inside it -- so the stake the sum of the parts adds back at its own mark is not also funding this leg. The return is measured on that same base with associate income taken out of the numerator too."
   }
  },
  "edition": "2026-09-07",
  "experts": {
   "e1": {
-   "base": 52.06619457823426,
+   "base": 55.908465350082366,
    "rng": [
-    27.10096691826003,
-    87.19460736192725
+    28.858453358942274,
+    98.05629525204796
    ],
    "wrapper_discount": 0.08,
    "mark_haircut": {
-    "0.75": 46.203228663909066,
-    "0.5": 40.34026274958387
+    "0.75": 50.04549943575717,
+    "0.5": 44.18253352143198
    }
   },
   "e2": {
-   "base": 7.889262980182801,
+   "base": 9.222885489116052,
    "rng": [
-    5.262944885318393,
-    13.141899169911618
+    6.152607427936932,
+    15.363441611474297
    ],
    "roe": 0.10003925151187792,
-   "pb": 0.2559848798207833,
+   "pb": 0.2992572613516192,
    "book": 33454.3,
    "book_ps": 30.819253800092127
   },
@@ -1337,20 +1337,20 @@
   "beta": 0.8906822450333004,
   "beta_source": "own_stock_regression",
   "beta_tier": 1,
-  "ke_exp": 0.2797131992576336,
+  "ke_exp": 0.28537935713306756,
   "kd_pretax": 0.2653,
   "kd_aftertax": 0.191016,
   "weight_equity": 0.425485965212929,
   "weight_debt": 0.5745140347870709,
-  "wacc_exp": 0.2287554134378177,
-  "rf_terminal": 0.125,
+  "wacc_exp": 0.23116628409049556,
+  "rf_terminal": 0.10500000000000001,
   "erp_terminal": 0.07,
-  "ke_terminal": 0.18734775715233104,
+  "ke_terminal": 0.17037935713306757,
   "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.15,
   "kd_terminal_aftertax": 0.108,
   "weight_debt_terminal": 0.5745140347870709,
-  "wacc_terminal": 0.14176135703944068,
+  "wacc_terminal": 0.13454154097912527,
   "glide_fractions": [
    0.0,
    0.35714285714285704,
@@ -1359,20 +1359,20 @@
    1.0
   ],
   "forward_wacc": [
-   0.2287554134378177,
-   0.1976861075812545,
-   0.17283066289600388,
-   0.154189079382066,
-   0.14176135703944068
+   0.23116628409049556,
+   0.19665744726500617,
+   0.16905037780461463,
+   0.14834507570932104,
+   0.13454154097912527
   ],
   "discount_factors": [
-   0.8138316129181439,
-   0.6795032586306685,
-   0.5793703047913241,
-   0.5019717437471419,
-   0.43964681468003297
+   0.8122379673016582,
+   0.6787556197958327,
+   0.5806042516922861,
+   0.505600854633049,
+   0.4456433161510405
   ],
-  "terminal_discount_factor": 0.43964681468003297,
+  "terminal_discount_factor": 0.4456433161510405,
   "kd_integrity": {
    "adopted_kd": 0.2653,
    "effective_rates": [
@@ -1398,7 +1398,8 @@
   "disclosures": [
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
-   "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
+   "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
+   "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 19.59% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 0.891 x the MATURE-MARKET premium 4.23% = 3.76% + a country premium of 5.18% -> Ke 28.54%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 27.97%, -57bp.",
    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  },
@@ -1414,20 +1415,20 @@
   "beta": 0.8906822450333004,
   "beta_source": "own_stock_regression",
   "beta_tier": 1,
-  "ke_exp": 0.2904611049576421,
+  "ke_exp": 0.3010456872645378,
   "kd_pretax": 0.2653,
   "kd_aftertax": 0.191016,
   "weight_equity": 0.425485965212929,
   "weight_debt": 0.5745140347870709,
-  "wacc_exp": 0.23332849646860332,
-  "rf_terminal": 0.125,
+  "wacc_exp": 0.23783208768782854,
+  "rf_terminal": 0.10500000000000001,
   "erp_terminal": 0.07,
-  "ke_terminal": 0.18734775715233104,
+  "ke_terminal": 0.1703456872645378,
   "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.15,
   "kd_terminal_aftertax": 0.108,
   "weight_debt_terminal": 0.5745140347870709,
-  "wacc_terminal": 0.14176135703944068,
+  "wacc_terminal": 0.1345272149226153,
   "glide_fractions": [
    0.0,
    0.35714285714285704,
@@ -1436,20 +1437,20 @@
    1.0
   ],
   "forward_wacc": [
-   0.23332849646860332,
-   0.2006259466724738,
-   0.17446390683557017,
-   0.1548423769578925,
-   0.14176135703944068
+   0.23783208768782854,
+   0.20093749027168095,
+   0.17142181233876286,
+   0.14928505388907434,
+   0.1345272149226153
   ],
   "discount_factors": [
-   0.8108139906466978,
-   0.6753260604552674,
-   0.5750079304478923,
-   0.4979103139275068,
-   0.43608965293638596
+   0.8078640147937352,
+   0.6726944752228335,
+   0.5742546947113678,
+   0.4996625447865549,
+   0.4404147720869228
   ],
-  "terminal_discount_factor": 0.43608965293638596,
+  "terminal_discount_factor": 0.4404147720869228,
   "kd_integrity": {
    "adopted_kd": 0.2653,
    "effective_rates": [
@@ -1475,7 +1476,8 @@
   "disclosures": [
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
-   "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
+   "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
+   "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 16.63% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 0.891 x the MATURE-MARKET premium 4.26% = 3.79% + a country premium of 9.68% -> Ke 30.10%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 29.05%, -106bp.",
    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  },
@@ -1691,12 +1693,12 @@
   "branches": [
    {
     "label": "MNT-Halan at its reviewed carrying value",
-    "value": 41.348367298232716,
+    "value": 45.78258185873978,
     "condition": "EGP 15,733.5mn, the equity-accounted carrying value in GB Corp's own reviewed statements at 30 June 2026. The conservative branch, and itself the subject of the review's qualified conclusion."
    },
    {
     "label": "MNT-Halan at the June-2026 round price",
-    "value": 52.345259974418816,
+    "value": 56.77947453492587,
     "condition": "41.61% of the USD 1.4bn primary round completed with Al Ahly Capital Holding, translated at EGP 47.5. The market-mark branch."
    }
   ]
@@ -1710,18 +1712,18 @@
    "branches": [
     {
      "label": "MNT-Halan at its reviewed carrying value",
-     "value": 41.348367298232716,
+     "value": 45.78258185873978,
      "note": "EGP 15,733.5mn, the equity-accounted carrying value in GB Corp's own reviewed statements at 30 June 2026. The conservative branch, and itself the subject of the review's qualified conclusion."
     },
     {
      "label": "MNT-Halan at the June-2026 round price",
-     "value": 52.345259974418816,
+     "value": 56.77947453492587,
      "note": "41.61% of the USD 1.4bn primary round completed with Al Ahly Capital Holding, translated at EGP 47.5. The market-mark branch."
     }
    ],
    "range": {
-    "low": 41.348367298232716,
-    "high": 52.345259974418816
+    "low": 45.78258185873978,
+    "high": 56.77947453492587
    },
    "range_note": "the sum of the parts read on the two bases GB Corp itself puts on its interest in MNT-Halan. The auto leg and the lender leg are identical in both.",
    "range_basis": {
@@ -1757,7 +1759,7 @@
   ],
   "envelope": {
    "low": 19.291145633198383,
-   "high": 52.345259974418816
+   "high": 56.77947453492587
   },
   "central": null,
   "central_note": "there is no central. The primary is two-sided and the two branches are published side by side; a figure between them would be the average the dual-framing rule forbids."
@@ -1843,7 +1845,7 @@
    "topdown": -0.011122345803842264
   },
   "unit_share": 0.7441541794575022,
-  "standard_version": "2026.09.07"
+  "standard_version": "2026.09.10"
  },
  "valuation_gap": {
   "central": null,
@@ -1853,13 +1855,13 @@
   "branch_gaps": [
    {
     "label": "MNT-Halan at its reviewed carrying value",
-    "central": 41.348367298232716,
-    "gap": 0.42678976184377904
+    "central": 45.78258185873978,
+    "gap": 0.5797992359813589
    },
    {
     "label": "MNT-Halan at the June-2026 round price",
-    "central": 52.345259974418816,
-    "gap": 0.8062546575023746
+    "central": 56.77947453492587,
+    "gap": 0.9592641316399539
    }
   ],
   "mc_anchor": 29.51,

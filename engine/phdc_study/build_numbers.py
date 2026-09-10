@@ -83,13 +83,14 @@ def main():
         "meta": {
             "ticker": "PHDC", "name": "Palm Hills Developments",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition": "2026-09-02", "prior_edition": "2026-08-30",
-            "edition_note": ("interim edition applying the three corrections of the "
-                             "01-Sep-2026 valuation review: bridge, book lens and debt "
-                             "stack on the 31-Mar-2026 reviewed balance sheet; minority "
-                             "interests deducted at their share of value; normalised "
-                             "earnings capitalised at cost of equity less growth. The "
-                             "discount rate and the lens weights are unchanged."),
+            "edition": "2026-09-10", "prior_edition": "2026-09-03",
+            "edition_note": ("recalibration edition: the terminal risk-free rate now "
+                             "reads the house Egyptian macro path rather than a real-rate "
+                             "convention carried inside this study, which moves the "
+                             "terminal cost of capital from 16.15% to 14.97% and the "
+                             "central from EGP 17.86 to EGP 21.09. Nothing else changes: "
+                             "the forecast, the cash-conversion cases, the bridge and the "
+                             "lens weights are as issued on 3 September 2026."),
             "base_year": 2025, "information_set_ends": "1Q2026",
             "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
             # THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT. [R-STD-02]: a version read
@@ -139,7 +140,17 @@ def main():
             "target_backlog_multiple": VAL.TARGET_BACKLOG_MULT,
             "market_implied_cash_conversion": implied,
             "edition_11jun_wacc": 0.18,      # the 11-Jun-2026 edition's typed rate, kept for the narrative
-            "prior_edition_fair": {"bear": 4.5998, "base": 10.9412, "full": 23.3342},   # 30-Aug-2026 edition
+            # THE IMMEDIATELY SUPERSEDED EDITION -- maintained by each strike, because
+            # that is what the document's supersession sentence and the football chart's
+            # reference line both mean by "prior". This key held the 30-AUGUST figures
+            # for two editions after 30 August, so the 3 September document told its
+            # reader it was superseding an edition two behind the one it actually
+            # replaced. The 30-August numbers are still needed -- the gap review
+            # decomposes that specific move -- so they now have a key that NAMES the
+            # edition instead of a relative word that goes stale on every strike.
+            "prior_edition_fair": {"bear": 4.0172, "base": 17.8617, "full": 46.5342},   # 03-Sep-2026 edition
+            "edition_30aug_fair": {"bear": 4.5998, "base": 10.9412, "full": 23.3342},
+            "edition_30aug_lenses": {"dcf_base": 14.86, "book": 6.56, "nep_base": 5.17},
             "prior_edition_lenses": {"dcf_base": 14.86, "book": 6.56, "nep_base": 5.17},
         },
         "cases": {"low_conversion": low, "base": base,

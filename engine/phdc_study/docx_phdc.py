@@ -309,7 +309,18 @@ def column_audit(doc_path):
 # three strings and updated one. That is the standing rule "A NUMBER STATED IN PROSE MUST
 # BE COMPUTED, NOT TYPED" applied to a date, which is a figure a reader sees like any
 # other, and it is why a masthead goes stale while every gate reports the document clean.
-EDITION_FILE = "PHDC_Valuation_Study_03-09-2026.docx"
+# [10-Sep-2026] AND NOW IT IS NOT TYPED AT ALL. Deriving it from a filename literal
+# carried here was one place rather than three, and that was a real improvement -- but
+# it is still a date typed by hand beside an answer that is computed, and on the day
+# this study was re-struck the literal still named the 3 September file. The date lives
+# in edition.py, which doc_dates.py also reads, so the masthead, the filename and the
+# supersession sentence cannot disagree.
+import edition as _EDN
+EDITION_FILE = _EDN.STUDY_DOCX
+
+# The terminal cost of capital the SUPERSEDED edition discounted at, kept so the
+# supersession sentence can state the move rather than assert it. 3 September 2026.
+PRIOR_WACC_T = 0.1615
 
 
 def _edition_words(fname=EDITION_FILE):
@@ -377,24 +388,30 @@ def build(path):
               "recommendation and no price target. What it publishes is a range of "
               "value and the reasoning behind it, so that a reader can disagree with "
               "the reasoning rather than with a number.")
-    para(doc, "It supersedes the edition of 30 August 2026, and it changes three "
-              "things in it, each found by a review of that edition against the "
-              "company's filings on 1 September 2026 and each set out where it "
-              "applies. First, the bridge from enterprise value to equity, the book "
-              "value and the borrowings now stand on the balance sheet of 31 March "
-              "2026 — reviewed, and posted to the company's own result centre with "
-              "the first-quarter results the earlier edition already used — rather "
-              "than on 31 December 2025 (section 1.1, Appendix A.2). Second, "
-              "minority shareholders in subsidiaries are now deducted at their share "
-              "of value; the earlier edition deducted nothing for them (section 1.1). "
-              "Third, normalised earnings are capitalised at the cost of equity less "
-              "the same growth the cash-flow model carries, where the earlier edition "
-              "capitalised them at the cost of equity alone — which in a currency "
-              "whose discount rate embeds Egyptian inflation assumes a perpetual "
-              "decline in real terms that nothing in the company's record supports "
-              "(section 1.4). The discount rate, the forecast and the lens weights "
-              "are unchanged. The central figure moves from EGP %.2f to EGP %.2f a "
-              "share." % (prior["base"], LW["base"]))
+    para(doc, "It supersedes the edition of %s and it changes ONE thing in it: the "
+              "rate at which the perpetuity is discounted. That rate was built inside "
+              "this study, from a long-run real interest rate of 5.5%% typed into its "
+              "own file. It now reads the house Egyptian macro path, where the "
+              "convention is 3.5%%. The retired figure was a description of a "
+              "restrictive policy stance — the real rate the central bank was running "
+              "in order to break an inflation — and a company does not live inside a "
+              "policy stance for ever. Carrying it into perpetuity charged this "
+              "developer, permanently, for a monetary condition that is by "
+              "construction temporary. The terminal cost of capital falls from "
+              "%.2f%% to %.2f%% and the central figure moves from EGP %.2f to EGP "
+              "%.2f a share."
+              % (_EDN.PRIOR_WORDS, 100 * PRIOR_WACC_T, 100 * base["wacc_terminal"],
+                 prior["base"], LW["base"]))
+    para(doc, "Nothing else in the study moves. The forecast, the three "
+              "cash-conversion cases, the bridge from enterprise value to equity and "
+              "the weights across the lenses are exactly as they were issued on %s, "
+              "and the reader can hold the two documents side by side and see that "
+              "one number and its consequences are the whole of the difference. THE "
+              "DIRECTION IS NOT THE REASON. This correction happens to raise the "
+              "value and move it further above the traded price; it would have been "
+              "made had it done the opposite, and the house rule that a fair value is "
+              "never adjusted toward a quotation cuts both ways."
+              % _EDN.PRIOR_WORDS)
     para(doc, "Two things in the edition of 11 June 2026 were wrong and remain "
               "corrected, and both are set out plainly in section 1.8 rather than "
               "buried: its discount rate was below Egypt's own government bond "

@@ -1,5 +1,5 @@
 {
- "standard_version": "2026.09.07",
+ "standard_version": "2026.09.10",
  "gates": {
   "assert_beta_provenance": {
    "result": "PASS",
@@ -17,7 +17,7 @@
      "topdown": 0
     },
     "unit_share": 0,
-    "standard_version": "2026.09.07"
+    "standard_version": "2026.09.10"
    }
   },
   "assert_sigcm": {
@@ -47,7 +47,7 @@
     ],
     "formula_cells": 175,
     "scrub_hits": [],
-    "document_chars": 87590,
+    "document_chars": 87894,
     "column_audit": [],
     "figures_rebuilt": [
      "fig1_football.png",
@@ -99,7 +99,7 @@
   ],
   "formula_cells": 175,
   "scrub_hits": [],
-  "document_chars": 87590,
+  "document_chars": 87894,
   "column_audit": [],
   "figures_rebuilt": [
    "fig1_football.png",
