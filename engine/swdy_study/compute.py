@@ -146,9 +146,19 @@ INP = dict(
            "study was originally struck at. A fair value delivered against a month-old "
            "quote is a comparison a reader cannot use",
            "2026-09-03", "Market"),
-    shares_mn=I(2140.777876, "Issued and paid-up capital note (29), audited FY2025 consolidated "
-                "financial statements and the Q1-2026 condensed interim statements: 2,140,777,876 "
-                "shares of EGP 1 par value, unchanged across both filings", "2026-05-13", "Company"),
+    shares_mn=I(2139.355716, "Issued and paid-up capital: 2,139,355,716 shares of EGP 1 par "
+                "value. CORRECTED 10-Sep-2026. The audited FY2025 statements and the Q1-2026 "
+                "interim both show 2,140,777,876, and this study divided by that figure -- but "
+                "the extraordinary general assembly of 19 May 2026 approved reducing the issued "
+                "capital by CANCELLING the 1,422,160 incentive-scheme shares, taking issued "
+                "capital from EGP 2,140,777,876 to EGP 2,139,355,716. Both filings this study "
+                "cited PREDATE that assembly. THE STUDY ALREADY KNEW THE NUMBER: its own "
+                "earnings-per-share reconciliation divides by a weighted-average 2,139,355,716, "
+                "described there as issued less the 1,422,160 shares issued not granted, and its "
+                "FY2024 dividend entry reconciles to EXACTLY EGP 1.00 a share on the same count. "
+                "One fact under two names, and the valuation was dividing by the one that had "
+                "ceased to exist four months before the strike",
+                "2026-05-19", "Company"),
     tax_stat=I(0.225, "Egypt corporate income tax 22.5% (PwC Worldwide Tax Summaries, unchanged "
                "2025-26)", "2026", "Country"),
     tax_eff=I(0.245, "Group effective tax rate used for the forecast. Audited effective rates: "
@@ -895,6 +905,24 @@ INP = dict(
                          "revenue (114,461.030 / 281,049.082) — geography and hard-currency pricing "
                          "are different questions, addressed explicitly below", "2026-03-15",
                          "Company"),
+    seg_export_share_q2_26=I(dict(group=0.79, cables=0.84, ec=0.67),
+                             "Share of sales generated OUTSIDE EGYPT AND FROM EXPORTS, the "
+                             "company's own Q2-2026 presentation: group 79%, wires and cables "
+                             "84%, engineering and construction 67%. Q1-2026 gave group 70%, "
+                             "cables 75%, E&C 58% -- a 9-point sequential rise in each. "
+                             "REGISTERED, NOT SUBSTITUTED, and the reason matters: this measure "
+                             "ADDS exports out of Egypt to sales booked abroad, so it is neither "
+                             "the audited geographic split (40.7%, which is where the customer "
+                             "sits and is the right basis for country risk, because an Egyptian "
+                             "factory exporting to Saudi Arabia is still an Egyptian asset under "
+                             "an Egyptian sovereign) nor the hard-currency-pricing share the "
+                             "model derives (51%). It is an UPPER BOUND on the second: an export "
+                             "is usually invoiced in hard currency, a project executed abroad for "
+                             "a local utility often is not. The house export-intensity weights "
+                             "below (cables 65%, constructions 30%) sit well under the company's "
+                             "own 84% and 67%, and now that the company publishes them the study "
+                             "can say how conservative they are instead of asserting it",
+                             "2026-08-12", "Company"),
     fgn_egp_share_fy25=I(0.407, "Revenue earned OUTSIDE Egypt, FY2025, Note 5-2 (geographic "
                          "disaggregation): 114,461.030219 / 281,049.081719 = 40.72%. This is the "
                          "audited geographic split; the HARD-CURRENCY-LINKED share used in the "
@@ -1763,6 +1791,49 @@ V['capex_pct_measured'] = I([round(_CAPEX_PCT_MEASURED, 6)] * 5,
        100 * (V['capex_pct'][0] * rev[0] / _CAPEX_FY26 - 1.0)),
     "2026-06-30", "Company/House")
 capex = [_CAPEX_PCT_MEASURED * rev[i] for i in range(5)]
+
+# ---- WHAT THE 10-SEP-2026 RESEARCH PASSES ESTABLISHED, AND WHAT THEY DID NOT ----
+# Two external deep-research passes were run on this name and worked through against
+# primary sources. ONE DEFECT CAME OUT OF THEM AND IT IS OURS: the share count. The rest
+# corroborated the study or could not be traced, and both outcomes are recorded here so
+# the next pass does not re-open a question this one closed.
+_SES = V['seg_export_share_q2_26']
+_SEG_GP = {k: SPH['FY25'][k] / SRH['FY25'][k] for k in SRH['FY25']}
+say('')
+say(f"[Research pass, 10-Sep-2026] the company's Q2-2026 presentation puts "
+    f"{_SES['group']:.0%} of group sales outside Egypt and from exports, against "
+    f"{_SES['cables']:.0%} in wires and cables and {_SES['ec']:.0%} in engineering and "
+    f"construction, each up nine points on the quarter. This study's hard-currency weights "
+    f"are 65% and 30%. IT DOES NOT FOLLOW THAT THE WEIGHTS ARE TOO LOW, because the "
+    f"published measure counts exports out of Egypt as well as sales booked abroad and the "
+    f"weights are about currency of invoicing. What it does establish is the DIRECTION and "
+    f"the ceiling, and the direction is one this study is already on the conservative side "
+    f"of. Raising the hard-currency share would move the currency-of-discounting "
+    f"alternative FURTHER BELOW the central, not toward the market, because that "
+    f"alternative deflates the hard-currency leg at each year's exchange rate before "
+    f"discounting it.")
+say(f"  THE THREE ANNOUNCED PLANTS ARE ALREADY PAID FOR IN THIS MODEL AND ALREADY EARNING "
+    f"IN IT. On 24 June 2026 the company announced a copper-recycling complex (US$80mn, "
+    f"20,000 t/yr of scrap into cathode), a copper-tube plant (US$65mn, 15,000 t/yr) and an "
+    f"aluminium-rod line (US$55mn, 50,000 t/yr, output targeted entirely at export), all "
+    f"opening in the first quarter of 2028. That is about US$200mn, roughly EGP 11bn at the "
+    f"forecast rate, against a capital-expenditure path of EGP "
+    f"{capex[0]:,.0f} rising to {capex[-1]:,.0f} million a year and EGP "
+    f"{sum(capex):,.0f} million across the window. The spend is inside the path and the "
+    f"output is inside segment growth rates anchored on the company's own reviewed half, so "
+    f"adding a revenue line for them would COUNT THE SAME GROWTH TWICE. Nothing is added, "
+    f"and that is a finding rather than an omission.")
+say(f"  WHAT DID NOT SURVIVE TRACING. An 8-12% cash rebate on export FOB value for "
+    f"high-local-content exporters was reported as a live entitlement; the programme is "
+    f"real and dated, but NEITHER PASS COULD NAME THIS COMPANY AS A BENEFICIARY AND NEITHER "
+    f"COULD QUANTIFY A RATE FOR IT, and the two disagreed on the budget itself (EGP 45bn "
+    f"against EGP 48bn). Nothing enters. A margin of 5.3-5.4% was reported for the "
+    f"engineering segment in late 2025; the AUDITED FY2025 segment note gives "
+    f"{_SEG_GP['construct']:.2%}, and an audited figure is not displaced by a "
+    f"research summary. The two passes also disagreed on the cables backlog, one putting it "
+    f"at EGP 52.6bn in the first quarter and the other at 43.5bn at 30 June; the study "
+    f"reads the issuer's own releases and carries 43.5bn.")
+
 _CAPEX_RETIRED = [V['capex_pct'][i] * rev[i] for i in range(5)]
 nwc = [V['nwc_pct'] * r for r in rev]
 dnwc = [nwc[0] - nwc_fy25] + [nwc[i] - nwc[i - 1] for i in range(1, 5)]

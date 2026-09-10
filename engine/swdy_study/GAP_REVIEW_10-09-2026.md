@@ -1,9 +1,20 @@
 # SWDY — valuation-gap review, 10 September 2026  [R-GAP-01] [R-GAP-04] [R-STAR-01]
 
-AUDITED CENTRAL: 87.76
+AUDITED CENTRAL: 87.82
 
-The cash-flow lens reads **EGP 87.76** against a latest known price of **EGP 136.20**
-(6 September 2026), a gap of **−35.6%**.
+The cash-flow lens reads **EGP 87.82** against a latest known price of **EGP 136.20**
+(6 September 2026), a gap of **−35.5%**.
+
+**REVISED AGAIN, 10 September, after two external research passes.** They produced ONE
+correction and it is ours: this study divided equity value by 2,140,777,876 shares, the
+count in the audited FY2025 statements and the Q1-2026 interim. The extraordinary general
+assembly of 19 May 2026 cancelled the 1,422,160 incentive shares and took issued capital
+to 2,139,355,716 — four months before this strike, and both filings the study cited
+predate it. The study already used the corrected count in its own earnings-per-share
+reconciliation and in the FY2024 dividend check, so the two numbers sat in one file. Worth
++EGP 0.06 a share. **Nothing else in either pass moved the answer, and the gap does not
+close from that material** — what the passes established, and what they could not, is
+recorded in the study itself.
 
 **REVISED LATER THE SAME DAY.** This review first audited a central of 59.28 at a gap of
 −56.5%. The terminal discount rate was then rebuilt on two instructions from the
@@ -244,6 +255,9 @@ capital structure, which is where a company-specific risk premium belongs.
 | Terminal cost of capital | 17.85% | **15.34%** |
 | Central | 59.28 | **87.76** |
 | Bull | 96.99 | **133.78** |
+
+*(The central then moved once more the same day, to **87.82**, on the share-count
+correction above — a separate change from the discount-rate rebuild this table records.)*
 
 **What this does NOT do.** It does not move the answer toward the price and it is not
 licensed by the gap. The retired 5.5% was a real-rate assumption that could not survive
