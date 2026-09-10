@@ -130,8 +130,24 @@ The delivered valuation study, rebuilt to carry this run's results — or, on a 
   basis points are indistinguishable from a typing error until the record says which arithmetic
   produced them.
 
+- **[R-COC-03] Country risk is charged once and is never multiplied by beta.**
+  `Ke = rf* + beta x ERP_mature + lambda x CRP`, built through `engine/cost_of_capital.py`,
+  both halves derived from the registered total so no new number enters, lambda taken from an
+  audited geographic disclosure with a stated `crp_foreign` wherever it drops below 1.0. A
+  terminal struck this way declares `split_premium` and records its split.
+
+- **[R-MACRO-02] The terminal real growth is below the economy's, and the Fisher identity is exact.**
+  Read `terminal_growth()` off the market's own path; it refuses a real rate at or above
+  `real_gdp_lt`, and the gap is the share of the economy the company is assumed to cede — state
+  it. Every inversion uses `(1+g)/(1+pi)-1` exactly, or the two readers of one number disagree
+  by construction and agree only while real growth is zero. **This matters most here:** a run
+  strikes a terminal at every origin, so an inexact converter compounds across all of them.
+
 - **[R-GAP-01] If the central fair value lands more than 10% from the latest known market price in EITHER direction, the study is not finished.** (The rule was one-sided at adoption and became TWO-SIDED on 02-Sep-2026: a gate that can only fire in one direction teaches the work to drift in the other, and it does so while looking rigorous. And per the 03-Sep-2026 amendment, the price it is measured against is the LATEST KNOWN one — a study audited against a month-old quote is audited against its own past.) Write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study's own directory covering all eight headings — LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK — and clear `python3 scripts/check_valuation_gap.py`. The answer does not have to change; it has to be audited. Errors in a DCF are not symmetric — nearly all of them push value DOWN — so a large discount is where the defects are, and every gate above checks the PROCESS while none of them looks at the ANSWER. Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
 - **[R-GAP-04] A gap is not genuine, does not stand, and is not referred to me until an exhaustive, recorded hunt for OUR OWN ERROR has come back empty.** Referral is a last resort that must be earned and evidenced, and it carries the search: what was examined, WHAT EACH CANDIDATE IS WORTH IN CURRENCY PER SHARE, and what would falsify each. At minimum, each priced — the study's own arithmetic worked BACKWARDS from the price through `engine/reverse_read.py` [R-ENF-05]; every typed constant against the model's own derived equivalent; every source string against what the filings actually disclose (a study saying a disclosure does not exist while the issuer publishes it has a hole in its SWEEP); standalone against consolidated on every ratio; each lens against the model's own forecast of the quantity that lens consumes; the contested register tested for a lean INSIDE a category and not only across the file. **This does not weaken the absolute prohibition on moving a fair value toward the price** — closing the gap is the OUTCOME of finding a real defect, never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.
+- **[R-DCF-01] The valuation is assembled on ONE PAGE, and [R-SENS-01] the grid is centred on the adopted case.** Build both through `engine/dcf_table.py`. The table is READ from the run's own committed numbers, owns no arithmetic, and raises where the present values do not reproduce the published enterprise value and value per share. The grid's centre cell must EQUAL the central, and a list axis is sorted with the adopted value marked in its place. One valuation function only. Anything the document will print is committed at the moment it is computed.
+- **[R-STAR-01] A central below the traded price carries an air-tight written case; a central above it does not.** Clear `engine/northern_star.py`; `from_numbers(TICKER)` names the rung and what is missing. The burden rises with the gap and [R-GAP-04]'s hunt is where the case's material comes from. The fix is never to move the number toward the price.
+- **[R-NEWS-01] The sweep looks at what the company says it will do, and pins it to the listed issuer.** Mandatory announced-projects category on the Company ring, closed by a finding or a dated negative search; every forward-looking item names the legal entity and whether it is the listed issuer, and one that is not drives nothing. Never touches historicals.
 - **No rating, no price target, no buy/sell language.** A range and the reasoning behind it.
 
 ### Document 2 — the updated lessons-learnt document
