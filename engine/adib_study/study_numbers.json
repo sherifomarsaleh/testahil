@@ -16,33 +16,33 @@
   "fy_note": "financial year ends 31 December",
   "standard": "2026.09.07"
  },
- "central": 43.388157797595056,
+ "central": 44.460978528259474,
  "spot": 52.05,
  "fair": {
-  "bear": 42.095516615259555,
-  "base": 43.388157797595056,
-  "full": 44.917954899147084
+  "bear": 43.17228883751404,
+  "base": 44.460978528259474,
+  "full": 46.01051880646089
  },
- "gap_to_spot": -0.16641387516628126,
+ "gap_to_spot": -0.14580252587397735,
  "primary": "ddm",
  "lens_architecture": "One class primary IS the central; the others are cross-checks. bank -> ddm primary, with residual income, a relative multiple and book value beside it. No typed weights.",
  "lenses": {
-  "dividend_discount": 43.388157797595056,
-  "free_cash_flow_to_equity": 42.095516615259555,
-  "residual_income": 44.917954899147084,
+  "dividend_discount": 44.460978528259474,
+  "free_cash_flow_to_equity": 43.17228883751404,
+  "residual_income": 46.01051880646089,
   "relative_multiples": 60.820178311647034,
-  "book_value_and_sustainable_return": 46.611759557447215,
+  "book_value_and_sustainable_return": 47.47455335739948,
   "book_value_floor": 29.038621333333335,
-  "normalised_earnings_power": 34.000273022184004
+  "normalised_earnings_power": 34.589141986735704
  },
  "present_value_reads": {
-  "ddm": 43.388157797595056,
-  "fcfe": 42.095516615259555,
-  "residual_income": 44.917954899147084
+  "ddm": 44.460978528259474,
+  "fcfe": 43.17228883751404,
+  "residual_income": 46.01051880646089
  },
  "envelope": {
-  "bear": 42.095516615259555,
-  "full": 44.917954899147084,
+  "bear": 43.17228883751404,
+  "full": 46.01051880646089,
   "construction": "the range of the present-value reads on one clock"
  },
  "cost_of_capital": {
@@ -52,19 +52,28 @@
   "rf_staleness_note": "the house path's own 14-day rule flags this as stale; four live re-source routes were attempted on 2026-09-09 and all four failed. Declared, sensitised, and named as an open data request.",
   "sovereign_default_spread": 0.0342,
   "rf_star": 0.1958,
+  "sov_default_spread_house_path": 0.0341,
   "erp": 0.095164,
   "beta": 1.0746932506913658,
-  "ke": 0.2980721085087931,
-  "ke_rating_basis": 0.31517309835270024,
+  "ke": 0.2941892545648532,
+  "ke_rating_basis": 0.3083949069444809,
+  "erp_mature": 0.043179999999999996,
+  "crp": 0.051984,
+  "crp_effective": 0.051984,
+  "crp_terminal": 0.02682000000000001,
+  "crp_effective_terminal": 0.02682000000000001,
+  "lambda_country": 1.0,
+  "crp_foreign": 0.0,
+  "ke_construction": "split_premium",
   "ke_double_counted_retired": 0.33227210850879313,
-  "ke_terminal": 0.18022852754839563,
-  "ke_terminal_construction": "same_beta",
+  "ke_terminal": 0.1782252545648532,
+  "ke_terminal_construction": "split_premium",
   "ke_path": [
-   0.2784315116820602,
-   0.2587909148553273,
-   0.23915031802859438,
-   0.21950972120186146,
-   0.19986912437512855
+   0.27486192123151987,
+   0.2555345878981865,
+   0.23620725456485317,
+   0.21687992123151983,
+   0.19755258789818653
   ],
   "terminal_growth": 0.07,
   "terminal_rf": 0.10500000000000001,
@@ -382,63 +391,63 @@
  "sensitivity": [
   {
    "driver": "cost of risk +50bp",
-   "value": 38.501574429100714,
-   "change": -0.11262481784292766
+   "value": 39.464665107546324,
+   "change": -0.1123752464768063
   },
   {
    "driver": "cost of risk -50bp",
-   "value": 48.27474116608942,
-   "change": 0.1126248178429281
+   "value": 49.45729194897263,
+   "change": 0.11237524647680641
   },
   {
    "driver": "asset yield -50bp",
-   "value": 33.71012450660798,
-   "change": -0.22305702252063608
+   "value": 34.56903845058253,
+   "change": -0.22248588324230445
   },
   {
    "driver": "asset yield +50bp",
-   "value": 53.06619108858217,
-   "change": 0.2230570225206372
+   "value": 54.35291860593646,
+   "change": 0.22248588324230534
   },
   {
    "driver": "cost of funds +50bp",
-   "value": 35.11343933380112,
-   "change": -0.1907137542551437
+   "value": 36.00336976184571,
+   "change": -0.19022543017216975
   },
   {
    "driver": "cost of funds -50bp",
-   "value": 51.66287626138903,
-   "change": 0.19071375425514447
+   "value": 52.91858729467327,
+   "change": 0.19022543017217064
   },
   {
    "driver": "financing growth -5pp/yr",
-   "value": 37.847930415774215,
-   "change": -0.12768985048099757
+   "value": 38.700419073254764,
+   "change": -0.12956438759761635
   },
   {
    "driver": "financing growth +5pp/yr",
-   "value": 49.64434818140743,
-   "change": 0.14419119643192468
+   "value": 50.96906967796296,
+   "change": 0.1463775959309337
   },
   {
    "driver": "risk-free +200bp",
-   "value": 35.82971696335831,
-   "change": -0.17420515684248994
+   "value": 36.60439527886176,
+   "change": -0.17670738498038363
   },
   {
    "driver": "risk-free -200bp",
-   "value": 54.38763652860743,
-   "change": 0.2535133845120767
+   "value": 55.973546839813565,
+   "change": 0.25893645827512946
   },
   {
    "driver": "terminal growth +100bp",
-   "value": 44.89499122378532,
-   "change": 0.034729140453936935
+   "value": 46.07761368048308,
+   "change": 0.03636076410680156
   },
   {
    "driver": "terminal growth -100bp",
-   "value": 42.101139203116034,
-   "change": -0.02966290019693718
+   "value": 43.08608376097667,
+   "change": -0.0309236281520191
   }
  ],
  "walkforward": {
@@ -1323,19 +1332,28 @@
   "rf_staleness_note": "the house path's own 14-day rule flags this as stale; four live re-source routes were attempted on 2026-09-09 and all four failed. Declared, sensitised, and named as an open data request.",
   "sovereign_default_spread": 0.0342,
   "rf_star": 0.1958,
+  "sov_default_spread_house_path": 0.0341,
   "erp": 0.095164,
   "beta": 1.0746932506913658,
-  "ke": 0.2980721085087931,
-  "ke_rating_basis": 0.31517309835270024,
+  "ke": 0.2941892545648532,
+  "ke_rating_basis": 0.3083949069444809,
+  "erp_mature": 0.043179999999999996,
+  "crp": 0.051984,
+  "crp_effective": 0.051984,
+  "crp_terminal": 0.02682000000000001,
+  "crp_effective_terminal": 0.02682000000000001,
+  "lambda_country": 1.0,
+  "crp_foreign": 0.0,
+  "ke_construction": "split_premium",
   "ke_double_counted_retired": 0.33227210850879313,
-  "ke_terminal": 0.18022852754839563,
-  "ke_terminal_construction": "same_beta",
+  "ke_terminal": 0.1782252545648532,
+  "ke_terminal_construction": "split_premium",
   "ke_path": [
-   0.2784315116820602,
-   0.2587909148553273,
-   0.23915031802859438,
-   0.21950972120186146,
-   0.19986912437512855
+   0.27486192123151987,
+   0.2555345878981865,
+   0.23620725456485317,
+   0.21687992123151983,
+   0.19755258789818653
   ],
   "terminal_growth": 0.07,
   "terminal_rf": 0.10500000000000001,
@@ -1344,16 +1362,19 @@
   "market": "EG",
   "rf_observed": 0.23,
   "default_spread": 0.0342,
-  "erp_rating": 0.11107643811469532,
+  "erp_rating": 0.134806,
   "erp_basis": "market",
-  "ke_exp": 0.2980721085087931,
+  "beta_source": "own_stock_regression",
+  "beta_source_note": "engine/beta_regression.own_stock_beta(\"ADIB\", \"EG\", \"EGX\") \u2014 a weekly Dimson regression against the published EGX30 over 256 observations to 20-Aug-2026, attested by assert_beta_provenance(). Named from the closed list so that a measured regression cannot be mistaken for a priced fallback or a typed number.",
+  "ke_construction_note": "rf* + beta x the MATURE premium + the country premium charged FLAT and once. Every branch, deposit and financing of this bank is in Egypt, so lambda is 1.00 and the whole country premium is the Egyptian one. The terminal splits the same way and against the SAME mature leg: what normalises over a perpetuity is the country premium, not the mature one.",
+  "ke_exp": 0.2941892545648532,
   "rf_terminal": 0.10500000000000001,
   "erp_terminal": 0.07,
   "sensitivity": {
    "other_basis": "rating",
    "other_default_spread": 0.059702,
    "rf_star_other_basis": 0.170298,
-   "ke_other_basis": 0.31517309835270024
+   "ke_other_basis": 0.3083949069444809
   },
   "no_wacc_reason": "bank: equity flows are discounted at the cost of equity and there is no weighted average. Deposits are raw material, not financing, and their cost is inside the net interest margin.",
   "no_terminal_value_reason": "bank: deposits are raw material rather than financing, so there is no enterprise value and no invested capital to replace. The terminal is an equity-side one \u2014 a terminal cost of equity and a terminal growth rate, both published in the cost-of-capital record."

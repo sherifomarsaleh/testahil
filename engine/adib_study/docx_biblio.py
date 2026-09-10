@@ -25,6 +25,7 @@ def box(lines, **kw):
 
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json'), encoding='utf-8'))
+COC = D['cost_of_capital']   # every rate in this bibliography is read from here
 FETCH = json.load(open(os.path.join(HERE, '..', 'adib_walkforward',
                                     'fetch_attempts.json'), encoding='utf-8'))
 import panel as WFP  # noqa: E402
@@ -105,12 +106,19 @@ rows.append(['Equity is pinned at 10.5% of assets',
              'that makes the dividend what is left rather than what is chosen',
              'A disclosed regulatory capital target materially different from it, or a '
              'balance sheet run at a visibly lower ratio for two years.'])
-rows.append(['The cost of equity is 29.81%',
-             'a 23.00% ten-year yield less a 3.42% sovereign spread, plus a 1.0747 beta '
-             'times a 9.5164% total equity premium',
-             'A CURRENT ten-year yield. The one carried is 34 days old and the only recent '
-             'market evidence found is 171 basis points lower. At 21.29% the central is '
-             'EGP 43.74 rather than EGP 37.18.'])
+# EVERY FIGURE IN THIS ROW IS READ, NOT TYPED. It said 29.81% and explained it as a beta
+# times the TOTAL premium — the retired identity — and quoted a central two re-strikes old.
+# A typed figure in a delivered document is one nothing can check, and all three went stale
+# on the same morning [R-DCF-01].
+rows.append(['The cost of equity is %.2f%%' % (100 * COC['ke']),
+             'a %.2f%% ten-year yield less a %.2f%% sovereign spread, plus a %.4f beta '
+             'times the %.4f%% MATURE premium, plus the %.4f%% country premium charged '
+             'flat and once — beta multiplies the mature leg and nothing else [R-COC-03]'
+             % (100 * COC['rf'], 100 * COC['sovereign_default_spread'],
+                COC['beta'], 100 * COC['erp_mature'], 100 * COC['crp_effective']),
+             'A CURRENT ten-year yield. The one carried is %d days old and the only recent '
+             'market evidence found is 171 basis points lower.'
+             % COC['rf_staleness_days']])
 rows.append(['Terminal growth is 7.00%',
              'equal to terminal inflation — zero real growth in perpetuity',
              'Nothing in the evidence; it is deliberately the conservative end. A bank in '
@@ -169,9 +177,11 @@ rows.append(['The FY2025 filing prints total assets of EGP 260,457,106 thousand 
              'FY2024 in one place and the FY2024 filing prints EGP 260,467,106.',
              'The equity block\'s own arithmetic settles it at 260,467,106: liabilities of '
              '237,480,399 plus equity of 22,986,707 reproduce it exactly.'])
-rows.append(['The sovereign default spread is 3.42% in the cost-of-capital record used by '
-             'the other Egyptian studies and 3.41% in the house macro path, from the same '
-             'source file.',
+rows.append(['The sovereign default spread is %.2f%% in the cost-of-capital record used by '
+             'the other Egyptian studies and %.2f%% in the house macro path, from the same '
+             'source file.'
+             % (100 * COC['sovereign_default_spread'],
+                100 * COC['sov_default_spread_house_path']),
              'A rounding artefact of one basis point. The 3.42% figure is used so that this '
              'study\'s cost of equity is built from the same pair of numbers as every '
              'other Egyptian study in the book, and the difference is recorded here.'])

@@ -137,10 +137,14 @@ checks = [
      g('DCF', f"C{DF_['wacca']}"), DCFA['wacc'], 0.00005),
     ('Cost of capital on the composite-index beta — terminal',
      g('DCF', f"C{DF_['wactermsa']}"), DCFA['wacc_term'], 0.00005),
+    # READ, NOT REBUILT. These two lines composed the expected rate here — rf_star + beta x
+    # the TOTAL premium — so this check compared the workbook against its own arithmetic
+    # instead of against the study, and agreed with it while both were wrong. compute.py now
+    # commits both bounds and they are read.
     ('Cost of equity at the lower 90% confidence bound', g('DCF', f"C{DF_['kecilo']}"),
-     WACC['rf_star'] + V_['beta_ci_lo'] * WACC['erp'], 0.00005),
+     WACC['ke_ci_lo'], 0.00005),
     ('Cost of equity at the upper 90% confidence bound', g('DCF', f"C{DF_['kecihi']}"),
-     WACC['rf_star'] + V_['beta_ci_hi'] * WACC['erp'], 0.00005),
+     WACC['ke_ci_hi'], 0.00005),
     # the sanctioned beta routine returns a Blume shrink as its cross-check rather than a
     # lead-lag sum, so this reconciliation follows the figure the model actually publishes
     ('Cost of equity on the beta shrunk toward the market',

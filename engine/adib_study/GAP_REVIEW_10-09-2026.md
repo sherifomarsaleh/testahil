@@ -1,10 +1,10 @@
 # ADIB-Egypt (EGX: ADIB) — GAP REVIEW, 10-09-2026
 
-**AUDITED CENTRAL: 43.3882**
-**AUDITED GAP: -16.6%**
+**AUDITED CENTRAL: 44.4610**
+**AUDITED GAP: -14.6%**
 
-Central fair value EGP 43.39 against the latest known price of **EGP 52.05**, the close on
-3 September 2026 held in `engine/prices/SUPPLIED_03-09-2026.json`. That is 16.6% below the
+Central fair value EGP 44.46 against the latest known price of **EGP 52.05**, the close on
+3 September 2026 held in `engine/prices/SUPPLIED_03-09-2026.json`. That is 14.6% below the
 market and it triggers [R-GAP-01].
 
 **A NOTE ON WHICH PRICE.** The published site carries EGP 54.40 at the 23 August close,
@@ -24,9 +24,13 @@ shared price resolver once measured this bank's EGP 37.18 against the Emirati pa
 |---|---:|
 | gap the 09-September review audited | **−28.6%** |
 | the TERMINAL RISK-FREE RATE, 12.50% → 10.50% | |
-| this edition | **−16.6%** |
+| this edition | **−14.6%** |
 
-Central EGP 37.18 → **43.39**. Nothing else moved: the forecast, the lens architecture, the
+Central EGP 43.39 → **44.46**. The cost of equity came off the retired total-premium
+identity and onto the split [R-COC-03]: 29.81% to 29.42%, and the terminal 18.02% to
+17.82%. This beta is 1.0747, above one, so the retired identity was OVER-charging Egypt's
+country risk by (beta - 1) x CRP and the correction lowers the rate. Nothing else moved:
+the forecast, the lens architecture, the
 dividend path and the capital rule are as they were on 9 September.
 
 **THE GAP NARROWED AND THAT IS NOT WHY THE CORRECTION WAS MADE.** A house macro rate this
@@ -144,13 +148,13 @@ band is wide because the record is wide.
 | relative multiples | 60.82 | +16.8% |
 | book value and sustainable return | 46.61 | −10.5% |
 | residual income | 44.92 | −13.7% |
-| **dividend discount — THE CENTRAL** | **43.39** | **−16.6%** |
+| **dividend discount — THE CENTRAL** | **44.46** | **−14.6%** |
 | free cash flow to equity | 42.10 | −19.1% |
 | normalised earnings power | 34.00 | −34.7% |
 | book value floor | 29.04 | −44.2% |
 
 **THE THREE EQUITY-FLOW LENSES AGREE WITH EACH OTHER TO WITHIN EGP 2.82 A SHARE** — dividend
-discount 43.39, residual income 44.92, free cash flow to equity 42.10. They are three
+discount 44.46, residual income 46.01, free cash flow to equity 43.17. They are three
 different ways of asking the same question and they land in the same place, which is the
 strongest internal evidence in this study.
 

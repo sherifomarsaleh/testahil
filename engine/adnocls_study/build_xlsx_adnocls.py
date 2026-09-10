@@ -1045,7 +1045,15 @@ block('Cost of capital', [
      'bear-case beta)', V['beta_ci_hi'], BETA),
     ('beta_blume', 'Beta — the measured slope shrunk toward the market: two-thirds of it '
      'plus one-third of 1.0', V['beta_blume'], BETA),
-    ('erp', 'Equity risk premium (mature premium plus country risk)', V['erp_total'], PCT2),
+    ('erp', 'Equity risk premium, TOTAL (the two legs below add to it)', V['erp_total'], PCT2),
+    # [R-COC-03] FOUR LIVE FORMULAS ON THE DCF SHEET READ rf* + beta x the WHOLE premium,
+    # which multiplies the UAE's country risk by beta. The model split and the cells did
+    # not, so the workbook's SOTP bridge came out 103 million dirhams light. The legs are
+    # read from the committed record; the cells recompute the rate from them.
+    ('erpm', '   of which the MATURE premium — beta applies to this leg only',
+     COC['erp_mature'], PCT2),
+    ('crp', 'Country premium — charged FLAT, once, never multiplied by beta',
+     COC['crp_effective'], PCT2),
     ('rf_term', 'Terminal risk-free rate', V['rf_terminal'], PCT2),
     ('tax_stat', 'Statutory corporate tax rate', TAXS, PCT)])
 block('Cost of debt — the evidence behind the three constructions', [
@@ -2596,7 +2604,7 @@ _coc = [(DF_['rfobs'], 'Observed government bond yield (dirham tranche, January 
          f"={a('beta')}", V['beta'], BETA, True),
         (DF_['erp'], 'Equity risk premium', f"={a('erp')}", V['erp_total'], PCT2, True),
         (DF_['ke'], 'Cost of equity',
-         f"=C{DF_['rfstar']}+C{DF_['beta']}*C{DF_['erp']}", KE, PCT2, False)]
+         f"=C{DF_['rfstar']}+C{DF_['beta']}*{a('erpm')}+{a('crp')}", KE, PCT2, False)]
 for rw, lab, fml, xp, fmt, gr in _coc:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, bold=(rw == DF_['ke']), green=gr)
@@ -2693,7 +2701,7 @@ _w = [(DF_['mktcap'], 'Market capitalisation (USD 000)',
       (DF_['rfterm'], 'Terminal risk-free rate', f"={a('rf_term')}", V['rf_terminal'], PCT2,
        True),
       (DF_['keterm'], 'Terminal cost of equity',
-       f"=C{DF_['rfterm']}+C{DF_['beta']}*C{DF_['erp']}", KE_T, PCT2, False),
+       f"=C{DF_['rfterm']}+C{DF_['beta']}*{a('erpm')}+{a('crp')}", KE_T, PCT2, False),
       (DF_['kdterm'], 'Terminal cost of debt — the same spread over the terminal rate',
        f"=C{DF_['rfterm']}+(C{DF_['kd']}-C{DF_['rfstar']})", KD_T, PCT2, False),
       (DF_['kdtermat'], 'Terminal cost of debt after tax',
@@ -2722,9 +2730,9 @@ for rw, lab, fml, xp, fmt, gr in [
          'the disclosed alternative construction', f"={a('beta_a')}", V['beta_composite'],
          BETA, True),
         (DF_['kea'], 'Cost of equity on the composite-index beta',
-         f"=C{DF_['rfstar']}+C{DF_['betaa']}*C{DF_['erp']}", KE_A, PCT2, False),
+         f"=C{DF_['rfstar']}+C{DF_['betaa']}*{a('erpm')}+{a('crp')}", KE_A, PCT2, False),
         (DF_['keta'], 'Terminal cost of equity on the composite-index beta',
-         f"=C{DF_['rfterm']}+C{DF_['betaa']}*C{DF_['erp']}", KE_T_A, PCT2, False),
+         f"=C{DF_['rfterm']}+C{DF_['betaa']}*{a('erpm')}+{a('crp')}", KE_T_A, PCT2, False),
         (DF_['wacca'], 'Cost of capital — explicit window, composite-index beta. Only the '
          'cost of EQUITY changes: the same three tranches of capital are carried, because '
          'how the market is measured does not change what the company is financed with',
@@ -2744,16 +2752,16 @@ for rw, lab, fml, xp, fmt, gr in [
         (DF_['cihi'], 'Beta — upper bound of the 90% confidence interval on the primary '
          'regression', f"={a('beta_ci_hi')}", V['beta_ci_hi'], BETA, True),
         (DF_['kecilo'], 'Cost of equity at the lower confidence bound — the bull-case '
-         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cilo']}*C{DF_['erp']}", KE_CI_LO,
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cilo']}*{a('erpm')}+{a('crp')}", KE_CI_LO,
          PCT2, False),
         (DF_['kecihi'], 'Cost of equity at the upper confidence bound — the bear-case '
-         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*C{DF_['erp']}", KE_CI_HI,
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*{a('erpm')}+{a('crp')}", KE_CI_HI,
          PCT2, False),
         (DF_['blume'], 'Beta — the measured slope shrunk toward the market, two-thirds of '
          'it plus one-third of 1.0',
          f"={a('beta_blume')}", V['beta_blume'], BETA, True),
         (DF_['keblume'], 'Cost of equity on the slope shrunk toward the market',
-         f"=C{DF_['rfstar']}+C{DF_['blume']}*C{DF_['erp']}", KE_BLUME, PCT2, False)]:
+         f"=C{DF_['rfstar']}+C{DF_['blume']}*{a('erpm')}+{a('crp')}", KE_BLUME, PCT2, False)]:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, green=gr)
 hdr(ws, DF_['ahdr'],

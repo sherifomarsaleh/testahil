@@ -433,11 +433,48 @@ def other_tranches(rec):
     return out, bad
 
 
+#: grounds on which a record legitimately carries NO weights, because there is no
+#: weighted rate to build. CLOSED, and the same list and the same "<ground>: <why>"
+#: shape as NO_WACC_GROUNDS in scripts/check_cost_of_capital.py — one fact, one place
+#: to change it. An open list would let any study opt out of the weights clause by
+#: inventing a reason [R-ENF-03].
+NO_WEIGHTS_GROUNDS = {
+    "bank": ("deposits are raw material rather than financing; their cost is inside the "
+             "net interest margin and equity flows are discounted at the cost of equity"),
+}
+
+
+def _no_weights_ground(rec):
+    """(exempt, failure) — never exempt on the declared word alone."""
+    ground = rec.get("no_wacc_reason")
+    if not ground:
+        return False, None
+    key = str(ground).split(":", 1)[0].strip().lower()
+    if key not in NO_WEIGHTS_GROUNDS:
+        return False, ("no_wacc_reason names %r, which is not on the closed list %s"
+                       % (key, sorted(NO_WEIGHTS_GROUNDS)))
+    # THE CLAIM IS THAT THERE IS NO WEIGHTED RATE. A weighted rate says otherwise.
+    for f in ("wacc_exp", "wacc_terminal", "weight_debt", "weight_equity"):
+        if rec.get(f) is not None:
+            return False, ("claims the %r ground and still carries %s. The ground says "
+                           "there is nothing to weight" % (key, f))
+    return True, None
+
+
 def check_weights(rec):
     """Failures in the weights and the WACC they are supposed to build."""
     fails = []
     we, wd = rec.get("weight_equity"), rec.get("weight_debt")
     if not isinstance(we, (int, float)) or not isinstance(wd, (int, float)):
+        # RE-POINTED, NOT WIDENED [R-COC-01]. The population for this clause is every
+        # record that HAS a weighted rate, not every record. A deposit-funded bank has
+        # no market-value capital structure to weight — reporting it as "carries no
+        # weights" says the check could not find something that is not there.
+        exempt, why = _no_weights_ground(rec)
+        if exempt:
+            return []
+        if why:
+            return [why]
         return ["record carries no market-value weights"]
 
     extra, bad = other_tranches(rec)

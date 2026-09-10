@@ -21,7 +21,17 @@ sys.path.insert(0, HERE)
 import openpyxl
 import xlcalc
 
-XLSX = os.path.join(HERE, 'ADIB_Valuation_Model_09092026.xlsx')
+# THE RECALCULATOR OPENS THE WORKBOOK THIS STUDY DELIVERS, NOT A NAME TYPED HERE.
+# It named ADIB_Valuation_Model_09092026.xlsx — the 9-SEPTEMBER edition — and went on
+# naming it while the builder wrote the 10-September one beside it. So the one check whose
+# whole job is to prove the delivered workbook reproduces the model was reconciling
+# YESTERDAY'S workbook and reporting its agreement as this edition's. It passed today while
+# the delivered model published a cost of equity 52bp adrift of the study. That is [L-066]
+# exactly, and it is the reason edition.py exists: the edition is written once and every
+# artefact name derives from it. The same defect, in the same line, was found in SWDY's
+# recalculator on 09-09-2026 — one fact, two files [R-ENF-03].
+import edition as _ed
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json'), encoding='utf-8'))
 P5, LN = D['projection'], D['lenses']

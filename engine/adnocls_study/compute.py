@@ -1896,6 +1896,14 @@ wacc_blk = dict(
     beta=V['beta'], beta_se=V['beta_se'], beta_r2=V['beta_r2'], beta_blume=V['beta_blume'],
     erp=V['erp_total'], crp=V['crp'], erp_mature=V['erp_mature'],
     ke=ke, ke_blume=ke_blume, ke_beta1=ke_beta1,
+    # THE CONFIDENCE BOUNDS ARE COMMITTED, NOT LEFT FOR A READER TO REBUILD. They were
+    # published in the workbook and nowhere in the numbers, so the recalculator composed its
+    # own expected value from rf_star + beta x the TOTAL premium — checking the workbook
+    # against arithmetic it invented rather than against this study, and passing while both
+    # were on the retired identity. When the model split, the invented figure did not, and
+    # the reconciliation failed on the checker's arithmetic rather than on the workbook.
+    # A figure a check derives for itself is a figure nothing verifies [R-DCF-01].
+    ke_ci_lo=ke_ci_lo, ke_ci_hi=ke_ci_hi,
     kd_method1=kd_m1, kd_method2=kd_m2, kd_method3=kd_m3, kd=kd,
     wacc_ex_hybrid=((mktcap / (mktcap + debt_now)) * ke
                     + (debt_now / (mktcap + debt_now)) * kd * (1 - tax_stat)),
@@ -3711,7 +3719,14 @@ OUT = dict(
         # built under. This study carries the beta straight through to the terminal; two
         # studies in the book relever instead, and until this field existed nothing
         # distinguished a relevered beta from a typo.
-        ke_terminal_construction='same_beta',
+        # THE TERMINAL SPLITS TOO, AND THE NAME HAD TO MOVE WITH IT. This said 'same_beta',
+        # which reproduces as rf_t + beta x the TOTAL premium — true while the terminal ran
+        # the retired identity and false the moment it split. The beta still does not
+        # relever and does not revert; what changed is that the premium it multiplies is the
+        # mature leg. 'split_premium' is that construction under its own name, and the gate
+        # caught the mismatch to 6.59bp within the hour [R-COC-02].
+        ke_terminal_construction='split_premium',
+        crp_terminal=_CRP, crp_effective_terminal=_CRP,
         kd_terminal_pretax=kd_term, kd_terminal_aftertax=kd_term * (1 - tax_stat),
         weight_debt_terminal=wd, wacc_terminal=wacc_term,
         other_tranches_terminal=[dict(

@@ -54,9 +54,26 @@ def main():
                               'four failed. Declared, sensitised, and named as an open data '
                               'request.',
             sovereign_default_spread=C.SOV_SPREAD, rf_star=C.RF - C.SOV_SPREAD,
+            # THE BIBLIOGRAPHY COMPARES THIS STUDY'S SPREAD WITH THE HOUSE PATH'S, AND THE
+            # SECOND FIGURE WAS TYPED. A number a document prints and the study does not
+            # commit is a number the prose check cannot match and nothing can verify — so
+            # the comparison went red the moment the checker looked at it, on a sentence
+            # that was true. Read from engine/macro_paths/EG.json at build time.
+            sov_default_spread_house_path=C.EG_PATH_SPREAD,
             erp=C.ERP, beta=C.BETA, ke=C.KE0, ke_rating_basis=C.KE_RATING,
+            # [R-ENF-03] ONE FACT, TWO NAMES — AND THE SECOND ONE WENT STALE. This study
+            # publishes its cost of capital twice: here, and again in
+            # cost_of_capital_record. The split premium was added to the record and not to
+            # this block, and the workbook reads THIS one — so its three lens values and
+            # their Summary copies all recomputed the old rate while the study published the
+            # new one. The negative control found the same duplication in the terminal an
+            # hour earlier. Both blocks now carry the legs, from the same variables, so they
+            # cannot disagree about what the rate is made of.
+            erp_mature=C.ERP_MATURE, crp=C.CRP, crp_effective=C.CRP,
+            crp_terminal=C.CRP_TERM, crp_effective_terminal=C.CRP_TERM,
+            lambda_country=1.0, crp_foreign=0.0, ke_construction='split_premium',
             ke_double_counted_retired=C.KE_DOUBLE,
-            ke_terminal=C.KE_TERM, ke_terminal_construction='same_beta',
+            ke_terminal=C.KE_TERM, ke_terminal_construction='split_premium',
             ke_path=list(C.KE_PATH),
             terminal_growth=C.G_TERM, terminal_rf=C.RF_TERM,
             terminal_inflation=C.EG.terminal_inflation,
@@ -117,11 +134,33 @@ def main():
         default_spread=_cc['sovereign_default_spread'],
         rf_star=_cc['rf_star'],
         erp=_cc['erp'],
-        # the rating-basis premium, DERIVED from the rating-basis Ke this record
-        # already carries rather than registered a second time
-        erp_rating=(_cc['ke_rating_basis'] - _cc['rf_star']) / _cc['beta'],
+        # THE RATING-BASIS PREMIUM IS READ, NOT SOLVED OUT OF THE RATE. This line used to
+        # invert the cost of equity — (ke_rating - rf_star) / beta — which worked only while
+        # the identity was rf* + beta x the whole premium, and quietly used the CDS-netted
+        # rf* against a rating-basis Ke besides. Under the split it would have back-solved a
+        # premium that is not the premium, so it now reads the registered figure. Solving an
+        # input out of the answer it explains is the reverse-engineered construction this
+        # house prohibits, and it survived here because the arithmetic happened to close.
+        erp_rating=C.ERP_R,
         erp_basis='market',
         beta=_cc['beta'],
+        beta_source='own_stock_regression',
+        beta_source_note=(
+            'engine/beta_regression.own_stock_beta("ADIB", "EG", "EGX") — a weekly Dimson '
+            'regression against the published EGX30 over 256 observations to 20-Aug-2026, '
+            'attested by assert_beta_provenance(). Named from the closed list so that a '
+            'measured regression cannot be mistaken for a priced fallback or a typed number.'),
+        # [R-COC-03] the split, published leg by leg
+        erp_mature=C.ERP_MATURE, crp=C.CRP, crp_effective=C.CRP,
+        crp_terminal=C.CRP_TERM, crp_effective_terminal=C.CRP_TERM,
+        lambda_country=1.0, crp_foreign=0.0,
+        ke_construction='split_premium',
+        ke_construction_note=(
+            'rf* + beta x the MATURE premium + the country premium charged FLAT and once. '
+            'Every branch, deposit and financing of this bank is in Egypt, so lambda is '
+            '1.00 and the whole country premium is the Egyptian one. The terminal splits '
+            'the same way and against the SAME mature leg: what normalises over a '
+            'perpetuity is the country premium, not the mature one.'),
         ke_exp=_cc['ke'],
         rf_terminal=_cc['terminal_rf'],
         erp_terminal=_cc['terminal_erp'],

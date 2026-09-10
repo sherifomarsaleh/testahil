@@ -175,16 +175,31 @@ for key, lab, val, src in [
     ('rfterm', 'Terminal risk-free rate', CC['terminal_rf'], REG['rf_terminal']['source']),
     ('erpterm', 'Terminal equity risk premium', CC['terminal_erp'],
      REG['erp_terminal']['source']),
+    # [R-COC-03] THE SPLIT'S LEGS ARE INPUTS AND A READER MUST SEE THEM. The two formulas
+    # below read rf* + beta x the WHOLE premium, which multiplies Egypt's country risk by
+    # beta; the model moved onto the split and the workbook did not, so its three lens
+    # values and their Summary copies all published the old rate. Read from the committed
+    # record, never retyped.
+    ('erpm', '   of which the MATURE premium — beta applies to this leg only',
+     CC['erp_mature'], 'Damodaran identity: total premium less the country leg'),
+    ('crp', 'Egypt country premium — charged FLAT, once, never multiplied by beta',
+     CC['crp_effective'], 'sovereign default spread x the equity-to-bond scaling'),
+    ('crpt', 'Terminal country premium — charged FLAT and once',
+     CC['crp_effective_terminal'],
+     'terminal total premium less the SAME mature leg: what normalises is country risk'),
     ('g', 'Terminal growth', CC['terminal_growth'], REG['terminal_growth']['source'])]:
     put(ws, r, 1, lab, LBL)
     put(ws, r, 2, val, IN, INF, N2 if key == 'beta' else PCT2)
     put(ws, r, 7, src, NOTE); ASS[key] = r; r += 1
 r += 1
-put(ws, r, 1, 'Cost of equity  (= rf − sovereign spread + beta × premium)', LBL)
-put(ws, r, 2, '=B%d-B%d+B%d*B%d' % (ASS['rf'], ASS['sov'], ASS['beta'], ASS['erp']), fmt=PCT2)
+put(ws, r, 1, 'Cost of equity  (= rf − sovereign spread + beta × MATURE premium '
+     '+ country premium, flat)', LBL)
+put(ws, r, 2, '=B%d-B%d+B%d*B%d+B%d' % (ASS['rf'], ASS['sov'], ASS['beta'],
+                                        ASS['erpm'], ASS['crp']), fmt=PCT2)
 ASS['ke0'] = r; r += 1
 put(ws, r, 1, 'Terminal cost of equity', LBL)
-put(ws, r, 2, '=B%d+B%d*B%d' % (ASS['rfterm'], ASS['beta'], ASS['erpterm']), fmt=PCT2)
+put(ws, r, 2, '=B%d+B%d*B%d+B%d' % (ASS['rfterm'], ASS['beta'], ASS['erpm'],
+                                    ASS['crpt']), fmt=PCT2)
 ASS['keterm'] = r; r += 1
 put(ws, r, 1, 'Cost of equity by year (glide)', LBL)
 for j in range(5):

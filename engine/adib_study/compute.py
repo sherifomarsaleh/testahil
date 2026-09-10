@@ -32,6 +32,7 @@ ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, ENGINE)
 sys.path.insert(0, os.path.join(ENGINE, 'adib_walkforward'))
 
+import cost_of_capital as _coc
 import macro_path                                    # noqa: E402
 from beta_regression import own_stock_beta           # noqa: E402
 import panel as WF                                   # noqa: E402
@@ -304,11 +305,29 @@ G_TERM = reg('terminal_growth', EG.terminal_inflation,
              'terminal risk-free rate and equals the inflation inside it, so the terminal '
              'cannot grow faster than the money it is discounted in.', EG.as_of, 'House')
 
+# the house path's own market spread, for the bibliography's comparison of the two
+EG_PATH_SPREAD = EG.raw['sovereign']['default_spread_market'] \
+    if hasattr(EG, 'raw') else json.load(
+        open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                          'macro_paths', 'EG.json')))['sovereign']['default_spread_market']
 rf_star = RF - SOV_SPREAD
-KE0 = rf_star + BETA * ERP
-KE_RATING = (RF - SOV_SPREAD_R) + BETA * ERP_R
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. Every line below read
+# rf* + beta x the WHOLE premium, which multiplies Egypt's country risk by beta. This beta
+# is 1.0747, so the retired identity was OVER-charging by (beta - 1) x CRP. Every branch,
+# every deposit and every financing of this bank is in Egypt, so lambda is 1.00 and the
+# whole country premium is the Egyptian one.
+CRP, ERP_MATURE = _coc.split_erp(ERP, SOV_SPREAD)
+CRP_R, ERP_MATURE_R = _coc.split_erp(ERP_R, SOV_SPREAD_R)
+# THE TERMINAL PREMIUM IS A TOTAL TOO, and it splits the way the house builder splits it:
+# the MATURE component does not normalise away -- what normalises is the country premium --
+# so the terminal country leg is the terminal total less the SAME mature premium the
+# explicit window carries. This is cost_of_capital.py's own construction, read off it
+# rather than composed again here.
+CRP_TERM = max(ERP_TERM - ERP_MATURE, 0.0)
+KE0 = rf_star + BETA * ERP_MATURE + CRP
+KE_RATING = (RF - SOV_SPREAD_R) + BETA * ERP_MATURE_R + CRP_R
 KE_DOUBLE = RF + BETA * ERP                      # the retired construction, for contrast
-KE_TERM = RF_TERM + BETA * ERP_TERM
+KE_TERM = RF_TERM + BETA * ERP_MATURE + CRP_TERM
 KE_PATH = [KE0 + (KE_TERM - KE0) * (i + 1) / (len(YEARS) + 1) for i in range(len(YEARS))]
 
 reg('ke_construction', 'same_beta',
