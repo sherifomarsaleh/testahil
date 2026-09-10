@@ -604,21 +604,46 @@ P('The terminal rates are house views, and are labelled as such rather than pres
   'long-run corporate borrowing range. Neither is reverse-engineered from a target price.')
 
 H2('The beta, and why it is not the regression\'s answer')
-P('A five-year weekly regression of the shares against an equal-weight Egyptian composite '
-  f'returns a beta of {n2(BETA["beta"])} with an R-squared of {BETA["r2"]:.3f} over '
-  f'{BETA["n"]} observations and a standard error of {BETA["se"]:.3f}. That R-squared is '
-  'below the 5% floor this house requires, so the regression is not usable and its answer '
-  'is not used. No Egyptian listed cement peer carries a price history in the covered '
-  'library, so a re-levered peer beta is unavailable too.')
-P(f'A beta of 1.00 is therefore adopted, and it is corroborated rather than assumed. The '
-  f'shares trade with an unchanged closing price on 29.3% of sessions — three and a half '
-  f'times the Egyptian median and the second thinnest of 33 covered names — which biases '
-  f'any contemporaneous regression downward by construction. Correcting for that with a '
-  f'lead-and-lag estimator lifts the beta to {n2(BETA["dimson"]["sum_beta"])}, with a 90% '
-  f'interval of {n2(BETA["dimson"]["ci90"][0])} to {n2(BETA["dimson"]["ci90"][1])} that '
-  f'comfortably contains 1.00. A capital-intensive materials producer would normally sit '
-  f'between 1.0 and 1.5; this one sits at the bottom of that band because it carries no '
-  f'financial leverage at all.')
+# THIS PASSAGE DESCRIBED A REGRESSOR THAT HAS BEEN WITHDRAWN [rewritten 10-09-2026].
+# It said the beta came from "an equal-weight Egyptian composite" and quoted that
+# regression's figures, and it went on saying so after the beta had been re-derived
+# against the published index of the exchange the shares are listed on. SIGCM clause 6
+# calls a constituent composite a hard fail rather than a fallback, so the document was
+# describing, to a reader, a construction this house forbids. It also treated the
+# lead-and-lag correction as a separate step applied afterwards, when the estimator is
+# applied inside own_stock_beta() and its result IS the headline number -- and it read
+# BETA["dimson"]["sum_beta"], a shape the record has not carried since, so this builder
+# raised TypeError and the study could not be rebuilt at all. Every figure below is read
+# from beta_result.json.
+_WD = BETA['withdrawn_composite']
+P(f'The shares are regressed against {BETA["index_file"]} — the published index of the '
+  f'exchange they are listed on, read to {BETA["index_asof"]} — on {BETA["frequency"]} '
+  f'returns struck on that exchange\'s real trading week ({BETA["week_rule"]}), over '
+  f'{BETA["window_years"]} years from {BETA["first_obs"]} to {BETA["last_obs"]}. The '
+  f'estimator carries a lead and a lag alongside the contemporaneous term, because a '
+  f'thinly traded share responds to the market late and a same-week-only regression '
+  f'reads that delay as low sensitivity; the beta below is the SUM of the three and not '
+  f'a contemporaneous coefficient with a correction bolted on afterwards.')
+P(f'It returns {n2(BETA["beta"])} with an R-squared of {BETA["r2"]:.3f} over '
+  f'{BETA["n"]} observations and a standard error of {BETA["se"]:.3f}. '
+  f'THE REGRESSION IS NOT USABLE and its answer is not used: {BETA["gate_msg"]}. '
+  f'A same-country peer beta cannot be assembled either — the only other Egyptian cement '
+  f'issuer this house holds a price history for is ARCC, and its own conforming '
+  f'regression fails the same test, so a peer beta would be the same unusable number '
+  f'wearing another company\'s name.')
+P(f'A beta of 1.00 is therefore adopted, and it is corroborated rather than assumed. It '
+  f'sits inside the regression\'s own 90% interval of {n2(BETA["ci90"][0])} to '
+  f'{n2(BETA["ci90"][1])}. The Blume adjustment toward the market — the standard '
+  f'correction for the tendency of estimated betas to revert to one — carries the point '
+  f'estimate to {n2(BETA["blume_crosscheck"])} from the same direction. And a '
+  f'capital-intensive materials producer would normally sit between 1.0 and 1.5; this '
+  f'one sits at the bottom of that band because it carries no financial leverage at all. '
+  f'The point estimate of {n2(BETA["beta"])} is published beside the adopted figure and '
+  f'is not used.')
+P(f'A PREVIOUS EDITION REGRESSED AGAINST SOMETHING ELSE, and it is named here rather '
+  f'than quietly replaced. It used a {_WD["regressor"]}, which returned '
+  f'{n2(_WD["beta"])} on an R-squared of {_WD["r2"]:.3f} — {n2(abs(BETA["beta"] - _WD["beta"]))} '
+  f'below the conforming answer. {_WD["why_withdrawn"]}')
 rows = [['Beta', '0.60', '0.80', '1.00 (adopted)', '1.15', '1.30']]
 rows.append(['Fair value per share (EGP)'] + [n2(v) for v in SN['beta']])
 table(rows, [2.30, 0.88, 0.88, 1.15, 0.88, 0.88])

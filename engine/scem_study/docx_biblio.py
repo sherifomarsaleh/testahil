@@ -217,6 +217,7 @@ doc.add_page_break()
 H1('3  Figures that are DERIVED rather than sourced')
 P('These do not appear in any source. They are computed, and the method is given so a '
   'reader can reproduce or reject each one.', size=9.5)
+_B = json.load(open("beta_result.json"))
 DER = [
  ('Share count — 260,812,477',
   'Triangulated three ways and cross-checked: issued capital of EGP 2,608,124,770 at EGP 10 '
@@ -250,17 +251,25 @@ DER = [
   f'{D["inputs"]["repl_usd_t"]["value"]:.0f} per annual tonne — rather than on book '
   f'invested capital, which implies a {D["terminal_reconciliation"]["roic_book"]*100:.0f}% '
   'return because the plant is carried at 1997 cost through a five-fold devaluation.'),
+ # THE SAME STALE PASSAGE AS THE STUDY'S, and it broke this builder outright
+ # [rewritten 10-09-2026]. It named the withdrawn composite regressor, and it read
+ # ["dimson"]["sum_beta"] -- a shape beta_result.json has not carried since the beta
+ # was re-derived, so this file raised TypeError and the bibliography could not be
+ # rebuilt. The lead-and-lag terms are inside the headline beta, not applied to it.
  ('Beta — 1.00 adopted',
-  f'A five-year weekly regression of the shares against a 32-name equal-weight Egyptian '
-  f'composite returns {json.load(open("beta_result.json"))["beta"]:.3f} with an R-squared '
-  f'of {json.load(open("beta_result.json"))["r2"]:.3f} over '
-  f'{json.load(open("beta_result.json"))["n"]} observations. That R-squared is below the 5% '
-  f'usability floor, so the regression result is NOT used. No Egyptian listed cement peer '
-  f'carries a price history in the covered library, so a re-levered peer beta is '
-  f'unavailable. 1.00 is adopted and corroborated: a lead-and-lag estimator correcting for '
-  f'the 29.3% of sessions that close unchanged gives '
-  f'{json.load(open("beta_result.json"))["dimson"]["sum_beta"]:.3f}, whose 90% interval '
-  f'contains 1.00.'),
+  f'The shares are regressed against {_B["index_file"]}, the published index of the '
+  f'exchange they are listed on, on weekly returns over {_B["window_years"]} years to '
+  f'{_B["last_obs"]}, with a lead and a lag beside the contemporaneous term so that a '
+  f'thinly traded share is not read as insensitive. It returns {_B["beta"]:.3f} with an '
+  f'R-squared of {_B["r2"]:.3f} over {_B["n"]} observations. That R-squared is below the '
+  f'5% usability floor, so the regression result is NOT used, and a same-country peer '
+  f'beta cannot be built either — the only other Egyptian cement issuer with a price '
+  f'history here fails the same test. 1.00 is adopted at tier 3 and corroborated: it '
+  f'sits inside the regression\'s own 90% interval of {_B["ci90"][0]:.3f} to '
+  f'{_B["ci90"][1]:.3f}, and the Blume adjustment carries the point estimate to '
+  f'{_B["blume_crosscheck"]:.3f}. A previous edition regressed against a '
+  f'{_B["withdrawn_composite"]["regressor"]}, returning '
+  f'{_B["withdrawn_composite"]["beta"]:.3f}; that regressor is withdrawn.'),
 ]
 rows = [['Figure', 'How it was derived']]
 for a, b in DER:
