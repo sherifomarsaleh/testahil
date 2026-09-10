@@ -617,13 +617,21 @@ INP['kd_term'] = I(0.1500, "Terminal cost of debt: the midpoint of the 14-16% lo
                            "corporate-borrowing norm, with no name-specific reason to deviate",
                    "2026-08-06", "House")
 INP['real_rate_term'] = I(_HP.real_rate_convention,
-                          "Terminal real risk-free rate, READ LIVE from the house macro path "
-                          "(engine/macro_paths/EG.json) rather than typed here. The terminal "
-                          "NOMINAL risk-free rate is not an input either: it is the house path's "
-                          "own `terminal_rf`, which is this real rate plus the central bank's "
-                          "inflation target in force for the terminal horizon, so the single most "
-                          "terminal-value-sensitive number in the model can be set neither by hand "
-                          "nor by this study alone. TWO EDITIONS OF THIS LINE ARE RETIRED. The "
+                          # THE SENTENCE IS WRITTEN FOR THE READER, NOT FOR THE REPOSITORY
+                          # [10-09-2026]. It named a file path and a code identifier, and it
+                          # reaches a delivered bibliography, where a reader meets internal
+                          # machinery on the page and can do nothing with it. The fix is to
+                          # say the same thing in words, never to add the path to an
+                          # allow-list -- the next hole would be a different shape.
+                          "Terminal real risk-free rate. It is NOT set by this study: it is "
+                          "read from the single long-run view of the Egyptian economy that "
+                          "every study in this book discounts on, so one company cannot "
+                          "quietly hold a different one. The terminal NOMINAL risk-free rate "
+                          "is not an input either — it is that same shared view's own figure, "
+                          "this real rate plus the central bank's inflation target in force "
+                          "for the terminal horizon — so the single most "
+                          "terminal-value-sensitive number in the model can be set neither by "
+                          "hand nor by this study alone. TWO EDITIONS OF THIS LINE ARE RETIRED. The "
                           "first hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 "
                           "while describing it as 'the' medium-term target. The second, adopted "
                           "06-Aug-2026, derived the rate correctly but from a real convention "
@@ -2610,7 +2618,7 @@ MACRO_RECORD = dict(
              years=_HYR, nominal=[round(x, 6) for x in _EG_INFL],
              real=0.0,
              basis='the house calendar inflation ladder at zero real growth, read live '
-                   'from engine/macro_paths/EG.json. CONFORMED 03-Sep-2026: this line '
+                   'from the house Egyptian economic path. CONFORMED 03-Sep-2026: this line '
                    'previously carried the study\'s own ladder and was declared exempt on '
                    'the grounds that the study was internally coherent and that rebuilding '
                    '"belongs in its own pass" — a statement about convenience, which is not '

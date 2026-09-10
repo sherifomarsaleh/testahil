@@ -82,7 +82,7 @@
      0.07
     ],
     "real": 0.0,
-    "basis": "the house calendar inflation ladder at zero real growth, read live from engine/macro_paths/EG.json. CONFORMED 03-Sep-2026: this line previously carried the study's own ladder and was declared exempt on the grounds that the study was internally coherent and that rebuilding \"belongs in its own pass\" \u2014 a statement about convenience, which is not one of the grounds [R-MACRO-01] allows. The currency path and the product price path are both DERIVED from this one ladder by purchasing-power parity, so conforming it moved all three together."
+    "basis": "the house calendar inflation ladder at zero real growth, read live from the house Egyptian economic path. CONFORMED 03-Sep-2026: this line previously carried the study's own ladder and was declared exempt on the grounds that the study was internally coherent and that rebuilding \"belongs in its own pass\" \u2014 a statement about convenience, which is not one of the grounds [R-MACRO-01] allows. The currency path and the product price path are both DERIVED from this one ladder by purchasing-power parity, so conforming it moved all three together."
    },
    {
     "name": "realised price per tonne, all lines",
@@ -1441,7 +1441,7 @@
   },
   "real_rate_term": {
    "value": 0.035,
-   "source": "Terminal real risk-free rate, READ LIVE from the house macro path (engine/macro_paths/EG.json) rather than typed here. The terminal NOMINAL risk-free rate is not an input either: it is the house path's own `terminal_rf`, which is this real rate plus the central bank's inflation target in force for the terminal horizon, so the single most terminal-value-sensitive number in the model can be set neither by hand nor by this study alone. TWO EDITIONS OF THIS LINE ARE RETIRED. The first hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 while describing it as 'the' medium-term target. The second, adopted 06-Aug-2026, derived the rate correctly but from a real convention typed into this file, so when the house convention moved from 5.5% to 3.5% \u2014 the retired figure being a restrictive policy stance rather than a long-run real rate \u2014 this study went on discounting at 12.50% while every conformed study discounted at 10.50%. Two readers of one economy must not disagree",
+   "source": "Terminal real risk-free rate. It is NOT set by this study: it is read from the single long-run view of the Egyptian economy that every study in this book discounts on, so one company cannot quietly hold a different one. The terminal NOMINAL risk-free rate is not an input either \u2014 it is that same shared view's own figure, this real rate plus the central bank's inflation target in force for the terminal horizon \u2014 so the single most terminal-value-sensitive number in the model can be set neither by hand nor by this study alone. TWO EDITIONS OF THIS LINE ARE RETIRED. The first hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 while describing it as 'the' medium-term target. The second, adopted 06-Aug-2026, derived the rate correctly but from a real convention typed into this file, so when the house convention moved from 5.5% to 3.5% \u2014 the retired figure being a restrictive policy stance rather than a long-run real rate \u2014 this study went on discounting at 12.50% while every conformed study discounted at 10.50%. Two readers of one economy must not disagree",
    "date": "2026-09-10",
    "ring": "House"
   },
