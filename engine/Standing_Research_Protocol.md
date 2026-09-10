@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-10b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-10c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 10 September 2026 (rev. 21) — SIX STANDING RULES IN ONE COMMIT, ALL FROM ONE INSTRUCTION reviewing the SWDY study against an EFG Hermes valuation page: country risk is charged ONCE and is never multiplied by beta [R-COC-03] · a terminal real growth is capped by the economy and the Fisher identity is exact in both directions [R-MACRO-02] · every study carries the valuation on ONE PAGE, assembled from its own committed numbers and owning no arithmetic [R-DCF-01] · a sensitivity grid is CENTRED on the adopted case and its centre cell equals the central [R-SENS-01] · the traded price is the northern star and the burden is ASYMMETRIC — a central below it needs an air-tight written case, a central above it does not [R-STAR-01] · scanning what the company says it will do is a STANDARD step, and the entity is verified as the listed issuer before anything it says drives a number [R-NEWS-01]. A seventh, [R-DOC-03], was adopted earlier the same day and already stands in both documents.
+Updated 10 September 2026 (rev. 22) — TWO STANDING RULES IN ONE COMMIT: a RESEARCH PRIMER is requested from the principal and read before a study is built or re-issued, its prompt GENERATED from what the repository already holds about the name rather than typed, and what comes back is a LEAD AND NEVER AN INPUT — traced to the primary source and read there, searched in the LANGUAGE THE SOURCE IS WRITTEN IN, and every claim that did not survive tracing recorded as a dated negative search rather than quietly dropped [R-PRIME-01] · the company's own REPORTED EARNINGS PER SHARE is registered beside the attributable profit the study divides and the count it divides by, and any gap between them is a claim ranking ahead of ordinary shareholders that must be NAMED or the build REFUSES [R-EPS-01].
+(rev. 21, 10 September 2026 — SIX STANDING RULES IN ONE COMMIT, ALL FROM ONE INSTRUCTION reviewing the SWDY study against an EFG Hermes valuation page: country risk is charged ONCE and is never multiplied by beta [R-COC-03] · a terminal real growth is capped by the economy and the Fisher identity is exact in both directions [R-MACRO-02] · every study carries the valuation on ONE PAGE, assembled from its own committed numbers and owning no arithmetic [R-DCF-01] · a sensitivity grid is CENTRED on the adopted case and its centre cell equals the central [R-SENS-01] · the traded price is the northern star and the burden is ASYMMETRIC — a central below it needs an air-tight written case, a central above it does not [R-STAR-01] · scanning what the company says it will do is a STANDARD step, and the entity is verified as the listed issuer before anything it says drives a number [R-NEWS-01]. A seventh, [R-DOC-03], was adopted earlier the same day and already stands in both documents)
 (rev. 20, 9 September 2026 — [R-GAP-04, per instruction] A VALUATION GAP IS NOT GENUINE, DOES NOT STAND, AND IS NOT REFERRED TO THE PRINCIPAL UNTIL AN EXHAUSTIVE, RECORDED HUNT FOR OUR OWN ERROR HAS COME BACK EMPTY: referral is a last resort that must be earned and evidenced, and it carries the search — what was examined, what each candidate is worth in currency per share, and what would falsify each. It does NOT weaken the absolute prohibition on moving a fair value toward the price, which it restates inside itself: closing the gap is the OUTCOME of finding a real defect and never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.)
 (rev. 19, 9 September 2026 — [R-FCAL-01 §6 AMENDED, per instruction] A CAMPAIGN WALK-FORWARD ON A NAME WITH NO CURRENT-STANDARD STUDY MAY BE CALIBRATION-ONLY: it owes the lessons register, its run records, the study document and the Excel model, and need not STRIKE A FAIR VALUE — provided it DECLARES machine-readably that it struck none. Silence is not a declaration and the exemption is closed to any name that already publishes a central. The section said the UPDATED fundamental analysis and you cannot update what does not exist; the gates that went red on it were reading the rule correctly, so the rule moved and not them.)
 (rev. 18, 9 September 2026 — [R-VCAL-02 CLAUSE THREE AMENDED, per instruction] THE TRADED-PRICE GATE, PER NAME AND ONE-SIDED: a fair value above the latest recorded traded price passes, below it by less than 10% passes, below it by 10% or more is REFERRED to the principal, who reviews the document and lets it pass or asks for changes. It replaces Part E acceptance criterion 4 — a median of ABSOLUTE gaps against a 15% target, which nobody set: two-sided, pooled, and computed in a file that called matching the price Part E's explicit NON-criterion. REFERRAL IS A ROUTING DECISION AND NOT A FAILURE — a referred name is stopped at its own publication decision and holds nothing else.)
@@ -5779,3 +5780,173 @@ finding whose entity is NOT the issuer be classed as anything but colour. **Read
 register's live category list rather than quoting one from here** [R-DOC-02] —
 `python3 -c "import sys; sys.path.insert(0, 'engine'); import research_sweep as R;
 print(R.MANDATORY[R.Ring.COMPANY])"`.
+
+
+## [R-EPS-01] THE COMPANY'S OWN REPORTED EARNINGS PER SHARE IS REGISTERED BESIDE THE PROFIT THE STUDY DIVIDES, AND ANY GAP IS NAMED (10-Sep-2026, per instruction — adopted to close an identifier already cited in code and defined in neither document)
+
+**THE RULE.** Every study registers the company's **own reported earnings per share**,
+four-field sourced to the audited statements, beside the **attributable profit** it divides
+and the **share count** it divides by. The three are held to one arithmetic identity —
+attributable profit over the share count equals the reported earnings per share, within the
+rounding of the figure as printed. Where they do not reconcile, the difference is a **claim
+ranking ahead of ordinary shareholders** and it is NAMED in the study's own
+`eps_reconciliation` record: what it is, what it is worth, and whether the valuation charges
+it. A named difference passes. **An unreconciled and unnamed one REFUSES the build. It does
+not warn.**
+
+**THE CLASS OF THING BEING LOOKED FOR, NAMED SO A STUDY KNOWS WHAT TO GO AND FIND.** A
+statutory employees' profit share · a preference dividend · a participating instrument · a
+perpetual coupon · an ESOP allocation · a weighted-average share count struck against a
+period-end count. Any one of them puts a wedge between the numerator of the filed
+per-share figure and the profit a study thinks belongs to shareholders.
+
+**WHY THIS EXISTS, WHICH IS THE WHOLE OF IT.** A valuation ends by dividing an equity value
+by a share count. Every gate in this repository examines how that equity value was BUILT —
+the bridge [R-BRIDGE-01], the lenses [R-LENS-03], the terminal [R-TERM-01], the cost of
+capital [R-COC-01, R-COC-02, R-COC-03], the one-page waterfall [R-DCF-01] — and **not one of
+them asked whether the number being divided is the number shareholders actually receive.**
+The last arithmetic step in the method had no check on it at all.
+
+**THE FAILURE IT WAS ADOPTED FROM [L-294], SWDY, 04-Sep-2026.** Egyptian company law gives
+employees a share of distributable profits. It is an **appropriation of profit rather than an
+operating cost**, so the company discloses it BELOW profit attributable to owners, in the
+earnings-per-share note. That placement is the trap: **it appears in no line of the income
+statement, so no cost driver can ever capture it**, however carefully the cost stack is built
+from unit economics. The study registered attributable profit of EGP 17,330.245mn AND the
+company's own reported EPS of 7.13, both correctly sourced to the audited statements, four
+fields each. 17,330.245 / 2,140.778mn shares = 8.095. The gap between the two was exactly the
+employees' share, which ran 11.6%, 12.0% and 13.0% of attributable profit in FY2024, FY2025
+and H1-2026. **Nothing reconciled them, and the word "employee" occurred nowhere in that
+study's committed numbers.** The valuation divided the full parent equity value by the full
+share count and handed shareholders about 12% of a value the statute gives to somebody else.
+
+**THE MECHANISM IS NOT EGYPTIAN AND NOT UNUSUAL.** Wherever the EPS numerator differs from
+attributable profit there is a claim ahead of ordinary shareholders, and the rule is written
+against that shape rather than against a jurisdiction. The second worked case is a bank and
+has nothing to do with employees: ADIB-Egypt's filed FY2025 figure is struck on the
+**weighted average count across a capital-increase year**, which is not the count in issue
+today, and the study names the difference in its `eps_reconciliation` record rather than
+reconciling it away. A study valuing the bank as it stands must divide by the count as it
+stands; the filed per-share figure is simply not comparable to it, and saying so is the
+whole requirement.
+
+**IT APPLIES TO EVERY LENS THAT PRODUCES A PER-SHARE EQUITY VALUE, NOT ONLY TO THE CENTRAL
+ONE.** This was the second half of the same failure and it was found later: the statutory
+share was charged in the bridge, the currency alternative, the sensitivity helper and the
+scenarios, and NOT in the three cross-checks published beside the central — so the same
+company was worth 12.19% more per share depending on which lens was reading it. A deduction
+that stands between profit and shareholders stands there for every lens or it stands for
+none.
+
+**WHAT IT DELIBERATELY DOES NOT DO.** It does not rule on whether the study is RIGHT to
+charge or not to charge the item. A company that retains rather than distributes may face a
+smaller statutory share, and a cap on the charge is a real modelling question a study is
+free to answer its own way. **This rule asks only that the gap be SEEN**, and a study may
+declare the difference and value it at zero with a reason. It does not reach the historicals
+question: the reported earnings per share is a filed figure and is sourced under SIGCM
+clause 1 like any other.
+
+**WHAT ENFORCES IT [R-ENF-01].** `scripts/check_eps_reconciliation.py`, with
+`scripts/check_eps_reconciliation_negative_control.py` beside it, both wired into
+`.github/workflows/study-provenance.yml`. It holds the single identity above, takes its
+tolerance from the PRINTED rounding of the filed figure rather than from a chosen number,
+and reads the share count under every name and scale suffix this book actually uses — a
+count in thousands read as millions is wrong by a thousand and every downstream figure still
+divides cleanly. **An absent answer is not a clean one** [R-ENF-04]: a study registering no
+reported earnings per share, or no readable count, is counted as UNREADABLE and listed
+rather than skipped, because that is precisely the state that made the original defect
+invisible, and a run that read zero studies FAILS. The two states sit on **separate ratchet
+groups** in `engine/build_depth_audit/eps_outstanding.json` and a study moving between them
+goes red until the move is recorded [R-ENF-08] — otherwise a real gap is escaped by
+re-filing the study as merely unchecked. **Read the live population and both ratchet groups
+with `python3 scripts/check_eps_reconciliation.py`** rather than quoting a tally from here
+[R-DOC-02].
+
+
+## [R-PRIME-01] A RESEARCH PRIMER IS READ BEFORE A STUDY IS BUILT, ITS PROMPT IS GENERATED RATHER THAN TYPED, AND WHAT COMES BACK IS A LEAD AND NEVER AN INPUT (10-Sep-2026, per instruction — "I get these to you as a primer to start the valuation")
+
+**THE INSTRUCTION, VERBATIM,** so a later session reads the words and not a paraphrase of
+them: *"In the future, before you start on your valuation document and financial model
+creation, I want to do reserach market view, latest developments, company news , etc. using
+perplexity and gemino deep reserach first and then I get these to you as a primer to start
+the valuation. Now I will have to ask you first to gove me a prmpt to feed to perplexity and
+gemini . It's a little comlicated. So I ask you to give a prompt specific for company CYZ.
+You then based on the comp-any and the industry it operateds in give me another prompt (that
+is company and indystry specific to feed to perplexity and gemini). Then perplexity and
+gemini do the market reserach, regulaory environment, companyt capacity, projects pipleine
+reserach, etc."*
+
+**CLAUSE ONE — THE PRIMER COMES FIRST.** Before a new study is built or an existing one
+re-issued, a **research primer is requested from the principal and read**. The principal
+runs it through external deep-research tools; the study **does not start on the analyst's
+own unaided search**. The primer covers the market view, the regulatory environment, the
+company's capacity and its project pipeline, and the latest developments and company news —
+the last of which is [R-NEWS-01]'s standing sweep category, now fed by a pass run before the
+build rather than assembled during it.
+
+**CLAUSE TWO — THE PROMPT IS GENERATED, NOT HAND-WRITTEN.** The prompt handed to the
+principal is produced by `engine/research_primer_prompt.py TICKER`, which builds it from
+what this repository **already holds about the name**: its market and the exchange it is
+listed on, **its registered name in English AND in the language its own regulator, decree
+register and trade press write it in**, its sector and the drivers that sector actually
+turns on, and — where a study already exists — that study's **own declared open gaps and
+its dated negative searches**, read live out of the sweep register. A
+hand-written prompt goes stale and, worse, omits the very gaps the study has already
+recorded as open, which is the one thing an external pass is uniquely placed to close. **If
+the generator refuses, or cannot resolve the name, STOP and say so. Do not hand-write the
+prompt instead** — a typed prompt is indistinguishable from a generated one on the page and
+carries none of the study's recorded gaps.
+
+**CLAUSE THREE — WHAT COMES BACK IS A LEAD, NEVER AN INPUT.** Nothing from a research pass
+enters a model until it has been **traced to the primary source it cites and read there**.
+This does not bend for a good search engine. Where a pass surfaces a company announcement
+the study had not seen, **the value is not its summary — it is the pointer to the filing**,
+which is then read directly and cited from the issuer. **SIGCM clause 1 is untouched:
+historicals come from the company's own issued financial statements and from nowhere else.**
+
+**CLAUSE FOUR — SEARCH IN THE LANGUAGE THE SOURCE IS WRITTEN IN, AND SAY SO WHEN YOU DID
+NOT.** Adopted from a failure on the same day as the rule. A research pass reported that
+Egypt had repealed the 10% export duty on nitrogen fertilisers. Three searches found
+nothing, and the claim was reported back to the principal as not verifying — *"the 10%
+stands and nothing was changed"*. **Every one of those searches had been run in English, on
+an EGYPTIAN MINISTERIAL DECISION whose decree register, customs circular and trade coverage
+are all in Arabic.** Ministerial Decision 340 of 2026 was real, effective 1 August 2026,
+five weeks before that study's strike date. The study had been carrying five forecast years
+of a repealed duty on its largest single line — measured on 10-Sep-2026, EGP 2.98 a share
+against a gap of 9.21. **ABSENCE OF EVIDENCE PRODUCED BY SEARCHING IN THE WRONG LANGUAGE IS
+NOT EVIDENCE OF ABSENCE**, and reporting it as such is worse than not having looked at all,
+because it converts a live lead into a closed question. A negative finding on a
+local-language matter states the languages it was searched in, or it is not a finding.
+
+**CLAUSE FIVE — A CLAIM THAT DID NOT SURVIVE TRACING IS RECORDED AS A DATED NEGATIVE SEARCH,
+NOT QUIETLY DROPPED.** An untraceable claim that vanishes silently will be re-reported by
+the next pass and re-investigated from scratch, at full cost, by somebody who cannot know it
+has already been chased. It goes into the sweep register through `add_negative()` like any
+other closure. **Where two passes disagree on a figure, the disagreement is itself the
+finding and is recorded as one**: one of them made the number up, and a study that took the
+higher of two search results would have published it. Worked precedent, EIPICO,
+10-Sep-2026: one pass reported the biologicals plant at 100,000 vials a day while the other
+stated explicitly that no standalone throughput has been disclosed; the company's own
+announcement, its investor presentation and the regulator's factory-licence record state no
+capacity at all, and **the figure did not enter**.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It admits no new source class — a deep-research
+report is not a source, it is a **finding aid**, and it appears in no bibliography as
+authority for anything. It does not lower the primary-source-first ordering of the Step 2A
+sweep [R-NEWS-01]. It does not create an obligation to FIND anything: a ring closed by a
+dated negative search is closed, on the same terms as every other ring. It does not touch
+the entity test — an announcement surfaced by a research pass is still pinned to the listed
+issuer before it drives a number.
+
+**WHAT ENFORCES IT [R-ENF-01].** The generated half is enforceable and the judgement half is
+not, and the split is stated rather than blurred. `engine/research_sweep.py` already refuses
+a ring closed by neither a finding nor a dated negative search, which is what carries clauses
+four and five once a claim has been worked; `engine/research_primer_prompt.py` is the
+generator clause two names, and **clause four is built into its output rather than left to
+the researcher's discipline** — the prompt carries the local-language name beside the
+English one, so searching in the language the source is written in is the default rather
+than a thing to remember. **What no gate can check is whether a claim was actually traced
+to its primary source before it moved a number** — a study can always assert that it was.
+The honest backstops are the four-field provenance every input already carries and the
+standing rule that a research pass is cited nowhere, so a number with no primary source
+behind it has nothing to point at.
