@@ -236,13 +236,23 @@ class SweepRegister:
     def add(self, ring: Ring, category: str, klass: FindingClass, headline: str,
             source_name: str, source_type: SourceType, source_date: str,
             detail: str = "", url: str = "", model_impact: str = "",
-            is_fs_data: bool = False, fiscal_period: str = "") -> str:
+            is_fs_data: bool = False, fiscal_period: str = "",
+            entity: str = "", entity_is_issuer: Optional[bool] = None) -> str:
+        """[R-NEWS-01] `entity` and `entity_is_issuer` WERE ADDED TO Finding AND TO THE
+        INVARIANT AND NOT TO THIS CONSTRUCTOR, which is the whole of the change and half
+        of it was missing. Every finding therefore reached the register with no entity,
+        the ENTITY invariant refused each one, and a study that had NAMED its entity was
+        told to name it -- the caller saying the right thing and the pipe dropping it on
+        the floor. Both defaults are empty, so a sweep that has no forward-looking
+        finding is unaffected and no existing register goes red.
+        """
         self._n += 1
         fid = f"F{self._n:02d}"
         self.findings.append(Finding(fid, ring, category, klass, headline,
                                      source_name, source_type, source_date,
                                      detail, url, model_impact, is_fs_data,
-                                     fiscal_period))
+                                     fiscal_period, entity=entity,
+                                     entity_is_issuer=entity_is_issuer))
         return fid
 
     def record_primary_access(self, url: str, reachable: bool, attempt_date: str,
