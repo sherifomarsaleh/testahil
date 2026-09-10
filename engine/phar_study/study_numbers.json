@@ -1773,7 +1773,7 @@
   },
   "kd_egp": {
    "value": 0.255,
-   "source": "Marginal cost of local-currency debt: the ten-year sovereign yield of 23.00% plus a 250 basis-point corporate credit spread. A same-currency corporate cannot borrow below its own sovereign, so this is floored at the sovereign yield by construction -- and it is now DERIVED from the same risk-free rate the discount rate uses rather than typed, so the floor holds by arithmetic. Until 09-09-2026 this read 24.81%, being the WITHDRAWN 22.31% print of 21 July plus the same spread: the risk-free was corrected to the pricing-date observable and the cost of debt built on it was not moved with it, leaving the two 69 basis points apart with nothing to say so",
+   "source": "Marginal cost of local-currency debt: the ten-year sovereign yield of 23.00% plus a 250 basis-point corporate credit spread. A same-currency corporate cannot borrow below its own sovereign, so this is floored at the sovereign yield by construction -- and it is now DERIVED from the same risk-free rate the discount rate uses rather than typed, so the floor holds by arithmetic. Until 09-09-2026 it was built instead on the WITHDRAWN 22.31% print of 21 July: the risk-free was corrected to the pricing-date observable and the cost of debt resting on it was not moved with it, leaving this rate 69 basis points below where its own risk-free put it, with nothing to say so",
    "date": "2026-08-06",
    "layer": "House"
   },
@@ -1809,7 +1809,7 @@
     0.156,
     0.148
    ],
-   "source": "CONVERGENCE PATH, FY2026E-FY2030E. This row is NOT the cost of local-currency debt (24.81%) and NOT the blended marginal cost of debt (18.55%): its first point, 18.90%, is the NORMALISED RISK-FREE RATE, and the row traces that rate converging on the terminal norm as the central bank's easing cycle runs. Its only job is to give the discount-rate glide a shape derived from something in the model rather than an invented curve; the glide uses the row normalised to its own endpoints, so the levels cancel and only the SHAPE enters. The earlier edition described it as a cost-of-debt path, which it is not",
+   "source": "CONVERGENCE PATH, FY2026E-FY2030E. This row is NOT the cost of local-currency debt (25.50%, the row above) and NOT the blended marginal cost of debt, which is struck further down this file once the currency weights are known and is published in the cost-of-capital table: its first point, 18.90%, is the NORMALISED RISK-FREE RATE, and the row traces that rate converging on the terminal norm as the central bank's easing cycle runs. Its only job is to give the discount-rate glide a shape derived from something in the model rather than an invented curve; the glide uses the row normalised to its own endpoints, so the levels cancel and only the SHAPE enters. The earlier edition described it as a cost-of-debt path, which it is not",
    "date": "2026-08-09",
    "layer": "House"
   },

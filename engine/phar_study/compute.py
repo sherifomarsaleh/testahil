@@ -123,6 +123,13 @@ _HOUSE_RF_TERM = round(_EG.terminal_inflation
 # arithmetic rather than asserted beside it.
 _RF_EGY = 0.2300
 _KD_CORP_SPREAD = 0.0250
+# The WITHDRAWN 21-July print, named here so the two source strings that refer to it can
+# DERIVE the retired composite instead of typing it. The digits of a retired figure go
+# stale exactly like the digits of a live one: 24.81% was typed in two places, and when
+# the cost of debt was rebuilt on the corrected risk-free on 09-09-2026 both were left
+# behind — one of them still telling the reader, in a DELIVERED document, that the cost of
+# local-currency debt is 24.81% when the model holds 25.50%.
+_RF_WITHDRAWN_21JUL = 0.2231
 
 # THE CONTRACT-MANUFACTURING REVENUE, LIFTED OUT so the growth rate quoted in the driver's
 # source string is DERIVED from it. It was typed as "37.8%" and it was right -- 49.366365
@@ -942,11 +949,12 @@ INP = dict(
              "cannot borrow below its own sovereign, so this is floored at the sovereign yield "
              "by construction -- and it is now DERIVED from the same risk-free rate the "
              "discount rate uses rather than typed, so the floor holds by arithmetic. Until "
-             "09-09-2026 this read 24.81%%, being the WITHDRAWN 22.31%% print of 21 July plus "
-             "the same spread: the risk-free was corrected to the pricing-date observable and "
-             "the cost of debt built on it was not moved with it, leaving the two 69 basis "
-             "points apart with nothing to say so"
-             % (100 * _RF_EGY, 10000 * _KD_CORP_SPREAD), "2026-08-06", "House"),
+             "09-09-2026 it was built instead on the WITHDRAWN %.2f%% print of 21 July: the "
+             "risk-free was corrected to the pricing-date observable and the cost of debt "
+             "resting on it was not moved with it, leaving this rate %.0f basis points below "
+             "where its own risk-free put it, with nothing to say so"
+             % (100 * _RF_EGY, 10000 * _KD_CORP_SPREAD, 100 * _RF_WITHDRAWN_21JUL,
+                10000 * (_RF_EGY - _RF_WITHDRAWN_21JUL)), "2026-08-06", "House"),
     kd_fx_coupon=I(0.075, "Marginal coupon on the group's hard-currency borrowings. Half the "
                    "term-loan book is US-dollar and euro paper from Qatar National Bank Alahli "
                    "and the National Bank of Kuwait; 7.5% is the dollar-funding cost for an "
@@ -970,13 +978,16 @@ INP = dict(
                "2026-08-11", "House"),
     kd_path=I([0.189, 0.178, 0.166, 0.156, 0.148],
               "CONVERGENCE PATH, FY2026E-FY2030E. This row is NOT the cost of local-currency "
-              "debt (24.81%) and NOT the blended marginal cost of debt (18.55%): its first "
-              "point, 18.90%, is the NORMALISED RISK-FREE RATE, and the row traces that rate "
+              "debt (%.2f%%, the row above) and NOT the blended marginal cost of debt, which "
+              "is struck further down this file once the currency weights are known and is "
+              "published in the cost-of-capital table: its first "
+              "point, 18.90%%, is the NORMALISED RISK-FREE RATE, and the row traces that rate "
               "converging on the terminal norm as the central bank's easing cycle runs. Its "
               "only job is to give the discount-rate glide a shape derived from something in "
               "the model rather than an invented curve; the glide uses the row normalised to "
               "its own endpoints, so the levels cancel and only the SHAPE enters. The earlier "
-              "edition described it as a cost-of-debt path, which it is not",
+              "edition described it as a cost-of-debt path, which it is not"
+              % (100 * (_RF_EGY + _KD_CORP_SPREAD)),
               "2026-08-09", "House"),
     rf_term=I(_HOUSE_RF_TERM, "Terminal risk-free rate, DERIVED and never quoted: the "
               "long-run inflation this valuation carries throughout, 7.0%, plus the "
