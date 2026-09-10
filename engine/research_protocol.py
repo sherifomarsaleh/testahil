@@ -379,7 +379,7 @@ def assert_beta_provenance(rec: dict, tier2_fallback_documented: bool = False) -
 # study built to an older one. Bump this ONLY when a change would alter a
 # delivered number or a required artefact — not for prose.
 # ---------------------------------------------------------------------------
-STANDARD_VERSION = "2026.09.07"
+STANDARD_VERSION = "2026.09.10"
 STANDARD_VERSION_NOTE = (
     "v2 cost of capital (rf normalised by the sovereign's own default spread); beta via "
     "beta_regression.own_stock_beta() against the registered index of the listing exchange, "
@@ -391,7 +391,18 @@ STANDARD_VERSION_NOTE = (
     "[R-ASSET-01] an asset_base_record whose vintage is at least as new as the study's "
     "own information set, on every study whose class carries an asset-based lens; and "
     "[R-COC-02] a cost-of-capital record declaring the construction its terminal cost of "
-    "equity reproduces under (same_beta or relevered, the relevering tax rate STATED)."
+    "equity reproduces under (same_beta or relevered, the relevering tax rate STATED); "
+    "[R-COC-03] a cost of equity built as rf* + beta x ERP_mature + lambda x CRP, the "
+    "country premium charged ONCE and never multiplied by beta, its components "
+    "published and its terminal reproducing under the split_premium construction; "
+    "[R-MACRO-02] a terminal real growth below the market's long-run real GDP growth, "
+    "with the exact Fisher identity in both directions; "
+    "[R-DCF-01] the valuation assembled on ONE PAGE from the study's own committed "
+    "numbers, reconciling to its published enterprise value and value per share; "
+    "[R-SENS-01] sensitivity grids CENTRED on the struck values, the centre cell "
+    "equal to the central; and [R-NEWS-01] a dated announced-plans category in the "
+    "Company ring of the Step 2A sweep, every forward-looking item carrying the legal "
+    "entity that signed it and whether that entity is the listed issuer."
 )
 # Bumped 01-Sep-2026 for [R-GAP-01]. This clears the "prose only" bar deliberately: the
 # rule adds a REQUIRED ARTEFACT — a study whose central sits more than 10% below the
@@ -411,6 +422,17 @@ STANDARD_VERSION_NOTE = (
 # bump; what moves is that a study built before today is countable rather than assumed
 # current [R-STD-01]. See engine/build_depth_audit/asset_base_outstanding.json and
 # ke_outstanding.json for what was outstanding on the day.
+#
+# Bumped 10-09-2026 for [R-COC-03], [R-MACRO-02], [R-DCF-01], [R-SENS-01] and
+# [R-NEWS-01], and for those five ONLY. The first two MOVE A DELIVERED NUMBER: the
+# cost of equity changes shape when the country premium stops being multiplied by
+# beta, and a terminal growth changes when the Fisher identity is made exact and
+# capped by the economy. The last three add a REQUIRED ARTEFACT: the one-page
+# valuation table, a sensitivity grid whose centre cell IS the central, and a dated
+# announced-plans category carrying the legal entity behind every forward-looking
+# item. [R-STAR-01] adopted the same day does NOT bump it, and saying so is the
+# point: it raises the BAR OF EVIDENCE inside the gap review [R-GAP-01] already
+# requires, and a version justified by the wrong rule is worse than none.
 
 
 # ---------------------------------------------------------------------------

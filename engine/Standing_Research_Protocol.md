@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-10a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-10b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 9 September 2026 (rev. 20) — [R-GAP-04, per instruction] A VALUATION GAP IS NOT GENUINE, DOES NOT STAND, AND IS NOT REFERRED TO THE PRINCIPAL UNTIL AN EXHAUSTIVE, RECORDED HUNT FOR OUR OWN ERROR HAS COME BACK EMPTY: referral is a last resort that must be earned and evidenced, and it carries the search — what was examined, what each candidate is worth in currency per share, and what would falsify each. It does NOT weaken the absolute prohibition on moving a fair value toward the price, which it restates inside itself: closing the gap is the OUTCOME of finding a real defect and never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.
+Updated 10 September 2026 (rev. 21) — SIX STANDING RULES IN ONE COMMIT, ALL FROM ONE INSTRUCTION reviewing the SWDY study against an EFG Hermes valuation page: country risk is charged ONCE and is never multiplied by beta [R-COC-03] · a terminal real growth is capped by the economy and the Fisher identity is exact in both directions [R-MACRO-02] · every study carries the valuation on ONE PAGE, assembled from its own committed numbers and owning no arithmetic [R-DCF-01] · a sensitivity grid is CENTRED on the adopted case and its centre cell equals the central [R-SENS-01] · the traded price is the northern star and the burden is ASYMMETRIC — a central below it needs an air-tight written case, a central above it does not [R-STAR-01] · scanning what the company says it will do is a STANDARD step, and the entity is verified as the listed issuer before anything it says drives a number [R-NEWS-01]. A seventh, [R-DOC-03], was adopted earlier the same day and already stands in both documents.
+(rev. 20, 9 September 2026 — [R-GAP-04, per instruction] A VALUATION GAP IS NOT GENUINE, DOES NOT STAND, AND IS NOT REFERRED TO THE PRINCIPAL UNTIL AN EXHAUSTIVE, RECORDED HUNT FOR OUR OWN ERROR HAS COME BACK EMPTY: referral is a last resort that must be earned and evidenced, and it carries the search — what was examined, what each candidate is worth in currency per share, and what would falsify each. It does NOT weaken the absolute prohibition on moving a fair value toward the price, which it restates inside itself: closing the gap is the OUTCOME of finding a real defect and never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.)
 (rev. 19, 9 September 2026 — [R-FCAL-01 §6 AMENDED, per instruction] A CAMPAIGN WALK-FORWARD ON A NAME WITH NO CURRENT-STANDARD STUDY MAY BE CALIBRATION-ONLY: it owes the lessons register, its run records, the study document and the Excel model, and need not STRIKE A FAIR VALUE — provided it DECLARES machine-readably that it struck none. Silence is not a declaration and the exemption is closed to any name that already publishes a central. The section said the UPDATED fundamental analysis and you cannot update what does not exist; the gates that went red on it were reading the rule correctly, so the rule moved and not them.)
 (rev. 18, 9 September 2026 — [R-VCAL-02 CLAUSE THREE AMENDED, per instruction] THE TRADED-PRICE GATE, PER NAME AND ONE-SIDED: a fair value above the latest recorded traded price passes, below it by less than 10% passes, below it by 10% or more is REFERRED to the principal, who reviews the document and lets it pass or asks for changes. It replaces Part E acceptance criterion 4 — a median of ABSOLUTE gaps against a 15% target, which nobody set: two-sided, pooled, and computed in a file that called matching the price Part E's explicit NON-criterion. REFERRAL IS A ROUTING DECISION AND NOT A FAILURE — a referred name is stopped at its own publication decision and holds nothing else.)
 (rev. 17, 8 September 2026 — [R-VCAL-02 CLAUSE THREE] CORRECTED: the clause resolves its audit BY PATTERN rather than by a dated filename, and its NEGATIVE CONTROL is wired into CI while the verdict itself is deliberately not — criterion3.py measures an adoption criterion, so a build keyed on it would go red on the programme’s own findings. The bar is unchanged: NO COMPANY IS CALLED EXPENSIVE BY MORE THAN TEN PER CENT WITHOUT AN AUDIT BEHIND IT: clause A's symmetric zero-bias test is REPORTED rather than gating and this one-sided bar replaces it for Phase 1, per instruction — a symmetric test penalises a method for doing the thing it exists to do, and some markets and some companies are genuinely cheap)
@@ -5466,3 +5467,315 @@ document's filename. **NEITHER IS EVER TAKEN FROM A FILE'S MODIFICATION TIME**, 
 the defect this rule was adopted from. A study whose spot carries no date prints
 "not recorded" rather than borrowing a date that means something else — an absent date is
 not a clean one [R-ENF-04].
+## [R-COC-03] COUNTRY RISK IS CHARGED ONCE, AND IT IS NEVER MULTIPLIED BY BETA (10-Sep-2026, per instruction — the SWDY study read beside an EFG Hermes valuation page)
+
+**THE RULE.** The sanctioned cost of equity is
+
+    Ke = rf* + beta x ERP_mature + lambda x CRP
+
+and nothing in this repository builds one any other way. `CRP` is the sovereign's own
+default spread scaled to equity volatility by Damodaran's equity-to-bond factor of 1.52;
+`ERP_mature` is what is left of the published total after that country premium is taken
+out. Both are DERIVED from figures the study already registers, so **no new number enters
+the repository and the two halves cannot drift apart from the total they came from**.
+`rf*` already has the sovereign default spread netted out of it, so the country appears in
+the equation **exactly once**, at lambda, where a person has to choose it rather than
+where the algebra puts it.
+
+**LAMBDA IS WHERE THE OPERATIONS ARE, AND IT DEFAULTS TO 1.0.** A company that earns what
+its home market earns carries its home sovereign's premium in full. A lambda below 1.0 is
+a claim that most of the money is made somewhere else, it is taken from an **audited
+geographic disclosure** and never from company commentary, and it **REQUIRES a stated
+`crp_foreign`** for the country risk of wherever the rest of the money is earned. Set both
+or neither: a lambda below 1.0 with `crp_foreign` left at zero prices those operations as
+if they sat in a mature market, which is the flattering half of the argument, and the
+module refuses it rather than warning about it.
+
+**WHAT IT WAS ADOPTED FROM.** Every study in the book built `Ke = rf* + beta x ERP_total`.
+A published country equity risk premium is a **TOTAL** — the mature-market premium plus
+the country premium — so multiplying the whole of it by beta charges the COUNTRY component
+at beta as well. That asserts that a high-beta company bears proportionally more sovereign
+risk than a low-beta one in the same country. **Nobody ever made that claim.** It was
+never argued, never written down and never disclosed; it fell out of the algebra, and it
+survived because the algebra is the shape every textbook prints. Beta measures a stock's
+exposure to its own equity market. It is not a measure of exposure to a sovereign, and
+there is no reason a levered industrial should be more exposed to a devaluation than the
+index it is levered against.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It is **not** a scaling of the mature-market
+premium. The retired line was `erp = erp * lambda_country`, which shrank the equity-market
+premium too — saying a company with foreign revenue bears less EQUITY risk, which is not a
+thing anyone believes and was never the intention. That line is gone rather than
+parameterised. It does not touch the risk-free build, the cost of debt, the sovereign
+floor of [R-COC-01 AMENDED], or the weights. It does not repeal [R-COC-02]: a cost of
+equity still has to reproduce from its own committed inputs, and this rule changes which
+inputs those are, not whether they are checked.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/cost_of_capital.py` — `split_erp()` derives the
+pair and refuses a split whose mature remainder is not positive (which is what a
+rating-basis spread read against a market-basis total does, and it is better to be told
+than to publish it); `cost_of_equity()` performs the one sanctioned build and returns the
+components, so a study publishes a cost of equity a reader can take apart rather than a
+single number; `schedule()` splits the terminal premium the same way, a terminal premium
+being a total exactly as the explicit-window one is. `engine/ke_reproduction.py` gains a
+third named terminal construction, **`split_premium`**, on the same closed list as
+`same_beta` and `relevered`; a `split_premium` record must carry the split it used,
+because solving for the split inside the checker would make the check reproduce whatever
+it was handed.
+
+**THE OLD CONSTRUCTIONS STAY REPRODUCIBLE, AND THAT IS DELIBERATE.** `ke_explicit()`
+continues to reproduce the retired identity so that records struck before 10-Sep-2026
+still verify against **what they actually did**. Rewriting them to satisfy a rule adopted
+afterwards would be rewriting history, which is the append-only discipline the ledgers run
+on. A record struck AFTER that date and reproducing only under the retired construction is
+a defect, not an alternative.
+
+**THE SIZE OF IT, AS A DATED MEASUREMENT.** On SWDY on 10-Sep-2026 the correction moved
+the cost of equity from 30.44% to 28.09% — 235 basis points that had been charged to
+shareholders because of the order of two operations. Read it live from the study's own
+cost-of-capital record; it is a fitted figure and it moves.
+
+
+## [R-MACRO-02] A TERMINAL REAL GROWTH IS CAPPED BY THE ECONOMY, AND THE FISHER IDENTITY IS EXACT (10-Sep-2026, per instruction — the same review)
+
+**CLAUSE ONE — THE CAP.** A market's macro path carries `real_gdp_lt`, the economy's
+long-run real growth, and `terminal_growth()` **REFUSES** a terminal real rate at or above
+it. A company compounding faster than its economy forever becomes the economy; that is a
+claim about the country rather than about the company, and it has to be argued in the
+path's own source rather than typed into a valuation. **The gap between the stated real
+rate and the cap is the share of the economy the company is assumed to cede, and the rule
+requires it to be stated rather than left implied** — a study sitting a hair under the cap
+is making a much larger claim than one sitting well below it, and until now those two
+looked identical in the document.
+
+**CLAUSE TWO — THE IDENTITY IS EXACT IN BOTH DIRECTIONS.** `terminal_growth()` returned
+`inflation + real`, the first-order approximation, while a study deriving the real rate
+back out of a nominal one used `(1 + g) / (1 + pi) - 1`, which is the exact inverse. **The
+two readers of one number disagreed BY CONSTRUCTION**, and they agreed only in the one
+case that had always held — real growth of zero. It is now the exact Fisher identity in
+both directions: `(1 + pi) x (1 + real) - 1` forward, its inverse back.
+
+**WHAT IT WAS ADOPTED FROM.** SWDY carried a gap of 0.34 a share between its own base case
+and its own scenario engine, and nothing could see it, because the defect is invisible
+while real growth is zero and the whole book had been running at zero real growth. The
+error is small in basis points — of the order of real x inflation, which is 14bp at 2%
+real on 7% inflation — and it sits on the line that capitalises into perpetuity, where
+small is not the same as harmless. **The general shape is not about growth rates:** two
+functions that convert between the same two quantities in opposite directions must be
+exact inverses of each other, or the model contains a disagreement that only appears when
+somebody finally uses the feature.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It does not touch [R-MACRO-01] — a terminal
+growth is still DERIVED from the market's committed path and never typed, and this rule
+governs the arithmetic of the derivation and the ceiling on its input. It sets no view on
+what any market's long-run real growth is; that is a sourced figure in the path, argued
+where paths are argued. It does not license a real growth just below the cap: the cap is a
+refusal, not a target.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/macro_path.py` — the `real_gdp_lt` property is
+required in every market path's schema, so a market whose path lacks it fails to load
+rather than defaulting to something permissive, and `terminal_growth()` raises with the
+market, the stated rate and the cap in the message.
+
+
+## [R-DCF-01] EVERY STUDY CARRIES THE VALUATION ON ONE PAGE (10-Sep-2026, per instruction — "where is ours?")
+
+**THE RULE.** Every study carries a single valuation table that a reader can read
+top-to-bottom without turning a page: the forecast waterfall — revenue, EBITDA, cash
+taxes, capital expenditure, investment in working capital, depreciation and amortisation,
+free cash flow — then the per-year discount rate and discount factor and the present value
+of each year, then the bridge: the sum of the present values, the terminal value, the
+present value of the terminal, the terminal's share of enterprise value, the cost of
+capital in the first year and in the terminal, the terminal growth, enterprise value, net
+debt, associates, minorities, any statutory profit-share, equity value, shares in issue,
+and value per share.
+
+**IT OWNS NO ARITHMETIC, AND THAT IS THE WHOLE DESIGN.** The table is READ from the
+study's own committed numbers. It sums what it was handed and it **RAISES** if the present
+values do not reproduce the study's published enterprise value and value per share. If the
+table and the study disagree, the study is right and the table is broken — which is why
+the reconciliation is an assertion and not a footnote. A table that computed its own
+answer would be a second model hiding inside the document whose job is to display the
+first, which is the defect [R-SENS-01] was adopted from on the same day.
+
+**WHAT IT WAS ADOPTED FROM.** The principal put an EFG Hermes DCF page for Edita beside
+one of our studies and asked where ours was. **It did not exist.** Our studies carried
+every one of those numbers — the waterfall in the cash-flow section, the factors in the
+discounting paragraph, the terminal in the terminal section, the bridge in an appendix —
+each of them correct, and assembled nowhere. **A number that is present in four places and
+assembled in none is, to the person reading, absent.** The house had been measuring itself
+on whether a figure was derivable from the document, and the reader's test is whether it
+is there.
+
+**THE COROLLARY THE BUILD EXPOSED, AND IT IS THE MORE GENERAL HALF: A LINE THAT IS
+COMPUTED AND NOT PUBLISHED IS A LINE THE DOCUMENT CANNOT PRINT.** Five forecast rows of
+SWDY's Appendix A.1 — gross profit, profit before tax, income tax, profit for the year,
+and minorities — printed em-dashes beside three full columns of audited history, because
+the model computed every one of them and threw them away instead of committing them. The
+document was not missing an analysis; it was missing a `json` key. Anything a study
+intends to PRINT is committed to its numbers file at the moment it is computed.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It adds no valuation method, no lens and no
+number. It does not replace the sections that carry the reasoning — the table is where the
+answer is assembled, not where it is argued — and it does not repeal the model-report
+section list, which it joins rather than edits.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/dcf_table.py` — `dcf_table()` builds the table
+from a study's committed numbers and raises `DCFTableError` where the present values do
+not sum to the published enterprise value, or where a study offers no free-cash-flow
+series at all, a DCF table without free cash flow not being one.
+
+**IT ADDS A REQUIRED ARTEFACT, SO THE STANDARD MOVES.** `research_protocol.STANDARD_VERSION`
+is bumped in the same commit, which makes a study built before this requirement countable
+rather than silently assumed current [R-STD-01].
+
+
+## [R-SENS-01] A SENSITIVITY GRID IS CENTRED ON THE ADOPTED CASE (10-Sep-2026, per instruction — the same review)
+
+**THE RULE.** Both axes of a sensitivity grid **step around the values the study actually
+struck**, and **THE CENTRE CELL EQUALS THE STUDY'S CENTRAL** — asserted in the study's own
+code, not noted in its prose. An axis that is a typed ladder which happens to sit near the
+adopted case is not centred on it. Where an axis is a list rather than a step — a beta
+grid, an FX grid — it is **sorted**, and the adopted value is marked in its place in the
+order rather than inserted at the middle position.
+
+**WHAT IT WAS ADOPTED FROM.** SWDY's terminal-growth axis ran 3% to 7% against an adopted
+terminal growth of 9.14%. **No cell in the grid was the base case**, so a reader could not
+locate the study's own answer anywhere on the study's own grid, and a reader who tried
+would have concluded the central sat outside the range the study called sensitive. The
+beta row had the same defect in a different dress: the adopted beta was inserted at the
+centre POSITION rather than in its place in the order, so the printed row ran 0.80, 1.225,
+1.15 and the values beside it went down, then up, in a table that reads as monotone.
+
+**THE RELATED FINDING, FOUND THE SAME HOUR, AND THE GENERAL FORM MATTERS MORE THAN THE
+CASE.** SWDY's grid helper `dcf_at()` re-implemented the terminal inline on a construction
+the study had already moved off, and charged no employees' statutory share of profit — so
+**every cell of every grid valued a claim the study does not own**, and the grid's own
+centre cell read 49.71 against a published central of 43.51. Its sibling `_val_at()` did
+neither of those things, and carried a docstring recording that exact fix. **THE GENERAL
+FORM: WHEN A FIX GOES INTO ONE OF TWO FUNCTIONS THAT DO THE SAME JOB, THE OTHER ONE IS NOW
+A DEFECT — and a docstring recording the fix is evidence that the twin was missed, not
+evidence that the problem is closed.** The remedy is not to fix both; it is to delete one.
+`dcf_at()` is gone and every grid runs through the function that asserts it reproduces the
+headline.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It sets no view on how WIDE an axis should step,
+which is a study-level judgement about what a reader needs to see. It does not make the
+grid a valuation: the grid consumes the study's valuation function and may not carry one
+of its own.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/dcf_table.py` — `sensitivity_grid()` refuses a
+grid with an even axis, which has no centre cell to reconcile, and refuses a grid whose
+centre cell does not reproduce the study's central within a cent.
+
+
+## [R-STAR-01] THE TRADED PRICE IS THE NORTHERN STAR, AND THE BURDEN IS ASYMMETRIC (10-Sep-2026, per instruction — "the actual traded price is your northern star")
+
+**THE INSTRUCTION, IN THE PRINCIPAL'S OWN WORDS.** *"the actual traded price is your
+northern star... you have to have a very strong case to provide a fair value that is below
+it. Because essentially you are saying that the investors are all idiots including
+institutions and that they are overpaying. You have to have an AIR TIGHT case."*
+
+**THE RULE, AND ITS ASYMMETRY IS THE POINT.** A central fair value **BELOW** the traded
+price is a claim that the market — including the institutions in it — is overpaying. It
+requires an **air-tight, written case naming what the market is getting wrong and why this
+desk can see it**, and the burden rises with the size of the gap. A central **ABOVE** the
+price needs no such case: that is the ordinary situation of value not yet realised, where
+investors are taking a shorter-term view than a valuation does, and demanding symmetric
+evidence for it would penalise the method for doing the thing it exists to do.
+
+**WHAT IT DOES NOT LICENSE, STATED FIRST BECAUSE IT IS THE THING THAT WOULD BE ASSUMED.**
+It does **NOT** license moving a fair value toward a price. That remains prohibited
+outright and this rule restates the prohibition inside itself rather than pointing at it.
+It licenses **nothing except a higher bar of evidence on one side**. Where the bar is not
+met, the study **says so** — in the document, in its own words — rather than shipping the
+number quietly and letting the gap speak for itself.
+
+**HOW IT COMPOSES WITH THE GAP RULES.** [R-GAP-04] comes first: the exhaustive, recorded
+hunt for OUR OWN error is run before a gap is called genuine at all, and **its result is
+the material the air-tight case is built from, or it is the reason there is no case**.
+[R-GAP-01] and [R-GAP-03] decide WHEN that audit is owed and over which gap. This rule
+governs what must be true of the WRITING once the audit comes back empty. Nothing here
+changes the routing in [R-VCAL-02 CLAUSE THREE] or the authorisation in [R-GAP-02 CLAUSE
+FOUR]; a referral is still where a gap goes, and this rule sets what accompanies it.
+
+**WHY IT IS WRITTEN AS A BAR AND NOT AS A LIMIT.** A limit — "never publish more than X%
+below" — would be a free parameter that quietly caps the method's own findings, and some
+companies genuinely are expensive. A bar on the EVIDENCE leaves the answer where the
+analysis puts it while making the desk pay, in writing, for the claim it is making about
+everybody else in the market.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/northern_star.py`. **The bar is a LADDER AND NOT
+A CLIFF**, because the same claim is cheap at a small gap and extraordinary at a large one:
+four rungs — `none`, `stated`, `priced`, `airtight` — each naming what the study has to
+carry, with the widths held in `northern_star.BANDS` rather than recited in a document that
+cannot be re-read when they move. `assess()` returns the record so a study can look at its
+own bar before it ships; `enforce()` refuses to issue; `from_numbers()` reads a study's own
+committed numbers and assesses a two-sided central on BOTH branches rather than collapsing
+it to one. At the top rung the module requires the recorded hunt of [R-GAP-04], the thing
+the market is asserted to be getting wrong NAMED, and a falsifier stated in advance; a rung
+below it requires the gap DECOMPOSED by driver in currency per share and refuses a
+decomposition leaving more than half of the disagreement unexplained. **A central ABOVE the
+price returns PASS with no case at all** — the asymmetry written in code rather than
+asserted in prose. `engine/research_protocol.py` carries the requirement into the model
+study's own section list, at section 1.9, so the case has a place to live in the document
+rather than being remembered. What remains prose is the JUDGEMENT of whether a written case
+is air-tight, which no gate can make; the module checks that the case, the pricing, the
+hunt and the falsifier are THERE. The refusal message ends by saying what the fix is not:
+never move the number toward the price.
+
+
+## [R-NEWS-01] SCANNING WHAT THE COMPANY SAYS IT WILL DO IS A STANDARD STEP, AND THE ENTITY IS VERIFIED FIRST (10-Sep-2026, per instruction — "This should be a standard")
+
+**THE INSTRUCTION.** *"You should scan the news as part of your activities to see the
+company potential, see what it is planning to do. This should be a standard."*
+
+**THE RULE.** A **dated news and announcement scan** joins the Step 2A information sweep
+for every study and every update, as a **mandatory category of the Company ring** —
+announced projects, ventures and capacity — closed by a finding or by a **dated negative
+search** exactly like every other category, the requirement being that somebody LOOKED and
+not that something was found. Every item carries its date, its attribution and its place in
+the study's bibliography, exactly as any other sourced item does.
+
+**IT NEVER TOUCHES HISTORICALS, AND SIGCM CLAUSE 1 STANDS ABSOLUTELY.** Reported figures
+come from the company's own issued financial statements and from nothing else. A news item
+informs **FORWARD DRIVERS ONLY** — what the company says it intends to build, sign, buy or
+enter — and it may not restate, correct or supplement a reported number. A press report of
+a result is not a result.
+
+**THE CLAUSE THAT MAKES IT SAFE, AND IT WAS EARNED WITHIN AN HOUR OF ADOPTION: THE ENTITY
+MUST BE VERIFIED AS THE LISTED ONE.** Three screenshots of Elsewedy news were put to this
+desk on 10-Sep-2026 — data centres and electric vehicles. The 500 million dollar ROX
+electric-vehicle joint venture was signed by **Ezz Elarab Elsewedy Investments, the chief
+executive's private vehicle**, and not by the listed Elsewedy Electric. Crediting it to
+shareholders would have inflated a valuation with a business they do not own. The August
+2026 Datagrid transformer contract, by contrast, **is** the listed company's, and is
+carried. **A news item whose entity cannot be pinned to the listed issuer is recorded as
+UNVERIFIED and drives nothing** — not a driver, not a scenario, not a sentence of
+narrative that implies a driver.
+
+**WHY A SHARED SURNAME IS A TRAP RATHER THAN A CURIOSITY.** In family-founded groups
+across this book's markets, the founder's private holdings, the listed operating company
+and the family investment vehicle routinely share a name, a logo and a press office. The
+news wire reports all three under the same word. **The verification is not scepticism
+about the news; it is arithmetic about who the cash flow belongs to**, and it is the same
+question [R-STD-02] asks of a standard claim and SIGCM asks of a source: name the entity,
+not the brand.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It does not admit press as a source class for
+anything SIGCM reserves to primary documents. It does not lower the primary-source-first
+ordering of the sweep — a company announcement read on the issuer's own disclosure portal
+outranks the same announcement read in a newspaper, and where both exist the filing is
+cited. It creates no obligation to find news: a ring closed by a **dated negative search**
+is closed, on the same terms as every other ring in the register.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/research_sweep.py`. The category sits on the
+Company ring's MANDATORY list, so a sweep that never looked cannot reach full coverage and
+cannot be talked past. A finding gains two fields — `entity`, the legal entity written out,
+and `entity_is_issuer` — and the register's own invariant refuses an announced plan with no
+entity named, refuses one whose issuer status has been left unestablished (**unestablished
+is not the same as yes** [R-ENF-04], and a driver may not rest on it), and refuses to let a
+finding whose entity is NOT the issuer be classed as anything but colour. **Read the
+register's live category list rather than quoting one from here** [R-DOC-02] —
+`python3 -c "import sys; sys.path.insert(0, 'engine'); import research_sweep as R;
+print(R.MANDATORY[R.Ring.COMPANY])"`.
