@@ -17,9 +17,12 @@ THE PREVIOUS EDITIONS ARE NAMED, NOT DELETED.
 """
 import datetime as _dt
 
-EDITION = _dt.date(2026, 9, 2)
+EDITION = _dt.date(2026, 9, 10)
 
-SUPERSEDES = ()
+# RECALIBRATION EDITION. The terminal risk-free rate came off the house Egyptian
+# macro path when the structural real rate moved from 5.5% to 3.5%, and the
+# cost-of-capital record now publishes the [R-COC-03] split it was already using.
+SUPERSEDES = (_dt.date(2026, 9, 2),)
 
 _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')

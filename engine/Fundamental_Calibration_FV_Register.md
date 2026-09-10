@@ -30,7 +30,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 | 8 | SCEM | EGP | full | 53.1200 | 122.6685 | +130.9% | -52.4% | +107.6% | (study carries no stamp) → 2026.09.10 | — |
 | 9 | SWDY | EGP | full | 69.7300 | 87.7633 | +25.9% | +44.3% | -3.6% | (study carries no stamp) → 2026.09.10 | L-386 |
 | 36 | PHDC | EGP | full | unrecoverable | 21.0897 | n/a | n/a | n/a | 2026.08.23 → 2026.09.10 | — |
-| 37 | TMGH | EGP | full | 147.1200 | 91.9728 | -37.5% | -23.7% | -35.0% | (study carries no stamp) → 2026.09.10 | — |
+| 37 | TMGH | EGP | full | 147.1200 | 108.1943 | -26.5% | -7.7% | -25.8% | (study carries no stamp) → 2026.09.10 | — |
 
 Percentages are the delivered edition against the **frozen pre-campaign baseline**, captured before the run touched `assets/data.js`. Where a name carries more than one edition, `vs_previous_pct` in the JSON holds the edition-on-edition move.
 
