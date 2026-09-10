@@ -913,6 +913,74 @@ GROUND_UP = _rp.assert_ground_up(DRIVER_LINES, ticker='EGCH')
 _STD_VERSION = "2026.09.01"
 D['gates'] = dict(standard_version=_STD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
 
+# ---- [R-STAR-01] THE TRADED PRICE IS THE NORTHERN STAR ----------------------------
+# The burden here is asymmetric and it is heavy: on the carried-through branch this
+# study says the market is paying nearly three times what the business is worth, and a
+# claim that size is owed a case, a decomposition, a recorded hunt for OUR error, and a
+# falsifier stated in advance. THE HUNT WAS RUN ON 10-09-2026 AND IT DID NOT COME BACK
+# EMPTY, which is the finding and the reason this study is still held. What it returned
+# is priced below rather than described.
+_STAR_CASE = dict(
+    case=(
+        "The market is not valuing the plant this study values. Two things separate "
+        "them and both are about the ANNA capital programme rather than about urea. "
+        "FIRST, WHAT THE MONEY BUYS. The company discloses the programme at USD 278.4mn "
+        "PLUS EGP 6,422mn for 600 t/d of nitric acid and 800 t/d of ammonium nitrate, "
+        "and discloses KIMA-2 -- a whole 1,200 t/d ammonia and 1,575 t/d urea complex -- "
+        "at USD 292.3mn plus EGP 1.92bn. The same money buys 264kt of nitrate as bought "
+        "575kt of urea, which is not a ratio two plants of these kinds normally stand "
+        "in. The auditor's own interim report calls the project the KIMA AMMONIA plant "
+        "and names an ammonia licensor on it; note 18-3 calls it acid and nitrates; "
+        "note 7 calls it acid and fertiliser. This model sells nothing out of it but "
+        "ammonium nitrate. If the plant makes ammonia the model is valuing the wrong "
+        "output, and that single question is worth more than the whole of the rest of "
+        "the disagreement. SECOND, PRICE. The model prices new nitrate tonnes at a typed "
+        "USD 280 while note 20 discloses the company's own realised nitrate price at "
+        "EGP 20,000 a tonne. A buyer at 14.41 need not believe anything exotic about "
+        "urea; they need only believe the company's own disclosed realisation and a "
+        "plant that makes what its auditor says it makes."),
+    decomposition={
+        'ANNA output: nameplate doubled on the KIMA-2 capital-intensity read, '
+        'at the disclosed nitrate price and 85% utilisation': 4.874,
+        'Ammonium nitrate at the company\'s OWN disclosed EGP 20,000/t realisation '
+        'rather than a typed USD 280': 0.564,
+        'Inventory net of documentary credits: note 11 discloses EGP 1,407.4mn of '
+        'the 3,378.2mn "inventory" as letters of credit for goods and services, '
+        'which are prepayments and not stock (days 165 -> 114)': 0.604,
+        'Listed investments marked to the STRIKE date rather than to 31 March: '
+        'note 8-1 carries 10,262,324 Abu Qir shares at 81.70 and the committed '
+        'price file has 94.00': 0.064,
+    },
+    # [R-GAP-04] RUN, RECORDED, AND IT CAME BACK FULL. This field was True while the
+    # hunt had found four priced corrections that are OUR defects and are not applied,
+    # and the star gate passed the study anyway -- because the field was a boolean
+    # asking whether we looked rather than what we found. It carries the record now,
+    # the gate refuses on it, and that refusal is CORRECT: this study is held, and it
+    # is held for exactly this reason. Recording a hunt that found something and then
+    # shipping the answer it contradicts would be worse than never hunting.
+    hunt_recorded={
+        'ANNA nameplate against the KIMA-2 capital-intensity read': 4.874,
+        'inventory gross of documentary credits (note 11)': 0.604,
+        'ammonium nitrate at a typed USD 280 against its own disclosed '
+        'EGP 20,000/t realisation (note 20)': 0.564,
+        'listed investments marked to 31 March rather than to the strike date '
+        '(note 8-1)': 0.064,
+    },
+    falsifier=(
+        "This study is the one that is wrong if the ANNA plant's disclosed capital "
+        "cost buys ammonia capacity rather than only nitrate capacity. The test is "
+        "specific and it is dated: KIMA's FY2025/26 annual report, due late September "
+        "2026, discloses the project's output slate and its commissioning timetable. "
+        "If it names ammonia, this model's nameplate is wrong by roughly the factor "
+        "the KIMA-2 capital-intensity comparison implies, the carried-through branch "
+        "rises toward the stopped one, and the disagreement with the market largely "
+        "closes without anything in the market's behaviour needing to be a mistake. "
+        "A SECOND, INDEPENDENT FALSIFIER: the reverse read says a buyer at 14.41 needs "
+        "a flat urea price of about USD 616/t in perpetuity against USD 530 held and "
+        "USD 385 realised in FY2024/25. If urea prints above 616 and stays there, the "
+        "market's number is the one the world agreed with."),
+)
+
 # ---- [R-DCF-01] THE VALUATION ON ONE PAGE ----------------------------------------
 # The study carried every line of it and carried none of them in a shape a reader could
 # be handed: the forecast lives as one dict per YEAR, forty-odd keys wide, and the
@@ -962,7 +1030,7 @@ assert abs(_DCF_BLOCK['eq_attr'] / _DCF_BLOCK['shares'] - _DCF_BLOCK['ps']) < 1e
     'are in different units')
 
 out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
-           fcst=_FCST_BLOCK, dcf=_DCF_BLOCK,
+           fcst=_FCST_BLOCK, dcf=_DCF_BLOCK, star_case=_STAR_CASE,
            walkforward=WALKFORWARD, gates=D['gates'], standard_version=_STD_VERSION,
            cases={k: dict(rows=v['rows'], terminal=v['terminal'], bridge=v['bridge'])
                   for k, v in CASES.items()},

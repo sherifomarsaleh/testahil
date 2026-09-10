@@ -226,7 +226,35 @@ def assess(central, spot, case=None, hunt_recorded=False, decomposition=None,
                     "to %.2f against a gap of %.2f, so more than half of the "
                     "disagreement is unexplained" % (total, want))
     if name == "airtight":
-        if not hunt_recorded:
+        # THE RUNG SAYS THE HUNT MUST HAVE COME BACK EMPTY AND THIS TEST ONLY ASKED
+        # WHETHER WE LOOKED [tightened 10-09-2026]. `hunt_recorded` was a bare boolean
+        # a study set on itself, so a study whose hunt found six pounds a share of its
+        # OWN defects, unapplied, passed a rule written to mean the opposite -- the
+        # self-attested boolean [R-ENF-01] closes everywhere else, sitting in the one
+        # gate that governs the largest disagreements in the book. Found on EGCH, whose
+        # hunt returned four priced corrections and whose star case passed anyway.
+        #
+        # A HUNT IS NOW A RECORD, NOT A FLAG. Pass True where it genuinely came back
+        # empty; pass a mapping {defect: per-share value} where it did not, and the
+        # gate refuses until those are worked through or explicitly written off. The
+        # boolean form still works, so no existing study goes red for the wrong reason
+        # -- what changes is that a study which HAS found something can no longer
+        # record that fact and ship regardless.
+        if isinstance(hunt_recorded, dict):
+            _found = {k: v for k, v in hunt_recorded.items()
+                      if isinstance(v, (int, float)) and abs(v) > 0}
+            if _found:
+                _tot = sum(abs(v) for v in _found.values())
+                missing.append(
+                    "the hunt for our own error came back FULL, not empty: %d defect(s) "
+                    "worth %.2f a share against a gap of %.2f, and they are not applied "
+                    "-- %s. This rung is for a study that looked for its own mistake and "
+                    "did not find one. Apply them, or write each off in the record with "
+                    "its reason [R-GAP-04]"
+                    % (len(_found), _tot, abs(spot - central),
+                       "; ".join("%s (%.2f)" % (k[:60], v) for k, v in
+                                 sorted(_found.items(), key=lambda kv: -abs(kv[1])))))
+        elif not hunt_recorded:
             missing.append("a RECORDED exhaustive hunt for our own error [R-GAP-04]")
         if not (falsifier or "").strip():
             missing.append("a falsifier stated in advance")
@@ -268,8 +296,10 @@ STAR_CASE = dict(
                   "the gap, or the study is saying most of its disagreement with "
                   "the market is unexplained -- which may be true, and then it is "
                   "the finding rather than the case.",
-    hunt_recorded="True only where an exhaustive search for OUR OWN error has been "
-                  "run and RECORDED [R-GAP-04]. Not 'we looked'.",
+    hunt_recorded="The hunt for OUR OWN error [R-GAP-04]. True ONLY where it came "
+                  "back empty. Where it found something, pass the record itself -- "
+                  "{defect: currency per share} -- and the gate refuses until those "
+                  "are applied or written off. Not 'we looked'.",
     falsifier="Stated in advance: what would have to happen for this study to be "
               "the one that is wrong.",
 )
