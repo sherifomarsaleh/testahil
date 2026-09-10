@@ -41,6 +41,7 @@ FYLABEL = ['FY%s' % (2026 + i) for i in range(len(FY))]
 
 # ================= Appendix A ================================================
 H1('Appendix A  Financial statements')
+
 P('The historical columns are the company’s own consolidated income statement as originally reported, taken from the '
   'earnings release named against each year; every year is asserted to foot against its own arithmetic before it enters '
   'this study. The forecast columns are the model’s own build and reprice from the drivers in the companion workbook.')

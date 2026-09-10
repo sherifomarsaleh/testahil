@@ -85,6 +85,16 @@ rich([('Anchor: ', {'bold': True}), (
      size=9.6)
 
 H1('READ FIRST — what this document is, and is not')
+
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. A valuation states a number struck
+# against a price, and those are two facts with two dates that are not the same date.
+# Resolved by engine/doc_dates.py and never from a file's modification time.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('ADIB'), size=8, color=GREY)
+
 box([
  'This study is a valuation exercise and an expression of personal analytical opinion, '
  'published free of charge for educational purposes. It shows how one analyst applies '

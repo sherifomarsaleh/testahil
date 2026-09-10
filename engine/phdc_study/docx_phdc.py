@@ -364,6 +364,15 @@ def build(path):
          % EDITION_WORDS,
          size=10, color=MUTED, space_after=14)
     doc.add_heading("READ FIRST", level=2)
+    # [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. Resolved by engine/doc_dates.py
+    # and never from a file's modification time.
+    import sys as _sys_dd, os as _os_dd
+    _sys_dd.path.insert(0, _os_dd.path.join(_os_dd.path.dirname(
+        _os_dd.path.dirname(_os_dd.path.abspath(__file__)))))
+    import doc_dates as _DD
+    _hp = doc.add_paragraph(_DD.header_line('PHDC'))
+    for _r in _hp.runs:
+        _r.font.size = __import__('docx').shared.Pt(8)
     para(doc, "This is a valuation study, not advice. It carries no rating, no "
               "recommendation and no price target. What it publishes is a range of "
               "value and the reasoning behind it, so that a reader can disagree with "

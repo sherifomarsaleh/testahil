@@ -5417,3 +5417,52 @@ REVIEW IS "WE CHECKED THE PROCESS AND THE PROCESS WAS FOLLOWED".** Every gate in
 repository checks a process, and each of them passed all four of these studies. **All three
 of the findings above were found by challenging the ANSWER, and none of them by re-walking
 the process.**
+
+## [R-DOC-03] EVERY VALUATION DOCUMENT CARRIES TWO DATES, AND A RECALIBRATION ISSUES A NEW ONE
+
+**Adopted 10 September 2026, by instruction.**
+
+**THE RULE.** Every delivered valuation document states, at the top, both of these and
+labels them:
+
+1. **PRICE DATE** — the date of the latest known close the valuation is measured against.
+2. **ISSUE DATE** — the day that edition of the document was issued.
+
+And: **whenever a name is recalibrated, a NEW document is issued carrying its own issue
+date.** An existing document is never amended in place to carry a newer answer.
+
+**WHAT THIS WAS ADOPTED FROM.** On 10 September 2026 the principal was sent a package of
+ten recalibrated studies for review. The AMOC package contained the **8 August** edition
+while the current one is **3 September**, because the file was chosen by MODIFICATION TIME
+rather than by edition: an old file with a fresh timestamp beat a newer one. The desk then
+told the principal, in writing, that AMOC's paper was from 8 August and still stated the
+number its model publishes today — a statement about the wrong document entirely. The
+principal's reply was the test that caught it: *"So you mean that the walk forward and the
+review of the document did not change one single thing. Not one single thing? I find that
+hard to believe. It is impossible."*
+
+**THE GENERAL SHAPE, WHICH IS NOT ABOUT DELIVERY PACKAGES.** A valuation states a number
+struck against a price, and those are two facts with two dates that are not the same date.
+A document carrying one date leaves the reader to work out which one it is, and a reader
+who guesses wrong cannot tell a current document from a superseded one. This is [L-066]
+seen from the reader's side: there, a check opened a superseded file and reported its
+defects as current; here, a reader opens a superseded document and reads its answer as
+current. In both cases the file was perfectly readable and nothing said which edition it
+was.
+
+**WHY BOTH DATES AND NOT JUST THE ISSUE DATE.** The two genuinely diverge and the
+divergence is information. ARCC is struck at a 3 September price while its valuation date
+is 30 June 2026 — the date of the latest disclosed balance sheet — and its current edition
+was issued on 9 September. Three different dates, all true, all meaning different things.
+A document that prints one of them and calls it "as of" is telling the reader something
+they cannot act on.
+
+**WHERE IT IS RESOLVED, AND WHAT IS FORBIDDEN.** `engine/doc_dates.py` is the one reader.
+The price date is the spot input's own registered date, then the study's committed
+`spot_date`, then the supplied-price file the price gate itself reads — never
+`meta.asof`, which on several studies is the balance-sheet date and means something else.
+The issue date is the study's own `edition.py`, then the date stamped into the delivered
+document's filename. **NEITHER IS EVER TAKEN FROM A FILE'S MODIFICATION TIME**, which is
+the defect this rule was adopted from. A study whose spot carries no date prints
+"not recorded" rather than borrowing a date that means something else — an absent date is
+not a clean one [R-ENF-04].

@@ -309,6 +309,15 @@ caption('Source: the company’s own FY2023, FY2024 and FY2025 earnings releases
 
 # ================= §1 Fundamental ===========================================
 H1('1  Fundamental valuation')
+
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. Resolved by engine/doc_dates.py and
+# never from a file's modification time.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('GBCO'), size=8, color=GREY)
+
 P('We value GB Corp as an operating company with a captive finance arm and split the legs: blending an auto '
   'assembler-distributor, a leveraged lender and an unlisted fintech associate into one multiple would blur three different '
   'economics. The primary lens for this class is therefore a sum of the parts — the Auto operating leg on a free-cash-flow '

@@ -132,6 +132,15 @@ def build(path):
     # the model report counts the masthead and this note as its first
     # section, so it is a top-level heading and the section count is 16
     doc.add_heading("Read first", level=1)
+    # [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. Resolved by engine/doc_dates.py
+    # and never from a file's modification time.
+    import sys as _sys_dd, os as _os_dd
+    _sys_dd.path.insert(0, _os_dd.path.join(_os_dd.path.dirname(
+        _os_dd.path.dirname(_os_dd.path.abspath(__file__)))))
+    import doc_dates as _DD
+    _hp = doc.add_paragraph(_DD.header_line('TMGH'))
+    for _r in _hp.runs:
+        _r.font.size = __import__('docx').shared.Pt(8)
     para(doc, "This document sets out a range of values for one company and the "
               "reasoning behind it. It is not advice, it does not tell anyone to "
               "buy or sell anything, and it contains no target price. Where a "

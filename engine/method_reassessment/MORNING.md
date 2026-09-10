@@ -26,7 +26,7 @@ widening them to clear them is the one thing refused.
 
 You corrected the record: *"Criterion 4 is not true. I never said that."* The rule as you
 stated it is adopted and the 15% criterion is scrapped — [R-VCAL-02 CLAUSE THREE], amended
-in both governing documents, digest renamed to `PROJECT_INSTRUCTIONS_09-09-2026.md`.
+in both governing documents, digest renamed to `PROJECT_INSTRUCTIONS_10-09-2026.md`.
 
 | | |
 |---|---|

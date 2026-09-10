@@ -136,6 +136,16 @@ figure('fig1_football.png', 6.9,
 
 # ============================== 1 ============================================
 H1('1  Fundamental valuation')
+
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. A valuation states a number struck
+# against a price, and those are two facts with two dates that are not the same date.
+# Resolved by engine/doc_dates.py and never from a file's modification time.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('SCEM'), size=8, color=GREY)
+
 P('Sinai Cement is valued as a single operating company, not as a sum of parts, and the '
   'reason is worth stating before any number. Essentially all of its revenue is grey '
   'cement and clinker from one asset base. Its subsidiaries are a service arm and a '

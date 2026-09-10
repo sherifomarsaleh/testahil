@@ -79,6 +79,16 @@ P(f'Prepared {_words(M["study_date"])} · share price EGP {n2(SPOT)} at the clos
   size=10, color=GREY, space_after=12)
 
 H1('Read first')
+
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. A valuation states a number struck
+# against a price, and those are two facts with two dates that are not the same date.
+# Resolved by engine/doc_dates.py and never from a file's modification time.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('PHAR'), size=8, color=GREY)
+
 box([('What this is. ',
       'An independent, educational valuation of a listed Egyptian pharmaceutical '
       'manufacturer, built from the company\'s own audited financial statements. It contains '

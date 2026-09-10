@@ -147,6 +147,16 @@ _BLEND = (0.50 * LN['values']['DCF (cash flow)']
 # Disclosure were never written, and structure_matches_model was attested True
 # because nothing outside the study had ever counted the sections.
 H1('Headline')
+
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. A valuation states a number struck
+# against a price, and those are two facts with two dates that are not the same date.
+# Resolved by engine/doc_dates.py and never from a file's modification time.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('ARCC'), size=8, color=GREY)
+
 _DCFR = LR[LN['primary']]
 P(f'Arabian Cement is worth EGP {n2(LN["central"])} a share on the cash-flow lens this '
   f'study publishes, against a market price of EGP {n2(SPOT)} on {SPOT_DATE_WORDS} — '
