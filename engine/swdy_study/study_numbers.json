@@ -166,7 +166,7 @@
   },
   "tax_fy25": {
    "value": -5591.139782,
-   "source": "Income tax expense, FY2025 audited financial statements: current tax 6,312.161650 less deferred tax credit 721.021868. Effective rate 22.57% against 24,777.689839 pre-tax profit — REPLACES a previous house assumption of 25.9%",
+   "source": "Income tax expense, FY2025 audited financial statements: current tax 6,312.161650 less deferred tax credit 721.021868. Effective rate 22.57% against 24,777.689839 pre-tax profit — REPLACES a previous house assumption, registered beside it as tax_rate_retired so the figure this study cites is one it holds rather than one it types",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -911,6 +911,24 @@
    },
    "source": "Cables sales volumes in tonnes, from Elsewedy Electric's own Q4 earnings releases (4Q2023, 4Q2024, 4Q2025), each printed beside its own prior-year comparative: +8.1%, +7.0%, +10.6%. A compound 8.55% a year over FY2022-25",
    "date": "2026-02-15",
+   "ring": "Company"
+  },
+  "tax_rate_retired": {
+   "value": 0.259,
+   "source": "The house tax assumption this study RETIRED: 25.9%, replaced by the rate the audited statements actually charge. Registered rather than typed into prose, because a study that cites what it changed is asserting that figure too",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "cables_tonnage_cagr": {
+   "value": 0.08548,
+   "source": "Cables tonnage compound growth FY2022-25, DERIVED from the disclosed volume series: (185,449 / 144,997) ^ (1/3) - 1",
+   "date": "2026-02-15",
+   "ring": "Company"
+  },
+  "dna_pct_fy25": {
+   "value": 0.010706,
+   "source": "FY2025 depreciation and amortisation as a share of revenue, DERIVED from the audited statements: 3,009 / 281,049",
+   "date": "2025-12-31",
    "ring": "Company"
   },
   "cables_tonnage_h1": {

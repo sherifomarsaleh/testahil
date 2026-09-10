@@ -224,7 +224,9 @@ INP = dict(
                "Company"),
     tax_fy25=I(-5591.139782, "Income tax expense, FY2025 audited financial statements: current tax "
                "6,312.161650 less deferred tax credit 721.021868. Effective rate 22.57% against "
-               "24,777.689839 pre-tax profit — REPLACES a previous house assumption of 25.9%",
+               "24,777.689839 pre-tax profit — REPLACES a previous house assumption, "
+               "registered beside it as tax_rate_retired so the figure this study cites "
+               "is one it holds rather than one it types",
                "2026-03-15", "Company"),
     pat_fy23=I(11137.974256, "Profit for the year, FY2023 audited financial statements", "2024-03-13",
                "Company"),
@@ -680,6 +682,24 @@ INP = dict(
                           "beside its own prior-year comparative: +8.1%%, +7.0%%, +10.6%%. "
                           "A compound %.2f%% a year over FY2022-25" % (100 * _TONNE_CAGR),
                           "2026-02-15", "Company"),
+    # REGISTERED so the pool prose_check draws on actually holds them. Deriving a
+    # figure in the source string was not enough — the checker matches against
+    # registered VALUES, and a figure formatted from a module local is still a
+    # figure the study asserts and cannot show.
+    tax_rate_retired=I(0.259,
+                       "The house tax assumption this study RETIRED: 25.9%, replaced by "
+                       "the rate the audited statements actually charge. Registered "
+                       "rather than typed into prose, because a study that cites what it "
+                       "changed is asserting that figure too",
+                       "2026-08-05", "House"),
+    cables_tonnage_cagr=I(round(_TONNE_CAGR, 6),
+                          "Cables tonnage compound growth FY2022-25, DERIVED from the "
+                          "disclosed volume series: (185,449 / 144,997) ^ (1/3) - 1",
+                          "2026-02-15", "Company"),
+    dna_pct_fy25=I(round(_DNA_FY25, 6),
+                   "FY2025 depreciation and amortisation as a share of revenue, DERIVED "
+                   "from the audited statements: 3,009 / 281,049",
+                   "2025-12-31", "Company"),
     cables_tonnage_h1=I(dict(H1_25=89636, H1_26=99239),
                         "Cables sales volumes, reviewed half: 99,239 tonnes against "
                         "89,636, +10.71% — the Q2-2026 earnings release. The most recent "

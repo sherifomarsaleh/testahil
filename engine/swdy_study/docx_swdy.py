@@ -680,7 +680,8 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          'volatility-scaled, through the country premium inside the ERP. The NET country charge '
          'through the equity channel is therefore about +1.9pp, not zero — stated plainly, since '
          'an earlier wording implied the netting removed the charge outright. The un-netted '
-         'construction (cost of equity 31.8%) is retired but retained in the audit trail'],
+         f"construction (cost of equity {pc(W['ke_raw_retired'])}) is retired but "
+         'retained in the audit trail'],
         ['Adjusted risk-free rate', pc(W['rf_star']), pc(IN['rf_term']), ''],
         # THE REGRESSOR IS NAMED FROM THE RECORD, NOT TYPED, AND IT USED TO BE WRONG.
         # This cell printed the LIVE statistics -- which come from the published EGX30
