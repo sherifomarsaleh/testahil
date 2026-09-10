@@ -352,14 +352,36 @@ def _ground_beside_a_weighted_rate(root):
 def _ground_with_nothing_behind_it(root):
     """The ground excuses the ENTERPRISE terminal, never the equity-side one. A study
     that publishes neither is dark, and the word must not rescue it [R-ENF-04]."""
+    # EVERYWHERE, NOT IN ONE BLOCK. ADIB publishes the same terminal twice — under
+    # `cost_of_capital` and again under `cost_of_capital_record` — and the first draft of
+    # this case emptied only the record, so the census found the survivor in the other
+    # block and the case passed while proving nothing. One fact under two names [R-ENF-03],
+    # and a control that mutates one of them tests the wrong thing.
     f = numbers(root, 'ADIB')
     d = json.load(open(f))
-    d['cost_of_capital_record'].pop('ke_terminal', None)
-    d['cost_of_capital_record'].pop('terminal_growth', None)
+    gone = []
+
+    def strip(o):
+        if isinstance(o, dict):
+            for k in ('ke_terminal', 'ke_term', 'ke_T', 'terminal_growth', 'g_term',
+                      'g_terminal', 'growth_at_horizon_end'):
+                if k in o:
+                    o.pop(k)
+                    gone.append(k)
+            for v in o.values():
+                strip(v)
+        elif isinstance(o, list):
+            for v in o:
+                strip(v)
+
+    strip(d)
     json.dump(d, open(f, 'w'), indent=1)
-    assert 'ke_terminal' not in json.load(open(f))['cost_of_capital_record'], \
+    assert gone, 'fixture assumed ADIB published a terminal rate and growth somewhere'
+    txt = json.dumps(json.load(open(f)))
+    assert '"ke_terminal"' not in txt and '"terminal_growth"' not in txt, \
         'mutation did not land'
-    return "ADIB keeps the ground and drops the terminal cost of equity behind it"
+    return ('ADIB keeps the ground and every terminal cost of equity and growth behind it '
+            'is removed, from every block that carried one')
 
 
 def _clean_bank_is_not_dark(root):
