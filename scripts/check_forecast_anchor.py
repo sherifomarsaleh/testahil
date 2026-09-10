@@ -122,8 +122,38 @@ MECHANISMS = {
         'the filing that discloses it',
 }
 
+# THE MIRROR LIST. A forecast that climbs above everything the company has ever filed
+# is the same kind of claim as one that opens below what it just filed, and until
+# 08-09-2026 this rule fired on one and said in its own text that it does NOT fire on
+# the other. That one-sidedness was inherited from the incident it was written on -- the
+# first occurrence was a margin COLLAPSING -- and the identical arithmetic running the
+# other way had no owner. MEASURED ON THE BOOK RATHER THAN ASSERTED: ARCC expands its
+# operating margin at EIGHT of eight origins, monotonically, reaching 55.81% at origin
+# FY2017 and 60.14% at FY2023, against a company whose filed operating margin over
+# FY2014-FY2025 runs -2.81% to 37.55% and swings both ways, and whose peak AS AT either
+# of those origins was 26.23% (FY2016). The overstatement of fair value tracks that
+# terminal margin almost monotonically.
+RISE_MECHANISMS = {
+    'capacity_commissioning_completing':
+        'a disclosed programme whose revenue arrives after costs already incurred',
+    'contracted_price_step_up':
+        'a contracted or administered price that steps up on a disclosed date',
+    'input_cost_normalising':
+        'a disclosed input whose price falls back from a level named in the filings',
+    'mix_shift_to_higher_margin':
+        'a disclosed shift in product or geographic mix, measured in the filings',
+    'one_off_depressing_the_latest_period':
+        'a non-recurring charge inside the latest reviewed period, quantified from '
+        'the filing that discloses it',
+}
+
 REQUIRED = ('latest_reviewed_period', 'latest_reviewed_date', 'latest_reviewed_rate',
             'first_forecast_rate', 'rate_name')
+# filed_peak_rate is NOT in REQUIRED, on forecast_path's own precedent: it is being
+# introduced onto studies that predate it and the ratchet carries those. A record that
+# HAS one is tested on it. It is the highest rate the company had FILED as at the
+# origin — not as at today, which would let a later good year license an earlier
+# forecast that could not have known about it.
 # forecast_path is not in REQUIRED: it is being introduced onto studies that
 # predate it, and the ratchet carries those. A record that HAS one is tested on it.
 
@@ -199,6 +229,47 @@ def check(record, ticker='?'):
                         'ABOVE its latest audited year and then fell below it.'
                         % (p0, pmin, -100 * drop))
 
+    # THE MIRROR CLAUSE. Tested against what the company has ever FILED rather than
+    # against the forecast's own opening year, and that distinction was forced by the
+    # data rather than chosen: ARCC at origin FY2020 opens at an operating margin of
+    # -1.15% and recovers to 5.49%, which is ordinary mean reversion out of a
+    # loss-making year and must NOT fire -- it never approaches the 26.23% this company
+    # had already filed -- while the same name at FY2023 climbs to 60.14% against that
+    # same 26.23% and must. A test on the OPENING YEAR alone cannot tell those apart,
+    # because BOTH of them rise; a test against the filed record separates them by a
+    # wide margin (+129.3% against -79.1%).
+    peak_filed = _f(r.get('filed_peak_rate'))
+    r['_path_rise'] = None
+    if peak_filed and path:
+        try:
+            pmax = max(float(x) for x in path)
+        except (TypeError, ValueError):
+            pass
+        else:
+            rise = (pmax - peak_filed) / abs(peak_filed)
+            r['_path_rise'] = rise
+            if rise > TOL_REL:
+                rm = r.get('rise_mechanism') or {}
+                rname = str(rm.get('name') or '').strip()
+                if not rname:
+                    fails.append(
+                        'the forecast reaches %.4f against a filed peak of %.4f -- %.1f%% '
+                        'ABOVE anything this company has ever reported -- and names no '
+                        'mechanism. A forecast that exceeds the whole filed record is the '
+                        'same claim about the world as one that reverses what was just '
+                        'filed, and this rule fired on only one of those for a month '
+                        'because it was written on an incident that ran the other way.'
+                        % (pmax, peak_filed, 100 * rise))
+                elif rname not in RISE_MECHANISMS:
+                    fails.append(
+                        'rise mechanism %r is not on the closed list (%s). An open list '
+                        'lets any study opt out by inventing a reason, and adding to the '
+                        'list is a rule amendment.'
+                        % (rname, ', '.join(sorted(RISE_MECHANISMS))))
+                elif not str(rm.get('disclosure') or '').strip():
+                    fails.append('rise mechanism %r carries no disclosure. It must come '
+                                 'from the filings, not be asserted.' % rname)
+
     if gap >= -tol:
         if fails:
             raise AssertionError('ANCHOR FAIL -- %s:\n  - %s' % (ticker, '\n  - '.join(fails)))
@@ -261,10 +332,52 @@ def load_outstanding():
     return d, set(d.get('outstanding', []))
 
 
+def studies():
+    """The record directories a record-reading gate can inspect, resolved through
+    engine/study_population.py rather than by globbing engine/*_study.
+
+    THE GLOB WAS THE WRONG POPULATION. All 90 covered names carry a delivered
+    valuation study; 23 commit a record. This gate globbed the directories and
+    printed a count with NO DENOMINATOR, which is why 24 looked like the book.
+    The names with no record are DEFERRED to the shared no-record ratchet, which
+    the valuation-gap gate reports on — they are not re-listed here, because ten
+    gates reporting one fact is the duplication this refactor exists to avoid.
+
+    The import is LAZY so a sandbox that copies this script without engine/
+    beside it does not die on an import it never needed.
+    """
+    global _DEFERRED, _POP_LINE
+    # A SANDBOXED FIXTURE SUPPLIES ITS OWN POPULATION, AND SAYS SO OUT LOUD.
+    # Several negative controls copy this script into a temp tree holding a fake
+    # ENGINE and run it as a subprocess, so the resolver is not importable there —
+    # and it should not be, because the whole point of those fixtures is a
+    # population they control. The escape is an explicit environment variable that
+    # CI never sets, and taking it PRINTS that it was taken: a switch that quietly
+    # restored the directory glob would reinstate the defect this replaced.
+    if os.environ.get('TESTAHIL_FIXTURE_POPULATION'):
+        dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+        _DEFERRED, _POP_LINE = [], ('population: FIXTURE — %d study directories under a '
+                                    'sandboxed ENGINE, not the book' % len(dirs))
+        print(_POP_LINE)
+        return dirs
+    if ENGINE not in sys.path:
+        sys.path.insert(0, ENGINE)
+    import study_population
+    dirs, _DEFERRED, _POP_LINE = study_population.examinable()
+    # printed HERE so the ten gates have exactly ONE edit site each and the line
+    # cannot be forgotten in one of them: a denominator that appears in nine gates
+    # and not the tenth is the drift this refactor exists to stop
+    print(_POP_LINE)
+    return dirs
+
+
+_DEFERRED, _POP_LINE = [], ""
+
+
 def main(argv):
     prune = '--prune' in argv
     d, known = load_outstanding()
-    dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+    dirs = studies()
 
     # [R-ENF-04]: the population is anchored somewhere else and a run that examined
     # nothing FAILS rather than reporting clean

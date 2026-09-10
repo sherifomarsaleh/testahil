@@ -1,0 +1,112 @@
+{
+ "blocked": [
+  {
+   "driver": "cogs",
+   "post": -0.3803060868814774,
+   "pre": 0.08767534211242024,
+   "reason": "the bias changes sign between eras \u2014 that is instability, not a bias, and it is reported rather than corrected for"
+  },
+  {
+   "driver": "sell",
+   "post": -0.5461649796369846,
+   "pre": 0.04128929629682395,
+   "reason": "the bias changes sign between eras \u2014 that is instability, not a bias, and it is reported rather than corrected for"
+  },
+  {
+   "driver": "admin",
+   "post": -0.6772289866549133,
+   "pre": 0.11011139419188869,
+   "reason": "the bias changes sign between eras \u2014 that is instability, not a bias, and it is reported rather than corrected for"
+  },
+  {
+   "driver": "nonop",
+   "post": -0.7751451756935746,
+   "pre": 0.30954329500550265,
+   "reason": "the bias changes sign between eras \u2014 that is instability, not a bias, and it is reported rather than corrected for"
+  }
+ ],
+ "proposed": [
+  {
+   "bias": 0.22495843959688577,
+   "ci90": [
+    0.10375914885403088,
+    0.32716828458063774
+   ],
+   "driver": "vol_proxy",
+   "factor": 0.8936159164344359
+  }
+ ],
+ "strength": 0.5,
+ "tests": [
+  {
+   "by_origin": [
+    {
+     "note": "no resolved history at this origin \u2014 the correction cannot be formed and the raw projection stands",
+     "origin": "FY2019"
+    },
+    {
+     "expanding_bias": -0.08797246607172216,
+     "factor": 1.0449679687528652,
+     "mae_adj_driver": 0.39098299223062066,
+     "mae_adj_np": 1.0020356284619913,
+     "mae_raw_driver": 0.34699675919475953,
+     "mae_raw_np": 1.0309067934697445,
+     "n_resolved": 1,
+     "origin": "FY2020"
+    },
+    {
+     "expanding_bias": 0.008148294791847093,
+     "factor": 0.9959341406831393,
+     "mae_adj_driver": 0.3429749709290952,
+     "mae_adj_np": 1.1303141158576655,
+     "mae_raw_driver": 0.3470491183250188,
+     "mae_raw_np": 1.1274078942967838,
+     "n_resolved": 3,
+     "origin": "FY2021"
+    },
+    {
+     "expanding_bias": 0.2291331553371668,
+     "factor": 0.8917525656349232,
+     "mae_adj_driver": 0.20835260690525095,
+     "mae_adj_np": 0.5484139722311682,
+     "mae_raw_driver": 0.138789746319372,
+     "mae_raw_np": 0.4599469364070737,
+     "n_resolved": 6,
+     "origin": "FY2022"
+    },
+    {
+     "expanding_bias": 0.14182172523180392,
+     "factor": 0.9315449239046061,
+     "mae_adj_driver": 0.27322563255977006,
+     "mae_adj_np": 0.2039020731435813,
+     "mae_raw_driver": 0.3441364951756719,
+     "mae_raw_np": 0.20321602969283417,
+     "n_resolved": 10,
+     "origin": "FY2023"
+    },
+    {
+     "expanding_bias": 0.1960503521883163,
+     "factor": 0.9066260781630825,
+     "mae_adj_driver": 0.005744949344402731,
+     "mae_adj_np": 0.35643324675712595,
+     "mae_raw_driver": 0.09228022674975524,
+     "mae_raw_np": 0.4087703411423949,
+     "n_resolved": 15,
+     "origin": "FY2024"
+    }
+   ],
+   "driver": "vol_proxy",
+   "origins_improved": 2,
+   "origins_tested": 5,
+   "proposed": {
+    "bias": 0.22495843959688577,
+    "ci90": [
+     0.10375914885403088,
+     0.32716828458063774
+    ],
+    "driver": "vol_proxy",
+    "factor": 0.8936159164344359
+   }
+  }
+ ]
+}

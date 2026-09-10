@@ -8,6 +8,13 @@ from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+_MACRO = json.load(open(os.path.join(HERE, '..', 'macro_paths', 'EG.json')))
+MACRO_PI_TERM = _MACRO['inflation']['terminal']['value']
+MACRO_REAL = _MACRO['real_rate_convention']['value']
+# The committed strike and its date, so the workbook cannot describe a price the
+# study has stopped using. Both were typed here until 09-09-2026.
+_SPOT = D['spot']
+_SPOT_DATE = D['spot_date']
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
 FILL_T = PatternFill('solid', start_color='1C3A36'); FILL_H = PatternFill('solid', start_color='EAF0EE')
@@ -60,7 +67,11 @@ for i, ln in enumerate([
  'Discount convention. Each explicit year is discounted at its own forward WACC, gliding 21.5% -> 15.0% on the',
  'same easing calendar as the interest forecast; the terminal value is capitalised at the terminal WACC and',
  'discounted at the year-5 cumulative factor. One date, one price of time.', '',
- 'Currency. EGP million unless stated. Spot EGP 2.19 (5 Aug 2026 close). Sheets: Summary · Fundamental',
+ # THE WORKBOOK TYPED THE PRICE TWICE AND THE STUDY WAS RE-STRUCK AROUND IT [09-09-2026].
+ # Both lines now read the committed spot and its committed date, so a re-strike reaches
+ # the delivered workbook instead of leaving it describing a price nobody uses.
+ ('Currency. EGP million unless stated. Spot EGP %.2f (%s close). Sheets: Summary · Fundamental'
+  % (_SPOT, _SPOT_DATE)),
  'Valuation · Assumptions · SOTP Bridge · Segments · Relative & Normalized · DCF · Income Statement ·',
  'Balance Sheet · Cash Flow · Summary Financials · Monte Carlo · Sensitivity · Per-Share & Ratios · Peer & Sector.']
  , start=3):
@@ -77,7 +88,8 @@ def inp(ws_, row, label, val, fmt=NUM0, note=None):
     if note: put(ws_, f'C{row}', note, SUB, None)
     return row + 1
 r = hdr(wa, 4, 'ANCHORS')
-r = inp(wa, r, 'Spot price (EGP/share)', 2.19, PX, '5-Aug-2026 close, uploaded EGX history')             # B5
+r = inp(wa, r, 'Spot price (EGP/share)', _SPOT, PX,
+        '%s close, uploaded EGX history' % _SPOT_DATE)                                       # B5
 r = inp(wa, r, 'Shares outstanding (mn)', 3313.540373, NUM0, 'Mubasher paid-in capital 662,708,074.60 / par 0.20; EPS arithmetic confirms')  # B6
 r = inp(wa, r, 'Tax rate', 0.225, PCT, 'PwC Tax Summaries Egypt — 22.5% unchanged')                       # B7
 r = hdr(wa, r, 'COST OF CAPITAL — sovereign double-count removed; sliding schedule below')                # 8
@@ -93,12 +105,27 @@ put(wa, f'A{r}', 'Market cap (spot × shares)'); put(wa, f'B{r}', '=B5*B6', BLAC
 r = inp(wa, r, 'Total debt for weights (FY25, triangulated)', 10465.0, NUM0, 'Balance-sheet residual: disclosed assets 16,460 − rolled equity 4,100 − non-debt liabilities ~1,890; = 96% of the disclosed 10.9bn facilities')  # B18
 put(wa, f'A{r}', 'Equity weight E/(D+E)'); put(wa, f'B{r}', '=B17/(B17+B18)', BLACK, PCT); r += 1          # B19
 put(wa, f'A{r}', 'WACC — explicit window', bold=True); put(wa, f'B{r}', '=B19*B14+(1-B19)*B16', BLACK, PCT, True); r += 1  # B20
-r = inp(wa, r, 'Terminal rf (norm-built)', 0.105, PCT, "CBE's Q4-2028 inflation target 5% + 5.5pp real-rate convention")  # B21
+# THE NUMBER IS RIGHT AND THE SENTENCE UNDER IT WAS NOT. This note read "CBE's Q4-2028
+# inflation target 5% + 5.5pp real-rate convention" -- the arithmetic of a convention this
+# house retired. 10.50% is the house terminal inflation plus the CURRENT 3.5pp convention;
+# both legs are read from the macro path so the sentence cannot go stale again.
+r = inp(wa, r, 'Terminal rf (norm-built)', round(MACRO_PI_TERM + MACRO_REAL, 4), PCT,
+        'House terminal inflation %.2f%% + the %.1fpp real-rate convention '
+        '(engine/macro_paths/EG.json)' % (100 * MACRO_PI_TERM, 100 * MACRO_REAL))  # B21
 r = inp(wa, r, 'Terminal ERP (normalised)', 0.070, PCT, 'Below the crisis-era 9.41%, toward the B-rating norm')  # B22
 put(wa, f'A{r}', 'Terminal Ke'); put(wa, f'B{r}', '=B21+B13*B22', BLACK, PCT); r += 1                      # B23
 r = inp(wa, r, 'Terminal Kd', 0.150, PCT, 'Egyptian long-run corporate norm 14-16%, midpoint')             # B24
 put(wa, f'A{r}', 'WACC — terminal (normalized structure)', bold=True); put(wa, f'B{r}', 0.15, BLACK, PCT, True); r += 1  # B25 — real formula written once wd_term row is known
-r = inp(wa, r, 'Terminal growth g', 0.05, PCT, 'Standing center 5%; grid 3-7% on Sensitivity')             # B26
+# [R-DCF-01] THE TERMINAL GROWTH WAS TYPED AND THE MODEL DERIVES IT. This cell held a typed
+# 0.05 -- "standing center 5%" -- while compute.py derives g_term from the house Egyptian macro
+# path (zero STATED real growth on 7.00% terminal inflation). When that path was re-struck the
+# model went to 7.00% and the workbook stayed at 5.00%, and because reinvestment is g / ROIC a
+# LOWER g leaves MORE free cash flow: terminal FCFF 714.9 against the model's 379.2, terminal
+# value 7,150 against 4,741, enterprise value 3,822.8 against 2,768.9 -- the workbook 38% above
+# the study it ships beside. It is now read from the study's own committed number.
+r = inp(wa, r, 'Terminal growth g', D['inputs']['g_term']['value'], PCT,
+        'DERIVED, not typed: zero stated real growth on the house terminal inflation of '
+        '%.2f%% (engine/macro_paths/EG.json)' % (100 * MACRO_PI_TERM))             # B26
 r = hdr(wa, r, 'BRIDGE')                                                                                   # 27
 r = inp(wa, r, 'Net debt (FY25, triangulated)', 9805.0, NUM0, 'Roll-forward from FY24 audited comparatives: drawn debt 10,465 − cash ~665; two methods agree ~9,800, facilities-as-drawn 10,235 is the upper check; range 9,120-10,360 (~±EGP 0.19/sh) — see study §1.6')  # B28
 r = inp(wa, r, 'Non-controlling interests', 0.0, NUM0, 'Consolidated-vs-attributable gap ~1.1mn FY25 — immaterial')  # B29

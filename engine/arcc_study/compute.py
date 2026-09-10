@@ -131,8 +131,11 @@ right and the rejection was right), and revenue and profit for all three years.
 import datetime as _dt
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
+import cost_of_capital as _coc
 import macro_path as MP
 # [R-TERM-01] — the terminal comes from the shared builder, never from a local
 # construction. Every study once hand-rolled its own beta and every one was wrong the same
@@ -145,7 +148,7 @@ import terminal_value
 # 'issued 2 September' on a 3 September edition. A date typed beside a computed
 # number is the same defect as a number typed beside a computed one.
 SPOT_DATE = '2026-09-03'      # engine/prices/SUPPLIED_03-09-2026.json
-EDITION_DATE = '2026-09-03'   # the date in the delivered filenames
+EDITION_DATE = _ed.ISO       # edition.py is the ONE place this date is written
 
 # ---------------------------------------------------------------------------
 # THE HOUSE MACRO PATH [R-MACRO-01]. Until this edition ARCC carried its own
@@ -196,6 +199,32 @@ def I(value, source, date, ring):
 
 AFS25 = ("Audited consolidated financial statements for the year ended 31 December 2025, "
          "Deloitte (Wafik, Ramy & Partners), signed 25 February 2026")
+
+# THE SUPERSEDED FIGURE IS WRITTEN ONCE AND EVERY QUOTE OF IT IS COMPUTED. Revision 1's
+# inferred minority sits in two delivered artefacts — the input register's own justification
+# and the workbook's READ FIRST narrative — and the second of them typed the multiple as
+# "950 times too much" against the register's computed 949, because the workbook was in no
+# study's prose population until 05-09-2026. One study, two figures, for the same fact.
+NCI_V1 = 150.0
+
+# THE WORKING-CAPITAL RATE, MEASURED OFF THE ISSUER'S OWN CASH-FLOW STATEMENT [09-09-2026].
+# Computed HERE because the register entry below both carries the number and prints the
+# workings, and a number a source string describes must be the number the model uses --
+# the declared-versus-used shape [R-MACRO-01 AMENDED] names. The figures themselves are
+# registered one line each below, with their note references, so each is auditable on its
+# own; this block only adds them up.
+#
+# Sign convention is the statement's own: a negative movement is cash INVESTED. The rate
+# a valuation consumes is the investment per unit of revenue growth, so the sums are
+# negated on the way in.
+_WC_MOVES_25 = (-201.156175, -433.385613, -87.971822, 0.156657, 471.357979, -420.277505)
+_WC_MOVES_24 = (133.615986, -412.570426, 69.674226, -0.061289, 22.853568, 71.000142)
+_WC_SUM_25 = sum(_WC_MOVES_25)
+_WC_SUM_24 = sum(_WC_MOVES_24)
+_DREV_25 = 12447.320081 - 8729.782821
+_DREV_24 = 8729.782821 - 6042.831338
+_WC_PCT_DREV = (-_WC_SUM_25 - _WC_SUM_24) / (_DREV_25 + _DREV_24)
+
 AFS24 = ("Audited consolidated financial statements for the year ended 31 December 2024, "
          "Deloitte (Wafik, Ramy & Partners), signed 23 March 2025")
 IH26 = ("Reviewed condensed consolidated interim financial statements for the six months "
@@ -401,9 +430,16 @@ INP = dict(
                           "rather than typed into a builder, which is the same disposition "
                           "any superseded figure quoted to show what changed must take.",
                           "2026-08-06", "House"),
+    nci_v1=I(NCI_V1, "The non-controlling interest revision 1 of this study deducted, "
+             "inferred from the profit statements when no source document could be opened. "
+             "THIS MODEL CANNOT COMPUTE IT — a different model produced it — so it is "
+             "registered as the historical fact it is rather than typed into a builder, the "
+             "same disposition central_pre_rebuild takes. Note 24 of the audited accounts "
+             "puts the real figure at EGP 158,005.",
+             "2026-08-06", "House"),
     nci=I(0.158005, AFS25 + " — non-controlling interests, note 24: EGP 158,005. Revision 1 "
           "deducted EGP 150mn on inference from the profit statements; the audited figure "
-          "is %.0f times smaller and immaterial to the bridge" % (150.0 / 0.158005),
+          "is %.0f times smaller and immaterial to the bridge" % (NCI_V1 / 0.158005),
           "2025-12-31", "Company"),
 
     # ---- debt, note 25 ----------------------------------------------------
@@ -722,9 +758,80 @@ INP = dict(
                       "USD 3/t. Worth EGP 1.77 a share against revision 3's figure, and the "
                       "whole range is published as a sensitivity",
                       "2025-12-31", "Company"),
-    wc_pct_drev=I(0.12, "Change in working capital over change in revenue. The FY2025 "
-                  "outturn on the disclosed movements is close to this",
-                  "2026-08-06", "House"),
+    # ---- THE DISCLOSED WORKING-CAPITAL MOVEMENTS, BOTH YEARS [added 09-09-2026]
+    # THE SENTENCE THAT USED TO SIT HERE WAS FALSE AND THE NUMBER IT DEFENDED WAS RIGHT.
+    # wc_pct_drev was typed 0.12 with the justification "the FY2025 outturn on the
+    # disclosed movements is close to this". The FY2025 outturn on the disclosed movements
+    # is 18.06%. It is not close to 12%; it is half again as large, and nothing in the
+    # study had ever opened the cash-flow statement to find out — this is the same defect
+    # SWDY carried on its backlog and its employees' cap, a delivered sentence asserting
+    # something the issuer's own filing contradicts.
+    #
+    # What supports 12% is the TWO disclosed years pooled, and the two years are 4.30% and
+    # 18.06% — a four-fold disagreement, so one year is not a basis for anything. Pooling
+    # weights each year by its own revenue growth, which is the weighting a driver
+    # expressed PER UNIT OF REVENUE GROWTH already implies, and returns 12.29%.
+    #
+    # IT IS NOW DERIVED RATHER THAN TYPED, and the derived figure is LARGER than the typed
+    # one, so this correction moves the answer AWAY from the traded price and widens the
+    # gap it was found while trying to close. It is applied for that reason and not in
+    # spite of it: declining a correction because of where it lands is the same offence as
+    # making one because of where it lands [R-GAP-04].
+    wc_inv_fy25=I(-201.156175, AFS25 + " — statement of cash flows, '(Increase)/decrease "
+                  "in inventories'", "2025-12-31", "Company"),
+    wc_inv_fy24=I(133.615986, AFS25 + " — statement of cash flows, comparative column",
+                  "2024-12-31", "Company"),
+    wc_dr_fy25=I(-433.385613, AFS25 + " — statement of cash flows, '(Increase) in debtors "
+                 "and other debit balances'", "2025-12-31", "Company"),
+    wc_dr_fy24=I(-412.570426, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_tr_fy25=I(-87.971822, AFS25 + " — statement of cash flows, '(Increase)/decrease in "
+                 "trade receivables'", "2025-12-31", "Company"),
+    wc_tr_fy24=I(69.674226, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_rp_fy25=I(0.156657, AFS25 + " — statement of cash flows, 'Decrease/(increase) in "
+                 "amounts due from related parties'", "2025-12-31", "Company"),
+    wc_rp_fy24=I(-0.061289, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_cr_fy25=I(471.357979, AFS25 + " — statement of cash flows, 'Increase in creditors "
+                 "and other credit balances'", "2025-12-31", "Company"),
+    wc_cr_fy24=I(22.853568, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    wc_tp_fy25=I(-420.277505, AFS25 + " — statement of cash flows, '(Decrease)/increase in "
+                 "trade and notes payable'", "2025-12-31", "Company"),
+    wc_tp_fy24=I(71.000142, AFS25 + " — statement of cash flows, comparative column",
+                 "2024-12-31", "Company"),
+    # PROVISIONS USED IS DELIBERATELY NOT IN THE SUM. It sits on the same block of the
+    # cash-flow statement (EGP -40.721mn in FY2025, -32.599mn in FY2024) and it is the
+    # utilisation of a provision, not an investment in trade working capital; this model
+    # already carries provisions on their own line in the EBITDA bridge, so counting them
+    # here would charge them twice. Named rather than silently dropped.
+    # THE TWO YEARS, REGISTERED SEPARATELY so a reader can audit each and so the study's
+    # own prose gate can match them: a figure quoted in a delivered source string has to
+    # exist as a number this study computes, or prose_check reports it as unreconciled —
+    # which is exactly what it did on the first rebuild after this rate was derived.
+    wc_pct_drev_fy25=I(round(-_WC_SUM_25 / _DREV_25, 6),
+                       "The FY2025 outturn alone: EGP %.3fmn invested in working capital "
+                       "against EGP %.3fmn of revenue growth. NOT USED — it is half again "
+                       "the pooled rate and the sentence claiming 12%% was close to it was "
+                       "false" % (-_WC_SUM_25, _DREV_25), "2025-12-31", "Company"),
+    wc_pct_drev_fy24=I(round(-_WC_SUM_24 / _DREV_24, 6),
+                       "The FY2024 outturn alone: EGP %.3fmn against EGP %.3fmn. NOT USED "
+                       "— it is a quarter of the FY2025 figure, and two years that "
+                       "disagree four-fold are why neither is a basis on its own"
+                       % (-_WC_SUM_24, _DREV_24), "2024-12-31", "Company"),
+    wc_pct_drev=I(_WC_PCT_DREV, "Change in working capital over change in revenue, "
+                  "DERIVED from the six working-capital movement lines the issuer's own "
+                  "statement of cash flows discloses for FY2025 and FY2024, pooled and "
+                  "divided by the revenue growth of the same two years: EGP "
+                  "%.3fmn invested against EGP %.3fmn of revenue growth. The two years "
+                  "SEPARATELY are %.2f%% and %.2f%%, which is why neither is used alone. "
+                  "Revisions 1-4 typed 0.12 and justified it as the FY2025 outturn; the "
+                  "FY2025 outturn is %.2f%%"
+                  % (-_WC_SUM_25 - _WC_SUM_24, _DREV_25 + _DREV_24,
+                     100 * -_WC_SUM_24 / _DREV_24, 100 * -_WC_SUM_25 / _DREV_25,
+                     100 * -_WC_SUM_25 / _DREV_25),
+                  "2025-12-31", "Company"),
     payout=I(0.556, "Dividend payout ratio from FY2026E, held at the FY2025 outturn: EGP "
              "2,001.792mn declared on EGP 3,599.586mn of attributable profit",
              "2026-08-06", "House"),
@@ -797,6 +904,33 @@ INP = dict(
                      "2026-01-05", "Country"),
     erp_cds=I(0.0941, "Egypt equity risk premium, CDS-based, Damodaran January-2026",
               "2026-01-05", "Country"),
+    # THE SAME ROW OF THE SAME FILE PUBLISHES A SECOND BASIS, AND THIS STUDY USED TO SHOW
+    # A READER ONLY ONE OF THEM [audit finding 9, 08-Sep-2026]. Damodaran's country sheet
+    # carries two complete constructions side by side: a RATING basis, from Egypt's
+    # Moody's rating through his rating-to-spread table, and a CDS basis, from the traded
+    # sovereign CDS net of the Swiss reference. They are not a headline and a footnote —
+    # they are two answers, 4.5 points of premium apart, and the one this study adopts
+    # produces the LOWER discount rate and the HIGHER value. That is exactly the shape of
+    # choice a reader must be told was made. Both are now inputs, the alternative is
+    # priced in section 1.4, and the record carries the figure instead of a None.
+    #
+    # READ FROM THE FILE, NOT FROM THE AUDIT THAT RAISED THIS. The workbook is committed
+    # in this repository at engine/egch_study/ctryprem_snapshot.xlsx, sheet 'ERPs by
+    # country', the Egypt row, and these are its own figures at its own precision.
+    sov_spread_rating=I(0.06372478453347744,
+                        "Egypt rating-based sovereign default spread (Moody's Caa1), "
+                        "Damodaran January-2026 country risk file, sheet 'ERPs by "
+                        "country', Egypt row, column 'Rating-based Default Spread'. The "
+                        "ALTERNATIVE to the CDS spread this study adopts, published in "
+                        "the same row of the same file",
+                        "2026-01-05", "Country"),
+    erp_rating=I(0.13937694320020103,
+                 "Egypt total equity risk premium on the RATING basis, same file, same "
+                 "row, column 'Total Equity Risk Premium'. The CDS basis adopted here "
+                 "gives 9.41%; this is the published alternative and it is 4.53 points "
+                 "higher, so adopting it would RAISE the discount rate and LOWER the "
+                 "value. Priced in section 1.4 rather than left unstated",
+                 "2026-01-05", "Country"),
     euribor=I(0.0249, "Three-month Euribor, the reference rate on the EBRD facility. "
               "Revision 3 carried 2.10%, which sits BELOW the ECB deposit facility rate of "
               "2.25% and is therefore impossible as a term rate. It also applied one "
@@ -872,20 +1006,47 @@ INP = dict(
 
     # ---- sector and peers --------------------------------------------------
     egy_capacity_mt=I(76.0, "Egyptian nameplate cement capacity", "2025-10-01", "Industry"),
-    egy_cons_mt=I(53.9, "Egyptian domestic cement sales 2025. " + IRP + " page 12 gives "
-                  "53.9Mt, against the 54.0 previously carried on trade estimate",
+    egy_cons_mt=I(53.9929, "Egyptian domestic CEMENT sales 2025. " + IRP + ", Market "
+                  "Overview block, 'Cement Domestic Sales' 53,992.9 K Tons, against the 54.0 "
+                  "previously carried on trade estimate. Read at the page's own precision "
+                  "rather than the chart's rounded 53.9, because the utilisation ratios below "
+                  "are differences of large numbers", "2026-03-01", "Company"),
+    egy_prod_mt=I(72.6248, "Egyptian cement AND CLINKER sales 2025 — local plus export. " +
+                  IRP + " gives domestic cement 53,992.9, cement exports 11,063.0 and clinker "
+                  "exports 7,568.9 K Tons. Revisions 1 to 4 carried 65.0Mt as 'production' "
+                  "against exports of 18.5Mt and consumption of 54Mt, a balance that does not "
+                  "close: 65 less 54 is 11Mt, not 18.5. THE 65Mt THEY DISCARDED WAS THE RIGHT "
+                  "CEMENT-BASIS NUMBER and the balance failed because the two figures were on "
+                  "different bases, not because either was wrong. This total is the "
+                  "all-product one and it is NOT the numerator of a cement utilisation ratio",
                   "2026-03-01", "Company"),
-    egy_prod_mt=I(72.6, "Egyptian cement and clinker SALES 2025 — local plus export. " + IRP +
-                  " page 12 gives local 53.9Mt and exports 18.6Mt, total 72.6Mt. Revisions "
-                  "1 to 4 carried 65.0Mt as 'production' against exports of 18.5Mt and "
-                  "consumption of 54Mt, a balance that does not close: 65 less 54 is 11Mt, "
-                  "not 18.5. One reviewer caught the gap and the disclosure now closes it. "
-                  "This changes the sector picture materially — see the utilisation note",
-                  "2026-03-01", "Company"),
-    egy_exports_mt=I(18.6, "Egyptian cement AND clinker export sales 2025. " + IRP +
-                     " page 12. The two products are reported together, which is why the "
-                     "earlier balance failed: it set a cement-plus-clinker export figure "
-                     "against a cement-only production figure", "2026-03-01", "Company"),
+    egy_exports_mt=I(18.6319, "Egyptian cement AND clinker export sales 2025. " + IRP +
+                     ", Market Overview block, 'Total Export Sales' 18,631.9 K Tons. THE TWO "
+                     "PRODUCTS ARE REPORTED TOGETHER AND THE SAME PAGE SPLITS THEM, which is "
+                     "why the earlier balance failed: it set a cement-plus-clinker export "
+                     "figure against a cement-only production figure. The split is now carried "
+                     "in the two inputs below rather than left folded up here, because a "
+                     "utilisation ratio built on this line has the same defect",
+                     "2026-03-01", "Company"),
+    # THE EXPORT LINE SPLIT, FROM THE SAME PAGE THE STUDY ALREADY CITED [audit finding 7,
+    # 08-Sep-2026]. The utilisation claim divided 72.6Mt of cement-AND-CLINKER sales by
+    # 76Mt of CEMENT nameplate capacity and called the result a market running near 96%.
+    # The mismatch is exactly the one this study's own note above says it corrected, in the
+    # other direction — and the 65Mt it discarded as the failed balance was the right
+    # cement-basis number all along.
+    #
+    # A CLINKER TONNE IS NOT A CEMENT TONNE, and not only as a units question. Clinker
+    # leaves at the kiln and never touches a cement mill, so a tonne exported as clinker
+    # consumes no grinding capacity at all. Putting it in the numerator of a cement
+    # utilisation ratio counts capacity that was never called on.
+    egy_exports_cement_mt=I(11.0630, "Egyptian CEMENT export sales 2025. " + IRP +
+                            ", Market Overview block, 'Cement Export Sales' 11,063.0 K Tons "
+                            "(FY2024: 7,561.7, up 46%)", "2026-03-01", "Company"),
+    egy_exports_clinker_mt=I(7.5689, "Egyptian CLINKER export sales 2025. " + IRP +
+                             ", Market Overview block, 'Clinker Export Sales' 7,568.9 K Tons "
+                             "(FY2024: 12,241.4, down 38%). Leaves at the kiln, never enters a "
+                             "cement mill, and is therefore NOT in the cement-basis "
+                             "utilisation ratio", "2026-03-01", "Company"),
     egy_revival_mt=I(12.6, "Dormant Egyptian capacity under revival from the second half of "
                      "2026", "2025-10-01", "Industry"),
     egy_gdp_egp_bn=I(18000.0, "Egyptian nominal gross domestic product, order of magnitude, "
@@ -1353,12 +1514,43 @@ say(f"[Multi-currency alternative, computed as a VALUE not described] loading th
 rf_star = V['rf'] - V['sov_spread_cds']
 BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
 beta_used = BETA['adopted']['beta_used']
-ke_exp = rf_star + beta_used * V['erp_cds']
+# THE TIER IS READ, NOT ASSERTED. [R-COC-02] wants the record to say what KIND of beta
+# this is, and the only honest source for that is the beta record that produced it —
+# a tier typed into the cost-of-capital block would be a claim about a file rather than
+# a reading of it, and would go on being true after the beta changed.
+_BETA_TIER = BETA['adopted']['tier']
+assert int(_BETA_TIER) in (1, 2, 3), _BETA_TIER
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. The retired line was
+# rf* + beta x the WHOLE premium, which multiplies Egypt's country risk by beta and so
+# charges it (beta - 1) times over. Every kiln, tonne and customer of this company is in
+# Egypt, so lambda is 1.00 and the whole country premium is the Egyptian one.
+#
+# THIS ONE MOVES AGAINST US AND IS FIXED ANYWAY. The beta here is BELOW one, so the
+# retired identity was charging LESS country risk than the flat charge, not more: the
+# correction RAISES the cost of equity by (1 - beta) x CRP and LOWERS the answer. An
+# error found while correcting a class of errors is corrected because it is an error,
+# whichever way it runs [R-GAP-04].
+_CRP, _ERP_MATURE = _coc.split_erp(V['erp_cds'], V['sov_spread_cds'])
+ke_exp = rf_star + beta_used * _ERP_MATURE + _CRP
+# THE SAME CONSTRUCTION ON THE FILE'S OTHER PUBLISHED BASIS [audit finding 9]. Not an
+# input to anything — it exists so the choice between two published bases can be priced
+# on the page instead of being one a reader never learns was made. BOTH LEGS MOVE: the
+# rating default spread nets out of the observed risk-free rate and the rating premium
+# goes back on. Mixing a CDS-netted risk-free with a rating premium would charge Egypt's
+# default risk once at one price and once at another, which is not either basis.
+_RF_STAR_RATING = V['rf'] - V['sov_spread_rating']
+# THE OTHER BASIS SPLITS TOO [R-ENF-03]. When a fix goes into one of two lines that do
+# the same job, the other one is now a defect: leaving the rating basis on the retired
+# identity would price the choice between the two bases on a difference that is partly
+# just the two constructions disagreeing.
+_CRP_RATING, _ERP_MATURE_RATING = _coc.split_erp(V['erp_rating'], V['sov_spread_rating'])
+_KE_RATING = _RF_STAR_RATING + beta_used * _ERP_MATURE_RATING + _CRP_RATING
 kd_at = KD * (1 - TAX)
 net_cash_bs = V['cash_fy25'] - debt_tot
 wd_gross = debt_tot / (debt_tot + MKTCAP)
 wd_net = -net_cash_bs / (-net_cash_bs + MKTCAP)
 wacc_exp = (1 - wd_gross) * ke_exp + wd_gross * kd_at
+_WACC_RATING = (1 - wd_gross) * _KE_RATING + wd_gross * kd_at
 # Hamada must start from an ASSET beta. Revision 3 re-levered an already-levered
 # observed beta, levering it twice. Unlever at the observed structure first.
 beta_u = beta_used / (1 + (1 - TAX) * wd_gross / (1 - wd_gross))
@@ -1449,7 +1641,31 @@ dwc = [(rev_f[i] - prev_rev[i]) * V['wc_pct_drev'] for i in range(5)]
 # own EGP cost inflation (+9.1%/yr), i.e. it embeds a real appreciation of the pound that
 # is nowhere defended. The cost of building a plant in pounds tracks the pound cost of
 # building it. Rolled at the model's own cost index.
-ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * V['cost_infl'][5]
+# AND THE ROLL ITSELF STARTED A YEAR EARLY, WHICH IS THE SAME DEFECT ONE LEVEL DOWN.
+# repl_usd_t (130.0) and fx (50.30) are BOTH dated 2026-08-06, so their product is an
+# AUGUST-2026 EGP figure. cost_infl is indexed to FY2025 = 1.0. Multiplying the first by
+# the second charged the FY2025-to-FY2026 step of 11.5% TWICE — once inside the August
+# exchange rate and the replacement quote that was taken beside it, and again in the
+# index. The vintage of a figure is carried by its own source date and both source dates
+# say the same thing, so this is arithmetic rather than judgement: it would be an error
+# in whichever direction it moved the answer.
+#
+# THE ENDPOINT IS RIGHT AND WAS CHECKED RATHER THAN ASSUMED. terminal_value.build takes
+# FCFF = NOPAT + D&A - maintenance - pi.WC at the level of the LAST EXPLICIT YEAR and
+# grows the whole of it by (1+g) inside the perpetuity, so every term in that sum must be
+# FY2030-nominal. nopat[-1], dna_f[-1] and _WC_LEVEL all are. cost_infl[5] is the FY2030
+# index — BU runs i=0..5 over FY2025..FY2030 — so the destination never moved; only the
+# origin was wrong.
+#
+# The base is taken as cost_infl[1], the FY2026 index point, and that is the CONSERVATIVE
+# reading rather than the precise one: August is month eight of a calendar year, so the
+# true August-2026 price level sits ABOVE the FY2026 average, the true roll is therefore
+# SHORTER than the one used here, and the capital base and the maintenance charge that
+# comes out of it are if anything still a little too large. Stated so nobody has to infer
+# which way the remaining approximation runs.
+_IC_ROLL = V['cost_infl'][5] / V['cost_infl'][1]
+ic_repl = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * _IC_ROLL
+_IC_REPL_RETIRED = V['cap_cement_mt'] * V['repl_usd_t'] * V['fx'] * V['cost_infl'][5]
 fcff = [nopat[i] + dna_f[i] - capex[i] - dwc[i] for i in range(5)]
 fcff[0] *= REM
 pv = [fcff[i] * df_[i] for i in range(5)]
@@ -1490,6 +1706,28 @@ sum_pv = float(np.sum(pv))
 # STATED rather than left implicit.
 _UL = json.load(open(os.path.join(HERE, 'useful_lives.json')))
 _LIFE = float(_UL['adopted_for_terminal']['years'])
+# THE ADOPTED LIFE, CHECKED AGAINST THE ISSUER'S OWN CHARGE [09-09-2026]. The life above
+# comes from the accounting-policies note, which is what [R-TERM-01] requires. What it did
+# NOT come with was any test that the policy is what the company actually books — and the
+# study's own useful_lives.json named the evidence that would overturn it ("a disclosed
+# asset-class breakdown of PP&E by cost") while nobody opened note 12 of the same filing,
+# where that breakdown is printed. Read now: gross cost less freehold land, which is not
+# depreciated, over the year's own depreciation expense.
+#
+# It is an ORDERING and a ratio off two disclosed blocks, not a life this desk chose, so
+# it does not become the input — it tests the input. The alternative the contested
+# register carries, 50 years, cannot be reached by any weighting of these classes.
+_N12 = _UL['note12_cost_and_charge']
+_N12_COST = _N12['gross_cost_egp_2025']
+_N12_CHG = _N12['depreciation_expense_egp_2025']
+_LIFE_IMPLIED = ((sum(_N12_COST.values()) - _N12_COST['freehold_land'])
+                 / sum(_N12_CHG.values()))
+assert abs(sum(_N12_CHG.values()) / 1e6 - 259.089682) < 1e-6, (
+    'note 12 depreciation expense must foot to the cash-flow statement figure')
+assert abs(_LIFE_IMPLIED / _LIFE - 1.0) < 0.10, (
+    'the disclosed life the terminal uses (%.1fy) and the life the company\'s own charge '
+    'implies (%.2fy) differ by more than 10%%. One of the two is wrong and the terminal '
+    'may not be struck until it is known which.' % (_LIFE, _LIFE_IMPLIED))
 # The working-capital LEVEL this model implies: its own convention is dWC = dRev x
 # wc_pct_drev, and in a steady state dRev = pi x Rev, so the level is Rev x wc_pct_drev.
 _WC_LEVEL = rev_f[-1] * V['wc_pct_drev']
@@ -1653,7 +1891,7 @@ say(f"[Counterweight 3 — is the uplift permanent?] the local price factor of "
     f"document says so in those words")
 
 # ==================== 7. SENSITIVITY ========================================
-def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal):
+def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal, life_=None):
     """The terminal at an arbitrary rate and nominal growth, through [R-TERM-01].
 
     A sensitivity grid is quoted in NOMINAL growth because that is what a reader of this
@@ -1667,14 +1905,22 @@ def _terminal_at(nopat_last, dna_last, wacc_t, g_nominal):
     return terminal_value.build(terminal_value.TerminalInputs(
         nopat=float(nopat_last), wacc=float(wacc_t), inflation=float(_PI_T),
         real_growth=float(g_real), dna_book=float(dna_last),
-        ic_replacement=float(ic_repl), useful_life_years=_LIFE,
+        ic_replacement=float(ic_repl),
+        useful_life_years=(_LIFE if life_ is None else float(life_)),
         useful_life_source=_UL['_source'], maintenance_basis='disclosed_life',
         working_capital=float(_WC_LEVEL),
         incremental_capital_per_unit_growth=float(ic_repl))).tv
 
 
 def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
-          dna_shift=0.0, nci=None, kd_=None):
+          dna_shift=0.0, nci=None, kd_=None, life_=None):
+    # life_ EXISTS BECAUSE A JUDGEMENT THAT CANNOT BE REVALUED CANNOT BE CONTESTED.
+    # The terminal's maintenance charge rests on a DISCLOSED useful life [R-TERM-01] and
+    # ARCC's accounting-policies note discloses EIGHT of them, from 3 years to 50. This
+    # study consumes ONE. Until this parameter existed there was no way to price the
+    # other seven through the same bridge as the headline, so the choice sat in
+    # useful_lives.json -- which says in its own words that it "belongs in the
+    # [R-ENF-05] register" -- and did not appear in that register at all.
     nc = net_cash if nc is None else nc
     g = V['g_term'] if g is None else g
     nci_ = V['nci_h1_26'] if nci is None else nci
@@ -1705,7 +1951,7 @@ def reval(nc=None, g=None, we=None, beta_=None, mgn_shift=0.0, capex_mult=1.0,
     # re-derived the g x IC terminal here, so every sensitivity and every contested
     # judgement was quoted against a construction that was consistent with the headline and
     # consistently wrong. Both now go through [R-TERM-01].
-    tvl = _terminal_at(np_[-1], dn[-1], wt, g)
+    tvl = _terminal_at(np_[-1], dn[-1], wt, g, life_=life_)
     # THE TERMINAL VALUE DISCOUNTS AT THE END-OF-WINDOW FACTOR, NOT AT THE LAST
     # EXPLICIT YEAR'S MID-YEAR FACTOR. Revision 4 found this the hard way: with
     # d_[-1] here, reval() returned 57.27 against a headline of 55.21 — every
@@ -1827,6 +2073,63 @@ say(f"\n[The export subsidy, priced across the range rather than caveated] at th
     f"{SUBSIDY[3]['fv'] - SUBSIDY[0]['fv']:.2f} a share and is published as a number")
 
 fv_taxstat = None
+
+# ---- THE TERMINAL USEFUL LIFE, PRICED ACROSS EVERY LIFE THE FILING DISCLOSES ----
+# ARCC's accounting-policies note discloses EIGHT distinct useful lives across the parent
+# and two subsidiaries -- 3, 5, 10, 16, 20 and 50 years. The terminal consumes exactly one
+# of them, and useful_lives.json states in its own words that the choice "is a material
+# contested judgement and belongs in the [R-ENF-05] register". It did not appear in that
+# register. That is the defect this block closes: not that 20 years is wrong -- the
+# reasoning for it is on the record and stands -- but that a choice the study itself calls
+# material was resolved without ever being priced beside its alternatives.
+_LIFE_MENU = sorted({float(y) for _e in ([_UL['parent']] + list(_UL['subsidiaries'].values()))
+                     for _cls in _e.get('lives_years', _e).values()
+                     if isinstance(_cls, list) for y in _cls})
+# A SHORT LIFE IS NOT A LOW VALUE, IT IS A REFUSAL, AND THE REFUSAL IS THE EVIDENCE.
+# On the three- and five-year lives the terminal builder raises TerminalRefused: the
+# maintenance charge to replace a whole cement plant every three years exceeds NOPAT, so
+# terminal free cash flow is negative and [R-TERM-01] will not call that a going concern.
+# That is recorded as a refusal, not swallowed and not turned into a number -- it is the
+# strongest available evidence that the short lives in the note belong to computers and
+# office furniture and not to the asset base this terminal represents.
+def _price_life(y):
+    try:
+        return dict(years=y, fv=reval(life_=y), refused=None)
+    except terminal_value.TerminalRefused as e:
+        return dict(years=y, fv=None, refused=str(e))
+
+LIFE_CHOICE = dict(
+    adopted_years=_LIFE, disclosed_lives=_LIFE_MENU,
+    source=_UL['_source'],
+    priced=[_price_life(y) for y in _LIFE_MENU],
+    basis=_UL['adopted_for_terminal']['basis'],
+)
+_lf_ok = [x for x in LIFE_CHOICE['priced'] if x['fv'] is not None]
+_lf_lo = min(x['fv'] for x in _lf_ok)
+_lf_hi = max(x['fv'] for x in _lf_ok)
+LIFE_CHOICE.update(fv_at_shortest=_lf_lo, fv_at_longest=_lf_hi, swing=_lf_hi - _lf_lo,
+                   refused_years=[x['years'] for x in LIFE_CHOICE['priced']
+                                  if x['fv'] is None])
+# The ALTERNATIVE carried into the register is the LONGEST life disclosed in the same
+# note, because that is the challenge a reader can actually make from the filing: you had
+# 50 years in front of you and you took 20. The short end is shown too, and it is the
+# larger move, but nobody would argue a cement plant is a three-year asset.
+_LIFE_ALT = _LIFE_MENU[-1]
+fv_life_alt = reval(life_=_LIFE_ALT)
+say(f"\n[The terminal useful life, priced across every life the filing discloses] the note "
+    f"gives {len(_LIFE_MENU)} lives ({', '.join(f'{y:g}' for y in _LIFE_MENU)} years) and the "
+    f"terminal consumes one. On the adopted {_LIFE:g} years the cash-flow lens reads "
+    f"{fv_dcf:.2f}; across the lives that produce a going concern at all it runs "
+    f"{_lf_lo:.2f} to {_lf_hi:.2f}, a swing of EGP {_lf_hi-_lf_lo:.2f} a share against a "
+    f"central of {fv_central:.2f}. The "
+    + (f"{', '.join(f'{y:g}' for y in LIFE_CHOICE['refused_years'])}-year "
+       f"{'lives are' if len(LIFE_CHOICE['refused_years'])>1 else 'life is'} REFUSED by "
+       f"[R-TERM-01] outright — replacing the plant that often costs more than it earns, "
+       f"which is the arithmetic proof that those lives belong to computers and office "
+       f"furniture and not to this asset base. "
+       if LIFE_CHOICE['refused_years'] else "")
+    + "choice is now in the contested register, where useful_lives.json always said it belonged")
+
 CONTESTED = [
     dict(choice='Cost of debt: the POUND-EQUIVALENT cost of a euro debt book (adopted) '
                 'vs the contracted euro rate',
@@ -1844,8 +2147,11 @@ CONTESTED = [
          adopted=f"{beta_used:.3f}", alternative=f"{BETA['own_stock']['beta']:.3f}",
          fv_adopted=fv_dcf, fv_alternative=fv_beta_own,
          effect=fv_beta_own / fv_dcf - 1,
-         note=('THIS IS THE STUDY\'S MOST CONSEQUENTIAL CONTESTED JUDGEMENT AND IT IS '
-               'PUBLISHED BOTH WAYS. The only conforming regressor for an EGX listing is '
+         note=('THIS JUDGEMENT IS PUBLISHED BOTH WAYS. It was the study\'s largest '
+               'contested judgement until the terminal useful life was priced beside it '
+               'on 09-09-2026 and turned out to be larger; the ranking is computed in '
+               'diagnostics_arcc.py rather than typed here, so it cannot go stale again. '
+               'The only conforming regressor for an EGX listing is '
                'the EGX30, and ARCC regressed against it returns an R-squared of 4.7% — '
                'below the 5% usability floor, so tier 1 is not available. Revisions 1-3 '
                'carried 0.628 from an equal-weight COMPOSITE of the covered Egyptian '
@@ -1865,6 +2171,25 @@ CONTESTED = [
          note=('Setting capex equal to book depreciation would flatter free cash flow by '
                'construction. The adopted treatment is the conservative one and the size '
                'of the conservatism is published.')),
+    dict(choice='Terminal useful life: the disclosed 20 years of machinery and equipment, '
+                'the class the replacement-cost base actually represents (adopted), vs the '
+                'longest life disclosed in the same accounting-policies note, 50 years',
+         adopted=f"{_LIFE:g} years", alternative=f"{_LIFE_ALT:g} years",
+         fv_adopted=fv_dcf, fv_alternative=fv_life_alt,
+         effect=fv_life_alt / fv_dcf - 1,
+         note=('[R-TERM-01] requires the terminal maintenance charge to rest on a DISCLOSED '
+               'life, and ARCC discloses EIGHT of them (3, 5, 10, 16, 20 and 50 years across '
+               'the parent and two subsidiaries). The terminal consumes ONE, and a longer '
+               'life means a smaller maintenance charge and a larger value: across the full '
+               f'disclosed menu the cash-flow lens runs {_lf_lo:.2f} to {_lf_hi:.2f}, a swing '
+               f'of EGP {_lf_hi-_lf_lo:.2f} a share. The adopted 20 years is defended on the '
+               'ground that the base is capacity x replacement cost per tonne -- a greenfield '
+               'cement plant, overwhelmingly machinery and civil works, disclosed at 20 -- '
+               'and the 50-year figure is a ready-mix subsidiary\'s BUILDINGS, which is not '
+               'what a capacity-based replacement cost measures. That reasoning stands. What '
+               'did not stand was resolving it without pricing it: useful_lives.json called '
+               'this a material contested judgement and named this register as where it '
+               'belonged, and it was absent from this register until 09-09-2026.')),
 ]
 say("\n[Contested choices, each computed]")
 for c in CONTESTED:
@@ -2083,6 +2408,12 @@ LR['Weighted central'] = dict(
     bear=float(LR[PRIMARY]['bear']), base=fv_central,
     bull=float(LR[PRIMARY]['bull']))
 
+# THE TWO SECTOR UTILISATION RATIOS [audit finding 7, 08-Sep-2026]. Defined here, once,
+# beside the record that publishes them, so the document cannot compute a third.
+_CEM_SALES = V['egy_cons_mt'] + V['egy_exports_cement_mt']       # cement, domestic + export
+_UTIL_CEMENT = _CEM_SALES / V['egy_capacity_mt']                 # matched: cement over cement
+_UTIL_ALL = V['egy_prod_mt'] / V['egy_capacity_mt']              # the retired, mismatched one
+
 PEERS = dict(
     scem=dict(name='Sinai Cement (SCEM)', rev=V['peer_scem_rev'], pat=V['peer_scem_pat'],
               mcap=V['peer_scem_mcap'], pe=V['peer_scem_mcap'] / V['peer_scem_pat'],
@@ -2093,12 +2424,34 @@ PEERS = dict(
               ps=V['peer_mbsc_mcap'] / V['peer_mbsc_rev']),
     self=dict(name='Arabian Cement (ARCC)', rev=V['rev_fy25'], pat=V['pat_fy25'],
               mcap=MKTCAP, pe=MKTCAP / V['pat_fy25'], ps=MKTCAP / V['rev_fy25']),
+    # TWO UTILISATION RATIOS, EACH ON ITS OWN MATCHED PAIR [audit finding 7]. The record
+    # carried one, built by dividing cement-AND-clinker sales by CEMENT nameplate capacity,
+    # and the document read 96% off it. On matched denominators it is 86%, which is the
+    # figure the cited industry source itself publishes and is a materially different
+    # market. Both are recorded, each named for what it divides, so the mismatch cannot be
+    # made again by picking the wrong one.
     sector=dict(capacity_mt=V['egy_capacity_mt'], consumption_mt=V['egy_cons_mt'],
                 production_mt=V['egy_prod_mt'], exports_mt=V['egy_exports_mt'],
+                exports_cement_mt=V['egy_exports_cement_mt'],
+                exports_clinker_mt=V['egy_exports_clinker_mt'],
+                cement_sales_mt=_CEM_SALES,
                 revival_mt=V['egy_revival_mt'],
                 share_of_capacity=V['cap_cement_mt'] / V['egy_capacity_mt'],
                 revival_pct_of_consumption=V['egy_revival_mt'] / V['egy_cons_mt'],
-                utilisation=V['egy_prod_mt'] / V['egy_capacity_mt']),
+                utilisation=_UTIL_CEMENT,
+                utilisation_basis=('CEMENT sold, domestic plus export, over CEMENT nameplate '
+                                   'capacity. Exported clinker is excluded: it leaves at the '
+                                   'kiln and never enters a cement mill, so it calls on no '
+                                   'grinding capacity.'),
+                utilisation_all_product=_UTIL_ALL,
+                utilisation_all_product_basis=('cement AND clinker sold over CEMENT nameplate '
+                                               'capacity. RECORDED AND NOT USED — the '
+                                               'numerator and denominator are on different '
+                                               'bases, which is the defect this study\'s own '
+                                               'export-line note describes.'),
+                utilisation_retired=('96%: earlier editions printed the all-product ratio as '
+                                     'the market utilisation and built a price argument on '
+                                     'it. Withdrawn 08-09-2026.')),
 )
 
 # ==================== ASSERT ================================================
@@ -2189,10 +2542,24 @@ chk(_worst < 0.001,
     f"exports {p0['clk_exp']:.4f} vs {DISC['clk_exp']}, total {p0['sold']:.4f} vs "
     f"{DISC['sold']}Mt. Revisions 1-3 reconstructed these from an assumed price and were "
     f"28% low on the total")
-chk(abs((V['egy_cons_mt'] + V['egy_exports_mt']) - V['egy_prod_mt']) < 0.15,
+chk(abs((V['egy_cons_mt'] + V['egy_exports_mt']) - V['egy_prod_mt']) < 0.01,
     f"the Egyptian sector balance CLOSES: local {V['egy_cons_mt']}Mt plus exports "
-    f"{V['egy_exports_mt']}Mt = {V['egy_cons_mt']+V['egy_exports_mt']:.1f}Mt against the "
-    f"disclosed total of {V['egy_prod_mt']}Mt. It did not close in any earlier revision")
+    f"{V['egy_exports_mt']}Mt = {V['egy_cons_mt']+V['egy_exports_mt']:.4f}Mt against the "
+    f"disclosed total of {V['egy_prod_mt']}Mt. It did not close in any earlier revision, "
+    f"and the tolerance is now 0.01 rather than 0.15 because every figure is read at the "
+    f"page's own precision instead of off its chart")
+# AND THE EXPORT LINE ITSELF CLOSES, which is what makes the cement-basis ratio safe to
+# publish: if the split did not add back to the total, the numerator of that ratio would
+# be a number this study made up rather than one the company reported.
+chk(abs((V['egy_exports_cement_mt'] + V['egy_exports_clinker_mt']) - V['egy_exports_mt']) < 0.01,
+    f"the export line splits and closes: cement {V['egy_exports_cement_mt']}Mt plus clinker "
+    f"{V['egy_exports_clinker_mt']}Mt = "
+    f"{V['egy_exports_cement_mt']+V['egy_exports_clinker_mt']:.4f}Mt against the disclosed "
+    f"total export of {V['egy_exports_mt']}Mt")
+chk(_UTIL_CEMENT < _UTIL_ALL,
+    f"the cement-basis utilisation {_UTIL_CEMENT:.1%} is BELOW the all-product "
+    f"{_UTIL_ALL:.1%} it replaced, because exported clinker leaves the numerator. A "
+    f"repair that raised the number would mean the split had been read the wrong way round")
 chk(all(b['kiln_util'] <= 1.0 for b in BU),
     f"no forecast year asks the kiln for more than nameplate: peak "
     f"{max(b['kiln_util'] for b in BU):.1%} of {V['cap_clinker_mt']:.1f}Mt")
@@ -2322,7 +2689,14 @@ say(f"\n[Years 3-5 are RANGES, from this name's own walk-forward] on twenty-five
 # ---- the four standing gates, called in the study's own code [R-ENF-02] -----
 sys.path.insert(0, os.path.join(HERE, '..'))
 import research_protocol as RP
-STD_VERSION = RP.STANDARD_VERSION
+# [R-STD-02] FROZEN, NOT READ FROM THE LIVE CONSTANT. A stamp taken from
+# RP.STANDARD_VERSION re-asserts every requirement of whatever version the code
+# holds today, on every rebuild, with nobody deciding — which is exactly what
+# happened on 07-09-2026 when conforming an unrelated record shape restamped this
+# study from 2026.09.01 to 2026.09.07 while it is ratcheted against two of that
+# version's requirements. The claim is the version this study was BUILT to, and it
+# moves when the study is brought to a newer standard, not when it is rebuilt.
+STD_VERSION = "2026.09.01"
 
 _cem_exp_t, _clk_exp_t = 629.5, 1300.5
 _exp_share = V['rev_exp_goods_fy25'] / V['rev_fy25']
@@ -2413,8 +2787,9 @@ def _scrub_attestation():
                        'scanned. Build them, run scrub_gate.py, then re-run this '
                        'module — an unmeasured result is not a clean one.')
     r = json.load(open(f))
-    want = {'ARCC_Valuation_Study_03-09-2026_public.docx',
-            'ARCC_Bibliography_03-09-2026.docx'}
+    # DERIVED, so a new edition cannot leave this check reading the old files —
+    # which is precisely the failure it exists to catch, one level up.
+    want = set(_ed.DELIVERED)
     missing = sorted(want - set(r.get('files', [])))
     if missing:
         return False, ('the scrub covers %s and not %s — a check that opens a '
@@ -2554,11 +2929,56 @@ COC_RECORD = dict(
     market='EG', regime=_MACRO.regime, years=5,
     rf_observed=V['rf'], default_spread=V['sov_spread_cds'], rf_star=rf_star,
     erp=V['erp_cds'], erp_basis='cds', beta=beta_used,
+    # THE BETA'S TIER, READ OFF THE BETA RECORD RATHER THAN TYPED [R-COC-02]. Until
+    # 08-Sep-2026 this record named no beta_source at all, so nothing in it
+    # distinguished a measured regression from a peer median from a number somebody
+    # typed. It is tier 2: the own-stock regression against the EGX30 returns 0.698 on
+    # an R-squared of 0.047, below the usability floor, so tier 1 is not available.
+    # NOTE WHAT THE CLOSED-LIST NAME DOES AND DOES NOT ASSERT: 'peer_relevered' is this
+    # repository's label for tier 2, and this study did NOT unlever and relever its
+    # peers — peer leverage is not sourced, the beta record says so, and the direction
+    # is disclosed (ARCC holds net cash against levered peers, so the step could only
+    # lower the beta and raise the value). The label is the tier; the method is the
+    # sentence beside it.
+    beta_source={1: 'own_stock_regression', 2: 'peer_relevered',
+                 3: 'tier3_fallback'}[int(_BETA_TIER)],
+    beta_tier=int(_BETA_TIER),
+    erp_mature=_ERP_MATURE, crp=_CRP, crp_effective=_CRP,
+    lambda_country=1.0, crp_foreign=0.0,
+    ke_construction='split_premium',
+    ke_construction_note=(
+        'rf* + beta x the MATURE premium + the country premium charged FLAT and once. '
+        'The premium splits by Damodaran\'s identity: the sovereign default spread scaled '
+        'to equity volatility is the country leg, the remainder is the mature leg, and '
+        'beta multiplies only the mature leg. This beta is below one, so the retired '
+        'total-premium identity was UNDER-charging country risk here and the correction '
+        'raises the rate.'),
     ke_exp=ke_exp, kd_pretax=KD, kd_aftertax=kd_at,
     weight_equity=1 - wd_gross, weight_debt=wd_gross, wacc_exp=wacc_exp,
     rf_terminal=V['rf_term'], erp_terminal=V['erp_term'], ke_terminal=ke_term,
     kd_terminal_pretax=V['kd_term'], kd_terminal_aftertax=V['kd_term'] * (1 - TAX),
     weight_debt_terminal=V['wd_term'], wacc_terminal=wacc_term,
+    # THE TERMINAL BETA IS A RELEVERING AND THE RECORD NOW SAYS SO [R-COC-02]. It named
+    # no construction until 08-Sep-2026, and the gate could still solve the tax rate out
+    # of the answer — 22.50%, Egypt's statutory rate — which is exactly the thing a
+    # record is supposed to state rather than let a reader reverse out. The explicit
+    # beta is unlevered at the OBSERVED structure and relevered at the terminal one;
+    # revision 3 relevered an already-levered beta and levered it twice.
+    #
+    # TWO TAX RATES APPEAR IN THIS MODEL AND THE DIFFERENCE IS DELIBERATE. Hamada runs
+    # on the STATUTORY rate, because the shield on a pound of debt is worth the
+    # statutory rate; every NOPAT line runs on the EFFECTIVE rate, because that is what
+    # the company actually pays. They are not the same number and neither is a typo.
+    ke_terminal_construction='relevered',
+    relevering_tax_rate=float(TAX),
+    beta_unlevered=float(beta_u), beta_terminal=float(beta_t),
+    relevering_note=(
+        'beta %.6f unlevered at the observed debt weight %.6f gives an asset beta of '
+        '%.6f, relevered at the terminal weight %.4f gives %.6f. The tax rate is the '
+        'STATUTORY %.2f%% and not the effective %.2f%% the NOPAT lines carry: the '
+        'shield on a pound of debt is worth the statutory rate, while what the company '
+        'pays on its profit is the effective one.'
+        % (beta_used, wd_gross, beta_u, V['wd_term'], beta_t, 100 * TAX, 100 * TAXE)),
     glide_fractions=[float(g) for g in glide], forward_wacc=[float(f) for f in fwd],
     discount_factors=[float(chain(fwd, t)) for t in t_mid],
     # DECLARE THE CONVENTION, because the factors cannot be read without it. This
@@ -2580,14 +3000,26 @@ COC_RECORD = dict(
         # rate never entered any factor at all.
         rate_edges=[float(e) for e in EDGES],
         stub_years=float(V['stub_years']),
+        # WHEN THE TERMINAL ARRIVES, WHICH IS NOT WHEN THE LAST EXPLICIT CASH FLOW
+        # DOES. The terminal value is the value at the END of FY2030 of everything
+        # from FY2031 on, so it is discounted from the END OF THE WINDOW -- half a
+        # year later than the last explicit flow at its own midpoint, and
+        # therefore worth LESS. Earlier editions of this record
+        # printed the last explicit factor here and a sentence saying so, while
+        # the valuation used the end-of-window one: the model was right and its
+        # own description was wrong, which is the harder half to catch because a
+        # recalculation reconciles either way.
+        terminal_arrival_years=float(REM + 4.0),
         note=('each year discounted to its own midpoint from a valuation date '
               '%.3f of the way through FY2026, so the first period is a '
               'half-stub of %.4f years and every later year sits half a year '
-              'inside its own period. The terminal is brought home on the LAST '
-              'EXPLICIT factor, not on an end-of-window one.'
-              % (float(V['stub_years']), float(t_mid[0]))),
+              'inside its own period. The terminal is the value at the END of '
+              'the window of everything after it, so it is brought home on the '
+              'END-OF-WINDOW factor at %.2f years rather than on the last '
+              'explicit year\'s midpoint factor — later, and worth less.'
+              % (float(V['stub_years']), float(t_mid[0]), float(REM + 4.0))),
     ),
-    terminal_discount_factor=float(chain(fwd, t_mid[-1])),
+    terminal_discount_factor=float(df_tv),
     kd_integrity=dict(
         currency_source='note 25 and note 8: 91.1% of the book is euro-denominated '
                         '(NBE at Euribor + 3.00%, EBRD at Euribor + 4.35%), the '
@@ -2632,7 +3064,26 @@ COC_RECORD = dict(
         interest_bearing_note='the borrowing lines only; trade and other payables '
                               'bear no interest',
     ),
-    sensitivity=dict(other_basis='rating', other_erp=V.get('erp_rating')),
+    # THE ALTERNATIVE BASIS, PRICED [audit finding 9]. other_erp was None until
+    # 08-Sep-2026: the record knew a second basis existed, named it, and carried no
+    # figure for it, so nothing downstream could disclose what the choice was worth.
+    # Both legs move together — the rating spread nets out of the risk-free rate and
+    # the rating premium goes back on — because half a basis is not a basis.
+    sensitivity=dict(
+        other_basis='rating',
+        other_erp=float(V['erp_rating']),
+        other_default_spread=float(V['sov_spread_rating']),
+        other_rf_star=float(_RF_STAR_RATING),
+        other_ke_exp=float(_KE_RATING),
+        other_wacc_exp=float(_WACC_RATING),
+        wacc_exp_delta_bp=float((_WACC_RATING - wacc_exp) * 1e4),
+        note=('the cited file publishes both bases in the same row. Applied '
+              'consistently — rating spread out of the risk-free rate, rating premium '
+              'back on — the rating basis gives an explicit cost of capital of %.4f '
+              'against the adopted %.4f, %+.0f basis points. The adopted basis is the '
+              'one that discounts less and values more, which is why the choice is '
+              'disclosed rather than assumed away.'
+              % (_WACC_RATING, wacc_exp, (_WACC_RATING - wacc_exp) * 1e4))),
     disclosures=[
         'The glide fractions are the cost-of-debt path\'s own cumulative progress, '
         'so the front-loaded shape is inherited from the assumed easing calendar '
@@ -2683,6 +3134,13 @@ FORECAST_ANCHOR = dict(
 
 LENS_RECORD = {
     'class': 'cement and heavy industrial',
+    # [R-LENS-03] THE RECORD DECLARES ITS CENTRAL, so the identity clause
+    # actually RUNS. assert_lens_design() wraps 'the primary's value IS the
+    # central' in `if central is not None`, so a record exposing no central
+    # skipped the one clause that catches a weighted blend -- eight studies
+    # were in that state and every blend-carrier sat among them. Computed
+    # from the same quantity the primary carries, never typed.
+    'central': fv_dcf,
     'primary': dict(kind='dcf', value=fv_dcf,
                  range=dict(low=LR[PRIMARY]['bear'], high=LR[PRIMARY]['bull']),
                  range_note='the cash-flow lens with the EBITDA margin flexed across '
@@ -2815,6 +3273,22 @@ OUT = dict(
     central=fv_central, spot=V['spot'],
     macro_record=MACRO_RECORD, cost_of_capital_record=COC_RECORD,
     lens_record=LENS_RECORD, bridge_record=BRIDGE_RECORD, forecast_anchor=FORECAST_ANCHOR,
+    # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+    # PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to
+    # be stated in the study; the run stated it in section 0 and it was never carried
+    # across, which is [R-ENF-01]'s founding observation — the rule was not disputed
+    # and not hard, it simply was not present where the gate reads. `sourceable` is a
+    # claim about the ARCHIVE and not about the panel, so the count is the one the
+    # pre-registration established and never the number of origins the run used.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='FULL',
+        sourceable_fiscal_years=12,
+        earliest_sourceable='FY2014',
+        basis=('this name\'s own walk-forward pre-registration, section 0: "The archive supports twelve sourceable fiscal years, FY2014 through FY2025". The run built origins FY2018-FY2024 on that archive'),
+        status='run',
+        note=("The fundamental walk-forward HAS been run on this name (engine/arcc_walkforward/, 01-09-2026): 7 origins, FY2018-FY2024, 650 scored cells on the as-known macro setting. Its one adopted correction, manufacturing depreciation, is stated in this study's own record and reconciles to that run's committed bias at half strength."),
+    ),
     # `central` and `spot` sit at the TOP of meta so the repo-level gap gate can
     # read this study's own answer. It could not before: the central lived only
     # under lenses.central, and [R-GAP-01]'s checker reported ARCC as

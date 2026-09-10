@@ -1,0 +1,61 @@
+{
+ "adopted": "2026-09-07",
+ "outstanding": {
+  "AMOC": {
+   "note": "THE ENTRY THIS REPLACES RECORDED 'the study states no information-set end date, so its asset base cannot be held to anything'. That failure is FIXED: the study now states it, and doing so exposed a different and larger one. A ratchet entry excuses the failure it recorded [R-ENF-08], so the new one is written down rather than inheriting the old one's excuse.",
+   "reason": "MEASURED 09-09-2026. The asset base is gross fixed assets at cost, EGP 2,740,810,692 at 31-Dec-2025 from note 6 of the reviewed statements for the six months then ended. The information set ends 30-JUNE-2026: the bridge stands on that balance sheet and the register cites the 30-Jun-2026 reviewed statements for five separate notes — payables 10-3, receivables 9-B, cash 9-E, credit interest 14-B, cost of sales by nature 15-A. So the study had that filing open and took its asset base from the one before it. AMOC runs a July-to-June year, so this is a FULL FINANCIAL YEAR behind, not a stub.",
+   "signature": "asset base as at 2025-12-31 is BEHIND the information set ending 2026-06-30, and the study declares no not_restated_since",
+   "what_closes_it": "read note 6 of the reviewed statements for the six months to 30 June 2026 — the same filing this study already reads for five other notes — and either carry the newer gross cost or declare the absence of a restatement with that note named",
+   "why_no_release": "A reviewed set carries a fixed-asset note as a matter of course and the figure moves — the half to 31-Dec-2025 alone added 22,912,385 against disposals of 1,447,608. Nothing in this repository carries the 30-Jun-2026 note: filings/ holds 30-06-2025, 31-12-2025 and the standalone, and AUDITED_EXTRACT.md covers the 31-Dec-2025 set, a Q1-2026 filing and the 2024 comparative. Declaring a not_restated_since nobody checked would switch the check off rather than declare it."
+  },
+  "ARCC": {
+   "reason": "no asset_base_record; cement, replacement cost and EV per tonne both asset-based.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "BOROUGE": {
+   "reason": "no asset_base_record; petrochemical.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "FERTIGLOBE": {
+   "reason": "no asset_base_record; petrochemical.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "MODON": {
+   "reason": "no asset_base_record; developer.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "PHDC": {
+   "note": "THE ENTRY THIS REPLACES RECORDED 'no asset_base_record committed'. That was true and is now fixed — the record exists, runs, and is LAST in the declared build order, because it appends to study_numbers.json and build_numbers.py rebuilds that file from scratch. Committing it exposed the ordering failure underneath, which is a different fact and gets its own signature [R-ENF-08]. Until today this study had no declared build order at all, which is why a correct record had been written more than once and reverted every time.",
+   "reason": "MEASURED 09-09-2026, and this is the case [R-ASSET-01] was adopted on — in the principal's own words, a study that takes the current land bank of a developer and does not account for land added to it. The base is 33.0 million square metres dated 31-Dec-2024, sourced to the FY2024 earnings release. The information set ends 31-MARCH-2026: the bridge stands on that reviewed balance sheet and the register carries a 1Q2026 earnings release. Fifteen months, and the test is an ordering rather than a threshold. The figure is printed to the delivered workbook at build_xlsx_phdc.py:336, so it reaches a reader.",
+   "signature": "asset base as at 2024-12-31 is BEHIND the information set ending 2026-03-31, and the study declares no not_restated_since",
+   "what_closes_it": "read the FY2025 and 1Q2026 earnings releases for a land-bank figure and either carry the newer number or declare the absence of a restatement with those two named. Tracked separately as escalation PHDC-landbank-current-vintage.",
+   "why_no_release": "The study's own register names a 1Q2026 earnings release — exactly the document a developer restates a land bank in — and that release is not committed to this repository, so whether the figure moved has not been established. Declaring a not_restated_since nobody checked would switch the check off rather than declare it, and an invented list of 'disclosures checked' is worse than no list."
+  },
+  "RIYADHCABLE": {
+   "reason": "no asset_base_record; filed under cement and heavy industrial.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  },
+  "SCEM": {
+   "reason": "no asset_base_record; cement.",
+   "signature": "the study states no information-set end date, so its asset base cannot be held to anything"
+  }
+ },
+ "pruned_on": [
+  {
+   "removed": [
+    "ADNOCLS"
+   ]
+  },
+  {
+   "removed": [
+    "EGCH"
+   ]
+  },
+  {
+   "removed": [
+    "TMGH"
+   ]
+  }
+ ],
+ "why": "[R-ASSET-01] with the ratchet of [R-ENF-02]. Every study in scope on the day the rule was adopted (07-09-2026) predates it and commits no asset_base_record; each is allowed to fail while it waits its turn in the rebuild queue. Entries carry the MEASUREMENT where one was taken, so the debt is countable rather than remembered. The build breaks on a NEW in-scope study with no entry either way, on a listed study whose record has appeared and is wrong, or on a committed class that resolves to nothing. This list may only ever get SHORTER (--prune). [R-ENF-08, 07-09-2026]: each entry now carries the SIGNATURE of the failure it excuses. A ratchet entry is a ticker, so before this a listed study was excused from the whole gate and could acquire a SECOND, DIFFERENT defect of the same class unseen — which the injection harness demonstrated by planting a stale land base in a study already listed and being ignored. Comparison is on the failure's SHAPE with live figures stripped, because an exact-text match would go red every time a date moved."
+}

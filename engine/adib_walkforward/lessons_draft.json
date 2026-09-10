@@ -1,0 +1,1262 @@
+{
+ "ticker": "ADIB",
+ "run_dir": "adib_walkforward",
+ "drafts": [
+  {
+   "proposed_id": "DRAFT-ADIB-01",
+   "ticker": "ADIB",
+   "headline": "Cost funds forecasts run about 60% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.467 log (about 60% too low), average miss 0.519, wrong in the same direction in 82% of cases, and the sign holds across every bootstrap block tested (n=45).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-02",
+   "ticker": "ADIB",
+   "headline": "Cust deposits forecasts run about 34% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.291 log (about 34% too low), average miss 0.315, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=45).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-03",
+   "ticker": "ADIB",
+   "headline": "Fin customers forecasts run about 37% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.311 log (about 37% too low), average miss 0.326, wrong in the same direction in 84% of cases, and the sign holds across every bootstrap block tested (n=45).",
+   "scope": "ALL",
+   "why_scope": "Ruled ALL by the principal, 10-09-2026: 'Of course it applies to everyone.' The point is methodological rather than about banks \u2014 a driver that misses in the SAME DIRECTION nearly every time is a defect to find, not noise to average away, and that is true of any driver on any company.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": true,
+   "proposed_ruling": {
+    "action": "REGISTER",
+    "scope": "ALL",
+    "applies_to": null,
+    "headline": "Anchoring volume on a market driver at a FLAT share is one-directional on any company that is taking share.",
+    "plain": "We size a company by taking the market it sells into and holding its share of that market steady. For a company whose share has been climbing for years, that is not a neutral assumption \u2014 it is a forecast that will be too low every single time, not on average but at every origin. Say the share path out loud and defend it, or accept that the number is a floor and call it one.",
+    "why": "THE FINDING IS ARITHMETIC RATHER THAN STATISTICAL, which is why it is filed at ALL on one name. If share drifts persistently in one direction and the rule holds it flat, the error must be one-directional; nothing about banks or about Egypt is doing the work. Every study in this book anchors volume this way, so the exposure is book-wide. The NARROWER alternative would be CLASS/bank, and it would be filing a property of the rule as though it were a property of banks.",
+    "overturned": "A name where the share of the exogenous market driver has drifted persistently and the mechanical build shows no directional bias \u2014 or a market where share is genuinely mean-reverting, in which case the flat-share anchor is right and the drift is the error."
+   },
+   "falsifier": "A driver whose forecast error is one-directional across origins and which, on investigation, turns out to have no wiring defect behind it \u2014 the error surviving as genuine noise after the model has been read line by line.",
+   "registered": "L-383"
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-04",
+   "ticker": "ADIB",
+   "headline": "Fin income forecasts run about 58% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.455 log (about 58% too low), average miss 0.527, wrong in the same direction in 78% of cases, and the sign holds across every bootstrap block tested (n=45).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-05",
+   "ticker": "ADIB",
+   "headline": "Net funds forecasts run about 56% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.446 log (about 56% too low), average miss 0.564, wrong in the same direction in 76% of cases, and the sign holds across every bootstrap block tested (n=45).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-06",
+   "ticker": "ADIB",
+   "headline": "Np forecasts run about 1.7 times too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.547 log (about 1.7 times too low), average miss 0.670, wrong in the same direction in 78% of cases, and the sign holds across every bootstrap block tested (n=40).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-07",
+   "ticker": "ADIB",
+   "headline": "Np parent forecasts run about 1.7 times too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.550 log (about 1.7 times too low), average miss 0.677, wrong in the same direction in 78% of cases, and the sign holds across every bootstrap block tested (n=40).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-08",
+   "ticker": "ADIB",
+   "headline": "Other op forecasts run about 51% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.414 log (about 51% too low), average miss 0.512, wrong in the same direction in 81% of cases, and the sign holds across every bootstrap block tested (n=32).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-09",
+   "ticker": "ADIB",
+   "headline": "Pbt forecasts run about 45% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.372 log (about 45% too low), average miss 0.630, wrong in the same direction in 65% of cases, and the sign holds across every bootstrap block tested (n=40).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-10",
+   "ticker": "ADIB",
+   "headline": "Total assets forecasts run about 37% too low for ADIB.",
+   "plain": "The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise \u2014 find what is wired wrong before adding any correction factor.",
+   "evidence": "Bias -0.313 log (about 37% too low), average miss 0.359, wrong in the same direction in 73% of cases, and the sign holds across every bootstrap block tested (n=45).",
+   "scope": "UNSCOPED",
+   "why_scope": "A robust bias in one driver may be this company's disclosure, its whole class's economics, or our method. Decide which before filing.",
+   "overturned_by": "A later run of the same name where the sign no longer holds across bootstrap blocks.",
+   "origin": "walk_forward_fundamental",
+   "rule": "robust_bias",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+   },
+   "declined": "DRAFT-ADIB-03 already records this finding at its root. The flat-share volume anchor under-forecasts the balance sheet, and every line below it inherits the miss; nine records of one fact is the duplicate-register failure this house has paid for before."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-11",
+   "ticker": "ADIB",
+   "headline": "The other nii forecast loses to assuming no change.",
+   "plain": "At 4 of 5 horizons, simply carrying last year's number forward beat the model. A method that cannot beat 'no change' has not earned the precision it displays, and should be published as a range or not at all.",
+   "evidence": "Negative skill against the freeze benchmark at horizons 1, 2, 3, 4, worst -0.399.",
+   "scope": "UNSCOPED",
+   "why_scope": "Losing to a naive benchmark usually points at the method, which would make it ALL \u2014 but confirm it is not this company's series being unusually persistent.",
+   "overturned_by": "A later run where the model beats the freeze benchmark at a majority of horizons.",
+   "origin": "walk_forward_fundamental",
+   "rule": "beaten_by_naive",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "Other non-interest income is a DERIVED residual \u2014 dividends, trading, share of associates and disposal gains taken as one block \u2014 and it is 3.1% of FY2025 operating income. It has no disclosed volume driver, and its bias flips sign between eras (DRAFT-ADIB-14). A block with no information in it losing to \"no change\" is what a block with no information in it should do; filing it as a lesson would dress an absence of disclosure as a finding."
+   },
+   "declined": "Other non-interest income is a DERIVED residual \u2014 dividends, trading, share of associates and disposal gains taken as one block \u2014 and it is 3.1% of FY2025 operating income. It has no disclosed volume driver, and its bias flips sign between eras (DRAFT-ADIB-14). A block with no information in it losing to \"no change\" is what a block with no information in it should do; filing it as a lesson would dress an absence of disclosure as a finding."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-12",
+   "ticker": "ADIB",
+   "headline": "The ecl error is the company, not the currency.",
+   "plain": "Re-running every forecast with perfect foresight of inflation barely improves it. So devaluation is not the explanation, and looking for a macro fix would waste the effort.",
+   "evidence": "Average miss 0.734 as known, 0.700 with perfect foresight of inflation \u2014 the macro share is only 4.7%.",
+   "scope": "UNSCOPED",
+   "why_scope": "Almost always ALL \u2014 'check whether the macro explains it before assuming it does' is a method rule \u2014 but the specific finding may be about this market.",
+   "overturned_by": "A market or period where the same decomposition puts most of the error on the macro path.",
+   "origin": "walk_forward_fundamental",
+   "rule": "company_not_macro",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "MERGED INTO DRAFT-ADIB-13, which is registered. This draft and that one measure two halves of one fact about a bank's loss charge \u2014 that its error is the company rather than the currency, and that its sign flips with the cycle. They are filed once, together, rather than as two lessons about one driver."
+   },
+   "declined": "MERGED INTO DRAFT-ADIB-13, which is registered. This draft and that one measure two halves of one fact about a bank's loss charge \u2014 that its error is the company rather than the currency, and that its sign flips with the cycle. They are filed once, together, rather than as two lessons about one driver."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-13",
+   "ticker": "ADIB",
+   "headline": "The ecl bias changes direction between regimes.",
+   "plain": "It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.",
+   "evidence": "By era: E1 recapitalisation and the 2016 float (origins FY2014-FY2017) +0.089; E2 the 2022-24 devaluation sequence (origins FY2018-FY2024) -0.351.",
+   "scope": "CLASS",
+   "why_scope": "Ruled by the principal, 10-09-2026: 'it applies for banks in countries that go through devaluation anywhere in the world. I can not see how this applies to non banks.' So the scope is the CLASS and not the country: the loss charge is a bank line, and the devaluation is the CONDITION under which the sign flips, not a restriction to Egypt.",
+   "overturned_by": "A longer record in which one sign dominates across all regimes.",
+   "origin": "walk_forward_fundamental",
+   "rule": "era_flip",
+   "confirmed": true,
+   "proposed_ruling": {
+    "action": "REGISTER",
+    "scope": "CLASS",
+    "applies_to": "bank",
+    "headline": "A bank's loss charge is the driver you most want to correct and the one you least may.",
+    "plain": "The provision line is where a bank's profit is decided, so it is the first place anyone reaches for a correction. Do not. Its error changes direction with the credit cycle \u2014 too low in one era, too high in the next \u2014 so a correction averaged across them is wrong in both. And the currency does not explain it: giving the model perfect foresight of inflation barely moves the miss.",
+    "why": "CLASS rather than ALL because the mechanism is a bank's: a loss charge lags the book that generates it by two or three years, so its error tracks a credit cycle that industrial provisions do not have. CLASS rather than STOCK because the mechanism is not about ADIB \u2014 any lender growing a book faster than it seasons it will show the same shape. This is the merge of drafts 12 and 13, which measure two halves of one thing.",
+    "overturned": "A bank whose cost-of-risk bias holds its sign across a full credit cycle, or a decomposition that puts most of a loss-charge error on the macro path."
+   },
+   "applies_to": "bank",
+   "falsifier": "A bank carried through a devaluation whose loss-charge forecast error keeps the same sign either side of it \u2014 the bias not flipping \u2014 or one where the average of the two eras produces a correction that improves both.",
+   "registered": "L-384"
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-14",
+   "ticker": "ADIB",
+   "headline": "The other nii bias changes direction between regimes.",
+   "plain": "It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.",
+   "evidence": "By era: E1 recapitalisation and the 2016 float (origins FY2014-FY2017) -0.027; E2 the 2022-24 devaluation sequence (origins FY2018-FY2024) +0.113.",
+   "scope": "UNSCOPED",
+   "why_scope": "A sign that flips with the regime is usually about the market or the period, not the company \u2014 but say which.",
+   "overturned_by": "A longer record in which one sign dominates across all regimes.",
+   "origin": "walk_forward_fundamental",
+   "rule": "era_flip",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "The other-non-interest-income bias does flip sign between eras, and the record says so \u2014 but the driver is a 3.1% derived residual with no disclosed volume behind it, so the flip is what an uninformative block does rather than a finding about method. Declined for the same reason as DRAFT-ADIB-11."
+   },
+   "declined": "The other-non-interest-income bias does flip sign between eras, and the record says so \u2014 but the driver is a 3.1% derived residual with no disclosed volume behind it, so the flip is what an uninformative block does rather than a finding about method. Declined for the same reason as DRAFT-ADIB-11."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-15",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.196 at origin FY2016; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-16",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.076 at origin FY2016; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-17",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.128 at origin FY2016; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-18",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.167 at origin FY2016; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-19",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.020 at origin FY2016; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-20",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.197 at origin FY2017; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-21",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.104 at origin FY2017; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-22",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.151 at origin FY2017; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-23",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.261 at origin FY2017; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-24",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.146 at origin FY2017; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-25",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.233 at origin FY2018; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-26",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.132 at origin FY2018; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-27",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.171 at origin FY2018; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-28",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.330 at origin FY2018; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-29",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.262 at origin FY2018; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-30",
+   "ticker": "ADIB",
+   "headline": "A correction to other op worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.189 at origin FY2018; average miss changed -0.067.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-31",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.250 at origin FY2019; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-32",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.152 at origin FY2019; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-33",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.175 at origin FY2019; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-34",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.343 at origin FY2019; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-35",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.299 at origin FY2019; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-36",
+   "ticker": "ADIB",
+   "headline": "A correction to other op worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.325 at origin FY2019; average miss changed -0.067.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-37",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.242 at origin FY2020; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-38",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.145 at origin FY2020; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-39",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.158 at origin FY2020; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-40",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.287 at origin FY2020; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-41",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.267 at origin FY2020; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-42",
+   "ticker": "ADIB",
+   "headline": "A correction to other op worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.317 at origin FY2020; average miss changed -0.067.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-43",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.210 at origin FY2021; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-44",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.129 at origin FY2021; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-45",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.135 at origin FY2021; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-46",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.222 at origin FY2021; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-47",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.218 at origin FY2021; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-48",
+   "ticker": "ADIB",
+   "headline": "A correction to other op worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.279 at origin FY2021; average miss changed -0.067.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-49",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.178 at origin FY2022; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-50",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.113 at origin FY2022; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-51",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.117 at origin FY2022; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-52",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.177 at origin FY2022; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-53",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.179 at origin FY2022; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-54",
+   "ticker": "ADIB",
+   "headline": "A correction to other op worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.221 at origin FY2022; average miss changed -0.067.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-55",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.152 at origin FY2023; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-56",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.113 at origin FY2023; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-57",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.120 at origin FY2023; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-58",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.181 at origin FY2023; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-59",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.182 at origin FY2023; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-60",
+   "ticker": "ADIB",
+   "headline": "A correction to other op worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.237 at origin FY2023; average miss changed -0.067.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-61",
+   "ticker": "ADIB",
+   "headline": "A correction to fin customers worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.153 at origin FY2024; average miss changed -0.037.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-62",
+   "ticker": "ADIB",
+   "headline": "A correction to cust deposits worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.133 at origin FY2024; average miss changed -0.046.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-63",
+   "ticker": "ADIB",
+   "headline": "A correction to total assets worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.145 at origin FY2024; average miss changed -0.048.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-64",
+   "ticker": "ADIB",
+   "headline": "A correction to fin income worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.221 at origin FY2024; average miss changed -0.057.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-65",
+   "ticker": "ADIB",
+   "headline": "A correction to cost funds worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.225 at origin FY2024; average miss changed -0.073.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-66",
+   "ticker": "ADIB",
+   "headline": "A correction to other op worked and must still be checked against the rest of the book.",
+   "plain": "A fudge factor that improves this one name can be hiding a defect in how we set the model up. Before adopting it, check it matches how that driver is built everywhere else.",
+   "evidence": "Applied +0.232 at origin FY2024; average miss changed -0.067.",
+   "scope": "UNSCOPED",
+   "why_scope": "If the correction turns out to be fixing our own mis-specification, the lesson is ALL and is about specification. If the company is genuinely unusual, it is STOCK.",
+   "overturned_by": "Evidence that the driver is built the same way across the book and this name still needs the correction.",
+   "origin": "walk_forward_fundamental",
+   "rule": "correction_not_promoted",
+   "confirmed": false,
+   "proposed_ruling": {
+    "action": "DECLINE",
+    "reason": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+   },
+   "declined": "One of 52 drafts the harvester emits per origin per driver for a single fact: six drivers carried a half-strength correction at nine origins and NONE was promoted. The fact itself is already in the record \u2014 corrections_log.json records zero adopted and four watch flags, and the training record gives the second-clause reasoning in full. The volume correction that \"worked\" is the same finding as DRAFT-ADIB-03 seen from the other side, and registering it again would be recording one measurement twice."
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-H1",
+   "ticker": "ADIB",
+   "rule": "specification_finding",
+   "headline": "For a bank, the cost of funds is divided by the deposits \u2014 the industrial rule says exclude them and it inverts.",
+   "plain": "The house rule says a borrowing cost is divided by the borrowings that actually bear it, and it names customer deposits as the thing to LEAVE OUT. For a bank that is backwards: depositors are who the bank is paying. Divide the cost of deposits by customers' deposits plus money owed to banks plus subordinated financing, and by nothing wider. The principle travels; the example does not.",
+   "evidence": "At ADIB-Egypt's FY2025 the balances that bear the charge are EGP 293.7 billion against total liabilities of EGP 312.1 billion. Reading the industrial rule literally would have excluded customers' deposits \u2014 94% of the correct denominator \u2014 and dividing by total liabilities instead understates the funding rate by about a sixth of itself. The build obeys it structurally: bottom_up.interest_bearing() is the only route to that denominator and total liabilities appears nowhere.",
+   "scope": "CLASS",
+   "applies_to": "bank",
+   "origin": "walk_forward_fundamental",
+   "why_scope": "Ruled by the principal, 10-09-2026: correct as proposed, banks. Depositors are who the bank pays, so a rule that excludes deposits from the borrowing base inverts the arithmetic for this class alone.",
+   "overturned_by": "A deposit-taking institution whose disclosed funding charge is levied on something other than its deposits, bank borrowings and subordinated debt.",
+   "confirmed": true,
+   "hand_proposed": true,
+   "why_not_harvested": "lessons_harvest.py reads biases, skill and macro shares. This is a SPECIFICATION finding \u2014 a rule read wrongly would have produced a large, robust and entirely spurious bias, and the whole point is that the run avoided producing one. There is no number for the harvester to see, which is exactly why it is proposed by hand and flagged as such.",
+   "proposed_ruling": {
+    "action": "REGISTER",
+    "scope": "CLASS",
+    "applies_to": "bank",
+    "headline": "For a bank, the cost of funds is divided by the deposits \u2014 the industrial rule says exclude them and it inverts.",
+    "plain": "The house rule says a borrowing cost is divided by the borrowings that actually bear it, and it names customer deposits as the thing to LEAVE OUT. For a bank that is backwards: depositors are who the bank is paying. Divide the cost of deposits by customers' deposits plus money owed to banks plus subordinated financing, and by nothing wider. The principle travels; the example does not.",
+    "why": "CLASS/bank. The inversion is a fact about deposit-taking institutions, and the campaign has now run one. Filing it at ALL would restate the general principle nobody disputes; filing it at STOCK would hide it from the next bank, which is the whole point of writing it down.",
+    "overturned": "A deposit-taking institution whose disclosed funding charge is levied on something other than its deposits, bank borrowings and subordinated debt."
+   },
+   "falsifier": "A bank whose disclosed cost of funds reproduces from interest expense over borrowings EXCLUDING customer deposits.",
+   "registered": "L-385"
+  },
+  {
+   "proposed_id": "DRAFT-ADIB-H2",
+   "ticker": "ADIB",
+   "rule": "specification_finding",
+   "headline": "Apply every rate to the AVERAGE balance sheet. On a fast-growing lender the closing one inflates every projected profit.",
+   "plain": "A bank earns its yield on the assets it held through the year, not on the ones it finished with. Put a full year of yield on a closing balance sheet that grew a third and you have credited twelve months of income to assets the bank owned for six. The error is large, it looks like evidence, and it survives every check that does not go looking for it.",
+   "evidence": "ADIB-Egypt grew customer financing 54% in FY2025 and total assets 33%, and 19.5% again in the first half of 2026. This is the bank-shaped form of the recognition-clock trap that produced a net-profit forecast several times too high on the first name in this campaign. In this run every rate reaches its base through _avg() and by no other route, which is why the rate drivers came out close to unbiased (net fees 0.984x actual, other income 1.106x, admin 0.897x at the FY2024 origin) while the volume anchor carried the whole miss.",
+   "scope": "CLASS",
+   "applies_to": "bank",
+   "origin": "walk_forward_fundamental",
+   "why_scope": "Ruled by the principal, 10-09-2026: correct as proposed, banks. It bites hardest on a fast-growing lender, where a closing balance sheet credits a full year of yield on assets held for part of one.",
+   "overturned_by": "A company whose balance sheet grows slowly enough that the average and the closing base give the same answer, in which case the distinction is real and immaterial.",
+   "confirmed": true,
+   "hand_proposed": true,
+   "why_not_harvested": "As DRAFT-ADIB-H1: a specification finding leaves no bias behind when it is obeyed, so there is nothing in the score file for the harvester to find. Proposed by hand and flagged.",
+   "proposed_ruling": {
+    "action": "REGISTER",
+    "scope": "CLASS",
+    "applies_to": "bank",
+    "headline": "Apply every rate to the AVERAGE balance sheet. On a fast-growing lender the closing one inflates every projected profit.",
+    "plain": "A bank earns its yield on the assets it held through the year, not on the ones it finished with. Put a full year of yield on a closing balance sheet that grew a third and you have credited twelve months of income to assets the bank owned for six. The error is large, it looks like evidence, and it survives every check that does not go looking for it.",
+    "why": "CLASS/bank rather than ALL, on the narrower-when-unsure rule. The arithmetic is general \u2014 any rate applied to a growing base has it \u2014 but the SIZE of the error depends on growing 30-50% a year, which is a lender in a high-inflation economy and not a cement plant. Widen it to ALL when a second class shows the same magnitude.",
+    "overturned": "A company whose balance sheet grows slowly enough that the average and the closing base give the same answer, in which case the distinction is real and immaterial."
+   },
+   "falsifier": "A lender whose disclosed yield reproduces more closely from the closing balance sheet than from the average of opening and closing.",
+   "registered": "L-386"
+  }
+ ],
+ "_ruling_state": "RULED AND SIGNED 10-09-2026 by the principal. DRAFT-ADIB-03 ALL; DRAFT-ADIB-13, -H1, -H2 CLASS/bank. The remaining 64 decline with the reasons already recorded against each."
+}

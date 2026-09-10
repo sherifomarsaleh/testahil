@@ -1,0 +1,291 @@
+{
+  "_rule": "R-TERM-01 — a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source. This file is a COPY out of filings already parsed cell by cell; nothing in it is estimated, interpolated or picked.",
+  "_source": "Talaat Mostafa Group Holding Company \"TMG Holding\" S.A.E, consolidated financial statements for the year ended 31 December 2025, note 2.3 SUMMARY OF SIGNIFICANT ACCOUNTING POLICIES, heading 'Fixed assets and depreciation', page 16 (printed page - 15 -), quoted verbatim: \"Depreciation of an asset begins when it is in the location and condition necessary for it to be capable of operating in the manner intended by management, and is computed using the straight-line method according to the estimated useful life of the asset as follows: Asset description / Years -- Premises & constructions 20-80; Means of transport and transportation 5; Tools & equipment 3-8; Furniture and fittings 5- 10; Improvements on leased buildings 7; Computers 3-8.\" The same note adds: \"The assets' residual values, useful lives and methods of depreciation are reviewed at each financial year-end.\" Quantities are from note 4 PROPERTY, PLANT AND EQUIPMENT, pages 30-31 (printed pages - 29 - and - 30 -).",
+  "_file": "engine/tmgh_walkforward/filings/Consolidated financial statements for the year ended 31-12-2025-English.pdf",
+  "_route": "TEXT LAYER (pdftotext -layout / PyMuPDF) — the filing carries a genuine embedded text layer (170,991 characters over 64 pages; pages 3-7, the primary statements, are scanned images and were not needed). ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR: every FY2025 cell of note 4 was re-footed from the extracted figures and all 32 checks return exactly zero — 7 cost-movement columns, 7 accumulated-depreciation columns, 7 cost-less-accumulated net book values, and the 4 printed totals (cost 76,578,845,924; accumulated depreciation 5,059,157,927; charge for the year 1,371,517,763; net book value 71,519,687,997). No OCR was required for any FY2025 figure. The FY2024 COMPARATIVE column did NOT foot, so that page was re-read by OCR off the rendered pixels (pdftoppm -r 200/250/300/400 -png, tesseract 5.3.4 eng, plus direct visual inspection of the rendered crop) — see _fy2024_comparative_defect below; the pixels agree with the text layer, so the inconsistency is in the FILING and not in the extraction, and it touches no FY2025 figure.",
+  "_extracted": "2026-09-07",
+  "_cross_check": {
+    "file": "engine/tmgh_walkforward/filings/TMG Conso  FS 31 December 2024-English.pdf",
+    "note": "note 2.3 'Fixed assets and depreciation', page 16 (table continues at the foot of that page); note 4 FIXED ASSETS, pages 30-31",
+    "route": "text layer (PyMuPDF raw extraction; the table sits between two pages and does not survive pdftotext -layout, so raw text was used)",
+    "result": "CONFIRMS the FY2025 table identically on every class the two years share: Premises & constructions 20-80, Means of transport and transportation 5, Tools & equipment 3-8, Furniture and fittings 5-10, Computers 3-8.",
+    "differences": [
+      "The FY2024 filing additionally discloses 'Marine equipment 2 - 10'; that line is absent from the FY2025 policy table.",
+      "The FY2024 filing does NOT carry 'Improvements on leased buildings 7'; that line is new in the FY2025 policy table, the class itself having first appeared in the FY2024 fixed-asset note.",
+      "The FY2024 filing presents SIX asset classes in note 4, with improvements on leased buildings folded into furniture and fittings; the FY2025 filing presents SEVEN, splitting them out."
+    ]
+  },
+  "disclosed_useful_lives_years": {
+    "premises_and_constructions": {
+      "low": 20,
+      "high": 80,
+      "as_disclosed": "20-80"
+    },
+    "means_of_transport_and_transportation": {
+      "low": 5,
+      "high": 5,
+      "as_disclosed": "5"
+    },
+    "tools_and_equipment": {
+      "low": 3,
+      "high": 8,
+      "as_disclosed": "3-8"
+    },
+    "furniture_and_fittings": {
+      "low": 5,
+      "high": 10,
+      "as_disclosed": "5- 10"
+    },
+    "improvements_on_leased_buildings": {
+      "low": 7,
+      "high": 7,
+      "as_disclosed": "7"
+    },
+    "computers": {
+      "low": 3,
+      "high": 8,
+      "as_disclosed": "3-8"
+    }
+  },
+  "disclosed_useful_lives_note": "The policy table is stated as RANGES, not as scalars, for four of the six classes. The dominant class by cost, premises & constructions, is disclosed as 20-80 — a four-fold range. Selecting a point inside a disclosed range is a life this desk would have chosen, which R-TERM-01 and SIGCM clause 1 forbid, so route (1) yields NO usable scalar for the class that carries the value and the derived route below is used. The class is named 'Buildings and Constructions' in the FY2025 column headings of note 4 and 'Premises & constructions' in the policy note and the FY2024 comparative headings; these are two renderings of one class.",
+  "depreciation_method": "straight-line",
+  "lands_are_not_depreciated": true,
+  "lands_not_depreciated_evidence": "Note 4 carries a nil accumulated-depreciation balance and a nil depreciation charge against the Lands column in every year presented; the policy table names no life for land.",
+  "ppe_note_4": {
+    "note_reference": "note 4 PROPERTY, PLANT AND EQUIPMENT, pages 30-31 of the 31-12-2025 consolidated financial statements (printed pages - 29 - and - 30 -)",
+    "as_at": "2025-12-31",
+    "currency": "EGP",
+    "gross_cost_total_egp": 76578845924,
+    "accumulated_depreciation_total_egp": 5059157927,
+    "carrying_value_net_book_value_total_egp": 71519687997,
+    "depreciation_charge_for_the_year_egp": 1371517763,
+    "gross_cost_lands_not_depreciated_egp": 45629502873,
+    "gross_cost_depreciable_egp": 30949343051,
+    "comparatives_2024": {
+      "gross_cost_total_egp": 79670494303,
+      "accumulated_depreciation_total_egp": 3858354739,
+      "carrying_value_net_book_value_total_egp": 75812139564,
+      "depreciation_charge_for_the_year_egp": 1092796744,
+      "gross_cost_lands_egp": 48567386583,
+      "gross_cost_depreciable_egp": 31103107720
+    },
+    "by_class": {
+      "lands": {
+        "gross_cost_egp": 45629502873,
+        "share_of_gross_ppe_cost": 0.5958499677350139,
+        "share_of_depreciable_gross_cost": null,
+        "accumulated_depreciation_egp": 0,
+        "depreciation_charge_fy2025_egp": 0,
+        "share_of_fy2025_charge": 0.0,
+        "net_book_value_egp": 45629502873,
+        "written_down_pct_of_cost": 0.0,
+        "derived_life_years_cost_over_charge": null
+      },
+      "buildings_and_constructions": {
+        "gross_cost_egp": 23465818237,
+        "share_of_gross_ppe_cost": 0.306426898366795,
+        "share_of_depreciable_gross_cost": 0.7582008509302365,
+        "accumulated_depreciation_egp": 1963794511,
+        "depreciation_charge_fy2025_egp": 557095830,
+        "share_of_fy2025_charge": 0.4061892926427961,
+        "net_book_value_egp": 21502023726,
+        "written_down_pct_of_cost": 0.08368745087710448,
+        "derived_life_years_cost_over_charge": 42.12169069188689
+      },
+      "transportation": {
+        "gross_cost_egp": 1103619514,
+        "share_of_gross_ppe_cost": 0.014411545390685013,
+        "share_of_depreciable_gross_cost": 0.03565889951787979,
+        "accumulated_depreciation_egp": 586271740,
+        "depreciation_charge_fy2025_egp": 127384348,
+        "share_of_fy2025_charge": 0.09287838002284772,
+        "net_book_value_egp": 517347774,
+        "written_down_pct_of_cost": 0.5312263262499725,
+        "derived_life_years_cost_over_charge": 8.663697945056798
+      },
+      "tools_and_equipment": {
+        "gross_cost_egp": 2426401051,
+        "share_of_gross_ppe_cost": 0.031685004151251646,
+        "share_of_depreciable_gross_cost": 0.07839911325425052,
+        "accumulated_depreciation_egp": 943563593,
+        "depreciation_charge_fy2025_egp": 298736087,
+        "share_of_fy2025_charge": 0.21781423110886824,
+        "net_book_value_egp": 1482837458,
+        "written_down_pct_of_cost": 0.38887371591399794,
+        "derived_life_years_cost_over_charge": 8.122222779867904
+      },
+      "furniture_and_fittings": {
+        "gross_cost_egp": 2529337968,
+        "share_of_gross_ppe_cost": 0.03302919934978152,
+        "share_of_depreciable_gross_cost": 0.08172509393275393,
+        "accumulated_depreciation_egp": 1046726254,
+        "depreciation_charge_fy2025_egp": 252037463,
+        "share_of_fy2025_charge": 0.18376536549457725,
+        "net_book_value_egp": 1482611714,
+        "written_down_pct_of_cost": 0.4138340811875244,
+        "derived_life_years_cost_over_charge": 10.035563514619254
+      },
+      "improvements_on_leased_buildings": {
+        "gross_cost_egp": 762536555,
+        "share_of_gross_ppe_cost": 0.009957535214839523,
+        "share_of_depreciable_gross_cost": 0.024638214573519415,
+        "accumulated_depreciation_egp": 60996092,
+        "depreciation_charge_fy2025_egp": 45931175,
+        "share_of_fy2025_charge": 0.03348930377651988,
+        "net_book_value_egp": 701540463,
+        "written_down_pct_of_cost": 0.0799910399049656,
+        "derived_life_years_cost_over_charge": 16.601721053293325
+      },
+      "computers": {
+        "gross_cost_egp": 661629726,
+        "share_of_gross_ppe_cost": 0.00863984979163343,
+        "share_of_depreciable_gross_cost": 0.021377827791359928,
+        "accumulated_depreciation_egp": 457805737,
+        "depreciation_charge_fy2025_egp": 90332860,
+        "share_of_fy2025_charge": 0.06586342695439082,
+        "net_book_value_egp": 203823989,
+        "written_down_pct_of_cost": 0.6919364699161054,
+        "derived_life_years_cost_over_charge": 7.3243526884901025
+      }
+    }
+  },
+  "derived_life": {
+    "value_years": 22.565761731953597,
+    "label": "DERIVED — not a disclosed scalar. An identity from two disclosed figures, on the EGCH precedent.",
+    "identity": "depreciable gross cost of property, plant and equipment / depreciation charge for the year",
+    "numerator_egp": 30949343051,
+    "numerator_construction": "note 4 total gross cost 76,578,845,924 less the Lands column 45,629,502,873, which the note itself shows is not depreciated",
+    "denominator_egp": 1371517763,
+    "denominator_construction": "note 4 'Depreciation for the year' total; the sum across the seven class columns reproduces the printed total exactly",
+    "why_land_is_excluded": "Including land gives 76,578,845,924 / 1,371,517,763 = 55.84 years, which is not a life of anything: the numerator would carry an asset that contributes nothing to the denominator. Excluding it is required by the identity's own logic, not a judgement.",
+    "what_the_identity_is": "Gross cost divided by the total annual charge is exactly the cost-weighted HARMONIC mean of the class lives, because the annual charge is the sum over classes of cost_i / life_i. That is the correct blended replacement cycle for a maintenance charge on the whole depreciable base: short-lived classes are replaced more often and the harmonic mean prices that automatically.",
+    "robustness": {
+      "on_closing_depreciable_cost": 22.565761731953597,
+      "on_average_of_opening_and_closing_depreciable_cost": 22.621818121869996,
+      "fy2024_same_identity": 28.461933008834073,
+      "fy2024_comment": "FY2024 is not a usable base year for this identity: additions of 39,372,011,559 and currency translation of 24,386,762,116 landed on an opening gross cost of 9,181,010,208, so the closing base bears little relation to the base that generated that year's charge. FY2025 additions were 966,086,883, or 1.21% of opening gross cost — a stable base year."
+    },
+    "corroboration_against_the_disclosed_policy": "The derived life of the buildings class ALONE is 23,465,818,237 / 557,095,830 = 42.12 years, which sits INSIDE its own disclosed range of 20-80. Where the two routes can be compared they agree, which is the evidence that the extraction is sound.",
+    "per_class_derived_vs_disclosed": {
+      "lands": {
+        "derived_years": null,
+        "disclosed": "not depreciated"
+      },
+      "buildings_and_constructions": {
+        "derived_years": 42.12169069188689,
+        "disclosed": "20-80"
+      },
+      "transportation": {
+        "derived_years": 8.663697945056798,
+        "disclosed": "5"
+      },
+      "tools_and_equipment": {
+        "derived_years": 8.122222779867904,
+        "disclosed": "3-8"
+      },
+      "furniture_and_fittings": {
+        "derived_years": 10.035563514619254,
+        "disclosed": "5- 10"
+      },
+      "improvements_on_leased_buildings": {
+        "derived_years": 16.601721053293325,
+        "disclosed": "7"
+      },
+      "computers": {
+        "derived_years": 7.3243526884901025,
+        "disclosed": "3-8"
+      }
+    },
+    "per_class_caveat": "A derived class life above its disclosed range is the ordinary consequence of assets added part-way through the year, fully depreciated assets still carried on the register, and residual values — the charge is a full-year flow measured against a period-end stock. It is a reason to treat the per-class derived figures as a cross-check on the policy table rather than as lives in their own right; the blended figure is far less exposed because the base as a whole barely moved in FY2025."
+  },
+  "hotels_and_the_recurring_income_leg": {
+    "do_hotel_buildings_carry_their_own_disclosed_life": false,
+    "finding": "NO separate useful life is disclosed for hotel buildings. The policy table carries ONE buildings class, 'Premises & constructions 20-80', covering every building the group depreciates, hotels included. This is an ABSENT disclosure and is recorded as absent; no hotel-specific life has been estimated or inferred.",
+    "what_share_of_gross_ppe_cost_are_hotel_buildings": "NOT DISCLOSED. Note 4 splits property, plant and equipment by ASSET CLASS only and never by segment, business or property. The share of the 23,465,818,237 buildings class attributable to hotels cannot be read out of the filing and has not been estimated.",
+    "adjacent_disclosures_that_exist_and_what_they_do_and_do_not_say": [
+      {
+        "disclosure": "note 33 SEGMENTS REPORT, page 46",
+        "figures": {
+          "real_estate_recurring_and_services_assets_egp": 287470250935,
+          "tourism_assets_egp": 115628073253,
+          "segment_assets_total_egp": 403098324188,
+          "tourism_share_of_segment_assets": 0.286848310485837
+        },
+        "caveat": "These are TOTAL segment assets, not property, plant and equipment. They cannot be used as a proxy for the hotel share of PP&E and are recorded here only so the absence above is visible rather than implied."
+      },
+      {
+        "disclosure": "note 6 ASSETS UNDER CONSTRUCTION, pages 32-33",
+        "figures": {
+          "total_egp": 16370515348,
+          "hotel_projects_egp": 14245394598,
+          "hotel_share_of_auc": 0.8701860812060734,
+          "itemised_hotel_projects": {
+            "Four Seasons Madinaty Hotel Project": 8491909279,
+            "Four Seasons Sharm El-Sheikh Hotel Extension Project": 1243625399,
+            "Four Seasons Nile Plaza Hotel Project": 1098033748,
+            "Four Seasons San Stefano Hotel Project": 193861329,
+            "Four Seasons Luxor Hotel Project": 1343811743,
+            "Radison Marsa Alam Hotel Project": 1534240953,
+            "Mariott Mena House Hotel Project": 253436087,
+            "Nille Kempinski Hotel Project": 86476060
+          }
+        },
+        "caveat": "Assets under construction are NOT depreciated and are NOT inside the note 4 cost table until they are transferred into service. The itemised list is the only place the filing names hotels as assets, and it names them precisely because they are not yet operating. It says nothing about the hotel share of the depreciating base."
+      }
+    ],
+    "other_asset_bases_deliberately_excluded_from_the_life": [
+      {
+        "base": "investment properties, note 5, page 32",
+        "carrying_value_egp": 23636141834,
+        "reason": "carried under the fair-value model (the note runs a revaluation gain of 3,952,529,255 for the year) and therefore NOT depreciated; no life attaches to it."
+      },
+      {
+        "base": "assets under construction, note 6, pages 32-33",
+        "carrying_value_egp": 16370515348,
+        "reason": "not depreciated until brought into service."
+      },
+      {
+        "base": "development properties, note 14",
+        "carrying_value_egp": null,
+        "reason": "inventory of land and units held for sale; not operating plant and not depreciated."
+      },
+      {
+        "base": "intangible assets, note 7, page 33",
+        "amortisation_for_the_year_egp": 18786123,
+        "reason": "amortised separately; not property, plant and equipment."
+      },
+      {
+        "base": "right-of-use assets, note 8, page 33",
+        "amortisation_for_the_year_egp": 36933330,
+        "reason": "amortised over the shorter of the lease term and the asset's useful life; a leased right, not owned plant whose replacement a maintenance charge funds."
+      }
+    ],
+    "charge_completeness_check": "1,371,517,763 is the ONLY property, plant and equipment depreciation charge in the book. The two other amortisation lines (18,786,123 intangibles, 36,933,330 right-of-use) belong to separate notes and are correctly outside the identity. The segment report's 'Depreciation & Amortization' of 427,334,012 is NOT the group charge — it sits below the business-result line and excludes the depreciation carried inside cost of hotels' operation and cost of activities with periodic yields; it must not be used as the denominator."
+  },
+  "_fy2024_comparative_defect": {
+    "what": "In the 31-12-2025 filing, the FY2024 comparative COST table (page 31) prints a closing furniture and fittings cost of 3,012,595,401 which does not foot three separate ways.",
+    "the_three_failures": [
+      "Its own column movement (opening 1,089,547,996 + additions 749,870,332 + transfers 158,631,338 - disposals 7,173,062 + currency translation 315,872,659) gives 2,306,749,263.",
+      "The printed row total of 79,670,494,303 is reproduced only by 2,306,749,263; with 3,012,595,401 the seven columns sum to 80,376,340,441, over by exactly 705,846,138.",
+      "The printed FY2024 net book value of 1,474,283,236 equals cost less accumulated depreciation only with 2,306,749,263; with 3,012,595,401 it would be 2,180,129,374."
+    ],
+    "route_taken": "The page was rendered to pixels at 250-400 dpi and read both by tesseract and by direct visual inspection of the crop. The pixels show 3,012,595,401, identical to the text layer, and an OCR of the additions row on the same page returned 410,600,171 / 749,870,332 / 705,846,138, matching the text layer exactly. THE EXTRACTION IS CORRECT AND THE FILING IS INTERNALLY INCONSISTENT.",
+    "cause_established_against_the_standalone_2024_filing": "The standalone 31-12-2024 filing presents SIX asset classes with improvements on leased buildings folded into furniture and fittings, and reports furniture cost 3,012,595,401, additions 1,455,716,470, charge 206,042,943, accumulated depreciation 850,112,184 and net book value 2,162,483,217. Every one of those splits exactly into the FY2025 filing's seven-column presentation (749,870,332+705,846,138; 188,396,786+17,646,157; 832,466,027+17,646,157; 1,474,283,236+688,199,981). The FY2025 filing restated every FY2024 cell into seven columns EXCEPT the closing cost cell for furniture, which still carries the unsplit six-column figure beside a separately printed improvements column — double-counting 705,846,138.",
+    "correct_figure": 2306749263,
+    "consequence_for_this_record": "NONE. The defect is confined to one FY2024 comparative cell. Every FY2025 figure used here foots exactly, and the FY2025 OPENING row already carries the correct 2,306,749,263."
+  },
+  "adopted_for_terminal": {
+    "years": 22.565761731953597,
+    "basis": "DERIVED — depreciable gross property, plant and equipment cost divided by the annual depreciation charge, both from note 4 of the 31 December 2025 audited consolidated financial statements. Route (2). Labelled derived, on the EGCH precedent (22.070192666196995 years, same identity).",
+    "source_string": "Consolidated financial statements for the year ended 31 December 2025, note 4 PROPERTY, PLANT AND EQUIPMENT, pages 30-31 — gross cost of 76,578,845,924 less the Lands column of 45,629,502,873, which that note shows is not depreciated, divided by the depreciation charge for the year of 1,371,517,763; read from the filing's embedded text layer, with every cost, accumulated-depreciation and net-book-value column of the note re-footed against its own arithmetic and the four printed totals reproduced exactly. Corroborated by note 2.3 'Fixed assets and depreciation', page 16, which discloses estimated useful lives of 20-80 years for premises and constructions, 5 for means of transport, 3-8 for tools and equipment, 5-10 for furniture and fittings, 7 for improvements on leased buildings and 3-8 for computers: the buildings class's own derived life of 42.12 years falls inside its disclosed 20-80 range.",
+    "reasoning": "Route (1), the policy note, is the preferred route and it does not yield a usable scalar here. It discloses the dominant class as a range of 20 to 80 years, and picking a point inside a four-fold range is a life this desk chose, which R-TERM-01 forbids outright. Route (2) is therefore used, exactly as it was on EGCH. Land is excluded from the numerator because note 4 shows land carries no depreciation, so including it would divide a non-depreciating asset by a charge it does not generate and return 55.84 years, a life of nothing. Investment properties, assets under construction, development properties, intangibles and right-of-use assets are all outside the numerator for reasons stated per base above. What the identity returns is the cost-weighted harmonic mean of the class lives, which is the right blend for a terminal maintenance charge: annual replacement spend is the sum of cost_i / life_i, so the classes that turn over fastest are weighted by how often they must be bought again. That matters on this name — buildings are 75.82% of depreciable cost but only 40.62% of the annual charge, while tools, furniture, transport and computers are 21.72% of cost and 56.04% of the charge, so a buildings-only life of 42.12 years would fund the hotels' structures and underfund everything inside them. The figure is stable: 22.5658 years on closing cost, 22.6218 on the average of opening and closing, in a year whose additions were 1.21% of the opening base.",
+    "what_would_overturn_it": [
+      "A filing that discloses a single scalar life for premises and constructions, or narrows the 20-80 range — that would make route (1) usable and route (1) is preferred.",
+      "A disclosure splitting property, plant and equipment by segment or by property, which would show whether the hotel and recurring-income buildings are a large enough share of the base to be valued on their own life rather than on the blend.",
+      "A revision of the lives themselves: the policy note states residual values, useful lives and depreciation methods are reviewed at each financial year-end, and note 3 adds that management reviews the estimated useful lives and amortisation method on a regular basis; changes are accounted for prospectively.",
+      "A year in which the depreciable base moves sharply — the identity divides a full-year flow by a period-end stock, so a large acquisition, disposal or currency translation breaks the correspondence, as FY2024 demonstrates at 28.46 years on the same arithmetic.",
+      "Transfer of the 14,245,394,598 of hotel projects now in assets under construction into service, which will enlarge the buildings class materially and lengthen the blend."
+    ],
+    "sensitivity": "Stated as arithmetic about the life, not as a valuation effect: this record does not run the terminal and no per-share figure is asserted here. On the same note, the alternatives a reader might reach for are 42.12 years (buildings class alone, ignoring everything inside the buildings), 55.84 years (the whole gross cost including land, which is not a life), 28.46 years (FY2024's distorted base) and the 20 and 80 endpoints of the disclosed range. The valuation sensitivity across these belongs to the wiring pass and to the contested-judgements register."
+  }
+}

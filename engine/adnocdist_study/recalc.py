@@ -16,10 +16,12 @@ reimplementation that has to agree with the model cell for cell), and asserts th
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+sys.path.insert(0, HERE)
 import openpyxl
 import xlcalc
 
-XLSX = os.path.join(HERE, 'ADNOCDIST_Valuation_Model_09082026.xlsx')
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 EXP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
 EXPECT, PASTE = EXP['expected'], EXP['paste_counts']

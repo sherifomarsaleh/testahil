@@ -9,10 +9,7 @@
   "DU",
   "ELEC",
   "EMPOWER",
-  "MODON",
-  "PHAR",
-  "SCEM",
-  "SWDY"
+  "MODON"
  ],
  "aliases": {
   "FERTIGLOBE": "FERTIGLB"

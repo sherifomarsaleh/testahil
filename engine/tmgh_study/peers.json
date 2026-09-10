@@ -101,7 +101,7 @@
   },
   {
    "risk": "Finance cost is not what it appears",
-   "why": "the reported charge implies 44% on interest-bearing debt against a policy rate that peaked near 27.25%; the excess is contract-financing unwind that the statements do not split out",
+   "why": "the reported charge implies 44% on interest-bearing debt against the 25.50% marginal borrowing rate this model charges; the excess is contract-financing unwind that the statements do not split out",
    "priced_at": "recorded as a gap; a correction for this line was tested and deliberately not adopted, for the reason given in section 1.6",
    "what_would_change_it": "the split, or a disclosed average borrowing rate"
   }

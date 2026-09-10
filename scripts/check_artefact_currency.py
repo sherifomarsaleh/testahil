@@ -144,6 +144,48 @@ def declared(obj, keys):
     return None
 
 
+def studies():
+    """The record directories a record-reading gate can inspect, resolved through
+    engine/study_population.py rather than by globbing engine/*_study.
+
+    THE GLOB WAS THE WRONG POPULATION. All 90 covered names carry a delivered
+    valuation study; 23 commit a record. This gate globbed the directories and
+    printed a count with NO DENOMINATOR, which is why 24 looked like the book.
+    The names with no record are DEFERRED to the shared no-record ratchet, which
+    the valuation-gap gate reports on — they are not re-listed here, because ten
+    gates reporting one fact is the duplication this refactor exists to avoid.
+
+    The import is LAZY so a sandbox that copies this script without engine/
+    beside it does not die on an import it never needed.
+    """
+    global _DEFERRED, _POP_LINE
+    # A SANDBOXED FIXTURE SUPPLIES ITS OWN POPULATION, AND SAYS SO OUT LOUD.
+    # Several negative controls copy this script into a temp tree holding a fake
+    # ENGINE and run it as a subprocess, so the resolver is not importable there —
+    # and it should not be, because the whole point of those fixtures is a
+    # population they control. The escape is an explicit environment variable that
+    # CI never sets, and taking it PRINTS that it was taken: a switch that quietly
+    # restored the directory glob would reinstate the defect this replaced.
+    if os.environ.get('TESTAHIL_FIXTURE_POPULATION'):
+        dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+        _DEFERRED, _POP_LINE = [], ('population: FIXTURE — %d study directories under a '
+                                    'sandboxed ENGINE, not the book' % len(dirs))
+        print(_POP_LINE)
+        return dirs
+    if ENGINE not in sys.path:
+        sys.path.insert(0, ENGINE)
+    import study_population
+    dirs, _DEFERRED, _POP_LINE = study_population.examinable()
+    # printed HERE so the ten gates have exactly ONE edit site each and the line
+    # cannot be forgotten in one of them: a denominator that appears in nine gates
+    # and not the tenth is the drift this refactor exists to stop
+    print(_POP_LINE)
+    return dirs
+
+
+_DEFERRED, _POP_LINE = [], ""
+
+
 def main(argv):
     prune = '--prune' in argv
     d = json.load(open(OUTSTANDING, encoding='utf-8'))
@@ -180,7 +222,7 @@ def main(argv):
         # gate cannot tell a deferred study from an unexamined one, so it defers to nothing.
         _unreadable = set()
 
-    dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+    dirs = studies()
     if not dirs:
         print('FAIL - examined zero studies. An empty result is not a clean result.')
         return 1
@@ -239,20 +281,29 @@ def main(argv):
                 if not isinstance(central, (int, float)):
                     central = ((doc.get('meta') or {}).get('central'))
             spot = spot if spot is not None else doc.get('spot')
+        branches = None
         if not isinstance(central, (int, float)):
-            # A TWO-SIDED STUDY, NOW ACTUALLY HANDLED: its branches are the answer, so the
-            # artefacts are held to the branch nearest each figure. Where no branch can be
-            # read either, that is a study publishing nothing this gate can anchor on and
-            # it says so rather than passing.
-            _br = [b.get('value') for b in (_gap_reader.read_branches(sdir) or [])
-                   if isinstance(b.get('value'), (int, float))]
-            if not _br:
+            # A TWO-SIDED STUDY: its branches are the answer, so an artefact is held to the
+            # branch NEAREST ITS OWN FIGURE. This comment said exactly that while the code
+            # below it read `central = _br[0]` and anchored every artefact to the FIRST
+            # branch unconditionally -- so an artefact honestly declaring the second one
+            # was accused of being stale against a number it never claimed. A COMMENT
+            # ASSERTING A CHECK THAT DOES NOT EXIST IS WORSE THAN NO COMMENT, because it
+            # stops the next reader looking; this gate's own docstring records being bitten
+            # by that once already, and it was carrying another instance of it.
+            #
+            # THE NEAREST BRANCH IS NOT A LOOSER TEST. An artefact still has to land on ONE
+            # of the answers the study actually publishes, to the same tolerance; what it
+            # no longer has to do is match whichever answer happened to be listed first.
+            branches = [b.get('value') for b in (_gap_reader.read_branches(sdir) or [])
+                        if isinstance(b.get('value'), (int, float))]
+            if not branches:
                 if arts and tk not in known and tk not in _unreadable:
                     bad.append((tk, '(the study directory)',
                                 'no numeric central and no readable branches, so no answer '
                                 'this gate can hold %d artefact(s) to.' % len(arts)))
                 continue
-            central = _br[0]
+            central = branches[0]
         clean_here = True
         for f in sorted(glob.glob(os.path.join(sdir, '*.json'))):
             base = os.path.basename(f)
@@ -273,11 +324,18 @@ def main(argv):
                                       'artefact that does not say what it was current '
                                       'WITH cannot be told from a stale one.'))
                 continue
-            if abs(dc - central) > max(TOL * abs(central), 0.005):
+            # ON A TWO-SIDED STUDY THE ANCHOR IS PER ARTEFACT, which is what the note
+            # above has always claimed: the branch nearest this artefact's own figure.
+            anchor = (min(branches, key=lambda b: abs(dc - b)) if branches else central)
+            if abs(dc - anchor) > max(TOL * abs(anchor), 0.005):
                 stale += 1
                 clean_here = False
                 bad.append((tk, base, 'was built against a central of %.4f and the study '
-                                      'now publishes %.4f' % (dc, central)))
+                                      'now publishes %s'
+                                      % (dc, ('%.4f' % anchor) if not branches else
+                                         ('branches %s -- the nearest is %.4f'
+                                          % (', '.join('%.4f' % b for b in branches),
+                                             anchor)))))
                 continue
             ds = declared(j, DECL_SPOT)
             if ds is not None and spot and abs(ds - spot) > max(TOL * abs(spot), 0.005):

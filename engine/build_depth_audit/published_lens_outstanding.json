@@ -1,0 +1,476 @@
+{
+ "note": "May only ever SHORTEN. An entry excuses the assertions it records; more is a NEW breach [R-ENF-08].",
+ "outstanding": {
+  "2POINTZERO/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "AAPL/study/index.html": {
+   "assertions": 6,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ABUK/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ACWA/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ADCB/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ADIB/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ADIBUAE/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ADNOCDIST/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ADNOCDRILL/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ADNOCGAS/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ADNOCLS/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "AGTHIA/study/index.html": {
+   "assertions": 6,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "AIRARABIA/study/index.html": {
+   "assertions": 2,
+   "example": "ies \u2014 is trading almost exactly where four independent valuation methods say it should: a weighted fair value of AED 2.19 against a price of 2.23. The whole question is the kitchen",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ALDAR/study/index.html": {
+   "assertions": 3,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ALINMA/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ALPHADHABI/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ALRAJHI/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "AMOC/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "AMR/study/index.html": {
+   "assertions": 2,
+   "example": "ies \u2014 is trading almost exactly where four independent valuation methods say it should: a weighted fair value of AED 2.15 against a price of 2.23. The whole question is the kitchen",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ARAMCO/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ARCC/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "BOROUGE/study/index.html": {
+   "assertions": 2,
+   "example": "ies \u2014 is trading almost exactly where four independent valuation methods say it should: a weighted fair value of AED 2.19 against a price of 2.23. The whole question is the kitchen",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "BTFH/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "BURJEEL/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "CCAP/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "CLHO/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "COMI/study/index.html": {
+   "assertions": 3,
+   "example": "sent value of the returns it earns above its cost of equity; five lenses triangulate to a weighted central figure.</p> <table><thead><tr><th>Valuation lens</th><th class=\"num\">Wort",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "DEWA/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "DIB/study/index.html": {
+   "assertions": 5,
+   "example": "th the record of how often those bands have actually held set out below \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "DSCW/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "DU/study/index.html": {
+   "assertions": 2,
+   "example": "ies \u2014 is trading almost exactly where four independent valuation methods say it should: a weighted fair value of AED 2.19 against a price of 2.23. The whole question is the kitchen",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EAND/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EFID/study/index.html": {
+   "assertions": 3,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EFIH/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EGAL/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EGCH/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ELEC/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ELM/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EMAAR/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EMAARDEV/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EMFD/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EMPOWER/study/index.html": {
+   "assertions": 2,
+   "example": "ies \u2014 is trading almost exactly where four independent valuation methods say it should: a weighted fair value of AED 2.19 against a price of 2.23. The whole question is the kitchen",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ENBD/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ETEL/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "EXTRA/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "FAB/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "FERTIGLB/study/index.html": {
+   "assertions": 2,
+   "example": "ies \u2014 is trading almost exactly where four independent valuation methods say it should: a weighted fair value of AED 2.19 against a price of 2.23. The whole question is the kitchen",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "FWRY/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "GBCO/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "GOLD/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "HELI/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "HRHO/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "IHC/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "INFY/study/index.html": {
+   "assertions": 4,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "IQCD/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ISPH/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "JUFO/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "KABO/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "KAKAO/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "LCSW/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "LGES/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "LULU/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "MAADEN/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "MODON/study/index.html": {
+   "assertions": 2,
+   "example": "and the wind-down says AED 2.64. The earnings lenses sit lower still (AED 1.46\u20132.20). The weighted central is AED 2.50, about 12% BELOW the market price of AED 2.83. <b>That is a r",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "NVDA/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "OCDI/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "OIH/study/index.html": {
+   "assertions": 5,
+   "example": "3 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 with a four-lens weighted fair value near EGP 0.78 \u2014 not a single price target or a buy/sell call. The full",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ORAS/study/index.html": {
+   "assertions": 5,
+   "example": "3 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 with a five-lens weighted fair value near EGP 928 \u2014 not a single price target or a buy/sell call. The full ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ORHD/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "ORWE/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "PHAR/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "PHDC/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "PLATINUM/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "PRDC/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "QGTS/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "QNB/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "RAYA/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "RELIANCE/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "RIBL/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "RIYADHCABLE/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "RMDA/study/index.html": {
+   "assertions": 2,
+   "example": "margin-top:26px\">What it's worth</p> <p class=\"muted\">The lenses, side by side; the weighted central value is the anchor.</p> <table><thead><tr><th>Lens / part</th><th class=\"num\">",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SABIC/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SALIK/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SAMSUNG/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SAVOLA/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SCEM/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SILVER/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SNB/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "STC/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "SWDY/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "TMGH/study/index.html": {
+   "assertions": 1,
+   "example": "\"f-line\").textContent = \"Published range \"+fmtPx(f.bear)+\" \u2013 \"+fmtPx(f.full)+\" \"+t.ccy+\", weighted central \"+fmtPx(f.base)+\". The central reading sits \"+fmtSPct(g)+\" from the last ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "TMPV/study/index.html": {
+   "assertions": 6,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "TSLA/study/index.html": {
+   "assertions": 5,
+   "example": "\u20133 months \u2014 the simulated 5th\u201395th percentile range and the central 50% \u2014 together with a weighted central fair value, not a single price target or a buy/sell call. The full study ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  },
+  "assets/coverage.js": {
+   "assertions": 17,
+   "example": "than buried: the relative and normalised lenses share all three multiples, so 45% of the weighted central rests on one method presented as two. This edition was rebuilt under four ",
+   "reason": "publishes the retired weighted blend as the account of its own central [R-LENS-03]"
+  }
+ },
+ "rule": "R-LENS-03 on the published page"
+}

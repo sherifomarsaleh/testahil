@@ -37,6 +37,7 @@ applies to it in full.
 | `arabic_read.json` | the two Arabic filings, whose Eastern Arabic numerals tesseract reads fluently and wrongly; verified by arithmetic and by a second document rather than by the extractor |
 | `balance_sheet.py` → `balance_sheet.json` | the balance-sheet panel, **FY2016–FY2020**, accepted only where the statement's own subtotals re-derive (assets = equity + liabilities included); derives the two financing driver bases and applies D8's pre-registered refusal |
 | `kpi.py` → `kpi.json` | delivered-unit counts and contracted-sales values from the company's results releases, reconciled against the audited statements at the release's own precision |
+| `valuation_inputs.py` → `valuation_inputs.json` | the **valuation-input block** [R-FCAL-01 AMENDED]: cash, interest-bearing debt, PPE, the working-capital lines and the paid-in capital at **FY2016–FY2020**, each with its route, page and file; capex, depreciation and the share count recorded as **missing with their reasons** rather than omitted, and the five blocked origins written out the same way. Every figure foots before it is written and the one derived operand is labelled derived |
 | `build_records.py` | renders the four documents below from the JSON above — **nothing in them is typed** |
 | `SOURCE_REGISTER_01-09-2026.md` | the Sweep Register: what was obtained, from where, and every route that failed |
 | `SCOPE_DECISION_01-09-2026.md` | the decision, its arithmetic, and exactly what is needed to lift the block |

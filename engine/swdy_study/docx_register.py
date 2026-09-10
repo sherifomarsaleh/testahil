@@ -1,8 +1,23 @@
-"""SWDY_Bibliography_05-08-2026.docx — the companion bibliography document.
+"""SWDY_Bibliography_{edition}.docx — the companion bibliography document.
 Every input in the model: value, source, date and research layer — emitted from
 study_numbers.json (the compute script's own INPUTS block), plus the document
 bibliography and the negative results."""
 import json, os
+import sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
+
+
+def edition_words(d):
+    """The edition date in words, from the edition module — so the companion
+    document cannot name a date the study is not filed under. It said '5 August
+    2026' through two later editions."""
+    return '%d %s %d' % (d.day, d.strftime('%B'), d.year)
+
+
+_BETA = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    'beta_result.json'), encoding='utf-8'))
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -10,8 +25,8 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+M = D['meta']                       # the anchor date, read rather than typed
 INP = D['inputs']
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77); WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 F_DARK, F_PANEL, F_CREAM = '1C3A36', 'EAF0EE', 'F6F1E6'
@@ -102,7 +117,7 @@ def fmt(v):
 # ============================================================================
 masthead()
 H1('Elsewedy Electric Company S.A.E. (EGX: SWDY) — Bibliography and Source Register')
-P('Companion document to the valuation study dated 5 August 2026. It records where every number '
+P(f'Companion document to the valuation study dated {edition_words(_ed.EDITION)}. It records where every number '
   'in that study came from.', size=9.5, color=GREY)
 
 H2('READ FIRST')
@@ -172,9 +187,18 @@ table([['Document', 'Publisher', 'Date', 'What was taken from it'],
         'to 5 August 2026',
         'The anchor price, the volatility estimate, the moving-average structure, the beta '
         'regression and the price distributions'],
-       ['Daily price history for the covered Egyptian equity library', 'House data library',
-        'to August 2026', 'The 31-name equal-weight composite used as the market proxy in the '
-        'beta regression']],
+       # THE MARKET PROXY IS THE PUBLISHED INDEX AND HAS BEEN SINCE THE BETA WAS
+       # RE-DERIVED. This row still credited the withdrawn 31-name composite, which is
+       # a source register naming a source the study does not use.
+       # NAMED FOR A READER, NOT BY ITS PATH IN THIS REPOSITORY. The first cut printed
+       # the file the series is stored in, which is internal machinery on a delivered
+       # page: the reader wants the INDEX, and the file name is how we happen to keep
+       # it. The gate that caught this says so in its own words — rewrite the sentence,
+       # do not add the path to a list, because the next hole is a different shape.
+       ['%s, the published index of the exchange this share is listed on'
+        % os.path.splitext(os.path.basename(_BETA['index_file']))[0],
+        'Published index series', 'to ' + str(_BETA['index_asof']),
+        'The regressor in the beta regression']],
       [1.55, 1.25, 0.95, 3.25], size=8.0)
 
 # ---- the four-field input register ------------------------------------------
@@ -191,7 +215,11 @@ for ring in ['Market', 'Company', 'Country', 'House']:
     rows = [['Input', 'Value', 'Date', 'Source and construction']]
     for k, v in items:
         rows.append([k.replace('_', ' '), fmt(v['value']), v['date'], v['source']])
-    table(rows, [1.15, 0.95, 0.72, 4.18], size=7.6)
+    # THE DATE COLUMN WAS 0.05in TOO NARROW AND ITS WIDEST DATE WRAPPED. Widened
+    # from the source column beside it, which has slack; the total is unchanged, so
+    # nothing else on the page moves. Measured, not nudged: 1.83cm declared against
+    # 1.94cm needed.
+    table(rows, [1.15, 0.95, 0.78, 4.12], size=7.6)
 
 # ---- judgements ---------------------------------------------------------------
 H1('The judgements, stated separately')
@@ -216,8 +244,11 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'though FY2025 improved (24.1% -> 23.1% -> 19.9% of revenue)',
         'Two consecutive years of operating cash flow above 60% of EBITDA'],
        ['Valuation date rolled to the anchor',
-        'Every lens value, dated 31 December 2025 by construction, is rolled 217/365 of a year '
-        'to the 5-Aug-2026 anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
+        # THE ROLL IS READ OFF THE RECORD. Typed, it said 217/365 to a 5-August anchor
+        # through two later editions while the model rolled 246 days to 3 September.
+        f'Every lens value, dated 31 December 2025 by construction, is rolled '
+        f'{D["dcf"]["anchor_days"]}/365 of a year '
+        f'to the {M["asof"]} anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
         'window',
         'The comparison price is dated 5 August 2026; comparing an end-2025 value to it would '
         'leave seven months of accretion out of the comparison — an external review flagged the '
@@ -324,7 +355,7 @@ P('This document accompanies an educational valuation study. It is not investmen
   'verify the analysis independently. Where a figure is derived or estimated rather than '
   'disclosed, that is stated.', size=9.2, color=GREY)
 
-out = os.path.join(HERE, 'SWDY_Bibliography_05-08-2026.docx')
+out = os.path.join(HERE, _ed.BIBLIO_DOCX)
 doc.save(out)
 print(f'wrote {out} | {len(doc.paragraphs)} paragraphs | {len(doc.tables)} tables | '
       f'{len(INP)} inputs registered')

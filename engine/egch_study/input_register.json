@@ -1591,6 +1591,24 @@
    "layer": "L2",
    "note": ""
   },
+  "erp_cds_superseded": {
+   "key": "erp_cds_superseded",
+   "value": 0.094247,
+   "unit": "ratio",
+   "source": "The credit-default-swap equity risk premium this study carried BEFORE the correction of 9 August 2026, reconstructed at the time from a sovereign spread the source file does not carry. Registered as the historical fact it is so the correction note beside it is computed rather than typed.",
+   "date": "2026-08-08",
+   "layer": "L4",
+   "note": ""
+  },
+  "sov_spread_cds_superseded": {
+   "key": "sov_spread_cds_superseded",
+   "value": 0.0355,
+   "unit": "ratio",
+   "source": "The sovereign credit-default-swap spread the superseded premium above was reconstructed from. It appears in no source file, which is why the premium built on it was corrected; it is registered here for the same reason as the premium.",
+   "date": "2026-08-08",
+   "layer": "L4",
+   "note": ""
+  },
   "erp_cds_damodaran": {
    "key": "erp_cds_damodaran",
    "value": 0.0941,
@@ -1713,10 +1731,28 @@
   },
   "export_duty_2026": {
    "key": "export_duty_2026",
+   "value": 0.0,
+   "unit": "ratio",
+   "source": "Ministerial Decision 340 of 2026, effective 1 August 2026, cancelling Decisions 190, 203 and 258 of 2026 and ending the 10% ad valorem export levy on nitrogen fertilisers. The Egyptian Customs Authority issued Circular 46 of 2026 to govern shipments whose declarations were opened before the levy ceased, which is the administrative trace a cancellation leaves and a rumour does not. This study strikes on 3 September 2026, so the rate in force at the strike is nil. The superseded chain is registered below with its own dates, because a duty that existed for three months is a fact about this year and the alternatives grid prices its return",
+   "date": "2026-08-01",
+   "layer": "L3",
+   "note": ""
+  },
+  "export_duty_2026_superseded": {
+   "key": "export_duty_2026_superseded",
    "value": 0.1,
    "unit": "ratio",
-   "source": "2026 replacement of the shortfall levy with an ad-valorem duty tied to the global price",
-   "date": "2026-01-01",
+   "source": "Decree No. 258 of 2026 of the Minister of Investment and Foreign Trade, published in the Official Gazette on 25 June 2026 \u2014 10% ad valorem on the FOB invoice value of nitrogen fertiliser exports, the invoice certified by the Chamber of Chemical Industries. It replaced a temporary US$90/t duty imposed in May 2026 for three months and was itself cancelled by Decision 340 of 2026 with effect from 1 August 2026. Pure ammonium nitrate above 34.2% nitrogen and free zone shipments were exempt \u2014 urea was neither. Retained as the alternative this study prices, not as the rate it charges",
+   "date": "2026-06-25",
+   "layer": "L3",
+   "note": ""
+  },
+  "an_exempt_n_pct": {
+   "key": "an_exempt_n_pct",
+   "value": 0.342,
+   "unit": "ratio",
+   "source": "Decree No. 258 of 2026, exemption clause \u2014 pure ammonium nitrate whose nitrogen content EXCEEDS 34.2% is outside the 10% export duty, verified by joint Customs Authority and export-control sampling of the shipment. Free-zone shipments to productive enterprises are likewise exempt. A fact about the instrument, consumed by no calculation in this study: the duty is charged on the urea export leg, and urea is not exempt",
+   "date": "2026-06-25",
    "layer": "L3",
    "note": ""
   },
@@ -1868,9 +1904,45 @@
    "key": "an_price_usd_t",
    "value": 280.0,
    "unit": "US$/t",
-   "source": "Mid-cycle ammonium nitrate pricing",
+   "source": "Mid-cycle ammonium nitrate pricing \u2014 RETIRED as the ANNA pricing basis on 10-09-2026 in favour of the disclosed realisation below; kept registered because the sensitivity grid still prices the alternative",
    "date": "2026-08-07",
    "layer": "L4",
+   "note": ""
+  },
+  "bs_doc_credits_M9FY2526": {
+   "key": "bs_doc_credits_M9FY2526",
+   "value": 1407.4,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 11 \u2014 letters of credit for goods and services, disclosed WITHIN the EGP 3,378.2mn inventory line. They are prepayments against goods not yet received, not stock: counting them as inventory overstates working capital and the days it implies (165 against 114)",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "abuk_shares_held": {
+   "key": "abuk_shares_held",
+   "value": 10262324,
+   "unit": "shares",
+   "source": "Interim statements, nine months ended 31 March 2026, note 8-1 \u2014 the Abu Qir Fertilizers holding, carried at EGP 81.70 a share",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "abuk_spot_strike": {
+   "key": "abuk_spot_strike",
+   "value": 94.0,
+   "unit": "EGP/share",
+   "source": "Abu Qir Fertilizers closing price on the Egyptian Exchange, 3 September 2026 \u2014 the SAME date and the SAME committed price file this study is struck at, the supplied-price file this edition is struck from. Read from that file rather than typed beside it, so a stake in a listed company and the company holding it are marked on one date",
+   "date": "2026-09-03",
+   "layer": "L2",
+   "note": ""
+  },
+  "abuk_carrying_price": {
+   "key": "abuk_carrying_price",
+   "value": 81.7,
+   "unit": "EGP/share",
+   "source": "Interim statements, nine months ended 31 March 2026, note 8-1 \u2014 the price the holding is carried at, being the 31-March market close",
+   "date": "2026-05-21",
+   "layer": "L1",
    "note": ""
   },
   "mid_cycle_urea_usd_t": {
@@ -2055,7 +2127,7 @@
   },
   "real_rate_lt": {
    "key": "real_rate_lt",
-   "value": 0.055,
+   "value": 0.035,
    "unit": "ratio",
    "source": "The house real-rate convention, used to build the terminal risk-free rate from its own components rather than from a spot yield",
    "date": "2026-08-08",
@@ -2366,7 +2438,7 @@
   },
   "g_terminal": {
    "key": "g_terminal",
-   "value": 0.07,
+   "value": 0.07000000000000006,
    "unit": "ratio",
    "source": "Terminal growth from the house macro path: terminal inflation plus a STATED real growth of zero, so the real assumption is written down rather than inferred from the gap to the discount rate. It was 5% (+/-2) for Q4 2028. CORRECTED 9 August 2026 after external critique: the study previously used the 7% Q4-2026 target, which expires one quarter after the anchor date, as a perpetuity anchor -- and then defended it by calling 5% 'below the target', inverting the central bank's own target structure. A perpetuity takes the longest-horizon target there is.",
    "date": "2026-08-09",

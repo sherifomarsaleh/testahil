@@ -1,17 +1,17 @@
 {
- "spot": 4.07,
+ "spot": 4.02,
  "central_two_sided": {
   "question": "Do inventory movements normalise to zero, or persist at the through-cycle rate the company has actually reported?",
   "decides": "Whether the gross profit that compounds into the perpetuity carries the inventory contribution at all. The difference is overwhelmingly a TERMINAL effect, which is precisely why the two frames are published side by side and never averaged.",
   "branches": [
    {
     "label": "Frame A \u2014 inventory movements normalised to zero from FY2027",
-    "value": 4.411292110312444,
+    "value": 4.412320975499007,
     "condition": "Inventory movements are a windfall of a rising oil price and revert to nothing once prices stop rising. They were AED 254 million in FY2024, AED 335 million in FY2025 and AED 762 million in the first half of 2026 alone, against fuel volume growth in that half of 1.6%."
    },
    {
     "label": "Frame B \u2014 inventory movements carried at the FY2024-FY2025 average of AED 294 million",
-    "value": 4.582096886797197,
+    "value": 4.583167162062064,
     "condition": "Inventory movements are a through-cycle feature of holding fuel stock rather than a windfall, and the two-year average is the company's own recent experience of them."
    }
   ],
@@ -42,16 +42,16 @@
    "FY2029E",
    "FY2030E"
   ],
-  "spot": 4.07,
+  "spot": 4.02,
   "shares_mn": 12500.0,
-  "mcap": 50875.0,
+  "mcap": 50249.99999999999,
   "listing_date": "2017-12-13"
  },
  "inputs": {
   "spot": {
-   "value": 4.07,
-   "source": "Daily price history for the ADX listing supplied for this study, cleaned through the study's own data screen; last close 7 August 2026",
-   "date": "2026-08-07",
+   "value": 4.02,
+   "source": "Daily price history for the ADX listing supplied for this study, cleaned through the study's own data screen; last close 3 September 2026, the latest price supplied to this repository (SUPPLIED_03-09-2026.json). Superseded: AED 4.07 of 7 August 2026, on which every edition before this one was struck",
+   "date": "2026-09-03",
    "layer": "Market"
   },
   "shares_mn": {
@@ -2176,17 +2176,17 @@
   "tax_fcff": 0.1017,
   "tax_dmtt": 0.15,
   "kd_aftertax": 0.046228,
-  "mcap": 50875.0,
+  "mcap": 50249.99999999999,
   "net_debt": 2985.1210000000005,
   "net_debt_incl_leases": 4431.448,
-  "we": 0.944576414895169,
-  "wd": 0.05542358510483103,
-  "wacc": 0.07437428020423498,
+  "we": 0.9439257215175674,
+  "wd": 0.05607427848243263,
+  "wacc": 0.07435489098612173,
   "beta_drift_frac": 0.0,
   "beta_terminal": 0.6494,
   "ke_terminal": 0.07602578,
-  "wd_terminal": 0.05542358510483103,
-  "wacc_terminal": 0.07437428020423498,
+  "wd_terminal": 0.05607427848243263,
+  "wacc_terminal": 0.07435489098612173,
   "glide_frac": [
    0.2,
    0.4,
@@ -2195,18 +2195,18 @@
    1.0
   ],
   "disc_rate": [
-   0.07437428020423498,
-   0.07437428020423498,
-   0.07437428020423498,
-   0.07437428020423498,
-   0.07437428020423498
+   0.07435489098612173,
+   0.07435489098612173,
+   0.07435489098612173,
+   0.07435489098612173,
+   0.07435489098612173
   ],
   "df": [
-   0.930774329230874,
-   0.8663408519551834,
-   0.8063678253638898,
-   0.7505464717664332,
-   0.6985893888150009
+   0.9307911272057658,
+   0.8663721224849802,
+   0.8064114844674465,
+   0.7506006546191295,
+   0.6986524293943254
   ],
   "cb_base_rate": 0.0365,
   "credit_margin": 0.006
@@ -2263,34 +2263,34 @@
     4227.762482598966
    ],
    "df": [
-    0.930774329230874,
-    0.8663408519551834,
-    0.8063678253638898,
-    0.7505464717664332,
-    0.6985893888150009
+    0.9307911272057658,
+    0.8663721224849802,
+    0.8064114844674465,
+    0.7506006546191295,
+    0.6986524293943254
    ],
    "pv": [
-    4065.7277265206376,
-    3116.7023228443354,
-    3056.3469459991566,
-    3009.01099964802,
-    2953.4700087738024
+    4065.80110197817,
+    3116.8148200590686,
+    3056.512425528006,
+    3009.228223771893,
+    2953.7365293699518
    ],
-   "pv_sum": 16201.258003785952,
+   "pv_sum": 16202.09310070709,
    "g": 0.015,
    "roic_term": 0.25,
    "reinvest_rate": 0.06,
    "nopat_term": 4363.511979087805,
    "fcff_term": 4101.701260342536,
-   "tv": 69082.12185871645,
-   "pv_tv": 48260.037287324136,
-   "ev": 64461.29529111009,
-   "tv_share": 0.7486668871511137,
+   "tv": 69104.68863133098,
+   "pv_tv": 48280.1585948178,
+   "ev": 64482.251695524894,
+   "tv_share": 0.7487356183340055,
    "net_debt": 2985.1210000000005,
    "leases": 1446.327,
    "nci": 230.374,
-   "equity": 59799.47329111009,
-   "per_share": 4.783957863288807,
+   "equity": 59820.429695524894,
+   "per_share": 4.785634375641991,
    "tax_rate": 0.1017
   },
   "frame_B": {
@@ -2344,34 +2344,34 @@
     4492.760982598966
    ],
    "df": [
-    0.930774329230874,
-    0.8663408519551834,
-    0.8063678253638898,
-    0.7505464717664332,
-    0.6985893888150009
+    0.9307911272057658,
+    0.8663721224849802,
+    0.8064114844674465,
+    0.7506006546191295,
+    0.6986524293943254
    ],
    "pv": [
-    4222.917267550879,
-    3346.2813491011807,
-    3270.0332101688487,
-    3207.904688846417,
-    3138.595148925694
+    4222.993479857131,
+    3346.4021329594043,
+    3270.2102592946517,
+    3208.13627134498,
+    3138.8783751808037
    ],
-   "pv_sum": 17185.73166459302,
+   "pv_sum": 17186.62051863697,
    "g": 0.015,
    "roic_term": 0.25,
    "reinvest_rate": 0.06,
    "nopat_term": 4632.485456587805,
    "fcff_term": 4354.536329192536,
-   "tv": 73340.44832566981,
-   "pv_tv": 51234.85897124783,
-   "ev": 68420.59063584084,
-   "tv_share": 0.7488222258112079,
+   "tv": 73364.40614827693,
+   "pv_tv": 51256.22058656566,
+   "ev": 68442.84110520262,
+   "tv_share": 0.7488908958028258,
    "net_debt": 2985.1210000000005,
    "leases": 1446.327,
    "nci": 230.374,
-   "equity": 63758.76863584084,
-   "per_share": 5.100701490867267,
+   "equity": 63781.01910520262,
+   "per_share": 5.1024815284162095,
    "tax_rate": 0.1017
   }
  },
@@ -2386,27 +2386,27 @@
   "just_pb": 12.989614890757611,
   "book_ps": 3.3569560563396696,
   "own_pe_history": [
-   19.567307692307693,
-   20.97938144329897,
-   18.169642857142858
+   19.326923076923077,
+   20.72164948453608,
+   17.94642857142857
   ],
-  "own_pe_mean": 19.572110664249838,
-  "pe_now": 18.169642857142858,
+  "own_pe_mean": 19.33166704429591,
+  "pe_now": 17.94642857142857,
   "eps_fwd_A": 0.3034546598469985,
   "eps_fwd_B": 0.3169650918469985,
-  "pe_method_today": 18.169642857142858,
-  "pe_method_own_mean": 19.572110664249838,
+  "pe_method_today": 17.94642857142857,
+  "pe_method_own_mean": 19.33166704429591,
   "pe_retention_implied": 0.018571219958429287,
   "pe_payout_implied": 0.9814287800415707,
   "pe_method_justified": 16.32343268274808,
   "pe_methods": [
-   18.169642857142858,
-   19.572110664249838,
+   17.94642857142857,
+   19.33166704429591,
    16.32343268274808
   ],
   "pe_context": [
-   18.169642857142858,
-   19.572110664249838
+   17.94642857142857,
+   19.33166704429591
   ],
   "just_fwd_pe": 16.32343268274808,
   "rel_A": 4.953421712278697,
@@ -2415,34 +2415,34 @@
   "norm_ebit": 3855.7950655543605,
   "norm_nopat": 3463.660707387482,
   "norm_reinvest": 0.06,
-  "norm_ev": 54835.882704511576,
-  "norm_equity": 50174.060704511576,
-  "norm_ps": 4.013924856360926,
+  "norm_ev": 54853.79571677604,
+  "norm_equity": 50191.97371677604,
+  "norm_ps": 4.015357897342083,
   "dps": 0.2057,
-  "div_yield_now": 0.05054054054054054,
+  "div_yield_now": 0.05116915422885573,
   "div_ps": 2.7056611586227723,
   "div_ps_grown": 3.4212672087108102,
   "items_A": [
    {
     "name": "Discounted cash flow",
-    "value": 4.783957863288807,
+    "value": 4.785634375641991,
     "weight": 0.4
    },
    {
     "name": "Normalised earnings power",
-    "value": 4.013924856360926,
+    "value": 4.015357897342083,
     "weight": 0.25
    }
   ],
   "items_B": [
    {
     "name": "Discounted cash flow",
-    "value": 5.100701490867267,
+    "value": 5.1024815284162095,
     "weight": 0.4
    },
    {
     "name": "Normalised earnings power",
-    "value": 4.013924856360926,
+    "value": 4.015357897342083,
     "weight": 0.25
    }
   ],
@@ -2465,7 +2465,7 @@
     "weight": 0.0
    }
   ],
-  "centre_A": 4.411292110312444,
+  "centre_A": 4.412320975499007,
   "shared_B": [
    {
     "name": "Relative multiples",
@@ -2478,11 +2478,11 @@
     "weight": 0.15
    }
   ],
-  "centre_B": 4.582096886797197,
+  "centre_B": 4.583167162062064,
   "readings_all": [
-   4.783957863288807,
-   5.100701490867267,
-   4.013924856360926,
+   4.785634375641991,
+   5.1024815284162095,
+   4.015357897342083,
    4.953421712278697,
    5.173958339545543,
    3.3569560563396696,
@@ -2495,187 +2495,187 @@
  "sensitivity": {
   "wacc": [
    [
-    0.06437428020423498,
-    5.713836104953238
+    0.06435489098612174,
+    5.716213552971893
    ],
    [
-    0.06937428020423497,
-    5.206306997169102
+    0.06935489098612173,
+    5.208286557962923
    ],
    [
-    0.07437428020423498,
-    4.783957863288807
+    0.07435489098612173,
+    4.785634375641991
    ],
    [
-    0.07937428020423498,
-    4.4269440364099015
+    0.07935489098612174,
+    4.428384255273475
    ],
    [
-    0.08437428020423497,
-    4.1211418407320535
+    0.08435489098612173,
+    4.122394135194883
    ]
   ],
   "g": [
    [
     0.005,
-    4.3341079907364835
+    4.335436272321719
    ],
    [
     0.01,
-    4.541936057842556
+    4.543419809706135
    ],
    [
     0.015,
-    4.783957863288807
+    4.785634375641991
    ],
    [
     0.02,
-    5.069606287348343
+    5.071526506015136
    ],
    [
     0.025,
-    5.4121351795252375
+    5.41437074066283
    ]
   ],
   "beta": [
    [
     0.45,
-    5.721632266901376
+    5.72321287684248
    ],
    [
     0.55,
-    5.212160196485639
+    5.21380830844749
    ],
    [
     0.6494,
-    4.783957863288807
+    4.785634375641991
    ],
    [
     0.8,
-    4.247686654673135
+    4.249362241125167
    ],
    [
     1.0,
-    3.687579642884075
+    3.6892109432902456
    ]
   ],
   "volume": [
    [
     -0.01,
-    4.503551144301958
+    4.505124152371323
    ],
    [
     -0.005,
-    4.681463152860606
+    4.683100005271345
    ],
    [
     0.0,
-    4.862800051117585
+    4.864502043009441
    ],
    [
     0.005,
-    5.047612510089233
+    5.049380956261225
    ],
    [
     0.01,
-    5.235951704116874
+    5.237787939225549
    ]
   ],
   "margin": [
    [
     -0.1,
-    3.980351258054539
+    3.9817657757648606
    ],
    [
     -0.05,
-    4.3821545606716725
+    4.383700075703425
    ],
    [
     0.0,
-    4.783957863288807
+    4.785634375641991
    ],
    [
     0.05,
-    5.185761165905943
+    5.187568675580559
    ],
    [
     0.1,
-    5.5875644685230785
+    5.589502975519126
    ]
   ],
   "inventory": [
    [
     0.0,
-    4.783957863288807
+    4.785634375641991
    ],
    [
     150.0,
-    4.938619794286794
+    4.9403488311727894
    ],
    [
     295.0,
-    5.088126327584848
+    5.089906138185894
    ],
    [
     450.0,
-    5.247943656282771
+    5.249777742234385
    ],
    [
     600.0,
-    5.402605587280759
+    5.404492197765181
    ]
   ],
   "tax": [
    [
     0.09,
-    4.851251222861921
+    4.852949586505804
    ],
    [
     0.1017,
-    4.783957863288807
+    4.785634375641991
    ],
    [
     0.12,
-    4.678704147033425
+    4.680346481726801
    ],
    [
     0.15,
-    4.506157071204932
+    4.507743376947799
    ],
    [
     0.18,
-    4.333609995376437
+    4.335140272168797
    ]
   ],
   "capex": [
    [
     -0.2,
-    4.848178505227209
+    4.849858313746314
    ],
    [
     -0.1,
-    4.816068184258008
+    4.817746344694153
    ],
    [
     0.0,
-    4.783957863288807
+    4.785634375641991
    ],
    [
     0.1,
-    4.751847542319606
+    4.7535224065898305
    ],
    [
     0.2,
-    4.719737221350404
+    4.721410437537669
    ]
   ],
-  "tax_dmtt_impact": -0.277800792083875,
+  "tax_dmtt_impact": -0.2778909986941924,
   "grid_wacc": [
-   0.06437428020423498,
-   0.06937428020423497,
-   0.07437428020423498,
-   0.07937428020423498,
-   0.08437428020423497
+   0.06435489098612174,
+   0.06935489098612173,
+   0.07435489098612173,
+   0.07935489098612174,
+   0.08435489098612173
   ],
   "grid_g": [
    0.005,
@@ -2686,103 +2686,103 @@
   ],
   "grid": [
    [
-    5.037845630037896,
-    5.345214853859902,
-    5.713836104953238,
-    6.1644146297994595,
-    6.728172817732825
+    5.039624840025958,
+    5.347254783976864,
+    5.716213552971893,
+    6.167241416127026,
+    6.731618765321264
    ],
    [
-    4.658763041404357,
-    4.9098906104080235,
-    5.206306997169102,
-    5.561771030445217,
-    5.9962428018400855
+    4.660291078202476,
+    4.911618031216516,
+    5.208286557962923,
+    5.56407692605848,
+    5.998983043740145
    ],
    [
-    4.3341079907364835,
-    4.541936057842556,
-    4.783957863288807,
-    5.069606287348343,
-    5.4121351795252375
+    4.335436272321719,
+    4.543419809706135,
+    4.785634375641991,
+    5.071526506015136,
+    5.41437074066283
    ],
    [
-    4.052905511891289,
-    4.226787299827193,
-    4.4269440364099015,
-    4.660013683874013,
-    4.935075786102526
+    4.054072221721011,
+    4.228077263095823,
+    4.428384255273475,
+    4.66164015279281,
+    4.9369376715283035
    ],
    [
-    3.806945979527142,
-    3.9537967789290347,
-    4.1211418407320535,
-    4.3137565804444105,
-    4.538024994088219
+    3.8079800777337036,
+    3.9549299950514327,
+    4.122394135194883,
+    4.315154004863403,
+    4.5396022692034
    ]
   ],
-  "grid_lo": 3.806945979527142,
-  "grid_hi": 6.728172817732825
+  "grid_lo": 3.8079800777337036,
+  "grid_hi": 6.731618765321264
  },
  "crux": {
-  "spot": 4.07,
-  "normalised_value": 4.783957863288807,
-  "throughcycle_value": 5.100701490867267,
+  "spot": 4.02,
+  "normalised_value": 4.785634375641991,
+  "throughcycle_value": 5.1024815284162095,
   "g_base": 0.015,
-  "g_implied": -0.0025595825137578535,
-  "wacc_term_base": 0.07437428020423498,
-  "wacc_term_implied": 0.08528680069131703,
+  "g_implied": -0.004210715413668666,
+  "wacc_term_base": 0.07435489098612173,
+  "wacc_term_implied": 0.0862050412419379,
   "beta_base": 0.6494,
-  "beta_implied": 0.8579588580738686,
-  "tv_share": 0.7486668871511137,
+  "beta_implied": 0.8756951565256763,
+  "tv_share": 0.7487356183340055,
   "fy25_actual": 335.0,
   "fy24_actual": 254.0,
   "h126_actual": 762.0,
   "avg_24_25": 294.5,
-  "inventory_floor_value": 4.783957863288807,
-  "inventory_zero_all_years": 4.732988318495171,
+  "inventory_floor_value": 4.785634375641991,
+  "inventory_zero_all_years": 4.734663910985069,
   "ramp": [
    [
     -0.02,
-    3.6176554569641595
+    3.618519165461622
    ],
    [
     -0.01,
-    3.854996832710069
+    3.8560021625973167
    ],
    [
     0.0,
-    4.15357737909304
+    4.154778159547133
    ],
    [
     0.01,
-    4.541936057842556
+    4.543419809706135
    ],
    [
     0.015,
-    4.783957863288807
+    4.785634375641991
    ]
   ],
   "inv_ramp": [
    [
     0.0,
-    4.783957863288807
+    4.785634375641991
    ],
    [
     150.0,
-    4.938619794286794
+    4.9403488311727894
    ],
    [
     295.0,
-    5.088126327584848
+    5.089906138185894
    ],
    [
     500.0,
-    5.2994976332821
+    5.301349227411317
    ],
    [
     762.0,
-    5.569640472758585
+    5.571583809738443
    ]
   ]
  },
@@ -3317,5 +3317,58 @@
    "implied_name_width": 0.4920338372856196,
    "pooled_width": 0.979
   }
+ },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin, frame A (inventory movements normalised)",
+  "latest_reviewed_period": "H1 2026, reviewed (six months ended 30 June 2026)",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.13098903907618986,
+  "latest_reviewed_source": "Abu Dhabi National Oil Company for Distribution PJSC, reviewed interim condensed consolidated financial statements for the six months ended 30 June 2026: operating profit of AED 2,517 million plus the depreciation and amortisation line of the distribution and administrative expenses note of AED 370 million, over revenue of AED 22,035 million. The company publishes the same EBITDA figure as its own KPI in the management discussion and analysis of 5 August 2026.",
+  "first_forecast_rate": 0.12341861943192417,
+  "forecast_path": [
+   0.12341861943192417,
+   0.11504268657009767,
+   0.11626961765511819,
+   0.11768496763761664,
+   0.11911520707031377
+  ],
+  "mechanism": {
+   "name": "one_off_in_the_latest_period",
+   "disclosure": "The management discussion and analysis for the second quarter and first half of 2026, published 5 August 2026, states inventory gains of AED 762 million in H1 2026 against AED 147 million in H1 2025, splits them by segment (AED 528 million fuel retail and AED 233 million commercial, against AED 148 million and a loss of AED 1 million a year earlier), and attributes the rise in half-year EBITDA to them. THE COMPANY ITSELF REMOVES THIS ITEM FROM ITS OWN RUN RATE: the same document defines underlying EBITDA as EBITDA excluding inventory movements and one-off items. The full-year figures on the same disclosure are AED 254 million in FY2024 and AED 335 million in FY2025, so a single half has just carried more than the two preceding years together. Frame A holds the realised first half and assumes nothing for the second half or beyond; frame B carries the through-cycle rate instead, and both are published.",
+   "like_for_like": {
+    "measures": "inventory gains disclosed for the six months to 30 June, per litre of fuel sold",
+    "period_a": "H1 2025",
+    "period_b": "H1 2026",
+    "value_a": 0.01928121720881427,
+    "value_b": 0.09834796076406814,
+    "higher_is_worse": true,
+    "note": "THE DIRECTION: the larger the non-recurring gain sitting inside the latest reviewed period, the further a forecast that does not repeat it must open below that period. Measured in the same six months a year apart, on the company's own disclosed volumes, it went from AED 0.0193 to AED 0.0983 per litre \u2014 5.1 times larger \u2014 while the STRUCTURAL margins the forecast is actually built on moved the other way: retail fuel gross profit per litre excluding inventory movements rose 3.8% year on year in the same pair and commercial rose 19.2%. The mechanism and the filings agree, and they agree about a windfall rather than about the business."
+   }
+  },
+  "other_framing": {
+   "label": "Frame B \u2014 inventory movements carried at the through-cycle rate",
+   "first_forecast_rate": 0.127707349862482,
+   "forecast_path": [
+    0.127707349862482,
+    0.12186902442568288,
+    0.12290622011904448,
+    0.12411537368552947,
+    0.12534926784529885
+   ],
+   "note": "Frame B opens 2.51% relatively below the reviewed half against frame A's 5.78%, and falls 4.57% from its own opening year against frame A's 6.79%. Neither clause of this rule would fire on it. The two frames are the study's central contested judgement and are published side by side, never averaged, so the anchor is recorded on the branch that makes the larger claim."
+  },
+  "gross_margin_beside_it": {
+   "latest_reviewed_rate": 0.19297033029810204,
+   "first_forecast_rate": 0.1881330305937158,
+   "forecast_path": [
+    0.1881330305937158,
+    0.1797797030555525,
+    0.18167932934018982,
+    0.1835502703863858,
+    0.1854746759879479
+   ],
+   "note": "Recorded because the choice of rate decides whether this record fires and the choice should be visible. On the gross margin frame A opens 2.51% relatively below the reviewed half and falls 4.44% from its own opening year, both inside the tolerance; on the EBITDA margin it opens 5.78% below and falls 6.79%. The difference is cash operating cost, which the forecast grows off FY2025 rather than off the realised half. The EBITDA margin is recorded as the governing rate because it is the one the company publishes as its own KPI, the one this study's reference pattern anchors on, and the one the contested judgement reaches value through."
+  },
+  "note": "THE FORECAST OPENS BELOW THE REVIEWED HALF AND THE WHOLE OF THE GAP IS THE INVENTORY MOVEMENT. The reviewed six months to 30 June 2026 carried an EBITDA margin of 13.10%; frame A opens FY2026 at 12.34%, 5.78% relatively below it, and reaches its low of 11.50% in FY2027 when the realised first-half gain stops being carried at all. THE UNIT RATES THE FORECAST IS ACTUALLY BUILT ON BOTH OPEN ABOVE THE REVIEWED HALF, which is the other half of this record and is printed because a gate that only catches declines would say nothing about it: structural retail fuel margin per litre opens 2.0% above the realised half and structural commercial margin per litre 17.0% above it, the second of those being an escalator the study sources to the disclosed first half, in which that same structural margin per litre rose 19.2% year on year. So this is not a real cost drift and not a price step-down \u2014 the operating rate the business earns per litre is forecast to rise, and what falls out is a windfall the company itself excludes from underlying EBITDA. Frame B, which carries that windfall at the through-cycle rate instead of at zero, does not fire on either clause."
  }
 }

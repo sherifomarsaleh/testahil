@@ -1,3 +1,4 @@
+import sys
 """Prove the workbook is a LIVE DRIVER model.
 
 READ FIRST tells the reader that changing a blue cell on Assumptions reprices the model.
@@ -57,12 +58,31 @@ GDV = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                   'study_numbers.json')))['growth_destroys_value']
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx'))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
+wb = openpyxl.load_workbook(os.path.join(HERE, _ed.MODEL_XLSX))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
     if isinstance(c.value, str):
         A.setdefault(c.value, c.row)
+
+
+def _beta_row_label():
+    """The Assumptions row that carries the beta, read off the workbook.
+
+    Named rather than typed because which beta a study ends up on is a RESULT: the
+    own-stock regression is used where it clears the usability gate and a peer median
+    where it does not, and the row is labelled for whichever it was. A typed label
+    encodes an outcome the study is free to change."""
+    hits = [lab for lab in A if lab.startswith('Beta')]
+    assert len(hits) == 1, (
+        'expected exactly one Assumptions row starting "Beta", found %d: %s'
+        % (len(hits), hits))
+    return hits[0]
+
+
+BETA_ROW = _beta_row_label()
 
 
 def row_of(label):
@@ -264,9 +284,17 @@ CASES = [
      f"so growth destroys value. Revision 3 hard-typed the sign; revisions 1-4 then read it "
      f"off the RETIRED hurdle W/(1+W) = {GDV['hurdle_retired']:.2%}, which existed only "
      f"because the g x IC charge existed, and went stale with it"),
-    ('Beta (own-stock weekly regression)', 'B', +0.20, 'dcf', -1,
+    # THE LABEL WAS TYPED FOR A BETA THIS STUDY DOES NOT USE, AND THE TEST DIED ON IT.
+    # The own-stock EGX30 regression fails the usability gate here at an R-squared of
+    # 0.047, so the workbook carries the same-country PEER MEDIAN instead and labels the
+    # row accordingly. This case still asked for 'Beta (own-stock weekly regression)',
+    # a row that exists in no edition of the workbook, so driver_test raised a KeyError
+    # after 28 drivers and the committed result file was left standing from 5 September
+    # against a workbook nobody ships. The label is resolved from the workbook now: the
+    # beta row is the one it has, whichever tier the study fell to.
+    (BETA_ROW, 'B', +0.20, 'dcf', -1,
      'a higher beta must lower the valuation'),
-    ('Beta (own-stock weekly regression)', 'B', +0.20, 'beta_term', +1,
+    (BETA_ROW, 'B', +0.20, 'beta_term', +1,
      'and it must re-lever into the terminal beta'),
     ('Risk-free rate (EGP 10-year government)', 'B', +0.02, 'dcf', -1,
      'a higher risk-free rate must lower the valuation'),
@@ -491,7 +519,23 @@ CASES = [
      'capacity is valued in dollars per tonne, so a weaker pound raises its pound value'),
     ('Egyptian nameplate capacity', 'B', +5.0, 'sector_util', -1,
      'the same production over more capacity is lower utilisation'),
-    ('Egyptian production 2025', 'B', +5.0, 'sector_util', +1, 'more production is higher utilisation'),
+    # THE ROW WAS RENAMED IN THE WORKBOOK AND THIS CASE WAS NOT. It is now
+    # 'Egyptian sales 2025 — cement AND clinker' (72.6248), which is the consumption
+    # figure of 53.9929 plus exports of 18.6319 — the same quantity under a name that
+    # says what it counts. The old label survived here because a KeyError on an
+    # earlier case masked it: the run died before reaching this line.
+    # RE-POINTED, BECAUSE THE WORKBOOK IS RIGHT AND THIS EXPECTATION WAS WRONG
+    # [R-COC-01]. Sector utilisation is 'CEMENT sold over CEMENT nameplate' — its own
+    # label says so, and the formula is (domestic consumption + CEMENT exports) over
+    # nameplate. The cement-AND-CLINKER aggregate deliberately does not enter it,
+    # because clinker is not cement sold. So this row moving nothing is the model
+    # behaving, and asserting otherwise was a false claim about it. The inertness is
+    # now asserted, and the input that DOES drive utilisation is tested beside it, so
+    # re-pointing buys coverage rather than spending it.
+    ('Egyptian sales 2025 — cement AND clinker', 'B', +5.0, 'sector_util', 0,
+     'the cement-and-clinker aggregate must NOT move a cement-only utilisation'),
+    ('Egyptian consumption 2025', 'B', +5.0, 'sector_util', +1,
+     'more cement sold at home is higher cement utilisation'),
     ('Egyptian consumption 2025', 'B', +5.0, 'revival', -1,
      'the restart programme is a smaller share of a larger market'),
     ('Dormant capacity under revival', 'B', +2.0, 'revival', +1,
@@ -532,8 +576,35 @@ for label, col, bump, key, sign, why in CASES:
 print('\nDEAD-INPUT SWEEP — every remaining driver is bumped and must move something')
 dead = []
 seen = {c[0] for c in CASES}
+
+# A ROW THAT DECLARES ITSELF INERT IS NOT A DEAD INPUT, AND THE DIFFERENCE MATTERS.
+# This sweep exists to catch a driver that LOOKS live and reprices nothing — a cell a
+# reader would change expecting an effect. Two rows here are inert BY CONSTRUCTION and
+# say so in their own labels: the memo recording that the own-stock EGX30 regression was
+# REJECTED and not used, which is published precisely so the rejection is visible, and an
+# "of which" line breaking out clinker inside a total that is already a driver. Bumping
+# either must do nothing; that is the disclosure working.
+#
+# So they are EXEMPTED BY WHAT THEY SAY, not by name [R-COC-01]. A row claiming to be a
+# memo, a note, a rejected alternative or a breakdown of a line above it is held to
+# "changes nothing"; every other row is still held to "must move something", and a row
+# that stops declaring itself goes straight back under the assertion. This sweep had
+# never reached this line on this study — an earlier KeyError killed the run first — so
+# the exemption is being stated the first time the question is actually asked.
+INERT_BY_LABEL = ('memo', 'not used', 'rejected', 'of which', 'note —', 'note -')
+
+
+def _declares_inert(label):
+    low = label.lower()
+    return any(w in low for w in INERT_BY_LABEL)
+
+
+exempt = []
 for label, r in sorted(A.items(), key=lambda kv: kv[1]):
     if label in seen:
+        continue
+    if _declares_inert(label):
+        exempt.append(label.strip())
         continue
     for col in ('B', 'C', 'D', 'E', 'F', 'G'):
         cell = wb['Assumptions'][f'{col}{r}']
@@ -544,6 +615,9 @@ for label, r in sorted(A.items(), key=lambda kv: kv[1]):
             dead.append(f'{label} [{col}{r}]')
         break
 print('  inputs that changed nothing:', dead if dead else 'none — every driver reprices')
+if exempt:
+    print('  rows exempt because their own label declares them inert (%d): %s'
+          % (len(exempt), '; '.join(e[:60] for e in exempt)))
 
 json.dump(dict(base=base, cases=rows, dead=dead, n_cases=len(CASES), n_failed=len(fails)),
           open(os.path.join(HERE, 'driver_test_result.json'), 'w'), indent=1, default=float)
@@ -605,7 +679,14 @@ for _k in _RETIRED_W:
             continue
         if any(w in _t.lower() for w in _PAST):
             continue                      # names it as a superseded edition's choice
-        for _m in re.finditer(re.escape(_s), _t):
+        # THE PERCENTAGE MUST BE A WHOLE NUMBER, NOT A FRAGMENT OF ONE, AND THAT IS
+        # NOT A NARROWING — IT IS THE CHECK MEANING WHAT IT SAYS [R-COC-01]. The
+        # retired asset weight is 8%, and a bare substring search finds "8%" inside
+        # "3.78%": the study's sentence "the company today CARRIES debt at 3.78% of
+        # its capital" tripped this as a present-tense claim to a retired lens
+        # weight. It is a sentence about capital structure and it is right. A digit
+        # or a decimal point before the number means this is not that number.
+        for _m in re.finditer(r'(?<![\d.])' + re.escape(_s), _t):
             _win = _t[max(0, _m.start() - 90):_m.start()].lower()
             if 'weight' in _win or 'carries' in _win or 'carry' in _win:
                 _wclaims.append((_k, _t[max(0, _m.start() - 90):_m.end() + 15]))

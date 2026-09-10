@@ -1,0 +1,5 @@
+{
+ "rule": "R-TERM-01",
+ "note": "Call sites knowingly outstanding. The list may only ever SHORTEN [R-ENF-02]; --prune rewrites it and never grows it.",
+ "outstanding": {}
+}

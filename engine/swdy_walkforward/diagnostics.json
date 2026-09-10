@@ -1,0 +1,1143 @@
+{
+ "_": "SWDY walk-forward diagnostics. INTERNAL.",
+ "built": "2026-09-07",
+ "macro_split": {
+  "D1_cable_volume_t": {
+   "n": 20,
+   "bias_as_known": 0.2497880889716174,
+   "bias_perfect_inflation": 0.2497880889716174,
+   "bias_perfect_all": 0.2831297039668624,
+   "mae_as_known": 0.25645773656859333,
+   "mae_perfect_inflation": 0.25645773656859333,
+   "mae_perfect_all": 0.28768213494398776,
+   "macro_share_inflation": 0.0,
+   "macro_share_all": -0.1334796031808926,
+   "company_share": 1.1334796031808927
+  },
+  "D2_cable_price_t": {
+   "n": 20,
+   "bias_as_known": -0.026116286384329716,
+   "bias_perfect_inflation": 0.060082080090691936,
+   "bias_perfect_all": 0.060082080090691936,
+   "mae_as_known": 0.43349798752505925,
+   "mae_perfect_inflation": 0.11406755901381538,
+   "mae_perfect_all": 0.11406755901381538,
+   "macro_share_inflation": 3.3005598578036106,
+   "macro_share_all": 3.3005598578036106,
+   "company_share": -2.30055985780361
+  },
+  "D3_cable_cost_t": {
+   "n": 20,
+   "bias_as_known": -0.024264297505460337,
+   "bias_perfect_inflation": 0.06193406896956126,
+   "bias_perfect_all": 0.06193406896956126,
+   "mae_as_known": 0.41006020572655155,
+   "mae_perfect_inflation": 0.10859220138668672,
+   "mae_perfect_all": 0.10859220138668672,
+   "macro_share_inflation": 3.5524773159257497,
+   "macro_share_all": 3.5524773159257497,
+   "company_share": -2.5524773159257492
+  },
+  "D4_cables_revenue": {
+   "n": 45,
+   "bias_as_known": -0.20654044024086554,
+   "bias_perfect_inflation": -0.18042274301585262,
+   "bias_perfect_all": -0.1716531137608005,
+   "mae_as_known": 0.6508050274763715,
+   "mae_perfect_inflation": 0.3660657754631233,
+   "mae_perfect_all": 0.38678556245942214,
+   "macro_share_inflation": 0.1264531885114349,
+   "macro_share_all": 0.16891281164782918,
+   "company_share": 0.8310871883521708
+  },
+  "D5_contracting_revenue": {
+   "n": 45,
+   "bias_as_known": -0.3261779270082824,
+   "bias_perfect_inflation": -0.26453160042541696,
+   "bias_perfect_all": -0.2557619711703648,
+   "mae_as_known": 0.3901593367257388,
+   "mae_perfect_inflation": 0.2945106465224601,
+   "mae_perfect_all": 0.285986653417416,
+   "macro_share_inflation": 0.18899600947338202,
+   "macro_share_all": 0.21588203862773822,
+   "company_share": 0.7841179613722618
+  },
+  "D6_other_revenue": {
+   "n": 45,
+   "bias_as_known": -0.31551387447736495,
+   "bias_perfect_inflation": -0.2538675478944997,
+   "bias_perfect_all": -0.24509791863944763,
+   "mae_as_known": 0.5840880670139478,
+   "mae_perfect_inflation": 0.38005497593216736,
+   "mae_perfect_all": 0.37384684209323316,
+   "macro_share_inflation": 0.19538388505094964,
+   "macro_share_all": 0.2231786350269328,
+   "company_share": 0.7768213649730672
+  },
+  "D7_cables_cost": {
+   "n": 45,
+   "bias_as_known": -0.18079001576780598,
+   "bias_perfect_inflation": -0.10658671418541193,
+   "bias_perfect_all": -0.09781708493035983,
+   "mae_as_known": 0.6445565892620537,
+   "mae_perfect_inflation": 0.32793254478469475,
+   "mae_perfect_all": 0.3482509847635827,
+   "macro_share_inflation": 0.41043915653890733,
+   "macro_share_all": 0.45894642182016715,
+   "company_share": 0.5410535781798329
+  },
+  "D8_contracting_cost": {
+   "n": 45,
+   "bias_as_known": -0.35764770755982006,
+   "bias_perfect_inflation": -0.29600138097695483,
+   "bias_perfect_all": -0.2872317517219027,
+   "mae_as_known": 0.402373184432171,
+   "mae_perfect_inflation": 0.32264353521323985,
+   "mae_perfect_all": 0.314229434458429,
+   "macro_share_inflation": 0.1723660610142574,
+   "macro_share_all": 0.1968863614934247,
+   "company_share": 0.8031136385065752
+  },
+  "D9_other_cost": {
+   "n": 45,
+   "bias_as_known": -0.31642874523306774,
+   "bias_perfect_inflation": -0.2547824186502024,
+   "bias_perfect_all": -0.24601278939515037,
+   "mae_as_known": 0.5989972686200801,
+   "mae_perfect_inflation": 0.39628010046055007,
+   "mae_perfect_all": 0.39290569883620136,
+   "macro_share_inflation": 0.19481898377297965,
+   "macro_share_all": 0.22253337251662147,
+   "company_share": 0.7774666274833785
+  },
+  "D10_sga": {
+   "n": 30,
+   "bias_as_known": -0.18991438656352155,
+   "bias_perfect_inflation": -0.20168874947674306,
+   "bias_perfect_all": -0.20168874947674306,
+   "mae_as_known": 0.2837968525359701,
+   "mae_perfect_inflation": 0.21928082720286204,
+   "mae_perfect_all": 0.21928082720286204,
+   "macro_share_inflation": -0.061998267357608966,
+   "macro_share_all": -0.061998267357608966,
+   "company_share": 1.061998267357609
+  },
+  "D11_depreciation": {
+   "n": 30,
+   "bias_as_known": -0.9307569269903934,
+   "bias_perfect_inflation": -0.9407615732494162,
+   "bias_perfect_all": -0.9407615732494162,
+   "mae_as_known": 0.9307569269903934,
+   "mae_perfect_inflation": 0.9407615732494162,
+   "mae_perfect_all": 0.9407615732494162,
+   "macro_share_inflation": -0.010748935590920534,
+   "macro_share_all": -0.010748935590920534,
+   "company_share": 1.0107489355909205
+  },
+  "D12_capex": {
+   "n": 45,
+   "bias_as_known": -0.6794770763640882,
+   "bias_perfect_inflation": -0.6178307497812228,
+   "bias_perfect_all": -0.6178307497812228,
+   "mae_as_known": 0.8261378462492437,
+   "mae_perfect_inflation": 0.7508235186169033,
+   "mae_perfect_all": 0.7508235186169033,
+   "macro_share_inflation": 0.09072613150209219,
+   "macro_share_all": 0.09072613150209219,
+   "company_share": 0.9092738684979078
+  },
+  "D13_other_operating_income": {
+   "n": 45,
+   "bias_as_known": -0.8619518240245897,
+   "bias_perfect_inflation": -0.8619518240245897,
+   "bias_perfect_all": -0.8619518240245897,
+   "mae_as_known": 0.9934396960661644,
+   "mae_perfect_inflation": 0.9934396960661644,
+   "mae_perfect_all": 0.9934396960661644,
+   "macro_share_inflation": -0.0,
+   "macro_share_all": -0.0,
+   "company_share": 1.0
+  },
+  "D14_other_operating_expense": {
+   "n": 45,
+   "bias_as_known": -0.4248600754844501,
+   "bias_perfect_inflation": -0.4248600754844501,
+   "bias_perfect_all": -0.4248600754844501,
+   "mae_as_known": 0.6770100749541463,
+   "mae_perfect_inflation": 0.6770100749541463,
+   "mae_perfect_all": 0.6770100749541463,
+   "macro_share_inflation": -0.0,
+   "macro_share_all": -0.0,
+   "company_share": 1.0
+  },
+  "D15_finance_costs": {
+   "n": 45,
+   "bias_as_known": -0.879798675799276,
+   "bias_perfect_inflation": -0.879798675799276,
+   "bias_perfect_all": -0.879798675799276,
+   "mae_as_known": 0.9185795902443762,
+   "mae_perfect_inflation": 0.9185795902443762,
+   "mae_perfect_all": 0.9185795902443762,
+   "macro_share_inflation": -0.0,
+   "macro_share_all": -0.0,
+   "company_share": 1.0
+  },
+  "D16_finance_income": {
+   "n": 45,
+   "bias_as_known": -0.8694072696436458,
+   "bias_perfect_inflation": -0.8694072696436458,
+   "bias_perfect_all": -0.8694072696436458,
+   "mae_as_known": 1.1388662606753075,
+   "mae_perfect_inflation": 1.1388662606753075,
+   "mae_perfect_all": 1.1388662606753075,
+   "macro_share_inflation": -0.0,
+   "macro_share_all": -0.0,
+   "company_share": 1.0
+  },
+  "A_revenue": {
+   "n": 45,
+   "bias_as_known": -0.2221872795578331,
+   "bias_perfect_inflation": -0.19388622817137416,
+   "bias_perfect_all": -0.1851165989163221,
+   "mae_as_known": 0.49444514368881615,
+   "mae_perfect_inflation": 0.21918709314165147,
+   "mae_perfect_all": 0.22749617153325666,
+   "macro_share_inflation": 0.12737475989975594,
+   "macro_share_all": 0.16684429781616675,
+   "company_share": 0.8331557021838333
+  },
+  "A_cost_of_revenue": {
+   "n": 45,
+   "bias_as_known": -0.2147384431367818,
+   "bias_perfect_inflation": -0.16277521132441594,
+   "bias_perfect_all": -0.15400558206936385,
+   "mae_as_known": 0.48861120543721986,
+   "mae_perfect_inflation": 0.20008107749466295,
+   "mae_perfect_all": 0.21746763901738855,
+   "macro_share_inflation": 0.2419838341626929,
+   "macro_share_all": 0.28282248944467286,
+   "company_share": 0.7171775105553271
+  },
+  "A_gross_profit": {
+   "n": 44,
+   "bias_as_known": -0.24707582293134253,
+   "bias_perfect_inflation": -0.39945444164776406,
+   "bias_perfect_all": -0.3909441639860456,
+   "mae_as_known": 0.5555260735159177,
+   "mae_perfect_inflation": 0.49671489743091307,
+   "mae_perfect_all": 0.4908245851768033,
+   "macro_share_inflation": -0.6167281642881122,
+   "macro_share_all": -0.5822841723153188,
+   "company_share": 1.582284172315319
+  }
+ },
+ "split_own_check": {
+  "driver": "D1_cable_volume_t",
+  "macro_share_inflation": 0.0,
+  "verdict": "PASS \u2014 a volume driver carries no inflation term and moved by exactly nothing under perfect-foresight inflation"
+ },
+ "stability": {
+  "A_cost_of_revenue": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.189881650698999,
+     "after": -0.21856256505028687
+    },
+    {
+     "boundary": 2019,
+     "before": -0.19598916132487054,
+     "after": -0.2200953807973279
+    },
+    {
+     "boundary": 2020,
+     "before": -0.1482769766977599,
+     "after": -0.24796917635629284
+    },
+    {
+     "boundary": 2021,
+     "before": -0.06539679540963643,
+     "after": -0.33421176131849817
+    },
+    {
+     "boundary": 2022,
+     "before": -0.01812962840397654,
+     "after": -0.46049946155278854
+    },
+    {
+     "boundary": 2023,
+     "before": -0.012019584508562138,
+     "after": -0.6201761603932213
+    },
+    {
+     "boundary": 2024,
+     "before": -0.053998035241844926,
+     "after": -0.7773298707690611
+    },
+    {
+     "boundary": 2025,
+     "before": -0.1511093807245884,
+     "after": -0.7237709424343296
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "A_gross_profit": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.6884568919608824,
+     "after": -0.19621801307908882
+    },
+    {
+     "boundary": 2019,
+     "before": -0.5296960174460135,
+     "after": -0.18532239106827494
+    },
+    {
+     "boundary": 2020,
+     "before": -0.4163838140696431,
+     "after": -0.18458288836017042
+    },
+    {
+     "boundary": 2021,
+     "before": -0.2419200355438586,
+     "after": -0.27779372603890345
+    },
+    {
+     "boundary": 2022,
+     "before": -0.11741668167363643,
+     "after": -0.4423913410004423
+    },
+    {
+     "boundary": 2023,
+     "before": -0.07341701269463051,
+     "after": -0.6387155654007228
+    },
+    {
+     "boundary": 2024,
+     "before": -0.13256801705385834,
+     "after": -0.7143363264964716
+    },
+    {
+     "boundary": 2025,
+     "before": -0.2265542352688096,
+     "after": -0.5442148902194747
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "A_revenue": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.27732681164027284,
+     "after": -0.21370427462207311
+    },
+    {
+     "boundary": 2019,
+     "before": -0.25311063041723286,
+     "after": -0.21335203645514741
+    },
+    {
+     "boundary": 2020,
+     "before": -0.19328571124046762,
+     "after": -0.23663806371651583
+    },
+    {
+     "boundary": 2021,
+     "before": -0.09492714675077142,
+     "after": -0.32399538580348247
+    },
+    {
+     "boundary": 2022,
+     "before": -0.03509810434992961,
+     "after": -0.45604874856771244
+    },
+    {
+     "boundary": 2023,
+     "before": -0.022630557109076528,
+     "after": -0.6213007244553463
+    },
+    {
+     "boundary": 2024,
+     "before": -0.06738113640064344,
+     "after": -0.7640087806079967
+    },
+    {
+     "boundary": 2025,
+     "before": -0.16380683063422236,
+     "after": -0.6892308709467191
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D10_sga": {
+   "n": 30,
+   "n_cuts": 5,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.2384948014355955,
+     "after": -0.17776928284550297
+    },
+    {
+     "boundary": 2019,
+     "before": -0.26495632733269986,
+     "after": -0.15239341617893232
+    },
+    {
+     "boundary": 2020,
+     "before": -0.2773367226388285,
+     "after": -0.10249205048821453
+    },
+    {
+     "boundary": 2021,
+     "before": -0.23233464853659536,
+     "after": -0.10507386261737398
+    },
+    {
+     "boundary": 2022,
+     "before": -0.19133588840130586,
+     "after": -0.1828068773746002
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 5 cuts"
+  },
+  "D11_depreciation": {
+   "n": 30,
+   "n_cuts": 5,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.8469892861918548,
+     "after": -0.951698837190028
+    },
+    {
+     "boundary": 2019,
+     "before": -0.9168118176955258,
+     "after": -0.9377294816378272
+    },
+    {
+     "boundary": 2020,
+     "before": -0.9875550176021168,
+     "after": -0.8739588363786701
+    },
+    {
+     "boundary": 2021,
+     "before": -0.980184138194985,
+     "after": -0.8319025045812106
+    },
+    {
+     "boundary": 2022,
+     "before": -0.9454129323111887,
+     "after": -0.8574769003864171
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 5 cuts"
+  },
+  "D12_capex": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.7515814113802661,
+     "after": -0.6683841017462147
+    },
+    {
+     "boundary": 2019,
+     "before": -0.8758005214441058,
+     "after": -0.6233846634840833
+    },
+    {
+     "boundary": 2020,
+     "before": -1.0314197953247473,
+     "after": -0.5035057168837587
+    },
+    {
+     "boundary": 2021,
+     "before": -0.7500566573501002,
+     "after": -0.6230134115752786
+    },
+    {
+     "boundary": 2022,
+     "before": -0.6519522088103292,
+     "after": -0.7138831608062868
+    },
+    {
+     "boundary": 2023,
+     "before": -0.7286616179383871,
+     "after": -0.5811079932154903
+    },
+    {
+     "boundary": 2024,
+     "before": -0.6462313913770878,
+     "after": -0.7958369738185893
+    },
+    {
+     "boundary": 2025,
+     "before": -0.6502787503090379,
+     "after": -0.9130636848044895
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D13_other_operating_income": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.6228961136939143,
+     "after": -0.8987296256139242
+    },
+    {
+     "boundary": 2019,
+     "before": -0.7474295089123469,
+     "after": -0.8946724854852303
+    },
+    {
+     "boundary": 2020,
+     "before": -0.6533703638139812,
+     "after": -0.9662425541298938
+    },
+    {
+     "boundary": 2021,
+     "before": -0.6877219847330365,
+     "after": -1.001335695457832
+    },
+    {
+     "boundary": 2022,
+     "before": -0.6421984074779283,
+     "after": -1.1366435947079163
+    },
+    {
+     "boundary": 2023,
+     "before": -0.599751688281724,
+     "after": -1.3863520955103212
+    },
+    {
+     "boundary": 2024,
+     "before": -0.6689575950223317,
+     "after": -1.5374316255324927
+    },
+    {
+     "boundary": 2025,
+     "before": -0.8223248225573796,
+     "after": -1.1789678357622704
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D14_other_operating_expense": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.3400872214729928,
+     "after": -0.43790205302467416
+    },
+    {
+     "boundary": 2019,
+     "before": -0.1251836722871306,
+     "after": -0.5104819049693985
+    },
+    {
+     "boundary": 2020,
+     "before": -0.021869152988236936,
+     "after": -0.6263555367325566
+    },
+    {
+     "boundary": 2021,
+     "before": -0.05617621822177117,
+     "after": -0.7198071612945931
+    },
+    {
+     "boundary": 2022,
+     "before": 0.006285149093031647,
+     "after": -0.963791606206302
+    },
+    {
+     "boundary": 2023,
+     "before": -0.15553647309145688,
+     "after": -0.9635072802704362
+    },
+    {
+     "boundary": 2024,
+     "before": -0.35170605682323963,
+     "after": -0.6808991407986865
+    },
+    {
+     "boundary": 2025,
+     "before": -0.4964096977132395,
+     "after": 0.14753690234586564
+    }
+   ],
+   "flips": [
+    {
+     "boundary": 2022,
+     "before": 0.006285149093031647,
+     "after": -0.963791606206302
+    },
+    {
+     "boundary": 2025,
+     "before": -0.4964096977132395,
+     "after": 0.14753690234586564
+    }
+   ],
+   "verdict": "SIGN FLIPS at 2 of 8 cuts \u2014 an instability, not a bias"
+  },
+  "D15_finance_costs": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.40585003643224393,
+     "after": -0.9527138510865117
+    },
+    {
+     "boundary": 2019,
+     "before": -0.25202399506166717,
+     "after": -1.0591628702957356
+    },
+    {
+     "boundary": 2020,
+     "before": -0.26788444821981716,
+     "after": -1.1857557895890054
+    },
+    {
+     "boundary": 2021,
+     "before": -0.2878422390119687,
+     "after": -1.353363825229122
+    },
+    {
+     "boundary": 2022,
+     "before": -0.32345667708344195,
+     "after": -1.5752261741940685
+    },
+    {
+     "boundary": 2023,
+     "before": -0.4733922148278794,
+     "after": -1.6926115977420693
+    },
+    {
+     "boundary": 2024,
+     "before": -0.6946822656205637,
+     "after": -1.5277061114247688
+    },
+    {
+     "boundary": 2025,
+     "before": -0.8513645532207544,
+     "after": -1.1072716564274492
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D16_finance_income": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -1.2188113958516913,
+     "after": -0.8156527886885615
+    },
+    {
+     "boundary": 2019,
+     "before": -1.4185970598646798,
+     "after": -0.7124959010090643
+    },
+    {
+     "boundary": 2020,
+     "before": -1.253450688604859,
+     "after": -0.6773855601630386
+    },
+    {
+     "boundary": 2021,
+     "before": -0.9517769446065383,
+     "after": -0.8035115296733312
+    },
+    {
+     "boundary": 2022,
+     "before": -0.7079033820950688,
+     "after": -1.0712871290793669
+    },
+    {
+     "boundary": 2023,
+     "before": -0.5470815568202493,
+     "after": -1.5140586952904382
+    },
+    {
+     "boundary": 2024,
+     "before": -0.6868900737727824,
+     "after": -1.508217455191667
+    },
+    {
+     "boundary": 2025,
+     "before": -0.8201545260235112,
+     "after": -1.2634292186047213
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D1_cable_volume_t": {
+   "n": 20,
+   "n_cuts": 3,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": 0.21554191039870899,
+     "after": 0.26446502264572097
+    },
+    {
+     "boundary": 2019,
+     "before": 0.24714011227819607,
+     "after": 0.2524360656650387
+    },
+    {
+     "boundary": 2020,
+     "before": 0.24607479939169694,
+     "after": 0.26092795771137867
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 3 cuts"
+  },
+  "D2_cable_price_t": {
+   "n": 20,
+   "n_cuts": 3,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.25399545901878406,
+     "after": 0.07154621617329353
+    },
+    {
+     "boundary": 2019,
+     "before": -0.28755504476874805,
+     "after": 0.2353224720000886
+    },
+    {
+     "boundary": 2020,
+     "before": -0.16501263882271244,
+     "after": 0.39057277093081844
+    }
+   ],
+   "flips": [
+    {
+     "boundary": 2018,
+     "before": -0.25399545901878406,
+     "after": 0.07154621617329353
+    },
+    {
+     "boundary": 2019,
+     "before": -0.28755504476874805,
+     "after": 0.2353224720000886
+    },
+    {
+     "boundary": 2020,
+     "before": -0.16501263882271244,
+     "after": 0.39057277093081844
+    }
+   ],
+   "verdict": "SIGN FLIPS at 3 of 3 cuts \u2014 an instability, not a bias"
+  },
+  "D3_cable_cost_t": {
+   "n": 20,
+   "n_cuts": 3,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.21546415042808578,
+     "after": 0.05767849660423633
+    },
+    {
+     "boundary": 2019,
+     "before": -0.2692336202429056,
+     "after": 0.22070502523198493
+    },
+    {
+     "boundary": 2020,
+     "before": -0.15602844117148978,
+     "after": 0.37102813349262803
+    }
+   ],
+   "flips": [
+    {
+     "boundary": 2018,
+     "before": -0.21546415042808578,
+     "after": 0.05767849660423633
+    },
+    {
+     "boundary": 2019,
+     "before": -0.2692336202429056,
+     "after": 0.22070502523198493
+    },
+    {
+     "boundary": 2020,
+     "before": -0.15602844117148978,
+     "after": 0.37102813349262803
+    }
+   ],
+   "verdict": "SIGN FLIPS at 3 of 3 cuts \u2014 an instability, not a bias"
+  },
+  "D4_cables_revenue": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.069020872824667,
+     "after": -0.22769729676643452
+    },
+    {
+     "boundary": 2019,
+     "before": -0.10134301548114821,
+     "after": -0.23659684731507044
+    },
+    {
+     "boundary": 2020,
+     "before": -0.008893284350425934,
+     "after": -0.3053640181860854
+    },
+    {
+     "boundary": 2021,
+     "before": 0.11698681458283366,
+     "after": -0.46536224409982496
+    },
+    {
+     "boundary": 2022,
+     "before": 0.1355433630088548,
+     "after": -0.634145194303016
+    },
+    {
+     "boundary": 2023,
+     "before": 0.12331493846537758,
+     "after": -0.8662511976533518
+    },
+    {
+     "boundary": 2024,
+     "before": 0.03263878601133648,
+     "after": -1.0436677321235728
+    },
+    {
+     "boundary": 2025,
+     "before": -0.12189797728305185,
+     "after": -0.8836801439033752
+    }
+   ],
+   "flips": [
+    {
+     "boundary": 2021,
+     "before": 0.11698681458283366,
+     "after": -0.46536224409982496
+    },
+    {
+     "boundary": 2022,
+     "before": 0.1355433630088548,
+     "after": -0.634145194303016
+    },
+    {
+     "boundary": 2023,
+     "before": 0.12331493846537758,
+     "after": -0.8662511976533518
+    },
+    {
+     "boundary": 2024,
+     "before": 0.03263878601133648,
+     "after": -1.0436677321235728
+    }
+   ],
+   "verdict": "SIGN FLIPS at 4 of 8 cuts \u2014 an instability, not a bias"
+  },
+  "D5_contracting_revenue": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.7354555583789192,
+     "after": -0.2632121375666458
+    },
+    {
+     "boundary": 2019,
+     "before": -0.5602834377304511,
+     "after": -0.2592906382305198
+    },
+    {
+     "boundary": 2020,
+     "before": -0.5209421313539968,
+     "after": -0.22879582483542502
+    },
+    {
+     "boundary": 2021,
+     "before": -0.4320882528481501,
+     "after": -0.2414496663363881
+    },
+    {
+     "boundary": 2022,
+     "before": -0.3369539873819491,
+     "after": -0.3127078515411989
+    },
+    {
+     "boundary": 2023,
+     "before": -0.3049442491680065,
+     "after": -0.36864528268883406
+    },
+    {
+     "boundary": 2024,
+     "before": -0.2993998286366661,
+     "after": -0.41990127130893945
+    },
+    {
+     "boundary": 2025,
+     "before": -0.31578915916679196,
+     "after": -0.40928806974020604
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D6_other_revenue": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.4410003780391749,
+     "after": -0.2962082585447789
+    },
+    {
+     "boundary": 2019,
+     "before": -0.5009091148956212,
+     "after": -0.2625438057864347
+    },
+    {
+     "boundary": 2020,
+     "before": -0.44176978445489384,
+     "after": -0.2523859194886005
+    },
+    {
+     "boundary": 2021,
+     "before": -0.2784740302015103,
+     "after": -0.3451457498980487
+    },
+    {
+     "boundary": 2022,
+     "before": -0.13936496858704361,
+     "after": -0.5357000068402666
+    },
+    {
+     "boundary": 2023,
+     "before": -0.107403026462495,
+     "after": -0.7317355705071048
+    },
+    {
+     "boundary": 2024,
+     "before": -0.15754606548978928,
+     "after": -0.8684012059338798
+    },
+    {
+     "boundary": 2025,
+     "before": -0.2361737581453219,
+     "after": -0.9502348051337094
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D7_cables_cost": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": 0.04937504087307392,
+     "after": -0.21620002448178757
+    },
+    {
+     "boundary": 2019,
+     "before": -0.02433227944131597,
+     "after": -0.2254922261468031
+    },
+    {
+     "boundary": 2020,
+     "before": 0.04221836066913185,
+     "after": -0.2922942039862749
+    },
+    {
+     "boundary": 2021,
+     "before": 0.15733881911578568,
+     "after": -0.4512930836746794
+    },
+    {
+     "boundary": 2022,
+     "before": 0.16405675668743241,
+     "after": -0.6118484813368541
+    },
+    {
+     "boundary": 2023,
+     "before": 0.14767541759193611,
+     "after": -0.8377208824872902
+    },
+    {
+     "boundary": 2024,
+     "before": 0.06513917463878356,
+     "after": -1.0415421821908695
+    },
+    {
+     "boundary": 2025,
+     "before": -0.0897502141535847,
+     "after": -0.9091084286815763
+    }
+   ],
+   "flips": [
+    {
+     "boundary": 2018,
+     "before": 0.04937504087307392,
+     "after": -0.21620002448178757
+    },
+    {
+     "boundary": 2020,
+     "before": 0.04221836066913185,
+     "after": -0.2922942039862749
+    },
+    {
+     "boundary": 2021,
+     "before": 0.15733881911578568,
+     "after": -0.4512930836746794
+    },
+    {
+     "boundary": 2022,
+     "before": 0.16405675668743241,
+     "after": -0.6118484813368541
+    },
+    {
+     "boundary": 2023,
+     "before": 0.14767541759193611,
+     "after": -0.8377208824872902
+    },
+    {
+     "boundary": 2024,
+     "before": 0.06513917463878356,
+     "after": -1.0415421821908695
+    }
+   ],
+   "verdict": "SIGN FLIPS at 6 of 8 cuts \u2014 an instability, not a bias"
+  },
+  "D8_contracting_cost": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.7057078169644667,
+     "after": -0.30409999842064356
+    },
+    {
+     "boundary": 2019,
+     "before": -0.5446456730296547,
+     "after": -0.30421971742558157
+    },
+    {
+     "boundary": 2020,
+     "before": -0.502638790847982,
+     "after": -0.2851521659157392
+    },
+    {
+     "boundary": 2021,
+     "before": -0.43563661305216383,
+     "after": -0.2952565831659452
+    },
+    {
+     "boundary": 2022,
+     "before": -0.3498670011203599,
+     "after": -0.36737359060914543
+    },
+    {
+     "boundary": 2023,
+     "before": -0.3239914025551412,
+     "after": -0.4249603175691781
+    },
+    {
+     "boundary": 2024,
+     "before": -0.3227365926216003,
+     "after": -0.4798366098435893
+    },
+    {
+     "boundary": 2025,
+     "before": -0.3410464115864896,
+     "after": -0.49045807534646446
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  },
+  "D9_other_cost": {
+   "n": 45,
+   "n_cuts": 8,
+   "cuts": [
+    {
+     "boundary": 2018,
+     "before": -0.40947145687506853,
+     "after": -0.3021144819035291
+    },
+    {
+     "boundary": 2019,
+     "before": -0.49826378839446867,
+     "after": -0.26447587575838166
+    },
+    {
+     "boundary": 2020,
+     "before": -0.4462909082606569,
+     "after": -0.25149766371927307
+    },
+    {
+     "boundary": 2021,
+     "before": -0.27509607127934216,
+     "after": -0.34949488439604814
+    },
+    {
+     "boundary": 2022,
+     "before": -0.13886832095988966,
+     "after": -0.5383792755745402
+    },
+    {
+     "boundary": 2023,
+     "before": -0.11245123906886342,
+     "after": -0.7243837575614763
+    },
+    {
+     "boundary": 2024,
+     "before": -0.15903916176396696,
+     "after": -0.8672922873749205
+    },
+    {
+     "boundary": 2025,
+     "before": -0.23151345970919754,
+     "after": -0.9957510294240292
+    }
+   ],
+   "flips": [],
+   "verdict": "sign survives all 8 cuts"
+  }
+ }
+}

@@ -17,6 +17,8 @@ from docx_base import (P, H1, H2, rich, caption, bullet, table, figure, box, mas
                        INK, GREY)                                      # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 CENSUS = json.load(open(os.path.join(HERE, 'workbook_census.json')))
 ADV = json.load(open(os.path.join(HERE, 'case_adversarial.json')))
@@ -29,7 +31,9 @@ STK, S0, BETA, BT = D['strike'], D['step0'], D['wacc']['beta'], D['backtest']
 EXP, SCEN = D['experts'], D['scen']
 H1M, H3M = STK['horizons']['1M'], STK['horizons']['3M']
 SPOT, SH, C = D['spot'], IN['shares_mn'], D['central']
-GMR = D['gm_required']
+# The required margin is SOLVED FROM THE PRICE, so it is not in the numbers file
+# [R-ENF-05]; it is read here only to be printed, and nothing computes from it.
+GMR = json.load(open(os.path.join(HERE, 'reverse_read.json')))
 GP_H1_GM = IN['gp_h1cy26'] / IN['rev_h1cy26']
 TVS = D['dcf'].get('tv_share') or D['terminal_recon'].get('tv_share', 0.0)
 
@@ -91,47 +95,21 @@ def grid_vals(name):
     return [(p['label'], SC[f'{name}|{i}']['ps']) for i, p in enumerate(g[2])]
 
 
-# ---- probability partition, computed and asserted to sum to one -------------
-def cdf3m(x):
-    """Log-linear interpolation on the published 3-month percentiles."""
-    q = [0.05, 0.25, 0.50, 0.75, 0.95]
-    v = [H3M['pct'][k] for k in ('p5', 'p25', 'p50', 'p75', 'p95')]
-    lx = math.log(x)
-    if lx <= math.log(v[0]):
-        return q[0] * math.exp((lx - math.log(v[0])) * 6)
-    if lx >= math.log(v[-1]):
-        return 1 - (1 - q[-1]) * math.exp(-(lx - math.log(v[-1])) * 6)
-    for i in range(4):
-        a, b = math.log(v[i]), math.log(v[i + 1])
-        if a <= lx <= b:
-            return q[i] + (q[i + 1] - q[i]) * (lx - a) / (b - a)
-    return 0.5
+# ---- probability partition, READ from the strike ----------------------------
+# It used to be computed here, in the document builder, from a log-linear
+# interpolation on the published percentiles -- and printed straight out of this
+# file, so nothing else in the repository could see it. The prose check reports
+# every printed figure it cannot reach and reported 66.9% unmatched through every
+# edition, which means it could not have told a correct partition from a wrong one.
+# The arithmetic now lives in compute.py, where the level-touch ladder already
+# lives, and this builder READS the published block. Same corollary as the
+# valuation table: a line that is computed and not published is a line the
+# document cannot print.
+_Z = D['zones']
+CUTS = _Z['cuts']
+ZP = _Z['p']
+assert abs(sum(ZP) - 1.0) < 1e-6, 'published zones do not sum to one: %s' % sum(ZP)
 
-
-# THE ZONE CUTS MUST ASCEND, AND THE GUARD THAT WAS HERE COULD NOT SEE THAT THEY
-# DID NOT [corrected 03-Sep-2026]. The list was written [C, 7.50, SPOT, 11.00] --
-# the central first, then a low level, then spot, then a level below spot -- and
-# once the central moved to 11.83 the sequence read 11.83, 7.50, 13.50, 11.00.
-# Differences of a decreasing cumulative distribution are NEGATIVE, so the table
-# published probabilities of -74.6% and -16.0% under a caption promising a
-# partition.
-#
-# The assert could not catch it: consecutive differences of a cumulative function
-# TELESCOPE, so the sum is 1.0 for any ordering whatever, ascending or not. It is
-# a check that cannot fail, which is the [R-ENF-04] species -- a green light that
-# examined nothing. Both are fixed: the cuts are SORTED, and the guard now tests
-# what actually matters, which is that no zone is negative.
-_CUTSET = (C, 7.50, SPOT, 11.00)
-CUTS = sorted(_CUTSET)
-ZP = [cdf3m(CUTS[0])]
-for i in range(len(CUTS) - 1):
-    ZP.append(cdf3m(CUTS[i + 1]) - cdf3m(CUTS[i]))
-ZP.append(1 - cdf3m(CUTS[-1]))
-assert abs(sum(ZP) - 1.0) < 1e-9, f'probability zones do not sum to one: {sum(ZP)}'
-assert all(z >= -1e-9 for z in ZP), (
-    'a probability zone is NEGATIVE: %s at cuts %s. Consecutive differences of a '
-    'cumulative distribution telescope, so the sum-to-one assert above is 1.0 for '
-    'any ordering and cannot see this.' % ([round(z, 4) for z in ZP], CUTS))
 
 # ============================ FRONT MATTER ===================================
 masthead()
@@ -780,11 +758,27 @@ table([['Give-back', 'Central', 'vs price', 'What is being conceded'],
         pc(ADV['ALL_GIVEBACKS']['central'] / SPOT - 1),
         'every contested charge conceded simultaneously']],
       [2.2, 0.85, 0.85, 3.0], band_rows={7}, size=8.7, left_cols=(3,))
-caption('Table 18 — the adversarial stack. Concede everything and the price is still '
-        f'{pc(-(ADV["ALL_GIVEBACKS"]["central"]/SPOT-1))} above the model.')
+# THE DIRECTION IS COMPUTED, NOT TYPED. Both of these sentences were written when the
+# model sat BELOW the market and read correctly then: negating the gap made it positive
+# and "the price is still X above the model" was true. The moment the model crossed the
+# price the arithmetic went on being right and the words went backwards — the caption
+# printed a NEGATIVE per cent followed by the word "above". A direction word beside a
+# signed figure is a claim, and it has to be produced by the same arithmetic as the
+# figure or it is a sentence nobody is checking.
+_ALL_GB = ADV["ALL_GIVEBACKS"]["central"]
+_GB_GAP = _ALL_GB / SPOT - 1.0
+caption('Table 18 — the adversarial stack. Concede every contested charge at once and the '
+        f'cash-flow lens reaches EGP {p2(_ALL_GB)}, '
+        + (f'{pc(_GB_GAP)} above the market price of EGP {p2(SPOT)}.'
+           if _GB_GAP > 0 else
+           f'still {pc(-_GB_GAP)} below the market price of EGP {p2(SPOT)}.'))
 figure(os.path.join(HERE, 'fig4_adversarial.png'), 6.9,
-       'Figure 4 — the same stack drawn. No single concession, and not all of them together, '
-       'reaches the price.')
+       'Figure 4 — the same stack drawn. '
+       + ('Every concession moves the answer further above the price rather than toward '
+          'it, which is what makes this table adversarial in the direction that matters: '
+          'the case against this valuation is not that it has been generous.'
+          if _GB_GAP > 0 else
+          'No single concession, and not all of them together, reaches the price.'))
 P(f'Two further contested choices are computed rather than conceded. On the RATING-BASIS equity '
   f'risk premium instead of the CDS basis, the cash-flow lens is EGP '
   f'{p2(DCF["ps_rating_basis"])}; two independent reviewers reached for that column, so it is '
@@ -1503,6 +1497,6 @@ box([
      'turn out wrong.'),
 ])
 
-OUT = os.path.join(HERE, 'AMOC_Valuation_Study_03-09-2026_public.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 doc.save(OUT)
 print('wrote', OUT)

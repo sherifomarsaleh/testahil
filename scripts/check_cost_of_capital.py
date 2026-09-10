@@ -31,6 +31,29 @@ sys.path.insert(0, ENGINE)
 
 OUTSTANDING_FILE = os.path.join(ENGINE, "build_depth_audit", "coc_outstanding.json")
 RECORD_KEYS = ("cost_of_capital_record", "coc_record", "schedule_record")
+
+# CLOSED. Grounds on which a record legitimately carries NO weighted average cost of
+# capital and NO cost of debt, adopted 10-09-2026 on ADIB-Egypt, the book's first bank
+# built after this module.
+#
+# THE CLAUSES THIS EXEMPTS ARE ABOUT FINANCING AND A BANK'S DEBT IS NOT FINANCING. A
+# bank's deposits are the raw material of its business: their cost sits inside the net
+# interest margin, on the REVENUE side of the model, and a bank valuation discounts
+# equity flows at the cost of equity because there is no weighted average to take. A
+# gate demanding `wacc_exp` and `kd_pretax` of a bank is demanding numbers that do not
+# exist, and a study that supplied them to pass would be committing the exact error the
+# house rule on bank funding names -- dividing a finance charge by the wrong base.
+#
+# IT IS A NAMED EXEMPTION FROM A CLOSED LIST, NOT A SKIP, and it is the same discipline
+# as ke_terminal_construction: the record must SAY which ground it claims, the ground
+# must be on this list, and a record claiming it while carrying a debt weight is
+# refused -- otherwise "we are special" becomes a way past the check. Every other
+# clause still applies in full: the risk-free normalisation, the terminal rate against
+# the house path, the premium bases, the cost of equity itself.
+NO_WACC_GROUNDS = {
+    "bank": ("deposits are raw material rather than financing; their cost is inside the "
+             "net interest margin and equity flows are discounted at the cost of equity"),
+}
 TOL = 1e-6
 
 
@@ -52,7 +75,45 @@ KD_ANCHOR_MECHANISMS = {
 
 
 def studies():
-    return sorted(glob.glob(os.path.join(ENGINE, "*_study")))
+    """The record directories a record-reading gate can inspect, resolved through
+    engine/study_population.py rather than by globbing engine/*_study.
+
+    THE GLOB WAS THE WRONG POPULATION. All 90 covered names carry a delivered
+    valuation study; 23 commit a record. This gate globbed the directories and
+    printed a count with NO DENOMINATOR, which is why 24 looked like the book.
+    The names with no record are DEFERRED to the shared no-record ratchet, which
+    the valuation-gap gate reports on — they are not re-listed here, because ten
+    gates reporting one fact is the duplication this refactor exists to avoid.
+
+    The import is LAZY so a sandbox that copies this script without engine/
+    beside it does not die on an import it never needed.
+    """
+    global _DEFERRED, _POP_LINE
+    # A SANDBOXED FIXTURE SUPPLIES ITS OWN POPULATION, AND SAYS SO OUT LOUD.
+    # Several negative controls copy this script into a temp tree holding a fake
+    # ENGINE and run it as a subprocess, so the resolver is not importable there —
+    # and it should not be, because the whole point of those fixtures is a
+    # population they control. The escape is an explicit environment variable that
+    # CI never sets, and taking it PRINTS that it was taken: a switch that quietly
+    # restored the directory glob would reinstate the defect this replaced.
+    if os.environ.get('TESTAHIL_FIXTURE_POPULATION'):
+        dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+        _DEFERRED, _POP_LINE = [], ('population: FIXTURE — %d study directories under a '
+                                    'sandboxed ENGINE, not the book' % len(dirs))
+        print(_POP_LINE)
+        return dirs
+    if ENGINE not in sys.path:
+        sys.path.insert(0, ENGINE)
+    import study_population
+    dirs, _DEFERRED, _POP_LINE = study_population.examinable()
+    # printed HERE so the ten gates have exactly ONE edit site each and the line
+    # cannot be forgotten in one of them: a denominator that appears in nine gates
+    # and not the tenth is the drift this refactor exists to stop
+    print(_POP_LINE)
+    return dirs
+
+
+_DEFERRED, _POP_LINE = [], ""
 
 
 def ticker_of(sdir):
@@ -79,6 +140,29 @@ def find_record(doc):
             if isinstance(meta.get(k), dict):
                 return meta[k]
     return None
+
+
+def _no_wacc_exemption(rec):
+    """(exempt, failure) — whether this record may carry no weighted rate, and why not.
+
+    Returns a FAILURE string rather than silently refusing, so a record that claims the
+    exemption wrongly is told which half it failed.
+    """
+    ground = rec.get("no_wacc_reason")
+    if not ground:
+        return False, ""
+    key = str(ground).split(":", 1)[0].strip().lower()
+    if key not in NO_WACC_GROUNDS:
+        return False, ("no_wacc_reason names %r, which is not on the closed list %s. An "
+                       "open list lets any study opt out of the cost-of-debt and weighted-"
+                       "rate clauses by inventing a ground."
+                       % (key, sorted(NO_WACC_GROUNDS)))
+    wd = rec.get("weight_debt")
+    if isinstance(wd, (int, float)) and abs(wd) > TOL:
+        return False, ("the record claims the %r exemption from the weighted-rate clauses "
+                       "and carries a debt weight of %.4f. A record with financing debt "
+                       "has a weighted average cost of capital." % (key, wd))
+    return True, ""
 
 
 def check_record(rec, ticker):
@@ -117,7 +201,12 @@ def check_record(rec, ticker):
     # 3. the schedule declines, and only where a glide belongs
     we, wt = rec.get("wacc_exp"), rec.get("wacc_terminal")
     fwd = rec.get("forward_wacc") or []
-    if we is None or wt is None:
+    exempt, exempt_fail = _no_wacc_exemption(rec)
+    if exempt_fail:
+        fails.append(exempt_fail)
+    if exempt and we is None and wt is None:
+        pass                      # named, checked, and reported by the caller
+    elif we is None or wt is None:
         fails.append("no explicit-window or terminal cost of capital recorded")
     elif path.regime == "transition":
         if wt >= we - TOL:
@@ -143,13 +232,71 @@ def check_record(rec, ticker):
                     break
 
     # 4. ONE DATE, ONE PRICE OF TIME
+    #
+    # THE HARM THIS TEST NAMES IS A PREMIUM, AND ONLY A PREMIUM: a terminal brought
+    # home on a LARGER factor than the last explicit year is the same pound arriving
+    # on the same day priced twice, and it flatters value. That case is refused
+    # outright and always.
+    #
+    # THE OTHER DIRECTION IS A DIFFERENT THING AND USED TO BE CAUGHT BY THE SAME NET.
+    # A terminal value is the value at the END of the explicit window of everything
+    # after it, so under a mid-period schedule it arrives HALF A YEAR LATER than the
+    # last explicit cash flow and is worth LESS, not more. ARCC discounts on the
+    # end-of-window factor 0.415551 while its last explicit year uses 0.452058 —
+    # correct, conservative, and red under an equality test. [R-COC-01] says to
+    # RE-POINT a check that fires on work that is right, never to widen it, so the
+    # test now asks the question it was always for: WHEN does the terminal arrive,
+    # and does its factor reproduce at the same price of time?
+    #
+    # This is STRICTER than equality was, not looser. A record taking the discount
+    # below its last explicit year must DECLARE the arrival time, that time must sit
+    # after the last explicit cash flow and inside the window the forward rates
+    # cover, and the factor must reproduce from the same ladder at that time. An
+    # undeclared or non-reproducing number is refused — where before, any number at
+    # all was refused by the same message whether it was a premium or a discount,
+    # which is what made the message wrong on ARCC.
     df = rec.get("discount_factors") or []
     tdf = rec.get("terminal_discount_factor")
+    _conv4 = rec.get("discounting_convention") or {}
     if df and tdf is not None and abs(tdf - df[-1]) > 1e-9:
-        fails.append("the terminal value is brought home on a factor of %.6f while the last "
-                     "explicit year's cash flow uses %.6f — a %.0f%% premium for relabelling "
-                     "the same pound arriving on the same day."
-                     % (tdf, df[-1], 100 * (tdf / df[-1] - 1)))
+        if tdf > df[-1]:
+            fails.append("the terminal value is brought home on a factor of %.6f while the "
+                         "last explicit year's cash flow uses %.6f — a %.0f%% premium for "
+                         "relabelling the same pound arriving on the same day."
+                         % (tdf, df[-1], 100 * (tdf / df[-1] - 1)))
+        else:
+            t_tv = _conv4.get("terminal_arrival_years")
+            _edges4 = _conv4.get("rate_edges") or [float(k) for k in range(len(fwd) + 1)]
+            _times4 = _conv4.get("cumulative_years") or []
+            if t_tv is None:
+                fails.append("the terminal value is brought home on a factor of %.6f, below "
+                             "the last explicit year's %.6f, and the record declares no "
+                             "terminal_arrival_years. A terminal that arrives later than "
+                             "the last explicit cash flow is legitimate and is worth less; "
+                             "one that arrives on a date nobody wrote down is not readable "
+                             "from outside." % (tdf, df[-1]))
+            elif _times4 and float(t_tv) < _times4[-1] - 1e-9:
+                fails.append("the terminal is declared to arrive at %.4f years, BEFORE the "
+                             "last explicit cash flow at %.4f. A terminal value is what is "
+                             "left after the explicit window, so it cannot arrive inside it."
+                             % (float(t_tv), _times4[-1]))
+            elif len(_edges4) == len(fwd) + 1 and float(t_tv) > _edges4[-1] + 1e-9:
+                fails.append("the terminal is declared to arrive at %.4f years, past the "
+                             "%.4f years the forward rates cover. Beyond that edge the "
+                             "record prices time with a rate it does not hold."
+                             % (float(t_tv), _edges4[-1]))
+            else:
+                acc = 1.0
+                for j, w in enumerate(fwd):
+                    span = max(0.0, min(float(t_tv), _edges4[j + 1]) - _edges4[j])
+                    if span > 0:
+                        acc /= (1 + w) ** span
+                if abs(acc - tdf) > 1e-6:
+                    fails.append("the terminal factor is %.6f and the arrival it declares "
+                                 "(%.4f years at the same forward path) gives %.6f. A "
+                                 "declared arrival that does not reproduce its own factor "
+                                 "is worse than none: it reads as evidence."
+                                 % (tdf, float(t_tv), acc))
     # END-OF-YEAR IS A CONVENTION, NOT THE ONLY ONE. This check assumed each cash
     # flow arrives on the last day of its year, and flagged ARCC — whose factors
     # are a legitimate mid-period schedule struck a quarter before the first cash
@@ -214,7 +361,9 @@ def check_record(rec, ticker):
     # 5. the cost of debt: above its sovereign, and inside the gate
     kd = rec.get("kd_pretax")
     ki = rec.get("kd_integrity") or {}
-    if kd is None:
+    if kd is None and exempt:
+        pass                      # same named exemption; see NO_WACC_GROUNDS
+    elif kd is None:
         fails.append("no cost of debt recorded")
     else:
         if ki.get("pct_local_currency", 1.0) >= 0.999 and rf is not None and kd < rf - TOL:
@@ -377,6 +526,15 @@ def audit(sdir):
     note = ""
     if (rec.get("kd_integrity") or {}).get("effective_rate_unavailable"):
         note = "   [cost-of-debt check unavailable on this disclosure, stated]"
+    # A RECORD WITH NO WEIGHTED RATE IS REPORTED BY WHAT IT DOES HAVE. This line read
+    # rec["wacc_exp"] unguarded, so the moment a record legitimately carried none the
+    # gate died with a KeyError on the SUCCESS path -- passing the audit and then
+    # crashing while saying so.
+    if rec.get("wacc_exp") is None and _no_wacc_exemption(rec)[0]:
+        return "ok", ("%s, cost of equity %.2f%% gliding to %.2f%%   [no weighted rate: %s]"
+                      % (rec.get("market"), 100 * (rec.get("ke_exp") or 0),
+                         100 * (rec.get("ke_terminal") or 0),
+                         str(rec.get("no_wacc_reason")).split(":", 1)[0].strip()))
     return "ok", ("%s, %.2f%% gliding to %.2f%%%s"
                   % (rec.get("market"), 100 * rec["wacc_exp"], 100 * rec["wacc_terminal"], note))
 

@@ -1,0 +1,325 @@
+#!/usr/bin/env python3
+"""The delivered workbook must publish the answer the study publishes — checked by RUNNING
+each study's own recalculation, not by noting that it has one.
+
+WHY THIS EXISTS
+    Depth-bar standard 3 requires that "an independent evaluator recalculates the delivered
+    workbook and reports anything unparseable as FAILURE, never a skip", and the QC gate of
+    every study in this book carries a row attesting it. Twenty-two of twenty-four studies
+    carry the instrument to do it. Measured on 5 September 2026, NO GATE ANYWHERE RAN ANY OF
+    THEM — every mention of the word "recalculation" outside a study directory is a sentence
+    in a comment. What that cost:
+
+        SWDY   the delivered workbook a reader opens publishes SAR 59.31 where the delivered
+               document publishes 55.48, +6.9%, with ZERO formula errors. Two independent
+               formula defects pulling opposite ways: DCF!C25 still carries the g x IC
+               reinvestment-identity terminal that [R-TERM-01] retired on 03-Sep (the study's
+               own compute.py computes that same figure and labels it "published unused,
+               feeds nothing"), worth -6.5% alone; and SOTP Bridge!C12 has NO LINE for the
+               employees' statutory share of profit that compute.py deducts at 12.19%, worth
+               +14.4% alone. The builder's own expected-value map records the RIGHT answer
+               for both cells — so the builder knew, and wrote a formula that cannot reach
+               it. The study's recalc.py FAILS on this today, in 0.4 seconds, naming all 27
+               cells. It was simply never run after the 4-Sep rebuild.
+
+        AMOC   its recalculator refuses outright: it was written for the NINE-sheet workbook
+               of 06-08-2026 and the delivered file is the SIXTEEN-sheet edition of 01-09.
+               That is L-066/L-067 verbatim — A CHECK THAT OPENS A DELIVERED FILE BY NAME
+               MOVES WITH THE RE-ISSUE — registered on this very study a week ago, on two of
+               its own gates, and the third one broke the same way.
+
+    Neither is a modelling error and both reach a reader. They survive because a study's own
+    check is run by whoever remembers to run it, and the moment a rebuild lands is exactly
+    the moment nobody does.
+
+WHAT THIS GATE REQUIRES, AND WHAT IT DELIBERATELY DOES NOT
+    It RUNS the instrument. Treating a script's existence as conformance would put a green
+    tick on a red result — which is case 2 of the prose-figure gate's negative control and
+    the case that matters most, and here it is not hypothetical: SWDY has the script, the
+    script is correct, and the script is red.
+
+    It does NOT prescribe what the recalculation must check, or how. The studies use two
+    evaluators (an in-repo one and a headless spreadsheet) and reconcile between 85 and 1,318
+    cells; imposing one shape would mean rewriting twenty-two working instruments to satisfy
+    a checker, which is the "move the number to satisfy the check" move this house forbids
+    in its own words. What it requires is that the study's own check PASSES.
+
+    A SCRIPT THAT CANNOT RUN IS RED, NOT SKIPPED [R-ENF-04]. A missing dependency, a timeout
+    and a crash all produce an ABSENT answer, and an absent answer wearing the costume of a
+    clean one is strictly worse than a failure, because a failure announces itself.
+
+THE POPULATION IS ANCHORED ELSEWHERE, BOTH WAYS  [R-ENF-04]
+    Every ticker listed in the ratchet must resolve to a study directory on disk; a run that
+    examined zero directories FAILS; and a run that RAN zero checks across present
+    directories FAILS, which is the distinction an absent answer hides behind.
+
+THE RATCHET  [R-ENF-02]
+    Two groups, and they are NOT interchangeable — the same lesson [R-TERM-01]'s negative
+    control learned: an entry able to travel between groups would let a study escape a real
+    disagreement by being re-filed as merely unchecked. `no_check` excuses a study with no
+    recalculation script; `failing` excuses one whose script exists and is red. A study
+    moving from one to the other is a CHANGE and goes red until the move is recorded.
+    The lists may only ever SHORTEN. --prune rewrites them.
+
+USAGE
+    python3 scripts/check_workbook_values.py
+    python3 scripts/check_workbook_values.py --prune
+"""
+import glob
+import io, json, re
+import os
+import shutil
+import tempfile
+import subprocess
+import sys as _sys
+_sys.path.insert(0, os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine'))
+import ratchet_shape as rshape                                    # noqa: E402  [R-ENF-08]
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENGINE = os.path.join(ROOT, 'engine')
+RATCHET = os.path.join(ROOT, 'engine', 'build_depth_audit', 'workbook_values_outstanding.json')
+# The two names a study's recalculation goes by, in the order they are looked for.
+SCRIPTS = ('recalc.py', 'lo_recalc_gate.py')
+
+# A SUPERSEDED RECALCULATOR MUST NOT BE ABLE TO STAND IN FOR A RED ONE [08-09-2026].
+# AMOC's recalc.py refuses outright — correctly, because it was pinned by name to a
+# workbook two editions old — and names recalc_v5.py as the live gate. This check ran the
+# refusing file, read a non-zero exit, and parked AMOC on the ratchet against the
+# REFUSAL MESSAGE. Underneath it the live recalculator was red with 1,867 cells
+# disagreeing and a delivered workbook publishing a fair value 35% below the study's own
+# answer, and nothing in the book was measuring that. An unreadable result sitting where
+# a failing result belongs is exactly the shape [R-ENF-04] names, and here it was inside a
+# gate written to stop the same thing.
+#
+# So a study may DECLARE its successor and this check follows the declaration. The line is
+# read, never executed, and the successor must exist — a declaration pointing at nothing
+# fails rather than falling back, because falling back is how the refusal became a
+# substitute in the first place.
+SUPERSEDED_RE = re.compile(r"^SUPERSEDED_BY\s*=\s*['\"]([A-Za-z0-9_.\-]+)['\"]", re.M)
+
+
+def resolve_script(sdir, name):
+    """The script to run: the declared successor where there is one, else `name` itself."""
+    path = os.path.join(sdir, name)
+    try:
+        head = io.open(path, encoding='utf-8').read(4000)
+    except Exception:                                                  # noqa: BLE001
+        return name, None
+    m = SUPERSEDED_RE.search(head)
+    if not m:
+        return name, None
+    succ = m.group(1)
+    if not os.path.exists(os.path.join(sdir, succ)):
+        return name, ('%s declares SUPERSEDED_BY = %r and that file does not exist. A '
+                      'declaration pointing at nothing is worse than none: it reads as a '
+                      'live check and runs a dead one.' % (name, succ))
+    return succ, None
+TIMEOUT = 600
+
+
+def load_ratchet():
+    if not os.path.exists(RATCHET):
+        return {'no_check': {}, 'failing': {}}
+    d = json.load(open(RATCHET))
+    return {'no_check': d.get('no_check', {}), 'failing': d.get('failing', {})}
+
+
+def studies():
+    return sorted(glob.glob(os.path.join(ROOT, 'engine', '*_study')))
+
+
+def script_for(d):
+    """The recalculation to RUN, following a declared successor where one exists.
+
+    A study whose recalculator has been superseded declares SUPERSEDED_BY; without that
+    this check runs the refusing file and reads its refusal as the study's result. See the
+    note on SUPERSEDED_RE above — that is not hypothetical, it hid a 35% discrepancy.
+    """
+    for name in SCRIPTS:
+        p = os.path.join(d, name)
+        if os.path.exists(p):
+            run, err = resolve_script(d, name)
+            if err:
+                return ('!' + err)          # a broken declaration is a failure, not a skip
+            return run
+    return None
+
+
+def run_one(d, name):
+    """(ok, tail). A crash, a timeout and a nonzero exit are all NOT ok.
+
+    THE RECALCULATOR RUNS IN A COPY OF THE STUDY DIRECTORY, NEVER IN THE STUDY.
+    A study's recalc.py writes its result beside itself — that is right for the
+    generator and wrong for a CHECK that invokes it, because [R-ENF-01] says no check
+    modifies the tree it checks. It went unnoticed while the rewritten bytes happened
+    to match the committed ones; on 09-09-2026 a rebuilt workbook made TMGH's result
+    differ, the tree-unmodified gate saw a tracked file change mid-run, and CI went red
+    on a check doing exactly what that gate forbids.
+
+    The sandbox is a copy of the ONE study directory, not the repository: recalculators
+    open the workbook and the numbers file beside them and nothing further up. Anything
+    the script writes lands in the copy and dies with it, so the answer this returns is
+    the recalculation's verdict and nothing else.
+    """
+    if name.startswith('!'):
+        return False, name[1:][:160]
+    # THE SANDBOX IS AN ENGINE DIRECTORY OF SYMLINKS WITH ONE REAL COPY IN IT, and it
+    # has to be, because a recalculator's imports reach SIDEWAYS as well as up: SAVOLA's
+    # opens xlcalc out of ../du_study. A copy of one study directory cannot see its
+    # siblings, and the first cut turned that into ModuleNotFoundError — a harness fault
+    # wearing the costume of a broken study, which is the failure this file exists to
+    # tell apart. Every sibling is linked, so imports resolve exactly as they do in the
+    # tree; only the directory under test is a real copy, so only its writes are caught.
+    tmp = tempfile.mkdtemp(prefix='recalc_')
+    try:
+        shadow = os.path.join(tmp, 'engine')
+        os.makedirs(shadow)
+        for entry in os.listdir(ENGINE):
+            if entry != os.path.basename(d):
+                os.symlink(os.path.join(ENGINE, entry), os.path.join(shadow, entry))
+        work = os.path.join(shadow, os.path.basename(d))
+        shutil.copytree(d, work, symlinks=True,
+                        ignore=shutil.ignore_patterns('__pycache__', 'filings',
+                                                      'research', '*.npy'))
+        # THE SHARED ENGINE MODULES STILL COME FROM THE REAL TREE. A recalculator
+        # imports macro_path, xlcalc and their like from the directory above it, and a
+        # sandbox holding only the study directory cannot resolve them — the first cut
+        # turned two working recalculators into ModuleNotFoundError, which would have
+        # read as a broken study rather than a broken harness. Reads resolve against
+        # the real engine, which no check may write to anyway; only WRITES land in the
+        # copy, which is the whole property being bought here.
+        env = dict(os.environ)
+        env['PYTHONPATH'] = os.pathsep.join(
+            [ENGINE, ROOT] + ([env['PYTHONPATH']] if env.get('PYTHONPATH') else []))
+        try:
+            r = subprocess.run([sys.executable, name], cwd=work, timeout=TIMEOUT, env=env,
+                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+        except subprocess.TimeoutExpired:
+            return False, ('TIMED OUT after %ds — an absent answer is not a clean one'
+                           % TIMEOUT)
+        except Exception as e:                                      # noqa: BLE001
+            return False, 'could not run: %s' % e
+        out = r.stdout.decode('utf-8', 'replace').strip().splitlines()
+        return r.returncode == 0, (out[-1][:160] if out else '(no output)')
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def main(argv):
+    prune = '--prune' in argv
+    rat = load_ratchet()
+    dirs = studies()
+    if not dirs:
+        print('FAIL — examined ZERO study directories. The resolver is broken, not the book.')
+        return 1
+
+    # every listed ticker must resolve on disk [R-ENF-04]
+    on_disk = {os.path.basename(d)[:-len('_study')].upper() for d in dirs}
+    for grp in ('no_check', 'failing'):
+        for tk in rat[grp]:
+            if tk.upper() not in on_disk:
+                print('FAIL — %s is listed under %r and has no study directory on disk.'
+                      % (tk, grp))
+                return 1
+
+    ran = 0
+    clean, red, missing = [], [], []
+    for d in dirs:
+        tk = os.path.basename(d)[:-len('_study')].upper()
+        name = script_for(d)
+        if name is None:
+            missing.append(tk)
+            continue
+        ok, tail = run_one(d, name)
+        ran += 1
+        (clean if ok else red).append((tk, name, tail))
+
+    if ran == 0:
+        print('FAIL — %d study directories are present and ZERO recalculations RAN. An '
+              'empty result is not a clean result.' % len(dirs))
+        return 1
+
+    print('WORKBOOK VALUES — each study\'s own recalculation, run rather than counted')
+    print('examined %d study directories; ran %d recalculations' % (len(dirs), ran))
+    print()
+    if clean:
+        print('CLEAN (%d): %s' % (len(clean), ', '.join(t for t, _, _ in clean)))
+
+    # [R-ENF-08] AN ENTRY EXCUSES THE FAILURE IT RECORDED, NOT EVERY FAILURE OF ITS CLASS.
+    # This loop excused a study by NAME, so AMOC — listed against a recalculator that
+    # refuses because it is superseded — went on being excused once the successor ran and
+    # returned a real failure of 1,870 disagreeing cells. Those are two different facts and
+    # only one of them was ever recorded. ratchet_shape compares the SHAPE with live
+    # figures stripped, so an entry with no signature behaves exactly as before and this
+    # change makes no existing list red except where the failure has genuinely changed.
+    problems = []
+    for tk, name, tail in red:
+        entry = rat['failing'].get(tk)
+        if entry is not None:
+            # UNPACK THE PAIR. excused() returns (ok, why_not) and a two-tuple is ALWAYS
+            # truthy, so `if excused(...)` excuses everything — the rule switched off by
+            # the shape of its own return value. Two gates in this repository had exactly
+            # that line, and both were written by the same hand that wrote the rule.
+            ok, why = rshape.excused(entry, tail)
+            if ok:
+                continue
+            problems.append(('failing', tk, '%s exits nonzero: %s   [%s]'
+                             % (name, tail, why)))
+            continue
+        problems.append(('failing', tk, '%s exits nonzero: %s' % (name, tail)))
+    for tk in missing:
+        if tk in rat['no_check']:
+            continue
+        problems.append(('no_check', tk, 'no recalculation script in the study directory'))
+
+    # A study on the WRONG list is a change, not nothing.
+    for tk, name, tail in red:
+        if tk in rat['no_check']:
+            problems.append(('moved', tk, 'listed as having NO check, and it has one that '
+                                          'is RED — the two allowances are not '
+                                          'interchangeable: %s' % tail))
+    for tk in missing:
+        if tk in rat['failing']:
+            problems.append(('moved', tk, 'listed as FAILING, and its script has gone — an '
+                                          'allowance for a red check does not excuse an '
+                                          'absent one'))
+
+    if red:
+        print()
+        print('RED (%d):' % len(red))
+        for tk, name, tail in red:
+            _e = rat['failing'].get(tk)
+            mark = ('  [on the ratchet] '
+                    if _e is not None and rshape.excused(_e, tail)[0]
+                    else '  ** NEW ** ')
+            print('%s%-12s %s — %s' % (mark, tk, name, tail))
+    if missing:
+        print()
+        print('NO CHECK (%d): %s' % (len(missing), ', '.join(missing)))
+
+    if prune:
+        new = {'no_check': {t: rat['no_check'][t] for t in missing if t in rat['no_check']},
+               'failing': {t: rat['failing'][t] for t in
+                           [x[0] for x in red] if t in rat['failing']}}
+        cut = ((len(rat['no_check']) - len(new['no_check']))
+               + (len(rat['failing']) - len(new['failing'])))
+        new['note'] = json.load(open(RATCHET)).get('note', '')
+        json.dump(new, open(RATCHET, 'w'), indent=1, sort_keys=True)
+        print('\npruned %d entr%s; the list may only ever get shorter.'
+              % (cut, 'y' if cut == 1 else 'ies'))
+        return 0
+
+    if problems:
+        print()
+        for kind, tk, why in problems:
+            print('  ! %-8s %-12s %s' % (kind, tk, why))
+        print('\nFAIL — a delivered workbook must publish the answer the study publishes.')
+        return 1
+    print('\nOK — no new disagreement between a delivered workbook and its study.')
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main(sys.argv[1:]))

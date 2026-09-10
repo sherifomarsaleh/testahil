@@ -1,0 +1,512 @@
+                                                                                 Q4 2025 EARNINGS RELEASE
+                                                                                                            Cairo | 15 March 2026
+
+
+
+
+ELSEWEDY ELECTRIC Reports FY 2025 Results; revenues grew 21.2%
+year-on-year to reach EGP 281 billion; net profit normalizing as
+expected, reaching EGP 17.3 billion with a decrease of 0.8%
+FY 2025 Consolidated Financial Highlights
+ Revenues                         Gross Profit                      EBITDA                           Net Profit after Minority
+
+ EGP 281,049 million              EGP 40,762 million                EGP 30,660 million               EGP 17,330 million
+ ▲ 21.2% y-o-y                       7.1% y-o-y                       7.7% y-o-y                       0.8% y-o-y
+
+
+4Q 2025 Consolidated Financial Highlights
+ Revenues                         Gross Profit                      EBITDA                           Net Profit after Minority
+
+ EGP 81,341 million               EGP 10,765 million                EGP 7,679 million                EGP 4,657 million
+ ▲ 21.1% y-o-y                       0.7% y-o-y                       15.9% y-o-y                     ▲ 10.6% y-o-y
+
+
+ELSEWEDY ELECTRIC (SWDY.CA on the Egyptian stock exchange), the leading Wires & Cables and Integrated Infrastructure Solutions
+Provider in the Middle East and Africa, announces its consolidated financial results for the period ending 31 December 2025, recording
+revenues of EGP 81,341 million in Q4 2025, representing a 21.1% y-o-y increase. The company’s net profit after minority interest
+increased by 10.6% y-o-y to reach EGP 4,657 million in Q4 2025, yielding a net profit margin of 5.7% versus 6.3% in Q4 2024.
+
+
+
+Note from Our CEO
+
+I am pleased with the results delivered this year, driven by our strategic focus, disciplined cost management, and
+commitment to long‑term value creation. Our year‑end performance underscores the resilience of our business model
+and confirms our capability to operate effectively in an increasingly complex and challenging global environment.
+
+By the close of 2025, we sustained our solid performance, delivering revenues of EGP 281 billion, marking a year‑on‑year
+increase of 21.2%. Profitability for the period reached EGP 17 billion, coming in slightly lower versus last year, in line with
+our earlier guidance and our expectation of margin normalization following an exceptional phase of accelerated growth.
+
+On that front, I am delighted to announce that Elsewedy’s Board of Directors has recommended a dividend distribution
+amounting to EGP 1.85 per share, reaffirming our long‑standing commitment to delivering superior and sustainable
+returns to our shareholders.
+
+As we look ahead, our priorities remain clear: driving greater operational efficiency, strengthening cost discipline, and
+expanding our footprint in high‑growth markets. I have full confidence in the capability and resilience of our teams to
+deliver on these objectives. Together, we will continue to advance our three‑year growth strategy while upholding our
+commitment to our communities and supporting the development of the countries in which we operate.
+
+Ahmed El Sewedy
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                              1
+                                                                                                              Q4 2025 EARNINGS RELEASE
+                                                                                                                                      Cairo | 15 March 2026
+
+
+
+
+Summary Income Statement
+EGP (000)’s                                                 4Q-2025                 4Q-2024            % Change            FY-2025       FY-2024   % Change
+Revenue                                                   81,341,413              67,159,795              21.1%        281,049,082   231,981,836      21.2%
+   Wire, Cable & Accessories1                              42,592,460             38,956,387                 9.3%      155,792,930   144,306,566      8.0%
+   Engineering & Construction (E&C)2                       26,712,389             18,659,723                43.2%       87,100,671    57,678,808     51.0%
+   Digital Solutions3                                       5,006,924              4,561,000                 9.8%       16,594,067    14,682,549     13.0%
+   Electrical Products4                                     6,016,368              3,999,983                50.4%       17,703,535    12,300,767     43.9%
+   Infrastructure Investment5                               1,013,272                 982,703                3.1%        3,857,879     3,013,146     28.0%
+Gross Profit                                               10,764,519             10,840,827                -0.7%       40,762,108    43,898,521      -7.1%
+   Wire, Cable & Accessories1                               6,890,525              6,994,258                -1.5%       25,197,547    29,280,622     -13.9%
+   Engineering & Construction (E&C)2                        1,437,320              1,271,175                13.1%        4,626,959     6,230,661     -25.7%
+   Digital Solutions3                                          854,221             1,059,977               -19.4%        3,373,275     3,161,844      6.7%
+   Electrical Products4                                     1,707,762              1,207,592                41.4%        6,192,630     3,824,885     61.9%
+   Infrastructure Investment5                                 -125,310                307,824            -140.7%         1,371,697     1,400,510      -2.1%
+Gross Profit Margin                                              13.2%                  16.1%                               14.5%           19%
+EBITDA                                                      7,679,470              9,136,631               -15.9%       30,660,206    33,226,301      -7.7%
+EBITDA Margin                                                      9.4%                 13.6%                               10.9%         14.3%
+Net Income After Minority                                   4,656,659              4,209,180               10.6%        17,330,245    17,461,359      -0.8%
+Net Income After Minority Margin                                   5.7%                   6.3%                               6.2%          7.5%
+   1-   Wire, cable & Accessories include the regular Wires & Cables as well as the former Other Electrical Products
+   2-   Engineering & Construction (E&C) include Turnkey projects
+   3-   Digital Solutions include Meters and Elsewedy Technology arm
+   4-   Electrical Products include Transformers, Busway, Motion and E-mobility
+   5-   Infrastructure Investment includes Industrial development, Logistics, Utilities, Dry Port, IPP
+
+
+
+
+Financial and Operational Highlights
+   •    Revenues grew by a solid 21.1% year-on-year, reaching EGP 81.3 billion in Q4 2025. This strong performance was driven by
+        the revenue growth in the Wires, Cables & Accessories segment, the Engineering & Construction and the Electrical Products
+        segments. The Wires, Cables & Accessories segment remained the key contributor to total revenues, followed by the
+        Engineering & Construction (E&C) Projects segment.
+   •    Gross profit came in at EGP 10.8 billion with a slight 0.7% decrease year-on-year given the strong base comparison and rightly
+        reflecting the anticipated normalization in profitability—primarily within the Wires, Cables & Accessories segment —as the
+        business aligns with long-term margin expectations.
+   •    Selling, General & Administrative (SG&A) Expenses rose by 30.2% year-on-year to EGP 4.8 billion, driven by the impact of
+        global inflationary trends and strategic hiring initiatives across the Group. SG&A expenses as a percentage of total revenue
+        slightly increased 0.4 percentage point, from 5.4% in Q4 2024 to 5.8% in Q4 2025.
+   •    EBITDA recorded a decrease of 15.9% year-on-year to EGP 7.7 billion. The EBITDA margin stood at 9.4% in Q4 2025, 4.2 ppt
+        lower compared to the 13.6% recorded in Q4 2024, which was mainly driven by increased SG&A expenses.
+   •    Elsewedy’s net income after minority interest recorded 10.6% increase y-o-y to reach EGP 4.7 billion in Q4 2025, with an
+        associated margin of 5.7% versus 6.3% in Q4 2024.
+   •    Net bank debt remained almost flat reaching EGP 19,789 million as at 31 December 2025 compared to a net debt of EGP
+        19,727 million at year-end 2024.
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                                     2
+                                                                                Q4 2025 EARNINGS RELEASE
+                                                                                                              Cairo | 15 March 2026
+
+
+
+
+    •   Inventory stood at EGP 59,860 million as at 31 December 2025, versus the EGP 56,796 million recorded at the end of 2024.
+        The company is managing its inventory levels to hedge against inflation and supply shortages, ensuring it can meet rising
+        demand for its products.
+    •   Accounts receivable booked EGP 116,260 million as at 31 December 2025, compared to EGP 86,736 million at year-end 2024,
+        whereas accounts payable increased to EGP 81,266 million as at 31 December 2025.
+
+
+
+
+Financial and Operational Review
+Revenues The Group reported consolidated revenues of EGP 81.3 billion in Q4 2025, reflecting a strong year-on-year increase of 21.1%.
+This solid top-line performance was driven by the solid contributions across business segments and higher-than-average pricing in
+some markets during the quarter. The Group’s broad international footprint also played a key role in supporting revenue growth.
+
+The Wires, Cables & Accessories segment remained the primary revenue driver, contributing 52% of total revenues, followed by the
+Engineering & Construction (E&C) Projects segment, which accounted for 33%.
+
+
+
+
+                    Revenue by Segment                                                  Revenue by Segment
+                         (Q4 2025)                                                           (Q4 2024)
+                                 7% 1%                                                               6%1%
+                            6%                                                                  7%
+
+
+
+                              EGP 81.3 bn 52%                                             28%
+                                                                                                EGP 67.2 bn
+                                                                                                               58%
+                        33%
+
+
+
+                                                                            Wire, Cables & Accessories        E&C Projects
+        Wire, Cables & Accessories       E&C Projects
+                                                                            Digital Solutions                 Electrical products
+        Digital Solutions                Electrical products
+        Infrastructure Investment                                           Infrastructure Investment
+
+
+
+
+    Gross Profit recorded a slight decrease of 0.7% year-on-year to EGP 10.8 billion in Q4 2025. The normalized gross profit margin
+    stood at 13.2%, compared to 16.1% in Q4 2024. As anticipated, margins have begun to normalize, reflecting the evolving business
+    mix and the Group’s strategic alignment with long-term profitability trends.
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                               3
+                                                                                                     Q4 2025 EARNINGS RELEASE
+                                                                                                                                      Cairo | 15 March 2026
+
+
+
+
+                        Gross Profit by Segmeny                                                          Gross Profit by Segmeny
+                               (Q4 2025)                                                                        (Q4 2024)
+                                              -1%
+                                      15%                                                                                 3%
+                                                                                                                    11%
+                                8%
+                                                                                                              10%
+                                       EGP 10.7 bn                                                                  EGP 10.8 bn
+                                13%                         64%,
+                                                                                                             12%
+                                                                                                                                      65%
+
+
+
+         Wire, Cables & Accessories                   E&C Projects                             Wire, Cables & Accessories         E&C Projects
+         Digital Solutions                            Electrical products                      Digital Solutions                  Electrical products
+         Infrastructure Investment                                                             Infrastructure Investment
+
+
+
+Segment Review
+Wires, Cables & Accessories
+(regular Wires & Cables as well as the former Other Electrical Products)
+                                                                             4Q-2025      4Q-2024      % Change             FY-2025         FY-2024     % Change
+ Revenues Before Intercompany Sales (EGP 000’s)                            49,387,241   47,112,893          4.8%      187,750,652       172,812,420         8.6%
+ Revenues After Intercompany Sales (EGP 000’s)                             42,592,460   38,956,387          9.3%      155,792,930       144,306,566         8.0%
+ Gross Profit (EGP 000’s)                                                   6,890,525    6,994,258         -1.5%       25,197,547        29,280,622       -13.9%
+ GP Margin Before Intercompany Sales                                            14.0%        14.8%                          13.4%             16.9%
+ GP Margin After Intercompany Sales                                            16.2%        18.0%                             16.2%           20.3%
+ Cables Sales Volumes (Tons)                                                  46,721       42,340         10.3%             185,449         167,665        10.6%
+ Cables Gross profit per ton (EGP)                                           111,051       91,079         21.9%              94,623         105,663       -10.4%
+
+
+
+
+  ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                                       4
+                                                                             Q4 2025 EARNINGS RELEASE
+                                                                                                         Cairo | 15 March 2026
+
+
+
+
+Wires , Cables & Accessories Revenue and Profitability
+                                                                      •   The Wires, Cables & Accessories segment generated
+44   23.40%
+                                                             25.00%       revenues of EGP 42.6 billion in Q4 2025, marking a year-
+                                                      16%
+42            16.50%
+                        18%
+                              16.60%   17%                   20.00%
+                                                                          on-year increase of 9.3%. This performance was led by
+                                               15%
+40                                                                        the segment’s diverse product portfolio, strategic
+                                                             15.00%
+38                                                                        pricing initiatives in some markets (KSA & Algeria)
+                                                      42.6   10.00%
+36             39.6     39                     39.3                       coupled with 10% increase in volumes.
+                                       37.8                  5.00%
+34    36.2                     36.1
+                                                                      •   Gross profit for the segment declined by 1.5% year-on-
+32                                                           0.00%
+      Q2       Q3       Q4      Q1      Q2      Q3     Q4                 year, reaching EGP 6.9 billion. The contraction was
+     2024     2024     2024    2025    2025    2025   2025                primarily attributed to a less favourable product mix
+                                                                          and a significant increase in export activity and
+                       Revenue (Bn)           GP Margin
+                                                                          international sales, which accounted for 78% of total
+                                                                          sales in Q4 2025. Sales outside Egypt typically yield
+                                                                          lower margins, contributing to the overall profitability
+                                                                          pressure.
+                                                                      •   As a result, the gross profit margin contracted to 16.2%
+                       Wires & Cables Backlog                             in Q4 2025, compared to 18.0% in Q4 2024 with a
+                      (As of 31 December 2025)                            decline of 1.8 percentage points.
+                                                                      •   Despite margin compression, the segment reported a
+                                                                          strong order backlog of EGP 42.4 billion, underscoring
+                              EGP   42.4 bn                               solid demand fundamentals and future growth
+                                                                          potential.
+                 \
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                            5
+                                                                                               Q4 2025 EARNINGS RELEASE
+                                                                                                                                Cairo | 15 March 2026
+
+
+
+
+Engineering & Construction (E&C) Projects and Awards
+(Former Turnkey projects)
+
+                        E&C Revenue and Profitability
+
+    30                                                                        20.00%    •    The E&C Projects segment delivered strong revenue
+           15.10%                                            3.30%
+                    11.60%                                                    15.00%         growth of 43.2% year-on-year, reaching EGP 26.7
+    20                          7%
+                                        8.60%       5.20%                                    billion in Q4 2025. This performance was primarily
+                                                              27.6     26.7 5% 10.00%
+    10                         18.7                 17.4
+                                                                                             driven by the segment’s expanding portfolio of
+            14.2       15               15.4                                  5.00%
+                                                                                             international projects.
+     0                                                                        0.00%
+            Q2        Q3        Q4       Q1          Q2       Q3       Q4
+                                                                                        •    Gross profit increased by 13.1% year-on-year to EGP
+           2024      2024      2024     2025        2025     2025     2025                   1.4 billion in Q4 2025. The gross profit margin
+                                                                                             dropped to 5.4%, compared to 6.8% in Q4 2024.
+                               Revenue (bn)                 GP Margin
+                                                                                        •    This decline is primarily attributable to the
+                                                                                             acceleration of some mega projects tied to legacy
+                                                                                             contracts that typically carry lower profitability
+                                   E&C Backlog                                               margins.
+                            (As of 31 December 2025)                                    •    The segment’s backlog remained robust, reaching
+                                                                                             EGP 293 billion as of 31 December 2025, with 51% of
+                                                                                             the projects based in the GCC region, highlighting a
+                                      EGP   293 bn                                           balanced geographic diversification.
+                                                                                        •    New awards and variation orders during Q4 2025
+                       \                                                                     amounted to EGP 49.5 billion, reinforcing the
+                                                                                             segment’s strong pipeline and future revenue
+                                                                                             visibility.
+
+
+
+
+                                 Backlog by Region                                                         Backlog by Sector
+                                 As of 31/12/2025                                                          As of 31/12/2025
+                                                      3%
+
+                                                                 28%                                         32%
+                                                                                                                                   40%
+                                                    EGP                                                                   EGP
+                                      51%
+                                                293 bn                                                                293 bn
+                                                             18%                                                     28%
+                                                                                        Power Generation                    Transmission
+                             Europe         Egypt      Africa        GCC & Asia
+                                                                                        Civil, Infrastructure & Digital
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                              6
+                                                                                             Q4 2025 EARNINGS RELEASE
+                                                                                                                            Cairo | 15 March 2026
+
+
+
+                           Awards by Region                                                             Awards by Sector
+                          (As of 31/12/2025)                                                           (As of 31/12/2025)
+                                                11%
+
+
+                                                       23%                                           43%
+                                   EGP   49.5 bn                                                            EGP   49.5 bn 46%
+                            66%
+
+                                                                                                                  11%
+                                                                                         Power Generation                  Transmission & Distribution
+                           Egypt       Africa     GCC & Asia
+                                                                                         Civil & Networks
+
+
+
+Digital Solutions
+(Meters and Elsewedy Technology arm)
+                                                                                                                                                     %
+                                                                        Q4-2025     Q4-2024       % Change          FY-2025          FY-2024
+                                                                                                                                                Change
+ Revenues Before Intercompany Sales (EGP 000’s)                        7,178,224   5,547,284          29.4%       20,975,978      18,806,470       12%
+ Revenues After Intercompany Sales (EGP 000’s)                         5,006,924   4,561,000           9.8%       16,594,067      14,682,549       13%
+ Gross Profit (EGP 000’s)                                                854,221   1,059,977         -19.4%        3,373,275       3,161,844        7%
+ GP Margin Before Intercompany Sales                                       11.9%       19.1%                           16.1%           16.8%
+
+ GP Margin After Intercompany Sales                                       17.1%          23.2%                          20.3%          21.5%
+
+ Sales Volumes (Meters)                                                1,681,589   1,089,336          54.4%        5,945,842       3,850,726       54%
+ Gross profit per meter (EGP)                                                588         857         -31.4%              485             707      -31%
+
+                                                                                     •     Revenues from the Digital Solutions segment
+                        Digital Solutions Revenue and
+                                                                                           recorded 9.8% growth year-on-year, reaching EGP
+                                  Profitability
+                                                                                           5 billion in Q4 2025. This performance reflects 54%
+        21.80%               23%       21.90% 22.30%                                       increase in volumes in the meters sub-segment,
+   6              19.70%                                21%            25.00%
+                                                               17%
+   5                                                                   20.00%              which were offset by lower pricing tied to legacy
+   4                                                                                       projects.
+                                                                       15.00%
+   3
+                             4.6                                   5   10.00%        •     Gross profit declined by 19.4% year-on-year to EGP
+   2                3.8                  3.7     4.1    3.8
+          3.3                                                                              854 million, with a gross profit margin of 17%, 6.1
+   1                                                                   5.00%
+   0                                                                   0.00%               ppt lower than the 23.2% in Q4 2024. The decline
+          Q2       Q3        Q4         Q1       Q2     Q3      Q4                         in profitability was primarily due to a less
+         2024     2024      2024       2025     2025   2025    2025                        favourable product mix tied to legacy projects.
+                             Revenue (bn)              GP Margin                     •     The meters sub-segment backlog reached EGP 8.2
+                                                                                           billion as of 31 December 2025, reflecting strong
+                                                                                           demand and sustained growth momentum in the
+                             Meters Backlog                                                segment.
+                        (As of 31 December 2025)
+
+
+                                   EGP   8.2 bn
+                    \
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                               7
+                                                                                                 Q4 2025 EARNINGS RELEASE
+                                                                                                                            Cairo | 15 March 2026
+
+
+
+
+Electrical Products
+(Transformers, Busway, Motion and E-mobility)
+
+                                                                          Q4-2025     Q4-2024    % Change        FY-2025        FY-2024 % Change
+Revenues Before Intercompany Sales (EGP 000’s)                           7,534,959   4,442,755      69.6%     22,408,320      14,186,522      58%
+Revenues After Intercompany Sales (EGP 000’s)                            6,016,368   3,999,983      50.4%     17,703,535    12,300,767.1      44%
+Gross Profit (EGP 000’s)                                                 1,707,762   1,207,592      41.4%      6,192,630       3,824,885      62%
+GP Margin Before Intercompany Sales                                          22.7%       27.2%                     27.6%           27.0%
+
+GP Margin After Intercompany Sales                                          28.4%       30.2%                      35.0%          31.1%
+
+Transformers Sales Volumes (MVA)                                            6,112       4,269       43.2%         20,534         17,619       17%
+Transformers Gross profit per MVA (EGP)                                   275,203     273,631        0.6%        294,435        211,800       39%
+
+
+                                                                                       •    Revenues for the Electrical Products segment surged by
+                       Electrical Products Revenue and
+                                  Profitability                                             50.4% year-on-year, reaching EGP 6 billion in Q4 2025.
+                                                                                            This growth was primarily driven by 43% increased
+  8                                  39.40% 37.40% 38.50%                   50.00%
+                                                                   28%                      volume.
+       33.90%                                                               40.00%
+                             30%
+  6              29.30%
+                                                                                       •    Gross profit rose 41.4% compared to the same
+                                                                            30.00%
+  4                                                                                         period last year, reaching EGP 1.7 billion in Q4 2025.
+                                                                   6        20.00%
+  2                           4                 4.2      3.9                                The gross profit margin stood at 28.4%, slightly
+          3          3.1               3.6                                  10.00%
+                                                                                            lower vs. the 30.2% in Q4 2024, driven by less
+  0                                                                         0.00%
+                                                                                            favourable product mix.
+         Q2        Q3        Q4        Q1        Q2      Q3     Q4
+        2024      2024      2024      2025      2025    2025   2025                    •    The backlog for the Transformers sub-segment
+                                                                                            reached EGP 31.4 billion as of 31 December 2025,
+                             Revenue (bn)              GP Margin                            signalling sustained demand and healthy forward
+                                                                                            visibility.
+
+                        Transformers Backlog
+                      (As of 31 December 2025)
+
+
+                             EGP   31.4 bn
+                 \
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                                8
+                                                                                                  Q4 2025 EARNINGS RELEASE
+                                                                                                                            Cairo | 15 March 2026
+
+
+
+
+Infrastructure Investment
+(Industrial development, Logistics, Utilities, Dry Port, IPP)
+
+
+
+                   Infrastructure Investment Revenue and
+                                 Profitability                                             •   Revenues of the Infrastructure Investment segment
+                                                                                               grew 3% y-o-y to record EGP 1.0billion.
+    1.5       63%        56%                  63%
+                                                         54%                        80%    •   Gross profit decreased by 141% y-o-y to EGP negative
+                                                                  46%               60%
+                                 31.30%                                                        125K in Q4 2025 and a negative margin of 12.4%,
+       1                                                                            40%        compared to the 31.3% margin in Q4 2024.
+    0.5                                                                             20%
+                                                                                 -12.40%
+                                                                                    0%
+               0.7       0.7        0.9        0.7        0.9      1.2        1
+       0                                                                            -20%
+              Q2         Q3         Q4         Q1         Q2       Q3        Q4
+             2024       2024       2024       2025       2025     2025      2025
+
+                                 Revenue (bn)                   GP Margin
+
+
+
+
+  ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                           9
+                                                                                   Q4 2025 EARNINGS RELEASE
+                                                                                                                  Cairo | 15 March 2026
+
+
+
+
+About Elsewedy Electric
+Established in 1938 by the Elsewedy family, Elsewedy Electric has since grown to become a regional and tactically global integrated
+infrastructure solutions provider with more than 20,000 employees working at 31 production facilities in 15 countries. Structured to
+face the challenges of the world’s fastest growing markets and the complexity of the critical electricity industry, Elsewedy Electric
+capitalizes on its deep product and sector specialization and unprecedented insight into local markets. www.elsewedyelectric.com
+
+ Ownership Structure
+ (as of 31 December 2025)                                         Share Information
+
+                                                                   SWDY.CA on the EGX
+
+                                               78.18%              Number of Shares                          2,140,777,876
+                                                                   Share Price (31 December 2025)            EGP 78.25
+                                                                   Market Cap (31 December 2025)             EGP 167 bn
+
+
+
+                                                                  Investor Relations Contact Information:
+                                                                  Noha Agaiby, Investor Relations Director and Board Secretary
+                 18.87%                                           Email: noha.agaiby@elsewedy.com
+                                   2.95%                          Address: Plot 13C03, Cairo Festival City, 5th settlement, New Cairo.
+                                                                  Tel: +202 27599700 – 701
+                                                                  Fax: +202 27599731
+     El Sewedy Family     Others     Electra Investment Holding
+
+
+Forward-looking Statements
+This document may contain certain forward-looking statements relating to the company’s business. These may be identified in part
+through the use of forward-looking terminology such as “will,” “planned”, “expected” and “forecast”. Any such statements reflect the
+current views of the company with respect to future events and are subject to certain risks, uncertainties and assumptions. Many
+factors could cause the actual results, performance, decisions or achievements of the company to be materially different from any
+future results that may be expressed or implied by such forward-looking statements.
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                    10
+

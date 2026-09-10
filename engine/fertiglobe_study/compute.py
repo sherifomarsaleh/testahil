@@ -65,8 +65,17 @@ def inp(key, value, source, date, ring):
 
 
 # --- market -----------------------------------------------------------------
-SPOT_AED = inp('spot_aed', 2.54, "ADX closing price, FERTIGLB, from the study price history",
-               '2026-08-07', 'MARKET')
+# RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. This study
+# was struck at AED 2.54 of 7 August while the latest price this repository holds is
+# AED 2.67 of 3 September — and its own diagnostics already carried that 2.67 as
+# SPOT_LATEST beside the strike, so the study had MEASURED the staleness and gone on
+# publishing against the older quote. THE FAIR VALUE IS UNTOUCHED: a re-strike moves the
+# price the answer is compared with, never the answer.
+SPOT_AED = inp('spot_aed', 2.67, "ADX closing price, FERTIGLB, from the study price "
+               "history — the latest supplied to this repository "
+               "(SUPPLIED_03-09-2026.json). Superseded: AED 2.54 of 7 August 2026, on "
+               "which every edition before this one was struck",
+               '2026-09-03', 'MARKET')
 FX = inp('fx_aed_usd', 3.6725, "CBUAE dirham peg to the US dollar, fixed since 1997",
          '2026-08-07', 'COUNTRY')
 SHARES = inp('shares_mn', 8249.6, FS25 + ", note 24 — ordinary shares outstanding at 31-Dec-2025",
@@ -1504,7 +1513,13 @@ out = dict(
     meta=dict(ticker='FERTIGLB', company='Fertiglobe plc', market='AE',
               exchange='Abu Dhabi Securities Exchange',
               currency='USD', listing_currency='AED', fx=FX,
-              asof=str(datetime.date.today()), price_date='2026-08-07',
+              # A STUDY DATE IS A FACT ABOUT WHEN THE STUDY WAS STRUCK, NOT A CLOCK
+              # READING. date.today() made this file unreproducible: rebuilding it on
+              # any later day moved meta.asof, and docx_fertiglobe.py prints that value
+              # as "Study date" — so a rebuild changed what a delivered document says
+              # about when the work was done. Frozen to the date the delivered document
+              # already carries, so the generator reproduces its own output.
+              asof='2026-09-04', price_date='2026-08-07',
               spot_aed=SPOT_AED, spot_usd=SPOT_AED / FX, shares_mn=SHARES,
               mktcap_usd=MKTCAP_USD, mktcap_aed=SHARES * SPOT_AED,
               ev_trailing=ev_trailing, klass='operating company — nitrogen fertilisers',

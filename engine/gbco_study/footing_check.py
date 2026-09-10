@@ -37,7 +37,20 @@ def _latest(pattern):
 
 DOCS = [d for d in (_latest('GBCO_Valuation_Study_*.docx'), _latest('GBCO_Bibliography_*.docx')) if d]
 
-DECLARED = []
+_DOC = _latest('GBCO_Valuation_Study_*.docx')
+
+# ONE DECLARED EXCEPTION, AND IT IS A REAL STRUCTURAL FACT ABOUT THE TABLE.
+# Table A4 of Appendix A lists the balance-sheet ANCHORS the enterprise-to-equity bridge
+# stands on — cash, group borrowings, the auto segment's borrowings, and total equity —
+# each as a separately disclosed line with its own date and source. "Total equity" is a
+# DISCLOSED LINE ITEM there and not a roll-up of the three rows printed above it, which are
+# not its components; it does not foot against them because nothing claims it should. This
+# is the shape the shared instrument itself records as structurally indistinguishable from
+# a roll-up, so the study declares it with its reason rather than deleting the row.
+DECLARED = [(_DOC, 27, 'Total equity',
+             'a separately disclosed balance-sheet line listed beside cash and borrowings, '
+             'not a total of them: the three rows above it are not its components and the '
+             'table makes no claim that they are')] if _DOC else []
 
 if __name__ == '__main__':
     examined, problems = TF.check(DOCS, DECLARED)

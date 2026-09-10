@@ -1,0 +1,162 @@
+{
+ "ticker": "GBCO",
+ "started_at": "the delivered 08-07-2026 edition, restruck on the same drivers",
+ "start_value": 35.746804894778066,
+ "start_spot": 28.98,
+ "start_gap": 0.23349913370524722,
+ "audit_after": "L4 and again at L9 — each declared IN ADVANCE of the pass it closes: the running total is looked at once the pass's rule-driven corrections have landed and BEFORE the price is consulted",
+ "levers": [
+  {
+   "name": "L1",
+   "rule": "[R-COC-01] · [R-COC-02] · [L-004]",
+   "before": 35.746804894778066,
+   "after": 73.71156579442516,
+   "why": "cost of capital rebuilt through engine/cost_of_capital.py — country risk counted ONCE (rf* = 23.00% - 3.41%), a conforming tier-1 beta of 0.8907 in place of an assumed 1.0, Kd re-derived at 26.53% on the borrowings that actually bear the interest, and a glide from 22.91% to a norm-built terminal of 14.21% in place of one crisis rate for ever",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 1.0620462727059845
+  },
+  {
+   "name": "L2",
+   "rule": "[R-MACRO-01]",
+   "before": 73.71156579442516,
+   "after": 43.955512067253494,
+   "why": "terminal growth stored as (real 0.0%, inflation path EG) and recomputed to its nominal 7.00%, replacing a TYPED nominal 11.5% nobody could falsify",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": -0.403682290648371
+  },
+  {
+   "name": "L3",
+   "rule": "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8",
+   "before": 43.955512067253494,
+   "after": 43.955512067253494,
+   "why": "terminal through engine/terminal_value.py on a DISCLOSED useful life — NOT APPLIED. Both admissible routes were run and both failed: the policy note discloses RATE RANGES only (2%-33%, a 3-to-50-year span) and the derived identity returns 10.9-17.1 years depending on an undisclosed land split, with per-class rates that contradict the disclosed bands. A life this desk chose is not a disclosed life. See useful_lives.json.",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.0
+  },
+  {
+   "name": "L4",
+   "rule": "[R-BRIDGE-01]",
+   "before": 43.955512067253494,
+   "after": 44.329496406267786,
+   "why": "the enterprise-to-equity bridge moved from 31-Dec-2025 onto the reviewed 30-June-2026 balance sheet, GB Corp's own segmented net debt for the AUTO leg and that leg's own non-controlling interest",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.008508246666358632
+  },
+  {
+   "name": "L5",
+   "rule": "[R-LENS-03]",
+   "before": 44.329496406267786,
+   "after": 53.52589213266374,
+   "why": "the four-lens weighted blend RETIRED and the class primary taken as the answer. A number produced by averaging several methods is a new method with free parameters nobody tested; the weights here were 0.40/0.15/0.20/0.25 and two of the four lenses were the SAME sum-of-the-parts at two discount levels",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.20745545228200846
+  },
+  {
+   "name": "L6",
+   "rule": "the PROMOTION RULE",
+   "before": 53.52589213266374,
+   "after": 59.473213480737485,
+   "why": "the TYPED 10% conglomerate discount removed. Nothing in the filings discloses a basis for it, and the blend above applied it at an EFFECTIVE 4% by weighting the discounted and undiscounted sums both — so the number the study named was not the number it applied. A free parameter that has never cleared an out-of-sample test",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.11111111111111094
+  },
+  {
+   "name": "L7",
+   "rule": "[R-LENS-03]",
+   "before": 59.473213480737485,
+   "after": 52.24674131942111,
+   "why": "GB Capital from a TYPED 9,500 at 1.0x book to residual income on its own operating equity — segment shareholders' equity before NCI less the associates carried inside it, 22,497.8 - 16,230.5 = 6,267.3, at the justified price-to-book its own disclosed return supports. Book times one is the weighting of book value this rule forbids outright, and the old base came from a ratio whose NUMERATOR held the associate income the sum of the parts counts again",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": -0.12150801576674386
+  },
+  {
+   "name": "L8",
+   "rule": "SIGCM clause 1",
+   "before": 52.24674131942111,
+   "after": 52.345259974418816,
+   "why": "the associates other than MNT-Halan from a TYPED 390.0 to 496.9, the residual of note 34's own total less its MNT row, both of which foot to the reviewed balance sheet",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.0018856420995787548
+  },
+  {
+   "name": "L9",
+   "rule": "depth-bar standard 8 — the contested judgement published both ways",
+   "before": 52.345259974418816,
+   "after": 52.345259974418816,
+   "why": "the associate marked BOTH WAYS and the answer published as two branches rather than one. This walk stays on the round-price branch, 52.3453; the other branch, MNT-Halan at its reviewed carrying value of 15,733.5, reads 41.3484. Neither is averaged into the other.",
+   "evidence": "engine/gbco_study/compute.py",
+   "move": 0.0
+  }
+ ],
+ "value": 52.345259974418816,
+ "cumulative_move": 0.46433394896407854,
+ "rules": {
+  "[R-COC-01] · [R-COC-02] · [L-004]": {
+   "levers": [
+    "L1"
+   ],
+   "first_before": 35.746804894778066,
+   "last_after": 73.71156579442516,
+   "move": 1.0620462727059845
+  },
+  "[R-MACRO-01]": {
+   "levers": [
+    "L2"
+   ],
+   "first_before": 73.71156579442516,
+   "last_after": 43.955512067253494,
+   "move": -0.403682290648371
+  },
+  "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8": {
+   "levers": [
+    "L3"
+   ],
+   "first_before": 43.955512067253494,
+   "last_after": 43.955512067253494,
+   "move": 0.0
+  },
+  "[R-BRIDGE-01]": {
+   "levers": [
+    "L4"
+   ],
+   "first_before": 43.955512067253494,
+   "last_after": 44.329496406267786,
+   "move": 0.008508246666358632
+  },
+  "[R-LENS-03]": {
+   "levers": [
+    "L5",
+    "L7"
+   ],
+   "first_before": 44.329496406267786,
+   "last_after": 52.24674131942111,
+   "move": 0.17859992905387267
+  },
+  "the PROMOTION RULE": {
+   "levers": [
+    "L6"
+   ],
+   "first_before": 53.52589213266374,
+   "last_after": 59.473213480737485,
+   "move": 0.11111111111111094
+  },
+  "SIGCM clause 1": {
+   "levers": [
+    "L8"
+   ],
+   "first_before": 52.24674131942111,
+   "last_after": 52.345259974418816,
+   "move": 0.0018856420995787548
+  },
+  "depth-bar standard 8 — the contested judgement published both ways": {
+   "levers": [
+    "L9"
+   ],
+   "first_before": 52.345259974418816,
+   "last_after": 52.345259974418816,
+   "move": 0.0
+  }
+ },
+ "distinct_rules": 8,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
+}

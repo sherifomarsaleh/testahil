@@ -118,6 +118,7 @@ from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 V = {k: v['value'] for k, v in D['inputs'].items()}
+COC = D['cost_of_capital_record']   # [R-COC-03] the split, as the study committed it
 
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
@@ -244,18 +245,21 @@ def ch_days(klass, a, b):
     return days, rev
 
 
-# Seven rate windows: the four quarters of 2025, the two disclosed quarters of 2026, and
-# the mid-cycle anchor, which is the 2024/2025 average blend converted on the same fleet
-# and charter book as the first quarter of 2025.
+# Nine rate windows: the four quarters of 2025, the two REPORTED quarters of 2026, the
+# third quarter DISCLOSED to 11 August on the share of vessel days it covers, a fourth
+# quarter reverting halfway to mid-cycle, and the mid-cycle anchor itself, which is the
+# 2024/2025 average blend converted on the same fleet and charter book as the first
+# quarter of 2025.
 WIN = [(_d('2025-01-01'), _d('2025-04-01')), (_d('2025-04-01'), _d('2025-07-01')),
        (_d('2025-07-01'), _d('2025-10-01')), (_d('2025-10-01'), _d('2026-01-01')),
        (_d('2026-01-01'), _d('2026-04-01')), (_d('2026-04-01'), _d('2026-07-01')),
+       (_d('2026-07-01'), _d('2026-10-01')), (_d('2026-10-01'), _d('2027-01-01')),
        (_d('2025-01-01'), _d('2025-04-01'))]
-WIN_LAB = ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026',
-           'Mid-cycle anchor']
-WIN_FLEET = [OWNED25] * 4 + [OWNED] * 2 + [OWNED25]
-WCOL = ['B', 'C', 'D', 'E', 'F', 'G', 'H']
-NWIN = 7
+WIN_LAB = ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026', 'Q3 2026',
+           'Q4 2026', 'Mid-cycle anchor']
+WIN_FLEET = [OWNED25] * 4 + [OWNED] * 4 + [OWNED25]
+WCOL = ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+NWIN = 9
 
 Q25 = {c: [V[f'tce_{c}_25q{i+1}'] for i in range(4)] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
 Q24 = {c: [V[f'tce_{c}_24q{i+1}'] for i in range(4)] for c in ('lr1', 'lr2', 'vlcc')}
@@ -272,10 +276,18 @@ TCE24 = {c: sum(Q24[c]) / 4.0 for c in Q24}
 TCE24['mr'] = TCE25['mr']                # 2024 quarterly rates for this class are not given
 TCE24['hs'] = TCE24['mr'] * HS_REL
 BLEND_MID = {c: (TCE24[c] + TCE25[c]) / 2.0 for c in CLS}
-B26 = {c: [V[f'tce_{c}_q1_26'], V[f'tce_{c}_q2_26']] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+COVER = {c: V[f'cover_{c}_q3_26'] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+Q3B = {c: COVER[c] * V[f'tce_{c}_q3_26'] + (1 - COVER[c]) * BLEND_MID[c]
+       for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+Q4B = {c: (1 - H2W) * Q3B[c] + H2W * BLEND_MID[c] for c in ('mr', 'lr1', 'lr2', 'vlcc')}
+B26 = {c: [V[f'tce_{c}_q1_26'], V[f'tce_{c}_q2_26_actual'], Q3B[c], Q4B[c]]
+       for c in ('mr', 'lr1', 'lr2', 'vlcc')}
 B26['hs'] = [x * HS_REL for x in B26['mr']]
-BLEND_W = {c: ([Q25[c][i] if c in Q25 else TCE25[c] for i in range(4)]
-               + list(B26[c]) + [BLEND_MID[c]]) for c in CLS}
+# The smallest class takes THAT QUARTER'S medium-range rate scaled by the disclosed
+# relative move, not the year's average of it: the cost stack is solved on this series
+# quarter by quarter.
+_Q25H = {c: (Q25[c] if c in Q25 else [q * HS_REL for q in Q25['mr']]) for c in CLS}
+BLEND_W = {c: (list(_Q25H[c]) + list(B26[c]) + [BLEND_MID[c]]) for c in CLS}
 
 CDAYS = {c: [WIN_FLEET[w][c] * (WIN[w][1] - WIN[w][0]).days for w in range(NWIN)]
          for c in CLS}
@@ -285,15 +297,21 @@ SDAYS = {c: [CDAYS[c][w] - CHD[c][w] for w in range(NWIN)] for c in CLS}
 SPOTWIN = {c: [(BLEND_W[c][w] * CDAYS[c][w] - CHREV[c][w]) / SDAYS[c][w]
               for w in range(NWIN)] for c in CLS}
 SPOT25 = {c: sum(SPOTWIN[c][:4]) / 4.0 for c in CLS}
-SPOT_MID = {c: SPOTWIN[c][6] for c in CLS}
+SPOT_MID = {c: SPOTWIN[c][8] for c in CLS}
 SPOT_Q1 = {c: SPOTWIN[c][4] for c in CLS}
 SPOT_Q2 = {c: SPOTWIN[c][5] for c in CLS}
-TNK_H2 = {c: SPOT_Q1[c] * (1 - H2W) + SPOT25[c] * H2W for c in CLS}
-TNK_Y26 = {c: (SPOT_Q1[c] + SPOT_Q2[c] + 2 * TNK_H2[c]) / 4.0 for c in CLS}
-TNK_PATH = {c: [TNK_Y26[c] + (SPOT_MID[c] - TNK_Y26[c]) * i / 4.0 for i in range(5)]
-            for c in CLS}
+SPOT_Q3 = {c: SPOTWIN[c][6] for c in CLS}
+SPOT_Q4 = {c: SPOTWIN[c][7] for c in CLS}
+QD26 = [(WIN[w][1] - WIN[w][0]).days for w in (4, 5, 6, 7)]
+TNK_Y26 = {c: sum(SPOTWIN[c][4 + k] * QD26[k] for k in range(4)) / sum(QD26) for c in CLS}
+TNK_GLIDE = {c: [TNK_Y26[c] + (SPOT_MID[c] - TNK_Y26[c]) * i / 4.0 for i in range(5)]
+             for c in CLS}
 
-YRB = [(_dt.date(2026 + i, 1, 1), _dt.date(2027 + i, 1, 1)) for i in range(5)]
+# THE FIRST FORECAST COLUMN IS THE SECOND HALF OF 2026, NOT THE YEAR. The first half is
+# REPORTED and this model does not forecast a period the company has already filed, so the
+# 2026 column builds the half that remains and adds the half that happened.
+YRB = ([(_dt.date(2026, 7, 1), _dt.date(2027, 1, 1))]
+       + [(_dt.date(2027 + i, 1, 1), _dt.date(2028 + i, 1, 1)) for i in range(4)])
 YRDAYS = [(b - a).days for a, b in YRB]
 YCD = {c: [ch_days(c, *YRB[i])[0] for i in range(5)] for c in CLS}
 YCR = {c: [ch_days(c, *YRB[i])[1] / 1000.0 for i in range(5)] for c in CLS}
@@ -309,21 +327,47 @@ def acq_days(klass, i):
 
 YACD = {c: [acq_days(c, i) for i in range(5)] for c in CLS}
 YSD = {c: [OWNED[c] * YRDAYS[i] - YCD[c][i] + YACD[c][i] for i in range(5)] for c in CLS}
+# The half's spot rate is the SPOT-DAY weighted average of its two quarters, so one window
+# over the half reproduces the two quarters exactly: the six crude carriers bought in
+# August earn from 1 September and have more days in the fourth quarter than the third.
+_Q3W = [(_d('2026-07-01'), _d('2026-10-01')), (_d('2026-10-01'), _d('2027-01-01'))]
+_SDQ = {c: [OWNED[c] * (b - a).days - ch_days(c, a, b)[0]
+            + (ACQ_N[c] * max(0.0, _ser(b) - max(_ser(a), ACQ_DATE[c])) if ACQ_N[c] else 0.0)
+            for a, b in _Q3W] for c in CLS}
+SPOT_H2 = {c: (_SDQ[c][0] * SPOT_Q3[c] + _SDQ[c][1] * SPOT_Q4[c])
+              / (_SDQ[c][0] + _SDQ[c][1]) for c in CLS}
+TNK_PATH = {c: [SPOT_H2[c]] + TNK_GLIDE[c][1:] for c in CLS}
 YSR = {c: [YSD[c][i] * TNK_PATH[c][i] / 1000.0 for i in range(5)] for c in CLS}
 TNK_CHREV = [sum(YCR[c][i] for c in CLS) for i in range(5)]
 TNK_SPOTREV = [sum(YSR[c][i] for c in CLS) for i in range(5)]
-TNK_TCEREV = [TNK_CHREV[i] + TNK_SPOTREV[i] for i in range(5)]
+TCEREV_H126 = FLEET['tce_rev_h126']
+TNK_TCEREV = ([TNK_CHREV[0] + TNK_SPOTREV[0] + TCEREV_H126]
+              + [TNK_CHREV[i] + TNK_SPOTREV[i] for i in range(1, 5)])
 
-# The running cost is not an assumption either: it is solved so that the same construction
-# reproduces the tanker earnings the company actually reported for 2025.
+# THE COST STACK IS SOLVED FROM TWO DISCLOSED PERIODS, not one, and it has two parts.
+# The delivered edition set earnings equal to the owned fleet's charter-equivalent revenue
+# less one running cost per vessel-day — an earnings leverage of exactly 1.0 on the rate —
+# and the reviewed half falsified it: the fleet's charter-equivalent revenue was 805,808
+# and the segment reported earnings of 994,166, more than the fleet earns before any cost
+# at all. So the stack is a FIXED base a year, escalated, plus a VARIABLE component per
+# unit of charter-equivalent revenue, both solved from the audited 2025 year and the
+# reviewed 2026 half, with the reviewed 2025 half HELD OUT.
 VDAYS25 = sum(OWNED25.values()) * 365
-TCEREV25 = sum(OWNED25[c] * TCE25[c] for c in CLS) * 365 / 1000.0
+TCEREV25 = FLEET['tce_rev_25']
 TNK_EB25 = V['seg_ebitda_tankers_fy25']
-OPEX_DAY = (TCEREV25 - TNK_EB25) * 1000.0 / VDAYS25
-TNK_OPEXD = [OPEX_DAY * ESC_IDX[i] for i in range(5)]
-TNK_OPEX = [VDAYS25 * TNK_OPEXD[i] / 1000.0 for i in range(5)]
-TNK_EBITDA = [TNK_TCEREV[i] - TNK_OPEX[i] for i in range(5)]
-TNK_REV = [TNK_TCEREV[i] * GROSSUP for i in range(5)]
+TNK_FIXED = V['tnk_cost_fixed']
+TNK_VAR = V['tnk_cost_var']
+TNK_LEV = FLEET['leverage']
+# 2026 is the REPORTED half plus a built half; the years after it are built in full.
+TNK_H2_TCE = TNK_CHREV[0] + TNK_SPOTREV[0]
+TNK_REV = ([V['h1_26_rev_tankers'] + GROSSUP * TNK_H2_TCE]
+           + [TNK_TCEREV[i] * GROSSUP for i in range(1, 5)])
+TNK_FIXED_Y = [TNK_FIXED * ESC_IDX[i] for i in range(5)]
+TNK_VARC = ([TNK_VAR * TNK_H2_TCE] + [TNK_VAR * TNK_TCEREV[i] for i in range(1, 5)])
+TNK_FIXC = ([TNK_FIXED_Y[0] * 184.0 / 365.0] + [TNK_FIXED_Y[i] for i in range(1, 5)])
+TNK_EBITDA = ([V['h1_26_ebitda_tankers'] + GROSSUP * TNK_H2_TCE
+               - TNK_FIXC[0] - TNK_VARC[0]]
+              + [TNK_REV[i] - TNK_FIXC[i] - TNK_VARC[i] for i in range(1, 5)])
 
 GAS_VY = FLEET['gas_vessel_years']
 # The five gas carriers bought in August 2026 are inside those committed vessel-years. The
@@ -343,10 +387,18 @@ GAS_VY25 = V['gas_vessel_years_25']
 GAS_REV25 = V['seg_rev_gas_carriers_fy25']
 GAS_RATE = GAS_REV25 * 1000.0 / (GAS_VY25 * 365)
 GAS_MGN = V['gas_margin']
-JV_GAS = V['jv_gas_fy25']; JV_SERV = V['jv_services_fy25']
+JV_GAS = V['jv_gas_h126']; JV_SERV = V['jv_services_h126']
 GAS_RATED = [GAS_RATE * ESC_IDX[i] for i in range(5)]
-GAS_REV = [GAS_VY[i] * 365 * GAS_RATED[i] / 1000.0 for i in range(5)]
-GAS_GROSS_EB = [r * GAS_MGN for r in GAS_REV]
+# 2026 is the REPORTED half plus a half built on the vessel-year ramp; the years after it
+# scale on the same ramp off that anchor.
+GAS_VY_H1 = V['gas_vessel_years_h126']
+GAS_VY_H2 = 2.0 * GAS_VY[0] - GAS_VY_H1
+GAS_REV26 = (V['h1_26_rev_gas_carriers']
+             + GAS_VY_H2 * 184 * GAS_RATE * ESC_IDX[0] / 1000.0)
+GAS_REV = [GAS_REV26] + [GAS_VY[i] * 365 * GAS_RATED[i] / 1000.0 for i in range(1, 5)]
+GAS_GROSS_EB = ([V['h1_26_ebitda_gas_carriers']
+                 + (GAS_REV[0] - V['h1_26_rev_gas_carriers']) * GAS_MGN]
+                + [r * GAS_MGN for r in GAS_REV[1:]])
 # The disclosed segment earnings INCLUDE the equity-accounted share of joint-venture
 # profit, and the equity bridge already adds those ventures at carrying value. Leaving them
 # in the forecast would count them twice, so they come out here — in Gas Carriers and in
@@ -363,7 +415,7 @@ for s in SEGS:
         SEG_REV_F[s], SEG_EB_F[s] = list(GAS_REV), list(GAS_EBITDA)
     else:
         SEG_REV_F[s] = list(DRV[s]['rev'])
-        _eb = [r * m for r, m in zip(DRV[s]['rev'], DRV[s]['mar'])]
+        _eb = list(DRV[s]['ebitda'])
         SEG_GROSS_EB[s] = list(_eb)
         if s == 'Services':
             _eb = [_eb[i] - SERV_JV[i] for i in range(5)]
@@ -432,24 +484,31 @@ FCFF_F = [NOPAT_F[i] + DNA_F[i] - CAPEX[i] - DNWC_F[i] for i in range(5)]
 # --- cost of capital ---------------------------------------------------------
 MKTCAP = SH * SPOT / PEG * 1000.0
 RF_STAR = V['rf_observed'] - V['sov_spread']
-KE = RF_STAR + V['beta'] * V['erp_total']
+# [R-COC-03] SEVEN COPIES OF ONE IDENTITY, AND THE MODEL MOVED WITHOUT THEM. Every line
+# below read rf* + beta x the WHOLE premium, which multiplies the UAE's country risk by
+# beta. compute.py moved onto the split and this builder did not, so the workbook's own
+# rebuild assertion fired on a discount factor 24bp out. The legs are read from the study's
+# committed record and never retyped, so the seven cannot drift apart again.
+_CRP = COC['crp_effective']
+_ERP_MATURE = COC['erp_mature']
+KE = RF_STAR + V['beta'] * _ERP_MATURE + _CRP
 # The alternative construction is the SAME regression measured against a different market:
 # an equal-weight composite of the exchange's own names rather than its published index.
-KE_A = RF_STAR + V['beta_composite'] * V['erp_total']
+KE_A = RF_STAR + V['beta_composite'] * _ERP_MATURE + _CRP
 # The regression's own 90% confidence interval, and the same slope shrunk toward the
 # market, priced through the same cost-of-equity construction so the reader sees the span
 # the estimate supports.
-KE_CI_LO = RF_STAR + V['beta_ci_lo'] * V['erp_total']
-KE_CI_HI = RF_STAR + V['beta_ci_hi'] * V['erp_total']
-KE_BLUME = RF_STAR + V['beta_blume'] * V['erp_total']
+KE_CI_LO = RF_STAR + V['beta_ci_lo'] * _ERP_MATURE + _CRP
+KE_CI_HI = RF_STAR + V['beta_ci_hi'] * _ERP_MATURE + _CRP
+KE_BLUME = RF_STAR + V['beta_blume'] * _ERP_MATURE + _CRP
 KD1 = V['sofr'] + V['shldr_margin']
 KD_BANK = (V['bank_loan_lo'] + V['bank_loan_hi']) / 2
 KD_OTHER = (V['other_borr_lo'] + V['other_borr_hi']) / 2
 KD_TP = (KD_BANK + KD_OTHER) / 2
 KD_LEASE = V['intpaid_lease_fy25'] / ((V['lease_open_fy25'] + V['lease_close_fy25']) / 2)
-DEBT_NOW = V['q1_26_shldr_loan'] + V['q1_26_borrowings'] + V['q1_26_leases']
-KD2 = (V['q1_26_shldr_loan'] * KD1 + V['q1_26_borrowings'] * KD_TP
-       + V['q1_26_leases'] * KD_LEASE) / DEBT_NOW
+DEBT_NOW = V['h1_26_shldr_loan'] + V['h1_26_borrowings'] + V['h1_26_leases']
+KD2 = (V['h1_26_shldr_loan'] * KD1 + V['h1_26_borrowings'] * KD_TP
+       + V['h1_26_leases'] * KD_LEASE) / DEBT_NOW
 KD3 = KD_BANK
 # [R-COC-01 AMENDED] THE ADOPTED RATE REPRODUCES FROM ITS CONTRACTUAL ANCHOR OR IT IS NOT
 # THE ADOPTED RATE. Only the second construction is weighted by what is actually drawn, so
@@ -469,12 +528,12 @@ KD_AT = KD * (1 - TAXS)
 # So the capital base is equity, debt AND hybrid, and the hybrid carries its own coupon.
 # The coupon is not tax-deductible — it is an equity distribution — so it is not taxed down.
 KH = V['sofr'] + V['hybrid_margin']
-HYBRID_CAP = V['q1_26_hybrid']
+HYBRID_CAP = V['h1_26_hybrid']
 CAP_TOT = MKTCAP + DEBT_NOW + HYBRID_CAP
 WE = MKTCAP / CAP_TOT; WD = DEBT_NOW / CAP_TOT; WH = HYBRID_CAP / CAP_TOT
 W_EXP = WE * KE + WD * KD_AT + WH * KH
-KE_T = V['rf_terminal'] + V['beta'] * V['erp_total']
-KE_T_A = V['rf_terminal'] + V['beta_composite'] * V['erp_total']
+KE_T = V['rf_terminal'] + V['beta'] * _ERP_MATURE + _CRP
+KE_T_A = V['rf_terminal'] + V['beta_composite'] * _ERP_MATURE + _CRP
 KD_T = V['rf_terminal'] + (KD - RF_STAR)
 KD_T_AT = KD_T * (1 - TAXS)
 # the perpetual pays a floating coupon, so its cost normalises with the risk-free rate
@@ -489,10 +548,11 @@ W_TERM = WE * KE_T + WD * KD_T_AT + WH * KH_T
 W_EXP_A = WE * KE_A + WD * KD_AT + WH * KH
 W_TERM_A = WE * KE_T_A + WD * KD_T_AT + WH * KH_T
 
-STUB = 0.75
+STUB = 0.50
 G = V['g_terminal']
-NDCO = V['q1_26_netdebt']; DEFERRED = V['q1_26_pcp']; HYBRID = V['q1_26_hybrid']
-NCI_BV = V['q1_26_nci']; JV_BV = V['jv_bv_q126']; EQP0 = V['q1_26_eqp']
+NDCO = V['h1_26_netdebt']; DEFERRED = V['h1_26_pcp']; HYBRID = V['h1_26_hybrid']
+NCI_BV = V['h1_26_nci']; JV_BV = V['h1_26_jv_bv']; EQP0 = V['h1_26_eqp']
+DIV_DECL = V['div_declared_q2_26']
 # THE MINORITIES ARE NOT ONE THING. Most of the carried balance arose on the Navig8
 # combination, and that 20% is CONTRACTED for purchase in mid-2027 — the present value of
 # that purchase is already in the bridge as deferred consideration. Deducting it a second
@@ -506,11 +566,11 @@ NCI_SH_OTHER = NCI_SHARE * NCI_OTHER / NCI_BV
 
 def nci_ded(pre):
     return NCI_NAV + max(NCI_OTHER, pre * NCI_SH_OTHER)
-CASH = V['q1_26_cash']; Q1FCF = V['q1_26_fcf']
+CASH = V['h1_26_cash']; Q1FCF = V['h1_26_fcf']
 # the August purchase is committed and funded, so its price is carried in net debt from
 # the valuation date — the same USD 1.3 billion that sits in the asset base above
 NETDEBT = NDCO + DEFERRED + ACQ_COST
-INTANG = V['intang_fy25']; GW = V['gw_fy25']
+INTANG = V['h1_26_intang']; GW = V['h1_26_gw']
 IC_F = [PPE_CLOSE[i] + NWC_F[i] + INTANG + GW for i in range(5)]
 
 
@@ -530,7 +590,9 @@ def dcf_legs(w, wt):
     pv_tv = tv * df[4]
     ev_ops = pv_expl + pv_tv
     ev = ev_ops + JV_BV
-    pre = ev - NETDEBT - HYBRID
+    # [R-BRIDGE-01] the interim dividend declared after the balance-sheet date and with a
+    # record date already past is not in the equity a buyer at today's price receives.
+    pre = ev - NETDEBT - HYBRID - DIV_DECL
     ded = nci_ded(pre)
     eq = pre - ded
     return dict(glide=glide, df=df, fcffd=fcffd, pv=pv, pv_expl=pv_expl, roic_t=roic_t,
@@ -584,7 +646,7 @@ BLEND_PE_TTM = (1 - SPOT_W) * PEERS[0]['pe_ttm'] + SPOT_W * PEERS[1]['pe_ttm']
 
 
 def pre_nci_from_ev(ev):
-    return ev + JV_BV - NETDEBT - HYBRID
+    return ev + JV_BV - NETDEBT - DIV_DECL - HYBRID
 
 
 def eq_from_ev(ev):
@@ -675,7 +737,7 @@ SOTP_MULT = {'Integrated Logistics': MULT_CONTR, 'Services': MULT_CONTR,
              'Shipping': BLEND_EV}
 SOTP_EV = {g: GRP_EB_F[g][0] * SOTP_MULT[g] for g in GROUPS}
 SOTP_EVOPS = sum(SOTP_EV.values())
-SOTP_EQ = SOTP_EVOPS + JV_BV - NETDEBT - HYBRID - NCI_BV
+SOTP_EQ = SOTP_EVOPS + JV_BV - NETDEBT - HYBRID - DIV_DECL - NCI_BV
 SOTP_FV = per_share(SOTP_EQ)
 
 # --- the own multiples --------------------------------------------------------
@@ -983,7 +1045,15 @@ block('Cost of capital', [
      'bear-case beta)', V['beta_ci_hi'], BETA),
     ('beta_blume', 'Beta — the measured slope shrunk toward the market: two-thirds of it '
      'plus one-third of 1.0', V['beta_blume'], BETA),
-    ('erp', 'Equity risk premium (mature premium plus country risk)', V['erp_total'], PCT2),
+    ('erp', 'Equity risk premium, TOTAL (the two legs below add to it)', V['erp_total'], PCT2),
+    # [R-COC-03] FOUR LIVE FORMULAS ON THE DCF SHEET READ rf* + beta x the WHOLE premium,
+    # which multiplies the UAE's country risk by beta. The model split and the cells did
+    # not, so the workbook's SOTP bridge came out 103 million dirhams light. The legs are
+    # read from the committed record; the cells recompute the rate from them.
+    ('erpm', '   of which the MATURE premium — beta applies to this leg only',
+     COC['erp_mature'], PCT2),
+    ('crp', 'Country premium — charged FLAT, once, never multiplied by beta',
+     COC['crp_effective'], PCT2),
     ('rf_term', 'Terminal risk-free rate', V['rf_terminal'], PCT2),
     ('tax_stat', 'Statutory corporate tax rate', TAXS, PCT)])
 block('Cost of debt — the evidence behind the three constructions', [
@@ -1002,10 +1072,10 @@ block('Cost of debt — the evidence behind the three constructions', [
      NUM0),
     ('lease_close', 'Lease liabilities, closing balance 2025 (USD 000)',
      V['lease_close_fy25'], NUM0),
-    ('d_shldr', 'Shareholder loan at 31 March 2026 (USD 000)', V['q1_26_shldr_loan'], NUM0),
-    ('d_borr', 'Third-party borrowings at 31 March 2026 (USD 000)', V['q1_26_borrowings'],
+    ('d_shldr', 'Shareholder loan at 30 June 2026 (USD 000)', V['h1_26_shldr_loan'], NUM0),
+    ('d_borr', 'Third-party borrowings at 30 June 2026 (USD 000)', V['h1_26_borrowings'],
      NUM0),
-    ('d_lease', 'Lease liabilities at 31 March 2026 (USD 000)', V['q1_26_leases'], NUM0)])
+    ('d_lease', 'Lease liabilities at 30 June 2026 (USD 000)', V['h1_26_leases'], NUM0)])
 block('Tanker fleet — vessel counts by class',
       [('tnk_own25', 'Vessels owned at 31 December 2025', [OWNED25[c] for c in CLS], NUM0),
        ('tnk_sold', 'Less vessels sold between the year end and the valuation date',
@@ -1022,13 +1092,25 @@ block('Tanker rates — the published blended rate by class and quarter (USD per
        ('b25_lr2', 'Long range 2 — 2025', Q25['lr2'], NUM0),
        ('b25_vlcc', 'Very large crude carrier — 2025', Q25['vlcc'], NUM0)],
       cols=['First quarter', 'Second quarter', 'Third quarter', 'Fourth quarter'])
-block('Tanker rates — the published blended rate by class, the two disclosed quarters of '
-      '2026 (USD per day)',
+block('Tanker rates — the published blended rate by class through 2026 (USD per day). The '
+      'first two quarters are REPORTED; the third is DISCLOSED to 11 August on the share '
+      'of vessel days it covers, with the balance at the mid-cycle rate; the fourth '
+      'reverts halfway to mid-cycle',
       [('b26_mr', 'Medium range', B26['mr'], NUM0),
        ('b26_lr1', 'Long range 1', B26['lr1'], NUM0),
        ('b26_lr2', 'Long range 2', B26['lr2'], NUM0),
        ('b26_vlcc', 'Very large crude carrier', B26['vlcc'], NUM0)],
-      cols=['First quarter 2026', 'Second quarter 2026'])
+      cols=['First quarter 2026', 'Second quarter 2026', 'Third quarter 2026',
+            'Fourth quarter 2026'])
+block('The disclosed third quarter and its coverage — the rate applies to the days it '
+      'covers and the balance is taken at the mid-cycle rate',
+      [('q3_mr', 'Medium range — disclosed third-quarter rate and share of days covered',
+        [V['tce_mr_q3_26'], V['cover_mr_q3_26']], None),
+       ('q3_lr1', 'Long range 1', [V['tce_lr1_q3_26'], V['cover_lr1_q3_26']], None),
+       ('q3_lr2', 'Long range 2', [V['tce_lr2_q3_26'], V['cover_lr2_q3_26']], None),
+       ('q3_vlcc', 'Very large crude carrier',
+        [V['tce_vlcc_q3_26'], V['cover_vlcc_q3_26']], None)],
+      cols=['Disclosed rate (USD per day)', 'Share of vessel days contracted'])
 block('The smallest tankers, which the rate disclosure does not break out', [
     ('hs_rel', 'Handysize rate as a proportion of the medium-range rate — the company '
      'disclosed Handysize DOWN 21% against medium range UP 29%, so the two smallest '
@@ -1046,21 +1128,23 @@ DATEFMT = 'yyyy-mm-dd'
 band(ws, r, 8)
 put(ws, f'A{r}', 'Rate windows and forecast years — the calendar the fleet build runs on '
     '(dates)', bold=True, fmt=None)
-for _i, _c in enumerate(WIN_LAB[:6]):
+for _i, _c in enumerate(WIN_LAB):
     _cc = ws.cell(row=r, column=2 + _i, value=_c)
     _cc.font = Font(bold=True); _cc.fill = FILL_G
 r += 1
 A['win_start'] = r
 put(ws, f'A{r}', 'Rate window begins', fmt=None)
-for _w in range(6):
+for _w in range(8):
     put(ws, f'{WCOL[_w]}{r}', _ser(WIN[_w][0]), BLUE, DATEFMT)
 r += 1
 A['win_end'] = r
 put(ws, f'A{r}', 'Rate window ends — each window closes where the next one opens; the last '
     'is the disclosed quarter end', fmt=None)
-for _w in range(5):
+for _w in range(7):
     putf(ws, f'{WCOL[_w]}{r}', f'={WCOL[_w+1]}{A["win_start"]}', _ser(WIN[_w][1]), DATEFMT)
-put(ws, f'G{r}', _ser(WIN[5][1]), BLUE, DATEFMT)
+put(ws, f'I{r}', _ser(WIN[7][1]), BLUE, DATEFMT)
+put(ws, f'J{A["win_start"]}', _ser(WIN[8][0]), BLUE, DATEFMT)
+put(ws, f'J{r}', _ser(WIN[8][1]), BLUE, DATEFMT)
 r += 2
 band(ws, r, 8)
 put(ws, f'A{r}', 'Forecast years (dates)', bold=True, fmt=None)
@@ -1070,7 +1154,7 @@ for _i, _y in enumerate(YF):
 r += 1
 A['yr_start'] = r
 put(ws, f'A{r}', 'Forecast year begins', fmt=None)
-putf(ws, f'B{r}', f'=F{A["win_start"]}', _ser(YRB[0][0]), DATEFMT)
+putf(ws, f'B{r}', f'=H{A["win_start"]}', _ser(YRB[0][0]), DATEFMT)
 for _i in range(1, 5):
     put(ws, f'{CD[_i]}{r}', _ser(YRB[_i][0]), BLUE, DATEFMT)
 r += 1
@@ -1124,20 +1208,34 @@ putf(ws, f'B{r}', f"=B{A['acq_vlcc']}+B{A['acq_gas']}", ACQ_VLCC_N + ACQ_GAS_N, 
      bold=True)
 r += 2
 
-block('Tanker fleet — rate path and running cost', [
-    ('h2w', 'Weight on the 2025 implied spot rate in setting the second half of 2026', H2W,
-     PCT),
-    ('opex_day', 'All-in running cost per vessel per day (USD)', OPEX_DAY, NUM1),
+block('Tanker fleet — rate path and cost stack', [
+    ('h2w', 'Weight on the mid-cycle rate against the disclosed third-quarter 2026 rate, '
+     'in setting the fourth quarter of 2026', H2W, PCT),
+    ('tnk_fixed', 'Tanker cost stack — fixed base a year before escalation (USD 000)',
+     TNK_FIXED, NUM0),
+    ('tnk_var', 'Tanker cost stack — variable cost per unit of charter-equivalent revenue',
+     TNK_VAR, '0.0000'),
     ('esc0', 'House inflation ladder, FY2026', ESC_PATH[0], PCT),
     ('esc1', 'House inflation ladder, FY2027', ESC_PATH[1], PCT),
     ('esc2', 'House inflation ladder, FY2028', ESC_PATH[2], PCT),
     ('esc3', 'House inflation ladder, FY2029', ESC_PATH[3], PCT),
     ('esc4', 'House inflation ladder, FY2030', ESC_PATH[4], PCT),
     ('grossup', 'Gross-up from time-charter-equivalent revenue to reported revenue',
-     GROSSUP, '0.00')])
+     GROSSUP, '0.00'),
+    ])
+block('The reviewed first half of 2026, as reported — the anchor every unit is built '
+      'from', [(f'h1_rev_{k}', f'{s} — revenue, six months to 30 June 2026 (USD 000)',
+                V[f'h1_26_rev_{k}'], NUM0)
+               for s, k in ((u, u.lower().replace(' ', '_').replace('-', '_'))
+                            for u in SEGS)]
+      + [(f'h1_eb_{k}', f'{s} — EBITDA, six months to 30 June 2026 (USD 000)',
+          V[f'h1_26_ebitda_{k}'], NUM0)
+         for s, k in ((u, u.lower().replace(' ', '_').replace('-', '_')) for u in SEGS)])
 block('Gas carriers', [
     ('gas_vy25', 'Consolidated gas vessels in service through 2025 (vessel-years)', GAS_VY25,
      NUM1),
+    ('gas_vy_h1', 'Consolidated gas vessels in service through the first half of 2026 '
+     '(vessel-years)', GAS_VY_H1, NUM1),
     ('gas_rate', 'Gas carriers — implied revenue per vessel-day (USD)', GAS_RATE, NUM0),
     ('gas_mgn', 'Gas carriers — earnings margin', GAS_MGN, PCT),
     ('jv_gas', 'Share of joint-venture profit carried in the disclosed 2025 Gas Carriers '
@@ -1222,7 +1320,9 @@ block('Tax by business unit and the 2025 depreciation allocation basis', [
         f'{s} — 2025 depreciation and amortisation (USD 000)', SEG_DNA25[s], NUM0)
        for s in SEGS])
 block('Funding, distributions and the bridge', [
-    ('nd_co', 'Net debt at 31 March 2026, company basis (USD 000)', NDCO, NUM0),
+    ('nd_co', 'Net debt at 30 June 2026, company basis (USD 000)', NDCO, NUM0),
+    ('div_decl', 'Interim dividend declared after the balance-sheet date '
+     '(USD 000)', DIV_DECL, NUM0),
     ('deferred', 'Deferred consideration on acquisitions (USD 000)', DEFERRED, NUM0),
     ('hybrid', 'Perpetual capital securities at carrying value (USD 000)', HYBRID, NUM0),
     ('hyb_m', 'Perpetual capital securities margin over the overnight rate',
@@ -1290,9 +1390,9 @@ _sg('yacdb', 1, 0); _sg('yacd0', 5)
 _sg('ysdb', 1, 0); _sg('ysd0', 5)
 _sg('ysrb', 1, 0); _sg('ysr0', 5)
 _sg('chrevt', 1, 0); _sg('sprevt', 1, 0); _sg('tcerev')
-_sg('opxb', 1, 0); _sg('vdays25', 1, 0); _sg('tcerev25', 1, 0); _sg('teb25', 1, 0)
-_sg('opexd0')
-_sg('opexd', 1, 0); _sg('opex', 1, 0); _sg('teb', 1, 0); _sg('gross', 1, 0); _sg('trev')
+_sg('opxb', 1, 0); _sg('tcerev25', 1, 0); _sg('teb25', 1, 0)
+_sg('tceh1', 1, 0); _sg('tebh1', 1, 0); _sg('lev0', 1, 0); _sg('fixed0')
+_sg('fixc', 1, 0); _sg('varc', 1, 0); _sg('gross', 1, 0); _sg('trev', 1, 0); _sg('teb')
 _sg('gasb', 1, 0); _sg('gasvy25', 1, 0); _sg('gasrev25', 1, 0); _sg('gasrate0')
 _sg('gasvyb', 1, 0); _sg('gasvya', 1, 0)
 _sg('gasvy', 1, 0); _sg('gasrate', 1, 0); _sg('gasrev', 1, 0); _sg('gasmgn', 1, 0)
@@ -1306,21 +1406,21 @@ DF_ = dict(rev=5, ebitda=6, mgn=7, dna=8, ebit=9, tax=10, nopat=11, adddna=12,
            capex=13, dnwc=14, fcff=15, q1=16, fcfd=17, glide=18, df=19, pv=20,
            taxb=22, geb0=23, gdna0=26, gtax0=29, gtaxc0=32, taxtot=35, taxrate=36,
            tvb=38, g=39, ic=40, roic=41, reinv=42, nopat1=43, tv=44, pvex=45,
-           pvtv=46, evops=47, tvshare=48, jv=49, ev=50, nd=51, defd=52, acq=53, hyb=54,
-           prenci=55, ncinav=56, nciother=57, ncishare=58, nci=59, eq=60, fvusd=61,
-           fvaed=62,
-           keb=63, rfobs=64, sov=65, rfstar=66, beta=67, erp=68, ke=69,
-           kdb=71, sofr=72, shldrm=73, kd1=74, banklo=75, bankhi=76, bankmid=77,
-           othlo=78, othhi=79, othmid=80, tp=81, leaseint=82, leaseopen=83,
-           leaseclose=84, kdlease=85, dshldr=86, dborr=87, dlease=88, dtot=89,
-           kd2=90, kd3=91, kd=92, kdbal=93, taxstat=94, kdat=95,
-           wb=96, mktcap=97, borr=98, hybcap=99, captot=100, we=101, wd=102, whyb=103,
-           kh=104, wacc=105, rfterm=106, keterm=107,
-           kdterm=108, kdtermat=109, khterm=110, waccterm=111,
-           ab=113, betaa=114, kea=115, keta=116, wacca=117, wactermsa=118,
-           cib=120, cilo=121, cihi=122, kecilo=123, kecihi=124, blume=125, keblume=126,
-           ahdr=128, glidea=129, dfa=130, pva=131, pvexa=132, tva=133, pvtva=134,
-           evopsa=135, tvsharea=136, eva=137, prencia=138, ncia=139, eqa=140, fvaeda=141)
+           pvtv=46, evops=47, tvshare=48, jv=49, ev=50, nd=51, defd=52, acq=53, hyb=54, div=55,
+           prenci=56, ncinav=57, nciother=58, ncishare=59, nci=60, eq=61, fvusd=62,
+           fvaed=63,
+           keb=64, rfobs=65, sov=66, rfstar=67, beta=68, erp=69, ke=70,
+           kdb=72, sofr=73, shldrm=74, kd1=75, banklo=76, bankhi=77, bankmid=78,
+           othlo=79, othhi=80, othmid=81, tp=82, leaseint=83, leaseopen=84,
+           leaseclose=85, kdlease=86, dshldr=87, dborr=88, dlease=89, dtot=90,
+           kd2=91, kd3=92, kd=93, kdbal=94, taxstat=95, kdat=96,
+           wb=97, mktcap=98, borr=99, hybcap=100, captot=101, we=102, wd=103, whyb=104,
+           kh=105, wacc=106, rfterm=107, keterm=108,
+           kdterm=109, kdtermat=110, khterm=111, waccterm=112,
+           ab=114, betaa=115, kea=116, keta=117, wacca=118, wactermsa=119,
+           cib=121, cilo=122, cihi=123, kecilo=124, kecihi=125, blume=126, keblume=127,
+           ahdr=129, glidea=130, dfa=131, pva=132, pvexa=133, tva=134, pvtva=135,
+           evopsa=136, tvsharea=137, eva=138, prencia=139, ncia=140, eqa=141, fvaeda=142)
 # Income statement
 IS = dict(rev=5, dc=6, gp=7, ga=8, ecl=9, oi=10, oe=11, op=12, dna=13, ebitda=14,
           ebjv=15, ebrep=16, opcost=17, mgn=18, assoc=19, bargain=20, prevheld=21,
@@ -1353,7 +1453,7 @@ def _rn(key, n=1, gap=0):
     return RN[key]
 
 
-for _k in ('hdr', 'eb26', 'blend', 'ev', 'jv', 'nd', 'defd', 'acq', 'hyb', 'pre', 'nci',
+for _k in ('hdr', 'eb26', 'blend', 'ev', 'jv', 'nd', 'defd', 'acq', 'hyb', 'div', 'pre', 'nci',
            'eq', 'vev', 'pe', 'ord26', 'vpe', 'w', 'base', 'bearev', 'bearpre', 'bearnci',
            'beareq'):
     _rn(_k)
@@ -1385,10 +1485,10 @@ for _k in ('vsb', 'vsbook', 'vsprice', 'vsratio', 'vsgain'):
 _rn('vsnote')
 # SOTP bridge
 SB = dict(hdr=4, pvex=5, pvtv=6, evops=7, tvshare=8, jv=9, ev=10, nd=11, defd=12, acq=13,
-          hyb=14, prenci=15, nci=16, eq=17, fvusd=18, fvaed=19,
-          legb=21, leg0=22, legt=25, mb=27, mcon=28, mspot=29, mw=30, mship=31,
-          bb=33, bevops=34, bjv=35, bev=36, bnd=37, bdefd=38, bacq=39, bhyb=40, bnci=41,
-          beq=42, bfv=43)
+          hyb=14, div=15, prenci=16, nci=17, eq=18, fvusd=19, fvaed=20,
+          legb=22, leg0=23, legt=26, mb=28, mcon=29, mspot=30, mw=31, mship=32,
+          bb=34, bevops=35, bjv=36, bev=37, bnd=38, bdefd=39, bacq=40, bhyb=41, bdiv=42,
+          bnci=43, beq=44, bfv=45)
 # Summary
 SU = dict(hdr=4, dcf=5, rel=6, norm=7, book=8, central=9, cb=11, dcfa=12, centrala=13,
           panel=15, spot=16, keyhdr=18, key0=19)
@@ -1428,16 +1528,18 @@ _bridge = [
     (SB['jv'], 'Plus joint ventures and associates at carrying value', f"={a('jv')}",
      JV_BV, True),
     (SB['ev'], 'Enterprise value', f"=C{SB['evops']}+C{SB['jv']}", DC['ev'], False),
-    (SB['nd'], 'Less net debt at 31 March 2026', f"=-{a('nd_co')}", -NDCO, True),
+    (SB['nd'], 'Less net debt at 30 June 2026', f"=-{a('nd_co')}", -NDCO, True),
     (SB['defd'], 'Less deferred consideration on acquisitions', f"=-{a('deferred')}",
      -DEFERRED, True),
     (SB['acq'], 'Less the eleven vessels bought on 7 August 2026, at the announced price',
      f"=-{a('acq_cost')}", -ACQ_COST, True),
     (SB['hyb'], 'Less perpetual capital securities at carrying value', f"=-{a('hybrid')}",
      -HYBRID, True),
+    (SB['div'], 'Less the interim dividend declared after the balance-sheet date, on a '
+     'record date already past', f"=-{a('div_decl')}", -DIV_DECL, True),
     (SB['prenci'], 'Equity value before the minorities',
-     f"=C{SB['ev']}+C{SB['nd']}+C{SB['defd']}+C{SB['acq']}+C{SB['hyb']}", DC['pre_nci'],
-     False),
+     f"=C{SB['ev']}+C{SB['nd']}+C{SB['defd']}+C{SB['acq']}+C{SB['hyb']}+C{SB['div']}",
+     DC['pre_nci'], False),
     (SB['nci'], 'Less non-controlling interests — the contracted slice at its contracted '
      'price, the rest at the greater of book and value',
      f"=DCF!$C${DF_['nci']}", -DC['nci'], True),
@@ -1502,18 +1604,20 @@ _sb = [(SB['bevops'], 'Enterprise value of the operating legs', f"=D{SB['legt']}
         JV_BV, True),
        (SB['bev'], 'Enterprise value', f"=C{SB['bevops']}+C{SB['bjv']}",
         SOTP_EVOPS + JV_BV, False),
-       (SB['bnd'], 'Less net debt at 31 March 2026', f"=-{a('nd_co')}", -NDCO, True),
+       (SB['bnd'], 'Less net debt at 30 June 2026', f"=-{a('nd_co')}", -NDCO, True),
        (SB['bdefd'], 'Less deferred consideration on acquisitions', f"=-{a('deferred')}",
         -DEFERRED, True),
        (SB['bacq'], 'Less the eleven vessels bought on 7 August 2026, at the announced '
         'price', f"=-{a('acq_cost')}", -ACQ_COST, True),
        (SB['bhyb'], 'Less perpetual capital securities at carrying value',
         f"=-{a('hybrid')}", -HYBRID, True),
+       (SB['bdiv'], 'Less the interim dividend declared after the balance-sheet date',
+        f"=-{a('div_decl')}", -DIV_DECL, True),
        (SB['bnci'], 'Less non-controlling interests at carrying value', f"=-{a('nci_bv')}",
         -NCI_BV, True),
        (SB['beq'], 'Equity attributable to ordinary shareholders',
         f"=C{SB['bev']}+C{SB['bnd']}+C{SB['bdefd']}+C{SB['bacq']}+C{SB['bhyb']}"
-        f"+C{SB['bnci']}",
+        f"+C{SB['bdiv']}+C{SB['bnci']}",
         SOTP_EQ, False)]
 for rw, lab, fml, xp, gr in _sb:
     put(ws, f'A{rw}', lab, fmt=None)
@@ -1617,7 +1721,7 @@ put(ws, f"A{SG['winen']}", 'Window ends', fmt=None)
 put(ws, f"A{SG['windy']}", 'Days in the window', fmt=None)
 for w in range(NWIN):
     cw = WCOL[w]
-    if w < 6:
+    if w < 8:
         putf(ws, f"{cw}{SG['winst']}", f"={a('win_start', col=cw)}", _ser(WIN[w][0]),
              DATEFMT, green=True)
         putf(ws, f"{cw}{SG['winen']}", f"={a('win_end', col=cw)}", _ser(WIN[w][1]), DATEFMT,
@@ -1641,10 +1745,12 @@ def _blend_f(j, w):
     src = 'mr' if c == 'hs' else c
     hs = f"*{a('hs_rel')}" if c == 'hs' else ''
     if w < 4:
-        if c == 'hs':                          # no quarterly series: the class average
-            return f"=AVERAGE(Assumptions!$B${A['b25_mr']}:$E${A['b25_mr']}){hs}"
-        return f"={a('b25_' + src, col=CD[w])}"
-    if w in (4, 5):
+        # THE SMALLEST CLASS TAKES THAT QUARTER'S MEDIUM-RANGE RATE, not the year's
+        # average of it. The cost stack is solved on this series quarter by quarter, so an
+        # annual average here and a quarterly rate in the model are two different numbers
+        # and the solve drifts.
+        return f"={a('b25_' + src, col=CD[w])}{hs}"
+    if w in (4, 5, 6, 7):
         return f"={a('b26_' + src, col=CD[w - 4])}{hs}"
     # the mid-cycle anchor: the 2024 and 2025 published blends averaged
     r25 = A['b25_' + src]
@@ -1691,7 +1797,7 @@ for j, c in enumerate(CLS):
         put(ws, f'A{SG[key]+j}', CLS_NAME[j], fmt=None)
     for w in range(NWIN):
         cw = WCOL[w]
-        fleet_row = SG['own'] if w in (4, 5) else SG['own25']
+        fleet_row = SG['own'] if w in (4, 5, 6, 7) else SG['own25']
         putf(ws, f"{cw}{SG['blend0']+j}", _blend_f(j, w), BLEND_W[c][w], NUM0, green=True)
         putf(ws, f"{cw}{SG['cd0']+j}", f"=${CD[j]}${fleet_row}*{cw}${SG['windy']}",
              CDAYS[c][w], NUM0)
@@ -1711,24 +1817,26 @@ clsband(SG['rateb'], 'THE IMPLIED SPOT RATE PATH — NEVER THE PUBLISHED BLEND',
 for rw, lab in [(SG['sp25'], '2025 implied spot rate — the four quarters averaged (USD per '
                  'day)'),
                 (SG['spmid'], 'Mid-cycle implied spot anchor (USD per day)'),
-                (SG['spq1'], 'First-quarter 2026 implied spot rate (USD per day)'),
-                (SG['spq2'], 'Second-quarter 2026 implied spot rate (USD per day)'),
-                (SG['sph2'], 'Second half of 2026 — the first quarter stepped back toward '
-                 'the 2025 implied spot rate (USD per day)'),
-                (SG['spy26'], 'FY2026 implied spot rate — the four quarters averaged (USD '
-                 'per day)')]:
+                (SG['spq1'], 'First-quarter 2026 implied spot rate — REPORTED (USD per day)'),
+                (SG['spq2'], 'Second-quarter 2026 implied spot rate — REPORTED (USD per day)'),
+                (SG['sph2'], 'Second half of 2026 — the third quarter as disclosed and the '
+                 'fourth reverting halfway to mid-cycle, weighted by spot vessel-days '
+                 '(USD per day)'),
+                (SG['spy26'], 'FY2026 implied spot rate — the four quarters weighted by '
+                 'days (USD per day)')]:
     put(ws, f'A{rw}', lab, fmt=None)
 for j, c in enumerate(CLS):
     putf(ws, f"{CD[j]}{SG['sp25']}", f"=AVERAGE(B{SG['sp0']+j}:E{SG['sp0']+j})", SPOT25[c],
          NUM0)
-    putf(ws, f"{CD[j]}{SG['spmid']}", f"=H{SG['sp0']+j}", SPOT_MID[c], NUM0)
+    putf(ws, f"{CD[j]}{SG['spmid']}", f"=J{SG['sp0']+j}", SPOT_MID[c], NUM0)
     putf(ws, f"{CD[j]}{SG['spq1']}", f"=F{SG['sp0']+j}", SPOT_Q1[c], NUM0)
     putf(ws, f"{CD[j]}{SG['spq2']}", f"=G{SG['sp0']+j}", SPOT_Q2[c], NUM0)
     putf(ws, f"{CD[j]}{SG['sph2']}",
-         f"={CD[j]}{SG['spq1']}*(1-{a('h2w')})+{CD[j]}{SG['sp25']}*{a('h2w')}", TNK_H2[c],
-         NUM0)
+         f"=({_SDQ[c][0]}*H{SG['sp0']+j}+{_SDQ[c][1]}*I{SG['sp0']+j})"
+         f"/{_SDQ[c][0] + _SDQ[c][1]}", SPOT_H2[c], NUM0)
     putf(ws, f"{CD[j]}{SG['spy26']}",
-         f"=({CD[j]}{SG['spq1']}+{CD[j]}{SG['spq2']}+2*{CD[j]}{SG['sph2']})/4", TNK_Y26[c],
+         f"=({CD[j]}{SG['spq1']}*{QD26[0]}+{CD[j]}{SG['spq2']}*{QD26[1]}"
+         f"+H{SG['sp0']+j}*{QD26[2]}+I{SG['sp0']+j}*{QD26[3]})/{sum(QD26)}", TNK_Y26[c],
          NUM0)
 
 yrband(SG['pathb'], 'Implied spot rate by class, gliding to the mid-cycle anchor (USD per '
@@ -1737,7 +1845,7 @@ for j, c in enumerate(CLS):
     rw = SG['path0'] + j
     put(ws, f'A{rw}', CLS_NAME[j], fmt=None)
     for i in range(5):
-        f_ = (f"=${CD[j]}${SG['spy26']}" if i == 0 else
+        f_ = (f"=${CD[j]}${SG['sph2']}" if i == 0 else
               f"=${CD[j]}${SG['spy26']}+(${CD[j]}${SG['spmid']}-${CD[j]}${SG['spy26']})"
               f"*{i}/4")
         putf(ws, f'{CD[i]}{rw}', f_, TNK_PATH[c][i], NUM0)
@@ -1788,46 +1896,80 @@ for i in range(5):
          f"=SUM({CD[i]}{SG['ycr0']}:{CD[i]}{SG['ycr0']+4})", TNK_CHREV[i], NUM0)
     putf(ws, f"{CD[i]}{SG['sprevt']}",
          f"=SUM({CD[i]}{SG['ysr0']}:{CD[i]}{SG['ysr0']+4})", TNK_SPOTREV[i], NUM0)
+    _add = f"+$B${SG['tceh1']}" if i == 0 else ''
     putf(ws, f"{CD[i]}{SG['tcerev']}",
-         f"={CD[i]}{SG['chrevt']}+{CD[i]}{SG['sprevt']}", TNK_TCEREV[i], NUM0, bold=True)
+         f"={CD[i]}{SG['chrevt']}+{CD[i]}{SG['sprevt']}{_add}", TNK_TCEREV[i], NUM0,
+         bold=True)
 
 band(ws, SG['opxb'], 6)
-put(ws, f"A{SG['opxb']}", 'THE RUNNING COST — SOLVED FROM THE 2025 OUTCOME, NOT ASSUMED',
+put(ws, f"A{SG['opxb']}", 'THE COST STACK — SOLVED FROM TWO DISCLOSED PERIODS, NOT ONE',
     bold=True, fmt=None)
-put(ws, f"A{SG['vdays25']}", 'Vessel-days in 2025 (fleet at 31 December 2025 x 365)',
-    fmt=None)
-putf(ws, f"B{SG['vdays25']}", f"=SUM(B{SG['own25']}:F{SG['own25']})*365", VDAYS25, NUM0)
 put(ws, f"A{SG['tcerev25']}", '2025 charter-equivalent revenue on the published blends '
     '(USD 000)', fmt=None)
+# QUARTER BY QUARTER ON EACH QUARTER'S OWN DAY COUNT, not the average rate times 365 —
+# the quarters are 90, 91, 92 and 92 days long and the rate moved a long way between them,
+# so the two constructions are not the same number.
 _t25 = '=(' + '+'.join(
-    f"{CD[j]}{SG['own25']}*AVERAGE(B{SG['blend0']+j}:E{SG['blend0']+j})"
-    for j in range(5)) + ')*365/1000'
+    f"{CD[j]}{SG['own25']}*(" + '+'.join(
+        f"{WCOL[w]}{SG['blend0']+j}*({WCOL[w]}{SG['winen']}-{WCOL[w]}{SG['winst']})"
+        for w in range(4)) + ')'
+    for j in range(5)) + ')/1000'
 putf(ws, f"B{SG['tcerev25']}", _t25, TCEREV25, NUM0)
 put(ws, f"A{SG['teb25']}", '2025 Tankers EBITDA as disclosed (USD 000)', fmt=None)
 putf(ws, f"B{SG['teb25']}", f"=D{SG['ebh0']+SEGREF['Tankers']}", TNK_EB25, NUM0, green=True)
-put(ws, f"A{SG['opexd0']}", 'Implied all-in running cost per vessel-day — the gap between '
-    'the two, over the vessel-days that earned it (USD)', bold=True, fmt=None)
-putf(ws, f"B{SG['opexd0']}",
-     f"=(B{SG['tcerev25']}-B{SG['teb25']})*1000/B{SG['vdays25']}", OPEX_DAY, NUM1, bold=True)
-
-yrband(SG['opexd'], 'Tanker revenue and running cost (USD 000)')
-put(ws, f"A{SG['opexd']}", 'Running cost per vessel-day, escalated (USD)', bold=True,
+put(ws, f"A{SG['tceh1']}", 'First-half 2026 charter-equivalent revenue on the reported '
+    'blends (USD 000)', fmt=None)
+_th1 = '=(' + '+'.join(
+    f"{CD[j]}{SG['own']}*F{SG['blend0']+j}*(F{SG['winen']}-F{SG['winst']})"
+    f"+{CD[j]}{SG['own']}*G{SG['blend0']+j}*(G{SG['winen']}-G{SG['winst']})"
+    for j in range(5)) + ')/1000'
+putf(ws, f"B{SG['tceh1']}", _th1, TCEREV_H126, NUM0)
+put(ws, f"A{SG['tebh1']}", 'First-half 2026 Tankers EBITDA as reported (USD 000)', fmt=None)
+putf(ws, f"B{SG['tebh1']}", f"={a('h1_eb_tankers')}", V['h1_26_ebitda_tankers'], NUM0,
+     green=True)
+put(ws, f"A{SG['lev0']}", 'Earnings leverage on charter-equivalent revenue — solved from '
+    'the two periods together', bold=True, fmt=None)
+putf(ws, f"B{SG['lev0']}",
+     f"=(B{SG['tebh1']}-181/365*B{SG['teb25']})/(B{SG['tceh1']}-181/365*B{SG['tcerev25']})",
+     TNK_LEV, '0.0000', bold=True)
+put(ws, f"A{SG['fixed0']}", 'Fixed cost base a year — the same solve (USD 000)', bold=True,
     fmt=None)
-put(ws, f"A{SG['opex']}", 'Total running cost — cost per day x vessel-days', fmt=None)
-put(ws, f"A{SG['teb']}", 'Tankers EBITDA', bold=True, fmt=None)
+putf(ws, f"B{SG['fixed0']}", f"=B{SG['lev0']}*B{SG['tcerev25']}-B{SG['teb25']}", TNK_FIXED,
+     NUM0, bold=True)
+
+yrband(SG['fixc'], 'Tanker revenue and cost stack (USD 000)')
+put(ws, f"A{SG['fixc']}", 'Fixed cost, escalated — half a year in 2026, when the first '
+    'half is already reported', fmt=None)
+put(ws, f"A{SG['varc']}", 'Variable cost — the rate per unit of charter-equivalent revenue '
+    'x that revenue', fmt=None)
 put(ws, f"A{SG['gross']}", 'Gross-up from time-charter-equivalent to reported revenue',
     fmt=None)
 put(ws, f"A{SG['trev']}", 'Tankers revenue', bold=True, fmt=None)
+put(ws, f"A{SG['teb']}", 'Tankers EBITDA', bold=True, fmt=None)
 for i in range(5):
-    putf(ws, f"{CD[i]}{SG['opexd']}", f"={a('opex_day')}*{esc_chain(i)}",
-         TNK_OPEXD[i], NUM1)
-    putf(ws, f"{CD[i]}{SG['opex']}", f"=$B${SG['vdays25']}*{CD[i]}{SG['opexd']}/1000",
-         TNK_OPEX[i], NUM0)
-    putf(ws, f"{CD[i]}{SG['teb']}", f"={CD[i]}{SG['tcerev']}-{CD[i]}{SG['opex']}",
-         TNK_EBITDA[i], NUM0, bold=True)
+    _frac = '*184/365' if i == 0 else ''
+    putf(ws, f"{CD[i]}{SG['fixc']}",
+         f"={a('tnk_fixed')}*{esc_chain(i)}{_frac}", TNK_FIXC[i], NUM0)
+    # THE SECOND HALF IS ADDRESSED DIRECTLY, NOT AS THE YEAR LESS THE HALF. Subtracting
+    # two seven-figure cells to recover one of them loses precision the evaluator then
+    # carries into the terminal, and the reconciliation gate is tight enough to see it.
+    _tce = (f"({CD[i]}{SG['chrevt']}+{CD[i]}{SG['sprevt']})" if i == 0
+            else f"{CD[i]}{SG['tcerev']}")
+    putf(ws, f"{CD[i]}{SG['varc']}", f"={a('tnk_var')}*{_tce}", TNK_VARC[i], NUM0)
     putf(ws, f"{CD[i]}{SG['gross']}", f"={a('grossup')}", GROSSUP, '0.00', green=True)
-    putf(ws, f"{CD[i]}{SG['trev']}", f"={CD[i]}{SG['tcerev']}*{CD[i]}{SG['gross']}",
-         TNK_REV[i], NUM0, bold=True)
+    if i == 0:
+        putf(ws, f"{CD[i]}{SG['trev']}",
+             f"={a('h1_rev_tankers')}+{_tce}*{CD[i]}{SG['gross']}", TNK_REV[i], NUM0,
+             bold=True)
+        putf(ws, f"{CD[i]}{SG['teb']}",
+             f"={a('h1_eb_tankers')}+{_tce}*{CD[i]}{SG['gross']}"
+             f"-{CD[i]}{SG['fixc']}-{CD[i]}{SG['varc']}", TNK_EBITDA[i], NUM0, bold=True)
+    else:
+        putf(ws, f"{CD[i]}{SG['trev']}", f"={_tce}*{CD[i]}{SG['gross']}", TNK_REV[i], NUM0,
+             bold=True)
+        putf(ws, f"{CD[i]}{SG['teb']}",
+             f"={CD[i]}{SG['trev']}-{CD[i]}{SG['fixc']}-{CD[i]}{SG['varc']}",
+             TNK_EBITDA[i], NUM0, bold=True)
 
 band(ws, SG['gasb'], 6)
 put(ws, f"A{SG['gasb']}", 'GAS CARRIERS — CONTRACTED VESSEL-YEARS x IMPLIED DAY RATE',
@@ -1867,11 +2009,17 @@ for i in range(5):
          bold=True, green=True)
     putf(ws, f"{CD[i]}{SG['gasrate']}", f"={a('gas_rate')}*{esc_chain(i)}",
          GAS_RATED[i], NUM0)
-    putf(ws, f"{CD[i]}{SG['gasrev']}",
-         f"={CD[i]}{SG['gasvy']}*365*{CD[i]}{SG['gasrate']}/1000", GAS_REV[i], NUM0)
+    # 2026 IS THE REPORTED HALF PLUS A HALF BUILT ON THE VESSEL-YEAR RAMP; the years
+    # after it scale on that ramp off the same anchor.
+    _gr = (f"={a('h1_rev_gas_carriers')}+({CD[i]}{SG['gasvy']}*2-{a('gas_vy_h1')})"
+           f"*184*{CD[i]}{SG['gasrate']}/1000" if i == 0
+           else f"={CD[i]}{SG['gasvy']}*365*{CD[i]}{SG['gasrate']}/1000")
+    putf(ws, f"{CD[i]}{SG['gasrev']}", _gr, GAS_REV[i], NUM0)
     putf(ws, f"{CD[i]}{SG['gasmgn']}", f"={a('gas_mgn')}", GAS_MGN, PCT, green=True)
-    putf(ws, f"{CD[i]}{SG['gasgeb']}", f"={CD[i]}{SG['gasrev']}*{CD[i]}{SG['gasmgn']}",
-         GAS_GROSS_EB[i], NUM0)
+    _ge = (f"={a('h1_eb_gas_carriers')}+({CD[i]}{SG['gasrev']}"
+           f"-{a('h1_rev_gas_carriers')})*{CD[i]}{SG['gasmgn']}" if i == 0
+           else f"={CD[i]}{SG['gasrev']}*{CD[i]}{SG['gasmgn']}")
+    putf(ws, f"{CD[i]}{SG['gasgeb']}", _ge, GAS_GROSS_EB[i], NUM0)
     putf(ws, f"{CD[i]}{SG['gasjv']}", f"=-{a('jv_gas')}*{esc_chain(i)}",
          -GAS_JV[i], NUM0)
     putf(ws, f"{CD[i]}{SG['gaseb']}", f"={CD[i]}{SG['gasgeb']}+{CD[i]}{SG['gasjv']}",
@@ -1893,8 +2041,10 @@ for s in UNITS:
             'the disclosed segment, escalated', fmt=None)
         put(ws, f'A{_rr+3}', f'{s} — EBITDA', fmt=None)
         for i in range(5):
-            putf(ws, f'{CD[i]}{_rr+1}', f"={CD[i]}{_rr}*{a('mar_'+k, col=CD[i])}",
-                 SEG_GROSS_EB[s][i], NUM0)
+            _f = (f"={a('h1_eb_'+k)}+({CD[i]}{_rr}-{a('h1_rev_'+k)})"
+                  f"*{a('mar_'+k, col=CD[i])}" if i == 0
+                  else f"={CD[i]}{_rr}*{a('mar_'+k, col=CD[i])}")
+            putf(ws, f'{CD[i]}{_rr+1}', _f, SEG_GROSS_EB[s][i], NUM0)
             putf(ws, f'{CD[i]}{_rr+2}', f"=-{a('jv_serv')}*{esc_chain(i)}",
                  -SERV_JV[i], NUM0)
             putf(ws, f'{CD[i]}{_rr+3}', f"={CD[i]}{_rr+1}+{CD[i]}{_rr+2}", SEG_EB_F[s][i],
@@ -1904,8 +2054,10 @@ for s in UNITS:
     else:
         put(ws, f'A{_rr+1}', f'{s} — EBITDA', fmt=None)
         for i in range(5):
-            putf(ws, f'{CD[i]}{_rr+1}', f"={CD[i]}{_rr}*{a('mar_'+k, col=CD[i])}",
-                 SEG_EB_F[s][i], NUM0)
+            _f = (f"={a('h1_eb_'+k)}+({CD[i]}{_rr}-{a('h1_rev_'+k)})"
+                  f"*{a('mar_'+k, col=CD[i])}" if i == 0
+                  else f"={CD[i]}{_rr}*{a('mar_'+k, col=CD[i])}")
+            putf(ws, f'{CD[i]}{_rr+1}', _f, SEG_EB_F[s][i], NUM0)
         UNIT_EB_ROW[s] = _rr + 1
         _rr += 2
 assert _rr == SG['unit0'] + UNIT_N, 'the unit block did not fill its allocated rows'
@@ -1988,15 +2140,18 @@ _rel = [
      False),
     (RN['jv'], 'Plus joint ventures and associates at carrying value', f"={a('jv')}", JV_BV,
      NUM0, True),
-    (RN['nd'], 'Less net debt at 31 March 2026', f"=-{a('nd_co')}", -NDCO, NUM0, True),
+    (RN['nd'], 'Less net debt at 30 June 2026', f"=-{a('nd_co')}", -NDCO, NUM0, True),
     (RN['defd'], 'Less deferred consideration on acquisitions', f"=-{a('deferred')}",
      -DEFERRED, NUM0, True),
     (RN['acq'], 'Less the eleven vessels bought on 7 August 2026, at the announced price',
      f"=-{a('acq_cost')}", -ACQ_COST, NUM0, True),
     (RN['hyb'], 'Less perpetual capital securities at carrying value', f"=-{a('hybrid')}",
      -HYBRID, NUM0, True),
+    (RN['div'], 'Less the interim dividend declared after the balance-sheet date',
+     f"=-{a('div_decl')}", -DIV_DECL, NUM0, True),
     (RN['pre'], 'Implied equity value before the minorities',
-     f"=C{RN['ev']}+C{RN['jv']}+C{RN['nd']}+C{RN['defd']}+C{RN['acq']}+C{RN['hyb']}",
+     f"=C{RN['ev']}+C{RN['jv']}+C{RN['nd']}+C{RN['defd']}+C{RN['acq']}+C{RN['hyb']}"
+     f"+C{RN['div']}",
      pre_nci_from_ev(REL_EV), NUM0, False),
     (RN['nci'], 'Less non-controlling interests — the contracted slice at its contracted '
      'price, the rest at the greater of book and value',
@@ -2027,7 +2182,9 @@ def alt_bridge(rows, eb_ref, lo_mult, hi_mult, vals, lab):
     carried through the SAME two-part minority deduction the base case uses."""
     put(ws, f"A{rows['ev']}", f'{lab} — enterprise value on the spot-tanker multiple (C) / '
         'on the contracted multiple (D)', fmt=None)
-    put(ws, f"A{rows['pre']}", 'Equity value before the minorities', fmt=None)
+    put(ws, f"A{rows['pre']}", 'Equity value before the minorities, net of debt, the '
+        'deferred consideration, the committed purchase, the perpetual and the declared '
+        'dividend', fmt=None)
     put(ws, f"A{rows['nci']}", 'Less non-controlling interests — the same two-part '
         'deduction', fmt=None)
     put(ws, f"A{rows['eq']}", 'Equity attributable to ordinary shareholders', fmt=None)
@@ -2035,7 +2192,7 @@ def alt_bridge(rows, eb_ref, lo_mult, hi_mult, vals, lab):
         putf(ws, f"{col}{rows['ev']}", f"=C{eb_ref}*'Peer & Sector'!$C${mult}", ev_, NUM0)
         putf(ws, f"{col}{rows['pre']}",
              f"={col}{rows['ev']}+{a('jv')}-{a('nd_co')}-{a('deferred')}"
-             f"-{a('acq_cost')}-{a('hybrid')}",
+             f"-{a('acq_cost')}-{a('hybrid')}-{a('div_decl')}",
              pre_nci_from_ev(ev_), NUM0)
         putf(ws, f"{col}{rows['nci']}",
              f"=-(DCF!$C${DF_['ncinav']}+MAX(DCF!$C${DF_['nciother']},"
@@ -2109,9 +2266,11 @@ for rw, lab, fml, xp, fmt, gr in [
          f"=AVERAGE(DCF!B{DF_['ebitda']}:F{DF_['ebitda']})", NORM_EB, NUM0, True),
         (RN['nev'], 'Implied enterprise value', f"=C{RN['neb']}*C{RN['blend']}",
          BLEND_EV * NORM_EB, NUM0, False),
-        (RN['npre'], 'Implied equity value before the minorities',
+        (RN['npre'], 'Implied equity value before the minorities, net of debt, the '
+         'deferred consideration, the committed purchase, the perpetual and the declared '
+         'dividend',
          f"=C{RN['nev']}+{a('jv')}-{a('nd_co')}-{a('deferred')}-{a('acq_cost')}"
-         f"-{a('hybrid')}",
+         f"-{a('hybrid')}-{a('div_decl')}",
          pre_nci_from_ev(BLEND_EV * NORM_EB), NUM0, False),
         (RN['nnci'], 'Less non-controlling interests — the same two-part deduction',
          f"=-(DCF!$C${DF_['ncinav']}+MAX(DCF!$C${DF_['nciother']},"
@@ -2393,7 +2552,7 @@ _tv = [(DF_['g'], 'Terminal growth', f"={a('g_term')}", G, PCT, True),
         JV_BV, NUM0, True),
        (DF_['ev'], 'Enterprise value', f"=C{DF_['evops']}+C{DF_['jv']}", DC['ev'], NUM0,
         False),
-       (DF_['nd'], 'Less net debt at 31 March 2026', f"=-{a('nd_co')}", -NDCO, NUM0, True),
+       (DF_['nd'], 'Less net debt at 30 June 2026', f"=-{a('nd_co')}", -NDCO, NUM0, True),
        (DF_['defd'], 'Less deferred consideration on acquisitions', f"=-{a('deferred')}",
         -DEFERRED, NUM0, True),
        (DF_['acq'], 'Less the eleven vessels bought on 7 August 2026 — committed and '
@@ -2401,8 +2560,12 @@ _tv = [(DF_['g'], 'Terminal growth', f"={a('g_term')}", G, PCT, True),
         'above', f"=-{a('acq_cost')}", -ACQ_COST, NUM0, True),
        (DF_['hyb'], 'Less perpetual capital securities at carrying value',
         f"=-{a('hybrid')}", -HYBRID, NUM0, True),
+       (DF_['div'], 'Less the interim dividend declared after the balance-sheet date, on '
+        'a record date already past, so a buyer at today\'s price does not receive it',
+        f"=-{a('div_decl')}", -DIV_DECL, NUM0, True),
        (DF_['prenci'], 'Equity value before the minorities',
-        f"=C{DF_['ev']}+C{DF_['nd']}+C{DF_['defd']}+C{DF_['acq']}+C{DF_['hyb']}",
+        f"=C{DF_['ev']}+C{DF_['nd']}+C{DF_['defd']}+C{DF_['acq']}+C{DF_['hyb']}"
+        f"+C{DF_['div']}",
         DC['pre_nci'], NUM0, False),
        (DF_['ncinav'], 'Minorities arising on the tanker combination — 20% CONTRACTED for '
         'purchase in mid-2027, whose price already sits in the bridge above as deferred '
@@ -2441,7 +2604,7 @@ _coc = [(DF_['rfobs'], 'Observed government bond yield (dirham tranche, January 
          f"={a('beta')}", V['beta'], BETA, True),
         (DF_['erp'], 'Equity risk premium', f"={a('erp')}", V['erp_total'], PCT2, True),
         (DF_['ke'], 'Cost of equity',
-         f"=C{DF_['rfstar']}+C{DF_['beta']}*C{DF_['erp']}", KE, PCT2, False)]
+         f"=C{DF_['rfstar']}+C{DF_['beta']}*{a('erpm')}+{a('crp')}", KE, PCT2, False)]
 for rw, lab, fml, xp, fmt, gr in _coc:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, bold=(rw == DF_['ke']), green=gr)
@@ -2480,11 +2643,11 @@ _kd = [(DF_['sofr'], 'Secured overnight financing rate', f"={a('sofr')}", V['sof
         f"=C{DF_['leaseint']}/((C{DF_['leaseopen']}+C{DF_['leaseclose']})/2)", KD_LEASE,
         PCT2, False),
        (DF_['dshldr'], 'Shareholder loan at 31 March 2026 (USD 000)', f"={a('d_shldr')}",
-        V['q1_26_shldr_loan'], NUM0, True),
+        V['h1_26_shldr_loan'], NUM0, True),
        (DF_['dborr'], 'Third-party borrowings at 31 March 2026 (USD 000)',
-        f"={a('d_borr')}", V['q1_26_borrowings'], NUM0, True),
+        f"={a('d_borr')}", V['h1_26_borrowings'], NUM0, True),
        (DF_['dlease'], 'Lease liabilities at 31 March 2026 (USD 000)', f"={a('d_lease')}",
-        V['q1_26_leases'], NUM0, True),
+        V['h1_26_leases'], NUM0, True),
        (DF_['dtot'], 'Borrowings at 31 March 2026 (USD 000)',
         f"=C{DF_['dshldr']}+C{DF_['dborr']}+C{DF_['dlease']}", DEBT_NOW, NUM0, False),
        (DF_['kd2'], 'METHOD 2 — the instruments actually outstanding, weighted by balance',
@@ -2538,7 +2701,7 @@ _w = [(DF_['mktcap'], 'Market capitalisation (USD 000)',
       (DF_['rfterm'], 'Terminal risk-free rate', f"={a('rf_term')}", V['rf_terminal'], PCT2,
        True),
       (DF_['keterm'], 'Terminal cost of equity',
-       f"=C{DF_['rfterm']}+C{DF_['beta']}*C{DF_['erp']}", KE_T, PCT2, False),
+       f"=C{DF_['rfterm']}+C{DF_['beta']}*{a('erpm')}+{a('crp')}", KE_T, PCT2, False),
       (DF_['kdterm'], 'Terminal cost of debt — the same spread over the terminal rate',
        f"=C{DF_['rfterm']}+(C{DF_['kd']}-C{DF_['rfstar']})", KD_T, PCT2, False),
       (DF_['kdtermat'], 'Terminal cost of debt after tax',
@@ -2567,9 +2730,9 @@ for rw, lab, fml, xp, fmt, gr in [
          'the disclosed alternative construction', f"={a('beta_a')}", V['beta_composite'],
          BETA, True),
         (DF_['kea'], 'Cost of equity on the composite-index beta',
-         f"=C{DF_['rfstar']}+C{DF_['betaa']}*C{DF_['erp']}", KE_A, PCT2, False),
+         f"=C{DF_['rfstar']}+C{DF_['betaa']}*{a('erpm')}+{a('crp')}", KE_A, PCT2, False),
         (DF_['keta'], 'Terminal cost of equity on the composite-index beta',
-         f"=C{DF_['rfterm']}+C{DF_['betaa']}*C{DF_['erp']}", KE_T_A, PCT2, False),
+         f"=C{DF_['rfterm']}+C{DF_['betaa']}*{a('erpm')}+{a('crp')}", KE_T_A, PCT2, False),
         (DF_['wacca'], 'Cost of capital — explicit window, composite-index beta. Only the '
          'cost of EQUITY changes: the same three tranches of capital are carried, because '
          'how the market is measured does not change what the company is financed with',
@@ -2589,16 +2752,16 @@ for rw, lab, fml, xp, fmt, gr in [
         (DF_['cihi'], 'Beta — upper bound of the 90% confidence interval on the primary '
          'regression', f"={a('beta_ci_hi')}", V['beta_ci_hi'], BETA, True),
         (DF_['kecilo'], 'Cost of equity at the lower confidence bound — the bull-case '
-         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cilo']}*C{DF_['erp']}", KE_CI_LO,
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cilo']}*{a('erpm')}+{a('crp')}", KE_CI_LO,
          PCT2, False),
         (DF_['kecihi'], 'Cost of equity at the upper confidence bound — the bear-case '
-         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*C{DF_['erp']}", KE_CI_HI,
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*{a('erpm')}+{a('crp')}", KE_CI_HI,
          PCT2, False),
         (DF_['blume'], 'Beta — the measured slope shrunk toward the market, two-thirds of '
          'it plus one-third of 1.0',
          f"={a('beta_blume')}", V['beta_blume'], BETA, True),
         (DF_['keblume'], 'Cost of equity on the slope shrunk toward the market',
-         f"=C{DF_['rfstar']}+C{DF_['blume']}*C{DF_['erp']}", KE_BLUME, PCT2, False)]:
+         f"=C{DF_['rfstar']}+C{DF_['blume']}*{a('erpm')}+{a('crp')}", KE_BLUME, PCT2, False)]:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, green=gr)
 hdr(ws, DF_['ahdr'],
@@ -2625,7 +2788,8 @@ for rw, lab, fml, xp, fmt in [
          f"=C{DF_['pvtva']}/C{DF_['evopsa']}", DA['tv_share'], PCT),
         (DF_['eva'], 'Enterprise value', f"=C{DF_['evopsa']}+C{DF_['jv']}", DA['ev'], NUM0),
         (DF_['prencia'], 'Equity value before the minorities',
-         f"=C{DF_['eva']}+C{DF_['nd']}+C{DF_['defd']}+C{DF_['acq']}+C{DF_['hyb']}",
+         f"=C{DF_['eva']}+C{DF_['nd']}+C{DF_['defd']}+C{DF_['acq']}+C{DF_['hyb']}"
+         f"+C{DF_['div']}",
          DA['pre_nci'], NUM0),
         (DF_['ncia'], 'Less non-controlling interests — the same two-part deduction',
          f"=-(C{DF_['ncinav']}+MAX(C{DF_['nciother']},"
@@ -3633,7 +3797,8 @@ for rw, lab, basis, val, xp, isf in _fv:
     else:
         put(ws, f'C{rw}', val, BLUE, PX)
 band(ws, FV['central'], 3)
-put(ws, f"A{FV['central']}", 'Weighted central', bold=True, fmt=None)
+# [R-LENS-03] the central IS the class primary, not an average of the rows above it.
+put(ws, f"A{FV['central']}", 'Central — the cash-flow lens', bold=True, fmt=None)
 putf(ws, f"C{FV['central']}", f"=Summary!$C${SU['central']}", CENTRAL, PX, bold=True,
      green=True)
 band(ws, FV['cb'], 3)
@@ -3654,7 +3819,9 @@ for rw, lab, basis, fml, xp, fmt in [
          'explicit window, market-value weights', f"=DCF!$C${DF_['wacc']}", W_EXP, PCT2),
         (FV['fv'], 'Fair value per share — published-index beta (AED)',
          'the primary reading', f"=DCF!$C${DF_['fvaed']}", DC['fv_aed'], PX),
-        (FV['cen'], 'Weighted central — published-index beta (AED)', 'all four lenses',
+        (FV['cen'], 'Central — published-index beta (AED)',
+         'the cash-flow lens alone; the other reads are cross-checks published beside '
+         'it and never averaged into it',
          f"=Summary!$C${SU['central']}", CENTRAL, PX),
         (FV['betaa'], 'Beta — the same regression against an equal-weight composite of the '
          'same exchange\'s names (alternative)',
@@ -3670,8 +3837,9 @@ for rw, lab, basis, fml, xp, fmt in [
          'explicit window, market-value weights', f"=DCF!$C${DF_['wacca']}", W_EXP_A, PCT2),
         (FV['fva'], 'Fair value per share — composite-index beta (AED)',
          'the alternative reading', f"=DCF!$C${DF_['fvaeda']}", DA['fv_aed'], PX),
-        (FV['cena'], 'Weighted central — composite-index beta (AED)',
-         'all four lenses, the discounted-cash-flow leg swapped',
+        (FV['cena'], 'Central — composite-index beta (AED)',
+         'the same cash-flow lens with the composite beta in place of the published-'
+         'index one; nothing else moves',
          f"=Summary!$C${SU['centrala']}", CENTRAL_A, PX),
         (FV['cilo'], 'Beta — lower bound of the 90% confidence interval on the primary '
          'regression', 'the bull-case beta; the bear and bull cases take the two ends of '
@@ -3719,7 +3887,8 @@ ws.column_dimensions['B'].width = 56
 # the underlying disclosure carries all the way through.
 ws = wb['Assumptions']
 for _k, _fml, _xp, _fmt in [
-        ('opex_day', f"=Segments!B{SG['opexd0']}", OPEX_DAY, NUM1),
+        ('tnk_fixed', f"=Segments!B{SG['fixed0']}", TNK_FIXED, NUM0),
+        ('tnk_var', f"={a('grossup')}-Segments!B{SG['lev0']}", TNK_VAR, '0.0000'),
         ('gas_rate', f"=Segments!B{SG['gasrate0']}", GAS_RATE, NUM0),
         ('dso_rep', f"='Balance Sheet'!D{BS['recv']}/'Income Statement'!D{IS['rev']}*365",
          DSO_REPORTED, NUM1),
@@ -3741,7 +3910,6 @@ for _k, _fml, _xp, _fmt in [
         ('nwc25', f"='Balance Sheet'!D{BS['nwc']}", NWC25, NUM0),
         # the same audited figure cannot be the record in two places: the balance sheet
         # carries it and this sheet points at it
-        ('intang', f"='Balance Sheet'!D{BS['intang']}", INTANG, NUM0),
         ('gw', f"='Balance Sheet'!D{BS['gw']}", GW, NUM0)]:
     putf(ws, f"C{A[_k]}", _fml, _xp, _fmt, green=True)
 # the charter table's two date columns display as dates, but hold real serial numbers, so
@@ -3749,6 +3917,20 @@ for _k, _fml, _xp, _fmt in [
 for _k in range(len(CHARTERS)):
     for _c in ('C', 'D'):
         ws[f"{_c}{A['ch'+str(_k)]}"].number_format = DATEFMT
+
+# THE THIRD AND FOURTH QUARTERS OF 2026 ARE DERIVED, NOT TYPED. The third is the disclosed
+# rate on the disclosed share of contracted days with the balance at mid-cycle; the fourth
+# reverts halfway from there to mid-cycle. Both are written as live formulas so a reader
+# can see where each came from and a change in the disclosure carries through.
+_CLSJ = {'mr': 0, 'lr1': 1, 'lr2': 2, 'vlcc': 3}
+for _c, _jc in (('mr', 1), ('lr1', 2), ('lr2', 3), ('vlcc', 4)):
+    _mid = f"Segments!$J${SG['blend0'] + _jc}"
+    putf(ws, f"D{A['b26_' + _c]}",
+         f"=B{A['q3_' + _c]}*C{A['q3_' + _c]}+(1-C{A['q3_' + _c]})*{_mid}",
+         Q3B[_c], NUM0)
+    putf(ws, f"E{A['b26_' + _c]}",
+         f"=(1-{a('h2w')})*D{A['b26_' + _c]}+{a('h2w')}*{_mid}", Q4B[_c], NUM0)
+
 
 put(ws, f"H{A['erp']}", 'No sovereign credit-default-swap entry exists for the United Arab '
     'Emirates in the country risk file, so the alternative rating-versus-swap premium basis '
@@ -3763,7 +3945,7 @@ put(ws, f"H{A['b25_mr']}", 'The handysize class is not broken out in the disclos
     'unadjusted substitution therefore had the sign wrong. The gap is still flagged. The '
     '2024 quarterly rates for the medium-range class are not disclosed either, so its 2025 '
     'average stands in on both sides of the mid-cycle average.', fmt=None).font = SUB
-put(ws, f"H{A['opex_day']}", 'GREEN, NOT BLUE. The running cost per vessel-day is not an '
+put(ws, f"H{A['tnk_fixed']}", 'GREEN, NOT BLUE. The fixed cost base is not an '
     'assumption: it is solved on the Segments sheet so that the same construction '
     'reproduces the tanker earnings the company actually reported for 2025. The same is '
     'true of the gas-carrier day rate, the three days ratios and the opening net working '
@@ -3800,7 +3982,7 @@ for i in range(5):
     close(DC['df'][i], DCFB['df'][i], 1e-12)
     close(DC['pv'][i], DCFB['pv'][i], 1e-6)
     close(DA['pv'][i], DCFA['pv'][i], 1e-6)
-    close(TNK_PATH['vlcc'][i], SN['market_cross_check']['vlcc_path'][i], 1e-6)
+    close(TNK_GLIDE['vlcc'][i], SN['market_cross_check']['vlcc_path'][i], 1e-6)
 for k in ('pv_expl', 'ev_ops', 'ev', 'equity', 'fv_aed', 'tv', 'pv_tv'):
     kk = {'pv_expl': 'pv_explicit', 'ev_ops': 'ev_ops', 'ev': 'ev', 'equity': 'equity',
           'fv_aed': 'fv_aed', 'tv': 'tv', 'pv_tv': 'pv_tv'}[k]
@@ -3852,7 +4034,9 @@ for i in range(5):
 close(OWN_EVEB_26_BR, REL['own_ev_ebitda_26_bridge'], 1e-9)
 close(EV_BRIDGE, REL['own_ev_bridge'], 1e-6)
 # the tanker leg, vessel by vessel
-close(OPEX_DAY, FLEET['opex_day'], 1e-9)
+close(TNK_FIXED, FLEET['cost_fixed'], 0.51)
+close(TNK_VAR, FLEET['cost_var'], 1e-4)
+close(TNK_LEV, FLEET['leverage'], 1e-4)
 close(GAS_RATE, FLEET['gas_rate_day'], 1e-9)
 close(VDAYS25, FLEET['vessel_days_25'], 1e-9)
 close(TCEREV25, FLEET['tce_rev_25'], 1e-6)
@@ -3929,7 +4113,8 @@ close(SN['grid_beta_g'][0][_gi], DA['fv_aed'], 1e-6)
 close(SN['anchor']['1.0'], DC['fv_aed'], 1e-6)
 close(SN['capex']['1.0'], DC['fv_aed'], 1e-6)
 for _bi, _b in enumerate(SN['betas']):
-    _kes = RF_STAR + _b * V['erp_total']; _ket = V['rf_terminal'] + _b * V['erp_total']
+    _kes = RF_STAR + _b * _ERP_MATURE + _CRP
+    _ket = V['rf_terminal'] + _b * _ERP_MATURE + _CRP
     close(SN['grid_beta_g'][_bi][_gi],
           dcf_legs(WE * _kes + WD * KD_AT + WH * KH,
                    WE * _ket + WD * KD_T_AT + WH * KH_T)['fv_aed'], 1e-6)
@@ -3989,7 +4174,9 @@ ANCH.update(book_equity=f"'Relative & Normalized'!C{RN['beq']}",
             tnk_spot_vlcc_q1=f"Segments!F{SG['sp0']+4}",
             tnk_tce26=f"Segments!B{SG['tcerev']}",
             tnk_tce30=f"Segments!F{SG['tcerev']}",
-            tnk_opexday=f"Segments!B{SG['opexd0']}",
+            tnk_fixed_solved=f"Segments!B{SG['fixed0']}",
+            tnk_leverage=f"Segments!B{SG['lev0']}",
+            tnk_tce_h126=f"Segments!B{SG['tceh1']}",
             gas_rate_solved=f"Segments!B{SG['gasrate0']}",
             tnk_chrev26=f"Segments!B{SG['chrevt']}",
             tnk_sprev26=f"Segments!B{SG['sprevt']}",

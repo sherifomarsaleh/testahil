@@ -1,76 +1,168 @@
 {
  "_": "Staged for a SINGLE BATCH PUBLICATION at the end of the fundamental-calibration campaign, per instruction of 01-09-2026. Two files per calibrated ticker: the valuation report as a PDF and the workbook. assets/data.js deliberately still carries the PRE-CALIBRATION range for every name below; publishing is a separate, explicitly-requested step.",
- "staged": 5,
+ "staged": 11,
  "names": [
   {
-   "ticker": "AMOC",
-   "report": "engine/amoc_study/AMOC_Valuation_Study_03-09-2026_public.pdf",
-   "workbook": "engine/amoc_study/AMOC_Valuation_Model_03092026_public.xlsx",
+   "ticker": "ADIB",
+   "report": "engine/adib_study/ADIB_Valuation_Study_10-09-2026.pdf",
+   "workbook": "engine/adib_study/ADIB_Valuation_Model_10092026.xlsx",
    "fair": {
-    "base": 11.401172768028045,
-    "bear": 1.6732033650468485,
-    "full": 23.90485159462365
+    "base": 44.460978528259474,
+    "bear": 43.17228883751404,
+    "full": 46.01051880646089
    },
-   "report_bytes": 891119,
-   "workbook_bytes": 133771
+   "report_bytes": 399150,
+   "workbook_bytes": 33871
+  },
+  {
+   "ticker": "AMOC",
+   "report": "engine/amoc_study/AMOC_Valuation_Study_10-09-2026_public.pdf",
+   "workbook": "engine/amoc_study/AMOC_Valuation_Model_10092026_public.xlsx",
+   "fair": {
+    "base": 20.0503,
+    "bear": 1.6639,
+    "full": 27.5238
+   },
+   "report_bytes": 891586,
+   "workbook_bytes": 134734
   },
   {
    "ticker": "ARCC",
-   "report": "engine/arcc_study/ARCC_Valuation_Study_03-09-2026_public.pdf",
-   "workbook": "engine/arcc_study/ARCC_Valuation_Model_03092026_public.xlsx",
+   "report": "engine/arcc_study/ARCC_Valuation_Study_10-09-2026_public.pdf",
+   "workbook": "engine/arcc_study/ARCC_Valuation_Model_10092026_public.xlsx",
    "fair": {
-    "base": 66.53,
-    "bear": 24.6116,
-    "full": 72.1254
+    "base": 77.17814396333017,
+    "bear": 29.834782868495065,
+    "full": 77.79484584533901
    },
-   "report_bytes": 1339257,
-   "workbook_bytes": 49147
+   "report_bytes": 1386323,
+   "workbook_bytes": 50303
   },
   {
    "ticker": "EGCH",
-   "report": "engine/egch_study/EGCH_Valuation_Study_05-09-2026.pdf",
-   "workbook": "engine/egch_study/EGCH_Valuation_Model_05092026.xlsx",
+   "report": "engine/egch_study/EGCH_Valuation_Study_10-09-2026.pdf",
+   "workbook": "engine/egch_study/EGCH_Valuation_Model_10092026.xlsx",
    "fair": {
     "base": null,
-    "bear": 0.9084436628369906,
+    "bear": 0.9084,
     "branches": [
      {
       "label": "Cash-flow lens, capital programme carried through",
-      "value": 4.0395808164915605
+      "value": 8.0748
      },
      {
       "label": "Cash-flow lens, capital programme stopped",
-      "value": 8.038774888582243
+      "value": 11.6065
      }
     ],
-    "full": 8.038774888582243
+    "full": 11.6065
    },
-   "report_bytes": 1676380,
-   "workbook_bytes": 49574
+   "report_bytes": 1730020,
+   "workbook_bytes": 50651
+  },
+  {
+   "ticker": "ELEC",
+   "report": "engine/elec_study/ELEC_Valuation_Study_05-08-2026_public.pdf",
+   "workbook": "engine/elec_study/ELEC_Valuation_Model_05082026_public.xlsx",
+   "fair": {
+    "base": 0.32291115401779547,
+    "bear": 0.15793834545505386,
+    "full": 0.9555793571971434
+   },
+   "report_bytes": 939720,
+   "workbook_bytes": 33457
+  },
+  {
+   "ticker": "GBCO",
+   "report": "engine/gbco_study/GBCO_Valuation_Study_10-09-2026_public.pdf",
+   "workbook": "engine/gbco_study/GBCO_Valuation_Model_10092026_public.xlsx",
+   "fair": {
+    "base": null,
+    "bear": 19.2911,
+    "branches": [
+     {
+      "label": "MNT-Halan at its reviewed carrying value",
+      "value": 45.7826
+     },
+     {
+      "label": "MNT-Halan at the June-2026 round price",
+      "value": 56.7795
+     }
+    ],
+    "full": 56.7795
+   },
+   "report_bytes": 1011321,
+   "workbook_bytes": 45434
+  },
+  {
+   "ticker": "PHAR",
+   "report": "engine/phar_study/EIPICO_Valuation_Study_10-09-2026.pdf",
+   "workbook": "engine/phar_study/EIPICO_Valuation_Model_10092026.xlsx",
+   "fair": {
+    "base": null,
+    "bear": 85.24648033266331,
+    "branches": [
+     {
+      "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+      "value": 85.24648033266331
+     },
+     {
+      "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+      "value": 102.89147925242756
+     }
+    ],
+    "full": 102.89147925242756
+   },
+   "report_bytes": 1147249,
+   "workbook_bytes": 46550
   },
   {
    "ticker": "PHDC",
-   "report": "engine/phdc_study/PHDC_Valuation_Study_03-09-2026.pdf",
-   "workbook": "engine/phdc_study/PHDC_Valuation_Model_03092026.xlsx",
+   "report": "engine/phdc_study/PHDC_Valuation_Study_10-09-2026.pdf",
+   "workbook": "engine/phdc_study/PHDC_Valuation_Model_10092026.xlsx",
    "fair": {
-    "base": 17.8478,
-    "bear": 4.0127,
-    "full": 46.4989
+    "base": 21.0897,
+    "bear": 4.9813,
+    "full": 55.0663
    },
-   "report_bytes": 1109080,
-   "workbook_bytes": 37450
+   "report_bytes": 1109218,
+   "workbook_bytes": 37460
+  },
+  {
+   "ticker": "SCEM",
+   "report": "engine/scem_study/SCEM_Valuation_Study_10-09-2026_public.pdf",
+   "workbook": "engine/scem_study/SCEM_Valuation_Model_10092026_public.xlsx",
+   "fair": {
+    "base": 122.6685,
+    "bear": 22.2944,
+    "full": 122.6685
+   },
+   "report_bytes": 945442,
+   "workbook_bytes": 39070
+  },
+  {
+   "ticker": "SWDY",
+   "report": "engine/swdy_study/SWDY_Valuation_Study_10-09-2026_public.pdf",
+   "workbook": "engine/swdy_study/SWDY_Valuation_Model_10092026_public.xlsx",
+   "fair": {
+    "base": 87.8244467891,
+    "bear": 28.8051201823,
+    "full": 133.8678939303
+   },
+   "report_bytes": 1067731,
+   "workbook_bytes": 40005
   },
   {
    "ticker": "TMGH",
-   "report": "engine/tmgh_study/TMGH_Valuation_Study_02-09-2026.pdf",
-   "workbook": "engine/tmgh_study/TMGH_Valuation_Model_02092026.xlsx",
+   "report": "engine/tmgh_study/TMGH_Valuation_Study_10-09-2026.pdf",
+   "workbook": "engine/tmgh_study/TMGH_Valuation_Model_10092026.xlsx",
    "fair": {
-    "base": 91.8306,
-    "bear": 63.696,
-    "full": 123.0284
+    "base": 108.1943,
+    "bear": 77.13,
+    "full": 140.74
    },
-   "report_bytes": 764432,
-   "workbook_bytes": 28426
+   "report_bytes": 788694,
+   "workbook_bytes": 28582
   }
  ]
 }

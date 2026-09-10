@@ -24,6 +24,14 @@ YH = ['FY2023', 'FY2024', 'FY2025']
 aed = lambda usd: usd * FX
 
 
+def IN(key):
+    """An input's committed VALUE. A fact typed into a sentence is a fact that will
+    eventually disagree with the register recording it — the shareholding below was in
+    three places and committed as a number in none."""
+    v = D['inputs'][key]
+    return v['value'] if isinstance(v, dict) and 'value' in v else v
+
+
 def n(x, d=0):
     return f'{x:,.{d}f}'
 
@@ -167,7 +175,8 @@ P('Americana Restaurants International PLC is registered in the Abu Dhabi Global
   'been operating since 1969. It is the largest restaurant operator across the Middle East, '
   'North Africa and Kazakhstan. Its December 2022 initial public offering was the region\'s '
   'first concurrent dual listing: the same shares trade in Abu Dhabi and in Riyadh. Adeptio AD '
-  'Investments holds 66.03%; its parent is owned equally by Mohamed Ali Rashed Alabbar and a '
+  f'Investments holds {pc(IN("adeptio_holding_pct"))}; its parent is owned equally by '
+  'Mohamed Ali Rashed Alabbar and a '
   'subsidiary of the Public Investment Fund of Saudi Arabia.')
 
 P('The business is a master franchisee. It licenses KFC, Pizza Hut, Hardee\'s, Krispy Kreme, '
@@ -760,7 +769,8 @@ for head, body in [
      'edition of this study escalated delivery as a flat share and showed a higher terminal '
      'margin.'),
     ('A controlled company. ',
-     'Adeptio holds 66.03%. The free float is a third of the shares, and the dividend policy, '
+     f'Adeptio holds {pc(IN("adeptio_holding_pct"))}. The free float is a third of the '
+     'shares, and the dividend policy, '
      'the acquisition programme and the capital structure are set by a holder whose interests '
      'need not coincide with a minority\'s.'),
     ('Egypt and Kazakhstan. ',

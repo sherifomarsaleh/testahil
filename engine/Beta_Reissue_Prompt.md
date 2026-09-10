@@ -16,6 +16,13 @@ conforming beta produced by the sanctioned routine against `raw_indices/AE/FADGI
 > listed on, then reproduce the valuation study and the Excel model on the corrected
 > number. Follow the standing protocol; this is not a new study and not a roll-forward.
 >
+> **[R-PRIME-01] THE RESEARCH PRIMER COMES FIRST.** This rebuilds a delivered study, so the
+> primer rule binds. Generate the prompt with `python3 engine/research_primer_prompt.py {TICKER}`,
+> hand it over, and read what comes back before rebuilding. It is a LEAD AND NEVER AN INPUT:
+> traced to the primary source and read there before it moves anything; historicals from the
+> company's own issued statements alone; anything untraceable recorded as a dated negative
+> search rather than dropped.
+>
 > **1 — Read the live rules first.** the condensed digest (`engine/PROJECT_INSTRUCTIONS_{DD-MM-YYYY}.md`, named for its latest amendment day) and the
 > BETA section of `engine/Standing_Research_Protocol.md`. Do not work from memory of them.
 >
@@ -57,6 +64,8 @@ conforming beta produced by the sanctioned routine against `raw_indices/AE/FADGI
 > after. If the rebuilt central lands more than 10% from the latest known price in EITHER direction (two-sided since 02-Sep-2026), write
 > `GAP_REVIEW_{DD-MM-YYYY}.md` covering all eight headings and clear
 > `python3 scripts/check_valuation_gap.py` before reporting the re-issue done.
+>
+> **7c — Earn the referral** [R-GAP-04]. A gap is not genuine, does not stand, and is not referred to me until an exhaustive, recorded hunt for OUR OWN ERROR has come back empty.** Referral is a last resort that must be earned and evidenced, and it carries the search: what was examined, WHAT EACH CANDIDATE IS WORTH IN CURRENCY PER SHARE, and what would falsify each. At minimum, each priced — the study's own arithmetic worked BACKWARDS from the price through `engine/reverse_read.py` [R-ENF-05]; every typed constant against the model's own derived equivalent; every source string against what the filings actually disclose (a study saying a disclosure does not exist while the issuer publishes it has a hole in its SWEEP); standalone against consolidated on every ratio; each lens against the model's own forecast of the quantity that lens consumes; the contested register tested for a lean INSIDE a category and not only across the file. **This does not weaken the absolute prohibition on moving a fair value toward the price** — closing the gap is the OUTCOME of finding a real defect, never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.
 >
 > **8 — Verify by import, not by parse**, and commit on a feature branch with an open PR.
 > Never push protocol or engine changes straight to main.

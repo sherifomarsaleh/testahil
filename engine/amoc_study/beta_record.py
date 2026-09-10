@@ -37,7 +37,14 @@ def main():
     rec = beta_regression.own_stock_beta("AMOC", "EG", "EGX")
     rp.assert_beta_provenance(rec)              # raises unless the regressor is a published index
     rec["superseded_composite"] = SUPERSEDED
-    rec["standard_version"] = rp.STANDARD_VERSION
+    # THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT. [R-STD-02]: a version read
+    # from research_protocol.STANDARD_VERSION re-asserts everything that version requires on
+    # EVERY rebuild, with nobody deciding — and this study is listed as not meeting one of
+    # them (an asset-base record whose vintage is at least as new as the information set it
+    # claims to have read). Claiming the newer standard would be the study asserting a
+    # conformance the ratchet records it does not have. It moves back to the live constant in
+    # the same pass that meets the requirement, and not before.
+    rec["standard_version"] = "2026.09.01"
     with open(os.path.join(HERE, "beta_result.json"), "w") as f:
         json.dump(rec, f, indent=1, default=str)
     print("AMOC beta %.4f vs %s (as of %s)" % (rec["beta"], rec["index_file"], rec["index_asof"]))

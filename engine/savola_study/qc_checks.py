@@ -10,8 +10,10 @@ from docx.shared import Inches
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-STUDY = os.path.join(HERE, 'SAVOLA_Valuation_Study_19-08-2026_public.docx')
-BIB = os.path.join(HERE, 'SAVOLA_Bibliography_19-08-2026.docx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+STUDY = os.path.join(HERE, _ed.STUDY_DOCX)
+BIB = os.path.join(HERE, _ed.BIBLIO_DOCX)
 TEXT_WIDTH = 7.0            # 8.5in page less 0.75in margins each side
 BIB_WIDTH = 7.1             # bibliography uses 0.7in margins
 

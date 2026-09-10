@@ -287,42 +287,129 @@ def phase1() -> dict:
             "acceptance": accept}
 
 
+
+CI_RESULT = os.path.join(ENGINE, "build_depth_audit", "ci_gate_run.json")
+
+
+def _recorded_ci_run():
+    """The recorded CI run, or a string saying why there is none."""
+    if not os.path.exists(CI_RESULT):
+        return "no CI run has been recorded — run scripts/run_ci_gates.py"
+    try:
+        with open(CI_RESULT, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError) as exc:
+        return "the recorded CI run will not parse (%s)" % type(exc).__name__
+
+
+def _ci_verdict(run, needs_step=None):
+    """(state, waits_on) for a criterion resolved from the recorded run."""
+    if isinstance(run, str):
+        return "NOT MET", run
+    try:
+        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                              capture_output=True, text=True,
+                              check=True).stdout.strip()
+    except Exception:
+        head = None
+    if head and run.get("commit") != head:
+        return "NOT MET", ("the recorded run is at %s and HEAD is %s — a green run is "
+                           "evidence about the tree it ran on, so this is STALE rather "
+                           "than green [R-ENF-06]"
+                           % (str(run.get("commit"))[:9], head[:9]))
+    dirty = run.get("tree_dirty")
+    if isinstance(dirty, list) and dirty:
+        return "NOT MET", ("the recorded run was made on a DIRTY tree (%d file(s) "
+                           "modified), so it is evidence about a tree nobody else has"
+                           % len(dirty))
+    red = run.get("red") or []
+    if red:
+        return "NOT MET", ("%d step(s) RED in the recorded run: %s"
+                           % (len(red), "; ".join(r[:52] for r in red[:4])))
+    if not run.get("green"):
+        return "NOT MET", ("the recorded run went green on ZERO steps — an empty "
+                           "result is not a clean result [R-ENF-04]")
+    skipped = [x.get("step", "") for x in (run.get("skipped") or [])]
+    if needs_step and any(needs_step in x for x in skipped):
+        return "NOT MET", ("the step this criterion rests on (%s) was SKIPPED in the "
+                           "recorded run, so nothing was established about it"
+                           % needs_step)
+    return "MET", ("%d step(s) green, 0 red, in the run recorded at %s"
+                   % (run["green"], str(run.get("commit"))[:9]))
+
+
 def acceptance() -> list:
     """Part E's six criteria, each with what it waits on and whether that has a date."""
     items = [
+        # THESE TWO WERE TYPED CONSTANTS AND THAT IS THE WHOLE DEFECT [R-ENF-01].
+        # Both read `"state": "MET"` as a literal — the acceptance instrument
+        # asserting its own state, which is the shape this repository refuses
+        # everywhere else, and which the note below records being fixed on criterion 3
+        # while 1 and 2 were left behind. On 09-09-2026 criterion 1 reported MET while
+        # the branch carried fifteen red gates. A claim that cannot go false is not a
+        # claim. They are resolved below from engine/build_depth_audit/ci_gate_run.json,
+        # which scripts/run_ci_gates.py writes and neither of them can.
         {"n": 1, "text": "construction gates green in CI with negative controls",
-         "state": "MET", "waits_on": "re-checked by status.py --gates and by CI on every push"},
+         "state": None, "waits_on": "resolved from the recorded CI run"},
         {"n": 2, "text": "forward drivers inside each name's own walk-forward record",
-         "state": "MET", "waits_on": "the walk-forward actuation gate, green in CI"},
-        {"n": 3, "text": "the valuation calibration's pooled bias CI includes zero — "
+         "state": None, "waits_on": "resolved from the recorded CI run"},
+        # READ, NEVER TRANSCRIBED [R-ENF-03]. This entry carried its own copy of
+        # criterion 3 -- its text and a hardcoded BLOCKED -- and went on stating
+        # both after [R-VCAL-02 CLAUSE ONE] moved the maturity-bound clauses out of
+        # Phase 1 and CLAUSE THREE retired the pooled-bias test as a gating clause.
+        # [R-VCAL-02] requires the publish block and the criterion to agree about
+        # what Phase 1 is, and a second copy of a standard stops testing it the
+        # moment one of them moves. It is now a CALL.
+        {"n": 3, "text": "criterion 3's Phase 1 clauses on the mechanical series — "
                          "THE ACCEPTANCE INSTRUMENT",
          "state": "BLOCKED", "waits_on": None},
-        {"n": 4, "text": "graded prediction: median |central/price - 1| inside 15%",
-         "state": None, "waits_on": "computed below; a prediction may fail without the "
-                                    "programme failing"},
+        {"n": 4, "text": "the traded-price gate [R-VCAL-02 CLAUSE THREE]: fair value "
+                         "above the latest traded price PASSES; below it by less than "
+                         "10% PASSES; below it by 10% or more is REFERRED to the "
+                         "principal, who rules on the document",
+         "state": None, "waits_on": "computed below, per name and one-sided"},
         {"n": 5, "text": "the two-sided gap gate fires on nothing, or every firing "
                          "carries a complete review",
          "state": None, "waits_on": "the five, above"},
         {"n": 6, "text": "the publish queue holds the files per name on the new standard",
          "state": None, "waits_on": "the five, above"},
     ]
-    # 3 — the two things it waits on, one dated and one not.
+    # 3 — READ THE CRITERION ITSELF, then report what its open half waits on.
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        sys.path.insert(0, os.path.join(ENGINE, "valuation_calibration"))
+        import criterion3 as _C3
+        _v = _C3.verdicts()
+        items[2]["clauses"] = {k: _v[k] for k in ("G", "A", "B", "C", "F")}
+        items[2]["gating"] = _v["_gating"]
+        items[2]["state"] = "MET" if _v["_met"] else "BLOCKED"
+        items[2]["waits_on"] = (
+            "Phase 1 clauses %s: %s"
+            % (", ".join(_v["_gating"]),
+               ", ".join("%s %s" % (c, "MET" if _v.get(c) is True else "NOT MET")
+                         for c in _v["_gating"])))
+    except Exception as e:
+        # UNREADABLE IS NOT MET [R-ENF-04]: the entry stays BLOCKED and says why.
+        items[2]["waits_on"] = "criterion 3 could not be read (%s)" % e
+
+    # and the archive half, which is what its remaining work waits on.
     try:
         arc = best_archive("EG")
         if "error" in arc:
-            items[2]["waits_on"] = arc["error"]
+            items[2]["archive_waits_on"] = arc["error"]
         else:
             n, tot = len(arc["usable"]), len(arc["declared"])
             miss = arc.get("unsourced", {}).get("fields") or []
             items[2]["origins_usable"], items[2]["origins_declared"] = n, tot
             items[2]["archive_source"] = arc["source"]
-            items[2]["state"] = "RUNNING" if n else "BLOCKED"
-            items[2]["waits_on"] = (
+            items[2]["archive_state"] = "RUNNING" if n else "BLOCKED"
+            items[2]["archive_waits_on"] = (
                 "%d of %d point-in-time origins usable, read at the frontier (%s)%s"
                 % (n, tot, arc["source"],
                    "" if not miss else "; still unsourced: %s" % ", ".join(miss)))
     except Exception as e:
-        items[2]["waits_on"] = "engine/macro_history could not be read (%s)" % e
+        items[2]["archive_waits_on"] = ("engine/macro_history could not be read (%s)"
+                                        % e)
     try:
         sys.path.insert(0, os.path.join(ENGINE, "valuation_calibration"))
         import score
@@ -338,11 +425,18 @@ def acceptance() -> list:
     # 4, 5, 6 are resolved from the five.
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
     from check_valuation_gap import read_answer, read_branches
+    # THE GAP IS SIGNED, BECAUSE THE RULE IS ONE-SIDED. Criterion 4 was a median of
+    # ABSOLUTE gaps against 15%, which penalised a study for being far above the price
+    # exactly as hard as for being far below it. The principal never asked for that and
+    # said so on 09-09-2026: "Criterion 4 is not true. I never said that." The rule as
+    # actually stated is per-name and one-sided, and is recorded at [R-VCAL-02 CLAUSE
+    # THREE]. A pooled median also let one name's excess hide inside four, which a
+    # per-name rule cannot do.
     gaps = []
     for tk in REISSUED:
         c, s, _ = read_answer(os.path.join(ENGINE, "%s_study" % tk.lower()))
         if c is not None and s:
-            gaps.append(abs(c / s - 1.0))
+            gaps.append((tk, c / s - 1.0))
     # 5 — every firing of the two-sided gate carries a review that audits the
     # answer the study NOW publishes. 6 — Part E asks for FOUR files per name.
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
@@ -397,12 +491,32 @@ def acceptance() -> list:
     items[5]["waits_on"] = ("the queue matches every committed answer"
                             if not staged_issues else "; ".join(staged_issues))
 
+    # 1 AND 2 — READ THE RECORDED RUN, NEVER ASSERT. Four ways this stays NOT MET and
+    # each is a different thing being wrong: no run recorded; a run at a DIFFERENT
+    # COMMIT, which is evidence about another tree [R-ENF-06]; a run on a DIRTY tree,
+    # which nobody else can reproduce; or a run carrying reds.
+    _ci = _recorded_ci_run()
+    items[0]["state"], items[0]["waits_on"] = _ci_verdict(_ci)
+    items[1]["state"], items[1]["waits_on"] = _ci_verdict(_ci, 'check_walkforward_actuation.py')
+
     if gaps:
-        med = sorted(gaps)[len(gaps) // 2]
-        items[3]["state"] = "MET" if med < 0.15 else "NOT MET"
-        items[3]["waits_on"] = ("median is %.1f%% across %d names against a stated 15%%; "
-                                "matching the price is Part E's explicit NON-criterion"
-                                % (med * 100, len(gaps)))
+        # PASSES: above the price, or below it by less than 10%. REFERRED: 10% or more
+        # below. Nothing here is a pooled statistic — each name stands on its own.
+        referred = sorted(tk for tk, g in gaps if g <= -0.10)
+        # THE GATE IS PER NAME, SO REFERRAL IS A ROUTING DECISION AND NOT A PROGRAMME
+        # FAILURE. This is the whole difference from the 15% median it replaced. A pooled
+        # bar held every study hostage to the worst name in the set; the principal's rule
+        # sends THAT NAME to the principal and lets the rest through. check_publish_block
+        # already applies the same 10% test per name, so a referred name is stopped where
+        # it should be — at its own publication decision — and nowhere else.
+        items[3]["state"] = "MET"
+        items[3]["waits_on"] = (
+            "all %d name(s) pass the traded-price gate" % len(gaps) if not referred else
+            "%d of %d name(s) pass; %s sit 10%% or more BELOW the latest traded price "
+            "and are REFERRED to the principal, who passes the document or asks for "
+            "changes — a referral routes ONE name and holds nothing else"
+            % (len(gaps) - len(referred), len(gaps), ", ".join(referred)))
+        items[3]["referred"] = referred
     return items
 
 

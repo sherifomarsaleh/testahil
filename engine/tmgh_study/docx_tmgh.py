@@ -16,6 +16,8 @@ from docx.shared import Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 ROOT = os.path.dirname(ENGINE)
 sys.path.insert(0, HERE)
@@ -56,7 +58,7 @@ SPOT = M["spot"]
 # read "1 September 2026" while the file shipped as 02-09-2026. Nothing was wrong with the
 # study; a person had to remember two strings and remembered one. A date is a figure a
 # reader sees, so the standing rule applies to it — COMPUTED, NOT TYPED.
-EDITION_FILE = "TMGH_Valuation_Study_02-09-2026.docx"
+EDITION_FILE = _ed.STUDY_DOCX
 
 
 def _edition_words(fname=EDITION_FILE):
@@ -130,6 +132,15 @@ def build(path):
     # the model report counts the masthead and this note as its first
     # section, so it is a top-level heading and the section count is 16
     doc.add_heading("Read first", level=1)
+    # [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. Resolved by engine/doc_dates.py
+    # and never from a file's modification time.
+    import sys as _sys_dd, os as _os_dd
+    _sys_dd.path.insert(0, _os_dd.path.join(_os_dd.path.dirname(
+        _os_dd.path.dirname(_os_dd.path.abspath(__file__)))))
+    import doc_dates as _DD
+    _hp = doc.add_paragraph(_DD.header_line('TMGH'))
+    for _r in _hp.runs:
+        _r.font.size = __import__('docx').shared.Pt(8)
     para(doc, "This document sets out a range of values for one company and the "
               "reasoning behind it. It is not advice, it does not tell anyone to "
               "buy or sell anything, and it contains no target price. Where a "
@@ -706,6 +717,7 @@ def section1_drivers(doc):
     doc.add_heading("1.8 The cost of capital, priced line by line", level=2)
     ins = W["inputs"]
     dam = ins["damodaran"]
+    CBE = ins["cbe"]
     # EACH COST OF EQUITY REPRODUCES FROM THE ROWS THIS TABLE PRINTS, on its own basis.
     for _rf, _erp, _ke in ((W["rf_star_rating"], dam["total_erp_rating"], W["ke_rating"]),
                            (W["rf_star_cds"], dam["total_erp_cds"], W["ke_cds"])):
@@ -717,9 +729,16 @@ def section1_drivers(doc):
                       else dam["sovereign_cds"])) < 5e-4, "the spread stripped is not printed"
     table(doc, ["Input", "Value", "Where it comes from"],
           [["Egyptian ten-year government bond yield", pct(ins["rf_observed"], 2),
+            # READ, NOT TYPED [08-09-2026]. These three were typed here and in the
+            # source register, and printed to a reader from both, so the prose check
+            # found figures in two delivered documents that no committed record carried.
+            # They are sourced — the CBE's own August decision — and a sourced figure a
+            # reader is shown belongs in the record where it ages visibly.
             "market quote dated 6 August 2026, cross-checked against a policy "
-            "rate of 19.00%, an overnight lending rate of 20.00% and an "
-            "interbank rate of 19.51% at the central bank's August 2026 meeting"],
+            "rate of " + pct(CBE["policy"], 2) + ", an overnight lending rate of "
+            + pct(CBE["overnight_lending"], 2) + " and an interbank rate of "
+            + pct(CBE["interbank"], 2) + " at the central bank's " + CBE["meeting"]
+            + " meeting"],
            ["Egypt's own default spread, rating basis", pct(dam["adj_default_spread"], 2),
             "the sovereign's own row in the published country-premium file, read "
             "fresh on 1 September 2026"],

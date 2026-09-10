@@ -10,6 +10,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import inputs as IN
+import wacc as WA
+
+# The marginal borrowing rate this model charges, read from the module that sets it so a
+# register describing the finance-cost gap cannot quote a rate the model has stopped using.
+_KD_PRETAX = WA.KD_LOCAL
 
 EGYPT = [
     {"ticker": "EMFD", "name": "Emaar Misr for Development", "market": "EG",
@@ -66,10 +71,22 @@ RISKS = [
             "is point-in-time; it is already 52.5% of segment revenue by 1H2026",
      "priced_at": "flagged, and excluded from the conversion-rate history",
      "what_would_change_it": "a geographic segment note"},
+    # THE 27.25% POLICY PEAK WAS REMOVED FROM THE DOCUMENT AND SURVIVED HERE, which is
+    # the repair that lands in one of two places [08-09-2026]. docx_tmgh.py records why
+    # it went: engine/macro_history/_supplied_EG_rates.json runs to 2023 and the house
+    # macro path carries the CURRENT rate with its MPC date, so nothing in this
+    # repository establishes a March-2024 peak, and under SIGCM a figure this desk
+    # cannot source is a figure it does not print. This register went on printing it.
+    #
+    # The comparison that replaces it is the one the document already adopted and is
+    # STRONGER, because both sides are this study's own committed numbers: the implied
+    # rate against the marginal borrowing rate the model actually charges. It is read
+    # from the record rather than typed, so it cannot drift from the rate in use.
     {"risk": "Finance cost is not what it appears",
-     "why": "the reported charge implies 44% on interest-bearing debt against a "
-            "policy rate that peaked near 27.25%; the excess is contract-financing "
-            "unwind that the statements do not split out",
+     "why": "the reported charge implies 44%% on interest-bearing debt against the "
+            "%.2f%% marginal borrowing rate this model charges; the excess is "
+            "contract-financing unwind that the statements do not split out"
+            % (100 * _KD_PRETAX),
      "priced_at": "recorded as a gap; a correction for this line was tested and "
                   "deliberately not adopted, for the reason given in section 1.6",
      "what_would_change_it": "the split, or a disclosed average borrowing rate"},

@@ -41,8 +41,29 @@ sys.path.insert(0, ENGINE)
 import macro_history as MH  # noqa: E402
 
 
+# These records state their unit in the field name and the reader ignored it, which
+# put a factor of a million into the denominator of a per-share value. The files hold
+# `shares_mn` — MILLIONS — and the counts landed in the same slot as the blocks'
+# counts in UNITS, so a name drawing some origins from each ran two units in one
+# series. MEASURED RATHER THAN INFERRED FROM THE NAME: ARCC records 2015-2017 in both
+# places and 378.7397 x 1e6 is 378,739,700 exactly, the footed count its own block
+# commits for those same years; PHDC's 2308.949726 is likewise its committed
+# 2,308,949,726. Two independent records agreeing to the unit is what settles it.
+#
+# IT REACHED A NUMBER AND NOT A CRASH, which is why nothing caught it: ARCC scores no
+# cell in the declared run, so the defect only ever surfaced in the disclosed-life
+# SENSITIVITY, where it printed a fair value of EGP 201,953,701 per share against a
+# price of 7.63 and was read as evidence against that basis. A unit error one million
+# wide is not subtle in its output and is invisible in its input [R-TERM-01: where a
+# quantity carries a UNIT, the unit is the thing to check].
+SHARES_MN_TO_UNITS = 1e6
+
+
 def _shares():
-    """Point-in-time share counts, per name, from the committed OCR records."""
+    """Point-in-time share counts, per name, from the committed OCR records.
+
+    Returned in UNITS, converted from the millions these files state.
+    """
     out = {}
     for p in sorted(glob.glob(os.path.join(HERE, "shares_*.json"))):
         try:
@@ -52,13 +73,77 @@ def _shares():
         tk = (d.get("ticker") or "").upper()
         if not tk:
             continue
-        out[tk] = {y: rec.get("shares_mn")
+        out[tk] = {y: rec["shares_mn"] * SHARES_MN_TO_UNITS
                    for y, rec in (d.get("shares_mn") or {}).items()
-                   if rec.get("shares_mn")}
+                   if isinstance(rec.get("shares_mn"), (int, float))
+                   and rec["shares_mn"] > 0}
+    return out
+
+
+def _block_shares():
+    """The FOOTED counts from the valuation-input blocks [R-FCAL-01 AMENDED].
+
+    The amendment requires the count to be committed WITH the par value it was
+    footed against — issued capital over par must reproduce the count the same
+    document states — which is a stricter record than the OCR files above, and it
+    is committed by the run rather than assembled beside it. So it is read FIRST.
+
+    A record carrying a count and no par value is NOT read, and that refusal is
+    the amendment's own clause (ii): the count is footed or it is not recorded.
+    A block that says `missing` is not a count either; recording the absence is
+    what makes it visible and crediting it would undo that.
+    """
+    out = {}
+    for d in sorted(glob.glob(os.path.join(ENGINE, "*_walkforward"))):
+        tk = os.path.basename(d).replace("_walkforward", "").upper()
+        p = os.path.join(d, "valuation_inputs.json")
+        if not os.path.exists(p):
+            continue
+        try:
+            doc = json.load(open(p, encoding="utf-8"))
+        except Exception:
+            continue
+        # BOTH KEYS, AND READING ONLY THE FIRST WAS THE SAME READER DEFECT THE LENS
+        # NEXT DOOR ALREADY FIXED [L-355]: a run's `origins` are the years it TESTED
+        # and `prior_year_anchor` holds years committed to feed a window reaching back
+        # past the first origin. cashflow_lens.block() reads both and says so in its
+        # own comment; this reader did not, so every anchor year's FOOTED count was
+        # invisible here and the year fell through to the millions file above — which
+        # is how one name came to run two units across one series.
+        # `origins` WINS on a collision, the same precedence the lens uses, because
+        # what a run tested is what it tested.
+        blocks = {}
+        for src in ("prior_year_anchor", "origins"):
+            blocks.update(doc.get(src) or {})
+        for key, block in blocks.items():
+            # An anchor mapping carries narrative keys beside its years — `_`,
+            # `source_class`, `basis` — and those are strings, so the year filter
+            # cannot wait until after the lookup the way it did when this read one
+            # key whose members happened to be uniform.
+            if not isinstance(block, dict):
+                continue
+            rec = block.get("shares")
+            if not isinstance(rec, dict) or "missing" in rec:
+                continue
+            v, cap, par = (rec.get("value"), rec.get("issued_capital"),
+                           rec.get("par_value"))
+            if not (isinstance(v, (int, float)) and v > 0):
+                continue
+            if not (isinstance(cap, (int, float)) and isinstance(par, (int, float))
+                    and par > 0):
+                continue
+            # The footing is RE-RUN here rather than trusted: a record that states
+            # a check is not a record that passes one, and this costs one division.
+            if abs(cap / par - v) > max(1.0, 1e-6 * v):
+                continue
+            digits = "".join(ch for ch in str(key) if ch.isdigit())
+            if len(digits) == 4:
+                out.setdefault(tk, {})[digits] = float(v)
     return out
 
 
 SHARES = _shares()
+BLOCK_SHARES = _block_shares()
 
 OHLC = os.path.join(ENGINE, "raw_ohlc")
 
@@ -87,6 +172,20 @@ def _panel(rundir):
             continue
         if isinstance(d, dict) and any(k.isdigit() and len(k) == 4 for k in d):
             return {int(k): v for k, v in d.items() if k.isdigit()}, fn
+        # A RUN MAY NEST ITS YEARS UNDER A NAMED KEY, and the shape search above
+        # only looks at the top level — so SWDY, which wraps its seventeen years
+        # in {"years": {...}} beside its own provenance fields, read as a run with
+        # no panel at all and every one of its cells reported NOT READY. That is
+        # [L-355] on this very module: a reader that guesses a shape silently
+        # finds nothing and reports it as a result. The wrapper keys are NAMED
+        # rather than searched for, because a search that descends into any dict
+        # would eventually find a four-digit key somewhere that is not a year.
+        for wrap in ("years", "annual", "fy"):
+            inner = d.get(wrap) if isinstance(d, dict) else None
+            if isinstance(inner, dict) and any(
+                    k.isdigit() and len(k) == 4 for k in inner):
+                return ({int(k): v for k, v in inner.items() if k.isdigit()},
+                        "%s[%s]" % (fn, wrap))
     return {}, None
 
 
@@ -159,7 +258,11 @@ def build(market="EG"):
             # read off that year's own filing and footed against it. Only if it
             # has nothing for this year does the panel look inside the run's own
             # artefacts — and today's count is never a fallback.
-            sh = SHARES.get(tk, {}).get(str(y))
+            sh = BLOCK_SHARES.get(tk, {}).get(str(y))
+            sh_src = "valuation_inputs.json" if sh else None
+            if sh is None:
+                sh = SHARES.get(tk, {}).get(str(y))
+                sh_src = "shares_%s.json" % tk.lower() if sh else None
             if sh is None and y in panel:
                 rec = panel[y]
                 cell = rec.get("cells") if isinstance(rec, dict) else None
@@ -175,8 +278,11 @@ def build(market="EG"):
                             break
                     if sh:
                         break
+            if sh and sh_src is None:
+                sh_src = panel_src
             cells[(tk, y)] = {
                 "shares": sh,
+                "shares_source": sh_src,
                 "macro": y in usable,
                 "statements": y in panel,
                 "statements_source": panel_src,

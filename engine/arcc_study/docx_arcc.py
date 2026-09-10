@@ -1,4 +1,5 @@
-"""ARCC_Valuation_Study_03-09-2026_public.docx — TMPV house structure.
+import sys
+"""ARCC_Valuation_Study_{edition}_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -13,6 +14,8 @@ process references appear anywhere in the output.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 os.chdir(HERE)
 sys.path.insert(0, HERE)
 from docx_base import *          # noqa: F401,F403
@@ -54,6 +57,11 @@ TECH = json.load(open('technicals.json'))['state']
 EFG = json.load(open('efg_bridge.json'))
 MSC = json.load(open('scenario_margin.json'))
 M, H, F = D['meta'], D['history'], D['forecast']
+WF, BU = D['walkforward'], D['bottom_up']   # the calibration run and the unit build
+# The committed cost-of-capital schedule, read rather than restated: the Table 7
+# caption describes when the terminal arrives, and a caption that says one thing
+# while the record says another is the exact defect this study was audited for.
+SCHED = D['cost_of_capital_record']
 W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 TR, PE, SHT = D['terminal_reconciliation'], D['peers'], D['share_triangulation']
 EXP, LR, GDV = D['experts'], D['lens_ranges'], D['growth_destroys_value']
@@ -61,6 +69,14 @@ FA = D['forecast_anchor']          # [R-ANCHOR-01]: the record is printed for ev
 TERMREC = D['terminal_record']     # [R-TERM-01]: the terminal's own committed record
 
 BU, UC, KDG, CON = D['bottom_up'], D['unit_calibration'], D['kd_gate'], D['contested']
+# THE LARGEST CONTESTED JUDGEMENT IS FOUND, NOT INDEXED. Two sentences in this
+# document called CON[1] -- the beta -- the study's most consequential contested
+# judgement. That was true of a register with three entries and false the moment a
+# fourth was added, and nothing would have said so: CON[1] would simply have gone on
+# printing the beta's number under a superlative that had moved to another row.
+CON_BIG = max(CON, key=lambda c: abs(c['effect']))
+CON_BETA = next(c for c in CON if c['choice'].lower().startswith('beta'))
+_beta_is_big = CON_BIG is CON_BETA
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 SPOT, SH = M['spot'], M['shares_mn']
 # THE DATE BESIDE THE PRICE WAS TYPED AND THE PRICE WAS NOT [corrected 03-Sep-2026].
@@ -80,6 +96,7 @@ TAXE = H['tax_eff']
 def n0(x): return f"{x:,.0f}"
 def n1(x): return f"{x:,.1f}"
 def n2(x): return f"{x:,.2f}"
+def E1(x): return f"{x:,.2f}"
 def n3(x): return f"{x:,.3f}"
 def pc(x, dp=1): return f"{x*100:.{dp}f}%"
 def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
@@ -130,6 +147,16 @@ _BLEND = (0.50 * LN['values']['DCF (cash flow)']
 # Disclosure were never written, and structure_matches_model was attested True
 # because nothing outside the study had ever counted the sections.
 H1('Headline')
+
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. A valuation states a number struck
+# against a price, and those are two facts with two dates that are not the same date.
+# Resolved by engine/doc_dates.py and never from a file's modification time.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('ARCC'), size=8, color=GREY)
+
 _DCFR = LR[LN['primary']]
 P(f'Arabian Cement is worth EGP {n2(LN["central"])} a share on the cash-flow lens this '
   f'study publishes, against a market price of EGP {n2(SPOT)} on {SPOT_DATE_WORDS} — '
@@ -166,9 +193,13 @@ P(f'Three things about the company matter more than anything else in the model. 
   f'capacity queuing to restart inside the forecast window.')
 P(f'What would change the answer is stated in section 7 and not buried: a cost of capital '
   f'that normalises faster than the central bank\'s published path would raise this value '
-  f'materially, and beta is the input it would arrive through — the study\'s own most '
-  f'consequential contested judgement, worth {sg(CON[1]["effect"])} of value and published '
-  f'both ways rather than averaged.')
+  f'materially, and beta is the input it would arrive through — worth '
+  f'{sg(CON_BETA["effect"])} of value and published both ways rather than averaged. '
+  + ('It is the study\'s largest contested judgement.'
+     if _beta_is_big else
+     f'The study\'s LARGEST contested judgement is a different one — '
+     f'{CON_BIG["choice"].split(":")[0].strip().lower()}, worth {sg(CON_BIG["effect"])} — '
+     f'and it is set out with the rest in section 1.9.'))
 
 # ---- valuation summary ------------------------------------------------------
 H1('Valuation summary — every read at a glance')
@@ -220,14 +251,42 @@ P(f'The balance sheet is the unusual part and it works in the shareholder\'s fav
   f'sets out how that reaches equity value, and section 1.4 why a debt book that changed '
   f'currency inside the period is measured against its facility notes rather than against a '
   f'trailing effective rate the accounts cannot produce.')
-P(f'The sector context is what the forecast turns on, and it was corrected in this edition. '
-  f'Egypt sold about {n1(IN["egy_prod_mt"])} million tonnes against roughly '
-  f'{n0(IN["egy_capacity_mt"])} million tonnes of nameplate — a market running near '
-  f'{pc(PE["sector"]["utilisation"], 0)}, which is NOT the structurally slack market earlier '
-  f'editions of this study described. The oversupply risk is prospective: it lives in the '
-  f'{n1(IN["egy_revival_mt"])} million tonne restart programme and in a production quota '
-  f'that was suspended in May 2025 rather than repealed, either of which would meet a market '
-  f'with little spare demand to absorb it.')
+# THIS PARAGRAPH SAID 96% AND THE MEASURE SAID 86% [audit finding 7, 08-Sep-2026]. It
+# divided cement-AND-CLINKER sales by CEMENT nameplate capacity — the mismatch this
+# study's own export-line note describes as the earlier editions' error, made again in
+# the other direction. Exported clinker leaves at the kiln and calls on no grinding
+# capacity. The correction is nearly ten points and it takes the categorical claim with
+# it: a market with a sixth of its cement capacity idle is NOT a tight market, and this
+# paragraph used to say it was.
+_SEC = PE['sector']
+_SPARE = IN['egy_capacity_mt'] - _SEC['cement_sales_mt']
+P(f'The sector context is what earlier editions of this forecast turned on, and the '
+  f'measure they turned on was wrong. Egypt sold {n1(_SEC["cement_sales_mt"])} million '
+  f'tonnes of CEMENT — {n1(IN["egy_cons_mt"])} domestic and {n1(IN["egy_exports_cement_mt"])} '
+  f'exported — against roughly {n0(IN["egy_capacity_mt"])} million tonnes of cement '
+  f'nameplate. That is {pc(_SEC["utilisation"], 0)}, with about {n1(_SPARE)} million tonnes '
+  f'of grinding capacity idle. The {n1(IN["egy_prod_mt"])}Mt figure earlier editions used '
+  f'adds {n1(IN["egy_exports_clinker_mt"])}Mt of exported CLINKER, which leaves at the kiln '
+  f'and never enters a cement mill, and printed {pc(_SEC["utilisation_all_product"], 0)}.')
+P(f'SO THE MARKET IS NEITHER OF THE TWO THINGS THIS STUDY HAS CALLED IT. It is not the '
+  f'structurally slack market the first editions described, and it is not the '
+  f'{pc(_SEC["utilisation_all_product"], 0)} market the last one described. It is running '
+  f'with roughly a sixth of its cement capacity unused, and the {n1(IN["egy_revival_mt"])} '
+  f'million tonne restart programme would take that to about '
+  f'{n1(_SPARE + IN["egy_revival_mt"])}Mt — a third of nameplate — before a tonne of new '
+  f'demand appears. A production quota suspended in May 2025 rather than repealed sits on '
+  f'top of that.')
+P(f'WHAT THIS DOES AND DOES NOT DO TO THE FORECAST, because a corrected premise that '
+  f'quietly leaves its conclusion standing is the same defect one step along. The price '
+  f'path in this study does NOT rest on the sector being tight. Its FY2026 step is taken '
+  f'from a filed number — the company\'s own fourth-quarter 2025 realised price, which is '
+  f'{pc(0.072, 1)} above its full-year average — and every year after it grows at zero real '
+  f'against the house inflation path. That argument is unaffected by which utilisation '
+  f'figure is right. What IS affected is the comfort around it: at '
+  f'{pc(_SEC["utilisation"], 0)} with a restart programme pending, a price path that merely '
+  f'holds real is a stronger assumption than it looked at '
+  f'{pc(_SEC["utilisation_all_product"], 0)}, and the margin sensitivity in section 7 is '
+  f'where a reader should go to disagree with it.')
 
 # ============================== 1 ============================================
 H1('1  Fundamental valuation')
@@ -386,11 +445,32 @@ caption('Table 3 — The cost stack and the margin it produces. EBITDA is an OUT
 figure('fig7_stack.png', 6.9,
        'Figure 2 — Cash cost per tonne against realised price per tonne. The margin is the '
        'gap, and the gap narrows across the forecast.')
-P(f'The reconstruction reproduces audited FY2025 revenue to '
-  f'{sg(BU[0]["rev"]/IN["rev_fy25"]-1, 3)} and audited FY2025 EBITDA to '
-  f'{sg(BU[0]["ebitda"]/H["ebitda"][2]-1, 3)}. It is not forced to: the volume is derived '
-  f'from the revenue note and the cost lines are the printed ones, so a wrong price '
-  f'assumption would show up as a non-zero residual.')
+# WHAT THIS PARAGRAPH SAID UNTIL 08-SEP-2026, AND WHY IT IS GONE. It printed the two
+# residuals and then claimed "It is not forced to... a wrong price assumption would show
+# up as a non-zero residual." It IS forced to. Prices here are derived as revenue over
+# volume, so revenue times volume rebuilds revenue by construction, for any volume at
+# all. The workbook has said so in terms since revision 4 — "Rows 76-81 are a TIE, not a
+# test... Revision 3 presented exactly this identity as 'a test that can fail'. It
+# cannot." — and the delivered document went on presenting it as a test anyway. The
+# residuals stay, because a tie that did NOT foot would mean an arithmetic error; what
+# goes is the claim that footing is evidence. The real test is named instead, and it is
+# a harder one that the study does not pass comfortably.
+P(f'The reconstruction ties to audited FY2025 revenue at '
+  f'{sg(BU[0]["rev"]/IN["rev_fy25"]-1, 3)} and to audited FY2025 EBITDA at '
+  f'{sg(BU[0]["ebitda"]/H["ebitda"][2]-1, 3)}. THAT IS A TIE AND NOT A TEST, and it is '
+  f'worth being plain about which: prices here are derived as revenue over volume, so '
+  f'revenue rebuilt as volume times price reconstructs by construction and would foot on '
+  f'any volume whatever. It is checked because a tie that failed to foot would mean an '
+  f'arithmetic error, not because footing corroborates the volume.')
+P(f'The test that CAN fail is the three derived prices, because they can be held against '
+  f'a market: local cement at EGP {n0(UC["price_loc_derived"])} a tonne, export cement at '
+  f'USD {n1(UC["price_exp_cem_usd"])} and export clinker at USD '
+  f'{n1(UC["price_exp_clk_usd"])}. Two of the three are credible against Egyptian '
+  f'commentary. The third is not comfortable — export clinker sits roughly a third below '
+  f'the USD 44-48 the trade press quotes for Egyptian FOB cargoes — and that gap is a '
+  f'live disagreement between the physical disclosure and the price indices. It is '
+  f'published rather than tuned away, and it is the reason the volume base carries a '
+  f'sensitivity.')
 P(f'One physical constraint is worth checking, because the volume forecast is built off '
   f'CEMENT capacity while the kiln is what could bind first. At a clinker factor of '
   f'{n2(IN["clinker_factor"])} — observed from the audited capacity pair of '
@@ -520,7 +600,12 @@ rows = [['', 'Explicit window', 'Terminal']]
 rows.append(['Risk-free rate', pc(IN['rf'], 2), pc(IN['rf_term'], 2)])
 rows.append(['Less sovereign default spread', f'({pc(IN["sov_spread_cds"], 2)})', '—'])
 rows.append(['Normalised risk-free rate', pc(W['rf_star'], 2), pc(IN['rf_term'], 2)])
-rows.append(['Beta', n3(W['beta']), n3(W['beta_term'])])
+# THE TWO BETAS ARE NAMED IN THE ROW ITSELF [audit finding 8, 08-Sep-2026]. This row
+# printed two numbers under one word, and section 1.5 below runs a full page on the beta,
+# adopts the explicit one and never mentions that a second exists. A reader met 1.074
+# with nothing anywhere in three delivered artefacts to say where it came from.
+rows.append(['Beta  (terminal is the explicit beta unlevered and relevered — see below)',
+             n3(W['beta']), n3(W['beta_term'])])
 rows.append(['Equity risk premium', pc(IN['erp_cds'], 2), pc(IN['erp_term'], 2)])
 rows.append(['Cost of equity', pc(W['ke_exp'], 2), pc(W['ke_term'], 2)])
 rows.append(['Cost of debt after tax', pc(W['kd_at'], 2),
@@ -541,8 +626,42 @@ caption('Table 7 — The schedule. The glide fractions are the cumulative progre
         'POUND cost-of-debt path: the discount rate is a pound rate applied to pound cash '
         'flows, so the Egyptian easing calendar sets its slope while the euro debt book sets '
         'the level of the cost of debt. The terminal value is capitalised at the terminal '
-        'rate and brought home on year five\'s own cumulative factor — one date, one price '
-        'of time.')
+        f'rate and brought home on the END-OF-WINDOW factor of {SCHED["terminal_discount_factor"]:.4f} '
+        f'at {SCHED["discounting_convention"]["terminal_arrival_years"]:.2f} years — it is the '
+        f'value at the end of the window of everything after it, so it arrives half a year '
+        f'later than year five\'s own cash flow at {F["df"][-1]:.4f} and is worth less. One '
+        f'date, one price of time, and the terminal\'s date is not year five\'s.')
+
+# THE SECOND PUBLISHED BASIS, WHICH THIS SECTION USED TO PASS OVER IN SILENCE [audit
+# finding 9, 08-Sep-2026]. Table 6 printed one equity risk premium. The file it comes
+# from publishes two complete constructions in the same row, they are 4.5 points of
+# premium apart, and the one adopted here produces the lower discount rate and the
+# higher value. The study's own record already named the alternative and carried no
+# figure for it, so nothing downstream could have disclosed the price of the choice.
+_SENS = SCHED['sensitivity']
+P(f'ONE CHOICE IN THAT TABLE IS NOT THE ONLY PUBLISHED ANSWER, and a reader should be '
+  f'told which. The equity risk premium of {pc(IN["erp_cds"], 2)} is the CDS-based figure '
+  f'from the country risk file this study cites. The same row of the same file also '
+  f'publishes a RATING-based construction — Egypt at Caa1, a default spread of '
+  f'{pc(IN["sov_spread_rating"], 2)} and a total premium of {pc(IN["erp_rating"], 2)} — '
+  f'and these are two answers rather than an answer and a footnote.')
+P(f'APPLIED CONSISTENTLY, the rating basis nets its own spread out of the risk-free rate '
+  f'and puts its own premium back on: a normalised risk-free of '
+  f'{pc(_SENS["other_rf_star"], 2)}, a cost of equity of {pc(_SENS["other_ke_exp"], 2)} '
+  f'and an explicit cost of capital of {pc(_SENS["other_wacc_exp"], 2)} against the '
+  f'{pc(W["wacc_exp"], 2)} adopted here — {n0(_SENS["wacc_exp_delta_bp"])} basis points '
+  f'dearer. Half a basis is not a basis: mixing a CDS-netted risk-free rate with a '
+  f'rating premium would charge Egypt\'s default risk once at one price and once at '
+  f'another, so the comparison moves both legs together.')
+P(f'WHY THE CDS BASIS IS ADOPTED, and the honest form of the answer includes which way it '
+  f'cuts. A CDS spread is a price at which sovereign risk actually changed hands; a '
+  f'rating spread is a lookup from a letter grade to a table, and Egypt\'s letter grade '
+  f'moves in steps while its traded spread moves continuously. For a sovereign whose CDS '
+  f'trades in size, the traded price is the better estimate of what the market charges '
+  f'for that risk today. IT IS ALSO THE CHEAPER OF THE TWO, and therefore the one that '
+  f'flatters this valuation. A reader who prefers the rating basis should read '
+  f'{pc(_SENS["other_wacc_exp"], 2)} wherever this study prints {pc(W["wacc_exp"], 2)}, '
+  f'and the terminal shifts with it.')
 
 H2('1.5  Beta, and why it is a peer estimate rather than a regression')
 P('This edition changes the beta, and the change is worth setting out plainly because it '
@@ -585,8 +704,8 @@ P('One step could not be completed and it is flagged rather than passed over. Th
   'at a point.')
 P(f'The consequence is large and is published as a value rather than described: on the '
   f'withdrawn basket figure the cash-flow lens would read '
-  f'{n2(CON[1]["fv_alternative"])} against {n2(CON[1]["fv_adopted"])} on the adopted one, '
-  f'a difference of {sg(CON[1]["effect"])}.')
+  f'{n2(CON_BETA["fv_alternative"])} against {n2(CON_BETA["fv_adopted"])} on the adopted '
+  f'one, a difference of {sg(CON_BETA["effect"])}.')
 rows = [['Beta'] + [n2(b) for b in SN['beta_grid']]]
 rows.append(['Fair value per share (EGP)'] + [n2(x) for x in SN['beta']])
 table(rows, [2.20, 0.98, 0.98, 0.98, 0.98, 0.98])
@@ -599,6 +718,38 @@ caption(f'Table 8 — Fair value across the fixed comparability anchors. These a
         f'value-RAISING one, and it is stated rather than left off the table: a wider '
         f'interval than the anchors show is a fact about how little this regression '
         f'establishes, not a reason to print a narrower one.')
+
+# THE SECOND BETA, WHICH THIS SECTION USED TO OMIT ENTIRELY [audit finding 8].
+# Section 1.5 ran a full page on the beta, adopted 0.928, priced the alternative and
+# published a sensitivity across the whole peer spread — and never once said that the
+# terminal block runs on a different beta. Table 6 printed the second number with no
+# note, the workbook named the step in a single cell label, and the words "unlever",
+# "relever" and "Hamada" appeared in no delivered document. The construction is
+# legitimate and the choice was undisclosed, which is the harder of the two to catch.
+P(f'ONE MORE BETA, AND IT IS NOT THE ONE ABOVE. Everything in this section concerns the '
+  f'beta the EXPLICIT window runs on. The terminal block runs on a different one — '
+  f'{n3(W["beta_term"])} against {n3(W["beta"])} — and the difference is not a second '
+  f'estimate but the same estimate at a different capital structure. The company today '
+  f'carries debt at {pc(W["wd_gross"], 2)} of its capital and holds more cash than debt; '
+  f'the terminal assumes it has settled at {pc(IN["wd_term"], 1)}, which is the structure '
+  f'a mature cement producer in this market would be expected to hold. A beta is a '
+  f'levered quantity, so it cannot be carried across that change unaltered: it is '
+  f'unlevered at the observed structure to an asset beta of '
+  f'{n3(SCHED["beta_unlevered"])} and relevered at the terminal one.')
+P(f'The tax rate in that step is the STATUTORY '
+  f'{pc(SCHED["relevering_tax_rate"], 2)}, and it is deliberately not the effective '
+  f'{pc(IN["tax_eff"], 2)} that every profit line in this model carries. The two answer '
+  f'different questions: what a pound of debt saves in tax is worth the statutory rate, '
+  f'while what the company actually pays on its profit is the effective one. Both are '
+  f'stated here because a reader who found two tax rates in one model and no explanation '
+  f'would be right to suspect one of them of being a mistake.')
+P(f'WHAT THE STEP IS WORTH, because a construction disclosed without its price is only '
+  f'half-disclosed. Relevering raises the terminal beta and therefore the terminal '
+  f'discount rate: carrying the explicit {n3(W["beta"])} straight through instead would '
+  f'lower the terminal cost of capital and RAISE the value. This study takes the more '
+  f'expensive of the two, and it does so because the terminal capital structure it '
+  f'assumes is a real assumption with a real consequence, not because the answer is '
+  f'preferred.')
 
 # ---- 1.6 --------------------------------------------------------------------
 H2('1.6  The cash-flow waterfall')
@@ -644,36 +795,71 @@ P(f'The effective tax rate of {pc(TAXE)} is DISCLOSED, not inferred: income tax 
   f'{pc(IN["tax_stat"], 1)} because the deferred-tax movement is small.')
 
 # ---- 1.7 --------------------------------------------------------------------
+# THIS PARAGRAPH SAID THE MARGIN FALLS AND THE MARGIN RISES [audit finding 10, 08-Sep-
+# 2026]. It read "falls from the audited 39.3% to 40.4% by FY2030" and went on to explain
+# that "part of the 2025 step-change gives back". The forecast path is 39.03, 39.49,
+# 39.99, 40.20, 40.40: it dips once below the audited year and then climbs past it every
+# year after. The paragraph beneath it printed a "real erosion" of −3.1% under a
+# convention where the paragraph above it called +3.2% an erosion, so the two paragraphs
+# named opposite quantities with one word and the corrected one contradicted the story
+# both were told to support. What follows states what the model does, which is a WEAKER
+# claim than the one that was printed and is the reason it is worth stating carefully.
+_COST_IDX = IN['cost_infl'][5] - 1                       # the input-price ladder
+_PRICE_IDX = IN['price_local_path'][5] - 1               # the local realised price ladder
+_CC_CHARGED = BU[5]['cc_t'] / BU[0]['cc_t'] - 1          # what the model actually charges
+_WEDGE_IDX = IN['cost_infl'][5] / IN['price_local_path'][5] - 1
+_WEDGE_CHARGED = (BU[5]['cc_t'] / BU[0]['cc_t']) / IN['price_local_path'][5] - 1
 P(f'The margin path is the central judgement in this forecast, and it deserves stating as '
-  f'one number rather than left inside a table. Local prices are assumed to grow '
-  f'{pc(IN["price_local_path"][5]-1)} in total across the five years while pound costs grow '
-  f'{pc(IN["cost_infl"][5]-1)} — a real erosion of about '
-  f'{pc(IN["cost_infl"][5]/IN["price_local_path"][5]-1, 0)}. The EBITDA margin therefore '
-  f'falls from the audited {pc(H["margin"][2])} to {pc(F["margin"][4])} by FY2030, still '
-  f'well above the {pc(H["margin"][1])} of FY2024 and far above the {pc(H["margin"][0])} of '
-  f'FY2023. The claim is not that the business deteriorates; it is that part of the 2025 '
-  f'step-change gives back as dormant capacity returns and energy reform continues. A '
-  f'reader who thinks the industry passes cost through faster should read the margin '
-  f'sensitivity in section 7: two points of margin is worth about EGP '
-  f'{n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
-P(f'That path is set below the cost path in every year, and this revision changed how it '
-  f'is judged rather than only where it sits. The prior edition justified it against '
-  f'headline inflation of {pc(IN["cost_infl"][5]-1)} — but that is the input-price index, '
-  f'not the cost the model actually charges. Netting the alternative-fuel saving off the '
-  f'materials line, the cash cost per tonne the model charges grows '
-  f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]-1)}, so the real erosion is '
-  f'{pc(BU[5]["cc_t"]/BU[0]["cc_t"]/(IN["price_local_path"][5])-1)} rather than the figure '
-  f'previously printed. The comparison is now made against the cost the model charges.')
+  f'one number rather than left inside a table — including where that number runs against '
+  f'the story. Local prices are assumed to grow {pc(_PRICE_IDX)} in total across the five '
+  f'years while the INPUT-PRICE index grows {pc(_COST_IDX)}, so on the published ladders '
+  f'cost outruns price by {pc(_WEDGE_IDX, 1)}. That is not the cost this model charges. '
+  f'Netting the alternative-fuel saving off the materials line — a funded programme with '
+  f'an asset under construction behind it, not a trend — the cash cost per tonne charged '
+  f'grows {pc(_CC_CHARGED)}, which is {pc(abs(_WEDGE_CHARGED), 1)} SLOWER than price '
+  f'rather than faster.')
+P(f'SO THE MARGIN DOES NOT GIVE BACK, AND EARLIER EDITIONS OF THIS PARAGRAPH SAID IT DID. '
+  f'The EBITDA margin dips once, to {pc(F["margin"][0])} in FY2026 from the audited '
+  f'{pc(H["margin"][2])}, and then rises in every year after it to {pc(F["margin"][4])} by '
+  f'FY2030 — above the best year this company has ever filed, against {pc(H["margin"][1])} '
+  f'in FY2024 and {pc(H["margin"][0])} in FY2023. A forecast that ends above a company\'s '
+  f'best filed year is a claim that needs its mechanism named rather than a sentence '
+  f'saying the opposite, and the mechanism is the alternative-fuel substitution: it is the '
+  f'whole of the gap between the input-price ladder and the cost charged. Strip it out and '
+  f'cost grows {pc(_COST_IDX)} against price at {pc(_PRICE_IDX)}, the wedge turns the '
+  f'other way, and the margin declines instead of rising.')
+P(f'THAT IS THE ASSUMPTION IN THIS SECTION MOST WORTH DISAGREEING WITH. It rests on a '
+  f'substitution rate reaching {pc(IN["af_saving"][5], 1)} of the materials and fuel line '
+  f'by FY2030, on capacity that is funded and being built rather than running. A reader '
+  f'who thinks the programme underdelivers, or that the industry passes cost through '
+  f'faster than assumed, should read the margin sensitivity in section 7: two points of '
+  f'margin is worth about EGP {n2(SN["mgn"][3]-SN["mgn"][2])} a share.')
+# THE STEP QUOTED IS THE ONE THE MODEL APPLIES, NOT THE INDEX BEHIND IT. This paragraph
+# used to quote price_local_path[1] alone — the growth index — and call the result "less
+# than a point above a path in which prices stop rising altogether". The model applies
+# that index AND the calibration to the reviewed half, so the actual first-year step is
+# roughly twice the figure the sentence quoted, and the sentence ended by inviting the
+# reader to check it. A claim about the study's own central driver has to be computed
+# from what the driver does.
+_STEP_ACTUAL = BU[1]['price_loc'] / BU[0]['price_loc'] - 1
+_EXIT_FLAT = 0.072
 P(f'The presentation also settles a question three earlier editions argued about without '
   f'evidence. It reports local revenue and local volume for both years, so the realised '
   f'local price can be COMPUTED: EGP 1,810 a tonne in FY2024 against EGP 2,909 in FY2025, '
   f'a rise of 60.7% on volume up only 11.7%. The FY2025 margin step was price, not volume. '
   f'More useful for a forecast is the exit rate: the fourth quarter of 2025 realised EGP '
-  f'3,118 a tonne, 7.2% ABOVE the full-year average. Holding that exit flat through 2026 '
-  f'would by itself produce a full-year average 7.2% higher, so the '
-  f'{pc(IN["price_local_path"][1]-1, 1)} carried here is less than a point above a path in '
-  f'which prices stop rising altogether. That is the sense in which this forecast is '
-  f'conservative, and it can now be checked rather than asserted.')
+  f'3,118 a tonne, 7.2% ABOVE the full-year average, so holding that exit flat through 2026 '
+  f'would by itself produce a full-year average 7.2% higher. THE STEP THIS FORECAST '
+  f'ACTUALLY CARRIES IS {pc(_STEP_ACTUAL, 1)}, not the {pc(IN["price_local_path"][1]-1, 1)} '
+  f'growth index alone: the model calibrates its FY2026 channel prices to the reviewed '
+  f'half before growing them, and the calibration and the index both sit in that number. '
+  f'It is {pc(_STEP_ACTUAL - _EXIT_FLAT, 1)} above the flat-exit path rather than under a '
+  f'point above it, and the earlier editions of this paragraph quoted the index and left '
+  f'the calibration out — which understated the step by about half while claiming the '
+  f'forecast was conservative on exactly that ground. The honest statement is narrower: '
+  f'the price path grows BELOW cost inflation in every forecast year, which is where the '
+  f'margin discipline in this study actually sits, and the first-year level is set by a '
+  f'filed half rather than by a view.')
 P(f'The audited record still frames it. In FY2024 revenue grew '
   f'{pc(H["revenue"][1]/H["revenue"][0]-1, 1)} against total cash cost of '
   f'{pc((H["cogs"][1]+H["ga"][1]-IN["dna_fy24"])/(H["cogs"][0]+H["ga"][0]-IN["dna_fy23"])-1, 1)}; '
@@ -769,9 +955,24 @@ P(f'Growth in the terminal state has to be paid for, and the choice of what capi
   f'{n0((IN["ppe_fy25"]+IN["auc_fy25"])/IN["cap_cement_mt"]/IN["fx"])} per annual tonne '
   f'against a replacement cost of USD {n0(IN["repl_usd_t"])}. A return computed on that base '
   f'measures the devaluation, not the economics of adding a tonne.')
+# FOUR OPERANDS, NOT TWO. This sentence used to read "EGP 51,191mn, being 5.0Mt at USD
+# 130 a tonne", and 5.0 x 130 x 50.30 is EGP 32,695mn — a reader following the page could
+# not reach the printed figure, and the two operands it was missing are a currency rate
+# and an escalation. Both belong: the terminal is struck in the LAST FORECAST YEAR'S money
+# and charging a replacement cost in today's pounds against a profit five years out is a
+# unit error, which is the class of defect the terminal rule exists for. The construction
+# was right and the sentence was unfollowable.
 P(f'The terminal block is therefore struck on REPLACEMENT-COST invested capital — EGP '
   f'{n0(DCF["ic_repl"])}mn, being {n1(IN["cap_cement_mt"])}Mt at USD {n0(IN["repl_usd_t"])} '
-  f'a tonne. On that basis the return on capital is {pc(GDV["n_over_ic"], 2)} — the last '
+  f'a tonne, converted at EGP {n2(IN["fx"])} to the dollar and carried forward at the '
+  f'model\'s own cost inflation to the last forecast year — {n1(IN["cap_cement_mt"])} x '
+  f'{n0(IN["repl_usd_t"])} x {n2(IN["fx"])} x {n3(IN["cost_infl"][5])}. THE ESCALATION IS '
+  f'NOT AN ADJUSTMENT AND IT IS THE OPERAND MOST EASILY MISSED: the terminal is struck in '
+  f'that year\'s money, so a replacement cost quoted in today\'s pounds against a profit '
+  f'five years out would compare two different currencies of the same name. In today\'s '
+  f'pounds the same capacity is EGP '
+  f'{n0(IN["cap_cement_mt"] * IN["repl_usd_t"] * IN["fx"])}mn. '
+  f'On that basis the return on capital is {pc(GDV["n_over_ic"], 2)} — the last '
   f'forecast year\'s operating profit after tax against that capital, both measured at the '
   f'same date. A figure of {pc(TR["roic_repl"])} appears in the earlier editions of this '
   f'section and is NOT used here: it divides a profit already grown by one year of terminal '
@@ -1315,7 +1516,22 @@ for head, body in [
      f'and carried through every forecast year as a level shift of '
      f'{n3(CALB["local"])} times. THAT IS THE ASSUMPTION IN THIS STUDY MOST CAPABLE OF BEING '
      f'WRONG: if the rise was volume rather than price, and volume is capped by the plant, '
-     f'the later years are overstated.'),
+     f'the later years are overstated. '
+     # ALL THREE FACTORS ARE NAMED HERE, NOT ONE. Earlier editions disclosed the local
+     # shift and left the export and cost shifts to the model's own log, where no reader
+     # meets them. They are one calibration to one filed half rather than three separate
+     # adjustments, and a reader shown a third of it cannot see that.
+     f'TWO FURTHER FACTORS COME OUT OF THE SAME HALF AND ARE STATED HERE RATHER THAN LEFT '
+     f'TO THE MODEL: the export price is scaled {n3(CALB["export"])} times, because export '
+     f'sales of goods FELL over the same half, and the whole cash-cost stack is scaled '
+     f'{n3(CALB["cost"])} times, because the half\'s own cost of sales and administrative '
+     f'expenses gross up to EGP {n0(CALB["fy26_cashcost_implied"])}mn against what the '
+     f'uncalibrated model would have charged. The cost factor is not an adjustment to the '
+     f'answer and it is the one that keeps the margin honest: calibrating price to a filed '
+     f'half WITHOUT calibrating cost to the same half would manufacture a margin out of the '
+     f'calibration itself, which is precisely what this study forbids elsewhere. The three '
+     f'move in different directions because that is what the half reports — local price up, '
+     f'export price down, cost down — and all three come from one document.'),
     ('A large collection of export subsidy is treated as one-off. ', f'The half-year accounts '
      f'record EGP {n0(IN["export_subsidy_h1_26"])}mn of export subsidy collected in the '
      f'second quarter, against EGP {n1(IN["export_subsidy_fy25"])}mn for the whole of FY2025. '
@@ -1450,6 +1666,72 @@ table(rows, [2.10, 0.92, 0.92, 0.92, 0.92, 0.92], size=8.6, band_rows={6})
 caption('Table A3 — Free cash flow to the FIRM excludes treasury income, which is handled '
         'in the equity bridge; free cash flow to equity includes it through profit.')
 
+H2('A.4  Years three to five as ranges — this company\'s own tested error, applied')
+# THE FAR YEARS OF THIS FORECAST ARE PUBLISHED AS RANGES AND THE STUDY DID NOT PRINT THEM.
+# The calibration run committed a band on 01-09; the document was rebuilt on 03-09 and said
+# nothing about the run, the correction it adopted, or the width it measured. The band was
+# therefore computed, scored, committed and never shown to a reader, and every instrument
+# here reported the run complete. A range that exists only in an internal record is not a
+# published range.
+#
+# The multipliers are read off the run's own record. Nothing is typed: the point path is the
+# study's, the multipliers are the walk-forward's, and the product is arithmetic.
+_WFR = WF['ranges']
+_FAR = [2, 3, 4]                     # FY2028E, FY2029E, FY2030E — horizons 3, 4 and 5
+_H = ['3', '4', '5']
+rows = [['', YF[2], YF[3], YF[4]]]
+_VOL = [BU[i + 1]['vol'] for i in range(5)]
+for lab, path, band, fmt in [
+        ('Revenue — point (EGP mn)', F['revenue'], 'revenue', n0),
+        ('Revenue — low of the range', F['revenue'], 'revenue', n0),
+        ('Revenue — high of the range', F['revenue'], 'revenue', n0),
+        ('Cement and clinker sold — point (mn t)', _VOL, 'vol_total', lambda x: f'{x:,.2f}'),
+        ('Volume — low of the range', _VOL, 'vol_total', lambda x: f'{x:,.2f}'),
+        ('Volume — high of the range', _VOL, 'vol_total', lambda x: f'{x:,.2f}'),
+        ('Profit before tax — point (EGP mn)', F['pbt'], 'pbt', n0),
+        ('Profit before tax — low of the range', F['pbt'], 'pbt', n0),
+        ('Profit before tax — high of the range', F['pbt'], 'pbt', n0)]:
+    if 'low of the range' in lab:
+        vals = [path[i] * _WFR[band][h]['low'] for i, h in zip(_FAR, _H)]
+    elif 'high of the range' in lab:
+        vals = [path[i] * _WFR[band][h]['high'] for i, h in zip(_FAR, _H)]
+    else:
+        vals = [path[i] for i in _FAR]
+    rows.append([lab] + [fmt(v) for v in vals])
+rows.append(['Tested cases behind each band']
+            + [n0(_WFR['revenue'][h]['n']) for h in _H])
+table(rows, [2.45, 1.15, 1.15, 1.15], size=8.4, band_rows={4, 7})
+caption(f"Table A4 — the multipliers come from rebuilding this company's forecast as it would "
+        f"have stood at each of {WF['origins']} past year-ends, projecting one to five years "
+        f"ahead under the same rules, and scoring every projection against what was later "
+        f"reported: {WF['cells']} tested cases over {WF['span']}. The bands are the spread of "
+        f"those misses at three, four and five years out, applied to this forecast's own path.")
+P(f"THE TONNES WERE FORECAST FAR BETTER THAN THE MONEY, and that is the most useful thing "
+  f"this test says about the forecast above. Three years out, the volume band runs "
+  f"{E1(_WFR['vol_total']['3']['low'])} to {E1(_WFR['vol_total']['3']['high'])} times the "
+  f"point, while revenue runs {E1(_WFR['revenue']['3']['low'])} to "
+  f"{E1(_WFR['revenue']['3']['high'])} times and profit before tax "
+  f"{E1(_WFR['pbt']['3']['low'])} to {E1(_WFR['pbt']['3']['high'])} times. The physical "
+  f"business — kilns, mills, tonnes sold — was largely knowable in advance. What was not "
+  f"knowable was the price those tonnes fetched and the cost of making them, in a currency "
+  f"that was devalued twice inside the tested window. The width on profit is a measurement of "
+  f"Egyptian inflation and the exchange rate, not of this plant.")
+P(f"The band is wide because the record is short and the period was violent, and it narrows "
+  f"on volume for the same reason it widens on profit. It is published rather than smoothed: "
+  f"a far year of any projection of this company supports a range and never a point, and the "
+  f"reader is entitled to the width the method actually earned rather than to a single "
+  f"figure carried to the decimal. The counts in the last row fall from "
+  f"{n0(_WFR['revenue']['3']['n'])} to {n0(_WFR['revenue']['5']['n'])} across the three "
+  f"years, because a five-year-ahead test needs five more years of history than a "
+  f"one-year-ahead test, and those are the cases the record actually holds.")
+P(f"One correction was adopted out of {WF['adopted_correction']['of_candidates']} candidates "
+  f"— manufacturing depreciation, at a factor of "
+  f"{WF['adopted_correction']['factor']:.4f} — and "
+  f"{WF['adopted_correction']['watch_flags']} others were recorded as watch flags and acted "
+  f"on by nobody. A correction is adopted only where the bias holds its sign across the "
+  f"record and the model is otherwise right; where the model itself is wrong, a multiplier "
+  f"would hide it rather than fix it.")
+
 # ============================== APPENDIX B ===================================
 doc.add_page_break()
 H1('Appendix B  Peer set, sector structure and risks')
@@ -1467,37 +1749,52 @@ caption('Table B1 — Every multiple here is RECOMPUTED from revenue, profit and
 figure('fig8_sector.png', 6.6,
        'Figure B1 — The Egyptian cement balance. The surplus is the whole sector case.')
 H2('B.2  The sector balance, and what it is not')
-P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of nameplate capacity against roughly '
-  f'{n0(IN["egy_cons_mt"])}Mt of domestic consumption and {n0(IN["egy_prod_mt"])}Mt of '
-  f'total sales. The balance now closes because it is taken from one disclosure rather '
-  f'than assembled from three: the same page gives local '
-  f'{n1(IN["egy_cons_mt"])}Mt, exports {n1(IN["egy_exports_mt"])}Mt and a total of '
-  f'{n1(IN["egy_prod_mt"])}Mt — the two components add to '
-  f'{n1(IN["egy_cons_mt"] + IN["egy_exports_mt"])}Mt at the one decimal each is published '
-  f'to, and the total is the disclosed figure rather than their sum. Earlier '
-  f'editions set a cement-plus-clinker export figure against a cement-only production '
-  f'figure and printed a balance that was out by 7.5Mt. The correction matters beyond '
-  f'tidiness: {n1(IN["egy_prod_mt"])}Mt of sales against roughly '
-  f'{n0(IN["egy_capacity_mt"])}Mt of nameplate is a market running near '
-  f'{pc(PE["sector"]["utilisation"], 0)}, which is NOT the structurally slack market this '
-  f'study has described from its first edition. The oversupply risk is prospective — it '
-  f'lives in the {n1(IN["egy_revival_mt"])}Mt restart programme, not in the current '
-  f'balance — and the distinction is material to the price path. The abolition of the '
-  f'production quota in May 2025 removed the mechanism that had been supporting price into '
-  f'that surplus, and the {n1(IN["egy_revival_mt"])}Mt restart programme would add to it.')
+P(f'Egypt carries about {n0(IN["egy_capacity_mt"])}Mt of cement nameplate capacity. The '
+  f'company\'s own market page splits FY2025 sales three ways, and the split is what this '
+  f'balance turns on: domestic cement {n1(IN["egy_cons_mt"])}Mt, exported cement '
+  f'{n1(IN["egy_exports_cement_mt"])}Mt, exported clinker '
+  f'{n1(IN["egy_exports_clinker_mt"])}Mt, total {n1(IN["egy_prod_mt"])}Mt. The three add to '
+  f'the disclosed total exactly, and the export line adds to the disclosed export total '
+  f'exactly, which is what makes either ratio below safe to publish.')
+P(f'TWO RATIOS COME OUT OF THAT PAGE AND ONLY ONE OF THEM MEANS ANYTHING. Cement sold — '
+  f'domestic plus export, {n1(_SEC["cement_sales_mt"])}Mt — against cement nameplate is '
+  f'{pc(_SEC["utilisation"], 1)}. All product sold, {n1(IN["egy_prod_mt"])}Mt, against the '
+  f'same cement nameplate is {pc(_SEC["utilisation_all_product"], 1)}. The second is the '
+  f'one earlier editions of this study printed, and it is not a measure of anything: '
+  f'clinker leaves at the kiln and never enters a cement mill, so a tonne exported as '
+  f'clinker consumes no grinding capacity and does not belong in the numerator. That is '
+  f'the SAME mismatch this study identified in the editions before it — a cement-plus-'
+  f'clinker figure against a cement-only one — committed again in the other direction, and '
+  f'the {n1(_SEC["cement_sales_mt"])}Mt discarded then as a failed balance was the correct '
+  f'cement-basis number all along.')
+P(f'ON THE MEASURE THAT MEANS SOMETHING, the market is running with about {n1(_SPARE)}Mt of '
+  f'cement capacity idle — roughly a sixth of nameplate. That is neither the structurally '
+  f'slack market the first editions of this study described nor the tight one the last '
+  f'edition described. The {n1(IN["egy_revival_mt"])}Mt restart programme would take idle '
+  f'capacity to about {n1(_SPARE + IN["egy_revival_mt"])}Mt before any new demand appears, '
+  f'and the production quota abolished in May 2025 removed the mechanism that had been '
+  f'supporting price into a surplus. The forecast price path does not depend on which of '
+  f'these two numbers is right — its first-year step is a filed quarterly realisation and '
+  f'every later year holds flat in real terms — but the comfort around it does, and this is '
+  f'where a reader who wants to press on the price path should press.')
 H2('B.3  Risk register')
 P('One entry per risk that could move this valuation by more than a few per cent, each '
   'stated as a mechanism rather than a worry, and each with the disclosure it rests on.')
 for head, body in [
-    ('Price risk. ', f'This is the dominant risk, and the disclosure corrects how it '
-     f'should be framed. The Egyptian market is NOT currently slack: it sold '
-     f'{n1(IN["egy_prod_mt"])}Mt against roughly {n0(IN["egy_capacity_mt"])}Mt of '
-     f'nameplate, and this company realised a 60.7% rise in its local price in FY2025. The '
-     f'risk is prospective and it has two legs — the {n1(IN["egy_revival_mt"])}Mt restart '
-     f'programme, and a production quota that was SUSPENDED rather than repealed and could '
-     f'return without legislation. Either would meet a market with little spare demand to '
-     f'absorb it. That is why the forecast price path grows below cost inflation in every '
-     f'year despite an exit rate that would support more.'),
+    ('Price risk. ', f'This is the dominant risk and it is LARGER than the edition before '
+     f'this one said, because that edition measured the market wrongly. On matched '
+     f'denominators Egypt sold {n1(_SEC["cement_sales_mt"])}Mt of cement against roughly '
+     f'{n0(IN["egy_capacity_mt"])}Mt of cement nameplate — {pc(_SEC["utilisation"], 0)}, '
+     f'about {n1(_SPARE)}Mt idle — where the previous edition printed '
+     f'{pc(_SEC["utilisation_all_product"], 0)} by counting exported clinker against '
+     f'grinding capacity it never touched. So the surplus is CURRENT as well as '
+     f'prospective. On top of it sit two further legs: the {n1(IN["egy_revival_mt"])}Mt '
+     f'restart programme, and a production quota SUSPENDED rather than repealed, which '
+     f'could return without legislation. Against that, this company realised a 60.7% rise '
+     f'in its local price in FY2025 and exited the year {pc(0.072, 1)} above its own annual '
+     f'average, which is the evidence the first forecast year rests on — a filed number '
+     f'rather than a view about how tight the market is. Every year after it holds flat in '
+     f'real terms.'),
     ('Energy and currency. ', 'Fuel is dollar-priced and electricity tariffs are on a '
      'reform path. Both raise cost independently of what happens to price.'),
     ('Concentration. ', 'One site, one product, one country. There is no diversification '
@@ -1592,11 +1889,13 @@ rows.append([
 rows.append([
     'The beta is a peer median, not this company\'s own regression, so the discount rate is '
     'borrowed.', 'Experts 1 and 2', 'CONCEDED — AND PUBLISHED BOTH WAYS',
-    f'The own-stock regression against the EGX30 returns {CON[1]["alternative"]} on an '
+    f'The own-stock regression against the EGX30 returns {CON_BETA["alternative"]} on an '
     f'R-squared of 4.7%, below the usability floor, so tier 1 is not available. On the '
-    f'regression the lens would read EGP {n2(CON[1]["fv_alternative"])} against '
-    f'EGP {n2(CON[1]["fv_adopted"])} — {sg(CON[1]["effect"])}, the study\'s most '
-    f'consequential contested judgement.'])
+    f'regression the lens would read EGP {n2(CON_BETA["fv_alternative"])} against '
+    f'EGP {n2(CON_BETA["fv_adopted"])} — {sg(CON_BETA["effect"])}'
+    + (', the study\'s largest contested judgement.' if _beta_is_big else
+       f'. The study\'s largest is '
+       f'{CON_BIG["choice"].split(":")[0].strip().lower()} at {sg(CON_BIG["effect"])}.')])
 rows.append([
     'Peer betas are used as published, without unlevering and re-levering.', 'Expert 3',
     'CONCEDED — WITH THE DIRECTION NAMED',
@@ -1718,6 +2017,6 @@ P(f'The price quoted throughout is the latest known close, EGP {n2(SPOT)} on '
   f'received from the company, from any holder of its shares, or from anyone with an '
   f'interest in its price.', size=8.8)
 
-OUT = 'ARCC_Valuation_Study_03-09-2026_public.docx'
+OUT = _ed.STUDY_DOCX
 doc.save(OUT)
 print('wrote', OUT)

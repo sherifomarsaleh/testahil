@@ -1,4 +1,5 @@
-"""AMOC_Bibliography_03-09-2026.docx — the companion bibliography document.
+import sys
+"""AMOC_Bibliography_{edition}.docx — the companion bibliography document.
 
 Every input in the model: value, source, date and research layer — emitted directly from
 study_numbers.json (the compute script's own INPUTS block), plus the document bibliography,
@@ -13,6 +14,8 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 INP = D['inputs']
 BASE, BETA = D['base'], D['wacc']['beta']
@@ -400,5 +403,5 @@ P('The companion workbook was verified on the DELIVERED file rather than on the 
   'in place with the whole workbook re-evaluated to confirm it moves the headline in the '
   'asserted direction.')
 
-doc.save(os.path.join(HERE, 'AMOC_Bibliography_03-09-2026.docx'))
-print('wrote AMOC_Bibliography_03-09-2026.docx')
+doc.save(os.path.join(HERE, _ed.BIBLIO_DOCX))
+print('wrote ' + _ed.BIBLIO_DOCX)

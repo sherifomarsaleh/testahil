@@ -215,3 +215,48 @@ THE STUDY IS HELD, NOT PUBLISHED [R-GAP-02]: at -18.2 per cent it is past the 10
 publication limit and no market-dissent document is filed. Holding is the right outcome
 for a study whose own multiple cross-check is this uncomfortable and whose largest
 structural defect is named and open.
+
+---
+
+## ADDENDUM, 07-09-2026 — THE REBUILD, AND WHY THIS REVIEW STANDS
+
+[R-GAP-01] AUDITED GAP, RESTATED: **-17.6 per cent** against the latest known price of
+**AED 6.80, close of 2026-09-07**, supplied by the principal in answer to the standing
+question [R-GAP-01 AMENDED, 07-09-2026] and committed at
+`engine/prices/SUPPLIED_07-09-2026.json`. The review above was written at -18.2 per cent
+against AED 6.85 of 3 September. The disagreement has moved 0.6 percentage points, well
+inside the five-point staleness allowance, so **the eight headings below are not re-worked
+— they are re-affirmed on a number that barely moved.**
+
+WHAT THE REBUILD DID, AND IT IS THE PART WORTH READING. Four standing rules were met that
+this study had been breaching: the relative lens's non-circularity block put on one basis
+[R-LENS-03], the bridge's currency, scale and peg declared [R-BRIDGE-01], the third
+tranche of the capital structure declared [R-COC-02], and the fleet committed with the
+date it was true on [R-ASSET-01]. **NOT ONE OF THEM MOVED THE CENTRAL BY A BASIS POINT.**
+The full route is in `rebuild_ledger.json`; the cumulative move is +0.0 per cent across
+four levers, which is not an accident of rounding — every one was a record that did not
+exist, never a number that was wrong.
+
+SO THE WHOLE OF THE GAP IS THE PRICE. This study was struck at AED 6.16 on 7 August 2026,
+sat at -9.0 per cent that day, and owed no review. It owes one now because the market rose
+10.4 per cent while the study stood still. **THAT IS THE HONEST READING AND IT IS NOT A
+COMFORTABLE ONE**: a gap that opens without any lever moving is not evidence that the
+study was audited and cleared — it is evidence that the audit above, written three days
+ago, is now the only thing standing between this central and a reader.
+
+THE ONE PLACE THIS REVIEW STILL CANNOT LOOK, STATED PLAINLY RATHER THAN LEFT TO BE FOUND.
+The terminal is **STOPPED**, not deferred — `TERMINAL_EVIDENCE_05-09-2026.md` records three
+independent reasons the audited accounts yield no usable asset life: dry-docking is
+capitalised and amortised over two to five years while the vessel line is not split by
+component, one vessel class prints its age as an unfilled placeholder, and 97.85 per cent
+of depreciable net book value sits in a single column spanning six disclosed lives from 2
+to 40 years. A life this desk chose is not a disclosed life (SIGCM clause 1), so the
+terminal was not rebuilt and its ratchet entry stands. **The terminal is the single largest
+construction in this valuation, so the place a defect of this size would most likely sit is
+the one place this rebuild could not reach.** That is a limit on what the eight headings
+below can be taken to have established, and it is recorded here rather than implied.
+
+WHAT WOULD CLOSE IT: a component split of the vessel line in the property, plant and
+equipment note, or a disclosed dry-docking amortisation period stated separately from the
+hull life. Either would let `terminal_value.build()` run on a sourced figure. Neither is in
+the filings this study has read.

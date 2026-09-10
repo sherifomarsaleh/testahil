@@ -240,10 +240,29 @@ I("urea_fob_egypt", 545.0, "US$/t",
   "Listed granular urea free-on-board Egypt futures contract, front-month settle", "2026-08-07", "L2")
 I("erp_rating", 0.13937694320020103, "ratio", CPF + ", rating basis total equity risk premium", "2026-01-01", "L2")
 I("sov_spread_rating", 0.06372478453347744, "ratio", CPF + ", adjusted default spread", "2026-01-01", "L2")
+# THE SUPERSEDED PAIR IS REGISTERED, AND THE NOTE QUOTING IT IS COMPUTED. Both figures
+# are facts about the edition this one replaced — THIS MODEL CANNOT COMPUTE THEM, a
+# different construction produced them — so they take the same disposition any superseded
+# figure quoted to show what changed must take: registered as the historical fact each is,
+# never typed into the sentence that reports them. The rule reaches a register's OWN
+# justification text, and this note is exactly that. Found by prose_check.py on 05-09-2026,
+# once the delivered workbook joined the population that reads this study.
+_ERP_CDS_V1 = 0.094247
+_SPREAD_V1 = 0.0355
+I("erp_cds_superseded", _ERP_CDS_V1, "ratio",
+  "The credit-default-swap equity risk premium this study carried BEFORE the correction of "
+  "9 August 2026, reconstructed at the time from a sovereign spread the source file does "
+  "not carry. Registered as the historical fact it is so the correction note beside it is "
+  "computed rather than typed.", "2026-08-08", "L4")
+I("sov_spread_cds_superseded", _SPREAD_V1, "ratio",
+  "The sovereign credit-default-swap spread the superseded premium above was reconstructed "
+  "from. It appears in no source file, which is why the premium built on it was corrected; "
+  "it is registered here for the same reason as the premium.", "2026-08-08", "L4")
 I("erp_cds_damodaran", 0.0941, "ratio",
   CPF + ", equity risk premium based on the sovereign credit default swap. CORRECTED "
-  "9 August 2026: the study had 9.4247%, reconstructed from a 3.55% spread the file does "
-  "not carry. Damodaran's Egypt row reads 3.41% and 9.41%.", "2026-01-05", "L4")
+  "9 August 2026: the study had %.4f%%, reconstructed from a %.2f%% spread the file does "
+  "not carry. Damodaran's Egypt row reads 3.41%% and 9.41%%."
+  % (100 * _ERP_CDS_V1, 100 * _SPREAD_V1), "2026-01-05", "L4")
 I("sov_spread_cds", 0.0341, "ratio", CPF + ", ten-year CDS spread", "2026-01-01", "L2")
 I("mature_market_erp", 0.0423, "ratio", CPF + ", mature-market equity risk premium", "2026-01-01", "L2")
 I("country_risk_premium_rating", 0.13937694320020103 - 0.0423, "ratio",
@@ -316,9 +335,104 @@ I("quota_domestic_share_2021", 0.55, "ratio",
 I("quota_free_local_2021", 0.10, "ratio", "Cabinet decision 170 of 24 November 2021", "2021-11-24", "L3")
 I("export_levy_egp_t", 2500.0, "EGP/t",
   "Trade and industry ministry decree 241 of 2021 — levy on the quota shortfall", "2021-06-03", "L3")
-I("export_duty_2026", 0.10, "ratio",
-  "2026 replacement of the shortfall levy with an ad-valorem duty tied to the global price",
-  "2026-01-01", "L3")
+_AN_EXEMPT_N = 0.342
+_AN_EXEMPT_TXT = "%.1f%%" % (100 * _AN_EXEMPT_N)
+
+# THE INSTRUMENT WAS FOUND. RE-TIERED L3 -> L4 EARLIER ON 09-09-2026 AND BACK TO L3 THE
+# SAME DAY, AND THE SECOND MOVE IS THE ONE THAT MATTERS.
+#
+# What was true and remains true: this input cited a DESCRIPTION OF A CHANGE under a date
+# of 2026-01-01 that is a placeholder rather than a publication date, while the three
+# policy inputs immediately above cite their instruments by number -- cabinet decision 170
+# of 24 November 2021, twice, and trade-ministry decree 241 of 2021. The study's own sweep
+# register recorded that the 2026 duty came from "Mada Masr and Edge Consultancy
+# reporting" and nothing read it across. That was a real provenance defect and it is why
+# the input carries a proper citation now.
+#
+# WHAT WAS NOT TRUE WAS THE SENTENCE THIS DESK THEN WROTE: "no instrument has been
+# located". Nobody had looked. Twenty minutes of searching found DECREE No. 258 of 2026 of
+# the Minister of Investment and Foreign Trade, published in the Official Gazette on
+# 25 June 2026, corroborated independently by two reports of the same instrument. Writing
+# that a document does not exist because this desk has not read it is the SWDY defect
+# exactly -- a delivered sentence asserting an absence that a search would have closed --
+# and it is worse here, because it was written INTO a study while auditing another study
+# for the same thing.
+#
+# WHAT THE DECREE SAYS, AND WHAT IT DOES TO THE 2.683 A SHARE THIS LINE IS WORTH:
+#   * 10% ad valorem on the FOB invoice value of NITROGEN FERTILISER exports, the invoice
+#     certified by the Chamber of Chemical Industries before export.
+#   * It REPLACED a temporary US$90 per tonne duty imposed in May 2026 for three months,
+#     which was due to expire in early August. The 10% carries NO STATED EXPIRY, so
+#     applying it in perpetuity is a defensible reading of the instrument rather than an
+#     assumption -- which is what this line needed and did not have.
+#   * PURE AMMONIUM NITRATE ABOVE 34.2% NITROGEN IS EXEMPT, verified by joint
+#     customs and export-control sampling, as are shipments to productive enterprises in
+#     the free zones.
+#
+# The rate the study carries is the rate the decree sets, on the base the decree sets, and
+# it applies to urea, which is a nitrogen fertiliser and is not exempt. THE LARGEST SINGLE
+# PRICEABLE LINE IN THIS STUDY IS THEREFORE NOT A DEFECT. It stays in the contested
+# register because a reader should see what it is worth, but it is no longer an open
+# provenance question, and the answer does not move.
+#
+# THE EXEMPTION WAS CHECKED AGAINST THIS MODEL RATHER THAN NOTED. compute.py applies the
+# duty at line 463 to the UREA export leg alone; the existing granulated nitrate (line
+# 469) and the new complex's nitrate (line 544) both carry no duty. The model is already
+# consistent with the exemption. Recorded because a search that changes nothing is still
+# a search, and the next reader should not have to run it again.
+#
+# WHAT WOULD IMPROVE IT FURTHER: the decree text itself from the Official Gazette rather
+# than two reports of it, and the FY2025/26 auditor's report disclosing a duty actually
+# charged, in the way the FY2024/25 report disclosed the EGP 437.5m shortfall levy on
+# 175kt. The second belongs in the filings this study already holds.
+# THE LEVY WAS CANCELLED FIVE WEEKS BEFORE THIS STUDY WAS STRUCK, AND THIS MODEL WENT ON
+# CHARGING IT. Ministerial Decision 340 of 2026 cancelled Decisions 190, 203 and 258 of
+# 2026 with effect from 1 August 2026, ending the 10% export levy on nitrogen fertilisers.
+# This edition strikes at the 3-September close, so the rate in force on the strike date is
+# ZERO and the 10% belonged to a window that had already closed: 5 May to 31 July on the
+# flat US$90/t basis, 25 June to 31 July on the ad valorem one.
+#
+# HOW IT WAS MISSED, WHICH IS THE PART WORTH RECORDING. The cancellation was searched for
+# in English and not found, and NOT FOUND WAS REPORTED AS NOT TRUE. It is an Egyptian
+# ministerial decision and its coverage is Arabic; the decree register, the Customs
+# Authority's own Circular 46 of 2026 governing shipments cleared before the levy ceased,
+# and the trade press all carry it. Three searches in the wrong language is not evidence of
+# absence, and a study that charges a repealed duty for five forecast years is the cost.
+# Worth EGP 2.98 a share against a gap of 9.21.
+I("export_duty_2026", 0.0, "ratio",
+  "Ministerial Decision 340 of 2026, effective 1 August 2026, cancelling Decisions 190, "
+  "203 and 258 of 2026 and ending the 10% ad valorem export levy on nitrogen fertilisers. "
+  "The Egyptian Customs Authority issued Circular 46 of 2026 to govern shipments whose "
+  "declarations were opened before the levy ceased, which is the administrative trace a "
+  "cancellation leaves and a rumour does not. This study strikes on 3 September 2026, so "
+  "the rate in force at the strike is nil. The superseded chain is registered below with "
+  "its own dates, because a duty that existed for three months is a fact about this year "
+  "and the alternatives grid prices its return",
+  "2026-08-01", "L3")
+I("export_duty_2026_superseded", 0.10, "ratio",
+  "Decree No. 258 of 2026 of the Minister of Investment and Foreign Trade, published in "
+  "the Official Gazette on 25 June 2026 — 10% ad valorem on the FOB invoice value of "
+  "nitrogen fertiliser exports, the invoice certified by the Chamber of Chemical "
+  "Industries. It replaced a temporary US$90/t duty imposed in May 2026 for three months "
+  "and was itself cancelled by Decision 340 of 2026 with effect from 1 August 2026. Pure "
+  "ammonium nitrate above " + _AN_EXEMPT_TXT + " nitrogen and free zone shipments were "
+  "exempt — urea was neither. Retained as the alternative this study prices, not as the "
+  "rate it charges",
+  "2026-06-25", "L3")
+# THE DECREE'S OWN EXEMPTION THRESHOLD, REGISTERED AS A FACT [09-09-2026]. It is quoted
+# in the delivered study and the workbook, and a figure in delivered text has to exist as
+# a number this study holds or prose_check reports it as unreconciled — which it did,
+# twice, the moment the decree was cited. It is a DISCLOSED FACT this model does not
+# compute: nothing here consumes it, because the duty is applied to the urea export leg
+# and urea is not exempt. Registered so the citation is auditable rather than floating.
+I("an_exempt_n_pct", _AN_EXEMPT_N, "ratio",
+  "Decree No. 258 of 2026, exemption clause — pure ammonium nitrate whose nitrogen "
+  "content EXCEEDS " + _AN_EXEMPT_TXT + " is outside the 10% export duty, verified by "
+  "joint Customs "
+  "Authority and export-control sampling of the shipment. Free-zone shipments to "
+  "productive enterprises are likewise exempt. A fact about the instrument, consumed by "
+  "no calculation in this study: the duty is charged on the urea export leg, and urea is "
+  "not exempt", "2026-06-25", "L3")
 I("subsidised_price", 6000.0, "EGP/t", "Cooperative supply price for subsidised fertilizer", "2025-09-08", "L3")
 I("quota_revision_sep2025", 0.53, "ratio",
   "Cabinet decision of 8 September 2025 — industry export share after the revision", "2025-09-08", "L3")
@@ -366,7 +480,34 @@ I("peer_ev_ebitda_high", 9.9, "x",
 I("control_discount_eg_state", 0.40, "ratio",
   "Observed discount at which Egyptian state-controlled industrial assets have changed hands",
   "2026-08-06", "L4")
-I("an_price_usd_t", 280.0, "US$/t", "Mid-cycle ammonium nitrate pricing", "2026-08-07", "L4")
+# THE COMPANY DISCLOSES WHAT IT ACTUALLY GETS FOR THIS PRODUCT, and the model typed a
+# mid-cycle guess instead. an_price_usd_t was an L4 figure with no source but the phrase
+# "mid-cycle"; note 20 of the reviewed interims gives the realised nitrate price. A buyer
+# need not believe anything exotic about the nitrate market — only the company's own
+# disclosed realisation. Worth EGP 0.564 a share and it is OUR defect [R-GAP-04].
+I("an_price_usd_t", 280.0, "US$/t", "Mid-cycle ammonium nitrate pricing — RETIRED as the "
+  "ANNA pricing basis on 10-09-2026 in favour of the disclosed realisation below; kept "
+  "registered because the sensitivity grid still prices the alternative",
+  "2026-08-07", "L4")
+I("bs_doc_credits_M9FY2526", 1407.4, "EGP m",
+  "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, "
+  "note 11 — letters of credit for goods and services, disclosed WITHIN the EGP 3,378.2mn "
+  "inventory line. They are prepayments against goods not yet received, not stock: counting "
+  "them as inventory overstates working capital and the days it implies (165 against 114)",
+  "2026-05-21", "L1")
+I("abuk_shares_held", 10262324, "shares",
+  "Interim statements, nine months ended 31 March 2026, note 8-1 — the Abu Qir Fertilizers "
+  "holding, carried at EGP 81.70 a share", "2026-05-21", "L1")
+I("abuk_spot_strike", 94.00, "EGP/share",
+  "Abu Qir Fertilizers closing price on the Egyptian Exchange, 3 September 2026 — the SAME "
+  "date and the SAME committed price file this study is struck at, "
+  "the supplied-price file this edition is struck from. Read from that file rather than "
+  "typed beside it, "
+  "so a stake in a listed company and the company holding it are marked on one date",
+  "2026-09-03", "L2")
+I("abuk_carrying_price", 81.70, "EGP/share",
+  "Interim statements, nine months ended 31 March 2026, note 8-1 — the price the holding is "
+  "carried at, being the 31-March market close", "2026-05-21", "L1")
 I("mid_cycle_urea_usd_t", 400.0, "US$/t",
   "Mid-cycle urea free-on-board Egypt: above the 2015-2020 average of roughly US$250 and well "
   "below the August 2026 quote of US$545", "2026-08-07", "L4")

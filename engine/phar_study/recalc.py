@@ -1,3 +1,4 @@
+import sys
 """Recalculate the DELIVERED workbook and reconcile it cell-by-cell against the model.
 
 Three gates, in increasing strength:
@@ -16,10 +17,12 @@ independent reimplementation rather than the library that wrote the workbook.
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
+sys.path.insert(0, HERE)
 import openpyxl
 import xlcalc
 
-XLSX = os.path.join(HERE, 'EIPICO_Valuation_Model_09082026.xlsx')
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
@@ -133,8 +136,10 @@ for name, got, exp in checks:
         bad.append(name)
 
 print(f'\npasted cells by permitted class: {PASTE}')
+# every pasted class except the labels, summed from the record rather than from a list of
+# three names typed here — a fourth class was added and this line went on reporting three.
 print(f'formula cells {nform} against pasted value cells '
-      f'{PASTE["audited"] + PASTE["unit_build"] + PASTE["grid"]}')
+      f'{sum(v for k, v in PASTE.items() if k != "label")}')
 
 json.dump(dict(formulas=nform, checked=checked, unresolvable=len(unresolvable),
                unchecked=unchecked, mismatched=len(mismatches),

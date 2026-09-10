@@ -26,6 +26,8 @@ rather than asserted in the narrative:
      out the holding-company lens.
 """
 import math, sys, os, json
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -354,14 +356,27 @@ INP['line_vol_growth'] = I(dict(oils=[0.0]*5, wax=[0.0]*5, gasoil=[0.0]*5,
                            "annual record for FY2021-FY2025 says the opposite: total sales "
                            "tonnage ran 1,492 / 1,548 / 1,449 / 1,433 / 1,262 thousand tonnes, a "
                            "fall of 18.5% from the FY2022 peak, and six of the eight lines "
-                           "shrank over FY2022-FY2025 (gas oil -8.3% a year, naphtha -7.4%, fuel "
-                           "oil -6.4%, heavy fuel oil -28.2%; only wax +1.1% and LPG +1.7% grew). "
+                           "shrank over FY2022-FY2025 while wax and LPG grew. "
+                           "THE PER-LINE COMPOUND RATES ARE NO LONGER PRINTED [08-09-2026]. This "
+                           "note used to give four of them to a decimal place, and NOTHING IN "
+                           "THIS REPOSITORY CARRIES THE SERIES THEY COME FROM: the three "
+                           "committed filings are two December-2025 statements and one June-2025, "
+                           "note 14-A gives one half's tonnage by line with a value-only "
+                           "comparative, and FY2022 to FY2024 per-line tonnage is in filings this "
+                           "study does not hold. The prose check caught one of the four and the "
+                           "other three were unflagged rather than verified. Under SIGCM a figure "
+                           "this desk cannot source is a figure it does not print, so the "
+                           "DIRECTION survives — six lines down, two up, and that is what the "
+                           "argument needs — and the decimals go. The five annual totals above "
+                           "stand on the same footing and are ESCALATED rather than removed, "
+                           "because the bear case is anchored to them. "
                            "FLAT IS NOT A NEUTRAL ASSUMPTION HERE, IT IS ALREADY THE OPTIMISTIC "
                            "ONE: the base year is the transition half annualised at 1,616 "
                            "thousand tonnes, which is 12.5% ABOVE the five-year mean of 1,437 and "
                            "above every full year in the record. Holding it flat assumes the "
-                           "rebound printed in one half persists. The bear case reverts toward "
-                           "the five-year mean and the lever is sensitised end to end",
+                           "rebound printed in one half persists. The bear case cuts tonnage "
+                           "harder than that mean requires and the lever is sensitised end to "
+                           "end",
                            "2026-08-18", "Company")
 INP['us_infl'] = I(0.025, "Long-run United States consumer price inflation, the foreign leg of "
                           "the purchasing-power-parity relation used to derive the currency path",
@@ -504,18 +519,32 @@ INP['wacc_usd_erp'] = I(0.075, "Blended emerging-market equity risk premium appl
                                "dollar-denominated alternative", "2026-08-06", "Global")
 
 # --- House drivers ---------------------------------------------------------
-INP['beta'] = I(0.9080, "Own-stock tier-1 regression, AMOC weekly log-returns against the "
-                        "EGX30 — the published index of the exchange AMOC is listed on, "
-                        "series as of 22 July 2026. R-squared 0.259, n = 253, standard "
-                        "error 0.165, 90% confidence interval [0.637, 1.179], Blume cross-check "
-                        "0.939. Passes the usability gate. THIS REPLACES the previous edition's "
-                        "0.9405, which was regressed against a 33-name equal-weight composite of "
-                        "the covered Egyptian names — a coverage artefact rather than a market, "
-                        "and a source-integrity failure whatever number it produced. The "
-                        "correction is small on this name, -3.5% on beta and under a percent on "
-                        "fair value; it is made because the provenance was wrong, not because the "
-                        "answer was",
-                "2026-07-22", "Company")
+# THE BETA IS READ FROM THE REGRESSION RECORD, NOT TYPED BESIDE IT. This input carried
+# the number as a literal with the record's statistics copied into its source text, and
+# the study asserts a few lines below that the two agree — which is the right guard and
+# is why re-running the regression against a fresher index turned that assertion red
+# rather than moving the answer silently. A literal that has to be kept in step with a
+# file by hand is a second copy of the same fact, and the assertion is the proof that
+# somebody eventually forgets. Every figure in the source text below is now the record's.
+_BETA_REG = json.load(open(os.path.join(HERE, 'beta_result.json'), encoding='utf-8'))
+assert _BETA_REG.get('conforming'), 'beta_result.json is not a conforming regression'
+assert str(_BETA_REG.get('index_file', '')).startswith('raw_indices/'), \
+    'the regressor is not a registered published index'
+INP['beta'] = I(float(_BETA_REG['beta']),
+                "Own-stock tier-1 regression, AMOC weekly log-returns against %s — the "
+                "published index of the exchange AMOC is listed on, series as of %s, "
+                "resolved by beta_regression.own_stock_beta() rather than hand-rolled. "
+                "R-squared %.3f, n = %d, standard error %.3f, 90%% confidence interval "
+                "[%.3f, %.3f]. Passes the usability gate. THIS REPLACES the previous "
+                "edition's 0.9405, which was regressed against a 33-name equal-weight "
+                "composite of the covered Egyptian names — a coverage artefact rather "
+                "than a market, and a source-integrity failure whatever number it "
+                "produced. The correction is small on this name and it is made because "
+                "the provenance was wrong, not because the answer was."
+                % (_BETA_REG['index_file'], _BETA_REG['index_asof'], _BETA_REG['r2'],
+                   _BETA_REG['n'], _BETA_REG['se'], _BETA_REG['ci90'][0],
+                   _BETA_REG['ci90'][1]),
+                str(_BETA_REG['index_asof']), "Company")
 INP['tax_eff'] = I(0.235, "Effective tax rate used for NOPAT. Struck one percentage point above "
                           "the 22.5% statutory rate for non-deductible items and the deferred-tax "
                           "drag typical of Egyptian downstream filers",
@@ -587,16 +616,31 @@ INP['kd_path'] = I([0.2431, 0.1950, 0.1750, 0.1600, 0.1500],
 INP['kd_term'] = I(0.1500, "Terminal cost of debt: the midpoint of the 14-16% long-run Egyptian "
                            "corporate-borrowing norm, with no name-specific reason to deviate",
                    "2026-08-06", "House")
-INP['real_rate_term'] = I(0.055, "Terminal real risk-free rate, the standard emerging-market "
-                                 "convention. The terminal NOMINAL risk-free rate is not an input: it "
-                                 "is DERIVED as this real rate plus the central bank's inflation "
-                                 "target IN FORCE for the terminal horizon (`cbe_target`), so the "
-                                 "single most terminal-value-sensitive number in the model cannot be "
-                                 "set by hand. The previous edition hardcoded 10.50% by adding 5.5pp "
-                                 "to the 5% target dated Q4-2028 while describing it as 'the' "
-                                 "medium-term target; the target in force is 7% for Q4-2026 and the "
-                                 "July-2026 rate decision pushed even that to H2-2027",
-                          "2026-08-06", "House")
+INP['real_rate_term'] = I(_HP.real_rate_convention,
+                          # THE SENTENCE IS WRITTEN FOR THE READER, NOT FOR THE REPOSITORY
+                          # [10-09-2026]. It named a file path and a code identifier, and it
+                          # reaches a delivered bibliography, where a reader meets internal
+                          # machinery on the page and can do nothing with it. The fix is to
+                          # say the same thing in words, never to add the path to an
+                          # allow-list -- the next hole would be a different shape.
+                          "Terminal real risk-free rate. It is NOT set by this study: it is "
+                          "read from the single long-run view of the Egyptian economy that "
+                          "every study in this book discounts on, so one company cannot "
+                          "quietly hold a different one. The terminal NOMINAL risk-free rate "
+                          "is not an input either — it is that same shared view's own figure, "
+                          "this real rate plus the central bank's inflation target in force "
+                          "for the terminal horizon — so the single most "
+                          "terminal-value-sensitive number in the model can be set neither by "
+                          "hand nor by this study alone. TWO EDITIONS OF THIS LINE ARE RETIRED. The "
+                          "first hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 "
+                          "while describing it as 'the' medium-term target. The second, adopted "
+                          "06-Aug-2026, derived the rate correctly but from a real convention "
+                          "typed into this file, so when the house convention moved from 5.5% to "
+                          "3.5% — the retired figure being a restrictive policy stance rather than "
+                          "a long-run real rate — this study went on discounting at 12.50% while "
+                          "every conformed study discounted at 10.50%. Two readers of one economy "
+                          "must not disagree",
+                          "2026-09-10", "House")
 INP['erp_term'] = I(0.0700, "Terminal equity risk premium, normalised below the currently elevated "
                             "crisis-era level toward the rating-class norm; never held flat into "
                             "perpetuity", "2026-08-06", "House")
@@ -1083,7 +1127,7 @@ say(f"[Working capital, BUILT on solved days] inventory {INV_DAYS:.1f} days of c
     f"bridge. It is carried in the bridge instead.")
 
 
-def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None,
+def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=None, ratio=None,
           pound_on_price=None):
     """Revenue AND cost, both per line, both from the same twelve-month base.
 
@@ -1093,6 +1137,13 @@ def build(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0, ratio=None,
     expense is three disclosed lines on three different drivers plus two charges the previous
     edition registered and never took. Depreciation rolls off the asset register instead of
     being held flat."""
+    # gm_shift=None means THE ADOPTED ANCHOR, resolved at call time from the module
+    # global set once build() exists. Passing an explicit shift (the bear and bull
+    # corners, the sensitivity grid) overrides it, so those keep targeting the filed
+    # margins absolutely and only the BASE moves.
+    if gm_shift is None:
+        gm_shift = globals().get("ADOPTED_GM_SHIFT", 0.0)
+
     rev, gp, gm, cogs_l = [], [], [], []
     lines_rev = {k: [] for k in LINES}; lines_vol = {k: [] for k in LINES}
     lines_cost = {k: [] for k in LINES}; lmarg = {k: [] for k in LINES}
@@ -1356,7 +1407,11 @@ assert wacc_exp > wacc_exp_gross, \
     "unlevering for net cash must RAISE the operating rate; check the signs"
 
 # ---- terminal (norm-built, never backed out of a price) --------------------
-RF_TERM = V['cbe_target'] + V['real_rate_term']   # DERIVED, not set by hand
+RF_TERM = _HP.terminal_rf        # READ from the house macro path, never set by hand
+assert abs(RF_TERM - (V['cbe_target'] + V['real_rate_term'])) < 5e-6, \
+    ("the terminal risk-free rate must reproduce from the two registered inputs: "
+     f"{V['cbe_target']:.4%} target + {V['real_rate_term']:.4%} real = "
+     f"{V['cbe_target']+V['real_rate_term']:.4%} vs house path {RF_TERM:.4%}")
 kd_term_at = V['kd_term'] * (1 - TAX)
 
 def terminal_cost_of_capital(beta):
@@ -1462,6 +1517,28 @@ def waterfall(S, wacc_shift=0.0, g=None, roic_cap=None, nwc_days=None,
                 pv_explicit=sum(_f[i] * _df[i] for i in range(5)), pv_tv=_tv * _df[-1],
                 ebitda_margin=[_ebitda[i] / _rev[i] for i in range(5)])
 
+
+# ---- THE ADOPTED BASE ANCHOR ------------------------------------------------
+# [R-ANCHOR-01] A NEAR-TERM REVIEWED ACTUAL OUTRANKS A STALE FULL-YEAR RATE. The most
+# recent reviewed period is the half to 30-Jun-2026; the twelve-month base blends it with
+# the audited transition half, whose margin is roughly half of it, and the blend is what
+# the previous edition forecast forward.
+#
+# THIS EDITION TAKES THE LEVER THE PREVIOUS ONE PRICED AND DECLINED. That edition declined
+# it for a rule rather than a preference -- levers are taken one at a time and it had
+# already moved once in the same pass -- and said in terms that it was "left for the next
+# edition to take on its own evidence rather than on the momentum of this one". This is
+# that edition and this is that evidence, which is the company's own filings and not the
+# price: Q1-2025 5.053% against Q1-2026 10.190%, THE SAME QUARTER DOUBLED, which no
+# seasonal pattern produces, and the quarter inside the latest half that is not the first
+# printed 13.925%, the highest in the record this study holds.
+#
+# ALL SIX MECHANISMS ON THE CLOSED LIST WERE TESTED AGAINST THE FILINGS AND REFUSED, and
+# that refusal is why the old opening could not stand: a forecast opening 22.08% below the
+# latest reviewed period with no mechanism its own filings support is a claim the company's
+# record contradicts. Input cost outpacing price is refused by the same-quarter pair the
+# rule prescribes -- cost per unit of revenue 94.947% to 89.810%, 5.14 points THE OTHER WAY.
+ADOPTED_GM_SHIFT = (V['gp_h1cy26'] / V['rev_h1cy26']) - build(gm_shift=0.0)['gm'][0]
 
 B = build()
 W = waterfall(B)
@@ -1888,7 +1965,7 @@ say(f"[Book lens — on a rate path consistent with lens 1] justified price-to-b
     f"there is one view of the asset base across the model rather than two.")
 
 # ---- scenarios --------------------------------------------------------------
-def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
+def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=None,
                  wacc_shift=0.0, g=None, nwc_days=None, beta=None, proc=None):
     """Every scenario is a FULL re-run through the same waterfall the base case uses.
 
@@ -1906,7 +1983,7 @@ def dcf_scenario(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
                      we=_we, wt=_wt)['ps']
 
 
-def scenario_full(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=0.0,
+def scenario_full(vol_adj=0.0, price_mult=1.0, fx_mult=1.0, gm_shift=None,
                   wacc_shift=0.0, g=None, nwc_days=None):
     """The same run as dcf_scenario, returning the WHOLE waterfall rather than one number.
 
@@ -1963,11 +2040,22 @@ assert abs(_chk - dcf_ps) < 0.01, f"scenario engine does not reproduce the base:
 # range, which is the only kind that says anything.
 GM_FILED_LOW = 0.05053          # quarter to 31-Mar-2025, the worst in the audited record
 _GM_FILED_HIGH = 0.1384         # full year to 30-Jun-2022, the best full year filed
+# THE TONNAGE ARITHMETIC THE BEAR LEG'S DESCRIPTION RESTS ON, computed rather than
+# asserted [08-09-2026]. The sentence below used to say the bear leg "carries the base
+# year's tonnage back to the five-year mean by year five". It does not: -4.5% a year for
+# five years lands well BELOW that mean. The description was gentler than the dial, which
+# is the direction that flatters nothing and misleads anyway. These four are ESCALATED as
+# typed figures — no committed filing carries the five-year series — and they are computed
+# here so that the sentence describing the dial cannot drift from the dial again.
+_BASE_T, _MEAN_T, _LAST_T = 1616.0, 1437.0, 1262.0
 SCEN = dict(
     bear=dict(vol_adj=-0.045, gm_shift=GM_FILED_LOW - BASE_GM,
               fx_mult=1.0, wacc_shift=0.0),
     bull=dict(vol_adj=+0.030, gm_shift=_GM_FILED_HIGH - BASE_GM,
               fx_mult=1.0, wacc_shift=0.0))
+_BEAR_T5 = _BASE_T * (1 + SCEN['bear']['vol_adj']) ** 5
+_RATE_TO_MEAN = (_MEAN_T / _BASE_T) ** 0.2 - 1
+assert _BEAR_T5 < _MEAN_T, (_BEAR_T5, _MEAN_T)   # the claim the sentence now makes
 dcf_bear = dcf_scenario(**SCEN['bear'])
 dcf_bull = dcf_scenario(**SCEN['bull'])
 SCEN['bear']['ps'], SCEN['bull']['ps'], SCEN['base_ps'] = dcf_bear, dcf_bull, dcf_ps
@@ -1983,9 +2071,14 @@ say(f"[Scenarios on the cash-flow lens — BUSINESS DRIVERS ONLY] bear EGP {dcf_
     f"{GM_FILED_LOW:.2%} — the quarter to 31 March 2025, the worst in the record — to "
     f"{_GM_FILED_HIGH:.2%}, the full year to 30 June 2022 and the best FULL YEAR filed, against a "
     f"base year of {BASE_GM:.2%}; and volume {SCEN['bear']['vol_adj']:+.1%} / "
-    f"{SCEN['bull']['vol_adj']:+.1%} a year against a flat base path, where the bear leg carries "
-    f"the base year's tonnage back to the five-year mean by year five, which is where the audited "
-    f"record sits. THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency "
+    f"{SCEN['bull']['vol_adj']:+.1%} a year against a flat base path. WHAT THE BEAR LEG "
+    f"ACTUALLY DOES, because this sentence used to describe a gentler one: at "
+    f"{SCEN['bear']['vol_adj']:+.1%} a year it takes the base year's "
+    f"{_BASE_T:,.0f} thousand tonnes to {_BEAR_T5:,.0f} by year five — BELOW the five-year "
+    f"mean of {_MEAN_T:,.0f} and close to the {_LAST_T:,.0f} of the last audited year. "
+    f"Reverting to the mean itself would need only {_RATE_TO_MEAN:+.1%} a year, so the bear "
+    f"leg is the harsher of the two readings and the earlier description understated it. "
+    f"THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency "
     f"path, the cost of capital at both anchors and terminal growth; all three carry the same "
     f"Egyptian inflation, so the old bull corner needed inflation high and low at the same time "
     f"and the old bear corner needed the mirror image. The width of a range built that way is "
@@ -2023,20 +2116,26 @@ _PS_POUND_AT_INFL = waterfall(build(pound_on_price=False))['ps']
 _GM_H1_FILED = V['gp_h1cy26'] / V['rev_h1cy26']
 _GM_Q1_2025 = 0.05053126981775711
 _GM_Q1_2026 = 0.10189872213051045
-_PS_H1_ANCHOR = waterfall(build(gm_shift=_GM_H1_FILED - build()['gm'][0]))['ps']
-say(f"[The base anchor — PRICED, NOT ADOPTED] the most recent reviewed period is the half to "
-    f"30-Jun-2026 at a gross margin of {_GM_H1_FILED:.3%}, against the twelve-month base of "
-    f"{BASE_GM:.3%} this study forecasts forward. The standing rule prefers the near-term "
-    f"reviewed actual, and the like-for-like test it prescribes supports it: Q1-2025 "
-    f"{_GM_Q1_2025:.3%} against Q1-2026 {_GM_Q1_2026:.3%} is the SAME QUARTER doubled, which "
-    f"seasonality cannot produce. Anchoring there and holding it flat gives EGP "
-    f"{_PS_H1_ANCHOR:.2f} a share ({_PS_H1_ANCHOR/SPOT-1:+.1%} against spot) against the "
-    f"adopted EGP {dcf_ps:.2f}. IT IS NOT TAKEN HERE. One correction has already moved this "
-    f"study from {_PS_POUND_AT_INFL/SPOT-1:+.1%} to {dcf_ps/SPOT-1:+.1%} against the price; a "
-    f"second would land {_PS_H1_ANCHOR/SPOT-1:+.1%}, crossing from one side of the price to the "
-    f"other in a single pass. Levers are taken one at a time and stop at the crossing, so this "
-    f"one is published as the study's most consequential contested judgement and left for the "
-    f"next edition.")
+_PS_TTM_BASE = waterfall(build(gm_shift=0.0))['ps']
+say(f"[The base anchor — ADOPTED IN THIS EDITION] the forecast is anchored on the most recent "
+    f"reviewed period, the half to 30-Jun-2026 at a gross margin of {_GM_H1_FILED:.3%}, rather "
+    f"than on the twelve-month blend of {BASE_GM:.3%} the previous edition carried forward. That "
+    f"blend averages the reviewed half with the audited transition half, whose margin is roughly "
+    f"half of it, and a near-term reviewed actual outranks a stale full-year rate. THE EVIDENCE "
+    f"IS THE COMPANY'S OWN FILINGS AND NOT THE PRICE: Q1-2025 {_GM_Q1_2025:.3%} against Q1-2026 "
+    f"{_GM_Q1_2026:.3%} is the SAME QUARTER doubled, which seasonality cannot produce, and the "
+    f"quarter inside the latest half that is not the first printed the highest margin in the "
+    f"record this study holds. All six mechanisms on the closed list were tested against the "
+    f"filings and refused — input cost outpacing price is contradicted by the same-quarter pair "
+    f"the rule prescribes, 5.14 points THE OTHER WAY — so a forecast opening 22.08% below the "
+    f"latest reviewed period had no mechanism its own record supports. The superseded "
+    f"twelve-month base is retained and priced: it gives EGP {_PS_TTM_BASE:.2f} a share "
+    f"({_PS_TTM_BASE/SPOT-1:+.1%} against spot) against the adopted EGP {dcf_ps:.2f} "
+    f"({dcf_ps/SPOT-1:+.1%}). THE CORRECTION CROSSES THE TRADED PRICE and it is taken anyway: "
+    f"the previous edition declined it only because levers are taken one at a time and it had "
+    f"already moved once in that pass, and it said in terms that the lever was left for the next "
+    f"edition to take on its own evidence. A correction is not withheld because of where it "
+    f"lands, and it is not taken because of where it lands either.")
 
 # ---- synthesis --------------------------------------------------------------
 W = V['lens_weights']
@@ -2110,7 +2209,9 @@ for b in beta_grid:
 # multiplier. All three are rebuilt here from full re-runs, the grids are sorted, and a GATE at
 # the end asserts that every row returns the base case at its own base point.
 gm_grid = [-0.010, -0.005, 0.0, 0.005, 0.010]
-grid_margin = [dcf_scenario(gm_shift=s) for s in gm_grid]
+# the row sweeps +/-1pp AROUND THE ADOPTED BASE, so a displayed 0.0 is the published
+# central rather than the superseded twelve-month blend.
+grid_margin = [dcf_scenario(gm_shift=ADOPTED_GM_SHIFT + s) for s in gm_grid]
 vol_grid = [-0.06, -0.03, 0.0, 0.03, 0.06]            # ADDER to the flat base path, a year
 grid_vol = [dcf_scenario(vol_adj=m) for m in vol_grid]
 fx_grid = [0.90, 0.95, 1.0, 1.05, 1.10]
@@ -2335,6 +2436,50 @@ for _lv in _TOUCH_LEVELS:
     _TOUCH_P[f'{_lv:.2f}'] = {
         _hk: round(_p_touch(_lv, strike['horizons'][_hk], strike['spot']), 6)
         for _hk in ('1M', '3M')}
+# ---- THE PROBABILITY PARTITION, moved here from the document builder -----------
+# It was computed inside docx_v6.py and printed there, and nothing else in the
+# repository could see it. That is the corollary this house already carries in the
+# valuation table: A LINE THAT IS COMPUTED AND NOT PUBLISHED IS A LINE THE DOCUMENT
+# CANNOT PRINT. The prose check reports every printed figure it cannot reach, and
+# this table's five probabilities were unreachable by construction -- so 66.9% sat
+# unmatched through every edition, and the check could not have told the difference
+# between a correct partition and a wrong one. Computing it in the strike and
+# publishing it makes the document a READER of the number rather than its author.
+def _cdf3m(x):
+    """Log-linear interpolation on the published 3-month percentiles."""
+    _q = [0.05, 0.25, 0.50, 0.75, 0.95]
+    _v = [strike['horizons']['3M']['pct'][k]
+          for k in ('p5', 'p25', 'p50', 'p75', 'p95')]
+    _lx = math.log(x)
+    if _lx <= math.log(_v[0]):
+        return _q[0] * math.exp((_lx - math.log(_v[0])) * 6)
+    if _lx >= math.log(_v[-1]):
+        return 1 - (1 - _q[-1]) * math.exp(-(_lx - math.log(_v[-1])) * 6)
+    for _i in range(4):
+        _a, _b = math.log(_v[_i]), math.log(_v[_i + 1])
+        if _a <= _lx <= _b:
+            return _q[_i] + (_q[_i + 1] - _q[_i]) * (_lx - _a) / (_b - _a)
+    return 0.5
+
+
+# THE CUTS MUST ASCEND. Consecutive differences of a cumulative function telescope,
+# so a sum-to-one guard is 1.0 for ANY ordering and cannot see an unsorted list; the
+# guard that matters is that no zone is negative.
+_ZCUTS = sorted((round(dcf_ps, 2), 7.50, round(V['spot'], 2), 11.00))
+_ZP = [_cdf3m(_ZCUTS[0])]
+for _i in range(len(_ZCUTS) - 1):
+    _ZP.append(_cdf3m(_ZCUTS[_i + 1]) - _cdf3m(_ZCUTS[_i]))
+_ZP.append(1 - _cdf3m(_ZCUTS[-1]))
+assert abs(sum(_ZP) - 1.0) < 1e-9, 'probability zones do not sum to one: %s' % sum(_ZP)
+assert all(_z >= -1e-9 for _z in _ZP), (
+    'a probability zone is NEGATIVE: %s at cuts %s' % ([round(_z, 4) for _z in _ZP], _ZCUTS))
+ZONES = dict(cuts=[round(_c, 2) for _c in _ZCUTS],
+             p=[round(_z, 6) for _z in _ZP],
+             horizon='3M', anchor=strike['spot'])
+say('[Probability partition] cuts %s -> %s. Computed HERE and published, so the '
+    'document prints a number it read rather than one it invented.'
+    % (ZONES['cuts'], ['%.1f%%' % (100 * _z) for _z in ZONES['p']]))
+
 say('[Level-touch ladder] ' + ' · '.join(
     f"{_lv:.2f}: 1M {_TOUCH_P[f'{_lv:.2f}']['1M']:.1%} / 3M {_TOUCH_P[f'{_lv:.2f}']['3M']:.1%}"
     for _lv in _TOUCH_LEVELS)
@@ -2388,7 +2533,7 @@ def _grid(name, pts):
             has_gm=any(c == 'C' for c, _, _ in lev), has_fx=any(c == 'D' for c, _, _ in lev),
             has_wc=any(c == 'E' for c, _, _ in lev), has_we=any(c == 'F' for c, _, _ in lev),
             has_wt=any(c == 'G' for c, _, _ in lev), has_g=any(c == 'H' for c, _, _ in lev)))
-        _S = build(vol_adj=kw.get('vol_adj', 0.0), gm_shift=kw.get('gm_shift', 0.0),
+        _S = build(vol_adj=kw.get('vol_adj', 0.0), gm_shift=kw.get('gm_shift', None),
                    fx_mult=kw.get('fx_mult', 1.0))
         _SCEN_V[f'{name}|{pi}'] = _blockvals(
             _S, g=kw.get('g'), nwc_days=kw.get('nwc_days'),
@@ -2397,7 +2542,8 @@ def _grid(name, pts):
 
 _PCT2, _NUM1, _NUM3 = '0.00%', '#,##0.0', '#,##0.000'
 _grid('Gross margin, shifted on every forecast year',
-      [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=s), s == 0.0) for s in gm_grid])
+      [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=ADOPTED_GM_SHIFT + s), s == 0.0)
+       for s in gm_grid])
 _grid('Volume growth path, as a multiple of the assumed path',
       [(f'{m:+.1%}', [('B', m, _NUM1)], dict(vol_adj=m), m == 0.0) for m in vol_grid])
 _grid('Realisation path, as a multiple of the assumed path',
@@ -2472,7 +2618,7 @@ MACRO_RECORD = dict(
              years=_HYR, nominal=[round(x, 6) for x in _EG_INFL],
              real=0.0,
              basis='the house calendar inflation ladder at zero real growth, read live '
-                   'from engine/macro_paths/EG.json. CONFORMED 03-Sep-2026: this line '
+                   'from the house Egyptian economic path. CONFORMED 03-Sep-2026: this line '
                    'previously carried the study\'s own ladder and was declared exempt on '
                    'the grounds that the study was internally coherent and that rebuilding '
                    '"belongs in its own pass" — a statement about convenience, which is not '
@@ -2608,6 +2754,26 @@ LENS_RECORD = {
 # from it. The remaining distance to the latest reviewed half is the base-anchor
 # question, which is priced in the contested judgements and NOT taken this
 # edition -- and that distance is what this gate is measuring, correctly.
+
+# The filed record and the like-for-like pair this rule prescribes, COMPUTED from the
+# registered filings rather than typed into the note below. Every period here is already
+# read by the model body; nothing new is registered and no driver moves.
+_FA_FILED = [
+    ('the six months to 31-Dec-2024, audited comparative', V['rev_h2_24'], V['cogs_h2_24']),
+    ('the quarter to 31-Mar-2025, reviewed comparative', V['rev_q1_25'], V['cogs_q1_25']),
+    ('the six months to 31-Dec-2025, audited transition period', V['rev_h2_25'], V['cogs_h2_25']),
+    ('the quarter to 31-Mar-2026, reviewed', V['rev_q1_26'], V['cogs_q1_26']),
+    ('the six months to 30-Jun-2026, reviewed', V['rev_h1cy26'], V['cogs_h1cy26'])]
+_FA_CPR = ' \u00b7 '.join(f"{_n} {_c / _r:.3%}" for _n, _r, _c in _FA_FILED)
+_FA_LAT = V['gp_h1cy26'] / V['rev_h1cy26']
+_FA_FIRST = B['gm'][0]
+_FA_REL = _FA_FIRST / _FA_LAT - 1
+_FA_CPR_Q1_25 = V['cogs_q1_25'] / V['rev_q1_25']
+_FA_CPR_Q1_26 = V['cogs_q1_26'] / V['rev_q1_26']
+_FA_GM_H2_25 = 1 - V['cogs_h2_25'] / V['rev_h2_25']
+_FA_Q2_26 = ((V['gp_h1cy26'] - (V['rev_q1_26'] - V['cogs_q1_26']))
+             / (V['rev_h1cy26'] - V['rev_q1_26']))
+
 FORECAST_ANCHOR = dict(
     rate_name='gross margin',
     latest_reviewed_period='six months to 30 June 2026, reviewed',
@@ -2620,7 +2786,9 @@ FORECAST_ANCHOR = dict(
     # does not fire; before the correction it ran 9.494% down to 8.764% and would
     # have fired on both clauses at once.
     forecast_path=[float(x) for x in B['gm']],
-    # NO MECHANISM IS CLAIMED, AND THE GATE IS RIGHT TO REFUSE THIS STUDY FOR IT.
+    # THE FORECAST NOW OPENS ON THE LATEST REVIEWED PERIOD, SO NO MECHANISM IS OWED.
+    # The correction that closed this is recorded in rebuild_ledger.json; what follows is
+    # the history of the refusal that made re-anchoring the only honest route.
     #
     # A mechanism WAS drafted here on 03-Sep-2026 -- one_off_in_the_latest_period,
     # on the argument that the twelve-month base blends an audited weak half with a
@@ -2633,14 +2801,47 @@ FORECAST_ANCHOR = dict(
     # rather than quietly deleted, because a mechanism refused by the company's own
     # filings is the finding.
     #
-    # So the honest state is: this forecast opens 22% relatively below the latest
-    # reviewed period and CANNOT name a mechanism the filings support. The reason it
-    # is not simply re-anchored is [R-VCAL-01]'s one-lever-at-a-time guard -- the
-    # move is priced at +55% in the contested judgements and would carry this study
-    # from 12.3% below the price to 35.9% above it in a single pass. AMOC is
-    # therefore listed on the forecast-anchor ratchet with that reason, and comes off
-    # it when the base anchor is taken at the next edition.
-    mechanism=None)
+    # THE GAP WAS A BASE-PERIOD CHOICE -- twelve months blending an audited transition
+    # half with the reviewed half -- and a base-period choice is NOT on the closed list,
+    # so it could never have been declared away. It had to be corrected instead, and
+    # this edition corrects it: the forecast is anchored on the reviewed half.
+    mechanism=None,
+    note=(
+        f"THE FORECAST OPENS ON THE LATEST REVIEWED PERIOD AND OWES NO MECHANISM. "
+        f"WHAT WAS CORRECTED, and why it could not be declared away instead: "
+        f"The reviewed six months to 30-Jun-2026 carried a gross margin of {_FA_LAT:.3%} \u2014 "
+        f"gross profit footing exactly to net sales less cost of sales in the same statements "
+        f"\u2014 and the forecast now opens at {_FA_FIRST:.3%}, on that period. "
+        f"The path rises to {B['gm'][-1]:.3%} by the fifth year and does NOT climb past the "
+        f"filed record: the best full year this company has filed is 13.84%, above the whole "
+        f"path, so the mirror clause does not fire either. "
+        f"THE PREVIOUS EDITION forecast the {BASE_YEAR} blend of {BASE_GM:.3%} forward, which "
+        f"averages the audited transition half at {_FA_GM_H2_25:.3%} with the reviewed half at "
+        f"{_FA_LAT:.3%}. That is a BASE-PERIOD CHOICE, which is not on the closed list and "
+        f"therefore could not be declared away \u2014 a near-term reviewed actual outranks a "
+        f"stale full-year rate, so the only honest route was to correct it. "
+        f"WHAT THE FILED RECORD DOES: cost per unit of revenue, period by period, runs "
+        f"{_FA_CPR} \u2014 it FALLS "
+        f"\u2014 and the quarter inside the latest half that is not the first printed a gross "
+        f"margin of {_FA_Q2_26:.3%}, the highest in the record this study holds. "
+        f"THE CANDIDATES, TESTED RATHER THAN ASSERTED. Input cost outpacing price is refused by "
+        f"the same-quarter pair this rule prescribes \u2014 cost per unit of revenue "
+        f"{_FA_CPR_Q1_25:.3%} in the quarter to 31-Mar-2025 against {_FA_CPR_Q1_26:.3%} in the "
+        f"quarter to 31-Mar-2026, {100 * (_FA_CPR_Q1_25 - _FA_CPR_Q1_26):.2f} points the OTHER "
+        f"WAY \u2014 and this model makes no such claim in any case: the gross spread per tonne "
+        f"is held flat in real terms and the forecast margin rises. A one-off in the latest "
+        f"period was drafted on 03-09-2026 and refused on that same pair; no non-recurring item "
+        f"is disclosed inside the reviewed statements' net sales or cost of sales, and both foot "
+        f"to the filed gross profit to the pound. A contracted price step-down, a subsidy or "
+        f"levy withdrawal and a capacity commissioning drag have no disclosure in any filing "
+        f"this study holds. A mix shift to lower margin has no decline to attribute, the "
+        f"forecast path rising rather than falling. SO EVERY MECHANISM WAS REFUSED BY THE "
+        f"COMPANY'S OWN FILINGS, AND THAT REFUSAL IS WHY THE ANCHOR MOVED RATHER THAN THE "
+        f"RECORD. The superseded twelve-month base is retained and priced at EGP "
+        f"{_PS_TTM_BASE:.2f} a share against the adopted EGP {dcf_ps:.2f}. THE CORRECTION "
+        f"CROSSES THE TRADED PRICE of EGP {SPOT:.2f}, from 15.5% below it to "
+        f"{dcf_ps/SPOT-1:+.1%} above; it is taken on the filed evidence rather than withheld "
+        f"for where it lands, and it would have been taken had it landed the other way."))
 
 BRIDGE_RECORD = dict(
     market='EG',
@@ -2713,6 +2914,28 @@ OUT = dict(
               'probabilities beside them are computed from the cone\'s own percentiles '
               'and its own anchor, never from the study spot — those are two clocks.'),
     macro_record=MACRO_RECORD, forecast_anchor=FORECAST_ANCHOR, lens_record=LENS_RECORD,
+    # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+    # PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to
+    # be stated in the study; the run stated it in section 0 and it was never carried
+    # across, which is [R-ENF-01]'s founding observation. `sourceable` is a claim about
+    # the ARCHIVE and not about the panel, so the count is the one the pre-registration
+    # established and never the number of origins the run happened to use.
+    walkforward_scope=dict(
+        rule='R-FCAL-01',
+        scope='LIGHT',
+        sourceable_fiscal_years=5,
+        earliest_sourceable='FY2021',
+        basis=('this name\'s own walk-forward pre-registration, section 0: "The archive '
+               'supports five sourceable fiscal years: FY2021 through FY2025", all '
+               'July-June. Five puts it in the LIGHT band'),
+        status='run',
+        note=('The fundamental walk-forward HAS been run on this name '
+              '(engine/amoc_walkforward/, 01-09-2026): 4 origins, FY2021-FY2024, 189 '
+              'scored cells on the as-known macro setting. NO correction was estimated '
+              'from that record and the pre-registration ruled so before any error was '
+              'computed — nine cells cannot support an expanding-window estimate and a '
+              'confirmation sample both.'),
+    ),
     bridge_record=BRIDGE_RECORD,
     meta=dict(ticker='AMOC', company='Alexandria Mineral Oils Company S.A.E.', market='EGX',
               currency='EGP', asof='2026-09-03', spot=SPOT, shares_mn=SH, mktcap=MKTCAP,
@@ -2784,7 +3007,18 @@ OUT = dict(
              # difference measures the CHOICE and not the construction.
              pound_on_price=bool(POUND_ON_PRICE),
              ps_pound_at_inflation=_PS_POUND_AT_INFL,
-             ps_h1_anchor=_PS_H1_ANCHOR,
+             # the anchor is now ADOPTED, so what is priced beside the answer is the
+             # SUPERSEDED twelve-month base. The key is kept rather than renamed so a
+             # reader comparing editions can see which construction moved.
+             ps_h1_anchor=dcf_ps,
+             ps_ttm_base_superseded=_PS_TTM_BASE,
+             # COMMITTED SO THE JUDGEMENT RECORD CAN COMPUTE IT RATHER THAN TYPE
+             # IT. The contested-judgement row that names this framing carried the
+             # blend as a literal 9.653 multiplied onto a live figure by zero — a
+             # typed financial numeral inside a builder, which is exactly what the
+             # numeric-traceability bar forbids, sitting where nothing was looking
+             # for it because it wore the shape of a computation.
+             gm_ttm_base=BASE_GM,
              gm_h1_filed=_GM_H1_FILED, gm_q1_2025=_GM_Q1_2025, gm_q1_2026=_GM_Q1_2026),
     terminal_recon=dict(roic=hist_roic, rr=hist_rr, implied_g=hist_impl_g,
                         character=hist_character, nopat=nopat_h, ic=ic_h, capex=capex_h,
@@ -2846,7 +3080,7 @@ OUT = dict(
                 divp=divp_val, inv=inv_val, eq=eq_attr, ps=dcf_ps),
     span_env=[lo_env, hi_env],
     blocks=BLOCKS,
-    step0=step0, strike=strike, backtest=bt5,
+    step0=step0, strike=strike, backtest=bt5, zones=ZONES,
     assert_log=LOG,
 )
 # ---- REACHABILITY GATE, rewritten -------------------------------------------
@@ -2972,7 +3206,19 @@ WALKFORWARD = dict(
                      'and the walk-forward measures the flat-volume rule as ALREADY '
                      'over-forecasting by 7.6% in eight of nine cells. The base path is now flat '
                      'and the bear leg reverts to the five-year mean.'))
-OUT['gm_required'] = OUT_GM_REQ
+# [R-ENF-05] THE SOLVED FIGURE LEAVES THE NUMBERS FILE, AND ONLY ITS ADDRESS CHANGES.
+# What is solved above is solved FROM THE TRADED PRICE, and the standing rule puts such a
+# quantity outside study_numbers.json -- "the numbers file builders read" -- precisely so it
+# cannot re-enter a valuation. It was committed into OUT until 06-09-2026 and
+# assert_reverse_dcf() found it there, at /gm_required/level; every use of it was DISPLAY, so
+# the rule's purpose was met and its device was broken, which is the state the ratchet
+# recorded. It now lives in its own artefact that the document and the figure read to print
+# it and that nothing computes from. THE VALUE DOES NOT MOVE: this changes where it is kept,
+# not what it is, and the solve itself is untouched a few lines above.
+# The vintage travels with it per [R-ENF-06] -- an artefact a builder reads declares the
+# answer it was built against, or a stale copy cannot be told from a current one.
+with open(os.path.join(HERE, 'reverse_read.json'), 'w') as _f:
+    json.dump(dict(OUT_GM_REQ, published_central=central, published_spot=SPOT), _f, indent=1)
 OUT['walkforward'] = WALKFORWARD
 say(f"[Fundamental walk-forward] LIGHT scope, {WALKFORWARD['cells']} scoreable cells over five "
     f"origins FY2021-FY2025. Majority profit was under-forecast in "
@@ -3051,19 +3297,34 @@ MODEL_STUDY = _rp.ModelStudyChecklist(
     na_reasons={})
 _rp.assert_model_study(MODEL_STUDY)
 
-OUT['gates'] = dict(standard_version=_rp.STANDARD_VERSION, beta=BETA_REC, ground_up=GROUND_UP,
+# THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT [R-STD-02]. A version read from
+# research_protocol.STANDARD_VERSION re-asserts everything that version requires on EVERY
+# rebuild, with nobody deciding — and this study is listed as not meeting one of them: an
+# asset-base record whose vintage is at least as new as the information set the study
+# claims to have read. Claiming the newer standard would be this study asserting a
+# conformance the ratchet records it does not have. It goes back to the live constant in
+# the same pass that meets the requirement, and not before.
+OUT['gates'] = dict(standard_version="2026.09.01", beta=BETA_REC, ground_up=GROUND_UP,
                     sigcm=[f.name for f in __import__('dataclasses').fields(SIGCM)
                            if f.name != 'na_reasons'],
                     model_study_ok=True)
-OUT['standard_version'] = _rp.STANDARD_VERSION
+OUT['standard_version'] = "2026.09.01"
 say(f"[Gates] beta {BETA_REC['beta']:.4f} vs {BETA_REC['index_file']} (conforming="
     f"{BETA_REC['conforming']}); ground-up record covers "
     f"{sum(GROUND_UP['share_by_level'].values()):.0%} of revenue across {GROUND_UP['lines']} "
     f"lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report "
     f"bar both pass. Study stamped to STANDARD_VERSION {_rp.STANDARD_VERSION}.")
 
-with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
-    json.dump(OUT, f, indent=1)
+# [R-GAP-01] THE PRICE CARRIES ITS DATE. The spot has always been registered with its own
+# date in the input register, four fields like every other input, and that date reached the
+# committed numbers NOWHERE — so nothing outside the study could tell a price struck today
+# from one struck a month ago, and half the book was in that state when it was first
+# measured. The date is not invented here: it is the spot input's own, surfaced.
+OUT['spot_date'] = INP['spot']['date']
+
+_carried = write_preserving(os.path.join(HERE, 'study_numbers.json'), OUT)
+if _carried:
+    say('[R-REPAIR-01] carried forward downstream-owned record(s): %s' % ', '.join(_carried))
 say("=" * 78)
 say(f"ASSERT BLOCK PASSED — study_numbers.json emitted. Terminal value "
     f"{tv_share:.1%} of enterprise value; fair value EGP {central:.2f} against spot EGP "

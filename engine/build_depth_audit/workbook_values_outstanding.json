@@ -1,0 +1,20 @@
+{
+ "failing": {
+  "AMOC": {
+   "measured": {
+    "disagreeing_cells": 1867,
+    "model_fv_ps": 17.632867,
+    "workbook_fv_ps": 11.410241,
+    "worst_sheet": "DCF"
+   },
+   "note": "WHY THIS WAS NOT COUNTED UNTIL 08-09-2026. The entry here used to record that recalc.py REFUSES because it was pinned to a workbook two editions old. That was true, and this gate ran the refusing file, read its refusal as AMOC's result, and excused it — so the live recalculator underneath was never run by the book and the 35% discrepancy was invisible. An unreadable result standing where a failing one belongs is [R-ENF-04], inside a gate written to prevent it. The study now declares SUPERSEDED_BY and this gate follows the declaration.",
+   "reason": "The DELIVERED workbook publishes a fair value of EGP 11.41 a share where the study publishes 17.63 — 35% below its own answer — across 1,867 disagreeing formula cells. THE ROOT IS ONE FORMULA AND IT IS NOT STALENESS: DCF!C33 builds gross profit as revenue less cost plus a flat margin shift, and reproduces a gross margin of 9.68% in year one where the model applies 12.43%. Everything upstream agrees — revenue, cost of sales, the base-year margin, the segment foot, the whole income statement — and everything downstream of row 33 inherits the gap. The relative and book lenses still reconcile; the DCF and normalised lenses do not. Re-pointing the builder at the model's margin path is a re-issue task on a delivered study, not a fix in passing.",
+   "signature": "RESULT: FAIL — 1870 problem(s)",
+   "what_closes_it": "build_xlsx_v5.py's DCF gross-profit formula reproducing the model's forecast margin path, then recalc_v5.py green"
+  }
+ },
+ "no_check": {
+  "XPT": "no recalculation script in the study directory."
+ },
+ "note": "Studies whose delivered workbook was not reconciled against the study when this gate was adopted (05-Sep-2026). Two groups, NOT interchangeable: no_check excuses an absent instrument, failing excuses a red one, and a study moving between them goes red until the move is recorded. Allowed to fail; the lists may only ever get shorter. --prune rewrites them."
+}

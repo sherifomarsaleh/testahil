@@ -26,6 +26,9 @@ JSON and is never hand-edited.
 
 import json
 import os
+import sys as _sys
+_sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import calibration_only as _cal            # [R-FCAL-01 §6 AMENDED]
 import sys
 from datetime import date
 
@@ -149,6 +152,20 @@ def record(ticker, bear, base, full, scope, origins, lessons, when=None,
     # nobody is proposing. Such an entry carries base=None and its branches, and
     # the ordering check applies to the envelope it does have.
     two_sided = base is None
+    # A BASE AND BRANCHES TOGETHER IS A CONTRADICTION AND IT USED TO BE RESOLVED
+    # SILENTLY [10-09-2026]. `branches` was read only on the two_sided path, so a
+    # caller who passed --base AND --branches had the branches DROPPED without a
+    # word -- and the register then recorded a single base for a study that
+    # publishes two, which is precisely what check() exists to catch. It caught it,
+    # on EGCH and GBCO, one push later. The caller said the right thing and the
+    # function threw half of it away.
+    if branches and not two_sided:
+        raise SystemExit(
+            'FATAL: %s was given a base of %s AND %d branch(es). A study publishes '
+            'one central or it publishes branches; it cannot publish both, and '
+            'guessing which the caller meant is how a register comes to disagree '
+            'with the study it records. Omit --base for a two-sided answer.'
+            % (ticker, base, len(branches)))
     new = {'bear': float(bear),
            'base': (None if two_sided else float(base)),
            'full': float(full)}
@@ -312,16 +329,57 @@ def check():
         fails.append('no walk-forward run directories found at all — either the '
                      'campaign has not started or this check is looking in the '
                      'wrong place; an empty result is not a clean result')
-    for tk in sorted(runs & inq):
+    # A RUN STILL UNDER WAY DECLARES IT, same discipline as the calibration-only
+    # declaration above and the same file the lessons gate reads. This check anchors on
+    # the EXISTENCE of a run directory, so a run whose first file is committed before it
+    # finishes reads as a finished one -- which on 09-09-2026 made ADIB fail here for a
+    # baseline it had not reached the point of needing. The marker is honoured ONLY while
+    # the run has produced nothing (checked in scripts/check_lessons_register.py against
+    # the run's own artefacts, not a clock), and the baseline it still owes is named
+    # inside it, so the debt is written down rather than waived.
+    import run_state as _rs          # ONE reader for the declaration, three gates
+    inflight = {tk for tk in runs if _rs.in_flight(tk)}
+    if inflight:
+        print('  in flight, declared unfinished and exempt: %s'
+              % ', '.join(sorted(inflight)))
+    for tk in sorted((runs & inq) - inflight):
         e = d['entries'].get(tk)
         if not e:
             fails.append('%s has a walk-forward run on disk and no frozen '
                          'baseline — its old fair value may already be '
                          'unrecoverable' % tk)
         elif not e['editions']:
-            fails.append('%s has a baseline and a run but no delivered fair '
-                         'value recorded' % tk)
+            # A RUN MAY DECLARE THAT IT STRUCK NOTHING [R-FCAL-01 §6 AMENDED
+            # 09-09-2026]. Only a DECLARATION is read — silence still fails, exactly
+            # as before, and the exemption is refused to any name whose study already
+            # publishes a central. The rule was amended because it required an
+            # "UPDATED" analysis from a run with nothing to update; the gate was right
+            # and is not widened here, it is told where to look [R-COC-01].
+            ok, why = _cal.declared(tk)
+            if not ok:
+                fails.append('%s has a baseline and a run but no delivered fair '
+                             'value recorded, and no calibration-only declaration '
+                             '(%s)' % (tk, why))
     for tk in sorted(d['entries']):
+        if tk in inflight:
+            # A BASELINE IS THE FIRST STEP OF A RUN, NOT THE LAST. This clause read "a run
+            # that has frozen its baseline has started for real; remove the marker", which
+            # was wrong the moment a real run reached it: snapshot() MUST happen before
+            # anything touches assets/data.js, so EVERY correctly-run walk-forward carries
+            # a baseline while it is still working. The clause made the in-flight marker
+            # unusable for precisely the case it exists for. Written 09-09-2026 and
+            # corrected the same evening by the first run to hit it -- ADIB, which had
+            # frozen bear 31.6 / base 54.3 / full 95.3 and had not yet scored a single
+            # origin. [R-COC-01]: re-point a check that fires on work that is right.
+            #
+            # What DOES contradict the marker is a delivered EDITION. An edition means the
+            # run recorded a fair value, which is the end of it.
+            if d['entries'][tk].get('editions'):
+                fails.append('%s declares RUN_IN_PROGRESS and has recorded %d delivered '
+                             'edition(s). A run that has delivered a fair value has '
+                             'finished; remove the marker.'
+                             % (tk, len(d['entries'][tk]['editions'])))
+            continue
         if tk not in runs:
             fails.append('%s carries a record with no walk-forward run '
                          'directory behind it' % tk)

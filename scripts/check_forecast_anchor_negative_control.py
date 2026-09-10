@@ -9,11 +9,24 @@ a first forecast year of 9.494% against a filed half of 12.428%, an implied
 second half of 6.56%, and a mechanism whose direction is contradicted by the
 company's own five filed periods.
 
+The MIRROR half [08-09-2026] carries ARCC's own operating-margin paths as its
+projection computes them -- 55.81% at origin FY2017 and 60.14% at FY2023 against
+a filed peak of 26.23% as at either date -- beside FY2020's recovery out of a
+loss year, which rises and must NOT fire. That pair is the whole argument for
+testing the filed record rather than the forecast's own opening year.
+
     python3 scripts/check_forecast_anchor_negative_control.py
 """
 import json, os, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate resolves the
+# book through engine/study_population.py; this control runs it against a
+# sandboxed tree holding studies it planted, which is the point of the control.
+# The escape is explicit and the gate PRINTS that it took it, so a fixture
+# population can never be mistaken for the real one.
+_FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
+
 GATE = os.path.join("scripts", "check_forecast_anchor.py")
 
 # ---- AMOC's own numbers, as they shipped -----------------------------------
@@ -58,15 +71,31 @@ def put_list(tmp, tickers):
                                 "anchor_outstanding.json"), "w"), indent=1)
 
 
-def case(name, build, expect_red, results):
+def case(name, build, expect_red, results, expect_text=None):
+    """Run one fixture.
+
+    expect_text IS NOT DECORATION. Every red case in this file ends on the same
+    closing sentence, so a red run tells you nothing about WHICH clause fired --
+    and this gate now carries two clauses that both fire on the same record shape.
+    The mirror-clause fixtures (17-20) open ABOVE their latest reviewed rate, so a
+    bug that made clause one fire on them would show as a green tick on a red run
+    for the wrong reason. Where expect_text is given, the gate's output must
+    CONTAIN it or the case fails however it exited: the same discipline every
+    negative control here uses when it asserts that its mutation landed.
+    """
     tmp = sandbox()
     try:
         build(tmp)
-        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True)
+        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True,
+                       env=_FIXTURE_ENV)
         out = (r.stdout + r.stderr).strip()
         red = r.returncode != 0
         ok = red == expect_red
-        results.append((name, ok, r.returncode, out.splitlines()[-1] if out else ""))
+        why = ""
+        if ok and expect_text and expect_text not in out:
+            ok, why = False, "  [red for the WRONG reason: %r absent]" % expect_text
+        results.append((name, ok, r.returncode,
+                        (out.splitlines()[-1] if out else "") + why))
         if not ok:
             print("\n---- %s ----\n%s" % (name, out))
     finally:
@@ -157,6 +186,55 @@ def main():
 
     def m_path_unparseable(r):
         r["forecast_path"] = [0.12428, "a bit less", 0.11]
+
+    # ---- THE MIRROR CLAUSE: A FORECAST ABOVE THE WHOLE FILED RECORD -------
+    # ARCC's own operating-margin paths, computed from its committed walk-forward
+    # projection rather than transcribed, with the filed peak taken AS AT the
+    # origin (FY2016's 26.23%) rather than as at today -- a later good year must
+    # not license an earlier forecast that could not have known about it.
+    def m_arcc_2017_as_computed(r):
+        r["rate_name"] = "operating margin"
+        r["latest_reviewed_period"] = "FY2017, audited"
+        r["latest_reviewed_rate"] = 0.10280
+        r["first_forecast_rate"] = 0.22760
+        r["filed_peak_rate"] = 0.26230
+        r["forecast_path"] = [0.22760, 0.33010, 0.41650, 0.49140, 0.55810]
+
+    def m_arcc_2023_as_computed(r):
+        r["rate_name"] = "operating margin"
+        r["latest_reviewed_period"] = "FY2023, audited"
+        r["latest_reviewed_rate"] = 0.18190
+        r["first_forecast_rate"] = 0.30810
+        r["filed_peak_rate"] = 0.26230
+        r["forecast_path"] = [0.30810, 0.40650, 0.48470, 0.54830, 0.60140]
+
+    def m_rise_mechanism_not_on_list(r):
+        m_arcc_2023_as_computed(r)
+        r["rise_mechanism"] = {"name": "the market is structurally better now",
+                               "disclosure": "management commentary"}
+
+    def m_rise_mechanism_no_disclosure(r):
+        m_arcc_2023_as_computed(r)
+        r["rise_mechanism"] = {"name": "contracted_price_step_up", "disclosure": ""}
+
+    # EVERY ONE OF THESE FOUR OPENS ABOVE ITS LATEST REVIEWED RATE, so clause one
+    # cannot fire on them and a red run has to be the mirror clause. The expected
+    # text asserts exactly that, and carries the arithmetic each fixture must
+    # produce -- so a fixture that stopped injecting its condition, or a clause
+    # that started measuring against the wrong baseline, fails here rather than
+    # showing as a clean red.
+    for n, m, t in (
+        ("17 ARCC FY2017 as computed -- 55.81% against a filed peak of 26.23%",
+         m_arcc_2017_as_computed,
+         "reaches 0.5581 against a filed peak of 0.2623 -- 112.8% ABOVE"),
+        ("18 ARCC FY2023 as computed -- 60.14% against the same 26.23%",
+         m_arcc_2023_as_computed,
+         "reaches 0.6014 against a filed peak of 0.2623 -- 129.3% ABOVE"),
+        ("19 rise mechanism not on the closed list", m_rise_mechanism_not_on_list,
+         "is not on the closed list"),
+        ("20 rise mechanism with no disclosure", m_rise_mechanism_no_disclosure,
+         "carries no disclosure")):
+        case(n, broken(m), True, results, expect_text=t)
 
     for n, m in (("14 EGCH's path as shipped -- opens above, falls below",
                   m_egch_path_as_shipped),
@@ -260,10 +338,67 @@ def main():
          c_path_declines_with_mechanism, False, results)
 
     def c_path_rises(tmp):
+        # A RISING PATH IS NOT ITSELF A BREACH, AND THIS CASE STAYS GREEN FOR A
+        # REASON WORTH NAMING: it commits no filed_peak_rate, so the mirror clause
+        # has nothing to test it against. That field is optional on the ratchet's
+        # own precedent -- it is being introduced onto studies that predate it --
+        # and this fixture is the shape of a study that has not yet supplied one.
+        # The case below is the same path WITH a peak, and it fires.
         rec = json.loads(json.dumps(GOOD))
         rec["forecast_path"] = [0.12500, 0.12700, 0.12900, 0.13100, 0.13300]
         put_study(tmp, "NCL", rec); put_list(tmp, [])
-    case("clean: a rising path", c_path_rises, False, results)
+    case("clean: a rising path, no filed peak committed", c_path_rises, False, results)
+
+    def c_arcc_2020_recovery(tmp):
+        # ARCC AT ORIGIN FY2020, AS COMPUTED, AND IT IS THE CASE THAT FORCED THE
+        # CLAUSE TO TEST THE FILED RECORD RATHER THAN THE OPENING YEAR: the margin
+        # opens at -1.15% and recovers to 5.49%, a rise of nearly five points and
+        # a reversal of sign -- ordinary mean reversion out of a loss-making year,
+        # which must NOT fire. It never approaches the 26.23% this company had
+        # already filed. A clause tested against the forecast's own opening year
+        # could not tell this from case 18, because both of them rise.
+        rec = json.loads(json.dumps(GOOD))
+        rec["rate_name"] = "operating margin"
+        rec["latest_reviewed_period"] = "FY2020, audited"
+        rec["latest_reviewed_rate"] = -0.02810
+        rec["first_forecast_rate"] = -0.01150
+        rec["filed_peak_rate"] = 0.26230
+        rec["forecast_path"] = [-0.01150, 0.00520, 0.02190, 0.03850, 0.05490]
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: ARCC FY2020 as computed -- a loss year recovering, far below the peak",
+         c_arcc_2020_recovery, False, results)
+
+    def c_rise_with_mechanism(tmp):
+        # a rise past the filed record that is NAMED and SOURCED: what the rule
+        # permits, and it must stay green
+        rec = json.loads(json.dumps(GOOD))
+        rec["rate_name"] = "operating margin"
+        rec["latest_reviewed_rate"] = 0.18190
+        rec["first_forecast_rate"] = 0.22000
+        rec["filed_peak_rate"] = 0.26230
+        rec["forecast_path"] = [0.22000, 0.26000, 0.30000, 0.33000, 0.35000]
+        rec["rise_mechanism"] = {
+            "name": "capacity_commissioning_completing",
+            "disclosure": "the second production line disclosed in note 12 of the "
+                          "FY2023 accounts, commissioned January 2024, whose costs "
+                          "are already in the FY2023 charge",
+        }
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: a rise past the filed peak, named and sourced",
+         c_rise_with_mechanism, False, results)
+
+    def c_rise_inside_tolerance(tmp):
+        # a forecast reaching just above the filed peak, inside the same 5% relative
+        # tolerance clause one uses. The tolerance is BORROWED, not minted.
+        rec = json.loads(json.dumps(GOOD))
+        rec["rate_name"] = "operating margin"
+        rec["latest_reviewed_rate"] = 0.25000
+        rec["first_forecast_rate"] = 0.25000
+        rec["filed_peak_rate"] = 0.26230
+        rec["forecast_path"] = [0.25000, 0.25500, 0.26000, 0.26800, 0.27200]
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: a rise inside the borrowed 5% tolerance",
+         c_rise_inside_tolerance, False, results)
 
     def c_listed(tmp):
         rec = json.loads(json.dumps(GOOD)); m_amoc_as_shipped(rec)

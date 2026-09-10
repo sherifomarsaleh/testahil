@@ -1,0 +1,301 @@
+{
+ "_rule": "[R-FCAL-01 AMENDED 03-Sep-2026] \u2014 every fundamental walk-forward commits a valuation-input block beside its driver panel, per origin, from the same statements and under the same point-in-time discipline.",
+ "_run": "SCEM fundamental walk-forward, 07-09-2026",
+ "_scope": "LIGHT \u2014 five sourceable fiscal years, origins FY2021-FY2025, horizons 1-3",
+ "_route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+ "prior_year_anchor": {
+  "FY2020": {
+   "cash": {
+    "value": 17035796,
+    "source": "SCC-AFS-E-1222.pdf \u2014 audited financial statements for the year ended 31 December 2022, cash-flow statement, comparative column: 'Cash & cash equivalent at the beginning of the period' for FY2021",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "THE ONLY FY2020 FIGURE THIS RUN CAN SOURCE. It is committed here rather than as an origin because the run does not test FY2020 and recording it as an origin would misstate what was tested."
+   },
+   "everything_else": {
+    "missing": "The FY2021 filing is ARABIC and its figures are Eastern Arabic numerals which no OCR route available here reads, so FY2020's comparative column cannot be obtained. The year is left out and the window shortened rather than estimated; see fetch_attempts.json."
+   }
+  }
+ },
+ "origins": {
+  "FY2021": {
+   "cash": {
+    "value": 744044586,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, cash at hand and in banks plus cash blocked under the capital increase (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "EGP 650074240 of the total is blocked under the capital increase and is shown separately on the face of the sheet"
+   },
+   "debt": {
+    "value": 1846001706,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, bank facilities + long-term loans + short-term loans from affiliated companies + lease liabilities (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "INTEREST-BEARING ONLY [R-FCAL-01 trap (i)]. Suppliers, other credit accounts, provisions and the deferred-tax liability pay no interest and are excluded; total liabilities that year were EGP 2916151545, which is 1.6x this figure and is the denominator that manufactures a bias looking exactly like evidence."
+   },
+   "ppe": {
+    "value": 1042256485,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, fixed assets (net), note 4 (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "construction work in process of EGP 63225934 is carried separately and is NOT included here"
+   },
+   "dep": {
+    "value": 91302015,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, cash-flow statement, depreciation plus amortisation (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "agrees with note 4's own charge for the year"
+   },
+   "capex": {
+    "value": 52188763,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, cash-flow statement, payment for purchase of fixed assets plus payment to construction works in progress (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "derived": false,
+    "note": "DISCLOSED, not derived. FY2021 has no prior year in this panel, so the identity cross-check is not computable and that is recorded rather than the identity being run off a fabricated opening PP&E."
+   },
+   "wc": {
+    "value": -57601314,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet \u2014 inventories + debtors and notes receivable + due from affiliated companies + sundry debtors + other debit accounts, less suppliers/creditors/notes payable and other credit accounts (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "components": {
+     "inventories": 330815427,
+     "debtors": 117908741,
+     "due_from_affiliates": 2498651,
+     "sundry_debtors": 203176444,
+     "other_debit": 140087745,
+     "suppliers": 765256383,
+     "other_credit": 86831939
+    },
+    "note": "OPERATING lines only: cash, debt, provisions and the deferred-tax balances are excluded, so this is not a current-assets-less-current-liabilities figure and does not pretend to be"
+   },
+   "shares": {
+    "value": 68058443.0,
+    "issued_capital": 680584430,
+    "par_value": 10.0,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, issued and paid-in capital, at the EGP 10 par value note 27 states (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "FOOTED TWO WAYS. Issued capital over par gives 68058443 shares, and that count reproduces this year's PRINTED earnings per share of -5.07 to -5.0691. TODAY'S COUNT IS NEVER CARRIED BACK: this company's count is 68,058,443 at FY2021, 133,065,867 at FY2022-FY2024 and 260,812,477 at FY2025, and a carried count would be fabricated in vintage, plausible on the page and invisible in the pooled error afterwards."
+   }
+  },
+  "FY2022": {
+   "cash": {
+    "value": 124700709,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, cash at hand and in banks (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "no blocked balance in this year"
+   },
+   "debt": {
+    "value": 1753928775,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, bank facilities + long-term loans + short-term loans from affiliated companies + lease liabilities (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "INTEREST-BEARING ONLY [R-FCAL-01 trap (i)]. Suppliers, other credit accounts, provisions and the deferred-tax liability pay no interest and are excluded; total liabilities that year were EGP 3394728655, which is 1.9x this figure and is the denominator that manufactures a bias looking exactly like evidence."
+   },
+   "ppe": {
+    "value": 1011373267,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, fixed assets (net), note 4 (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "construction work in process of EGP 61374460 is carried separately and is NOT included here"
+   },
+   "dep": {
+    "value": 90620977,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, cash-flow statement, depreciation plus amortisation (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "agrees with note 4's own charge for the year"
+   },
+   "capex": {
+    "value": 60974867,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, cash-flow statement, payment for purchase of fixed assets plus payment to construction works in progress (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "derived": false,
+    "note": "DISCLOSED, not derived. The identity capex = dPP&E + D&A gives EGP 59737759 against this disclosed EGP 60974867; the two are cross-checked and the disclosed figure is what is committed."
+   },
+   "wc": {
+    "value": 171333031,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet \u2014 inventories + debtors and notes receivable + due from affiliated companies + sundry debtors + other debit accounts, less suppliers/creditors/notes payable and other credit accounts (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "components": {
+     "inventories": 885548344,
+     "debtors": 269268012,
+     "due_from_affiliates": 6901406,
+     "sundry_debtors": 276562998,
+     "other_debit": 135986473,
+     "suppliers": 1129539373,
+     "other_credit": 273394829
+    },
+    "note": "OPERATING lines only: cash, debt, provisions and the deferred-tax balances are excluded, so this is not a current-assets-less-current-liabilities figure and does not pretend to be"
+   },
+   "shares": {
+    "value": 133065867.0,
+    "issued_capital": 1330658670,
+    "par_value": 10.0,
+    "source": "SCC-AFS-E-1222.pdf \u2014 Audited financial statements, year ended 31 December 2022, balance sheet, issued and paid-in capital, at the EGP 10 par value note 27 states (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "FOOTED TWO WAYS. Issued capital over par gives 133065867 shares, and that count reproduces this year's PRINTED earnings per share of -2.40 to -2.4033. TODAY'S COUNT IS NEVER CARRIED BACK: this company's count is 68,058,443 at FY2021, 133,065,867 at FY2022-FY2024 and 260,812,477 at FY2025, and a carried count would be fabricated in vintage, plausible on the page and invisible in the pooled error afterwards."
+   }
+  },
+  "FY2023": {
+   "cash": {
+    "value": 350019607,
+    "source": "SCC-AFS-E-1223.pdf \u2014 Audited financial statements, year ended 31 December 2023, balance sheet, cash at hand and in banks (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "no blocked balance in this year"
+   },
+   "debt": {
+    "value": 2608046608,
+    "source": "SCC-AFS-E-1223.pdf \u2014 Audited financial statements, year ended 31 December 2023, balance sheet, bank facilities + long-term loans + short-term loans from affiliated companies + lease liabilities (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "INTEREST-BEARING ONLY [R-FCAL-01 trap (i)]. Suppliers, other credit accounts, provisions and the deferred-tax liability pay no interest and are excluded; total liabilities that year were EGP 4116928922, which is 1.6x this figure and is the denominator that manufactures a bias looking exactly like evidence."
+   },
+   "ppe": {
+    "value": 967198768,
+    "source": "SCC-AFS-E-1223.pdf \u2014 Audited financial statements, year ended 31 December 2023, balance sheet, fixed assets (net), note 4 (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "construction work in process of EGP 139159795 is carried separately and is NOT included here"
+   },
+   "dep": {
+    "value": 87229927,
+    "source": "SCC-AFS-E-1223.pdf \u2014 Audited financial statements, year ended 31 December 2023, cash-flow statement, depreciation plus amortisation (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "agrees with note 4's own charge for the year"
+   },
+   "capex": {
+    "value": 120827227,
+    "source": "SCC-AFS-E-1223.pdf \u2014 Audited financial statements, year ended 31 December 2023, cash-flow statement, payment for purchase of fixed assets plus payment to construction works in progress (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "derived": false,
+    "note": "DISCLOSED, not derived. The identity capex = dPP&E + D&A gives EGP 43055428 against this disclosed EGP 120827227; the two are cross-checked and the disclosed figure is what is committed."
+   },
+   "wc": {
+    "value": 649119306,
+    "source": "SCC-AFS-E-1223.pdf \u2014 Audited financial statements, year ended 31 December 2023, balance sheet \u2014 inventories + debtors and notes receivable + due from affiliated companies + sundry debtors + other debit accounts, less suppliers/creditors/notes payable and other credit accounts (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "components": {
+     "inventories": 883259621,
+     "debtors": 547056074,
+     "due_from_affiliates": 10821310,
+     "sundry_debtors": 76195147,
+     "other_debit": 402643025,
+     "suppliers": 993648328,
+     "other_credit": 277207543
+    },
+    "note": "OPERATING lines only: cash, debt, provisions and the deferred-tax balances are excluded, so this is not a current-assets-less-current-liabilities figure and does not pretend to be"
+   },
+   "shares": {
+    "value": 133065867.0,
+    "issued_capital": 1330658670,
+    "par_value": 10.0,
+    "source": "SCC-AFS-E-1223.pdf \u2014 Audited financial statements, year ended 31 December 2023, balance sheet, issued and paid-in capital, at the EGP 10 par value note 27 states (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "FOOTED TWO WAYS. Issued capital over par gives 133065867 shares, and that count reproduces this year's PRINTED earnings per share of -0.88 to -0.8836. TODAY'S COUNT IS NEVER CARRIED BACK: this company's count is 68,058,443 at FY2021, 133,065,867 at FY2022-FY2024 and 260,812,477 at FY2025, and a carried count would be fabricated in vintage, plausible on the page and invisible in the pooled error afterwards."
+   }
+  },
+  "FY2024": {
+   "cash": {
+    "value": 2037971177,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, cash at hand and in banks plus cash blocked under the capital increase (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "EGP 147466100 of the total is blocked under the capital increase and is shown separately on the face of the sheet"
+   },
+   "debt": {
+    "value": 577862872,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, bank facilities + long-term loans + short-term loans from affiliated companies + lease liabilities (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "INTEREST-BEARING ONLY [R-FCAL-01 trap (i)]. Suppliers, other credit accounts, provisions and the deferred-tax liability pay no interest and are excluded; total liabilities that year were EGP 1959808479, which is 3.4x this figure and is the denominator that manufactures a bias looking exactly like evidence."
+   },
+   "ppe": {
+    "value": 1026166835,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, fixed assets (net), note 4 (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "construction work in process of EGP 344607261 is carried separately and is NOT included here"
+   },
+   "dep": {
+    "value": 90750017,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, cash-flow statement, depreciation plus amortisation (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "agrees with note 4's own charge for the year"
+   },
+   "capex": {
+    "value": 526407725,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, cash-flow statement, payment for purchase of fixed assets plus payment to construction works in progress (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "derived": false,
+    "note": "DISCLOSED, not derived. The identity capex = dPP&E + D&A gives EGP 149718084 against this disclosed EGP 526407725; the two are cross-checked and the disclosed figure is what is committed."
+   },
+   "wc": {
+    "value": 693576909,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet \u2014 inventories + debtors and notes receivable + due from affiliated companies + sundry debtors + other debit accounts, less suppliers/creditors/notes payable and other credit accounts (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "components": {
+     "inventories": 1049449935,
+     "debtors": 223320195,
+     "due_from_affiliates": 4170523,
+     "sundry_debtors": 77574168,
+     "other_debit": 599285115,
+     "suppliers": 599922969,
+     "other_credit": 660300058
+    },
+    "note": "OPERATING lines only: cash, debt, provisions and the deferred-tax balances are excluded, so this is not a current-assets-less-current-liabilities figure and does not pretend to be"
+   },
+   "shares": {
+    "value": 133065867.0,
+    "issued_capital": 1330658670,
+    "par_value": 10.0,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, issued and paid-in capital, at the EGP 10 par value note 27 states (comparative column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "FOOTED TWO WAYS. Issued capital over par gives 133065867 shares, and that count reproduces this year's PRINTED earnings per share of 23.09 to 23.0890. TODAY'S COUNT IS NEVER CARRIED BACK: this company's count is 68,058,443 at FY2021, 133,065,867 at FY2022-FY2024 and 260,812,477 at FY2025, and a carried count would be fabricated in vintage, plausible on the page and invisible in the pooled error afterwards."
+   }
+  },
+  "FY2025": {
+   "cash": {
+    "value": 4762348666,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, cash at hand and in banks (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "no blocked balance in this year"
+   },
+   "debt": {
+    "value": 137565888,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, bank facilities + long-term loans + short-term loans from affiliated companies + lease liabilities (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "INTEREST-BEARING ONLY [R-FCAL-01 trap (i)]. Suppliers, other credit accounts, provisions and the deferred-tax liability pay no interest and are excluded; total liabilities that year were EGP 2274378936, which is 16.5x this figure and is the denominator that manufactures a bias looking exactly like evidence."
+   },
+   "ppe": {
+    "value": 1265871591,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, fixed assets (net), note 4 (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "construction work in process of EGP 267673812 is carried separately and is NOT included here"
+   },
+   "dep": {
+    "value": 122558896,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, cash-flow statement, depreciation plus amortisation (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "agrees with note 4's own charge for the year"
+   },
+   "capex": {
+    "value": 262397484,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, cash-flow statement, payment for purchase of fixed assets plus payment to construction works in progress (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "derived": false,
+    "note": "DISCLOSED, not derived. The identity capex = dPP&E + D&A gives EGP 362263652 against this disclosed EGP 262397484; the two are cross-checked and the disclosed figure is what is committed."
+   },
+   "wc": {
+    "value": -52153007,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet \u2014 inventories + debtors and notes receivable + due from affiliated companies + sundry debtors + other debit accounts, less suppliers/creditors/notes payable and other credit accounts (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "components": {
+     "inventories": 876191093,
+     "debtors": 243390012,
+     "due_from_affiliates": 7806,
+     "sundry_debtors": 137574616,
+     "other_debit": 577635635,
+     "suppliers": 652572902,
+     "other_credit": 1234379267
+    },
+    "note": "OPERATING lines only: cash, debt, provisions and the deferred-tax balances are excluded, so this is not a current-assets-less-current-liabilities figure and does not pretend to be"
+   },
+   "shares": {
+    "value": 260812477.0,
+    "issued_capital": 2608124770,
+    "par_value": 10.0,
+    "source": "SCC-AFS-E-1225.pdf \u2014 Audited financial statements, year ended 31 December 2025, balance sheet, issued and paid-in capital, at the EGP 10 par value note 27 states (own column)",
+    "route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng); all six of this issuer's filings are image-only scans with no usable text layer, and every figure is footed against a subtotal the filing itself prints",
+    "note": "FOOTED. Issued capital EGP 2,608,124,770 over the EGP 10 par gives 260,812,477 shares at 31-Dec-2025. The PRINTED EPS of 10.29 is struck on a WEIGHTED-AVERAGE 222.0mn because the capital increase converted during the year (note 27 states the 111/254-day split), so the closing count deliberately does not reproduce it \u2014 and the reviewed Q1-2026 EPS of 4.27 does reproduce on it, which is what makes the reading unambiguous rather than a tolerance."
+   }
+  }
+ }
+}

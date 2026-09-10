@@ -237,7 +237,8 @@ def build(path):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Bibliography_03-09-2026.docx")
+    import edition as _EDN
+    out = os.path.join(HERE, _EDN.BIBLIO_DOCX)
     build(out).save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

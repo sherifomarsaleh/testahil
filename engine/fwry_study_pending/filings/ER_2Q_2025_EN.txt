@@ -1,0 +1,489 @@
+   Fawry for Banking Technology and
+   Electronic Payments S.A.E (FWRY.CA)
+   Earnings Release
+   14 August 2025
+
+
+
+
+Fawry Releases 1H2025 Results
+In the first half of 2025, Fawry achieved significant growth by leveraging its strategic expansion initiatives and
+maintaining strong cost discipline. Revenue surged by 63.8%, while net profit doubled, reflecting the company's
+enhanced operational efficiency and market traction.
+1H2025 Highlights
+      Revenues                                                        Gross Profit                                                       Throughput Value
+      EGP 3,765.5 MN                                                  EGP 2,567.0 MN                                                     EGP 385,949 MN
+      ▲ 63.8% y-o-y                                                   ▲ 69.2% y-o-y / 68.2% margin                                       ▲ 57.6% y-o-y
+
+
+      EBITDA1                                                         Net Profit                                                         Total Gross Loan Portfolio
+      EGP 2,115.1 MN                                                  EGP 1,257.0 MN                                                     3,859.7 MN
+      ▲ 96.4% y-o-y / 56.2% margin                                    ▲ 99.9% y-o-y / 33.4% margin                                       ▲ 121.0% y-o-y
+
+14 August 2025 – (Cairo, Egypt) Fawry (the “Company”, FWRY.CA on the Egyptian Exchange), Egypt’s leading provider of e-
+payments and digital finance solutions, announced today its consolidated results for the quarter ended 30 June 2025. The
+Company booked revenues of EGP 3,765.5 million in 1H2025, up by 63.8% year-on-year (y-o-y). The Company’s strong top-line
+growth was underpinned by the continued diversification of its service portfolio. This, along with effective cost management and
+sound treasury practices, supported the delivery of healthy profitability margins leading to a net profit growth of 99.9% to reach
+EGP 1,257.0 million. Net profit for the quarter stood at EGP 651.6 million, up by an impressive 102.6% y-o-y yielding an associated
+net profit margin (NPM) of 33.1%.
+
+Summary Profit & Loss Statement – Second Quarter
+ (EGP 000s)                                                          2Q 2024                 1Q 2025                 2Q 2025              Y-o-Y Change             Q-o-Q Change
+ Total Revenues                                                     1,212,174               1,794,765               1,970,717                62.6%                       9.8%
+        Banking Services                                             475,162                 712,209                 733,411                 54.3%                       3.0%
+              Acceptance                                             249,021                 382,799                 430,683                 73.0%                      12.5%
+           Agent Banking                                             226,141                 329,410                 302,728                 33.9%                      -8.1%
+        Financial Services                                           203,501                 460,215                 562,325                 176.3%                     22.2%
+        Alternative Digital Payments (ADP)                           410,266                 461,960                 505,733                 23.3%                       9.5%
+        Supply Chain Solutions                                        84,433                 102,304                 119,491                 41.5%                      16.8%
+        Technology & Others                                           38,812                  58,077                  49,757                 28.2%                      -14.3%
+ Gross Profit                                                        801,545                1,214,290               1,352,753                68.8%                      11.4%
+ Gross Profit Margin                                                  66.1%                   67.7%                   68.6%                  2.5 pts                    1.0 pts
+ EBITDA1                                                             570,176                1,002,396               1,112,704                95.2%                      11.0%
+ EBITDA Margin                                                        47.0%                   55.9%                   56.5%                  9.4 pts                    0.6 pts
+ Net Profit Before NCI                                               352,193                 641,668                 693,367                 96.9%                       8.1%
+ Net Profit After NCI                                                321,682                 605,378                 651,586                 102.6%                      7.6%
+ Net Profit Margin                                                    26.5%                   33.7%                   33.1%                  6.5 pts                   (0.7 pts)
+1 EBITDA - The Company defines EBITDA as its EAS operating profit, excluding: (a) depreciation, amortization, provisions; (b) noncash ESOP expense included in EAS net profit; (c) interest
+
+income not related to the operating cycle; (d) taxes; (e) leasing charges; and certain other non-operating costs including provisions.
+2 Financial services Revenue – Include MSME lending, Consumer finance, Insurance brokerage, Prepaid Card and Money market fund revenues. All except for Microfinance have been
+
+reallocated from Others.
+
+
+
+
+  FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                                                                                              1
+   Fawry for Banking Technology and
+   Electronic Payments S.A.E (FWRY.CA)
+   Earnings Release
+   14 August 2025
+
+
+
+
+Summary Profit & Loss Statement – First Half
+
+ (EGP 000s)                                                                                                   1H 2024                         1H 2025                    Y-o-Y Change
+ Total Revenues                                                                                            2,299,365                        3,765,482                              63.8%
+        Banking Services                                                                                      932,103                       1,445,620                              55.1%
+              Acceptance                                                                                      476,453                          813,482                             70.7%
+           Agent Banking                                                                                      455,649                          632,138                             38.7%
+        Financial Services                                                                                    377,689                       1,022,540                            170.7%
+        Alternative Digital Payments (ADP)                                                                    765,103                          967,693                             26.5%
+        Supply Chain Solutions                                                                                160,072                          221,795                             38.6%
+        Technology & Others                                                                                     64,398                         107,835                             67.5%
+ Gross Profit                                                                                              1,517,164                        2,567,043                              69.2%
+ Gross Profit Margin                                                                                            66.0%                            68.2%                            2.2 pts
+ EBITDA1                                                                                                   1,076,791                        2,115,101                              96.4%
+ EBITDA Margin                                                                                                  46.8%                            56.2%                            9.3 pts
+ Net Profit Before NCI                                                                                        685,912                       1,335,034                              94.6%
+ Net Profit After NCI                                                                                         628,772                       1,256,964                              99.9%
+ Net Profit Margin                                                                                              27.3%                            33.4%                            6.0 pts
+1 EBITDA - The Company defines EBITDA as its EAS operating profit, excluding: (a) depreciation, amortization, provisions; (b) noncash ESOP expense included in EAS net profit; (c) interest
+
+income not related to the operating cycle; (d) taxes; (e) leasing charges; and certain other non-operating costs including provisions.
+2 Financial services Revenue – Include MSME lending, Consumer finance, Insurance brokerage, Prepaid Card and Money market fund revenues. All except for Microfinance have been
+
+reallocated from Others.
+
+
+
+Financial & Operational Highlights
+   •     Fawry delivered a strong top-line performance in the first half of 2025, with revenues rising by 63.8% year-on-
+         year to EGP 3,765.5 million. This robust growth was underpinned by solid contributions across the Company’s
+         diverse business lines.
+   •     Fawry’s revenue diversification strategy continued to gain strong momentum in 1H2025, with robust year-on-
+         year growth across key business lines. Banking Services, now the Company’s largest revenue contributor, grew
+         by 55.1%, accounting for 38.4% of total revenue for the period. Financial Services posted the highest growth
+         rate, surging by 170.7% to represent 27.2% of total revenue. Meanwhile, ADP maintained solid performance
+         with a 26.5% year-on-year increase, contributing 25.7% of total revenue—down from its position as the top
+         revenue generator just two years ago, now ranking as the third-largest segment. Supply Chain Solutions
+         advanced by 38.6%, making up 5.9% of total revenue, while Technology and Other segments grew by 67.5%,
+         contributing 2.9%.
+   •     Total Gross loan portfolio across Micro, SME and Consumer Businesses increased by 121.0% y-o-y to reach EGP
+         3,859.7 million.
+   •     EBITDA nearly doubled in 1H2025 to EGP 2,115.1 million, underscoring Fawry’s success in scaling its operations
+         while leveraging service synergies, optimizing treasury management, and driving improved cost efficiency.
+   •     Net profit grew by 99.9% year-on-year to EGP 1,257.0 million, supported by top-line expansion and improved
+         EBITDA margins, underscoring the Company’s operational leverage.
+   •     Throughput value continued its strong upward trend, increasing by 57.6% year-on-year to reach EGP 385.9 billion
+         in 1H2025. This growth was fueled by Fawry’s success in broadening its service portfolio to cater to a wide and
+         diverse user base across Egypt.
+
+
+
+  FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                                                                                              2
+  Fawry for Banking Technology and
+  Electronic Payments S.A.E (FWRY.CA)
+  Earnings Release
+  14 August 2025
+
+
+
+
+Chief Executive’s Review
+I am proud to report that in 2Q2025, Fawry has continued its upward trajectory, achieving substantial operational and
+financial growth, and making significant progress on our long-term value creation and revenue diversification strategy.
+Overall, Fawry’s top-line recorded a solid 62.6% year-on-year increase in 2Q2025, while profitability remained robust
+with an impressive EBITDA margin of 56.5% (+9.4 points), and bottom-line growth of 102.6%, with an associated
+margin enhancement of 6.5 percentage points to 33.1%.
+
+On a segment basis, in 2Q2025, Financial Services was the primary driver of our top-line expansion (47.3% of the y-o-
+y growth), delivering a notable 176.3% year-on-year growth, reaping the rewards of its expansion into neobanking,
+with the nascent venture. Banking Services came in second in terms of contribution of the top line expansion (34.0%
+of the y-o-y growth), highlighting our commitment to diversifying revenue streams. While Alternative Digital
+Payments segment contributed to only 12.6% of the y-o-y revenue growth, it still, demonstrated solid growth of 23.3%
+year-on-year, underscoring its pivotal role as the foundation of our interconnected ecosystem while maturing
+alongside other expanding business lines. Lastly, the Supply Chain Solutions division saw a significant revenue increase
+of 41.5%, showcasing our transformation into an ecosystem offering a wide array of value-added services beyond our
+core offerings.
+
+For consumers, we remain committed to delivering convenience, trust, and a broad range of accessible financial
+services. The myFawry app is evolving into a comprehensive personal finance hub, enabling bill payments, mobile top-
+ups, and digital wallet services, complemented by lending and insurance offerings. This quarter, we broadened our
+investment portfolio beyond the money market fund , adding an EGX30 index fund, a gold fund, and a Sharia-
+compliant fund, empowering customers with diverse savings and investment tools. In parallel, we upgraded the
+Yellow Card program with richer rewards, added benefits, and exclusive offers. By combining intuitive design with AI-
+driven personalization, we are deepening customer engagement, strengthening loyalty, and setting new benchmarks
+for everyday financial convenience.
+
+For retail merchants, we remain committed to providing tools that boost sales, enhance operational efficiency, and
+support sustainable growth. Our Buy Now, Pay Later (BNPL) for Business program now serves 120,000 merchants,
+with purchase volumes reaching EGP 5 billion. This working capital solution is helping retailers expand their businesses
+and meet customer demand more effectively. We also pilot-launched “Ordarak Fawry,” a dedicated marketplace
+connecting retailers and suppliers. While still in its pilot stage, our expanding portfolio of services positions retailers
+to broaden their offerings, attract more customers, and operate with greater efficiency.
+
+For enterprise clients, we launched Fawry Business, an end-to-end platform for collections, payments, and expense
+management. The solution features a corporate card program to streamline expense payments and improve cost
+control, a payroll solution integrated with myFawry, and our recently acquired ERP system. With unified tools for
+managing cash flow, collections, and supplier payments, Fawry Business enables enterprises to both drive growth and
+optimize financial operations. This solidifies our position as a strategic partner for large organizations seeking greater
+efficiency and business expansion.
+
+I would also like to re-iterate the new milestones achieved this year in our lending business with total gross loan
+portfolio growing by 121.0% y-o-y reaching EGP 3,859.7 million as of 30 June 2025. This is achieved despite offloading
+part of our loan portfolio due to the successful securitization issuance achieved during the quarter reflecting the
+credibibility of our portfolio . It is also worth mentioning that our fully owned subsidiary Fawry MSME Finance has
+officially obtained an Islamic financing license from the Financial Regulatory Authority (FRA). This milestone marks a
+significant expansion in Fawry’s offerings, allowing the company to provide Sharia-compliant financial solutions
+tailored to the growing demand for Islamic finance in Egypt.
+
+
+
+ FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                                3
+  Fawry for Banking Technology and
+  Electronic Payments S.A.E (FWRY.CA)
+  Earnings Release
+  14 August 2025
+
+
+
+
+We are accelerating our efforts to unlock the full value of our technology assets. Technology-related revenues grew
+by 28.2% year-on-year, reflecting strong initial traction and validating the commercial potential of our platforms.
+Looking ahead, we see technology monetization as a long-term growth lever, with an expanding role in shaping our
+revenue mix and strategic roadmap.
+
+Additionally, I would like to emphasize that we are committed to leverage our big data and AI capabilities across
+mission-critical functions. These include personalized customer engagement, fraud prevention, credit decisioning, as
+well as automated code generation. These applications are designed to enhance customer experience, support data-
+driven strategy, and drive operational efficiency at scale.
+
+Eng. Ashraf Sabry
+Chief Executive Officer
+
+
+
+
+ FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                         4
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Earnings Release
+14 August 2025
+
+
+
+
+      Throughput Value                    Operational Developments
+          (EGP bn)                         Operational KPIs                            1H 2024        1H 2025        Change %
+                                           Active Network Customers (mn)                 52.5           54.1           3.0%
+                          386              Total POS Terminals (‘000)                    371.9          401.0          7.8%
+                                           Acceptance Enabled POSs (‘000)                333.8          358.6          7.4%
+        245
+                                           Banks Active and Contracted                    36             36             n/a
+                                           myFawry App Total Downloads (‘000)           14,456         20,422          41.3%
+                                           Services Provided                             3,432          4,046          17.9%
+                                           Transactions (mn)                              925           1,008          8.9%
+      1H2024            1H2025
+                                           Mobile Wallet Transactions (mn)                102            169           66.0%
+            Throughput Value
+                                           Mobile Wallet Processed Value (EGP mn)      171,270.8      322,844.1        88.5%
+                                           Total Throughput Value (EGP mn)             244,843.6      385,948.5        57.6%
+
+
+         Number of                        Fawry’s total throughput value reached EGP 385.9 billion in 1H2025, up by a
+      Transactions (mn)                   significant 57.6% from the EGP 244.8 billion booked in 1H2024.
+                                            • Fawry processed 1,008 million transactions in the first half of 2025, marking
+                         1,008
+        925                                      an 8.9% year-on-year increase compared to the 925 million transactions
+                                                 recorded in 1H2024.
+                                            • The Company’s retail network expanded by 7.8% year-on-year, reaching
+                                                 401 thousand POS terminals in 1H2025, up from 372 thousand in the same
+                                                 period last year. This growth reflects the success of Fawry’s ongoing efforts
+                                                 to expand access to POS technology for its partners.
+                                            • Acceptance-enabled POS terminals across Fawry’s network reached 358.6
+                                                 thousand in 1H2025, up 7.4% year-on-year from 333.8 thousand in 1H2024.
+      1H2024            1H2025                   These terminals enable merchants and small businesses to accept a wider
+                                                 range of payment methods, including debit and credit cards.
+                                            • Mobile wallet transaction volumes surged to 169 million in 1H2025,
+                                                 representing an impressive 66.0% year-on-year increase from 102 million in
+     Network KPIs ('000)
+                                                 1H2024. In value terms, mobile wallet throughput rose 88.5% year-on-year,
+                                                 reaching EGP 322.8 billion, compared to EGP 171.3 billion a year earlier.
+                                            • Downloads of the myFawry mobile application grew by 41.3% year-on-year,
+                                401
+           359           372                     reaching 20.4 million as of 1H2025, up from 14.5 million in 1H2024. This
+     334
+                                                 quarter, we expanded consumer offerings by adding EGX30, gold, and
+                                                 Sharia-compliant funds to our investment portfolio, providing more savings
+                                                 and investment choices. We also enhanced the Yellow Card with richer
+                                                 rewards, added benefits, and exclusive offers. Through intuitive design and
+                                                 AI-driven personalization, we are boosting engagement, strengthening
+ Acceptance-Enabled Total POS Terminals
+        POSs                                     loyalty, and setting new standards for financial convenience.
+           1H2024      1H2025               • myFawry’s annualized throughput more than doubled, reaching EGP 28.5
+                                                 billion in 1H2025, a 115.3% year-on-year increase from EGP 13.2 billion in
+                                                 1H2024. This growth reflects rising consumer adoption of digital payments,
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                                       5
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Earnings Release
+14 August 2025
+
+
+
+
+                                           supported by Fawry’s continued investment in user experience and service
+             Revenue
+                                           expansion.
+             (EGP mn)
+                                       •   Fawry remains committed to broadening its product portfolio to meet the
+                                           evolving needs of its diverse customer base, including SMEs. Key additions
+                        3,765
+                                           such as Yellow Card, employee insurance packages, and HR solutions have
+                                           extended the Company’s reach beyond microfinance, strengthening its
+       2,299                               position in business services and SME lending.
+
+
+      1H2024           1H2025
+                                       Consolidated Financial Performance
+                                       •   Fawry reported total revenues of EGP 3,765.5 million in 1H2025, marking a
+                                           substantial 63.8% year-on-year increase from EGP 2,299.4 million in
+    Gross Profit (EGP mn)
+                                           1H2024. This strong performance was driven by broad-based growth across
+                        68.2%              all major business segments, particularly Banking Services and Financial
+      66.0%
+                                           Services, highlighting the success of the Company’s revenue diversification
+                                           strategy. On a quarterly basis, 2Q2025 revenue rose by 62.6% year-on-year,
+                         2,567
+                                           reaching EGP 1,970.7 million.
+      1,517
+                                       •   Gross profit reached EGP 2,567.0 million in 1H2025, up 69.2% from EGP
+                                           1,517.2 million in the same period last year. This translated to a gross profit
+     1H2024            1H2025
+             Gross Profit                  margin (GPM) of 68.2%, compared to 66.0% in 1H2024. Margin
+             Gross Profit Margin           improvement was supported by accelerated top-line growth, strong
+                                           contributions from high-margin segments, and ongoing cost synergies
+      EBITDA (EGP mn)                      across Fawry’s operations. In 2Q2025, gross profit came in at EGP 1,352.8
+                        56.2%              million, a 68.8% increase year-on-year, resulting in a GPM of 68.6%, up from
+     46.8%
+                                           66.1% in 2Q2024.
+                                       •   EBITDA climbed to EGP 2,115.1 million in 1H2025, reflecting a robust 96.4%
+                       2,115
+                                           year-on-year increase from EGP 1,076.8 million in 1H2024. The EBITDA
+      1,077                                margin improved to 56.2%, up 9.3 percentage points year-on-year,
+                                           underscoring Fawry’s effective cost management and enhanced operational
+     1H2024           1H2025               efficiency. On a quarterly basis, 2Q2025 EBITDA rose by 95.2% year-on-year
+      EBITDA           EBITDA Margin       to EGP 1,112.7 million, with an EBITDA margin of 56.5%.
+                                       •   Net profit after non-controlling interests (NCI) reached EGP 1,257.0 million
+                                           in 1H2025, a 99.9% increase compared to EGP 628.8 million in 1H2024. The
+     Net Profit After NCI                  net profit margin (NPM) expanded by 6.0 percentage points to 33.4%, up
+          (EGP mn)                         from 27.3% in the prior year. In 2Q2025, net profit doubled to EGP 651.6
+                          33.4%            million, up from EGP 321.7 million in 2Q2024, driving a 6.5 percentage point
+       27.3%
+                                           improvement in NPM to 33.1%.
+       629               1,257
+
+     1H2024             1H2025
+
+             Net Profit After NCI
+             Net Profit Margin
+
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                                6
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Earnings Release
+14 August 2025
+
+
+
+
+                                 Segments Overview
+                                 Banking Services – 38.4% of revenue
+                                   •   Banking Services booked revenues of EGP 1,445.6 million in 1H2025, a
+      Banking Services                 notable increase of 55.1% y-o-y from the EGP 932.1 million booked in
+     Revenue (EGP mn)                  1H2024. This growth was fueled by expansions in both the Agent Banking
+                                       and Acceptance segments. Banking services throughput value increased by
+                                       78.9% y-o-y amounting to EGP 248.9 billion in 1H2025. 2Q2025 revenue
+                  1,446
+                                       figures came at EGP 733.4 million up by 54.3% y-o-y, while throughput went
+                                       up by 68.4% y-o-y.
+        932                                o The Agent Banking business reported revenues of EGP 632.1 million
+                                                in 1H2025, up by a significant 38.7% y-o-y. The Agent Banking
+                                                business recorded a throughput value of EGP 119.4 billion during
+                                                the half, an increase of 51.5% y-o-y.
+                                           o Fawry’s Acceptance business booked revenues of EGP 813.5 million
+      1H2024     1H2025                         in 1H2025, up by 70.7% y-o-y from the EGP 476.5 million booked
+                                                during 1H2024. In parallel, Acceptance throughout doubled to EGP
+                                                129.5 billion in 1H2025 from the EGP 60.3 billion booked in the
+                                                same period of the previous year. The increase of the quantity of
+                                                acceptance-enabled POS terminals contributed to the growth of the
+                                                business, yet equally as important was the surge in acceptance
+                                                throughput per POS and online transactions.
+                                 Financial Services – 27.2% of revenue
+     Financial services
+                                   •   Fawry has diversified its service offerings to encompass a range of financial
+     Revenue (EGP mn)
+                                       services, including SME lending, microfinance, consumer finance (BNPL),
+                                       insurance brokerage, and the myFawry prepaid card.
+                                   •   The Financial Services segment’s revenue more than doubled in 1H2025,
+                  1,023                reaching EGP 1,022.5 million, up from EGP 377.7 million in 1H2024. This
+                                       exceptional growth was driven by Fawry’s strategic expansion efforts,
+                                       particularly in insurance brokerage, consumer finance, and the successful
+                                       rollout of its prepaid card offering.
+        378                        •   Outstanding gross loans in Fawry’s MSME portfolio exceeded EGP 2,097
+                                       million as of 30 June 2025, up by 53.4% from EGP 1,367 million recorded in
+                                       the corresponding period in the previous year. It is worth mentioning that
+      1H2024     1H2025                the company underwent a securitization issuance for EGP 497.5 million,
+                                       impacting the company’s total loan portfolio.
+                                   •   Insurance Brokerage revenue rose to EGP 29.9 million in 1H2025, a 101.7%
+                                       y-o-y increase.
+                                   •   The Consumer Finance (BNPL) services continues its upward trajectory
+                                       since its launch, with gross loan portfolio reaching EGP 1,762.6 million as of
+                                       30 June 2025, vs. EGP 380.2 million in the same period last year.
+
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                           7
+Fawry for Banking Technology and
+Electronic Payments S.A.E (FWRY.CA)
+Earnings Release
+14 August 2025
+
+
+
+
+                                 Alternative Digital Payments – 25.7% of revenue
+        ADP Revenue
+         (EGP mn)                  •   Fawry's Alternative Digital Payments (ADP) segment recorded revenues of
+                                       EGP 967.7 million in 1H2025, up by 26.5% y-o-y from the EGP 765.1 million
+                                       in 1H2024. While for 2Q2025, ADP revenue grew by 23.3% y-o-y to reach
+                                       EGP 505.7 million.
+                   968
+                                   •   This growth is attributed to Fawry's continuous addition of new billers,
+        765                            expansion of Point of Sale (POS) services, increased engagement with
+                                       customers and merchants to enhance existing POS activity, and the rise in
+                                       average ticket sizes, driven by price increases in select industries.
+                                   •   ADP is no longer the largest contributor to Fawry’s top line, with the shift
+                                       underscoring the growth of other segments and further emphasizing the
+                                       ongoing successful evolution of the business towards an ecosystem model
+      1H2024     1H2025
+                                       that integrates a diverse range of value-added services beyond ADP. The
+                                       segment's growth accounted for 13.8% of the y-o-y increase in Fawry's
+                                       overall top-line for 1H2025.
+        Supply Chain
+     Solutions Revenue           Supply Chain Solutions – 5.9% of revenue
+          (EGP mn)                 •   Fawry capitalizes on the substantial alignment between its retail network
+                                       and the merchant base of FMCG, manufacturing and E-commerce
+                   222                 companies, offering Supply Chain Solutions that digitize B2B transactions
+                                       and payments between merchants, sales agents and suppliers. Fawry’s
+        160
+                                       Supply Chain Solutions segment booked revenues of EGP 221.8 million in
+                                       1H2025, up by 38.6% from the EP 160.1 million booked in 1H2024. On a
+                                       quarterly basis, Supply Chain Solutions revenues increased to EGP 119.5
+                                       million in 2Q2025, up by 41.5% from EGP 84.4 million one year prior.
+
+
+      1H2024     1H2025
+
+
+
+
+FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                         8
+  Fawry for Banking Technology and
+  Electronic Payments S.A.E (FWRY.CA)
+  Earnings Release
+  14 August 2025
+
+
+
+
+About Fawry for Banking Technology and Electronic Payments
+
+                                                                                           INVESTOR RELATIONS
+                                                                                           CONTACT
+                                             12.23%
+
+                                                                                           For further information, please
+                                                        9.74%                              contact:
+                                    Fawry                                                  Hassan Abdelgelil
+                                Shareholders’                                              Director of Investor
+                                                           8.48%
+                      57.04%      Structure                                                Relations
+                                                                                           investor.relations@fawry.com
+                                                        6.05%
+
+                                                   4.74%                                   Building 221 – F12 – Financial
+                                                1.72%
+                                                                                           district – Smart Village
+
+         Alpha Oryx                               Banque Misr
+
+         EAEF                                     NBE
+
+         ResponsAbility Participations            ESOP
+
+         Free float
+                                                                    As of 30/6/2025
+
+
+
+Founded in 2008, Fawry is the largest e-payment platform in Egypt serving the banked and unbanked population.
+Fawry’s primary services include enabling electronic bill payments, mobile top-ups and provisions for millions of
+Egyptian users. Other digital services also include e-ticketing, cable TV, and variety of other services. Through its peer-
+to-peer model, Fawry is enabling corporates and SMEs to accept electronic payments through a number of platforms
+including websites, mobile phones, and POSs. With a network of 36 member banks, its mobile platform and more than
+400 thousand agents, Fawry processes more than 6 million transactions per day, serving an estimated customer base
+of 54.1 million users monthly. Learn more at www.fawry.com.
+
+
+
+
+                                                           -Ends-
+
+
+
+
+ FAWRY FOR BANKING TECHNOLOGY AND ELETCRONIC PAYMENTS I EARNINGS RELEASE                                                9
+

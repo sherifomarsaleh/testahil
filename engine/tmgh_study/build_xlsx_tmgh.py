@@ -15,6 +15,8 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 EX = json.load(open(os.path.join(HERE, "experts.json")))
 PE = json.load(open(os.path.join(HERE, "peers.json")))
@@ -527,7 +529,7 @@ def main():
     wb, ws = build(None)
     add_statements(wb, ws)
     add_rest(wb, ws)
-    out = os.path.join(HERE, "TMGH_Valuation_Model_02092026.xlsx")
+    out = os.path.join(HERE, _ed.MODEL_XLSX)
     wb.save(out)
     from openpyxl import load_workbook
     chk = load_workbook(out)

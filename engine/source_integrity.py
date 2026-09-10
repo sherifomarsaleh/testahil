@@ -62,7 +62,7 @@ OWN_DOC = re.compile(
     r'(audited|reviewed|annual report|financial statements|interim (?:statements|financial)|'
     r'statement of (?:profit|financial position|cash)|note \d|balance sheet|income statement|'
     r'cash[- ]flow statement|results (?:announcement|release)|investor presentation|'
-    r'earnings (?:call|presentation)|MD&A|management (?:report|discussion)|prospectus|'
+    r'earnings (?:call|presentation|release)|MD&A|management (?:report|discussion)|prospectus|'
     r'FS_|AR20\d\d|disclosure)', re.I)
 
 # A DATED HISTORICAL: a reported figure for a NAMED past period, never a forward ratio.
@@ -71,9 +71,38 @@ STEM = re.compile(r'^(rev|sales|ebitda|ebit|pat|profit|ni|eq|cash|debt|dna|dep|c
                   r'nwc|inv|recv|pay|assets|liab|eps|dps|opex|cogs|sga|gp|gross|net)', re.I)
 
 
+# THE STEM LIST WAS INCOMPLETE AND THE GAP WAS MEASURED RATHER THAN GUESSED. The list
+# above is the re-pointing that three earlier drafts of this gate earned: matching every
+# dated key fired on 156 then 83 items that were all work that was RIGHT — forecast
+# ratios, commodity benchmarks quoted inside a company's own MD&A, balance-sheet lines
+# naming the line rather than the document — so the check was narrowed to keys whose stem
+# names a financial-statement line. That was correct and it stopped short.
+#
+# MEASURED 7 SEPTEMBER 2026 across every committed register: 1,445 dated keys carry a
+# stem this list does not know, over 229 distinct prefixes. Most are operating or market
+# quantities — volumes, day rates, rig counts, benchmark prices — which are a different
+# class and are RIGHTLY excluded. The stems below are not: each names a line that appears
+# on a face financial statement, exactly like the ones already listed. Two real breaches
+# were invisible behind the gap and both are the shape the rule calls out by name — total
+# assets and total liabilities sourced to "EGX filing reported by Global Cement", where a
+# VENUE IS NOT A DOCUMENT, while the audited statements sat in that study's own filings
+# directory.
+#
+# THE BOUNDARY IS NOT DECORATION. These stems are short enough to collide: a bare `ca`
+# swallows capacity_fy24, a bare `ga` swallows gas_price_fy24, a bare `imp` swallows
+# import_price_fy24 — and every one of those is an operating quantity this gate must not
+# touch. Requiring the stem to end at an underscore or at the period suffix keeps the
+# widening to the lines it names. The list above deliberately keeps its own looser form,
+# because `rev` must reach `revenue` and re-pointing a working matcher is not part of
+# this change.
+STEM_LINE = re.compile(
+    r'^(ta|tl|np|npa|pbt|ppe|nci|ocf|intang|assoc|lease|rou|tax|div|imp|ecl|'
+    r'fincost|othinc|ga|cl|ca|equity|retained)(?=_)', re.I)
+
+
 def is_dated_historical(key):
     """A reported figure for a named past period of the subject itself."""
-    return bool(PERIOD.search(key) and STEM.match(key))
+    return bool(PERIOD.search(key) and (STEM.match(key) or STEM_LINE.match(key)))
 
 
 def violation(key, source):

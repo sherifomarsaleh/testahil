@@ -12,6 +12,22 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 STUDY = os.path.join(HERE, 'AIRARABIA_Valuation_Study_09-08-2026_public.docx')
 BIB = os.path.join(HERE, 'AIRARABIA_Bibliography_09-08-2026.docx')
+
+
+def _latest_xlsx():
+    """The LATEST delivered workbook by PARSED DDMMYYYY date, never by string sort —
+    '03092026' sorts below '09082026' as text and a text sort silently picks a superseded
+    edition [L-067]. THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK
+    EXCLUDED IT [L-350]: a reader receives three files and this scrub named two."""
+    c = []
+    for f in os.listdir(HERE):
+        m = re.search(r'Valuation_Model_(\d{2})(\d{2})(\d{4})_.*\.xlsx$', f)
+        if m and not f.startswith('~$'):
+            c.append((m.group(3) + m.group(2) + m.group(1), f))
+    return os.path.join(HERE, sorted(c)[-1][1]) if c else None
+
+
+XLSX = _latest_xlsx()
 TEXT_WIDTH = 7.0            # 8.5in page less 0.75in margins each side
 BIB_WIDTH = 9.8             # landscape bibliography uses 0.6in margins
 
@@ -33,6 +49,21 @@ BANNED = [
 CASE_BANNED = [r'\bPARITY\b', r'\bBOUNDARY\b', r'\bFAIL\b(?! )']
 
 def doc_text(path):
+    # .xlsx branch: every STRING cell a reader sees. A numeric cell is a model output the
+    # recalculation gate reconciles; a formula is skipped because data_only=False hands back
+    # its text and a formula is not a sentence. Returns (None, text) — the width and figure
+    # checks below are .docx-only and never receive a workbook.
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        import openpyxl
+        wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+        parts = []
+        for ws in wb.worksheets:
+            for row in ws.iter_rows(values_only=True):
+                for v in row:
+                    if isinstance(v, str) and not v.startswith('='):
+                        parts.append(v)
+        wb.close()
+        return None, '\n'.join(parts)
     d = Document(path)
     parts = [p.text for p in d.paragraphs]
     for t in d.tables:
@@ -46,7 +77,8 @@ fails = []
 # ---- (k)/(m) procedure-reference scrub --------------------------------------
 print('=' * 74)
 print('(k)+(m)  internal-procedure vocabulary scrub')
-for label, path in [('study', STUDY), ('bibliography', BIB)]:
+for label, path in [('study', STUDY), ('bibliography', BIB), ('workbook', XLSX)]:
+    assert path and os.path.exists(path), f'{label}: delivered document not found'
     _, txt = doc_text(path)
     low = txt.lower()
     hits = []

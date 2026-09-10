@@ -1,0 +1,246 @@
+{
+ "ticker": "GBCO",
+ "as_of": "2026-09-10",
+ "published_central": 45.78258185873978,
+ "published_central_is": "MNT-Halan at its reviewed carrying value",
+ "published_central_note": "THIS STUDY PUBLISHES NO CENTRAL. The field above names the branch this record measures materiality on — the reviewed carrying value, the LOWER of the two — and both branches are declared below. Every judgement carries its value on both branches whatever this field says.",
+ "published_central_two_sided": [
+  {
+   "label": "MNT-Halan at its reviewed carrying value",
+   "value": 45.78258185873978
+  },
+  {
+   "label": "MNT-Halan at the June-2026 round price",
+   "value": 56.779474534925875
+  }
+ ],
+ "published_spot": 28.98,
+ "measured_on": "THE STUDY PUBLISHES TWO ANSWERS, SO \"5% OF THE ANSWER\" NEEDED A RULE AND HERE IT IS. A judgement is material if it is worth more than 5% of EITHER branch, and since every fork except one moves both branches by the same number of pounds, that is the LOWER branch — the reviewed carrying value at EGP 45.7826 a share. Measuring there records the superset and falls to the strict side, which is what this house does everywhere else an answer is ambiguous. It changes exactly one classification: the GB Capital return anchor clears 5% on the carrying branch and does not on the round branch, and it is recorded as material. The one exception is the ownership percentage, which has no effect at all on the carrying branch and is measured on the round branch with that said in its own entry. Both framings are carried on every judgement.",
+ "two_sided_judgement": {
+  "name": "the basis on which the MNT-Halan stake is marked",
+  "why_it_is_not_in_the_signed_list": "THIS IS THE ANSWER, NOT A FORK THE STUDY RESOLVED. It is by a distance the most consequential judgement in the study — EGP 11937 mn, 24.0% of the lower branch and 19.4% of the higher — and the study does not adopt either side: it publishes both, because both are GB Corp's own disclosures about one stake and the filings do not decide between them. A sign test measures WHICH WAY forks were resolved, so recording an unresolved fork in it would manufacture a count in whichever direction the two values happened to sit — either an upward count for a choice nobody made, or a downward one. It is recorded here in full instead, with both values, and named in the sign test's own reading so nobody reads that test as covering it.",
+  "basis_a": {
+   "label": "MNT-Halan at the June-2026 round price",
+   "mark_egp_mn": 27670.650000000005,
+   "value": 56.779474534925875,
+   "what": "41.61% of the USD 1.4bn primary round completed with Al Ahly Capital Holding, translated at EGP 47.5",
+   "against_it": "a primary round's headline valuation prices NEW money with whatever preferences ride with it, and GB Corp holds an ordinary equity-accounted minority in an unlisted company. It is a mark, not a realisable price."
+  },
+  "basis_b": {
+   "label": "MNT-Halan at its reviewed carrying value",
+   "mark_egp_mn": 15733.523,
+   "value": 45.78258185873978,
+   "what": "note 34 to the reviewed consolidated interim statements at 30 June 2026, EGP 15,733,523 thousand, footing to that balance sheet's own associates line",
+   "against_it": "it is an ACCOUNTING measure — cost plus accumulated share of profit plus the revaluation on deconsolidation — and book is a floor rather than a value. AND IT IS ITSELF QUALIFIED: the review conclusion on these statements is qualified precisely here, the reviewers not having been given the associate's own financial statements and being unable to verify the group's EGP 409.9mn share of profit for the period."
+  },
+  "spread_egp_mn": 11937.127000000006,
+  "spread_as_a_share_of_the_higher_branch": 0.19367725337827396,
+  "note": "averaging the two would be the blend [R-LENS-03] retired, arriving through a different door, and a discount standing in for the uncertainty would be the free parameter this rebuild removed. The uncertainty is IN THIS LINE and it is published as this line."
+ },
+ "judgements": [
+  {
+   "name": "the capital-expenditure path",
+   "adopted": "a ladder falling from 3.82% of Auto revenue in the first forecast year to 1.93% by the last, whose first year is the figure management guided",
+   "alternative": "the company goes on spending what it filed: EGP 3,664.2 mn a year, flat in nominal terms, which is a real decline across the window",
+   "measured_on_branch": "MNT-Halan at its reviewed carrying value",
+   "value_adopted": 45.78258185873978,
+   "value_alternative": 37.14004049212874,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 37.14004049212874,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 48.13693316831483,
+   "moves_the_answer_by": 0.23270145245110047,
+   "moves_the_carrying_branch_by": 0.23270145245110047,
+   "moves_the_round_branch_by": 0.17954075587640095,
+   "direction": "the study took the higher value",
+   "why": "THIS JUDGEMENT WAS IN NO REGISTER UNTIL IT WAS ASKED FOR, which is the part worth recording: not the four-field inputs, not this list, and not the risk register built to catch exactly this — and on the measurement below it ranks second in that register. The adopted ladder falls to a third of the filed intensity across the window and raises free cash flow in every year of it. TWO THINGS ARGUE THE OTHER WAY and are recorded rather than left for a reader to find: capex still runs above depreciation throughout, so the asset base is growing rather than being harvested, and the terminal carries most of this leg's enterprise value, so an explicit-window driver moves less of the answer than its size suggests. THE FIRST YEAR IS MANAGEMENT GUIDANCE and the standing rule is that guidance is scored and never consumed, so the adopted side of this fork is not merely the higher one — it is the one a forward target set.",
+   "overturned_by": "two further filed years of capital expenditure, or a capital plan the company discloses. Either settles whether the intensity is falling because the build-out is finished or only because revenue is growing faster than the spend."
+  },
+  {
+   "name": "working-capital intensity",
+   "adopted": "gliding from 26.5% of Auto revenue in the first forecast year to 21.5% by the last, as payables re-extend and the pre-build unwinds",
+   "alternative": "the first forecast year held flat across the window — no credit taken for the release",
+   "measured_on_branch": "MNT-Halan at its reviewed carrying value",
+   "value_adopted": 45.78258185873978,
+   "value_alternative": 27.942187753581514,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 27.942187753581514,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 38.93908042976761,
+   "moves_the_answer_by": 0.6384752068266938,
+   "moves_the_carrying_branch_by": 0.6384752068266938,
+   "moves_the_round_branch_by": 0.45816166967106625,
+   "direction": "the study took the higher value",
+   "why": "the disclosed series runs 18.7% / 22.9% / 28.5% for FY23-25, so the adopted path already assumes the FY25 spike reverses and the alternative holds a level well BELOW the last actual — the conservative framing here is still not the most conservative one available. It is by a wide margin the largest fork in this record, because the auto leg's free cash flow is a thin residual and a working-capital path moves it directly. The study names this its second crux and the company's own quarterly prints resolve it; the fork is whether the release is credited before it is shown.",
+   "overturned_by": "two consecutive quarters in which the company discloses its receivable, inventory and payable days. The glide is currently five figures standing in for a cycle the filings would measure directly."
+  },
+  {
+   "name": "the equity risk premium basis",
+   "adopted": "the market (credit-default-swap) basis, giving a first-year weighted cost of capital of 23.12%",
+   "alternative": "the credit-rating basis, giving 23.78%",
+   "measured_on_branch": "MNT-Halan at its reviewed carrying value",
+   "value_adopted": 45.78258185873978,
+   "value_alternative": 41.288434536281265,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 41.288434536281265,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 52.28532721246735,
+   "moves_the_answer_by": 0.10884760763960154,
+   "moves_the_carrying_branch_by": 0.10884760763960154,
+   "moves_the_round_branch_by": 0.08595427363772722,
+   "direction": "the study took the higher value",
+   "why": "both come from the same published country-risk file and the study prints both. The swap basis is the market's own live pricing of the sovereign against an agency judgement updated in steps, and it is the house default central — it is also the lower rate and therefore the higher value, which is why it is recorded here rather than treated as settled. The figure opposite is a PARALLEL SHIFT of the committed ladder and is labelled a proxy: the committed record carries no rating-basis terminal, and a terminal this desk solved for itself is not a committed one.",
+   "overturned_by": "the two published bases converging, or the country-risk file naming one of them as the one to use. Neither is in this study's gift and both are published by the same source."
+  },
+  {
+   "name": "the equity beta",
+   "adopted": "0.8907, the conforming weekly regression against the exchange's published index, committed in this directory",
+   "alternative": "1.00, the house default this study carried before the beta was re-derived, after an attempted five-annual-observation regression returned a negative slope with no explanatory power",
+   "measured_on_branch": "MNT-Halan at its reviewed carrying value",
+   "value_adopted": 45.78258185873978,
+   "value_alternative": 44.36233970352078,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 44.36233970352078,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 55.35923237970688,
+   "moves_the_answer_by": 0.032014590860415866,
+   "moves_the_carrying_branch_by": 0.032014590860415866,
+   "moves_the_round_branch_by": 0.025655018940248412,
+   "direction": "the study took the higher value",
+   "why": "the study's own refusal to use an unusable regression was right, and a conforming tier-1 regression has since replaced the default it fell back to. The fork is recorded rather than treated as settled because a beta is a judgement about which estimator to trust, not a fact — and this one sits close enough to 1.00 that the study's answer barely turns on it, which is itself worth saying.",
+   "overturned_by": "a longer usable run of weekly returns, or a structural change in the company that resets the regression window and is disclosed as one."
+  },
+  {
+   "name": "the return anchoring GB Capital's justified price-to-book",
+   "adopted": "the 1H2026 REVIEWED return on the segment's operating equity, 10.10%, annualised on the average of the two committed period-end bases",
+   "alternative": "the FY2025 full-year return on the same base, 14.71%",
+   "measured_on_branch": "MNT-Halan at its reviewed carrying value",
+   "value_adopted": 45.78258185873978,
+   "value_alternative": 48.43320934884774,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 48.43320934884774,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 59.430102025033825,
+   "moves_the_answer_by": 0.05472747987886576,
+   "moves_the_carrying_branch_by": 0.05472747987886576,
+   "moves_the_round_branch_by": 0.04460075617893813,
+   "direction": "the study took the lower value",
+   "why": "[R-ANCHOR-01]: a near-term reviewed actual outranks a stale full-year rate, and the half already filed is the more recent measurement of the same quantity on the same base. It is also the LOWER of the two — the FY25 framing is worth EGP 2877 mn more on this leg — so the study took the conservative side here, and this is the one judgement in the record whose materiality depends on which branch it is measured against: it clears 5% on the carrying branch and does not on the round branch, and the strict reading is the one recorded.",
+   "overturned_by": "a full year at the reviewed period's return on the equity base the segment now carries. The two framings disagree because the base more than doubled inside the period, and a year that spans neither half settles it."
+  },
+  {
+   "name": "the discount rate inside GB Capital's justified price-to-book",
+   "adopted": "the TERMINAL cost of equity from the sanctioned schedule, 17.04%",
+   "alternative": "the explicit-window cost of equity, 28.54%",
+   "measured_on_branch": "MNT-Halan at its reviewed carrying value",
+   "value_adopted": 45.78258185873978,
+   "value_alternative": 44.83051675215481,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 44.83051675215481,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 55.8274094283409,
+   "moves_the_answer_by": 0.02123698711412273,
+   "moves_the_carrying_branch_by": 0.02123698711412273,
+   "moves_the_round_branch_by": 0.01705372175305804,
+   "direction": "the study took the higher value",
+   "why": "a terminal-form identity takes a terminal rate, so the adopted side is the internally consistent one — and it is also the GENEROUS one, since the explicit-window rate would put this leg at EGP 902 mn against EGP 1936 mn. Where a correction cuts a number the charitable reading is the one to take, and the fork is recorded so that choice is visible rather than buried in an identity. It moves the answer by less than 2% either way.",
+   "overturned_by": "the cost-of-capital glide reaching its terminal, at which point the two rates are the same number and the fork closes on its own."
+  },
+  {
+   "name": "the Auto gross-margin path",
+   "adopted": "a path opening at 13.8% and rising to 14.5%",
+   "alternative": "the latest reviewed half held flat across the window at 14.30% — the near-term reviewed actual outranking a forecast path",
+   "measured_on_branch": "MNT-Halan at its reviewed carrying value",
+   "value_adopted": 45.78258185873978,
+   "value_alternative": 44.33746196800534,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 44.33746196800534,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 55.334354644191436,
+   "moves_the_answer_by": 0.03259365391228893,
+   "moves_the_carrying_branch_by": 0.03259365391228893,
+   "moves_the_round_branch_by": 0.026116142494600078,
+   "direction": "the study took the higher value",
+   "why": "GB Auto's own filed half to 30 June 2026 ran 14.30%, and the forecast opens 3.5% relatively below it and rises to just above it — so the adopted path straddles the anchor rather than sitting above it, and the whole of it sits below every filed full year (24.4% FY23, 19.2% FY24, 14.8% FY25). What is contested is whether the half or the path is the better forecast of the next five years; on this rebuilt anchor the two are close enough that the fork is worth barely 3% of the answer, which is a smaller disagreement than the superseded edition of this record reported against an unsourced quarterly figure.",
+   "overturned_by": "the second half of the current year filing at a margin outside the range the first half and the prior year's halves together bracket."
+  },
+  {
+   "name": "the ownership percentage applied to the round",
+   "adopted": "41.61%, GB Corp's own press release of 9 June 2026 on the transaction the round price comes from",
+   "alternative": "42.93%, the figure note 34 to the reviewed 30-June-2026 statements and the review report both give for the same transaction — most likely a different level of the structure, the Dutch holding vehicle rather than the operating group",
+   "measured_on_branch": "MNT-Halan at the June-2026 round price",
+   "value_adopted": 56.779474534925875,
+   "value_alternative": 57.58813413879505,
+   "value_adopted_carrying_branch": 45.78258185873978,
+   "value_alternative_carrying_branch": 45.78258185873978,
+   "value_adopted_round_branch": 56.779474534925875,
+   "value_alternative_round_branch": 57.58813413879505,
+   "moves_the_answer_by": 0.01404212197464493,
+   "moves_the_carrying_branch_by": 0.0,
+   "moves_the_round_branch_by": 0.01404212197464493,
+   "direction": "the study took the lower value",
+   "why": "both are the company's own disclosures about one transaction and they are not the same pair, so registering only one would decide something silently. The lower is adopted because it is the one the round it is applied to was announced with. THIS IS THE ONE JUDGEMENT MEASURED ON THE ROUND BRANCH RATHER THAN THE LOWER ONE, and not as a convenience: a percentage of a round price has no effect at all on a branch whose mark is an accounting carrying value, so on the carrying branch this fork is an exact zero and measuring it there would report a real disagreement as no disagreement. It is worth 1.40% of the round branch.",
+   "overturned_by": "one filing stating a single percentage for both the Dutch holding vehicle and the operating group, or a transaction naming which of the two the round valued."
+  }
+ ],
+ "sign_test": {
+  "material": 4,
+  "resolved_upward": 3,
+  "resolved_downward": 1,
+  "two_sided_p": 0.625,
+  "flagged": false,
+  "reading": "Of 4 material forks the study took the higher-value side on 3. Two-sided p = 0.6250, so this is NOT flagged at the 5% level. WHAT THIS TEST DOES NOT COVER, AND IT IS THE BIGGEST THING IN THE STUDY: the mark on the MNT-Halan stake, worth 19.4% of the higher branch, is not resolved at all — it is the two-sided answer, recorded above and deliberately kept out of a test that measures which way a fork was resolved. WHAT THE COUNT DOES NOT SHOW AND THE VALUES DO: the one material fork the study resolved DOWNWARD is the lender's return anchor, where it took the reviewed half over the better full year; and the largest fork by a wide margin, the working-capital release at 64%, it resolved upward. A study whose single largest lever runs its way is a study whose reader should look at that lever first."
+ },
+ "unvalued": [
+  {
+   "name": "the second closing of the MNT-Halan round",
+   "what": "public reporting describes the June-2026 close as an initial tranche of an ongoing round, with a second closing open",
+   "why_not_valued": "size and terms are undisclosed, so neither framing has a number behind it. SIGCM clause 8: stop rather than invent.",
+   "direction_if_valued": "unknown — a second close could reprice the round either way"
+  },
+  {
+   "name": "the currency the dollar round is translated at",
+   "what": "the round is translated at the house macro path's own EGP/USD 47.5, the rate at the strike",
+   "why_not_valued": "translating at a later rate is a change of strike date rather than an alternative framing of a judgement, and this record prices framings. It is named here so its absence is visible. It moves the ROUND branch only; the carrying branch is a pound figure off a pound balance sheet and does not move with it at all.",
+   "direction_if_valued": "UP on the round branch if the pound is weaker at a later date, DOWN if stronger; no effect on the carrying branch"
+  },
+  {
+   "name": "the qualification on the reviewers' conclusion",
+   "what": "the limited-review conclusion on the 30-June-2026 statements is qualified at the associate line itself, the same qualification having stood on the 31-December-2025 audited statements",
+   "why_not_valued": "there is no second number to price it against — a qualification says a figure could not be verified, not what it should have been. It is recorded because it is the reason the lower branch is not a safe harbour, which a reader would otherwise assume of a book figure.",
+   "direction_if_valued": "unknown, and that is the point of a qualification"
+  }
+ ],
+ "considered_and_not_counted": [
+  {
+   "name": "the four-lens weighted blend",
+   "what": "the superseded edition published a central weighting the sum of the parts, the undiscounted sum, a relative multiple and a normalised earnings figure at 40/15/20/25",
+   "why_not_a_judgement": "[R-LENS-03] retired the typed blend outright — the weights had never cleared any out-of-sample test and two of the four lenses do not touch the largest asset on the page. That is a retired ARCHITECTURE rather than a defensible alternative framing, and pricing it here would launder it back in as a judgement. It is also not priceable under the current model, because one of the lenses it weighted no longer exists.",
+   "direction_if_counted": "not computable — the model can no longer express it"
+  },
+  {
+   "name": "the normalised-earnings lens",
+   "what": "the superseded edition carried a mid-cycle group profit capitalised at a through-cycle multiple, at 25% of the blend",
+   "why_not_a_judgement": "the class row for an automotive assembler with a captive lender does not carry it, and normalising earnings that swing on associate marks normalises noise. A lens the class does not permit is not an alternative framing of anything.",
+   "direction_if_counted": "not computable — the lens is gone"
+  },
+  {
+   "name": "the complexity / conglomerate discount",
+   "what": "the superseded edition deducted a typed 10% from the sum of the parts and then weighted the discounted and undiscounted sums at 0.40 and 0.15, which applies an effective 4%",
+   "why_not_a_judgement": "both figures are free parameters with nothing observable behind them and nothing in GB Corp's filings discloses a basis for either, so the PROMOTION RULE forbids them. The old record priced this fork AND the question of where the discount was applied, which is a second judgement built on the first. What the discount was standing in for is now named instead — the uncertainty is in the associate mark and is published as two branches. Counting a removed free parameter as a judgement the study won would add an UPWARD count for a correction, which is exactly the laundering this list exists to refuse.",
+   "direction_if_counted": "UP, and material: reinstating the 10% would take both branches down by that 10%"
+  },
+  {
+   "name": "GB Capital carried at 1.0x book",
+   "what": "the superseded edition carried the lender at an adjusted operating book times a multiple of exactly one",
+   "why_not_a_judgement": "[R-LENS-03] is explicit that book value is a disclosed FLOOR and is never weighted into an answer, so a leg carried at 1.0x book is book value wearing a sum-of-the-parts entry's clothes. The base was also the company's own adjusted-ROAE denominator, which is justified by earnings that include associate income the sum of the parts then counts AGAIN at the round price — the cash charged twice, in a lender's costume. A prohibited construction is not an alternative framing.",
+   "direction_if_counted": "DOWN — correcting it CUT this leg. At 1.0x the committed operating book of EGP 6267.3 mn the leg would be worth EGP 4331.8 mn more, EGP 3.99 a share on both branches, so counting it would add a downward count"
+  },
+  {
+   "name": "the terminal growth rate",
+   "what": "the superseded edition held a typed nominal 11.5% for ever; the rebuild stores growth as a REAL rate on the house Egyptian path and recomputes it to 7.0% nominal",
+   "why_not_a_judgement": "[R-MACRO-01] forbids a typed nominal rate outright, because nobody can tell whether 11.5% meant inflation plus four points or minus three, and a terminal growth above the inflation inside the terminal discount rate is a perpetual real expansion nothing discloses. An unfalsifiable input is not a defensible framing. IT IS LISTED HERE WITH ITS DIRECTION BECAUSE THIS LIST MUST NOT BE ONE-SIDED: three of the corrections excluded from the signed list are priceable, and if they were counted they would add one upward and two downward.",
+   "direction_if_counted": "DOWN, and by more than anything in the signed list — the superseded nominal is worth 195% more on the carrying branch"
+  }
+ ]
+}

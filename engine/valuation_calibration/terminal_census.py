@@ -329,6 +329,23 @@ def read_study(d):
     # anything found outside it is recorded rather than silently mixed in.
     tv, tvk = _resolve(flat, CAND['tv'])
     if tv is None:
+        # A STUDY WITH NO ENTERPRISE TERMINAL IS NOT THE SAME AS ONE THAT WILL NOT SHOW ITS
+        # OWN. A bank is valued on the equity side -- there is no enterprise value and no
+        # invested capital to replace -- so "exposes no tv" reports that the census could not
+        # read something which is not there. The census does not decide that; it CARRIES the
+        # study's own declaration and the equity-side figures beside it, and the gate rules on
+        # them. Read before the return, because a row that returns empty gives the gate nothing
+        # to rule on and every such study stays dark by default.
+        rec['no_terminal_value_reason'] = n.get('no_terminal_value_reason') or (
+            (n.get('cost_of_capital_record') or {}).get('no_terminal_value_reason'))
+        for f, keys in (('ke_terminal', ('ke_terminal', 'ke_term', 'ke_T')),
+                        ('g', CAND['g']),
+                        ('wacc', ('wacc', 'wacc_exp', 'wacc_explicit')),
+                        ('wacc_terminal', CAND['wacc_term'])):
+            v, k = _resolve(flat, keys)
+            if v is not None:
+                rec[f] = v
+                rec['routes'][f] = k
         rec['unreadable'] = 'the terminal exposes no tv'
         return rec
     # THE TERMINAL VALUE MUST COME FROM A TERMINAL, not from wherever a key called `tv`
@@ -578,7 +595,53 @@ def read_study(d):
 
 
 def census():
-    return [read_study(d) for d in sorted(glob(os.path.join(REPO, 'engine', '*_study')))]
+    """Every study record on disk, resolved through engine/study_population.py.
+
+    THE GLOB WAS THE WRONG POPULATION and this module is where check_terminal_floor
+    gets its rows, so re-pointing that gate meant re-pointing this. All 90 covered
+    names carry a delivered valuation study; 23 commit a record, and XPT commits one
+    with no covered equity behind it. Reading every record on disk is what this
+    already did — what changes is that the number is now anchored to a population
+    counted somewhere else, and the names with NO record are deferred to the shared
+    no-record ratchet rather than being invisible.
+
+    The import is LAZY: this module is imported by scripts that run in sandboxes
+    without engine/ on the path, and an import they never needed must not kill them.
+    """
+    # A SANDBOXED FIXTURE SUPPLIES ITS OWN POPULATION, AND THE CENSUS HONOURS THE
+    # SAME EXPLICIT ESCAPE AS THE GATES. check_terminal_floor takes its rows from
+    # here rather than globbing, so the escape has to exist at BOTH ends or that
+    # gate's control dies on a resolver its sandbox was never meant to hold. CI
+    # never sets the variable, and taking it is printed.
+    import sys as _s
+    _e = os.path.join(REPO, 'engine')
+    if _e not in _s.path:
+        _s.path.insert(0, _e)
+    import study_population
+    if os.environ.get('TESTAHIL_FIXTURE_POPULATION'):
+        dirs = sorted(glob(os.path.join(REPO, 'engine', '*_study')))
+        # THE FIXTURE BRANCH TAKES THE IN-FLIGHT EXCLUSION TOO, and for exactly the
+        # reason the fixture escape itself exists at both ends: this branch is what the
+        # negative control runs, so an exclusion that applied only on the real path
+        # would mean the control tests a gate that does not ship [R-ENF-03]. It is the
+        # same helper, not a second copy of the rule.
+        dirs, _flight = study_population.drop_in_flight(dirs)
+        census.population_line = ('population: FIXTURE — %d study directories under a '
+                                  'sandboxed tree, not the book%s'
+                                  % (len(dirs),
+                                     '' if not _flight else
+                                     ('; %s excluded as the work of a run that declares '
+                                      'itself unfinished' % ', '.join(_flight))))
+        census.deferred = []
+        return [read_study(d) for d in dirs]
+    dirs, _deferred, _line = study_population.examinable()
+    census.population_line = _line
+    census.deferred = _deferred
+    return [read_study(d) for d in dirs]
+
+
+census.population_line = ''
+census.deferred = []
 
 
 def disclosed_life(ticker):

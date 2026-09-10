@@ -271,6 +271,11 @@ class MacroPath:
         prohibited outright."""
         return self.terminal_inflation + self.real_rate_convention
 
+    @property
+    def real_gdp_lt(self) -> float:
+        """The economy's long-run real growth. A CEILING on terminal real growth."""
+        return self.raw["real_gdp_lt"]["value"]
+
     def terminal_growth(self, real: float = 0.0) -> float:
         """Terminal nominal growth = terminal inflation + a STATED real growth.
 
@@ -278,7 +283,30 @@ class MacroPath:
         still a claim; a study assuming real decline must say so and show the
         evidence, which is the falsifier [L-055] carries.
         """
-        return self.terminal_inflation + real
+        # A TERMINAL REAL GROWTH IS CAPPED BY THE ECONOMY  [R-MACRO-02].
+        # A company compounding faster than its economy forever becomes the economy.
+        # The cap is the published long-run real GDP growth of this market; a study
+        # that wants to sit at or above it is making a claim about the country, not
+        # about the company, and has to make it there.
+        if real >= self.real_gdp_lt:
+            raise MacroPathError(
+                "%s: a terminal REAL growth of %.2f%% is at or above this economy's "
+                "long-run real growth of %.2f%%. In perpetuity that makes the company "
+                "the whole economy. State a rate below it — the gap is the share of "
+                "the economy the company is assumed to cede — or argue the GDP number "
+                "in the path's own source."
+                % (self.market, 100 * real, 100 * self.real_gdp_lt))
+        # THE FISHER IDENTITY, EXACTLY  [R-MACRO-02]. This returned
+        # `inflation + real` until 10-Sep-2026, which is the first-order
+        # approximation and understates by real x inflation -- 14bp at a 2% real
+        # rate on 7% inflation, on a line that capitalises into perpetuity. Worse
+        # than the size was the SHAPE: a study deriving the real rate back out of
+        # a nominal one does (1+g)/(1+pi)-1, the exact inverse, so the two
+        # readers of one number disagreed by construction and agreed only while
+        # real growth was zero. SWDY carried a 0.34/share gap between its own
+        # base case and its own scenario engine for exactly that reason, and it
+        # was invisible until a non-zero real growth was stated.
+        return (1.0 + self.terminal_inflation) * (1.0 + real) - 1.0
 
     # ---- disclosure --------------------------------------------------------
     def sources(self) -> Dict[str, str]:
@@ -389,7 +417,7 @@ def _validate(d: dict, m: str) -> None:
         raise MacroPathError("%s: the policy-rate path needs at least two points to "
                              "give the glide a shape" % m)
     for k in ("sovereign", "fx", "us_inflation_lt", "cost_of_debt_norm",
-              "real_rate_convention", "erp_terminal"):
+              "real_rate_convention", "erp_terminal", "real_gdp_lt"):
         if k not in d:
             raise MacroPathError("%s: the path carries no %s" % (m, k))
     for basis in ("rating", "market"):

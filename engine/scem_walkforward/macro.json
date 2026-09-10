@@ -1,0 +1,138 @@
+{
+ "vintage_by_origin": {
+  "FY2021": "October 2021",
+  "FY2022": "October 2022",
+  "FY2023": "October 2023",
+  "FY2024": "October 2024",
+  "FY2025": "April 2025"
+ },
+ "vintage_note": {
+  "FY2025": "the October 2025 edition is the one this origin would have had and it could not be sourced from any of four URL patterns; the April 2025 edition DID exist at 31-Dec-2025 and is used, labelled. No scored cell depends on it \u2014 FY2025 has no resolved horizon."
+ },
+ "outturn_edition": "April 2025",
+ "mapping": "fiscal_june -> calendar, half of each of the two fiscal years",
+ "believed": {
+  "FY2021": {
+   "1": {
+    "year": 2022,
+    "real_gdp_growth": 0.054224999999999995,
+    "cpi": 0.066755
+   },
+   "2": {
+    "year": 2023,
+    "real_gdp_growth": 0.05675499999999999,
+    "cpi": 0.070865
+   },
+   "3": {
+    "year": 2024,
+    "real_gdp_growth": 0.057465,
+    "cpi": 0.07110999999999999
+   }
+  },
+  "FY2022": {
+   "1": {
+    "year": 2023,
+    "real_gdp_growth": 0.047805,
+    "cpi": 0.10010000000000002
+   },
+   "2": {
+    "year": 2024,
+    "real_gdp_growth": 0.05382,
+    "cpi": 0.075735
+   },
+   "3": {
+    "year": 2025,
+    "real_gdp_growth": 0.056850000000000005,
+    "cpi": 0.07045499999999999
+   }
+  },
+  "FY2023": {
+   "1": {
+    "year": 2024,
+    "real_gdp_growth": 0.04322,
+    "cpi": 0.260285
+   },
+   "2": {
+    "year": 2025,
+    "real_gdp_growth": 0.052265,
+    "cpi": 0.16823999999999997
+   },
+   "3": {
+    "year": 2026,
+    "real_gdp_growth": 0.056235,
+    "cpi": 0.12619
+   }
+  },
+  "FY2024": {
+   "1": {
+    "year": 2025,
+    "real_gdp_growth": 0.046125000000000006,
+    "cpi": 0.17785
+   },
+   "2": {
+    "year": 2026,
+    "real_gdp_growth": 0.05170500000000001,
+    "cpi": 0.12404
+   },
+   "3": {
+    "year": 2027,
+    "real_gdp_growth": 0.054045,
+    "cpi": 0.086175
+   }
+  },
+  "FY2025": {
+   "1": {
+    "year": 2026,
+    "real_gdp_growth": 0.0454,
+    "cpi": 0.11228500000000001
+   },
+   "2": {
+    "year": 2027,
+    "real_gdp_growth": 0.049354999999999996,
+    "cpi": 0.0832
+   },
+   "3": {
+    "year": 2028,
+    "real_gdp_growth": 0.05173,
+    "cpi": 0.059960000000000006
+   }
+  }
+ },
+ "outturn": {
+  "2022": {
+   "year": 2022,
+   "real_gdp_growth": 0.052055,
+   "cpi": 0.16445999999999997,
+   "is_outturn": true,
+   "note": "an estimate of a completed year"
+  },
+  "2023": {
+   "year": 2023,
+   "real_gdp_growth": 0.030795,
+   "cpi": 0.28847,
+   "is_outturn": true,
+   "note": "an estimate of a completed year"
+  },
+  "2024": {
+   "year": 2024,
+   "real_gdp_growth": 0.030780000000000002,
+   "cpi": 0.26476500000000003,
+   "is_outturn": true,
+   "note": "an estimate of a completed year"
+  },
+  "2025": {
+   "year": 2025,
+   "real_gdp_growth": 0.040225,
+   "cpi": 0.16061499999999998,
+   "is_outturn": false,
+   "note": "the April 2025 edition PROJECTS this year rather than reporting it, so the perfect-foresight leg for it is a projection and is labelled; cells landing on it are reported separately"
+  },
+  "2026": {
+   "year": 2026,
+   "real_gdp_growth": 0.0454,
+   "cpi": 0.11228500000000001,
+   "is_outturn": false,
+   "note": "the April 2025 edition PROJECTS this year rather than reporting it, so the perfect-foresight leg for it is a projection and is labelled; cells landing on it are reported separately"
+  }
+ }
+}

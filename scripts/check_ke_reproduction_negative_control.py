@@ -1,0 +1,268 @@
+#!/usr/bin/env python3
+"""Negative control for [R-COC-02]. A check nobody has seen fail is not evidence.
+
+EVERY MUTATION ASSERTS THAT IT LANDED. THE CASE COUNT IS ASSERTED AGAINST A CONSTANT.
+NOTHING IS WRITTEN INTO THE REAL TREE.
+
+THE CLEAN HALF IS WHAT THIS GATE TURNS ON, and it is drawn from the two constructions the
+book actually runs rather than from cases invented to be easy: ARCC's relevered terminal
+EXACTLY as it stands, declared, must stay GREEN, because the first draft of this check
+condemned it and the answer to a check firing on work that is right is to re-point it
+[R-COC-01]. So must ADNOCLS's plain same_beta terminal, and a record with no terminal at
+all, which is not this test's subject.
+
+THE PRINCIPAL'S OWN ERROR IS CASE ONE: a cost of equity typed 300 basis points high. It
+passed every check in this repository until today.
+"""
+from __future__ import annotations
+
+import os
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+ENGINE = os.path.join(ROOT, "engine")
+for p in (ENGINE, ROOT):
+    if p not in sys.path:
+        sys.path.insert(0, p)
+
+import ke_reproduction as kr                 # noqa: E402
+
+DECLARED_CASES = 24
+
+# ARCC's record, the fields this gate reads, exactly as committed.
+# RE-POINTED, NOT WEAKENED [R-COC-01]. These fixtures were built on rf* + beta x the WHOLE
+# premium, which is what a correct record looked like until 10-09-2026. When the reader was
+# taught to REFUSE that identity, every CLEAN case in this control went red — not because
+# the control had found something, but because its idea of "correct" was the retired one.
+# Six of six clean cases failed with the same sentence. The red cases are untouched and
+# every one of them is still red; what moved is the shape a clean record has, which is the
+# whole point of a fixture.
+ARCC = {
+    "rf_star": 0.1955, "beta": 0.9275220650537075, "erp": 0.0941,
+    "erp_mature": 0.042420, "crp": 0.051680, "crp_effective": 0.051680,
+    "lambda_country": 1.0, "crp_foreign": 0.0,
+    "ke_construction": "split_premium",
+    "ke_exp": 0.2865254860,
+    # THE TERMINAL IS UNTOUCHED. `relevered` and `same_beta` reproduce on the TOTAL
+    # terminal premium by construction — only the explicit window splits — so these
+    # stay exactly as they were and the terminal cases keep testing what they test.
+    "rf_terminal": 0.125, "erp_terminal": 0.07,
+    "ke_terminal": 0.20021378024369318,
+    "weight_equity": 0.9621629210350936, "weight_debt": 0.03783707896490645,
+    "weight_debt_terminal": 0.2,
+    "kd_aftertax": 0.10352275371182129,
+    "wacc_exp": 0.9621629210350936 * 0.2865254860
+                + 0.03783707896490645 * 0.10352275371182129,
+    "beta_source": "own_stock_regression",
+}
+# ADNOCLS's shape: a plain same_beta terminal on a pegged market.
+PLAIN = {
+    "rf_star": 0.0424, "beta": 0.6, "erp": 0.0866,
+    "erp_mature": 0.080216, "crp": 0.006384, "crp_effective": 0.006384,
+    "lambda_country": 1.0, "crp_foreign": 0.0,
+    "ke_construction": "split_premium",
+    "ke_exp": 0.0424 + 0.6 * 0.080216 + 0.006384,
+    "rf_terminal": 0.042, "erp_terminal": 0.0858,
+    "ke_terminal": 0.042 + 0.6 * 0.0858,
+    "weight_equity": 0.9, "weight_debt": 0.1, "weight_debt_terminal": 0.1,
+    "kd_aftertax": 0.03,
+    "wacc_exp": 0.9 * (0.0424 + 0.6 * 0.080216 + 0.006384) + 0.1 * 0.03,
+    "beta_source": "own_stock_regression",
+}
+
+
+def d(base, **kw):
+    r = dict(base)
+    for k, v in kw.items():
+        if v is None:
+            r.pop(k, None)
+        else:
+            r[k] = v
+    return r
+
+
+CASES = []
+def case(name, rec, expect_fail, injected):
+    CASES.append((name, rec, expect_fail, injected))
+
+
+# ---- RED --------------------------------------------------------------
+case("THE PRINCIPAL'S ERROR — Ke typed 300bp high",
+     d(ARCC, ke_exp=ARCC["ke_exp"] + 0.03, ke_terminal_construction="relevered",
+       relevering_tax_rate=0.225),
+     True, lambda r: abs(r["ke_exp"] - ARCC["ke_exp"] - 0.03) < 1e-12)
+
+case("a beta quietly raised, Ke left as it was",
+     d(ARCC, beta=1.3, ke_terminal_construction="relevered", relevering_tax_rate=0.225),
+     True, lambda r: r["beta"] == 1.3)
+
+case("an ERP quietly raised",
+     d(ARCC, erp=0.14, ke_terminal_construction="relevered", relevering_tax_rate=0.225),
+     True, lambda r: r["erp"] == 0.14)
+
+case("ARCC's relevered terminal, UNDECLARED as it ships today",
+     d(ARCC), True, lambda r: "ke_terminal_construction" not in r)
+
+case("ADNOCLS's plain terminal, UNDECLARED",
+     d(PLAIN), True, lambda r: "ke_terminal_construction" not in r)
+
+case("declared same_beta on a terminal that was actually relevered",
+     d(ARCC, ke_terminal_construction="same_beta"),
+     True, lambda r: r["ke_terminal_construction"] == "same_beta")
+
+case("declared relevered at the WRONG tax rate",
+     d(ARCC, ke_terminal_construction="relevered", relevering_tax_rate=0.30),
+     True, lambda r: r["relevering_tax_rate"] == 0.30)
+
+case("declared relevered with NO tax rate — solved out of the answer",
+     d(ARCC, ke_terminal_construction="relevered"),
+     True, lambda r: "relevering_tax_rate" not in r)
+
+case("a construction off the closed list",
+     d(ARCC, ke_terminal_construction="our terminal is different"),
+     True, lambda r: r["ke_terminal_construction"] not in kr.TERMINAL_CONSTRUCTIONS)
+
+case("FERTIGLOBE's shape — a record with no rf_star, beta, erp or ke_exp",
+     {"ke_terminal": 0.19, "note": "a record that cannot support the identity"},
+     True, lambda r: "rf_star" not in r)
+
+case("no record at all", None, True, lambda r: r is None)
+
+# ---- CLEAN ------------------------------------------------------------
+case("ARCC's relevered terminal, DECLARED — must stay green",
+     d(ARCC, ke_terminal_construction="relevered", relevering_tax_rate=0.225),
+     False, lambda r: r["relevering_tax_rate"] == 0.225)
+
+case("a plain same_beta terminal, DECLARED",
+     d(PLAIN, ke_terminal_construction="same_beta"),
+     False, lambda r: r["ke_terminal_construction"] == "same_beta")
+
+case("a record with an explicit Ke and NO terminal — not this test's subject",
+     {"rf_star": 0.1955, "beta": 0.9275220650537075, "erp": 0.0941,
+      "erp_mature": 0.042420, "crp": 0.051680, "crp_effective": 0.051680,
+      "lambda_country": 1.0, "crp_foreign": 0.0,
+      "ke_construction": "split_premium",
+      "ke_exp": 0.2865254860, "beta_source": "own_stock_regression",
+      "weight_equity": 0.96, "weight_debt": 0.04, "kd_aftertax": 0.10,
+      "wacc_exp": 0.96 * 0.2865254860 + 0.04 * 0.10},
+     False, lambda r: "ke_terminal" not in r)
+
+# ---- the weights and the beta's provenance, added 07-09-2026 ------------
+# CORRECTED 07-09-2026. This case was written as "THE EXEMPLAR'S DEFECT" and the exemplar
+# had no such defect: ADNOCLS is financed by THREE tranches and the third was committed in
+# a different object, so the record showed two weights and an unexplained gap. The
+# CONSTRUCTION is kept and its DESCRIPTION corrected rather than the case deleted — the
+# same treatment [R-GAP-01] gave its own one-sided case when the trigger went two-sided,
+# because deleting a case leaves the change untested exactly where it matters. What is red
+# here is a gap NOBODY ACCOUNTS FOR, which is what was actually wrong.
+case("a gap in the weights with nothing declared for the remainder",
+     d(ARCC, weight_equity=0.800444, weight_debt=0.071933,
+       ke_terminal_construction="relevered", relevering_tax_rate=0.225),
+     True, lambda r: abs(r["weight_equity"] + r["weight_debt"] - 1.0) > 1e-6
+                     and not r.get("other_tranches"))
+
+# THE DECISIVE CLEAN CASE — the exemplar's real capital structure, figures exactly as they
+# stand in its committed record. Three tranches summing to one and a WACC reproducing to
+# zero. A control carrying only the red half would prove the gate refuses a gap and say
+# nothing about whether it accepts the company that has one legitimately.
+_ADN = {"rf_star": 0.0406, "beta": 1.1032, "erp": 0.0487,
+        "erp_mature": 0.042316, "crp": 0.006384, "crp_effective": 0.006384,
+        "lambda_country": 1.0, "crp_foreign": 0.0,
+        "ke_construction": "split_premium",
+        "ke_exp": 0.0936670112, "kd_aftertax": 0.05181950322693744,
+        "weight_equity": 0.8004439128736124, "weight_debt": 0.0719326113922813,
+        "other_tranches": [{"name": "perpetual_capital_securities",
+                            "weight": 0.12762347573410635, "rate": 0.049,
+                            "basis": "SOFR + 1.25%, disclosed"}],
+        "wacc_exp": 0.0849562515,
+        "rf_terminal": 0.039751, "erp_terminal": 0.0487, "ke_terminal": 0.09347684,
+        "ke_terminal_construction": "same_beta",
+        "beta_source": "own_stock_regression"}
+
+case("THE EXEMPLAR'S THREE TRANCHES, declared — must stay green",
+     dict(_ADN), False,
+     lambda r: len(r["other_tranches"]) == 1
+               and abs(r["weight_equity"] + r["weight_debt"]
+                       + r["other_tranches"][0]["weight"] - 1.0) < 1e-9)
+
+# THE ARITHMETIC IS THE CLOSURE, and this pair is what proves it. A declared tranche is not
+# the open list this house forbids elsewhere, because naming one has to be PAID FOR twice —
+# out of the weights of the real tranches and out of the published WACC. Invent a tranche
+# to make the weights sum and the WACC stops reproducing.
+case("a tranche invented to close the weights — the WACC no longer reproduces",
+     d(_ADN, other_tranches=[{"name": "goodwill_financing",
+                              "weight": 0.12762347573410635,
+                              "rate": 0.20, "basis": "asserted"}]),
+     True, lambda r: r["other_tranches"][0]["rate"] == 0.20)
+
+case("a tranche with a weight and no rate — it cannot be averaged over",
+     d(_ADN, other_tranches=[{"name": "perpetual_capital_securities",
+                              "weight": 0.12762347573410635}]),
+     True, lambda r: "rate" not in r["other_tranches"][0])
+
+case("a tranche that names nothing — a weight a reader cannot identify",
+     d(_ADN, other_tranches=[{"weight": 0.12762347573410635, "rate": 0.049}]),
+     True, lambda r: not r["other_tranches"][0].get("name"))
+
+case("a WACC that does not reproduce from its own weights and rates",
+     d(ARCC, wacc_exp=0.35, ke_terminal_construction="relevered",
+       relevering_tax_rate=0.225),
+     True, lambda r: r["wacc_exp"] == 0.35)
+
+case("a beta with no source — a priced fallback and a typed number look the same",
+     d(ARCC, beta_source=None, ke_terminal_construction="relevered",
+       relevering_tax_rate=0.225),
+     True, lambda r: "beta_source" not in r)
+
+case("a beta_source off the closed list",
+     d(ARCC, beta_source="looked about right", ke_terminal_construction="relevered",
+       relevering_tax_rate=0.225),
+     True, lambda r: r["beta_source"] == "looked about right")
+
+case("SCEM's shape — a PRICED tier-3 fallback, declared, must stay green",
+     d(PLAIN, beta=1.0,
+       ke_exp=PLAIN["rf_star"] + 1.0 * PLAIN["erp"],
+       ke_terminal=PLAIN["rf_terminal"] + 1.0 * PLAIN["erp_terminal"],
+       wacc_exp=0.9 * (PLAIN["rf_star"] + 1.0 * PLAIN["erp"]) + 0.1 * 0.03,
+       beta_source="tier3_fallback", ke_terminal_construction="same_beta"),
+     False, lambda r: r["beta"] == 1.0 and r["beta_source"] == "tier3_fallback")
+
+case("NET weights on a net-cash company still sum to one",
+     d(PLAIN, weight_equity=1.08, weight_debt=-0.08,
+       wacc_exp=1.08 * PLAIN["ke_exp"] + (-0.08) * 0.03,
+       ke_terminal_construction="same_beta"),
+     False, lambda r: r["weight_debt"] < 0)
+
+
+def main():
+    print("[R-COC-02] negative control — every mutation asserts it landed\n")
+    assert len(CASES) == DECLARED_CASES, (
+        "case count moved: %d present, %d declared. A control that quietly loses cases "
+        "reports fewer-of-fewer and reads as clean." % (len(CASES), DECLARED_CASES))
+    bad = 0
+    for name, rec, expect, injected in CASES:
+        if not injected(rec):
+            print("  FIXTURE  %-52s MUTATION DID NOT LAND" % name)
+            bad += 1
+            continue
+        fails = kr.check(rec)
+        got = len(fails) > 0
+        ok = (got == expect)
+        print("  %-6s [%s] %-52s %s"
+              % ("ok" if ok else "WRONG", "RED" if expect else "CLEAN", name,
+                 (fails[0][:66] if fails else "reproduces")))
+        if not ok:
+            bad += 1
+    print("\n%d case(s): %d red-expected, %d clean-expected"
+          % (len(CASES), sum(1 for c in CASES if c[2]),
+             sum(1 for c in CASES if not c[2])))
+    if bad:
+        print("FAIL — %d case(s) did not behave as declared." % bad)
+        return 1
+    print("OK — fires on every injected defect and on none of the clean cases.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

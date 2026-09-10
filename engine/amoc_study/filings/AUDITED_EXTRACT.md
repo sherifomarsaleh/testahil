@@ -297,3 +297,52 @@ BETWEEN those two lines; **total AMOC equity 4,922,226,388 is identical in both*
 11. **Employees' profit share and BOD bonuses** (67.5mn in the half) reduce EPS and were not modelled.
 12. **The offtake is not purely state.** Receivables run to Shell, ExxonMobil, Chevron, Total,
     TAQA/Castrol, Emarat, OLA Energy alongside the state companies.
+
+---
+
+## DEPRECIATION POLICY NOTE RECEIVED — 6 September 2026
+
+Closes escalation `AMOC-depreciation-policy-note`. The document was **not** supplied by the
+principal: the 5 September block rested on a probe pointed at a hostname that does not
+resolve. **AMOC's investor site is `amoceg.com`**, it answers 200 unauthenticated, and the
+audited statements are one click from the homepage. Three filings are now held beside this
+file (`AMOC_CONSOL_31-12-2025.pdf`, `AMOC_STANDALONE_31-12-2025.pdf`,
+`AMOC_CONSOL_30-06-2025.pdf`), each with a **zero-character text layer** — 0 across 154
+pages — so every figure below was read by OCR off the rendered pixels.
+
+**Note 5/2 "Fixed assets and their depreciation" (page 12), consolidated FS to 31-12-2025:**
+
+> "Fixed assets are stated according to the historical cost after deducting the accumulated
+> depreciation and impairment loss ... Depreciation is calculated using the straight-line
+> method according to the assets estimated useful life as follows:"
+
+| Item | Estimated Useful Life (yearly) |
+|---|---|
+| Machinery, equipment and devices | 10-30 |
+| Buildings, constructions and utilities | 10-30 |
+| Vehicles | 5-15 |
+| Tools | 5-10 |
+| Furniture, fixtures and computers | 4-10 |
+
+**The depreciable amount is COST — no residual is deducted.** The only mention of remaining
+values is the annual-review boilerplate on the following page, which is the RIYADHCABLE
+shape, not the EMPOWER/SAVOLA/AIRARABIA one. The prior year's filing (year ended 30 June
+2025, page 12) carries the **identical** note — same wording, same classes, same ranges — so
+no useful life was reassessed. Note 6 shows no acquisition row, so no acquiree's history
+sits in the accumulated column.
+
+Note 6 was footed against its own arithmetic: **46 of 46 assertions, zero failures.**
+
+Consequences, worked in full in `../TERMINAL_EVIDENCE_06-09-2026.md`:
+- disclosed ranges weight to **9.61 – 28.61 years** on the note's own carrying amounts and
+  do not collapse to a point — a life chosen inside those ranges would be this desk's, not
+  the company's;
+- the life **measured** off the note's own cost and charge is **19.67 years**
+  (2,665,058,507 / 135,494,744), with 10.26% of the base fully depreciated and still in use,
+  which makes that an upper reading (17.65 on still-depreciating cost);
+- the **measured average age is 13.64 years**, and the age identity is valid here because
+  the charge writes off cost;
+- vehicles corroborate decisively: remaining depreciable cost over annual charge is
+  **5.0000 years**, the bottom of the disclosed 5-15 range, to within EGP 3 on 3.4 million.
+
+No published number is changed by this pass.

@@ -625,3 +625,673 @@ measured on a different basis from the study's own cash-cost definition (which e
 provisions and expected credit losses — revision 3 of this study carried them inside "cash
 cost" and they are not cash). Either would settle the question the other way, and neither
 can be decided from the repository as it stands.
+
+---
+
+## STC · Saudi Telecom Company · Tadawul 7010 · 05-Sep-2026
+**Class:** telecom operator with a captive bank and a listed systems-integration subsidiary
+**Context:** delivered study, rebuilt; `engine/stc_study/`
+**No fundamental walk-forward exists on this name.** The scope decision is FULL on 16
+sourceable fiscal years back to FY2010 and the run is PENDING — so every entry below is a
+driver decision that has NOT been tested against what this company went on to report. Read
+them as decisions taken, never as findings.
+
+### Drivers set, and from what
+
+| # | driver | rule as set | set from | tested? |
+|---|---|---|---|---|
+| D1 | segment revenue, 12 disclosed segments | each grows at its OWN measured two-year real rate, deflated by a published price index, fading to zero real by the last explicit year | note 9 of the audited statements, revenue and gross profit for every segment, three filed years | no |
+| D2 | the Saudi operating segment's revenue | volume times price: mobile and fixed subscribers times revenue per subscriber, each faded to zero real | subscriber counts from the earnings presentations, price BACK-SOLVED against the audited segment revenue — a derived rate, not a disclosed one | no |
+| D3 | gross margin, four cost lines | on the bases the filings name: the provisioning levy on the Saudi segment, the licence fee at its own rate, repairs on the asset base, contract amortisation on subscribers | note 35, seven lines by nature, three filed years | no |
+| D4 | gross margin, the other three cost lines | HELD at each segment's own disclosed margin | no sourced driver exists — no unit rate for network access, no headcount anywhere in the filings, and "Others" is a residual of three unrelated things | no |
+| D5 | operating cost between gross profit and EBITDA | its own three-year average share of revenue | filed statements | no |
+| D6 | capital intensity | the three filed years' own mean of 1.161 times the depreciation of the base being renewed, held flat | filed statements — NOT management's guided band, which is scored and never consumed | no |
+| D7 | depreciation | the FY2025 filed ratio to revenue, held flat | filed statements | no |
+| D8 | working capital | projected from the asset-conversion cycle rather than plugged | filed statements | no |
+| D9 | tax | 8.03% measured on EBIT with the disclosed prior-year reversal taken out; the debt shield stays at the statutory rate | note 33(a), which discloses the reversal on its own line | no |
+| D10 | beta | own-stock weekly regression against the published index of the exchange it is listed on, at its point estimate | 4.91-year window, 252 paired weeks, R² 30.2% | n/a |
+| D11 | terminal | maintenance at the 21-year average asset life the accounts themselves imply, on the sanctioned module | the property, plant and equipment note | no |
+| D12 | terminal growth | 2.0% nominal, stored as a REAL rate of 0.0% on the house Saudi path | the house macro path, never a number of this study's own | no |
+
+### Decisions worth carrying to the next same-class study
+
+1. **A telecom's cost side is only partly buildable and the split is worth knowing in
+   advance.** Of the seven cost lines a Saudi operator discloses by nature, four have a
+   sourced base that is not group revenue and three do not. Building the four is a real
+   correction and it is SMALL — -0.163% of the answer on this name — because the offsets run
+   both ways: the provisioning levy and the licence fee fall against a group growing faster
+   than their own bases, while repairs and contract amortisation rise. **Expect the effect
+   to be small and build it anyway**, because the alternative is a margin nobody can trace.
+
+2. **The unit price is usually derived, not disclosed.** Subscriber counts come from the
+   earnings presentation and are footnoted as unaudited; revenue per subscriber has to be
+   back-solved against the audited segment revenue. That is unit economics on a derived
+   rate, which is level `derived` and not level `unit` — and this study's unit share is
+   therefore 0%, not the two thirds a reader might infer from "built as volume times
+   price". **Say which half of the unit economics is disclosed.**
+
+3. **Headcount is not disclosed and employee cost is the second-largest line.** Searched
+   across every audited set and both presentations; the negative search is registered.
+   A same-class study should expect to hold this line rather than build it.
+
+4. **Segment growth measured beats segment growth typed, and the difference is
+   composition rather than level.** Group real growth measured from the audited segment
+   table came out close to what the previous edition's typed arrays implied in aggregate;
+   what changed was that 12 segments growing at their own rates compound differently from
+   four aggregates growing at an average of them. The answer moved -15.4% on that lever
+   alone.
+
+5. **A pegged currency means the cost-of-capital schedule is FLAT and that is not an
+   oversight.** The riyal's peg puts this economy at its terminal cost of capital by
+   construction, so there is no normalisation to glide toward; the module returns a flat
+   ladder and says so. A same-class study in a transition market must NOT copy this shape.
+
+### The most consequential contested judgement, both ways
+
+which lens is the answer: the cash-flow model is the central at 38.0806 against the enterprise multiple on this company's own trading history at 48.0753. Published side by side, never averaged.
+
+---
+
+## ELEC — Electro Cable Egypt (EGX) · fundamental walk-forward, 07-09-2026 · **SKIP**
+
+**Scope: SKIP — walk-forward not run — insufficient sourceable history (4 years).**
+Run directory `engine/elec_walkforward/`. No driver was projected and none was scored,
+so this entry records what the filings decided rather than what a forecast measured.
+
+**Class.** No registry row exists for a cable manufacturer and ELEC recorded no class.
+Run as the nearest pattern — *refiner, commodity pass-through on a thin spread* —
+adapted inside the ADNOCLS skeleton, because a cable maker buys copper at a quoted
+world price and sells cable at that price plus a conversion spread, which is the shape
+that row exists for. **No registry row was added**: [R-LENS-03] adds a class when a
+different LENS carries the weight, never when the industry differs, and a cable maker's
+lens set is identical to the refiner row's. Reasoning in `CLASS_DECISION_07-09-2026.md`.
+ELEC is the **third** independent name to meet this wall (after SAVOLA and EMPOWER) and
+is noted on that open escalation rather than resolved here.
+
+### What the archive decided
+
+| basis | years sourceable | note |
+|---|---:|---|
+| consolidated — **the basis this study models** | 2 (FY2019–FY2020) | the company has issued no consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5) |
+| standalone | 4 (FY2020–FY2023) | the parent entity only |
+
+Re-probed 07-09-2026 rather than taken from the record: the issuer's index returns HTTP
+200 and lists **61 statement files**; **19 of 19** on the live host return HTTP 404; the
+**42** consolidated ones sit on a host whose DNS does not resolve; the index carries no
+period after 30-09-2025. **Scoreable origins: zero**, by construction.
+
+### Driver decisions a same-class study should inherit
+
+1. **Interest is built from bank credit facilities + the long-term loan + the lease and
+   financing-arrangement liabilities (note 4/2), and from nothing else.** Trade payables,
+   related-party balances, tax liabilities, provisions, deferred tax and dividends
+   payable bear no interest. Measured on this company's own accounts, the broad
+   denominator understates the rate by **3.09 to 4.15 points** and puts it **below the
+   Egyptian sovereign in two of three years** — which is [R-COC-01]'s own refusal, and
+   is a way of catching trap (i) without knowing the right answer.
+
+2. **The useful life is DERIVED and is a band, not a point.** Route (1) failed: the
+   policy note discloses spans (10–50, 4–25, 5–20, 5–20, 5, 5–10) with no dominant class
+   and no weighting. Route (2) gives **24.13 years** on the full depreciable base and
+   **17.54** excluding the 27.3% of that base the note itself calls fully depreciated and
+   still in use, with a prior-year control at 24.99. `engine/elec_study/useful_lives.json`.
+
+3. **Capex is DISCLOSED, and the identity must not be used here.** These years carry
+   large disposals (FY2021 proceeds of 103.5mn on a book gain of 78.1mn), so
+   `capex = ΔPP&E + D&A` does not close. The cash-flow statement discloses the figure and
+   it reconciles exactly to note 3's own additions.
+
+4. **The consolidated/standalone wedge is measured, never assumed, and it is not a single
+   ratio.** At FY2020, the one year existing on both bases, the group is **1.73x** the
+   parent on revenue, **3.58x** on gross profit, **34.49x** on operating profit and
+   **2.04x** on net profit. Non-controlling interests are EGP 44, so this is not a
+   minority effect. **The two bases are not chained.**
+
+5. **The share count comes from the recital's par, and no count is carried back.** Note
+   13 of the FY2021 filing states issued capital of EGP 711,447,385 in 711,447,385 shares
+   of EGP 1, a 1:5 split ratified 24-01-2021 taking par to EGP 0.20 and the count to
+   3,557,236,925 — which the identity reproduces exactly. FY2020 is therefore recorded
+   **pre-split**.
+
+### The most consequential finding, and it corrects an earlier reading
+
+The 06-09-2026 audit's `[R-ANCHOR-01]` claim — that the study's terminal EBITDA margin of
+12.30% is "less than half of the lowest filed year" against a filed record of
+25.33%–30.68% — **does not survive the filings, and its premise is withdrawn.** That
+range is the study's own committed `hist_is`, which is vendor data, and two of its three
+years have no filing at all. The filed standalone range is **1.43%–17.49%**, which puts
+12.30% **inside** it; the price's reverse read of 27–28% sits at **1.6x** the highest
+margin the company has filed. **`fair{}` was not moved in either direction** — the study
+is not rebuilt, because this run establishes that its historical panel cannot be
+reconciled to anything the issuer has published, which is a SIGCM clause 1 condition
+rather than a disagreement with the market.
+
+---
+
+## PHAR — Egyptian International Pharmaceutical Industries (EIPICO) · EGX · generic and branded pharmaceutical manufacturer · fundamental walk-forward, 07-09-2026 · **LIGHT**
+
+**Scope: LIGHT.** Seven sourceable fiscal years, FY2019–FY2025, every one out of EIPICO's
+own annual reports from its own investor-relations page. Five origins FY2020–FY2024,
+horizons 1–3, twelve scoreable cells per driver, 150 scored cells. The window stops at
+FY2019 because the FY2019 annual report is a board report carrying operating KPIs and no
+financial statements, so FY2018 has units and no accounts and is left out rather than
+fabricated. The exchange and regulator disclosure portals were re-attempted on the day and
+neither resolves.
+
+### Drivers, and the mechanical rule each was scored under
+
+| driver | source of the level | rule at a historical origin |
+|---|---|---|
+| packs produced (thousand) | the company's own annual-report indicator table, every year but FY2020 | trailing compound growth CLIPPED to Egypt's population growth ±2pp — the exogenous anchor, so the volume driver is never the company's own trend alone |
+| revenue per pack | parent sales value ÷ packs, both from the same indicator table | trailing compound growth; on the macro legs, the origin's own inflation vintage or the realised path |
+| cost per pack | consolidated cost of sales ÷ the consolidation ratio ÷ packs | **the SAME escalator as price**, so the gross margin is an OUTPUT and the two cannot drift apart |
+| consolidation ratio | consolidated revenue ÷ parent sales value | held at the origin's own value; it has run 1.015–1.059 across the window (the EIACO ampoules subsidiary) |
+| marketing | consolidated income statement, FY2021 onward | trailing mean share of revenue (variable) |
+| administrative block (R&D + G&A + board) | same | escalated at inflation off the origin's own level (fixed) |
+| provisions and credit losses | same | trailing mean share of revenue |
+| **finance cost** | **long-term loans + long-term credit facilities + short-term loans + creditor banks, AND NOTHING ELSE** | the origin's own effective rate × average interest-bearing debt |
+| capex | consolidated cash-flow statement, FY2021 onward | trailing mean share of revenue; an INPUT, never solved out |
+| depreciation and amortisation | consolidated cash flow: depreciation + right-of-use + intangibles | roll-forward of PP&E **plus projects under construction** at the origin's own book rate |
+| interest-bearing debt | balance sheet | the funding identity, capex + dividends + ΔWC − net profit − D&A, two fixed-point iterations |
+| capital gains, FX result, other income | — | **SET TO ZERO at every origin.** A mechanical rule cannot forecast a currency result and inventing one is the judgement driver this exercise forbids |
+| tax | income tax + deferred tax + the takaful contribution | trailing mean effective rate on profit before tax |
+
+### Decisions a later study of this name or class should not have to rediscover
+
+- **THE INTEREST DENOMINATOR IS THE BORROWINGS, NOT THE LIABILITIES.** On FY2025 the same
+  finance charge gives 14.83% over average interest-bearing debt and 11.87% over total
+  liabilities — 296 basis points, because trade payables, other creditors, provisions and
+  tax payable are a quarter of this balance sheet.
+- **THREE COST-OF-DEBT FIGURES EXIST HERE AND THEY ARE NOT THE SAME QUANTITY**: the
+  finance-cost rate (14.83% FY2025), the interest rate on credit facilities the study
+  computes (14.17%, which excludes EGP 57.6mn of bank commissions — an interest rate is
+  computed on interest), and the all-in rate including EGP 551.1mn capitalised into
+  construction (20.30%). Capitalised interest is 43% of the expensed charge, which is a
+  named mechanism [R-COC-01 AMENDED] admits and the reason a trailing effective rate is
+  not the comparator for a marginal one on this book.
+- **CAPEX LANDS IN PROJECTS UNDER CONSTRUCTION AND STAYS THERE FOR YEARS.** EGP 866mn at
+  FY2022 became EGP 5,694mn at FY2024 and EGP 2,086mn was transferred into fixed assets in
+  FY2025 alone. Any depreciation roll-forward that charges capex on arrival over-charges;
+  this run's did, by +0.499 log, its only over-forecast driver and its worst against the
+  naive benchmark.
+- **THE DISCLOSED USEFUL LIFE IS A SCALAR TABLE, WHICH IS UNUSUAL.** Buildings 50,
+  production and service machines 15, transport and tools 5, furniture 10, land not
+  depreciated — no bands, so the gross-cost weighting to 13.7954 years is unambiguous.
+  The FY2025 report carries the identical table, so no life was reassessed.
+- **THE PACKS SERIES HAS A HOLE AND A REDEFINITION.** The condensed FY2020 report
+  publishes no packs figure at all, and the FY2024 figure was re-presented from 306,133 to
+  299,608 thousand between the FY2024 and FY2025 reports with no reconciliation. Score the
+  unit driver against each origin's own report.
+- **SIX PRINTED CELLS IN THESE FILINGS DO NOT FOOT**, and the largest — the FY2022 gross
+  profit, EGP 18.0mn low — is carried forward into the next year's comparative, so
+  checking one filing against the next confirms the wrong number. Only the statement's own
+  chain to profit before tax separates them.
+
+### What the run concluded
+
+No correction adopted; every candidate DECLINED, six of seven because a LIGHT run at three
+horizons cannot admit a single cut under the cut-invariance clause and untestable is never
+stable. Fair value unchanged at EGP 36.64 (Frame A) / 54.24 (Frame B). Far-year bands
+published for horizons one to three only, declared as SPANS over three to five
+observations rather than percentiles, oriented actual-over-forecast.
+
+---
+
+## GBCO — GB Corp S.A.E (EGX) — fundamental walk-forward, 07-09-2026
+
+**Class: no registered row.** GB Corp is an automotive assembler-distributor (GB Auto) with a
+**captive non-bank lender** (GB Capital) and one large unlisted associate. `LENS_REGISTRY` has
+thirteen rows and none of them is this: `holding company` stores exactly the lens set the name
+needs (SOTP primary, relative multiple and book beside it) and refuses it on the ROW'S NAME
+alone, and GB Corp is not a holdco by that rule's own test — a holdco IS its stakes; this is an
+assembler with a finance arm. Filing it as one would put a wrong label in the committed record.
+**Proposed for registration:** `automotive assembler-distributor with a captive lender` →
+`('sotp', ('relative_multiple', 'book_value', 'ev_ebitda_own_history'))`. Not registered in
+this run because `lessons_register.py` is a shared register and four other runs are in flight.
+The name is the fifth on the lens-registry escalation and stays on the [R-LENS-03] ratchet.
+
+**REGISTERED, 07-09-2026, later the same day — appended rather than rewritten, because a
+dated record says what was true when it was written.** The principal ruled: build a model
+for this company rather than adopting the holding-company lens, and fall back to that lens
+only if the bespoke one fails. It did not fail. The row registered is
+`automotive assembler and distributor with a captive lender` →
+`('sotp', ('dcf', 'residual_income', 'relative_multiple', 'book_value'))`.
+
+**IT IS NOT THE SET PROPOSED ABOVE AND THE DIFFERENCE IS THE WHOLE POINT.** The proposal
+carried neither `dcf` nor `residual_income`, and both turned out to be the reason a new row
+was owed at all rather than a rename. A group cash flow cannot reach a 41.61% interest in an
+unlisted company the group does not consolidate, so the sum of the parts must be the primary
+with the cash-flow lens INSIDE it as one of the parts — which is what `sotp` has always meant
+in `LENS_KINDS`. And the lender has to be valued on its own equity against what that equity
+earns, which is residual income arriving as a PART; the delivered study carried it at book
+times one, and book times one is the weighting of book value [R-LENS-03] forbids outright.
+`ev_ebitda_own_history` is NOT in the registered set: an enterprise multiple on a group whose
+reported earnings swing on associate marks measures the marks rather than the business.
+
+The escalation `lens-registry-has-no-row-for-an-auto-assembler-with-a-captive-lender` is
+closed with the answer written into `research_protocol.py` and `lessons_register.py`. The
+name is OFF the [R-LENS-03] ratchet. The SAVOLA escalation beside it is untouched and is a
+different question, as that escalation's own recommendation said it should be.
+
+**Scope: FULL.** FY2012–FY2025, fourteen sourceable fiscal years, all tier A from GB Corp's own
+documents, all footed. Nine origins FY2016–FY2024, horizons 1–5, 245 scored cells.
+
+| driver | mechanical rule at the origin | outcome |
+|---|---|---|
+| revenue | trailing 3-year CAGR damped 20% a year toward the trailing 5-year CAGR | bias −0.004; **flips sign at 6 of 6 admissible cuts** — a mean, not a bias. Beats freeze at every horizon. |
+| gross_margin | trailing 3-year mean, held flat | bias −0.223; flips at 2 of 6 cuts; **LOSES to freeze at h1–h4** |
+| sga_ratio | trailing 3-year mean of (selling + admin) / revenue | bias −0.180; sign holds at every cut |
+| operating_profit | built from the above, margins an OUTPUT | bias −0.379; sign holds at every cut; CI excludes zero at every horizon |
+| finance_cost | *as scored*: net finance cost as a ratio to revenue | bias +0.401, MAE 0.890, CI straddles zero at every horizon, **LOSES to freeze at four of five** |
+| tax | Egyptian statutory rate known at the origin (22.5% from FY2015) | — |
+| net_profit | operating profit less finance cost, taxed | bias −0.692, n=15, thin |
+
+**THE FINANCE-COST DRIVER IS THE ENTRY WORTH READING.** Built as a ratio to revenue it
+inherits the 2016–17 float's funding shock and carries it forward five years, forecasting
+LOSSES at the FY2016, FY2017 and FY2018 origins for years GB Corp was profitable. The correct
+construction is the borrowings that actually bear the interest — and on this name the leak runs
+the OPPOSITE way from trap (i)'s usual shape: the numerator is too NARROW, because **GB
+Capital's cost of funds (EGP 3,756.9mn in FY2025) is booked in that segment's cost of revenue**
+rather than in the group finance line. Group charge over total liabilities reads 7.05%, over
+group borrowings 11.27%, and over the whole interest actually incurred **26.53%** — which
+reproduces the disclosed CBE lending rate, and which the study now adopts.
+
+**Corrections: none promoted; four watch flags** (gross_profit, operating_profit, sga,
+net_profit — all pass the cut-invariance clause and all are OUTPUTS of two inputs whose own
+signs are unstable, so a correction on them would be a multiplier standing in for a
+mis-specified margin rule).
+
+**Macro/company split:** 22.1% macro, 77.9% company, over 23 revenue cells against Egypt's own
+point-in-time IMF WEO vintages. The split's own check is inverted here and worth more than the
+split: **the model carries no inflation term at all**, so the attribution is after the fact.
+
+**Not built, and flagged rather than filled:** a volume-anchored revenue driver. Unit volumes
+are disclosed from FY2019 and in the annual-report business reviews before that, but an
+exogenous Egyptian market-size series dated at every origin was not obtained from company
+documents inside this run.
+
+
+---
+
+## SCEM — Sinai Cement Company S.A.E. (EGX) · fundamental walk-forward, 07-09-2026
+
+**Class:** cement and heavy industrial · **Scope:** LIGHT — five sourceable fiscal years
+(FY2021–FY2025), five origins, horizons 1–3, **nine resolved driver-cells** ·
+**Central:** EGP 123.27 → **116.93** against a spot of 100.50.
+
+**THE ARCHIVE IS THE SCOPE DECISION.** Sinai Cement publishes exactly six documents on its
+own website. Three of them had never been downloaded before this run; opening the two
+English ones (FY2022 and FY2023 audited) took the span from three sourceable years to five
+and the scope from SKIP to LIGHT. The sixth is Arabic and its figures are Eastern Arabic
+numerals that no OCR route available here reads, so **FY2020 is left out and the window
+shortened rather than filled from a vendor**.
+
+**THE DISCLOSURE GAP THAT DECIDES EVERY DRIVER ON THIS NAME: NO PHYSICAL VOLUME IS
+DISCLOSED ANYWHERE.** Not a tonne, not a capacity, not a utilisation, in any of the six
+filings, in any year. The finest sourced level for this issuer is the **cost-note line**,
+so revenue is `derived` and never `unit` under [R-SIGCM-02], and the tonnage the delivered
+study's model runs on is an industry-ring driver from a plant register and the trade press.
+The next study of this class should expect the same and check before assuming a unit build
+is available.
+
+| driver | mechanical rule at the origin | what it scored |
+|---|---|---|
+| revenue | revenue_t x point-in-time Egypt real GDP growth x point-in-time CPI, from the IMF WEO edition that EXISTED at that year-end | bias -0.561, n=9, outturn 1.75x the forecast |
+| materials, fuel, power, packing | the same volume and price legs — variable in both | bias -0.287, n=9, outturn 1.33x the forecast; **era sign FLIPS** |
+| cost-of-sales wages | escalated at CPI alone; fixed in real terms | bias -0.241, n=9, outturn 1.27x the forecast |
+| cost-of-sales maintenance | escalated at CPI alone | bias -0.503, n=9, outturn 1.65x the forecast |
+| transfer and loading (haulage) | volume x price; variable | bias -0.452, n=9, outturn 1.57x the forecast; **era sign FLIPS** |
+| general and administrative | CPI alone; overhead fixed in real terms | bias -0.590, n=9, outturn 1.80x the forecast |
+| depreciation and amortisation | PP&E roll-forward at the DISCLOSED weighted rate on gross cost | bias -0.025, n=9, outturn 1.02x the forecast; **era sign FLIPS** |
+| finance expense | the origin's own realised rate ON THE BORROWINGS THAT BEAR IT x debt held flat | bias +0.477, n=9, outturn 0.62x the forecast |
+| interest income | the origin's own realised deposit rate x the modelled cash balance | bias -0.953, n=9, outturn 2.59x the forecast |
+| capital expenditure | the disclosed cash-flow run rate held flat in real terms | bias -0.831, n=9, outturn 2.29x the forecast |
+| working capital | the origin's own working capital as a share of revenue | bias -0.704, n=3, outturn 2.02x the forecast; **era sign FLIPS** |
+| EBITDA | REBUILT from the drivers above, never forecast | bias -2.220, n=6, outturn 9.21x the forecast |
+| net profit after tax | rebuilt; tax by the regime known at the origin, 22.5% on positive profit | bias -1.885, n=2, outturn 6.59x the forecast |
+
+**THE SKILL VERDICT IS POSITIVE AND IT IS THE FIRST THING TO READ.** Against FREEZE
+(every line flat at last actual): +0.185 / +0.129 / +0.123 at horizons one, two and three.
+Against TREND (trailing CAGR): +0.239 / +0.231 / +0.205. The method beat both at every horizon
+tested — which PHDC's run did not, on net profit, at any horizon. The margin is a tenth to
+a quarter of the naive error and it rests on nine cells from one company.
+
+**TRAP (i), MEASURED ON THIS NAME AND WORTH CARRYING TO THE NEXT.** Finance expense over
+the borrowings that actually bear it runs 7.97–12.64 per cent across FY2022–FY2025; over
+total liabilities it runs 1.35–7.34 per cent. A factor of 1.7x to 5.9x, and the broad
+denominator would have implied this company borrowed at 1.35 per cent in an economy whose
+policy rate was 19.5.
+
+**THE DRIVER THAT IS MIS-SPECIFIED, AND IT IS THE VOLUME ANCHOR.** Egypt's real GDP growth
+contributed between +0.04 and +0.16 of log revenue growth in every cell while revenue
+compounded at 58 per cent nominal. Real GDP is not cement demand: domestic consumption rose
+13.4 per cent in 2025 against GDP around 4, and the quota regime that capped output since
+2021 was lifted permanently in July 2025. **This is L-058 on a second name.** The fix is an
+Egyptian cement-consumption series at each origin's own vintage, which this run did not
+have and did not invent.
+
+**CORRECTIONS: NONE PROMOTED, 11 WATCH FLAGS, 2 REFUSED AS AGGREGATES — AND THAT WAS
+PRE-REGISTERED.** Nine cells over four target years admit **zero** boundaries leaving five
+on each side, so under [R-FCAL-01 AMENDED 07-09-2026] every driver here is UNTESTABLE for
+stability rather than stable. Four candidates improve the out-of-sample error and none is
+promoted; four make it worse, which is L-061's signature. Run through the shared instrument
+`boundary_sensitivity.cuts_for()`, never reimplemented.
+
+**MACRO/COMPANY SPLIT: about a third macro, two thirds company** on the drivers that carry
+an inflation term. The split's own check passes — depreciation, finance expense and
+interest income carry no inflation term and return zero to within a tenth of a point.
+
+**THE LEVER THIS RUN APPLIED TO THE DELIVERED STUDY:** the terminal's useful life, from a
+25.89-year figure (two disclosed RANGES resolved at their midpoints, then an ARITHMETIC
+mean of the five classes' lives) to the **disclosed SCALAR 20-year machinery life** —
+machinery being 69.5 per cent of note 4's gross cost. Worth −5.1 per cent. **The validation
+the old figure carried was two errors cancelling**: an arithmetic-mean rate understating
+the disclosed rates' own product, compared against a total that included intangible
+amortisation. Recorded because the next name of this class will meet the same table shape:
+note 3/2 discloses RATES, two of five classes as RANGES, and the two ordinary ways of
+blending them disagree by a quarter.
+
+**GUIDANCE LEDGER: EMPTY, and that is a finding.** This issuer publishes no forward
+guidance, no results presentation and no earnings call, so no driver here can have
+inherited a management lean.
+
+---
+
+## SWDY — Elsewedy Electric Company S.A.E. (EGX) — 7 September 2026
+
+**Class: diversified industrial with a contracting arm.** Fundamental walk-forward
+[R-FCAL-01], FULL scope: seventeen sourceable fiscal years FY2009–FY2025 from the company's
+own investor-relations archive (233 documents retrieved), twelve origins FY2014–FY2025,
+horizons 1–5, **750 scoreable driver cells and 105 recorded unscoreable** — the largest
+fundamental sample this book holds and still one company.
+
+**THE DRIVER ARCHITECTURE, AND WHY IT IS THREE LEGS.** [L-295], produced by this issuer,
+says a group whose legs sit on different contract structures cannot be forecast on one
+margin path. The scored revenue drivers are therefore the three groupings that survive both
+segment re-cuts — CABLES, CONTRACTING, OTHER — each paired with its own cost driver on the
+same recognition clock, and **there is no group-level cost driver in the table at all**.
+One would break the matching by construction, and this issuer's contracting leg recognises
+revenue over time (EGP 29.9bn of contract assets against EGP 81.3bn of contract liabilities
+at FY2025), so trap (ii) is live here in a way it is not on a point-in-time seller.
+
+**THE UNIT BUILD IS POSSIBLE ON THIS NAME AND ONLY INSIDE A WINDOW.** The company's own
+"results at a glance" investor sheets publish cable tonnage, price per tonne and cost per
+tonne from FY2012 to 3Q2022 and then stop. The unit drivers are scored only inside
+FY2012–FY2020 and their cell count (20) is published against the rest (45). **The next name
+of this class should look for the investor sheet before assuming the statements are the
+finest level** — the audited statements carry no tonne and never did.
+
+**THE BORROWING RATE, AND WHY THIS NAME MAKES TRAP (i) EASY.** At FY2025 total liabilities
+are EGP 239.1bn of which loans and borrowings are EGP 62.5bn: trade and other payables,
+contract liabilities, related-party balances and provisions together are more than TWO AND
+A HALF TIMES the borrowings and none bears interest. Dividing the finance charge by the
+liabilities total gives about 2.4% against a real 9.4%. The rate is formed on loans and
+borrowings alone at every origin: 3.70% to 13.14% across the twelve.
+
+**SKILL: BEATS "NO CHANGE" EVERYWHERE, LOSES TO A TRAILING CAGR ON THE TOP LINE.** Revenue
+skill against FREEZE +15.7% / +19.5% / +17.7% / +30.3% / +46.0% at h=1..5; against TREND
++0.0% / **−3.3%** / **−13.1%** / **−6.4%** / **−5.2%**. Gross profit beats both. What the
+ground-up build buys on this name is the MARGIN, not the scale, and the reason is that an
+exogenous activity anchor cannot see a company taking share of a market being built —
+contracting revenue went from EGP 2.7bn to EGP 87.1bn against Egyptian real GDP.
+
+**BIAS: THE POOLED CENSUS SIGNATURE AGAIN.** Revenue −0.222 and cost of revenue −0.215 —
+both under-forecast by nearly the same amount, so the margin is roughly right and the SCALE
+is too low. Perfect foresight of inflation and the currency removes at most 28% of the
+error on a company whose currency lost 85% of its value inside the window.
+
+**CORRECTIONS: NONE ADOPTED. Two watch flags, two specification defects named.**
+Depreciation offers the largest improvement any candidate makes (five origins of five, MAE
+0.820 → 0.373) and is REFUSED: the roll-forward models additions and not the translation of
+foreign subsidiaries, and note 17 adds EGP 9.94bn to machinery cost in FY2024 as an exchange
+movement alone against additions of EGP 2.06bn. Finance costs pass on seven of eight and are
+REFUSED for the same species of reason — the rule holds a flat charge on a debt book that
+grew nine and a half times. **The next name of this class inherits both: a PP&E roll-forward
+with no translation term and a level-persistent finance charge will under-forecast on any
+issuer with a foreign asset base and a growing book, and the bias is arithmetic rather than
+evidence.**
+
+**THE DISCLOSED USEFUL LIFE: ROUTE ONE FAILS AND THE IDENTITY IS CORROBORATED TWICE.** The
+policy note discloses five RANGES and no scalar — buildings 8–50, machinery 5–15, furniture
+4–17, vehicles 5–8, leasehold "over 3 years or the lease period". The identity gives
+**17.2627 years** (average depreciable gross cost over the year's own charge), and it is
+confirmed by a second fiscal year of the same note (17.9761) and by the composite implied
+by charging every class at the LONG END of its own range (17.3041, agreement to 0.24%).
+**The company depreciates at the top of every range it discloses and the identity recovers
+that without anybody choosing a point** — which is the reading to try first on the next
+name whose per-component figures sit outside their disclosed ranges.
+
+**THE LEVERS THIS RUN APPLIED TO THE DELIVERED STUDY** (`swdy_study/rebuild_ledger.json`,
+four levers, three rules, cumulative −5.02%): the disclosed life at full precision
+(−0.00%); the strike moved to the latest known price (+1.42%); **terminal flows put on the
+LAST EXPLICIT YEAR'S basis (−6.34%)**; and the workbook made to publish the study's answer
+(central unmoved, workbook 59.3132 → 52.6969).
+
+**THE ONE TO CARRY FORWARD IS THE THIRD.** `terminal_value.TerminalInputs` takes the last
+explicit year's flows and grows them one year itself; this study passed NOPAT, book
+depreciation AND the working-capital base all pre-grown by (1+g), so the terminal was
+overstated by exactly (1+g) — a year-seven flow discounted at the year-five factor, on a
+terminal carrying 84% of enterprise value. The module's own note records six of eight
+callers reading the field that way. **And the same construction was re-implemented inline in
+three more files of this one study** — the base case, the reverse read and the cost-of-debt
+sensitivity — each with its own omissions, and in two of them the errors CANCELLED so their
+reproduce-the-base asserts passed. Correcting one made the others visible.
+
+**GUIDANCE LEDGER: the earnings releases carry forward statements and no driver reads
+them.** Guidance is scored and never consumed.
+
+### GBCO — the study's own forward drivers, 08-09-2026
+
+**Appended because the QC gate asked for it and the entry above did not answer it.** The
+GBCO section of this ledger logs the WALK-FORWARD's drivers — the mechanical rules, the
+corrections declined, the macro split. It logs none of the study's OWN forward drivers,
+which is a different requirement and was not met. Every driver below is typed in
+`compute.py` and rests on no disclosure; each is priced where the study's own model can
+price it, and named where it cannot.
+
+**THE TWO THAT MATTER, IN ORDER OF WHAT THEY ARE WORTH:**
+
+| driver | as typed | what the filings say | worth |
+|---|---|---|---|
+| capital expenditure | 3000 · 2400 · 2500 · 2600 · 2800  (3.82% · 2.51% · 2.22% · 2.02% · 1.93% of auto revenue) | FY2025 filed capex of EGP 3,664.2mn on auto revenue of 66,358.3mn is **5.52%**; the ladder falls to a THIRD of that | held at the filed intensity, the present value of explicit free cash flow goes from +6,915 to −2,830 — **EGP 8.98 a share off both branches**, 15–22% of the lower one |
+| working-capital intensity | 26.5% · 25.0% · 23.5% · 22.5% · 21.5% of auto revenue | the opening balance is EGP 18,917.0mn, **28.51%** of FY2025 auto revenue, so the path opens 7% relatively below the base and falls a further fifth | the study's own contested-judgements record prices the glide at **64.5% of the answer** — the largest single judgement in it |
+
+**The first year's capex is management's guidance**, which [R-FCAL-01] forbids outright:
+guidance is scored and never consumed. It is stated to the reader as guidance in §1.2, it
+is in no four-field register, and it is in none of the seven contested judgements despite
+clearing materiality — so the sign test's p of 0.625 is computed on a set missing a
+material judgement resolved the value-raising way.
+
+**Two mitigations are recorded rather than left for the next reader to find**, because a
+finding stated without them is not a finding: capex still runs 3.47x · 2.28x · 2.02x · 1.84x · 1.76x of depreciation across
+the window, so the asset base is growing rather than being harvested; and the terminal
+carries 84% of the auto leg's enterprise value, so an explicit-window driver moves less
+of the answer than its own size suggests.
+
+**THE REST, NAMED AND NOT PRICED**, every one typed and every one unsourced: passenger-car
+volume and price growth; commercial-vehicle and light-mobility volume and price growth;
+trading revenue growth; the auto gross-margin path; selling and administrative, other
+income, provisions and depreciation as ratios of revenue; GB Capital's revenue growth and
+gross-margin paths; the group operating-expense, other-income and provisions ratios; the
+associate-income path; the net finance-cost path; the minority ratio; the elimination
+ratio and the 20% gross margin reversed with it; and GB Capital's depreciation.
+
+**A CORRECTION MADE IN THE COURSE OF WRITING THIS, recorded rather than quietly fixed.**
+The committed field `working_capital_fy2025` carried **31,123.6** — which is FY2030E's
+CLOSING balance, not FY2025's, because the record captured the loop's running variable
+after the loop had finished with it. Read as the base year it named, it implied an opening
+intensity of 46.9% and a twenty-point step down in the first forecast year; the real
+opening intensity is 28.51% and the step is 2.0 points. This author drew the wrong
+conclusion from it before asking what wrote the field. It is now committed as
+`working_capital_opening`, `working_capital_opening_intensity` and
+`working_capital_closing_fy30e`. A FIELD WHOSE NAME SAYS ONE YEAR AND WHOSE VALUE IS
+ANOTHER IS WORSE THAN A MISSING FIELD, because a missing field stops a reader and a
+mislabelled one does not.
+
+---
+
+## ABUK · Abu Qir Fertilizers and Chemical Industries · EGX · 09-09-2026
+**Class:** provisionally `petrochemical` — a poor fit, and the entry says why below.
+**Context:** fundamental walk-forward training run, `engine/abuk_walkforward/`.
+Scope FULL, eleven sourceable fiscal years FY-Jun-2015 to FY-Jun-2025, six
+origins FY2019-FY2024, horizons 1-5, 20 scoreable cells per driver.
+**Nothing in this entry has been published. No fair value has been struck and
+`fair{}` in `assets/data.js` is untouched.**
+
+### Drivers set, and from what
+
+| # | driver | rule as set | set from | tested? |
+|---|---|---|---|---|
+| D1 | volume proxy | `min(v(o) x (1+g)^h, max v over the 5 years to o)`, g = Egypt population CAGR over the five calendar years to the origin | revenue deflated by the world urea price and the exchange rate — ABUK discloses NO tonnage anywhere | yes — bias **+0.225**, robust, sign holds across eras |
+| D2 | world urea price, USD/t | held FLAT at the FY-origin average (random walk) | World Bank Commodity Markets monthly pink sheet, tier C | inside D1's error |
+| D3 | EGP per USD | held FLAT at the FY-origin average | World Bank WDI PA.NUS.FCRF, tier C | inside D1's error |
+| D4 | cost-of-sales ratio | trailing three-year mean of COGS/revenue, held flat | filed statements, both presentations, scored inside each window | yes — bias −0.310, **SIGN CHANGES between eras** |
+| D5 | selling & distribution ratio | trailing three-year mean of the ratio to revenue | filed statements | yes — bias −0.458, **SIGN CHANGES** |
+| D6 | general & administrative | origin level escalated on trailing three-year Egyptian CPI | filed statements + World Bank WDI | yes — bias −0.559, **SIGN CHANGES**, 91% specification residual |
+| D7 | non-operating income | trailing three-year mean yield ON THE INVESTABLE BALANCE, times that balance, escalated on inflation | filed statements: cash at banks plus investments held to maturity or at amortised cost | yes — bias −0.612, **SIGN CHANGES** |
+| D8 | effective tax rate | trailing three-year mean of tax/PBT | filed statements — the company's own printed charge, never the statutory rate | not separately scored; it is a ratio inside net profit |
+
+Gross profit, profit before tax and net profit are OUTPUTS. No margin is typed
+anywhere in the model.
+
+### Decisions worth carrying to the next same-class study
+
+1. **On a debt-free issuer the interest trap runs the other way.** ABUK
+   discloses "no loans at the reporting date" and carried EGP 45,506 of
+   borrowings at FY-Jun-2021. The rule "interest comes from the borrowings that
+   actually bear it" has a mirror image on a net-cash name: financial income
+   must be built on the balances that actually EARN — cash at banks plus
+   investments held to maturity or at amortised cost — and not on total assets.
+   D7 does that. Had it divided by total assets the implied yield would have
+   been understated by roughly a third at FY2019 and the resulting bias would
+   have been arithmetic rather than evidence.
+
+2. **A flat exchange rate is the only honest origin-dated assumption and it is
+   the largest single source of error.** 56% of the net-profit error and 65% of
+   the gross-profit error is macro. The naive trend benchmark beats the model at
+   every horizon from three years out purely because extrapolating nominal
+   growth happens to track a serially devaluing currency. That is a bet, not a
+   model, and the record says so rather than adopting it.
+
+3. **The calibrated band must be macro-conditioned before a study with its own
+   FX path uses it.** The raw band on net profit over horizons 3-5 is x2.19 to
+   x4.13; the macro-conditioned band is x0.80 to x1.86. Applying the raw band to
+   a forward model that already forecasts the pound counts the same devaluation
+   twice.
+
+4. **Where an issuer discloses no tonnage, say so and price what the proxy
+   costs.** ABUK's volume driver is revenue deflated by price, so it conflates
+   volume with realisation. On the company's own charts roughly half the proxy's
+   32% decline over the window is tonnes and roughly half is realisation. A
+   haircut derived from it is NOT the same object as the flat-tonne haircut
+   EGCH and AMOC measured off disclosed tonnage, and treating it as confirmation
+   would be superstition.
+
+5. **The gas bill is a named, separately quantified purchase from a named
+   counterparty, and its price is a disclosed FORMULA.** GASCO is a related
+   party; the contract price is set "according to a price formula that takes
+   into consideration the selling prices of the Ministry of Agriculture and
+   export prices according to the average price of international bulletins and
+   the average selling price of the USD against EGP." So the single largest cost
+   moves WITH the revenue it funds, and a fixed USD/mmBtu assumption misstates
+   both the level and the volatility. Prime Minister Decree 928 of 2026 puts a
+   USD 8.50/mmBtu FLOOR under it, which binds precisely when a post-spike urea
+   price pushes the formula output below it. This driver is not used in the
+   walk-forward — the cost ratio is — and it is recorded here because any study
+   built on this name must build cost from it.
+
+### Why the class is recorded as provisional
+
+`petrochemical` is the nearest registered class and it is a poor fit. ABUK's
+feedstock price is contractually linked by formula to the export price of its
+own output and to the exchange rate, with a regulatory floor underneath. That
+is neither a petrochemical producer whose input and output prices move
+independently for long stretches, nor the thin-spread refiner AMOC was
+separated out as. Whether it earns its own class is a scope question for the
+principal, not a decision this run makes.
+
+### What was NOT set
+
+No terminal, no cost of capital, no fair value. The delivered study is not
+built; the beta was re-derived through the sanctioned route and is recorded
+(0.6463 against EGX30, weekly, n=256, Dimson-adjusted, R² 0.193, usable and
+conforming) but nothing consumes it yet.
+
+---
+
+## ADIB — Abu Dhabi Islamic Bank – Egypt S.A.E. (EGX: ADIB), 09-Sep-2026
+
+Class `bank`. **The first bank in the fundamental walk-forward campaign**, so this entry
+is mostly about what a bank's driver set IS, and about the two protocol traps that do not
+survive the move from an industrial company unchanged.
+
+**Not ADIB Group PJSC (ADX: ADIB).** That is the Abu Dhabi parent and the separate covered
+name ADIBUAE. This is the Cairo listing, in Egyptian pounds, formerly National Bank for
+Development.
+
+### The driver set — and what an industrial list gets wrong
+
+A bank has no units times price, no capex driving volume and depreciation, and no
+working-capital cycle. Its drivers are:
+
+1. **Customer financing volume** — anchored on system credit times share. The protocol's own
+   volume clause names this case explicitly and it transfers unchanged.
+2. **Deposits and total assets** — from financing via the disclosed loan-to-deposit and
+   assets-to-deposits ratios.
+3. **Asset yield** on average total assets — an INPUT.
+4. **Cost of funds** on average interest-bearing liabilities — an INPUT.
+5. **Net interest margin** — an OUTPUT of 3 and 4, and never typed. This is [L-005] in its
+   bank form and it is the driver a bank study is most tempted to set directly.
+6. **Cost of risk** on average financing.
+7. **Net fees**, and other non-interest income as one block, as rates on average assets.
+8. **Administrative expenses** — a two-part overhead, fixed escalated with inflation plus a
+   variable component per unit of average assets, with a pure-inflation fallback.
+9. **Effective tax rate** — for an Egyptian bank this runs well above the 22.5 per cent
+   statutory rate because withholding on treasury-bill income is not creditable.
+10. **The capital ratio** — the binding constraint, and the reason a bank's dividend is
+    DERIVED rather than chosen. Equity pinned at a target share of assets; the dividend is
+    whatever profit is left after getting there.
+
+### TRAP 1 INVERTS FOR A BANK AND THE RULE STILL HOLDS
+
+"Interest comes from the borrowings that actually bear it" EXCLUDES customer deposits for an
+industrial company; the protocol says so in terms. For a bank, customers' deposits are the
+LARGEST thing that bears the charge. The denominator is customers' deposits plus due to
+banks plus subordinated financing, and nothing wider: at ADIB's FY2025 that is EGP 293.7bn
+against total liabilities of EGP 312.1bn, and using the wider figure understates the funding
+rate by about a sixth of itself. **The principle transfers; the example is class-specific,
+and reading it literally on a bank would have excluded 94 per cent of the right denominator.**
+
+### TRAP 2 HAS A BANK-SHAPED ANALOGUE AND IT IS THE ONE THAT BITES
+
+Financing income and the cost of deposits already accrue on the same effective-yield clock,
+so percentage-of-completion cannot go wrong on a bank. What can: **income accrues on AVERAGE
+balances, not closing ones.** ADIB grew financing 54 per cent in FY2025. Applying a yield to
+a closing balance credits a full year of income to half a year of assets and inflates every
+projected profit — the same shape as the PHDC error, in different clothing. Every rate in the
+build must reach its base through an opening/closing average and by no other route.
+
+### What the run found, and what it did NOT put into the live study
+
+Eleven origins, horizons 1–5, 45 cells per driver, 14 drivers, on sixteen consolidated fiscal
+years that all foot. The method beats "no change" on thirteen of fourteen drivers and by
+40 per cent on attributable profit, with a bootstrap interval clear of zero — the first name
+in this campaign to beat the freeze benchmark on net profit. It is a dead heat against a
+trailing-CAGR benchmark on profit and materially WORSE than it on balance-sheet volume.
+
+The volume finding is a SPECIFICATION finding and no multiplier may hide it: holding the
+share of system credit flat, which is how this book anchors every name's volume, was wrong in
+the same direction at all eleven origins because ADIB has taken share for a decade. The
+correction passes its own by-origin test and is REFUSED on the second clause. **Zero
+corrections promoted; four watch flags.**
+
+### What was set
+
+Cost of equity 29.81 per cent (a 23.00 per cent ten-year yield less a 3.42 per cent sovereign
+spread, plus a 1.0747 beta against EGX30 times a 9.5164 per cent total equity premium),
+gliding to a 20.02 per cent terminal on a 12.50 per cent terminal risk-free rate. Terminal
+growth 7.00 per cent, equal to terminal inflation, zero real. Class primary is the dividend
+discount [R-LENS-03]; central EGP 37.18 against a 3 September close of EGP 52.05.
+
+**The risk-free rate is 34 days old and four live re-source routes failed.** It is declared
+stale on the face of the register, sensitised, and named as this study's first data request.

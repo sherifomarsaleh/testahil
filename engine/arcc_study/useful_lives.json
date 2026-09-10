@@ -7,36 +7,108 @@
   "parent": {
     "entity": "Arabian Cement Company",
     "lives_years": {
-      "buildings": [10, 20],
-      "machinery_and_equipment": [20, 20],
-      "furniture_and_fixtures": [16, 16],
-      "vehicles": [10, 10],
-      "other_installations": [20, 20],
-      "computer_and_software": [3, 5]
+      "buildings": [
+        10,
+        20
+      ],
+      "machinery_and_equipment": [
+        20,
+        20
+      ],
+      "furniture_and_fixtures": [
+        16,
+        16
+      ],
+      "vehicles": [
+        10,
+        10
+      ],
+      "other_installations": [
+        20,
+        20
+      ],
+      "computer_and_software": [
+        3,
+        5
+      ]
     }
   },
   "subsidiaries": {
     "Andalus Ready-Mix Concrete": {
-      "buildings": [50, 50],
-      "machinery_and_equipment": [20, 20],
-      "furniture_fixtures_office_equipment": [16, 16],
-      "other_installations": [5, 5],
-      "vehicles": [10, 10],
-      "computer_and_software": [3, 3]
+      "buildings": [
+        50,
+        50
+      ],
+      "machinery_and_equipment": [
+        20,
+        20
+      ],
+      "furniture_fixtures_office_equipment": [
+        16,
+        16
+      ],
+      "other_installations": [
+        5,
+        5
+      ],
+      "vehicles": [
+        10,
+        10
+      ],
+      "computer_and_software": [
+        3,
+        3
+      ]
     },
     "Evolve for Investment and Project Management": {
-      "furniture_fixtures_office_equipment": [3, 3],
-      "vehicles": [10, 10]
+      "furniture_fixtures_office_equipment": [
+        3,
+        3
+      ],
+      "vehicles": [
+        10,
+        10
+      ]
     }
   },
-  "intangibles_years": { "operating_licence": 20, "electricity_contract": 10 },
-  "ppe_carrying_value_egp": { "2025-12-31": 2522323523, "2024-12-31": 1669630565,
-                              "note": "note 12, quoted in note 3.2.1" },
+  "intangibles_years": {
+    "operating_licence": 20,
+    "electricity_contract": 10
+  },
+  "ppe_carrying_value_egp": {
+    "2025-12-31": 2522323523,
+    "2024-12-31": 1669630565,
+    "note": "note 12, quoted in note 3.2.1"
+  },
   "adopted_for_terminal": {
     "years": 20.0,
     "basis": "machinery and equipment, the dominant class",
     "reasoning": "The replacement-cost base this study builds is capacity x replacement cost per tonne — the cost of a greenfield cement plant — which is overwhelmingly machinery and civil works. Machinery and equipment and other installations are both disclosed at 20 years and buildings at 10-20, so 20 years is the disclosed life of the assets the base actually represents. The 50-year buildings life belongs to a ready-mix subsidiary whose assets are not what the capacity-based replacement cost measures.",
     "what_would_overturn_it": "a disclosed asset-class breakdown of PP&E by cost showing the base is dominated by a class with a different life, or a later filing revising these lives; management reviews them at every reporting date and accounts for changes prospectively, which note 2 states.",
     "sensitivity": "the terminal at 14.3 years (the model's own implicit life, being 1/g) is 21,658 and BELOW its own floor; at the disclosed 20 years 31,318; at 30 years 39,365; at 50 years 45,805. The choice is worth EGP 55.92 / 66.63 / 75.55 / 82.69 per share, so it is a material contested judgement and belongs in the [R-ENF-05] register."
+  },
+  "note12_cost_and_charge": {
+    "_why": "THE STUDY NAMED THE EVIDENCE THAT WOULD OVERTURN ITS CHOICE AND NOBODY WENT AND GOT IT. adopted_for_terminal.what_would_overturn_it asks for 'a disclosed asset-class breakdown of PP&E by cost showing the base is dominated by a class with a different life'. Note 12 of the same filing IS that breakdown, in the same document the lives themselves were read from, and it was never opened. Read on 09-09-2026 under [R-GAP-04]. It CONFIRMS the adopted life rather than overturning it, and it is recorded whichever way it had come out.",
+    "_source": "ARCC FY2025 consolidated financial statements, note 12 'Property, plant and equipment (net)' — the COST block at 31 December 2025 and the DEPRECIATION EXPENSE row for the year then ended.",
+    "_route": "read from the rendered page at 150dpi. The total charge of EGP 259,089,682 reproduces the depreciation of property, plant and equipment on the consolidated statement of cash flows exactly, and both class blocks foot to their own printed totals — two independent readings of one fact agreeing [R-ENF-03], which is the check that says the extraction is sound.",
+    "gross_cost_egp_2025": {
+      "freehold_land": 50243436,
+      "buildings": 914331841,
+      "vehicles": 239960170,
+      "machinery_and_equipment": 3798051544,
+      "furniture_and_fixtures": 22238758,
+      "other_installations": 327449670,
+      "computers_and_software": 37134556
+    },
+    "depreciation_expense_egp_2025": {
+      "freehold_land": 0,
+      "buildings": 30150833,
+      "vehicles": 28721710,
+      "machinery_and_equipment": 178346107,
+      "furniture_and_fixtures": 1091849,
+      "other_installations": 17546898,
+      "computers_and_software": 3232285
+    },
+    "_finding": "The whole DEPRECIABLE base — gross cost less freehold land, which is not depreciated — divided by the issuer's own current-year charge implies a life of 20.61 years against the 20.0 adopted. Machinery and equipment is 71.1% of that base and implies 21.30 years on its own; buildings are 17.1% at 30.32 years and vehicles 4.5% at 8.35 years. The composition-weighted life is therefore 20.6, not the 50 the contested register carries as the alternative: the 50-year figure is a ready-mix subsidiary's buildings and the blend cannot reach it. THE LARGEST CONTESTED JUDGEMENT IN THIS STUDY IS CLOSED BY MEASUREMENT rather than by argument, and the measurement moves the central by nothing."
   }
 }

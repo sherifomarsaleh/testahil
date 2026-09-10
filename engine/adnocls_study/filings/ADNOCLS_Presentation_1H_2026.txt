@@ -1,0 +1,1106 @@
+ADNOC Classification: Internal
+
+
+
+
+  FIRST HALF 2026
+  EARNINGS PRESENTATION
+
+
+
+
+     11 August 2026
+                                 adnocls.ae
+ADNOC Classification: Internal
+
+
+      Disclaimer
+
+      This presentation has been prepared by ADNOC Logistics & Services Plc (the ‘Company’) based on publicly available information and non-public information to assist you in
+      making a preliminary analysis of the content referenced herein solely for informational purposes. It should not be construed as an offer to sell or a solicitation of an indication of
+      interest to purchase any equities, security, option, commodity, future, loan or currency including a private sale of shares in the Company (the Financing Instruments).
+
+      It is not targeted to the specific investment objectives, financial situation or particular needs of any recipient It is not intended to provide the basis for any third-party evaluation of any
+      Financing Instrument or any offering of them and should not be considered as a recommendation that any recipients should subscribe for or purchase any Financing Instruments.
+
+      The recipient agrees to keep confidential any information contained herein and any other written or oral information otherwise made available in connection with any potential
+      transaction related to this presentation and shall not reproduce, publish, distribute or otherwise divulge such information to any other person(s) other than in accordance with any
+      applicable non-disclosure agreements executed by the recipient with the Company.
+
+      None of the Company or any of its affiliates or advisors make any representation or warranty as to the fairness, accuracy, adequacy or completeness of the information, the
+      assumptions on which it is based, the reasonableness of any projections or forecasts contained herein or any further information supplied or the suitability of any investment for your
+      purpose. None of the Company or any of its affiliates or advisors, or their respective directors, officers or employees, share any responsibility for any loss, damage or other result
+      arising from your reliance on this information. Each of the Company, its affiliates and advisors therefore disclaim any and all liability relating to this presentation including without
+      limitation any express or implied representations or warranties for statements contained in, and omissions from, the information herein. No recipient of this presentation should rely
+      upon any information contained in this presentation, including but not limited to any historical financial data, forward looking statements, forecasts, projections or predictions.
+
+      The Company, their affiliates and advisors are acting solely in the capacity of an arm’s length counterparty and not in the capacity of your financial advisor or fiduciary. Such
+      information is represented as of the date and, if applicable, time indicated and the Company, its affiliates and advisors do not accept any responsibility for updating any such
+      information.
+
+      Nothing in this presentation should be construed as legal, tax, regulatory, accounting or investment advice. The recipients should seek and rely upon the advice of its own
+      professionals and other advisors for such matters.
+
+      This presentation may be recorded, and the Company will assume that by attending this presentation the recipient consents to such recording.
+
+      Absolute figures and percentages included in this document have been subject to rounding adjustments.
+
+
+
+  2
+ADNOC Classification: Internal
+
+
+      Agenda & Presenters
+
+      1 Results Summary                   Captain
+                                          Abdulkareem Al Masabi
+      2 Health & Safety                   Chief Executive Officer
+
+      3 Shareholder Value
+      4 Q2 2026 Highlights
+                                          Hugh Baker
+      5 Segmental Performance             Chief Financial Officer
+
+      6 Cash Flow & Capital Expenditure
+      7 Growth Outlook & Guidance
+      8 Closing Remarks
+      9 Appendix
+
+
+
+
+  3
+ADNOC Classification: Internal
+
+
+      Record Second Quarter & FY26 Guidance Upgrade
+
+
+                                                                           FY2026 Guidance Raised
+                REVENUE             EBITDA                NET PROFIT       3rd consecutive upgrade in 2026
+
+                US$2,584m           US$1,106m             US$951m
+                +98% YoY            +176% YoY             +303% YoY        FY26 REVENUE
+                                                                           Mid 20% growth1
+
+
+
+                                                                           FY26 EBITDA
+                OPERATING FREE      2Q26 DIVIDEND         NET DEBT /       Mid 60% growth1
+                CASHFLOW                                  EBITDA
+                                    US$85.3m
+                US$751m                                   0.06x            FY26 NET PROFIT
+                                    2.7% Dividend Yield
+                +126% YoY                                 Leverage ratio   High 110% growth1
+
+
+
+
+  4   1 Growth above 2025 Actuals
+ADNOC Classification: Internal
+
+
+      Commitment To HSE Standards
+
+
+            0.03                                                                                            0.15                                                  17.72M
+                                                                                                                                                                  Safe Hours
+            Loss Time Injury Frequency                                                                      Total Recordable Injury Rate
+                                                                                                                                                                  LTI-free across LNG shipping
+
+
+
+       Safety Performance Trend · 2017–2Q26                                                                                                   Operational Highlights
+
+           Lost-Time Incident Frequency (LTIF)                                                 Total Recordable Incident Rate (TRIR)          Health & Safety
+
+                                                                                                                                              •   A record-setting Loss Time Injury Frequency rate of Zero
+                                                                                             0.65
+       0.35                                                                                                                                   •   Total Recordable Injury Rate held low, at 0.15
+
+                                                                                                                                              •   33.47 million hours worked year-to-date
+
+                                                                                                                                              •   Strengthened incident management governance through
+                                                                                                                                                  ADNOC Group’s Unified Incident Management Corporate
+                                                                                                                                       0.15       Practice, enhancing compliance, operational discipline, and
+                                                               0.05                                                                 0.09          enterprise-wide visibility via SAP
+                                                                        0.03
+                                                                                                                                              Maritime Incident
+       2017 2019 2021 2023 2025 2Q26                                                        2017 2019 2021 2023 2025 2Q26
+                                                                                                                                              •   Tragic attack on one of our vessels in the Strait of Hormuz
+                                                                                                                                                  resulted in one fatality and several injuries. ADNOC L&S
+                                                                                                                                                  mobilized rapidly, coordinating with authorities and
+                                                                                                                                                  stakeholders to support its people and maintain safe
+                                                                                                                                                  operations
+  5   Rates shown per million hours worked. Data covers ADNOC L&S HSE performance from 2017 through 2Q26.
+ADNOC Classification: Internal
+
+
+       Investment Highlights
+
+                 Leading beneficiary of ADNOC’s                  Growing through significant
+                                                                                                       Solid financial capacity
+                            growth                                   committed CAPEX
+
+
+             ADNOC Group US$150bn                            ~US$5.7bn                         US$543m
+             Committed CAPEX 2026-30                         Committed CAPEX up to 2029        Cash
+
+
+
+
+             >US$1.0bn                                       +18 for US$2.3 bn                 US$25bn
+             2026 RoY revenue contracted with ADNOC          Vessels purchased YTD             Contracted revenue1
+
+
+
+
+             US$21bn                                         +31                               0.06x
+             Forward contracted revenue with ADNOC (2027+)   Vessels pending delivery          Net debt to EBITDA ratio
+
+
+
+
+             REVENUE 2017A                                      +23% CAGR in 2017–25A                                     REVENUE 2025A
+             US$0.9bn                                                                                                       US$5.02bn
+
+
+
+  6    1 Includes 50% of Wanhua contracted revenue
+ADNOC Classification: Internal
+
+
+      2Q 2026 Highlights
+      • Record 2Q26 Net Profit $951m
+
+      • Profitability significantly attributed to services provided to ADNOC in export of energy
+
+      • Committed to supporting ADNOC with additional 5 VLGCs and 6 VLCCs to be deployed in 2H 2026
+
+      • 5 LNG vessels delivered on up to 15-year contracts with ADNOC Gas in 1H 2026
+
+      • Sequential improvement in material handling volumes as operations normalize
+
+      • UAE withdrawal from OPEC a potential tailwind
+
+                      Revenue US$2,584m                                      EBITDA US$1,106m                                 Net Profit US$951m
+                          +98% YoY                                               +176% YoY                                        +303% YoY
+                                                                               Services                                         Services Integrated Logistics
+                             Services                                                   Integrated Logistics
+                                                                                US$32m                                          US$22m US$59m
+                            US$100m      Integrated Logistics                            US$132m
+                                                                              +112% YoY                                       +202% YoY -64% YoY
+                            +24% YoY      US$559m                                       -44% YoY
+                                         -16% YoY                                3%                                               2%
+                                 4%                                                   12%
+                                                                                                                                    8%
+                                        22%
+
+
+        Shipping
+                                                                  Shipping                                         Shipping
+      US$1,925m
+                                                                 US$943m                                          US$872m
+      +245% YoY            74%                                  +541% YoY      85%                             +1,258% YoY       92%
+  7
+ADNOC Classification: Internal
+
+
+      Integrated Logistics – Impacted By Higher OPEX
+                                  Revenue (US$ Million)                                                        2Q 2026 Highlights
+                  US$m                      2Q25              2Q26    1H 25   1H 26
+        Offshore Contracting                                                          •   Revenue (excl. Offshore Projects) increased YoY due to additional
+                                             359              355      659     667
+                                                                                          chartering of four Jack-Up Barges and acquisition of three OSVs
+        Offshore Services                    149              205      285     371
+        Offshore Projects                                                             •   Offshore contracting impacted by selective discounting of Jack-Up
+                                             157               (2)     349      2
+                                                                                          Barge rates and lower Hail & Ghasha activity
+        TOTAL                                665              559     1,293   1,040
+                                                                                      •   Integrated Logistics Services Platform (ILSP) volumes declined by
+                                   EBITDA (US$ Million)                                   6.5% YoY as ADNOC managed production levels amid regional
+                   US$m                     2Q25             2Q26    1H 25    1H 26       conflict
+        Offshore Contracting                 183              105      315     211    •   Offshore Services revenues up 38% YoY driven by OSV fleet growth,
+        Offshore Services                                                                 chartering activities and diesel sales
+                                              42              41       77      89
+        Offshore Projects                     13             (13)      28      (17)   •   EBITDA impacted by higher fleet operating expenditure and the
+        TOTAL                                238              132     420     283         recognition of ECL1 provisions amounting to US$27m
+
+
+                                  Net Profit (US$ Million)
+                   US$m                      2Q25            2Q26    1H 25    1H 26
+        Offshore Contracting                  136             52     222       111
+        Offshore Services                      23             21      42        48
+        Offshore Projects                       8            (13)     22       (17)
+        TOTAL                                 167             59     285       142
+
+       1 Expected Credit Loss related Offshore Contracting
+  8
+ADNOC Classification: Internal
+
+
+       Integrated Logistics Highlights
+      Operational resilience, fleet expansion, and sustained asset utilization underpin stable business performance despite regiona l
+      geopolitical volatility
+           Owned Vessels & ILSP Material Handling Volume (KMT¹,²)                                                                             Jack-Up Barges3
+
+                        Material Handling Volume (KMT)                            Owned Vessels
+                                                                                                                                                                                49
+                                                                                                                           43         42        45         45        45
+                               307               323              333
+             281                                                                    282               287
+
+               53                56               52                51                54               57
+
+
+
+            1Q25              2Q25             3Q25              4Q25              1Q26             2Q26                  1Q25      2Q25       3Q25      4Q25       1Q26      2Q26
+
+
+                     Offshore Services Vessels — Owned Vessels                                                       •   Acquisition of three OSV’s at a cost of US$45.5m brings the ILSP
+                                                                                                                         fleet to 57 vessels
+                                                                                                                     •   One Flat-Top Barge, costing US$4.0m, deployed in Offshore
+                                                  76               81                80                81                Services
+              68                70
+                                                                                                                     •   Since the March lows, material handling volumes sequentially
+                                                                                                                         higher across the quarter in line with ADNOC’s production
+                                                                                                                         management
+                                                                                                                     •   The Jack-Up Barges fleet expands to 49 vessels adding four
+            1Q25              2Q25             3Q25              4Q25              1Q26             2Q26                 chartered vessels
+
+  9       1 Kilo-Metric Tonne 2 ILSP volumes including non-ADNOC customers 3JUB fleet of 33 owned and 16 chartered
+ADNOC Classification: Internal
+
+
+       Shipping – Record Earnings
+                                 Revenue (US$ Million)                                             2Q 2026 Highlights
+              US$m                2Q25       2Q26      1H 25     1H 26
+        Tankers                    460       1,695       865     2,102   •   Record tanker result is significantly attributed to services provided to
+        Gas Carriers               43        131            82    187        ADNOC in export of energy
+        Dry Bulk &                                                       •   Revenue strengthened on improved fleet-wide charter rates,
+                                   55        100         102      149
+        Container
+                                                                             supported by contributions from recently delivered LNGCs and dry
+        TOTAL                      557       1,925      1,049    2,438       bulk vessels
+
+                                  EBITDA (US$ Million)                   •   All six Das newbuild LNGCs delivered with five commencing long-
+              US$m                2Q25       2Q26      1H 25     1H 26
+                                                                             term contracts with ADNOC Gas as of June 2026
+        Tankers                   114        844         204      994
+                                                                         •   EBITDA driven by exceptional tanker performance, fleet expansion
+        Gas Carriers
+                                                                             across all vessel types, strong LNGC spot market exposure, share
+                                   24         56            71    93
+                                                                             of profit from newbuild VLECs (AWS JV) and record dry bulk
+        Dry Bulk &
+        Container
+                                   9          44            15    53         earnings
+        TOTAL                     147        943         290     1,140   •   Record net profit reflecting stronger market conditions and fleet
+                                                                             growth
+                                 Net Profit (US$ Million)
+              US$m                2Q25       2Q26      1H 25     1H 26
+        Tankers                    51        797            76    897
+        Gas Carriers               11         40            48    62
+        Dry Bulk &
+                                   3          35            2     38
+        Container
+        TOTAL                      64        872         126     997
+  10
+ADNOC Classification: Internal
+
+
+
+       Services
+       Higher bunkering and commercial pooling supported record Services results
+
+
+                           Financials (US$ Million)                                      2Q 2026 Highlights
+        US$m                     2Q25   2Q26    1H 25   1H 26
+                                                                  •   Strong EBITDA growth driven by higher management fees from
+        Revenue                   81    100     165     189           Navig8-related commercial pooling activities
+        EBITDA                    15     32      33      52       •   Sub-chartering of vessel services ‘Relets’ has continued to
+                                                                      transition to the Services segment providing incremental EBITDA
+        Net Profit                7      22      18      33
+                                                                  •   Higher bunker pricing and increased volatility increased Integr8
+                                                                      profits to $18m, (+136% QoQ and +111% YoY)
+                                                                  •   Lower volumes in Petroleum Port Operations and Borouge
+                                                                      Container Terminal due to regional conflict
+
+
+
+
+  11
+ADNOC Classification: Internal
+
+
+        Cash Flow Profile
+        Delivering Operating Free Cash Flow US$1,145 million demonstrating optimal cash conversion
+
+
+
+                                               H1 2026 Free Cash Flow Evolution (US$M)                CASH FLOW
+                 1,475                                                                                •   Continued strong free cash flow driven by
+                                           303                     1,145                                  strong EBITDA delivery and working capital
+                                                         27                                               improvement
+                                                                                   547
+                                                                                            598       •   Operating Free Cash Flow of US$1,145 million
+                                                                                                          providing flexibility for strategic expansion and
+                                                                                                          supports enhanced shareholder returns
+                                                                                                  2
+                EBITDA                     WC         Income Tax   OFCF1          CAPEX     FCF
+                                                                                                      NET DEBT
+                                  Net Debt (US$M)                          Net Debt / EBITDA (X)      •   Continuous strong financial position with a net
+                                                                                                          debt to EBITDA ratio close to zero allowing
+                                    694                                    0.46                           ample headroom to fund future CAPEX
+                                                        257                                               opportunities
+              Cash
+                                    809
+              Borrowings                                556                                           OTHERS
+              Leases
+                                    223                 244                                           •   ADNOC L&S effective tax rate (ETR)
+                                   -338                                                   0.06            decreased to approximately 6% from 9%
+                                                        -543
+
+                                  FY25                 1H 26               FY25           1H26
+  12
+       1 Operating Free Cash Flow. 2 Free Cash Flow
+ADNOC Classification: Internal
+
+
+       US$2.3bn Of New CAPEX Driving Future Earnings
+       Newbuild and secondhand investments enhancing asset base
+
+
+                  New Incremental Vessel Investments US$2.3 bn
+
+              1,512                                                                •   Fleet capacity is being built up in line with ADNOC
+                 88                                 Additional LNGC (4NB)              Group’s planned production growth
+                                                    VLGC (3SH/2Resale)
+                                                    VLCC (6SH)                     •   $910m four newbuild LNGCs on order to be delivered
+                                                    Dry Bulk (3SH)                     in 2029
+                                                    Integrated Logistics Vessels
+                566                                                                •   $747m for six VLCC and $566m for five VLGC vessels
+                                                                                       which will immediately be deployed to support ADNOC
+                                                                                   •   $61m three Dry Bulk vessels providing increased
+                                                                                       capacity to support growing regional requirements
+                                                                                   •   Continuously       strengthening       multi-commodity
+                                                                                       transportation capabilities through asset diversification
+                                                                         580
+
+                747
+
+
+
+
+                                             154
+                                 88
+                61
+                50
+               2026              2027        2028                        2029
+  13
+ADNOC Classification: Internal
+
+
+
+       Significant Group CAPEX Deployment up to 2029
+       Additional ~$2.3bn vessel purchases lifts committed capex to a total of US$5.7bn
+
+
+                          50                                   19                                   31                               ~$5.7bn
+                   Total New Vessels                         Delivered                          To be delivered                     CAPEX (up to 2029)
+
+                                                                          CAPEX ($m)                              No. of Vessels           Delivery Status
+
+                       # Line item              1H26   2H26          2027        2028    2029       Total             Total        Delivered           To Be
+                                                                                                                                                      Delivered
+       1) Das LNG (N/B)                         141     0                0         0      0         141                 6             6                      -
+       2) Ruwais LNG (N/B)                       26     77           488         1,301    0        1,892                8              -                     8
+       3) Additional Newbuild LNG (N/B)          0      88               88       154    580        910                 4              -                     4
+       4) VLAC (50% AWS) (N/B)                   12     85               73        0      0         170                 4             1                      3
+       5) VLEC (50% AWS) (N/B)                   16    128           311           0      0         455                 9             2                      7
+       6) VLGC (3 S/H + 2 Resale)                0     566               0         0      0         566                 5             3                      2
+       7) VLCC (6 S/H)                           0     747               0         0      0         747                 6             1                      5
+       8) 1 Ultramax (S/H) + 2 Supramax (S/H)    0      61               0         0      0          61                 3             2                      1
+       9) Molten Sulphur (N/B)                   0      13               19        0      0          32                 1              -                     1
+       10) Integrated Logistics Vessels          50     0                0         0      0          50                 4             4                      -
+       11) TAZIZ                                 81     88               38        0      0         207                 -              -                     -
+       12) Navig8 (20%) – inorganic              0      0            437           0      0         437                 -              -                     -
+           Total                                326    1,853         1,454       1,455   580       5,668               50             19                     31
+  14
+ADNOC Classification: Internal
+
+
+       Positioned To Capture ADNOC’s Growth Momentum
+       Key beneficiary of ADNOC’s US$150bn 2026-30 capex plan and XRG global expansion plan
+
+
+
+
+       Oil                                                           Gas                                                    LNG                                                    Chemicals                                                      Investments
+ ~4.85 MMBD         5 MMBD                           10.2 BSCFD      13.2 BSCFD                                6.0 MMTPA        15.6 MMTPA                                  5 MMTPA           13.6 MMTPA1
+ production capacity by 2027                          production capacity by 2029                                domestic capacity by 2029                                polyolefins production capacity
+
+
+
+
+                                                                                                 International Gas                               Global Chemicals                                       Energy Solutions
+                                                                                              Goal: Build a top-5 integrated                 Goal: Create a top 3 chemicals                     Goal: develop select opportunities in
+                                                                                              global business with a 20-25                   platform anchored by BGI and                             CCS and low-carbon fuels
+                                                                                                     mtpa capacity                                     Covestro
+
+
+
+
+                                     AA                                                      96%                                                    < $12 / bbl                                                         7th                                              6th
+              AA rating by Fitch & S&P and Aa2                         UAE’s oil reserves are in Abu Dhabi                                Leading low cost producer                                 Largest Gas Reserves in                          Largest Oil Reserves in the
+                        by Moody’s2                                    and are represented by ADNOC                                                globally3                                        the world2 (8.4trcm)                             world2 (120bnbbl)
+  15
+       Billion Standard Cubic Feet per Day (BSCFD) Million Barrels per Day (MMBD) Million Metric Tonnes Per Annum (MMTPA)
+       Source: ADNOC Company Information; Notes: (1) Including Borouge Group Internal (BGI) Capacity (2) Credit ratings are not a recommendation to buy, sell or hold securities and may be subject to suspension, reduction or withdrawal at any time by the assigning rating agency
+ADNOC Classification: Internal
+
+
+     US$25 Billion Long-Term Contracted Revenue
+      Contracted revenue by segment across three-time horizons
+
+                                                                                                                                                                     •   Offshore Contracting:
+                                                                                                                                                                     •   JUB contracts up to five years,
+         Integrated                                    2026 RoY                                 2027-29                                   2030+                      •   ILSP contracts up to 2032
+         Logistics                                 $828m                                      $3.9b                                   $2.2b                          •   Hail & Ghasha up to 2030
+
+         Segment total                                                                                                                                               • Offshore Services:
+                                                 ~88% contracted                         ~62% contracted                       contracted revenue
+         ~$6.9b                                                                                                                                                      • Fleet of OSVs chartered out 1-2 year
+                                                                                                                                                                     • ILSP Diesel sale contract until 2032
+
+                                                                                                                                                                     • Long-term contracts for Gas Carriers
+                                                       2026 RoY                                 2027-29                                   2030+
+         Shipping                                                                                                                                                    • Includes 4 VLCCs, 5 LR2 and 2 LR1 on time charters
+
+         Segment total                             $635m                                      $1.5b                                $10.4b*                           • Tankers and Dry Bulk are generally generating revenue
+                                                                                                                                                                       at spot rates
+         ~$12.5b                                ~39%* contracted                        ~21%* contracted                       contracted revenue
+
+
+
+
+                                                       2026 RoY                                 2027-29                                   2030+                      • Long-term service contracts of Ruwais Packaging(Borouge)
+         Services                                                                                                                                                    • Petroleum Port operations until 2045
+
+         Segment total                             $150m                                      $1.1b                                   $4.0b                          • Oil spill and Hazardous Noxious Substance Response
+                                                                                                                                                                       Services until 2032-2041
+         ~$5.3b                                  ~78% contracted                         ~72% contracted                       contracted revenue                    • Onshore Services Contracted until 2046
+
+
+
+                                                                                                                                         2030+
+         TOTAL                                          2026 RoY                                 2027-29
+
+         Segment total                                 $1.6b
+                                             ~59% contracted revenue*
+                                                                                               $6.5b
+                                                                                     ~43% contracted revenue*
+                                                                                                                                    $16.6b
+         ~$25b                                                                                                                contracted revenue*
+  16 *50% of AWS contracted revenue included in revenue numbers *Shipping 2026 figure includes Navig8 revenue; excluding Navig8 it is 42% contracted revenue for the existing ALS fleet
+ADNOC Classification: Internal
+
+
+       2026 & Medium-Term Outlook
+       FY 2026 Significant guidance upgrade
+
+
+          Consolidated                                                                                       FY 2026 Growth1                                                        Medium-Term CAGR Growth2
+
+                                    Revenue                                             ▲ Mid 20% YoY growth                                                           Low single-digit growth
+
+                                     EBITDA                                             ▲ Mid 60% YoY growth                                                           Mid to high single-digit growth
+
+                                   Net Profit                                           ▲ High 110% YoY growth                                                         Mid to high single-digit growth
+
+
+          Business Segments                                                                                  FY 2026 Growth1                                                        Medium-Term CAGR Growth2
+
+                                                    Revenue                             ▲ Mid 20% YoY reduction                                                        Low to mid single-digit growth
+
+           Integrated
+            Logistics                                EBITDA                             ▲ Mid 20% YoY reduction                                                        Low single-digit growth
+
+
+                                                    Revenue                             ▲ Mid 80% YoY growth                                                           Low to mid single-digit growth
+
+            Shipping                                 EBITDA                             ▲ Low 190% YoY growth                                                          High single to low double-digit growth
+
+
+                                                    Revenue                             ▲ Mid single-digit YoY growth                                                  Low double-digit growth
+
+            Services                                 EBITDA                             ▲ Low 20% YoY growth                                                           Mid to high teens growth
+
+
+  17    1 2025A as base year 2 Exact mid-term guidance parameters are currently under review in light of ongoing 2026 performance and the company’s latest active expansion announcements
+ADNOC Classification: Internal
+
+
+       Closing Remarks
+
+
+
+
+            STRONG                                      COMMITTED
+                                 STRONG    GROWTH
+           CONTINUED                                  TO ATTRACTIVE
+                                 EBITDA   STRATEGY
+           EARNINGS                                   SHAREHOLDERS
+                                 MARGIN   EXECUTION
+            GROWTH                                       RETURNS
+
+
+
+
+  18
+Q&A
+THANK YOU
+
+
+
+
+ www.adnocls.ae   IR@adnocls.ae
+APPENDIX
+     P&L and Balance Sheet Snapshot
+                                                                                                                   USD million                                           FY 2025                    H1 2026                Variance %
+      (US$ millions)                Q2 25 Q2 26                          H1 25        H1 26
+
+      Revenue                       1,303         2,584                   2,507       3,667
+                                                                                                                   Non-Current Assets                                      7,996                      8,137                      2%
+
+      EBITDA                          400         1,106                       744     1,475                        Cash & Equivalents                                        338                       543                      61%
+
+                                      236          951                        420     1,173                        Trade Receivables                                         813                      1,099                     35%
+      Net Profit
+                                                                                                                   Others current Assets                                     817                      1,030                     26%
+      EPS ($ / share)1               0.03          0.12                       0.06     0.15
+                                                                                                                   Total Assets                                            9,965                     10,808                      8%
+
+
+
+                                                                                                                   Non-Current Liabilities                                   843                       850                       1%
+      (US$ millions)               Q2 25 Q2 26                           H1 25        H1 26
+                                                                                                                   Current Liabilities                                     1,897                      1,807                     -5%
+      Net Debt (US$m)               1,260          257                    1,260         257                        Total Liabilities                                       2,740                      2,657                     -3%
+      Net Debt/EBITDA                0.79         0.06                        0.85     0.09
+      (x)
+                                                                              604     1,145                        Hybrid Equity Instrument                                1,979                      1,979                      0%
+      OFCF2                          332           751
+                                                                                                                   Non-Controlling Interest                                  265                       289                       9%
+      CAPEX (US$m)                  (270)         (283)                   (340)       (547)
+                                                                                                                   Equity (Owners)                                         4,982                      5,883                     18%
+      Free Cash Flow                  62           468                        265       598
+      (US$m)                                                                                                       Total Equity                                            7,225                      8,151                     13%
+
+
+          1 EPS calculated based on weighted average number of shares and net profit after minority interest. 2 Operating Free Cash Flow   3 Q1, Q2 and Q3 2025 Tankers revenue and direct costs have been re presented for analytical
+22        consistency, with no impact on Gross Profit, Net Profit or EBITDA
+     Segmented Quarterly Financials
+                                             Revenue (US$ Million)                                                        EBITDA (US$ Million)                                                     Net Profit (US$ Million)
+     Integrated Logistics
+
+
+                            US$m                   Q1 26           Q2 26          QoQ %               US$m                     Q1 26           Q2 26          QoQ %                 US$m                Q1 26       Q2 26     QoQ %
+
+                            Offshore                                                                  Offshore                                                                      Offshore
+                                                    312             355             14%                                         106             105             -2%                                      59           52      -13%
+                            Contracting                                                               Contracting                                                                   Contracting
+
+                            Offshore                                                                  Offshore                                                                      Offshore
+                                                    166             205             24%                                          48              41            -14%                                      28           21      -26%
+                            Services                                                                  Services                                                                      Services
+
+                            Offshore                                                                  Offshore                                                                      Offshore
+                                                      4              -2            -149%                                         (4)            -13           -276%                                      (4)          -13     -205%
+                            Projects                                                                  Projects                                                                      Projects
+
+                            TOTAL                   481             559             16%               TOTAL                     151             132            -12%                 TOTAL                83           59       59
+
+
+
+                                              Revenue (US$ Million)                                                       EBITDA (US$ Million)                                                     Net Profit (US$ Million)
+                            US$m                   Q1 26            Q2 26          QoQ %               US$m                    Q1 26           Q2 26          QoQ %                 US$m                Q1 26       Q2 26     QoQ %
+     Shipping
+
+
+
+
+                            Tankers                  407            1,695           316%               Tankers                  151             844            460%                 Tankers             100          797      696%
+
+                            Gas Carriers             56              131            135%               Gas Carriers              37              56             52%                 Gas Carriers         23           40      75%
+
+                            Dry Bulk &                                                                 Dry Bulk &                                                                   Dry Bulk &
+                                                     49              100            102%                                          9              44            371%                                       2           35      1433%
+                            Container                                                                  Container                                                                    Container
+
+                            TOTAL                    512            1,925           276%               TOTAL                    197             943            380%                 TOTAL               125          872      597%
+
+
+
+                                            Financials (US$ Million)
+                            US$m                          Q1 26      Q2 26         QoQ %
+     Services
+
+
+
+
+                            Revenue                        89         100            13%
+                            EBITDA                         20          32            56%
+
+                            EBITDA Margin %               23%        32%             9pp
+
+                            Net Profit                     11          22           106%
+
+                            Margin %                       12          22           10pp
+23
+                                Q1, Q2 and Q3 2025 tankers revenue and direct costs have been restated in line with IFRS , with no changes in Gross Profit, Net Profit and EBITDA
+ADNOC Classification: Internal
+
+
+       ADNOC L&S Operations
+       Contracted and non-contracted operations across all three business segments
+
+
+                                                         Offshore Contracting                                                  Offshore Services
+                                                         • Jack-Up Barge contracts up to five years (ZMI)                      • Includes DPII & ZMI conventional boats & OSVs with 1-2 year contracts
+                                                         • ILSP contracts up to 2032                                           • Non-ILSP: short-term contracts ranging between 2-3 years
+        Integrated Logistics                                                                                                   • ILSP Diesel sale contract until 2032
+                                                         • Hail & Ghasha up to 2030
+
+
+
+
+                                                         Tankers                                                Gas Carriers                                 Dry Bulk
+                                                         Majority spot exposure                                 Contracted mid-2026 until 2033-2048          High proportion chartered with spot
+                                                                                                                                                             exposure
+        Shipping
+
+
+
+
+                                                         Petroleum Port Operations                              Oil Spill & Hazardous Noxious                Onshore Services
+                                                         Contracted until 2045                                  Substance Response                           Contracted until 2046
+                                                                                                                Contracted until 2032-2041
+        Services
+
+
+
+
+  24   Note: Navig8 Commercial Pools, Technical Management & Agency and Bunkering from 2025 part of Services.
+     Owned Shipping Fleet (as of 30 June 2026)
+                                                   Owned   Average Age
+                                                             (owned)
+                                   Handysize       2           17
+                                       MR          16          6
+         52x Tankers                  LR1          9           15
+                                      LR2          17          7
+                                     VLCC          8           6
+                                      FSU          2           32
+                                      LNG          10          15
+           22x Gas                   VLGC          7           7
+                                     VLEC          2           1
+                                  Molten Sulphur   1           33
+
+                                   Handysize       3           14
+         11x Dry Bulk              Supramax        4           15
+                                   Ultramax        4           6
+
+         3x Container                Feeder        3           17
+
+                                      Total        88
+25
+ADNOC Classification: Internal
+
+
+       Tanker Fleet TCE Rates
+       Strong TCE earnings supported by closer alignment with ADNOC Group activities
+
+                     US$                       20x MR TCE1,2,3,4                                                                                      US$                       9x LR1 TCE1,2,3,4
+                                                       +44%                                                                                                                            +231%
+                                                                                                                                                                                                                                       89,721
+                                                                                      36,229                                                                                                                           80,206
+                                                                      30,234                         30,441
+         23,459         25,161         23,391          24,547
+                                                                                                        65%                                                                                                                              62%
+                                                                                                                                                                                                        36,063
+                                                                                                         of                                                                                                                               of
+                                                                                                                                                         24,225          24,452         26,574
+                                                                                                        days                              21,546                                                                                         days
+
+
+
+          1Q25           2Q25            3Q25           4Q25            1Q26           2Q26            3Q26                                1Q25            2Q25           3Q25            4Q25           1Q26            2Q26           3Q26
+
+
+                     US$                      17x LR2 TCE1,2,3,4                                                                                       US$                    8x VLCC TCE1,2,3,4,5
+
+                                                      +265%                                                                                                                            +556%
+                                                                                     129,568                                                                                                                           291,145
+                                                                                                    107,917
+
+                                                                                                        58%                                                                                            144,582                        159,518
+                                                                      58,197                             of
+                                                       41,973                                                                                                                                                                            78%
+         31,033         35,533         34,410                                                           days                                                                            85,273                                            of
+                                                                                                                                          39,245         44,350          40,996                                                          days
+
+
+          1Q25           2Q25            3Q25           4Q25            1Q26           2Q26            3Q26                                1Q25            2Q25            3Q25           4Q25            1Q26           2Q26            3Q26
+
+        1 Owned vessels and 4 MR on bareboat charter at 10 Aug 2026 2 Scrubber fitted: 4xVLCC, 15xLR2, 1xLR1, 20x MR 3 TCE calculated based on revenue including pool revenues minus voyage costs divided over calendar days less off hire days in the
+  26
+        period, 4 TCE may be adjusted in prior periods due to settlement of historical voyage costs including demurrages, port fees, and other miscellaneous expenses and commercial claims 5 % of days = contracted vessel days ÷ total available vessel days for
+        the period 5 TCE calculated based on 8 vessels included within Navig8 commercial pooling while 3Q26 TCE applies to 6 vessels due to Barakah and Al Bahyah not in service
+ADNOC Classification: Internal
+
+
+       Dry Bulk TCE Rates
+       Strong TCE earnings supported by closer alignment with ADNOC Group activities
+
+
+       US$                         8x Supramax + Ultramax1,2,3,4                                                                              US$                                   3x Handysize1,2,3,4
+
+                                                                                                    78,261                                                                                                                                68,737
+
+                                                                                                                                                                                            +254%
+                                                    +293%                                                                                                                                                                  48,198
+                                                                                    46,285
+                                                                                                     34%                                                                                                                                    34%
+                                                                                                      of                                                                                                                                     of
+                                                                                                     days                                                                                                                                   days
+                                                     16,701          15,759                                                                    15,846          13,630         14,375
+                                      13,586                                                                                                                                                 13,304          12,500
+        11,067         11,778
+
+
+
+        1Q25           2Q25            3Q25           4Q25            1Q26           2Q26            3Q26                                       1Q25           2Q25            3Q25           4Q25           1Q26           2Q26           3Q26
+
+
+
+
+         1Owned vessels in fleet at 10 August 2026 2TCE calculated based on revenue including pool revenues minus voyage costs divided over calendar days less off hire days in the period, 3 TCE may be adjusted in prior periods due to settlement of
+
+  27     historical voyage costs including demurrages, port fees, and other miscellaneous expenses and commercial claims 4 % of days = contracted vessel days ÷ total available vessel days for the period
+ADNOC Classification: Internal
+
+
+       Locking In Value Through Time Charters
+       Opportunistic vessel coverage was secured at attractive rates, while maintaining significant spot exposure to capture elevated
+       spot market returns
+
+
+                                                                                    Period        TC-Out Rate      TC Expiry
+                                      Vessel                        Type
+                                                                                   (Months)          US$            (Latest)
+                    1            Navig8 Macallister                  LR1              18            19,750         28-Mar-27
+                    2             Navig8 Martinez                    LR1              32            19,750          28-Jul-28
+                    3             Navig8 Promise                     LR2              12            32,125         27-Aug-26
+                    4               Navig8 Pride                     LR2              12            32,125          07-Oct-26
+                    5             Navig8 Prestige                    LR2              12            36,850         07-Dec-26
+                    6            Navig8 Providence                   LR2              12            42,000          18-Apr-27
+                    7              Navig8 Passion                    LR2              12            42,000          20-Jun-27
+                    8                 Zakum                         VLCC              22            50,633          02-Jan-28
+                    9                   Hili                        VLCC              22            50,633          16-Jan-28
+                   10                 Arzanah                       VLCC              12            70,000          20-Apr-27
+                   11                Habshan                        VLCC              12            72,500         21-May-27
+
+
+
+
+  28
+      Newbuild Vessel Delivery Schedule & Contract Years                                                                                                                                                                Delivered
+                                                                                                                                                                                                                        Pending
+                   2024                     2025                                  2026                             2027                                     2028                               2029                      Vessel
+                                                                                                                                                                                                                        Deliveries
+                   4Q       1Q       2Q            3Q         4Q      1Q     2Q      3Q      4Q      1Q      2Q          3Q       4Q            1Q      2Q      3Q        4Q     1Q     2Q        3Q        4Q
+      LNG           1                   1          1          1       1       1                                                                         3          4       1              2           2                      12
+     VLEC
+                                                   1          1                               1       2        1                     2          1
+                                                                                                                                                                                                                               7
+     (AWS)
+     VLAC
+                                                                                              1                                      1          1
+                                                                                                                                                                                                                               3
+     (AWS)                                                                               1
+     Molten
+                                                                                                                                     1
+                                                                                                                                                                                                                               1
+     Sulphur
+
+     VLGC                                                                                     2                                                                                                                                2
+
+                                                                             Timeline of Confirmed Newbuilding Contract Years
+                          2025   2026       2027       2028    2029   2030    2031   2032    2033   2034   2035     2036      2037       2038    2039   2040       2041   2042   2043   2044     2045     2046   2047   2048
+
+
+
+     8 Ruwais LNG                                      8          8    8       8         8   8      8      8         8        8          8          8       8       8      8      8      8        8        8      8      8
+
+
+
+
+                                                                                                                                                                                                                               No. of Contracted
+                                                                                                                                                                                                                                 Vessels
+       5 Das LNG                  5          5         5          5    5       5         5   5      5      5         5        5          5          5       5       5
+
+     6 VLGC (AWS)1         6     6           6         6          6    6       6         5   1
+     9 VLEC (AWS)1         2     3           8         9          9    9       9         9   9      9      9         9        9          9          9       9       9      9      9      9        9        7      6
+29   1 VLAC (AWS)1               1           1         1
+ADNOC Classification: Internal
+
+
+       Gas Fleet: Majority LT Contracted & High EBITDA Margin
+                                                                                                                                                                                                                                   Owned Fleet1
+       20 of 22 delivered vessels secured on long-term contracts, with 15 contracted newbuilds
+       in the pipeline to drive further sustained, resilient earnings growth                                                                                             Newbuild vessels
+                                                                                                                                                                                                                       10
+                                                                                                                                                                           on spot rate                                1
+        • 5 Das LNG vessels progressively moved to long-term contracts with ADNOC Gas from June 2026                                                                                                                                7
+              • 1 LNG for 7 years
+              • 4 LNG for 15 years
+                                                                                                                                                                                                                       9
+        • 1 VLAC delivered 3Q 2026 will commence a 3-year contract on delivery                                                                                                                            2                                 2
+                                                                                                                                                                                                                                                        1          1
+        • 2026 newbuild delivery schedule: 2 VLGC, 2 VLAC, 1 VLEC
+                                                                                                                                                                                                          FSU         LNG          VLGC   VLEC       Molten       VLAC
+                                                                                                                                                                                                                                                     Sulphur
+
+                                                   2026                               2027                                2028                          2029                                                     Contracted Rate                  Expiry
+
+                Vessel Type          1Q       2Q          3Q   4Q       1Q       2Q          3Q    4Q      1Q       2Q           3Q   4Q      1Q   2Q          3Q   4Q                                                                           End firm
+                                                                                                                                                                                                                Low double-digit IRR
+                    FSU               2       2           2     2        2        2          2      2       2        2           2     2      2    2           2    2                                               (unlevered)
+                                                                                                                                                                                                                                          June 2033 & Mar 2034
+
+                                                                                                                                                                                                                Low double-digit IRR
+                    LNG               4       4           4                                                                                                                                                         (unlevered)
+                                                                                                                                                                                                                                                 June 2026
+
+
+
+
+                                                                                                                                                                              No. of Vessels Contracted
+                                                                                                                                                                                                                High Single-digit IRR             1 x 2031
+               VLGC (AWS)2            6       6           6     6        6        6          6      6       6        6           6     6      6    6           6    6                                               (unlevered)                   5 x 2032
+
+                                                                                                                                                                                                                Low double-digit IRR
+                   VLGC               1       1           1     1        1        1          1      1       1        1           1     1      1    1           1                                                    (unlevered)
+                                                                                                                                                                                                                                                 Sept 2029
+
+                                                                                                                                                                                                                Very High Single-digit
+               VLEC (AWS)2            2       2           2     3        5        6          6      8       9        9           9     9      9    9           9    9                                             IRR (unlevered)
+                                                                                                                                                                                                                                                2045 to 2047
+
+
+               VLAC (AWS)2                                1     1        1        1          1      1       1        1           1     1      1    1                                                                 Spot-linked             3-Year Contract
+
+                                                                                                                                                                                                                Low double-digit IRR
+                  Das LNG                     5           5     5        5        5          5      5       5        5           5     5      5    5           5    5                                               (unlevered)
+                                                                                                                                                                                                                                          2033 (x1) & 2041 (x4)
+
+                                                                                                                                                                                                                Very High Single-digit
+                Ruwais LNG                                                                                           3           7     8      8    8           8    8                                             IRR (unlevered)
+                                                                                                                                                                                                                                                   2048
+
+
+                  TOTAL              15       20          17   18       20       21          21    23       24       27          31   32      32   32          31   30
+  30
+        1 Owned vessels in fleet at 30 June 2026 2 Including 6 VLGCs, 9 VLEC and 4 VLAC owned in 50% joint venture with AW Shipping Limited
+ADNOC Classification: Internal
+
+
+       2Q 2026 Assets Update
+
+
+                                                               Purchases
+                                 Vessel
+               Subsegment                  Vessel Type         Purchase Date           Deployment Date   Purchase Price
+                                 Count
+                 Shipping          1        Ultramax             June 2026                 July 2026      USD 24.6m
+                                   1      Flat-top Barge         June 2026               August 2026       USD 4.0m
+
+                 Integrated        1          OSV                April 2026                May 2026       USD 10.1m
+                  Logistics        1          OSV                June 2026                 July 2026      USD 15.2m
+                                   1          OSV                June 2026                 July 2026      USD 20.2m
+
+
+                                                           5 Vessels at US$74m combined value
+
+
+
+
+  31
+ADNOC Classification: Internal
+
+
+                  Business Sub-segments % Contribution (1H 2026)
+                                             Integrated Logistics                                              Integrated Logistics
+  Integrated Logistics
+
+
+
+                                                   Revenue                                                           EBITDA
+
+
+                                                                                                Offshore Services
+                         Offshore Services                                                                          32%
+                                             36%
+
+
+                                                                64%
+                                                                         Offshore Contracting                                      75%
+                                                                                                                                         Offshore Contracting
+
+
+
+
+                                             Shipping Revenue                                                       Shipping EBITDA
+
+                                                  Dry Bulk                                                             Dry Bulk
+                                                                                                            Gas Carriers
+  Shipping
+
+
+
+
+                                   Gas Carriers
+                                                      6%
+                                                8%                                                                    8% 5%
+
+
+
+
+                                                             86%                                                                  87%
+                                                               Tankers                                                              Tankers
+  32
+ADNOC Classification: Internal
+
+
+       Business Segments EBITDA %
+                                                                              Offshore Contracting                               Offshore Services                               Offshore Projects
+       Integrated
+        Logistics
+                                                              45%                                              46%                               51%
+                               43%           43%                                 44%          44%                               44%                               44%                 43%              41%              4
+
+                                                                                   26%                                                        28%                29%            30%                             37%
+                                18%               24%             23%                            24%           24%            25%                                                                      29%
+                                                                                                                                                                                                                        5
+                                                                                                                                                                                                                23%
+                                 11%              7%              9%               8%           7%             11%              8%           8%                   8%
+                                                                                                                                                                                 4%
+                                   3Q23            4Q23            1Q24            2Q24           3Q24            4Q24            1Q25            2Q25           3Q25           4Q25             1Q26        2Q26
+
+
+                                                                                 Tankers                                           Gas                                          Dry Bulk + Container
+          Shipping
+
+
+
+
+                                                                                                              67%                       1
+                                                                                                                                                                              63%                66%                3
+
+                                                                                                                                  55%           56%           56%                                             54%
+                                                                   54%                        55%
+                           49%                 49%                                50%                                                                                                              2                50%
+                                             37%                                 50%                 41%                                                                                         35%
+                            32%                                         45%                                                                                                                                         44%
+                                                                                                                         36%                                                    29%
+                           32%                                                                                                     22%            25%          25%
+                                                  22%         27%                25%             21%           24%                                17%            18%            19%                    19%
+                                                                                                                                  12%
+                                   3Q23            4Q23            1Q24             2Q24            3Q24            4Q24            1Q25            2Q25            3Q25          4Q25            1Q26        2Q26
+
+                                                                                                                                                                                                               32%
+
+                                                                                                                                     21%                                                 23%
+          Services
+
+
+
+
+                                                      18%                               19%           20%                                            18%             19%
+                                                                        15%                                          17%
+                                      14%
+                                                                                                                                                                               10%
+
+
+
+                                      3Q23           4Q23            1Q24              2Q24          3Q24            4Q24            1Q25            2Q25           3Q25          4Q25            1Q26        2Q26
+
+
+       1 EBITDA Q1 2025 normalized to remove US$25.9m of Other Income earned in the period related to early contract termination of LNGC coupled with sale of Medium Gas Carrier Yas % Q1 2026
+                                                                                                                                                                                                                            33
+       2 adjusted for US$27 million sale of Leicester and EBITDA margin adjusted to exclude US$28m timing impact from revenue recognition change (Q4 2025 vs. Q1 2026)
+       3 Q2 2026 EBITDA adjusted for $15 million LNG impairment
+  33   4 Q1 and Q2 2026 EBITDA adjusted for Offshore Contracting provisions of $20 m and $27 m respectively 5 EBITDA margin adjusted for $7.5 m provision
+ADNOC Classification: Internal
+
+
+       Sustainability Strategy
+        Lowering fleet carbon intensity through dual-fuel vessels and fleet modernization
+
+                                                     ADNOC L&S Shipping Fleet Carbon Intensity (AER1)
+
+       14.00                                          2024-2026                                                                                      An alignment with ADNOC
+                                                                                2025-2027
+                                                                                                 2027-2028      2028-2030               2030         Group’s 2030 sustainability
+                                                                                                                                      Interim          strategy and supports
+                  11.73
+       12.00                                          Delivery of               Delivery of                                            Target        ADNOC Group’s Net Zero
+                                                      6 LNGC for                 9 VLEC           Delivery of   Delivery of           Carbon         by 2045 ambition and the
+                                                       Das LNG                   & Phase          4 dual fuel   8 LNGCs,             intensity           UAE’s 2050 target
+       10.00                                             export                 out of old         VLAC, to     Total of 14        reduction of
+                                                                                  steam-           transport      LNGCs            at least 40%     Our decarbonization efforts
+                                   7.58                                           turbine         low carbon     equipped          Near 0 GHG          are centered around
+        8.00                                                                     class of        fuels to be    with XDF 1           emission       modernizing our fleet so as
+                                                                                   LNGC            ammonia      & XDF 2.2            5%-10%            the fleet ages we will
+                                                                                                     ready                                           continue to pursue asset
+        6.00                                       5.37                                                                                                  renewal strategy
+                                                             5.16
+                                                                         4.47       4.30
+                                                                                              3.97
+        4.00
+                                                                                                        3.67
+                                                                                                                2.83       2.89   2.70                      2019-2024
+        2.00                                                                                                                                                   57%
+                                                                                                                                                  Actual reduction in carbon intensity
+                                                                    LNGCs + DF Vessels + Fleet Modernization Initiatives
+        0.00
+                  2020            2021             2022     2023         2024       2025      2026      2027    2028       2029   2030                       2019-2030
+                                                                                                                                                                74%
+                                                                                                                                                   Actual and projected reduction in
+  34                                                                                                                                                       carbon intensity
+         1 Annual efficiency ratio (gCO2/dwt.nm)
+ADNOC Classification: Internal
+
+
+       ADNOC L&S Shareholder & Free Float
+
+                                 ADNOC L&S SHAREHOLDERS (%)
+
+
+
+
+                                      22%
+
+
+
+
+                                                   78%
+
+
+                                     ADNOC       Free Float
+
+
+
+  35
+

@@ -387,13 +387,19 @@ def acceptance() -> None:
     print("  1  gates green with negative controls          run --gates; CI is the authority")
     print("  2  drivers inside each walk-forward record     the actuation gate, in --gates")
     print("  3  pooled bias CI includes zero                NOT YET MEASURABLE — see above")
-    print("  4  graded prediction (median |gap| < 15%)      computed below")
+    print("  4  the traded-price gate [R-VCAL-02 CL.3]        computed below")
     print("  5  two-sided gap gate fires on nothing, or     the five, above")
     print("     every firing carries a complete review")
     print("  6  publish queue holds the files per name      the five, above")
 
-    # Criterion 4 is a PREDICTION, not a criterion, and it is computed rather than
-    # recalled — matching the price is explicitly not the goal (Part E's non-criterion).
+    # THE TRADED-PRICE GATE, per the principal's own words on 09-09-2026. Above the
+    # latest traded price PASSES. Below it by less than 10% PASSES. Below it by 10% or
+    # more is REFERRED to the principal, who reads the document and either passes it or
+    # asks for changes. It is PER NAME and ONE-SIDED. What stood here before was a median
+    # of ABSOLUTE gaps against 15%, which penalised a study for being far ABOVE the price
+    # just as hard as for being far below — a bar the principal never set, and which
+    # contradicted this file's own note that matching the price is Part E's explicit
+    # non-criterion. It alone was holding thirteen finished studies.
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
     try:
         from check_valuation_gap import read_answer, read_branches
@@ -403,18 +409,24 @@ def acceptance() -> None:
     for tk in REISSUED:
         c, s, _ = read_answer(os.path.join(ENGINE, "%s_study" % tk.lower()))
         if c is not None and s:
-            gaps.append((tk, abs(c / s - 1.0)))
+            gaps.append((tk, c / s - 1.0))          # SIGNED — the rule is one-sided
     if not gaps:
-        refuse("no re-issued study exposes a central/spot pair; criterion 4 cannot be "
-               "computed and is not therefore satisfied.")
+        refuse("no re-issued study exposes a central/spot pair; the traded-price gate "
+               "cannot be computed and is not therefore satisfied.")
         return
-    med = sorted(g for _, g in gaps)[len(gaps) // 2]
-    outside = [tk for tk, g in gaps if g > 0.35]
-    print("\n  prediction 4      median |central/price - 1| = %.1f%% across %d names "
-          "(target < 15%%)" % (med * 100, len(gaps)))
-    print("                    outside +/-35%%: %s" % (", ".join(outside) or "none"))
-    print("                    a prediction can fail without the programme failing; "
-          "matching the\n                    price is Part E's explicit NON-criterion")
+    passes  = sorted(tk for tk, g in gaps if g > -0.10)
+    referred = sorted((tk, g) for tk, g in gaps if g <= -0.10)
+    print("\n  traded-price gate  %d of %d name(s) PASS — above the latest traded "
+          "price, or below it by less than 10%%" % (len(passes), len(gaps)))
+    if passes:
+        print("                     %s" % ", ".join(passes))
+    if referred:
+        print("                     REFERRED to the principal (10% or more BELOW the "
+              "latest traded price):")
+        for tk, g in referred:
+            print("                       %-12s %+.1f%%" % (tk, g * 100))
+    else:
+        print("                     nothing referred")
 
 
 # ---------------------------------------------------------------- 6. ratchets
@@ -469,10 +481,30 @@ def open_items() -> None:
     print("  hand-written, and shown as CLAIMS. Where the repository disagrees, the")
     print("  repository is above and this is the drift.\n")
     print("  updated           %s" % st.get("updated", "(unstamped)"))
-    cur = st.get("current") or {}
-    print("  claims            phase %s — %s / %s"
-          % (st.get("phase", "?"), cur.get("workstream", "?"), cur.get("status", "?")))
+    # THE READER ASSUMED A SHAPE THE FILE HAS NOT CARRIED FOR SOME TIME, and it
+    # crashed here — AFTER everything above had printed, which is why nobody saw
+    # it: `current` is a prose paragraph and `next` is a prose list in one string,
+    # so `cur.get(...)` raised AttributeError and, had it not, `for item in nxt`
+    # would have iterated a STRING CHARACTER BY CHARACTER and printed one bullet
+    # per letter. Both are the same defect — a reader modelling the file it reads
+    # rather than reading it — and it is the [R-ENF-03] species: a checker that
+    # models the parser is checking a different file from the one that ships.
+    # Fixed by reading BOTH shapes and saying which was found, so a later change of
+    # shape is visible rather than fatal.
+    cur = st.get("current")
+    if isinstance(cur, dict):
+        print("  claims            phase %s — %s / %s"
+              % (st.get("phase", "?"), cur.get("workstream", "?"),
+                 cur.get("status", "?")))
+    elif isinstance(cur, str) and cur.strip():
+        print("  claims            phase %s" % st.get("phase", "?"))
+        print("    %s" % _wrap(cur, 76))
+    else:
+        print("  claims            phase %s — the state file states no current item"
+              % st.get("phase", "?"))
     nxt = st.get("next") or []
+    if isinstance(nxt, str):
+        nxt = [nxt] if nxt.strip() else []
     if not nxt:
         print("\n  nothing on the next list")
     for item in nxt:

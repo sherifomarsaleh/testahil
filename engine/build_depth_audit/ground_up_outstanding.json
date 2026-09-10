@@ -1,0 +1,27 @@
+{
+ "note": "Two groups, NOT interchangeable: one excuses committed lines that FAIL the assertion, the other a record that cannot be read at all. Both may only SHORTEN.",
+ "outstanding": {},
+ "rule": "R-SIGCM-02 \u2014 the ground-up clause, run rather than counted",
+ "unreadable": {
+  "ADNOCDIST": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "ADNOCDRILL": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "AIRARABIA": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "AMOC": "commits the assertion's OUTPUT (share_by_level) and not the driver lines it was computed from, so nothing outside the study can re-run it",
+  "AMR": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "ARCC": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "BOROUGE": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "DU": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "EGCH": "commits the assertion's OUTPUT (share_by_level) and not the driver lines it was computed from, so nothing outside the study can re-run it",
+  "ELEC": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "EMPOWER": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "FERTIGLOBE": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "MODON": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "PHAR": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "PHDC": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "RIYADHCABLE": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "SAVOLA": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "SCEM": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "SWDY": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one",
+  "TMGH": "commits no driver-line record at all; [R-SIGCM-02] retired the boolean that used to stand in for one"
+ }
+}

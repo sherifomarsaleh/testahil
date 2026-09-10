@@ -37,8 +37,12 @@ QC = json.load(open('qc_checks.json'))
 IRJ = json.load(open('input_register.json'))
 LN = json.load(open('lenses.json'))
 EXJ = json.load(open('experts.json'))
-wb = openpyxl.load_workbook('EGCH_Valuation_Model_05092026.xlsx')
-d = Document('EGCH_Valuation_Study_05-09-2026.docx')
+# THE EDITION IS NOT NAMED HERE [10-09-2026]. Nine files in this directory each
+# typed the artefact names, so a reissue left every gate reading the superseded
+# edition -- examining something, but not the thing. edition.py owns the names.
+import edition as _EDN
+wb = openpyxl.load_workbook(_EDN.MODEL_XLSX)
+d = Document(_EDN.STUDY_DOCX)
 heads = [p.text.strip() for p in d.paragraphs if p.text.strip() and p.runs
          and p.runs[0].font.size and p.runs[0].font.size.pt >= 12]
 sec_missing = check_sections(heads)
@@ -67,7 +71,7 @@ recalc_ok = bool(_RC['pass']) and _RC['mismatches'] == 0 and _RC['unresolvable']
 
 c = ModelStudyChecklist(
     structure_matches_model=(not sec_missing) and (not sheet_missing),
-    bibliography_document=os.path.exists('EGCH_Bibliography_05-09-2026.docx'),
+    bibliography_document=os.path.exists(_EDN.BIBLIO_DOCX),
     provenance_four_field=four_field,
     numeric_traceability=(not QC['typed_numerals']) and recalc_ok,
     external_reader_scrub=not QC['scrub_hits'],

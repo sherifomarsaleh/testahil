@@ -140,3 +140,73 @@ def masthead():
 
 # expose everything for the content scripts
 G = dict(globals())
+
+
+# ---------------------------------------------------------------------------
+# THE ANSWER, READ ONCE AND SHARED BY EVERY PART OF THE DOCUMENT
+# ---------------------------------------------------------------------------
+# The class primary IS the answer, and on this name it has TWO SIDES because GB Corp's
+# largest single component is carried two ways in GB Corp's own disclosures. There is no
+# central and nothing here computes one: an average of the two would be the blend this
+# edition retired, arriving through a different door.
+BRANCHES = D['central_two_sided']['branches']       # [carrying value, June-2026 round]
+LENS = D['lens_record']
+CROSS = {c['kind']: c for c in LENS['cross_checks']}
+PRIMARY = LENS['primary']
+ENVELOPE = LENS['envelope']
+MARKS = [PRIMARY['range_basis']['low'], PRIMARY['range_basis']['high']]
+
+
+def branch_equity(mark):
+    """The equity value the sum of the parts reaches at a given MNT-Halan mark."""
+    s = D['sotp']
+    return s['auto_eq'] + s['cap_val'] + mark + s['other_assoc']
+
+
+def sotp_per_share(mark, wacc_shift=0.0, tg=None):
+    """The sum of the parts per share at a given associate mark, with the WHOLE
+    cost-of-capital ladder shifted together.
+
+    ARITHMETIC ON THE STUDY'S OWN COMMITTED OUTPUTS, never a second forecast: the free
+    cash flows, the forward rates, the terminal rate, the bridge deductions, the lender's
+    mark and the residual associates all come out of the committed record unchanged. At a
+    zero shift and the round-price mark it reproduces the published answer exactly, which
+    is the test of whether a re-derivation is one.
+
+    Moving ONE rate and not the others would price one date at two prices, so the shift
+    moves every forward rate and the terminal rate together.
+    """
+    dcf, sotp = D['dcf'], D['sotp']
+    fcffs = [r['fcff'] for r in dcf['rows']]
+    g = D['macro']['terminal_growth_nominal'] if tg is None else tg
+    fac, cum = [], 1.0
+    for r in dcf['forward_wacc']:
+        cum /= (1.0 + r + wacc_shift)
+        fac.append(cum)
+    wt = dcf['wacc_terminal'] + wacc_shift
+    if wt - g <= 0.045:
+        return None
+    pv = sum(f * fac[i] for i, f in enumerate(fcffs))
+    tv = fcffs[-1] * (1.0 + g) / (wt - g) * fac[-1]
+    auto_eq = pv + tv - dcf['auto_nd'] - dcf['auto_nci']
+    return (auto_eq + sotp['cap_val'] + mark + sotp['other_assoc']) / D['shares']
+
+
+# ---- THE BAND RECORD, THROUGH THE SHARED READER [R-ENF-03] --------------------------
+# THIS WAS A HAND-ROLLED REGEX OVER assets/data.js AND A GATE CAUGHT IT THE SAME NIGHT.
+# A regular expression returns the FIRST match where a JavaScript parser takes the LAST,
+# and this repository has already paid for exactly that: a ticker page published a
+# support ABOVE its own close, three lines under a narrative quoting a different and
+# correct ladder, because the entry declared its levels twice and every regex-based tool
+# inspected the half the reader never saw. engine/site_data.py hands the file to node
+# and reads the OBJECT THE PAGE RENDERS, which is the only reading that is about the
+# same file the site ships.
+#
+# It also carries the refusals this reader had written out by hand — a missing record,
+# a missing field — so there is one notion of what a readable band record is rather
+# than two that drift.
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+import site_data as _SITE                                             # noqa: E402
+
+BAND = _SITE.band_record('GBCO')

@@ -1,8 +1,19 @@
-PROTOCOL REVISION 2026-09-08c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-10c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 1 September 2026 (rev. 10) — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01] (an unmerged rule binds on nothing)
+Updated 10 September 2026 (rev. 22) — TWO STANDING RULES IN ONE COMMIT: a RESEARCH PRIMER is requested from the principal and read before a study is built or re-issued, its prompt GENERATED from what the repository already holds about the name rather than typed, and what comes back is a LEAD AND NEVER AN INPUT — traced to the primary source and read there, searched in the LANGUAGE THE SOURCE IS WRITTEN IN, and every claim that did not survive tracing recorded as a dated negative search rather than quietly dropped [R-PRIME-01] · the company's own REPORTED EARNINGS PER SHARE is registered beside the attributable profit the study divides and the count it divides by, and any gap between them is a claim ranking ahead of ordinary shareholders that must be NAMED or the build REFUSES [R-EPS-01].
+(rev. 21, 10 September 2026 — SIX STANDING RULES IN ONE COMMIT, ALL FROM ONE INSTRUCTION reviewing the SWDY study against an EFG Hermes valuation page: country risk is charged ONCE and is never multiplied by beta [R-COC-03] · a terminal real growth is capped by the economy and the Fisher identity is exact in both directions [R-MACRO-02] · every study carries the valuation on ONE PAGE, assembled from its own committed numbers and owning no arithmetic [R-DCF-01] · a sensitivity grid is CENTRED on the adopted case and its centre cell equals the central [R-SENS-01] · the traded price is the northern star and the burden is ASYMMETRIC — a central below it needs an air-tight written case, a central above it does not [R-STAR-01] · scanning what the company says it will do is a STANDARD step, and the entity is verified as the listed issuer before anything it says drives a number [R-NEWS-01]. A seventh, [R-DOC-03], was adopted earlier the same day and already stands in both documents)
+(rev. 20, 9 September 2026 — [R-GAP-04, per instruction] A VALUATION GAP IS NOT GENUINE, DOES NOT STAND, AND IS NOT REFERRED TO THE PRINCIPAL UNTIL AN EXHAUSTIVE, RECORDED HUNT FOR OUR OWN ERROR HAS COME BACK EMPTY: referral is a last resort that must be earned and evidenced, and it carries the search — what was examined, what each candidate is worth in currency per share, and what would falsify each. It does NOT weaken the absolute prohibition on moving a fair value toward the price, which it restates inside itself: closing the gap is the OUTCOME of finding a real defect and never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.)
+(rev. 19, 9 September 2026 — [R-FCAL-01 §6 AMENDED, per instruction] A CAMPAIGN WALK-FORWARD ON A NAME WITH NO CURRENT-STANDARD STUDY MAY BE CALIBRATION-ONLY: it owes the lessons register, its run records, the study document and the Excel model, and need not STRIKE A FAIR VALUE — provided it DECLARES machine-readably that it struck none. Silence is not a declaration and the exemption is closed to any name that already publishes a central. The section said the UPDATED fundamental analysis and you cannot update what does not exist; the gates that went red on it were reading the rule correctly, so the rule moved and not them.)
+(rev. 18, 9 September 2026 — [R-VCAL-02 CLAUSE THREE AMENDED, per instruction] THE TRADED-PRICE GATE, PER NAME AND ONE-SIDED: a fair value above the latest recorded traded price passes, below it by less than 10% passes, below it by 10% or more is REFERRED to the principal, who reviews the document and lets it pass or asks for changes. It replaces Part E acceptance criterion 4 — a median of ABSOLUTE gaps against a 15% target, which nobody set: two-sided, pooled, and computed in a file that called matching the price Part E's explicit NON-criterion. REFERRAL IS A ROUTING DECISION AND NOT A FAILURE — a referred name is stopped at its own publication decision and holds nothing else.)
+(rev. 17, 8 September 2026 — [R-VCAL-02 CLAUSE THREE] CORRECTED: the clause resolves its audit BY PATTERN rather than by a dated filename, and its NEGATIVE CONTROL is wired into CI while the verdict itself is deliberately not — criterion3.py measures an adoption criterion, so a build keyed on it would go red on the programme’s own findings. The bar is unchanged: NO COMPANY IS CALLED EXPENSIVE BY MORE THAN TEN PER CENT WITHOUT AN AUDIT BEHIND IT: clause A's symmetric zero-bias test is REPORTED rather than gating and this one-sided bar replaces it for Phase 1, per instruction — a symmetric test penalises a method for doing the thing it exists to do, and some markets and some companies are genuinely cheap)
+(rev. 15, 8 September 2026 — THE CURRENCY OF BORROWING IS ESTABLISHED BEFORE THE COST OF DEBT IS SET [R-COC-01 AMENDED]: the sovereign floor binds the LOCAL-CURRENCY tranche only and the foreign tranche is carried at local-equivalent cost — the exception was written, correct and unreachable, because nothing anywhere established which kind of book the rule was standing in front of)
+(rev. 14, 8 September 2026 — THE MIRROR CLAUSE [R-ANCHOR-01 CLAUSE THREE]: a forecast rate climbing past the company's own FILED RECORD names a mechanism from a closed list and carries its disclosure, on the same borrowed 5% as the decline clause — the rule fired on a collapsing margin and had said in its own text that it does not fire on a climbing one, naming two other instruments as covering that direction without either of them being asked whether it did)
+(rev. 13, 8 September 2026 — TWO AMENDMENTS, BOTH PER INSTRUCTION: the company's own other documents are the named fallback where the statement itself cannot be reached, with a reporting duty as its price [R-SIGCM-03] · the price arrives on a MONTHLY SCHEDULE and the study is struck against the latest committed supplied price, retiring the per-study ask adopted a day earlier [R-GAP-01 AMENDED])
+(rev. 12, 7 September 2026 — SIX STANDING RULES IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08])
+(rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
+(rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
 (rev. 9, 1 September 2026 — VALUATION-GAP AUDIT [R-GAP-01]: a central fair value more than 10% below the traded price is audited before it ships)
 (rev. 8, 24 August 2026 — GUARDED MID-BAND SHAPE SELECTION [R-SHAPE-01] · width-overlay live reading [R-WIDTH-01] · bounded early grading [R-GRADE-01], investor sessions)
 (rev. 7, 23 August 2026 — three-lens independence · committed drift · per-name discipline · negative control)
@@ -1000,6 +1011,93 @@ Adopted because the audit found 63 of 90 studies not built ground-up while the f
 to be set `True`. The delivered studies already write all of this in prose in §1.6; the record
 only asks for it once more in a form a machine can refuse.
 
+### [R-SIGCM-03] Where the statement itself cannot be reached, the company's own other documents are the named fallback (8-Sep-2026, per instruction — "if you do not have access to financial statements you may look at alternative reports such as these. So long as you report that to me, which is OK")
+
+SIGCM clause 1 builds the past IS/BS/CF from the company's **own issued financial statements and full
+disclosures**, and says that where the official data is inaccessible the desk STOPS AND INFORMS. **The
+stop is what is amended, and nothing else is.** Where the audited or reviewed statement itself cannot
+be obtained, the figure may be taken from THE COMPANY'S OWN OTHER DOCUMENTS — its earnings release, its
+results announcement, its investor presentation, its annual report — on the conditions below.
+
+**What is not amended is the prohibition the clause exists for.** A data vendor, a broker, or
+press-as-a-numbers-source remains a HARD FAIL for a figure the company reported about itself, and this
+rule does not touch it. Nothing here opens a route to unofficial data; the fallback shelf holds the
+company's own documents and does not widen by one name.
+
+**This is narrower than it first looks, and the protocol had already ranked that shelf twice.** The
+Step-2A sweep register tags `SourceType.COMPANY_IR` distinctly from the audited-statements tag,
+precisely so a reviewer can see how much of the Company ring rests on the investor-relations channel;
+and the 09-Aug-2026 clause calls investor-relations presentations and earnings-call materials
+MANDATORY rather than optional for the operating anchors no financial statement carries. So the
+company's own IR channel was already a primary source this house reads and ranks. What it had no route
+to was supplying a REPORTED HISTORICAL at the one moment it was most needed — when the filing itself
+was out of reach. That gap is the whole of what this rule closes.
+
+**The order is unchanged, and a fallback is a fallback.** The audited or reviewed statement is tried
+FIRST, by name, and the attempt is logged in the sweep register with its outcome whether it succeeded
+or failed — that clause has stood since 07-Aug-2026 and this rule leans on it rather than restating
+it. A study that never tried has not earned the fallback, and the log is what shows which happened.
+
+**The reporting duty is the price of the fallback, and it is not satisfied by a file.** The principal
+is told, IN THE TURN THAT USES IT: which figure, which document it came from, and which statement could
+not be reached. The instruction grants the permission and names the price in the same breath — "so long
+as you report that to me" — so a study that quietly uses a release because the statement was awkward
+has taken the permission and skipped the condition it was granted under. Writing it only into a
+register is not reporting it; the register is where it is kept, not where it is said.
+
+**It is recorded in the four fields like anything else, and the SOURCE names the document type.** A
+reader must be able to tell a figure read off an audited balance sheet from one read off a release's
+balance-sheet table. Both are the company's own and neither is a vendor's; they are not the same
+evidence, and a record that blurs them has thrown away the distinction this rule exists to keep.
+
+**Arithmetic remains the arbiter, exactly as for a statement.** A figure taken from a release is
+accepted only if it FOOTS against that document's own printed subtotals — the [R-FCAL-01] discipline
+applies unchanged, and a page that does not foot is re-read by OCR off the rendered pixels with the
+route recorded. The document being a release rather than a filing changes what the source field says;
+it changes nothing about what the figure has to survive.
+
+**Worked case, and it is the one that prompted the rule.** TMG Holding's 1Q2019 earnings release
+carries a consolidated balance sheet whose comparative column is headed FY2018, and the 1Q2020 release
+one headed FY2019. Those two releases and the December 2018 and December 2019 investor presentations
+are committed under `engine/tmgh_study/src/`, because a file in a conversation binds nothing. That
+name's own walk-forward records in its own words that it holds NO ANNUAL FILING before FY2020 — which
+is why its valuation-input origins begin there — so the documents above are the company's own account
+of years its archive has no filing for. **THIS RULE SETTLES THE SOURCE QUESTION AND ONLY THAT.**
+Whether a particular comparative column satisfies point-in-time discipline at a given origin is
+[R-FCAL-01]'s question, answered by that run against its own pre-registration, and nothing here
+pre-empts it or licenses carrying a restated comparative back to a vintage it was not published in.
+
+**And the provoking premise was re-run before it was written down, which changed it** [R-IND-01]. The
+rule was proposed on a report that this company's investor-relations site was unreachable from this
+container — three routes, all HTTP 000. Re-run on 8-Sep-2026 the apex host answered 200 and served an
+index of several hundred documents, and only the `www.` host returns nothing, which is exactly what a
+route-level probe reports as unreachable. THE SITE WAS UP AND THE PREMISE WAS WRONG, which is [R-IND-01]
+verbatim: an empty result is first evidence the probe did not run. What is true is narrower and is
+better evidence for the rule than the claim it replaced — measured the same day, that index carries the
+FY2018, 1Q2019 and FY2019 earnings releases and the December 2018 and December 2019 investor
+presentations, and carries no audited financial-statement link naming either of those fiscal years, the
+statements beginning at 2020. So the fallback is not a workaround for a site that will not answer; it
+is the route to a figure THE COMPANY PUBLISHED IN A DIFFERENT DOCUMENT because the statement is not on
+the shelf at all. Re-run the probe before relying on any of this: reachability is a fact about a day.
+
+**Enforcement is prose where it has to be, and mechanical where it already is** [R-ENF-01]. Whether the
+principal was told in the turn that used the fallback is not a property of the repository a checker can
+read, and that is said plainly rather than dressed up. What is already enforced, and what is why this
+amendment needs no new gate and gets none: `scripts/check_source_integrity.py` fires on a named
+commercial vendor or news outlet in the source of a dated historical that names no company document, so
+a figure sourced to the company's own release names no vendor and never trips it — the gate was built
+around the distinction this rule turns on, and reads the fallback correctly today. `engine/research_sweep.py`
+carries the IR-coverage invariant, so a register resting on the IR channel and never registering a
+COMPANY_IR source fails. Depth-bar standard 2's four fields carry the document type, and standard 1's
+bibliography puts it in front of a reader.
+
+**The general lesson, which is not about sources.** A PERMISSION AND ITS CONDITION ARRIVE IN THE SAME
+SENTENCE AND ARE REMEMBERED SEPARATELY. The permission is what the work wants and the condition is what
+the principal is buying with it, and six weeks later the file shows a release used where a statement
+should have been with nothing anywhere saying it was ever mentioned. Where a rule is granted on a
+condition, WRITE THE CONDITION INTO THE RULE AS A STEP SOMEBODY PERFORMS — not as a spirit the rule is
+read in, because a spirit does not survive a deadline.
+
 ### [R-BETA-04] The beta record has a required shape, and the shape is checked even when the study is silent
 
 `assert_beta_provenance()` already demands `beta, r2, se, n, usable, index_file, index_asof,
@@ -1049,7 +1147,72 @@ rounds of "is this the version to adopt?" that same day each pasted back a copy 
 every revision of a 54,000-character block looks identical to every other. **Both documents therefore
 carry a REVISION STAMP as their first line** — a copy that does not carry the current stamp is stale on
 its face, without reading a word of it. Bump the stamp on every edit, however small: an unbumped stamp
-is worse than none, because it certifies a copy that has moved. The
+is worse than none, because it certifies a copy that has moved.
+
+**[R-DOC-01 AMENDED 07-09-2026] EXACTLY ONE STAMP, AND THE GATE HAD NEVER COUNTED THEM.**
+A DOCUMENT THAT STATES TWO REVISIONS STATES NONE — the same defect as the rule that stated two
+limits, arriving in the one sentence written to prevent it. Found by reading the digest's own
+opening characters while `check_protocol_sync` reported it green: a union merge of the
+single-line digest kept BOTH sides' opening sentences, so the file opened with its current stamp sentence immediately followed by the
+superseded one, and every check in the repository passed it. The two stamps are not
+reproduced here: this rule now refuses a second stamp anywhere in either document, and a
+document quoting the defect it forbids would fire its own gate — the verbatim fixtures live
+in the negative control, which is where a reproduced defect belongs.
+THE REASON THE GATE WAS BLIND IS A PROPERTY OF THE FILE RATHER THAN AN OVERSIGHT IN THE GATE:
+the digest is a single line, so `readline()` returns the whole 265KB document and a match
+anchored at position 0 is satisfied by the first stamp however many follow it — the check was
+correct, and it was reading a different question from the one the rule asks. The stamp exists
+so a copy pasted into somebody's own project files can declare its own age, and A COPY
+CARRYING TWO AGES DECLARES NEITHER; the reader it was written for is the one person who cannot
+run this gate. So `check_protocol_sync` now REFUSES a second stamp anywhere in either
+document, shape-matched rather than word-listed and safe for the reason rule identifiers and
+repository paths are — `DIGEST REVISION` followed by an ISO date is not a phrase that occurs
+innocently in prose written for anyone. Negative-controlled by
+`scripts/check_protocol_sync_negative_control.py` on the merge artefact EXACTLY as it shipped,
+a superseded stamp buried mid-document, the other document's prefix, and a three-stamp file,
+each mutation asserting that it LANDED before the gate runs; and on five clean cases, among
+them the prose that describes this very rule, the full protocol's own `rev. N` edition history
+and a bracketed `[R-MACRO-01 AMENDED 06-09-2026]` note, none of which may fire. THE GENERAL
+LESSON, WHICH IS NOT ABOUT STAMPS: A MERGE CAN SATISFY EVERY CHECK AND STILL PRODUCE A
+DOCUMENT NEITHER SIDE WROTE. Both stamps were real, both had been correct, and the union that
+kept them is exactly the resolution that saved two standing rules from being dropped the same
+day — so the safe merge and the defect are the SAME OPERATION, and the only thing that
+separates them is a check that counts.
+
+**AND THE BODY TOOK THE SAME DAMAGE, WHICH THE STAMP CHECK COULD NOT SEE [07-09-2026].**
+Counting stamps closed one instance; the class was still open. Measured the day after on the
+repaired file, the same union merge had spliced **FIVE fragments into the digest's body —
+2,035 characters**: a rule header repeated with a neighbouring rule's sentence between the two
+copies (twice), a general lesson lifted out of one rule and inserted into another, and a
+sentence left **cut off mid-clause** so a reader met "...however wrong the page is (" and then
+a rule title. Every character of it was text that belonged somewhere else in the same file, so
+nothing was lost and nothing was invented — which is precisely why no gate, no diff and no
+reader caught it. **THE FULL PROTOCOL TOOK NO DAMAGE AT ALL FROM THE SAME MERGE**, and that is
+the finding rather than a detail: this document has line breaks, so git resolved it hunk by
+hunk; the digest is one line, so the resolution was a splice. A SINGLE-LINE FILE HAS NO MERGE
+GRANULARITY, AND WHAT IT LOSES IS NOT ONLY REVIEWABILITY BUT CORRECTNESS.
+
+`check_protocol_sync` now refuses any passage of 300 characters or more appearing twice in one
+document — arithmetic about the file rather than a word list, since identical text is identical
+text. THE WINDOW IS MEASURED, NOT CHOSEN: roughly two sentences of this prose, short enough to
+catch the shortest real splice (106 characters of overlap) and long enough that house phrasing
+cannot reach it, since "READ THE POPULATION LIVE" and "THE GENERAL LESSON, WHICH IS NOT ABOUT"
+diverge within a clause. **THE THREE PASSAGES THAT DO RECUR ARE NAMED WITH THEIR REASONS** —
+two rules stating the same falsifier on purpose, two listing the same one-way DCF errors, and
+[R-TERM-01 CLAUSE TWO] quoting the sentence it corrects — because an allowance nobody has to
+justify is where the next splice hides. Negative-controlled on three splice shapes (a header
+repeated with text between, a passage inserted far from its home, a back-to-back duplicate)
+and three clean cases, each mutation asserting that it LANDED first.
+
+**THE LANDING ASSERTION AND THE CLEAN FIXTURES EACH FAILED FIRST, AND BOTH FAILURES ARE THE
+RECORD.** The first measurement of this defect scanned windows at every tenth offset and
+reported THREE splices where there were five — two copies whose offsets differ by a
+non-multiple of the step are never both sampled, so the scan was structurally blind to most of
+what it was looking for, and it printed a number rather than an error. The landing assertion
+then reproduced the identical shortcut and had to be rewritten to scan every offset. And the
+clean fixtures were built with one padding sentence repeated three times, so they carried the
+very defect they existed to prove absent; the check flagged them and was right to. A CONTROL
+THAT PROVES A CHECK IS SOUND IS ITSELF A THING THAT CAN BE WRONG IN THE SAME WAY AS THE CHECK. The
 identifier also gives an amendment one obvious place to land, and lets a QC gate cite the rule it
 is testing rather than paraphrasing it.
 
@@ -1553,6 +1716,44 @@ number at all five horizons and to the trend line at four of five, and the study
 correct for it. The average of two opposite regimes is a number that was never true in
 either.
 
+**[R-FCAL-01 AMENDED 07-09-2026] "ACROSS ERAS" NAMES A BOUNDARY, AND THE BOUNDARY WAS
+CHOSEN FOR THE MARKET RATHER THAN FOR THE DRIVER.** Every era label in this book is the
+year its currency moved, which is the right cut for a currency and is not every driver's
+break. The clause above was therefore satisfiable by a bias that is stable at one line and
+unstable at four others, and nothing said which kind a given correction was. **THE SIGN
+MUST NOW HOLD AT EVERY CUT THE DATA ADMITS** — every boundary leaving at least five cells
+on each side — and a bias whose sign depends on where the line was drawn is reported,
+never corrected for, exactly as this clause always said of the era cut.
+
+MEASURED RATHER THAN ARGUED, AND IT COST A CONCLUSION BEFORE IT WAS WRITTEN: 42 of 66
+testable driver biases in this book flip sign at some cut, and TMGH's depreciation reads
+as a textbook correctable bias at the market's boundary while flipping at its own, one
+year later — that run's stated "one correctable driver" was withdrawn on it. **WHAT THE
+AMENDMENT DOES NOT DO IS CHANGE ANY VERDICT THIS BOOK HAS REACHED**, and that is the
+strongest evidence for it: applied to all five corrections the book has ever applied or
+adopted, the cut-invariant test confirms exactly the two each run promoted (ARCC's
+`mfg_dep`, 0 flips of 4; PHDC's `is.finance_cost`, 0 of 5) and refuses exactly the three
+those runs declined (`asp` 4 of 5, `units_delivered` 2 of 5, `units_sold` 1 of 5). An
+instrument neither run used, agreeing with both.
+
+It does NOT choose a boundary, in either direction: picking the cut that makes a bias look
+stable is the selection this method forbids, and picking the one that makes it look
+unstable is the same offence facing the other way. It reports every cut. Nor does it make
+a sign-stable driver correctable — that still needs both clauses below, of which this is
+one half of the first. A driver too thin to cut at all is reported UNTESTABLE and never
+counted stable, because an absence of contrary evidence is not evidence [R-ENF-04].
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: `scripts/check_correction_boundary.py` reads each
+run's own corrections record through a NAMED per-run adapter — five records carry five
+shapes and a reader that guesses is a reader that silently finds nothing, which is exactly
+how a census of this book once reported "twelve candidates, one adopted" while missing four
+applied corrections in another run — and re-runs `boundary_sensitivity.cuts_for()` rather
+than reimplementing the arithmetic [R-ENF-03]. Ratcheted [R-ENF-02] on the three PHDC
+candidates with their measurement, because rebuilding that run's adjusted-versus-raw
+artefact under the amended rule moves its record and is its own measured pass; the list may
+only SHORTEN and an entry that stops flipping goes RED. Negative-controlled on five red and
+three clean, the fixtures DERIVED from the data rather than named by hand.
+
 **THE MACRO SPLIT IS THE CHECK THAT THE DECOMPOSITION MEASURES WHAT IT CLAIMS**: volume
 drivers carry no inflation term and must come back at a zero macro share by
 construction. On PHDC, across four devaluations, macro explained 21.5% of the revenue
@@ -1562,7 +1763,8 @@ decomposition earned the right to say so.
 ### Corrections — the two-clause promotion test, and why the second clause exists
 
 Expanding window only. Corrections at HALF STRENGTH by default, applied only where the
-bias holds its sign across eras, reset after a structural break. Aggregates are rebuilt
+bias holds its sign AT EVERY CUT THE DATA ADMITS (amended 07-09-2026, above;
+the era boundary alone is not the test), reset after a structural break. Aggregates are rebuilt
 from adjusted drivers and tested adjusted-against-raw on the origins that carried a
 correction, reported by origin.
 
@@ -1605,6 +1807,89 @@ A run that produces one and not the other is NOT FINISHED. The training record, 
 panel, the error tables and the pre-registration are INTERNAL and never shown to a
 reader; the two documents above are the deliverables. Nothing reaches the live site
 without a separate explicit publish request.
+
+### [R-FCAL-01 §6 AMENDED 09-Sep-2026] A calibration run on a name with no study may strike no fair value, and has to declare that it struck none (09-Sep-2026, per instruction — "i agree with you but in this case we need a study in docx and the model in excel format as well")
+
+**YOU CANNOT UPDATE WHAT DOES NOT EXIST.** The section above names Document 1 as the
+UPDATED fundamental analysis, and that word was written when every run had a delivered
+study behind it. The campaign runs this walk-forward across the whole book, and most
+covered names carry no current-standard study at all, so on those names the rule as
+written asks for an update of nothing. THIS IS A GAP RATHER THAN A WEAKENING: the case
+was never contemplated, not decided the other way, and ABUK is the first name to reach it
+rather than the last.
+
+**THE AMENDMENT.** A campaign walk-forward on a name with NO current-standard study may be
+CALIBRATION-ONLY. It still produces the lessons register, its own run records, the study
+document (.docx) and the Excel model. What it need not do is STRIKE A FAIR VALUE. Three
+conditions bind it, and each one is part of the rule rather than a note about it:
+
+1. **THE RUN DECLARES, MACHINE-READABLY, THAT IT STRUCK NOTHING.** A `CALIBRATION_ONLY.json`
+   in the run's own directory, carrying its ticker, the date declared, `struck_no_fair_value`,
+   why the name has no study to update, and what the run did produce.
+   **SILENCE IS NOT A DECLARATION.** A run that simply omits a fair value and says nothing
+   is unfinished exactly as it was before this amendment — the exemption is the declaration,
+   and nothing else is the exemption.
+
+2. **THE EXEMPTION IS UNAVAILABLE TO ANY NAME THAT ALREADY HAS A CURRENT-STANDARD STUDY.**
+   There the rule binds unchanged: the analysis is an update and must be one. The test is
+   keyed on the STRUCK VALUE and not on a directory, and the difference is the whole of it —
+   a study directory appears the moment the docx and the workbook are built, while the run
+   still, correctly, strikes nothing. So what is read is whether the study publishes a
+   central. A name that strikes a fair value may not quietly drop it behind this clause.
+
+3. **THE DELIVERABLE STANDARD IS NOT REDUCED.** Per the instruction this amendment was
+   written from, the docx and the Excel model are owed on a calibration-only run exactly as
+   on any other, and so are the bibliography and the QC gate that go with them.
+   **WHAT IS OPTIONAL IS THE STRUCK VALUE, NEVER THE WORK.**
+
+**WHY, AND IT IS THE PURPOSE OF THE EXERCISE RATHER THAN A CONVENIENCE.** Fundamental
+calibration exists to test the METHOD against a company's own history. It does not exist to
+generate reports. Requiring a struck fair value out of every calibration run inverts that —
+it makes the report the output and the measurement the by-product — and it collides head-on
+with the standing instruction of 08-09-2026 not to issue new reports while the framework is
+being finished. A rule that forces a study to be issued in order to measure a method is a
+rule that will be worked around, and a worked-around rule teaches nothing.
+
+**THE GATES WERE RIGHT, WHICH IS WHY THE RULE MOVED AND NOT THEM.** On 09-Sep-2026 five
+gates went red on ABUK on one fact — a run with no struck value behind it: the campaign
+queue and the fair-value register, the staged publish queue,
+`scripts/check_calibration_deliverables.py`, `scripts/check_forward_ranges.py` and
+`scripts/check_forward_ranges_negative_control.py`. Every one of them was reading the rule
+correctly, so widening or waiving any of them would have bought a green board by making the
+gates worse. Per [R-COC-01]'s lesson a red gate is RE-POINTED at what it should have been
+reading, never widened; here the thing that needed re-pointing was the rule itself, and the
+gates now read a declaration instead of an absence.
+
+**THE RUN HAD ALREADY SAID SO IN PROSE, WHERE NO GATE COULD READ IT.**
+`engine/abuk_walkforward/TRAINING_RECORD_09-09-2026.md` section 13 states in terms that
+Document 1 is not built and that no fair value has been struck. This amendment invents no
+new claim; it moves an honest statement the run had already made out of prose and into a
+form a gate can read. THAT IS THE GENERAL SHAPE: a run that tells the truth in a paragraph
+and a run that hides an omission are indistinguishable to every check in this repository,
+and the fix is never to trust the paragraph.
+
+**WHAT THIS DELIBERATELY DOES NOT CHANGE.** Document 2, the lessons register, is owed in
+full and is not touched by any of this. The scope decision, the pre-registration, the
+point-in-time discipline, the two naive benchmarks and every scoring requirement above are
+untouched. The internal-record rule stands — the training record, the panel, the error
+tables and the pre-registration are still never shown to a reader — and nothing reaches the
+live site without a separate explicit publish request. Nor is any published `fair{}` moved
+by a declaration: a name declaring calibration-only leaves whatever the site already carries
+exactly where it stood, and where that baseline came from no current-standard study the
+movement column measures a new study against a number of unknown provenance, which is said
+wherever the column is quoted. And `research_protocol.STANDARD_VERSION` is NOT bumped: the
+declaration is an artefact of a walk-forward RUN, not of a delivered study, it adds nothing
+a delivered study must carry and it moves no delivered number.
+
+**Enforced from outside, per [R-ENF-01].** `engine/calibration_only.py` holds the rule —
+`declared(ticker)` returns a PAIR and refuses on a missing file, an unparseable file, a
+missing field, a declaration that does not assert `struck_no_fair_value`, a study whose
+numbers file will not parse, or a name that already publishes a central; `all_declared()`
+names every run directory that is not properly declared. `engine/fv_movement.py`'s `check()`
+reads it rather than trusting a boolean. Re-check the wiring against the repository rather
+than against this sentence: `python3 engine/fv_movement.py check`, and
+`grep -rln calibration_only engine scripts` names every gate that reads the declaration
+[R-DOC-02].
 
 ### The honest limits, stated in the rule rather than discovered later
 
@@ -2629,6 +2914,11 @@ Negative-controlled on 24 conditions, among them EGCH's typed array and AMOC's o
 
 THE GENERAL LESSON, WHICH IS NOT ABOUT INFLATION: A CHECK THAT READS WHAT A PROCESS DECLARES IS NOT CHECKING WHAT THE PROCESS DOES. Every exemption in this repository is a place where the gate stops looking, and a TRUE exemption on the WRONG OBJECT is the safest possible hiding place — nobody is lying, the reason survives review, and the work happens somewhere the check does not reach. Where a rule governs a QUANTITY, hold the quantity; holding the study's description of where the quantity lives is one indirection too many.
 
+[R-MACRO-01 AMENDED 06-09-2026] — THE ANCHOR'S OWN DATE
+
+A PATH'S ANCHOR CARRIES A DATE AND A STUDY MAY NOT BE STRUCK LONG AFTER IT. Two standing rules disagreed about which date governs and nothing held them to each other: [R-GAP-01 AMENDED] requires delivery against the LATEST KNOWN price, while [R-MACRO-01] pins the currency to one house path whose forward path is DERIVED by relative purchasing-power parity from a spot ANCHOR carried in the path file with its own date. FOUND BY READING A REBUILD LEDGER RATHER THAN AN ANSWER, which is what [R-REBUILD-01] is for: PHAR's fifth lever, worth -25.4% and the largest in it, records in its own words that 'the house derivation does not admit a leading-year anchor for a currency and the study conforms rather than inventing one', with the evidence 'the tension in the house path's first year is registered, not resolved'. THE TENSION IS NOT THAT STUDY'S. Measured 06-09-2026: the Egyptian path was stamped 2026-09-02 with an fx.spot anchor dated 2026-08-06 — TWENTY-SEVEN DAYS APART INSIDE ONE FILE — while four of the six Egyptian studies committing a strike date were struck 27 and 28 days after it. A study obeying both rules runs TWO DATES FOR ONE ECONOMY, which is [L-048]'s own complaint quoted in that path's own derivation field, arriving where nobody looked. FLOATING MARKETS ONLY, AND THAT CLAUSE IS WHAT KEEPS THIS HONEST: a stale currency anchor on a HARD PEG is the same number today by construction, seven of the eleven studies the census flags are pegged, and counting them would overstate this THREEFOLD — the [R-TERM-01 CLAUSE TWO] error exactly, a defect measured on one side of a sign change presented as a finding about the sign. THE BOUND IS BORROWED, NOT MINTED: [R-COC-01] already refuses a sovereign quote older than 14 days, allows deliberate acceptance and requires the staleness DISCLOSED, and this reuses that shape and that number rather than inventing a second cutoff for a second input, because a threshold chosen here would be the free parameter the PROMOTION RULE forbids and the honest justification for a number is that the house already uses it for the same job. THE RELEASE CANNOT BE GAMED: a study past the bound may declare anchor_staleness_accepted with a REASON, and an EMPTY reason has switched the check off rather than declared it. ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_macro_anchor_age.py, ratcheted [R-ENF-02] at four, population-anchored [R-ENF-04] BOTH ways — zero study directories fails, and directories present that pair NO strike date with an anchor also fails, because a run that read nothing is not a run that found nothing. Negative-controlled on SIXTEEN conditions, ten red and SIX CLEAN, the clean half being the one that matters here: a pegged market struck 246 days after its anchor must NOT fire, both edges of the bound are tested (14 days passes, 15 fails), and a currency this gate GUESSED is not a currency the study declared — an earlier draft inferred the market by searching each file for 'EGP' and swept in an AED study and a SAR one because both quote an Egyptian figure somewhere. Listed in the new-study gauntlet as ARTEFACT-conditional IN THE COMMIT THAT ADOPTS IT, because an empty study commits no strike date and refusing one would be a FALSE CLAIM about what this gate checks; 32 of 32. READ THE AGES LIVE — python3 engine/macro_paths/anchor_age.py — never from this block, because both halves move: a path is refreshed, a study is re-struck. THE GENERAL LESSON, WHICH IS NOT ABOUT CURRENCY: TWO RULES CAN EACH BE RIGHT AND STILL DISAGREE, AND NOTHING IN EITHER OF THEM WILL SAY SO. Each was enforced from outside, negative-controlled and obeyed; what nobody owned was the JOINT condition, because a gate is written to hold one rule and the contradiction lives between two. Where two rules govern the same quantity from different directions — here a date — ask what happens when both are satisfied.
+
+
 [R-ENF-01 EXTENDED 03-Sep-2026] DEPTH-BAR STANDARD 4 IS ENFORCED FROM OUTSIDE, BY SHAPE RATHER THAN BY WORD
 
 Every study implements the external-reader scrub as its own hand-maintained list of forbidden words — 39 terms in ARCC, 68 in EGCH, a different set again in AMOC — and on 3 September 2026 EGCH's delivered bibliography was found shipping two standing-rule identifiers and a repository path out of an input register's source field while its own scrub reported ZERO hits across 68 patterns. AMOC's scrub, which happens to carry both shapes, caught the identical sentence in its own bibliography the same hour. A sweep of the book then found three more delivered documents leaking through three different holes: ADNOCDRILL naming two repository files, PHDC a rule identifier inside a table cell, SCEM an engine module.
@@ -2756,6 +3046,23 @@ ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_source_integrity.py, ratchet
 
 THE GENERAL LESSON, WHICH IS NOT ABOUT SOURCES: THE OLDEST RULES ARE THE LEAST CHECKED. This one predates every enforcement rule in this document, was never in doubt, and was breached in two studies for a month while the primary documents sat in public. A rule adopted before there was any machinery to enforce it does not acquire that machinery by being important; it acquires it when somebody goes back and asks which of the old rules are still running on trust.
 
+[R-ENF-01 EXTENDED 05-Sep-2026] EVERY DELIVERED WORKBOOK PUBLISHES THE ANSWER ITS STUDY PUBLISHES, AND THAT IS CHECKED BY RUNNING THE STUDY'S OWN RECALCULATION RATHER THAN NOTING THAT IT HAS ONE
+
+Depth-bar standard 3 has required an independent recalculation of the delivered workbook since the standard was written — "an independent evaluator recalculates the delivered workbook and reports anything unparseable as FAILURE, never a skip" — and every study's QC gate carries a row attesting it. On 05-Sep-2026 twenty-two of twenty-four studies carried the instrument to do it. MEASURED THAT DAY, NO GATE ANYWHERE RAN ANY OF THEM: every occurrence of the word outside a study directory was a sentence in a comment. Running all twenty-two took under two minutes and found two red.
+
+* SWDY's delivered workbook publishes SAR 59.3132 where its delivered document publishes 55.4822 — +6.9%, with ZERO formula errors. Two builder defects pulling OPPOSITE ways: DCF!C25 still carries the g x IC reinvestment-identity terminal that [R-TERM-01] retired, which the study's own compute.py computes and labels "published unused, feeds nothing" (−6.5% alone); and SOTP Bridge!C12 carries no line for the employees' statutory share of profit the model deducts at 12.19% (+14.4% alone). THE BUILDER'S OWN EXPECTED-VALUE MAP HOLDS THE RIGHT FIGURE FOR BOTH CELLS — the builder knew, and wrote formulas that cannot reach it. The study's own recalc.py names all 27 disagreeing cells in under a second; it was simply not run after the rebuild.
+* AMOC's recalc.py refuses outright: it is still written for the NINE-sheet workbook of 06-08-2026 while the delivered file is the SIXTEEN-sheet edition. That is L-066/L-067 verbatim — A CHECK THAT OPENS A DELIVERED FILE BY NAME MOVES WITH THE RE-ISSUE — registered on that same study days earlier on two of its own gates, and the third broke identically.
+
+Neither is a modelling error and both reach a reader. They survived because a study's own check is run by whoever remembers to run it, and the moment a rebuild lands is exactly the moment nobody does.
+
+THE GATE RUNS THE INSTRUMENT, IT DOES NOT COUNT THE FILE. Treating a script's existence as conformance puts a green tick on a red result — case 2 of the negative control, and unlike the prose-figure gate's version of the same case, NOT hypothetical: SWDY has the script, the script is correct, and the script is red. scripts/check_workbook_values.py runs each study's own recalculation, in the study's own directory, under the name it goes by in this book (recalc.py, or lo_recalc_gate.py), and requires it to exit clean. It deliberately does NOT prescribe what a recalculation must check or how: at adoption the studies used two evaluators — an in-repo one and a headless spreadsheet — and reconciled between 85 and 1,318 cells, and imposing one shape would mean rewriting twenty-two working instruments to satisfy a checker, which is the move-the-number-to-satisfy-the-check offence [R-COC-01] names. A SCRIPT THAT CRASHES, HANGS PAST ITS TIMEOUT, OR CANNOT RUN IS RED AND NEVER SKIPPED [R-ENF-04]: a missing dependency, a timeout and a crash all produce an ABSENT answer, and an absent answer wearing the costume of a clean one is strictly worse than a failure, because a failure announces itself.
+
+RATCHETED [R-ENF-02] IN TWO GROUPS THAT ARE NOT INTERCHANGEABLE, which is [R-TERM-01]'s own negative-control lesson arriving a second time. In engine/build_depth_audit/workbook_values_outstanding.json, no_check excuses an ABSENT instrument and failing excuses a RED one, and a study MOVING BETWEEN THEM goes red until the move is recorded — otherwise a study escapes a real disagreement by being re-filed as merely unchecked, and an allowance for a red check would excuse an instrument that has quietly gone missing. The lists may only ever SHORTEN; --prune rewrites them. Population-anchored [R-ENF-04] BOTH ways: every listed ticker must resolve to a study directory on disk, a run examining zero directories FAILS, and a run that RAN zero recalculations across present directories FAILS, which is the distinction an absent answer hides behind. Negative-controlled by scripts/check_workbook_values_negative_control.py on 14 conditions, 10 red and 4 green, every mutation asserted to have landed before the gate runs — among them a study whose script EXISTS and is RED, a script that crashes, a script that hangs, a red script excused by the no-check list and an absent script excused by the failing list; and among the clean cases a red check correctly on the failing list and an instrument named lo_recalc_gate.py, because a study is not red for naming its own file differently. It runs in CI in .github/workflows/study-provenance.yml, beside the gates it sits with.
+
+NEITHER RED STUDY IS REPAIRED BY THE ADOPTION. Rebuilding a delivered study's workbook is a re-issue and is not done in passing, so both are listed with their reason and their measured effect — the debt countable rather than remembered. The two studies carrying no instrument at all on adoption day, GBCO and XPT, are listed the same way under the other group, GBCO because its cost of capital predates the v2 method and its re-issue is a rebuild rather than a patch, which is where the check belongs. READ THE POPULATION LIVE: python3 scripts/check_workbook_values.py.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT WORKBOOKS: A CHECK SOMEBODY HAS TO REMEMBER TO RUN IS RUN UNTIL THE DAY IT MATTERS. These twenty-two instruments are careful, correct and cheap, and the moment a rebuild lands is exactly the moment nobody runs them — which is the moment the answer has just moved. Where a study builds its own check, something outside the study has to pull the trigger.
+
 [R-ENF-07] THE PROPERTY THE WHOLE DESIGN RESTS ON IS TESTED, NOT ASSUMED [ADOPTED 03-Sep-2026]
 
 Every ratcheted gate in this repository says the same thing in its own docstring: knowingly-outstanding work is listed and allowed to fail, and the build breaks on a NEW violation. Every one of them is negative-controlled on its own conditions. NONE of them tests the claim the whole design rests on:
@@ -2802,7 +3109,7 @@ The failure. PHDC's published central was a weighted blend of four lenses at typ
 
 What is adopted. ONE class primary is the central. Every other lens is a CROSS-CHECK: published in the same table, and defining the bear/full envelope as the RANGE of the present-value reads on one clock — never averaged into the answer, and never a spread invented around it. Whether any blend beats the primary alone is a question for the valuation calibration to answer OUT OF SAMPLE; until it does, the typed blend is retired, because it never cleared the bar it was always required to clear. That is the promotion rule applied to an architecture rather than to a parameter.
 
-The registry. research_protocol.LENS_REGISTRY is keyed on lessons_register.CLASSES BY IMPORT, and the import fails if the two disagree — a second taxonomy for the same companies is how two registers drift apart, and this repository has paid for that once already. Developers take the cash-flow lens with RNAV, a relative multiple and book value beside it; refiners, petrochemicals and cement take enterprise-value multiples on their own history and replacement cost; banks take dividends discounted with residual income beside them; holding companies take a disciplined sum of the parts. Marine logistics and shipping — a chartered fleet earning global day rates — takes the cash-flow lens with replacement cost, an enterprise multiple on its own history, a disciplined sum of the parts and book value beside it [ADDED 04-Sep-2026, on the ADNOCLS re-issue].
+The registry. research_protocol.LENS_REGISTRY is keyed on lessons_register.CLASSES BY IMPORT, and the import fails if the two disagree — a second taxonomy for the same companies is how two registers drift apart, and this repository has paid for that once already. Developers take the cash-flow lens with RNAV, a relative multiple and book value beside it; refiners, petrochemicals and cement take enterprise-value multiples on their own history and replacement cost; banks take dividends discounted with residual income beside them; holding companies take a disciplined sum of the parts. Marine logistics and shipping — a chartered fleet earning global day rates — takes the cash-flow lens with replacement cost, an enterprise multiple on its own history, a disciplined sum of the parts and book value beside it [ADDED 04-Sep-2026, on the ADNOCLS re-issue]. An automotive assembler and distributor with a captive lender takes a DISCIPLINED SUM OF THE PARTS AS ITS PRIMARY, with the cash-flow lens, residual income, a relative multiple and book value beside it [ADDED 07-Sep-2026, on the GBCO rebuild — the row's own account follows this rule's general lesson below].
 
 A class is added when a company reacts to the same shock differently from every class already registered, and the test is not that it is a different industry — it is that a DIFFERENT LENS CARRIES THE WEIGHT. A ship is not a kiln, and the difference that matters is not capital intensity, which they share: a cement plant's price is set in a domestic market behind freight protection and its kiln cannot be sold to a buyer in another country, while a charter rate can halve in a year and a vessel trades in a liquid international secondhand market at broker-quoted prices. So REPLACEMENT COST IS THE STRONGEST CROSS-CHECK HERE AND THE WEAKEST THERE — an observed price against an industry rule of thumb — and the multiple on the company's own history matters for the opposite reason, that day rates are cyclical enough for any single year's earnings multiple to say almost nothing. Sum-of-the-parts is permitted as a CROSS-CHECK and never as the primary: it is a holding company's primary because a holding company IS its stakes, and it earns a narrower place on an operating fleet, where the legs sit on materially different contract structures and a single group multiple averages two businesses that reprice on different clocks. Filing a shipping company's lessons under cement because both are capital-intensive would be the superstition the lessons register warns about.
 
@@ -2813,6 +3120,28 @@ Four clauses ride with the architecture. BOOK VALUE IS A DISCLOSED FLOOR, publis
 ENFORCED FROM OUTSIDE per [R-ENF-01]: research_protocol.assert_lens_design() reads a study's own committed lens record and scripts/check_lens_design.py runs it over every engine/*_study/ in CI, ratcheted per [R-ENF-02] and population-anchored per [R-ENF-04]. Negative-controlled by scripts/check_lens_design_negative_control.py, whose cases include PHDC's architecture EXACTLY AS IT SHIPPED. That control did its job on its first run, and against this rule's own author: it caught an inconsistency in the registry itself, where a case written as "clean" used a lens the class does not permit. A check tested only against the defect that inspired it is fitted to that defect.
 
 THE GENERAL LESSON, WHICH IS NOT ABOUT LENSES: A NUMBER PRODUCED BY AVERAGING SEVERAL METHODS IS NOT MORE ROBUST THAN THE BEST OF THEM — it is a new method, with free parameters nobody tested, wearing the appearance of caution. Averaging feels conservative and is not: it imports every weakness in the weakest lens at whatever weight somebody typed. Where several methods disagree, publish the disagreement and say which one the answer is.
+
+[R-LENS-03 AMENDED] A SUM-OF-THE-PARTS PRIMARY WITH THE CASH-FLOW LENS INSIDE IT: THE AUTOMOTIVE ASSEMBLER WITH A CAPTIVE LENDER [AMENDED 07-Sep-2026, per instruction — "If you want to create a specific model to handle GBCO instead of adopting an SOTP, then fine go ahead and do it. But if that fails go for SOTP"]
+
+WHAT WAS ADOPTED. One row: "automotive assembler and distributor with a captive lender" takes ("sotp", ("dcf", "residual_income", "relative_multiple", "book_value")), registered in research_protocol.LENS_REGISTRY and in lessons_register.CLASSES — which the registry is keyed on BY IMPORT, so the two cannot disagree and a class added to one and not the other does not ship. The instruction offered the sum of the parts as the FALLBACK and a model built for this company as the first choice; what the registry now holds is both at once, and the reason it is both is the whole of the argument below.
+
+THE TEST THIS RULE SETS IS NOT THAT THE INDUSTRY IS NEW — it is that A DIFFERENT LENS CARRIES THE WEIGHT. Four things carry it here, and no existing row admits them together.
+
+THE PRIMARY, AND WHY NO GROUP CASH FLOW CAN BE IT. The largest single component of GB Corp's value is a 41.61% interest in an UNLISTED company it does not consolidate. A discounted cash flow of the reporting entity cannot see that asset at all, whatever drivers it is given, because the cash flows being discounted are not the ones the asset earns — the stake reaches the accounts as an equity-accounted line and a mark, not as a stream. A LENS THAT CANNOT REACH THE ASSET CANNOT BE THE PRIMARY. So the primary is the sum of the parts and THE CASH-FLOW LENS IS ONE OF THE PARTS, which is not a contradiction and never was: `sotp` in LENS_KINDS has always meant "disciplined sum of the parts, each part on its own present-value lens", so a leg valued by discounting its own cash flows is the construction working exactly as written.
+
+RESIDUAL INCOME ARRIVES AS A PART RATHER THAN AS A WHOLE, AND THAT IS WHY THE ROW EXISTS. A captive lender is not valued by discounting a margin off revenue; it is worth its own equity scaled by what it earns on that equity against what that equity costs. That is the "bank" row's lens — the reason this register carries a separate bank row at all — needed HERE beside a cash-flow lens, and NO EXISTING ROW ADMITS THAT PAIR. The alternative that was actually shipped before this rebuild shows what the absence costs: the lender was carried at its book equity times one, which is the weighting of book value this rule forbids outright, wearing a leg's clothes. Book value is a DISCLOSED FLOOR here as everywhere, published as such and never weighted into a central, and a leg is not an exemption from that.
+
+WHY THE HOLDING-COMPANY ROW WILL NOT DO, AND WHY THAT IS A COVERAGE GAP RATHER THAN A NAMING ONE. "holding company" stores the right SHAPE — a sum of the parts — and forbids the cash-flow lens the operating leg requires, because a holding company IS its stakes and does not run a factory. That refusal is the subject of the lessons register's own finding on this registry, whose falsifier names precisely the case that would overturn it: a blocked name turning up needing a LENS the registry does not hold, which would be a genuine gap in coverage rather than in naming, and whose fix would be a NEW ROW rather than a renamed one. THIS IS THAT NAME. It is also the only one of them: the other names that finding blocked are still subjects filed under the wrong label, they need lens sets the registry already stores, and they must NOT be swept in behind this row — minting a row for each of them would build the second taxonomy the import guard exists to prevent.
+
+NORMALISED EARNINGS POWER IS EXCLUDED FROM THE ROW, on the developer and contractor rows' reasoning with this issuer's own numbers behind it. Investment gains from associates ran EGP 451.6mn, 294.6mn and 131.6mn across three consecutive quarters to 2Q26, while GB Capital's own operating profit over the same three ran EGP 156.5mn, 187.0mn and 387.4mn — THE ASSOCIATE LINE WAS LARGER THAN THE OPERATING LINE IN TWO OF THE THREE AND MOVED THE OPPOSITE WAY. A normalised-earnings lens asks what a company earns in an ordinary year; where a large minority holding is equity-accounted, the reported line swings on that holding's results and revaluations rather than on the business being valued, so an average of it is an average of something the operating legs do not control. Normalising earnings that swing on associate marks normalises noise. The legs and the holding are published separately instead, which is what a sum of the parts is for.
+
+WHAT THIS DELIBERATELY DOES NOT CHANGE. No lens, driver rule, cost-of-capital construction or calibration procedure moves, and the architecture is untouched: one class primary IS the central, every other lens is a cross-check published in the same table, the envelope is the RANGE of the present-value reads on one clock, and there is still no weighted blend and no set of typed weights anywhere. Book value stays a disclosed floor; a relative multiple stays non-circular. The holding-company, bank and marine rows are exactly as they were — in particular the marine clause holding that a sum of the parts is a cross-check and never the primary ON AN OPERATING FLEET stands unqualified, because its subject is a fleet whose legs differ by contract structure inside one business, while this row's legs differ by what a valuation of them even IS.
+
+ENFORCED FROM OUTSIDE per [R-ENF-01], and nothing new is enforced here — what the amendment adds is a row inside machinery that already runs. research_protocol.assert_lens_design() reads each study's own committed lens record and scripts/check_lens_design.py runs it over every engine/*_study/ in CI, ratcheted per [R-ENF-02], population-anchored per [R-ENF-04], negative-controlled by scripts/check_lens_design_negative_control.py. The ROW itself is enforced by import: LENS_REGISTRY is keyed on lessons_register.CLASSES and the import fails if they disagree, so the taxonomy cannot fork.
+
+WHAT THIS DOCUMENT DOES NOT CARRY. The findings this rebuild produced about the class — how a captive lender's equity base is established, and why this class's group earnings cannot be normalised — are CLASS lessons and their home is the lessons register [R-LESSON-01], read live for the name in hand. A governing document carries rules; a register carries findings; the two are cross-referenced and never duplicated, because a fact recorded twice diverges the moment one copy is edited.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT CARS: A TAXONOMY'S KEY AND ITS PAYLOAD ANSWER DIFFERENT QUESTIONS, SO THE HONEST TEST FOR A NEW ROW IS THE PAYLOAD. Asking whether the industry is new invites a row for every industry and the register becomes a directory; asking whether the LENS SET is one no row will admit invites a row only where the method genuinely has nowhere to put the company. Both questions can be asked of the same case and only the second one has an answer that binds — and where the set already exists under another name, what needs fixing is the name.
 
 [R-COC-01] THE COST-OF-CAPITAL SCHEDULE LIVES IN ONE MODULE, AND A STUDY CALLS IT [ADOPTED 02-Sep-2026, method reassessment WS1]
 
@@ -2865,6 +3194,101 @@ WHAT THE PRICE IS FOR, AND IT IS NOT A TARGET. The instruction is to use the lat
 THE PRICES ARE A COMMITTED ARTEFACT, NEVER A FIGURE IN A CONVERSATION. They live at engine/prices/SUPPLIED_{DD-MM-YYYY}.json with the source file, who supplied them and the date each close carries, because the container is rebuilt from the repository and a session that cannot see a supplied figure will ask for it again [R-IND-01]. READ THEM LIVE — `python3 engine/prices/gap_today.py` puts every study's committed central against the most recent supplied file and names both the breaches and the studies whose answer it could not read. Never quote the table from a document; the prices move and the document does not.
 
 WHAT THIS DOES NOT CHANGE. The eight headings, the two-sided trigger, the ratchet, the enforcement and the negative control are all as they were. `check_valuation_gap.py` keeps auditing a study against its own strike price, because that remains the honest test of whether the answer was audited before it shipped; what is added is that the strike price must be current at the moment of delivery, which makes the two questions the same question again.
+
+[R-GAP-01 AMENDED] THE PRICE ARRIVES ON A MONTHLY SCHEDULE, AND THE STUDY IS STRUCK AGAINST THE LATEST COMMITTED SUPPLIED PRICE [AMENDED 08-Sep-2026, per instruction — "The latest prices and data as I told you 100 times before are done on a schedule monthly". THIS REPLACES THE CLAUSE ADOPTED 07-Sep-2026, WHICH HAD EVERY STUDY ASK FOR A PRICE BEFORE IT BEGAN]
+
+THE CLAUSE THIS REPLACES DESCRIBED A PRACTICE THE PRINCIPAL DOES NOT RUN, AND THAT IS RECORDED HERE RATHER THAN QUIETLY OVERWRITTEN. Adopted 07-Sep-2026 on this desk's reading of a single instruction and on one worked case, it required every study — a first issue, a re-issue, a rebuild, a re-strike — to ASK THE PRINCIPAL FOR THE LATEST SHARE PRICE AND ITS DATE BEFORE IT BEGAN, and it called that the one sanctioned exception to [R-IND-01]. The prices and the data are supplied ON A MONTHLY SCHEDULE and have been throughout. THE RULE WAS WRITTEN ABOUT SOMEBODY ELSE'S PROCESS WITHOUT ASKING HOW THAT PROCESS RUNS — the same defect as a rule written about a quantity nobody measured, arriving in the one place this document cannot check itself, since a claim about how the principal works is a claim about the world and no gate here can read it.
+
+THE ASK IS RETIRED AS A PER-STUDY STEP. A study does not open by asking for a price.
+
+WHAT REPLACES IT IS NOT A GUESS. The study is struck against THE LATEST COMMITTED SUPPLIED PRICE — read live from engine/prices/SUPPLIED_{DD-MM-YYYY}.json through gap_today.latest_price_per_ticker(), WITH ITS DATE STATED AND ITS AGE DISCLOSED. That is already this rule's own stated default for where no answer arrived; what changes is that it becomes THE ORDINARY ROUTE rather than the fallback. The merge is on each price's own date, so a file naming one name adds that name without dropping the rest, and a name absent from the newest file keeps the price it was last given rather than losing one. The prices remain a committed artefact and never a figure in a conversation [R-IND-01], because the container is rebuilt from the repository and a figure that lived only in a turn is a figure the next session cannot see.
+
+THE CADENCE IS THE ONE THE BOOK ALREADY RUNS ON. Monthly is the roll-forward metronome's rhythm — the clock on which a matured cohort is graded and a fresh cone struck — so the supplied price file and the ledger strike arrive on one schedule instead of two, and the question "how old is the price this study was struck against" has an answer bounded by that schedule rather than by whoever last remembered to ask.
+
+EVERYTHING [R-GAP-01] REQUIRES OF THE PRICE IS UNTOUCHED, AND THE SUBSTANCE IS NOT WEAKENED BY AN INCH: delivery against the LATEST KNOWN price, the two-sided ten-per-cent audit trigger, the eight headings, the five-percentage-point staleness tolerance on an audited gap, and check_valuation_gap.py holding the delivered study to it. What is corrected is WHERE THE NUMBER COMES FROM, and nothing about what is done with it.
+
+THE COST IS STATED RATHER THAN DISCOVERED LATER, AND IT IS REAL. Between monthly deliveries a study is struck against a price that ages by the calendar, so the gap a study audits can drift from the gap the market shows — which is [R-GAP-03]'s subject exactly, arriving from the other direction. Two things bound it and neither is a hope: the DISCLOSURE of the price's age, which keeps the drift on the page where a reader meets it rather than inside the model where nobody does, and the SCHEDULE itself, which caps how far it can run before the next file lands. A cadence that slips is therefore not an administrative matter but the thing that widens this gap, and it is the standing argument for keeping the monthly file current.
+
+THE EXCEPTION GOES WITH THE STEP IT LICENSED. The retired clause named itself the one sanctioned exception to [R-IND-01] and held that the instruction adopting it was the standing registration, so asking needed no entry in engine/escalations.json. With no per-study ask there is no standing exception, and NOTHING HERE CREATES A NEW ONE: if a price question is ever genuinely needed it is an ordinary [R-IND-01] matter and carries the ordinary register entry — the routes actually run with their outcomes, why only the principal can close it, what was done meanwhile, the default, and the date the default fires.
+
+WORKED CASE, KEPT AS EVIDENCE RATHER THAN DELETED, AND IT NOW ARGUES FOR SOMETHING ELSE. The ADNOCLS rebuild of 07-Sep-2026 was given AED 6.80 as at 7 September against a last-committed 6.85 of 3 September and a struck 6.16, so a rebuild reading only what the repository then held would have audited itself against a figure three weeks old and reported a gap of −9.0% where the honest figure is −17.6% — the difference between a study inside the audit band and one that owes its eight-heading review and is held from publishing. NO LEVER IN THAT REBUILD MOVED THE CENTRAL BY A BASIS POINT, so the whole of that gap is the price moving. That measurement is true and is kept: it prices what a stale price costs. What it argues for is THE MONTHLY FILE LANDING ON TIME, not a question at the top of every study — the defect it exposes is an out-of-date artefact, and the fix for an out-of-date artefact is a schedule, not an interruption.
+
+ENFORCEMENT IS UNCHANGED AND IS STILL AT THE OUTPUT [R-ENF-01]. Whether a desk read the latest supplied file or an older one is not a property of the repository a checker can read at the moment of the build; what IS mechanically enforced is the consequence, and it already is — check_valuation_gap.py holds the delivered study to the latest known price, so a study struck on a stale figure either happens to agree with the current one or goes red on delivery. The retired clause put a step in front of that check; this one puts an artefact in front of it, which is the half a checker can see.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT PRICES: A RULE ABOUT SOMEBODY ELSE'S PROCESS IS A CLAIM ABOUT THE WORLD, AND IT IS THE ONE KIND OF CLAIM A GOVERNING DOCUMENT CANNOT CHECK ITSELF. Everything else here is held from outside by something — a gate, a ratchet, a negative control — because the subject is the repository and the repository can be read. A sentence describing how the principal works is held by nobody, sounds exactly as authoritative as the rest, and was wrong for a day inside a document whose whole design is that a claim is verified where it can be. WHERE A RULE DESCRIBES A PROCESS OUTSIDE THIS SYSTEM, THE ONLY AVAILABLE CHECK IS TO ASK ITS OWNER, AND THAT IS A STEP RATHER THAN AN ASSUMPTION.
+
+
+[R-VCAL-02] PHASE 1 IS THE BACKTEST, AND THE FORWARD RECORD IS PHASE 2b [ADOPTED 07-Sep-2026, per instruction — "we chose backtesting for that particular purpose. We back test and in the future we calibrate and enhance as we go along and compare our predictions now with what the future unfolds. So as far as my rule is concerned. We backtest."]
+
+[R-GAP-02 CLAUSE THREE] holds every study in the book until Phase 1 acceptance closes, and Part E's criterion 3 is the clause that decides when that is. It runs six clauses and FOUR OF THEM SCORE THE METHOD AGAINST HISTORY while TWO SCORE THE LIVE FORWARD RECORD, and it gated Phase 1 on all six. Measured 07-Sep-2026 the practical effect was that the entire book was held on a measurement that cannot exist before 11 June 2027 — 103 vintages held, none matured, the first scoreable at one year.
+
+THE ARGUMENT IS THE PLAN'S OWN AND IT IS STRONGER THAN THE INSTRUCTION THAT PROMPTED IT. Part D separates the two phases in terms: Phase 1 and 2a are the backtest, "finished when its names are also backtested"; Phase 2b is "the live test, going forward — from the day 2a closes, every fair value the house publishes is a dated claim graded against what actually happens". Clauses D and E of criterion 3 score precisely that forward series. And 2b states its own admissibility rule: it "grades ONLY claims struck after 2a closed", for a reason it gives — "no claim inside 2b was made by a method that had not already passed its historical test, so a 2b result cannot be explained away as the old method's residue." EVERY VINTAGE THE ARCHIVE HOLDS WAS STRUCK BEFORE 2a. So clause D read as a Phase 1 gate did not merely arrive early; it demanded evidence the programme's own design declares INADMISSIBLE, and would have been answered by exactly the sample 2b refuses.
+
+THE RULE. Criterion 3's clauses A (pooled contemporaneous bias covering zero), B (LONO-stable in sign), C (holds in both eras) and F (residual bias attributed to a named lever) GATE Phase 1. Clauses D (gap closure) and E (beats the two naive benchmarks on subsequent returns) are PHASE 2b's subject: REPORTED at every run with their maturity date, holding nothing. Nothing else in Part E moves, and no fair value moves anywhere because of this.
+
+WHAT IS LOST IS STATED HERE RATHER THAN DISCOVERED LATER, and it is real: Phase 1 will close with NO evidence that this house's lean is INFORMATION rather than merely a lean. A house can be pessimistic and right or pessimistic and merely wrong, and only the forward series separates them — which is [R-VCAL-01]'s own reason for scoring two series rather than one. What guards the gap in the meantime is that D and E are REPORTED rather than dropped, so the debt is countable at every run; that [R-VCAL-01]'s promotion guard stays SYMMETRIC, so a house correcting its pessimism into optimism has still fixed nothing; and that Phase 2b remains a completion criterion of the programme rather than an aspiration.
+
+WHAT ACTUALLY BLOCKS PHASE 1 NOW, MEASURED RATHER THAN ASSERTED: the mechanical series scores 5 cells on ONE name and drops 28 — eleven for want of three consecutive years of capital-spending intensity to the origin, twelve on terminal refusals the sanctioned module is right to make, five on thin projections. The largest class is a DATA-CARRY JOB that [R-FCAL-01 AMENDED 03-Sep-2026] already requires: the valuation-input block at every origin, copied out of filings each run has parsed cell by cell. THAT IS WORK WITH A RATE, WHICH A DATE IS NOT, and the distinction is the whole value of having read the criterion clause by clause instead of taking its summary.
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: engine/method_reassessment/criterion3.py carries the phase map and computes its verdict on the gating clauses alone, printing the split and the cost every run; acceptance.py states the same division so the publish block and the criterion cannot disagree about what Phase 1 is. READ IT LIVE — python3 engine/method_reassessment/criterion3.py — never from this block, because both halves move: cells are carried, and a vintage matures.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT PHASES: A CRITERION THAT BUNDLES TWO MEASUREMENTS IS GATED BY ITS SLOWEST HALF, AND NOBODY NOTICES BECAUSE THE BUNDLE HAS ONE NAME. Criterion 3 was written as one sentence with semicolons in it, every clause correct, and the semicolons hid a nine-month clock inside a criterion whose other four clauses were work somebody could start that afternoon. Where a criterion joins clauses, ask what each one needs before it can be answered at all — and where they need different things, they are different criteria whatever the punctuation says.
+
+[R-VCAL-02 CLAUSE TWO] WHAT ADOPTION MEANS, STATED BY THE PRINCIPAL AND RECORDED HERE SO IT BINDS [ADOPTED 07-Sep-2026, per instruction — "i am happy to adopt the framework for fundamental research if it is backtested and it passes the gates we set. Note that in your memory. What comes next in the future is simply calibration of our forecasts with what the actual data will be"]
+
+THE CLAUSE ABOVE SAYS WHICH CLAUSES GATE PHASE 1. THIS SAYS WHAT PASSING THEM BUYS, which nothing had written down: the framework for fundamental research is ADOPTED when it is BACKTESTED and the GATES PASS. Two conditions, both already defined elsewhere and neither invented here — the backtest is Part E criterion 3's clauses A, B, C and F on the mechanical series, and the gates are the standing set every study is held to. NOTHING ELSE IS AN ADOPTION CONDITION.
+
+WHAT PHASE 2b BECOMES IS THEREFORE NAMED RATHER THAN LEFT AMBIGUOUS: it is CALIBRATION, not a bar the framework must clear before it may be used. Every fair value the house publishes from that point is a dated claim graded against what actually happens, the record is kept and reported, and what it shows feeds the next refinement. THIS IS ALREADY THE PLAN'S OWN POSITION and reading it closely is what settles the point: 2b's stated acceptance is "that the measurement EXISTS and is HONEST, not that it is flattering — a forward record showing a real bias is a SUCCESSFUL 2b and a finding to act on". A criterion whose pass condition is that an honest measurement exists is a reporting obligation, and a reporting obligation is not a gate.
+
+THE COST IS STATED PLAINLY AND IT IS THE SAME ONE THE CLAUSE ABOVE NAMES, now standing rather than temporary: THE FRAMEWORK CAN BE ADOPTED WITHOUT ANY EVIDENCE THAT THIS HOUSE'S LEAN IS INFORMATION RATHER THAN MERELY A LEAN. That is a real limit on what adoption asserts, and it is not smoothed over — what adoption asserts is that the method reproduces sensibly against history and that every construction in it survives the gates, which is a claim about SOUNDNESS and not about EDGE. Anyone reading a delivered study is entitled to know the difference, and a study says nothing about edge because the house has not measured one.
+
+THREE GUARDS RIDE WITH IT, none of them optional. (i) THE FORWARD RECORD IS KEPT FROM THE FIRST DAY — engine/fv_vintages.json is written at every publish and the archive is the thing that cannot be reconstructed afterwards [R-VCAL-01], so an adoption that postponed the measurement would be one thing and an adoption that stopped RECORDING would be another and is forbidden. (ii) [R-VCAL-01]'S PROMOTION GUARD STAYS SYMMETRIC: a positive bias is a finding exactly as a negative one is, and a house that corrects its pessimism into optimism has fixed nothing. (iii) THE FALSIFIER STANDS UNCHANGED — if the mechanically rebuilt series turns out not to resemble the as-delivered one once that record is long enough to compare, this calibration is grading a method the house does not use and every promotion must be withdrawn.
+
+WHAT DOES NOT CHANGE, AND SAYING SO IS THE POINT: the backtest is not weakened by an inch. Criterion 3's clauses A, B, C and F are exactly as demanding as they were an hour ago; [R-GAP-02]'s deviation test, its dissent requirement and the eight-heading audit are untouched; publishing to the live site remains a separate, explicitly-requested step; and no fair value moves anywhere because of this rule. ADOPTION IS EARNED BY PASSING A TEST, NOT BY REDEFINING ONE — what was corrected is a criterion that had bundled a nine-month clock in with work somebody could start that afternoon.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT ADOPTION: A PROGRAMME THAT NEVER WRITES DOWN WHAT FINISHING MEANS WILL BE FINISHED BY WHOEVER READS ITS SLOWEST CRITERION. Every clause of Part E was correct and nobody had asked which of them the principal actually considered the bar; the answer took one sentence and moved the whole book off a date it had no business standing on. WHERE A PROCESS HAS AN OWNER, THE DEFINITION OF DONE IS THEIRS TO STATE AND OURS TO RECORD WHERE IT BINDS.
+
+[R-VCAL-02 CLAUSE THREE] NO COMPANY IS CALLED EXPENSIVE BY MORE THAN TEN PER CENT WITHOUT AN AUDIT BEHIND IT [ADOPTED 08-Sep-2026, per instruction — "I am not worried if we say something is cheap. Because some markets and some companies are genuinely cheap. I am concerned if we say a company is expensive by more than 10%", and on the framing being put back: "The bar is the one you stated — no company called expensive by more than 10% without an audit behind it… Yes go this route."]
+
+[R-VCAL-02 CLAUSE TWO] records that adoption is BACKTESTED plus THE GATES PASS, and that the backtest is criterion 3's clauses A, B, C and F on the mechanical series. THIS CLAUSE REPLACES ONE OF THOSE FOUR AND LEAVES THE OTHER THREE WHERE THEY STAND. Clause A asks the pooled contemporaneous bias to cover zero — that the method be, on average, neither cheap nor expensive. THE PRINCIPAL'S RULING IS THAT THIS IS THE WRONG TEST FOR THIS HOUSE, and the reason is in their own words: some markets and some companies are genuinely cheap, and finding them is what the work is for. A SYMMETRIC ZERO-BIAS TEST PENALISES A METHOD FOR DOING THE THING IT EXISTS TO DO.
+
+THE RULE. Clause A is REPORTED and no longer gates. What takes its place is one-sided and harder in the direction that matters: NO COMPANY IS CALLED EXPENSIVE BY MORE THAN TEN PER CENT WITHOUT AN AUDIT BEHIND IT. Every cell whose fair value sits more than 10% BELOW the price it was struck against is NAMED, and its cause ESTABLISHED BY MEASUREMENT, before the backtest may be called passed. B, C and F are untouched.
+
+THE THRESHOLD IS BORROWED, NEVER MINTED: ten per cent is [R-GAP-01]'s own audit trigger, reused rather than invented, because a second cutoff for the same question would be the free parameter the PROMOTION RULE forbids and would let two rules disagree about what a large gap is.
+
+WHAT WAS MEASURED, WHICH IS THE EVIDENCE THE CLAUSE WAS RULED ON. Measured 08-Sep-2026 on the mechanical series: of 22 cells across 5 names and 8 origins in one market, SIX call a company expensive by more than ten per cent, and every one of the six now has an audit behind it. ONE WAS OUR DEFECT AND IS FIXED — a run carrying its own foreign inflation leg, the last published foreign print held flat for five years, against the lens's long-run figure, which opened a wedge of 8.4 points a year between a price and a cost that are the same event; that cell moved from 77.4% below its price to 11.4% below it, the largest single correction in the book. ONE IS AN HONEST DISAGREEMENT — a developer mid-build, carrying negative year-one free cash flow because the land and the construction are paid for inside the window. FOUR ARE ONE NAME, measured through [R-FCAL-01]'s own macro-versus-company instrument: knowing the inflation path removes three quarters of the error in that name's price and cost LEVELS and eleven per cent of the error in the SPREAD between them, so the miss is dominated by a path no origin could have seen — AND IT CANNOT BE CORRECTED WITHOUT FEEDING A PAST ORIGIN INFORMATION IT DID NOT HAVE, which the pre-registration forbids outright. Three hypotheses for those four were tested and REFUTED RATHER THAN DELETED — the beta, the margin, and the cost of debt as the explanation — because a hypothesis that failed is evidence and a hypothesis that quietly vanished is not. READ THE CELLS LIVE — python3 engine/method_reassessment/criterion3.py — never from this document, because both halves move: cells are carried, and a defect is fixed.
+
+THE COST IS STATED RATHER THAN DISCOVERED LATER, AND IT IS THE SHARPEST THING IN THIS CLAUSE. [R-GAP-01 AMENDED] made its own trigger TWO-SIDED on exactly this reasoning, in its own words: A GATE THAT CAN ONLY FIRE IN ONE DIRECTION TEACHES THE WORK TO DRIFT IN THE OTHER, and it does so WHILE LOOKING RIGOROUS. THIS CLAUSE MAKES AN ACCEPTANCE CRITERION ONE-SIDED, WHICH IS THAT SAME SHAPE, and it is named here rather than left for somebody to notice later. What keeps it honest is WHERE the one-sidedness sits — in the ADOPTION criterion and not in the delivery gate — and three things are unmoved, each of them catching what this clause does not. [R-GAP-01]'s eight-heading audit STAYS TWO-SIDED, so a study more than 10% ABOVE its price still owes its review before its files are staged and still goes red without one. [R-VCAL-01]'S PROMOTION GUARD STAYS SYMMETRIC, so a house correcting its pessimism into optimism has still fixed nothing. And Phase 2b's forward record remains THE ONLY THING THAT CAN SAY WHETHER A LEAN IS INFORMATION rather than merely a lean. IF A STUDY IS EVER FOUND BADLY WRONG ON THE CHEAP SIDE, THAT IS THE EVIDENCE TO REVISIT THIS CLAUSE, and it is written down so the revisit does not depend on anyone remembering.
+
+WHAT IS NOT WEAKENED, AND SAYING SO IS THE POINT: clauses B, C and F are exactly as demanding as they were, the standing gates every study is held to are untouched, publishing to the live site remains a separate explicitly-requested step, and NO FAIR VALUE MOVES TOWARD ANY PRICE BECAUSE OF THIS. That last sentence is not an assurance, it is a measurement: both corrections applied on the day this was ruled moved the pooled bias AWAY from zero, and neither was reconsidered for it. A CORRECTION THAT MAKES THE CRITERION LOOK WORSE IS THE ONLY KIND THAT PROVES THE CRITERION IS NOT BEING FITTED.
+
+ENFORCEMENT, STATED PLAINLY RATHER THAN DRESSED UP [R-ENF-01]. engine/method_reassessment/criterion3.py carries the phase map and PRINTS THE CLAUSE SPLIT at every run, so which clauses gate and which are reported is read off the instrument rather than remembered; the audit itself is a committed artefact under engine/valuation_calibration/, RESOLVED BY PATTERN — EXPENSIVE_CALLS_AUDIT_{DD-MM-YYYY}.md, exactly one file or the clause says which — naming every expensive call and the measurement that establishes its cause. THIS SENTENCE NAMED A DATED FILE AND THE CODE NO LONGER OPENS ONE [CORRECTED 08-Sep-2026]: a dated filename typed into a criterion is a second copy of a fact that moves, so on the day the audit is re-issued the clause stops finding it and reports that none is committed — a true sentence about the wrong file — and TWO matching audits are REFUSED rather than the newest taken, because a criterion that silently picks among candidates is choosing its own evidence.
+
+AND THE OTHER HALF OF THIS PARAGRAPH IS NOW STALE, WHICH IS WORTH CORRECTING PRECISELY RATHER THAN GENEROUSLY [CORRECTED 08-Sep-2026]. It read that no CI job runs any of this and that wiring either half was its own step. THE VERDICT IS STILL NOT RUN IN CI, DELIBERATELY, AND THE REASON IS NOW STATED RATHER THAN MERELY ADMITTED: criterion3.py measures an ADOPTION criterion on the mechanical series, so it goes red whenever a cell moves and a clause stops holding — which is THE PROGRAMME'S OWN FINDING rather than a defect in the push that happened to observe it — and wiring it would be the permanently-red check [R-ENF-02] forbids, the one everybody learns to ignore. A RULE THAT ADMITS IT HAS NO GATE IS STILL BETTER THAN ONE THAT CLAIMS A GATE IT DOES NOT HAVE, and that half of the sentence stands exactly as written. WHAT IS NOW ENFORCED FROM OUTSIDE IS THE INSTRUMENT RATHER THAN THE VERDICT: scripts/check_clause_g_negative_control.py runs on every push, in .github/workflows/study-provenance.yml, and proves clause G still behaves as this rule says — it fires on an expensive call the audit does not name, refuses an audit that is absent or unreadable, refuses an empty population [R-ENF-04], and STAYS SILENT on a cell far ABOVE its price, the bar being one-sided by instruction, which is the clean half that matters and the half a control testing only red cases would leave untested. Nine conditions, five red and four clean, every fixture asserting that its mutation LANDED before the clause runs; and it never writes into the real tree [R-ENF-01, 07-09-2026] — it points the clause's own resolver at a temporary file and asserts the committed audit is byte-identical after every case. THAT IS A PROPERTY OF THE CHECK AND NEVER OF THE BOOK, so it cannot go red for a reason outside anybody's control, WHICH IS PRECISELY WHY IT IS THE HALF THAT CAN BE WIRED. THE GENERAL LESSON, WHICH IS NOT ABOUT THIS CLAUSE: WHERE A VERDICT CANNOT BE WIRED WITHOUT MAKING A CHECK PERMANENTLY RED, THE INSTRUMENT THAT PRODUCES IT STILL CAN BE — and wiring the instrument is not a weaker version of wiring the verdict, it is a DIFFERENT AND HONEST CLAIM: not 'the answer is right today' but 'the question is still being asked the way the rule says'.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT BIAS: AN ACCEPTANCE CRITERION ENCODES WHAT A PROCESS IS FOR, AND NOBODY CHECKS THAT IT DOES. Clause A was correct, standard, and measured the wrong thing for this house — it asked a method built to find cheap companies to be, on average, not finding any, and it would have read that method working as that method failing. WHERE A CRITERION IS INHERITED FROM A TEXTBOOK, ASK WHAT IT WOULD PENALISE A METHOD FOR DOING RIGHT.
+
+[R-VCAL-02 CLAUSE THREE, AMENDED 09-Sep-2026, per instruction — "if the fair value is above the latest recorded traded price then it passes the traded price gate. If the fair value is below the latest recorded traded price by less than 10% the it passes the traded gate. If the air value is below the latest recorded traded price by 10% or more, then refer it to me. I will then review the document and let it pass or ask for changes inn the document."; and, on the bar this displaces, “Criterion 4 is not true. I never said that.” and “Adopt this now and scrap the 15% criterion.”] THE TRADED-PRICE GATE IS MEASURED PER NAME, IT IS ONE-SIDED, AND ITS ONLY FAILING BRANCH IS A REFERRAL RATHER THAN A REFUSAL.
+
+THE RULE, IN THREE BRANCHES AND NOTHING ELSE. A fair value ABOVE the latest recorded traded price PASSES the traded-price gate. A fair value BELOW the latest recorded traded price by LESS THAN TEN PER CENT PASSES it. A fair value BELOW the latest recorded traded price by TEN PER CENT OR MORE IS REFERRED TO THE PRINCIPAL, who reads the document and either lets it pass or asks for changes in it. There is no fourth branch, no average, and no pooled statistic anywhere inside it: each name is measured against its own latest recorded traded price and each name passes or is referred on its own.
+
+REFERRAL IS A ROUTING DECISION AND NOT A FAILURE, AND THAT SENTENCE IS THE WHOLE OF THE DIFFERENCE FROM THE BAR IT REPLACES. A referred name is stopped in exactly ONE place — its own publication decision, which is where [R-GAP-02] already stops it — and it holds nothing else: not the other names, not this acceptance criterion, not the method, not rebuilding, auditing, re-issuing to the principal or merging. THE GATE ARRIVES WITH ITS OWN GO ALREADY DEFINED [R-CAL-01], in the principal's own sentence rather than in ours: the referral is answered by the principal reviewing the document and either passing it or asking for changes, so this is a rule that can say STOP and says in the same breath what release looks like.
+
+WHAT IT REPLACES. Part E acceptance criterion 4 read, in the words it was carried in, “graded prediction: median |central/price − 1| inside 15%”. The principal's ruling on it was one sentence — “Criterion 4 is not true. I never said that.” — followed by “Adopt this now and scrap the 15% criterion.” It is scrapped, not softened, and three separate defects sit underneath it, each recorded because none of them was a small slip.
+
+ONE, IT WAS TWO-SIDED. Taking the ABSOLUTE gap penalised a study for sitting far ABOVE the price exactly as hard as for sitting far below it. The rule this house was actually given is one-sided and always was, for the reason this same clause already records in the principal's own words: some markets and some companies are genuinely cheap, and finding them is what the work is for. A criterion that marks a method down for finding a cheap company is marking it down for working.
+
+TWO, IT WAS POOLED. A median across the re-issued names let one name's excess hide inside the others, and — the sharper half — no INDIVIDUAL study could be cleared or refused on its own merits, because the statistic had no per-name verdict in it to read. A pooled acceptance test converts every member's worst case into every member's verdict.
+
+THREE, IT CONTRADICTED ITSELF INSIDE THE FILE THAT COMPUTED IT. engine/method_reassessment/progress.py carried, beside the criterion, a note saying that MATCHING THE PRICE IS PART E'S EXPLICIT NON-CRITERION, and then tested for exactly that. A file that states a principle and measures its opposite four lines later is the [R-ENF-03] species one level up: the check and the standard it claims to serve had stopped being the same object, and nothing compared them because they lived in the same file.
+
+AND THE COST WAS NOT THEORETICAL. Measured 09-Sep-2026, that median stood at 24.0% against its own 15% target on four names, and on that day it was THE ONLY THING holding thirteen finished studies. A bar nobody set was the binding constraint on the whole programme, and it took a direct question to the principal to discover that it had never been the bar at all.
+
+WHAT THIS DOES NOT CHANGE, AND SAYING SO IS THE POINT. Clause three's own bar stands exactly as written — no company is called expensive by more than ten per cent without an audit behind it — and criterion 3's clauses B, C and F are as demanding as they were. [R-GAP-01]'s audit trigger stays TWO-SIDED, so a study far ABOVE its price still owes its eight-heading review; [R-GAP-02]'s publication block is untouched, and a referred name is held from the live site by that rule rather than by this one. THE TEN PER CENT HERE IS THE SAME BORROWED THRESHOLD [R-GAP-01] AND NOT A SECOND ONE — a rule of the principal's own stating and a trigger already in the book landing on the same number is a coincidence worth naming, and it is not licence to mint a third cutoff for the same question. Publishing to the live site remains a separate, explicitly-requested step. NO FAIR VALUE MOVES TOWARD ANY PRICE BECAUSE OF THIS: a referral is answered by the principal reading the document, never by the document being fitted to the market.
+
+ENFORCED FROM OUTSIDE, AND HALF OF IT ALREADY WAS [R-ENF-01]. scripts/check_publish_block.py applies this same per-name ten-per-cent test and needed NO change to carry the amended rule — which is itself the finding: the delivery half of this house had the principal's rule right, and the acceptance half had drifted into a pooled two-sided bar beside it without anyone comparing the two. engine/method_reassessment/progress.py now computes the gate SIGNED rather than absolute and names the referred set as information rather than as a failure, and engine/method_reassessment/status.py prints the passing and referred lists per name. READ THE STATE LIVE — python3 engine/method_reassessment/status.py — never from this paragraph, because a name crosses the line whenever a price moves and no count of passing or referred names written here would survive a week.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT PRICES: A CRITERION NOBODY CAN TRACE TO AN INSTRUCTION IS A CRITERION SOMEBODY INVENTED. This one was written down, computed, reported, and allowed to block the entire book, and the single question that dissolved it — where did the 15% come from — had never been asked in the weeks it stood. WHERE A GATE HOLDS EVERYTHING, GO AND FIND THE SENTENCE IT CAME FROM; if there is no sentence, that is the finding.
 
 [R-GAP-02] A STUDY FAR FROM THE PRICE IS A FAIL AND DOES NOT PUBLISH [ADOPTED 03-Sep-2026, per instruction — "DO NOT ISSUE A STUDY THAT DOES NOT SATISFY THE CRITERIA WE SET EARLIER" and "A DIFFERENCE OF 30% LET ALONE 70% FROM THE ACTUAL PRICE IS A FAIL AND THE STUDY SHOULD NOT BE PUBLISHED UNTIL IT IS SORTED"]
 
@@ -3049,6 +3473,39 @@ END-OF-YEAR ARRIVAL WAS AN ASSUMPTION, NOT THE RULE. The gate tested each cash f
 
 A RECORD MAY THEREFORE DECLARE ITS CONVENTION — the cumulative discounting time of every explicit year AND the slice of calendar each forward rate owns, without which the factors do not reproduce, since a first period that is a stub is not a unit-width slice from time zero. The factors are then checked against the declaration. A record that declares nothing still gets the end-of-year test, because accepting any factors at all where none is declared would delete the check rather than generalise it, and a declaration that does not reproduce its own factors fails — it reads as evidence, which is worse than an assumption. Negative-controlled on four conditions plus a clean mid-period schedule that must pass.
 
+[R-COC-01 AMENDED] THE CURRENCY OF BORROWING IS ESTABLISHED BEFORE THE COST OF DEBT IS SET, AND THE SOVEREIGN FLOOR ONLY BINDS A BOOK THAT IS ACTUALLY LOCAL [AMENDED 08-Sep-2026, per instruction — "Also you need to know the currency of borrowing for the Kd"; "Write it in the rules to look for the currency of borrowing, otherwise the Kd could be inflated and so will the cost of capital."]
+
+THE PRINCIPLE IS ALREADY WRITTEN, AND THAT IS THE WHOLE POINT — THE STEP THAT ESTABLISHES IT IS NOT. This rule already refuses a cost of debt above its own sovereign ON AN ALL-LOCAL-CURRENCY BOOK, and the standing WACC block already requires foreign-currency debt to be carried at LOCAL-EQUIVALENT COST — the foreign coupon plus expected local depreciation — and never at a raw foreign coupon inside a local-nominal WACC. Both halves are correct and both have been standing for months. The qualifier is doing load-bearing work in a sentence NOBODY WAS EVER MADE TO EVALUATE: nothing anywhere establishes which kind of book is in front of the rule, so the floor was applied unconditionally and the exception was never reached. THE EXCEPTION WAS WRITTEN, CORRECT, AND UNREACHABLE, which is [R-ENF-01]'s own failure shape — nobody disagreed with the rule, it simply was not present at the moment it bound.
+
+MEASURED ON ONE NAME ACROSS FOUR ORIGINS, in the valuation calibration's mechanical lens. SWDY's own effective borrowing rate — the finance charge over the borrowings that actually bear it, which the three-assert Kd gate already computes and prints — against the sovereign figure the floor imposed:
+
+    origin 2018   effective 4.12%   floored to 18.15%
+    origin 2019   effective 5.39%   floored to 14.30%
+    origin 2020   effective 5.45%   floored to 14.45%
+    origin 2022   effective 4.87%   floored to 22.35%
+
+A COMPANY BORROWING AT FOUR TO FIVE PER CENT IS NOT BORROWING IN A CURRENCY WHOSE SOVEREIGN YIELDS FOURTEEN TO TWENTY-TWO. THE EFFECTIVE RATE IS ITSELF THE EVIDENCE — it was computed, it was printed, and it was overridden.
+
+THE FACILITY NOTE SAYS SO IN TERMS, WHICH IS WHAT MAKES THIS EVIDENCE RATHER THAN INFERENCE. From that company's own consolidated statements: "The average interest rate for loans and credit facilities is 15.25% for the Egyptian pounds including CBE lending rate and 5% over Libor for the US Dollars and 4.5% for Euro" (30 September 2019), and "10% for the Egyptian pounds ... 3.50% over Libor for the US Dollars and 2.87% for Euro" (30 June 2020). THREE CURRENCIES, THREE RATES, DISCLOSED — in the very note the first of the three Kd asserts already tells a study to read. A blended effective rate of 5.39% against a STATED Egyptian-pound rate of 15.25% is arithmetic proof that the book is overwhelmingly foreign-currency: a book borrowing at the disclosed pound rate could not average what this one averages.
+
+THE COST IS NOT SMALL, AND IT IS THE LARGEST SINGLE ERROR FOUND ON THAT NAME. At the 2022 origin the floor forces the cost of debt from roughly 4.9% to 22.35% on a debt weight of 58% — about TEN PERCENTAGE POINTS ON THE COST OF CAPITAL FROM THE DEBT SIDE ALONE, larger than every equity-side effect measured beside it, and it compounds through a terminal carrying most of the value. Both defects push the SAME WAY: a company earning and borrowing in foreign currency, charged the local country risk TWICE OVER — once inside the equity premium and once through the debt floor.
+
+THE RULE. The CURRENCY COMPOSITION OF THE DEBT BOOK IS ESTABLISHED FROM THE FACILITY NOTE BEFORE THE COST OF DEBT IS SET, and the record carries it: the local-currency and the foreign-currency balances with the note they came from, on the same four-field footing as any other input. Three consequences ride with it, and NONE OF THEM IS NEW POLICY — they are the existing policy made reachable.
+
+(i) THE SOVEREIGN FLOOR BINDS THE LOCAL-CURRENCY TRANCHE ONLY. A same-currency corporate cannot borrow below its own sovereign, and that reasoning is untouched; it says NOTHING about a company borrowing in a currency whose sovereign is somebody else's, and applying it there is not conservatism but an invented cost.
+
+(ii) THE FOREIGN TRANCHE IS CARRIED AT LOCAL-EQUIVALENT COST — the foreign coupon plus expected local depreciation — which the WACC block has required since it was written, and NEVER at the raw foreign coupon, because a foreign rate dropped into a local-nominal model understates the cost exactly as the floor overstates it. THE TWO ERRORS ARE A PAIR, AND A RULE CLOSING ONLY ONE OF THEM WOULD BE WORSE THAN NEITHER: releasing the floor without carrying the tranche home hands every foreign-currency book a rate no local-nominal model is entitled to, and it would do it in the direction that flatters the answer.
+
+(iii) EXPECTED DEPRECIATION IS THE HOUSE RELATION, NOT A CHOICE. It is the inflation differential [R-MACRO-01]'s path already derives by relative purchasing-power parity, so NOBODY SETS A CURRENCY VIEW INSIDE A COST OF DEBT — the same discipline that keeps the terminal risk-free derived rather than quoted, arriving one line further down the ladder.
+
+WHERE THE COMPOSITION CANNOT BE ESTABLISHED, THE RECORD SAYS SO AND THE FLOOR STILL APPLIES. An undisclosed book is treated as local, because the floor is the safe direction when the fact is unknown and AN ABSENT DISCLOSURE MUST NOT BECOME A ROUTE TO A CHEAPER RATE — the same reason an unreadable study is held rather than released everywhere else in this document. Where the note is expected and missing, STOP AND INFORM per SIGCM clause 8.
+
+WHAT THIS DELIBERATELY DOES NOT CHANGE. Every other refusal in [R-COC-01] stands exactly as written: the glide and its inherited fractions, market-value weights, country risk counted exactly once, the monotonicity and terminal tests, the 150bp bound and the 50bp peak test with their closed list of re-pointing mechanisms, and the fourteen-day sovereign quote. It sets no threshold on what counts as a foreign book — the composition is a DISCLOSED FACT rather than a cutoff to argue about, and a number chosen here would be the free parameter the PROMOTION RULE forbids. And it moves no fair value by itself; what moves is that a study must now KNOW SOMETHING BEFORE IT MAY SET A RATE.
+
+ENFORCEMENT IS PROSE FOR NOW, AND SAYING SO PLAINLY IS PART OF THE RULE [R-ENF-01]. No gate is adopted in this commit: the correction to the mechanical lens and the check across the delivered studies are the next pass, and A RULE ADOPTED WITH A GATE THAT DOES NOT EXIST IS WORSE THAN ONE THAT ADMITS IT — it reads as enforced and binds on nothing, which is the exact shape this amendment was written about. What IS available immediately costs nothing to use: the FIRST of the three Kd asserts already names the currency composition sourced to the facility note, and this amendment turns that assert from a DESCRIPTION into a REQUIRED FIELD, evaluated before the rate beneath it is set.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT DEBT: A QUALIFIER IN A RULE IS A TEST SOMEBODY HAS TO RUN, AND IF NOTHING RUNS IT THE RULE READS AS UNCONDITIONAL. "On an all-local-currency book" is four words carrying an entire exception, and for as long as no step established which kind of book was in front of it, the sentence behaved exactly as though those words were not there. WHERE A RULE IS WRITTEN WITH A CONDITION, ASK WHAT PERFORMS THE CONDITION — and if the answer is nobody, the rule that is running is not the rule that was written.
+
 ## [R-ANCHOR-01] The forecast is anchored on the latest reviewed period, and a decline away from it names its mechanism (3-Sep-2026, per instruction — "the calibration does not fix the current studies for the 90 stocks only. It fixes the way the testahil model thinks and executes fundamental valuations")
 
 **THE RULE THIS ENFORCES IS NOT NEW, AND THAT IS THE ENTIRE POINT.** Both governing
@@ -3152,6 +3609,76 @@ mechanism, a path that does not parse, and three clean cases — a flat path, a 
 and **EGCH's corrected path with its mechanism measured and agreeing**, which must stay
 green.
 
+### Clause three: the mirror clause — a rise past the filed record
+
+**THE RULE FIRED ON A COLLAPSING MARGIN AND SAID IN ITS OWN TEXT THAT IT DOES NOT FIRE ON A
+CLIMBING ONE.** As adopted on 3 September 2026 this rule stated plainly that it "does NOT
+fire on a forecast *above* the latest period, which is [R-GAP-01]'s two-sided trigger and
+[R-ENF-05]'s sign test". Both of those are real instruments, both were correctly named, and
+**neither of them asks this question**: [R-GAP-01] audits the ANSWER against a price, and
+the sign test counts the DIRECTION of contested judgements. So a forecast margin climbing
+past everything a company has ever filed was owned by nobody, while the identical arithmetic
+running downward had a closed mechanism list, a required disclosure and a required
+like-for-like measurement standing in front of it.
+
+The one-sidedness was inherited from the incident this rule was written on — the first
+occurrence was a margin COLLAPSING — and that is the same shape twice already recorded in
+this document: [R-GAP-01]'s own one-sided trigger, and [R-TERM-01 CLAUSE TWO]'s defect
+measured on one side of a sign change and mistaken for a finding about the sign.
+
+**MEASURED ON THE BOOK RATHER THAN ARGUED.** ARCC's mechanical projection expands its
+operating margin at **eight of eight origins, monotonically at every one**, reaching
+**55.81%** at origin FY2017 and **60.14%** at FY2023 — against a company whose filed
+operating margin over FY2014–FY2025 runs **−2.81% to 37.55%**, swings both ways, and whose
+peak *as at either of those origins* was **26.23%** (FY2016). The overstatement of that
+name's fair value tracks the terminal margin almost monotonically, and ARCC is the largest
+contributor to the pooled bias that is the last thing standing between this house and Phase
+1 acceptance under [R-VCAL-02].
+
+**THE BASELINE IS THE FILED RECORD, NOT THE FORECAST'S OWN OPENING YEAR, AND THAT WAS FORCED
+BY THE DATA RATHER THAN CHOSEN.** ARCC at origin FY2020 opens at an operating margin of
+**−1.15%** and recovers to **5.49%** — a rise of nearly five points and a reversal of sign,
+which is ordinary mean reversion out of a loss-making year and **must not fire**. The same
+name at FY2023 climbs to 60.14% and **must**. Both of them rise, so a clause tested against
+the forecast's own opening year cannot tell them apart; tested against the filed record they
+separate by a wide margin — **+129.3% against −79.1%**.
+
+**THE FILED PEAK IS AS AT THE ORIGIN, NEVER AS AT TODAY.** A later good year must not
+license an earlier forecast that could not have known about it — point-in-time discipline
+arriving in a gate rather than in a panel.
+
+**THE MECHANISM LIST IS CLOSED AND IS THE MIRROR OF THE EXISTING ONE**, for [R-COC-01
+AMENDED]'s reason that an open list lets any study opt out by inventing a reason:
+`capacity_commissioning_completing`, `contracted_price_step_up`, `input_cost_normalising`,
+`mix_shift_to_higher_margin`, `one_off_depressing_the_latest_period`. A named mechanism must
+carry the **disclosure** that establishes it from the filings.
+
+**THE TOLERANCE IS BORROWED, NEVER MINTED:** the same relative 5% clause one uses. A second
+cutoff for the same question would be the free parameter the PROMOTION RULE forbids, and it
+would let two clauses of one rule disagree about what a material move is.
+
+**WHAT THE CLAUSE DELIBERATELY DOES NOT REQUIRE, AND IT IS THE ASYMMETRY WITH CLAUSE ONE,
+STATED RATHER THAN LEFT IMPLICIT.** A rise mechanism needs a NAME and a DISCLOSURE but **not
+a like-for-like measurement**. Clause one demands the measurement because a decline claims
+the company will do WORSE than its own filings, and the filings are the only instrument that
+can contradict it. A rise past the filed record is a claim about something the company has
+NOT yet done, which by construction has no like-for-like pair in its own history — demanding
+one would be demanding evidence that cannot exist, which is the permanently-red check
+[R-ENF-02] forbids. If a future case shows a rise mechanism that COULD have been measured
+and was not, that is the evidence to tighten this, and it is written down here so the revisit
+does not depend on anyone remembering.
+
+`filed_peak_rate` and `rise_mechanism` are **not** required fields, on `forecast_path`'s own
+precedent: they are being introduced onto studies that predate them and the ratchet carries
+those. A record that HAS a filed peak is tested on it. **It binds forward.**
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT MARGINS: A RULE WRITTEN ON AN INCIDENT INHERITS THE
+INCIDENT'S DIRECTION.** Every element of [R-ANCHOR-01] was correct, closed, sourced and
+measured, and it faced one way because the failure that provoked it faced one way — and the
+rule then NAMED two other instruments as covering the other direction **without either of
+them being asked whether it did**. Where a rule declines to fire one way, ask what actually
+fires there, and **ask it of that instrument rather than of the rule**.
+
 ### The threshold, stated rather than dressed up
 
 **RELATIVE, at 5%** of the latest reviewed rate, with a small absolute floor so a genuinely
@@ -3176,11 +3703,18 @@ which is the test of whether a cutoff is doing work or merely existing.
 It does **not** require a forecast to equal the latest period. Mean reversion is real and a
 refiner's spread is volatile. It requires the claim to be **named, sourced and measured**.
 
-It does **not** fire on a forecast *above* the latest period. That direction is audited by
-[R-GAP-01]'s two-sided trigger and by [R-ENF-05]'s sign test, and a gate firing both ways
-here would collide with them. The record is nonetheless **printed for every study whether
-or not it fires**, so ARCC's shape — a forecast sitting at the top of its own filed range —
-is visible to a reader rather than merely not-red.
+**THE OPENING-YEAR CLAUSE** does not fire on a forecast *above* the latest reviewed
+period — mean reversion up out of a weak half is not a claim against the record, and clause
+one is right not to fire on it. **This is not the same thing as the rule being silent on a
+rise**, and the sentence that stood here said it was: it read that the whole direction was
+"audited by [R-GAP-01]'s two-sided trigger and by [R-ENF-05]'s sign test", which is
+[R-ANCHOR-01 CLAUSE THREE]'s subject and half superseded — those two instruments audit an
+ANSWER against a price and count the DIRECTION of contested judgements, and neither asks
+whether a forecast rate climbs past what the company has ever filed. **A rise above the
+FILED RECORD is now governed by clause three**, on its own closed mechanism list and the
+same borrowed 5%. The record is, as ever, **printed for every study whether or not it
+fires**, so ARCC's shape — a forecast sitting at the top of its own filed range — is visible
+to a reader rather than merely not-red.
 
 ### Enforcement
 
@@ -3189,10 +3723,22 @@ is visible to a reader rather than merely not-red.
 every study then on disk, since the record did not exist until this rule; the list may only
 ever SHORTEN). Population-anchored per [R-ENF-04] — a run examining zero studies FAILS, and
 every listed ticker must resolve on disk. Negative-controlled by
-`scripts/check_forecast_anchor_negative_control.py`: eighteen conditions, including **AMOC's
-forecast exactly as it stood**, **AMOC's mechanism contradicted by its own filings**,
-**EGCH's typed price path**, and four clean cases that must stay green — among them
-**ARCC's shape**, which the first draft of the gate wrongly failed.
+`scripts/check_forecast_anchor_negative_control.py`, which runs **31 conditions** — among
+them **AMOC's forecast exactly as it stood**, **AMOC's mechanism contradicted by its own
+filings**, **EGCH's typed price path**, and **eleven clean cases that must stay green**,
+including **ARCC's shape**, which the first draft of the gate wrongly failed.
+
+**THE FOUR MIRROR CASES CARRY ARCC's PATHS AS ITS PROJECTION COMPUTES THEM RATHER THAN
+TRANSCRIBED**, and the decisive clean ones are the three that could not be got right by
+accident: **ARCC's FY2020 recovery**, which rises and must not fire; **a rise past the peak
+that is named and sourced**; and **a rise inside the borrowed tolerance**. **THE CONTROL
+ASSERTS THE RED IS FOR THE RIGHT REASON.** Every red fixture in that file ends on the same
+closing sentence, so the four mirror cases additionally require the failure text to CONTAIN
+their own arithmetic — **+112.8%** and **+129.3%** against **0.2623** — because all four open
+ABOVE their latest reviewed rate, and a bug making clause one fire on them would otherwise
+read as a clean red. The clause is **falsified by re-pointing it at the wrong baseline**: set
+against the forecast's own opening year rather than the filed record, four conditions go
+wrong.
 
 **AMOC is on the ratchet and the reason is worth recording.** It cannot name a mechanism its
 filings support, and it is not simply re-anchored because [R-VCAL-01]'s promotion guard
@@ -3532,6 +4078,1036 @@ Where a guard names a FAILURE MODE rather than a procedure, ask which other proc
 can produce it.
 
 
+## [R-ENF-01 EXTENDED 07-09-2026] A committed record carries the shape the module that writes it emits today
+
+Nothing in this repository had ever asked whether a study's committed numbers file still
+reproduces from its own generators. `scripts/check_numbers_generators.py` says in its own
+module docstring that it deliberately does not:
+
+> Not that the numbers file reproduces — running every study's model would take minutes
+> and would fail for reasons that have nothing to do with this defect.
+
+Both halves of that reasoning are measurable and neither had been measured. The first is
+true and cheap to establish. **The second is false.** Measured 07-09-2026, in a sandbox
+checkout at HEAD, each study's own generators run in their declared order and the
+committed file diffed against what came back:
+
+- **nineteen of twenty-four reproduce byte for byte;**
+- **three differ, and all three differ the same way** — `engine/terminal_value.py` grew
+  five record fields after those studies last built, so their committed terminal records
+  carry the old shape;
+- **two cannot run at all** — one passes a retired keyword into a v2 cost-of-capital
+  input, the other imports a retired engine module. Both are named in this protocol's own
+  open items as work a re-issue would have to rebuild rather than patch, and running them
+  turned a remembered claim into a measured one.
+
+Five failures, every one a real defect. None is noise.
+
+### Nothing valued had moved, and that is part of the finding
+
+The escalator those missing fields name is *applied* inside `build()` and always was, so
+every terminal in the three studies was struck at current cost exactly as [R-TERM-01]
+requires. What was missing is the record **of** it. That is [R-ENF-06] one level up and it
+matters for the same reason: a record that does not name the quantity a value was built
+from cannot be rebuilt, checked or graded afterwards — and it looks complete while it
+cannot.
+
+### Why every existing gate was blind
+
+A property of those gates rather than an oversight in them. `check_terminal_floor` tests
+the 1/g **signature**, a relationship between figures, which these records carry
+correctly. `check_artefact_currency` [R-ENF-06] asks whether an artefact declares the
+**answer** it was built against, and these declare it. The generators gate declines
+reproduction by design. The *shape* of a committed record was governed by nothing at all.
+
+### The cheap test finds exactly what the expensive one does
+
+A static walk of every committed record against the field set `terminal_value.build()`
+emits names the same three studies, in under a second, with no model run — because the
+only thing that had drifted was a field set.
+
+**The rule.** `scripts/check_terminal_record_shape.py` refuses a committed record missing
+any key the module emits *today*. Extra keys are **not** a defect and must not fire: a
+study may carry its own context beside the module's, and a gate refusing that would push
+studies to strip context to stay green. The standard is **learned by running `build()` on
+a canonical input**, never by parsing the dict literal and never from a copy of the key
+list kept in the gate — a check holding its own copy of a standard stops testing the
+standard the moment one of them moves ([R-ENF-02]'s own lesson), and a check that parses
+the emission path is checking a different file from the one that runs [R-ENF-03].
+
+A study with **no** terminal record is not a failing study — most of the book carries
+none, and demanding one would be a false claim about what this gate checks, which is why
+it is artefact-conditional in the new-study gauntlet [R-ENF-07].
+
+**Ratchet [R-ENF-02] empty at adoption**, because all three were conformed rather than
+listed: regenerating adds the fields, deletes nothing, and moved no valued figure in any
+of them.
+
+### One of them needed its generator fixed first, and that is the more useful half
+
+One study stamped its study date with the clock rather than with a fact, and its own
+document builder prints that value as "Study date" — so **rebuilding the study restamped a
+delivered document's account of when the work was done.** A study date is a fact about
+when the study was struck, not a clock reading. Frozen to the date the delivered document
+already carries, read out of that document rather than chosen, so the generator now
+reproduces its own output and no document changes.
+
+Read the population live — `python3 scripts/check_terminal_record_shape.py` — never from
+this document.
+
+**The general lesson, which is not about terminals: a module and the records it wrote are
+two different vintages, and only the module moves on its own.** Every instrument here
+points from a record back to the model and asks whether the figures came from it; none
+asked whether the record still has the shape its writer emits. That question needs nothing
+run, which is why it was worth asking of the whole book at once.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] No check modifies the tree it checks
+
+Adopted on a committed loss, and the loss was caused by a negative control.
+
+`scripts/check_escalations_negative_control.py` wrote its fixture into the real
+`engine/escalations.json` and copied a backup over it in a `finally`. A `finally` survives
+an exception; it does not survive a kill, a timeout, or the machine going away. On
+07-09-2026 one did not run, and **thirteen live escalations were replaced by a single
+fixture and committed.** The register is the artefact [R-IND-01] adopted so that a
+question is never asked twice — and the control that existed to protect it is what
+destroyed it.
+
+It then failed in a way that read as a finding about the work. The fixture's own resolving
+marker sat in the committed file, so the gate reported that escalation as already answered
+and went red: a true statement about a file that should not have existed, on a head whose
+actual changes were clean.
+
+### Why nothing saw it
+
+Every gate here reads the tree and reports faithfully on whatever it finds — so a gate
+reading a file that an earlier step had rewritten reports faithfully on the *rewritten
+file*. The damage was not a wrong answer anywhere. It was **the subject being replaced
+between the write and the read**, which no instrument inspecting content can distinguish
+from the content having always been that. What catches it is not another reader but the
+question no reader asks: *did running the checks change anything?*
+
+### Closed at the mechanism, then at the class
+
+The instance: `engine/escalations.py` now takes its register path from the environment, so
+the control points the **reader** at a temp file and the real one is never opened for
+writing; where the override is in force the gate prints it, so a run against a fixture can
+never read as a run against the record; and the control asserts, on **every case rather
+than once**, that the real file is byte-identical after the gate runs.
+
+The class, per [R-ENF-01] — *when a defect of this species is found again, close the
+class, not the instance.* A sweep of every negative control found all the others copying
+**from** the real tree **into** a sandbox, which is correct. But that is a fact about
+today, established by a person reading, and this rule exists so it stays a fact without
+anyone reading again.
+
+**The instrument.** `scripts/check_tree_unmodified.py`, in two halves: `--record` first,
+the comparison last. The question is *did anything change while the checks ran*, not *is
+the tree dirty*, and the difference is not pedantry — a local pre-commit run always
+carries uncommitted edits, so a gate keyed on dirtiness would be red every time anybody
+ran it, which is the permanently-red check [R-ENF-02] forbids and the surest way to make a
+real leak invisible. CI checks out clean, so there the two questions coincide; the
+operator's own tree is where they do not, and that is exactly where this has to keep
+working.
+
+It refuses a **tracked** file modified or deleted, and says nothing about untracked files
+— deliberately. A gate that renders a document, writes a scratch panel or leaves a build
+artefact has changed nothing that was committed, and refusing that would be a claim about
+tidiness rather than about the record. A missing baseline is a **failure, never a skip**
+[R-ENF-04]: comparing against nothing is the absent answer in a clean answer's clothes,
+and it is the state this gate enters if the recording step is ever dropped from the
+workflow.
+
+Excluded from the new-study gauntlet with its reason stated: its subject is *the run*
+rather than any study, and a planted study directory is untracked. Negative-controlled on
+nine conditions, five red and four clean — the clean half including edits made *before*
+the run, which it must not fire on.
+
+**The general lesson, which is not about escalations: a test that mutates production state
+and undoes it afterwards is correct exactly as often as it completes.** The undo is the
+part that does not run when something goes wrong, which is the one occasion the state
+matters. Where a check needs different inputs, give it different inputs; never give it the
+real ones and a plan to put them back.
+
+
+## [R-DOC-01 AMENDED 07-09-2026, third] The stamp names the day the document was actually amended
+
+This rule says the digest is named for the day of its **latest amendment**, so that the
+filename and the revision stamp "agree on their face". The gate resolved the digest by
+pattern — and then never asked what the pattern matched.
+
+A first draft of the fix compared those two fields **to each other**, and passed. Of
+course it did: both are typed by the same hand in the same edit, and they had never
+disagreed.
+
+Measured the same day: three amendments landed within forty minutes of each other carrying
+the *previous* day's revision letters under the *previous* day's filename. Every one was
+internally consistent. Every one named a day the edits were not made on. Every check in
+the repository was green through all three.
+
+**Two fields that agree with each other and not with the world is the self-attested
+boolean [R-ENF-01] closes everywhere else** — wearing the one costume this document had
+not searched: its own.
+
+The only witness outside a document is when it was committed. The stamp is therefore held
+against the last commit touching either governing document, or against today where they
+are amended in the working tree.
+
+**The zone is ambiguous and the ambiguity is admitted rather than resolved by picking
+one.** This project's clock is Cairo and CI runs in UTC, so a commit in the last three
+hours of a UTC day falls on two different days depending on which is meant, and choosing
+one here would be the free parameter the promotion rule forbids. Both readings are
+accepted; what is refused is a stamp matching **neither**. A band rather than a point,
+which is honest about what this fixes and what it does not.
+
+The rename and the moved include line are unchanged from the clause above. What is added
+is that a stamp cannot be typed for a day the work did not happen on.
+
+Negative-controlled on six conditions against **real little repositories** rather than
+strings — a defect made of two fields agreeing with each other cannot be reproduced by
+text alone. Three red: the defect exactly as it happened, a checkout that is not a
+repository, and no commit touching the documents. Three clean: a stamp matching the commit
+day, a commit in the disputed evening band where both days must be accepted, and an
+amendment sitting in the working tree, which is dated now rather than by a commit made
+years earlier.
+
+**The general lesson, which is not about dates: a document cannot witness its own age.**
+Everything inside it was written at the same moment by the same hand, so any two fields in
+it will agree. The question a stamp exists to answer is about the world, and answering it
+needs something the author did not type.
+
+
+## [R-DOC-02 EXTENDED 07-09-2026] A bare filename is a claim about a file too
+
+`check_protocol_text` has verified since its adoption that these documents name nothing
+that does not exist. Its matcher required a directory prefix — so it saw every reference
+that carries one and none that does not.
+
+**Found by following a broken import rather than by reading the rule.** A study generator
+that cannot run turned out to import the retired v2 engine module, and the digest
+described that module in a sentence telling a reader it was *available for reference*. It
+is not in the tree at all, and twenty scripts import it: seventeen in the lab, where dead
+research scratch is ordinary, and **three inside a study directory** — a study that cannot
+be rebuilt from its own code.
+
+The prefixed half was never the interesting half. A path is easy to check and easy to
+write correctly; a bare name is how anyone actually refers to a module in prose, so the
+uncovered form is the one these documents use most.
+
+**The check names its exceptions rather than pattern-excluding them**, two at adoption and
+each with a reason: the harvest cache these documents themselves declare regenerable and
+never committed, whose absence is the rule working rather than a stale claim; and the tail
+of a braced template naming a shape a run writes rather than a file that should sit on
+disk. An allowance nobody has to justify is where the next stale claim hides.
+
+**Its own first measurement was wrong, in the standing way.** The probe skipped any path
+containing `/.git` and so silently dropped the `.github` directory, reporting two workflow
+files as missing when both were on disk — an absent answer in a clean answer's clothes
+[R-ENF-04]. The exclusion now names the *directory* rather than matching a substring of the
+path.
+
+Negative-controlled on seven added conditions, three red and four clean, every fixture
+asserting first that the name it names is genuinely absent from — or present in — the
+tree: the retired module's sentence exactly as it stood, a module invented in prose, and a
+delivered document that is not there; against a bare name that resolves, a prefixed path
+belonging to the other check, the declared-absent cache, and a braced template.
+
+**The general lesson, which is not about filenames: a check's scope is usually the shape
+its matcher happened to need, not the shape the rule meant.** Nobody decided that only
+prefixed references would be verified — a regex was written for the references in front of
+it, and the rule quietly inherited that boundary. Where a check has been running a long
+time, read what it *matches* and ask what the rule actually claims.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] Depth-bar standard 2 is checked from outside, and the fourth field has two spellings
+
+Standard 2 has required since the bar was written that every input be four-field
+complete — value, source, date, and the research layer it came from — "validated by
+assertion". What validated it *outside* the study was a boolean each study set on
+itself: the composite-beta shape [R-ENF-01] closes everywhere else, and the shape
+[R-ENF-02 AMENDED] already had to close once on another field of the same checklist.
+
+**Measured 07-09-2026, the boolean was honest**, and saying so is part of the finding
+rather than a reason not to check: eighteen readable registers, several thousand inputs,
+zero incomplete. A gate is not worth less for finding a book in good order. What it is
+worth is that the *next* register cannot quietly skip the field — which is what a
+ratcheted check is for, and what the new-study gauntlet [R-ENF-07] tests.
+
+### The two spellings are the real fragility
+
+Five studies write one spelling of the fourth field and thirteen write the other. None
+writes both. None writes neither. And **nothing outside a study read the field at all** —
+every occurrence in the checking scripts was a fixture inside a negative control.
+
+A check written naively against one spelling would have silently passed five studies and
+condemned thirteen, or the reverse, and *either reading would have looked authoritative*.
+This is the correction-boundary lesson in another costume: several records, several
+shapes, a reader that guesses finds nothing. Both spellings are accepted **in the gate**
+rather than renamed across the book, because renaming thousands of committed inputs in
+thirteen delivered studies is a re-issue and is not done in passing.
+
+The author's own first measurement reported most of the book missing the field, having
+read one spelling only. The registers were complete and the reader was ignorant — an
+absent answer wearing a clean one's clothes [R-ENF-04] — which is why the two spellings
+are named in code here instead of remembered.
+
+### An absent register defers rather than duplicating
+
+Six studies commit no inputs register at all, and the source-integrity ratchet already
+lists exactly those six as unreadable. This gate reads *that* list rather than opening a
+second one: two records of one fact diverge the moment somebody prunes one [R-ENF-07]. It
+therefore carries **no ratchet of its own**, deliberately — there is nothing outstanding
+that another list does not already hold, and an allowance created for nothing is an
+allowance nobody maintains.
+
+Population-anchored [R-ENF-04] both ways: a run examining zero study directories fails,
+and so does one that read zero *inputs* across present directories. Negative-controlled on
+twelve conditions, seven red and five clean — the clean half being what this turns on:
+both spellings must stay green, and the absent-register case appears twice on purpose,
+once deferred and once not, because a fixture proving only the deferral would leave the
+refusal untested.
+
+**The general lesson, which is not about provenance: a standard obeyed everywhere is
+still unenforced, and the two are not the same claim.** Finding nothing wrong is the
+ordinary outcome of a first run, and it says only that today's book is sound. What the
+gate buys is that tomorrow's entry cannot be the first exception. Ask which of the
+standards that have never failed are still running on trust.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] Depth-bar standard 1 is checked over every study, and the artefact has three names
+
+Standard 1 requires a standalone bibliography document beside every delivered study, and
+the bar says of its own list that each item is a QC item and **missing one is a FAIL, not
+a noted limitation**.
+
+What checked it was `check_calibration_deliverables`, whose population is the walk-forward
+run directories — five names. The other nineteen studies were covered by
+`bibliography_document`, a boolean each study sets on itself. **The standard was enforced
+on a fifth of the book and attested on the rest, and the breach is in the rest:** one study
+ships a valuation document and a workbook and no bibliography-class document at all. It
+predates the bar and already sits on four other ratchets, so nothing has to be fixed
+tonight. What was found is that nothing was looking.
+
+### The artefact ships under three names
+
+Twenty-one studies use the obvious one; one uses a source-register name; one uses a
+sources name; and one study's file carries **the company's other name rather than its
+ticker**. A check written against the obvious convention would have condemned three
+compliant studies, and one keyed on the ticker prefix a fourth. The variants are named in
+code, from what the book actually ships, rather than inferred.
+
+It deliberately does not read the document's contents. Whether a bibliography carries its
+four tables is depth-bar content, checked inside the study and at the QC gate; this asks
+only whether the artefact a reader is supposed to *receive* exists — a gate judging depth
+from outside would make a claim it cannot support, which is worse than the narrow claim it
+can.
+
+A study delivering no document is not in scope, and that is not a loophole: a metals
+directory delivers no valuation study, and an empty directory has nothing to be missing a
+bibliography from. That is why it is artefact-conditional in the gauntlet [R-ENF-07].
+Ratcheted at one with its reason; population-anchored [R-ENF-04] both ways — zero
+directories fails, and so does zero *delivered study documents* across present
+directories, because a matcher that stopped matching reads exactly like a clean book.
+Negative-controlled on ten conditions, five red and five clean, the clean half carrying
+all three artefact names and the company-named file.
+
+### The general lesson, which is not about bibliographies
+
+**A reader that guesses a naming convention silently finds nothing, and it reports that as
+a result.** Five separate first-attempt measurements were wrong on the day this rule was
+adopted, and every one failed the same way:
+
+- a probe excluding a directory by substring rather than by name, which swallowed
+  `.github` and condemned two files that were on disk;
+- a field read under one of its two spellings, which reported most of the book missing a
+  provenance field that was there;
+- an artefact grepped for under one of its three names, which reported two breaches where
+  there is one;
+- a filename assumed to carry a ticker, which would have condemned a fourth compliant
+  study;
+- a check whose matcher required a path prefix nobody had ever decided on.
+
+None of them produced an error. Every one produced a *number* — which is what makes this
+failure mode survive, because it looks exactly like a measurement. Where a probe reads a
+name, ask what else the thing is called, and prefer a matcher built from what the
+repository actually contains over one built from what it ought to.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] Standard 5 says "zero transparency verified programmatically", and nothing verified it
+
+What verified it was `figure_discipline`, a boolean each study sets on itself.
+
+**The other figure gate is not this one.** `check_figure_axes` runs each figure *script*
+under a guard and refuses a mark drawn outside its own axis. Transparency belongs to the
+file a reader receives: a script that sets a solid facecolor can still ship a translucent
+PNG inside a document, and only the delivered file can say so. This is the
+builder-versus-page distinction already recorded of tables — a check that needs the
+builder is a check about the builder, and the reader does not have the builder.
+
+Measured across every delivered study document: of 176 embedded images, **eight are
+translucent, all eight in one study**, every one with fully transparent pixels. Every
+other study is opaque to the pixel. That study predates the bar and already sits on
+several ratchets, so nothing must be fixed tonight. What was found is that the clause was
+verified by nobody.
+
+### The mode is not the measurement
+
+This gate exists in its corrected form because the first pass got that wrong. Reading the
+colour **mode** reported 160 of 176 images as carrying transparency — matplotlib writes an
+RGBA channel that is fully opaque, so the mode says almost nothing. The honest test is the
+**minimum alpha actually present in the pixels**. The first figure was twenty times the
+real one and would have condemned twenty-two compliant studies.
+
+It deliberately does not check whether the canvas is *light*. That is a judgement about a
+palette; a dark figure can be a deliberate design and a gate cannot tell one from an
+accident, so it would be making a claim it cannot support. Opacity is arithmetic about the
+file and lightness is not, and the two are not bundled merely because one sentence of the
+bar names both.
+
+Ratcheted at one with its reason; population-anchored [R-ENF-04] both ways — zero
+directories fails, and so does zero *images* read across present documents, because a
+reader that stopped finding media reads exactly like a book of opaque figures.
+Artefact-conditional in the gauntlet [R-ENF-07], since an empty directory embeds no
+figure. Negative-controlled on nine conditions, five red and four clean, the decisive
+clean case being an **opaque RGBA image** — the shape most of the book ships and the one a
+mode-reading gate condemns. Its own fixture failed first, and that is recorded: two clean
+sandboxes omitted the ratcheted study while the ratchet still named it, so the gate
+refused them on the anchored-on-nothing clause and *was right* — the scaffolding was
+wrong, not the subject.
+
+**The general lesson, which is not about figures: a property and its container are not the
+same measurement.** RGBA is a container that can hold transparency and almost always holds
+none, so asking whether the container exists answers a question nobody had. Where a check
+can read either a declaration or the quantity, read the quantity — which is this
+protocol's own rule about inflation inputs, arriving somewhere nobody had connected to it.
+
+
+## [R-ENF-01 EXTENDED 07-09-2026] A run's far-year ranges are checked on the page a reader receives
+
+[R-FCAL-01] says every fundamental walk-forward produces two documents, and of the first
+— the updated fundamental analysis — that it publishes **years three to five as ranges
+from this record's own driver-error distribution, never as points**. All five completed
+runs commit that band. **Nothing had ever asked whether it reaches the document**, and
+the two questions are not the same one: the training record is internal by that same
+rule's own instruction, so a band can be computed, committed, scored and never printed,
+and every instrument in this repository reports the run complete.
+
+**Measured: three of the five print it and two print points.**
+
+| | what the delivered study does |
+|---|---|
+| PHDC | Table 4 — "Revenue, years three to five (EGP mn) \| Low \| Point \| High" |
+| EGCH | A.4 — rows "Revenue — low of the range" / "— high of the range", with the tested cases behind each band |
+| TMGH | Table 19 — "84,517 – 193,380" per far year, with the tests behind the range |
+| ARCC | FY2028E/29E/30E as single figures, and **not one sentence anywhere about the method having been tested on this company's own history** — while its own band reaches horizons three, four and five on five, four and three observations and was committed on 01-09-2026, **two days before that document was rebuilt** |
+| AMOC | FY2028E/29E/30E as single figures. It states the principle in Section 7 in plain words — the far forecast years support a range and never a point — and prints none; its record reaches horizon three only, so years four and five have no band to publish and year three has one on two observations |
+
+### The three shapes are read off the book rather than invented
+
+A matcher built from PHDC's convention finds nothing in EGCH or TMGH and reports that as
+a result, which is [L-355] landing on the instrument rather than on the work. So all
+three are named in code, from what the book actually ships: a **column pair** (low and
+high columns beside the point), a **row pair** (labels naming the low and the high of the
+range), and a **dash cell** carrying both ends. The detector lives in
+`engine/range_disclosure.py` — the module that already owns this subject and which until
+now nothing imported.
+
+### The architecture was decided by measurement, and the measurement changed it
+
+A first draft asked only that a range appear in a table naming a far year. Run over the
+book it fired on **six studies that have no walk-forward at all**, in three legible
+kinds: a period written with a dash ("2026–2027" in a watch list, "2028–2030" against a
+loan tranche), a multiple range in a lens table ("Range at 10× / 16×"), and a
+charter-rate spread against a vessel class. Every one was work that is right. Per
+[R-COC-01] it was **re-pointed rather than widened**: the low/high evidence must sit in a
+row *labelled* with a far year or a column *headed* by one, which is structural rather
+than a fourth word list, and a dash cell whose two operands are both calendar years is a
+period rather than a range. After re-pointing, **0 of 18 non-run studies trip any shape
+and all three true positives survive**.
+
+The year pattern is deliberately not `\b`-bounded, and a fixture caught that before the
+book did: EGCH heads its far-year columns "FY2028/29", where no word boundary sits
+between the Y and the 2, so a bounded pattern reads that document as carrying no forecast
+year at all and condemns a study that conforms.
+
+### What it deliberately does not check
+
+It does not verify that the printed range **reproduces** the run's committed band. A
+study applies a multiplier band to its own point path, so the committed figures never
+appear on the page, and searching every numeric pair for a matching ratio is the
+coincidence the waterfall instrument already measured at 42.4% of all tables — with
+several thousand committed numbers some pair lands in any band. Reconciling printed to
+committed needs the study to *declare* what it printed, on the `prose_figures`
+architecture, and that is a re-issue on four studies rather than something done in
+passing. This tells a published range from **no range at all**, which is the breach
+actually found, and it **fails safe**: a study printing a wrong range passes, and no
+study doing right work is condemned.
+
+Enforced from outside per [R-ENF-01] by `scripts/check_forward_ranges.py`. Ratcheted
+[R-ENF-02] at two with their reasons — rebuilding a delivered study is a re-issue and is
+not done in passing — and the list may only ever shorten. Population-anchored [R-ENF-04]
+both ways, off the run directories on disk: zero runs committing a band fails, and so
+does zero documents *read* across present runs, because a reader that stopped reading is
+indistinguishable from a book that prints every range. **Excluded** from the new-study
+gauntlet [R-ENF-07] with its reason, on the precedent of the other run-anchored gates: a
+new empty study has no run behind it, so there is correctly no band whose absence could
+be refused. Negative-controlled on nineteen conditions, ten red and nine clean, every
+mutation asserting that it landed — the clean half carrying **the three shipped tables
+pulled out of the delivered documents at run time rather than transcribed**, and the
+three false-positive kinds that must stay silent.
+
+**The general lesson, which is not about ranges: a rule that names two artefacts is
+enforced on whichever one somebody built a reader for.** The record half of this rule has
+been measured, scored, bootstrapped and cross-examined all week; the document half — the
+only half a reader ever sees — had no instrument at all, because the record is where the
+work happens and the page is where it lands. Where a rule requires that something be
+*published*, check the publication, not the thing that was supposed to be published.
+
+
+## [R-FCAL-01 AMENDED 07-09-2026] A published band declares its basis and its count, and a span is not a percentile
+
+[R-FCAL-01] requires every run to publish years 3–5 as ranges from its own driver-error
+distribution, and Part E's second acceptance criterion asks whether a study's forward
+drivers sit inside its own walk-forward p10–p90. **Neither sentence says what the band
+is**, and the five runs answered differently: one publishes `p10`/`p90` by name, two
+publish factors, one a span, and the fifth a low/high around a level — in five
+incompatible file shapes for one artefact. A single reader finds one of them and reports
+the other four as empty, which is what the first pass at measuring that criterion printed.
+
+**The bases are not interchangeable, and the runs themselves say so.** One records that
+percentiles are printed only at nine observations or more; another that on four, three and
+two observations "no percentile is computed — the span and the bias/MAE band are what the
+record supports". A span over three observations is the range of three numbers. Calling it
+a p10–p90 would be the free parameter the promotion rule forbids, and treating the two as
+equivalent turns a thin record into a finding about the method.
+
+Measured: of the driver-horizon cells placing a run's own forward driver outside its own
+band, **none** sits on a figure its run calls a percentile, and most rest on fewer than
+nine observations. The same evidence therefore reads NOT MET on the broad reading and
+UNMEASURED on the criterion's literal one — and reporting either alone misstates it.
+
+**The rule.** A run's published band carries, per driver and horizon, its **basis** from a
+closed list — percentile, span, factor — and the **count** behind it, in the file rather
+than in a note; and any instrument reading those bands reports the basis and count beside
+the verdict. The list is closed for [R-COC-01 AMENDED]'s reason: an open one lets a run
+name a basis nobody can check.
+
+What is **not** required is one file shape. The five differ for reasons of their own, and
+rewriting delivered runs to a common schema is a re-issue. What is required is that a
+reader can tell what it is holding — which is why the criterion instrument uses one named
+adapter per run and reports a run it cannot read rather than skipping it [R-ENF-04].
+
+It binds forward, not backward, per the ratchet discipline: the five completed runs are
+read through named adapters and declare their basis at their next run.
+
+**The general lesson, which is not about bands: a number's basis is part of the number, and
+a range is the easiest place to lose it.** Two figures printed in the same columns, meaning
+a percentile in one file and the span of three observations in another, compare cleanly and
+mean different things — and every instrument downstream inherits the confusion without ever
+seeing it. Where a rule asks for a range, ask what kind.
+
+### And the orientation too, which is the half that was actually broken
+
+The clause above requires a basis and a count, and stopped one step short.
+
+Measured against each run's own scored bias: **one run publishes its multipliers as
+actual/forecast** — a band near 1.7 where its error says the outturn came in 1.4 to 1.8
+times the forecast — while **two publish forecast/actual**, bands near 0.4 where the error
+says the forecast was a third to two-thirds of the outturn. They are reciprocals, and all
+three are labelled "multipliers to apply to a point projection". Two carry a note stating
+their convention correctly; the third carries **no note at all**, and is the one running the
+other way up.
+
+Applying one run's band as another's prose instructs moves a forecast **the wrong way** —
+halving a cost line the record says should roughly double — and nothing in either file would
+tell you.
+
+**It did not move the criterion and it did move the finding**, which is the distinction worth
+keeping. Containment of the point is orientation-independent, because reciprocation maps 1.0
+to itself, so no verdict changed. What changed is the direction every outside cell is
+reported in: the first reading of these bands called a cost line *over*-forecast at five
+years when that run's own scores say it was **under**-forecast by about two and a half times.
+Read correctly, every multiplier cell outside its band is an under-forecast — which agrees
+with the pooled driver-bias census this house already holds, rather than contradicting it.
+
+**The rule gains one field.** A published band declares its **orientation** as well as its
+basis and count — actual-over-forecast or forecast-over-actual, from that closed pair — and
+an instrument reading bands states the direction it inferred and from what. A convention
+stated in prose beside the number is not a declaration a reader can use: two of these runs
+had one, the third did not, and the prose was identical wherever it appeared.
+
+**The general lesson, which is not about multipliers: a reciprocal is the most dangerous kind
+of unit error, because both values are plausible.** A factor of 0.4 and a factor of 2.5 are
+each an ordinary thing to read in a band; neither looks wrong on the page, and only the
+arithmetic behind them says which is meant. So the check is never "does this number look
+sensible" but "against what was it computed".
+
+## [R-ASSET-01] The operating asset base is as at the latest disclosure the study read (7-Sep-2026, per instruction — a study "takes into consideration current landbank of a developer but does not account for new land added to the developer landbank")
+
+**[R-BRIDGE-01] requires the bridge to stand on the latest disclosed balance sheet, and it is
+enforced from outside by `scripts/check_bridge.py`. Nothing said the same of the operating
+asset base** — the land, the fleet, the kilns, the keys, the installed capacity — which on an
+asset-based lens is the quantity the value actually rests on. The rule was written about one
+statement, and the thing that carries the identical claim sits beside it: disclosed by the
+same company, in the same filings, on the same day, and governed by nothing.
+
+**Measured before it was argued.** The word "landbank", in any of five spellings, occurred in
+zero gate files and in zero governing documents. The one occurrence anywhere in the tree was a
+fixture inside a negative control — a defect being reproduced, which is not the same thing as
+a check for it, and is the most misleading possible way for a term to be present.
+
+**What it cost, on the study that provoked the instruction.** PHDC commits
+`land_bank_sqm_mn = 33.0`, dated 2024-12-31 and sourced to the FY2024 earnings release, inside
+a study edition-dated 2026-09-02 whose information set ends 1Q2026 and whose bridge stands on
+the 31-March-2026 balance sheet — and prints it to the delivered workbook at
+`build_xlsx_phdc.py:336`. Every other input in that study is held to a freshness discipline.
+The single quantity a developer's value is built out of was the one nothing was holding.
+
+### The test is an ordering, not a threshold
+
+The asset base must be as at, or later than, the end of the information set the study claims to
+have read. A cutoff in days would be the free parameter the promotion rule forbids, and it is
+the wrong shape regardless: **an asset base is restated when the company discloses it, not on a
+clock.** A developer that acquired no land for two years and whose latest release says so is
+conforming at any age; one whose latest release restated the number while the model kept the
+old one is not, however recent the old one looks.
+
+**The release is real and cannot be switched off in silence.** A study may declare
+`not_restated_since` — but it must NAME the later disclosures it actually checked and give a
+REASON, and an empty reason has switched the check off rather than declared it. That is the
+same shape [R-COC-01 AMENDED] uses to re-point the cost-of-debt bound and [R-ENF-01 EXTENDED]
+uses for a table's declared exceptions, reused rather than minted.
+
+### Scope is derived from the registry by import, and a class that does not resolve is RED
+
+A study is in scope when the class it commits carries an asset-based lens in
+`research_protocol.LENS_REGISTRY` — the classes whose lens set names an RNAV, a replacement
+cost or an EV per tonne. The registry is IMPORTED rather than copied, per [R-ENF-03]: a check
+holding its own copy of a standard stops testing the standard the moment one of them moves.
+Read at adoption, seven classes resolve as asset-based and eleven studies fall in scope.
+
+**A class that resolves to nothing is red, never skipped, and that clause was earned rather
+than anticipated.** TMGH writes its class with an em dash where the registry uses a comma, so a
+gate that looked the class up and moved on when it missed would have SILENTLY EXEMPTED A
+DEVELOPER — [L-355] exactly, a reader that guesses a naming convention finding nothing and
+reporting that as a result. Punctuation is folded before lookup; WORDS are not, because folding
+words would let a study opt into a different class by rewording, which is the ring-renaming
+offence [R-ENF-01 EXTENDED] already refused on the sweep register.
+
+### What it deliberately does not do
+
+It does not ask whether the asset base is CORRECT, or large enough, or consistent with the
+lens — those are depth-bar and lens questions and a gate cannot make them. It asks only whether
+the vintage of the quantity is at least as new as the information set the study itself claims,
+which is arithmetic about two dates the study has already committed.
+
+**Enforced from outside per [R-ENF-01]:** the shared instrument is `engine/asset_base.py` and
+the gate is `scripts/check_asset_base.py`. Ratcheted [R-ENF-02] at eleven in
+`engine/build_depth_audit/asset_base_outstanding.json`, WITH THEIR MEASUREMENTS rather than
+bare names, so the debt is countable rather than remembered; the list may only ever SHORTEN.
+Population-anchored [R-ENF-04] three ways — zero study directories fails, zero asset-based
+classes resolved from the registry fails (the registry read broke, rather than the book holding
+no developers), and every ticker on the ratchet must resolve to a directory on disk. Listed in
+the new-study gauntlet [R-ENF-07] as ARTEFACT-conditional, because an empty directory commits
+no class and refusing one would be a false claim about what this gate checks; it is planted
+instead with the minimum that puts it in scope. Negative-controlled by
+`scripts/check_asset_base_negative_control.py` on fifteen conditions, eleven red and four
+clean, every mutation asserting that it landed.
+
+**The general lesson, which is not about land.** A rule written about one artefact does not
+cover the artefact beside it just because the failure is identical — [R-REBUILD-01] learned
+this of a guard and a procedure, and here it arrives one level down, between two disclosures in
+the same filing. Where a rule names a DOCUMENT, ask what other quantity carries the same claim;
+the bridge and the land bank are the same sentence about currency, and only one of them had
+ever been written down.
+
+
+## [R-COC-02] The cost of equity reproduces from its own committed inputs (7-Sep-2026, per instruction — "creates wrong cost or high Ke and Kd")
+
+**[R-COC-01] enforces the CONSTRUCTION of the cost of capital thoroughly** — the glide, the
+weights, the sovereign counted once, the three-assert Kd gate, the terminal brought home on the
+last explicit factor. Measured 07-09-2026: **nothing reproduced Ke.** A search of `scripts/`
+for `ke_exp`, `cost_of_equity`, `ke_terminal`, `capm` and `rf_star +` returned no match, and
+`scripts/check_cost_of_capital.py` reads `rf_star` exactly once — for the risk-free
+normalisation identity, never for the CAPM one. A cost of equity typed three hundred basis
+points high passed every check in this repository.
+
+**Priced on ARCC's own committed grid rather than asserted.** Three hundred basis points on the
+whole cost of capital is worth −3.1% of value; a beta of 0.80 against 1.15, both sitting inside
+that study's own confidence interval, is worth −16%; and its published 95% beta interval of
+0.2505 to 1.1457 spans a fair value from 102.54 to 59.35 against a published 66.53. **The input
+carrying the widest committed uncertainty in the model was the one whose arithmetic nothing
+reproduced.**
+
+### The first draft would have condemned two studies that are right
+
+That is recorded here rather than quietly fixed, because it is the more useful half. Requiring
+`ke_terminal = rf_terminal + beta x erp_terminal` — the arithmetic `engine/cost_of_capital.py`
+itself performs — reproduces ADNOCLS, PHDC, TMGH and STC to the basis point, and misses ARCC by
+102.87bp and SCEM by 132.24bp. Both resolve EXACTLY, to six decimals, as a Hamada relevering at
+22.50%: ARCC's beta of 0.927522 unlevers to 0.900090 at a debt weight of 0.0378 and relevers to
+1.074483 at a terminal weight of 0.20; SCEM's 1.000000 unlevers to 0.995949 and relevers to
+1.188914. Per [R-COC-01], **when a check fires on work that is right it is RE-POINTED, never
+widened**, and never satisfied by moving the number.
+
+**So the finding is not a wrong number — it is an UNDECLARED CONSTRUCTION.** The book runs two
+terminal constructions, the sanctioned module performs only one of them, and no record said
+which: not one occurrence of relever, unlever, Hamada or target structure appears in either
+governing document. A reader cannot tell 1.074483 from a typing error, and until this rule
+neither could any instrument in the repository.
+
+### The rule
+
+Ke reproduces under a construction the record NAMES, from a CLOSED list — `same_beta` or
+`relevered` — closed for [R-COC-01 AMENDED]'s reason, that an open list lets any study opt out
+by inventing one. A relevered terminal must STATE the tax rate it was relevered at. The module
+solves the implied rate and reports it inside the refusal so the fix is a single line, but it
+NEVER accepts it: **a rate solved out of the answer it explains is the reverse-engineered
+construction this house prohibits outright**, arriving through a side door.
+
+**Tolerance is float noise, not a chosen bound.** This is an identity, so a study that actually
+computed its Ke this way agrees to double precision; there is no rounding allowance to set and
+therefore no free parameter to argue about. A record storing rounded figures is its own failure
+and is reported as that, rather than absorbed by widening the tolerance until it passes.
+
+### The gate found a study the measurement before it missed
+
+The hand-written probe that produced the finding searched `cost_of_capital_record` alone and
+read six studies. The gate searches three spellings and reads seven — STC. [L-355] again, and
+this time caught by the instrument rather than by a person, which is the whole argument for
+moving a measurement into code even when a person has already run it.
+
+**Enforced from outside per [R-ENF-01]:** the shared instrument is `engine/ke_reproduction.py`
+and the gate is `scripts/check_ke_reproduction.py`. `engine/cost_of_capital.py` now EMITS
+`ke_terminal_construction`, so every record written from here on declares itself and the
+outstanding list is closed by declaration rather than by rebuild. Ratcheted [R-ENF-02] in
+`engine/build_depth_audit/ke_outstanding.json` at seven and already pruned to six, each entry
+naming WHAT THE RECORD REPRODUCES UNDER because the fix is one declared field and an entry that
+names its own fix is an entry somebody can close; FERTIGLOBE is listed UNREADABLE rather than
+clean, since a record carrying no `rf_star`, beta, ERP or `ke_exp` cannot be reproduced at all
+and an absent answer is not a clean one [R-ENF-04]. Listed in the new-study gauntlet
+[R-ENF-07] as ARTEFACT-conditional. Negative-controlled by
+`scripts/check_ke_reproduction_negative_control.py` on fourteen conditions, eleven red and
+three clean — the clean half carrying ARCC's relevered terminal EXACTLY as it stands, declared,
+which the first draft condemned.
+
+**The general lesson, which is not about discount rates.** A check that fires on correct work
+has usually found a construction nobody wrote down, not an error in the work. The instinct is
+to widen the bound until the honest cases pass, and that deletes the check; the repair is to
+make the construction DECLARABLE and then require the declaration, which leaves the check
+stronger than it found it and leaves the reader able to tell two right answers apart.
+
+
+## [R-GAP-03] The gap a reader sees is audited, not only the gap the study was struck at (7-Sep-2026)
+
+**The protocol already named this hole in its own words** — *"the gap a READER sees and the gap
+the gate reports are two different numbers, each honest about a different thing, and refreshing
+a spot moves the reader's and not the gate's"* — and gave it no instrument, saying instead that
+it *"closes when the campaign publishes the book together"*. **That is a plan, not a check.** It
+cannot go red, it cannot shorten, and nothing would notice if it grew. A number living in a
+status note is a number that rots [R-DOC-02], and so is a promise.
+
+**Two populations, and only one of them was ever audited.** [R-GAP-01] audits a STUDY against
+the price it was STRUCK at, reads each study's own committed numbers, and its subject is
+therefore the twenty-two names that commit an answer. The site publishes ninety. Measured
+07-09-2026 through a real JavaScript load of `assets/data.js` [R-ENF-03], every one of the
+ninety gaps is computable and fifty-eight of them exceed ten per cent either way, of which two
+are currently audited. Thirty-six have no study directory at all, which is the population
+`scripts/check_published_coverage.py` already tracks.
+
+### The rest is not a review going stale — it is a PAGE going stale
+
+SCEM publishes 53.12 on the site against a study central of 123.27, so a reader computes −46.1%
+where the study holds +25.1%. TMGH publishes 147.12 against 91.83, +50.4% against −6.1%. AMOC
+5.95 against 11.40, −56.1% against −15.8%. SWDY 69.73 against 55.48; ARCC 54.65 against 66.53;
+PHDC 15.89 against 17.85. **On SCEM and TMGH the SIGN is opposite** — the page tells a reader
+the company is expensive while the house holds it cheap, and the reader has no way to know.
+
+**Why, and it is nobody's carelessness.** [R-GAP-02] holds a study from publishing while its
+fair value disagrees with the market by more than ten per cent, adopted precisely to keep an
+UNAUDITED number away from a reader. Last week's rebuilds corrected these studies, and every
+corrected number now sits behind that hold — **so the hold is keeping the AUDITED number away
+from the reader and leaving the UNAUDITED one on the page.** Each rule is right and the joint
+condition belongs to neither, which is [R-MACRO-01 AMENDED 06-09-2026]'s own lesson about two
+rules governing one quantity from different directions, arriving where nobody looked.
+
+**Nothing here licenses a publish.** [R-GAP-02] stands unchanged, publishing to the live site
+remains a separate explicitly-requested step, and no fair value moves toward any price because
+of this rule. What is established is the COST of the hold, measured rather than asserted, in a
+list that can only shorten.
+
+### Enforcement
+
+`scripts/check_published_gap.py` takes its population from the site rather than from the study
+directories, and a run reading zero published names FAILS [R-ENF-04]. An unreadable answer
+fails rather than being skipped, for the reason it does everywhere else: unreadability would
+otherwise be the cheapest route past the check. **The trigger and the tolerance are borrowed,
+never minted** — ten per cent either way is [R-GAP-01]'s own audit trigger and the five-point
+staleness allowance on an audited gap is [R-GAP-01 AMENDED]'s, because inventing a second
+cutoff for the same question would be a free parameter and would let two gates disagree about
+what a large gap is. It IMPORTS [R-GAP-01]'s own review readers rather than modelling them
+[R-ENF-03]: a checker that models another checker's parser is checking a different file from
+the one that ships. Ratcheted [R-ENF-02] at fifty-six in
+`engine/build_depth_audit/published_gap_outstanding.json`, every entry carrying its measured
+gap, and the ratchet text SPLITS THE TWO KINDS OF DEBT because they are not the same debt: a
+name with no study directory is work not yet done, and a name whose study was rebuilt while the
+page was held is work done and not delivered.
+
+**The general lesson, which is not about prices: a gate protects the thing it takes as its
+subject, and every gate here took the study.** The artefact a reader actually receives — one
+number on one page — was checked for its technical read, its band record, its two-part stamps
+and its chart overlay, and never once for whether the valuation printed on it was the valuation
+this house currently holds. Where a rule exists to protect somebody, check the thing that
+reaches them.
+
+
+## [R-REPAIR-01] A red gate is worked until it is green (7-Sep-2026, per instruction — a framework "that if a study fails a gate, it has the ability to work until it fixes it")
+
+**Every other instrument in this repository answers "is something wrong?". Nothing answered
+"then fix it".** At twenty-four studies a person reads the output; at ninety they do not, and
+the evidence that they do not is already committed — forty-seven ratchet entries accumulated on
+five studies, each one a real defect somebody saw, recorded, and did not close. A ratchet is
+the right way to carry a known debt and the wrong way to discover you have stopped paying it
+down.
+
+### Three prohibitions, asserted after every run rather than promised
+
+Each of them would otherwise turn the framework into a machine for manufacturing green, and the
+assertion is made by comparing the working tree before a run against the tree after it.
+
+1. **It may not edit a gate, a negative control or a ratchet.** Passing a check by weakening it
+   is the defect wearing the fix's clothes, and it is the single most likely thing an automated
+   repairer does.
+2. **It may not move a fair value.** A price is evidence that a defect may exist, never a
+   target; a value adjusted to meet a quote is the reverse-engineered rate this house prohibits
+   outright, and [R-GAP-01] says so in terms about the human version of the same act.
+3. **It may not invent an input.** A missing figure is recorded as missing and escalated, with
+   SIGCM clauses 1 and 8 binding on the loop exactly as they bind on a person.
+
+### What it repairs is deliberately small
+
+It repairs only where the gate that failed NAMES the fix deterministically — where the check
+has already done the arithmetic and the repair is transcription. **A loop that guesses is worse
+than no loop, because its output looks like work.** Everything else becomes a ranked work order
+or an escalation with the gate's own words attached, which is the honest output and is the same
+discipline [R-IND-01] puts on a question.
+
+**And a fix goes into the GENERATOR, never into the artefact.** Writing a field straight into a
+committed numbers file makes the gate green and the next regeneration silently drops it — which
+`scripts/check_numbers_generators.py` would then catch as drift, correctly, one rebuild later
+and with nothing to say why. A repair that does not survive a rebuild is not a repair.
+
+**Its first run caught its own author twice**, which is the argument for it rather than an
+embarrassment beside it: `scripts/check_exemplar_debt.py` went red because three standards
+adopted that day had put the exemplar onto four new ratchets with nobody deciding to take that
+debt on, and `scripts/check_protocol_sync.py` went red because five rule identifiers were cited
+in code and defined in neither governing document — this rule among them.
+
+The loop is `scripts/repair_loop.py`. **Enforcement of the rule itself is prose and that is said
+plainly** [R-ENF-01]: whether an operator ran the loop is not a property of the repository a
+checker can read, and the loop's own three prohibitions are what is mechanically enforced.
+
+**The general lesson, which is not about repair: a system that only detects accumulates debt at
+exactly the rate it detects, and the debt is invisible because every individual entry is
+legitimate.** Nothing on those forty-seven entries was wrong to record; each was a correct
+decision to carry a known defect rather than fix it in passing. The failure is arithmetic
+rather than judgement — detection scales with instruments and repair scales with attention, and
+only one of those two grows when a book goes from twenty-four names to ninety.
+
+
+## [R-PROOF-01] Every error this house claims to catch is planted and caught (7-Sep-2026)
+
+**Sixty-eight gates is a number, not evidence.** The question anybody sensible asks — a
+principal, an investor, a reader — is not "how many checks do you have" but "if this specific
+thing went wrong, would you find out". That question has an answer only if somebody makes the
+specific thing go wrong.
+
+### How it differs from its two neighbours, since all three plant a defect
+
+`scripts/check_new_study_gauntlet.py` [R-ENF-07] asks whether a NEW STUDY can walk past the
+whole set — a property of the SYSTEM, which no gate inside it can see. A NEGATIVE CONTROL asks
+whether ONE GATE fires on its own condition — a property of that gate, and it lives beside it.
+**This asks whether a NAMED REAL-WORLD ERROR, described in the words somebody would actually
+use to complain about it, is caught by anything at all.** The three are not substitutes and the
+distinction is the whole design: the first two are indexed by the instrument, and this one is
+indexed by the complaint.
+
+**The catalogue is the specification and the harness is the proof.** A catalogued error that no
+gate catches is RED. So adding an error somebody has thought of is how the specification grows,
+and the build stays red until something catches it — which is the exact opposite of a wish
+list, where adding an item costs nothing and obliges nobody.
+
+### Three steps per case, and the first is what makes it evidence
+
+The gate must be GREEN on the unmutated sandbox, so that a red afterwards was caused by the
+error rather than by something already broken. The mutation must ASSERT THAT IT LANDED — this
+project has four times caught a control passing a fixture that never injected its condition,
+reporting green and proving only that nothing had changed. And the gate must go RED **and NAME
+its subject**, because a red run that cannot say which name it is about does not tell an
+operator what to do.
+
+**Nothing is written into the real tree.** The repository is copied once and every mutation and
+every restore happens inside the copy, so there is no undo that has to run — which is
+[R-ENF-01 EXTENDED]'s own finding after a negative control wrote its fixture into a live
+register and a `finally` did not survive.
+
+**Seeded with the principal's own three errors**, in their own words: a study that takes the
+current land bank of a developer and does not account for new land added to it; a study that
+creates a wrong or inflated cost of equity; a study that publishes an erroneous fair value at
+sixty per cent of the current price. **On its first run one of the three was caught by anything
+at all, and both misses were findings rather than harness noise** — which is the harness
+working rather than failing, and is the whole reason the first step of each case is to prove
+the gate green before the mutation lands.
+
+The cost-of-equity error was caught, by [R-COC-02]'s gate. The land-bank error was NOT, and the
+reason became [R-ENF-08] below: the study it was planted in sits on [R-ASSET-01]'s own ratchet,
+a ratchet entry was a TICKER, and the gate therefore skipped that study whole — **the very
+defect a rule was adopted on was undetectable on the study that provoked it.** The third case's
+fixture DID NOT LAND, which is the harness reporting its own failure rather than a clean result
+and is the failure mode this project keeps catching: a control that never injects its condition
+reports green and proves only that nothing has changed. Both were closed rather than argued
+with, and the catalogue's own discipline moved with them — **an error is planted on a study
+that does not already carry that exact defect on a ratchet**, because a recorded, excused debt
+is a defect the house has knowingly accepted and planting it proves nothing about detection.
+
+Read the catalogue live with `python3 scripts/check_error_injection.py` — never from this
+account, because both halves move as gates are added and errors are named.
+
+**The general lesson, which is not about injection: a claim about what a system detects is
+untested until somebody supplies the thing it is supposed to detect.** And the right index for
+the catalogue is the natural language of the complaint — what a person would actually say went
+wrong — rather than the internal name of the check, because a catalogue organised by instrument
+can only ever contain the errors somebody had already built an instrument for.
+
+
+## [R-ENF-08] A ratchet excuses the failure it recorded, not every failure of its class (7-Sep-2026)
+
+**Found by the injection harness on its first run, which is the argument for that harness.** A
+stale-asset-base error was planted in PHDC — the very study [R-ASSET-01] had been adopted on —
+the mutation landed, the gate ran, and the gate DID NOT GO RED. It was right not to, by its own
+construction: PHDC is on the asset-base ratchet, a ratchet entry was a TICKER, and the gate
+therefore skipped that study entirely.
+
+**So every ratchet in this repository was also a blind spot.** A study listed for one known
+defect was excused from its whole gate and could acquire a SECOND, DIFFERENT defect of the same
+class with nothing to catch it. That is not a defect in any ratchet — each was seeded correctly,
+each may only shorten, and [R-ENF-02] never said otherwise because nobody had asked. It is a
+property of what an ENTRY IS.
+
+**The fix is not to remove the ratchets.** [R-ENF-02] exists because a check that is red from
+the day it is written is one everybody learns to ignore, and that reasoning is untouched here.
+What changes is the GRANULARITY: an entry excuses ONE FAILURE, named, and a DIFFERENT failure on
+the same study is a NEW breach.
+
+### The comparison is on shape, not on text, and that was forced rather than chosen
+
+A gate's failure message carries live figures — a date, a gap in per cent, a basis-point
+difference — so an exact-string match would go red every time a price moved, which is the
+permanently-red check [R-ENF-02] forbids. Stripping the numbers leaves the CLAIM, which is the
+thing the ratchet was seeded against: *asset base as at DATE is behind the information set
+ending PERIOD* is one failure however the dates move, while *the record names no disclosure* is
+a different one and must go red. **The signature is readable rather than a hash**, deliberately:
+a reader has to be able to look at a stored signature and see which failure it names, because a
+ratchet entry nobody can read is an entry nobody can close.
+
+**A ratchet that records a MAGNITUDE needs a second test, because the shape of its message never
+changes.** `scripts/check_published_gap.py` is that case and the harness demonstrated it: a name
+breaching the gap trigger at +10.8% and the same name breaching it at −60% produce the identical
+sentence, so a fingerprint alone excuses both — which is exactly what happened when the second
+was planted and ignored. An entry that records a deviation excuses a deviation UP TO THAT SIZE,
+and **the tolerance is supplied by the caller and must be one the house already uses for that
+quantity**, since minting a second cutoff here would be the free parameter the promotion rule
+forbids.
+
+### What it deliberately does not do
+
+It does not require an entry to carry a signature. An entry with none behaves exactly as every
+ratchet in this repository did before — excusing the study — because retro-fitting signatures
+onto forty-seven ratchets is a re-issue, and a rule that made every existing list red is the
+permanently-red check this repository forbids. **It binds forward**: a ratchet whose entries
+carry signatures gets the finer check, and the ratchets of the rules adopted the same day carry
+them, each entry on the asset-base and cost-of-equity lists carrying a signature and each entry
+on the published-gap list carrying a magnitude.
+
+**Enforced from outside per [R-ENF-01]:** `engine/ratchet_shape.py` is the shared instrument and
+the gates call it rather than each implementing a comparison of its own [R-ENF-03] — the
+prose-figures architecture applied to exemptions, because twenty hand-rolled fingerprint
+routines would drift into twenty different notions of what counts as the same failure. Its live
+evidence is the injection harness [R-PROOF-01], which plants a materially worse breach on a
+LISTED name and requires the run to go red; the signature half is exercised by the gates that
+carry it. It has no negative control of its own, and that is stated rather than implied.
+
+**The general lesson, which is not about ratchets: an exemption is granted to a SUBJECT and is
+spent by a CLAIM, and nothing makes you notice the difference until somebody tries the second
+claim.** Every allowance in this repository — a ratchet entry, a declared exception, an accepted
+staleness, a named absence — was written down against one particular thing being wrong, and
+every one of them is keyed to the name of the work rather than to the fault. Where a list
+excuses work, ask whether it excuses the thing it recorded or everything that thing could ever
+do.
+
+## [R-ASSET-02] The operating asset base is read by arithmetic, not merely recorded and printed (7-Sep-2026)
+
+**This corrects a claim made the same morning.** [R-ASSET-01] and `check_asset_base.py` were
+built against the principal's own words — a study that "takes into consideration current
+landbank of a developer but does not account for new land added" — and the error was reported
+caught. It is caught for VINTAGE ONLY. The gate establishes that the quantity is no older than
+the information set the study says it read, and says nothing whatever about whether any
+arithmetic in the study consumes it.
+
+**The two halves are different failures and only one was closed.** A land bank registered at
+last year's date and driving the revenue model is stale, and that is what [R-ASSET-01] refuses.
+A land bank registered at TODAY's date, printed in a table, and read by no line of the model is
+DECORATIVE: new land raises the value by zero and exhausted land lowers it by zero, and the
+vintage gate passes it with the date perfectly fresh. The principal's sentence covers both, and
+reporting the error closed on the strength of the first is the mistake this rule exists to
+correct.
+
+**Measured**: `PHDC` commits `land_bank_sqm_mn`, prints it to the delivered workbook as "Land
+bank (mn sqm)", and no arithmetic anywhere reads it; `TMGH` binds `landbank` out of its own key
+performance indicators and then uses the local name sixteen lines later as a `%` format
+argument inside a sentence — the quantity reaches a reader and reaches nothing else.
+
+**The test is USE, and use is harder to read than presence.** `scripts/check_asset_base_wired.py`
+requires a committed asset-base quantity to appear in a line that is CODE rather than prose, in
+a file that is not a document or figure builder, and — where the line only BINDS the quantity to
+a local name — follows that local name: if every one of ITS uses is presentational too, the site
+is presentational. The first draft stopped at the binding and called TMGH wired.
+
+**The general lesson, which is not about land: a rule can be enforced on the half of itself that
+is easy to measure, and the gate will then be correct, negative-controlled and beside the
+point.** Vintage is a date comparison; consumption is a question about the model. Where an
+instruction names a quantity, ask both whether it is current and whether anything reads it.
+
+## [R-STD-02] A standard version is a conformance claim, and a rebuild may not re-assert it (7-Sep-2026)
+
+[R-STD-01] stamps every study with the standard it was built to, so a book-wide re-issue has a
+finite queue and a countable remainder. `research_protocol.STANDARD_VERSION_NOTE` enumerates what
+a study at that version DOES — a v2 cost of capital, a conforming beta, a ground-up forecast, the
+three gates called in its own code, a dated gap review, and since 07-09-2026 an asset-base record
+and a declared terminal construction.
+
+**A study that takes the stamp from the live constant re-asserts every one of those claims on
+every rebuild, with nobody deciding.** The stamp is written by the generator; the requirements are
+recorded in the ratchets; and nothing compared them. A study listed as not meeting a requirement
+could carry a stamp saying it does, and both records were individually correct.
+
+**The rule**: `scripts/check_standard_claim.py` refuses a study whose claimed version is at or
+above a version whose requirements that study is RATCHETED AGAINST. Requirements are keyed to the
+ratchet that records who does not meet them, and the mapping is added by whoever bumps the
+version, in the same commit — [R-ENF-02]'s discipline applied to a claim instead of to a debt. A
+study reading zero claims across the book FAILS [R-ENF-04], and a named ratchet that is not on
+disk FAILS, because a gate measuring against nothing reports clean.
+
+**It is EXCLUDED from the new-study gauntlet with its reason**: its subject is the RELATION
+between a claim and a ratchet elsewhere, and a planted study is on no ratchet, so it conforms by
+construction — correctly, since a new study owes no debt.
+
+**The general lesson, which is not about version numbers: a stamp taken from a live constant is
+not a record, it is a re-assertion.** It says what the code believes today rather than what the
+work was held to, and the difference is invisible until somebody asks which of the two the reader
+is entitled to rely on.
+
 ---
 
 ## [R-STYLE-01] ANSWERS ARE SHORT AND THE WORDS ARE PLAIN
@@ -3707,3 +5283,670 @@ exemption is only as narrow as the cases that prove it cannot be widened.
 GATE IS ABOUT IS NOT A RELEASE, IT IS A FORM.** The dissent requirement was real work and
 it still asked the suspect to sign its own discharge. Where a gate exists because a
 judgement may be wrong, the release has to come from somewhere that judgement did not.
+
+---
+
+## [R-GAP-04] A gap is not genuine until the hunt for our own error has been run, recorded, and come back empty (09-Sep-2026, per instruction — "CLOSE THE GAP. MAKE THE EFFORT. MAKE THAT A RULE")
+
+*The instruction in full, because the rule exists because of it and its force is in its own
+words:*
+
+> "With PHAR, EGCH and SWDY and ARCC. You need to try hard to close the gap and not just
+> refer tpo me. Refering to me is the easy way out. You are a superior AI model that
+> investgates till its find its mistake. CLOSE THE GAP. MAKE THE EFFORT. MAKE THAT A RULE"
+
+### The rule
+
+**A valuation gap is never reported as GENUINE, never written up as THE GAP STANDS, and
+never REFERRED to the principal, until an exhaustive search for OUR OWN ERROR has been run,
+has been recorded, and has come back empty.**
+
+**Referral is a last resort that must be EARNED and EVIDENCED.** It is not a default, it is
+not a conclusion, and it is not where a hard afternoon gets put down. The referral carries
+the search that entitles it: **what was examined, what each candidate is worth IN CURRENCY
+PER SHARE, and what would falsify each.** A gap review that arrives at *"we do not know
+which"* without that record is not finished — **it is unstarted.**
+
+This does not repeal [R-VCAL-02 CLAUSE THREE]'s routing or [R-GAP-02 CLAUSE FOUR]'s
+authorisation. Both still stand and both still stop the work at the same places. What this
+rule fixes is what must be TRUE before either of them is reached: a referral is the end of a
+search, and until the search exists there is nothing to refer.
+
+### What the search must cover, at minimum, and every candidate priced
+
+1. **The study's own arithmetic, worked BACKWARDS from the market price, line by line.**
+   [R-ENF-05]'s `engine/reverse_read.py` is the shared construction so that "the rate the
+   price implies" means one thing across the book. The question the reverse read answers is
+   not *how far apart are we* but *what would have to be true* — and whether that is a
+   belief somebody could hold or an impossibility.
+2. **Every typed constant against the model's own derived equivalent.** A figure typed into
+   a model that already computes the same quantity somewhere else is a defect until it is
+   shown not to be. Two of them were sitting in one file on adoption day.
+3. **Every source string against what the filings actually disclose.** A study that says a
+   disclosure does not exist while the issuer publishes it **has a hole in its sweep**, and
+   the hole is reported whatever the number turns out to be worth — the finding is about the
+   sweep, not about the price.
+4. **Standalone against consolidated, on every ratio.** A parent-only numerator over a
+   consolidated denominator is not a small error; it is a different company.
+5. **Each lens against the model's own forecast of the quantity that lens consumes.** A lens
+   fed a typed net debt or a typed book equity while the same model forecasts both is not an
+   independent read, it is a second answer to a question already answered.
+6. **The contested register tested for a lean INSIDE a category, not only across the file.**
+   A whole-file sign test is passed by a file that resolves every judgement of one kind one
+   way and every judgement of another kind the other way. Categories, then the file.
+
+### What this rule does NOT do, and this is the half to get right
+
+**IT DOES NOT WEAKEN, QUALIFY, OR CREATE AN EXCEPTION TO THE STANDING PROHIBITION ON MOVING
+A FAIR VALUE TOWARD THE PRICE. THAT PROHIBITION IS ABSOLUTE, AND IT IS RESTATED HERE, INSIDE
+THIS RULE, BECAUSE THE TWO ARE EASY TO CONFUSE.** A rate solved out of the price may not
+re-enter a valuation [R-ENF-05]; a terminal reverse-engineered from the answer it explains
+is refused outright [R-COC-02]; and no correction is adopted because of where it lands.
+
+**Closing the gap is the OUTCOME of finding a real defect. It is never the aim.** A defect
+found under this rule is corrected **identically** whether it moves the answer toward the
+market or away from it. A session that searched hard, found four defects, and finished
+further from the price than it started has obeyed this rule completely. A session that
+stopped searching the moment the number got close has broken it, and the fact that its
+answer improved is not a defence.
+
+A future session reading only this rule must not conclude that agreement with the market is
+the objective. **The objective is to be right. The market is evidence that something may be
+wrong, and it is the only piece of evidence in the room that is not ours.**
+
+### The evidence it was adopted on, and it points BOTH WAYS
+
+Four names were interrogated from outside their own studies on 09-Sep-2026 under [R-GAP-01],
+and the record is `engine/gap_challenges/CHALLENGE_FINDINGS_09-09-2026.md` — internal,
+applied to nothing, moving no fair value. **Three findings anchor this rule:**
+
+- **ELEC.** The published central is almost entirely FLOORS: the cash-flow lens contributes
+  1.2% of it, `eq_dcf = max(eq_dcf_unfloored, 0.0)` pins the rest, and the unfloored central
+  is negative. And the study's OWN stated mechanism is falsified by the company's own
+  quarterly record — the forecast margin is justified as under-absorption at low volume,
+  while two filed quarters ran EBITDA margins of 28.8% and 23.3% at revenue BELOW the
+  study's own forecast quarterly rate. Lower volume, much higher margin. Priced both ways
+  the swing is EGP 2.59 a share, several times the entire published fair value.
+- **SWDY.** The delivered study's driver says *"no order book or backlog figure is disclosed
+  in any of the audited filings or the Q1-2026 interim"*. **Six of the issuer's own quarterly
+  earnings releases — already downloaded into the study's own walk-forward filings
+  directory, which `.gitignore` excludes from the repository — disclose it**, 196bn rising
+  to 346bn, with the E&C figure of EGP 346bn as at 30 June 2026 read directly off the
+  Q2-2026 release. The measurement is recorded in
+  `engine/gap_challenges/CHALLENGE_FINDINGS_09-09-2026.md`, which is committed; the filings
+  themselves are not, and this account cites the record rather than the directory for that
+  reason. The taper that sentence defends is worth 0.17% of the gap, and the finding was
+  reported anyway, because the defect is the sweep.
+- **PHAR.** The largest single driver contradicts its own committed source string: the
+  domestic price escalator runs below the house inflation ladder while the source it cites
+  says price growth tracks inflation with no real gain — a permanent, compounding real price
+  cut that sets the terminal margin.
+
+**And the corrections ran in both directions, which is the evidence that this rule does not
+bias the search.** PHAR's largest item points AT the price and its associates finding — the
+sharpest open item the 08-Sep review had — points AWAY from it, resolving at −12.29 rather
+than the −13.65 that review carried. On ELEC every honest correction except the margin
+judgement **widens** the gap: the typed net debt, the typed book equity, the composite beta,
+the vendor-difference depreciation, the terminal working-capital intensity. On SWDY the
+direction count came out 6 up and 7 down. **A search that only ever found reasons to agree
+with the market would be a different and much worse instrument, and this is the record that
+it is not one.**
+
+**PHAR is also where clause 6 comes from.** Its contested register passed a whole-file sign
+test at 10 up and 10 down — and the split was STRUCTURAL underneath: every ratio judgement
+resolved generously, every price and escalator judgement severely. The unanimity was inside
+the price lines, not across the file, **and a whole-file test cannot see it.**
+
+### Enforcement
+
+Per [R-ENF-01] a rule that can be checked from outside must be. **This one stays prose, and
+the reason is stated rather than dressed up: the rule's subject is EFFORT, and no script can
+read how hard somebody looked.** It is the same shape as [R-STYLE-01], which is prose for
+the same reason and says so.
+
+What IS mechanical is the ARTEFACT, and the two instruments that would carry it already
+exist and are named here so a future session amends them rather than inventing a third:
+`scripts/check_valuation_gap.py`, which already reads each gap review and refuses one that
+skips a required heading, and `scripts/check_escalations.py`, which already refuses a
+question reaching the principal that does not record the routes it ran. **Neither is amended
+in this commit, deliberately** — a required heading and an escalation class are rule
+substance, and the substance of a standing rule is the principal's to set. What binds today
+is the text, and the backstop is the same one [R-STYLE-01] names: the principal saying so
+when it slips.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT VALUATION GAPS: THE CHEAPEST WRONG ANSWER IN ANY
+REVIEW IS "WE CHECKED THE PROCESS AND THE PROCESS WAS FOLLOWED".** Every gate in this
+repository checks a process, and each of them passed all four of these studies. **All three
+of the findings above were found by challenging the ANSWER, and none of them by re-walking
+the process.**
+
+## [R-DOC-03] EVERY VALUATION DOCUMENT CARRIES TWO DATES, AND A RECALIBRATION ISSUES A NEW ONE
+
+**Adopted 10 September 2026, by instruction.**
+
+**THE RULE.** Every delivered valuation document states, at the top, both of these and
+labels them:
+
+1. **PRICE DATE** — the date of the latest known close the valuation is measured against.
+2. **ISSUE DATE** — the day that edition of the document was issued.
+
+And: **whenever a name is recalibrated, a NEW document is issued carrying its own issue
+date.** An existing document is never amended in place to carry a newer answer.
+
+**WHAT THIS WAS ADOPTED FROM.** On 10 September 2026 the principal was sent a package of
+ten recalibrated studies for review. The AMOC package contained the **8 August** edition
+while the current one is **3 September**, because the file was chosen by MODIFICATION TIME
+rather than by edition: an old file with a fresh timestamp beat a newer one. The desk then
+told the principal, in writing, that AMOC's paper was from 8 August and still stated the
+number its model publishes today — a statement about the wrong document entirely. The
+principal's reply was the test that caught it: *"So you mean that the walk forward and the
+review of the document did not change one single thing. Not one single thing? I find that
+hard to believe. It is impossible."*
+
+**THE GENERAL SHAPE, WHICH IS NOT ABOUT DELIVERY PACKAGES.** A valuation states a number
+struck against a price, and those are two facts with two dates that are not the same date.
+A document carrying one date leaves the reader to work out which one it is, and a reader
+who guesses wrong cannot tell a current document from a superseded one. This is [L-066]
+seen from the reader's side: there, a check opened a superseded file and reported its
+defects as current; here, a reader opens a superseded document and reads its answer as
+current. In both cases the file was perfectly readable and nothing said which edition it
+was.
+
+**WHY BOTH DATES AND NOT JUST THE ISSUE DATE.** The two genuinely diverge and the
+divergence is information. ARCC is struck at a 3 September price while its valuation date
+is 30 June 2026 — the date of the latest disclosed balance sheet — and its current edition
+was issued on 9 September. Three different dates, all true, all meaning different things.
+A document that prints one of them and calls it "as of" is telling the reader something
+they cannot act on.
+
+**WHERE IT IS RESOLVED, AND WHAT IS FORBIDDEN.** `engine/doc_dates.py` is the one reader.
+The price date is the spot input's own registered date, then the study's committed
+`spot_date`, then the supplied-price file the price gate itself reads — never
+`meta.asof`, which on several studies is the balance-sheet date and means something else.
+The issue date is the study's own `edition.py`, then the date stamped into the delivered
+document's filename. **NEITHER IS EVER TAKEN FROM A FILE'S MODIFICATION TIME**, which is
+the defect this rule was adopted from. A study whose spot carries no date prints
+"not recorded" rather than borrowing a date that means something else — an absent date is
+not a clean one [R-ENF-04].
+## [R-COC-03] COUNTRY RISK IS CHARGED ONCE, AND IT IS NEVER MULTIPLIED BY BETA (10-Sep-2026, per instruction — the SWDY study read beside an EFG Hermes valuation page)
+
+**THE RULE.** The sanctioned cost of equity is
+
+    Ke = rf* + beta x ERP_mature + lambda x CRP
+
+and nothing in this repository builds one any other way. `CRP` is the sovereign's own
+default spread scaled to equity volatility by Damodaran's equity-to-bond factor of 1.52;
+`ERP_mature` is what is left of the published total after that country premium is taken
+out. Both are DERIVED from figures the study already registers, so **no new number enters
+the repository and the two halves cannot drift apart from the total they came from**.
+`rf*` already has the sovereign default spread netted out of it, so the country appears in
+the equation **exactly once**, at lambda, where a person has to choose it rather than
+where the algebra puts it.
+
+**LAMBDA IS WHERE THE OPERATIONS ARE, AND IT DEFAULTS TO 1.0.** A company that earns what
+its home market earns carries its home sovereign's premium in full. A lambda below 1.0 is
+a claim that most of the money is made somewhere else, it is taken from an **audited
+geographic disclosure** and never from company commentary, and it **REQUIRES a stated
+`crp_foreign`** for the country risk of wherever the rest of the money is earned. Set both
+or neither: a lambda below 1.0 with `crp_foreign` left at zero prices those operations as
+if they sat in a mature market, which is the flattering half of the argument, and the
+module refuses it rather than warning about it.
+
+**WHAT IT WAS ADOPTED FROM.** Every study in the book built `Ke = rf* + beta x ERP_total`.
+A published country equity risk premium is a **TOTAL** — the mature-market premium plus
+the country premium — so multiplying the whole of it by beta charges the COUNTRY component
+at beta as well. That asserts that a high-beta company bears proportionally more sovereign
+risk than a low-beta one in the same country. **Nobody ever made that claim.** It was
+never argued, never written down and never disclosed; it fell out of the algebra, and it
+survived because the algebra is the shape every textbook prints. Beta measures a stock's
+exposure to its own equity market. It is not a measure of exposure to a sovereign, and
+there is no reason a levered industrial should be more exposed to a devaluation than the
+index it is levered against.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It is **not** a scaling of the mature-market
+premium. The retired line was `erp = erp * lambda_country`, which shrank the equity-market
+premium too — saying a company with foreign revenue bears less EQUITY risk, which is not a
+thing anyone believes and was never the intention. That line is gone rather than
+parameterised. It does not touch the risk-free build, the cost of debt, the sovereign
+floor of [R-COC-01 AMENDED], or the weights. It does not repeal [R-COC-02]: a cost of
+equity still has to reproduce from its own committed inputs, and this rule changes which
+inputs those are, not whether they are checked.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/cost_of_capital.py` — `split_erp()` derives the
+pair and refuses a split whose mature remainder is not positive (which is what a
+rating-basis spread read against a market-basis total does, and it is better to be told
+than to publish it); `cost_of_equity()` performs the one sanctioned build and returns the
+components, so a study publishes a cost of equity a reader can take apart rather than a
+single number; `schedule()` splits the terminal premium the same way, a terminal premium
+being a total exactly as the explicit-window one is. `engine/ke_reproduction.py` gains a
+third named terminal construction, **`split_premium`**, on the same closed list as
+`same_beta` and `relevered`; a `split_premium` record must carry the split it used,
+because solving for the split inside the checker would make the check reproduce whatever
+it was handed.
+
+**THE OLD CONSTRUCTIONS STAY REPRODUCIBLE, AND THAT IS DELIBERATE.** `ke_explicit()`
+continues to reproduce the retired identity so that records struck before 10-Sep-2026
+still verify against **what they actually did**. Rewriting them to satisfy a rule adopted
+afterwards would be rewriting history, which is the append-only discipline the ledgers run
+on. A record struck AFTER that date and reproducing only under the retired construction is
+a defect, not an alternative.
+
+**THE SIZE OF IT, AS A DATED MEASUREMENT.** On SWDY on 10-Sep-2026 the correction moved
+the cost of equity from 30.44% to 28.09% — 235 basis points that had been charged to
+shareholders because of the order of two operations. Read it live from the study's own
+cost-of-capital record; it is a fitted figure and it moves.
+
+
+## [R-MACRO-02] A TERMINAL REAL GROWTH IS CAPPED BY THE ECONOMY, AND THE FISHER IDENTITY IS EXACT (10-Sep-2026, per instruction — the same review)
+
+**CLAUSE ONE — THE CAP.** A market's macro path carries `real_gdp_lt`, the economy's
+long-run real growth, and `terminal_growth()` **REFUSES** a terminal real rate at or above
+it. A company compounding faster than its economy forever becomes the economy; that is a
+claim about the country rather than about the company, and it has to be argued in the
+path's own source rather than typed into a valuation. **The gap between the stated real
+rate and the cap is the share of the economy the company is assumed to cede, and the rule
+requires it to be stated rather than left implied** — a study sitting a hair under the cap
+is making a much larger claim than one sitting well below it, and until now those two
+looked identical in the document.
+
+**CLAUSE TWO — THE IDENTITY IS EXACT IN BOTH DIRECTIONS.** `terminal_growth()` returned
+`inflation + real`, the first-order approximation, while a study deriving the real rate
+back out of a nominal one used `(1 + g) / (1 + pi) - 1`, which is the exact inverse. **The
+two readers of one number disagreed BY CONSTRUCTION**, and they agreed only in the one
+case that had always held — real growth of zero. It is now the exact Fisher identity in
+both directions: `(1 + pi) x (1 + real) - 1` forward, its inverse back.
+
+**WHAT IT WAS ADOPTED FROM.** SWDY carried a gap of 0.34 a share between its own base case
+and its own scenario engine, and nothing could see it, because the defect is invisible
+while real growth is zero and the whole book had been running at zero real growth. The
+error is small in basis points — of the order of real x inflation, which is 14bp at 2%
+real on 7% inflation — and it sits on the line that capitalises into perpetuity, where
+small is not the same as harmless. **The general shape is not about growth rates:** two
+functions that convert between the same two quantities in opposite directions must be
+exact inverses of each other, or the model contains a disagreement that only appears when
+somebody finally uses the feature.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It does not touch [R-MACRO-01] — a terminal
+growth is still DERIVED from the market's committed path and never typed, and this rule
+governs the arithmetic of the derivation and the ceiling on its input. It sets no view on
+what any market's long-run real growth is; that is a sourced figure in the path, argued
+where paths are argued. It does not license a real growth just below the cap: the cap is a
+refusal, not a target.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/macro_path.py` — the `real_gdp_lt` property is
+required in every market path's schema, so a market whose path lacks it fails to load
+rather than defaulting to something permissive, and `terminal_growth()` raises with the
+market, the stated rate and the cap in the message.
+
+
+## [R-DCF-01] EVERY STUDY CARRIES THE VALUATION ON ONE PAGE (10-Sep-2026, per instruction — "where is ours?")
+
+**THE RULE.** Every study carries a single valuation table that a reader can read
+top-to-bottom without turning a page: the forecast waterfall — revenue, EBITDA, cash
+taxes, capital expenditure, investment in working capital, depreciation and amortisation,
+free cash flow — then the per-year discount rate and discount factor and the present value
+of each year, then the bridge: the sum of the present values, the terminal value, the
+present value of the terminal, the terminal's share of enterprise value, the cost of
+capital in the first year and in the terminal, the terminal growth, enterprise value, net
+debt, associates, minorities, any statutory profit-share, equity value, shares in issue,
+and value per share.
+
+**IT OWNS NO ARITHMETIC, AND THAT IS THE WHOLE DESIGN.** The table is READ from the
+study's own committed numbers. It sums what it was handed and it **RAISES** if the present
+values do not reproduce the study's published enterprise value and value per share. If the
+table and the study disagree, the study is right and the table is broken — which is why
+the reconciliation is an assertion and not a footnote. A table that computed its own
+answer would be a second model hiding inside the document whose job is to display the
+first, which is the defect [R-SENS-01] was adopted from on the same day.
+
+**WHAT IT WAS ADOPTED FROM.** The principal put an EFG Hermes DCF page for Edita beside
+one of our studies and asked where ours was. **It did not exist.** Our studies carried
+every one of those numbers — the waterfall in the cash-flow section, the factors in the
+discounting paragraph, the terminal in the terminal section, the bridge in an appendix —
+each of them correct, and assembled nowhere. **A number that is present in four places and
+assembled in none is, to the person reading, absent.** The house had been measuring itself
+on whether a figure was derivable from the document, and the reader's test is whether it
+is there.
+
+**THE COROLLARY THE BUILD EXPOSED, AND IT IS THE MORE GENERAL HALF: A LINE THAT IS
+COMPUTED AND NOT PUBLISHED IS A LINE THE DOCUMENT CANNOT PRINT.** Five forecast rows of
+SWDY's Appendix A.1 — gross profit, profit before tax, income tax, profit for the year,
+and minorities — printed em-dashes beside three full columns of audited history, because
+the model computed every one of them and threw them away instead of committing them. The
+document was not missing an analysis; it was missing a `json` key. Anything a study
+intends to PRINT is committed to its numbers file at the moment it is computed.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It adds no valuation method, no lens and no
+number. It does not replace the sections that carry the reasoning — the table is where the
+answer is assembled, not where it is argued — and it does not repeal the model-report
+section list, which it joins rather than edits.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/dcf_table.py` — `dcf_table()` builds the table
+from a study's committed numbers and raises `DCFTableError` where the present values do
+not sum to the published enterprise value, or where a study offers no free-cash-flow
+series at all, a DCF table without free cash flow not being one.
+
+**IT ADDS A REQUIRED ARTEFACT, SO THE STANDARD MOVES.** `research_protocol.STANDARD_VERSION`
+is bumped in the same commit, which makes a study built before this requirement countable
+rather than silently assumed current [R-STD-01].
+
+
+## [R-SENS-01] A SENSITIVITY GRID IS CENTRED ON THE ADOPTED CASE (10-Sep-2026, per instruction — the same review)
+
+**THE RULE.** Both axes of a sensitivity grid **step around the values the study actually
+struck**, and **THE CENTRE CELL EQUALS THE STUDY'S CENTRAL** — asserted in the study's own
+code, not noted in its prose. An axis that is a typed ladder which happens to sit near the
+adopted case is not centred on it. Where an axis is a list rather than a step — a beta
+grid, an FX grid — it is **sorted**, and the adopted value is marked in its place in the
+order rather than inserted at the middle position.
+
+**WHAT IT WAS ADOPTED FROM.** SWDY's terminal-growth axis ran 3% to 7% against an adopted
+terminal growth of 9.14%. **No cell in the grid was the base case**, so a reader could not
+locate the study's own answer anywhere on the study's own grid, and a reader who tried
+would have concluded the central sat outside the range the study called sensitive. The
+beta row had the same defect in a different dress: the adopted beta was inserted at the
+centre POSITION rather than in its place in the order, so the printed row ran 0.80, 1.225,
+1.15 and the values beside it went down, then up, in a table that reads as monotone.
+
+**THE RELATED FINDING, FOUND THE SAME HOUR, AND THE GENERAL FORM MATTERS MORE THAN THE
+CASE.** SWDY's grid helper `dcf_at()` re-implemented the terminal inline on a construction
+the study had already moved off, and charged no employees' statutory share of profit — so
+**every cell of every grid valued a claim the study does not own**, and the grid's own
+centre cell read 49.71 against a published central of 43.51. Its sibling `_val_at()` did
+neither of those things, and carried a docstring recording that exact fix. **THE GENERAL
+FORM: WHEN A FIX GOES INTO ONE OF TWO FUNCTIONS THAT DO THE SAME JOB, THE OTHER ONE IS NOW
+A DEFECT — and a docstring recording the fix is evidence that the twin was missed, not
+evidence that the problem is closed.** The remedy is not to fix both; it is to delete one.
+`dcf_at()` is gone and every grid runs through the function that asserts it reproduces the
+headline.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It sets no view on how WIDE an axis should step,
+which is a study-level judgement about what a reader needs to see. It does not make the
+grid a valuation: the grid consumes the study's valuation function and may not carry one
+of its own.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/dcf_table.py` — `sensitivity_grid()` refuses a
+grid with an even axis, which has no centre cell to reconcile, and refuses a grid whose
+centre cell does not reproduce the study's central within a cent.
+
+
+## [R-STAR-01] THE TRADED PRICE IS THE NORTHERN STAR, AND THE BURDEN IS ASYMMETRIC (10-Sep-2026, per instruction — "the actual traded price is your northern star")
+
+**THE INSTRUCTION, IN THE PRINCIPAL'S OWN WORDS.** *"the actual traded price is your
+northern star... you have to have a very strong case to provide a fair value that is below
+it. Because essentially you are saying that the investors are all idiots including
+institutions and that they are overpaying. You have to have an AIR TIGHT case."*
+
+**THE RULE, AND ITS ASYMMETRY IS THE POINT.** A central fair value **BELOW** the traded
+price is a claim that the market — including the institutions in it — is overpaying. It
+requires an **air-tight, written case naming what the market is getting wrong and why this
+desk can see it**, and the burden rises with the size of the gap. A central **ABOVE** the
+price needs no such case: that is the ordinary situation of value not yet realised, where
+investors are taking a shorter-term view than a valuation does, and demanding symmetric
+evidence for it would penalise the method for doing the thing it exists to do.
+
+**WHAT IT DOES NOT LICENSE, STATED FIRST BECAUSE IT IS THE THING THAT WOULD BE ASSUMED.**
+It does **NOT** license moving a fair value toward a price. That remains prohibited
+outright and this rule restates the prohibition inside itself rather than pointing at it.
+It licenses **nothing except a higher bar of evidence on one side**. Where the bar is not
+met, the study **says so** — in the document, in its own words — rather than shipping the
+number quietly and letting the gap speak for itself.
+
+**HOW IT COMPOSES WITH THE GAP RULES.** [R-GAP-04] comes first: the exhaustive, recorded
+hunt for OUR OWN error is run before a gap is called genuine at all, and **its result is
+the material the air-tight case is built from, or it is the reason there is no case**.
+[R-GAP-01] and [R-GAP-03] decide WHEN that audit is owed and over which gap. This rule
+governs what must be true of the WRITING once the audit comes back empty. Nothing here
+changes the routing in [R-VCAL-02 CLAUSE THREE] or the authorisation in [R-GAP-02 CLAUSE
+FOUR]; a referral is still where a gap goes, and this rule sets what accompanies it.
+
+**WHY IT IS WRITTEN AS A BAR AND NOT AS A LIMIT.** A limit — "never publish more than X%
+below" — would be a free parameter that quietly caps the method's own findings, and some
+companies genuinely are expensive. A bar on the EVIDENCE leaves the answer where the
+analysis puts it while making the desk pay, in writing, for the claim it is making about
+everybody else in the market.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/northern_star.py`. **The bar is a LADDER AND NOT
+A CLIFF**, because the same claim is cheap at a small gap and extraordinary at a large one:
+four rungs — `none`, `stated`, `priced`, `airtight` — each naming what the study has to
+carry, with the widths held in `northern_star.BANDS` rather than recited in a document that
+cannot be re-read when they move. `assess()` returns the record so a study can look at its
+own bar before it ships; `enforce()` refuses to issue; `from_numbers()` reads a study's own
+committed numbers and assesses a two-sided central on BOTH branches rather than collapsing
+it to one. At the top rung the module requires the recorded hunt of [R-GAP-04], the thing
+the market is asserted to be getting wrong NAMED, and a falsifier stated in advance; a rung
+below it requires the gap DECOMPOSED by driver in currency per share and refuses a
+decomposition leaving more than half of the disagreement unexplained. **A central ABOVE the
+price returns PASS with no case at all** — the asymmetry written in code rather than
+asserted in prose. `engine/research_protocol.py` carries the requirement into the model
+study's own section list, at section 1.9, so the case has a place to live in the document
+rather than being remembered. What remains prose is the JUDGEMENT of whether a written case
+is air-tight, which no gate can make; the module checks that the case, the pricing, the
+hunt and the falsifier are THERE. The refusal message ends by saying what the fix is not:
+never move the number toward the price.
+
+
+## [R-NEWS-01] SCANNING WHAT THE COMPANY SAYS IT WILL DO IS A STANDARD STEP, AND THE ENTITY IS VERIFIED FIRST (10-Sep-2026, per instruction — "This should be a standard")
+
+**THE INSTRUCTION.** *"You should scan the news as part of your activities to see the
+company potential, see what it is planning to do. This should be a standard."*
+
+**THE RULE.** A **dated news and announcement scan** joins the Step 2A information sweep
+for every study and every update, as a **mandatory category of the Company ring** —
+announced projects, ventures and capacity — closed by a finding or by a **dated negative
+search** exactly like every other category, the requirement being that somebody LOOKED and
+not that something was found. Every item carries its date, its attribution and its place in
+the study's bibliography, exactly as any other sourced item does.
+
+**IT NEVER TOUCHES HISTORICALS, AND SIGCM CLAUSE 1 STANDS ABSOLUTELY.** Reported figures
+come from the company's own issued financial statements and from nothing else. A news item
+informs **FORWARD DRIVERS ONLY** — what the company says it intends to build, sign, buy or
+enter — and it may not restate, correct or supplement a reported number. A press report of
+a result is not a result.
+
+**THE CLAUSE THAT MAKES IT SAFE, AND IT WAS EARNED WITHIN AN HOUR OF ADOPTION: THE ENTITY
+MUST BE VERIFIED AS THE LISTED ONE.** Three screenshots of Elsewedy news were put to this
+desk on 10-Sep-2026 — data centres and electric vehicles. The 500 million dollar ROX
+electric-vehicle joint venture was signed by **Ezz Elarab Elsewedy Investments, the chief
+executive's private vehicle**, and not by the listed Elsewedy Electric. Crediting it to
+shareholders would have inflated a valuation with a business they do not own. The August
+2026 Datagrid transformer contract, by contrast, **is** the listed company's, and is
+carried. **A news item whose entity cannot be pinned to the listed issuer is recorded as
+UNVERIFIED and drives nothing** — not a driver, not a scenario, not a sentence of
+narrative that implies a driver.
+
+**WHY A SHARED SURNAME IS A TRAP RATHER THAN A CURIOSITY.** In family-founded groups
+across this book's markets, the founder's private holdings, the listed operating company
+and the family investment vehicle routinely share a name, a logo and a press office. The
+news wire reports all three under the same word. **The verification is not scepticism
+about the news; it is arithmetic about who the cash flow belongs to**, and it is the same
+question [R-STD-02] asks of a standard claim and SIGCM asks of a source: name the entity,
+not the brand.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It does not admit press as a source class for
+anything SIGCM reserves to primary documents. It does not lower the primary-source-first
+ordering of the sweep — a company announcement read on the issuer's own disclosure portal
+outranks the same announcement read in a newspaper, and where both exist the filing is
+cited. It creates no obligation to find news: a ring closed by a **dated negative search**
+is closed, on the same terms as every other ring in the register.
+
+**WHAT ENFORCES IT [R-ENF-01].** `engine/research_sweep.py`. The category sits on the
+Company ring's MANDATORY list, so a sweep that never looked cannot reach full coverage and
+cannot be talked past. A finding gains two fields — `entity`, the legal entity written out,
+and `entity_is_issuer` — and the register's own invariant refuses an announced plan with no
+entity named, refuses one whose issuer status has been left unestablished (**unestablished
+is not the same as yes** [R-ENF-04], and a driver may not rest on it), and refuses to let a
+finding whose entity is NOT the issuer be classed as anything but colour. **Read the
+register's live category list rather than quoting one from here** [R-DOC-02] —
+`python3 -c "import sys; sys.path.insert(0, 'engine'); import research_sweep as R;
+print(R.MANDATORY[R.Ring.COMPANY])"`.
+
+
+## [R-EPS-01] THE COMPANY'S OWN REPORTED EARNINGS PER SHARE IS REGISTERED BESIDE THE PROFIT THE STUDY DIVIDES, AND ANY GAP IS NAMED (10-Sep-2026, per instruction — adopted to close an identifier already cited in code and defined in neither document)
+
+**THE RULE.** Every study registers the company's **own reported earnings per share**,
+four-field sourced to the audited statements, beside the **attributable profit** it divides
+and the **share count** it divides by. The three are held to one arithmetic identity —
+attributable profit over the share count equals the reported earnings per share, within the
+rounding of the figure as printed. Where they do not reconcile, the difference is a **claim
+ranking ahead of ordinary shareholders** and it is NAMED in the study's own
+`eps_reconciliation` record: what it is, what it is worth, and whether the valuation charges
+it. A named difference passes. **An unreconciled and unnamed one REFUSES the build. It does
+not warn.**
+
+**THE CLASS OF THING BEING LOOKED FOR, NAMED SO A STUDY KNOWS WHAT TO GO AND FIND.** A
+statutory employees' profit share · a preference dividend · a participating instrument · a
+perpetual coupon · an ESOP allocation · a weighted-average share count struck against a
+period-end count. Any one of them puts a wedge between the numerator of the filed
+per-share figure and the profit a study thinks belongs to shareholders.
+
+**WHY THIS EXISTS, WHICH IS THE WHOLE OF IT.** A valuation ends by dividing an equity value
+by a share count. Every gate in this repository examines how that equity value was BUILT —
+the bridge [R-BRIDGE-01], the lenses [R-LENS-03], the terminal [R-TERM-01], the cost of
+capital [R-COC-01, R-COC-02, R-COC-03], the one-page waterfall [R-DCF-01] — and **not one of
+them asked whether the number being divided is the number shareholders actually receive.**
+The last arithmetic step in the method had no check on it at all.
+
+**THE FAILURE IT WAS ADOPTED FROM [L-294], SWDY, 04-Sep-2026.** Egyptian company law gives
+employees a share of distributable profits. It is an **appropriation of profit rather than an
+operating cost**, so the company discloses it BELOW profit attributable to owners, in the
+earnings-per-share note. That placement is the trap: **it appears in no line of the income
+statement, so no cost driver can ever capture it**, however carefully the cost stack is built
+from unit economics. The study registered attributable profit of EGP 17,330.245mn AND the
+company's own reported EPS of 7.13, both correctly sourced to the audited statements, four
+fields each. 17,330.245 / 2,140.778mn shares = 8.095. The gap between the two was exactly the
+employees' share, which ran 11.6%, 12.0% and 13.0% of attributable profit in FY2024, FY2025
+and H1-2026. **Nothing reconciled them, and the word "employee" occurred nowhere in that
+study's committed numbers.** The valuation divided the full parent equity value by the full
+share count and handed shareholders about 12% of a value the statute gives to somebody else.
+
+**THE MECHANISM IS NOT EGYPTIAN AND NOT UNUSUAL.** Wherever the EPS numerator differs from
+attributable profit there is a claim ahead of ordinary shareholders, and the rule is written
+against that shape rather than against a jurisdiction. The second worked case is a bank and
+has nothing to do with employees: ADIB-Egypt's filed FY2025 figure is struck on the
+**weighted average count across a capital-increase year**, which is not the count in issue
+today, and the study names the difference in its `eps_reconciliation` record rather than
+reconciling it away. A study valuing the bank as it stands must divide by the count as it
+stands; the filed per-share figure is simply not comparable to it, and saying so is the
+whole requirement.
+
+**IT APPLIES TO EVERY LENS THAT PRODUCES A PER-SHARE EQUITY VALUE, NOT ONLY TO THE CENTRAL
+ONE.** This was the second half of the same failure and it was found later: the statutory
+share was charged in the bridge, the currency alternative, the sensitivity helper and the
+scenarios, and NOT in the three cross-checks published beside the central — so the same
+company was worth 12.19% more per share depending on which lens was reading it. A deduction
+that stands between profit and shareholders stands there for every lens or it stands for
+none.
+
+**WHAT IT DELIBERATELY DOES NOT DO.** It does not rule on whether the study is RIGHT to
+charge or not to charge the item. A company that retains rather than distributes may face a
+smaller statutory share, and a cap on the charge is a real modelling question a study is
+free to answer its own way. **This rule asks only that the gap be SEEN**, and a study may
+declare the difference and value it at zero with a reason. It does not reach the historicals
+question: the reported earnings per share is a filed figure and is sourced under SIGCM
+clause 1 like any other.
+
+**WHAT ENFORCES IT [R-ENF-01].** `scripts/check_eps_reconciliation.py`, with
+`scripts/check_eps_reconciliation_negative_control.py` beside it, both wired into
+`.github/workflows/study-provenance.yml`. It holds the single identity above, takes its
+tolerance from the PRINTED rounding of the filed figure rather than from a chosen number,
+and reads the share count under every name and scale suffix this book actually uses — a
+count in thousands read as millions is wrong by a thousand and every downstream figure still
+divides cleanly. **An absent answer is not a clean one** [R-ENF-04]: a study registering no
+reported earnings per share, or no readable count, is counted as UNREADABLE and listed
+rather than skipped, because that is precisely the state that made the original defect
+invisible, and a run that read zero studies FAILS. The two states sit on **separate ratchet
+groups** in `engine/build_depth_audit/eps_outstanding.json` and a study moving between them
+goes red until the move is recorded [R-ENF-08] — otherwise a real gap is escaped by
+re-filing the study as merely unchecked. **Read the live population and both ratchet groups
+with `python3 scripts/check_eps_reconciliation.py`** rather than quoting a tally from here
+[R-DOC-02].
+
+
+## [R-PRIME-01] A RESEARCH PRIMER IS READ BEFORE A STUDY IS BUILT, ITS PROMPT IS GENERATED RATHER THAN TYPED, AND WHAT COMES BACK IS A LEAD AND NEVER AN INPUT (10-Sep-2026, per instruction — "I get these to you as a primer to start the valuation")
+
+**THE INSTRUCTION, VERBATIM,** so a later session reads the words and not a paraphrase of
+them: *"In the future, before you start on your valuation document and financial model
+creation, I want to do reserach market view, latest developments, company news , etc. using
+perplexity and gemino deep reserach first and then I get these to you as a primer to start
+the valuation. Now I will have to ask you first to gove me a prmpt to feed to perplexity and
+gemini . It's a little comlicated. So I ask you to give a prompt specific for company CYZ.
+You then based on the comp-any and the industry it operateds in give me another prompt (that
+is company and indystry specific to feed to perplexity and gemini). Then perplexity and
+gemini do the market reserach, regulaory environment, companyt capacity, projects pipleine
+reserach, etc."*
+
+**CLAUSE ONE — THE PRIMER COMES FIRST.** Before a new study is built or an existing one
+re-issued, a **research primer is requested from the principal and read**. The principal
+runs it through external deep-research tools; the study **does not start on the analyst's
+own unaided search**. The primer covers the market view, the regulatory environment, the
+company's capacity and its project pipeline, and the latest developments and company news —
+the last of which is [R-NEWS-01]'s standing sweep category, now fed by a pass run before the
+build rather than assembled during it.
+
+**CLAUSE TWO — THE PROMPT IS GENERATED, NOT HAND-WRITTEN.** The prompt handed to the
+principal is produced by `engine/research_primer_prompt.py TICKER`, which builds it from
+what this repository **already holds about the name**: its market and the exchange it is
+listed on, **its registered name in English AND in the language its own regulator, decree
+register and trade press write it in**, its sector and the drivers that sector actually
+turns on, and — where a study already exists — that study's **own declared open gaps and
+its dated negative searches**, read live out of the sweep register. A
+hand-written prompt goes stale and, worse, omits the very gaps the study has already
+recorded as open, which is the one thing an external pass is uniquely placed to close. **If
+the generator refuses, or cannot resolve the name, STOP and say so. Do not hand-write the
+prompt instead** — a typed prompt is indistinguishable from a generated one on the page and
+carries none of the study's recorded gaps.
+
+**CLAUSE THREE — WHAT COMES BACK IS A LEAD, NEVER AN INPUT.** Nothing from a research pass
+enters a model until it has been **traced to the primary source it cites and read there**.
+This does not bend for a good search engine. Where a pass surfaces a company announcement
+the study had not seen, **the value is not its summary — it is the pointer to the filing**,
+which is then read directly and cited from the issuer. **SIGCM clause 1 is untouched:
+historicals come from the company's own issued financial statements and from nowhere else.**
+
+**CLAUSE FOUR — SEARCH IN THE LANGUAGE THE SOURCE IS WRITTEN IN, AND SAY SO WHEN YOU DID
+NOT.** Adopted from a failure on the same day as the rule. A research pass reported that
+Egypt had repealed the 10% export duty on nitrogen fertilisers. Three searches found
+nothing, and the claim was reported back to the principal as not verifying — *"the 10%
+stands and nothing was changed"*. **Every one of those searches had been run in English, on
+an EGYPTIAN MINISTERIAL DECISION whose decree register, customs circular and trade coverage
+are all in Arabic.** Ministerial Decision 340 of 2026 was real, effective 1 August 2026,
+five weeks before that study's strike date. The study had been carrying five forecast years
+of a repealed duty on its largest single line — measured on 10-Sep-2026, EGP 2.98 a share
+against a gap of 9.21. **ABSENCE OF EVIDENCE PRODUCED BY SEARCHING IN THE WRONG LANGUAGE IS
+NOT EVIDENCE OF ABSENCE**, and reporting it as such is worse than not having looked at all,
+because it converts a live lead into a closed question. A negative finding on a
+local-language matter states the languages it was searched in, or it is not a finding.
+
+**CLAUSE FIVE — A CLAIM THAT DID NOT SURVIVE TRACING IS RECORDED AS A DATED NEGATIVE SEARCH,
+NOT QUIETLY DROPPED.** An untraceable claim that vanishes silently will be re-reported by
+the next pass and re-investigated from scratch, at full cost, by somebody who cannot know it
+has already been chased. It goes into the sweep register through `add_negative()` like any
+other closure. **Where two passes disagree on a figure, the disagreement is itself the
+finding and is recorded as one**: one of them made the number up, and a study that took the
+higher of two search results would have published it. Worked precedent, EIPICO,
+10-Sep-2026: one pass reported the biologicals plant at 100,000 vials a day while the other
+stated explicitly that no standalone throughput has been disclosed; the company's own
+announcement, its investor presentation and the regulator's factory-licence record state no
+capacity at all, and **the figure did not enter**.
+
+**WHAT IT DELIBERATELY DOES NOT CHANGE.** It admits no new source class — a deep-research
+report is not a source, it is a **finding aid**, and it appears in no bibliography as
+authority for anything. It does not lower the primary-source-first ordering of the Step 2A
+sweep [R-NEWS-01]. It does not create an obligation to FIND anything: a ring closed by a
+dated negative search is closed, on the same terms as every other ring. It does not touch
+the entity test — an announcement surfaced by a research pass is still pinned to the listed
+issuer before it drives a number.
+
+**WHAT ENFORCES IT [R-ENF-01].** The generated half is enforceable and the judgement half is
+not, and the split is stated rather than blurred. `engine/research_sweep.py` already refuses
+a ring closed by neither a finding nor a dated negative search, which is what carries clauses
+four and five once a claim has been worked; `engine/research_primer_prompt.py` is the
+generator clause two names, and **clause four is built into its output rather than left to
+the researcher's discipline** — the prompt carries the local-language name beside the
+English one, so searching in the language the source is written in is the default rather
+than a thing to remember. **What no gate can check is whether a claim was actually traced
+to its primary source before it moved a number** — a study can always assert that it was.
+The honest backstops are the four-field provenance every input already carries and the
+standing rule that a research pass is cited nowhere, so a number with no primary source
+behind it has nothing to point at.

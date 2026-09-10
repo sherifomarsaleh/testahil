@@ -4,14 +4,14 @@
  "start_value": 58.043563,
  "start_spot": 130.05,
  "start_gap": -0.5536827143406382,
- "audit_after": "the levers serving [R-MACRO-01] are complete \u2014 the house inflation ladder, the currency derived from it and the terminal risk-free derived from it are ONE rule in three places, and the natural place to stop and look is when that rule has finished moving the answer",
+ "audit_after": "the levers serving [R-MACRO-01] are complete — the house inflation ladder, the currency derived from it and the terminal risk-free derived from it are ONE rule in three places, and the natural place to stop and look is when that rule has finished moving the answer. RE-DECLARED FOR THE 07-09-2026 PASS, IN ADVANCE: stop again once the walk-forward's corrections are dispositioned and BEFORE the price is consulted for the gap review. RE-DECLARED AGAIN FOR THE TERMINAL-BASIS PASS OF THE SAME DAY, BEFORE THE LEVER WAS BUILT: that audit point was REACHED AND PASSED at the sixth lever, so this pass declares its own — stop once the single lever serving [R-TERM-01] is in and BEFORE the gap review is written, and record that the cumulative move has crossed the previously declared point. It has: the route from the 4 September starting answer now runs through +45% and back down past the level the earlier audit point stopped at, and the eighth heading of the gap review is where that is answered rather than here.",
  "levers": [
   {
    "name": "terminal on the disclosed life; growth stored as a real rate",
    "rule": "R-TERM-01",
    "before": 58.043563,
    "after": 84.188194,
-   "why": "the terminal was the retired reinvestment identity, whose implied replacement cycle is 1/g \u2014 20.0 years at the old 5% against a weighted useful life of 13.80 the company itself discloses",
+   "why": "the terminal was the retired reinvestment identity, whose implied replacement cycle is 1/g — 20.0 years at the old 5% against a weighted useful life of 13.80 the company itself discloses",
    "evidence": "FY2024 audited note 3.1 lives weighted by note 4.1's gross cost",
    "move": 0.4504311873480269
   },
@@ -50,18 +50,46 @@
    "why": "a first draft anchored FY2026 at the observed spot; the house derivation does not admit a leading-year anchor for a currency and the study conforms rather than inventing one",
    "evidence": "the tension in the house path's first year is registered, not resolved",
    "move": -0.2537780448065172
+  },
+  {
+   "name": "the fundamental walk-forward ran and adopted no correction",
+   "rule": "R-FCAL-01",
+   "before": 36.639498,
+   "after": 36.639497733882315,
+   "why": "the LIGHT run's five origins at horizons one to three give nine cells on every primitive driver and twelve on the aggregates. The cut-invariance clause needs a boundary leaving five cells each side, so NO primitive driver admits a single cut and none can be shown sign-stable; the one driver with twelve cells that is not an aggregate, the associates-and-interest-income block, FLIPS at the one cut it admits. Every candidate is therefore DECLINED and the answer does not move.",
+   "evidence": "scores.json and corrections_log.json of 07-09-2026, built through the HOUSE cut instrument (engine/valuation_calibration/boundary_sensitivity.cuts_for) rather than a copy of it. Pooled bias: revenue -0.310, cost of sales -0.294, net profit -0.553, compounding -0.157 -> -0.387 -> -0.693 across the three horizons — the scale is systematically under-forecast and the margin is roughly right, which is this house's own pooled census arriving on this name's own history.",
+   "move": -7.263136869717357e-09
+  },
+  {
+   "name": "the terminal fed on the last explicit year's money, not a year already grown",
+   "rule": "R-TERM-01",
+   "before": 36.639497733882315,
+   "after": 32.99747064299512,
+   "why": "engine/terminal_value.py states the basis in its own contract and says what breaking it costs: 'Pass a NOPAT already grown by (1+g) and the terminal is overstated by exactly (1+g) — a year-seven flow discounted at the year-five factor.' Both call sites did it, on nopat, on dna_book and on working_capital. The parked-construction depreciation catch-up deducted beside the NOPAT is cip[-1] x dep_rate, a FY2030E balance at the annual rate, so it is ALREADY on the last-explicit-year basis and is deducted at full value rather than deflated — the correction is the removal of a growth factor, not the division of an expression.",
+   "evidence": "rebuilt through the same sanctioned module: terminal value 19639.5 -> 18229.1 (-7.18%) on Frame A and 25091.5 -> 23324.5 (-7.04%) on Frame B; value per share 34.8974 -> 31.3738 (-10.10%) and 52.0182 -> 47.6035 (-8.49%). The share effect exceeds the terminal effect because the bridge is geared — net debt 7364.3 against equity 5294.5 on Frame A. The superseded construction, rebuilt through the module, reproduces the previous edition's published pair exactly, which is the evidence that this pass moved one thing.",
+   "move": -0.09940166531047279
+  },
+  {
+   "name": "the beta re-derived against the published index of its own exchange",
+   "rule": "SIGCM-6",
+   "before": 32.99747064299512,
+   "after": 31.373799027335803,
+   "why": "the beta was regressed against an EQUAL-WEIGHT COMPOSITE of 36 covered Egyptian names, and the study said so in its own source field. A constituent composite is not a weaker tier: it changes whenever a stock is posted and it shares constituents with the panel it prices, so it is a coverage artefact rather than a market, which is why SIGCM clause 6 calls it a hard fail. AND THE NUMBER WAS TYPED — the input carried a literal 0.629, so re-running the regression to any answer at all would have left the model discounting at the old one. Running it first and watching the valuation not move is how that was found. The correction moves both frames FURTHER BELOW a price they already sit far below.",
+   "evidence": "beta_regression.own_stock_beta('PHAR','EG','EGX') against raw_indices/EG/EGX30.csv as at 2026-09-08: beta 0.6658, R-squared 0.143, n 256, standard error 0.1355, 90% interval [0.443, 0.889], Dimson-corrected and matched to the exchange's own trading week. THE WITHDRAWN COMPOSITE FIT BETTER — 0.6295 at an R-squared of 0.235 — and that is recorded rather than left out: a basket sharing constituents with the panel it prices will track a member of that panel more closely than a blue-chip index does, and a better fit against the wrong regressor is not evidence for the wrong regressor. Frame A 32.9975 -> 31.3738, Frame B 49.6789 -> 47.6035.",
+   "move": -0.04920594166825931
   }
  ],
- "value": 36.639498,
- "cumulative_move": -0.368758633924661,
+ "value": 31.373799027335803,
+ "cumulative_move": -0.45947840887479974,
  "rules": {
   "R-TERM-01": {
    "levers": [
-    "terminal on the disclosed life; growth stored as a real rate"
+    "terminal on the disclosed life; growth stored as a real rate",
+    "the terminal fed on the last explicit year's money, not a year already grown"
    ],
    "first_before": 58.043563,
-   "last_after": 84.188194,
-   "move": 0.4504311873480269
+   "last_after": 32.99747064299512,
+   "move": -0.43150508105446383
   },
   "R-GAP-01": {
    "levers": [
@@ -80,8 +108,24 @@
    "first_before": 84.63,
    "last_after": 36.639498,
    "move": -0.5670625310173696
+  },
+  "R-FCAL-01": {
+   "levers": [
+    "the fundamental walk-forward ran and adopted no correction"
+   ],
+   "first_before": 36.639498,
+   "last_after": 36.639497733882315,
+   "move": -7.263136869717357e-09
+  },
+  "SIGCM-6": {
+   "levers": [
+    "the beta re-derived against the published index of its own exchange"
+   ],
+   "first_before": 32.99747064299512,
+   "last_after": 31.373799027335803,
+   "move": -0.04920594166825931
   }
  },
- "distinct_rules": 3,
+ "distinct_rules": 5,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
 }

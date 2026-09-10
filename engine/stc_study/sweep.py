@@ -52,8 +52,12 @@ f_rates = R.add(
     "The riyal is pegged to the dollar at 3.75, so Saudi Arabia imports United States "
     "monetary policy and TODAY IS ALREADY THE TERMINAL for the cost of capital; the house "
     "macro path calls the regime pegged and the schedule is flat by construction",
-    "engine/macro_paths/SA.json, sourced to the International Monetary Fund's World "
-    "Economic Outlook database and the sovereign quote it carries",
+    # A SOURCE FIELD NAMES AN INSTITUTION, NOT A FILE. This named the house macro path's
+    # own file location, and the bibliography quotes the research trail verbatim — so the
+    # path reached a document a reader receives, where the shape-matching gate caught it.
+    # The file is where this desk keeps the figure; the SOURCE is who published it.
+    "The International Monetary Fund's World Economic Outlook database, and the sovereign "
+    "quote carried on the house macro path for Saudi Arabia at its own as-of date",
     REG, "2026-07-31",
     model_impact="Sets the cost-of-capital schedule FLAT rather than gliding, and makes "
                  "the currency path flat by construction of the peg. It is also why this "
@@ -184,7 +188,7 @@ n_competitor = R.add_negative(
     "The same search as the new-entrants category and with the same result: no named "
     "competitor appears in any of the three documents, so no competitor capacity or price "
     "move can be cited. Recorded as an evidenced absence rather than closed by moving a "
-    "company-ring finding into this row.",
+    "finding about this company's own operations into a row about its competitors.",
     SWEEP_DATE)
 
 # ----------------------------------------------------------------- RING 4 COMPANY

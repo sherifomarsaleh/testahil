@@ -22,9 +22,13 @@ sys.path.insert(0, HERE)
 
 D = json.load(open('study_numbers.json'))
 AL = json.load(open('alternatives.json'))
-WB = openpyxl.load_workbook('EGCH_Valuation_Model_05092026.xlsx')
+# THE EDITION IS NOT NAMED HERE [10-09-2026]. Nine files in this directory each
+# typed the artefact names, so a reissue left every gate reading the superseded
+# edition -- examining something, but not the thing. edition.py owns the names.
+import edition as _EDN
+WB = openpyxl.load_workbook(_EDN.MODEL_XLSX)
 BK = xlcalc.Book(WB)
-DOC = Document('EGCH_Valuation_Study_05-09-2026.docx')
+DOC = Document(_EDN.STUDY_DOCX)
 
 TEXT = " ".join(p.text for p in DOC.paragraphs)
 for t in DOC.tables:

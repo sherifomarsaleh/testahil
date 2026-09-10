@@ -15,7 +15,13 @@ import json, os, sys
 import openpyxl, xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'EGCH_Valuation_Model_05092026.xlsx')
+# THE WORKBOOK THIS GATE READS WAS NAMED BY HAND, so on 10-09-2026 the study was
+# re-struck, the workbook was rebuilt under the new edition's name, and this gate went
+# on reconciling the SUPERSEDED file against the fresh model -- reporting ten failures
+# that were really one stale filename. A check pointed at a file nobody writes any more
+# is the [R-ENF-04] species: it examines something, but not the thing.
+import edition as _EDN
+XLSX = os.path.join(HERE, _EDN.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 EXPECT = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
@@ -96,5 +102,11 @@ print(f"\n{'PASS' if ok else 'FAIL'}: "
 json.dump({"pass": bool(ok), "formula_cells": nform, "reproduce": checked - _bad,
            "mismatches": len(mism), "unresolvable": len(unresolvable), "orphans": len(orphan),
            "headline_checks": len(checks), "headline_failures": len(bad)},
-          open("recalc_result.json", "w"), indent=1)
+          # BESIDE THE STUDY, NOT BESIDE THE OPERATOR. This wrote to the CURRENT WORKING
+          # DIRECTORY, so where the result landed depended on where somebody happened to
+          # stand when they ran it: run from the repo root on 09-09-2026 it dropped
+          # recalc_result.json at the top of the tree, untracked, where
+          # check_artefact_currency looks for a study's own result and finds none. Every
+          # other path in this file already resolves through HERE.
+          open(os.path.join(HERE, "recalc_result.json"), "w"), indent=1)
 sys.exit(0 if ok else 1)

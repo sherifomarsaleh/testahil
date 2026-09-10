@@ -1,0 +1,33 @@
+{
+ "ticker": "AMOC",
+ "started_at": "2026-09-08",
+ "start_value": 11.4012,
+ "start_spot": 13.5,
+ "start_gap": -0.15546666666666675,
+ "audit_after": "DECLARED IN ADVANCE, BEFORE THE LEVER WAS BUILT: stop once the single lever serving [R-ANCHOR-01] is applied, and look BEFORE the price is consulted for the gap review. This pass carries ONE lever by design — the previous edition priced it and declined it only because levers are taken one at a time and it had already moved once in that pass. The audit point is therefore the lever itself: apply it, stop, and audit the answer against the eight headings whichever side of the price it lands on.",
+ "levers": [
+  {
+   "name": "the forecast anchored on the latest reviewed period rather than a twelve-month blend",
+   "rule": "R-ANCHOR-01",
+   "before": 11.4012,
+   "after": 17.6177,
+   "why": "A near-term reviewed actual outranks a stale full-year rate. The previous edition forecast forward the twelve-month blend of 9.653%, which averages the AUDITED transition half at 6.145% with the REVIEWED half at 12.428%; the forecast therefore opened 22.08% relatively below the latest reviewed period. All six mechanisms on the closed list were tested against this company's own filings and REFUSED — the decisive one being the same-quarter pair the rule prescribes, cost per unit of revenue 94.947% in the quarter to 31-Mar-2025 against 89.810% a year later, 5.14 points THE OTHER WAY from a deteriorating cost story. A base-period choice is not on the closed list and could never have been declared away, so correcting it was the only honest route. THE CORRECTION CROSSES THE TRADED PRICE, from 15.5% below EGP 13.50 to 30.5% above it, and it was taken on the filed evidence rather than withheld for where it lands — and it would have been taken had it landed the other way. The superseded twelve-month base is retained and priced beside the answer.",
+   "evidence": "",
+   "move": 0.5452496228467179
+  }
+ ],
+ "value": 17.6177,
+ "cumulative_move": 0.5452496228467179,
+ "rules": {
+  "R-ANCHOR-01": {
+   "levers": [
+    "the forecast anchored on the latest reviewed period rather than a twelve-month blend"
+   ],
+   "first_before": 11.4012,
+   "last_after": 17.6177,
+   "move": 0.5452496228467179
+  }
+ },
+ "distinct_rules": 1,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
+}

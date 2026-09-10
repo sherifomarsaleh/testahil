@@ -82,6 +82,54 @@ def load_ratchet():
     return d
 
 
+# ---------------------------------------------------------------------------------
+# A CATEGORY THAT CANNOT HAVE AN ENTERPRISE TERMINAL IS NOT A DARK ONE [R-COC-01].
+# ADIB is a bank. A bank is valued on the equity side -- deposits are raw material
+# rather than financing, so there is no enterprise value, no invested capital to
+# replace and no reinvestment rate: the 1/g signature this gate hunts cannot exist
+# in it, and reporting the bank as "exposes no readable terminal" says the gate
+# could not read something that is not there. That is the opposite of the [R-ENF-04]
+# failure this gate was built for, where an ABSENT answer wears a clean one's clothes.
+#
+# RE-POINTED, NEVER WIDENED. The population is every study that HAS an enterprise
+# terminal, not every study; the band, the 1/g test and the ratchet are untouched.
+# The list is CLOSED and mirrors NO_WACC_GROUNDS in check_cost_of_capital.py: adding
+# an entry is a rule amendment, which is the point, because an open list would let
+# any study opt out of the construction test by inventing a ground.
+#
+# AND THE WORD IS NOT ENOUGH. A study claiming the exemption must LOOK like the thing
+# it claims to be -- an equity-side terminal rate and a terminal growth, and no
+# weighted rate anywhere in its record. A study that types "bank" beside a WACC is
+# not exempt, it is caught.
+NO_ENTERPRISE_TERMINAL_GROUNDS = {
+    "bank": ("deposits are raw material rather than financing, so there is no enterprise "
+             "value and no invested capital to replace; equity flows are discounted at the "
+             "cost of equity and the reinvestment identity has nothing to bite on"),
+}
+
+
+def _no_enterprise_terminal(r):
+    """(exempt, why) for one census row. Never True on the declaration alone."""
+    ground = r.get('no_terminal_value_reason')
+    if not ground:
+        return False, None
+    # SAME SHAPE AS no_wacc_reason IN check_cost_of_capital.py: "<ground>: <why, in words>".
+    # The key is the closed-list ground; the sentence after it is for a reader.
+    key = str(ground).split(':', 1)[0].strip().lower()
+    if key not in NO_ENTERPRISE_TERMINAL_GROUNDS:
+        return False, ('no_terminal_value_reason names %r, which is not on the closed list '
+                       '%s. An open list lets any study opt out of the construction test by '
+                       'inventing a ground.' % (key, sorted(NO_ENTERPRISE_TERMINAL_GROUNDS)))
+    if r.get('wacc') is not None or r.get('wacc_terminal') is not None:
+        return False, ('claims the %r ground and still commits a weighted rate. The ground '
+                       'says there is no enterprise value to weight.' % key)
+    if r.get('ke_terminal') is None or r.get('g') is None:
+        return False, ('claims the %r ground but exposes no terminal cost of equity and '
+                       'growth rate, so nothing was read instead of the enterprise terminal '
+                       'and the study is dark after all [R-ENF-04].' % key)
+    return True, NO_ENTERPRISE_TERMINAL_GROUNDS[key]
+
+
 def main(argv):
     prune = '--prune' in argv
     rat = load_ratchet()
@@ -109,6 +157,8 @@ def main(argv):
     print('TERMINAL CONSTRUCTION GATE  [R-TERM-01]')
     print('   the implied replacement cycle is 1/g whenever the terminal is built on the')
     print('   reinvestment identity — so the asset life is the reciprocal of the GROWTH RATE')
+    from engine.valuation_calibration.terminal_census import census as _census
+    print('   ' + _census.population_line)
     print('   %d study directories · %d readable · %d with a scoreable terminal · '
           '%d read but not scoreable'
           % (len(rows), len(read), len(scored), len(unscored)))
@@ -132,10 +182,50 @@ def main(argv):
                             '— the list is anchored on nothing' % (tk, group))
 
     # ---- THE 1/g SIGNATURE — the failing test ------------------------------------------
+    # A STUDY WHOSE COMMITTED R-TERM-01 RECORD REPRODUCES ITS OWN TERMINAL VALUE IS NOT
+    # BUILT ON THE REINVESTMENT IDENTITY, WHATEVER THE RATIO SAYS [RE-POINTED 07-09-2026].
+    #
+    # The signature is IC/charge == 1/g, which is ALGEBRA under the retired construction
+    # and is therefore a clean detector of it. It is not a proof in the other direction.
+    # The corrected construction charges maintenance GROSS at replacement cost and adds
+    # book depreciation back, so its net charge is unrelated to g — and on SWDY that net
+    # charge came out at 6.97% of the capital base against a terminal growth rate of
+    # 7.00%, which puts the ratio at 14.34 against a 1/g of 14.29 and inside the 2% band.
+    # COINCIDENCE, ON A STUDY BUILT THROUGH terminal_value.py ON A DISCLOSED 17.2627-YEAR
+    # LIFE READ OFF ITS OWN NOTE 17. Per [R-COC-01]: when a check fires on work that is
+    # right, RE-POINT it — never widen the band, which would be a free parameter, and
+    # never move the number to satisfy it.
+    #
+    # THE EXEMPTION IS NOT "DECLARES A RECORD". That would be the declared-versus-used
+    # shape [R-MACRO-01 AMENDED] names, and a study could commit a conforming record
+    # beside a terminal built some other way and be excused by the record it did not use.
+    # What excuses a study is that its committed record REPRODUCES the terminal value the
+    # study publishes: the record is then demonstrably the thing that produced the answer,
+    # which is the only claim the exemption needs and the only one it makes.
+    def _record_built(r):
+        tr = r.get('_terminal_record') or {}
+        tv_rec, tv_pub = tr.get('tv'), r.get('tv')
+        if not (tv_rec and tv_pub):
+            return False
+        if not (tr.get('inputs') or {}).get('useful_life_years'):
+            return False
+        return abs(float(tv_rec) / float(tv_pub) - 1.0) < 1e-6
+
     sig = [r for r in scored
            if r.get('implied_cycle_years') and r.get('one_over_g')
-           and abs(r['implied_cycle_years'] / r['one_over_g'] - 1.0) < 0.02]
-    clean = [r for r in scored if r not in sig]
+           and abs(r['implied_cycle_years'] / r['one_over_g'] - 1.0) < 0.02
+           and not _record_built(r)]
+    exempt = [r for r in scored
+              if r.get('implied_cycle_years') and r.get('one_over_g')
+              and abs(r['implied_cycle_years'] / r['one_over_g'] - 1.0) < 0.02
+              and _record_built(r)]
+    clean = [r for r in scored if r not in sig and r not in exempt]
+    for r in sorted(exempt, key=lambda x: x['ticker']):
+        print('    %-12s cycle %.1f y sits on 1/g of %.1f BY COINCIDENCE — its committed '
+              'R-TERM-01 record reproduces the published terminal value to 1e-6 on a '
+              'disclosed life of %.4f years'
+              % (r['ticker'], r['implied_cycle_years'], r['one_over_g'],
+                 float((r['_terminal_record']['inputs'] or {})['useful_life_years'])))
     moved = []
     print('\n  CARRYING THE 1/g CONSTRUCTION: %d of %d' % (len(sig), len(scored)))
     for r in sorted(sig, key=lambda r: r['one_over_g']):
@@ -202,6 +292,21 @@ def main(argv):
             print('    %-12s%s' % (r['ticker'], '; '.join(r['off_frame'][:3])))
 
     # ---- unreadable is tracked, never skipped ----------------------------------------
+    exempt_dark, bad_claim = [], []
+    for r in dark:
+        ok, why = _no_enterprise_terminal(r)
+        (exempt_dark if ok else bad_claim).append((r, why))
+    for r, why in bad_claim:
+        if why:
+            fail.append('%s %s' % (r['ticker'], why))
+    if exempt_dark:
+        print('\n  NO ENTERPRISE TERMINAL BY CONSTRUCTION: %d' % len(exempt_dark))
+        print('  Not dark — there is nothing there to read. Each carries a terminal cost of')
+        print('  equity and a growth rate, and commits no weighted rate anywhere.')
+        for r, why in sorted(exempt_dark, key=lambda x: x[0]['ticker']):
+            print('    %-12s%s' % (r['ticker'], why))
+    dark = [r for r, _w in bad_claim]
+
     print('\n  TERMINAL NOT READABLE: %d' % len(dark))
     for r in dark:
         tk = r['ticker']

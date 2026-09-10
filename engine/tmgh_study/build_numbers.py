@@ -7,6 +7,8 @@ independent evaluator recalculate the delivered workbook against a file that
 was produced by the model rather than transcribed from it.
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.dirname(HERE)
@@ -53,8 +55,25 @@ def build():
             "instrument": "Talaat Moustafa Group Holding", "ticker": "TMGH",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
             "edition_date": "2026-09-02",
+            # THE STAMP WAS FROZEN AND THIS IS THE PASS THAT UNFREEZES IT [R-STD-02].
+            # It read a hard 2026.09.01 because this study was listed as not meeting one
+            # requirement of the newer standard: an asset-base record whose vintage is at
+            # least as new as the information set it claims to have read. That requirement
+            # is met as of 09-09-2026 — asset_base_record.py commits the land bank at
+            # 20.0 million sqm as at 30 June 2026 against an information set ending the
+            # SAME DAY, check_asset_base passes it, and the ratchet entry is pruned.
+            # The freeze note said in terms that it moves back to the live constant "in
+            # the same pass that meets the requirement, and not before"; this is that pass.
+            #
+            # IT IS READ NOW, NOT RE-TYPED. A stamp taken from the live constant re-asserts
+            # everything that version requires on every rebuild — which is exactly why it
+            # was frozen while a requirement was unmet, and exactly what makes it the right
+            # form once the requirement is met.
             "standard_version": RP.STANDARD_VERSION,
             "spot": spot, "spot_source": WC.SPOT_SOURCE,
+            # [R-GAP-01] the price carries its date, so a reader can age the
+            # comparison and a checker can hold it to the latest supplied figure.
+            "spot_date": WC.SPOT_DATE,
             "shares_mn": sh,
             "market_cap": spot * sh,
             "class": "real-estate developer, off-plan — point-in-time on handover",
@@ -68,7 +87,10 @@ def build():
         "per_share_nci_book": per_share,
         "per_share_nci_proportional": ps_prop,
         "per_share_nci_value_share": ps_value,
-        # ---- the four records the outside gates read ------------------------
+        # ---- the records the outside gates read ------------------------------
+        # (the count is deliberately not written here: a comment carrying a
+        # tally goes stale the first time a gate is added, which is what a
+        # sixth record arriving beside a comment reading "four" would have done)
         # [R-COC-01] the schedule, on the CENTRAL premium basis
         "cost_of_capital_record": w["cost_of_capital_record"],
         # [R-MACRO-01] every growth rate in the model, stored so it recomputes
@@ -79,6 +101,30 @@ def build():
         # [R-BRIDGE-01] the bridge as a RECORD, checked from outside the study.
         # The central case is the one the exposed central is taken from.
         "bridge_record": _bridge_record(cases, sh),
+        # [R-ANCHOR-01] the rate this forecast is anchored on, the reviewed
+        # actual it is anchored ON, and the whole explicit path
+        "forecast_anchor": _forecast_anchor(),
+        # [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN
+        # WALK-FORWARD PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule
+        # requires the decision to be stated in the study; the run stated it in
+        # section 0 and it was never carried across, which is [R-ENF-01]'s founding
+        # observation. `sourceable` is a claim about the ARCHIVE, not the panel, so
+        # the count is the pre-registration's and never the number of origins used.
+        "walkforward_scope": {
+            "rule": "R-FCAL-01",
+            "scope": "FULL",
+            "sourceable_fiscal_years": 16,
+            "earliest_sourceable": "FY2009",
+            "basis": ("this name's own walk-forward pre-registration, section 0: "
+                      "\"FULL run. The panel holds 16 sourceable fiscal years — "
+                      "FY2009 and FY2011-FY2025\". The run built origins 2015-2024 "
+                      "on that archive"),
+            "status": "run",
+            "note": ("The fundamental walk-forward HAS been run on this name "
+                     "(engine/tmgh_walkforward/, 01-09-2026): 10 origins, 2015-2024, "
+                     "466 scored cells on the as-known macro setting. Its adopted "
+                     "list is empty — every candidate is a watch flag."),
+        },
         "nci_basis_adopted": "value share (filed profit share proxy, 20.98%); book and proportional shown as the more punitive reads",
         "fair_value_range": {"low": lo, "high": hi,
                              "note": ("the envelope of four published cases — two ERP "
@@ -109,6 +155,119 @@ def build():
                                   "eras": scores["by_era"].get(k, {})}
                               for k, v in scores["by_driver"].items()},
         },
+    }
+
+
+def _forecast_anchor():
+    """[R-ANCHOR-01]. The rate the forecast is anchored on, and the whole path.
+
+    A near-term reviewed actual outranks a stale full-year rate, and this model
+    obeys that by construction rather than by assertion: every cost line is a
+    disclosed ratio of its own segment's revenue taken from the reviewed half
+    just filed, so each SEGMENT margin is held at its 30-June-2026 actual for the
+    whole explicit window and no segment rate drifts anywhere.
+
+    The rate recorded here is therefore the GROUP gross margin, not one of the
+    three segment rates, and that choice is the point. The segment rates cannot
+    move — recording one of them would be a true statement about an object that
+    is constant by construction, which is the safest place a claim can hide from
+    a checker. The group rate is the one a reader is shown in the projected
+    income statement, and it is the one that moves: it moves on MIX, as the
+    lowest-margin leg takes a different share of revenue.
+
+    THE PATH COMMITTED IS THE STEEPER OF THE TWO THIS STUDY PUBLISHES. The crux
+    is how fast the order book converts and it is computed both ways and never
+    averaged, so there is no single path to commit. Choosing the flatter reading
+    would satisfy clause two on a shape the study does not solely claim; the
+    steeper one is selected mechanically below, so if it clears, both do.
+
+    Nothing is typed here. Every figure is read from the reviewed statements in
+    the input registry or computed from the model's own projection.
+    """
+    h = IN.H1_26
+    rev_h1 = sum(_v(h, k) for k in ("dev_revenue", "hosp_revenue", "other_revenue"))
+    gp_h1 = _v(h, "gross_profit")
+    # THE DISCLOSED GROSS PROFIT MUST FOOT TO THE THREE SEGMENT LINES. Arithmetic
+    # is the arbiter: an anchor standing on a figure the statement's own segments
+    # do not reproduce is an anchor standing on a transcription.
+    seg = sum(_v(h, r) - _v(h, c)
+              for r, c in (("dev_revenue", "dev_cost"),
+                           ("hosp_revenue", "hosp_cost"),
+                           ("other_revenue", "other_cost")))
+    assert abs(seg - gp_h1) < 1e-6, "H1-2026 gross profit does not foot to its segments"
+    latest = gp_h1 / rev_h1
+
+    paths, years = {}, {}
+    for m in ("capacity", "recovery"):
+        rows = M.project(m)["rows"]
+        paths[m] = [r["gross_margin"] for r in rows]
+        years[m] = [r["year"] for r in rows]
+    # the two readings share their first year: FY2026 is anchored on the reviewed
+    # half in both, so the opening rate is not a function of the crux
+    assert paths["capacity"][0] == paths["recovery"][0]
+    first = paths["capacity"][0]
+    drop = {m: (min(paths[m]) - paths[m][0]) / paths[m][0] for m in paths}
+    steep = min(drop, key=drop.get)
+    flat = "capacity" if steep == "recovery" else "recovery"
+
+    # the group rate is a revenue-weighted mean of three CONSTANT segment rates,
+    # so the whole movement — into the first forecast year and along the path —
+    # is mix and nothing else. Asserted rather than asserted-in-prose.
+    r = M.ratios()
+    gm = (r["gm_dev_h1_26"], r["gm_hosp_h1_26"], r["gm_other_h1_26"])
+    w_h1 = tuple(_v(h, k) / rev_h1 for k in
+                 ("dev_revenue", "hosp_revenue", "other_revenue"))
+    row0 = M.project("capacity")["rows"][0]
+    w_f = tuple(row0[k] / row0["revenue"] for k in
+                ("dev_revenue", "hosp_revenue", "other_revenue"))
+    assert abs(sum(a * b for a, b in zip(w_h1, gm)) - latest) < 1e-12
+    assert abs(sum(a * b for a, b in zip(w_f, gm)) - first) < 1e-12
+
+    rep = ST.build()["reported"]
+
+    def _gm(y, restated=False):
+        v = rep[y]
+        rv = v["dev_revenue"] + v["hosp_revenue"] + v["other_revenue"]
+        return (v["restated"]["gross_profit"] if restated else v["gross_profit"]) / rv
+
+    return {
+        "rate_name": "group gross margin",
+        "latest_reviewed_period": "H1 2026, six months to 30 June, reviewed",
+        # the date the input registry carries on the figure itself, never typed
+        # here — the record and the source cannot then disagree about the vintage
+        "latest_reviewed_date": h["gross_profit"]["date"],
+        "latest_reviewed_rate": latest,
+        "first_forecast_rate": first,
+        "forecast_path": paths[steep],
+        "note": (
+            "No margin in this model is an input. Each cost line is a disclosed ratio of "
+            "its own segment's revenue taken from the reviewed half just filed, so the "
+            "three segment rates are held at their 30-June-2026 actuals for the whole "
+            "explicit window and none of them drifts: development %.2f%%, hospitality "
+            "%.2f%%, other recurring %.2f%%. The group rate is a revenue-weighted mean of "
+            "those three constants, so every movement in it is MIX and nothing else. It "
+            "opens at %.2f%% against the reviewed half's %.2f%%, %.2f%% relative below it, "
+            "because development — the lowest-margin leg — is %.1f%% of the first forecast "
+            "year's revenue against %.1f%% of the reviewed half's. The filed group record "
+            "is FY2023 %.2f%%, FY2024 %.2f%% as first reported and %.2f%% restated, FY2025 "
+            "%.2f%%, and the reviewed H1 2026 %.2f%%; the forecast opens below all of them "
+            "but FY2023. The path recorded here is the slower-conversion reading of the "
+            "crux, the steeper of the two this study publishes and never averages: it "
+            "falls to %.2f%% in %d, %.2f%% relative below its own opening year. The faster "
+            "reading falls only to %.2f%%, %.2f%% relative below its own. Both movements are "
+            "the same "
+            "mix effect — handovers grow faster than the two recurring legs, so the "
+            "lowest-margin business takes share. Neither the opening year nor either path "
+            "reaches the materiality line, so no mechanism is claimed; the steeper reading "
+            "sits inside it rather than clear of it, and this record says so rather than "
+            "reporting a pass."
+            % (100 * gm[0], 100 * gm[1], 100 * gm[2],
+               100 * first, 100 * latest, abs(100 * (first - latest) / latest),
+               100 * w_f[0], 100 * w_h1[0],
+               100 * _gm("2023"), 100 * _gm("2024"), 100 * _gm("2024", True),
+               100 * _gm("2025"), 100 * latest,
+               100 * min(paths[steep]), years[steep][paths[steep].index(min(paths[steep]))],
+               abs(100 * drop[steep]), 100 * min(paths[flat]), abs(100 * drop[flat]))),
     }
 
 
@@ -157,6 +316,32 @@ def _macro_record():
         "note": ("The explicit window ends at the terminal growth rate by construction: the "
                  "recurring legs grow with prices and the development leg is a finite order "
                  "book, so nothing is capitalised at a rate the model never reached."),
+        # THE STRIKE IS NEWER THAN THE HOUSE PATH'S CURRENCY ANCHOR, AND THE GAP IS
+        # DECLARED RATHER THAN LEFT TO BE FOUND. Two standing rules point different ways
+        # here: one requires delivery against the LATEST known price, the other pins the
+        # currency to a house path whose spot anchor carries its own date. Obeying both
+        # runs two dates for one economy. The bound borrowed for it is the fourteen days
+        # the cost-of-capital procedure already applies to a sovereign quote, reused
+        # rather than minted, and a study past it may accept the staleness WITH A REASON
+        # — an empty reason switches the check off instead of declaring it.
+        "anchor_staleness_accepted": {
+            "accepted": True,
+            "anchor_date": path.as_of_fx if hasattr(path, "as_of_fx") else "2026-08-06",
+            "strike_date": WC.SPOT_DATE,
+            "bound_days": 14,
+            "reason": ("Re-struck onto the latest committed supplied price, EGP 96.60 for "
+                       "2 September 2026, which is 27 days after the Egyptian path's own "
+                       "currency spot anchor. Accepted deliberately and for the reason the "
+                       "re-strike was made: the alternative is to hold this study at a "
+                       "close ten days older so the two dates agree, which buys a tidier "
+                       "record by giving a reader a comparison they cannot use. Refreshing "
+                       "the house path is a house-level act rather than a step of this "
+                       "name's rebuild, and the four other Egyptian studies struck in the "
+                       "same window carry the same gap. The staleness is disclosed, not "
+                       "switched off, and it moves the currency path by the difference "
+                       "between two spot readings four weeks apart rather than by any "
+                       "judgement of this desk's."),
+        },
     }
 
 
@@ -313,7 +498,8 @@ def main():
     cases = sorted(d["per_share_nci_value_share"].values())
     med = (cases[len(cases) // 2 - 1] + cases[len(cases) // 2]) / 2 if len(cases) % 2 == 0 else cases[len(cases) // 2]
     d["central"] = med
-    d["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    # read by campaign_queue.py. It said "never typed" while being typed; it is read now.
+    d["standard_version"] = RP.STANDARD_VERSION
     d["spot"] = d["meta"]["spot"]
     d["meta"]["central"] = med
     d["meta"]["gap_vs_spot"] = med / d["spot"] - 1
@@ -325,7 +511,10 @@ def main():
         "read the answer; %d of the four sit above the price and %d below."
         % (_above, len(cases) - _above))
     p = os.path.join(HERE, "study_numbers.json")
-    json.dump(d, open(p, "w"), indent=1)
+    _carried = write_preserving(p, d)
+    if _carried:
+        print("[R-REPAIR-01] carried forward downstream-owned record(s): %s"
+              % ", ".join(_carried))
     print("wrote %s (%d bytes)" % (p, os.path.getsize(p)))
     print("fair-value envelope %.2f - %.2f against spot %.2f"
           % (d["fair_value_range"]["low"], d["fair_value_range"]["high"],

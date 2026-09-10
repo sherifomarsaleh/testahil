@@ -36,11 +36,57 @@ beta, the cone, the ledger).
 THE DOCUMENTS ARE NOT AFFECTED. Study documents, protocol amendments and the digest keep
 their own voice and their own precision. This rule is about how the chat reads.
 
+## STANDING PRIORITY — FINISH THE FRAMEWORK
+
+**The principal's number one priority is finishing the fundamental-research framework.
+It has been stated repeatedly and it outranks every other piece of work in this
+repository.** Nothing below reorders it. Read this before deciding what to do next.
+
+WHAT FINISHING MEANS IS ALREADY DEFINED AND IS NOT OPEN — [R-VCAL-02 CLAUSE TWO]: the
+framework is adopted when it is BACKTESTED and the GATES PASS. Two conditions and
+nothing else is an adoption condition. The backtest is criterion 3's clauses G, B, C
+and F on the mechanical series — clause A's symmetric zero-bias test is REPORTED and
+no longer gates, replaced by [R-VCAL-02 CLAUSE THREE]'s one-sided bar: no company
+called expensive by more than 10% without an audit behind it. The gates are the
+standing set every study is held to.
+Phase 2b is calibration, not a bar to clear first.
+
+WHAT IS ACTUALLY BLOCKING IT, READ LIVE — `python3 engine/method_reassessment/criterion3.py`
+— never from this file, because cells are carried, vintages mature and a clause that
+passes today can go red on the next run. THE SAMPLE CONSTRAINT THIS PARAGRAPH USED TO
+NAME IS CLOSED: it said clauses B and C could not be measured on one name, and that was
+true when it was written and stopped being true on 08-09-2026, when the series reached
+five names, eight origins and 22 cells and both clauses went green. A status sentence in
+a standing document is a claim about the world and it rots [R-DOC-02] — which is exactly
+why the live command is named here and the state is not.
+
+The two conditions are answered separately and neither is answered from this file. The
+BACKTEST half is criterion3.py's own print. The GATES half is the standing set, run from
+outside the work they govern. What remains after both is DEBT rather than a blocker, and
+it is countable rather than remembered: the ratchet lists, and the named data-carry job
+of taking valuation-input blocks to more origins across the ten completed runs per
+[R-FCAL-01 AMENDED] — a copy out of filings each run has already parsed, which is work
+with a rate.
+
+**THE FAILURE THIS RECORD EXISTS TO STOP IS DRIFT, NOT DISAGREEMENT.** No session has
+ever disputed the priority; sessions drift into adjacent work because the adjacent work
+is real, is in front of them, and each individual step is defensible — a gate goes red,
+a rule needs amending, a study wants re-issuing. Every one of those is legitimate and
+none of them is this. Where a red gate or an amendment stands between the framework and
+its next measurement, clear it and return; where it does not, it waits.
+
+ISSUING NEW STUDIES IS NOT THE FRAMEWORK, per instruction 08-09-2026 — "i just need to
+finish the framework. I do not care about issuing new reports now." A study is rebuilt
+only where the framework's own measurement needs it.
+
+REPORT ONE NAME AT A TIME, per instruction — "if there is something I do not like I want
+to catch it early." A carry is reported when that name is done, not batched at the end.
+
 This repo runs the TESTAHIL Standing Research Protocol: valuation studies, calibrated
 probability cones, and a public ledger, published to the live site. Read this before
 doing any research, study-build, critique-response, or publishing work here.
 
-**Full governing rules — `engine/PROJECT_INSTRUCTIONS_08-09-2026.md`. NOT auto-loaded**
+**Full governing rules — `engine/PROJECT_INSTRUCTIONS_10-09-2026.md`. NOT auto-loaded**
 (~55k characters; injecting it into every session is what makes ordinary answers long and
 ornate). READ IT IN FULL, with `cat`, before any of: starting or re-issuing a study, a
 walk-forward run, a critique response, a roll-forward, a publish, or amending a rule. For
@@ -144,6 +190,15 @@ diff-only summary leaves that copy silently behind.
   compiled, and that is stated in the file rather than implied.
 
 **Shared code every study should use, not reinvent:**
+- `engine/research_primer_prompt.py` — [R-PRIME-01]. **`python3 engine/research_primer_prompt.py
+  TICKER` BEFORE a study is built or re-issued**, then hand the prompt over and read what comes
+  back. Built from what the repo already holds: the company's registered name in English AND the
+  language its own regulator and trade press write it in, the driver headings its industry turns
+  on, and the study's OWN dated negative searches read live out of its sweep register. Never
+  hand-write it — if the generator refuses the name, stop and say so. What comes back is a LEAD
+  AND NEVER AN INPUT: traced to the primary source and read there before it moves anything,
+  historicals from the company's own issued statements alone, and every untraceable claim
+  written back as a dated negative search rather than dropped.
 - `engine/research_sweep.py` — the Step 2A Information Sweep register and its enforced
   invariants (coverage, provenance, consequence, gate linkage, primary access, FS depth,
   study-year quarter coverage, IR coverage). Import this rather than hand-rolling a
@@ -171,6 +226,21 @@ diff-only summary leaves that copy silently behind.
   hard gate. A violation must not issue, not just warn. Also `assert_beta_provenance()`,
   which inspects the actual beta record rather than trusting a checklist boolean — that
   boolean was set `True` by every study while it regressed on a composite.
+- `engine/asset_base.py` — [R-ASSET-01]. The operating asset base's vintage: a developer's
+  landbank, a fleet, installed capacity. Scope is DERIVED from `LENS_REGISTRY`, and the test
+  is an ORDERING — the asset base may not be older than the information set the study says
+  it read — so there is no threshold to argue about. A class that does not resolve is RED,
+  never skipped.
+- `engine/ke_reproduction.py` — [R-COC-02]. Ke must reproduce from `rf* + beta x ERP`, and
+  the terminal under a construction NAMED from a closed list (`same_beta`, `relevered`). The
+  book runs both; until this existed nothing distinguished a relevered beta from a typo. A
+  relevered terminal must STATE its tax rate — the module can solve the implied one and
+  reports it so the fix is a single line, but never accepts it.
+- `engine/ratchet_shape.py` — [R-ENF-08]. A ratchet entry excuses the failure it RECORDED,
+  not every failure of its class. Use it in any new gate that carries a ratchet: `excused()`
+  compares the failure's SHAPE with live figures stripped, `worsened()` compares a recorded
+  MAGNITUDE where the message never changes. An entry with no signature behaves exactly as
+  before, so it binds forward and makes no existing list red.
 - `engine/adaptive_width.py` — the EG-only, history-gated per-stock cone-width overlay.
   Overlay only; never touches the pooled (ν, width_cal) fit, drift, or tail.
 - `engine/data_quality.py` — Step 0.0, mandatory before any calibration, fit or study.

@@ -1,17 +1,42 @@
 {
- "beta": 1.0087131974394166,
- "r2": 0.29126939836703036,
- "n": 258,
- "se": 0.09834241826281419,
+ "ticker": "SWDY",
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 1.2249065740479688,
+ "r2": 0.3682291359016746,
+ "se": 0.16985536077656596,
+ "n": 256,
  "ci90": [
-  0.8469399193970872,
-  1.170486475481746
+  0.9454945055705177,
+  1.5043186425254198
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
- "composite_names": 31,
- "window_years": 5,
+ "dimson": true,
  "frequency": "weekly",
  "weak": false,
- "warnings": []
+ "warnings": [],
+ "window_years": 4.94,
+ "first_obs": "2021-09-23",
+ "last_obs": "2026-09-03",
+ "blume_crosscheck": 1.149937716031979,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-09-08",
+ "index_dq": [],
+ "stock_dq": [
+  "dropped 1 interior stale/no-trade rows"
+ ],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "asof": null,
+ "withdrawn_composite": {
+  "beta": 1.0087131974394166,
+  "r2": 0.29126939836703036,
+  "n": 258,
+  "se": 0.09834241826281419,
+  "regressor": "31-name equal-weight composite of the covered EGX library",
+  "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle \u2014 only an inherited pattern."
+ },
+ "delta_vs_withdrawn": 0.21432591261554967
 }

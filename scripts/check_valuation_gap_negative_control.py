@@ -68,7 +68,7 @@ def make_study(engine, tk, central=None, spot=None, review=None, numbers=True):
     return d
 
 
-def run_case(name, build, outstanding, expect_fail):
+def run_case(name, build, outstanding, expect_fail, extra_names=()):
     tmp = tempfile.mkdtemp()
     try:
         build(tmp)
@@ -76,6 +76,38 @@ def run_case(name, build, outstanding, expect_fail):
         op = os.path.join(tmp, 'build_depth_audit', 'gap_outstanding.json')
         json.dump(outstanding, io.open(op, 'w', encoding='utf-8'))
         gate.ENGINE, gate.OUTSTANDING = tmp, op
+
+        # THE GATE NO LONGER GLOBS FOR ITS POPULATION [re-pointed 06-09-2026], so
+        # the sandbox has to supply one. It is built FROM THE SANDBOX'S OWN
+        # DIRECTORIES, never hand-written, so a case cannot accidentally test a
+        # population that does not match the fixture it planted; `extra_names`
+        # adds delivered studies that commit NO record, which is the condition
+        # the re-pointing exists to make visible and which no directory can
+        # express. study_population.py is negative-controlled separately on its
+        # own eight conditions -- each instrument tested on what it decides.
+        def _fixture_population(_tmp=tmp, _extra=extra_names):
+            out = {}
+            for d in sorted(os.listdir(_tmp)):
+                if d.endswith('_study') and os.path.isdir(os.path.join(_tmp, d)):
+                    out[d[:-len('_study')].upper()] = {
+                        'delivered': ['%s_Valuation_Study_01-09-2026_public.pdf'
+                                      % d[:-len('_study')].upper()],
+                        'record_dir': os.path.join(_tmp, d), 'readable': True}
+            for tk in (_extra or ()):
+                out[tk] = {'delivered': ['%s_Valuation_Study_01-09-2026_public.pdf' % tk],
+                           'record_dir': None, 'readable': False}
+            return out
+        gate.resolve_population = _fixture_population
+
+        # THE SHARED NO-RECORD RATCHET IS SUBSTITUTED BY POINTING THE RESOLVER AT A
+        # FIXTURE FILE, not by re-implementing its logic here: a control that reasons
+        # about the ratchet in its own words tests its own reasoning. The cases keep
+        # declaring their allowance under the key they always used.
+        _nrp = os.path.join(tmp, 'coverage_outstanding.json')
+        json.dump({'entries': {t: 'fixture' for t in
+                               sorted(outstanding.get('no_record_dir') or [])}},
+                  io.open(_nrp, 'w', encoding='utf-8'))
+        _sp.NO_RECORD_RATCHET = _nrp
 
         buf, real = [], sys.stdout
 
@@ -103,10 +135,80 @@ def run_case(name, build, outstanding, expect_fail):
         return ok
     finally:
         gate.ENGINE, gate.OUTSTANDING = REAL_ENGINE, REAL_OUTSTANDING
+        gate.resolve_population = REAL_POPULATION
+        _sp.NO_RECORD_RATCHET = REAL_NO_RECORD
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+REAL_POPULATION = gate.resolve_population
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                'engine'))
+import study_population as _sp                                          # noqa: E402
+REAL_NO_RECORD = _sp.NO_RECORD_RATCHET
+
 EMPTY = {'breach_no_review': [], 'unreadable': [], 'exempt': {}}
+
+
+DECLARED_CASES = 27
+
+
+def price_date_beats_file_date():
+    """THE LATEST KNOWN PRICE IS THE LATEST CLOSE, NOT THE ONE IN THE NEWEST FILE.
+
+    A supplied file records WHEN SOMEBODY SUPPLIED a set of closes; each close inside
+    it carries its own date. supplied_price() used to keep whichever row it read last,
+    files in name order, so a name added to today's file with last month's close
+    displaced a fresher close held in an older file -- and the gate then measured the
+    gap against a price it had itself made stale, while reporting a date that made the
+    staleness look deliberate.
+
+    IT IS NOT HYPOTHETICAL. On 7 September 2026 a close of 23 August was supplied for
+    GBCO -- read off the live site, correct as a fact about the PAGE -- into a file
+    whose other row was that day's, and it displaced the 3 September close this
+    repository already held. engine/prices/gap_today.py had always merged on each
+    price's own date; this reader had not, so two readers of one fact disagreed
+    [R-ENF-03] and the one that looked stricter was wrong.
+
+    Both halves are asserted, because a fix that always preferred the OLDER date would
+    pass the first half alone.
+    """
+    tmp = tempfile.mkdtemp()
+    ok = True
+    try:
+        pdir = os.path.join(tmp, 'prices')
+        os.makedirs(pdir)
+        json.dump({'prices': {'TK': {'price': 28.98, 'date': '2026-09-03'}}},
+                  io.open(os.path.join(pdir, 'SUPPLIED_03-09-2026.json'), 'w',
+                          encoding='utf-8'))
+        json.dump({'prices': {'TK': {'price': 29.51, 'date': '2026-08-23'}}},
+                  io.open(os.path.join(pdir, 'SUPPLIED_07-09-2026.json'), 'w',
+                          encoding='utf-8'))
+        files = sorted(os.listdir(pdir))
+        assert files[-1].endswith('07-09-2026.json'), (
+            'FIXTURE DID NOT LAND: the file carrying the OLDER close is not the one a '
+            'name sort reads last, so this case would not exercise the defect')
+        gate.ENGINE = tmp
+        px, when, _src = gate.supplied_price('TK')
+        if not (abs(px - 28.98) < 1e-9 and when == '2026-09-03'):
+            ok = False
+            print('  [MISS] older close in the newer file was taken as latest: %r %r'
+                  % (px, when))
+        # and the other way round, so the fix is ordering by date rather than
+        # preferring the older file
+        json.dump({'prices': {'TK': {'price': 31.40, 'date': '2026-09-11'}}},
+                  io.open(os.path.join(pdir, 'SUPPLIED_07-09-2026.json'), 'w',
+                          encoding='utf-8'))
+        px2, when2, _ = gate.supplied_price('TK')
+        if not (abs(px2 - 31.40) < 1e-9 and when2 == '2026-09-11'):
+            ok = False
+            print('  [MISS] a genuinely newer close in the newer file was not taken: '
+                  '%r %r' % (px2, when2))
+    finally:
+        gate.ENGINE = REAL_ENGINE
+        shutil.rmtree(tmp, ignore_errors=True)
+    print('  [%s] the latest KNOWN price is the latest close, not the newest file'
+          % ('ok' if ok else 'MISS'))
+    return ok
 
 
 def main():
@@ -201,8 +303,45 @@ def main():
          {'breach_no_review': [], 'unreadable': [],
           'exempt': {'XPT': 'metals study - no issuer, no equity fair value of this shape'}},
          False),
+
+        # ---- THE POPULATION RE-POINTING [06-09-2026]. Until this date the gate
+        # globbed engine/*_study and audited 23 of 90 delivered studies while
+        # reporting itself population-anchored. These six cases are the conditions
+        # that re-pointing creates, and the two CLEAN ones matter most: a ratchet
+        # that cannot stay green is the permanently-red check [R-ENF-02] forbids.
+        ('a delivered study committing no record, not on the ratchet',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10), EMPTY, True, ('COMI',)),
+        ('CLEAN — the same study, ratcheted on no_record_dir, must PASS',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['COMI']}, False, ('COMI',)),
+        ('a name excused on no_record_dir that DOES commit a record',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['AMOC']}, True),
+        ('a name carrying BOTH allowances — the two are not interchangeable',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': ['COMI'], 'exempt': {},
+          'no_record_dir': ['COMI']}, True, ('COMI',)),
+        ('a ratcheted name that resolves to no covered name at all',
+         lambda e: make_study(e, 'AMOC', 9.00, 9.10),
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['ZZNOTABOOKNAME']}, True),
+        ('names present and ZERO answers read — anchored the second way',
+         lambda e: None,
+         {'breach_no_review': [], 'unreadable': [], 'exempt': {},
+          'no_record_dir': ['COMI']}, True, ('COMI',)),
     ]
-    results = [run_case(n, b, o, f) for n, b, o, f in cases]
+    results = [run_case(*(c if len(c) == 5 else c + ((),))) for c in cases]
+    assert len(results) == DECLARED_CASES, (
+        'declared %d cases, ran %d — a control that quietly loses a case reports '
+        'clean for the wrong reason.' % (DECLARED_CASES, len(results)))
+    # A UNIT CASE ON THE PRICE RESOLVER, RUN AFTER THE COUNT so the sandboxed-study
+    # cases keep being counted against their own declared constant. It asserts on
+    # supplied_price() directly because the quantity it tests -- which of two closes
+    # is the LATEST -- is decided before any study is read, and routing it through a
+    # full run would prove only that some price reached the comparison.
+    results.append(price_date_beats_file_date())
     print()
     if all(results):
         print('negative control OK — the gate goes red on every injected defect, on both '

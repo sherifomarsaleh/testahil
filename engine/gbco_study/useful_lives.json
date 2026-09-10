@@ -1,0 +1,45 @@
+{
+  "_rule": "R-TERM-01 — a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source.",
+  "_verdict": "NO USABLE LIFE COULD BE SOURCED. Both admissible routes were run and both failed, for different reasons. The terminal therefore STAYS on the [R-TERM-01] ratchet with this file as its reason, and no life was chosen.",
+  "_source": "GB Corp S.A.E, consolidated financial statements for the financial year ended 31 December 2025 — note 42 (significant accounting policies, section I-3 'Depreciation') and note 17 (property, plant, equipment and projects under construction), as reproduced in GB Corp's own Annual Report 2025.",
+  "_file": "engine/gbco_study/src/GB_Corp_Annual_Report_2025.pdf (pages 62-63 and 76); cross-read against engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2021.pdf pages 21 and 42, which carries the IDENTICAL rate table",
+  "_route": "PDF text layer (pymupdf). The standalone audited-statement PDFs for FY2022-FY2025 carry NO text layer at all (0 characters across 51-60 pages); the SAME audited statements are reproduced inside the annual report, which does, so the annual report is the route and the audited statement is the document. Arithmetic is the arbiter and it is what refuses this life.",
+  "_extracted": "2026-09-07",
+
+  "route_1_policy_note": {
+    "outcome": "FAILED — the note discloses RATE RANGES per asset class and no scalar, no dominant class and no weighting.",
+    "disclosed_rates": {
+      "buildings": [0.02, 0.04],
+      "machinery_and_equipment": [0.10, 0.20],
+      "vehicles": [0.20, 0.25],
+      "fixtures_and_office_furniture": [0.06, 0.33],
+      "it_infrastructure_and_computers": [0.25, 0.25],
+      "leasehold_improvements": "20% or the lease period, whichever is less"
+    },
+    "implied_life_span_years": [3.0, 50.0],
+    "why_this_is_not_a_life": "FINDING A RANGE IS NOT FINDING A LIFE. A 3-to-50-year span is worth several times the terminal value; picking a point inside it is precisely the choice this rule exists to forbid."
+  },
+
+  "route_2_derived_identity": {
+    "outcome": "FAILED — the identity yields a figure that does not reconcile against the policy note's own disclosed bands, and it is contaminated by an undisclosed land component.",
+    "identity": "depreciable gross cost / annual depreciation charge",
+    "unit": "EGP thousand",
+    "gross_cost_2025_close": {"land_and_buildings": 3924484, "machinery_and_equipment": 1801037,
+      "vehicles": 2127975, "computers": 350782, "fixtures_and_furniture": 1898584,
+      "leasehold_improvements": 193406, "projects_under_construction": 4228010, "total": 14524278},
+    "gross_cost_2024_close": {"land_and_buildings": 4030298, "machinery_and_equipment": 1525455,
+      "vehicles": 1308857, "computers": 298200, "fixtures_and_furniture": 1609772,
+      "leasehold_improvements": 176662, "projects_under_construction": 2693963, "total": 11643207},
+    "depreciation_charge_2025": {"land_and_buildings": 46092, "machinery_and_equipment": 140974,
+      "vehicles": 203038, "computers": 26720, "fixtures_and_furniture": 138594,
+      "leasehold_improvements": 8656, "total": 564072},
+    "derived_years_on_average_gross_ex_puc": 17.1,
+    "derived_years_ex_land_and_buildings": 10.9,
+    "why_the_two_differ": "Land is NOT depreciated and the note does not disclose it separately — it is combined with buildings in one column. Including that column puts an undepreciated asset in the denominator and OVERSTATES the life; excluding it removes the buildings too and UNDERSTATES it. The company does not disclose the split, so the identity returns a RANGE of 10.9 to 17.1 years and not a scalar.",
+    "the_arithmetic_that_refuses_it": "The derived per-class rates do not reproduce the disclosed per-class bands. Machinery and equipment derives to 8.48% on average gross cost against a disclosed 10%-20%; the land-and-buildings column derives to 1.17%, BELOW the disclosed 2% floor for buildings, which is the land contamination showing up in the arithmetic rather than being argued about. A derived life that contradicts the policy it is supposed to implement is not evidence of a life; it is evidence that the identity does not hold on this asset base."
+  },
+
+  "adopted_for_terminal": null,
+  "what_would_close_this": "Any GB Corp disclosure separating land from buildings inside note 17, or a policy note stating a scalar or dominant-class life. The company files a standalone as well as a consolidated statement each quarter; neither carries the split as at 31 December 2025.",
+  "consequence": "[R-TERM-01]'s sanctioned terminal cannot be built for GBCO. The study's Gordon terminal stands, with its growth rate corrected to the house macro path [R-MACRO-01], and the name stays on the terminal ratchet with this file named as the reason. STOP AND INFORM, per SIGCM clause 8 — not a chosen life."
+}

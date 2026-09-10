@@ -1,6 +1,6 @@
 {
- "central": 4.919425418226855,
- "spot": 5.94,
+ "central": 4.923612113005287,
+ "spot": 5.8,
  "meta": {
   "ticker": "ADNOCDRILL",
   "market": "AE",
@@ -16,9 +16,9 @@
  },
  "inputs": {
   "spot_aed": {
-   "value": 5.94,
-   "source": "Uploaded ADX daily price history for ADNOCDRILL, last close 07-Aug-2026",
-   "date": "2026-08-07",
+   "value": 5.8,
+   "source": "Uploaded ADX daily price history for ADNOCDRILL, last close 03-Sep-2026 \u2014 the latest price supplied to this repository (SUPPLIED_03-09-2026.json). Superseded: AED 5.94 of 7 August 2026, on which every edition before this one was struck",
+   "date": "2026-09-03",
    "ring": "Market"
   },
   "fx_aed_usd": {
@@ -1951,22 +1951,23 @@
   "kd_pretax": 0.0515,
   "kd_after_tax": 0.046865,
   "tax_rate": 0.09,
-  "market_cap": 25866942.66575902,
+  "market_cap": 25257284.084411167,
   "net_debt": 2158539.0,
   "gross_debt": 2513962.0,
-  "weight_equity": 0.9114206530902785,
-  "weight_debt": 0.08857934690972147,
-  "wacc_rating": 0.08008764993612029,
-  "wacc_cds": 0.08052239758764435,
-  "wacc_used": 0.08008764993612029
+  "weight_equity": 0.909476082118938,
+  "weight_debt": 0.09052391788106195,
+  "wacc_rating": 0.08001676740735847,
+  "wacc_cds": 0.0804505874985292,
+  "wacc_used": 0.08001676740735847
  },
  "market": {
-  "spot_aed": 5.94,
-  "spot_usd": 1.617426820966644,
+  "spot_aed": 5.8,
+  "spot_date": "2026-09-03",
+  "spot_usd": 1.5793056501021103,
   "fx": 3.6725,
   "shares_outstanding_k": 15992651.0,
-  "market_cap_usd_k": 25866942.66575902,
-  "enterprise_value_usd_k": 28025481.66575902,
+  "market_cap_usd_k": 25257284.084411167,
+  "enterprise_value_usd_k": 27415823.084411167,
   "net_debt_usd_k": 2158539.0
  },
  "cases": {
@@ -2029,8 +2030,8 @@
      "working_capital": 450420.4181374763,
      "delta_wc": 145975.4181374763,
      "fcff": 1167421.9648269545,
-     "discount_factor": 0.9258507863312233,
-     "pv_fcff": 1080858.5441153776,
+     "discount_factor": 0.925911550799861,
+     "pv_fcff": 1080929.4818907462,
      "ppe_open": 5843054.0,
      "ppe_close": 5986772.817675333,
      "interest": 128557.802,
@@ -2132,8 +2133,8 @@
      "working_capital": 469111.98103125516,
      "delta_wc": 18691.562893778842,
      "fcff": 1552805.7199516345,
-     "discount_factor": 0.8571996785501446,
-     "pv_fcff": 1331064.563993367,
+     "discount_factor": 0.8573121999046036,
+     "pv_fcff": 1331239.2877961877,
      "ppe_open": 5986772.817675333,
      "ppe_close": 6016809.051924474,
      "interest": 128557.802,
@@ -2235,8 +2236,8 @@
      "working_capital": 495162.1938228268,
      "delta_wc": 26050.212791571626,
      "fcff": 1788636.2494042318,
-     "discount_factor": 0.7936389964285231,
-     "pv_fcff": 1419531.4779528521,
+     "discount_factor": 0.793795268533312,
+     "pv_fcff": 1419810.991904248,
      "ppe_open": 6016809.051924474,
      "ppe_close": 5963985.721312381,
      "interest": 128557.802,
@@ -2338,8 +2339,8 @@
      "working_capital": 520147.97303370625,
      "delta_wc": 24985.779210879467,
      "fcff": 2009791.3781813555,
-     "discount_factor": 0.734791288906471,
-     "pv_fcff": 1476777.197206991,
+     "discount_factor": 0.7349842081052709,
+     "pv_fcff": 1477164.9245494246,
      "ppe_open": 5963985.721312381,
      "ppe_close": 5816191.374654095,
      "interest": 128557.802,
@@ -2441,8 +2442,8 @@
      "working_capital": 537114.2267517545,
      "delta_wc": 16966.253718048276,
      "fcff": 2118370.368036597,
-     "discount_factor": 0.6803070926233893,
-     "pv_fcff": 1441142.3861785165,
+     "discount_factor": 0.6805303679401592,
+     "pv_fcff": 1441615.3659934758,
      "ppe_open": 5816191.374654095,
      "ppe_close": 5642467.617434135,
      "interest": 128557.802,
@@ -2495,31 +2496,31 @@
    "reinvestment_rate": 0.1388888888888889,
    "terminal_net_debt": -297295.91012833826,
    "terminal_is_net_cash": true,
-   "terminal_rate": 0.08008764993612029,
-   "terminal_value": 31429835.928575177,
-   "pv_terminal": 21381940.30219912,
-   "pv_explicit": 6749374.169447104,
-   "enterprise_value_dec25": 28131314.471646227,
+   "terminal_rate": 0.08001676740735847,
+   "terminal_value": 31470329.51542464,
+   "pv_terminal": 21416514.92432998,
+   "pv_explicit": 6750760.052134082,
+   "enterprise_value_dec25": 28167274.976464063,
    "stub_fcff": 653171.0,
-   "enterprise_value": 28570232.492844626,
-   "tv_pct_of_ev": 0.7600761181547399,
+   "enterprise_value": 28606655.611308657,
+   "tv_pct_of_ev": 0.760333221521256,
    "bridge": {
-    "enterprise_value": 28570232.492844626,
+    "enterprise_value": 28606655.611308657,
     "jv_investment": 461729.0,
     "cash": 355423.0,
     "debt": -2468779.0,
     "leases": -45183.0,
     "put_liability": -62530.0,
-    "equity_30jun26": 26810892.492844626,
+    "equity_30jun26": 26847315.611308657,
     "accretion_years": 0.10410958904109589,
-    "accretion": 224310.65151396766,
-    "equity_value": 27035203.144358594,
-    "value_per_share_usd": 1.6904766535803597,
-    "value_per_share_aed": 6.208275510273871
+    "accretion": 224615.3818930462,
+    "equity_value": 27071930.993201703,
+    "value_per_share_usd": 1.692773198965056,
+    "value_per_share_aed": 6.216709573199168
    },
-   "equity_value": 27035203.144358594,
-   "value_per_share_usd": 1.6904766535803597,
-   "value_per_share_aed": 6.208275510273871
+   "equity_value": 27071930.993201703,
+   "value_per_share_usd": 1.692773198965056,
+   "value_per_share_aed": 6.216709573199168
   },
   "B": {
    "case": "B",
@@ -2580,8 +2581,8 @@
      "working_capital": 450420.4181374763,
      "delta_wc": 145975.4181374763,
      "fcff": 1167421.9648269545,
-     "discount_factor": 0.9258507863312233,
-     "pv_fcff": 1080858.5441153776,
+     "discount_factor": 0.925911550799861,
+     "pv_fcff": 1080929.4818907462,
      "ppe_open": 5843054.0,
      "ppe_close": 5986772.817675333,
      "interest": 128557.802,
@@ -2683,8 +2684,8 @@
      "working_capital": 459395.869444444,
      "delta_wc": 8975.451306967705,
      "fcff": 1622922.598080633,
-     "discount_factor": 0.8571996785501446,
-     "pv_fcff": 1391168.729386484,
+     "discount_factor": 0.8573121999046036,
+     "pv_fcff": 1391351.3428354023,
      "ppe_open": 5986772.817675333,
      "ppe_close": 5936809.051924474,
      "interest": 128557.802,
@@ -2786,8 +2787,8 @@
      "working_capital": 467963.20999718405,
      "delta_wc": 8567.340552740032,
      "fcff": 1862283.986173637,
-     "discount_factor": 0.7936389964285231,
-     "pv_fcff": 1477981.1938517548,
+     "discount_factor": 0.793795268533312,
+     "pv_fcff": 1478272.2168899889,
      "ppe_open": 5936809.051924474,
      "ppe_close": 5771602.028569848,
      "interest": 128557.802,
@@ -2889,8 +2890,8 @@
      "working_capital": 476664.89967720635,
      "delta_wc": 8701.689680022304,
      "fcff": 2035565.466203879,
-     "discount_factor": 0.734791288906471,
-     "pv_fcff": 1495715.77256545,
+     "discount_factor": 0.7349842081052709,
+     "pv_fcff": 1496108.4722242947,
      "ppe_open": 5771602.028569848,
      "ppe_close": 5522123.348352228,
      "interest": 128557.802,
@@ -2992,8 +2993,8 @@
      "working_capital": 483814.8731723643,
      "delta_wc": 7149.973495157959,
      "fcff": 2079215.780968029,
-     "discount_factor": 0.6803070926233893,
-     "pv_fcff": 1414505.2428870297,
+     "discount_factor": 0.6805303679401592,
+     "pv_fcff": 1414969.4804491582,
      "ppe_open": 5522123.348352228,
      "ppe_close": 5276395.996668668,
      "interest": 128557.802,
@@ -3046,31 +3047,31 @@
    "reinvestment_rate": 0.08333333333333333,
    "terminal_net_debt": -439788.1881162524,
    "terminal_is_net_cash": true,
-   "terminal_rate": 0.08008764993612029,
-   "terminal_value": 26311606.71699863,
-   "pv_terminal": 17899972.66789138,
-   "pv_explicit": 6860229.482806096,
-   "enterprise_value_dec25": 24760202.150697477,
+   "terminal_rate": 0.08001676740735847,
+   "terminal_value": 26340292.136072174,
+   "pv_terminal": 17925368.699012477,
+   "pv_explicit": 6861630.99428959,
+   "enterprise_value_dec25": 24786999.693302065,
    "stub_fcff": 653171.0,
-   "enterprise_value": 25066727.643173087,
-   "tv_pct_of_ev": 0.7229332199691734,
+   "enterprise_value": 25093743.221577734,
+   "tv_pct_of_ev": 0.7231762182115274,
    "bridge": {
-    "enterprise_value": 25066727.643173087,
+    "enterprise_value": 25093743.221577734,
     "jv_investment": 461729.0,
     "cash": 355423.0,
     "debt": -2468779.0,
     "leases": -45183.0,
     "put_liability": -62530.0,
-    "equity_30jun26": 23307387.643173087,
+    "equity_30jun26": 23334403.221577734,
     "accretion_years": 0.10410958904109589,
-    "accretion": 194998.9284662567,
-    "equity_value": 23502386.571639344,
-    "value_per_share_usd": 1.4695741545063006,
-    "value_per_share_aed": 5.397011082424389
+    "accretion": 195224.95160198957,
+    "equity_value": 23529628.173179723,
+    "value_per_share_usd": 1.4712775369874402,
+    "value_per_share_aed": 5.403266754586374
    },
-   "equity_value": 23502386.571639344,
-   "value_per_share_usd": 1.4695741545063006,
-   "value_per_share_aed": 5.397011082424389
+   "equity_value": 23529628.173179723,
+   "value_per_share_usd": 1.4712775369874402,
+   "value_per_share_aed": 5.403266754586374
   }
  },
  "relative": {
@@ -3277,7 +3278,7 @@
   "equity_value": 17199121.362431973,
   "value_per_share_usd": 1.0754390477496178,
   "value_per_share_aed": 3.9495499028604715,
-  "implied_own_ev_ebitda": 12.899768183646744,
+  "implied_own_ev_ebitda": 12.619150192336113,
   "median_pe_mena": 23.071996705679943,
   "median_pe_land": 4.888134345274236,
   "median_pe_offshore": 36.10109876899696,
@@ -3296,7 +3297,7 @@
   "equity_value": 20576592.40005538,
   "value_per_share_usd": 1.2866279893218064,
   "value_per_share_aed": 4.725141290784334,
-  "current_pb": 6.109744804924233
+  "current_pb": 5.965744085616255
  },
  "normalised": {
   "units": {
@@ -3314,33 +3315,33 @@
   "dna_2030_reference": 553723.7572199597,
   "ebit": 1470952.278413918,
   "nopat": 1338566.5733566654,
-  "capitalisation_rate": 0.08008764993612029,
-  "enterprise_value": 16713770.15587717,
+  "capitalisation_rate": 0.08001676740735847,
+  "enterprise_value": 16728575.981358236,
   "bridge": {
-   "enterprise_value": 16713770.15587717,
+   "enterprise_value": 16728575.981358236,
    "jv_investment": 461729.0,
    "cash": 355423.0,
    "debt": -2468779.0,
    "leases": -45183.0,
    "put_liability": -62530.0,
-   "equity_30jun26": 14954430.15587717,
+   "equity_30jun26": 14969235.981358238,
    "accretion_years": 0.10410958904109589,
-   "accretion": 125114.74476950616,
-   "equity_value": 15079544.900646675,
-   "value_per_share_usd": 0.942904644179797,
-   "value_per_share_aed": 3.4628173057503044
+   "accretion": 125238.6162281204,
+   "equity_value": 15094474.597586358,
+   "value_per_share_usd": 0.9438381790227498,
+   "value_per_share_aed": 3.4662457124610486
   },
-  "equity_value": 15079544.900646675,
-  "value_per_share_usd": 0.942904644179797,
-  "value_per_share_aed": 3.4628173057503044
+  "equity_value": 15094474.597586358,
+  "value_per_share_usd": 0.9438381790227498,
+  "value_per_share_aed": 3.4662457124610486
  },
  "sensitivity": {
   "wacc_grid": [
-   0.070088,
-   0.075088,
-   0.080088,
-   0.085088,
-   0.090088
+   0.070017,
+   0.075017,
+   0.080017,
+   0.085017,
+   0.090017
   ],
   "g_grid": [
    0.01,
@@ -3351,93 +3352,93 @@
   ],
   "matrix": [
    [
-    6.419490700694,
-    6.759316563720758,
-    7.165131031764513,
-    7.658887375656863,
-    8.27349140605758
+    6.42766391695358,
+    6.768601659624352,
+    7.175843424242394,
+    7.6714822052144624,
+    8.28865280138381
    ],
    [
-    5.888680380964527,
-    6.160485109709473,
-    6.479976393087424,
-    6.861435063223742,
-    7.325476600986408
+    5.895647484380923,
+    6.168291993031424,
+    6.488836744244655,
+    6.871646926625301,
+    7.337469846024741
    ],
    [
-    5.433471210355845,
-    5.653418317899793,
-    5.9084849660781975,
-    6.208233911017926,
-    6.5660462909441
+    5.439481047305022,
+    5.660074434571938,
+    5.915936151837309,
+    6.216681862441138,
+    6.575772187773681
    ],
    [
-    5.038765575677691,
-    5.218484767267036,
-    5.424473297701325,
-    5.663288883707259,
-    5.9438700569718605
+    5.04400294830865,
+    5.224227510587604,
+    5.430827431654345,
+    5.670394683480425,
+    5.951917578067409
    ],
    [
-    4.693235930222037,
-    4.841281667522331,
-    5.009229145385788,
-    5.201664863757824,
-    5.424701916894012
+    4.697840949216351,
+    4.846287335229237,
+    5.014712506263988,
+    5.2077257456669335,
+    5.431472329368608
    ]
   ],
   "margin_shift": [
    {
     "shift": -0.04,
-    "aed": 5.448410285980434
+    "aed": 5.455912014219901
    },
    {
     "shift": -0.02,
-    "aed": 5.828342898127153
+    "aed": 5.836310793709535
    },
    {
     "shift": 0.0,
-    "aed": 6.208275510273871
+    "aed": 6.216709573199168
    },
    {
     "shift": 0.02,
-    "aed": 6.58820812242059
+    "aed": 6.597108352688803
    },
    {
     "shift": 0.04,
-    "aed": 6.968140734567308
+    "aed": 6.977507132178437
    }
   ],
   "beta_grid": [
    {
     "beta": 0.5,
-    "aed": 8.2471742155777
+    "aed": 8.255947841213244
    },
    {
     "beta": 0.664,
-    "aed": 6.980409976410579
+    "aed": 6.989098049811913
    },
    {
     "beta": 0.795,
-    "aed": 6.208275510273871
+    "aed": 6.216709573199168
    },
    {
     "beta": 0.9,
-    "aed": 5.697448890512884
+    "aed": 5.705631284265208
    },
    {
     "beta": 1.01,
-    "aed": 5.240935740393224
+    "aed": 5.248837151276451
    }
   ]
  },
  "fair_value": {
   "by_lens": {
-   "dcf_A": 6.208275510273871,
-   "dcf_B": 5.397011082424389,
+   "dcf_A": 6.216709573199168,
+   "dcf_B": 5.403266754586374,
    "relative": 3.9495499028604715,
    "book": 4.725141290784334,
-   "normalised": 3.4628173057503044
+   "normalised": 3.4662457124610486
   },
   "weights": {
    "dcf_A": 0.25,
@@ -3446,21 +3447,21 @@
    "book": 0.15,
    "normalised": 0.15
   },
-  "central": 4.919425418226855,
-  "low": 3.4628173057503044,
-  "high": 6.208275510273871,
-  "spot": 5.94,
-  "upside_central": -0.17181390265541163,
+  "central": 4.923612113005287,
+  "low": 3.4662457124610486,
+  "high": 6.216709573199168,
+  "spot": 5.8,
+  "upside_central": -0.1511013598266746,
   "lens_range": {
    "dcf_A": {
-    "bear": 5.663323877713519,
-    "base": 6.208275510273871,
-    "bull": 6.861485341840793
+    "bear": 5.670417989227845,
+    "base": 6.216709573199168,
+    "bull": 6.871680427664845
    },
    "dcf_B": {
-    "bear": 4.987475889000974,
-    "base": 5.397011082424389,
-    "bull": 5.874258605493419
+    "bear": 4.99287555193404,
+    "base": 5.403266754586374,
+    "bull": 5.881592684613398
    },
    "relative": {
     "bear": 2.989651013280043,
@@ -3473,22 +3474,37 @@
     "bull": 5.165774578723223
    },
    "normalised": {
-    "bear": 3.2298767830264468,
-    "base": 3.4628173057503044,
-    "bull": 3.6957578284741626
+    "bear": 3.233098840320228,
+    "base": 3.4662457124610486,
+    "bull": 3.699392584601869
    }
   },
   "central_range": {
-   "bear": 4.3982253912428835,
-   "base": 4.919425418226855,
-   "bull": 5.440647430975545
+   "bear": 4.401832143448799,
+   "base": 4.923612113005287,
+   "bull": 5.4455749356307095
   }
+ },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin",
+  "latest_reviewed_period": "1H-2026, reviewed condensed interim",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.44068390564648613,
+  "first_forecast_rate": 0.43738855528685955,
+  "forecast_path": [
+   0.43738855528685955,
+   0.4531486666719132,
+   0.4619638439659289,
+   0.46279332581979854,
+   0.4596470233497553
+  ],
+  "note": "the forecast opens at 43.74% against 44.07% in the reviewed first half of 2026 \u2014 0.33 points, -0.75% relative, well inside the materiality line \u2014 so no mechanism is owed and none is claimed. What the record shows instead is the shape: the filed EBITDA margin has been falling, FY2023 48.51%, FY2024 49.94%, FY2025 44.83%, 1H-2026 44.07%, and the forecast opens below every one of them and recovers only to 45.96% by 2030 on the base fleet plan (48.03% on the slower one), still under FY2023. The anchor year is also the one year that is not ground-up on both sides: its revenue is calibrated to the company's own reaffirmed full-year guidance of $5.0bn while the cost stack is built from the disclosed lines, which is why the build lands at $2.187bn of EBITDA, below the guided floor of $2.2bn rather than inside the $2.2-2.3bn range. Years two to five consume no guidance. The 1H-2025 comparative EBITDA is disclosed but its revenue is not, so no half-on-half margin pair is derivable from what this study holds; none is needed, because nothing fires."
  },
  "register": [
   {
-   "value": 5.94,
-   "source": "Uploaded ADX daily price history for ADNOCDRILL, last close 07-Aug-2026",
-   "date": "2026-08-07",
+   "value": 5.8,
+   "source": "Uploaded ADX daily price history for ADNOCDRILL, last close 03-Sep-2026 \u2014 the latest price supplied to this repository (SUPPLIED_03-09-2026.json). Superseded: AED 5.94 of 7 August 2026, on which every edition before this one was struck",
+   "date": "2026-09-03",
    "ring": "Market"
   },
   {

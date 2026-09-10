@@ -219,11 +219,20 @@ def phase1_proven():
     until they are met a study inside the band is a study that has not been contradicted
     yet, which is a weaker claim than it looks.
 
-    THE COST IS STATED RATHER THAN DISCOVERED LATER, and it is large: criterion 3 — the
-    valuation calibration's pooled bias interval covering zero — cannot mature before the
-    first vintages resolve, so ON ADOPTION THIS HOLDS EVERY STUDY IN THE BOOK, including
-    the ones already inside the band. That is the instruction read literally and it is
-    not softened here. What it does NOT hold is internal work: rebuilding, auditing,
+    THE COST WAS STATED AT ADOPTION AND BOTH HALVES OF IT HAVE SINCE MOVED, so it is
+    recorded here as history rather than left standing as a description of today. As
+    written on 03-Sep-2026 this said criterion 3 — "the valuation calibration's pooled
+    bias interval covering zero" — could not mature before the first vintages resolve,
+    so the block held EVERY study in the book including the ones inside the band. That
+    was the instruction read literally and it was not softened. Neither half survives:
+    [R-VCAL-02 CLAUSE ONE] moved the maturity-bound clauses D and E out of Phase 1 on
+    07-09-2026, and [R-VCAL-02 CLAUSE THREE] retired the pooled-bias test itself as a
+    gating clause on 08-09-2026, per instruction, replacing it with the one-sided audit
+    bar. THE BEHAVIOUR OF THIS GATE NEVER DEPENDED ON EITHER SENTENCE — the function
+    reads progress.acceptance() live and always did, which is the only reason a stale
+    description here cost nothing. A DOCSTRING THAT DESCRIBES A RULE IS A CLAIM ABOUT
+    THE WORLD AND IT ROTS [R-DOC-02]: read the criterion live with
+    engine/method_reassessment/criterion3.py, never from this comment. What it does NOT hold is internal work: rebuilding, auditing,
     re-issuing to the principal and merging to main all continue. This gate governs
     ISSUING A REPORT and publishing to the live site, which is what the instruction names.
 

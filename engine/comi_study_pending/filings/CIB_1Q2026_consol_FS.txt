@@ -1,0 +1,1453 @@
+Consolidated
+Financial Statements
+March 2026 - Interim Condensed
+Condensed Consolidated Interim Statement of Financial Position as at March 31, 2026
+
+                                                                               Notes   Mar. 31, 2026            Dec. 31, 2025
+
+  Assets
+  Cash and balances at the central bank                                         14             92,010,988               88,876,452
+  Due from banks                                                                15            170,847,392              135,236,549
+  Loans and advances to banks, net                                              17             55,185,042               34,440,770
+  Loans and advances to customers, net                                          18            551,721,003              507,953,766
+  Derivative financial instruments                                                                515,109                  620,349
+  Financial investments
+  - Financial Assets at Fair Value through OCI                                 19.1           375,696,731              376,397,929
+  - Financial Assets at Amortized cost                                         19.1           265,712,744              236,672,175
+  Investments in associates                                                     20                 43,710                   45,210
+  Non-current assets held for sale                                              32                223,223                  182,827
+  Other assets                                                                  21             49,309,350               54,040,912
+  Deferred tax assets                                                                           1,366,252                2,545,499
+  Property and equipment                                                        22              5,636,266                5,481,682
+  Total assets                                                                              1,568,267,810             1,442,494,120
+  Liabilities and equity
+  Liabilities
+  Due to banks                                                                  23             14,239,563                3,353,746
+  Due to customers                                                              24          1,214,998,089             1,110,395,693
+  Non-current liabilities held for sale                                         33                 56,747                   53,860
+  Derivative financial instruments                                                                 81,585                  137,802
+  Current income tax liabilities                                                                5,394,655               20,570,313
+  Other liabilities                                                             25             60,735,106               25,595,390
+  Issued debt instruments                                                       26              5,455,820                4,761,558
+  Other loans                                                                                  34,530,873               30,471,499
+  Other provisions                                                              27             16,602,339               15,640,041
+  Total liabilities                                                                         1,352,094,777             1,210,979,902
+  Equity
+  Issued and paid capital                                                                      33,779,361               33,779,361
+  Reserves                                                                                    136,075,330              105,849,176
+  Reserve for employee stock ownership plan (ESOP)                                              2,715,948                2,343,532
+  Retained earnings*                                                                           43,574,561               89,514,273
+  Total equity and net profit for the period / year                                           216,145,200              231,486,342
+  Non-Controlling Interest                                                                         27,833                   27,876
+  Total NCI, equity and net profit for the period / year                                      216,173,033              231,514,218
+  Total liabilities and equity                                                              1,568,267,810             1,442,494,120
+
+
+  The accompanying notes are an integral part of these financial statements.
+  (Review report attached)
+* Including net profit for the period
+                                              0
+
+                                              0
+                                              0
+                                         Islam Zekry                                       Hisham Ezz Al-Arab
+                         Group CFO & Executive Board Member                            CEO & Executive Board Member
+Condensed Consolidated Interim Income Statement for The Period Ended March 31, 2026
+                                                                    Last 9 Months            Last 9 Months
+                                                            Notes   Mar. 31, 2026            Mar. 31, 2025
+
+Interest and similar income                                                53,305,545               52,535,156
+Interest and similar expense                                               (23,605,965)             (27,139,272)
+Net interest income                                                        29,699,580               25,395,884
+
+
+Fee and commission income                                                      4,444,257                3,522,513
+Fee and commission expense                                                     (2,223,172)              (1,587,691)
+Net fee and commission income                                                  2,221,085                1,934,822
+
+Dividend income                                                                   24,830                   12,751
+Net trading income                                           9                   433,650                  644,549
+Profits (losses) on financial investments                   19.2                 168,162                  472,532
+Administrative expenses                                                        (5,154,563)              (3,932,425)
+Other operating income (expenses)                            10                (2,309,125)              (1,742,230)
+Release (charges) for ECL                                    11                  481,032                  (84,032)
+Bank's share in the profits (losses) of associates                                 (1,500)                   (297)
+Profit before income tax                                                   25,563,151               22,701,554
+
+
+Income tax expense                                           12                (6,366,847)              (6,479,828)
+Deferred tax assets (liabilities)                            12                (1,374,262)                411,443
+Net profit for the period                                                  17,822,042               16,633,169
+
+
+Non-Controlling Interest                                                              (43)                  1,394
+Bank's shareholders                                                        17,822,085               16,631,775
+
+Earnings per share                                           13
+Basic                                                                   4.65                     4.37
+Diluted                                                                 4.59                     4.32
+
+
+
+
+                                    Islam Zekry                         Hisham Ezz Al-Arab
+                       Group CFO & Executive Board Member           CEO & Executive Board Member
+Condensed Consolidated Interim Statement of Comprehensive Income for The Period Ended March 31, 2026
+
+                                                                                      Last 9 Months          Last 9 Months
+                                                                                      Mar. 31, 2026          Mar. 31, 2025
+
+Net profit for the period                                                                   17,822,042             16,633,169
+
+
+Net change on financial assets at fair value through comprehensive income after tax          (4,882,327)             2,491,322
+
+Cumulative foreign currencies translation differences                                          620,726                (169,708)
+
+Effect of ECL on debt instruments measured at fair value through OCI                           (263,772)              841,687
+
+Total comprehensive income for the period                                                   13,296,669             19,796,470
+
+
+
+As follows:
+Bank's shareholders                                                                          13,296,712             19,713,070
+Non-Controlling Interest                                                                              (43)             83,400
+Total comprehensive income for the period                                                   13,296,669             19,796,470
+Condensed Consolidated Interim Cash Flows for The Period Ended March 31, 2026
+                                                                                           Notes   Mar. 31, 2026           Mar. 31, 2025
+
+Cash flow from operating activities
+Profit before income tax                                                                                    25,563,151              22,701,554
+Adjustments to reconcile profits to net cash provided by operating activities
+Fixed assets depreciation                                                                   22                624,779                 773,002
+Impairment release/charge for credit losses (loans and advances to customers and banks)     11                (278,243)             (1,080,606)
+Net charge/release for other provisions                                                     27                990,498                 320,589
+Impairment release/charge for credit losses (due from banks)                                11                     7,707              141,071
+Impairment release/charge for credit losses (financial investments)                         11                (210,496)              1,023,567
+Exchange revaluation differences for financial assets at fair value through OCI and AC                     (23,784,274)               212,785
+Revaluation differences impairment charge for Financial Assets at Fair value through OCI                      534,661                  (13,267)
+Revaluation differences impairment charge for Financial Assets at Amortized cost                               51,512                      1,240
+Revaluation differences impairment charge for due from banks                                                   19,315                        (18)
+Net utilized/recovered for other provisions                                                 27              (1,152,649)                     (520)
+Exchange revaluation differences of other provisions                                        27               1,124,449                103,160
+Profits/losses from selling property and equipment                                                                   -                     (6,006)
+Profits/losses from selling financial investments at fair value through OCI                19.2               (168,162)               (195,124)
+Profits/losses from selling investments in associates                                      19.2                      -                (277,408)
+Share based payments                                                                                          372,416                 316,185
+Bank's share in the profits (losses) of associates                                                                 1,500                     297
+Operating profits before changes in operating assets and liabilities                                         3,696,164              24,020,501
+
+
+Net decrease / increase in assets and liabilities
+Due from banks                                                                                                513,657              123,055,498
+Derivative financial instruments                                                                               68,390                 (142,036)
+Loans and advances to banks and customers                                                                  (64,233,266)            (26,205,658)
+Other assets                                                                                                 5,020,128               6,009,359
+Non-current assets held for sale                                                            32                 (40,396)                       -
+Due to banks                                                                                23              10,885,817               2,286,117
+Due to customers                                                                            24             104,602,396              28,021,619
+Current income tax obligations paid                                                                           (972,192)               (913,966)
+Non-current liabilities held for sale                                                       33                     2,887                      -
+Other liabilities                                                                                           (5,077,488)             (1,886,184)
+Net cash generated from (used in) operating activities                                                      54,466,097             154,245,250
+
+
+Cash flow from investing activities
+Proceeds from sale of investments in associates                                                                      -                226,698
+Payments for purchases of property, equipment and branches construction                                     (1,067,929)             (3,597,387)
+Proceeds from selling property and equipment                                                10                       -                     6,006
+Proceeds from redemption of financial assets at amortized cost                                               8,752,045               2,579,713
+Payments for purchases of financial assets at amortized cost                                               (35,471,162)            (23,883,457)
+Payments for purchases of financial assets at fair value through OCI                                       (46,711,306)            (29,279,247)
+Proceeds from selling financial assets at fair value through OCI                                            63,293,572               6,863,626
+Net cash generated from (used in) investing activities                                                     (11,204,780)            (47,084,048)
+Condensed Consolidated Interim Cash Flows for The Period Ended March 31, 2026 (Cont.)
+                                                                                        Mar. 31, 2026          Mar. 31, 2025
+
+Cash flow from financing activities
+Other loans                                                                                       4,059,374                (13,765)
+Dividends                                                                                        (8,742,653)            (6,552,255)
+Issued debt instruments                                                                            694,262                 (22,830)
+Net cash generated from (used in) financing activities                                           (3,989,017)            (6,588,850)
+
+
+Net increase (decrease) in cash and cash equivalent during the period                            39,272,300            100,572,352
+Beginning balance of cash and cash equivalent                                                   140,542,556            226,610,721
+Cash and cash equivalent at the end of the period                                               179,814,856            327,183,073
+
+
+Cash and cash equivalent comprise:
+Cash and balances at the central bank                                              14            92,010,988             68,810,514
+Due from banks                                                                                  171,007,096            314,450,806
+Treasury bills and other governmental notes                                        16           130,464,385            116,972,976
+Obligatory reserve balance with central bank                                                    (71,155,527)           (43,885,546)
+Due from banks with maturity more than three months                                             (12,048,530)           (14,867,792)
+Treasury bills and other governmental notes with maturity more than three months               (130,463,556)          (114,297,885)
+Total cash and cash equivalent                                                                  179,814,856            327,183,073
+Condensed Consolidated Interim Statement of Changes in Shareholders' Equity
+                                                                                                                                                                                                                                                                            Cumulative
+                                                                                                                                                             Reserve for                           Reserve for
+                                                                                                                                                                                                                                                            Reserve for       foreign                                Non-
+                                                                       Issued and paid                                     General risk                      transactions                      financial assets at   Banking risks                                                          Total Shareholders’
+Mar. 31, 2025                                                               capital
+                                                                                         Legal reserve   General reserve
+                                                                                                                             reserve
+                                                                                                                                          Special reserve
+                                                                                                                                                            under common
+                                                                                                                                                                             Capital reserve
+                                                                                                                                                                                                    fair value          reserve
+                                                                                                                                                                                                                                      Retained earnings    employee stock   currencies
+                                                                                                                                                                                                                                                                                                   Equity
+                                                                                                                                                                                                                                                                                                                  Controlling      Total
+                                                                                                                                                                                                                                                           ownership plan   translation                            Interest
+                                                                                                                                                                control                           through OCI
+                                                                                                                                                                                                                                                                            differences
+
+
+Beginning balance                                                         30,431,580        6,208,674         62,422,792      1,550,906              -           (670,972)          22,818           (7,145,283)           17,924           56,791,883         1,868,235       1,137,720          152,636,277         183,044     152,819,321
+
+Transferred to reserves                                                           -         2,771,284         18,971,298            -                -                -              2,246                   -                 -           (21,744,828)              -                -                    -               -               -
+
+Net profit for the period                                                         -                -                 -              -                -                -                 -                    -                 -            16,631,775               -                -            16,631,775            1,394     16,633,169
+
+Dividends paid                                                                    -                -                 -              -                -                -                 -                    -                 -           (14,714,434)              -                -           (14,714,434)             -      (14,714,434)
+Transferred to general risk reserve                                               -                -                 -           26,186              -                -                 -                    -                 -                (26,186)             -                -                    -               -               -
+Net change on financial assets at fair value through OCI after tax                -                -                 -              -                -                -                 -             2,409,316                -                    -                -                -             2,409,316          82,006       2,491,322
+
+Transferred (from) to banking risk reserve                                        -                -                 -              -                -                -                 -                    -              (2,628)               2,628              -                -                    -               -               -
+
+Effect of ECL on debt instruments measured at fair value through OCI              -                -                 -              -                -                -                 -               841,687                -                    -                -                -               841,687              -          841,687
+
+Cost of employees' stock ownership plan (ESOP)                                    -                -                 -              -                -                -                 -                    -                 -                    -           316,185               -               316,185              -          316,185
+
+Cumulative foreign currencies translation differences                             -                -                 -              -                -                -                 -                    -                 -                    -                -          (169,708)            (169,708)             -         (169,708)
+
+Ending balance                                                            30,431,580        8,979,958         81,394,090      1,577,092              -           (670,972)          25,064           (3,894,280)           15,296           36,940,838         2,184,420         968,012          157,951,098         266,444     158,217,542
+
+
+                                                                                                                                                                                                                                                                            Cumulative
+                                                                                                                                                           Reserve for                          Reserve for                                              Reserve for
+                                                                                                                                                                                                                                                                              foreign             Total              Non-
+                                                                        Issued and                                         General risk                    transactions                      financial assets        Banking risks                        employee
+Mar. 31, 2026                                                           paid capital
+                                                                                         Legal reserve   General reserve
+                                                                                                                             reserve
+                                                                                                                                          Special reserve
+                                                                                                                                                          under common
+                                                                                                                                                                             Capital reserve
+                                                                                                                                                                                               at fair value            reserve
+                                                                                                                                                                                                                                      Retained earnings
+                                                                                                                                                                                                                                                            stock
+                                                                                                                                                                                                                                                                            currencies        Shareholders’       Controlling     Total
+                                                                                                                                                                                                                                                                            translation          Equity            Interest
+                                                                                                                                                              control                          through OCI                                              ownership plan
+                                                                                                                                                                                                                                                                            differences
+
+
+Beginning balance                                                         33,779,361        8,979,958         79,110,551      1,577,092     13,145,012           (670,972)          25,064            2,825,146            15,296           89,514,273         2,343,532         842,029          231,486,342          27,876     231,514,218
+
+Transferred to reserves                                                           -         4,089,832         30,606,170            -                -                -             13,005                   -                 -           (34,709,007)              -                -                    -               -               -
+
+Dividends paid                                                                    -                -                 -              -                -                -                 -                    -                 -           (29,010,270)              -                -           (29,010,270)             -      (29,010,270)
+
+Net profit for the period                                                         -                -                 -              -                -                -                 -                    -                 -            17,822,085               -                -            17,822,085              (43)    17,822,042
+
+Transferred to general risk reserve                                               -                -                 -           51,324              -                -                 -                    -                 -                (51,324)             -                -                    -               -               -
+
+Net change on financial assets at fair value through OCI after tax                -                -                 -              -                -                -                 -            (4,882,327)               -                    -                -                -            (4,882,327)             -       (4,882,327)
+
+Transferred (from) to banking risk reserve                                        -                -                 -              -                -                -                 -                    -              (8,804)               8,804              -                -                    -               -               -
+
+Effect of ECL on debt instruments measured at fair value through
+                                                                                  -                -                 -              -                -                -                 -              (263,772)               -                    -                -                -              (263,772)             -         (263,772)
+OCI
+
+Cost of employees' stock ownership plan (ESOP)                                    -                -                 -              -                -                -                 -                    -                 -                    -           372,416               -               372,416              -          372,416
+
+Cumulative foreign currencies translation differences                             -                -                 -              -                -                -                 -                    -                 -                    -                -           620,726              620,726              -          620,726
+
+Ending balance                                                            33,779,361       13,069,790       109,716,721       1,628,416     13,145,012           (670,972)          38,069           (2,320,953)             6,492          43,574,561         2,715,948       1,462,755          216,145,200          27,833     216,173,033
+Notes to the condensed consolidated interim financial statement for the period ended March 31, 2026
+
+    1. General information
+       Commercial International Bank-Egypt (CIB) S.A.E. provides retail, corporate and investment banking services in
+       various parts of Egypt through 204 branches, and 10 units employing 8,586 employees on the statement of financial
+       position date.
+       Commercial International Bank-Egypt (CIB) S.A.E. was formed as a commercial bank under the investment law no.
+       43 of 1974 amended by law no. 32/1977 and its amendments The address of its registered head office is as follows:
+       Nile tower, 21/23 Charles de Gaulle Street-Giza. The Bank is listed in the Egyptian stock exchange.
+       The bank owns investments in subsidiaries “Commercial International Bank (CIB) Kenya Limited”, “Commercial
+       international for finance company” and “Commercial International Africa Holding Company” in which the bank’s
+       shares are 100%, 99.98% and 100% respectively.
+       The financial statements have been approved by the board of directors on the 11th of May, 2026.
+    2. Summary of accounting policies
+       The accounting policies applied in the preparation of these financial statements are provided below. These policies
+       have been consistently applied to all years presented, unless otherwise stated.
+    2.1. Basis of preparation
+       The financial statements have been prepared in accordance with the Central Bank of Egypt approved by the Board
+       of Directors on December 16, 2008 consistent with the principles referred to.
+       In accordance to the instructions for applying the International Standard for Financial Reports (9) issued by the
+       Central Bank of Egypt on February 26, 2019, the bank issued condensed financial statements complying with the
+       Central Bank of Egypt instructions issued on May 3, 2020, which allow banks to issue condensed quarterly financial
+       statements.
+       References are provided to unmentioned instructions from the Central Bank of Egypt to the Egyptian Accounting
+       Standards.
+       These condensed consolidated interim financial statements do not include all the information and disclosures required
+       for full annual consolidated financial statements prepared in accordance with CBE rules mentioned above and should
+       be read in conjunction with the Bank’s financial statements for and at the year ended 31 December 2025.
+       In preparing the condensed consolidated interim financial statements, significant judgments were made by the
+       management in applying the Bank’s accounting policies and the key sources of estimation were the same as those
+       applied to the consolidated financial statements for and at the year ended 31 December 2025.
+    2.2. Basis of consolidation
+       The basis of the consolidation is as follows:
+        • Eliminating all balances and transactions between the Bank and group companies.
+        • The cost of acquisition of subsidiary companies is dependent on the company’s share price, the fair value of
+          assets acquired and the outstanding obligations on the acquisition date.
+        • Non-Controlling Interest shareholders represent the rights of others in subsidiary companies.
+
+
+
+
+                                                                                                                     1
+3. Loans and advances
+Loans and advances balances are summarized as follows:
+                                                                                      Mar.31, 2026                                              Dec.31, 2025
+                                                                   Loans and advances to       Loans and advances to      Loans and advances to         Loans and advances to
+                                                                         customers                     banks                    customers                       banks
+Gross Loans and advances                                                       593,558,855                  55,730,856                546,260,235                    34,781,349
+Less:
+ECL                                                                              37,714,060                    180,975                  34,687,756                        86,475
+Unamortized bills & bank loans discount                                               59,523                   364,839                        82,363                    254,104
+Unamortized syndicated loans discount                                                 32,347                        -                         40,820                         -
+Suspended credit account                                                          4,031,922                         -                       3,495,530                        -
+Net                                                                            551,721,003                  55,185,042                507,953,766                    34,440,770
+
+Expected credit losses for loans and advances totaled 37,895,035.
+During the period, the Bank’s loans and advances portfolio increased by 11.75%.
+In order to minimize probable exposure to credit risk, the Bank focuses on conducting business with large enterprises, banks, and retail customers with good credit ratings.
+
+
+Total balances of loans and advances to customers divided by stages:
+Mar.31, 2026
+
+                                                                           Stage 1:                   Stage 2:                    Stage 3:
+                                                                                                                                                                Total
+                                                                          12 months                   Life time                   Life time
+
+Individuals                                                                     91,934,488                   4,346,987                      1,109,524                97,390,999
+Corporate and Business Banking                                                 375,230,721                 110,801,364                  10,135,771                  496,167,856
+Total                                                                          467,165,209                 115,148,351                  11,245,295                  593,558,855
+
+Expected credit losses for loans and advances to customers divided by stages:
+Mar.31, 2026
+                                                                                               Stage 2: Expected credit Stage 3: Expected credit
+                                                                  Stage 1: Expected credit               losses                   losses
+                                                                                                                                                                Total
+                                                                   losses over 12 months        over a lifetime that is      over a lifetime
+                                                                                                   not creditworthy          credit default
+Individuals                                                                       3,536,039                    103,551                       906,684                  4,546,274
+Corporate and Business Banking                                                    4,393,828                 21,059,461                      7,714,497                33,167,786
+Total                                                                             7,929,867                 21,163,012                      8,621,181                37,714,060
+
+
+Loans and advances, balances and expected credit losses to banks divided by stages:
+Mar.31, 2026
+
+                                                                           Stage 1:                   Stage 2:                    Stage 3:
+                                                                                                                                                                Total
+                                                                          12 months                   Life time                   Life time
+
+Loans                                                                           12,708,559                  43,022,297                  -                            55,730,856
+Expected credit losses                                                                 (621)                  (180,354)                 -                               (180,975)
+Net of ECL                                                                      12,707,938                  42,841,943                  -                            55,549,881
+
+Off balance sheet items exposed to credit risk and expected credit losses divided by stages:
+Mar.31, 2026
+
+                                                                           Stage 1:                   Stage 2:                    Stage 3:
+                                                                                                                                                                Total
+                                                                          12 months                   Life time                   Life time
+
+Facilities and guarantees                                                      327,711,504                  24,233,067                      7,045,097               358,989,668
+Expected credit losses                                                           (3,470,815)                (4,171,867)                 (7,045,097)                 (14,687,779)
+Net of ECL                                                                     324,240,689                  20,061,200                            -                 344,301,889
+
+
+
+
+                                                                                                                                                                2
+Total balances of loans and advances to customers divided by stages:
+Dec.31, 2025
+                                                   Stage 1:                 Stage 2:                  Stage 3:
+                                                                                                                           Total
+                                                  12 months                 Life time                 Life time
+Individuals                                              87,060,741                4,369,775                   1,028,495        92,459,011
+
+Corporate and Business Banking                          340,459,147              104,437,082                   8,904,995     453,801,224
+
+Total                                                   427,519,888              108,806,857                   9,933,490     546,260,235
+
+
+
+Expected credit losses for loans and advances to customers divided by stages:
+Dec.31, 2025
+                                                                     Stage 2: Expected credit Stage 3: Expected credit
+                                            Stage 1: Expected credit           losses                   losses
+                                                                                                                           Total
+                                              losses over 12 months over a lifetime that is not    over a lifetime
+                                                                           creditworthy            credit default
+Individuals                                               3,521,440                  105,966                    843,358          4,470,764
+
+Corporate and Business Banking                            3,710,367               19,691,956                   6,814,669        30,216,992
+
+Total                                                     7,231,807               19,797,922                   7,658,027        34,687,756
+
+
+
+Loans and advances, balances and expected credit losses to banks divided by stages:
+Dec.31, 2025
+                                                   Stage 1:                 Stage 2:                  Stage 3:
+                                                                                                                           Total
+                                                  12 months                 Life time                 Life time
+Loans                                                     7,283,231               27,498,118               -                    34,781,349
+
+Expected credit losses                                         (443)                    (86,032)           -                        (86,475)
+
+Net of ECL                                                7,282,788               27,412,086               -                    34,694,874
+
+
+Off balance sheet items exposed to credit risk and expected credit losses divided by stages:
+Dec.31, 2025
+                                                   Stage 1:                 Stage 2:                  Stage 3:
+                                                                                                                           Total
+                                                  12 months                 Life time                 Life time
+Facilities and guarantees                               268,880,287               22,914,952                   6,586,352     298,381,591
+
+Expected credit losses                                   (1,902,699)              (4,067,839)               (6,586,352)         (12,556,890)
+
+Net of ECL                                              266,977,588               18,847,113                         -       285,824,701
+
+
+
+
+                                                                                                                            3
+The following tables display changes in ECL between the beginning and end of the period as a result of the following factors:
+
+Mar.31, 2026
+Due from banks                                           Stage 1              Stage 2                Stage 3
+                                                                                                                            Total
+                                                        12 months             Life time             Life time
+                                                           ECL                  ECL                   ECL                   ECL
+Beginning balance                                               132,682            -                     -                          132,682
+Released/charged during the period                                   7,707        -                     -                              7,707
+Transferred to stage 1                                                 -          -                     -                                -
+Transferred to stage 2                                                 -          -                     -                                -
+Transferred to stage 3                                                 -          -                     -                                -
+Cumulative foreign currencies translation differences               19,315        -                     -                            19,315
+Ending balance                                                     159,704        -                     -                           159,704
+
+Mar.31, 2026
+Individual Loans:                                        Stage 1              Stage 2                Stage 3
+                                                                                                                            Total
+                                                        12 months             Life time             Life time
+                                                           ECL                  ECL                   ECL                   ECL
+Beginning balance                                             3,521,440               105,966               843,358            4,470,764
+Released/charged during the period                                  13,634                (2,415)               84,249               95,468
+Write off during the period                                           -                      -                 (51,673)              (51,673)
+Recoveries                                                            -                      -                  30,488                30,488
+Cumulative foreign currencies translation differences                 965                    -                     262                 1,227
+Ending balance                                                3,536,039                 103,551                906,684           4,546,274
+
+Mar.31, 2026
+Corporate and Business Banking Loans:                    Stage 1              Stage 2                Stage 3
+                                                                                                                            Total
+                                                        12 months             Life time             Life time
+                                                           ECL                  ECL                   ECL                   ECL
+Beginning balance                                             3,710,367             19,691,956             6,814,669          30,216,992
+Released/charged during the period                                 327,463              (502,113)           (281,194)               (455,844)
+Transferred to stage 1                                             698,297              (698,297)                  -                     -
+Transferred to stage 2                                         (371,606)                371,606                    -                     -
+Transferred to stage 3                                              (5,992)              (26,557)               32,549                   -
+Recoveries                                                             -                     -                 272,563              272,563
+Write off during the period                                            -                     -                     -                     -
+Cumulative foreign currencies translation differences               35,299             2,222,866               875,910           3,134,075
+Ending balance                                                4,393,828               21,059,461            7,714,497           33,167,786
+
+Mar.31, 2026
+Debt Instruments at Fair value through OCI               Stage 1              Stage 2                Stage 3
+                                                                                                                            Total
+                                                        12 months             Life time             Life time
+                                                           ECL                  ECL                   ECL                   ECL
+Beginning balance                                             3,649,982               115,093            -                     3,765,075
+Released/charged during the period                             (819,764)                  21,331        -                           (798,433)
+Transferred to stage 1                                                 -                     -          -                                -
+Transferred to stage 2                                              (3,737)                3,737        -                                -
+Transferred to stage 3                                                 -                     -          -                                -
+Cumulative foreign currencies translation differences              518,254                16,407        -                           534,661
+Ending balance                                                3,344,735                 156,568         -                        3,501,303
+
+Mar.31, 2026
+Debt Instruments at amortized cost                       Stage 1              Stage 2                Stage 3
+                                                                                                                            Total
+                                                        12 months             Life time             Life time
+                                                           ECL                  ECL                   ECL                   ECL
+Beginning balance                                               392,625            -                     -                          392,625
+Released/charged during the period                                 585,013      2,924                   -                           587,937
+Transferred to stage 1                                                 -          -                     -                                -
+Transferred to stage 2                                              (3,213)     3,213                   -                                -
+Transferred to stage 3                                                 -          -                     -                                -
+Cumulative foreign currencies translation differences               51,512        -                     -                            51,512
+Ending balance                                                1,025,937         6,137                   -                        1,032,074
+
+                                                                                                                                4
+The following tables display changes in ECL between the beginning and end of the year as a result of the following factors:
+
+
+Dec.31, 2025
+Due from banks                                           Stage 1               Stage 2                Stage 3
+                                                                                                                              Total
+                                                        12 months             Life time              Life time
+                                                           ECL                  ECL                    ECL                    ECL
+Beginning balance                                                   3,825          -                      -                              3,825
+Released/charged during the year                                137,399           -                      -                            137,399
+Transferred to stage 1                                                -           -                      -                                 -
+Transferred to stage 2                                                -           -                      -                                 -
+Transferred to stage 3                                                -           -                      -                                 -
+Cumulative foreign currencies translation differences            (8,542)          -                      -                             (8,542)
+Ending balance                                                  132,682           -                      -                            132,682
+
+Dec.31, 2025
+Individual Loans:                                        Stage 1               Stage 2                Stage 3
+                                                                                                                              Total
+                                                        12 months             Life time              Life time
+                                                           ECL                  ECL                    ECL                    ECL
+Beginning balance                                             2,901,607                165,037                758,625            3,825,269
+Released/charged during the year                                619,833                 (59,071)               148,305                709,067
+Write off during the year                                             -                      -                (246,306)               (246,306)
+Recoveries                                                          -                       -                  182,734              182,734
+Ending balance                                                3,521,440                 105,966                843,358            4,470,764
+
+Dec.31, 2025
+Corporate and Business Banking loans:                    Stage 1               Stage 2                Stage 3
+                                                                                                                              Total
+                                                        12 months             Life time              Life time
+                                                           ECL                  ECL                    ECL                    ECL
+Beginning balance                                              7,381,514            24,585,991              9,688,788           41,656,293
+Released/charged during the year                               1,311,166              (1,906,603)             (997,866)          (1,593,303)
+Transferred to stage 1                                          795,499                (690,838)              (104,661)                        -
+Transferred to stage 2                                         (412,329)               1,785,660             (1,373,331)                       -
+Transferred to stage 3                                           (84,785)               (122,929)               207,714                   -
+PD Recalibration impact                                       (5,254,076)             (2,919,628)                     -          (8,173,704)
+Recoveries                                                             -                       -              1,001,554           1,001,554
+Write off during the year                                                 -                      -           (1,265,403)         (1,265,403)
+Cumulative foreign currencies translation differences           (26,622)            (1,039,697)               (342,126)           (1,408,445)
+Ending balance                                                3,710,367            19,691,956                6,814,669           30,216,992
+
+Dec.31, 2025
+Debt Instruments at Fair value through OCI               Stage 1               Stage 2                Stage 3
+                                                                                                                              Total
+                                                        12 months             Life time              Life time
+                                                           ECL                  ECL                    ECL                    ECL
+Beginning balance                                             3,790,195                   15,025          -                      3,805,220
+Released/charged during the year                                100,487                 101,992          -                            202,479
+Transferred to stage 1                                               833                    (833)        -                                 -
+Transferred to stage 2                                                -                      -           -                                 -
+Transferred to stage 3                                                -                      -           -                                 -
+Cumulative foreign currencies translation differences          (241,533)                 (1,091)         -                         (242,624)
+Ending balance                                                3,649,982                 115,093          -                        3,765,075
+
+Dec.31, 2025
+Debt Instruments at amortized cost                       Stage 1               Stage 2                Stage 3
+                                                                                                                              Total
+                                                        12 months             Life time              Life time
+                                                           ECL                  ECL                    ECL                    ECL
+Beginning balance                                                466,982           -                      -                           466,982
+Released/charged during the year                                (55,830)          -                      -                             (55,830)
+Transferred to stage 1                                                -           -                      -                                 -
+Transferred to stage 2                                                -           -                      -                                 -
+Transferred to stage 3                                                -           -                      -                                 -
+Cumulative foreign currencies translation differences           (18,527)          -                      -                            (18,527)
+Ending balance                                                  392,625           -                      -                            392,625
+
+
+
+                                                                                                                                 5
+3.1. Restructured loans and advances
+Restructuring activities include rescheduling arrangements, applying obligatory management programs, modifying and deferral of payments. The application
+of restructuring policies is based on indicators or criteria of credit performance of the borrower that is based on the judgment of the management, which
+indicate that payment will most likely continue. Restructuring is commonly applied to term loans, especially customer loans. Renegotiated loans totaled at the
+end of the period / year are as follows:
+                                                    Mar.31, 2026                    Dec.31, 2025
+Corporate
+
+- Loans and advances to customers                            26,077,558                       24,919,188
+
+Total                                                        26,077,558                       24,919,188
+
+
+4. Debt instruments, treasury bills and other governmental notes:
+The following tables provide analysis of financial investment balances by rating agencies at the end of the period:
+
+Mar.31, 2026
+                                                      Stage 1:                       Stage 2:                     Stage 3:
+Amortized cost                                                                                                                                Total
+                                                     12 months                       Life time                    Life time
+AAA to AA+                                                          -                     -                            -                                     -
+
+AA to AA-                                                           -                     -                            -                                     -
+
+A+ to A-                                                            -                     -                            -                                     -
+
+Less than A-                                                265,512,469               200,275                          -                           265,712,744
+
+Not rated                                                           -                     -                            -                                     -
+
+Total                                                       265,512,469               200,275                          -                           265,712,744
+
+
+Mar.31, 2026
+                                                      Stage 1:                       Stage 2:                     Stage 3:
+Fair value through OCI                                                                                                                        Total
+                                                     12 months                       Life time                    Life time
+AAA to AA+                                                   61,247,806                               -                -                              61,247,806
+
+AA to AA-                                                     3,627,224                               -                -                               3,627,224
+
+A+ to A-                                                     28,829,008                               -                -                              28,829,008
+
+Less than A-                                                235,989,143                       41,080,962               -                           277,070,105
+
+Not rated                                                           -                                 -                -                                     -
+
+Total                                                       329,693,181                       41,080,962               -                           370,774,143
+
+
+The following table displays analysis of expected credit losses on financial investments by rating agencies at the end of the period:
+Mar.31, 2026
+                                                                             Stage 2: Expected credit      Stage 3: Expected credit
+Fair value through OCI                        Stage 1: Expected credit                  losses                       losses
+                                                                                                                                              Total
+and amortized cost                             losses over 12 months         over a lifetime that is not        over a lifetime
+                                                                                   creditworthy                 credit default
+AAA to AA+                                                               4                            -                -                                         4
+
+AA to AA-                                                           -                                 -                -                                     -
+
+A+ to A-                                                            130                               -                -                                    130
+
+Less than A-                                                  4,370,538                          162,705               -                               4,533,243
+
+Not rated                                                           -                                 -                -                                     -
+
+Total                                                         4,370,672                          162,705               -                               4,533,377
+
+
+
+
+                                                                                                                                               6
+The following tables provide analysis of financial investment balances by rating agencies at the end of the year:
+
+
+
+Dec.31, 2025
+                                                  Stage 1:                    Stage 2:                   Stage 3:
+Amortized cost                                                                                                                        Total
+                                                 12 months                    Life time                  Life time
+AAA to AA+                                                      -                  -                          -                                   -
+AA to AA-                                                       -                 -                          -                                    -
+A+ to A-                                                        -                 -                          -                                    -
+Less than A-                                           236,672,175                -                          -                          236,672,175
+Not rated                                                       -                 -                          -                                    -
+Total                                                  236,672,175                -                          -                          236,672,175
+
+
+
+Dec.31, 2025
+                                                  Stage 1:                    Stage 2:                   Stage 3:
+Fair value through OCI                                                                                                                Total
+                                                 12 months                    Life time                  Life time
+AAA to AA+                                             50,837,712                            -                -                            50,837,712
+AA to AA-                                                3,264,973                           -               -                              3,264,973
+A+ to A-                                                25,728,227                           -               -                             25,728,227
+Less than A-                                           257,492,936                    34,198,061             -                          291,690,997
+Not rated                                                       -                            -               -                                    -
+Total                                                  337,323,848                    34,198,061             -                          371,521,909
+
+
+
+The following table displays analysis of expected credit losses on financial investments by rating agencies at the end of the year:
+
+Dec.31, 2025
+                                                                   Stage 2: Expected credit Stage 3: Expected credit
+Fair value through OCI                    Stage 1: Expected credit           losses                   losses
+                                                                                                                                      Total
+and amortized cost                         losses over 12 months over a lifetime that is not     over a lifetime
+                                                                         creditworthy            credit default
+
+AAA to AA+                                                          3                        -               -                                        3
+AA to AA-                                                       -                            -               -                                    -
+A+ to A-                                                        117                          -               -                                   117
+Less than A-                                             4,042,487                      115,093              -                              4,157,580
+Not rated                                                       -                            -               -                                    -
+Total                                                    4,042,607                      115,093              -                              4,157,700
+
+
+
+
+                                                                                                                                       7
+5. Financial risks
+5.1. Foreign exchange risk
+The Bank's financial position and cash flows are exposed to fluctuations in foreign currency exchange rates. The Board sets limits on the level of exposure by currency and in aggregate, which are monitored daily. The
+table below summarizes the Bank’s exposure to foreign exchange rate risk and financial instruments at carrying amounts, categorized by currency.
+
+
+                                                                                                                                                                                                        Equivalent in EGP
+Mar.31, 2026                                                            EGP                       USD                        EUR                        GBP                       Other                      Total
+Financial assets
+Cash and balances at the central bank                                      77,113,028                 8,644,717                  3,390,889                    366,659                  2,495,695                92,010,988
+Gross due from banks                                                           13,654               135,127,820                 32,152,161                  3,081,535                    631,926               171,007,096
+Gross loans and advances to banks                                              48,459                52,601,990                  3,080,407                        -                          -                  55,730,856
+Gross loans and advances to customers                                     474,154,862               104,262,748                 12,084,616                     11,491                  3,045,138               593,558,855
+Derivative financial instruments                                              107,652                   407,457                        -                          -                          -                     515,109
+Financial investments
+Gross financial investment securities                                     412,813,097               210,802,410                 16,073,108                    715,416                  2,037,518               642,441,549
+Investments in associates                                                      43,710                       -                          -                          -                          -                      43,710
+Total financial assets                                                    964,294,462               511,847,142                 66,781,181                  4,175,101                  8,210,277             1,555,308,163
+
+Financial liabilities
+Due to banks                                                               13,119,188                 1,082,484                     32,676                      5,215                        -                  14,239,563
+Due to customers                                                          711,125,846               437,613,714                 53,634,666                  4,179,882                  8,443,981             1,214,998,089
+Derivative financial instruments                                               20,477                    61,108                        -                          -                          -                      81,585
+Issued debt instruments                                                           -                   5,455,820                        -                          -                          -                   5,455,820
+Other loans                                                                   343,331                32,806,349                  1,381,193                        -                          -                  34,530,873
+Total financial liabilities                                               724,608,842               477,019,475                 55,048,535                  4,185,097                  8,443,981             1,269,305,930
+Net financial position                                                    239,685,620                 34,827,667                11,732,646                      (9,996)                 (233,704)              286,002,233
+Total financial assets as of December 31, 2025                            928,439,895               427,510,033                 53,299,680                  2,751,717                  7,414,230             1,419,415,555
+Total financial liabilities as of December 31, 2025                       679,622,150               413,740,161                 45,320,499                  3,310,617                  7,126,871             1,149,120,298
+Net financial position as of December 31, 2025                            248,817,745                13,769,872                  7,979,181                   (558,900)                   287,359               270,295,257
+
+
+5.2. Interest rate risk
+The Bank addresses exposure to the effects of fluctuations in the prevailing levels of market interest rates that arises from the re-pricing maturity structure of interest-sensitive assets and liabilities. It is
+assessed for both the earnings and economic value perspectives. The Board sets limits on the interest rate repricing gaps that may be undertaken, which is monitored by the bank's Risk Management
+Department.
+
+
+
+
+                                                                                                                                                                                                                     8
+5.3. Liquidity risk
+Liquidity risk specifies the Bank’s inability to replace withdrawn funds and meet consequential payment obligations due to the fall of financial liabilities.
+The consequences may be the failure to meet obligations to repay depositors and fulfill commitments to lend.
+
+Liquidity Risk Management Organization and Measurement Tools
+Liquidity Risk is governed by Asset and Liability Committee (ALCO) and Board Risk Committee (BRC) subject to provisions of Treasury Policy (TP).
+
+Board Risk Committee (BRC): Provides oversight of risk management functions and assesses compliance to the set risk strategies and policies approved by the Board of Directors (BoD) through periodic reports submitted by the
+Risk Group. The committee makes recommendations to the BoD with regards to risk management strategies and policies (including those related to capital adequacy, liquidity management, various types of risks: credit, market,
+operation, compliance, reputation and any other risks the Bank may be exposed to).
+
+Asset & Liability Committee (ALCO): Optimizes the allocation of assets and liabilities, taking into consideration expectations of the potential impact of future interest rate fluctuations, liquidity constraints, and foreign exchange
+exposures. ALCO monitors the Bank’s liquidity and market risks, economic developments, market fluctuations, and risk profile to ensure ongoing activities are compatible with the risk/ reward guidelines approved by the BOD.
+
+
+Treasury Policy (TP): The purpose of the TP is to document and communicate the policies that govern the activities performed by the Treasury Group and monitored by the Risk Group.
+
+The main measures and monitoring tools used to assess the Bank’s liquidity risk includes regulatory and internal ratios, gaps, Basel III liquidity ratios, asset and liability gapping mismatch, stress testing, and funding base
+concentration. More conservative internal targets and Risk Appetite indicators (RAI) against regulatory requirements are set for various measures of Liquidity and Funding Concentration Risks. At the end of period, the Basel III
+Liquidity Coverage Ratio (LCR) and Net Stable Funding Ratio (NSFR) maintained strong and well above regulatory requirements.
+
+The Bank maintained a solid LCY & FCY Liquidity position with decent buffers to meet both the global and local increase in risk profile. CIB will continue with its robust Liability strategy with reliance on customer deposits
+(stable funding) as the main contributor of total liabilities, and low dependency on the Wholesale Funding. CIB has ample levels of High-Quality Liquid Assets (HQLA) based on its LCY & FCY Sovereign Portfolio investments,
+which positively reflects the Bank's solid Liquidity Ratios and Basel III LCR & NSFR ratios, with a large buffer maintained above the Regulatory ratios’ requirements.
+
+Liquidity Management
+
+The Bank’s approach is to maintain a prudent Liquidity position with a Liability driven strategy, as almost the entire funding base is customer based stable deposits rather than wholesale funding; which is a core component of the
+risk appetite. This is coupled with ample amounts of Liquid Assets. To limit potential Liquidity shocks, the Bank has a well-established Contingency Funding Plan (CFP), where Liquidity Risk is assessed in line with all Regulatory
+and Internal Liquidity Measurements, and Basel II and III requirements; including Liquidity Stress Testing; and Basel III Ratios; Net Stable Funding Ratio (NSFR) and Liquidity Coverage Ratio (LCR).
+
+
+
+6. Capital Adequacy Ratio, Leverage Ratio, NSFR and LCR
+For March 2026 NSFR ratio record 185% (LCY 189% and FCY 176%), and LCR ratio record 460% (LCY 341% and FCY 579%).
+For December 2025 NSFR ratio record 186% (LCY 186% and FCY 186%), and LCR ratio record 555% (LCY 549% and FCY 567%).
+For March 2026 CAR ratio recorded 26.9%, and 27.3% for December 2025.
+For March 2026 Leverage ratio recorded 11.1%, and 11.3% for December 2025.
+
+
+
+
+                                                                                                                                                                                                                          9
+7. Financial instruments not measured at fair value
+The table below summarizes the book value and fair value of the financial assets and liabilities not presented on the Bank’s financial position at their fair value.
+
+                                                                                                                               Book value                                              Fair value
+                                                                                                              Mar.31, 2026                   Dec.31, 2025               Mar.31, 2026                Dec.31, 2025
+Financial assets
+Gross due from banks                                                                                                  171,007,096                    135,369,231              171,288,452                  135,728,710
+Gross loans and advances to banks                                                                                      55,730,856                     34,781,349               55,990,561                   34,973,479
+Gross loans and advances to customers                                                                                 593,558,855                    546,260,235              595,112,766                  547,716,929
+Financial investments:
+Financial Assets at Amortized cost                                                                                    266,744,818                    237,064,800              265,214,164                  239,799,649
+Total financial assets                                                                                              1,087,041,625                    953,475,615             1,087,605,943                 958,218,767
+Financial liabilities
+Due to banks                                                                                                           14,239,563                       3,353,746               14,266,113                    3,353,737
+Due to customers                                                                                                    1,214,998,089                   1,110,395,693            1,218,349,175                1,113,464,143
+Issued debt instruments                                                                                                 5,455,820                       4,761,558                5,517,707                    4,770,103
+Other loans                                                                                                            34,530,873                      30,471,499               35,194,011                   30,886,741
+Total financial liabilities                                                                                         1,269,224,345                   1,148,982,496            1,273,327,006                1,152,474,724
+
+
+Fair values of financial instruments
+Quantitative disclosures fair value measurement hierarchy for assets as at 31 March 2026:
+Level 1 - Quoted prices (unadjusted) in active markets for identical assets or liabilities that the bank can access at the measurement date.
+Level 2 - Inputs other than quoted prices included within level 1 that are observable for the asset or liability, either directly or indirectly.
+Level 3 - Unobservable inputs for the asset or liability.
+
+
+The following table provides the fair value measurement hierarchy of the assets and liabilities according to EAS.
+                                                                                                                                                   Fair value measurement using
+                                                                                                        Quoted prices in active        Significant observable       Valuation techniques
+Mar.31, 2026                                                                                                                                                                                             Total
+                                                                                                          markets (Level 1)                inputs (level 2)               (level 3)
+Measured at fair value:
+Financial assets:
+Financial Assets at Fair Value through OCI                                                                            242,785,113                    132,911,618                       -                   375,696,731
+Total                                                                                                                 242,785,113                    132,911,618                       -                   375,696,731
+Derivative financial instruments:
+Financial assets                                                                                                                -                        515,109                       -                          515,109
+Financial liabilities                                                                                                           -                         81,585                       -                           81,585
+
+Assets for which fair values are disclosed:
+Due from banks                                                                                                                  -                             -               171,288,452                  171,288,452
+Financial Assets at Amortized cost                                                                                    265,214,164                             -                        -                   265,214,164
+Loans and advances to banks                                                                                                     -                             -                55,990,561                    55,990,561
+Loans and advances to customers                                                                                                 -                             -               595,112,766                  595,112,766
+Total                                                                                                                 265,214,164                             -               822,391,779                 1,087,605,943
+
+Liabilities for which fair values are disclosed:
+Due to banks                                                                                                                    -                             -                14,266,113                    14,266,113
+Issued debt instruments                                                                                                         -                      5,517,707                       -                         5,517,707
+Other loans                                                                                                                     -                     35,194,011                       -                     35,194,011
+Due to customers                                                                                                                -                             -              1,218,349,175                1,218,349,175
+Total                                                                                                                           -                     40,711,718             1,232,615,288                1,273,327,006
+
+                                                                                                                                                   Fair value measurement using
+                                                                                                        Quoted prices in active        Significant observable       Valuation techniques
+Dec.31, 2025                                                                                                                                                                                             Total
+                                                                                                          markets (Level 1)                inputs (level 2)               (level 3)
+Measured at fair value:
+Financial assets
+Financial Assets at Fair value through OCI                                                                            214,398,579                    161,999,350                       -                   376,397,929
+Total                                                                                                                 214,398,579                    161,999,350                       -                   376,397,929
+Derivative financial instruments
+Financial assets                                                                                                                -                        620,349                       -                          620,349
+Financial liabilities                                                                                                           -                        137,802                       -                          137,802
+Assets for which fair values are disclosed:
+Due from banks                                                                                                                  -                             -               135,728,710                  135,728,710
+Financial Assets at Amortized cost                                                                                    239,799,649                             -                        -                   239,799,649
+Loans and advances to banks                                                                                                     -                             -                34,973,479                    34,973,479
+Loans and advances to customers                                                                                                 -                             -               547,716,929                  547,716,929
+Total                                                                                                                 239,799,649                             -               718,419,118                  958,218,767
+Liabilities for which fair values are disclosed:
+Due to banks                                                                                                                    -                             -                  3,353,737                       3,353,737
+Issued debt instruments                                                                                                         -                       4,770,103                      -                         4,770,103
+Other loans                                                                                                                     -                     30,886,741                       -                     30,886,741
+Due to customers                                                                                                                -                             -              1,113,464,143                1,113,464,143
+Total                                                                                                                           -                     35,656,844             1,116,817,880                1,152,474,724
+
+
+
+                                                                                                                                                                                                    10
+8. Segment analysis
+8.1. Segment analysis by business segment
+The Bank is divided into the following business segments:
+ - Corporate banking & SME’s: This includes current account activities, deposits, overdrafts, loans, credit facilities, and financial derivatives to large, medium, and
+small entities, currency and derivative products.
+ - Investment: Incorporating financial instruments, structured financing, corporate leasing, merger and acquisitions information.
+ - Retail banking: incorporating private banking services, private customer current accounts, savings, deposits, investment savings products, custody, credit and debit
+cards, consumer loans and mortgages.
+- Assets and liabilities management –Including other banking business.
+ Inter-segment activities which are affected by the Bank’s normal course of business. Assets and liabilities of each segment include operating assets and liabilities as
+displayed in the Financial Statements.
+
+
+                                                          Corporate                                                                Asset Liability
+Mar.31, 2026                                                                  SME's         Investments       Retail banking                                 Total
+                                                           banking                                                                  Management
+Net revenue according to business segment *                 15,273,334        2,701,482         5,477,077           8,168,070             1,408,376          33,028,339
+Expenses according to business segment                       (3,079,927)      (1,497,304)        (163,954)         (2,703,124)               (20,879)        (7,465,188)
+Profit before tax                                           12,193,407        1,204,178         5,313,123           5,464,946             1,387,497          25,563,151
+Income tax                                                   (3,692,443)       (364,653)       (1,608,936)         (1,654,911)              (420,166)        (7,741,109)
+Profit for the period                                         8,500,964         839,525         3,704,187           3,810,035               967,331          17,822,042
+Total assets                                               571,690,002       15,536,865      645,217,069           93,218,716           242,605,158      1,568,267,810
+Total liabilities                                          503,150,013       75,736,895                -          720,768,913            52,438,956      1,352,094,777
+* Represents the net interest income and other income.
+
+                                                          Corporate                                                                Asset Liability
+Mar.31, 2025                                                                  SME's         Investments       Retail banking                                 Total
+                                                           banking                                                                  Management
+Net revenue according to business segment                   12,274,365        2,718,925         5,927,527           5,508,394             2,031,030          28,460,241
+Expenses according to business segment                       (1,072,509)      (1,144,416)      (1,288,513)         (2,098,835)              (155,808)        (5,760,081)
+Profit before tax                                           11,201,856        1,574,509         4,639,014           3,409,559             1,875,222          22,700,160
+
+Income tax                                                   (2,994,843)       (423,338)       (1,226,385)           (919,628)              (504,191)        (6,068,385)
+
+Profit for the period                                         8,207,013       1,151,171         3,412,629           2,489,931             1,371,031          16,631,775
+
+Total assets                                               367,238,357       13,112,923      449,875,102           75,493,679           357,165,391      1,262,885,452
+
+Total liabilities                                          409,911,411       90,267,958                -          573,760,889            30,727,652      1,104,667,910
+
+8.2. Segment analysis by geographical segment
+                                                                                                                                                                         0
+                                                                           Alex, Delta &                     Outside Egypt
+Mar.31, 2026                                             Greater Cairo                      Upper Egypt                                 Total                  0
+                                                                               Sinai                          (CIB Kenya)
+Net revenue according to geographical segment               27,493,098        3,886,488         1,292,596             356,157            33,028,339                  -
+Expenses according to geographical segment                   (5,898,486)       (954,917)         (326,981)           (284,804)            (7,465,188)                -
+Profit before tax                                           21,594,612        2,931,571           965,615              71,353            25,563,151                  -
+Income tax                                                   (6,551,866)       (887,747)         (292,410)              (9,086)           (7,741,109)                -
+Profit for the period                                       15,042,746        2,043,824           673,205              62,267            17,822,042                  -
+Total assets                                             1,455,095,103       83,413,434        20,422,713           9,336,560         1,568,267,810                  -
+Total liabilities                                        1,005,175,551      272,882,562        67,347,614           6,689,050         1,352,094,777
+
+                                                                           Alex, Delta &                     Outside Egypt                                     0
+Mar.31, 2025                                             Greater Cairo                      Upper Egypt                                 Total
+                                                                               Sinai                          (CIB Kenya)
+
+Net revenue according to geographical segment               24,756,019        2,925,356           576,824             202,042            28,460,241                  -
+Expenses according to geographical segment                   (4,324,416)       (928,833)         (209,472)           (297,360)            (5,760,081)                -
+Profit before tax                                           20,431,603        1,996,523           367,352              (95,318)          22,700,160                  -
+Income tax                                                   (5,467,198)       (536,805)          (98,770)             34,388             (6,068,385)                -
+Profit for the period                                       14,964,405        1,459,718           268,582              (60,930)          16,631,775                  -
+Total assets                                             1,175,041,382       64,963,482        16,237,105           6,643,483         1,262,885,452                  -
+Total liabilities                                          829,368,285      217,505,008        52,528,005           5,266,612         1,104,667,910                  -
+
+
+
+
+                                                                                                                                                        11
+ 9 . Net trading income                                                               Last 9 Months           Last 9 Months
+                                                                                      Mar.31, 2026            Mar.31, 2025
+
+     Profit (Loss) from foreign exchange transactions                                           447,404                   466,883
+     Profit (Loss) from forward foreign exchange deals revaluation                              150,409                    10,189
+     Profit (Loss) from interest rate swaps revaluation                                          (98,724)                 134,452
+     Profit (Loss) from currency swap deals revaluation                                          (72,746)                  21,676
+     Profit (Loss) from financial assets at fair value through P&L                                    7,307                11,349
+     Total                                                                                      433,650                   644,549
+
+10 . Other operating income (expenses)                                                Last 9 Months           Last 9 Months
+                                                                                      Mar.31, 2026            Mar.31, 2025
+
+     Profits (losses) from revaluation of non-trading assets and liabilities by FCY             509,184                   140,232
+     Profits from selling property and equipment                                                        -                     6,006
+     Release (charges) of other provisions                                                      (990,498)                 (320,589)
+     Other income (expenses)                                                                  (1,827,811)             (1,567,879)
+     Total                                                                                    (2,309,125)             (1,742,230)
+
+11 . Release (charges) for ECL                                                        Last 9 Months           Last 9 Months
+                                                                                      Mar.31, 2026            Mar.31, 2025
+     Loans and advances to customers and banks                                                  278,243               1,080,606
+     Due from banks                                                                               (7,707)                 (141,071)
+     Financial securities                                                                       210,496               (1,023,567)
+     Total                                                                                      481,032                    (84,032)
+
+12 . Adjustments to calculate the effective tax rate                                  Last 9 Months           Last 9 Months
+                                                                                      Mar.31, 2026            Mar.31, 2025
+
+     Profit before tax                                                                       25,563,151              22,701,554
+     Tax rate                                                                                    22.50%                    22.50%
+     Income tax based on accounting profit                                                     5,751,709               5,107,850
+     Add / (Deduct)
+     Non-deductible expenses                                                                   3,159,753               2,083,499
+     Tax exemptions                                                                           (5,391,739)             (4,701,137)
+     Withholding tax                                                                           4,221,386               3,578,173
+     Income and Deferred tax                                                                   7,741,109               6,068,385
+     Effective tax rate                                                                           30.28%                  26.73%
+
+13 . Earnings per share                                                               Last 9 Months           Last 9 Months
+                                                                                      Mar.31, 2026            Mar.31, 2025
+
+     Net profit for the period                                                               17,738,347              16,595,612
+     Board members' bonus*                                                                      (266,075)                 (160,100)
+     Staff profit share*                                                                      (1,773,835)             (1,659,561)
+     Shareholders' share                                                                     15,698,437              14,775,951
+     Weighted average number of shares                                                         3,377,936               3,377,936
+     Basic earnings per share                                                                          4.65                    4.37
+     By issuance of ESOP earning per share will be:
+     Average number of shares including ESOP shares                                            3,418,717               3,418,717
+     Diluted earnings per share                                                                        4.59                    4.32
+   * Proposed amounts are subject to change according to GAM decision.
+     Based on separate financial statement profits.
+
+
+
+
+                                                                                                                     12
+14 . Cash and balances at the central bank
+                                                         Mar.31, 2026              Dec.31, 2025
+
+      Cash                                                        20,855,461                20,002,406
+      Obligatory reserve balance with central banks
+       - Current accounts                                         71,155,527                68,874,046
+      Total                                                       92,010,988                88,876,452
+      Non-interest bearing balances                               92,010,988                88,876,452
+
+15 . Due from banks                                      Mar.31, 2026              Dec.31, 2025
+
+      Current accounts                                             9,895,723                   9,128,504
+      Deposits                                                   161,111,373               126,240,727
+      Expected credit losses (ECL)                                  (159,704)                  (132,682)
+      Net                                                        170,847,392               135,236,549
+      Central banks                                               49,553,505                44,251,480
+      Local banks                                                       119,802                7,243,880
+      Foreign banks                                              121,174,085                83,741,189
+      Net                                                        170,847,392               135,236,549
+      Non-interest bearing balances                                2,431,892                   3,725,761
+      Floating interest bearing balances                          56,305,512                47,001,336
+      Fixed interest bearing balances                            112,109,988                84,509,452
+      Net                                                        170,847,392               135,236,549
+      Current balances                                           170,847,392               135,236,549
+      Total                                                      170,847,392               135,236,549
+
+16 . Treasury bills
+                                                         Mar.31, 2026              Dec.31, 2025
+
+       91 Days maturity                                                    850                    15,075
+      182 Days maturity                                           15,660,550                   5,020,950
+      273 Days maturity                                           19,253,675                38,629,400
+      364 Days maturity                                          107,297,234               116,153,004
+      Unearned interest                                          (11,747,924)              (15,236,109)
+      Total Treasury bills                                       130,464,385               144,582,320
+      Repos - Treasury bills                                        (513,352)                  (523,304)
+      Net                                                        129,951,033               144,059,016
+
+17 . Loans and advances to banks, net
+                                                         Mar.31, 2026              Dec.31, 2025
+
+      Loans                                                       55,730,856                34,781,349
+      Unamortized discounted bank loans                             (364,839)                  (254,104)
+      Expected credit losses (ECL)                                  (180,975)                     (86,475)
+      Net                                                         55,185,042                34,440,770
+      Current balances                                            31,666,610                19,116,232
+      Non-current balances                                        23,518,432                15,324,538
+      Net                                                         55,185,042                34,440,770
+
+17.1 . Analysis for ECL of loans and advances to banks
+                                                         Mar.31, 2026              Dec.31, 2025
+      Beginning balance                                                 (86,475)               (133,491)
+      Released (charged) during the period / year                       (82,133)                  43,266
+      Exchange revaluation difference                                   (12,367)                   3,750
+      Ending balance of the period / year                           (180,975)                     (86,475)
+
+
+
+
+                                                                                          13
+18 . Loans and advances to customers, net
+                                                                          Mar.31, 2026           Dec.31, 2025
+      Individual
+       - Overdraft                                                                2,939,371              3,174,190
+       - Credit cards                                                            19,588,856             18,234,061
+       - Personal loans                                                          66,328,641             63,053,375
+       - Mortgage loans                                                           8,534,131              7,997,385
+      Total 1                                                                    97,390,999             92,459,011
+      Corporate and Business Banking
+       - Overdraft                                                              116,088,405            113,965,193
+       - Direct loans                                                           293,741,916            259,575,740
+       - Syndicated loans                                                        84,613,011             78,572,993
+       - Other loans                                                              1,724,524              1,687,298
+      Total 2                                                                   496,167,856            453,801,224
+      Total Loans and advances to customers (1+2)                               593,558,855            546,260,235
+      Less:
+      Unamortized bills discount                                                    (59,523)               (82,363)
+      Unamortized syndicated loans discount                                         (32,347)               (40,820)
+      Expected credit losses (ECL)                                              (37,714,060)           (34,687,756)
+      Suspended credit account                                                   (4,031,922)            (3,495,530)
+      Net loans and advances to customers                                       551,721,003            507,953,766
+      Distributed to
+      Current balances                                                          264,043,100            243,096,939
+      Non-current balances                                                      287,677,903            264,856,827
+      Total                                                                     551,721,003            507,953,766
+
+
+
+
+18.1 . Analysis of the expected credit losses on loans and advances to customers by product during the period / year is as follows:
+
+                                                                                               Mar.31, 2026
+
+      Individual Loans:                             Overdraft             Credit cards          Personal loans        Mortgage loans              Total
+
+      Beginning balance                                         (8,028)          (2,709,233)            (1,626,372)              (127,131)          (4,470,764)
+      Released (charged) during the period                      (1,024)             (38,705)               (50,208)                (5,531)             (95,468)
+      Written off during the period                                392               17,430                 33,761                     90               51,673
+      Recoveries during the period                                (354)             (11,404)               (18,587)                  (143)             (30,488)
+      Foreign currencies translation differences                   (24)                 -                   (1,002)                  (201)              (1,227)
+      Ending balance                                            (9,038)          (2,741,912)            (1,662,408)              (132,916)          (4,546,274)
+
+                                                                                               Mar.31, 2026
+
+      Corporate and Business Banking Loans:         Overdraft             Direct loans         Syndicated loans         Other loans               Total
+
+      Beginning balance                                   (3,139,096)           (17,390,336)            (9,671,966)               (15,594)         (30,216,992)
+      Released (charged) during the period                  (840,654)             1,728,053               (426,843)                (4,712)             455,844
+      Written off during the period                              -                      -                      -                      -                    -
+      Recoveries during the period                               -                 (272,563)                   -                      -               (272,563)
+      Foreign currencies translation differences            (131,976)            (1,668,397)            (1,332,621)                (1,081)          (3,134,075)
+      Ending balance                                      (4,111,726)           (17,603,243)           (11,431,430)               (21,387)         (33,167,786)
+
+
+                                                                                               Dec.31, 2025
+      Individual Loans:                             Overdraft             Credit cards          Personal loans        Mortgage loans              Total
+      Beginning balance                                     (10,787)             (2,028,966)            (1,699,512)               (86,004)          (3,825,269)
+      Released (charged) during the year                      2,691                (670,504)                  (540)               (40,714)            (709,067)
+      Written off during the year                             2,073                  71,626                172,364                    243              246,306
+      Recoveries during the year                             (2,005)                (81,389)               (98,684)                  (656)            (182,734)
+      Ending balance                                         (8,028)             (2,709,233)            (1,626,372)              (127,131)          (4,470,764)
+
+                                                                                               Dec.31, 2025
+      Corporate and Business Banking Loans:         Overdraft             Direct loans         Syndicated loans         Other loans               Total
+      Beginning balance                                   (5,818,838)           (23,716,012)           (12,086,636)               (34,807)         (41,656,293)
+      Released (charged) during the year                     (70,285)             1,024,044                653,544                (14,000)           1,593,303
+      Written off during the year                             31,507              1,233,896                    -                      -              1,265,403
+      Recoveries during the year                                 -               (1,001,554)                   -                      -             (1,001,554)
+      PD Recalibration impact                              2,721,163              4,288,457              1,129,733                 34,351            8,173,704
+      Foreign currencies translation differences              (2,643)               780,833                631,393                 (1,138)           1,408,445
+      Ending balance                                      (3,139,096)           (17,390,336)            (9,671,966)               (15,594)         (30,216,992)
+
+
+
+
+                                                                                                                                             14
+19 . Financial investments                                                Mar.31, 2026
+    19.1 Financial investments securities
+                                            Financial Assets at Fair   Financial Assets at
+                                                                                                 Total
+                                              Value through OCI          Amortized cost
+
+
+
+    Investments listed in the market
+    Governmental bonds                                   192,266,102              263,640,692       455,906,794
+    Securitized and other bonds                           36,703,715                1,318,264           38,021,979
+    Equity instruments                                       750,790                         -            750,790
+    Treasury bills                                           671,737                  753,788            1,425,525
+    Sukuk                                                 12,392,769                         -          12,392,769
+
+    Investments not listed in the market
+    Treasury bills                                       128,525,508                         -      128,525,508
+    Securitized and other bonds                              214,312                         -            214,312
+    Equity instruments                                       964,063                         -            964,063
+    Mutual funds                                           3,207,735                         -           3,207,735
+    Total                                                375,696,731              265,712,744       641,409,475
+
+
+                                                                          Dec.31, 2025
+
+                                            Financial Assets at Fair   Financial Assets at
+                                                                                                 Total
+                                              Value through OCI          Amortized cost
+
+
+
+    Investments listed in the market
+    Governmental bonds                                   177,975,844              233,738,536       411,714,380
+    Securitized and other bonds                           24,421,313                1,742,739           26,164,052
+    Equity instruments                                       750,599                         -            750,599
+    Treasury bills                                                -                 1,190,900            1,190,900
+    Sukuk                                                 11,250,823                         -          11,250,823
+
+    Investments not listed in the market
+    Treasury bills                                       142,868,116                         -      142,868,116
+    Securitized and other bonds                           15,005,813                         -          15,005,813
+    Equity instruments                                       951,882                         -            951,882
+    Mutual funds                                           3,173,539                         -           3,173,539
+    Total                                                376,397,929              236,672,175       613,070,104
+
+
+
+
+                                                                                                   15
+19.2 . Profits (losses) on financial investments                     Last 3 Months       Last 9 Months      Last 3 Months     Last 9 Months
+                                                                      Mar.31, 2026       Mar.31, 2026       Mar.31, 2025       Mar.31, 2025                       Jan.00, 1900
+
+       Profit (Loss) from FVOCI financial instruments                       (176,995)            168,162          (102,084)           195,124                               -
+       Profit from selling shares of associates                             (277,408)                -             277,408            277,408                               -
+       Total                                                                (454,403)            168,162           175,324            472,532                                   0
+
+
+                                                                                                                                                                                0
+
+
+
+20 . Investments in associates                                                                              Mar.31, 2026
+
+                                                                                         Company's
+                                                        Company's                                            Company's        Company's net     Investment book
+                                                                    Company's assets liabilities (without                                                          Stake %
+                                                         country                                              revenues         profit (loss)          value
+                                                                                            equity)
+       - Al Ahly Computer                                 Egypt              113,674              48,803           176,384             33,418            43,710           39.33
+       Total                                                                 113,674              48,803           176,384             33,418            43,710
+
+
+
+                                                                                                            Dec.31, 2025
+                                                                                         Company's
+                                                        Company's                                            Company's        Company's net     Investment book
+                                                                    Company's assets liabilities (without                                                          Stake %
+                                                         country                                              revenues         profit (loss)          value
+                                                                                            equity)
+       - Al Ahly Computer                                 Egypt              102,296              33,611           155,952             37,232            45,210           39.33
+       Total                                                                 102,296              33,611           155,952             37,232            45,210
+
+
+
+
+                                                                                                                                                                     16
+21 . Other assets                                                                                         Mar.31, 2026             Dec.31, 2025
+
+
+     Accrued revenues                                                                                           32,634,500              38,524,051
+     Prepaid expenses                                                                                            2,655,157               2,397,727
+     Advances to purchase fixed assets                                                                           9,899,927               9,611,361
+     Accounts receivable (after deducting the provision)                                                         3,697,351               3,111,683
+     Assets acquired as settlement of debts                                                                        265,948                  265,948
+     Insurance                                                                                                     156,467                  130,142
+     Total                                                                                                      49,309,350              54,040,912
+     This item includes other assets that are not classified under specific items of balance sheet assets, such as: accrued income and prepaid expenses, custodies, debit accounts under settlement and any balance that has no place in any other asset category.
+
+
+
+22 . Property and equipment                                                                                                                                            Mar.31, 2026
+                                                                                                                                                                                                           Machines and            Furniture and
+                                                                                      Land                   Premises                    IT                   Vehicles               Fitting-out                                                                 Total
+                                                                                                                                                                                                            equipment                furnishing
+
+     Cost at Jan 01, 2026 (1)                                                              229,673               1,609,128               8,546,661                  281,847               1,584,378                1,735,471                 269,881                 14,257,039
+     Additions during the period                                                                -                     6,313                 544,112                    4,475                  73,722                 141,721                    9,020                  779,363
+     Disposals during the period                                                                -                        -                    (56,478)                    -                  (20,411)                    (182)                 (2,483)                  (79,554)
+     Cost at end of the period (2)                                                         229,673               1,615,441               9,034,295                  286,322               1,637,689                1,877,010                 276,418                 14,956,848
+     Accumulated depreciation at beginning of the period (3)                                    -                  766,017               5,388,423                  115,997               1,148,200                1,179,624                 177,096                  8,775,357
+     Depreciation for the period                                                                -                    18,856                 434,067                    6,778                  57,957                  98,181                    8,940                  624,779
+     Disposals during the period                                                                -                        -                    (56,478)                    -                  (20,411)                    (182)                 (2,483)                  (79,554)
+     Accumulated depreciation at end of the period (4)                                          -                  784,873               5,766,012                  122,775               1,185,746                1,277,623                 183,553                  9,320,582
+     Ending net assets (2-4)                                                               229,673                 830,568               3,268,283                  163,547                 451,943                  599,387                   92,865                 5,636,266
+     Beginning net assets (1-3)                                                            229,673                 843,111               3,158,238                  165,850                 436,178                  555,847                   92,785                 5,481,682
+
+
+                                                                                                                                                                       Dec.31, 2025
+                                                                                                                                                                                                           Machines and            Furniture and
+                                                                                      Land                   Premises                    IT                   Vehicles               Fitting-out                                                                 Total
+                                                                                                                                                                                                            equipment                furnishing
+
+     Cost at Jan 01, 2025 (1)                                                              229,673               1,418,518               5,968,065                  245,012               1,274,421                1,279,716                 197,350                 10,612,755
+     Additions during the year                                                                   -                 197,321               2,581,333                   36,835                 332,550                  463,849                   74,805                 3,686,693
+     Disposals during the year                                                                   -                   (6,711)                   (2,737)                    -                  (22,593)                  (8,094)                 (2,274)                  (42,409)
+     Cost at end of the year (2)                                                           229,673               1,609,128               8,546,661                  281,847               1,584,378                1,735,471                 269,881                 14,257,039
+     Accumulated depreciation at beginning of the year (3)                                       -                 628,150               3,926,788                   92,838                 982,544                  839,907                 144,599                  6,614,826
+     Depreciation for the year                                                                   -                 144,578               1,464,372                   23,159                 188,249                  347,811                   34,771                 2,202,940
+     Disposals during the year                                                                   -                   (6,711)                   (2,737)                    -                  (22,593)                  (8,094)                 (2,274)                  (42,409)
+     Accumulated depreciation at end of the year (4)                                            -                  766,017               5,388,423                  115,997               1,148,200                1,179,624                 177,096                  8,775,357
+     Ending net assets (2-4)                                                               229,673                 843,111               3,158,238                  165,850                 436,178                  555,847                   92,785                 5,481,682
+     Beginning net assets (1-3)                                                            229,673                 790,368               2,041,277                  152,174                 291,877                  439,809                   52,751                 3,997,929
+
+
+                                                                                                                                                                                                                                                                       17
+23 . Due to banks
+                                                                                               Mar.31, 2026                   Dec.31, 2025
+
+     Current accounts                                                                                    2,752,731                         2,739,491
+     Deposits                                                                                           11,486,832                           614,255
+     Total                                                                                              14,239,563                         3,353,746
+     Central banks                                                                                       1,743,018                           814,800
+     Local banks                                                                                        11,406,894                            73,248
+     Foreign banks                                                                                       1,089,651                         2,465,698
+     Total                                                                                              14,239,563                         3,353,746
+     Non-interest bearing balances                                                                       2,475,071                         2,739,491
+     Floating interest bearing balances                                                                    682,206                           470,038
+     Fixed interest bearing balances                                                                    11,082,286                           144,217
+     Total                                                                                              14,239,563                         3,353,746
+     Current balances                                                                                   14,239,563                         3,353,746
+     Total                                                                                              14,239,563                         3,353,746
+
+24 . Due to customers
+                                                                                               Mar.31, 2026                   Dec.31, 2025
+
+     Demand deposits                                                                                   500,206,498                    461,967,523
+     Time deposits                                                                                     190,649,866                    180,471,867
+     Certificates of deposit                                                                           277,201,543                    248,483,791
+     Saving deposits                                                                                   236,952,359                    211,270,156
+     Other deposits                                                                                      9,987,823                      8,202,356
+     Total                                                                                           1,214,998,089                  1,110,395,693
+     Corporate deposits                                                                                493,225,082                    460,225,755
+     Individual deposits                                                                               721,773,007                    650,169,938
+     Total                                                                                           1,214,998,089                  1,110,395,693
+     Non-interest bearing balances                                                                     240,120,080                    201,838,067
+     Floating interest bearing balances                                                                 27,090,571                     26,136,289
+     Fixed interest bearing balances                                                                   947,787,438                    882,421,337
+     Total                                                                                           1,214,998,089                  1,110,395,693
+     Current balances                                                                                  937,090,636                    860,771,051
+     Non-current balances                                                                              277,907,453                    249,624,642
+     Total                                                                                           1,214,998,089                  1,110,395,693
+
+     Due to customers contained an amount of EGP 2,719 million representing guarantees of irrevocable commitments for LC's - export compared to
+     EGP 1,046 million in the comparative date. The fair value of these deposits is approximately their current value.
+
+
+25 . Other liabilities
+                                                                                               Mar.31, 2026                   Dec.31, 2025
+
+     Accrued interest payable                                                                            3,599,512                      3,230,302
+     Accrued expenses                                                                                    5,691,526                      4,577,121
+     Accounts payable                                                                                   50,168,201                     16,302,827
+     Other credit balances                                                                               1,275,867                      1,485,140
+     Total                                                                                              60,735,106                     25,595,390
+
+26 . Issued debt instruments
+                                                                                               Mar.31, 2026                   Dec.31, 2025
+     Fixed rate bonds with 5 years maturity
+     Green bonds (USD) - Fixed Rate                                                                      5,455,820                         4,761,558
+     Total                                                                                               5,455,820                         4,761,558
+     Current balances                                                                                    5,455,820                         4,761,558
+
+
+
+
+                                                                                                                                      18
+27 . Other provisions                                                                                                                   Mar.31, 2026
+
+                                                                                                            Net charged /                 Exchange                  Net utilized /
+                                                                              Beginning balance            released during               revaluation              recovered during     Ending balance
+                                                                                                              the period                  difference                  the period
+
+
+      Provision for legal claims*                                                            19,141                       (138)                       -                         -                19,003
+      Provision for contingent                                                           12,556,890                  1,020,733                  1,110,156                       -            14,687,779
+      Provision for other claim**                                                         3,064,010                    (30,097)                    14,293                (1,152,649)          1,895,557
+      Total                                                                              15,640,041                    990,498                  1,124,449                (1,152,649)         16,602,339
+
+                                                                                                                                         Dec.31, 2025
+
+                                                                                                            Net charged /                 Exchange                  Net utilized /
+                                                                              Beginning balance            released during               revaluation              recovered during     Ending balance
+                                                                                                               the year                   difference                   the year
+
+
+      Provision for legal claims*                                                           119,348                    (97,965)                     (1,916)                    (326)             19,141
+      Provision for contingent                                                           15,606,123                 (2,987,628)                    (61,605)                     -            12,556,890
+      Provision for other claim**                                                         2,896,351                    192,002                     (17,202)                  (7,141)          3,064,010
+      Total                                                                              18,621,822                 (2,893,591)                    (80,723)                  (7,467)         15,640,041
+    * There is a number of existing filed cases against the bank on March 31, 2026 for which no provisions are made as the bank doesn't expect to incur losses.
+   ** Provisions created for potential risk of banking operations.
+
+
+28 . Share-based payments
+      According to the extraordinary general assembly meeting on June 26, 2006, the Bank launched new Employees Share Ownership Plan (ESOP) scheme and issued
+      equity-settled share-based payments. Eligible employees must complete a term of 3 years of service in the bank to have the right in ordinary shares at face value (right
+      to share) that will be issued on the vesting date. Equity-settled share-based payments are measured at fair value at the grant date, and expensed on a straight-line basis
+      over the vesting year (3 years) with corresponding increase in equity based on estimated number of shares that will eventually vest. The fair value for such equity
+      instruments is measured using the Black-Scholes pricing model.
+
+      Details of the rights to share outstanding during the period / year are as follows:
+                                                                                 Mar.31, 2026               Dec.31, 2025
+                                                                                No. of shares in           No. of shares in
+                                                                                   thousand                   thousand
+      Outstanding at the beginning of the period / year                                    78,658                     75,874
+      Granted during the period / year                                                     25,571                     33,469
+      Forfeited during the period / year                                                   (1,708)                    (2,992)
+      Exercised during the period / year                                                  (27,203)                   (27,693)
+      Outstanding at the end of the period / year                                          75,318                     78,658
+
+      Details of the outstanding tranches are as follows:
+                                                                                     EGP                          EGP                 No. of shares in
+                                 Maturity date                                   Exercise price                Fair value                thousand
+                                    2027                                              10                         60.14                           22,450
+                                    2028                                              10                         60.44                           27,297
+                                    2029                                              10                         81.18                           25,571
+                                    Total                                                                                                        75,318
+
+      The fair value of granted shares is calculated using Black-Scholes pricing model with the following:
+                                                                                   20th tranche               19th tranche                Jan.00, 1900
+      Exercise price                                                                     10                         10                                      0
+      Current share price                                                               103.0                      78.5                                     0
+      Expected life (years)                                                               3                          3                                      0
+      Risk free rate %                                                                21.14%                     23.98%                                0.00%
+      Dividend yield %                                                                 5.80%                      3.20%                                0.00%
+      Volatility %                                                                    37.39%                     38.28%                                0.00%
+      Volatility is calculated based on the standard deviation of returns for the last five years.
+
+
+
+
+                                                                                                                                                                                        19
+29   . Legal claims
+     - There is a number of existing cases against the bank on March 31, 2026 for which no provisions are made as the bank doesn't expect to incur
+       losses from it.
+     - A provision for legal cases that are expected to generate losses has been created (Disclosure number 27)
+30   . Transactions with related parties
+      All banking transactions with related parties are conducted in accordance with the normal banking practices and regulations applied to all other
+      customers without any discrimination.
+
+30.1 . Loans, advances, deposits and contingent liabilities                Mar.31, 2026          Dec.31, 2025
+
+      Loans, advances and other assets                                           4,121,710             4,940,177
+      Deposits and other liabilities                                             1,451,829             1,279,549
+      Contingent liabilities                                                          274,839                  273,359
+
+30.2 . Other transactions with related parties                                      Mar.31, 2026                              Mar.31, 2025
+                                                                              Income           Expenses                  Income         Expenses
+      C-venture                                                                  3               1,031                      2              946
+      Commercial International Bank (CIB) Kenya                                7,682                  680                  510                  1,052
+      Damietta shipping & marine services                                         3                        7                10                  3,138
+      Commercial International Finance Company                                153,271                2,898                56,070                3,821
+      Al Ahly computer                                                            4                    -                     6                   -
+
+31   . Main currencies positions
+                                                                        Equivalent in EGP Equivalent in EGP
+                                                                          Mar.31, 2026      Dec.31, 2025
+      Egyptian pound                                                           (4,643,329)       (1,901,853)
+      US dollar                                                                 4,316,071         5,226,995
+      Sterling pound                                                                15,156             7,535
+      Japanese yen                                                                     278               267
+      Swiss franc                                                                      879             2,083
+      Euro                                                                       (524,948)       (4,157,524)
+      Saudi Riyal                                                                   62,165            33,797
+      Based on separate financial statement.
+
+
+
+
+32   . Non-current assets held for sale
+                                                                           Mar.31, 2026          Dec.31, 2025
+      Cash                                                                         96,761                59,657
+      Financial Assets at Fair Value through OCI                                  115,405               115,405
+      Other assets                                                                  8,064                 4,606
+      Deferred tax assets                                                             -                     164
+      Property and equipment                                                        2,993                 2,995
+      Total                                                                       223,223               182,827
+
+33   . Non-current liabilities held for sale
+                                                                           Mar.31, 2026          Dec.31, 2025
+      Deferred tax liabilities                                                        103                   -
+      Other liabilities                                                             2,530                 1,242
+      Current income tax liabilities                                               52,469                50,973
+      Other provisions                                                              1,645                 1,645
+      Total                                                                        56,747                53,860
+
+34   . Important events
+     - During the first quarter of 2026, the Monetary Policy Committee (MPC) of the Central Bank of Egypt (CBE) decided to cut key policy rates by
+       100 basis points, accordingly, the overnight deposit rate, overnight lending rate, and the rate of the main operation were reduced to 19.0 percent,
+       20.0 percent, and 19.5 percent, respectively. The discount rate was also cut to 19.5 percent, which may affect the bank's policies in pricing
+       current and future banking products.
+       In addition, the CBE Board of Directors reduced the required reserve ratio (RRR) for commercial banks from 18 percent to 16 percent.
+     - During the first quarter of 2026, the bank increased the capital of Commercial International Finance Company (CIFC) by EGP 100 million
+       following the receipt of the necessary internal and regulatory approvals.
+
+                                                                                                                                           20
+

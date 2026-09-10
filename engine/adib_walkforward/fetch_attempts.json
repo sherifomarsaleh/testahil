@@ -1,0 +1,96 @@
+{
+ "compiled": "2026-09-09",
+ "attempts": [
+  {
+   "target": "ADIB-Egypt investor relations index",
+   "url": "https://www.adib.eg/investor-relations",
+   "outcome": "200 - the IR hub; five sub-pages enumerated",
+   "tier": "A",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "ADIB-Egypt IR (trailing slash + /en/ prefix)",
+   "url": "https://www.adib.eg/en/investor-relations/",
+   "outcome": "REJECTED by the site WAF (\"Request Rejected\", support ID returned). The path without the /en/ prefix serves the same page and was used.",
+   "tier": "-",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "ADIB-Egypt financial results archive",
+   "url": "https://www.adib.eg/investor-relations/financial-results",
+   "outcome": "200 - 174 document links, consolidated and standalone, FY2009 to H1-2026",
+   "tier": "A",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "FY2010-FY2025 consolidated annual statements (16 files)",
+   "url": "(see panel.SOURCES)",
+   "outcome": "200 on all 16; every one parsed and footed",
+   "tier": "A",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "Q1-2026 and H1-2026 condensed consolidated statements",
+   "url": "(see panel.SOURCES)",
+   "outcome": "200 on both",
+   "tier": "A",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "FY2021 consolidated statements, ENGLISH",
+   "url": "https://www.adib.eg/media/644552/ADIBEG_Financial_English_Consolidated_Q4_31-12-2021.pdf",
+   "outcome": "200 but the file served under the English name is the ARABIC filing - 102 pages, no English statement page. FY2021 taken instead from the comparative column of the FY2022 audited consolidated statements (tier A).",
+   "tier": "A(substituted within the issuer)",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "FY2021 English consolidated, alternative names",
+   "url": "ADIBEG_Financial_English_Consalidated_31-12-2021.pdf; ADIB_Consalidated_Condensed_Dec_2021.pdf",
+   "outcome": "404 on both",
+   "tier": "-",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "FY2021 standalone English",
+   "url": "https://www.adib.eg/media/644552/ADIBEG_Financial_English_Standalone_Q4_31-12-2021.pdf",
+   "outcome": "200 - standalone, not consolidated; NOT used, the panel is consolidated throughout",
+   "tier": "A(not used)",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "FY2024 annual report",
+   "url": "https://www.adib.eg/media/172834/ADIBEG_Annual_Report_English_2024.pdf",
+   "outcome": "200 - prose text layer, statement tables are rasters",
+   "tier": "A",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "Board of Directors report FY2025",
+   "url": "https://www.adib.eg/media/1542854/BODReport2025EnglishVersion.pdf",
+   "outcome": "200 - no text layer at all",
+   "tier": "A",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "Investor relations reports Dec-2023, Dec-2024",
+   "url": "https://www.adib.eg/media/IRDec%202024.pdf; /media/1535883/InvestorRelationreports-Dec-2023.pdf",
+   "outcome": "200 on both",
+   "tier": "A",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "Board of Directors report FY2023",
+   "url": "https://www.adib.eg/media/746163/ADIBEG_Financial_English_Board of Directors_Q4_31-12-2023.pdf",
+   "outcome": "curl refused the unencoded space in the path; not retried, the FY2023 audited statements carry everything this run needs",
+   "tier": "-",
+   "on": "2026-09-09"
+  },
+  {
+   "target": "Egypt macro series (CPI, GDP, broad money, private credit, deposit rate, EGP/USD)",
+   "url": "https://api.worldbank.org/v2/country/EGY/indicator/{code}",
+   "outcome": "200 - eight indicators, 2005-2025",
+   "tier": "C (macro, exogenous)",
+   "on": "2026-09-09"
+  }
+ ]
+}

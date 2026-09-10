@@ -12,6 +12,8 @@ from docx import Document
 from docx.shared import Cm
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, ".."))
@@ -97,11 +99,14 @@ def build(path):
     doc.add_heading("Country-level inputs", level=2)
     ins = W["inputs"]
     dam = ins["damodaran"]
+    CBE = ins["cbe"]
     table(doc, ["Input", "Value", "Source", "Reliability"],
           [["Egyptian ten-year government bond yield", pct(0.23, 2),
+            # READ, NOT TYPED [08-09-2026] — see the note in docx_tmgh.py.
             "market quote dated 6 August 2026, cross-checked against a central-bank "
-            "policy rate of 19.00%, an overnight lending rate of 20.00% and an "
-            "interbank rate of 19.51% at the August 2026 meeting", "C"],
+            "policy rate of " + pct(CBE["policy"], 2) + ", an overnight lending rate of "
+            + pct(CBE["overnight_lending"], 2) + " and an interbank rate of "
+            + pct(CBE["interbank"], 2) + " at the " + CBE["meeting"] + " meeting", "C"],
            ["Egypt's credit rating", dam["moodys_rating"],
             "published country-premium file, Egypt's own row, read 1 September 2026",
             "C"],
@@ -244,7 +249,7 @@ def build(path):
 
 def main():
     doc = build(None)
-    out = os.path.join(HERE, "TMGH_Sources_02-09-2026.docx")
+    out = os.path.join(HERE, _ed.SOURCES_DOCX)
     doc.save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

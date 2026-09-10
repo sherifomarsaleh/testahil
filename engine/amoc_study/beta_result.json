@@ -2,13 +2,13 @@
  "ticker": "AMOC",
  "market": "EG",
  "exchange": "EGX",
- "beta": 0.9079854792123889,
- "r2": 0.2589419143627705,
- "se": 0.16494576521273835,
- "n": 253,
+ "beta": 0.9063464869078695,
+ "r2": 0.2359332416060701,
+ "se": 0.17450095608475613,
+ "n": 256,
  "ci90": [
-  0.6366496954374343,
-  1.1793212629873435
+  0.6192924141484456,
+  1.1934005596672934
  ],
  "usable": true,
  "gate_msg": "passes minimum usability gate",
@@ -16,12 +16,12 @@
  "frequency": "weekly",
  "weak": false,
  "warnings": [],
- "window_years": 4.89,
- "first_obs": "2021-08-26",
- "last_obs": "2026-07-16",
- "blume_crosscheck": 0.9386569861415925,
+ "window_years": 4.94,
+ "first_obs": "2021-09-23",
+ "last_obs": "2026-09-03",
+ "blume_crosscheck": 0.9375643246052463,
  "index_file": "raw_indices/EG/EGX30.csv",
- "index_asof": "2026-07-22",
+ "index_asof": "2026-09-08",
  "index_dq": [],
  "stock_dq": [
   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2013-05-07) \u2014 vendor fills, not tradeable prices"
@@ -29,6 +29,7 @@
  "week_rule": "W-THU",
  "interim_note": null,
  "conforming": true,
+ "asof": null,
  "superseded_composite": {
   "beta": 0.9404669016938088,
   "r2": 0.31243483206998157,

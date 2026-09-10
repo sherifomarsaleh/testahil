@@ -49,6 +49,48 @@ import rebuild_ledger as RL                                          # noqa: E40
 OUTSTANDING = os.path.join(ENGINE, 'build_depth_audit', 'rebuild_outstanding.json')
 
 
+def studies():
+    """The record directories a record-reading gate can inspect, resolved through
+    engine/study_population.py rather than by globbing engine/*_study.
+
+    THE GLOB WAS THE WRONG POPULATION. All 90 covered names carry a delivered
+    valuation study; 23 commit a record. This gate globbed the directories and
+    printed a count with NO DENOMINATOR, which is why 24 looked like the book.
+    The names with no record are DEFERRED to the shared no-record ratchet, which
+    the valuation-gap gate reports on — they are not re-listed here, because ten
+    gates reporting one fact is the duplication this refactor exists to avoid.
+
+    The import is LAZY so a sandbox that copies this script without engine/
+    beside it does not die on an import it never needed.
+    """
+    global _DEFERRED, _POP_LINE
+    # A SANDBOXED FIXTURE SUPPLIES ITS OWN POPULATION, AND SAYS SO OUT LOUD.
+    # Several negative controls copy this script into a temp tree holding a fake
+    # ENGINE and run it as a subprocess, so the resolver is not importable there —
+    # and it should not be, because the whole point of those fixtures is a
+    # population they control. The escape is an explicit environment variable that
+    # CI never sets, and taking it PRINTS that it was taken: a switch that quietly
+    # restored the directory glob would reinstate the defect this replaced.
+    if os.environ.get('TESTAHIL_FIXTURE_POPULATION'):
+        dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+        _DEFERRED, _POP_LINE = [], ('population: FIXTURE — %d study directories under a '
+                                    'sandboxed ENGINE, not the book' % len(dirs))
+        print(_POP_LINE)
+        return dirs
+    if ENGINE not in sys.path:
+        sys.path.insert(0, ENGINE)
+    import study_population
+    dirs, _DEFERRED, _POP_LINE = study_population.examinable()
+    # printed HERE so the ten gates have exactly ONE edit site each and the line
+    # cannot be forgotten in one of them: a denominator that appears in nine gates
+    # and not the tenth is the drift this refactor exists to stop
+    print(_POP_LINE)
+    return dirs
+
+
+_DEFERRED, _POP_LINE = [], ""
+
+
 def main(argv):
     prune = '--prune' in argv
     d, known = {}, set()
@@ -56,7 +98,7 @@ def main(argv):
         d = json.load(open(OUTSTANDING, encoding='utf-8'))
         known = set(d.get('outstanding', []))
 
-    dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+    dirs = studies()
     if not dirs:
         print('FAIL — the population is empty: no engine/*_study directories found '
               '[R-ENF-04].')

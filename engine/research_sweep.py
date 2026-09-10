@@ -55,6 +55,7 @@ import json
 from dataclasses import dataclass, field, asdict
 from datetime import date
 from enum import Enum
+from typing import Optional
 
 
 # ----------------------------------------------------------------------------
@@ -130,6 +131,11 @@ MANDATORY: dict[Ring, list[str]] = {
     ],
     Ring.COMPANY: [
         "strategic plans & guidance",
+        # [R-NEWS-01, 10-Sep-2026] "You should scan the news as part of your activities to
+        # see the company potential, see what it is planning to do. This should be a
+        # standard." It closes with a dated negative search like any other category — the
+        # requirement is that somebody LOOKED, not that something was found.
+        "announced projects, ventures and capacity (entity verified as the listed issuer)",
         "regular disclosures",
         "IR communications (calls, presentations, releases)",
         "one-off base-resetting transactions",
@@ -181,6 +187,14 @@ class Finding:
     is_fs_data: bool = False         # True if the finding carries a financial-statement line item
     fiscal_period: str = ""          # [ADDED 07-Aug-2026] "FY2024" for a full year, "Q1-2026" for a
                                       # quarter — feeds the FS-depth and quarter-coverage invariants
+    entity: str = ""                 # [R-NEWS-01, ADDED 10-Sep-2026] the LEGAL ENTITY a
+                                      # forward-looking announcement belongs to, written out.
+                                      # Required on anything in the announced-plans category.
+    entity_is_issuer: Optional[bool] = None
+                                      # True only where the entity has been VERIFIED as the
+                                      # listed issuer. None means not established, and a driver
+                                      # may not rest on it. See the invariant below for why
+                                      # this field exists at all.
 
 
 @dataclass
@@ -222,13 +236,23 @@ class SweepRegister:
     def add(self, ring: Ring, category: str, klass: FindingClass, headline: str,
             source_name: str, source_type: SourceType, source_date: str,
             detail: str = "", url: str = "", model_impact: str = "",
-            is_fs_data: bool = False, fiscal_period: str = "") -> str:
+            is_fs_data: bool = False, fiscal_period: str = "",
+            entity: str = "", entity_is_issuer: Optional[bool] = None) -> str:
+        """[R-NEWS-01] `entity` and `entity_is_issuer` WERE ADDED TO Finding AND TO THE
+        INVARIANT AND NOT TO THIS CONSTRUCTOR, which is the whole of the change and half
+        of it was missing. Every finding therefore reached the register with no entity,
+        the ENTITY invariant refused each one, and a study that had NAMED its entity was
+        told to name it -- the caller saying the right thing and the pipe dropping it on
+        the floor. Both defaults are empty, so a sweep that has no forward-looking
+        finding is unaffected and no existing register goes red.
+        """
         self._n += 1
         fid = f"F{self._n:02d}"
         self.findings.append(Finding(fid, ring, category, klass, headline,
                                      source_name, source_type, source_date,
                                      detail, url, model_impact, is_fs_data,
-                                     fiscal_period))
+                                     fiscal_period, entity=entity,
+                                     entity_is_issuer=entity_is_issuer))
         return fid
 
     def record_primary_access(self, url: str, reachable: bool, attempt_date: str,
@@ -294,6 +318,35 @@ class SweepRegister:
                 errors.append(f"DATING: {f.fid} '{f.headline}' has no source date")
             if not f.source_name.strip():
                 errors.append(f"DATING: {f.fid} '{f.headline}' has no source name")
+
+        # ENTITY [R-NEWS-01]. The clause was earned within an hour of adoption. Three
+        # news items were put to this house about one Egyptian group: data centres and
+        # electric vehicles. The 500mn-dollar electric-vehicle joint venture was signed
+        # by the chief executive's PRIVATE investment vehicle and not by the listed
+        # company, and crediting it to shareholders would have inflated the valuation on
+        # something they do not own. A forward-looking announcement is worth nothing
+        # until the entity behind it is pinned to the issuer, and "the founder's name is
+        # on it" is not pinning it.
+        for f in self.findings:
+            if f.klass is FindingClass.NEG:
+                continue
+            if "announced projects" not in f.category:
+                continue
+            if not (f.entity or "").strip():
+                errors.append(
+                    f"ENTITY: {f.fid} '{f.headline}' is an announced plan with no legal "
+                    f"entity named. Name the entity that signed it.")
+            elif f.entity_is_issuer is None:
+                errors.append(
+                    f"ENTITY: {f.fid} '{f.headline}' names '{f.entity}' but has not "
+                    f"established whether that is the LISTED issuer. Unestablished is not "
+                    f"the same as yes [R-ENF-04]; a driver may not rest on it.")
+            elif f.entity_is_issuer is False and f.klass is not FindingClass.C:
+                errors.append(
+                    f"ENTITY: {f.fid} '{f.headline}' belongs to '{f.entity}', which is NOT "
+                    f"the listed issuer, yet it is classed {f.klass.name} and so touches a "
+                    f"number. A related party's venture is COLOR at most — shareholders do "
+                    f"not own it.")
 
         # 5. driver gate table — must exist and be properly cited
         if not self.drivers:

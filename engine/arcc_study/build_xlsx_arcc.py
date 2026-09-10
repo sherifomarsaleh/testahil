@@ -1,4 +1,4 @@
-"""ARCC_Valuation_Model_03092026_public.xlsx — 16 sheets, formula-first. REVISION 2.
+"""ARCC_Valuation_Model_{edition}_public.xlsx — 16 sheets, formula-first. REVISION 2.
 
 Rebuilt on the AUDITED consolidated financial statements for FY2023, FY2024 and FY2025 and
 the reviewed Q1-2026 interim accounts. Revision 1 was built without opening a source
@@ -21,13 +21,21 @@ Only three classes of cell are pasted, named on READ FIRST:
      price map's percentile ladder;
   3. whole-model re-runs — the sensitivity grids and the contested-choice alternatives.
 """
-import json, os
+import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+# The committed cost-of-capital schedule, so a label describing WHEN the terminal
+# arrives is read from the record rather than typed beside the formula it describes.
+SCHED = D['cost_of_capital_record']
+_NCI = D['inputs']['nci']['value']          # EGP mn, audited, note 24
+_NCI_V1 = D['inputs']['nci_v1']['value']    # EGP mn, revision 1's inferred figure
+_NCI_EGP = _NCI * 1e6                       # the same figure in pounds, as the line states it
 S0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 STK = json.load(open(os.path.join(HERE, 'strike_result.json')))
 BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
@@ -51,8 +59,12 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sensitivity']
 _TERMREC = D['terminal_record']
 BU, PE, SHT, TR = D['bottom_up'], D['peers'], D['share_triangulation'], D['terminal_reconciliation']
 UC, KDG, CON = D['unit_calibration'], D['kd_gate'], D['contested']
+# The adopted terminal return on capital, so the workbook publishes the figure the
+# document adopts rather than only the one it disavows [audit finding 14].
+GDV = D['growth_destroys_value']
 CAL = D['calibration']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+COC = D['cost_of_capital_record']   # [R-COC-03] the split, as the study committed it
 SPOT, SH, TAX, TAXE = M['spot'], M['shares_mn'], IN['tax_stat'], IN['tax_eff']
 YH, YF = H['years'], F['years']
 HC = ['B', 'C', 'D']
@@ -145,8 +157,15 @@ LINES = [
  'FY2024 and FY2025 — Deloitte, signed 25 February 2026 — and the reviewed Q1-2026 interim accounts are now in',
  'hand, and every historical cell in this workbook is a disclosed figure read from them.', '',
  'WHAT THE STATEMENTS CHANGED, and it is not cosmetic:',
- '  * Non-controlling interests are EGP 158,005 — one hundred and fifty-eight THOUSAND pounds. Revision 1',
- '    deducted EGP 150 MILLION on inference, 950 times too much.',
+ # THE MULTIPLE IS COMPUTED, NOT TYPED. This line read "950 times too much" against the
+ # input register's own computed 949 for the same fact, and the two disagreed for a month
+ # because the workbook sat in no study's prose population — the register was reached by an
+ # instrument and the delivered spreadsheet beside it was not [found by prose_check.py,
+ # 05-09-2026].
+ '  * Non-controlling interests are EGP %s — one hundred and fifty-eight THOUSAND pounds. Revision 1'
+ % f"{_NCI_EGP:,.0f}",
+ '    deducted EGP %.0f MILLION on inference, %.0f times too much.'
+ % (_NCI_V1, _NCI_V1 / _NCI),
  '  * The effective tax rate is 23.82%, not the 29.43% revision 1 inferred. Every forecast year was over-taxed.',
  '  * The cost of debt is about 7.5%, not 21.5%: 91% of the book is EURO-denominated, at Euribor plus 4.35%',
  '    (a EUR 25mn EBRD decarbonisation facility) and Euribor plus 3% (a EUR 3.09mn NBE/KfW facility).',
@@ -241,7 +260,28 @@ inp('Ordinary shares issued', 'shiss', IN['shares_issued'], NUM4, 'mn — audite
 inp('Treasury shares held', 'shtre', IN['shares_treasury'], NUM4, 'mn — audited note 21')
 inp('Statutory tax rate', 'tax', TAX, PCT, '')
 inp('Effective tax rate', 'taxe', TAXE, PCT2, 'audited: tax over pre-tax profit')
-inp('Beta (own-stock weekly regression)', 'beta', W['beta'], NUM3, '')
+# THE LABEL ASSERTED THE OPPOSITE OF WHAT WAS DONE [audit finding 11, 08-Sep-2026].
+# It read "Beta (own-stock weekly regression)" on the input the study itself calls its
+# most consequential contested judgement — and section 1.5 REJECTS the own-stock
+# regression, at 0.698 on an R-squared of 0.047, and adopts the peer median instead.
+# The number was always the intended one; the label named the construction the study
+# threw away, and the two are 12% of value apart. The workbook also carried none of the
+# rejected regression's diagnostics, so a reader of the model alone could not see that a
+# regression had been run at all, let alone why it was not used. Both are fixed here.
+inp('Beta — median of same-country PEER regressions (tier 2; the own-stock regression is '
+    'rejected, see below)', 'beta', W['beta'], NUM3,
+    'peers: ' + ', '.join('%.3f' % b for b in BETA['peer_betas_usable']))
+_r = R[0]
+wsA.cell(row=_r, column=1,
+         value='   memo — own-stock weekly regression against the EGX30: REJECTED, not used')
+put(wsA, 'B%d' % _r, BETA['own_stock']['beta'], SUB, NUM3)
+wsA.cell(row=_r, column=3, value=(
+    'R-squared %.3f, standard error %.3f, %d weekly observations to %s. The index '
+    'explains under a twentieth of this share\'s movement, which is below the usability '
+    'floor, so tier 1 is unavailable and the peer median above is adopted.'
+    % (BETA['own_stock']['r2'], BETA['own_stock']['se'], BETA['own_stock']['n'],
+       BETA['own_stock']['last_obs']))).font = SUB
+R[0] += 1
 inp('USD/EGP at the valuation date', 'fx', IN['fx'], NUM1, '')
 
 sect('PLANT — AUDITED NOTE 1')
@@ -278,7 +318,16 @@ inp('Dividend payout ratio', 'payout', IN['payout'], PCT, '')
 sect('COST OF CAPITAL')
 inp('Risk-free rate (EGP 10-year government)', 'rf', IN['rf'], PCT2)
 inp('Sovereign default spread (netted out)', 'sov', IN['sov_spread_cds'], PCT2)
-inp('Equity risk premium', 'erp', IN['erp_cds'], PCT2)
+inp('Equity risk premium, TOTAL (split into the two legs below)', 'erp', IN['erp_cds'], PCT2)
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. The DCF sheet's cost of
+# equity read rf* + beta x the WHOLE premium, which multiplies Egypt's country risk by beta.
+# The model moved onto the split identity and the workbook did not, so it published a rate
+# 37bp below the study's and 51 formula cells disagreed. The legs are read from the study's
+# own committed record and never retyped; the DCF cell recomputes the rate from them.
+inp('   of which the MATURE premium — beta applies to this leg only', 'erpm',
+    COC['erp_mature'], PCT2)
+inp('Egypt country premium — charged FLAT, once, never multiplied by beta', 'crp',
+    COC['crp_effective'], PCT2)
 inp('Euribor (EBRD and NBE reference rate)', 'eur', IN['euribor'], PCT2)
 inp('EGP marginal borrowing rate (corridor + 0.6%)', 'kdegp', IN['kd_egp_marginal'], PCT2)
 inp('Expected EGP depreciation against the euro', 'dep', IN['egp_dep_vs_eur'], PCT2)
@@ -404,7 +453,10 @@ inp('Normalised revenue haircut', 'nhc', IN['norm_rev_haircut'], PCT)
 
 sect('SECTOR AND PEERS')
 inp('Egyptian nameplate capacity', 'egcap', IN['egy_capacity_mt'], NUM1, 'Mt')
-inp('Egyptian production 2025', 'egprod', IN['egy_prod_mt'], NUM1, 'Mt')
+inp('Egyptian sales 2025 — cement AND clinker', 'egprod', IN['egy_prod_mt'], NUM1, 'Mt')
+inp('  of which cement exports', 'egexpc', IN['egy_exports_cement_mt'], NUM1, 'Mt')
+inp('  of which clinker exports', 'egexpk', IN['egy_exports_clinker_mt'], NUM1,
+    'Mt — leaves at the kiln, so it is OUT of the cement utilisation ratio')
 inp('Egyptian consumption 2025', 'egcons', IN['egy_cons_mt'], NUM1, 'Mt')
 inp('Egyptian exports 2025', 'egexp', IN['egy_exports_mt'], NUM1, 'Mt')
 inp('Dormant capacity under revival', 'egrev', IN['egy_revival_mt'], NUM1, 'Mt')
@@ -644,11 +696,24 @@ band(wsD, 21, 8); wsD['A21'] = 'TERMINAL BLOCK'
 # new one, which is precisely what this study's own recalculation gate caught the moment
 # the model changed and the builder did not.
 _TB_LIFE = _TERMREC['inputs']['useful_life_years']
+# THE ROLL RUNS FROM THE FY2026 INDEX POINT, NOT FROM THE FY2025 BASE [09-09-2026].
+# repl_usd_t and fx are both dated 2026-08-06, so their product is an August-2026 EGP
+# figure, and cost_infl is indexed to FY2025 = 1.0 -- multiplying by infl5 alone charged
+# the FY2026 step of 11.5% twice. The model was corrected; this formula was not, and the
+# recalculator caught the two disagreeing on the first run after the rebuild, exactly as
+# the comment above this block says it is meant to.
 TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B22',
-       f"={A['capcem']}*{A['repl']}*{A['fx']}*{A['infl5']}", DCF['ic_repl'], NUM0),
+       f"={A['capcem']}*{A['repl']}*{A['fx']}*{A['infl5']}/{A['infl1']}",
+       DCF['ic_repl'], NUM0),
       ('Terminal NOPAT  (year 5 NOPAT grown at g)', 'B23', f"=F11*(1+{A['g']})",
        DCF['nopat_term'], NUM0),
-      ('Memo: return on invested capital at replacement cost', 'B24', "=B23/B22",
+      # THE LABEL NAMED THE ADOPTED QUANTITY AND CARRIED THE RETIRED ONE, WHICH IS HOW
+      # THREE DELIVERED ARTEFACTS CAME TO PUBLISH TWO VALUES FOR ONE NAME. This cell
+      # divides a profit already grown by a year of terminal growth by a capital base
+      # that has not grown; the study says in terms that figure is NOT used, and adopts
+      # the matched pair below. Both are published, each under the name of what it is.
+      ('Memo: return on invested capital — RETIRED construction (profit grown one year '
+       'against a capital base that has not)', 'B24', "=B23/B22",
        DCF['roic_term'], PCT),
       ('Memo: FY2025 return on BOOK invested capital', 'B25',
        f"=('Income Statement'!D12*(1-{A['taxe']}))/({A['eq25']}+$C$44)",
@@ -656,7 +721,14 @@ TB = [('Replacement-cost invested capital, in TERMINAL-year pounds (EGP mn)', 'B
       ('Memo: reinvestment rate the RETIRED construction charged  (g / return)', 'B26',
        f"={A['g']}/B24", DCF['rr_term'], PCT),
       ('Terminal value', 'B27', f"=D26*(1+{A['g']})/($C$50-{A['g']})", DCF['tv'], NUM0),
-      ('End-of-window discount factor  (t = 4.417y, not the year-5 mid-point)', 'B29',
+      # THE ARRIVAL IS COMPUTED, NOT TYPED. This label read "t = 4.417y" until
+      # 08-Sep-2026 while the formula beside it spans (1 - stub) + 4 = 4.50 years:
+      # 4.417 is a stub of 7/12, from a valuation date this study moved off when the
+      # bridge went to the 30 June interims. A typed number in a label is exactly the
+      # class of figure no other gate reads, and it sat next to the formula that
+      # contradicts it. It now comes from the study's own committed record.
+      ('End-of-window discount factor  (t = {0:.2f}y, not the year-5 mid-point)'.format(
+          SCHED['discounting_convention']['terminal_arrival_years']), 'B29',
        f"=1/((1+B17)^(1-{A['stub']})*(1+C17)*(1+D17)*(1+E17)*(1+F17))",
        DCF['df_tv'], DF4),
       ('Present value of terminal value', 'B28', "=B27*B29", DCF['pv_tv'], NUM0)]
@@ -696,6 +768,17 @@ for lab, rw, fm, ex in _MT:
     wsD.cell(row=rw, column=3, value=lab)
     putf(wsD, 'D%d' % rw, fm, ex, NUM0)
 
+# THE ADOPTED RETURN ON CAPITAL, BESIDE THE RETIRED ONE AND UNDER ITS OWN NAME
+# [audit finding 14, 08-Sep-2026]. B24 divides a profit already grown by a year of
+# terminal growth by a capital base that has not grown; the document says in terms that
+# figure is not used, and until this row existed the workbook and the bibliography
+# published it under the name the document gives the ADOPTED figure. Both now appear,
+# each labelled as what it is, and this one is a formula off B23 rather than a paste.
+wsD.cell(row=27, column=3,
+         value='Memo: return on invested capital ADOPTED — profit and capital at the '
+               'SAME date (B23 ungrown, over B22)')
+putf(wsD, 'D27', "=B23/(1+%s)/B22" % A['g'], GDV['n_over_ic'], PCT)
+
 band(wsD, 30, 8); wsD['A30'] = 'ENTERPRISE TO EQUITY BRIDGE'
 BR = [('Present value of explicit years (FY2026E-FY2030E)', 'B31', "=SUM(B19:F19)",
        DCF['sum_pv'], NUM0),
@@ -729,8 +812,8 @@ wsD['E36'] = 'this block shares rows with the bridge above, whose labels are in 
 CC2 = [('Risk-free rate (observed EGP 10-year)', 'C36', f"={A['rf']}", IN['rf'], PCT2),
        ('Less sovereign default spread', 'C37', f"=-{A['sov']}", -IN['sov_spread_cds'], PCT2),
        ('Normalised risk-free rate', 'C38', "=C36+C37", W['rf_star'], PCT2),
-       ('Cost of equity  (rf* + beta × premium)', 'C39',
-        f"=C38+{A['beta']}*{A['erp']}", W['ke_exp'], PCT2),
+       ('Cost of equity  (rf* + beta × MATURE premium + country premium, flat)', 'C39',
+        f"=C38+{A['beta']}*{A['erpm']}+{A['crp']}", W['ke_exp'], PCT2),
        ('WACC — explicit window', 'C40', "=(1-C43)*C39+C43*C42", W['wacc_exp'], PCT2),
        # THE POUND-EQUIVALENT cost of the euro book: the euro legs carry the
        # expected pound depreciation, because these cash flows are in pounds and
@@ -1241,8 +1324,11 @@ for i in range(3):
     putf(wsFV, f'{c}34', f"={c}32/({denom})", h['roic_book'], PCT)
     putf(wsFV, f'{c}35', f"={c}34*{c}33", h['implied_g'], PCT)
     wsFV.cell(row=36, column=2 + i, value=h['character'])
-wsFV.cell(row=38, column=1, value='Terminal return on capital, REPLACEMENT-COST basis')
-putf(wsFV, 'B38', "=DCF!B24", TR['roic_repl'], PCT, green=True)
+wsFV.cell(row=38, column=1, value='Terminal return on capital, REPLACEMENT-COST basis '
+                                  '— ADOPTED (both legs at the same date)')
+putf(wsFV, 'B38', "=DCF!D27", GDV['n_over_ic'], PCT, green=True)
+wsFV.cell(row=38, column=4, value='RETIRED construction, shown for the record and not used:')
+putf(wsFV, 'E38', "=DCF!B24", TR['roic_repl'], PCT)
 wsFV.cell(row=39, column=1, value='Terminal return on capital, BOOK basis (FY2025)')
 putf(wsFV, 'B39', "=DCF!B25", TR['roic_book_fy25'], PCT, green=True)
 wsFV.cell(row=40, column=1, value='Terminal rate')
@@ -1451,18 +1537,41 @@ band(wsP, 12, 8); wsP['A12'] = 'THE EGYPTIAN CEMENT BALANCE'
 SEC = [('Nameplate capacity (Mt)', 'B13', f"={A['egcap']}", PE['sector']['capacity_mt'], NUM1),
        ('Production 2025 (Mt)', 'B14', f"={A['egprod']}", PE['sector']['production_mt'], NUM1),
        ('Domestic consumption 2025 (Mt)', 'B15', f"={A['egcons']}", PE['sector']['consumption_mt'], NUM1),
-       ('Exports 2025 (Mt)', 'B16', f"={A['egexp']}", PE['sector']['exports_mt'], NUM1),
+       ('Exports 2025 (Mt) — cement AND clinker', 'B16', f"={A['egexp']}",
+        PE['sector']['exports_mt'], NUM1),
        ('Dormant capacity under revival (Mt)', 'B17', f"={A['egrev']}", PE['sector']['revival_mt'], NUM1),
-       ('Sector utilisation', 'B18', "=B14/B13", PE['sector']['utilisation'], PCT),
+       # THE UTILISATION RATIO USES THE CEMENT HALF OF THE EXPORT LINE ONLY [audit finding
+       # 7, 08-Sep-2026]. B18 read =B14/B13 — all-product sales over CEMENT nameplate —
+       # and computed 95.6% where the matched measure is 85.6%. The record and the
+       # document were corrected and this formula was not, so the delivered workbook went
+       # on publishing the retired ratio while the study printed the new one. The split
+       # sits in this block's own free columns, below, so no row address moves.
+       ('Sector utilisation — CEMENT sold over CEMENT nameplate', 'B18', "=D17/B13",
+        PE['sector']['utilisation'], PCT),
        ('The subject as a share of national capacity', 'B19', f"={A['capcem']}/B13",
         PE['sector']['share_of_capacity'], PCT),
        ('Revival capacity as a share of consumption', 'B20', "=B17/B15",
         PE['sector']['revival_pct_of_consumption'], PCT),
        ('The subject\'s own volume as a share of national production', 'B21',
-        "='Segments'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT)]
+        "='Segments'!B18/B14", UC['vol_fy25'] / IN['egy_prod_mt'], PCT),
+       ('  memo: all product over cement nameplate — RETIRED, the bases do not match', 'B22',
+        "=B14/B13", PE['sector']['utilisation_all_product'], PCT)]
 for lab, ad, fm, ex, ft in SEC:
     wsP.cell(row=int(ad[1:]), column=1, value=lab)
     putf(wsP, ad, fm, ex, ft, green=(int(ad[1:]) <= 17))
+
+# THE EXPORT LINE SPLIT, in this block's own free columns so no row address above moves.
+# Clinker leaves at the kiln and never enters a cement mill, so it is separated out rather
+# than counted against grinding capacity.
+_SPLIT = [('  of which CEMENT exports (Mt)', 15, f"={A['egexpc']}",
+           PE['sector']['exports_cement_mt']),
+          ('  of which CLINKER exports (Mt) — no cement mill involved', 16,
+           f"={A['egexpk']}", PE['sector']['exports_clinker_mt']),
+          ('CEMENT sold 2025 (Mt) — domestic plus cement exports', 17, "=B15+D15",
+           PE['sector']['cement_sales_mt'])]
+for lab, rw, fm, ex in _SPLIT:
+    wsP.cell(row=rw, column=3, value=lab)
+    putf(wsP, 'D%d' % rw, fm, ex, NUM1)
 note(wsP, 23, 'Every multiple here is RECOMPUTED from revenue, profit and market capitalisation rather than')
 note(wsP, 24, 'quoted, because the published multiples for this peer set do not reconcile.')
 
@@ -1481,7 +1590,7 @@ assert not _missing and not _extra, (
     % (_missing, _extra))
 wb._sheets = [wb[n] for n in _WANT]
 assert wb.sheetnames == _WANT, wb.sheetnames
-OUT = os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx')
+OUT = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT)
 with open(os.path.join(HERE, 'xlsx_expected.json'), 'w') as f:
     json.dump(EXPECT, f, indent=1)

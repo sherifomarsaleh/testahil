@@ -1,0 +1,243 @@
+{
+ "_rule": "[R-FCAL-01 AMENDED] — a run commits the inputs a VALUE is rebuilt from, not only the drivers.",
+ "ticker": "ELEC",
+ "currency": "EGP",
+ "built": "2026-09-07",
+ "scope": "skip",
+ "walkforward_origins_tested": [],
+ "_origins_key_means": "THE YEARS THIS BLOCK COVERS, not walk-forward origins. This run's scope is SKIP — walk-forward not run — insufficient sourceable history (4 years) — so no forecast was struck from any year and none was scored. The block is committed anyway because these filings are, on today's evidence, unobtainable from the issuer, and a year whose figures are not written down now cannot be rebuilt later.",
+ "_basis_warning": "EVERY FIGURE HERE IS STANDALONE. The delivered study models CONSOLIDATED figures. The company has issued no consolidated statement since FY2020, so these are not comparable to the study's own panel and must never be substituted into it. The measured wedge at the one overlap year is in basis_breaks.md.",
+ "_route": "All four filings carry no usable text layer. Figures were read off the rendered pixels and every subtotal was re-added against its own statement; filed_record.footing_report() reproduces the checks and returns zero refusals.",
+ "prior_year_anchor": {
+  "FY2020": {
+   "basis": "standalone — the company has issued no consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5), so this is the parent entity and NOT the group the delivered study models.",
+   "cash": {
+    "value": 109713607,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, statement of financial position, page 4, 'نقدية بالصندوق ولدى البنوك'",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022"
+   },
+   "debt": {
+    "value": 323837450,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4 — bank credit facilities + long-term loan + lease and financing-arrangement liabilities (note 4/2), current and non-current. INTEREST-BEARING ONLY: trade payables, amounts due to related parties, tax liabilities, provisions, deferred tax and dividends payable are excluded because they bear no interest [R-FCAL-01 trap (i)].",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "components": {
+     "credit_facilities": 291837450,
+     "long_term_loan": 32000000,
+     "lease_and_financing": 0
+    },
+    "total_liabilities_for_contrast": 780260292
+   },
+   "ppe": {
+    "value": 336254253,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4, 'أصول ثابتة' net book value",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "right_of_use": 0,
+    "capital_work_in_progress": 0
+   },
+   "dep": {
+    "value": 10837212,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, statement of cash flows, page 8 — depreciation of fixed assets 10837212 plus amortisation of right-of-use assets 0. The fixed-asset charge reconciles to note 3's own roll-forward and to its allocation across cost of sales, selling and administrative expenses.",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022"
+   },
+   "capex": {
+    "value": 7805840,
+    "derived": false,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, statement of cash flows, page 8, 'مدفوعات لشراء أصول ثابتة' 7805840 plus payments on projects under construction 0. DISCLOSED, not derived: the identity capex = dPPE + D&A does not close on these years because of large disposals (FY2021 proceeds 103,532,162 on a book gain of 78,121,376), and where the cash-flow statement discloses the figure the amendment requires the disclosed one.",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "advances_for_asset_purchases": 3720115
+   },
+   "wc": {
+    "value": 373810589,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4 — inventory + trade and other receivables + due from related parties, less trade and other payables and amounts due to related parties",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "lines": {
+     "inventory": 183456854,
+     "receivables": 390265783,
+     "due_from_related_parties": 189174933,
+     "payables": -280945979,
+     "due_to_related_parties": -108141002
+    }
+   },
+   "shares": {
+    "value": 711447385,
+    "issued_capital": 711447385,
+    "par_value": 1.0,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4 for the committed capital; the par value and the identity come from the FY2021 filing's note 13 recital (page 25), which states issued capital of 711,447,385 in 711,447,385 shares of EGP 1, a 1:5 split approved 2-Dec-2020 and ratified by the listing committee on 24-Jan-2021 taking par to EGP 0.20 and the count to 3,557,236,925. The count for each year is THAT YEAR'S OWN committed capital over that par; no count is carried back [R-FCAL-01 AMENDED (ii)].",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022"
+   }
+  }
+ },
+ "origins": {
+  "FY2021": {
+   "basis": "standalone — the company has issued no consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5), so this is the parent entity and NOT the group the delivered study models.",
+   "cash": {
+    "value": 107414240,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, statement of financial position, page 4, 'نقدية بالصندوق ولدى البنوك'",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022"
+   },
+   "debt": {
+    "value": 699210261,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4 — bank credit facilities + long-term loan + lease and financing-arrangement liabilities (note 4/2), current and non-current. INTEREST-BEARING ONLY: trade payables, amounts due to related parties, tax liabilities, provisions, deferred tax and dividends payable are excluded because they bear no interest [R-FCAL-01 trap (i)].",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "components": {
+     "credit_facilities": 649414404,
+     "long_term_loan": 0,
+     "lease_and_financing": 49795857
+    },
+    "total_liabilities_for_contrast": 1157425853
+   },
+   "ppe": {
+    "value": 361896338,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4, 'أصول ثابتة' net book value",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "right_of_use": 9752032,
+    "capital_work_in_progress": 0
+   },
+   "dep": {
+    "value": 12654394,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, statement of cash flows, page 8 — depreciation of fixed assets 12077997 plus amortisation of right-of-use assets 576397. The fixed-asset charge reconciles to note 3's own roll-forward and to its allocation across cost of sales, selling and administrative expenses.",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022"
+   },
+   "capex": {
+    "value": 25332522,
+    "derived": false,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, statement of cash flows, page 8, 'مدفوعات لشراء أصول ثابتة' 25332522 plus payments on projects under construction 0. DISCLOSED, not derived: the identity capex = dPPE + D&A does not close on these years because of large disposals (FY2021 proceeds 103,532,162 on a book gain of 78,121,376), and where the cash-flow statement discloses the figure the amendment requires the disclosed one.",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "advances_for_asset_purchases": 34078231
+   },
+   "wc": {
+    "value": 834833535,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4 — inventory + trade and other receivables + due from related parties, less trade and other payables and amounts due to related parties",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022",
+    "lines": {
+     "inventory": 357839054,
+     "receivables": 596713039,
+     "due_from_related_parties": 273417384,
+     "payables": -330488928,
+     "due_to_related_parties": -62647014
+    }
+   },
+   "shares": {
+    "value": 3557236925,
+    "issued_capital": 711447385,
+    "par_value": 0.2,
+    "source": "engine/elec_study/filings/ELEC_FY2021_Standalone_Annual.pdf, page 4 for the committed capital; the par value and the identity come from the FY2021 filing's note 13 recital (page 25), which states issued capital of 711,447,385 in 711,447,385 shares of EGP 1, a 1:5 split approved 2-Dec-2020 and ratified by the listing committee on 24-Jan-2021 taking par to EGP 0.20 and the count to 3,557,236,925. The count for each year is THAT YEAR'S OWN committed capital over that par; no count is carried back [R-FCAL-01 AMENDED (ii)].",
+    "route": "pixel read at 330dpi, complete 33-page file, HP Scan 27-Feb-2022"
+   }
+  },
+  "FY2022": {
+   "basis": "standalone — the company has issued no consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5), so this is the parent entity and NOT the group the delivered study models.",
+   "cash": {
+    "value": 312587086,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, statement of financial position, page 4, 'نقدية بالصندوق ولدى البنوك'",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)"
+   },
+   "debt": {
+    "value": 1175559036,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4 — bank credit facilities + long-term loan + lease and financing-arrangement liabilities (note 4/2), current and non-current. INTEREST-BEARING ONLY: trade payables, amounts due to related parties, tax liabilities, provisions, deferred tax and dividends payable are excluded because they bear no interest [R-FCAL-01 trap (i)].",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "components": {
+     "credit_facilities": 977245481,
+     "long_term_loan": 0,
+     "lease_and_financing": 198313555
+    },
+    "total_liabilities_for_contrast": 1702755627
+   },
+   "ppe": {
+    "value": 373765804,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4, 'أصول ثابتة' net book value",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "right_of_use": 8602684,
+    "capital_work_in_progress": 0
+   },
+   "dep": {
+    "value": 14396156,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, statement of cash flows, page 8 — depreciation of fixed assets 13246808 plus amortisation of right-of-use assets 1149348. The fixed-asset charge reconciles to note 3's own roll-forward and to its allocation across cost of sales, selling and administrative expenses.",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)"
+   },
+   "capex": {
+    "value": 25404274,
+    "derived": false,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, statement of cash flows, page 8, 'مدفوعات لشراء أصول ثابتة' 25404274 plus payments on projects under construction 0. DISCLOSED, not derived: the identity capex = dPPE + D&A does not close on these years because of large disposals (FY2021 proceeds 103,532,162 on a book gain of 78,121,376), and where the cash-flow statement discloses the figure the amendment requires the disclosed one.",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "advances_for_asset_purchases": 0
+   },
+   "wc": {
+    "value": 1115150651,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4 — inventory + trade and other receivables + due from related parties, less trade and other payables and amounts due to related parties",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "lines": {
+     "inventory": 689613937,
+     "receivables": 613232751,
+     "due_from_related_parties": 247702470,
+     "payables": -366271508,
+     "due_to_related_parties": -69126999
+    }
+   },
+   "shares": {
+    "value": 3557236925,
+    "issued_capital": 711447385,
+    "par_value": 0.2,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4 for the committed capital; the par value and the identity come from the FY2021 filing's note 13 recital (page 25), which states issued capital of 711,447,385 in 711,447,385 shares of EGP 1, a 1:5 split approved 2-Dec-2020 and ratified by the listing committee on 24-Jan-2021 taking par to EGP 0.20 and the count to 3,557,236,925. The count for each year is THAT YEAR'S OWN committed capital over that par; no count is carried back [R-FCAL-01 AMENDED (ii)].",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)"
+   }
+  },
+  "FY2023": {
+   "basis": "standalone — the company has issued no consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5), so this is the parent entity and NOT the group the delivered study models.",
+   "cash": {
+    "value": 546462018,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, statement of financial position, page 4, 'نقدية بالصندوق ولدى البنوك'",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)"
+   },
+   "debt": {
+    "value": 2206792121,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4 — bank credit facilities + long-term loan + lease and financing-arrangement liabilities (note 4/2), current and non-current. INTEREST-BEARING ONLY: trade payables, amounts due to related parties, tax liabilities, provisions, deferred tax and dividends payable are excluded because they bear no interest [R-FCAL-01 trap (i)].",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "components": {
+     "credit_facilities": 1732315750,
+     "long_term_loan": 0,
+     "lease_and_financing": 474476371
+    },
+    "total_liabilities_for_contrast": 2675807557
+   },
+   "ppe": {
+    "value": 374384411,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4, 'أصول ثابتة' net book value",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "right_of_use": 7453336,
+    "capital_work_in_progress": 21844336
+   },
+   "dep": {
+    "value": 15395929,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, statement of cash flows, page 8 — depreciation of fixed assets 14246581 plus amortisation of right-of-use assets 1149348. The fixed-asset charge reconciles to note 3's own roll-forward and to its allocation across cost of sales, selling and administrative expenses.",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)"
+   },
+   "capex": {
+    "value": 41069702,
+    "derived": false,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, statement of cash flows, page 8, 'مدفوعات لشراء أصول ثابتة' 19225366 plus payments on projects under construction 21844336. DISCLOSED, not derived: the identity capex = dPPE + D&A does not close on these years because of large disposals (FY2021 proceeds 103,532,162 on a book gain of 78,121,376), and where the cash-flow statement discloses the figure the amendment requires the disclosed one.",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "advances_for_asset_purchases": 0
+   },
+   "wc": {
+    "value": 2251041896,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4 — inventory + trade and other receivables + due from related parties, less trade and other payables and amounts due to related parties",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)",
+    "lines": {
+     "inventory": 766227104,
+     "receivables": 1118837093,
+     "due_from_related_parties": 653738562,
+     "payables": -287760863,
+     "due_to_related_parties": 0
+    }
+   },
+   "shares": {
+    "value": 3404643210,
+    "issued_capital": 680928642,
+    "par_value": 0.2,
+    "source": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf, page 4 for the committed capital; the par value and the identity come from the FY2021 filing's note 13 recital (page 25), which states issued capital of 711,447,385 in 711,447,385 shares of EGP 1, a 1:5 split approved 2-Dec-2020 and ratified by the listing committee on 24-Jan-2021 taking par to EGP 0.20 and the count to 3,557,236,925. The count for each year is THAT YEAR'S OWN committed capital over that par; no count is carried back [R-FCAL-01 AMENDED (ii)].",
+    "route": "OCR/pixel read of JPEG streams recovered from a truncated PDF (24 pages)"
+   }
+  }
+ }
+}

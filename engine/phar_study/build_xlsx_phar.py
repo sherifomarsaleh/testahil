@@ -8,12 +8,15 @@ derived from the cost-of-debt path; the discount factors compound; the DCF water
 chains; the terminal block chains; the statements roll forward; every ratio and per-share
 figure is a formula.
 
-Only three classes of cell are pasted, and READ FIRST names them:
+Only four classes of cell are pasted, and READ FIRST names them:
   (1) audited and disclosed history — where a line is both disclosed and derivable, the
       DISCLOSED figure is carried;
   (2) the output of the unit build, which would be unreadable flattened into a grid;
   (3) whole-model re-runs — the Monte Carlo map and the sensitivity grids, where each cell
-      is a complete revaluation and which therefore do NOT redraw when a driver changes.
+      is a complete revaluation and which therefore do NOT redraw when a driver changes;
+  (4) the measured-error multipliers behind the far-year ranges, which are a MEASUREMENT of
+      how far this method's own projections have landed from what was later reported and
+      are therefore an observation rather than anything the model can derive.
 
 Every formula the builder writes is recorded with the model's own value for that cell in
 xlsx_expected.json; recalc.py then evaluates the DELIVERED file independently and asserts
@@ -21,6 +24,8 @@ each one reproduces it.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
@@ -56,7 +61,8 @@ BOX = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 wb = openpyxl.Workbook()
 wb.remove(wb.active)
 EXPECT = {}      # "Sheet!A1" -> the model's own value for that formula cell
-NPASTE = {'audited': 0, 'unit_build': 0, 'grid': 0, 'label': 0}
+NPASTE = {'audited': 0, 'unit_build': 0, 'grid': 0, 'measured_error': 0,
+          'label': 0}
 
 
 def sheet(name, widths):
@@ -121,21 +127,26 @@ rows = [
   'waterfall, the terminal block, the three statements, the bridge and every ratio all move. '
   'This claim is tested, not asserted: a driver test perturbs each input in place, '
   're-evaluates the whole workbook and checks the headline moves in the right direction.'),
- ('Pasted cell class 1 of 3 — audited and disclosed history',
+ ('Pasted cell class 1 of 4 — audited and disclosed history',
   'The FY2023, FY2024 and FY2025 columns of the Income Statement, Balance Sheet and Cash '
   'Flow sheets, and the disclosed operating statistics on Segments. Where a line is both '
   'disclosed and derivable, the DISCLOSED figure is carried. Blue type marks a pasted cell.'),
- ('Pasted cell class 2 of 3 — the unit build\'s output',
+ ('Pasted cell class 2 of 4 — the unit build\'s output',
   'The FY2024 and FY2025 pack volumes and realised prices per pack on the Segments sheet. '
   'These come from reconciling the board\'s disclosed pack counts against the revenue note\'s '
   'channel split; flattened into a grid the reconciliation would be unreadable. Everything '
   'downstream of them — every forecast year — is a formula.'),
- ('Pasted cell class 3 of 3 — whole-model re-runs',
+ ('Pasted cell class 3 of 4 — whole-model re-runs',
   'The Monte Carlo percentile map and touch ladder, and the Sensitivity grids. Each of those '
   'cells is a COMPLETE revaluation of the model at a different input, or a full '
     f'{PATHS:,}-path '
   'simulation. THEY DO NOT REDRAW WHEN A DRIVER CHANGES. Everything else on those two sheets '
   'is a formula.'),
+ ('Pasted cell class 4 of 4 — the measured-error multipliers',
+  'The factors behind the far-year ranges at the foot of the Income Statement sheet. They '
+  'are a measurement of how far this method\'s own projections have landed from what the '
+  'company later reported, so they are an observation and not something the model can '
+  'derive. The ranges they produce ARE formulas and move with the projection above them.'),
  ('Blue means input, black means formula',
   'Blue type is a pasted number. Black type is calculated in the sheet.'),
  ('The contested judgement is carried both ways',
@@ -419,7 +430,19 @@ drow('wdg', 'Debt weight (gross basis)', f'={c("debt0")}/({c("mcap")}+{c("debt0"
      W['wd_gross'], fmt=PCT)
 drow('wacc0g', 'Weighted average cost of capital, gross-debt basis',
      f'=(1-{c("wdg")})*{c("ke")}+{c("wdg")}*{c("kdat")}', W['wacc0_gross'])
-drow('ket', 'Terminal cost of equity', f'={c("rf_t")}+{c("beta")}*{c("erp_t")}', W['ke_term'])
+# THE TERMINAL BETA IS ONE AND THIS CELL WAS USING THE MEASURED BETA [10-09-2026].
+# The model adopted a terminal beta of 1.00 -- a company's sensitivity to the
+# market reverts over a perpetuity -- and this formula went on multiplying by the
+# measured 0.67, so the workbook's terminal cost of equity sat 234bp below the
+# model's and 84 cells downstream of it disagreed. A reader opening the workbook
+# beside the study would have found two different terminal rates.
+arow('beta_t', 'Terminal beta — reverts to the market, not the measured beta',
+     'a perpetuity is long enough for a company\'s sensitivity to the market to be '
+     'the market\'s own; carrying the measured beta for ever is an assumption, not '
+     'a measurement. Committed by the model as beta_terminal',
+     W['beta_terminal'], fmt='0.00', kind='unit_build')
+drow('ket', 'Terminal cost of equity',
+     f'={c("rf_t")}+{c("beta_t")}*{c("erp_t")}', W['ke_term'])
 drow('kdt', 'Terminal cost of debt',
      f'=(1-{c("wfx")})*{c("kdt_lc")}+{c("wfx")}*((1+{c("kdt_fx")})*1.03-1)', W['kd_term'])
 drow('kdtat', 'Terminal cost of debt after tax', f'={c("kdt")}*(1-{c("tax")})', W['kd_term_at'])
@@ -971,6 +994,50 @@ for j in range(5):
     f(wi, r, 5 + j, f'={col}{IS["parent"]}/Assumptions!{c("shares")}', par_f[j] / SH, fmt=PS,
       bold=True)
 
+
+# ---- years three to five as RANGES, from the method's own measured error ----------
+# [R-FCAL-01]: the far forecast years are published as ranges rather than as points. The
+# multipliers are read from the committed record and pasted; the low and high rows are live
+# formulas off the point rows above them, so a reader who moves a driver watches the range
+# move with it. The record covers three years ahead, so the fourth and fifth forecast years
+# carry NO measured range and say so rather than borrowing the third year's.
+FYR = json.load(open(os.path.join(HERE, 'far_year_ranges.json')))
+FYR_H3 = FYR['far_years'][0]
+FYR_I = FYR_H3['index']
+FYR_COL = get_column_letter(5 + FYR_I)
+FYR_NONE = 'no measured range'
+r += 2
+lbl(wi, r, 1, 'YEARS THREE TO FIVE AS RANGES — the method replayed on this company\'s own '
+              'past, year by year, and scored against what was later reported', bold=True,
+    fill=FILL_C)
+lbl(wi, r, 11, 'Factor', bold=True, fill=FILL_C)
+lbl(wi, r, 12, 'Readings', bold=True, fill=FILL_C)
+r += 1
+lbl(wi, r, 1, 'MULTIPLY the projection by the factor: above one means the outturn came in '
+              'ABOVE the projection. The basis is a SPAN — the widest and the narrowest of '
+              'the readings behind it, never a percentile.', note=True)
+r += 1
+# The cost-of-sales row is carried NEGATIVE on this sheet, so the range multiplied off it
+# comes out negative too; the sign is taken from the row rather than assumed.
+FYR_LINES = (('revenue', IS['rev'], 'Revenue', 1),
+             ('cogs', IS['cogs'], 'Cost of sales', -1),
+             ('gross_profit', IS['gp'], 'Gross profit', 1),
+             ('net_profit', IS['np'], 'Profit for the year', 1),
+             ('dna', IS['dna'], 'Depreciation and amortisation', 1))
+for _key, _prow, _label, _sgn in FYR_LINES:
+    _cell = FYR_H3['lines'][_key]
+    for _side in ('low', 'high'):
+        lbl(wi, r, 1, f'{_label} — {_side} of the range')
+        f(wi, r, 5 + FYR_I, f'={FYR_COL}{_prow}*K{r}', _sgn * _cell[_side], fmt=MONEY)
+        for _j in (FYR_I + 1, FYR_I + 2):
+            lbl(wi, r, 5 + _j, FYR_NONE, note=True)
+        val(wi, r, 11, _cell[f'factor_{_side}'], fmt=PS, kind='measured_error')
+        val(wi, r, 12, _cell['n'], fmt='#,##0', kind='measured_error')
+        r += 1
+lbl(wi, r, 1, 'The fourth and fifth forecast years carry no measured range: the replay '
+              'covers three years ahead and no further, and none is invented for them.',
+    note=True)
+
 # ============================================================= 10. BALANCE SHEET
 wb_ = sheet('Balance Sheet', [40, 13, 13, 13, 13, 13, 13, 13, 13])
 hdr(wb_, 1, ['EGP million', 'FY2023', 'FY2024', 'FY2025', *YRS])
@@ -1317,7 +1384,13 @@ dcfrow('pv', 'PRESENT VALUE OF FREE CASH FLOW TO THE FIRM',
        fill=FILL_C)
 r += 1
 pv_sum_sheet = sum(fcff_sheet[j] * W['df'][j] for j in range(5))
-nopat_t_sheet = (FC['ebit_A'][-1] * (1 - TAX_FCFF) * (1 + DERIVED['g_term'])
+# [R-TERM-01] THE TERMINAL IS FED ON THE LAST EXPLICIT YEAR'S MONEY, because the terminal
+# formula two blocks below grows it once itself — B(ft)*(1+g)/(W-g) — and grows it at the
+# END of FY2030E, which is where the FY2030E discount factor lands it. Growing the NOPAT
+# here as well would value a year-seven flow at the year-five factor. The parked
+# construction's depreciation catch-up is a FY2030E balance at the annual rate, so it is
+# already on that basis and is deducted at full value rather than deflated.
+nopat_t_sheet = (FC['ebit_A'][-1] * (1 - TAX_FCFF)
                  - DCFD['frame_A']['term_dep_catchup'] * (1 - TAX_FCFF))
 # [R-TERM-01]: the terminal is the SANCTIONED construction, not the reinvestment
 # identity. The workbook must reproduce the model, and the model no longer builds
@@ -1358,9 +1431,10 @@ lbl(wd, r, 4, 'Construction still parked at FY2030E has never entered the deprec
     'perpetuity cannot capitalise profit on capital it never charges.', note=True)
 r += 1
 for key, label, formula, exp, fmt in (
-    ('nt', 'Terminal NOPAT = final-year NOPAT x (1 + growth), less the depreciation the '
-     'parked construction balance has never been charged',
-     f'=F{DR["nopat"]}*(1+Assumptions!{c("g")})'
+    ('nt', 'Terminal NOPAT, on FY2030E money = final-year NOPAT less the depreciation the '
+     'parked construction balance has never been charged. It is NOT grown here: the '
+     'terminal value row below grows the whole free cash flow one year',
+     f'=F{DR["nopat"]}'
      f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")})', nopat_t_sheet, MONEY),
     # THE SANCTIONED TERMINAL, ROW BY ROW, so a reader following the labels reaches the
     # figure the page prints. The retired reinvestment identity charged g x IC every
@@ -1450,7 +1524,7 @@ for j in range(5):
     col = get_column_letter(2 + j)
     f(wd, r, 2 + j, f'={col}{FB["fcff"]}*{col}{DR["df"]}', fcffB[j] * W['df'][j], fmt=MONEY)
 r += 1
-nopat_tB = (ebitB[-1] * (1 - TAX_FCFF) * (1 + DERIVED['g_term'])
+nopat_tB = (ebitB[-1] * (1 - TAX_FCFF)
             - DCFD['frame_B']['term_dep_catchup'] * (1 - TAX_FCFF))
 tvB = DCFD['frame_B']['terminal_record']['outputs']['tv']
 evB = sum(fcffB[j] * W['df'][j] for j in range(5)) + tvB * W['df'][-1]
@@ -1464,8 +1538,9 @@ r += 1
 # differ in the provision charge and in nothing else, so a construction that differed
 # between them would make the spread the construction rather than the judgement.
 FB['ntb'] = r
-lbl(wd, r, 1, 'Terminal NOPAT on Frame B, less the parked construction depreciation')
-f(wd, r, 2, f'=F{FB["nopat"]}*(1+Assumptions!{c("g")})'
+lbl(wd, r, 1, 'Terminal NOPAT on Frame B, on FY2030E money, less the parked construction '
+    'depreciation — not grown here, for the same reason as Frame A')
+f(wd, r, 2, f'=F{FB["nopat"]}'
   f'-B{TB["tdep"]}*(1-Assumptions!{c("tax_eff")})', nopat_tB, fmt=MONEY)
 r += 1
 FB['ftb'] = r
@@ -2188,7 +2263,7 @@ order = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP 
          'Cash Flow', 'Summary Financials', 'Monte Carlo', 'Sensitivity',
          'Per-Share & Ratios', 'Peer & Sector']
 wb._sheets = sorted(wb._sheets, key=lambda s: order.index(s.title))
-OUT = os.path.join(HERE, 'EIPICO_Valuation_Model_09082026.xlsx')
+OUT = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT)
 json.dump({'expected': EXPECT, 'paste_counts': NPASTE}, open(
     os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)

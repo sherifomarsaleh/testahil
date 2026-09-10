@@ -14,7 +14,9 @@
    "source_date": "2026-06-18",
    "detail": "",
    "model_impact": "Sets the direction, not the level, of the cost-of-debt path that the discount-rate glide inherits its shape from.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F02",
@@ -27,7 +29,9 @@
    "source_date": "2026-02-16",
    "detail": "",
    "model_impact": "Fuel is modelled explicitly as thermal energy per tonne of clinker times a blended fuel price, rather than buried in an assumed margin.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F03",
@@ -40,7 +44,9 @@
    "source_date": "2026-01-01",
    "detail": "",
    "model_impact": "Sets the export price path DOWN in dollar terms for the industry generally while giving this producer a smaller decline than a high-clinker peer would suffer; carried in the export price driver, not as a separate revenue leg.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F04",
@@ -53,7 +59,9 @@
    "source_date": "2025-10-01",
    "detail": "",
    "model_impact": "Justifies modelling a domestic price and an export price separately rather than applying one international benchmark.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F05",
@@ -66,7 +74,9 @@
    "source_date": "2026-07-10",
    "detail": "",
    "model_impact": "Sets the explicit-window risk-free anchor and the shape of the cost-of-debt path. The TERMINAL risk-free rate is norm-built from the CBE's own published medium-term inflation target plus a standard emerging-market real-rate convention \u2014 never a historical average and never reverse-engineered from a price.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F06",
@@ -79,7 +89,9 @@
    "source_date": "2026-05-15",
    "detail": "",
    "model_impact": "The sovereign default spread is NETTED OUT of the local-currency risk-free rate before a country equity risk premium is added, so Egypt's default risk is charged once rather than twice.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F07",
@@ -92,7 +104,9 @@
    "source_date": "2026-08-04",
    "detail": "",
    "model_impact": "Sets the level of the currency path that converts the dollar-priced fuel bill and the dollar-priced export price into pounds. The two legs partly offset, which is why the path is carried as one driver rather than two.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F08",
@@ -105,7 +119,9 @@
    "source_date": "2026-02-16",
    "detail": "",
    "model_impact": "Applies a local cost-inflation index to the pound-denominated cost lines, which is what prevents the margin from being held flat at the FY2025 peak.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F09",
@@ -118,7 +134,9 @@
    "source_date": "2026-01-01",
    "detail": "",
    "model_impact": "Floor for the tax rate used in the after-tax operating profit line; the rate actually applied is the effective rate implied by the company's own disclosed profit, which is higher.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F10",
@@ -131,7 +149,9 @@
    "source_date": "2025-05-01",
    "detail": "",
    "model_impact": "The unlock that lets utilisation rise in the forecast, and simultaneously the reason the price path is set BELOW inflation: the same decision that frees volume also removes the mechanism that was supporting price.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F11",
@@ -144,7 +164,9 @@
    "source_date": "2025-10-01",
    "detail": "",
    "model_impact": "The single most important reason the realised-price path grows more slowly than inflation across the forecast, and the reason the asset lens is a ceiling rather than a floor.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F12",
@@ -157,7 +179,9 @@
    "source_date": "2026-01-15",
    "detail": "",
    "model_impact": "Anchors both the FY2025 realised-price reconciliation and the deliberately conservative forward price path.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F13",
@@ -170,7 +194,9 @@
    "source_date": "2025-10-01",
    "detail": "",
    "model_impact": "Fixes sector utilisation near 70%, which is the cross-check on this producer's own utilisation path and the reason no capacity expansion is modelled.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F14",
@@ -183,7 +209,9 @@
    "source_date": "2026-01-01",
    "detail": "",
    "model_impact": "Supports a higher realised export price per tonne than a clinker-weighted mix would give, carried inside the export price driver.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F15",
@@ -196,7 +224,9 @@
    "source_date": "2026-08-06",
    "detail": "",
    "model_impact": "Every physical coefficient in the unit cost stack, and the replacement-cost anchor behind the asset lens and the terminal return on capital.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F16",
@@ -209,7 +239,9 @@
    "source_date": "2026-08-06",
    "detail": "",
    "model_impact": "The relative lens is struck on a RECOMPUTED peer multiple, and its weight is held down because the anchor is weak.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F17",
@@ -222,7 +254,9 @@
    "source_date": "2025-12-31",
    "detail": "",
    "model_impact": "Nameplate capacity, the base of the volume build, the denominator of the enterprise-value-per-tonne lens and the base of the fixed-cost line.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F18",
@@ -235,20 +269,39 @@
    "source_date": "2025-12-31",
    "detail": "",
    "model_impact": "The disclosed history the whole model closes against, and the base year of the forecast.",
-   "is_fs_data": true
+   "is_fs_data": true,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F19",
    "ring": "COMPANY",
    "category": "financial history",
    "klass": "DRIVER_UNLOCK",
-   "headline": "Full-year 2025 operating income of EGP 4,595.82mn and a fourth-quarter EBITDA of EGP 1,393.01mn on fourth-quarter sales of EGP 3,645.60mn; trailing gross margin 40.77%",
+   "headline": "Full-year 2025 operating income of EGP 4,595.82mn and a fourth-quarter EBITDA of EGP 1,393.01mn on fourth-quarter sales of EGP 3,645.60mn; trailing gross margin 40.64%",
    "source_name": "Audited consolidated financial statements FY2025 \u2014 statement of profit or loss, and notes 5 and 6",
    "source_type": "AUDITED_FINANCIAL_STATEMENTS",
    "source_date": "2025-12-31",
    "detail": "",
    "model_impact": "The disclosed operating-profit anchor the bottom-up cost stack is calibrated to, and one of the three legs of the depreciation triangulation.",
-   "is_fs_data": true
+   "is_fs_data": true,
+   "entity": "",
+   "entity_is_issuer": null
+  },
+  {
+   "fid": "F19b",
+   "ring": "COMPANY",
+   "category": "announced projects, ventures and capacity (entity verified as the listed issuer)",
+   "klass": "STRUCTURAL",
+   "headline": "FORWARD PLANS EXIST AND THE COMPANY HAS NOT DATED ANY OF THEM. Six are attributed to Arabian Cement Company by its own chief executive in an International Cement Review interview, relayed by HC Securities: hydrogen injection to a thermal substitution rate of about 55% by 2031; a multi-phase alternative-fuel programme to 2030 raising injection capacity on both clinker lines and adding shredding plant; 24 MWh of solar covering about 11% of power; a waste-heat recovery unit; a cement-mill optimiser; and a silo enabling calcined clay clinker and CEM III. THE COMPANY'S OWN CHANNEL CARRIES NONE OF THEM: its published timeline runs to 2024 and lists completed works only, the most recent being a Line 1 baghouse filter and the introduction of hydrogen injection. So the entity is the listed issuer and the plans are real, and there is no company-signed date behind any of them.",
+   "source_name": "HC Securities & Investment, \"Arabian Cement shows agility amid changing industry dynamics\", relaying an International Cement Review interview with the chief executive; checked against the company's own published corporate timeline at arabiancementcompany.com/en/about-us, which carries no forward-dated announcement",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-09-10",
+   "detail": "",
+   "model_impact": "NOTHING IS TAKEN INTO THE FORECAST FROM THIS FINDING and that is the point of recording it. Every item is a cost programme rather than a volume one -- fuel substitution, power self-supply, heat recovery -- so the place they would show is the cost stack, which this study builds bottom-up from the audited accounts and holds at the disclosed structure. A plan with no company-signed date and no disclosed capital cost cannot be priced without inventing both, and the alternative-fuel substitution already running IS in the accounts and therefore already in the base. The reader is told the programmes exist and told they are not in the number.",
+   "is_fs_data": false,
+   "entity": "Arabian Cement Company S.A.E.",
+   "entity_is_issuer": true
   },
   {
    "fid": "F20",
@@ -261,7 +314,9 @@
    "source_date": "2025-12-31",
    "detail": "",
    "model_impact": "The enterprise-to-equity bridge, the capital-structure weights in the cost of capital, and the treasury-income line. Carried with an explicit caution: a separate aggregation prints total liabilities of EGP 2,894.13mn, which does not close against the same total-asset and equity pair, so the liabilities figure is DERIVED on the sheet and the disagreement is disclosed rather than averaged away.",
-   "is_fs_data": true
+   "is_fs_data": true,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F21",
@@ -274,7 +329,9 @@
    "source_date": "2026-03-31",
    "detail": "",
    "model_impact": "The reality check on the first forecast year: revenue growth has decelerated to +17.3% while profit growth remains strong, which is precisely the price-flat, margin-holding pattern the forecast assumes.",
-   "is_fs_data": true
+   "is_fs_data": true,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F22",
@@ -287,7 +344,9 @@
    "source_date": "2026-03-31",
    "detail": "",
    "model_impact": "Sets the forecast payout ratio and, through it, the cash roll-forward on the balance sheet. Also the sharpest cross-check on the share count: both distributions divide to the same count to within 0.2%.",
-   "is_fs_data": true
+   "is_fs_data": true,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F23",
@@ -300,7 +359,9 @@
    "source_date": "2025-12-31",
    "detail": "",
    "model_impact": "Context for the minority-position risk paragraph. No control premium or discount is applied anywhere in the valuation.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F24",
@@ -313,7 +374,9 @@
    "source_date": "2026-01-01",
    "detail": "",
    "model_impact": "The one genuinely company-specific cost lever in the build: the alternative-fuel substitution rate enters the fuel cost line directly, and the falling clinker factor enters the volume conversion. This is why the cost stack is not a sector average.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F25",
@@ -326,7 +389,9 @@
    "source_date": "2026-08-06",
    "detail": "",
    "model_impact": "The anchor for every versus-spot comparison, the equity weight in the cost of capital, and the per-share conversion of every lens.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   },
   {
    "fid": "F26",
@@ -339,7 +404,9 @@
    "source_date": "2026-08-06",
    "detail": "",
    "model_impact": "Clears the price history for use in the probabilistic price map and in the beta regression, and quantifies the thin-trading bias the beta section has to answer.",
-   "is_fs_data": false
+   "is_fs_data": false,
+   "entity": "",
+   "entity_is_issuer": null
   }
  ],
  "drivers": [
