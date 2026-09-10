@@ -1457,7 +1457,19 @@ say(f"[WACC explicit] weights on NET financial debt {wd_exp:.1%} / equity {we_ex
 CRP_TERM = max(V['erp_term'] - ERP_MATURE, 0.0)
 LAM_EFF = V['lambda_country'] + (1 - V['lambda_country']) * (V['crp_foreign'] / CRP_HOME)
 CRP_EFF_TERM = LAM_EFF * CRP_TERM
-ke_term = V['rf_term'] + V['beta'] * ERP_MATURE + CRP_EFF_TERM
+# TODAY'S BETA DOES NOT SURVIVE INTO PERPETUITY [10-09-2026, by instruction].
+# The terminal cost of equity used this company's CURRENT beta of 1.225, which
+# asserts that its risk relative to the market is fixed for ever. A mature business
+# in a mature economy converges toward the market, and this repository already
+# half-accepts that: ke_reproduction carries a "relevered" terminal construction
+# precisely because terminal beta is not current beta. It is stated here instead of
+# left implicit. THE CROSS-CHECK IS EFG HERMES, whose Egyptian terminal cost of
+# capital is nearly company-INDEPENDENT — 14.2%, 14.8% and 15.1% across three very
+# different businesses — because they treat the terminal rate as a property of the
+# market rather than of the name. Ours spread 15.2% to 17.9% for exactly this
+# reason. The explicit window keeps the measured beta, where it belongs.
+BETA_TERM = 1.0
+ke_term = V['rf_term'] + BETA_TERM * ERP_MATURE + CRP_EFF_TERM
 kd_term_at = V['kd_term'] * (1 - TAX)
 wacc_term = (1 - V['wd_term']) * ke_term + V['wd_term'] * kd_term_at
 say(f"[WACC terminal] Ke {ke_term:.2%} (rf {V['rf_term']:.2%} READ FROM THE HOUSE PATH "
@@ -2368,7 +2380,9 @@ beta_grid = sorted({0.60, 0.80, _beta_adopted, 1.15, 1.30})
 def dcf_beta(b):
     ke = rf_star + b * ERP_MATURE + CRP_EFF
     we_ = we_exp * ke + wd_exp * kd_at
-    wt_ = ((1 - V['wd_term']) * (V['rf_term'] + b * ERP_MATURE + CRP_EFF_TERM)
+    # the terminal does NOT move with the beta sensitivity: terminal beta is 1.0 by
+    # construction, so a sensitivity on the measured beta moves the explicit window only
+    wt_ = ((1 - V['wd_term']) * (V['rf_term'] + BETA_TERM * ERP_MATURE + CRP_EFF_TERM)
            + V['wd_term'] * kd_term_at)
     return _val_at(we_, wt_, V['g_term'])
 grid_beta = [dcf_beta(b) for b in beta_grid]

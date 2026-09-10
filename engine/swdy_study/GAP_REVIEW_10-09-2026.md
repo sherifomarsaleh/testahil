@@ -1,9 +1,17 @@
 # SWDY — valuation-gap review, 10 September 2026  [R-GAP-01] [R-GAP-04] [R-STAR-01]
 
-AUDITED CENTRAL: 59.28
+AUDITED CENTRAL: 87.76
 
-The cash-flow lens reads **EGP 59.28** against a latest known price of **EGP 136.20**
-(6 September 2026), a gap of **−56.5%**. The study is struck at the 3 September close
+The cash-flow lens reads **EGP 87.76** against a latest known price of **EGP 136.20**
+(6 September 2026), a gap of **−35.6%**.
+
+**REVISED LATER THE SAME DAY.** This review first audited a central of 59.28 at a gap of
+−56.5%. The terminal discount rate was then rebuilt on two instructions from the
+principal — a 3.5% long-run Egyptian real risk-free rate in place of 5.5%, and a
+terminal beta of 1.0 in place of the measured 1.2249 — after reading EFG Hermes
+research covering the same market. The terminal cost of capital fell from 17.85% to
+15.34% and the central rose to 87.76. The eight headings below are re-run on the new
+number; section 4 and the reverse read carry the change. The study is struck at the 3 September close
 of 130.00; both dates are on the document's masthead [R-DOC-03].
 
 The previous review, 9 September, audited −71.0% on a central of 39.55. The answer has
@@ -203,3 +211,54 @@ one and this one is not.
 **The gap is not closing by more arithmetic.** Six corrections were found and priced today,
 five of them upward, and together they are worth 3.03 on a gap of 76.92. The disagreement is
 genuine and it is about one thing.
+
+## Revision, later on 10 September 2026 — the terminal discount rate
+
+The principal supplied seven EFG Hermes reports covering Egypt, the Gulf and Saudi
+Arabia, dated November 2023 to June 2026. Two facts in them bear directly on this gap.
+
+**Their Egyptian terminal cost of capital does not move.** It is 15.1% for Edita in
+October 2025, 14.2% for EIPICO and 14.8% for a second pharmaceutical name in June
+2026 — across a devaluation and a full interest-rate cycle. Ours floated with the spot
+bond yield and reached 17.85%.
+
+**It is also nearly company-independent.** Three very different businesses, all inside
+a single point. EFG treats the terminal discount rate as a property of the market;
+this study treated it as a property of the company, carrying a measured beta of 1.2249
+into perpetuity.
+
+Two changes follow, both instructed and both stated rather than fitted:
+
+| | Retired | Adopted | Why |
+|---|---|---|---|
+| Egypt long-run real risk-free | 5.50% | **3.50%** | The retired figure matched the house policy ladder's own end-state — 12.0% nominal against 7.0% inflation. That is a central bank still RESTRICTING to finish a disinflation, not a neutral stance. A terminal rate is the neutral one, held for ever. |
+| Terminal beta | 1.2249, measured | **1.00** | A mature business in a mature economy converges toward the market. This repository already half-accepted it: the Ke reproduction module carries a "relevered" terminal construction precisely because terminal beta is not current beta. |
+
+The explicit window is untouched. It still carries the measured beta and the measured
+capital structure, which is where a company-specific risk premium belongs.
+
+| | Before | After |
+|---|---|---|
+| Terminal risk-free | 12.50% | 10.50% |
+| Terminal cost of equity | 19.82% | 16.87% |
+| Terminal cost of capital | 17.85% | **15.34%** |
+| Central | 59.28 | **87.76** |
+| Bull | 96.99 | **133.78** |
+
+**What this does NOT do.** It does not move the answer toward the price and it is not
+licensed by the gap. The retired 5.5% was a real-rate assumption that could not survive
+being asked what question it answered, and it was found by reading how the region's
+leading house prices the same market. That the correction happens to narrow a gap is
+the consequence, not the reason.
+
+**What it makes worse, stated plainly.** The terminal is now 89% of enterprise value,
+up from 85%. A lower discount rate loads more of the answer into the perpetuity, so the
+line carrying most of the value now carries more of it. The terminal-growth
+reconciliation and the reinvestment check in section 5 matter more after this change,
+not less.
+
+**The gap that remains, at −35.6%, is now in the explicit window.** Our five-year cost
+of capital is 26.65%; EFG's for EIPICO in June 2026 was 20.6%. Two candidates are
+already priced and open: the net-versus-gross debt weighting, worth about +3 to +7 a
+share, and whether the explicit-window country premium is too heavy. Neither has been
+adopted and both are recorded here rather than left to be rediscovered.

@@ -108,9 +108,13 @@
   "date": "2026-08-06"
  },
  "real_rate_convention": {
-  "value": 0.055,
-  "source": "The standard emerging-market terminal real risk-free convention (~5.5pp). The terminal NOMINAL risk-free rate is DERIVED as this plus the inflation target in force, so the single most terminal-value-sensitive number in a model cannot be typed.",
-  "date": "2026-08-06"
+  "value": 0.035,
+  "source": "Egypt's LONG-RUN STRUCTURAL real risk-free rate, 3.5%. REVISED FROM 5.5% on 10-09-2026 by instruction, and the revision is about which rate the terminal is supposed to be. The retired 5.5% matched this path's own policy ladder, which ends 2030 at 12.0% nominal against 7.0% inflation — but that is a central bank still RESTRICTING to finish a disinflation, not a neutral stance, and a terminal rate is the neutral one held in perpetuity. Charging a disinflation-campaign real rate for ever discounted every Egyptian company at crisis settings on the line that carries most of the value. THE CROSS-CHECK IS THE REGION'S LEADING HOUSE: EFG Hermes prices Egyptian terminal cost of capital at 14.2-15.1% in every report read from November 2023 through June 2026 — across a devaluation and a full rate cycle — where ours floated to 17.85%. 3.5% real is above the 1.5-2% a mature market pays and below the restrictive stance, and it is a HOUSE JUDGEMENT rather than a quoted instrument, which is why it is stated here rather than derived.",
+  "date": "2026-09-10",
+  "retired": {
+   "value": 0.055,
+   "why": "a restrictive policy stance used as a perpetual rate"
+  }
  },
  "erp_terminal": {
   "value": 0.07,
