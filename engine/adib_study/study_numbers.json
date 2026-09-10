@@ -448,7 +448,7 @@
   "corrections_promoted": 0,
   "note": "no correction from that record enters these drivers; every candidate either failed the by-origin test, failed the second clause, or is an aggregate of drivers already corrected. What the run DID put here is the years 3-5 ranges and the knowledge that a flat-share volume rule under-forecasts this name."
  },
- "register": {
+ "inputs": {
   "spot": {
    "value": 52.05,
    "source": "EGP 52.05, the close on 3 September 2026, supplied by the principal and committed to the house price file for that date. THIS IS THE LATEST KNOWN PRICE and it is the one the gap is measured against. The published site still carries 54.40 at the 23 August close, which is 11 days older; a study audited against its own past is audited against nothing.",
@@ -470,6 +470,132 @@
   "latest_reviewed": {
    "value": "H1-2026",
    "source": "The condensed consolidated interim statements for the six months ended 30 June 2026, signed 30 July 2026. Attributable profit EGP 7,536.8 million, total assets EGP 414,302.1 million, financing to customers EGP 190,427.1 million, attributable equity EGP 43,557.9 million. This is the period the forecast is anchored on.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "fin_income_fy2025": {
+   "value": 49262.455,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "cost_funds_fy2025": {
+   "value": -29110.12,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "net_funds_fy2025": {
+   "value": 20152.335,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "net_fees_fy2025": {
+   "value": 2729.85,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "ga_fy2025": {
+   "value": -3431.217,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "ecl_fy2025": {
+   "value": -1514.062,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "pbt_fy2025": {
+   "value": 17482.142,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "tax_fy2025": {
+   "value": -4881.186,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "np_fy2025": {
+   "value": 12600.956,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "npa_fy2025": {
+   "value": 12588.572,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "assets_fy2025": {
+   "value": 346711.205,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "equity_fy2025": {
+   "value": 34596.28,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "assets_fy2024": {
+   "value": 260467.106,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2024, as the comparative column of the FY2025 filing.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "equity_fy2024": {
+   "value": 22958.669,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2024, as the comparative column of the FY2025 filing.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "npa_fy2024": {
+   "value": 9008.926,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2024, as the comparative column of the FY2025 filing.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "assets_h1_2026": {
+   "value": 414302.106,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "equity_h1_2026": {
+   "value": 43557.932,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "npa_h1_2026": {
+   "value": 7536.797,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "net_funds_h1_2026": {
+   "value": 12253.941,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "fin_income_h1_2026": {
+   "value": 29117.908,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "net_fees_h1_2026": {
+   "value": 1516.559,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
    "date": "2026-07-30",
    "tier": "A"
   },
@@ -743,5 +869,468 @@
    "date": "2026-09-10",
    "tier": "House"
   }
+ },
+ "register": {
+  "spot": {
+   "value": 52.05,
+   "source": "EGP 52.05, the close on 3 September 2026, supplied by the principal and committed to the house price file for that date. THIS IS THE LATEST KNOWN PRICE and it is the one the gap is measured against. The published site still carries 54.40 at the 23 August close, which is 11 days older; a study audited against its own past is audited against nothing.",
+   "date": "2026-09-03",
+   "tier": "Market"
+  },
+  "shares": {
+   "value": 1500.0,
+   "source": "ADIB-Egypt issued and paid-up capital of EGP 15,000,000 thousand at 30 June 2026, over the LE 10 par value the filings state (FY2018 note 34/2), = 1,500 million shares. THE CAPITAL FIGURE IS PROVED BY THE EQUITY BLOCK'S OWN ARITHMETIC RATHER THAN BY THE OCR: attributable equity of 43,557,932 less the subordinated-financing difference of 16,454 leaves 43,541,478 for capital plus reserves plus retained earnings; retained earnings cannot exceed the FY2025 closing 20,963,164 plus the half-year attributable profit of 7,536,797 = 28,499,961, so a capital of 12,000,000 is arithmetically impossible and 15,000,000 is the only reading that closes. It matches the EGP 12bn->15bn cash increase the delivered 03-07-2026 study reported as approved.",
+   "date": "2026-06-30",
+   "tier": "A"
+  },
+  "base_year": {
+   "value": "FY2025",
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026. Attributable profit EGP 12,588.6 million, total assets EGP 346,711.2 million, attributable equity EGP 34,596.3 million. Every figure is read from the filing itself and the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "latest_reviewed": {
+   "value": "H1-2026",
+   "source": "The condensed consolidated interim statements for the six months ended 30 June 2026, signed 30 July 2026. Attributable profit EGP 7,536.8 million, total assets EGP 414,302.1 million, financing to customers EGP 190,427.1 million, attributable equity EGP 43,557.9 million. This is the period the forecast is anchored on.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "fin_income_fy2025": {
+   "value": 49262.455,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "cost_funds_fy2025": {
+   "value": -29110.12,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "net_funds_fy2025": {
+   "value": 20152.335,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "net_fees_fy2025": {
+   "value": 2729.85,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "ga_fy2025": {
+   "value": -3431.217,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "ecl_fy2025": {
+   "value": -1514.062,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "pbt_fy2025": {
+   "value": 17482.142,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "tax_fy2025": {
+   "value": -4881.186,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "np_fy2025": {
+   "value": 12600.956,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "npa_fy2025": {
+   "value": 12588.572,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "assets_fy2025": {
+   "value": 346711.205,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "equity_fy2025": {
+   "value": 34596.28,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2025, signed in Cairo on 5 February 2026 \u2014 read from the filing itself; the statement foots.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "assets_fy2024": {
+   "value": 260467.106,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2024, as the comparative column of the FY2025 filing.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "equity_fy2024": {
+   "value": 22958.669,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2024, as the comparative column of the FY2025 filing.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "npa_fy2024": {
+   "value": 9008.926,
+   "source": "The audited consolidated financial statements for the year ended 31 December 2024, as the comparative column of the FY2025 filing.",
+   "date": "2026-02-05",
+   "tier": "A"
+  },
+  "assets_h1_2026": {
+   "value": 414302.106,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "equity_h1_2026": {
+   "value": 43557.932,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "npa_h1_2026": {
+   "value": 7536.797,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "net_funds_h1_2026": {
+   "value": 12253.941,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "fin_income_h1_2026": {
+   "value": 29117.908,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "net_fees_h1_2026": {
+   "value": 1516.559,
+   "source": "The condensed consolidated interim financial statements for the six months ended 30 June 2026, limited review, signed 30 July 2026.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "h1_2026_ecl": {
+   "value": 2.176,
+   "source": "THE SINGLE MOST IMPORTANT FACT IN THE BASE YEAR. ADIB-Egypt charged EGP 2.176 million of expected credit losses in the six months to 30 June 2026 \u2014 an annualised 0.003% of average financing \u2014 against EGP 732.193 million in the same half of 2025 and EGP 1,514.062 million for the whole of FY2025. The line is filed as \"Release / (Charge) Expected credit losses\", note 11, and the income statement foots on it: every other line on the page plus this one reproduces the printed profit before tax of 10,721,790 exactly. A half-year at a near-nil loss charge is a release, not a run rate, and the forecast below normalises it rather than annualising it \u2014 which is the conservative direction and is named as a mechanism rather than assumed.",
+   "date": "2026-07-30",
+   "tier": "A"
+  },
+  "inflation_path": {
+   "value": [
+    0.16,
+    0.12,
+    0.09,
+    0.075,
+    0.07
+   ],
+   "source": "Central Bank of Egypt baseline average annual headline inflation, 16.0% in 2026 and 12.0% in 2027 (Q1-2026 Monetary Policy Report as reported 11 May 2026); 2028-2030 interpolated on the bank's own glide between the published 2027 baseline and the 7% target-band midpoint, labelled as interpolation and never presented as a central-bank forecast. Held in the house macroeconomic path, the path every Egyptian study runs on.",
+   "date": "2026-09-02",
+   "tier": "Country"
+  },
+  "policy_rate_path": {
+   "value": [
+    0.19,
+    0.165,
+    0.145,
+    0.13,
+    0.12
+   ],
+   "source": "Overnight deposit rate 19.00% now, gliding 19.00 -> 16.50 -> 14.50 -> 13.00 -> 12.00 with the published inflation path at an approximately constant real policy rate. Held for a fourth consecutive meeting on 20 August 2026. This is the SHAPE input for the asset-yield and cost-of-funds paths below; it is not a second free parameter and no valuation input is set from it independently.",
+   "date": "2026-08-20",
+   "tier": "Country"
+  },
+  "rf": {
+   "value": 0.23,
+   "source": "Egypt ten-year EGP government bond yield, 23.00%, the quote of 6 August 2026 held in the house macroeconomic path and already used by the PHDC, EGCH and PHAR cost-of-capital records. IT IS 34 DAYS OLD AGAINST THIS STUDY'S PRICING DATE AND THE HOUSE PATH'S OWN 14-DAY STALENESS RULE FLAGS IT AS STALE. A live re-source was attempted on 9 September 2026 down four routes and all four failed: the central bank's treasury-bond auction pages return 404, its auction API returns the site shell, the market-data pages render their yield tables in JavaScript, and the investing.com bond page returns 403. The level is carried, the staleness is declared here rather than buried, and the rate is sensitised by +/-200 basis points in section 1.9.",
+   "date": "2026-08-06",
+   "tier": "Country"
+  },
+  "sov_default_spread": {
+   "value": 0.0342,
+   "source": "Egypt sovereign credit-default-swap spread, 3.42%, mid-year (July 2026) vintage of the country default-spread dataset, Egypt row, \"Sovereign CDS net of Swiss CDS\". Netted out of the local-currency risk-free rate so that sovereign default risk is charged ONCE, inside the equity risk premium, and not twice. The house macroeconomic path carries 3.41% for the same field from the same file; the one-basis-point difference is a rounding artefact and is immaterial.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "erp": {
+   "value": 0.095164,
+   "source": "Egypt TOTAL equity risk premium on the sovereign-CDS basis, 9.5164%, same mid-year vintage. This is the dataset's TOTAL premium column, not its country premium column \u2014 the total is what multiplies beta. The country risk premium alone on this basis is 5.3164% and is NOT added on top.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "sov_default_spread_rating": {
+   "value": 0.059702,
+   "source": "Egypt adjusted default spread on the rating basis (Moody's Caa1), 5.9702%, same vintage \u2014 the alternative construction, published for the audit trail and never mixed with the CDS basis.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "erp_rating": {
+   "value": 0.134806,
+   "source": "Egypt TOTAL equity risk premium on the rating basis, 13.4806%, same vintage.",
+   "date": "2026-07-02",
+   "tier": "Country"
+  },
+  "beta": {
+   "value": 1.0746932506913658,
+   "source": "Own-stock first-tier weekly regression against EGX30 \u2014 THE PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON \u2014 resolved by beta_regression.own_stock_beta() rather than hand-rolled. Beta 1.0747, R-squared 0.248, n = 256 weekly observations over 4.94 years to 2026-08-20, standard error 0.1634, 90% confidence interval [0.806, 1.344], Dimson-corrected and matched to the exchange's own trading week (W-THU). The coefficient is 6.6 times its own standard error. Blume cross-check 1.0498.",
+   "date": "2026-09-08",
+   "tier": "Market"
+  },
+  "rf_terminal": {
+   "value": 0.10500000000000001,
+   "source": "Terminal risk-free rate, DERIVED and never quoted: terminal inflation of 7.00% (the CBE target-band midpoint in force) plus the 5.50% emerging-market terminal real convention. It cannot disagree with the inflation the rest of the model runs on because it is computed from it.",
+   "date": "2026-09-02",
+   "tier": "House"
+  },
+  "erp_terminal": {
+   "value": 0.07,
+   "source": "Terminal equity risk premium, 7.00%, normalised below today's crisis-era level toward the rating-class norm; never held flat into perpetuity.",
+   "date": "2026-09-02",
+   "tier": "House"
+  },
+  "terminal_growth": {
+   "value": 0.07,
+   "source": "Terminal growth 7.00% = terminal inflation, ZERO REAL. For a bank in an economy whose private credit is 26% of GDP that is deliberately conservative: it assumes ADIB-Egypt stops taking share and stops participating in credit deepening the moment the explicit window closes. It sits BELOW the 12.50% terminal risk-free rate and equals the inflation inside it, so the terminal cannot grow faster than the money it is discounted in.",
+   "date": "2026-09-02",
+   "tier": "House"
+  },
+  "ke_construction": {
+   "value": "same_beta",
+   "source": "The terminal cost of equity uses the SAME regression beta as the explicit window. ADIB-Egypt is a deposit-funded bank whose capital structure is its business, so there is no leverage to relever: the beta already embeds the balance sheet it is measured on. The record names the construction from a closed list so that two right answers a hundred basis points apart are not indistinguishable from a typo.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "financing_growth": {
+   "value": [
+    0.48,
+    0.26,
+    0.19,
+    0.15,
+    0.12
+   ],
+   "source": "Net financing to customers, year-on-year. FY2026 +48% takes the FY2025 close of EGP 147,226 million to EGP 217,895 million \u2014 and the bank was ALREADY at EGP 190,427 million on 30 June, so this asks for only +14.4% in the second half against +29.3% in the first. The path then decays toward nominal GDP. IT IS NOT A FLAT SHARE OF SYSTEM CREDIT, and that is the walk-forward's doing: a flat-share rule under-forecast this name at every one of eleven origins, by a median 0.29 in logs at three years, because ADIB has taken share at about 8.7% a year for a decade. The share path this implies is disclosed in the macro-coherence table and it decelerates to zero drift by FY2030.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "financing_over_assets": {
+   "value": [
+    0.47,
+    0.485,
+    0.5,
+    0.51,
+    0.52
+   ],
+   "source": "Financing to customers over total assets. FY2025 actual 42.46%; 30 June 2026 actual 45.96%. The bank is rotating out of treasury bills into customer financing as policy rates fall and bill yields compress, and the path continues that observed rotation at a decelerating pace. Every point is above both observations, which is the assumption, and it is sensitised.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "asset_yield": {
+   "value": [
+    0.15,
+    0.134,
+    0.121,
+    0.113,
+    0.108
+   ],
+   "source": "Income from Murabaha, Musharaka, Mudaraba and similar income over AVERAGE total assets. FY2025 actual 16.23%; the six months to June 2026 annualise to 15.30%. The path falls with the CBE's published policy glide (19.00 -> 12.00) at an asset beta of about 0.75, which is what an Egyptian bank holding treasury bills and floating-rate corporate paper reprices at. IT IS AN INPUT; net interest margin is not.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "cost_of_funds": {
+   "value": [
+    0.106,
+    0.092,
+    0.081,
+    0.074,
+    0.07
+   ],
+   "source": "Cost of deposits and similar costs over AVERAGE INTEREST-BEARING LIABILITIES \u2014 customers' deposits plus due to banks plus subordinated financing, and nothing else. FY2025 actual 11.22%. Total liabilities is NOT the denominator: at FY2025 it would add EGP 17.9 billion of other liabilities, current tax and provisions that pay nothing, and understate the funding rate by about a sixth of itself. The path falls at a deposit beta of about 0.80 to the policy glide, slower than the asset side, which is why the margin compresses.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "ibl_over_assets": {
+   "value": 0.855,
+   "source": "Average interest-bearing liabilities over average total assets, held at the FY2025 observed 85.5%. The bank funds itself with deposits and that ratio has moved within two points across the whole panel.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "fee_ratio": {
+   "value": [
+    0.008,
+    0.0082,
+    0.0084,
+    0.0085,
+    0.0085
+   ],
+   "source": "Net fees and commissions over average total assets. FY2025 actual 0.899%; the June 2026 half annualises to 0.797%. The path opens at the reviewed half's level and recovers slowly as trade finance and card income grow with the branch network.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "other_nii_ratio": {
+   "value": [
+    0.0028,
+    0.0026,
+    0.0024,
+    0.0023,
+    0.0022
+   ],
+   "source": "Dividends, net trading, share of associates and gains on investments, as one block, over average total assets. FY2025 actual 0.238%; the June 2026 half annualises to 0.372%, flattered by trading gains on a moving currency. The path normalises DOWN toward the FY2022-FY2024 average as the pound settles.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "other_op_ratio": {
+   "value": [
+    -0.0075,
+    -0.007,
+    -0.0065,
+    -0.006,
+    -0.0055
+   ],
+   "source": "Other operating expenses over average total assets \u2014 deposit insurance, central-bank charges and the operating-provision line. FY2025 actual -0.387%; the June 2026 half annualises to -0.797%, more than double. The path opens at the reviewed level and decays, which is the conservative reading of a line that has doubled.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "admin_growth": {
+   "value": [
+    0.34,
+    0.18,
+    0.15,
+    0.135,
+    0.13
+   ],
+   "source": "Administrative expenses, year-on-year. FY2026 +34% on FY2025 takes EGP 3,431 million to EGP 4,598 million; the June half already spent EGP 2,239 million, so this asks for EGP 2,359 million in the second. Thereafter inflation plus about six points, because a bank adding branches and systems does not hold headcount flat. Cost-to-income is an OUTPUT of this and of the revenue lines; it is not typed anywhere.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "cost_of_risk": {
+   "value": [
+    0.01,
+    0.013,
+    0.013,
+    0.013,
+    0.013
+   ],
+   "source": "Expected credit losses over AVERAGE net financing to customers. The observed series is 1.64% (FY2022), 2.73% (FY2023), 2.73% (FY2024), 1.25% (FY2025) and effectively ZERO in the June 2026 half \u2014 EGP 2.176 million on a EGP 190 billion book. FY2026 is set at 1.00%, above the half-year run rate and below the four-year mean of 2.09%; the outer years at 1.30% sit between the two. ANNUALISING THE JUNE HALF WOULD HAVE ADDED ABOUT EGP 1.8 BILLION TO FY2026 PRE-TAX PROFIT and it is not done. Sensitised +/-50 basis points in 1.9.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "tax_rate": {
+   "value": 0.285,
+   "source": "Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half 29.58%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays materially more because the 20% withholding on treasury-bill income is not creditable and part of its cost base is disallowed. 28.5% sits inside the observed range and above the statutory rate for that reason.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "nci_share": {
+   "value": 0.001,
+   "source": "Non-controlling interests take 0.10% of net profit \u2014 EGP 12.4 million of EGP 12,601.0 million in FY2025. Held at that level; it is immaterial and is carried rather than dropped so the bridge to attributable profit closes.",
+   "date": "2026-09-10",
+   "tier": "A"
+  },
+  "payout": {
+   "value": "DERIVED \u2014 see below",
+   "source": "THE PAYOUT IS NOT TYPED. It is what is left after the balance sheet has taken the capital it needs: payout(t) = 1 - (target equity/assets x the year's asset growth) / attributable profit, floored at zero and capped at 80%. A typed payout path is an assumption about the single thing a growing bank has least discretion over, and typing one made this model's dividend and free-cash-flow lenses disagree by EGP 7 a share while its equity-to-assets ratio drifted from 10.0% to 12.4% \u2014 the model was retaining capital it had no use for and calling the result conservatism. THE DERIVED PATH REPRODUCES WHAT THE BANK ACTUALLY DOES: it gives 13.7% for FY2026 against the 11.7% ADIB-Egypt actually paid on FY2024 earnings, which is the closest thing to an external check this driver has. Terminal payout is 1 - g/ROE, derived the same way.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "target_equity_assets": {
+   "value": 0.105,
+   "source": "Attributable equity to total assets, held at 10.5% \u2014 the level ADIB-Egypt actually stood at on 30 June 2026 after its EGP 3 billion cash increase, against 9.98% at the FY2025 year end. THIS IS THE BINDING CONSTRAINT ON A GROWING BANK and the model pins the RATIO, not the increment: equity each year is 10.5% of that year's assets and the dividend is whatever profit is left after getting there. A bank growing its balance sheet 34% cannot also distribute, and the arithmetic says so rather than a sentence saying so beside a typed payout.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "capital_increase_2026": {
+   "value": 3000.0,
+   "source": "The EGP 3,000 million cash capital increase completed in the first half of 2026, taking issued capital from EGP 12 billion to EGP 15 billion \u2014 300 million new shares at the LE 10 par. IT WAS ISSUED AT PAR, far below book: attributable book value per share was EGP 28.83 at 31 December 2025 on 1,200 million shares and EGP 29.04 at 30 June 2026 on 1,500 million, so a half-year at a 38.6% return on equity bought existing holders 0.7% of book value per share and the rest went to the new shares. This is the study's crux and it is in 1.7.",
+   "date": "2026-06-30",
+   "tier": "A"
+  },
+  "peer_comi_price": {
+   "value": 138.98,
+   "source": "Commercial International Bank (EGX: COMI), EGP 138.98, the close on 3 September 2026 from the committed price file \u2014 the same file, the same date and the same supplier as ADIB's own price, so the two are struck on one day.",
+   "date": "2026-09-03",
+   "tier": "Market"
+  },
+  "peer_pb_band": {
+   "value": [
+    1.4,
+    2.2
+   ],
+   "source": "The price-to-book band Egyptian large-cap banks trade in. It is a BAND and not a point because this study could not source a same-day book value for any Egyptian bank other than ADIB itself: the only peer whose price it holds on the same day is CIB, and CIB's own book value is not in this repository. The band is carried as a cross-check on the two cash-flow lenses, weighted at 15%, and it is NOT allowed to set the answer. Where a multiple cannot be sourced it is said so rather than filled in.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "peer_pe_band": {
+   "value": [
+    5.5,
+    8.5
+   ],
+   "source": "The trailing price-to-earnings band for the same group, on the same caveat.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "lens_architecture": {
+   "value": "class primary = dividend discount; no typed blend",
+   "source": "The bank class is keyed to a dividend-discount PRIMARY with residual income, a relative multiple and book value beside it. The central IS the primary. The envelope is the range of the three present-value reads and no spread is invented around it.",
+   "date": "2026-09-10",
+   "tier": "House"
+  },
+  "band_construction": {
+   "value": "the range of the present-value reads [R-LENS-03]",
+   "source": "Bear is the free-cash-flow-to-equity read, full the residual-income read, and the central the dividend-discount primary between them. THE ENVELOPE IS NARROW BECAUSE THE THREE LENSES AGREE, AND THAT IS A STATEMENT ABOUT LENS AGREEMENT RATHER THAN ABOUT FORECAST CONFIDENCE. The fundamental walk-forward beneath this study measured a three-year attributable-profit dispersion of x0.29 to x1.48 on eight cells; that distribution sets the YEARS 3-5 PROFIT RANGES in Appendix A and nothing else, and section 7 says so in terms rather than letting a tight envelope imply a precision this record does not have.",
+   "date": "2026-09-10",
+   "tier": "House"
+  }
+ },
+ "cost_of_capital_record": {
+  "rf": 0.23,
+  "rf_date": "2026-08-06",
+  "rf_staleness_days": 34,
+  "rf_staleness_note": "the house path's own 14-day rule flags this as stale; four live re-source routes were attempted on 2026-09-09 and all four failed. Declared, sensitised, and named as an open data request.",
+  "sovereign_default_spread": 0.0342,
+  "rf_star": 0.1958,
+  "erp": 0.095164,
+  "beta": 1.0746932506913658,
+  "ke": 0.2980721085087931,
+  "ke_rating_basis": 0.31517309835270024,
+  "ke_double_counted_retired": 0.33227210850879313,
+  "ke_terminal": 0.18022852754839563,
+  "ke_terminal_construction": "same_beta",
+  "ke_path": [
+   0.2784315116820602,
+   0.2587909148553273,
+   0.23915031802859438,
+   0.21950972120186146,
+   0.19986912437512855
+  ],
+  "terminal_growth": 0.07,
+  "terminal_rf": 0.10500000000000001,
+  "terminal_inflation": 0.07,
+  "terminal_erp": 0.07,
+  "market": "EG",
+  "rf_observed": 0.23,
+  "default_spread": 0.0342,
+  "erp_rating": 0.11107643811469532,
+  "erp_basis": "market",
+  "ke_exp": 0.2980721085087931,
+  "rf_terminal": 0.10500000000000001,
+  "erp_terminal": 0.07,
+  "sensitivity": {
+   "other_basis": "rating",
+   "other_default_spread": 0.059702,
+   "rf_star_other_basis": 0.170298,
+   "ke_other_basis": 0.31517309835270024
+  },
+  "no_wacc_reason": "bank: equity flows are discounted at the cost of equity and there is no weighted average. Deposits are raw material, not financing, and their cost is inside the net interest margin."
  }
 }

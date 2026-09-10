@@ -31,6 +31,29 @@ sys.path.insert(0, ENGINE)
 
 OUTSTANDING_FILE = os.path.join(ENGINE, "build_depth_audit", "coc_outstanding.json")
 RECORD_KEYS = ("cost_of_capital_record", "coc_record", "schedule_record")
+
+# CLOSED. Grounds on which a record legitimately carries NO weighted average cost of
+# capital and NO cost of debt, adopted 10-09-2026 on ADIB-Egypt, the book's first bank
+# built after this module.
+#
+# THE CLAUSES THIS EXEMPTS ARE ABOUT FINANCING AND A BANK'S DEBT IS NOT FINANCING. A
+# bank's deposits are the raw material of its business: their cost sits inside the net
+# interest margin, on the REVENUE side of the model, and a bank valuation discounts
+# equity flows at the cost of equity because there is no weighted average to take. A
+# gate demanding `wacc_exp` and `kd_pretax` of a bank is demanding numbers that do not
+# exist, and a study that supplied them to pass would be committing the exact error the
+# house rule on bank funding names -- dividing a finance charge by the wrong base.
+#
+# IT IS A NAMED EXEMPTION FROM A CLOSED LIST, NOT A SKIP, and it is the same discipline
+# as ke_terminal_construction: the record must SAY which ground it claims, the ground
+# must be on this list, and a record claiming it while carrying a debt weight is
+# refused -- otherwise "we are special" becomes a way past the check. Every other
+# clause still applies in full: the risk-free normalisation, the terminal rate against
+# the house path, the premium bases, the cost of equity itself.
+NO_WACC_GROUNDS = {
+    "bank": ("deposits are raw material rather than financing; their cost is inside the "
+             "net interest margin and equity flows are discounted at the cost of equity"),
+}
 TOL = 1e-6
 
 
@@ -119,6 +142,29 @@ def find_record(doc):
     return None
 
 
+def _no_wacc_exemption(rec):
+    """(exempt, failure) — whether this record may carry no weighted rate, and why not.
+
+    Returns a FAILURE string rather than silently refusing, so a record that claims the
+    exemption wrongly is told which half it failed.
+    """
+    ground = rec.get("no_wacc_reason")
+    if not ground:
+        return False, ""
+    key = str(ground).split(":", 1)[0].strip().lower()
+    if key not in NO_WACC_GROUNDS:
+        return False, ("no_wacc_reason names %r, which is not on the closed list %s. An "
+                       "open list lets any study opt out of the cost-of-debt and weighted-"
+                       "rate clauses by inventing a ground."
+                       % (key, sorted(NO_WACC_GROUNDS)))
+    wd = rec.get("weight_debt")
+    if isinstance(wd, (int, float)) and abs(wd) > TOL:
+        return False, ("the record claims the %r exemption from the weighted-rate clauses "
+                       "and carries a debt weight of %.4f. A record with financing debt "
+                       "has a weighted average cost of capital." % (key, wd))
+    return True, ""
+
+
 def check_record(rec, ticker):
     """Every clause, on the study's own committed numbers."""
     import macro_path as MP
@@ -155,7 +201,12 @@ def check_record(rec, ticker):
     # 3. the schedule declines, and only where a glide belongs
     we, wt = rec.get("wacc_exp"), rec.get("wacc_terminal")
     fwd = rec.get("forward_wacc") or []
-    if we is None or wt is None:
+    exempt, exempt_fail = _no_wacc_exemption(rec)
+    if exempt_fail:
+        fails.append(exempt_fail)
+    if exempt and we is None and wt is None:
+        pass                      # named, checked, and reported by the caller
+    elif we is None or wt is None:
         fails.append("no explicit-window or terminal cost of capital recorded")
     elif path.regime == "transition":
         if wt >= we - TOL:
@@ -310,7 +361,9 @@ def check_record(rec, ticker):
     # 5. the cost of debt: above its sovereign, and inside the gate
     kd = rec.get("kd_pretax")
     ki = rec.get("kd_integrity") or {}
-    if kd is None:
+    if kd is None and exempt:
+        pass                      # same named exemption; see NO_WACC_GROUNDS
+    elif kd is None:
         fails.append("no cost of debt recorded")
     else:
         if ki.get("pct_local_currency", 1.0) >= 0.999 and rf is not None and kd < rf - TOL:
@@ -473,6 +526,15 @@ def audit(sdir):
     note = ""
     if (rec.get("kd_integrity") or {}).get("effective_rate_unavailable"):
         note = "   [cost-of-debt check unavailable on this disclosure, stated]"
+    # A RECORD WITH NO WEIGHTED RATE IS REPORTED BY WHAT IT DOES HAVE. This line read
+    # rec["wacc_exp"] unguarded, so the moment a record legitimately carried none the
+    # gate died with a KeyError on the SUCCESS path -- passing the audit and then
+    # crashing while saying so.
+    if rec.get("wacc_exp") is None and _no_wacc_exemption(rec)[0]:
+        return "ok", ("%s, cost of equity %.2f%% gliding to %.2f%%   [no weighted rate: %s]"
+                      % (rec.get("market"), 100 * (rec.get("ke_exp") or 0),
+                         100 * (rec.get("ke_terminal") or 0),
+                         str(rec.get("no_wacc_reason")).split(":", 1)[0].strip()))
     return "ok", ("%s, %.2f%% gliding to %.2f%%%s"
                   % (rec.get("market"), 100 * rec["wacc_exp"], 100 * rec["wacc_terminal"], note))
 

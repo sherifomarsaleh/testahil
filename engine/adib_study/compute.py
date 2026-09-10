@@ -118,6 +118,47 @@ reg('latest_reviewed', 'H1-2026',
     'EGP 43,557.9 million. This is the period the forecast is anchored on.',
     '2026-07-30', 'A')
 
+# ---- THE FILED LINES, REGISTERED ONE BY ONE [10-09-2026] -------------------------
+# The two entries above name the DOCUMENTS and carry their dates and tier, and that
+# looked like enough. It was not: every figure this study actually reads from those
+# documents lived inside FY25 / FY24 / H1 as nested dicts, so no source could be read
+# for any single line, and scripts/check_source_integrity.py reported this study
+# UNREADABLE -- "the committed register carries no dated historical at all". It was
+# right. A register naming a filing is not a register of the figures taken from it,
+# and SIGCM clause 1 is about the figures.
+#
+# NO NEW NUMBER ENTERS HERE. Each line is the value the model already uses, registered
+# under the key the shared checker looks for, against the document it came from.
+_AUDITED_FY25 = ('The audited consolidated financial statements for the year ended '
+                 '31 December 2025, signed in Cairo on 5 February 2026 — read from the '
+                 'filing itself; the statement foots.')
+_AUDITED_FY24 = ('The audited consolidated financial statements for the year ended '
+                 '31 December 2024, as the comparative column of the FY2025 filing.')
+_REVIEWED_H1 = ('The condensed consolidated interim financial statements for the six '
+                'months ended 30 June 2026, limited review, signed 30 July 2026.')
+for _k, _v in (('fin_income_fy2025', FY25['fin_income']),
+               ('cost_funds_fy2025', FY25['cost_funds']),
+               ('net_funds_fy2025', FY25['net_funds']),
+               ('net_fees_fy2025', FY25['net_fees']),
+               ('ga_fy2025', FY25['admin']),
+               ('ecl_fy2025', FY25['ecl']),
+               ('pbt_fy2025', FY25['pbt']),
+               ('tax_fy2025', FY25['tax']),
+               ('np_fy2025', FY25['np']),
+               ('npa_fy2025', FY25['np_parent']),
+               ('assets_fy2025', FY25['total_assets']),
+               ('equity_fy2025', FY25['equity'])):
+    reg(_k, _v, _AUDITED_FY25, '2026-02-05', 'A')
+for _k, _v in (('assets_fy2024', FY24['total_assets']),
+               ('equity_fy2024', FY24['equity']),
+               ('npa_fy2024', FY24['np_parent'])):
+    reg(_k, _v, _AUDITED_FY24, '2026-02-05', 'A')
+for _k, _f in (('assets_h1_2026', 'total_assets'), ('equity_h1_2026', 'equity_parent'),
+               ('npa_h1_2026', 'np_parent'), ('net_funds_h1_2026', 'net_funds'),
+               ('fin_income_h1_2026', 'fin_income'), ('net_fees_h1_2026', 'net_fees')):
+    if _f in H1:
+        reg(_k, H1[_f], _REVIEWED_H1, '2026-07-30', 'A')
+
 # ---- observed ratios: OUTPUTS of the base year, computed, never typed -------------
 avg_ta_25 = (FY25['total_assets'] + FY24['total_assets']) / 2
 avg_fin_25 = (FY25['financing'] + FY24['financing']) / 2

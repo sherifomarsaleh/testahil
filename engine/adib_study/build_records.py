@@ -83,9 +83,70 @@ def main():
                  'aggregate of drivers already corrected. What the run DID put here is the '
                  'years 3-5 ranges and the knowledge that a flat-share volume rule '
                  'under-forecasts this name.'),
-        register={k: dict(value=(v.value if not isinstance(v.value, (list, dict)) else v.value),
-                          source=v.source, date=v.date, tier=v.tier)
-                  for k, v in C.REG.items()},
+        # THE REGISTER IS COMMITTED UNDER THE NAME EVERY GATE READS [10-09-2026].
+        # It was emitted as `register` while scripts/check_source_integrity.py and the
+        # rest of the shared checks read `inputs`, so a study that HAD a full
+        # four-field register was reported as having none -- "the input register is not
+        # in the committed numbers file", of a file that contained it. One fact, two
+        # names, and the checker looking under the other one. `register` is kept as an
+        # alias to the same object so this study's own three builders keep working;
+        # they read one dict, not two.
+        inputs={k: dict(value=(v.value if not isinstance(v.value, (list, dict)) else v.value),
+                        source=v.source, date=v.date, tier=v.tier)
+                for k, v in C.REG.items()},
+    )
+    d['register'] = d['inputs']          # the same object, under the study's own older name
+    # AND THE COST-OF-CAPITAL RECORD UNDER ITS CANONICAL NAME, for the same reason:
+    # check_cost_of_capital.py reads a CLOSED list of three key names and this study
+    # used a fourth. The list is closed on purpose -- an open one lets a study opt out
+    # of the check by inventing a name -- so the study moves, not the list.
+    # THE RECORD DECLARES ITS MARKET. The block carried rates and no country, so the
+    # gate could not resolve a house macro path for it and refused -- correctly: a
+    # cost of capital that does not say which economy it is built on cannot be
+    # checked against that economy's own path.
+    # THE RECORD UNDER THE CANONICAL FIELD NAMES the shared gate reads. This study
+    # named the same quantities differently -- `rf` for the observed yield,
+    # `sovereign_default_spread` for the spread, `ke` for the explicit cost of equity,
+    # `terminal_rf` for the terminal risk-free -- so a record that carried every one of
+    # them was reported as carrying none. One fact, two names, again.
+    _cc = d['cost_of_capital']
+    d['cost_of_capital_record'] = dict(
+        _cc,
+        market='EG',
+        rf_observed=_cc['rf'],
+        default_spread=_cc['sovereign_default_spread'],
+        rf_star=_cc['rf_star'],
+        erp=_cc['erp'],
+        # the rating-basis premium, DERIVED from the rating-basis Ke this record
+        # already carries rather than registered a second time
+        erp_rating=(_cc['ke_rating_basis'] - _cc['rf_star']) / _cc['beta'],
+        erp_basis='market',
+        beta=_cc['beta'],
+        ke_exp=_cc['ke'],
+        rf_terminal=_cc['terminal_rf'],
+        erp_terminal=_cc['terminal_erp'],
+        ke_terminal=_cc['ke_terminal'],
+        terminal_growth=_cc['terminal_growth'],
+        # A BANK HAS NO WEIGHTED AVERAGE COST OF CAPITAL AND THIS RECORD SAYS SO RATHER
+        # THAN INVENTING ONE. Deposits are the raw material of the business and sit
+        # inside the margin, not in the discount rate; a "cost of debt" for a bank is
+        # its cost of funding, which is a REVENUE-side input here and is already in the
+        # forecast at 11.22%. Supplying a debt weight and a blended rate to satisfy a
+        # field would be the exact error this study's own gap review names under its
+        # discount-rate heading, and a number typed to pass a check is worse than a
+        # check that fails.
+        # THE ALTERNATIVE PREMIUM BASIS, PUBLISHED BESIDE THE ADOPTED ONE rather than
+        # only inside a Ke this record already carries. The rating-basis default spread
+        # is registered; the normalised rate on that basis follows from it.
+        sensitivity=dict(
+            other_basis='rating',
+            other_default_spread=C.REG['sov_default_spread_rating'].value,
+            rf_star_other_basis=(_cc['rf'] - C.REG['sov_default_spread_rating'].value),
+            ke_other_basis=_cc['ke_rating_basis'],
+        ),
+        no_wacc_reason=('bank: equity flows are discounted at the cost of equity and '
+                        'there is no weighted average. Deposits are raw material, not '
+                        'financing, and their cost is inside the net interest margin.'),
     )
     p = os.path.join(HERE, 'study_numbers.json')
     json.dump(d, open(p, 'w'), indent=1, default=float)
