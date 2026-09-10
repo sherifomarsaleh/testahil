@@ -74,7 +74,9 @@ project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0
 # cabinet decision 170 of 2021 and trade-ministry decree 241 of 2021 by number. It has
 # been re-tiered L3 -> L4 in inputs.py for that reason. Here it is priced rather than
 # argued about, at the rate adopted, at no duty at all, and at half.
-_duty_zero = reprice(export_duty_pct=0.0)
+# THE BASE IS NOW NIL, so the alternatives price the duty's RETURN rather than its
+# removal. Decision 340 of 2026 cancelled it effective 1 August 2026.
+_duty_ten = reprice(export_duty_pct=0.10)
 _duty_half = reprice(export_duty_pct=0.05)
 # APPLIED 10-09-2026, SO THIS ALTERNATIVE TURNED ROUND. The base now prices the new
 # complex's nitrate at the company's own disclosed EGP 20,000/t realisation, which is what
@@ -87,34 +89,35 @@ _an_retired = reprice(anna_price_usd_t=280.0)
 
 ALTS = [
     dict(key="export_duty_2026",
-         made="A 10% ad-valorem export duty charged on every export tonne, for ever",
-         alt="No duty at all (%.4f) or half the rate (%.4f)" % (_duty_zero, _duty_half),
-         value=_duty_zero,
-         why="THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND THE INSTRUMENT BEHIND "
-             "IT HAS NOW BEEN FOUND. It is DECREE No. 258 of 2026 of the Minister of "
-             "Investment and Foreign Trade, published in the Official Gazette on 25 June "
-             "2026: 10% ad valorem on the FOB invoice value of nitrogen fertiliser "
-             "exports, replacing a temporary US$90/t duty imposed in May 2026 for three "
-             "months, and carrying no stated expiry of its own. The rate this study "
-             "charges is the rate the decree sets, on the base it sets, applied in "
-             "perpetuity because the instrument names no end -- which is a reading of the "
-             "decree rather than the assumption it was until today. "
-             "PURE AMMONIUM NITRATE ABOVE " + ("%.1f%%" % (100 * V('an_exempt_n_pct')))
-             + " NITROGEN AND FREE-ZONE SHIPMENTS ARE "
-             "EXEMPT, and that was checked against the model rather than noted: the duty "
-             "is applied to the UREA export leg alone, and urea is not exempt. "
-             "THE DIRECTION IS AGAINST THIS STUDY -- removing the duty RAISES the value "
-             "and narrows the gap -- and the search was made for that reason rather than "
-             "despite it. It came back saying the duty is real, so the "
-             "alternative below is priced and NOT adopted; a reader is entitled to see "
-             "what the largest line in the study is worth even when it survives. "
-             "The input was briefly re-tiered L3 to L4 earlier today on the ground that "
-             "no instrument had been located; nobody had looked, and that sentence was "
-             "the same defect it was written to record. It is L3 again, cited by number "
-             "and date. What would improve it further: the Gazette text itself rather "
-             "than two independent reports of it, and the FY2025/26 auditor's report "
-             "disclosing a duty actually charged, the way the FY2024/25 report disclosed "
-             "the EGP 437.5m shortfall levy on 175kt."),
+         made="No export duty, because Ministerial Decision 340 of 2026 cancelled the levy "
+              "with effect from 1 August 2026 — five weeks before this study's strike",
+         alt="The 10%% ad-valorem duty back, charged on every export tonne for ever "
+             "(%.4f), or at half that rate (%.4f)" % (_duty_ten, _duty_half),
+         value=_duty_ten,
+         why="THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND IT TURNED OVER TWICE. The "
+             "instrument was found in June and adopted: Decree 258 of 2026, 10% ad valorem "
+             "on the FOB invoice value of nitrogen fertiliser exports, carrying no stated "
+             "expiry of its own. It was then CANCELLED — Ministerial Decision 340 of 2026, "
+             "effective 1 August 2026, striking down Decisions 190, 203 and 258 together. "
+             "The Egyptian Customs Authority issued Circular 46 of 2026 to govern shipments "
+             "whose declarations were opened before the levy ceased, which is the "
+             "administrative trace a real cancellation leaves behind. This study strikes on "
+             "3 September, so the rate in force at the strike is NIL and the duty belonged "
+             "to a window that had closed. "
+             "IT WAS MISSED BECAUSE IT WAS SEARCHED FOR IN ENGLISH. Three searches found "
+             "nothing and NOT FOUND WAS REPORTED AS NOT TRUE, on an Egyptian ministerial "
+             "decision whose register, customs circular and trade coverage are all Arabic. "
+             "Absence of evidence produced by looking in the wrong language is not evidence "
+             "of absence, and five forecast years of a repealed duty is what it cost — EGP "
+             "2.98 a share against a gap of 9.21. "
+             "THE ALTERNATIVE IS NOW THE DUTY'S RETURN, which is the honest direction to "
+             "price it in: it was imposed once this year and can be imposed again, and a "
+             "reader is entitled to see what the largest line in the study is worth if it "
+             "comes back. PURE AMMONIUM NITRATE ABOVE " + ("%.1f%%" % (100 * V('an_exempt_n_pct')))
+             + " NITROGEN AND FREE-ZONE SHIPMENTS WERE EXEMPT while it ran, and the duty was "
+             "applied to the UREA export leg alone, where urea is not exempt. "
+             "What would improve the citation: the Gazette text of Decision 340 itself "
+             "rather than the decree register and the customs circular that implement it."),
     dict(key="an_price_usd_t",
          made="The new complex's granulated ammonium nitrate priced at the SAME PRODUCT'S "
               "OWN DISCLOSED REALISED PRICE — EGP 20,000/t from note 20, carried on the "

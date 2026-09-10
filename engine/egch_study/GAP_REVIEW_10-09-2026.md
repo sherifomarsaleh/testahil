@@ -3,15 +3,65 @@
 **The answer is TWO-SIDED and both branches breach the ten per cent trigger below the
 price. Both are audited.**
 
-- AUDITED CENTRAL: 5.0966  (EGP per share — cash-flow lens, ANNA capital programme carried through)
-- AUDITED CENTRAL: 8.6284  (EGP per share — cash-flow lens, ANNA capital programme stopped)
+- AUDITED CENTRAL: 8.0748  (EGP per share — cash-flow lens, ANNA capital programme carried through)
+- AUDITED CENTRAL: 11.6065  (EGP per share — cash-flow lens, ANNA capital programme stopped)
 - AUDITED SPOT: **EGP 14.23**, the close of 6 September 2026, the latest price this
   repository holds. The study is struck at EGP 14.41, the supplied close of 3 September;
   both are published and no heading answers differently against one than the other.
-- AUDITED GAP: −64.2%   (carried through; the stopped branch is −39.4%)
+- AUDITED GAP: −43.3%   (carried through; the stopped branch is −18.4%)
 
 **A TWO-SIDED ANSWER IS AUDITED ON EVERY BRANCH.** Publishing two numbers instead of one is
 not a way to publish two unaudited numbers.
+
+## THE LEVY WAS CANCELLED AND THIS MODEL WENT ON CHARGING IT
+
+**Ministerial Decision 340 of 2026 cancelled the 10% nitrogen-fertiliser export levy with
+effect from 1 August 2026**, striking down Decisions 190, 203 and 258 together. This study
+strikes on 3 September, so the rate in force at the strike was NIL and the duty belonged to
+a window that had already closed — 5 May to 31 July on the flat US$90/t basis, 25 June to
+31 July on the ad valorem one. The Egyptian Customs Authority issued Circular 46 of 2026 to
+govern shipments whose declarations were opened before the levy ceased, which is the
+administrative trace a real cancellation leaves and a rumour does not.
+
+**HOW IT WAS MISSED IS THE PART WORTH RECORDING.** The cancellation was searched for three
+times in English, not found, and NOT FOUND WAS REPORTED AS NOT TRUE — on an Egyptian
+ministerial decision whose decree register, customs circular and trade coverage are all in
+Arabic. Absence of evidence produced by looking in the wrong language is not evidence of
+absence. Five forecast years of a repealed duty is what it cost: **EGP 2.98 a share**, on
+the largest single line in this study.
+
+The alternatives grid now prices the duty's RETURN rather than its removal, which is the
+honest direction: it was imposed once this year and can be imposed again.
+
+## AND THE FOURTH DEFECT IS WRITTEN OFF, ON THE CONTRACTOR'S OWN FILING
+
+The ANNA nameplate — worth 4.874 a share if the plant made more than this model sells — is
+answered. **MAIRE Tecnimont's half-year report at 30 June 2025, pages 115-116**, describes a
+600 t/day nitric-acid unit whose ENTIRE OUTPUT is converted into 800 t/day of granular
+fertiliser-grade ammonium nitrate, and describes no ammonia unit at all. MAIRE's release of
+29 December 2023 says the new units consume ammonia from the plant commissioned in 2020
+rather than build another.
+
+**The capital intensity has an answer rather than an implication.** ANNA is bounded by the
+ammonia it is fed, not by the money spent on it: KIMA-2's train makes about 1,200 t/day,
+roughly 900 goes captively to the 1,575 t/day urea unit, and the ~300 t/day surplus is the
+whole feedstock available. A downstream upgrade of a fixed stream costs what it costs;
+KIMA-2 bought the ammonia AND the urea trains. The comparison was measuring two different
+things.
+
+**And the nameplate is corroborated from outside, with this model on the conservative
+side.** Egypt's State Information Service, reporting the meeting of 4 February 2025, put the
+units at 600 t/day or 213,000 t/year of nitric acid and 800 t/day or **284,000 t/year** of
+ammonium nitrate. This model carries **264,000 t/year** — 7% below the government's own
+annualised figure, not double it.
+
+**THE TIMETABLE IS UNCHANGED BY ANY OF THIS AND THE MODEL ALREADY MATCHES IT.** MAIRE's
+schedule gives mechanical completion in November 2027, start-up February 2028, performance
+testing March 2028; at 30 June 2025 engineering stood at 57.9%, procurement 4.8% and
+construction **1.5%**, total progress 8.3%. No announcement of mechanical completion,
+commissioning or first revenue has been located. This model books ANNA entirely in the
+terminal and nothing in the explicit window, which is the right treatment for a plant that
+starts up after it.
 
 ## WHAT CHANGED IN THIS EDITION, AND ONE OF IT WENT AGAINST US
 
@@ -83,7 +133,9 @@ correction, it is a preference, so it has not been taken.
 | the terminal risk-free rate off the house path, and the country premium charged once | | |
 | the 10-09-2026 edition, before the hunt was applied | 5.0224 | 9.1288 |
 | three of the hunt's four own-defects applied | | |
-| **this edition** | **5.0966** | **8.6284** |
+| three of the hunt's four own-defects applied | 5.0966 | 8.6284 |
+| the repealed export duty removed, the fourth defect written off | | |
+| **this edition** | **8.0748** | **11.6065** |
 
 **AND THE PUBLISHED ANSWER WAS 21% BELOW ITS OWN MODEL BEFORE THAT.** The study reads the
 house macro path for its terminal rate, so when the house structural real rate moved this

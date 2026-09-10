@@ -385,15 +385,39 @@ _AN_EXEMPT_TXT = "%.1f%%" % (100 * _AN_EXEMPT_N)
 # than two reports of it, and the FY2025/26 auditor's report disclosing a duty actually
 # charged, in the way the FY2024/25 report disclosed the EGP 437.5m shortfall levy on
 # 175kt. The second belongs in the filings this study already holds.
-I("export_duty_2026", 0.10, "ratio",
+# THE LEVY WAS CANCELLED FIVE WEEKS BEFORE THIS STUDY WAS STRUCK, AND THIS MODEL WENT ON
+# CHARGING IT. Ministerial Decision 340 of 2026 cancelled Decisions 190, 203 and 258 of
+# 2026 with effect from 1 August 2026, ending the 10% export levy on nitrogen fertilisers.
+# This edition strikes at the 3-September close, so the rate in force on the strike date is
+# ZERO and the 10% belonged to a window that had already closed: 5 May to 31 July on the
+# flat US$90/t basis, 25 June to 31 July on the ad valorem one.
+#
+# HOW IT WAS MISSED, WHICH IS THE PART WORTH RECORDING. The cancellation was searched for
+# in English and not found, and NOT FOUND WAS REPORTED AS NOT TRUE. It is an Egyptian
+# ministerial decision and its coverage is Arabic; the decree register, the Customs
+# Authority's own Circular 46 of 2026 governing shipments cleared before the levy ceased,
+# and the trade press all carry it. Three searches in the wrong language is not evidence of
+# absence, and a study that charges a repealed duty for five forecast years is the cost.
+# Worth EGP 2.98 a share against a gap of 9.21.
+I("export_duty_2026", 0.0, "ratio",
+  "Ministerial Decision 340 of 2026, effective 1 August 2026, cancelling Decisions 190, "
+  "203 and 258 of 2026 and ending the 10% ad valorem export levy on nitrogen fertilisers. "
+  "The Egyptian Customs Authority issued Circular 46 of 2026 to govern shipments whose "
+  "declarations were opened before the levy ceased, which is the administrative trace a "
+  "cancellation leaves and a rumour does not. This study strikes on 3 September 2026, so "
+  "the rate in force at the strike is nil. The superseded chain is registered below with "
+  "its own dates, because a duty that existed for three months is a fact about this year "
+  "and the alternatives grid prices its return",
+  "2026-08-01", "L3")
+I("export_duty_2026_superseded", 0.10, "ratio",
   "Decree No. 258 of 2026 of the Minister of Investment and Foreign Trade, published in "
   "the Official Gazette on 25 June 2026 — 10% ad valorem on the FOB invoice value of "
   "nitrogen fertiliser exports, the invoice certified by the Chamber of Chemical "
-  "Industries. It replaced a temporary US$90/t duty imposed in May 2026 for three months; "
-  "the 10% carries no stated expiry. Pure ammonium nitrate above " + _AN_EXEMPT_TXT +
-  " nitrogen and free "
-  "zone shipments are exempt — urea is neither. Read from two independent reports of the "
-  "instrument rather than the Gazette text, which is the remaining gap in this citation",
+  "Industries. It replaced a temporary US$90/t duty imposed in May 2026 for three months "
+  "and was itself cancelled by Decision 340 of 2026 with effect from 1 August 2026. Pure "
+  "ammonium nitrate above " + _AN_EXEMPT_TXT + " nitrogen and free zone shipments were "
+  "exempt — urea was neither. Retained as the alternative this study prices, not as the "
+  "rate it charges",
   "2026-06-25", "L3")
 # THE DECREE'S OWN EXEMPTION THRESHOLD, REGISTERED AS A FACT [09-09-2026]. It is quoted
 # in the delivered study and the workbook, and a figure in delivered text has to exist as

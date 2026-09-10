@@ -1,10 +1,10 @@
 {
  "cashflow": {
   "label": "Cash flow",
-  "carry_through": 5.096633765309656,
-  "stopped": 8.62839041163338,
-  "upside": 5.446825425191661,
-  "downside": 1.0099207215959056
+  "carry_through": 8.074785424029702,
+  "stopped": 11.606542070353424,
+  "upside": 8.387852773539452,
+  "downside": 3.9880723803159515
  },
  "book": {
   "label": "Book value and sustainable return",
@@ -24,19 +24,19 @@
  },
  "relative": {
   "label": "Relative multiples",
-  "ebitda_fwd": 4812.00336886709,
+  "ebitda_fwd": 5781.0701292389895,
   "mult_low": 6.0,
   "mult_mid": 7.95,
   "mult_high": 9.9,
-  "ev_low": 28872.02021320254,
-  "ev_mid": 38255.42678249337,
-  "ev_high": 47638.8333517842,
-  "value_low": 11.327871083772864,
-  "value_per_share": 16.051270744201283,
-  "value_high": 20.7746704046297,
-  "implied_at_market": 8.033885974749778,
-  "implied_at_market_ex_nonop": 7.272420675513574,
-  "implied_at_model": 3.4275069558900815
+  "ev_low": 34686.42077543394,
+  "ev_mid": 45959.50752744997,
+  "ev_high": 57232.594279466,
+  "value_low": 14.25471193186309,
+  "value_per_share": 19.929334867920833,
+  "value_high": 25.603957803978577,
+  "implied_at_market": 6.687185159727342,
+  "implied_at_market_ex_nonop": 6.053362441219282,
+  "implied_at_model": 3.876359922753379
  },
  "normalised": {
   "label": "Normalised earnings power",
@@ -44,12 +44,12 @@
   "export_t": 345542.0,
   "price_usd": 400.0,
   "fx": 55.89,
-  "rev_exp": 6952.4432568,
+  "rev_exp": 7724.936952,
   "rev_sub": 1166.53,
   "rev_free": 804.816,
   "rev_an": 593.1183673469387,
   "rev_oth": 140.0,
-  "revenue": 9656.90762414694,
+  "revenue": 10429.40131934694,
   "gas": 3998.3790003100653,
   "other_materials": 1275.859586703936,
   "wages": 234.14270000000002,
@@ -58,42 +58,42 @@
   "other_selling": 193.93550000000002,
   "admin": 395.5864000000001,
   "cash_cost": 6828.73906132444,
-  "ebitda": 2828.1685628224996,
+  "ebitda": 3600.6622580225003,
   "dep": 890.591,
-  "nopat": 1501.6226111874373,
+  "nopat": 2100.305224967438,
   "mult_low": 8.0,
   "mult": 10.0,
   "mult_high": 12.0,
-  "ev": 15016.226111874374,
-  "value_low": 2.8414029734236097,
-  "value_per_share": 4.353170300012002,
-  "value_high": 5.864937626600394
+  "ev": 21003.05224967438,
+  "value_low": 5.252311833655654,
+  "value_per_share": 7.366806375302057,
+  "value_high": 9.481300916948458
  },
  "synthesis": {
   "field": {
-   "Cash flow \u2014 programme carried through": 5.096633765309656,
-   "Cash flow \u2014 programme stopped": 8.62839041163338,
+   "Cash flow \u2014 programme carried through": 8.074785424029702,
+   "Cash flow \u2014 programme stopped": 11.606542070353424,
    "Book value, disclosed (a floor, never weighted)": 8.15778582586335,
-   "Relative multiples": 16.051270744201283,
-   "Normalised earnings power": 4.353170300012002
+   "Relative multiples": 19.929334867920833,
+   "Normalised earnings power": 7.366806375302057
   },
-  "low": 4.353170300012002,
-  "high": 16.051270744201283,
-  "central_carry_through": 5.096633765309656,
-  "central_stopped": 8.62839041163338,
+  "low": 7.366806375302057,
+  "high": 19.929334867920833,
+  "central_carry_through": 8.074785424029702,
+  "central_stopped": 11.606542070353424,
   "spot": 14.41,
   "note": "The two cash-flow readings are the contested judgement and are never averaged. The other three lenses are shown against both."
  },
  "central": {
   "name": "Cash-flow lens, programme carried through",
   "primary": "dcf",
-  "base": 5.096633765309656,
+  "base": 8.074785424029702,
   "alternative_framing": {
    "label": "Cash-flow lens, programme stopped",
-   "value": 8.62839041163338
+   "value": 11.606542070353424
   },
-  "bear": 1.0099207215959056,
-  "bull": 5.446825425191661,
+  "bear": 3.9880723803159515,
+  "bull": 8.387852773539452,
   "retired_blend": {
    "weights": {
     "cashflow": 0.45,
@@ -101,18 +101,18 @@
     "normalised": 0.2,
     "book": 0.15
    },
-   "value": 6.374373403232003
+   "value": 9.092881689457943
   },
-  "note": "The central is the cash-flow lens on the company's own tonnes, prices and disclosed capital programme, carried through. It is not a blend. The relative multiple is published beside it as a cross-check, the disclosed book value as a floor, and normalised earnings as a diagnostic this class does not weight. The retired blend of all four read EGP 6.37."
+  "note": "The central is the cash-flow lens on the company's own tonnes, prices and disclosed capital programme, carried through. It is not a blend. The relative multiple is published beside it as a cross-check, the disclosed book value as a floor, and normalised earnings as a diagnostic this class does not weight. The retired blend of all four read EGP 9.09."
  },
  "contested": {
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "side_a_label": "Carried through",
-  "side_a": 5.096633765309656,
+  "side_a": 8.074785424029702,
   "side_b_label": "Stopped",
-  "side_b": 8.62839041163338,
-  "gap": 3.531756646323723,
-  "gap_equity": 7016.113583165379,
+  "side_b": 11.606542070353424,
+  "gap": 3.5317566463237213,
+  "gap_equity": 7016.1135831653755,
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
  }
 }

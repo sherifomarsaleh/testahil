@@ -1004,9 +1004,40 @@ _STAR_CASE = dict(
     # stopped branch FELL 9.1288 -> 8.6284. A hunt for our own error is not a hunt for
     # reasons the answer should be higher, and this is what that distinction looks like
     # when it costs something [R-GAP-04].
-    hunt_recorded={
-        'ANNA nameplate against the KIMA-2 capital-intensity read': 4.874,
-    },
+    # WRITTEN OFF 10-09-2026, WITH THE EVIDENCE AND NOT WITH A SHRUG [R-GAP-04]. The last
+    # of the four was the ANNA nameplate: the disclosed capital cost buys 264kt of nitrate
+    # where the same money bought 575kt of urea at KIMA-2, and the reading under test was
+    # that the plant must therefore make more than the model sells — ammonia, most likely,
+    # since the auditor's interim report calls it the KIMA AMMONIA plant. Worth 4.874 a
+    # share if true.
+    #
+    # IT IS NOT TRUE, AND THE CONTRACTOR'S OWN FILING SAYS SO. MAIRE Tecnimont's half-year
+    # report at 30 June 2025, pages 115-116, describes a 600 t/day nitric-acid unit whose
+    # ENTIRE OUTPUT is converted into 800 t/day of granular fertiliser-grade ammonium
+    # nitrate, and describes no ammonia unit at all. MAIRE's release of 29 December 2023
+    # says the new units consume ammonia from the plant commissioned in 2020 rather than
+    # build another. The nitric acid is an intermediate inside the battery limits, which is
+    # exactly what this model sells nothing out of.
+    #
+    # AND THE CAPITAL INTENSITY HAS AN ANSWER RATHER THAN AN IMPLICATION. ANNA is bounded
+    # by the ammonia it is fed, not by the money spent on it: KIMA-2's train makes about
+    # 1,200 t/day, roughly 900 goes captively to the 1,575 t/day urea unit, and the ~300
+    # t/day surplus is the whole feedstock available. A downstream upgrade of a fixed
+    # stream costs what it costs; KIMA-2 bought the ammonia AND the urea trains, which is
+    # why the ratio looked wrong. The comparison was measuring two different things.
+    #
+    # THE NAMEPLATE IS CORROBORATED FROM OUTSIDE AND THIS MODEL IS THE CONSERVATIVE SIDE.
+    # Egypt's State Information Service, reporting the meeting of 4 February 2025, put the
+    # units at 600 t/day or 213,000 t/year of nitric acid and 800 t/day or 284,000 t/year
+    # of ammonium nitrate. This model carries 264,000 t/year — 7% BELOW the government's
+    # own annualised figure, not double it.
+    #
+    # THE FALSIFIER THIS STUDY STATED IS ANSWERED BY A BETTER DOCUMENT THAN THE ONE IT
+    # NAMED. It said KIMA's FY2025/26 annual report, due late September 2026, would
+    # disclose the output slate. MAIRE's half-year report is the EPC contractor's own
+    # regulated filing on the plant it is building, and it is already published. The KIMA
+    # report remains the confirmation and this write-off is revisited if it disagrees.
+    hunt_recorded=True,
     falsifier=(
         "This study is the one that is wrong if the ANNA plant's disclosed capital "
         "cost buys ammonia capacity rather than only nitrate capacity. The test is "
