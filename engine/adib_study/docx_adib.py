@@ -12,6 +12,7 @@ import json, os, sys, datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))
+from table_residual import waterfall   # the shared check, not hand-rolled
 import docx_base as B
 from docx.shared import Pt, Inches
 
@@ -29,6 +30,10 @@ def bullet(text, bold_head=None):
 INK, GREY, BRASS, GOLD = B.INK, B.GREY, B.BRASS, B.GOLD
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json'), encoding='utf-8'))
+# THE REAL-RATE CONVENTION IS READ, NOT TYPED. It was written into the terminal
+# sentence as 5.5%, which is the convention this house RETIRED — so the prose explained
+# the terminal risk-free rate with arithmetic that no longer produces it.
+HOUSE_REAL = json.load(open(os.path.join(HERE, '..', 'macro_paths', 'EG.json')))['real_rate_convention']['value']
 TECH = json.load(open(os.path.join(HERE, 'technicals.json'), encoding='utf-8'))
 STRIKE = json.load(open(os.path.join(HERE, 'strike_result.json'), encoding='utf-8'))
 GAPN = json.load(open(os.path.join(HERE, 'gap_review_numbers.json'), encoding='utf-8'))
@@ -447,14 +452,31 @@ rows.append(['Beta against the EGX30 index', '%.4f' % CC['beta'],
              '%.3f, standard error %.4f' % (D['beta_record']['n'],
              D['beta_record']['window_years'], D['beta_record']['last_obs'],
              D['beta_record']['r2'], D['beta_record']['se'])])
-rows.append(['Egyptian total equity risk premium', pc(CC['erp'], 2),
-             'the total premium column, which is what multiplies beta; the country premium '
-             'alone is not added on top'])
+# THE TABLE DESCRIBED THE RETIRED CONSTRUCTION IN WORDS. It said the TOTAL premium "is
+# what multiplies beta" and that "the country premium alone is not added on top" — true
+# until this rate moved onto the split, and false the moment it did. A reader following
+# these steps arrived at 29.81% against a printed 29.42%. Nothing caught it because this
+# study carried no waterfall assertion; the one below is why it will not happen again.
+rows.append(['of which the MATURE equity premium', pc(CC['erp_mature'], 2),
+             'the total Egyptian premium of %s less the country leg below. Beta '
+             'multiplies THIS and nothing else' % pc(CC['erp'], 2)])
+rows.append(['times the beta above', pc(CC['beta'] * CC['erp_mature'], 2), 'derived'])
+rows.append(['plus the country premium, charged FLAT and once',
+             pc(CC['crp_effective'], 2),
+             'the sovereign default spread scaled to equity volatility. Country risk is a '
+             'charge on being here; it does not scale with a share\'s covariance, so it '
+             'is added beside beta rather than multiplied through it'])
 rows.append(['= COST OF EQUITY', pc(CC['ke'], 2), 'the rate used in the first forecast year'])
+# A READER FOLLOWING THE PRINTED STEPS MUST ARRIVE AT THE PRINTED ANSWER.
+waterfall(CC['rf'],
+          [('less the sovereign default spread', CC['sovereign_default_spread']),
+           ('plus beta times the mature premium', CC['beta'] * CC['erp_mature']),
+           ('plus the country premium, flat', CC['crp_effective'])],
+          CC['ke'], dp=4, what="ADIB's cost of equity")
 rows.append(['Terminal cost of equity', pc(CC['ke_terminal'], 2),
              'a %s terminal risk-free rate — itself derived as %s terminal inflation plus a '
              '%s real convention — plus the same beta times a normalised %s premium'
-             % (pc(CC['terminal_rf'], 2), pc(CC['terminal_inflation'], 1), pc(0.055, 1),
+             % (pc(CC['terminal_rf'], 2), pc(CC['terminal_inflation'], 1), pc(HOUSE_REAL, 1),
                 pc(CC['terminal_erp'], 1))])
 table(rows, [2.5, 0.85, 3.65], size=8.3, first_col_bold=True)
 caption(T('the cost of equity, built rather than quoted'))
