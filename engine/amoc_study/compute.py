@@ -616,16 +616,23 @@ INP['kd_path'] = I([0.2431, 0.1950, 0.1750, 0.1600, 0.1500],
 INP['kd_term'] = I(0.1500, "Terminal cost of debt: the midpoint of the 14-16% long-run Egyptian "
                            "corporate-borrowing norm, with no name-specific reason to deviate",
                    "2026-08-06", "House")
-INP['real_rate_term'] = I(0.055, "Terminal real risk-free rate, the standard emerging-market "
-                                 "convention. The terminal NOMINAL risk-free rate is not an input: it "
-                                 "is DERIVED as this real rate plus the central bank's inflation "
-                                 "target IN FORCE for the terminal horizon (`cbe_target`), so the "
-                                 "single most terminal-value-sensitive number in the model cannot be "
-                                 "set by hand. The previous edition hardcoded 10.50% by adding 5.5pp "
-                                 "to the 5% target dated Q4-2028 while describing it as 'the' "
-                                 "medium-term target; the target in force is 7% for Q4-2026 and the "
-                                 "July-2026 rate decision pushed even that to H2-2027",
-                          "2026-08-06", "House")
+INP['real_rate_term'] = I(_HP.real_rate_convention,
+                          "Terminal real risk-free rate, READ LIVE from the house macro path "
+                          "(engine/macro_paths/EG.json) rather than typed here. The terminal "
+                          "NOMINAL risk-free rate is not an input either: it is the house path's "
+                          "own `terminal_rf`, which is this real rate plus the central bank's "
+                          "inflation target in force for the terminal horizon, so the single most "
+                          "terminal-value-sensitive number in the model can be set neither by hand "
+                          "nor by this study alone. TWO EDITIONS OF THIS LINE ARE RETIRED. The "
+                          "first hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 "
+                          "while describing it as 'the' medium-term target. The second, adopted "
+                          "06-Aug-2026, derived the rate correctly but from a real convention "
+                          "typed into this file, so when the house convention moved from 5.5% to "
+                          "3.5% — the retired figure being a restrictive policy stance rather than "
+                          "a long-run real rate — this study went on discounting at 12.50% while "
+                          "every conformed study discounted at 10.50%. Two readers of one economy "
+                          "must not disagree",
+                          "2026-09-10", "House")
 INP['erp_term'] = I(0.0700, "Terminal equity risk premium, normalised below the currently elevated "
                             "crisis-era level toward the rating-class norm; never held flat into "
                             "perpetuity", "2026-08-06", "House")
@@ -1392,7 +1399,11 @@ assert wacc_exp > wacc_exp_gross, \
     "unlevering for net cash must RAISE the operating rate; check the signs"
 
 # ---- terminal (norm-built, never backed out of a price) --------------------
-RF_TERM = V['cbe_target'] + V['real_rate_term']   # DERIVED, not set by hand
+RF_TERM = _HP.terminal_rf        # READ from the house macro path, never set by hand
+assert abs(RF_TERM - (V['cbe_target'] + V['real_rate_term'])) < 5e-6, \
+    ("the terminal risk-free rate must reproduce from the two registered inputs: "
+     f"{V['cbe_target']:.4%} target + {V['real_rate_term']:.4%} real = "
+     f"{V['cbe_target']+V['real_rate_term']:.4%} vs house path {RF_TERM:.4%}")
 kd_term_at = V['kd_term'] * (1 - TAX)
 
 def terminal_cost_of_capital(beta):

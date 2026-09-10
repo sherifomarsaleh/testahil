@@ -63,6 +63,33 @@
       "bear": 13.4,
       "full": -59.5
      }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 2,
+     "fair": {
+      "base": 43.388157797595056,
+      "bear": 42.095516615259555,
+      "full": 44.917954899147084
+     },
+     "lessons": [
+      "L-383",
+      "L-384",
+      "L-385",
+      "L-386"
+     ],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -20.1,
+      "bear": 33.2,
+      "full": -52.9
+     },
+     "vs_previous_pct": {
+      "base": 16.7,
+      "bear": 17.5,
+      "full": 16.4
+     }
     }
    ],
    "exchange": "EGX",
@@ -261,6 +288,28 @@
       "base": 54.7,
       "bear": -0.0,
       "full": 0.1
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 8,
+     "fair": {
+      "base": 20.0503,
+      "bear": 1.6639,
+      "full": 27.5238
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 237.0,
+      "bear": -59.3,
+      "full": 223.0
+     },
+     "vs_previous_pct": {
+      "base": 13.7,
+      "bear": -0.6,
+      "full": 15.0
      }
     }
    ],
@@ -1207,6 +1256,26 @@
       "base": 0.1,
       "bear": 0.1,
       "full": 0.1
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 6,
+     "fair": {
+      "base": 21.08966329162309,
+      "bear": 4.981294104224145,
+      "full": 55.06632686478202
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2015-FY2025, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 18.1,
+      "bear": 24.0,
+      "full": 18.3
      }
     }
    ],

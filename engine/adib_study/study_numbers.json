@@ -16,33 +16,33 @@
   "fy_note": "financial year ends 31 December",
   "standard": "2026.09.07"
  },
- "central": 37.17789080747221,
+ "central": 43.388157797595056,
  "spot": 52.05,
  "fair": {
-  "bear": 35.83842889391098,
-  "base": 37.17789080747221,
-  "full": 38.58104520290892
+  "bear": 42.095516615259555,
+  "base": 43.388157797595056,
+  "full": 44.917954899147084
  },
- "gap_to_spot": -0.2857273620082188,
+ "gap_to_spot": -0.16641387516628126,
  "primary": "ddm",
  "lens_architecture": "One class primary IS the central; the others are cross-checks. bank -> ddm primary, with residual income, a relative multiple and book value beside it. No typed weights.",
  "lenses": {
-  "dividend_discount": 37.17789080747221,
-  "free_cash_flow_to_equity": 35.83842889391098,
-  "residual_income": 38.58104520290892,
+  "dividend_discount": 43.388157797595056,
+  "free_cash_flow_to_equity": 42.095516615259555,
+  "residual_income": 44.917954899147084,
   "relative_multiples": 60.820178311647034,
-  "book_value_and_sustainable_return": 39.453303505623204,
+  "book_value_and_sustainable_return": 46.611759557447215,
   "book_value_floor": 29.038621333333335,
   "normalised_earnings_power": 34.000273022184004
  },
  "present_value_reads": {
-  "ddm": 37.17789080747221,
-  "fcfe": 35.83842889391098,
-  "residual_income": 38.58104520290892
+  "ddm": 43.388157797595056,
+  "fcfe": 42.095516615259555,
+  "residual_income": 44.917954899147084
  },
  "envelope": {
-  "bear": 35.83842889391098,
-  "full": 38.58104520290892,
+  "bear": 42.095516615259555,
+  "full": 44.917954899147084,
   "construction": "the range of the present-value reads on one clock"
  },
  "cost_of_capital": {
@@ -57,17 +57,17 @@
   "ke": 0.2980721085087931,
   "ke_rating_basis": 0.31517309835270024,
   "ke_double_counted_retired": 0.33227210850879313,
-  "ke_terminal": 0.2002285275483956,
+  "ke_terminal": 0.18022852754839563,
   "ke_terminal_construction": "same_beta",
   "ke_path": [
-   0.28176484501539356,
-   0.26545758152199395,
-   0.24915031802859436,
-   0.23284305453519477,
-   0.21653579104179518
+   0.2784315116820602,
+   0.2587909148553273,
+   0.23915031802859438,
+   0.21950972120186146,
+   0.19986912437512855
   ],
   "terminal_growth": 0.07,
-  "terminal_rf": 0.125,
+  "terminal_rf": 0.10500000000000001,
   "terminal_inflation": 0.07,
   "terminal_erp": 0.07
  },
@@ -382,63 +382,63 @@
  "sensitivity": [
   {
    "driver": "cost of risk +50bp",
-   "value": 32.91341683027851,
-   "change": -0.11470456996276412
+   "value": 38.501574429100714,
+   "change": -0.11262481784292766
   },
   {
    "driver": "cost of risk -50bp",
-   "value": 41.44236478466592,
-   "change": 0.11470456996276446
+   "value": 48.27474116608942,
+   "change": 0.1126248178429281
   },
   {
    "driver": "asset yield -50bp",
-   "value": 28.708805084249853,
-   "change": -0.22779898319353276
+   "value": 33.71012450660798,
+   "change": -0.22305702252063608
   },
   {
    "driver": "asset yield +50bp",
-   "value": 45.64697653069459,
-   "change": 0.2277989831935332
+   "value": 53.06619108858217,
+   "change": 0.2230570225206372
   },
   {
    "driver": "cost of funds +50bp",
-   "value": 29.936822514117104,
-   "change": -0.19476813063047027
+   "value": 35.11343933380112,
+   "change": -0.1907137542551437
   },
   {
    "driver": "cost of funds -50bp",
-   "value": 44.41895910082733,
-   "change": 0.19476813063047071
+   "value": 51.66287626138903,
+   "change": 0.19071375425514447
   },
   {
    "driver": "financing growth -5pp/yr",
-   "value": 33.03170349049848,
-   "change": -0.11152293007812075
+   "value": 37.847930415774215,
+   "change": -0.12768985048099757
   },
   {
    "driver": "financing growth +5pp/yr",
-   "value": 41.83250048989517,
-   "change": 0.12519832570726286
+   "value": 49.64434818140743,
+   "change": 0.14419119643192468
   },
   {
    "driver": "risk-free +200bp",
-   "value": 31.445033000222505,
-   "change": -0.1542007274414149
+   "value": 35.82971696335831,
+   "change": -0.17420515684248994
   },
   {
    "driver": "risk-free -200bp",
-   "value": 45.064786595644044,
-   "change": 0.2121394091185691
+   "value": 54.38763652860743,
+   "change": 0.2535133845120767
   },
   {
    "driver": "terminal growth +100bp",
-   "value": 37.993452318246014,
-   "change": 0.02193673425416298
+   "value": 44.89499122378532,
+   "change": 0.034729140453936935
   },
   {
    "driver": "terminal growth -100bp",
-   "value": 36.453253053496844,
-   "change": -0.01949109371825164
+   "value": 42.101139203116034,
+   "change": -0.02966290019693718
   }
  ],
  "walkforward": {
@@ -540,7 +540,7 @@
    "tier": "Market"
   },
   "rf_terminal": {
-   "value": 0.125,
+   "value": 0.10500000000000001,
    "source": "Terminal risk-free rate, DERIVED and never quoted: terminal inflation of 7.00% (the CBE target-band midpoint in force) plus the 5.50% emerging-market terminal real convention. It cannot disagree with the inflation the rest of the model runs on because it is computed from it.",
    "date": "2026-09-02",
    "tier": "House"

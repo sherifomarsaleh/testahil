@@ -8,7 +8,7 @@
    8.5,
    8.0,
    7.5,
-   17.63
+   20.05
   ],
   "p": {
    "11.00": {
@@ -39,9 +39,9 @@
     "1M": 0.071011,
     "3M": 0.269901
    },
-   "17.63": {
+   "20.05": {
     "1M": 0.0,
-    "3M": 0.0008
+    "3M": 5.7e-05
    }
   },
   "basis": "round levels spanning the latest known price and this study's central, so a reader can read the distribution at prices they recognise. The probabilities beside them are computed from the cone's own percentiles and its own anchor, never from the study spot \u2014 those are two clocks."
@@ -109,7 +109,7 @@
   "terminal": {
    "g_nominal": 0.07,
    "real": 0.0,
-   "rf": 0.125,
+   "rf": 0.10500000000000001,
    "inflation_in_rf": 0.07
   },
   "explicit_years": 5,
@@ -130,16 +130,16 @@
    0.1247740390600179
   ],
   "mechanism": null,
-  "note": "THE FORECAST OPENS ON THE LATEST REVIEWED PERIOD AND OWES NO MECHANISM. WHAT WAS CORRECTED, and why it could not be declared away instead: The reviewed six months to 30-Jun-2026 carried a gross margin of 12.428% \u2014 gross profit footing exactly to net sales less cost of sales in the same statements \u2014 and the forecast now opens at 12.428%, on that period. The path rises to 12.477% by the fifth year and does NOT climb past the filed record: the best full year this company has filed is 13.84%, above the whole path, so the mirror clause does not fire either. THE PREVIOUS EDITION forecast the twelve months to 30-Jun-2026, both halves filed blend of 9.653% forward, which averages the audited transition half at 6.145% with the reviewed half at 12.428%. That is a BASE-PERIOD CHOICE, which is not on the closed list and therefore could not be declared away \u2014 a near-term reviewed actual outranks a stale full-year rate, so the only honest route was to correct it. WHAT THE FILED RECORD DOES: cost per unit of revenue, period by period, runs the six months to 31-Dec-2024, audited comparative 93.146% \u00b7 the quarter to 31-Mar-2025, reviewed comparative 94.947% \u00b7 the six months to 31-Dec-2025, audited transition period 93.855% \u00b7 the quarter to 31-Mar-2026, reviewed 89.810% \u00b7 the six months to 30-Jun-2026, reviewed 87.572% \u2014 it FALLS \u2014 and the quarter inside the latest half that is not the first printed a gross margin of 13.925%, the highest in the record this study holds. THE CANDIDATES, TESTED RATHER THAN ASSERTED. Input cost outpacing price is refused by the same-quarter pair this rule prescribes \u2014 cost per unit of revenue 94.947% in the quarter to 31-Mar-2025 against 89.810% in the quarter to 31-Mar-2026, 5.14 points the OTHER WAY \u2014 and this model makes no such claim in any case: the gross spread per tonne is held flat in real terms and the forecast margin rises. A one-off in the latest period was drafted on 03-09-2026 and refused on that same pair; no non-recurring item is disclosed inside the reviewed statements' net sales or cost of sales, and both foot to the filed gross profit to the pound. A contracted price step-down, a subsidy or levy withdrawal and a capacity commissioning drag have no disclosure in any filing this study holds. A mix shift to lower margin has no decline to attribute, the forecast path rising rather than falling. SO EVERY MECHANISM WAS REFUSED BY THE COMPANY'S OWN FILINGS, AND THAT REFUSAL IS WHY THE ANCHOR MOVED RATHER THAN THE RECORD. The superseded twelve-month base is retained and priced at EGP 11.41 a share against the adopted EGP 17.63. THE CORRECTION CROSSES THE TRADED PRICE of EGP 13.50, from 15.5% below it to +30.6% above; it is taken on the filed evidence rather than withheld for where it lands, and it would have been taken had it landed the other way."
+  "note": "THE FORECAST OPENS ON THE LATEST REVIEWED PERIOD AND OWES NO MECHANISM. WHAT WAS CORRECTED, and why it could not be declared away instead: The reviewed six months to 30-Jun-2026 carried a gross margin of 12.428% \u2014 gross profit footing exactly to net sales less cost of sales in the same statements \u2014 and the forecast now opens at 12.428%, on that period. The path rises to 12.477% by the fifth year and does NOT climb past the filed record: the best full year this company has filed is 13.84%, above the whole path, so the mirror clause does not fire either. THE PREVIOUS EDITION forecast the twelve months to 30-Jun-2026, both halves filed blend of 9.653% forward, which averages the audited transition half at 6.145% with the reviewed half at 12.428%. That is a BASE-PERIOD CHOICE, which is not on the closed list and therefore could not be declared away \u2014 a near-term reviewed actual outranks a stale full-year rate, so the only honest route was to correct it. WHAT THE FILED RECORD DOES: cost per unit of revenue, period by period, runs the six months to 31-Dec-2024, audited comparative 93.146% \u00b7 the quarter to 31-Mar-2025, reviewed comparative 94.947% \u00b7 the six months to 31-Dec-2025, audited transition period 93.855% \u00b7 the quarter to 31-Mar-2026, reviewed 89.810% \u00b7 the six months to 30-Jun-2026, reviewed 87.572% \u2014 it FALLS \u2014 and the quarter inside the latest half that is not the first printed a gross margin of 13.925%, the highest in the record this study holds. THE CANDIDATES, TESTED RATHER THAN ASSERTED. Input cost outpacing price is refused by the same-quarter pair this rule prescribes \u2014 cost per unit of revenue 94.947% in the quarter to 31-Mar-2025 against 89.810% in the quarter to 31-Mar-2026, 5.14 points the OTHER WAY \u2014 and this model makes no such claim in any case: the gross spread per tonne is held flat in real terms and the forecast margin rises. A one-off in the latest period was drafted on 03-09-2026 and refused on that same pair; no non-recurring item is disclosed inside the reviewed statements' net sales or cost of sales, and both foot to the filed gross profit to the pound. A contracted price step-down, a subsidy or levy withdrawal and a capacity commissioning drag have no disclosure in any filing this study holds. A mix shift to lower margin has no decline to attribute, the forecast path rising rather than falling. SO EVERY MECHANISM WAS REFUSED BY THE COMPANY'S OWN FILINGS, AND THAT REFUSAL IS WHY THE ANCHOR MOVED RATHER THAN THE RECORD. The superseded twelve-month base is retained and priced at EGP 12.85 a share against the adopted EGP 20.05. THE CORRECTION CROSSES THE TRADED PRICE of EGP 13.50, from 15.5% below it to +48.5% above; it is taken on the filed evidence rather than withheld for where it lands, and it would have been taken had it landed the other way."
  },
  "lens_record": {
   "class": "refiner, commodity pass-through on a thin spread",
   "primary": {
    "kind": "dcf",
-   "value": 17.632866746280982,
+   "value": 20.05029697520137,
    "range": {
-    "low": 1.6731381004678432,
-    "high": 23.92709520373801
+    "low": 1.6638826923902055,
+    "high": 27.51811494973379
    },
    "range_note": "the cash-flow lens with gross margin and volume each flexed across the span this company's own audited filings have printed, and the macro path held still. Not a confidence interval and no probability is attached to either end",
    "range_basis": {
@@ -169,7 +169,7 @@
    },
    {
     "kind": "book_value",
-    "value": 6.232514696472435,
+    "value": 6.713659608495054,
     "present_value": false,
     "note": "published as a DISCLOSED FLOOR and never weighted"
    }
@@ -181,7 +181,7 @@
     "normalized": 0.2,
     "book": 0.15
    },
-   "blend_value": 13.984373515019005,
+   "blend_value": 15.144388854836572,
    "why": "the weights were typed and had never cleared an out-of-sample test. Normalised earnings is dropped as a lens for this class outright: a refiner earning a ~6.6% spread between two numbers each above EGP 35bn has no mid-cycle margin to normalise, which is the one thing that lens requires."
   },
   "diagnostics": {
@@ -206,7 +206,7 @@
   "lines": [
    {
     "label": "Enterprise value",
-    "value": 21147.159841206296
+    "value": 24364.5970281502
    },
    {
     "label": "less net debt (the company is NET CASH, so this ADDS)",
@@ -226,12 +226,12 @@
    },
    {
     "label": "less non-controlling interests",
-    "value": -715.4763763844066
+    "value": -810.8024226776281
    }
   ],
-  "equity_value": 22772.847402821888,
+  "equity_value": 25894.95854347257,
   "shares_mn": 1291.5,
-  "per_share": 17.632866746280982,
+  "per_share": 20.05029697520137,
   "cash": {
    "treatment": "added_at_face",
    "weights_basis": "gross"
@@ -240,11 +240,11 @@
   "cash_note": "The operations are discounted at the rate weighted on GROSS borrowings, which on a book of 0.14% of the capital structure IS the cost of equity, and the cash is then added ONCE, at face, in the bridge. THE DEFECT THIS RECORD EXISTS TO PREVENT WAS THIS STUDY'S OWN. A previous edition discounted the operations at a NET-debt-weighted rate \u2014 on a net-cash company the debt weight goes negative, the equity weight levers above one and the operating rate lands 374bp ABOVE the cost of equity \u2014 and then added the same cash back at face in the bridge. That is the cash charged twice. This edition values the operations at the unlevered rate, which on a book of EGP 25mn IS the cost of equity, and adds the cash once.",
   "nci": {
    "basis": "value_share",
-   "value": 715.4763763844066,
-   "deduction": 715.4763763844066,
-   "book": 715.4763763844066,
-   "profit_share": 715.4763763844066,
-   "proportional": 715.4763763844066,
+   "value": 810.8024226776281,
+   "deduction": 810.8024226776281,
+   "book": 810.8024226776281,
+   "profit_share": 810.8024226776281,
+   "proportional": 810.8024226776281,
    "proxy": "the minority's share of the subsidiaries' value, taken at its disclosed carrying amount",
    "proxy_source": "the company's own latest disclosed balance sheet",
    "framings_note": "the contested-choice block prices the minority at DOUBLE this share and publishes what that is worth to the answer, which is the dual framing this rule asks for."
@@ -1440,9 +1440,9 @@
    "ring": "House"
   },
   "real_rate_term": {
-   "value": 0.055,
-   "source": "Terminal real risk-free rate, the standard emerging-market convention. The terminal NOMINAL risk-free rate is not an input: it is DERIVED as this real rate plus the central bank's inflation target IN FORCE for the terminal horizon (`cbe_target`), so the single most terminal-value-sensitive number in the model cannot be set by hand. The previous edition hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 while describing it as 'the' medium-term target; the target in force is 7% for Q4-2026 and the July-2026 rate decision pushed even that to H2-2027",
-   "date": "2026-08-06",
+   "value": 0.035,
+   "source": "Terminal real risk-free rate, READ LIVE from the house macro path (engine/macro_paths/EG.json) rather than typed here. The terminal NOMINAL risk-free rate is not an input either: it is the house path's own `terminal_rf`, which is this real rate plus the central bank's inflation target in force for the terminal horizon, so the single most terminal-value-sensitive number in the model can be set neither by hand nor by this study alone. TWO EDITIONS OF THIS LINE ARE RETIRED. The first hardcoded 10.50% by adding 5.5pp to the 5% target dated Q4-2028 while describing it as 'the' medium-term target. The second, adopted 06-Aug-2026, derived the rate correctly but from a real convention typed into this file, so when the house convention moved from 5.5% to 3.5% \u2014 the retired figure being a restrictive policy stance rather than a long-run real rate \u2014 this study went on discounting at 12.50% while every conformed study discounted at 10.50%. Two readers of one economy must not disagree",
+   "date": "2026-09-10",
    "ring": "House"
   },
   "erp_term": {
@@ -2191,24 +2191,24 @@
   ],
   "df": [
    0.7846908667422364,
-   0.6398929873100316,
-   0.5304665412780736,
-   0.4452902726635562,
-   0.3769550938768175
+   0.6447827758802824,
+   0.540418767694187,
+   0.4598463417157826,
+   0.39530082644755327
   ],
   "pv": [
    2188.8062413814732,
-   2010.148063100824,
-   1808.3025078012904,
-   1597.8835189310223,
-   1400.6916109798162
+   2025.5087549952327,
+   1842.2285607868453,
+   1650.1166447521828,
+   1468.8607752291418
   ],
   "fwd_wacc": [
    0.2743872044180305,
-   0.2262845230433028,
-   0.20628340812657608,
-   0.1912825719390311,
-   0.18128201448066775
+   0.21698484527745962,
+   0.19311692047888543,
+   0.17521597687995483,
+   0.16328201448066773
   ],
   "glide_frac": [
    0.0,
@@ -2296,12 +2296,12 @@
   "wacc_exp_gross": 0.27430506833623086,
   "wd_gross": 0.0009656489182075634,
   "k_nd_at": 0.13207845722027028,
-  "ke_term": 0.18844425408355087,
+  "ke_term": 0.16844425408355088,
   "kd_term": 0.15,
   "wacc_net_retired": 0.3039808290086491,
   "wd_net_retired": -0.20795365831935606,
   "kd_term_at": 0.11682185805471951,
-  "wacc_term": 0.18128201448066775,
+  "wacc_term": 0.16328201448066773,
   "glide_frac": [
    0.0,
    0.5166487647690655,
@@ -2362,32 +2362,32 @@
   }
  },
  "dcf": {
-  "pv_explicit": 9005.831942194425,
-  "tv": 32208.950339796833,
-  "pv_tv": 12141.327899011869,
-  "ev": 21147.159841206296,
-  "tv_share": 0.5741351552729027,
+  "pv_explicit": 9175.520977144875,
+  "tv": 38424.093841403956,
+  "pv_tv": 15189.076051005326,
+  "ev": 24364.5970281502,
+  "tv_share": 0.6234076448486414,
   "nd": -3001.542316,
   "nci_share": 0.04644563756748903,
-  "nci_val": 715.4763763844066,
-  "eq_attr": 22772.847402821888,
-  "ps": 17.632866746280982,
+  "nci_val": 810.8024226776281,
+  "eq_attr": 25894.95854347257,
+  "ps": 20.05029697520137,
   "roic_term": 0.4623753550094497,
   "rr_term": 0.1513921519423746,
   "g": 0.07,
-  "bear": 1.6731381004678432,
-  "bull": 23.92709520373801,
-  "ps_rating_basis": 13.982058112202452,
+  "bear": 1.6638826923902055,
+  "bull": 27.51811494973379,
+  "ps_rating_basis": 15.237872175731404,
   "wacc_exp_rating": 0.30579463729228706,
-  "wacc_term_rating": 0.21798904720043644,
-  "ps_nci_alt": 17.07887806925086,
+  "wacc_term_rating": 0.19998904720043645,
+  "ps_nci_alt": 19.42249796422373,
   "nci_alt": 0.05925588644281647,
-  "ps_gross_basis": 17.634669195149044,
-  "ccy_alt_ps": 18.345428662404885,
+  "ps_gross_basis": 20.052403708421902,
+  "ccy_alt_ps": 20.554513541930795,
   "pound_on_price": true,
-  "ps_pound_at_inflation": 15.815070943523091,
-  "ps_h1_anchor": 17.632866746280982,
-  "ps_ttm_base_superseded": 11.410241239091295,
+  "ps_pound_at_inflation": 17.885776656074007,
+  "ps_h1_anchor": 20.05029697520137,
+  "ps_ttm_base_superseded": 12.849683076529717,
   "gm_ttm_base": 0.09653412625014321,
   "gm_h1_filed": 0.12427806123173553,
   "gm_q1_2025": 0.05053126981775711,
@@ -2466,9 +2466,9 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (primary)",
-   "bear": 1.6731381004678432,
-   "base": 17.632866746280982,
-   "bull": 23.92709520373801,
+   "bear": 1.6638826923902055,
+   "base": 20.05029697520137,
+   "bull": 27.51811494973379,
    "w": 0.45
   },
   "relative": {
@@ -2487,30 +2487,30 @@
   },
   "book": {
    "name": "Book value and sustainable return",
-   "bear": 4.738831402909378,
-   "base": 6.232514696472435,
-   "bull": 7.1228739388256415,
+   "bear": 5.026420658497639,
+   "base": 6.713659608495054,
+   "bull": 7.672753838280063,
    "w": 0.15
   },
   "central": {
    "name": "Cash-flow lens (the central)",
-   "bear": 1.6731381004678432,
-   "base": 17.632866746280982,
-   "bull": 23.92709520373801,
+   "bear": 1.6638826923902055,
+   "base": 20.05029697520137,
+   "bull": 27.51811494973379,
    "w": 1.0
   },
   "retired_blend": {
    "name": "RETIRED 45/20/20/15 blend, published unused",
-   "base": 13.984373515019005,
-   "bear": 5.415796411522271,
-   "bull": 18.112976926074012,
+   "base": 15.144388854836572,
+   "bear": 5.454769866225574,
+   "bull": 19.81141779669028,
    "w": 0.0
   }
  },
- "central": 17.632866746280982,
+ "central": 20.05029697520137,
  "span": [
-  1.6731381004678432,
-  23.92709520373801
+  1.6638826923902055,
+  27.51811494973379
  ],
  "spot": 13.5,
  "scen": {
@@ -2519,16 +2519,16 @@
    "gm_shift": -0.04600412625014321,
    "fx_mult": 1.0,
    "wacc_shift": 0.0,
-   "ps": 1.6731381004678432
+   "ps": 1.6638826923902055
   },
   "bull": {
    "vol_adj": 0.03,
    "gm_shift": 0.041865873749856786,
    "fx_mult": 1.0,
    "wacc_shift": 0.0,
-   "ps": 23.92709520373801
+   "ps": 27.51811494973379
   },
-  "base_ps": 17.632866746280982,
+  "base_ps": 20.05029697520137,
   "labels": {
    "vol_adj": "Volume growth, percentage points a year added to the flat base path",
    "gm_shift": "Gross margin, shifted on every forecast year",
@@ -2553,10 +2553,10 @@
   },
   "e2": {
    "method_short": "free cash flow to equity, discounted",
-   "base": 15.07472234988809,
+   "base": 17.353668109705215,
    "rng": [
-    0.5801452865777794,
-    19.877204277186596
+    0.5872798852377372,
+    23.043949858073905
    ],
    "fcff": 3571.03484306319,
    "fcfe": [
@@ -2566,60 +2566,60 @@
     3551.396655732579,
     3628.303846082054
    ],
-   "ke": 0.18844425408355087,
+   "ke": 0.16844425408355088,
    "fin_at": 135.96898666171714,
    "ke_path": [
     0.2743872044180305,
-    0.22998488528711244,
-    0.21152238252997396,
-    0.1976755054621201,
-    0.18844425408355087
+    0.21965190999173115,
+    0.19689295181031768,
+    0.1798237331742576,
+    0.16844425408355088
    ],
    "df": [
     0.7846908667422364,
-    0.6379678938567346,
-    0.5265836628824733,
-    0.43967139720311166,
-    0.3699554233969156
+    0.6433728019558929,
+    0.5375357929736174,
+    0.4556068655505038,
+    0.3899260610493148
    ],
-   "pv": 9178.660423620035,
-   "pv_tv": 10290.343491260433,
-   "ps_at_wacc": 15.798302128362122
+   "pv": 9362.988050712858,
+   "pv_tv": 13049.274312971427,
+   "ps_at_wacc": 18.09779563490336
   },
   "e2e3": {
-   "gap": 3.3679913523516074,
-   "rate": 0.7235797784740328,
+   "gap": 3.59135474043946,
+   "rate": 0.7441275251981452,
    "cash": 2.3240745768486257,
-   "resid": 0.3203369970289489
+   "resid": 0.523152638392689
   },
   "e3": {
    "method_short": "cash returns against the cost of capital",
-   "base": 18.442713702239697,
+   "base": 20.945022850144674,
    "rng": [
-    0.8812937023510989,
-    24.640472916002537
+    0.5274806531647126,
+    28.29919908392049
    ],
    "ic0": 4677.069217,
-   "pv_ep": 6684.752867176479,
-   "pv_ep_term": 10469.363688324174,
-   "ev": 21831.185772500656,
+   "pv_ep": 6969.10374324856,
+   "pv_ep_term": 13574.155992589662,
+   "ev": 25220.328952838223,
    "ep": [
     1953.5574790590958,
-    2349.8518921301825,
-    2560.9483813815987,
-    2723.9414749799716,
-    2856.3570404669526
+    2397.5087229999963,
+    2633.267272357145,
+    2816.770221399616,
+    2964.6893900840587
    ],
    "spread": [
     0.35725344144303045,
-    0.41265354091120643,
-    0.4330643644336122,
-    0.4449468984407464,
-    0.4502958152543254
+    0.4219532186770496,
+    0.44623085208130286,
+    0.4610134934998227,
+    0.4682958152543254
    ]
   }
  },
- "panel_centre": 18.442713702239697,
+ "panel_centre": 20.945022850144674,
  "rel": {
   "ebitda_mid": 2951.0622019999996,
   "pv_interim": 0.0,
@@ -2647,10 +2647,10 @@
  },
  "book": {
   "bvps": 4.70022373132017,
-  "pb_just": 1.3260038357199402,
+  "pb_just": 1.4283702207106135,
   "roe_sust": 0.28,
   "roe_trailing": 0.2890865198484107,
-  "ke_term": 0.18844425408355087
+  "ke_term": 0.16844425408355088
  },
  "sens_wg": {
   "g_grid": [
@@ -2661,47 +2661,47 @@
    0.07
   ],
   "wacc_grid": [
-   0.16128201448066776,
-   0.17128201448066774,
-   0.18128201448066775,
-   0.19128201448066776,
-   0.20128201448066774
+   0.14328201448066774,
+   0.15328201448066772,
+   0.16328201448066773,
+   0.17328201448066774,
+   0.18328201448066772
   ],
   "table": [
    [
-    17.2766485844238,
-    17.860020531186972,
-    18.54823816204127,
-    19.37235704533079,
-    20.377041374722314
+    19.274512947569924,
+    20.132610883793113,
+    21.17468810927169,
+    22.467017981009313,
+    24.112048274779838
    ],
    [
-    16.38467091086587,
-    16.864225402807083,
-    17.42286078633716,
-    18.08189611070891,
-    18.87107010338244
+    18.093235515357126,
+    18.781747751649124,
+    19.60358663532577,
+    20.601630736750366,
+    21.839353022630082
    ],
    [
-    15.609306598957094,
-    16.007775311419802,
-    16.46694825881355,
-    17.001841080973552,
-    17.632866746280982
+    17.08766579628209,
+    17.648088591320374,
+    18.30745432935054,
+    19.09450265400446,
+    20.05029697520137
    ],
    [
-    14.928893475438564,
-    15.2630757531202,
-    15.644565153213705,
-    16.08417209539439,
-    16.596272381961395
+    16.221049236722973,
+    16.6827900379872,
+    17.219438895095475,
+    17.850833393790104,
+    18.60449400084241
    ],
    [
-    14.326827332169913,
-    14.609374788808651,
-    14.929275986089817,
-    15.294462664110632,
-    15.71528326570665
+    15.46622159509413,
+    15.85064282340085,
+    16.292749438562595,
+    16.806578862120062,
+    17.41112514411495
    ]
   ]
  },
@@ -2714,11 +2714,11 @@
    0.07
   ],
   "wt_grid": [
-   0.16128201448066776,
-   0.17128201448066774,
-   0.18128201448066775,
-   0.19128201448066776,
-   0.20128201448066774
+   0.14328201448066774,
+   0.15328201448066772,
+   0.16328201448066773,
+   0.17328201448066774,
+   0.18328201448066772
   ],
   "we_grid": [
    0.2443872044180305,
@@ -2729,76 +2729,76 @@
   ],
   "grid_wacc_g": [
    [
-    17.2766485844238,
-    17.860020531186972,
-    18.54823816204127,
-    19.37235704533079,
-    20.377041374722314
+    19.274512947569924,
+    20.132610883793113,
+    21.17468810927169,
+    22.467017981009313,
+    24.112048274779838
    ],
    [
-    16.38467091086587,
-    16.864225402807083,
-    17.42286078633716,
-    18.08189611070891,
-    18.87107010338244
+    18.093235515357126,
+    18.781747751649124,
+    19.60358663532577,
+    20.601630736750366,
+    21.839353022630082
    ],
    [
-    15.609306598957094,
-    16.007775311419802,
-    16.46694825881355,
-    17.001841080973552,
-    17.632866746280982
+    17.08766579628209,
+    17.648088591320374,
+    18.30745432935054,
+    19.09450265400446,
+    20.05029697520137
    ],
    [
-    14.928893475438564,
-    15.2630757531202,
-    15.644565153213705,
-    16.08417209539439,
-    16.596272381961395
+    16.221049236722973,
+    16.6827900379872,
+    17.219438895095475,
+    17.850833393790104,
+    18.60449400084241
    ],
    [
-    14.326827332169913,
-    14.609374788808651,
-    14.929275986089817,
-    15.294462664110632,
-    15.71528326570665
+    15.46622159509413,
+    15.85064282340085,
+    16.292749438562595,
+    16.806578862120062,
+    17.41112514411495
    ]
   ],
   "grid_exp_term": [
    [
-    21.185789839461325,
-    19.60834527087832,
-    18.311400255338555,
-    17.225650288400818,
-    16.30290431623174
+    25.09814873630719,
+    22.717525083395632,
+    20.843535947282707,
+    19.329120504247374,
+    18.0791417614038
    ],
    [
-    20.775257499457062,
-    19.234114334049327,
-    17.96700413723346,
-    16.90622009272556,
-    16.00468211346368
+    24.597538397562925,
+    22.2717322278364,
+    20.440880919409224,
+    18.961313823051306,
+    17.740087140880874
    ],
    [
-    20.377041374722314,
-    18.87107010338244,
-    17.632866746280982,
-    16.596272381961395,
-    15.71528326570665
+    24.112048274779838,
+    21.839353022630082,
+    20.05029697520137,
+    18.60449400084241,
+    17.41112514411495
    ],
    [
-    19.99065941202471,
-    18.51877561052692,
-    17.308588144155,
-    16.295438183240933,
-    15.434365084963428
+    23.641084350205006,
+    21.419861599511837,
+    19.67131184699647,
+    18.258232044876298,
+    17.0918624597143
    ],
    [
-    19.61565302352607,
-    18.17681513295814,
-    16.993787815740372,
-    16.003366423154525,
-    15.161601489594311
+    23.184081585178017,
+    21.01275771305994,
+    19.30347625073481,
+    17.92211981564128,
+    16.78192487336796
    ]
   ],
   "beta_grid": [
@@ -2809,11 +2809,11 @@
    1.3
   ],
   "grid_beta": [
-   21.03196390340446,
-   18.670851080899453,
-   17.632866746280982,
-   15.668384431848452,
-   14.67919387568453
+   24.87131215256799,
+   21.48081496775662,
+   20.05029697520137,
+   17.436737164149196,
+   16.16495189863018
   ],
   "gm_grid": [
    -0.01,
@@ -2823,11 +2823,11 @@
    0.01
   ],
   "grid_margin": [
-   15.365029540409497,
-   16.49894814334524,
-   17.632866746280982,
-   18.766785349216722,
-   19.900703952152465
+   17.42603168948632,
+   18.738164332343842,
+   20.05029697520137,
+   21.362429618058897,
+   22.674562260916417
   ],
   "vol_grid": [
    -0.06,
@@ -2837,11 +2837,11 @@
    0.06
   ],
   "grid_vol": [
-   12.41721502868688,
-   14.881676657695172,
-   17.632866746280982,
-   20.23122245803598,
-   23.11541745533357
+   13.778570766958204,
+   16.73884770209245,
+   20.05029697520137,
+   23.226911337821033,
+   26.7596392682456
   ],
   "fx_grid": [
    0.9,
@@ -2851,11 +2851,11 @@
    1.1
   ],
   "grid_fx": [
-   16.879057233884872,
-   17.253713317439285,
-   17.632866746280982,
-   18.016558325754733,
-   18.404829105517436
+   19.15040791618389,
+   19.59761687749338,
+   20.05029697520137,
+   20.508498437707644,
+   20.972271796397713
   ],
   "nwc_grid": [
    13.5,
@@ -2865,11 +2865,11 @@
    40.4
   ],
   "grid_nwc": [
-   19.401891698287223,
-   18.517379222284106,
-   17.632866746280982,
-   16.74835427027786,
-   15.86384179427474
+   21.932665114151906,
+   20.991481044676636,
+   20.05029697520137,
+   19.109112905726107,
+   18.16792883625084
   ]
  },
  "unitbuild": {
@@ -3248,8 +3248,8 @@
   "tax_eff": 0.22118761296853667,
   "emp_rate": 0.05235881267409801,
   "nci_op": 0.029627943221408236,
-  "rf_term": 0.125,
-  "ke_blend": 0.22837058260542864,
+  "rf_term": 0.10500000000000001,
+  "ke_blend": 0.21702070720539465,
   "asset_life": 17.499636507891946,
   "cap_intensity": 2100.379937530212,
   "maint_capex0": 156.621007,
@@ -3263,19 +3263,19 @@
   "rr_2030": 0.058669388129718524
  },
  "bridge": {
-  "ev": 21147.159841206296,
+  "ev": 24364.5970281502,
   "nd": -3001.542316,
-  "eq_gross": 24148.702157206295,
-  "nci": 715.4763763844066,
+  "eq_gross": 27366.1393441502,
+  "nci": 810.8024226776281,
   "prov": 996.857074,
   "divp": 258.3,
   "inv": 594.778696,
-  "eq": 22772.847402821888,
-  "ps": 17.632866746280982
+  "eq": 25894.95854347257,
+  "ps": 20.05029697520137
  },
  "span_env": [
-  1.6731381004678432,
-  23.92709520373801
+  1.6638826923902055,
+  27.51811494973379
  ],
  "blocks": {
   "base": {
@@ -3486,24 +3486,24 @@
    ],
    "fwd": [
     0.2743872044180305,
-    0.2262845230433028,
-    0.20628340812657608,
-    0.1912825719390311,
-    0.18128201448066775
+    0.21698484527745962,
+    0.19311692047888543,
+    0.17521597687995483,
+    0.16328201448066773
    ],
    "df": [
     0.7846908667422364,
-    0.6398929873100316,
-    0.5304665412780736,
-    0.4452902726635562,
-    0.3769550938768175
+    0.6447827758802824,
+    0.540418767694187,
+    0.4598463417157826,
+    0.39530082644755327
    ],
    "pv": [
     2188.8062413814732,
-    2010.148063100824,
-    1808.3025078012904,
-    1597.8835189310223,
-    1400.6916109798162
+    2025.5087549952327,
+    1842.2285607868453,
+    1650.1166447521828,
+    1468.8607752291418
    ],
    "icr": [
     7172.683465882696,
@@ -3512,22 +3512,22 @@
     8674.601009280763,
     9134.816528000487
    ],
-   "pv_explicit": 9005.831942194425,
+   "pv_explicit": 9175.520977144875,
    "roic": 0.4623753550094497,
    "rr": 0.1513921519423746,
-   "tv": 32208.950339796833,
-   "pv_tv": 12141.327899011869,
-   "ev": 21147.159841206296,
+   "tv": 38424.093841403956,
+   "pv_tv": 15189.076051005326,
+   "ev": 24364.5970281502,
    "nd": -3001.542316,
-   "eq_gross": 24148.702157206295,
-   "nci": 715.4763763844066,
+   "eq_gross": 27366.1393441502,
+   "nci": 810.8024226776281,
    "prov": 996.857074,
    "divp": 258.3,
    "inv": 594.778696,
-   "eq": 22772.847402821888,
-   "ps": 17.632866746280982,
+   "eq": 25894.95854347257,
+   "ps": 20.05029697520137,
    "we": 0.2743872044180305,
-   "wt": 0.18128201448066775
+   "wt": 0.16328201448066773
   },
   "grids": [
    [
@@ -3817,7 +3817,7 @@
        ],
        [
         "G",
-        0.16198218580547197,
+        0.14398218580547198,
         "0.00%"
        ]
       ],
@@ -3839,7 +3839,7 @@
        ],
        [
         "G",
-        0.17458218580547194,
+        0.15658218580547198,
         "0.00%"
        ]
       ],
@@ -3861,7 +3861,7 @@
        ],
        [
         "G",
-        0.18128201448066775,
+        0.16328201448066773,
         "0.00%"
        ]
       ],
@@ -3883,7 +3883,7 @@
        ],
        [
         "G",
-        0.19663218580547198,
+        0.17863218580547197,
         "0.00%"
        ]
       ],
@@ -3905,7 +3905,7 @@
        ],
        [
         "G",
-        0.20608218580547197,
+        0.18808218580547195,
         "0.00%"
        ]
       ],
@@ -4311,24 +4311,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      1882.5430279978912,
-     1737.2516834261407,
-     1567.7271159516647,
-     1386.0860282203437,
-     1213.5256155294746
+     1750.5270178863236,
+     1597.139668869781,
+     1431.395717602096,
+     1272.5857443667744
     ],
     "icr": [
      7172.683465882696,
@@ -4337,22 +4337,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 7787.133471125515,
+    "pv_explicit": 7934.191176722866,
     "roic": 0.40421577245412255,
     "rr": 0.17317483574430492,
-    "tv": 27434.79956199701,
-    "pv_tv": 10341.687444384255,
-    "ev": 18128.820915509772,
+    "tv": 32728.707448369787,
+    "pv_tv": 12937.685102900768,
+    "ev": 20871.876279623633,
     "nd": -3001.542316,
-    "eq_gross": 21130.36323150977,
-    "nci": 626.0492020709038,
+    "eq_gross": 23873.418595623632,
+    "nci": 707.3202906520485,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 19843.935651438864,
-    "ps": 15.365029540409497,
+    "eq": 22505.719926971582,
+    "ps": 17.42603168948632,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Gross margin, shifted on every forecast year|1": {
     "inf": [
@@ -4562,24 +4562,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2035.6746346896816,
-     1873.699873263483,
-     1688.0148118764776,
-     1491.9847735756832,
-     1307.1086132546452
+     1888.0178864407785,
+     1719.6841148283133,
+     1540.7561811771398,
+     1370.7232597979578
     ],
     "icr": [
      7172.683465882696,
@@ -4588,22 +4588,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 8396.48270665997,
+    "pv_explicit": 8554.856076933871,
     "roic": 0.433295563731786,
     "rr": 0.16155254255806473,
-    "tv": 29821.874950896916,
-    "pv_tv": 11241.50767169806,
-    "ev": 19637.99037835803,
+    "tv": 35576.40064488686,
+    "pv_tv": 14063.380576953043,
+    "ev": 22618.236653886914,
     "nd": -3001.542316,
-    "eq_gross": 22639.53269435803,
-    "nci": 670.7627892276552,
+    "eq_gross": 25619.778969886913,
+    "nci": 759.0613566648383,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 21308.391527130374,
-    "ps": 16.49894814334524,
+    "eq": 24200.339235222073,
+    "ps": 18.738164332343842,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Gross margin, shifted on every forecast year|2": {
     "inf": [
@@ -4813,24 +4813,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -4839,22 +4839,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 32208.950339796833,
-    "pv_tv": 12141.327899011869,
-    "ev": 21147.159841206296,
+    "tv": 38424.093841403956,
+    "pv_tv": 15189.076051005326,
+    "ev": 24364.5970281502,
     "nd": -3001.542316,
-    "eq_gross": 24148.702157206295,
-    "nci": 715.4763763844066,
+    "eq_gross": 27366.1393441502,
+    "nci": 810.8024226776281,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 22772.847402821888,
-    "ps": 17.632866746280982,
+    "eq": 25894.95854347257,
+    "ps": 20.05029697520137,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Gross margin, shifted on every forecast year|3": {
     "inf": [
@@ -5064,24 +5064,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2341.9378480732644,
-     2146.596252938165,
-     1928.5902037261033,
-     1703.782264286362,
-     1494.274608704987
+     2162.999623549687,
+     1964.7730067453776,
+     1759.477108327227,
+     1566.9982906603257
     ],
     "icr": [
      7172.683465882696,
@@ -5090,22 +5090,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9615.181177728882,
+    "pv_explicit": 9796.185877355882,
     "roic": 0.49145514628711323,
     "rr": 0.14243415808918047,
-    "tv": 34596.025728696746,
-    "pv_tv": 13041.148126325676,
-    "ev": 22656.329304054558,
+    "tv": 41271.78703792104,
+    "pv_tv": 16314.771525057606,
+    "ev": 26110.957402413485,
     "nd": -3001.542316,
-    "eq_gross": 25657.871620054557,
-    "nci": 760.1899635411581,
+    "eq_gross": 29112.499718413485,
+    "nci": 862.5434886904179,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 24237.3032785134,
-    "ps": 18.766785349216722,
+    "eq": 27589.577851723065,
+    "ps": 21.362429618058897,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Gross margin, shifted on every forecast year|4": {
     "inf": [
@@ -5315,24 +5315,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2495.069454765055,
-     2283.044442775507,
-     2048.8778996509154,
-     1809.6810096417014,
-     1587.8576064301576
+     2300.4904921041416,
+     2087.3174527039096,
+     1868.8375719022704,
+     1665.1358060915093
     ],
     "icr": [
      7172.683465882696,
@@ -5341,22 +5341,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 10224.530413263337,
+    "pv_explicit": 10416.850777566886,
     "roic": 0.5205349375647768,
     "rr": 0.1344770445716509,
-    "tv": 36983.10111759665,
-    "pv_tv": 13940.96835363948,
-    "ev": 24165.49876690282,
+    "tv": 44119.48023443812,
+    "pv_tv": 17440.466999109878,
+    "ev": 27857.317776676762,
     "nd": -3001.542316,
-    "eq_gross": 27167.04108290282,
-    "nci": 804.9035506979096,
+    "eq_gross": 30858.86009267676,
+    "nci": 914.2845547032076,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 25701.75915420491,
-    "ps": 19.900703952152465,
+    "eq": 29284.19715997355,
+    "ps": 22.674562260916417,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Volume growth path, as a multiple of the assumed path|0": {
     "inf": [
@@ -5566,24 +5566,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2149.7927789530117,
-     1795.18734327092,
-     1462.63924952368,
-     1162.8289957542606,
-     908.6182510805025
+     1808.9053972684894,
+     1490.0802205249468,
+     1200.8406483710671,
+     952.839081927425
     ],
     "icr": [
      6942.550427616934,
@@ -5592,22 +5592,22 @@
      7649.874109052185,
      7836.572545826462
     ],
-    "pv_explicit": 7479.066618582376,
+    "pv_explicit": 7602.45812704494,
     "roic": 0.3233918380490512,
     "rr": 0.21645567934643606,
-    "tv": 17844.06519471002,
-    "pv_tv": 6726.411270615968,
-    "ev": 14205.477889198344,
+    "tv": 21287.313877673943,
+    "pv_tv": 8414.89276869298,
+    "ev": 16017.35089573792,
     "nd": -3001.542316,
-    "eq_gross": 17207.020205198343,
-    "nci": 509.80861764924083,
+    "eq_gross": 19018.89321173792,
+    "nci": 563.4906882113976,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 16036.833209549104,
-    "ps": 12.41721502868688,
+    "eq": 17795.02414552652,
+    "ps": 13.778570766958204,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Volume growth path, as a multiple of the assumed path|1": {
     "inf": [
@@ -5817,24 +5817,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2169.299510167245,
-     1902.1442480119392,
-     1632.1267923525609,
-     1372.8677034039558,
-     1142.4346593038863
+     1916.6796209373354,
+     1662.7475650372282,
+     1417.7452996981335,
+     1198.0349180073213
     ],
     "icr": [
      7057.616946749815,
@@ -5843,22 +5843,22 @@
      8138.487049490057,
      8445.600168268014
     ],
-    "pv_explicit": 8218.872913239587,
+    "pv_explicit": 8364.506913847263,
     "roic": 0.39391199681818256,
     "rr": 0.1777046664367265,
-    "tv": 24582.869276750138,
-    "pv_tv": 9266.637795978882,
-    "ev": 17485.51070921847,
+    "tv": 29326.459447320558,
+    "pv_tv": 11592.773656306474,
+    "ev": 19957.280570153736,
     "nd": -3001.542316,
-    "eq_gross": 20487.05302521847,
-    "nci": 606.9892438051527,
+    "eq_gross": 22958.822886153735,
+    "nci": 680.2227009013309,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 19219.685403413314,
-    "ps": 14.881676657695172,
+    "eq": 21618.2218072524,
+    "ps": 16.73884770209245,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Volume growth path, as a multiple of the assumed path|2": {
     "inf": [
@@ -6068,24 +6068,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -6094,22 +6094,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 32208.950339796833,
-    "pv_tv": 12141.327899011869,
-    "ev": 21147.159841206296,
+    "tv": 38424.093841403956,
+    "pv_tv": 15189.076051005326,
+    "ev": 24364.5970281502,
     "nd": -3001.542316,
-    "eq_gross": 24148.702157206295,
-    "nci": 715.4763763844066,
+    "eq_gross": 27366.1393441502,
+    "nci": 810.8024226776281,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 22772.847402821888,
-    "ps": 17.632866746280982,
+    "eq": 25894.95854347257,
+    "ps": 20.05029697520137,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Volume growth path, as a multiple of the assumed path|3": {
     "inf": [
@@ -6319,24 +6319,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2122.1462681378102,
-     2039.205748745276,
-     1917.710502318962,
-     1770.923842580892,
-     1622.7851873206773
+     2054.788487047381,
+     1953.6891883142246,
+     1828.8134739547131,
+     1701.7632500924333
     ],
     "icr": [
      7397.559730623578,
@@ -6345,22 +6345,22 @@
      9797.377954500076,
      10621.621385030114
     ],
-    "pv_explicit": 9472.771549103618,
+    "pv_explicit": 9661.200667546562,
     "roic": 0.4905898810504655,
     "rr": 0.14268537265814357,
-    "tv": 40144.370999583014,
-    "pv_tv": 15132.625138773607,
-    "ev": 24605.396687877226,
+    "tv": 47890.759003909945,
+    "pv_tv": 18931.256613446203,
+    "ev": 28592.457280992763,
     "nd": -3001.542316,
-    "eq_gross": 27606.939003877225,
-    "nci": 817.9368213237549,
+    "eq_gross": 31593.999596992762,
+    "nci": 936.0652261968962,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 26128.623804553466,
-    "ps": 20.23122245803598,
+    "eq": 29997.555992795864,
+    "ps": 23.226911337821033,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Volume growth path, as a multiple of the assumed path|4": {
     "inf": [
@@ -6570,24 +6570,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2055.4862948941573,
-     2064.5884368681236,
-     2025.114800896478,
-     1947.7175127496998,
-     1857.269112253844
+     2080.365138818411,
+     2063.1085280193715,
+     2011.3863426125884,
+     1947.6590897306605
     ],
     "icr": [
      7622.435995364459,
@@ -6596,22 +6596,22 @@
      11026.231756765446,
      12299.18855355794
     ],
-    "pv_explicit": 9950.176157662303,
+    "pv_explicit": 10158.00539407519,
     "roic": 0.5139020790991489,
     "rr": 0.1362127199849189,
-    "tv": 49061.2557261469,
-    "pv_tv": 18493.890257964256,
-    "ev": 28444.06641562656,
+    "tv": 58528.27472211492,
+    "pv_tv": 23136.27536820147,
+    "ev": 33294.280762276656,
     "nd": -3001.542316,
-    "eq_gross": 31445.60873162656,
-    "nci": 931.6687100632507,
+    "eq_gross": 36295.823078276655,
+    "nci": 1075.3705853374595,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 29853.561643563306,
-    "ps": 23.11541745533357,
+    "eq": 34560.07411493919,
+    "ps": 26.7596392682456,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Realisation path, as a multiple of the assumed path|0": {
     "inf": [
@@ -6821,24 +6821,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2178.6916549387884,
-     1966.0953657390742,
-     1746.157044423594,
-     1528.3108533515099,
-     1328.8535813771625
+     1981.1194257585912,
+     1778.917169543503,
+     1578.2697221621474,
+     1393.526516762873
     ],
     "icr": [
      7128.070095306426,
@@ -6847,22 +6847,22 @@
      8532.600670609625,
      8966.69596360181
     ],
-    "pv_explicit": 8748.108499830128,
+    "pv_explicit": 8910.524489165904,
     "roic": 0.44518635311534444,
     "rr": 0.15723752426405474,
-    "tv": 30231.138192257276,
-    "pv_tv": 11395.781535265385,
-    "ev": 20143.890035095515,
+    "tv": 36064.63664841901,
+    "pv_tv": 14256.380672650752,
+    "ev": 23166.905161816656,
     "nd": -3001.542316,
-    "eq_gross": 23145.432351095515,
-    "nci": 685.7515555332033,
+    "eq_gross": 26168.447477816655,
+    "nci": 775.3172760651554,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 21799.30241756231,
-    "ps": 16.879057233884872,
+    "eq": 24732.751823751496,
+    "ps": 19.15040791618389,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Realisation path, as a multiple of the assumed path|1": {
     "inf": [
@@ -7072,24 +7072,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2183.7489481601256,
-     1988.102602823136,
-     1777.1377650495676,
-     1562.9384492389684,
-     1364.5622536921298
+     2003.294832737449,
+     1810.479127857835,
+     1614.029257613063,
+     1430.9730665157308
     ],
     "icr": [
      7150.376780594562,
@@ -7098,22 +7098,22 @@
      8603.20653983129,
      9050.189648180114
     ],
-    "pv_explicit": 8876.490018963927,
+    "pv_explicit": 9042.525232884203,
     "roic": 0.4538027480358714,
     "rr": 0.15425204078858237,
-    "tv": 31213.378670645372,
-    "pv_tv": 11766.04208700578,
-    "ev": 20642.53210596971,
+    "tv": 37236.413434630405,
+    "pv_tv": 14719.585004652175,
+    "ev": 23762.110237536377,
     "nd": -3001.542316,
-    "eq_gross": 23644.074421969708,
-    "nci": 700.5252944968693,
+    "eq_gross": 26763.652553536376,
+    "nci": 792.9519782536732,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 22283.170749472836,
-    "ps": 17.253713317439285,
+    "eq": 25310.3221972827,
+    "ps": 19.59761687749338,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Realisation path, as a multiple of the assumed path|2": {
     "inf": [
@@ -7323,24 +7323,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -7349,22 +7349,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 32208.950339796833,
-    "pv_tv": 12141.327899011869,
-    "ev": 21147.159841206296,
+    "tv": 38424.093841403956,
+    "pv_tv": 15189.076051005326,
+    "ev": 24364.5970281502,
     "nd": -3001.542316,
-    "eq_gross": 24148.702157206295,
-    "nci": 715.4763763844066,
+    "eq_gross": 27366.1393441502,
+    "nci": 810.8024226776281,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 22772.847402821888,
-    "ps": 17.632866746280982,
+    "eq": 25894.95854347257,
+    "ps": 20.05029697520137,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Realisation path, as a multiple of the assumed path|3": {
     "inf": [
@@ -7574,24 +7574,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2193.8635346028113,
-     2032.2317465721453,
-     1839.6515740909874,
-     1633.1476607857796,
-     1437.2449761067064
+     2047.7611925319502,
+     1874.1657753976356,
+     1686.533534186255,
+     1507.1931274875803
     ],
     "icr": [
      7194.990151170831,
@@ -7600,22 +7600,22 @@
      8746.789695869958,
      9220.587672067271
     ],
-    "pv_explicit": 9136.139492158429,
+    "pv_explicit": 9309.517164206234,
     "roic": 0.47090330933729296,
     "rr": 0.14865047370024162,
-    "tv": 33217.98341823326,
-    "pv_tv": 12521.688057818688,
-    "ev": 21657.82754997712,
+    "tv": 39627.83321464944,
+    "pv_tv": 15664.915220076726,
+    "ev": 24974.43238428296,
     "nd": -3001.542316,
-    "eq_gross": 24659.369865977118,
-    "nci": 730.6064102648753,
+    "eq_gross": 27975.97470028296,
+    "nci": 828.8705899835369,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 23268.38507771224,
-    "ps": 18.016558325754733,
+    "eq": 26486.725732299423,
+    "ps": 20.508498437707644,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Realisation path, as a multiple of the assumed path|4": {
     "inf": [
@@ -7825,24 +7825,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2198.9208278241535,
-     2054.353653237082,
-     1871.185265330893,
-     1668.732475629764,
-     1474.225686733509
+     2070.0521453475835,
+     1906.2910787573164,
+     1723.2815790711325,
+     1545.9736233897524
     ],
     "icr": [
      7217.296836458966,
@@ -7851,22 +7851,22 @@
      8819.778235697042,
      9307.51421881634
     ],
-    "pv_explicit": 9267.417908755402,
+    "pv_explicit": 9444.51925438994,
     "roic": 0.4793857769594221,
     "rr": 0.14602018533796676,
-    "tv": 34240.60894128534,
-    "pv_tv": 12907.171957861612,
-    "ev": 22174.589866617014,
+    "tv": 40847.78787469986,
+    "pv_tv": 16147.1643054232,
+    "ev": 25591.68355981314,
     "nd": -3001.542316,
-    "eq_gross": 25176.132182617013,
-    "nci": 745.9170148412454,
+    "eq_gross": 28593.22587581314,
+    "nci": 847.1584727654924,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 23769.836789775767,
-    "ps": 18.404829105517436,
+    "eq": 27085.689025047646,
+    "ps": 20.972271796397713,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Beta|0": {
     "inf": [
@@ -8076,24 +8076,24 @@
     ],
     "fwd": [
      0.24556,
-     0.2023796255342986,
-     0.1844252078770423,
-     0.17095939463410012,
-     0.16198218580547197
+     0.19307994776845544,
+     0.17125872022935168,
+     0.15489279957502386,
+     0.14398218580547198
     ],
     "df": [
      0.802851729342625,
-     0.6677190067869486,
-     0.5637494054890682,
-     0.481442318215678,
-     0.4143284846333062
+     0.6729236635351086,
+     0.5745303338303762,
+     0.49747503321675507,
+     0.4348625698803915
     ],
     "pv": [
      2239.4639093796145,
-     2097.560208982382,
-     1921.76015712738,
-     1727.6118361876295,
-     1539.5638420673495
+     2113.910021980644,
+     1958.5111644746914,
+     1785.143771279541,
+     1615.864498065742
     ],
     "icr": [
      7172.683465882696,
@@ -8102,22 +8102,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9525.959953744356,
+    "pv_explicit": 9712.893365180233,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 38967.07657829059,
-    "pv_tv": 16145.169789273137,
-    "ev": 25671.129743017493,
+    "tv": 48447.83699071614,
+    "pv_tv": 21068.150898929114,
+    "ev": 30781.044264109347,
     "nd": -3001.542316,
-    "eq_gross": 28672.672059017492,
-    "nci": 849.5122997706286,
+    "eq_gross": 33782.586580109346,
+    "nci": 1000.9085570677876,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 27162.78138124686,
-    "ps": 21.03196390340446,
+    "eq": 32121.29964504156,
+    "ps": 24.87131215256799,
     "we": 0.24556,
-    "wt": 0.16198218580547197
+    "wt": 0.14398218580547198
    },
    "Beta|1": {
     "inf": [
@@ -8327,24 +8327,24 @@
     ],
     "fwd": [
      0.26438,
-     0.21798607021743502,
-     0.1986954549232292,
-     0.18422749345257483,
-     0.17458218580547194
+     0.20868639245159187,
+     0.18552896727553858,
+     0.16816089839349863,
+     0.15658218580547198
     ],
     "df": [
      0.7909014694949302,
-     0.6493518184109761,
-     0.5417154255019379,
-     0.4574420273950785,
-     0.38945084722308027
+     0.6543479552961097,
+     0.5519459864400152,
+     0.4724914069620661,
+     0.4085238496328833
     ],
     "pv": [
      2206.130013893665,
-     2039.8618611792972,
-     1846.648725647511,
-     1641.4889821616605,
-     1447.1233933573287
+     2055.556633714399,
+     1881.5235906219664,
+     1695.4923077595583,
+     1517.994950488585
     ],
     "icr": [
      7172.683465882696,
@@ -8353,22 +8353,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9181.252976239462,
+    "pv_explicit": 9356.697496478175,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 34272.3461984942,
-    "pv_tv": 13347.39426332628,
-    "ev": 22528.64723956574,
+    "tv": 41397.39421886776,
+    "pv_tv": 16911.822851061926,
+    "ev": 26268.5203475401,
     "nd": -3001.542316,
-    "eq_gross": 25530.18955556574,
-    "nci": 756.4070065840913,
+    "eq_gross": 29270.0626635401,
+    "nci": 867.2117546824271,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 24113.404170981645,
-    "ps": 18.670851080899453,
+    "eq": 27742.47253085767,
+    "ps": 21.48081496775662,
     "we": 0.26438,
-    "wt": 0.17458218580547194
+    "wt": 0.15658218580547198
    },
    "Beta|2": {
     "inf": [
@@ -8578,24 +8578,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -8604,22 +8604,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 32208.950339796833,
-    "pv_tv": 12141.327899011869,
-    "ev": 21147.159841206296,
+    "tv": 38424.093841403956,
+    "pv_tv": 15189.076051005326,
+    "ev": 24364.5970281502,
     "nd": -3001.542316,
-    "eq_gross": 24148.702157206295,
-    "nci": 715.4763763844066,
+    "eq_gross": 27366.1393441502,
+    "nci": 810.8024226776281,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 22772.847402821888,
-    "ps": 17.632866746280982,
+    "eq": 25894.95854347257,
+    "ps": 20.05029697520137,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Beta|3": {
     "inf": [
@@ -8829,24 +8829,24 @@
     ],
     "fwd": [
      0.297315,
-     0.24529734841292378,
-     0.2236683872540563,
-     0.20744666638490572,
-     0.19663218580547198
+     0.23599767064708058,
+     0.21050189960636562,
+     0.19138007132582943,
+     0.17863218580547197
     ],
     "df": [
      0.7708228148136729,
-     0.6189869558431585,
-     0.5058453436328296,
-     0.4189380431579062,
-     0.3500975889896463
+     0.6236442293698862,
+     0.5151947548142506,
+     0.4324352632832906,
+     0.36689585478082487
     ],
     "pv": [
      2150.1228822351336,
-     1944.4742402997329,
-     1724.3715338708782,
-     1503.3209475047631,
-     1300.8943608606724
+     1959.1045137122253,
+     1756.2426555538693,
+     1551.754490552381,
+     1363.3134403609004
     ],
     "icr": [
      7172.683465882696,
@@ -8855,22 +8855,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 8623.18396477118,
+    "pv_explicit": 8780.53798241451,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 28304.6277320556,
-    "pv_tv": 9909.381926242148,
-    "ev": 18532.565891013328,
+    "tv": 32994.61252246877,
+    "pv_tv": 12105.586564593288,
+    "ev": 20886.1245470078,
     "nd": -3001.542316,
-    "eq_gross": 21534.108207013327,
-    "nci": 638.011335281052,
+    "eq_gross": 23887.6668630078,
+    "nci": 707.74243750911,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 20235.718493732275,
-    "ps": 15.668384431848452,
+    "eq": 22519.546047498687,
+    "ps": 17.436737164149196,
     "we": 0.297315,
-    "wt": 0.19663218580547198
+    "wt": 0.17863218580547197
    },
    "Beta|4": {
     "inf": [
@@ -9080,24 +9080,24 @@
     ],
     "fwd": [
      0.31143,
-     0.2570021819252761,
-     0.23437107253869643,
-     0.21739774049876176,
-     0.20608218580547197
+     0.24770250415943287,
+     0.22120458489100578,
+     0.2013311454396855,
+     0.18808218580547195
     ],
     "df": [
      0.7625264024766857,
-     0.6066229744396855,
-     0.491442960658549,
-     0.4036831549048278,
-     0.33470617479954845
+     0.611144403361115,
+     0.500443914903628,
+     0.4165744947205762,
+     0.35062767517059895
     ],
     "pv": [
      2126.980980278682,
-     1905.6342564848073,
-     1675.275383173121,
-     1448.5801727357045,
-     1243.7028675306185
+     1919.8377901523143,
+     1705.958653214556,
+     1494.8395695675938,
+     1302.864057725942
     ],
     "icr": [
      7172.683465882696,
@@ -9106,22 +9106,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 8400.173660202934,
+    "pv_explicit": 8550.481050939088,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 26339.060156221072,
-    "pv_tv": 8815.846072703953,
-    "ev": 17216.019732906887,
+    "tv": 30354.086466735134,
+    "pv_tv": 10642.98276975868,
+    "ev": 19193.46382069777,
     "nd": -3001.542316,
-    "eq_gross": 20217.562048906886,
-    "nci": 599.0047804603112,
+    "eq_gross": 22195.006136697768,
+    "nci": 657.5923816168888,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 18958.178890446572,
-    "ps": 14.67919387568453,
+    "eq": 20877.035377080876,
+    "ps": 16.16495189863018,
     "we": 0.31143,
-    "wt": 0.20608218580547197
+    "wt": 0.18808218580547195
    },
    "Working-capital cycle, as a multiple of the solved days|0": {
     "inf": [
@@ -9331,24 +9331,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      3693.6670185713474,
-     2123.8237581108783,
-     1878.7562983901614,
-     1646.2608780734165,
-     1439.3474827271732
+     2140.053111055179,
+     1914.0041540178295,
+     1700.0754087072826,
+     1509.3979593579609
     ],
     "icr": [
      5254.908147001348,
@@ -9357,22 +9357,22 @@
      6337.720645501011,
      6695.388480490563
     ],
-    "pv_explicit": 10781.855435872976,
+    "pv_explicit": 10957.197651709599,
     "roic": 0.6308392780176585,
     "rr": 0.11096328722581628,
-    "tv": 33743.429780365914,
-    "pv_tv": 12719.757740583633,
-    "ev": 23501.61317645661,
+    "tv": 40254.671410685376,
+    "pv_tv": 15912.704877018625,
+    "ev": 26869.902528728224,
     "nd": -3001.542316,
-    "eq_gross": 26503.155492456608,
-    "nci": 785.2339861186582,
+    "eq_gross": 29871.444844728223,
+    "nci": 885.0294718010356,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 25057.543128337948,
-    "ps": 19.401891698287223,
+    "eq": 28326.036994927184,
+    "ps": 21.932665114151906,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Working-capital cycle, as a multiple of the solved days|1": {
     "inf": [
@@ -9582,24 +9582,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2941.2366299764103,
-     2066.985910605851,
-     1843.5294030957261,
-     1622.072198502219,
-     1420.0195468534948
+     2082.780933025206,
+     1878.1163574023376,
+     1675.0960267297323,
+     1489.1293672935517
     ],
     "icr": [
      6213.795806442022,
@@ -9608,22 +9608,22 @@
      7506.160827390887,
      7915.102504245524
     ],
-    "pv_explicit": 9893.843689033702,
+    "pv_explicit": 10066.359314427238,
     "roic": 0.5336272060677529,
     "rr": 0.13117771958409544,
-    "tv": 32976.190060081375,
-    "pv_tv": 12430.542819797753,
-    "ev": 22324.386508831456,
+    "tv": 39339.382626044666,
+    "pv_tv": 15550.890464011974,
+    "ev": 25617.24977843921,
     "nd": -3001.542316,
-    "eq_gross": 25325.928824831455,
-    "nci": 750.3551812515326,
+    "eq_gross": 28618.79209443921,
+    "nci": 847.9159472393318,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 23915.19526557992,
-    "ps": 18.517379222284106,
+    "eq": 27110.497769199876,
+    "ps": 20.991481044676636,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Working-capital cycle, as a multiple of the solved days|2": {
     "inf": [
@@ -9833,24 +9833,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -9859,22 +9859,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 32208.950339796833,
-    "pv_tv": 12141.327899011869,
-    "ev": 21147.159841206296,
+    "tv": 38424.093841403956,
+    "pv_tv": 15189.076051005326,
+    "ev": 24364.5970281502,
     "nd": -3001.542316,
-    "eq_gross": 24148.702157206295,
-    "nci": 715.4763763844066,
+    "eq_gross": 27366.1393441502,
+    "nci": 810.8024226776281,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 22772.847402821888,
-    "ps": 17.632866746280982,
+    "eq": 25894.95854347257,
+    "ps": 20.05029697520137,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Working-capital cycle, as a multiple of the solved days|3": {
     "inf": [
@@ -10084,24 +10084,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      1436.3758527865364,
-     1953.310215595797,
-     1773.0756125068554,
-     1573.6948393598243,
-     1381.3636751061376
+     1968.2365769652595,
+     1806.340764171354,
+     1625.137262774632,
+     1448.592183164732
     ],
     "icr": [
      8131.571125323369,
@@ -10110,22 +10110,22 @@
      9843.04119117064,
      10354.530551755448
     ],
-    "pv_explicit": 8117.820195355151,
+    "pv_explicit": 8284.682639862514,
     "roic": 0.40790975640748384,
     "rr": 0.17160658430065373,
-    "tv": 31441.7106195123,
-    "pv_tv": 11852.11297822599,
-    "ev": 19969.933173581143,
+    "tv": 37508.80505676325,
+    "pv_tv": 14827.26163799868,
+    "ev": 23111.944277861192,
     "nd": -3001.542316,
-    "eq_gross": 22971.475489581142,
-    "nci": 680.597571517281,
+    "eq_gross": 26113.48659386119,
+    "nci": 773.6888981159245,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 21630.499540063858,
-    "ps": 16.74835427027786,
+    "eq": 24679.419317745265,
+    "ps": 19.109112905726107,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Working-capital cycle, as a multiple of the solved days|4": {
     "inf": [
@@ -10335,24 +10335,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      683.9454641916002,
-     1896.4723680907698,
-     1737.8487172124196,
-     1549.5061597886272,
-     1362.0357392324595
+     1910.9643989352862,
+     1770.4529675558617,
+     1600.1578807970823,
+     1428.323591100323
     ],
     "icr": [
      9090.458784764043,
@@ -10361,22 +10361,22 @@
      11011.481373060515,
      11574.244575510409
     ],
-    "pv_explicit": 7229.808448515876,
+    "pv_explicit": 7393.844302580153,
     "roic": 0.3649235168243499,
     "rr": 0.1918210166589329,
-    "tv": 30674.470899227763,
-    "pv_tv": 11562.898057440108,
-    "ev": 18792.706505955983,
+    "tv": 36593.51627212254,
+    "pv_tv": 14465.447224992029,
+    "ev": 21859.291527572183,
     "nd": -3001.542316,
-    "eq_gross": 21794.248821955982,
-    "nci": 645.7187666501552,
+    "eq_gross": 24860.83384357218,
+    "nci": 736.5753735542208,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 20488.151677305825,
-    "ps": 15.86384179427474,
+    "eq": 23463.88009201796,
+    "ps": 18.16792883625084,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Terminal growth|0": {
     "inf": [
@@ -10586,24 +10586,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -10612,22 +10612,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4450902950090964,
     "rr": 0.06740205377739562,
-    "tv": 25064.272844847932,
-    "pv_tv": 9448.105323183821,
-    "ev": 18453.93726537825,
+    "tv": 28449.252528454846,
+    "pv_tv": 11246.013036313345,
+    "ev": 20421.534013458222,
     "nd": -3001.542316,
-    "eq_gross": 21455.479581378248,
-    "nci": 635.6817308251584,
+    "eq_gross": 23423.07632945822,
+    "nci": 693.9775755598994,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 20159.419472553087,
-    "ps": 15.609306598957094,
+    "eq": 22068.72037589832,
+    "ps": 17.08766579628209,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Terminal growth|1": {
     "inf": [
@@ -10837,24 +10837,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -10863,22 +10863,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4494115600091847,
     "rr": 0.08900527614194552,
-    "tv": 26471.164775457746,
-    "pv_tv": 9978.44040296138,
-    "ev": 18984.272345155805,
+    "tv": 30336.132167217544,
+    "pv_tv": 11991.8981169233,
+    "ev": 21167.419094068173,
     "nd": -3001.542316,
-    "eq_gross": 21985.814661155804,
-    "nci": 651.3944684571289,
+    "eq_gross": 24168.961410068172,
+    "nci": 716.0766163779066,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 20674.041814698674,
-    "ps": 16.007775311419802,
+    "eq": 22792.506415690263,
+    "ps": 17.648088591320374,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Terminal growth|2": {
     "inf": [
@@ -11088,24 +11088,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -11114,22 +11114,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.453732825009273,
     "rr": 0.11019700855669445,
-    "tv": 28092.3879587034,
-    "pv_tv": 10589.568740197017,
-    "ev": 19595.400682391442,
+    "tv": 32556.141411313085,
+    "pv_tv": 12869.469605835475,
+    "ev": 22044.99058298035,
     "nd": -3001.542316,
-    "eq_gross": 22596.94299839144,
-    "nci": 669.50094413374,
+    "eq_gross": 25046.53289898035,
+    "nci": 742.0772546241232,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 21267.063676257698,
-    "ps": 16.46694825881355,
+    "eq": 23644.077266356224,
+    "ps": 18.30745432935054,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Terminal growth|3": {
     "inf": [
@@ -11339,24 +11339,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -11365,22 +11365,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.45805409000936137,
     "rr": 0.1309888969636179,
-    "tv": 29980.958809315518,
-    "pv_tv": 11301.47514248253,
-    "ev": 20307.307084676955,
+    "tv": 35206.0433633033,
+    "pv_tv": 13916.978037462193,
+    "ev": 23092.49901460707,
     "nd": -3001.542316,
-    "eq_gross": 23308.849400676954,
-    "nci": 690.5932665996122,
+    "eq_gross": 26094.04133060707,
+    "nci": 773.1127749603061,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 21957.87775607734,
-    "ps": 17.001841080973552,
+    "eq": 24660.55017764676,
+    "ps": 19.09450265400446,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    },
    "Terminal growth|4": {
     "inf": [
@@ -11590,24 +11590,24 @@
     ],
     "fwd": [
      0.2743872044180305,
-     0.2262845230433028,
-     0.20628340812657608,
-     0.1912825719390311,
-     0.18128201448066775
+     0.21698484527745962,
+     0.19311692047888543,
+     0.17521597687995483,
+     0.16328201448066773
     ],
     "df": [
      0.7846908667422364,
-     0.6398929873100316,
-     0.5304665412780736,
-     0.4452902726635562,
-     0.3769550938768175
+     0.6447827758802824,
+     0.540418767694187,
+     0.4598463417157826,
+     0.39530082644755327
     ],
     "pv": [
      2188.8062413814732,
-     2010.148063100824,
-     1808.3025078012904,
-     1597.8835189310223,
-     1400.6916109798162
+     2025.5087549952327,
+     1842.2285607868453,
+     1650.1166447521828,
+     1468.8607752291418
     ],
     "icr": [
      7172.683465882696,
@@ -11616,22 +11616,22 @@
      8674.601009280763,
      9134.816528000487
     ],
-    "pv_explicit": 9005.831942194425,
+    "pv_explicit": 9175.520977144875,
     "roic": 0.4623753550094497,
     "rr": 0.1513921519423746,
-    "tv": 32208.950339796833,
-    "pv_tv": 12141.327899011869,
-    "ev": 21147.159841206296,
+    "tv": 38424.093841403956,
+    "pv_tv": 15189.076051005326,
+    "ev": 24364.5970281502,
     "nd": -3001.542316,
-    "eq_gross": 24148.702157206295,
-    "nci": 715.4763763844066,
+    "eq_gross": 27366.1393441502,
+    "nci": 810.8024226776281,
     "prov": 996.857074,
     "divp": 258.3,
     "inv": 594.778696,
-    "eq": 22772.847402821888,
-    "ps": 17.632866746280982,
+    "eq": 25894.95854347257,
+    "ps": 20.05029697520137,
     "we": 0.2743872044180305,
-    "wt": 0.18128201448066775
+    "wt": 0.16328201448066773
    }
   }
  },
@@ -11939,39 +11939,39 @@
   "[Cost of equity] risk-free 22.31% less the sovereign default spread 3.40% = 18.91%; plus beta 0.906 times the equity risk premium 9.41% -> cost of equity 27.44%. Alternatives disclosed: on the rating basis 28.57%; the RETIRED un-netted construction 30.84%, kept only for the audit trail \u2014 it charges Egypt's sovereign default risk twice, once inside the pound yield and again in the country premium.",
   "[Weighted cost of capital, explicit window] net debt is NEGATIVE, so the debt weight is -20.8% and the equity weight 120.8%. The cost of that negative debt is the blend of what the EGP 17mn borrowing costs and what the EGP 3,018mn cash pile EARNS: 13.21% after tax, i.e. essentially the after-tax deposit yield. Result 27.44% \u2014 ABOVE the 27.44% cost of equity, not below it. That direction is the point: a company holding 17% of its market capitalisation in near-riskless cash has an observed equity cost that UNDERSTATES the risk of its operating assets, so unlevering for the cash raises the operating rate. On a gross-debt basis the rate would be 27.43%; that construction discounts the operating cash flows at a rate the cash has already depressed AND then adds the cash back in the bridge, counting the cash twice and overstating the valuation. The net basis is primary and is the more conservative of the two by 1 basis points.",
   "[The cash is charged for ONCE] gross borrowings are 16.9 against a market capitalisation of 17,435 \u2014 0.0967% of the capital structure \u2014 so the unlevered cost of capital IS the cost of equity, 27.44%, and that is the rate the operating cash flows are discounted at. The previous edition used a NET-debt-weighted rate of 30.40%: because the company holds net cash the debt weight is -20.8%, the equity weight levers to 1.208, and the operating rate comes out +2.96% ABOVE the cost of equity. It then added the cash back at face in the bridge. That is the same cash charged twice \u2014 once by discounting the refinery as though owning a deposit made it riskier, and once by counting the deposit at par. A reader may value the WHOLE firm at a blended rate and add nothing, or value the operations at the operating rate and add the cash; this study does the second and says so.",
-  "[Weighted cost of capital, terminal] cost of equity 18.84% (norm-built risk-free 12.50% = the central bank's inflation target IN FORCE for the terminal emerging-market real-rate convention, plus beta times a normalised premium 7.00%); cost of debt after tax 11.68%; weights 90%/10% -> 18.13%. No terminal input is an observable quote and none is reverse-engineered from a price.",
-  "[Glide] forward cost of capital 27.44% -> 22.63% -> 20.63% -> 19.13% -> 18.13%; cumulative discount factors 0.7847, 0.6399, 0.5305, 0.4453, 0.3770. The glide fractions are the cost-of-debt path's own cumulative progress (0.000, 0.517, 0.731, 0.893, 1.000), so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
+  "[Weighted cost of capital, terminal] cost of equity 16.84% (norm-built risk-free 10.50% = the central bank's inflation target IN FORCE for the terminal emerging-market real-rate convention, plus beta times a normalised premium 7.00%); cost of debt after tax 11.68%; weights 90%/10% -> 16.33%. No terminal input is an observable quote and none is reverse-engineered from a price.",
+  "[Glide] forward cost of capital 27.44% -> 21.70% -> 19.31% -> 17.52% -> 16.33%; cumulative discount factors 0.7847, 0.6448, 0.5404, 0.4598, 0.3953. The glide fractions are the cost-of-debt path's own cumulative progress (0.000, 0.517, 0.731, 0.893, 1.000), so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
   "[Forecast revenue] 53,144 -> 58,069 -> 61,752 -> 64,764 -> 67,607 (volume 1.502 -> 1.502mn tonnes; specialty share of revenue 24.6% -> 24.6%). Base-year revenue is the twelve months to 30-Jun-2026, both halves filed, 46,959, with no annualisation scalar.",
   "[Forecast gross margin] 12.43% -> 12.45% -> 12.46% -> 12.47% -> 12.48%. The margin is an OUTPUT of eight per-line cost builds, not a path and not a blend: each line carries its own feedstock cost per tonne and its own conversion cost per tonne, and the company margin is whatever the mix produces. Specialty lines run Base and special oils 8.7% \u00b7 Paraffin wax 8.4% against fuel oil at 10.3%, so the margin now moves when the MIX moves, which it could not do when one blended margin was applied to every line.",
   "[Capital expenditure, BUILT] 182 -> 203 -> 222 -> 238 -> 255 against depreciation 180 -> 191 -> 202 -> 215 -> 229. Ratio 1.01 \u00b7 1.07 \u00b7 1.10 \u00b7 1.11 \u00b7 1.12. Maintenance is 157 at today's prices, growth is charged at 2,100 EGP a tonne of new throughput, and depreciation ROLLS off the asset register rather than being held flat for five years.",
   "[Employees' profit share, CHARGED] 5.24% of profit after tax, 179 -> 194 -> 204 -> 212 -> 218. The previous edition registered this at 67 for the audited half, described it in its own source note as 'a real distribution out of profit that the previous edition of this study did not model at all', and then no formula read the cell.",
-  "[Free cash flow to the firm] 2,789 -> 3,141 -> 3,409 -> 3,588 -> 3,716; present value of the explicit window 9,006.",
+  "[Free cash flow to the firm] 2,789 -> 3,141 -> 3,409 -> 3,588 -> 3,716; present value of the explicit window 9,176.",
   "[Forecast finance income] 509 -> 359 -> 251 -> 175 -> 115 \u2014 the charge is a CREDIT throughout and it falls even as the cash pile builds, because the deposit yield eases with the policy rate faster than the balance grows. Attributable profit 3,651, 3,816, 3,922, 4,002, 4,077; net cash 2,401, 1,864, 1,401, 975, 552 on a 103.7% payout.",
   "[Return on invested capital] 63.2% / 63.9% / 63.9% / 63.6% / 63.2%; terminal return taken as next year's NOPAT over closing invested capital, 67.6%. The level is high because the plant is substantially written down and the working capital is negative-to-negligible \u2014 a real feature of the business, and the reason the required terminal reinvestment rate comes out low.",
   "[Terminal growth, reconciled against the AUDITED record] gross margin as filed 6M Dec-2024 6.85% / 3M Mar-2025 5.05% / 6M Dec-2025 6.14% / 3M Mar-2026 10.19% / 6M Jun-2026 12.43%. Annualised returns on invested capital 28.1% / 22.2% / 16.2% / 42.8% / 81.8%; reinvestment rates -6.9% / +12.7% / -10.5% / +4.9% / +2.8%; implied growth -1.9% / +2.8% / -1.7% / +2.1% / +2.2%.",
   "[Terminal growth, the check that now BINDS] reinvestment is NEGATIVE in every audited period, because cash capital expenditure is running below the depreciation charge. Growth = return x reinvestment therefore implies a NEGATIVE steady-state growth rate of about 0.7%: on its own recent record this company is shrinking its capital base, not compounding it. The adopted terminal rate of 7.0% is NOT supported by the reinvestment identity and the study says so on its face rather than burying it. Two readings are defensible and both are published: either the under-investment is temporary and capital expenditure must rise toward depreciation \u2014 in which case free cash flow in the explicit window is overstated by roughly -1 a year \u2014 or it is durable and the terminal growth rate should be at or below zero. The sensitivity grid runs terminal growth down to 3% and the reader can go lower.",
   "[Terminal growth, stated plainly] the two standing checks disagree with each other, and that is the honest reading rather than a problem to be smoothed. Check (a), the historical compound NOPAT rate, is +55.0% \u2014 far ABOVE the adopted 7.0%; it is a recovery rate off a devaluation-compressed base and belongs in the explicit years, not in perpetuity. Check (b), return times reinvestment from stable years, is 0.7% \u2014 BELOW the adopted rate. The adopted 7% sits between them and above the one that describes a steady state, so on the check that matters for a perpetuity it remains on the GENEROUS side of the company's own record. Sensitised 3-7%; the grid is on the face of the workbook. NOTE the reinvestment definition: check (b) uses net capex over NOPAT, EXCLUDING working capital, while the free-cash-flow waterfall subtracts working capital. On the waterfall-consistent definition the base-year reinvestment rate is 48.4% and the implied growth is 7.8% \u2014 ABOVE the adopted rate. Both definitions are shown; neither is hidden.",
-  "[Terminal value] the terminal return is struck on invested capital at REPLACEMENT cost \u2014 working capital plus the asset base at GROSS cost \u2014 giving 46.2%, against 67.6% on net book. The difference is not cosmetic: this plant is 67.4% written down, the book lens already haircuts return on equity from a reported 33% to 28% for exactly that reason, and using the flattered figure in the terminal block while haircutting it in the book lens would be two views of one asset base. Required reinvestment = growth / return = 7.0% / 46.2% = 15.1%; terminal value 32,209 capitalised at 18.13% and discounted at the YEAR-5 cumulative factor 0.3770, giving a present value of 12,141. TERMINAL VALUE IS 57.4% OF ENTERPRISE VALUE.",
-  "[Terminal reinvestment, against the explicit window] the final forecast year reinvests 5.87% of profit; the terminal block reinvests 15.14%. The step is +9.27% and it is disclosed here because it RAISES the terminal block, which carries 57.4% of enterprise value. It is a consequence of the steady-state identity rather than an assumption, but a reader is entitled to see it.",
-  "[Bridge \u2014 every disclosed claim carried] enterprise value 21,147 plus net cash 3,002 = 24,149. Less minority interests at 2.963% of the WHOLE enterprise including the cash (715) \u2014 the previous edition charged the minority its share of the operating enterprise and then credited the parent with 100% of the consolidated cash, which is an inconsistency a reader can find in one line. Less the tax-disputes provision 997, a recognised liability the previous edition quoted in its text and NEVER carried into the bridge \u2014 setting it to zero moved that valuation by nothing at all. Less dividends payable 258, a declared claim removed from working capital and carried here. Plus non-operating investments 595 \u2014 the equity stake at fair value through other comprehensive income and the PLEDGED deposits, which are real assets even though they are not free cash and were previously excluded from BOTH the cash line and the bridge. Equity attributable 22,773 = EGP 17.63 a share against a spot of EGP 13.50 (+30.6%).",
-  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 30.58% / terminal 21.80% -> EGP 13.98 (-20.7%). (2) minority share doubled to 6% -> EGP 17.08 (-3.1%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 17.63 (+0.0%).",
-  "[Currency-of-discounting alternative] the export leg (9% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.49% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 18.35 a share (+35.9% against spot).",
+  "[Terminal value] the terminal return is struck on invested capital at REPLACEMENT cost \u2014 working capital plus the asset base at GROSS cost \u2014 giving 46.2%, against 67.6% on net book. The difference is not cosmetic: this plant is 67.4% written down, the book lens already haircuts return on equity from a reported 33% to 28% for exactly that reason, and using the flattered figure in the terminal block while haircutting it in the book lens would be two views of one asset base. Required reinvestment = growth / return = 7.0% / 46.2% = 15.1%; terminal value 38,424 capitalised at 16.33% and discounted at the YEAR-5 cumulative factor 0.3953, giving a present value of 15,189. TERMINAL VALUE IS 62.3% OF ENTERPRISE VALUE.",
+  "[Terminal reinvestment, against the explicit window] the final forecast year reinvests 5.87% of profit; the terminal block reinvests 15.14%. The step is +9.27% and it is disclosed here because it RAISES the terminal block, which carries 62.3% of enterprise value. It is a consequence of the steady-state identity rather than an assumption, but a reader is entitled to see it.",
+  "[Bridge \u2014 every disclosed claim carried] enterprise value 24,365 plus net cash 3,002 = 27,366. Less minority interests at 2.963% of the WHOLE enterprise including the cash (811) \u2014 the previous edition charged the minority its share of the operating enterprise and then credited the parent with 100% of the consolidated cash, which is an inconsistency a reader can find in one line. Less the tax-disputes provision 997, a recognised liability the previous edition quoted in its text and NEVER carried into the bridge \u2014 setting it to zero moved that valuation by nothing at all. Less dividends payable 258, a declared claim removed from working capital and carried here. Plus non-operating investments 595 \u2014 the equity stake at fair value through other comprehensive income and the PLEDGED deposits, which are real assets even though they are not free cash and were previously excluded from BOTH the cash line and the bridge. Equity attributable 25,895 = EGP 20.05 a share against a spot of EGP 13.50 (+48.5%).",
+  "[Contested choices, computed] (1) rating-basis cost of capital instead of the CDS basis: explicit 30.58% / terminal 20.00% -> EGP 15.24 (-24.0%). (2) minority share doubled to 6% -> EGP 19.42 (-3.1%). (3) GROSS-debt rather than net-debt weights, the construction this study rejects because it counts the cash pile twice -> EGP 20.05 (+0.0%).",
+  "[Currency-of-discounting alternative] the export leg (9% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a dollar cost of capital of 10.49% with 3.5% terminal growth, and only then translated back at the spot rate. Discounting a pound-denominated cash flow already inflated by the assumed depreciation path directly at a dollar rate would count the currency benefit twice. Result EGP 20.55 a share (+52.3% against spot).",
   "[Relative lens \u2014 on the TRAILING metric, multiple DERIVED] the company's own trailing multiple is 4.89x enterprise value to EBITDA \u2014 enterprise value 14,434 over base-year EBITDA 2,951 \u2014 and 10.6x earnings. The justified multiple is DERIVED from it at a +0% re-rating, 4.89x, rather than set by hand. The previous edition stated the trailing multiple as 'around 4.6x' and then set 4.5x, calling that 'holding the name at its own trailing level'; the model's own output disagreed with the stated 4.6x, so the justification did not hold whichever multiple was right. 4.89x on TRAILING EBITDA gives an enterprise value of 14,434 TODAY, carried through the SAME bridge as the cash-flow lens -> EGP 12.59 a share. Nothing here is discounted at the cash-flow lens's rate and nothing is added back from it, so the difference between this lens and the spot price is entirely the BRIDGE: the tax-disputes provision, the declared dividend and the minority's share of the cash. That is what this lens is now for.",
   "[Normalised earnings lens \u2014 separated and discounted] OPERATING earnings only: 2028E operating profit 5,030, taxed at the statutory 22.5%, less the employees' profit share and the minority -> EGP 2.775 a share. At 7.5x that is EGP 20.82 AS AT mid-2028, discounted 2.4 years to the valuation date at the COST OF EQUITY 27.44% (factor 0.5588) = EGP 11.63. Net cash less the provision and the declared dividend is then added at FACE, outside the multiple: EGP 1.35 a share. Total EGP 12.98. The previous edition capitalised 308 of credit interest at an operating multiple \u2014 valuing a bank deposit as though it were the refinery \u2014 and then did not discount the 2028 answer at all, while lens 2 in the same document discounted its forward number. One lens discounted and the other did not; both are now on the valuation date.",
-  "[Book lens \u2014 on a rate path consistent with lens 1] justified price-to-book 1.33x = (sustainable return 28.0% less growth 7%) / (cost of equity 22.84% less growth), applied to book value of EGP 4.70 a share -> EGP 6.23. The rate is the present-value-weighted average of the SAME cost-of-equity glide the cash-flow lens uses, 27.44% falling to 18.84%, not the terminal rate alone. Using the terminal rate alone gives 8.33 and using the explicit rate alone gives 4.83; a perpetuity beginning today deserves neither endpoint. Trailing return on average parent equity is 28.9%, and the sustainable rate is struck below it because the asset base is 67.4% written down \u2014 the same haircut now applied to the terminal return in lens 1, so there is one view of the asset base across the model rather than two.",
-  "[Scenarios on the cash-flow lens \u2014 BUSINESS DRIVERS ONLY] bear EGP 1.67 / base EGP 17.63 / bull EGP 23.93. TWO drivers move and both move across the span this company's own audited filings have actually printed: gross margin from 5.05% \u2014 the quarter to 31 March 2025, the worst in the record \u2014 to 13.84%, the full year to 30 June 2022 and the best FULL YEAR filed, against a base year of 9.65%; and volume -4.5% / +3.0% a year against a flat base path. WHAT THE BEAR LEG ACTUALLY DOES, because this sentence used to describe a gentler one: at -4.5% a year it takes the base year's 1,616 thousand tonnes to 1,284 by year five \u2014 BELOW the five-year mean of 1,437 and close to the 1,262 of the last audited year. Reverting to the mean itself would need only -2.3% a year, so the bear leg is the harsher of the two readings and the earlier description understated it. THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency path, the cost of capital at both anchors and terminal growth; all three carry the same Egyptian inflation, so the old bull corner needed inflation high and low at the same time and the old bear corner needed the mirror image. The width of a range built that way is this desk's choice of dial settings. This one is the company's own filed record, and it is not a confidence interval \u2014 no probability is attached to either end.",
-  "[The base anchor \u2014 ADOPTED IN THIS EDITION] the forecast is anchored on the most recent reviewed period, the half to 30-Jun-2026 at a gross margin of 12.428%, rather than on the twelve-month blend of 9.653% the previous edition carried forward. That blend averages the reviewed half with the audited transition half, whose margin is roughly half of it, and a near-term reviewed actual outranks a stale full-year rate. THE EVIDENCE IS THE COMPANY'S OWN FILINGS AND NOT THE PRICE: Q1-2025 5.053% against Q1-2026 10.190% is the SAME QUARTER doubled, which seasonality cannot produce, and the quarter inside the latest half that is not the first printed the highest margin in the record this study holds. All six mechanisms on the closed list were tested against the filings and refused \u2014 input cost outpacing price is contradicted by the same-quarter pair the rule prescribes, 5.14 points THE OTHER WAY \u2014 so a forecast opening 22.08% below the latest reviewed period had no mechanism its own record supports. The superseded twelve-month base is retained and priced: it gives EGP 11.41 a share (-15.5% against spot) against the adopted EGP 17.63 (+30.6%). THE CORRECTION CROSSES THE TRADED PRICE and it is taken anyway: the previous edition declined it only because levers are taken one at a time and it had already moved once in that pass, and it said in terms that the lever was left for the next edition to take on its own evidence. A correction is not withheld because of where it lands, and it is not taken because of where it lands either.",
-  "[Range \u2014 the primary lens's OWN range, on one clock] EGP 1.67 to 23.93. The cross-checks span EGP 1.67 to 23.93 and that is reported as an ENVELOPE, never averaged into the answer.",
-  "[Synthesis] the central is the CASH-FLOW LENS at EGP 17.63, not a blend; cross-checks span EGP 1.67 - 23.93; spot EGP 13.50 (+30.6% to the central). The retired 45/20/20/15 blend of the same lenses would read EGP 13.98 and is published beside the answer, unused.",
-  "[Sensitivity gate] 5 rows, every one a full re-run through the same waterfall the base case uses. Every grid is sorted, every row returns EGP 17.63 at its own base point, and every row is monotone in the direction theory requires. The previous edition published three rows that failed one or more of these tests and had no gate that could have caught them.",
-  "[Expert 2 construction] free cash flow to equity 3,038 -> 3,262 -> 3,437 -> 3,551 -> 3,628; discounted on the cost of EQUITY's own glide (27.4% -> 23.0% -> 21.2% -> 19.8% -> 18.8%) for a present value of 9,179, plus a terminal block of 10,290. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
-  "[Expert 2 / Expert 3 decomposition \u2014 MEASURED] the gap is +3.37 a share. Discounting Expert 2's OWN cash flows on the weighted rate instead of the cost of equity's glide gives EGP 15.80 against 15.07, so the price of time is worth +0.72 \u2014 21% of it. The BRIDGE is what carries the rest: Expert 3 adds net cash of +2.32 a share at face, while Expert 2 lets the cash reach the holder only through the finance-income line. +0.32 is left over. THE FIRST DRAFT OF THE DIVERGENCE TABLE NAMED THE DISCOUNT RATE AS THE DRIVER; the measurement says it is the bridge, and the table now says so.",
-  "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 71mn a year.",
-  "[Expert panel] Expert 1 EGP 21.26 [15.18-28.85]; Expert 2 EGP 15.07 [0.58-19.88]; Expert 3 EGP 18.44 [0.88-24.64]; panel median EGP 18.44 (+36.6% against spot).",
-  "[Level-touch ladder] 11.00: 1M 9.7% / 3M 36.2% \u00b7 10.50: 1M 21.4% / 3M 49.7% \u00b7 10.00: 1M 41.8% / 3M 66.0% \u00b7 13.50: 1M 0.0% / 3M 5.0% \u00b7 8.50: 1M 51.4% / 3M 68.6% \u00b7 8.00: 1M 22.5% / 3M 45.5% \u00b7 7.50: 1M 7.1% / 3M 27.0% \u00b7 17.63: 1M 0.0% / 3M 0.1%. Computed on the cone's OWN anchor of EGP 9.10, not on the study spot of 13.50 \u2014 a fresh price moves the valuation without re-striking the cone.",
+  "[Book lens \u2014 on a rate path consistent with lens 1] justified price-to-book 1.43x = (sustainable return 28.0% less growth 7%) / (cost of equity 21.70% less growth), applied to book value of EGP 4.70 a share -> EGP 6.71. The rate is the present-value-weighted average of the SAME cost-of-equity glide the cash-flow lens uses, 27.44% falling to 16.84%, not the terminal rate alone. Using the terminal rate alone gives 10.03 and using the explicit rate alone gives 4.83; a perpetuity beginning today deserves neither endpoint. Trailing return on average parent equity is 28.9%, and the sustainable rate is struck below it because the asset base is 67.4% written down \u2014 the same haircut now applied to the terminal return in lens 1, so there is one view of the asset base across the model rather than two.",
+  "[Scenarios on the cash-flow lens \u2014 BUSINESS DRIVERS ONLY] bear EGP 1.66 / base EGP 20.05 / bull EGP 27.52. TWO drivers move and both move across the span this company's own audited filings have actually printed: gross margin from 5.05% \u2014 the quarter to 31 March 2025, the worst in the record \u2014 to 13.84%, the full year to 30 June 2022 and the best FULL YEAR filed, against a base year of 9.65%; and volume -4.5% / +3.0% a year against a flat base path. WHAT THE BEAR LEG ACTUALLY DOES, because this sentence used to describe a gentler one: at -4.5% a year it takes the base year's 1,616 thousand tonnes to 1,284 by year five \u2014 BELOW the five-year mean of 1,437 and close to the 1,262 of the last audited year. Reverting to the mean itself would need only -2.3% a year, so the bear leg is the harsher of the two readings and the earlier description understated it. THE MACRO PATH DOES NOT MOVE. The previous edition also flexed the currency path, the cost of capital at both anchors and terminal growth; all three carry the same Egyptian inflation, so the old bull corner needed inflation high and low at the same time and the old bear corner needed the mirror image. The width of a range built that way is this desk's choice of dial settings. This one is the company's own filed record, and it is not a confidence interval \u2014 no probability is attached to either end.",
+  "[The base anchor \u2014 ADOPTED IN THIS EDITION] the forecast is anchored on the most recent reviewed period, the half to 30-Jun-2026 at a gross margin of 12.428%, rather than on the twelve-month blend of 9.653% the previous edition carried forward. That blend averages the reviewed half with the audited transition half, whose margin is roughly half of it, and a near-term reviewed actual outranks a stale full-year rate. THE EVIDENCE IS THE COMPANY'S OWN FILINGS AND NOT THE PRICE: Q1-2025 5.053% against Q1-2026 10.190% is the SAME QUARTER doubled, which seasonality cannot produce, and the quarter inside the latest half that is not the first printed the highest margin in the record this study holds. All six mechanisms on the closed list were tested against the filings and refused \u2014 input cost outpacing price is contradicted by the same-quarter pair the rule prescribes, 5.14 points THE OTHER WAY \u2014 so a forecast opening 22.08% below the latest reviewed period had no mechanism its own record supports. The superseded twelve-month base is retained and priced: it gives EGP 12.85 a share (-4.8% against spot) against the adopted EGP 20.05 (+48.5%). THE CORRECTION CROSSES THE TRADED PRICE and it is taken anyway: the previous edition declined it only because levers are taken one at a time and it had already moved once in that pass, and it said in terms that the lever was left for the next edition to take on its own evidence. A correction is not withheld because of where it lands, and it is not taken because of where it lands either.",
+  "[Range \u2014 the primary lens's OWN range, on one clock] EGP 1.66 to 27.52. The cross-checks span EGP 1.66 to 27.52 and that is reported as an ENVELOPE, never averaged into the answer.",
+  "[Synthesis] the central is the CASH-FLOW LENS at EGP 20.05, not a blend; cross-checks span EGP 1.66 - 27.52; spot EGP 13.50 (+48.5% to the central). The retired 45/20/20/15 blend of the same lenses would read EGP 15.14 and is published beside the answer, unused.",
+  "[Sensitivity gate] 5 rows, every one a full re-run through the same waterfall the base case uses. Every grid is sorted, every row returns EGP 20.05 at its own base point, and every row is monotone in the direction theory requires. The previous edition published three rows that failed one or more of these tests and had no gate that could have caught them.",
+  "[Expert 2 construction] free cash flow to equity 3,038 -> 3,262 -> 3,437 -> 3,551 -> 3,628; discounted on the cost of EQUITY's own glide (27.4% -> 22.0% -> 19.7% -> 18.0% -> 16.8%) for a present value of 9,363, plus a terminal block of 13,049. No bridge is used: the cash pile reaches the shareholder through the finance income line rather than as a balance-sheet add-back, which is what makes this a genuinely independent second read rather than a re-arrangement of the first.",
+  "[Expert 2 / Expert 3 decomposition \u2014 MEASURED] the gap is +3.59 a share. Discounting Expert 2's OWN cash flows on the weighted rate instead of the cost of equity's glide gives EGP 18.10 against 17.35, so the price of time is worth +0.74 \u2014 21% of it. The BRIDGE is what carries the rest: Expert 3 adds net cash of +2.32 a share at face, while Expert 2 lets the cash reach the holder only through the finance-income line. +0.52 is left over. THE FIRST DRAFT OF THE DIVERGENCE TABLE NAMED THE DISCOUNT RATE AS THE DRIVER; the measurement says it is the bridge, and the table now says so.",
+  "[Economic-profit convention] the capital charge is taken on BEGINNING-of-year invested capital, not ending. Charging ending capital would understate economic profit by about 68mn a year.",
+  "[Expert panel] Expert 1 EGP 21.26 [15.18-28.85]; Expert 2 EGP 17.35 [0.59-23.04]; Expert 3 EGP 20.95 [0.53-28.30]; panel median EGP 20.95 (+55.1% against spot).",
+  "[Level-touch ladder] 11.00: 1M 9.7% / 3M 36.2% \u00b7 10.50: 1M 21.4% / 3M 49.7% \u00b7 10.00: 1M 41.8% / 3M 66.0% \u00b7 13.50: 1M 0.0% / 3M 5.0% \u00b7 8.50: 1M 51.4% / 3M 68.6% \u00b7 8.00: 1M 22.5% / 3M 45.5% \u00b7 7.50: 1M 7.1% / 3M 27.0% \u00b7 20.05: 1M 0.0% / 3M 0.0%. Computed on the cone's OWN anchor of EGP 9.10, not on the study spot of 13.50 \u2014 a fresh price moves the valuation without re-striking the cone.",
   "[Workbook blocks emitted] 31 complete forecast engines \u2014 the base case and 30 sensitivity grid points \u2014 each with the model's own value for every cell, so the workbook can write all 31 out as live formula chains and an independent evaluator can check each one. The previous edition pasted its sensitivity grids because a whole-model re-run could not be expressed inside a grid; that was 27.6% of the file and three of the pasted rows did not reproduce.",
   "[Reachability gate \u2014 rewritten] 180 registered inputs. 139 DRIVE the model. 41 are quotation-only and are named here rather than passing silently: alexpet_stake, assets_dec24, assets_jun24, assets_jun25, awp_stake, brent_path, capex_pct, cash_jun25, cash_mar26, cpi, creditors_jun25, crude_hist, debtors_jun25, div_h2_25, div_q1_26, dna_pct, dps, dtax_liab, e1_pe, egpc_balance, egpc_sales, egypt_gdp_nominal, eq_parent_mar26, fx_avg_cy25, fx_hist, gm_superseded_annualised, inv_jun25, leases, opex_pct, other_ca, pat_h1cy25, pat_h2_24, payables_jun25, policy_rate, ppe_accdep, ppe_jun25, recv_jun25, tax_due, tv_share_superseded, us_infl, world_nominal_growth. The previous gate treated 'appears in a deliverable' as reached and passed while `provisions` (921mn) and `emp_h2_25` (135mn a year) drove nothing at all \u2014 setting the provision to zero moved that valuation by less than a hundredth of a piastre. Both now drive the bridge and the waterfall. `emp_h2_25` stays on this list because the CHARGE is now taken through a rate solved from it rather than through the raw input.",
-  "[What a buyer at the market price must believe \u2014 SOLVED] holding every other driver at the base case, the cash-flow lens reaches the market price of 13.50 at a gross margin of 10.57% sustained in EVERY forecast year and in perpetuity, against a base year of 9.65%. THE PREVIOUS EDITION PUT THIS AT 12.2% AND CALLED IT 'ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED'. That was wrong on the record as well as on the arithmetic: AMOC filed a gross margin of 13.84% for the whole year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. The required margin is INSIDE the range this company has actually printed, which is a materially different claim and is the one the study now makes.",
+  "[What a buyer at the market price must believe \u2014 SOLVED] holding every other driver at the base case, the cash-flow lens reaches the market price of 13.50 at a gross margin of 9.90% sustained in EVERY forecast year and in perpetuity, against a base year of 9.65%. THE PREVIOUS EDITION PUT THIS AT 12.2% AND CALLED IT 'ABOVE THE BEST SINGLE QUARTER THIS COMPANY HAS EVER FILED'. That was wrong on the record as well as on the arithmetic: AMOC filed a gross margin of 13.84% for the whole year to 30 June 2022 and 13.92% in the quarter to 30 June 2026. The required margin is INSIDE the range this company has actually printed, which is a materially different claim and is the one the study now makes.",
   "[Fundamental walk-forward] LIGHT scope, 9 scoreable cells over five origins FY2021-FY2025. Majority profit was under-forecast in 100% of cells and the method scored -1.128 against assuming last year's profit repeats \u2014 it did NOT beat no change. No correction was adopted. What it changed in this edition is the volume driver, and the far-year bands it licenses are carried into Appendix A rather than a point.",
   "[Gates] beta 0.9063 vs raw_indices/EG/EGX30.csv (conforming=True); ground-up record covers 100% of revenue across 8 lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report bar both pass. Study stamped to STANDARD_VERSION 2026.09.10."
  ],
