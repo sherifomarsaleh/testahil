@@ -5,7 +5,7 @@
   "not_to_be_confused_with": "ADIB Group PJSC (ADX: ADIB), the Abu Dhabi parent, which is the separate covered name ADIBUAE",
   "market": "EGX",
   "currency": "EGP",
-  "asof": "2026-09-09",
+  "asof": "2026-09-10",
   "spot": 52.05,
   "spot_date": "2026-09-03",
   "spot_source": "the committed price file for 3 September 2026 \u2014 the latest known price. The published site carries 54.40 at the 23 August close, which is older.",
@@ -560,7 +560,7 @@
   "ke_construction": {
    "value": "same_beta",
    "source": "The terminal cost of equity uses the SAME regression beta as the explicit window. ADIB-Egypt is a deposit-funded bank whose capital structure is its business, so there is no leverage to relever: the beta already embeds the balance sheet it is measured on. The record names the construction from a closed list so that two right answers a hundred basis points apart are not indistinguishable from a typo.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "financing_growth": {
@@ -572,7 +572,7 @@
     0.12
    ],
    "source": "Net financing to customers, year-on-year. FY2026 +48% takes the FY2025 close of EGP 147,226 million to EGP 217,895 million \u2014 and the bank was ALREADY at EGP 190,427 million on 30 June, so this asks for only +14.4% in the second half against +29.3% in the first. The path then decays toward nominal GDP. IT IS NOT A FLAT SHARE OF SYSTEM CREDIT, and that is the walk-forward's doing: a flat-share rule under-forecast this name at every one of eleven origins, by a median 0.29 in logs at three years, because ADIB has taken share at about 8.7% a year for a decade. The share path this implies is disclosed in the macro-coherence table and it decelerates to zero drift by FY2030.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "financing_over_assets": {
@@ -584,7 +584,7 @@
     0.52
    ],
    "source": "Financing to customers over total assets. FY2025 actual 42.46%; 30 June 2026 actual 45.96%. The bank is rotating out of treasury bills into customer financing as policy rates fall and bill yields compress, and the path continues that observed rotation at a decelerating pace. Every point is above both observations, which is the assumption, and it is sensitised.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "asset_yield": {
@@ -596,7 +596,7 @@
     0.108
    ],
    "source": "Income from Murabaha, Musharaka, Mudaraba and similar income over AVERAGE total assets. FY2025 actual 16.23%; the six months to June 2026 annualise to 15.30%. The path falls with the CBE's published policy glide (19.00 -> 12.00) at an asset beta of about 0.75, which is what an Egyptian bank holding treasury bills and floating-rate corporate paper reprices at. IT IS AN INPUT; net interest margin is not.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "cost_of_funds": {
@@ -608,13 +608,13 @@
     0.07
    ],
    "source": "Cost of deposits and similar costs over AVERAGE INTEREST-BEARING LIABILITIES \u2014 customers' deposits plus due to banks plus subordinated financing, and nothing else. FY2025 actual 11.22%. Total liabilities is NOT the denominator: at FY2025 it would add EGP 17.9 billion of other liabilities, current tax and provisions that pay nothing, and understate the funding rate by about a sixth of itself. The path falls at a deposit beta of about 0.80 to the policy glide, slower than the asset side, which is why the margin compresses.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "ibl_over_assets": {
    "value": 0.855,
    "source": "Average interest-bearing liabilities over average total assets, held at the FY2025 observed 85.5%. The bank funds itself with deposits and that ratio has moved within two points across the whole panel.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "fee_ratio": {
@@ -626,7 +626,7 @@
     0.0085
    ],
    "source": "Net fees and commissions over average total assets. FY2025 actual 0.899%; the June 2026 half annualises to 0.797%. The path opens at the reviewed half's level and recovers slowly as trade finance and card income grow with the branch network.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "other_nii_ratio": {
@@ -638,7 +638,7 @@
     0.0022
    ],
    "source": "Dividends, net trading, share of associates and gains on investments, as one block, over average total assets. FY2025 actual 0.238%; the June 2026 half annualises to 0.372%, flattered by trading gains on a moving currency. The path normalises DOWN toward the FY2022-FY2024 average as the pound settles.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "other_op_ratio": {
@@ -650,7 +650,7 @@
     -0.0055
    ],
    "source": "Other operating expenses over average total assets \u2014 deposit insurance, central-bank charges and the operating-provision line. FY2025 actual -0.387%; the June 2026 half annualises to -0.797%, more than double. The path opens at the reviewed level and decays, which is the conservative reading of a line that has doubled.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "admin_growth": {
@@ -662,7 +662,7 @@
     0.13
    ],
    "source": "Administrative expenses, year-on-year. FY2026 +34% on FY2025 takes EGP 3,431 million to EGP 4,598 million; the June half already spent EGP 2,239 million, so this asks for EGP 2,359 million in the second. Thereafter inflation plus about six points, because a bank adding branches and systems does not hold headcount flat. Cost-to-income is an OUTPUT of this and of the revenue lines; it is not typed anywhere.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "cost_of_risk": {
@@ -674,31 +674,31 @@
     0.013
    ],
    "source": "Expected credit losses over AVERAGE net financing to customers. The observed series is 1.64% (FY2022), 2.73% (FY2023), 2.73% (FY2024), 1.25% (FY2025) and effectively ZERO in the June 2026 half \u2014 EGP 2.176 million on a EGP 190 billion book. FY2026 is set at 1.00%, above the half-year run rate and below the four-year mean of 2.09%; the outer years at 1.30% sit between the two. ANNUALISING THE JUNE HALF WOULD HAVE ADDED ABOUT EGP 1.8 BILLION TO FY2026 PRE-TAX PROFIT and it is not done. Sensitised +/-50 basis points in 1.9.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "tax_rate": {
    "value": 0.285,
    "source": "Effective tax rate. FY2025 actual 27.92%, FY2024 26.64%, the June 2026 half 29.58%. The Egyptian statutory corporate rate is 22.5%; an Egyptian bank pays materially more because the 20% withholding on treasury-bill income is not creditable and part of its cost base is disallowed. 28.5% sits inside the observed range and above the statutory rate for that reason.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "nci_share": {
    "value": 0.001,
    "source": "Non-controlling interests take 0.10% of net profit \u2014 EGP 12.4 million of EGP 12,601.0 million in FY2025. Held at that level; it is immaterial and is carried rather than dropped so the bridge to attributable profit closes.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "A"
   },
   "payout": {
    "value": "DERIVED \u2014 see below",
    "source": "THE PAYOUT IS NOT TYPED. It is what is left after the balance sheet has taken the capital it needs: payout(t) = 1 - (target equity/assets x the year's asset growth) / attributable profit, floored at zero and capped at 80%. A typed payout path is an assumption about the single thing a growing bank has least discretion over, and typing one made this model's dividend and free-cash-flow lenses disagree by EGP 7 a share while its equity-to-assets ratio drifted from 10.0% to 12.4% \u2014 the model was retaining capital it had no use for and calling the result conservatism. THE DERIVED PATH REPRODUCES WHAT THE BANK ACTUALLY DOES: it gives 13.7% for FY2026 against the 11.7% ADIB-Egypt actually paid on FY2024 earnings, which is the closest thing to an external check this driver has. Terminal payout is 1 - g/ROE, derived the same way.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "target_equity_assets": {
    "value": 0.105,
    "source": "Attributable equity to total assets, held at 10.5% \u2014 the level ADIB-Egypt actually stood at on 30 June 2026 after its EGP 3 billion cash increase, against 9.98% at the FY2025 year end. THIS IS THE BINDING CONSTRAINT ON A GROWING BANK and the model pins the RATIO, not the increment: equity each year is 10.5% of that year's assets and the dividend is whatever profit is left after getting there. A bank growing its balance sheet 34% cannot also distribute, and the arithmetic says so rather than a sentence saying so beside a typed payout.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "capital_increase_2026": {
@@ -719,7 +719,7 @@
     2.2
    ],
    "source": "The price-to-book band Egyptian large-cap banks trade in. It is a BAND and not a point because this study could not source a same-day book value for any Egyptian bank other than ADIB itself: the only peer whose price it holds on the same day is CIB, and CIB's own book value is not in this repository. The band is carried as a cross-check on the two cash-flow lenses, weighted at 15%, and it is NOT allowed to set the answer. Where a multiple cannot be sourced it is said so rather than filled in.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "peer_pe_band": {
@@ -728,19 +728,19 @@
     8.5
    ],
    "source": "The trailing price-to-earnings band for the same group, on the same caveat.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "lens_architecture": {
    "value": "class primary = dividend discount; no typed blend",
    "source": "The bank class is keyed to a dividend-discount PRIMARY with residual income, a relative multiple and book value beside it. The central IS the primary. The envelope is the range of the three present-value reads and no spread is invented around it.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   },
   "band_construction": {
    "value": "the range of the present-value reads [R-LENS-03]",
    "source": "Bear is the free-cash-flow-to-equity read, full the residual-income read, and the central the dividend-discount primary between them. THE ENVELOPE IS NARROW BECAUSE THE THREE LENSES AGREE, AND THAT IS A STATEMENT ABOUT LENS AGREEMENT RATHER THAN ABOUT FORECAST CONFIDENCE. The fundamental walk-forward beneath this study measured a three-year attributable-profit dispersion of x0.29 to x1.48 on eight cells; that distribution sets the YEARS 3-5 PROFIT RANGES in Appendix A and nothing else, and section 7 says so in terms rather than letting a tight envelope imply a precision this record does not have.",
-   "date": "2026-09-09",
+   "date": "2026-09-10",
    "tier": "House"
   }
  }

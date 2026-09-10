@@ -392,11 +392,18 @@ INP = dict(
               "inherits its SHAPE from this", "2026-08-06", "House"),
     kd_term=I(0.150, "Terminal cost of debt, the Egyptian long-run corporate norm",
               "2026-08-06", "House"),
-    rf_term=I(0.125, "Terminal risk-free rate, norm-built from the CBE's OPERATIVE Q4-2026 "
-              "inflation target of 7% plus a ~5.5pp emerging-market real-rate convention. "
-              "Revision 1 used the later 5% target while its own text cited 'the 7% and "
-              "then 5% targets'. REVIEWABLE CHOICE: reverting to 10.5% adds ~1.8%",
-              "2026-08-06", "House"),
+    rf_term=I(_PATH.terminal_rf, "Terminal risk-free rate, READ LIVE from the house macro "
+              "path (engine/macro_paths/EG.json) rather than typed here: the central bank's "
+              "operative Q4-2026 inflation target plus the house real-rate convention. TWO "
+              "EDITIONS OF THIS LINE ARE RETIRED. Revision 1 used the later 5% target while "
+              "its own text cited 'the 7% and then 5% targets'. Revision 3 typed 12.5% into "
+              "this file, built on a 5.5pp real convention, and flagged the alternative in "
+              "its own note as a 'REVIEWABLE CHOICE' worth about 1.8% — which is a defect "
+              "recorded rather than fixed. The house convention is 3.5%: the retired 5.5pp "
+              "was a restrictive policy stance, not a long-run real rate, and a perpetuity "
+              "does not live inside a policy stance. Two readers of one economy must not "
+              "disagree",
+              "2026-09-10", "House"),
     erp_term=I(0.070, "Terminal equity risk premium, normalised below the crisis level",
                "2026-08-06", "House"),
     wd_term=I(0.20, "Terminal debt weight, normalised", "2026-08-06", "House"),

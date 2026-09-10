@@ -9,6 +9,7 @@ and see what their disagreement is worth.
 The sheet list is research_protocol.MODEL_STUDY['excel_sheets'], imported rather than
 copied, so this file cannot drift from the standard it is held to.
 """
+import datetime as _dtm
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -831,7 +832,10 @@ for lab, srow in [('Attributable profit', IS_ROW['np_parent']),
     r += 1
 
 
-out = os.path.join(HERE, 'ADIB_Valuation_Model_09092026.xlsx')
+# THE EDITION IS NOT TYPED HERE, for the same reason as the study and the
+# bibliography: the workbook must be stamped with the strike it carries.
+import edition as _EDN
+out = os.path.join(HERE, _EDN.MODEL_XLSX)
 wb.save(out)
 print('written %s' % out)
 print('sheets: %d — %s' % (len(wb.sheetnames), ' | '.join(wb.sheetnames)))

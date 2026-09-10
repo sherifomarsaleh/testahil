@@ -41,7 +41,13 @@ BY, LR, LN = D['base_year'], D['latest_reviewed'], D['lenses']
 REG = D['register']
 SPOT, SH, CENTRAL = M['spot'], M['shares_mn'], D['central']
 BEAR, FULL = D['fair']['bear'], D['fair']['full']
-EDITION = '09-09-2026'
+# THE EDITION IS NOT TYPED HERE. It was, and the study was re-struck on
+# 10-09-2026 while this line still said 09-09-2026, so the document would have
+# gone out stamped with the date of an answer it no longer carried. The strike
+# date is asserted once, in compute.py, and reaches the masthead through the
+# numbers file the strike itself wrote.
+import edition as _ED
+EDITION = _ED.EDITION.strftime('%d-%m-%Y')
 YR = ['FY2026E', 'FY2027E', 'FY2028E', 'FY2029E', 'FY2030E']
 
 _TN = [0]
@@ -960,7 +966,7 @@ P('Historical financial data is ADIB-Egypt\'s own published disclosure. Market d
   'flagged throughout. No part of this document may be represented as the view of '
   'ADIB-Egypt, of Abu Dhabi Islamic Bank PJSC, or of any regulator.', size=9.2, color=GREY)
 
-out = os.path.join(HERE, 'ADIB_Valuation_Study_%s.docx' % EDITION)
+out = os.path.join(HERE, _ED.STUDY_DOCX)
 doc.save(out)
 print('written %s' % out)
 print('sections: 16   tables: %d' % _TN[0])

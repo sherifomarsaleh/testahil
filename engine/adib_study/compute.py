@@ -37,7 +37,10 @@ from beta_regression import own_stock_beta           # noqa: E402
 import panel as WF                                   # noqa: E402
 
 EG = macro_path.load('EG')
-STUDY_DATE = '2026-09-09'
+STUDY_DATE = '2026-09-10'   # RECALIBRATION EDITION: the terminal risk-free
+# rate was refreshed from the house macro path and the answer moved, so this is a
+# NEW document rather than a re-print of the old one [R-DOC-03]. Supersedes
+# 09-09-2026 (EGP 37.18) and 07-09-2026.
 YEARS = [2026, 2027, 2028, 2029, 2030]
 MN = 1000.0        # the walk-forward panel is EGP '000; this study works in EGP millions
 

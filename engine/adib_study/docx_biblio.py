@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""ADIB_Bibliography_09-09-2026.docx — the standalone bibliography.
+"""ADIB_Bibliography_{DD-MM-YYYY}.docx — the standalone bibliography.
 
 Primary documents · the full input register, every entry four-field · judgements with
 what would overturn each · negative results · where two sources disagree · what is not
 disclosed. GENERATED from study_numbers.json and the walk-forward's own registers;
 nothing here is typed twice.
 """
+import datetime as _dtm
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -226,6 +227,9 @@ table(rows, [1.3, 1.1, 0.8, 3.8], size=6.8)
 caption('Table 6 — market and macro inputs. These are the only figures in this study that '
         'are not the company\'s own disclosure.')
 
-out = os.path.join(HERE, 'ADIB_Bibliography_09-09-2026.docx')
+# THE EDITION IS NOT TYPED HERE. It was, so this file went on writing a
+# 09-09-2026 bibliography beside a 10-09-2026 study — one strike, two dates.
+import edition as _EDN
+out = os.path.join(HERE, _EDN.BIBLIO_DOCX)
 doc.save(out)
 print('written %s' % out)
