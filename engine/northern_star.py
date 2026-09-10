@@ -72,17 +72,84 @@ BANDS = (
 
 
 
-def _latest_close(ticker):
+
+def _exchange_map():
+    """{EXCHANGE: MARKET} from the one place that already knows, plus identity."""
+    out = {}
+    try:
+        import wacc_builder as _WB
+        for (mkt, exch) in _WB.EXCHANGE_INDEX:
+            out[exch.upper()] = mkt.upper()
+            out[mkt.upper()] = mkt.upper()
+    except Exception:
+        pass
+    return out
+
+
+_EXCHANGE_TO_MARKET = _exchange_map()
+
+
+def _latest_close(ticker, market=None):
     """(price, ISO date) of the most recent close in the library, or (None, None).
 
     Reads the committed OHLC series directly rather than any study's own copy of a
     price: a study records the quote it was struck at, which is the question this
     function is NOT asking.
+
+    THE MARKET IS REQUIRED WHERE A TICKER IS NOT UNIQUE, AND IT IS NOT UNIQUE.
+    This function used to walk the market folders in alphabetical order and take
+    the first file with a matching name. ADIB is Abu Dhabi Islamic Bank on ADX and
+    it is also ADIB Egypt on the EGX; "AE" sorts before "EG", so an EGP 37.18 fair
+    value was measured against an AED 23.34 price and reported as +59% when the
+    Egyptian close is EGP 54.40. Two currencies, two companies, one ticker, and a
+    lookup that answered by directory order. A ticker is not an identifier without
+    its market [R-ENF-03].
     """
     root = os.path.join(HERE, "raw_ohlc")
     if not os.path.isdir(root):
         return None, None
-    for mkt in sorted(os.listdir(root)):
+    markets = sorted(os.listdir(root))
+    hits = [m for m in markets
+            if os.path.exists(os.path.join(root, m, "%s.csv" % ticker.upper()))]
+    if market:
+        want = str(market).upper()
+        # A STUDY NAMES ITS EXCHANGE; THE LIBRARY IS KEYED ON THE COUNTRY. Studies say
+        # DFM, ADX, TADAWUL, EGX and the price folders are AE, SA, EG. The mapping is
+        # not invented here — wacc_builder already holds it, because the same question
+        # decides which published index a beta regresses against. A second copy of it
+        # would be a second thing to keep true.
+        if want in _EXCHANGE_TO_MARKET:
+            want = _EXCHANGE_TO_MARKET[want]
+        else:
+            # Some studies write prose where a code belongs — "UAE (ADX/DFM)". Resolve
+            # every code the string CONTAINS and accept it only if they all agree.
+            # Two exchanges of one country is not an ambiguity; two countries is, and
+            # that refuses rather than picking one.
+            import re as _re
+            found = {_EXCHANGE_TO_MARKET[t] for t in _re.findall(r"[A-Z]{2,10}", want)
+                     if t in _EXCHANGE_TO_MARKET}
+            if len(found) == 1:
+                want = found.pop()
+            elif len(found) > 1:
+                raise NorthernStarError(
+                    "%s: the study's market %r names more than one country (%s). A "
+                    "ticker is not an identifier without ONE market."
+                    % (ticker.upper(), market, ", ".join(sorted(found))))
+        cand = [m for m in hits if m.upper() == want]
+        markets = cand or []
+        if not markets:
+            raise NorthernStarError(
+                "%s: the study names market %r and the price library holds that ticker "
+                "under %s. A price from the wrong market is not a fallback."
+                % (ticker.upper(), market, hits or "no market"))
+    elif len(hits) > 1:
+        raise NorthernStarError(
+            "%s is listed in more than one market in the price library (%s) and no "
+            "market was given. Two companies can share a ticker and two currencies "
+            "cannot be compared; name the market." % (ticker.upper(), ", ".join(hits)))
+    else:
+        markets = hits
+    for mkt in markets:
         p = os.path.join(root, mkt, "%s.csv" % ticker.upper())
         if not os.path.exists(p):
             continue
@@ -243,7 +310,8 @@ def from_numbers(ticker, numbers=None, **kw):
             kw[k] = sc[k]
     spot = numbers.get("spot")
     struck = spot
-    latest, latest_date = _latest_close(ticker)
+    mkt = (numbers.get("meta") or {}).get("market")
+    latest, latest_date = _latest_close(ticker, market=mkt)
     if latest and (not spot or latest != spot):
         spot = latest
     central = numbers.get("central")

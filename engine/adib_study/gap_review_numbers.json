@@ -1,4 +1,7 @@
 {
+ "published_central": 37.17789080747221,
+ "published_spot": 52.05,
+ "why_this_file": "The ADIB gap review's own arithmetic. It declares the central and spot it was built against so a later reader can tell a current artefact from a stale one — which is the whole difference between a number that still means something and one that only looks like it does.",
  "central": 37.17789080747221,
  "spot": 52.05,
  "gap": -0.2857273620082188,
