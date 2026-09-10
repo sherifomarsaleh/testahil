@@ -858,6 +858,35 @@ INP = dict(
          "attempted on 09-Aug-2026 and rejected by that site's web application firewall, so the "
          "level is indicated by a market-data series rather than proven from the auction curve "
          "— and it is sensitised", "2026-08-06", "Country"),
+    # THE SUPERSEDED VINTAGE'S FIGURES ARE REGISTERED, NOT TYPED INTO THE SENTENCES
+    # THAT QUOTE THEM [10-09-2026]. Three of them -- 6.3725%, 13.9377% and 9.7077% --
+    # sat inside the source strings above and reached the bibliography as prose the
+    # figure check could not match. That check is right to complain: a number a reader
+    # sees and nothing can reach is a number nobody can verify, and it stays correct
+    # only for as long as whoever typed it stays right. They are DELIBERATELY quoted --
+    # the audit trail is the point of them -- so the fix is to publish them, not to
+    # excuse them.
+    # THE CONTROLLING SHAREHOLDING, REGISTERED. 51.34% appeared twice in the delivered
+    # study -- once describing who owns the company, once as a named risk -- and
+    # nowhere in its numbers, so the figure check could not reach it and a reader had
+    # only the author's word. It is a disclosed fact and belongs in the register like
+    # any other.
+    parent_stake=I(0.5134, "Holding of Pharco Corporation for Drug Industries and Medical "
+                   "Appliances in EIPICO, 51.34%, as disclosed in the shareholder structure "
+                   "of the company's own annual report. Quotation-only: nothing in the "
+                   "valuation computes from it. It is registered because the study states it "
+                   "to a reader, twice, and a stated figure a reader cannot trace is a "
+                   "figure nobody can check", "2026-08-06", "Company"),
+    sov_spread_rating_jan26=I(0.063725, "Egypt adjusted default spread on the rating basis, "
+                              "JANUARY-2026 vintage of the country default-spread dataset. "
+                              "SUPERSEDED and carried for the audit trail only; nothing "
+                              "computes from it", "2026-01-05", "Country"),
+    erp_rating_jan26=I(0.139377, "Egypt TOTAL equity risk premium on the rating basis, "
+                       "JANUARY-2026 vintage. SUPERSEDED, audit trail only",
+                       "2026-01-05", "Country"),
+    crp_rating_jan26=I(0.097077, "Egypt COUNTRY risk premium on the rating basis, "
+                       "JANUARY-2026 vintage. SUPERSEDED, audit trail only",
+                       "2026-01-05", "Country"),
     sov_spread_cds=I(0.0342, "Egypt sovereign credit-default-swap spread, 3.42%, from the "
                      "MID-YEAR (July 2026) vintage of the country default-spread and "
                      "risk-premium dataset, Egypt row, 'Sovereign CDS, net of Swiss CDS' "
@@ -1471,7 +1500,12 @@ ic_fy26 = ppe[0] + cip[0] + wc[0] + V['intang_fy25']
 # ============================ COST OF CAPITAL =================================
 rf_star = V['rf'] - V['sov_spread_cds']
 ke = rf_star + V['beta'] * V['erp_cds']
-ke_rating = (V['rf'] - V['sov_spread_rating']) + V['beta'] * V['erp_rating']
+# THE RATING-BASIS NORMALISED RISK-FREE RATE IS NAMED, NOT BURIED IN A BRACKET.
+# The document prints it in the cost-of-capital table -- a reader sees 17.03%
+# beside the market basis's 19.58% -- and the study committed only the ke it fed,
+# so nothing downstream could reach the number on the page.
+rf_star_rating = V['rf'] - V['sov_spread_rating']
+ke_rating = rf_star_rating + V['beta'] * V['erp_rating']
 ke_double_counted = V['rf'] + V['beta'] * V['erp_cds']   # the retired construction, for contrast
 
 kd_blend = kd_blend_pre
@@ -2440,6 +2474,7 @@ OUT = dict(
                                     for i in range(n)]),
     wacc=dict(rf=V['rf'], sov_spread_cds=V['sov_spread_cds'], rf_star=rf_star, beta=V['beta'],
               erp_cds=V['erp_cds'], ke=ke, ke_rating=ke_rating,
+              rf_star_rating=rf_star_rating,
               ke_double_counted_retired=ke_double_counted,
               kd_egp=V['kd_egp'], kd_fx_coupon=V['kd_fx_coupon'],
               kd_fx_local_equiv=kd_fx_local_equiv, w_fx=w_fx, kd_blend=kd_blend, kd_at=kd_at,
@@ -2448,6 +2483,11 @@ OUT = dict(
               mcap=mcap, gross_debt=gross_debt, net_debt=net_debt, cash=V['cash_fy25'],
               we_net=we_net, wd_net=wd_net, wd_gross=wd_gross,
               wacc0=wacc0, wacc0_gross=wacc0_gross,
+              # THE TERMINAL BETA IS PUBLISHED. It was a module constant used in the
+              # arithmetic and committed nowhere, so the workbook builder had no way
+              # to read it and multiplied by the MEASURED beta instead -- two
+              # different terminal rates in the study and the model beside it.
+              beta_terminal=BETA_TERM,
               ke_term=ke_term, kd_term=kd_term, kd_term_at=kd_term_at, wacc_term=wacc_term,
               glide_frac=glide_frac, disc_rate=disc_rate, df=df, kd_path=kdp,
               wd_term=wd_term, wd_term_market=wd_term_market, wd_term_book=wd_term_book,

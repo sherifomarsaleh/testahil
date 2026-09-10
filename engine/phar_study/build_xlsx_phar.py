@@ -430,7 +430,19 @@ drow('wdg', 'Debt weight (gross basis)', f'={c("debt0")}/({c("mcap")}+{c("debt0"
      W['wd_gross'], fmt=PCT)
 drow('wacc0g', 'Weighted average cost of capital, gross-debt basis',
      f'=(1-{c("wdg")})*{c("ke")}+{c("wdg")}*{c("kdat")}', W['wacc0_gross'])
-drow('ket', 'Terminal cost of equity', f'={c("rf_t")}+{c("beta")}*{c("erp_t")}', W['ke_term'])
+# THE TERMINAL BETA IS ONE AND THIS CELL WAS USING THE MEASURED BETA [10-09-2026].
+# The model adopted a terminal beta of 1.00 -- a company's sensitivity to the
+# market reverts over a perpetuity -- and this formula went on multiplying by the
+# measured 0.67, so the workbook's terminal cost of equity sat 234bp below the
+# model's and 84 cells downstream of it disagreed. A reader opening the workbook
+# beside the study would have found two different terminal rates.
+arow('beta_t', 'Terminal beta — reverts to the market, not the measured beta',
+     'a perpetuity is long enough for a company\'s sensitivity to the market to be '
+     'the market\'s own; carrying the measured beta for ever is an assumption, not '
+     'a measurement. Committed by the model as beta_terminal',
+     W['beta_terminal'], fmt='0.00', kind='unit_build')
+drow('ket', 'Terminal cost of equity',
+     f'={c("rf_t")}+{c("beta_t")}*{c("erp_t")}', W['ke_term'])
 drow('kdt', 'Terminal cost of debt',
      f'=(1-{c("wfx")})*{c("kdt_lc")}+{c("wfx")}*((1+{c("kdt_fx")})*1.03-1)', W['kd_term'])
 drow('kdtat', 'Terminal cost of debt after tax', f'={c("kdt")}*(1-{c("tax")})', W['kd_term_at'])

@@ -248,7 +248,7 @@ caption(f'Table {tnum()} — the figures a reader needs before anything else. En
 H1('Company overview')
 P('EIPICO was founded in 1980 in Tenth of Ramadan City with capital of EGP 7 million and '
   'began producing in 1985. It is today the largest operating subsidiary of the Arab Company '
-  'for Drug Industries and Medical Appliances, which holds 51.34% of its shares. The '
+  'for Drug Industries and Medical Appliances, which holds ' + pc(V['parent_stake'], 2) + ' of its shares. The '
   'rest of the share list is dominated by medical-profession institutions — an investment '
   'company, the professions federation and its pension fund together hold a further 12.02% — '
   'with 36.64% in other hands.')
@@ -1368,7 +1368,7 @@ rows += [
      'Medium'],
     ['Refinancing', f"EGP {n0(W['gross_debt'])} million of gross borrowings against EGP "
      f"{n0(V['cash_fy25'])} million of cash, half of it hard-currency", 'Medium'],
-    ['Controlling shareholder', 'a 51.34% holder whose interests may not align with the '
+    ['Controlling shareholder', 'a ' + pc(V['parent_stake'], 2) + ' holder whose interests may not align with the '
      'minority on capital allocation', 'Low to medium']]
 table(rows, [1.85, 3.55, 0.95], size=8.4)
 H2('B.3 The research record')

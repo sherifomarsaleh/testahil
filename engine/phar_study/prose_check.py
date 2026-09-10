@@ -42,6 +42,13 @@ vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']), (
 _PANEL = [v for v in PF.numbers_from(HERE, files=['study_numbers.json']) if _spot and 0 < v < _spot * 5]
 vals += PF.ratios_against([_spot] if _spot else [], _PANEL)
 
+# THE TECHNICAL LEVELS ARE QUOTED AS DISTANCES FROM THE CLOSE and this check could
+# not reach them: the levels live in technicals.json and the ratio base was built
+# from study_numbers.json alone, so every support and resistance distance in the
+# read came back unmatched. Registering them is the same fix AMOC already carries.
+_TECH = PF.numbers_from(HERE, files=['technicals.json'])
+vals += PF.ratios_against(_TECH, (_spot,)) if _spot else []
+
 RENDER = PF.rendering_set(vals)
 
 if __name__ == '__main__':
