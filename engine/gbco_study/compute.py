@@ -1089,7 +1089,12 @@ out = dict(
                      net_new_borrowings=[5500.0, 5200.0, 5600.0, 5800.0, 6100.0],
                      dividend_payout=[0.14, 0.15, 0.16, 0.18, 0.20])),
     lens_inputs=LENS_INPUTS,
-    edition='2026-09-07',
+    # RECALIBRATION EDITION [R-DOC-03]. The terminal risk-free rate came off the
+    # house Egyptian macro path when the structural real rate moved from 5.5% to
+    # 3.5%, and the cost-of-capital record now publishes the [R-COC-03] split it
+    # was already using. Supersedes 07-09-2026 (EGP 41.35 / 52.35).
+    edition='2026-09-10',
+    supersedes=('2026-09-07',),
     experts=dict(e1=exp1, e2=exp2, e3=exp3, e3_roce=roce, e3_ce=ce),
     cap_hist=cap_hist,
     cost_of_capital_record=dict(

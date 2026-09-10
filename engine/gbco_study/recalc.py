@@ -230,10 +230,18 @@ chk = [ta[i] - tle[i] for i in range(8)]
 netdebt = [borrow[i] - cash[i] for i in range(8)]
 
 # ---- the cost of capital, the DCF and the three legs --------------------------------
-ke = COC['rf_star'] + COC['beta'] * COC['erp']
+# THE FIFTH PLACE THIS IDENTITY WAS WRITTEN OUT BY HAND, and the fourth to be
+# left behind when the construction changed. rf* + beta x ERP_total multiplies
+# the country premium by beta; [R-COC-03] charges it once, flat, at the weight of
+# the operations. This gate is supposed to prove the workbook reproduces the
+# model, so a private re-derivation here proves only that two wrong things agree.
+# The record publishes its own components; read them.
+ke = (COC['rf_star'] + COC['beta'] * COC['erp_mature'] + COC['crp_effective'])
 kd_at = COC['kd_pretax'] * (1 - TAX)
 wacc1 = (1 - COC['weight_debt']) * ke + COC['weight_debt'] * kd_at
-ke_alt = RB['rf_star'] + COC['beta'] * RB['erp']
+# The alternative basis splits the same way; it was the sixth hand-written copy of
+# the retired identity in this study alone.
+ke_alt = (RB['rf_star'] + COC['beta'] * RB['erp_mature'] + RB['crp_effective'])
 wacc_alt = (1 - COC['weight_debt']) * ke_alt + COC['weight_debt'] * kd_at
 TG = D['macro']['terminal_growth_nominal']
 fwd = COC['forward_wacc']; wacc_T = COC['wacc_terminal']
@@ -257,7 +265,8 @@ cap_opeq = CAPI['segment_equity_before_nci'] - CAPI['associates_carried_within']
 cap_opeq_d25 = 18312.6 - 15732.426
 roe_h1 = (649.6 - 426.2) * 2 / ((cap_opeq_d25 + cap_opeq) / 2)
 roe_fy25 = (1365.9 - 986.4) / cap_opeq_d25
-ke_T = COC['rf_terminal'] + COC['beta'] * COC['erp_terminal']
+ke_T = (COC['rf_terminal'] + COC['beta'] * COC['erp_mature']
+        + COC['crp_effective_terminal'])
 pb = (roe_h1 - TG) / (ke_T - TG)
 capleg = cap_opeq * pb
 capleg_fy25 = cap_opeq * ((roe_fy25 - TG) / (ke_T - TG))
@@ -326,14 +335,14 @@ def one(sheet, coord, v):
 
 
 A = ASM
-one('Assumptions', 'B%d' % A['Cost of equity Ke = rf* + beta x ERP'], ke)
+one('Assumptions', 'B%d' % A['Cost of equity Ke = rf* + beta x mature premium + country premium'], ke)
 one('Assumptions', 'B%d' % A['After-tax cost of debt'], kd_at)
 one('Assumptions', 'B%d' % A['WACC — first forecast year'], wacc1)
 one('Assumptions', 'B%d' % A['GB Capital operating equity'], cap_opeq)
 one('Assumptions', 'B%d' % A['GB Capital operating equity, 31 December 2025'], cap_opeq_d25)
 one('Assumptions', 'B%d' % A['Return on operating equity — 1H2026 annualised (ADOPTED)'], roe_h1)
 one('Assumptions', 'B%d' % A['Return on operating equity — FY2025 framing'], roe_fy25)
-one('Assumptions', 'B%d' % A['Terminal cost of equity Ke(T) = rf(T) + beta x ERP(T)'], ke_T)
+one('Assumptions', 'B%d' % A['Terminal cost of equity Ke(T) = rf(T) + beta x mature premium + country premium'], ke_T)
 one('Assumptions', 'B%d' % A['Justified price-to-book = (ROE - g) / (Ke(T) - g)'], pb)
 one('Assumptions', 'B%d' % A['GB Capital lending leg (EGP mn)'], capleg)
 one('Assumptions', 'B%d' % A['memo: the same leg on the FY2025 return framing'], capleg_fy25)
@@ -645,7 +654,11 @@ for (sh, coord), want in E.items():
 print('gate 2 — formula cells reconciled against the model: %d, disagreements: %d'
       % (nchk, len(drift)))
 for sh, coord, got, want in drift[:40]:
-    g = '%,.6f' % got if isinstance(got, (int, float)) else repr(got)
+    # '%,.6f' IS NOT A PYTHON FORMAT and never was: %-formatting has no comma flag,
+    # so this line raises ValueError. It sits inside the loop that runs ONLY when a
+    # cell disagrees, so it had never executed -- the reporting path crashed at
+    # exactly the moment it was needed and printed nothing about the drift it found.
+    g = format(got, ',.6f') if isinstance(got, (int, float)) else repr(got)
     print('    %s!%s: workbook=%s  model=%.6f' % (sh, coord, g, want))
 
 uncovered = ['%s!%s' % (sh, coord) for sh, coord in cells if (sh, coord) not in E]
@@ -687,10 +700,10 @@ checks = [
     ('GB Capital operating equity', ('Assumptions', 'B%d' % ASM['GB Capital operating equity']),
      D['lens_inputs']['capital']['operating_equity'], 0.01),
     ('terminal cost of equity',
-     ('Assumptions', 'B%d' % ASM['Terminal cost of equity Ke(T) = rf(T) + beta x ERP(T)']),
+     ('Assumptions', 'B%d' % ASM['Terminal cost of equity Ke(T) = rf(T) + beta x mature premium + country premium']),
      D['cost_of_capital_record']['ke_terminal'], 1e-8),
     ('cost of equity, explicit window',
-     ('Assumptions', 'B%d' % ASM['Cost of equity Ke = rf* + beta x ERP']),
+     ('Assumptions', 'B%d' % ASM['Cost of equity Ke = rf* + beta x mature premium + country premium']),
      D['cost_of_capital_record']['ke_exp'], 1e-8),
     ('WACC, first forecast year', ('Assumptions', 'B%d' % ASM['WACC — first forecast year']),
      D['cost_of_capital_record']['wacc_exp'], 1e-8),

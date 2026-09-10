@@ -1256,7 +1256,10 @@
    "basis": "residual income in its terminal form, (ROE - g) / (Ke - g), on the segment's own shareholders' equity before NCI LESS the associates carried inside it -- so the stake the sum of the parts adds back at its own mark is not also funding this leg. The return is measured on that same base with associate income taken out of the numerator too."
   }
  },
- "edition": "2026-09-07",
+ "edition": "2026-09-10",
+ "supersedes": [
+  "2026-09-07"
+ ],
  "experts": {
   "e1": {
    "base": 55.908465350082366,

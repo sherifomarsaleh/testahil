@@ -24,7 +24,11 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-OUT = 'GBCO_Valuation_Model_07092026_public.xlsx'
+import json as _json_ed, os as _os_ed
+_ED = _json_ed.load(open(_os_ed.path.join(
+    _os_ed.path.dirname(_os_ed.path.abspath(__file__)),
+    'study_numbers.json'), encoding='utf-8'))['edition']
+OUT = 'GBCO_Valuation_Model_%s_public.xlsx' % ''.join(_ED.split('-')[::-1])
 wb = load_workbook(OUT)
 A = json.load(open('_asm_rows.json'))
 D = json.load(open('study_numbers.json'))
@@ -91,6 +95,20 @@ def put(ws, addr, v, font=BLACK, fmt=NUM, bold=False, fill=None):
 
 def ac(label, col):
     return "Assumptions!$%s$%d" % (col, A[label])
+
+
+# CROSS-SHEET REFERENCES BY NAME, NEVER BY A TYPED ROW NUMBER [10-09-2026]. Six formulas
+# on this sheet addressed Assumptions!$B$16, $B$17, $B$19 and $B$20 as literals. Splitting
+# the equity premium into its mature and country legs pushed those rows down by two, so
+# the terminal value started capitalising at the DEBT WEIGHT instead of the growth rate
+# and the bridge subtracted the wrong two lines: the DCF sheet returned an enterprise
+# value of -19,269 against a model figure of 89,266, and opened without complaint. The
+# workbook's own reconciliation caught it; the typed numbers are why there was anything
+# to catch.
+_G_CELL = ac('Terminal growth (nominal EGP, DERIVED)', 'B')
+_W1_CELL = ac('WACC — first forecast year', 'B')
+_ND_CELL = ac('GB Auto net debt (30 June 2026, reviewed)', 'B')
+_NCI_CELL = ac('GB Auto non-controlling interests (30 June 2026)', 'B')
 
 
 YH = ['FY23', 'FY24', 'FY25']; YF = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
@@ -301,27 +319,28 @@ r = dline(r, 'Cost of capital — terminal (norm-built)', _SCH['wacc_terminal'],
                'price of time.')
 WTR = r - 1
 r = dline(r, 'Terminal value (on the terminal rate)',
-          "=F%d*(1+Assumptions!$B$17)/(B%d-Assumptions!$B$17)" % (FCFF, WTR))
+          "=F%d*(1+%s)/(B%d-%s)" % (FCFF, _G_CELL, WTR, _G_CELL))
 TVR = r - 1
 r = dline(r, 'PV of the terminal value', "=B%d*F%d" % (TVR, DF))
 PVT = r - 1
 r = dline(r, 'Enterprise value — GB Auto leg', "=B%d+B%d" % (SPV, PVT), bold=True)
 EVR = r - 1
 r = dline(r, 'Terminal share of enterprise value', "=B%d/B%d" % (PVT, EVR), PCT2)
-r = dline(r, 'less: GB Auto net debt (30 June 2026)', '=-Assumptions!$B$19')
-r = dline(r, 'less: GB Auto non-controlling interests', '=-Assumptions!$B$20')
-r = dline(r, 'GB Auto equity value', "=B%d-Assumptions!$B$19-Assumptions!$B$20" % EVR,
+r = dline(r, 'less: GB Auto net debt (30 June 2026)', '=-' + _ND_CELL)
+r = dline(r, 'less: GB Auto non-controlling interests', '=-' + _NCI_CELL)
+r = dline(r, 'GB Auto equity value', "=B%d-%s-%s" % (EVR, _ND_CELL, _NCI_CELL),
           bold=True)
 AEQ = r - 1
 r += 1
 r = dline(r, 'check: year-1 forward rate less the WACC built on Assumptions',
-          "=B%d-Assumptions!$B$16" % FWD, PCT2,
+          "=B%d-%s" % (FWD, _W1_CELL), PCT2,
           note='ZERO by construction: the schedule\'s first year and rf* + beta x ERP blended '
                'with after-tax debt are the same rate, and this row is what says so.')
 r = dline(r, 'Enterprise value per +1pp of Auto gross margin (helper)',
-          "=0.01*(1-Assumptions!$B$7)*(SUMPRODUCT(B%d:F%d,B%d:F%d)"
-          "+F%d*(1+Assumptions!$B$17)/(B%d-Assumptions!$B$17)*F%d)"
-          % (DC['Auto revenue'], DC['Auto revenue'], DF, DF, DC['Auto revenue'], WTR, DF),
+          ("=0.01*(1-Assumptions!$B$7)*(SUMPRODUCT(B%d:F%d,B%d:F%d)"
+           "+F%d*(1+%s)/(B%d-%s)*F%d)"
+           % (DC['Auto revenue'], DC['Auto revenue'], DF, DF,
+              DC['Auto revenue'], _G_CELL, WTR, _G_CELL, DF)),
           note='EXACT rather than approximate: a margin shift moves cost only, so it moves '
                'every year\'s free cash flow by revenue x shift x (1 - tax) and nothing else. '
                'The Sensitivity sheet is built on this row.')

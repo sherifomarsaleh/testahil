@@ -267,11 +267,22 @@ class Model:
         its single `default_spread` field is the CDS basis. The committed
         wacc_rating is the rating-basis figure; read it, do not rebuild it here.
         """
-        ke = self.wb['rf_star'] + beta * erp
+        # THE COST OF EQUITY IS BUILT THROUGH THE SANCTIONED MODULE, not re-derived
+        # here [10-09-2026]. This line read rf* + beta x ERP_total, which multiplies
+        # the country premium by beta -- the double count [R-COC-03] was adopted to
+        # stop -- so once the study moved to the split construction this assert fired
+        # on an answer that was right, and stopped the study rebuilding at all. A
+        # second implementation of an identity beside the module that owns it is the
+        # shape that lets two readers of one fact disagree; the fix is to have one
+        # reader, not to relax the tolerance.
+        import cost_of_capital as _COC
+        ke, _ = _COC.cost_of_equity(self.wb['rf_star'], beta, erp,
+                                    self.wb['default_spread'])
         if abs(beta - self.wb['beta']) < 1e-12 and abs(erp - self.wb['erp_cds']) < 1e-12:
             assert abs(ke - self.wb['ke_cds']) < 1e-12, (
-                'the CAPM identity no longer reproduces this study\'s own committed '
-                'cost of equity (%.12f vs %.12f)' % (ke, self.wb['ke_cds']))
+                'the cost of equity no longer reproduces this study\'s own committed '
+                'figure under the sanctioned construction (%.12f vs %.12f)'
+                % (ke, self.wb['ke_cds']))
         return self.wb['we'] * ke + self.wb['wd'] * self.wb['kd_aftertax']
 
     # -- the reverse read ---------------------------------------------------

@@ -24,7 +24,11 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-OUT = 'GBCO_Valuation_Model_07092026_public.xlsx'
+import json as _json_ed, os as _os_ed
+_ED = _json_ed.load(open(_os_ed.path.join(
+    _os_ed.path.dirname(_os_ed.path.abspath(__file__)),
+    'study_numbers.json'), encoding='utf-8'))['edition']
+OUT = 'GBCO_Valuation_Model_%s_public.xlsx' % ''.join(_ED.split('-')[::-1])
 wb = load_workbook(OUT)
 A = json.load(open('_asm_rows.json')); SR = json.load(open('_seg_rows.json'))
 DCJ = json.load(open('_dcf_rows.json'))
