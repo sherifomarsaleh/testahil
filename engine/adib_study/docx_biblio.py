@@ -75,7 +75,7 @@ for k in sorted(REG):
         vs = '%.6g' % v
     else:
         vs = str(v)
-    rows.append([k.replace('_', ' '), vs[:34], e['date'], e['tier'], e['source'][:430]])
+    rows.append([k.replace('_', ' '), vs[:34], e['date'], e['ring'], e['source'][:430]])
 table(rows, [1.25, 1.0, 0.75, 0.5, 3.5], size=6.6)
 caption('Table 2 — the full input register.')
 

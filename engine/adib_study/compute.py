@@ -47,11 +47,28 @@ MN = 1000.0        # the walk-forward panel is EGP '000; this study works in EGP
 
 
 # ----------------------------------------------------------------------------------
-# The input register. value / source / date / tier on every entry.
-# ----------------------------------------------------------------------------------
+# The input register. value / source / date / RING on every entry.
+#
+# IT WAS CALLED `tier` AND THE BOOK CALLS IT `ring`. Every input here already carried the
+# fourth field the four-field standard asks for — the research ring the figure came from —
+# under a name no other reader in this repository knows. 2,304 inputs across the book write
+# `ring` and 1,808 write `layer`; 62 wrote `tier`, and all 62 were this study's. So the
+# register was complete and the gate reported 62 of 62 inputs as incomplete, which is the
+# same shape as that gate's own founding defect: a reader ignorant of a spelling calling a
+# full register empty. The name moves rather than the gate widening to a third spelling,
+# because this study is the one out of step — and `tier` already means something else here,
+# the beta tiers 1/2/3 that assert_beta_provenance reads.
+#
+# ONE VALUE MOVED WITH IT. 'A' meant the company's own audited filings and appears nowhere
+# in the book's vocabulary; the ring for that is 'Company'. House, Country and Market were
+# already the book's own words.
+_RING_RENAMED = {'A': 'Company'}
+
+
 class I:
-    def __init__(self, value, source, date, tier):
-        self.value, self.source, self.date, self.tier = value, source, date, tier
+    def __init__(self, value, source, date, ring):
+        self.value, self.source, self.date = value, source, date
+        self.ring = _RING_RENAMED.get(ring, ring)
 
 
 _BETA = own_stock_beta('ADIB', 'EG', 'EGX')
@@ -59,8 +76,8 @@ _BETA = own_stock_beta('ADIB', 'EG', 'EGX')
 REG = {}
 
 
-def reg(name, value, source, date, tier):
-    REG[name] = I(value, source, date, tier)
+def reg(name, value, source, date, ring):
+    REG[name] = I(value, source, date, ring)
     return value
 
 

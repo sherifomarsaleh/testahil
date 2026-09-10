@@ -109,7 +109,7 @@ def main():
         # alias to the same object so this study's own three builders keep working;
         # they read one dict, not two.
         inputs={k: dict(value=(v.value if not isinstance(v.value, (list, dict)) else v.value),
-                        source=v.source, date=v.date, tier=v.tier)
+                        source=v.source, date=v.date, ring=v.ring)
                 for k, v in C.REG.items()},
     )
     d['register'] = d['inputs']          # the same object, under the study's own older name
