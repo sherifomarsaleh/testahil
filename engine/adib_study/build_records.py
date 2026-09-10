@@ -159,6 +159,27 @@ def main():
                                   'terminal cost of equity and a terminal growth rate, both '
                                   'published in the cost-of-capital record.'),
     )
+        # [R-FCAL-01] THE SCOPE DECISION WAS MADE AND WAS NOT WHERE THE GATE READS IT.
+    # It has been stated since 09-09-2026 in engine/adib_walkforward/PRE_REGISTRATION,
+    # the run exists on disk with its 11 origins and 45 cells, and the study's committed
+    # numbers said nothing — so check_walkforward_scope read a study that had decided
+    # nothing. A decision recorded only in the document that acts on it is a decision no
+    # gate can see, which is the same shape as a line computed and not published.
+    d['walkforward_scope'] = dict(
+        scope='FULL',
+        sourceable_fiscal_years=16,
+        status='run',
+        basis=('Sixteen sourceable consolidated fiscal years, FY2010-FY2025, every one '
+               'from the issuer\'s own audited consolidated statements on adib.eg and '
+               'every one footing against its own arithmetic. Sixteen is at or above the '
+               'eight a FULL scope needs, so the run takes all origins from the first '
+               'year with a five-year history behind it, at horizons 1 to 5.'),
+        note=('Run 09-09-2026. Origins FY2014-FY2024, eleven of them, 45 origin-horizon '
+              'cells, truncated at FY2025 as the last reported year. Pre-registered in '
+              'engine/adib_walkforward/PRE_REGISTRATION_09-09-2026.md before any origin '
+              'was built.'),
+    )
+
     p = os.path.join(HERE, 'study_numbers.json')
     json.dump(d, open(p, 'w'), indent=1, default=float)
     print('written %s' % p)
