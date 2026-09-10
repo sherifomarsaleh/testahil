@@ -477,7 +477,8 @@ I("abuk_shares_held", 10262324, "shares",
 I("abuk_spot_strike", 94.00, "EGP/share",
   "Abu Qir Fertilizers closing price on the Egyptian Exchange, 3 September 2026 — the SAME "
   "date and the SAME committed price file this study is struck at, "
-  "engine/prices/SUPPLIED_03-09-2026.json. Read from the file rather than typed beside it, "
+  "the supplied-price file this edition is struck from. Read from that file rather than "
+  "typed beside it, "
   "so a stake in a listed company and the company holding it are marked on one date",
   "2026-09-03", "L2")
 I("abuk_carrying_price", 81.70, "EGP/share",

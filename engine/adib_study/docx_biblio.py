@@ -113,7 +113,7 @@ rows.append(['Equity is pinned at 10.5% of assets',
 rows.append(['The cost of equity is %.2f%%' % (100 * COC['ke']),
              'a %.2f%% ten-year yield less a %.2f%% sovereign spread, plus a %.4f beta '
              'times the %.4f%% MATURE premium, plus the %.4f%% country premium charged '
-             'flat and once — beta multiplies the mature leg and nothing else [R-COC-03]'
+             'flat and once — beta multiplies the mature leg and nothing else'
              % (100 * COC['rf'], 100 * COC['sovereign_default_spread'],
                 COC['beta'], 100 * COC['erp_mature'], 100 * COC['crp_effective']),
              'A CURRENT ten-year yield. The one carried is %d days old and the only recent '

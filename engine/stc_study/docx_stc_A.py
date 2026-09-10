@@ -232,7 +232,7 @@ P('We value stc as a going-concern operator. ONE lens is the answer — a free-c
   'treatment a bank leg would get; it is carried inside the subsidiaries line and flagged as such, to be revisited '
   'once its regulated financials give it a book worth marking separately. Throughout, the cost of equity is '
   f"published explicitly, and the equity premium is SPLIT because country risk is a charge on "
-  f"being here rather than one that scales with a stock's covariance [R-COC-03]: the normalised "
+  f"being here rather than one that scales with a stock's covariance: the normalised "
   f"risk-free rate, plus beta times the MATURE premium, plus the country premium charged flat "
   f"and once — "
   f"{D['coc_record']['rf_star']*100:.2f}% + {D['coc_record']['beta']:.4f} x "
