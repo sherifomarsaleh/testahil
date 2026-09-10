@@ -102,18 +102,28 @@ BLOCKS = {
    "Clinker and cement capacity, and any announced expansion, mothballing or restart, line by line.",
    "Alternative-fuel substitution — the percentage reached, the stated target, and any new waste-fuel supply agreement.",
    "The price and availability of coal, petcoke and mazut delivered to plants in this market.",
-   "Announced electricity-tariff changes for industrial users.",
    "Domestic price references and export volumes.",
    "New entrants, and capacity coming on or leaving this market.",
  ],
  'bank': [
-   "Central bank policy-rate decisions over the last 18 months, with dates and the guidance given at each.",
-   "Announced changes to reserve requirements, loan-to-deposit rules, capital rules, or the treatment of sovereign holdings.",
-   "The corporate tax rate applied to banks in this market, and any announced change.",
-   "The bank's branch, digital and lending expansion plans, with numbers and target dates.",
-   "Any announced capital raise, sukuk or bond issue, or dividend-policy statement.",
-   "Regulatory initiatives directing lending to particular sectors, and the subsidised rates attached to them.",
-   "Anything announced about a parent's intentions for this entity, or about a merger or acquisition.",
+   # The policy rate, the currency and the general tax rate are MACRO and are asked for in
+   # section A. This block asks only what is specific to banking, or the two sections
+   # return the same answer twice and the researcher pads to fill both.
+   "Prudential rules: announced changes to reserve requirements, the loan-to-deposit ratio, "
+   "capital or liquidity requirements, provisioning rules, or the regulatory treatment of "
+   "sovereign holdings — with the circular and its effective date.",
+   "Any tax applied to BANKS specifically, where it differs from the general corporate rate, "
+   "and any announced change to it.",
+   "Directed-lending initiatives — programmes steering credit to named sectors, the "
+   "subsidised rates attached, who bears the subsidy, and the size of each programme.",
+   "Sector credit and deposit growth, and any published banking-sector aggregate, with the "
+   "date and the body that published it.",
+   "Competition: licences granted or withdrawn, banks entering or leaving this market, "
+   "announced mergers or acquisitions among its named competitors, and digital-bank or "
+   "fintech licensing that competes for the same deposits.",
+   "Where the bank is Islamic or has an Islamic window: any change to the sharia-governance "
+   "framework, sukuk market rules, or the regulatory treatment of Islamic instruments.",
+   "Deposit-insurance, resolution or consumer-protection rules newly imposed on banks.",
  ],
  'pharma': [
    "Drug-regulator pricing decisions — every announced repricing round, which product classes, what percentage, the effective date, and whether it is adopted or still under study.",
@@ -164,7 +174,6 @@ BLOCKS = {
    "Domestic pricing regulation for the products, and any announced revision.",
    "Export volumes, destinations, and any levy or restriction.",
    "International reference prices for the main products, and their recent direction.",
-   "Any announced dividend policy, capital increase, or change in government shareholding.",
  ],
  'oilfield_services': [
    "Fleet or asset additions — rigs, vessels, units — with counts, delivery dates and the contracts attached.",
@@ -266,7 +275,6 @@ BLOCKS = {
    "Assets under management, brokerage share and any figure the company itself published.",
    "Regulator rule changes on capital markets, brokerage, or asset management in this market.",
    "Announced acquisitions, licences in new markets, and new business lines.",
-   "Any announced capital raise or change in ownership.",
  ],
  'holding': [
    "EVERY MATERIAL SUBSIDIARY AND ASSOCIATE BY NAME, the percentage held, and how the company itself values it.",
@@ -293,7 +301,6 @@ BLOCKS = {
    "Product launches and the roadmap the company itself disclosed, with dates.",
    "Capacity, supply-chain and fabrication commitments announced, with the capital attached.",
    "Export controls, tariffs and trade restrictions affecting the products or the inputs.",
-   "Announced acquisitions and their consideration.",
    "Any regulatory or antitrust action, with the jurisdiction and the remedy sought.",
  ],
  'it_services': [
@@ -463,6 +470,85 @@ EXTRA = {
           "company's pipeline, with the approval date and the regulator."],
 }
 
+# ---- THE MACRO BLOCK, PER MARKET ----------------------------------------------
+# The country's own news, asked about the things that actually reach a company's numbers:
+# the policy rate, the currency, administered energy, the tax regime, trade instruments.
+# Market-specific because the instruments differ — an Egyptian company lives and dies by a
+# fuel-price announcement and an IMF review; a US one does not.
+MACRO = {
+ 'EGX': [
+   "Central Bank of Egypt policy-rate decisions over the last 18 months, each with its date "
+   "and the guidance given at the meeting.",
+   "The exchange-rate regime and the pound's path, plus any announced change to how the rate "
+   "is managed.",
+   "Announced natural-gas and electricity tariffs for industrial users, by sector.",
+   "Fuel-price announcements — gasoil, mazut, petcoke — with their dates.",
+   "The corporate tax regime and any announced change, including sector-specific rates.",
+   "Export levies, licences and quotas INTRODUCED OR REMOVED, with the decree number and "
+   "effective date. Repeals matter as much as impositions.",
+   "The IMF programme — review dates, disbursements, and the structural benchmarks touching "
+   "energy pricing, subsidies or state ownership.",
+   "Published official inflation prints and forecasts, and the central bank's own target "
+   "path, with the date each was published.",
+   "State-ownership policy and any announced divestment of a listed or listable asset.",
+ ],
+ 'ADX': [
+   "Central Bank of the UAE rate decisions and any divergence from the US Federal Reserve.",
+   "Announced federal or emirate-level corporate tax changes and their effective dates.",
+   "Announced changes to energy, utility or fuel pricing for industrial users.",
+   "Federal and Abu Dhabi capital-spending programmes and any announced budget.",
+   "Foreign-ownership, listing and free-zone rule changes.",
+ ],
+ 'TADAWUL': [
+   "Saudi Central Bank rate decisions and any divergence from the US Federal Reserve.",
+   "Announced changes to zakat, corporate tax, or the levy on expatriate labour.",
+   "Energy and feedstock pricing announcements for industrial users.",
+   "Vision 2030 and Public Investment Fund programmes with announced budgets and dates.",
+   "Local-content (IKTVA-type) rules and any announced change.",
+ ],
+ 'QSE': [
+   "Qatar Central Bank rate decisions.",
+   "Announced corporate tax or fee changes.",
+   "State capital programmes and announced budgets.",
+   "Energy pricing and LNG expansion announcements that set the domestic economy's path.",
+ ],
+ 'NSE': [
+   "Reserve Bank of India policy decisions with dates and guidance.",
+   "Union Budget measures affecting this company's sector, with effective dates.",
+   "GST and customs-duty changes.",
+   "Production-linked incentive schemes and any announced change.",
+ ],
+ 'KRX': [
+   "Bank of Korea rate decisions with dates and guidance.",
+   "Announced corporate tax and subsidy changes.",
+   "Export controls and trade measures affecting this company's sector.",
+ ],
+ 'NASDAQ': [
+   "Federal Reserve decisions and guidance.",
+   "Tariffs, export controls and trade measures affecting this company's products or inputs.",
+   "Announced federal subsidy, tax-credit or procurement programmes touching this sector.",
+ ],
+}
+MACRO['DFM'] = MACRO['ADX']
+
+# ---- THE COMPANY'S OWN FORWARD PLANS, EVERY NAME -------------------------------
+# The sector block asks what the INDUSTRY turns on. This asks what THIS COMPANY has
+# actually said it is going to do, which is a different question and is the same question
+# whatever the industry.
+COMPANY_FORWARD = [
+ "Everything the company itself has announced and not yet finished — projects, plants, "
+ "expansions, market entries. For each: what it is, the sanctioned cost, how it is "
+ "financed, the guided completion or first-revenue date, and the percentage complete if "
+ "stated.",
+ "SLIPPAGE: any guided date that has MOVED, with the old date, the new date and the reason "
+ "given. A project that slipped matters as much as one that landed.",
+ "Any guidance the company itself published — volumes, backlog, deliveries, margins, "
+ "capital expenditure — with the date it published it. NOT another analyst's forecast.",
+ "Announced capital raises, debt issues, refinancings, dividend-policy statements, "
+ "acquisitions, disposals, and any change in who controls the company.",
+ "Management changes, board decisions and any dispute, claim or arbitration disclosed.",
+]
+
 STUDY_DIR_ALIAS = {'SWDY': 'swdy_study', 'PHAR': 'phar_study', 'ADIB': 'adib_study'}
 
 
@@ -616,18 +702,46 @@ def build(tk):
     if name_ar:
         L.append("> **Its own name in Arabic, for searching the local record:** %s" % name_ar)
     L.append("> **Listed on:** %s, ticker %s" % (exch or 'see code', tk))
-    if sector:
-        L.append("> **Industry:** %s" % DISPLAY.get(sector, sector.replace('_', ' ')))
+    L.append("> **Industry:** %s"
+             % (DISPLAY.get(sector, sector.replace('_', ' ')) if sector
+                else "NOT CLASSIFIED in this repository — said here rather than hidden, "
+                     "because an unclassified name should not get a generic prompt that "
+                     "looks tailored"))
+    L.append(">")
+    L.append("> Give me three things, in these three groups. Keep them separate — a policy "
+             "rate is not a company plan and I do not want them interleaved.")
+    L.append(">")
+
+    macro = MACRO.get(exch)
+    L.append("> ### A. MACRO — the country's own news, only where it reaches this company")
+    L.append(">")
+    if macro:
+        for i, q in enumerate(macro):
+            L.append("> **A%d.** %s" % (i + 1, q))
     else:
-        L.append("> **Industry: NOT CLASSIFIED in this repository.** The headings below are "
-                 "the general set rather than an industry-specific one, and that is stated "
-                 "here rather than hidden — an unclassified name should not receive a "
-                 "generic prompt that looks tailored.")
+        # NAMED OR DECLARED [R-ENF-04]. A market with no macro block gets told so, rather
+        # than a silent omission that reads like "this company has no macro exposure".
+        L.append("> **A1.** I hold no macro checklist for this market, so build one: the "
+                 "policy rate and its path, the currency regime, administered energy and "
+                 "fuel prices, the corporate tax regime, and any trade instrument — duty, "
+                 "levy, quota, licence — introduced OR REMOVED. Say which bodies set each.")
     L.append(">")
-    L.append("> Give me, for this company, under these headings:")
+
+    L.append("> ### B. INDUSTRY — %s" % (DISPLAY.get(sector, (sector or 'not classified').replace('_', ' '))))
     L.append(">")
+    if not sector:
+        L.append("> **NOTE: I have not classified this company's industry.** The headings "
+                 "below are the general set rather than an industry-specific one. Say so in "
+                 "your answer if they miss the drivers that actually matter here.")
+        L.append(">")
     for i, q in enumerate(block):
-        L.append("> **(%s)** %s" % (chr(ord('a') + i), q))
+        L.append("> **B%d.** %s" % (i + 1, q))
+    L.append(">")
+
+    L.append("> ### C. THE COMPANY'S OWN FORWARD PLANS")
+    L.append(">")
+    for i, q in enumerate(COMPANY_FORWARD):
+        L.append("> **C%d.** %s" % (i + 1, q))
     L.append("")
 
     L.append("## PART 3 — what our own study went looking for and could not find")
