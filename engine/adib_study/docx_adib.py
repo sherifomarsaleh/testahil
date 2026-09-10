@@ -733,10 +733,16 @@ for lab, k in [('Financing to customers, net', 'fin_customers'),
     for y in (2023, 2024, 2025):
         v = WFP.BS['FY%d' % y].get(k)
         r.append(m(v / 1000.0, 0) if v is not None else '—')
+    # TWO UNITS IN ONE ROW. The filed years come from WFP.BS in EGP THOUSANDS and are
+    # scaled to millions here; latest_reviewed is already in EGP MILLIONS, and it was
+    # being scaled again. So the whole H1-2026 column of this table printed a thousandth
+    # of itself — total liabilities as 371 beside FY2025's 312,076, which is a bank
+    # shedding 99.9% of its balance sheet in six months. The footing check found it the
+    # first time this study had one. The reviewed half is NOT rescaled.
     hv = {'fin_customers': LR['fin_customers'], 'total_assets': LR['total_assets'],
           'cust_deposits': None, 'total_liab': LR['total_liab'],
           'equity_parent': LR['equity_parent']}.get(k)
-    r.append(m(hv / 1000.0, 0) if hv else '—')
+    r.append(m(hv, 0) if hv else '—')
     rows.append(r)
 table(rows, [2.4, 1.15, 1.15, 1.15, 1.15], size=8.4, first_col_bold=True)
 caption(T('balance sheet, as reported'))
