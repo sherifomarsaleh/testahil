@@ -3,15 +3,49 @@
 **The answer is TWO-SIDED and both branches breach the ten per cent trigger below the
 price. Both are audited.**
 
-- AUDITED CENTRAL: 5.0224  (EGP per share — cash-flow lens, ANNA capital programme carried through)
-- AUDITED CENTRAL: 9.1288  (EGP per share — cash-flow lens, ANNA capital programme stopped)
+- AUDITED CENTRAL: 5.0966  (EGP per share — cash-flow lens, ANNA capital programme carried through)
+- AUDITED CENTRAL: 8.6284  (EGP per share — cash-flow lens, ANNA capital programme stopped)
 - AUDITED SPOT: **EGP 14.23**, the close of 6 September 2026, the latest price this
   repository holds. The study is struck at EGP 14.41, the supplied close of 3 September;
   both are published and no heading answers differently against one than the other.
-- AUDITED GAP: −64.7%   (carried through; the stopped branch is −35.8%)
+- AUDITED GAP: −64.2%   (carried through; the stopped branch is −39.4%)
 
 **A TWO-SIDED ANSWER IS AUDITED ON EVERY BRANCH.** Publishing two numbers instead of one is
 not a way to publish two unaudited numbers.
+
+## WHAT CHANGED IN THIS EDITION, AND ONE OF IT WENT AGAINST US
+
+Three of the four defects the [R-GAP-04] hunt recorded are applied. They are OUR errors,
+each read off a note in the reviewed interims, and they do not point the same way:
+
+| our defect | where | effect |
+|---|---|---:|
+| Documentary credits counted as inventory | note 11 — EGP 1,407.4mn of the 3,378.2mn line is letters of credit for goods and services, which are prepayments and not stock (165 days against 114) | **against us** |
+| The new complex's nitrate priced at a typed US$280/t | note 20 — the company's own realised nitrate price is EGP 20,000/t, and the existing nitrate business is already carried at it | for us |
+| The listed stake held at 31-March prices | note 8-1 — 10,262,324 Abu Qir shares carried at 81.70 while the committed price file has 94.00 on the strike date | for us |
+
+Net: the carried-through branch rises 5.0224 → **5.0966**, and the stopped branch FALLS
+9.1288 → **8.6284**. The inventory line was releasing working capital the company does not
+hold, so correcting it takes cash out of the explicit path — and in the stopped branch
+there is no new-plant revenue to offset it. **A hunt for our own error is not a hunt for
+reasons the answer should be higher**, and this is what that distinction costs when it
+costs something.
+
+**THE FOURTH IS NOT APPLIED AND THIS STUDY REMAINS HELD ON IT.** The ANNA nameplate
+against the KIMA-2 capital-intensity read is worth 4.874 a share and is unresolved. The
+falsifier this study stated in advance names the test and its date: KIMA's FY2025/26
+annual report, due late September 2026, discloses the project's output slate and its
+commissioning timetable.
+
+**ONE CLAIM CHECKED AND REJECTED.** A search this afternoon produced a report that
+Ministerial Decision 340/2026 had repealed the 10% export duty effective 1 August 2026 —
+worth +EGP 2.98 a share, nearly a third of the gap. It does not verify. Three independent
+searches find no such decision, and the source cited for it is a 2016-2019 record carrying
+no 2026 content at all. The likeliest reading is that the TEMPORARY US$90/t duty of Decree
+190 expired on its own three-month term in early August, having already been superseded in
+June by Decree 258's 10% ad valorem duty — which this study's own alternatives file
+already records as "carrying no stated expiry of its own". **The 10% stands and nothing
+was changed.**
 
 ## THIS STUDY IS HELD, AND THIS REVIEW IS WHY
 
@@ -47,7 +81,9 @@ correction, it is a preference, so it has not been taken.
 |---|---:|---:|
 | the 05-09-2026 edition | 4.0396 | 8.0388 |
 | the terminal risk-free rate off the house path, and the country premium charged once | | |
-| **this edition** | **5.0224** | **9.1288** |
+| the 10-09-2026 edition, before the hunt was applied | 5.0224 | 9.1288 |
+| three of the hunt's four own-defects applied | | |
+| **this edition** | **5.0966** | **8.6284** |
 
 **AND THE PUBLISHED ANSWER WAS 21% BELOW ITS OWN MODEL BEFORE THAT.** The study reads the
 house macro path for its terminal rate, so when the house structural real rate moved this

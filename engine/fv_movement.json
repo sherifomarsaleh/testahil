@@ -873,6 +873,38 @@
       "bear": 0.0,
       "full": 1.6
      }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 10,
+     "fair": {
+      "base": null,
+      "bear": 0.9084,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": 5.0966
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 8.6284
+       }
+      ],
+      "full": 8.6284
+     },
+     "lessons": [],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -44.2
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 0.0,
+      "full": -5.5
+     }
     }
    ],
    "exchange": "EGX",

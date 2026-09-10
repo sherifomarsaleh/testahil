@@ -456,7 +456,33 @@ I("peer_ev_ebitda_high", 9.9, "x",
 I("control_discount_eg_state", 0.40, "ratio",
   "Observed discount at which Egyptian state-controlled industrial assets have changed hands",
   "2026-08-06", "L4")
-I("an_price_usd_t", 280.0, "US$/t", "Mid-cycle ammonium nitrate pricing", "2026-08-07", "L4")
+# THE COMPANY DISCLOSES WHAT IT ACTUALLY GETS FOR THIS PRODUCT, and the model typed a
+# mid-cycle guess instead. an_price_usd_t was an L4 figure with no source but the phrase
+# "mid-cycle"; note 20 of the reviewed interims gives the realised nitrate price. A buyer
+# need not believe anything exotic about the nitrate market — only the company's own
+# disclosed realisation. Worth EGP 0.564 a share and it is OUR defect [R-GAP-04].
+I("an_price_usd_t", 280.0, "US$/t", "Mid-cycle ammonium nitrate pricing — RETIRED as the "
+  "ANNA pricing basis on 10-09-2026 in favour of the disclosed realisation below; kept "
+  "registered because the sensitivity grid still prices the alternative",
+  "2026-08-07", "L4")
+I("bs_doc_credits_M9FY2526", 1407.4, "EGP m",
+  "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, "
+  "note 11 — letters of credit for goods and services, disclosed WITHIN the EGP 3,378.2mn "
+  "inventory line. They are prepayments against goods not yet received, not stock: counting "
+  "them as inventory overstates working capital and the days it implies (165 against 114)",
+  "2026-05-21", "L1")
+I("abuk_shares_held", 10262324, "shares",
+  "Interim statements, nine months ended 31 March 2026, note 8-1 — the Abu Qir Fertilizers "
+  "holding, carried at EGP 81.70 a share", "2026-05-21", "L1")
+I("abuk_spot_strike", 94.00, "EGP/share",
+  "Abu Qir Fertilizers closing price on the Egyptian Exchange, 3 September 2026 — the SAME "
+  "date and the SAME committed price file this study is struck at, "
+  "engine/prices/SUPPLIED_03-09-2026.json. Read from the file rather than typed beside it, "
+  "so a stake in a listed company and the company holding it are marked on one date",
+  "2026-09-03", "L2")
+I("abuk_carrying_price", 81.70, "EGP/share",
+  "Interim statements, nine months ended 31 March 2026, note 8-1 — the price the holding is "
+  "carried at, being the 31-March market close", "2026-05-21", "L1")
 I("mid_cycle_urea_usd_t", 400.0, "US$/t",
   "Mid-cycle urea free-on-board Egypt: above the 2015-2020 average of roughly US$250 and well "
   "below the August 2026 quote of US$545", "2026-08-07", "L4")

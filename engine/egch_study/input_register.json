@@ -1895,9 +1895,45 @@
    "key": "an_price_usd_t",
    "value": 280.0,
    "unit": "US$/t",
-   "source": "Mid-cycle ammonium nitrate pricing",
+   "source": "Mid-cycle ammonium nitrate pricing \u2014 RETIRED as the ANNA pricing basis on 10-09-2026 in favour of the disclosed realisation below; kept registered because the sensitivity grid still prices the alternative",
    "date": "2026-08-07",
    "layer": "L4",
+   "note": ""
+  },
+  "bs_doc_credits_M9FY2526": {
+   "key": "bs_doc_credits_M9FY2526",
+   "value": 1407.4,
+   "unit": "EGP m",
+   "source": "Interim statements, nine months ended 31 March 2026, limited review dated 20 May 2026, note 11 \u2014 letters of credit for goods and services, disclosed WITHIN the EGP 3,378.2mn inventory line. They are prepayments against goods not yet received, not stock: counting them as inventory overstates working capital and the days it implies (165 against 114)",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "abuk_shares_held": {
+   "key": "abuk_shares_held",
+   "value": 10262324,
+   "unit": "shares",
+   "source": "Interim statements, nine months ended 31 March 2026, note 8-1 \u2014 the Abu Qir Fertilizers holding, carried at EGP 81.70 a share",
+   "date": "2026-05-21",
+   "layer": "L1",
+   "note": ""
+  },
+  "abuk_spot_strike": {
+   "key": "abuk_spot_strike",
+   "value": 94.0,
+   "unit": "EGP/share",
+   "source": "Abu Qir Fertilizers closing price on the Egyptian Exchange, 3 September 2026 \u2014 the SAME date and the SAME committed price file this study is struck at, engine/prices/SUPPLIED_03-09-2026.json. Read from the file rather than typed beside it, so a stake in a listed company and the company holding it are marked on one date",
+   "date": "2026-09-03",
+   "layer": "L2",
+   "note": ""
+  },
+  "abuk_carrying_price": {
+   "key": "abuk_carrying_price",
+   "value": 81.7,
+   "unit": "EGP/share",
+   "source": "Interim statements, nine months ended 31 March 2026, note 8-1 \u2014 the price the holding is carried at, being the 31-March market close",
+   "date": "2026-05-21",
+   "layer": "L1",
    "note": ""
   },
   "mid_cycle_urea_usd_t": {

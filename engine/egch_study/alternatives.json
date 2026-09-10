@@ -1,5 +1,5 @@
 {
- "baseline": 5.022413776196755,
+ "baseline": 5.096633765309656,
  "capex": {
   "history": [
    {
@@ -41,7 +41,7 @@
   "pre_project_pooled": 0.011156990270541007,
   "replacement_rate": 0.06104852759224623,
   "house_standard": 0.03,
-  "house_standard_value": 4.675767012576611,
+  "house_standard_value": 4.7499870016895125,
   "run_rate": 2598.845948,
   "forecast_path": [
    2598.845948,
@@ -55,102 +55,102 @@
   "machinery_dep_rate": 0.0395,
   "implied_asset_life": 25.31645569620253
  },
- "baseline_halt": 9.12879354710357,
+ "baseline_halt": 8.62839041163338,
  "spot": 14.41,
  "alternatives": [
   {
    "key": "export_duty_2026",
    "made": "A 10% ad-valorem export duty charged on every export tonne, for ever",
-   "alt": "No duty at all (8.0006) or half the rate (6.5115)",
-   "value": 8.000565434916803,
+   "alt": "No duty at all (8.0748) or half the rate (6.5857)",
+   "value": 8.074785424029702,
    "why": "THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND THE INSTRUMENT BEHIND IT HAS NOW BEEN FOUND. It is DECREE No. 258 of 2026 of the Minister of Investment and Foreign Trade, published in the Official Gazette on 25 June 2026: 10% ad valorem on the FOB invoice value of nitrogen fertiliser exports, replacing a temporary US$90/t duty imposed in May 2026 for three months, and carrying no stated expiry of its own. The rate this study charges is the rate the decree sets, on the base it sets, applied in perpetuity because the instrument names no end -- which is a reading of the decree rather than the assumption it was until today. PURE AMMONIUM NITRATE ABOVE 34.2% NITROGEN AND FREE-ZONE SHIPMENTS ARE EXEMPT, and that was checked against the model rather than noted: the duty is applied to the UREA export leg alone, and urea is not exempt. THE DIRECTION IS AGAINST THIS STUDY -- removing the duty RAISES the value and narrows the gap -- and the search was made for that reason rather than despite it. It came back saying the duty is real, so the alternative below is priced and NOT adopted; a reader is entitled to see what the largest line in the study is worth even when it survives. The input was briefly re-tiered L3 to L4 earlier today on the ground that no instrument had been located; nobody had looked, and that sentence was the same defect it was written to record. It is L3 again, cited by number and date. What would improve it further: the Gazette text itself rather than two independent reports of it, and the FY2025/26 auditor's report disclosing a duty actually charged, the way the FY2024/25 report disclosed the EGP 437.5m shortfall levy on 175kt.",
-   "delta": 2.978151658720048
+   "delta": 2.978151658720046
   },
   {
    "key": "an_price_usd_t",
-   "made": "The new complex's granulated ammonium nitrate priced at a typed US$280/t, the weakest-sourced input in a 304-input register",
-   "alt": "Priced at the SAME PRODUCT'S OWN DISCLOSED REALISED PRICE \u2014 EGP 20,000/t from note 20, which is US$408.16/t at this model's FY2024/25 rate of 49.00 (5.5970)",
-   "value": 5.597036900779846,
+   "made": "The new complex's granulated ammonium nitrate priced at the SAME PRODUCT'S OWN DISCLOSED REALISED PRICE \u2014 EGP 20,000/t from note 20, carried on the currency exactly as the existing nitrate business is",
+   "alt": "Priced at the retired typed US$280/t, the weakest-sourced input in a 304-input register, whose source string was four words long and named no assessor, series, date or basis (4.5220)",
+   "value": 4.522010640726562,
    "why": "THE STUDY PRICES ONE PRODUCT TWICE, 31% APART, AND THE TERMINAL TAKES THE LOWER. The existing granulated nitrate is carried at the disclosed EGP 20,000/t; the new complex's identical output is carried at a typed US$280/t whose source string is four words long and names no assessor, series, date or basis. The study set out at length why the terminal tonne's COST had to come off the auditor's own product cost table for this exact product -- granulated ammonium nitrate at EGP 4,076.31/t -- rather than from a ratio, and then took the price from a guess. The same principle, applied to one side of the margin only, and the side it was not applied to is the one 31% below the company's own realised figure. IT IS PRICED AND NOT ADOPTED. Two things are unresolved from what this desk holds: the disclosed figure is a LOCAL realised price while the new complex's output is modelled as export, and a mid-cycle price is by construction below a realised one. A search for an assessed mid-cycle ammonium nitrate series returned vendor subscription databases only, which is not a source this house uses, and what qualitative reporting there is points UP for 2026 on gas and Hormuz supply risk rather than down. Replacing an unsourced number with another unsourced number that happens to raise the value is not a correction, so the conservative figure stands and the reader is shown what it costs. What would settle it: an assessed FOB Egypt or Black Sea series with its assessor and date, or a note 20 splitting nitrate revenue into local and export.",
-   "delta": 0.5746231245830913
+   "delta": -0.574623124583094
   },
   {
    "key": "premium_basis",
    "made": "Country risk priced off the sovereign's traded default swap",
    "alt": "Priced off the sovereign's credit rating instead, which is the wider of the two spreads and gives a cost of capital 104 basis points higher",
-   "value": 3.1029000597614766,
+   "value": 3.0137660595357487,
    "why": "The swap basis is the market's own live pricing of this sovereign's credit, against a rating judgement updated in steps. It is the NARROWER spread, so this is not the conservative choice and is not made on that ground; the rating basis is priced here rather than argued about. Both are published in full in section 1.8 and neither is ever mixed with the other's risk-free rate.",
-   "delta": -1.9195137164352785
+   "delta": -2.0828677057739076
   },
   {
    "key": "glide",
    "made": "A cost of capital that glides from its spot build to a terminal rate made from its own long-run components",
    "alt": "One flat spot rate applied to every explicit year and to the perpetuity",
-   "value": 1.4780914874480897,
+   "value": 1.2396709203880174,
    "why": "A spot rate carries today's inflation print into a perpetuity growing at the central bank's target. That is a units mismatch, and on a company whose value sits in its terminal year it would be the largest single error in the study.",
-   "delta": -3.544322288748665
+   "delta": -3.8569628449216387
   },
   {
    "key": "terminal_growth",
    "made": "Terminal growth at the central bank's medium-term inflation target",
    "alt": "Two percentage points below it, which is negative real maintenance growth",
-   "value": 2.980526510171584,
+   "value": 2.8734559571804823,
    "why": "Nominal maintenance growth with no real growth is the neutral assumption for a single plant at steady state. Below inflation implies the asset shrinks in real terms every year forever, which the maintenance capital expenditure in the model is sized to prevent.",
-   "delta": -2.0418872660251712
+   "delta": -2.223177808129174
   },
   {
    "key": "cost_of_debt_floor",
    "made": "The cost of debt at the company's own disclosed rates \u2014 19.4% on the local facility, 11.7% in dollars on the project loan carried at local-equivalent cost on the derived currency path, 24.4% in year one gliding to 13.9% at the terminal",
    "alt": "Every leg floored at the 23.00% sovereign ten-year yield \u2014 the company's own facilities print no spread above the policy rate, so no spread is added",
-   "value": 3.548742891573957,
+   "value": 3.4920094780817625,
    "why": "A same-currency corporate cannot normally borrow below its sovereign, and the local facility does (its dollar leg sits below the normalised risk-free rate in 0 of the five explicit years). The disclosed rates are what the company actually pays on state-bank facilities and are used as disclosed; the floored construction is published beside them, not averaged in.",
-   "delta": -1.473670884622798
+   "delta": -1.6046242872278937
   },
   {
    "key": "beta",
    "made": "Beta from the five-year weekly regression of the share against the published EGX30 index",
    "alt": "The lower bound of that regression's own 90% confidence interval",
-   "value": 5.899684651558272,
+   "value": 6.046391624064186,
    "why": "The regression passes all three conditions of the usability test, so the point estimate is adopted; the interval is wide because the share is thinly traded, and the lower bound is priced here rather than argued away.",
-   "delta": 0.8772708753615168
+   "delta": 0.9497578587545297
   },
   {
    "key": "gas",
    "made": "Gas at the realised price the company's own loss disclosure implies",
    "alt": "The contract formula price in the operating agreement, which is higher",
-   "value": 2.0203387751572044,
+   "value": 2.094558764270101,
    "why": "The realised price is what the company actually paid on its own numbers. The contract price is carried as the downside case rather than as the central assumption, because a company that has been paying less than its contract for three years is evidence, not an exception.",
-   "delta": -3.0020750010395507
+   "delta": -3.002075001039555
   },
   {
    "key": "utilisation",
    "made": "The new complex earning at half its derived nameplate in the terminal year",
    "alt": "Seventy per cent, which is what a well-run nitrate line achieves",
-   "value": 5.524568506724146,
+   "value": 5.8286377456702825,
    "why": "Half is the observed record of the existing plant against its own plate under the same gas constraint. Assuming the new line does better than the old one on the same feedstock would need evidence no filing provides.",
-   "delta": 0.5021547305273906
+   "delta": 0.7320039803606262
   },
   {
    "key": "maintenance_capex",
    "made": "Maintenance capital expenditure at the company's own observed pre-project rate of 1.12% of revenue",
    "alt": "Replacement-rate maintenance: gross fixed assets at the disclosed 3.95% machinery depreciation rate, or 6.11% of revenue",
-   "value": 4.104580574764806,
+   "value": 4.178800563877706,
    "why": "The observed rate is what this company has actually paid to keep this plant running in the two years when it was not building anything. The replacement-rate framing is the honest upper bound \u2014 a plant cannot spend a fifth of its depreciation forever \u2014 and it is carried as the downside case rather than averaged into the central.",
-   "delta": -0.9178332014319492
+   "delta": -0.9178332014319501
   },
   {
    "key": "terminal_asset_age",
    "made": "Capital maintenance charged at what replacing the plant costs today, on the 4.45-year average age the accounts MEASURE \u2014 accumulated depreciation over the year's own charge",
    "alt": "Half the 22.1-year life the same accounts imply, 11.04 years, which is what has to be assumed where a company does not disclose enough to measure it",
-   "value": 2.4047021100644375,
+   "value": 2.4789220991773377,
    "why": "This is the largest contested number inside the TERMINAL, and the third largest of the ten alternatives priced here \u2014 behind the gas price and the discount-rate glide, both of which are about the forecast rather than about the terminal. It is a question about THIS BASE rather than about method. Half the life is the right assumption for a plant in steady state, where the average asset is half worn out. This one is not: only 1.3% of the base is fully depreciated and still in production, and a second complex is still being built, so the measured age is a quarter of the life rather than half. The measured figure is adopted BECAUSE it is measured, and the assumed one is published beside it so a reader can see what the disclosure is worth. THIS ROW REPLACED THE TERMINAL REINVESTMENT ROW, which priced a return on capital that no longer enters the terminal at all: under the sanctioned construction there is no reinvestment rate to contest, and this module's own gate caught the dead alternative the moment it scored zero.",
-   "delta": -2.6177116661323176
+   "delta": -2.6177116661323185
   },
   {
    "key": "gas_consumption",
    "made": "Gas consumption at 1,292 cubic metres a tonne of ammonia \u2014 the rate implied by allocating three quarters of the single disclosed materials line to gas, which carries the plant's disclosed losses as well as its standard usage",
    "alt": "The auditor's own disclosed STANDARD rate of 1,200 cubic metres a tonne, which is what the plant consumes when it runs to specification and excludes the losses",
-   "value": 5.957407998331238,
+   "value": 6.031627987444139,
    "why": "The disclosed standard is the cleaner number and it is not what this plant does: the same auditor's report discloses 38,480,270 cubic metres of gas LOST in FY2024/25, which over that year's ammonia output is a further 120.9 cubic metres a tonne. Standard plus disclosed loss is 1,320.9 and the modelled rate sits between the two. The higher figure is adopted because a model of what this plant actually consumes has to carry the losses; the standard is priced here because it is a disclosed primary figure and a reader is entitled to see what adopting it would be worth. It is the only alternative in this table that was found by an audit run from OUTSIDE the study rather than chosen by it, which is the argument for that audit.",
    "delta": 0.9349942221344829
   },
@@ -158,31 +158,31 @@
    "key": "project_profile",
    "made": "Project spending anchored on the observed run rate: the nine-month actual extended to a full year",
    "alt": "The faster profile the first issue of this study used, opening at EGP 3,000m",
-   "value": 4.8176370697900515,
+   "value": 4.891857058902947,
    "why": "The company has never spent EGP 3,000m in a year on this project. The observed rate is a disclosed, dated figure and the total still completes the approved cost inside the forecast window.",
-   "delta": -0.20477670640670365
+   "delta": -0.20477670640670897
   }
  ],
  "spans": {
   "cashflow_carry": {
    "label": "Cash flow \u2014 programme carried through",
    "basis": "Five-year free cash flow to the firm on a cost of capital gliding from 25.6% to 16.9%, terminal growth 7.0%",
-   "bear": 1.5103238570660973,
-   "base": 5.022413776196755,
-   "bull": 5.142756186245526,
-   "low": 1.5103238570660973,
-   "high": 5.142756186245526,
-   "vs_spot": -0.6514633049134799
+   "bear": 1.0099207215959056,
+   "base": 5.096633765309656,
+   "bull": 5.446825425191661,
+   "low": 1.0099207215959056,
+   "high": 5.446825425191661,
+   "vs_spot": -0.6463127158008566
   },
   "cashflow_stopped": {
    "label": "Cash flow \u2014 programme stopped",
    "basis": "The same model with the capital programme wound down in the first forecast year and the plant run as it stands",
-   "bear": 6.126718546064014,
-   "base": 9.12879354710357,
-   "bull": 9.19721033445253,
-   "low": 6.126718546064014,
-   "high": 9.19721033445253,
-   "vs_spot": -0.3664959370504116
+   "bear": 5.626315410593823,
+   "base": 8.62839041163338,
+   "bull": 8.69680719898234,
+   "low": 5.626315410593823,
+   "high": 8.69680719898234,
+   "vs_spot": -0.40122203944251356
   },
   "book": {
    "label": "Book value and sustainable return",
@@ -197,22 +197,22 @@
   "relative": {
    "label": "Relative multiples",
    "basis": "Forward operating profit before depreciation at 6.0x to 9.9x, the Egyptian industrial range, with 8.0x central",
-   "bear": 11.264331408147813,
-   "base": 15.987731068576231,
-   "bull": 20.711130729004648,
-   "low": 11.264331408147813,
-   "high": 20.711130729004648,
-   "vs_spot": 0.10948862377350665
+   "bear": 11.327871083772864,
+   "base": 16.051270744201283,
+   "bull": 20.7746704046297,
+   "low": 11.327871083772864,
+   "high": 20.7746704046297,
+   "vs_spot": 0.11389803915345476
   },
   "normalised": {
    "label": "Normalised earnings power",
    "basis": "Mid-cycle profit after tax of EGP 1,502m at 8x to 12x, 10x central",
-   "bear": 2.7778632977985582,
-   "base": 4.289630624386951,
-   "bull": 5.801397950975343,
-   "low": 2.7778632977985582,
-   "high": 5.801397950975343,
-   "vs_spot": -0.7023157096192262
+   "bear": 2.8414029734236097,
+   "base": 4.353170300012002,
+   "bull": 5.864937626600394,
+   "low": 2.8414029734236097,
+   "high": 5.864937626600394,
+   "vs_spot": -0.6979062942392782
   }
  },
  "programme": {
@@ -228,10 +228,10 @@
   "capital_per_tonne": 77051.7727272727,
   "market_cap": 28626.60337559,
   "pct_market_cap": 0.7105861541836084,
-  "terminal_ebit": 51.48088609216893,
+  "terminal_ebit": 442.82593920724366,
   "terminal_util": 0.5,
-  "return_on_cost": 0.0019613773423807195,
-  "gap_to_wacc": -0.16681181914313187
+  "return_on_cost": 0.016871286213382988,
+  "gap_to_wacc": -0.1519019102721296
  },
  "cycle_hist": [
   {
@@ -266,7 +266,7 @@
   {
    "year": "FY2026/27",
    "wc": 2281.242315345062,
-   "dwc": -788.1816846549382,
+   "dwc": 619.2183153450621,
    "wc_pct_rev": 0.19541255821812883
   },
   {

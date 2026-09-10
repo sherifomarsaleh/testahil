@@ -76,7 +76,14 @@ project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0
 # argued about, at the rate adopted, at no duty at all, and at half.
 _duty_zero = reprice(export_duty_pct=0.0)
 _duty_half = reprice(export_duty_pct=0.05)
-_an_disclosed = reprice(anna_price_usd_t=20000.0 / 49.0)
+# APPLIED 10-09-2026, SO THIS ALTERNATIVE TURNED ROUND. The base now prices the new
+# complex's nitrate at the company's own disclosed EGP 20,000/t realisation, which is what
+# this row used to argue FOR. The alternative is therefore the RETIRED basis — the typed
+# US$280/t — kept so the reader can still price the judgement that was made, in the
+# direction it was actually made. An alternative that patches the value already in use
+# scores exactly zero, and the assertion below says so rather than letting an inert row sit
+# in the grid looking like a test.
+_an_retired = reprice(anna_price_usd_t=280.0)
 
 ALTS = [
     dict(key="export_duty_2026",
@@ -109,12 +116,13 @@ ALTS = [
              "disclosing a duty actually charged, the way the FY2024/25 report disclosed "
              "the EGP 437.5m shortfall levy on 175kt."),
     dict(key="an_price_usd_t",
-         made="The new complex's granulated ammonium nitrate priced at a typed "
-              "US$280/t, the weakest-sourced input in a 304-input register",
-         alt="Priced at the SAME PRODUCT'S OWN DISCLOSED REALISED PRICE — EGP 20,000/t "
-             "from note 20, which is US$%.2f/t at this model's FY2024/25 rate of 49.00 "
-             "(%.4f)" % (20000.0 / 49.0, _an_disclosed),
-         value=_an_disclosed,
+         made="The new complex's granulated ammonium nitrate priced at the SAME PRODUCT'S "
+              "OWN DISCLOSED REALISED PRICE — EGP 20,000/t from note 20, carried on the "
+              "currency exactly as the existing nitrate business is",
+         alt="Priced at the retired typed US$280/t, the weakest-sourced input in a "
+             "304-input register, whose source string was four words long and named no "
+             "assessor, series, date or basis (%.4f)" % _an_retired,
+         value=_an_retired,
          why="THE STUDY PRICES ONE PRODUCT TWICE, 31% APART, AND THE TERMINAL TAKES THE "
              "LOWER. The existing granulated nitrate is carried at the disclosed EGP "
              "20,000/t; the new complex's identical output is carried at a typed "

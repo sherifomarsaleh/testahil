@@ -1,10 +1,10 @@
 {
  "cashflow": {
   "label": "Cash flow",
-  "carry_through": 5.022413776196755,
-  "stopped": 9.12879354710357,
-  "upside": 5.142756186245526,
-  "downside": 1.5103238570660973
+  "carry_through": 5.096633765309656,
+  "stopped": 8.62839041163338,
+  "upside": 5.446825425191661,
+  "downside": 1.0099207215959056
  },
  "book": {
   "label": "Book value and sustainable return",
@@ -31,12 +31,12 @@
   "ev_low": 28872.02021320254,
   "ev_mid": 38255.42678249337,
   "ev_high": 47638.8333517842,
-  "value_low": 11.264331408147813,
-  "value_per_share": 15.987731068576231,
-  "value_high": 20.711130729004648,
+  "value_low": 11.327871083772864,
+  "value_per_share": 16.051270744201283,
+  "value_high": 20.7746704046297,
   "implied_at_market": 8.033885974749778,
-  "implied_at_market_ex_nonop": 7.298652283333442,
-  "implied_at_model": 3.423097714073051
+  "implied_at_market_ex_nonop": 7.272420675513574,
+  "implied_at_model": 3.4275069558900815
  },
  "normalised": {
   "label": "Normalised earnings power",
@@ -65,35 +65,35 @@
   "mult": 10.0,
   "mult_high": 12.0,
   "ev": 15016.226111874374,
-  "value_low": 2.7778632977985582,
-  "value_per_share": 4.289630624386951,
-  "value_high": 5.801397950975343
+  "value_low": 2.8414029734236097,
+  "value_per_share": 4.353170300012002,
+  "value_high": 5.864937626600394
  },
  "synthesis": {
   "field": {
-   "Cash flow \u2014 programme carried through": 5.022413776196755,
-   "Cash flow \u2014 programme stopped": 9.12879354710357,
+   "Cash flow \u2014 programme carried through": 5.096633765309656,
+   "Cash flow \u2014 programme stopped": 8.62839041163338,
    "Book value, disclosed (a floor, never weighted)": 8.15778582586335,
-   "Relative multiples": 15.987731068576231,
-   "Normalised earnings power": 4.289630624386951
+   "Relative multiples": 16.051270744201283,
+   "Normalised earnings power": 4.353170300012002
   },
-  "low": 4.289630624386951,
-  "high": 15.987731068576231,
-  "central_carry_through": 5.022413776196755,
-  "central_stopped": 9.12879354710357,
+  "low": 4.353170300012002,
+  "high": 16.051270744201283,
+  "central_carry_through": 5.096633765309656,
+  "central_stopped": 8.62839041163338,
   "spot": 14.41,
   "note": "The two cash-flow readings are the contested judgement and are never averaged. The other three lenses are shown against both."
  },
  "central": {
   "name": "Cash-flow lens, programme carried through",
   "primary": "dcf",
-  "base": 5.022413776196755,
+  "base": 5.096633765309656,
   "alternative_framing": {
    "label": "Cash-flow lens, programme stopped",
-   "value": 9.12879354710357
+   "value": 8.62839041163338
   },
-  "bear": 1.5103238570660973,
-  "bull": 5.142756186245526,
+  "bear": 1.0099207215959056,
+  "bull": 5.446825425191661,
   "retired_blend": {
    "weights": {
     "cashflow": 0.45,
@@ -101,18 +101,18 @@
     "normalised": 0.2,
     "book": 0.15
    },
-   "value": 6.315558537881176
+   "value": 6.374373403232003
   },
-  "note": "The central is the cash-flow lens on the company's own tonnes, prices and disclosed capital programme, carried through. It is not a blend. The relative multiple is published beside it as a cross-check, the disclosed book value as a floor, and normalised earnings as a diagnostic this class does not weight. The retired blend of all four read EGP 6.32."
+  "note": "The central is the cash-flow lens on the company's own tonnes, prices and disclosed capital programme, carried through. It is not a blend. The relative multiple is published beside it as a cross-check, the disclosed book value as a floor, and normalised earnings as a diagnostic this class does not weight. The retired blend of all four read EGP 6.37."
  },
  "contested": {
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "side_a_label": "Carried through",
-  "side_a": 5.022413776196755,
+  "side_a": 5.096633765309656,
   "side_b_label": "Stopped",
-  "side_b": 9.12879354710357,
-  "gap": 4.106379770906814,
-  "gap_equity": 8157.647814801909,
+  "side_b": 8.62839041163338,
+  "gap": 3.531756646323723,
+  "gap_equity": 7016.113583165379,
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
  }
 }

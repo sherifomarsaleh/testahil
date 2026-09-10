@@ -231,7 +231,16 @@ D['anna_nameplate_derived'] = ((D['design_ammonia_t']
                                / D['nh3_per_t_an'])
 D['anna_util_base'] = _V('anna_util_base')
 D['anna_util_bull'] = _V('anna_util_bull')
-D['anna_price_usd_t'] = _V('an_price_usd_t')
+# PRICED AT WHAT THE COMPANY DISCLOSES IT GETS, NOT AT A TYPED MID-CYCLE GUESS
+# [R-GAP-04]. This read an_price_usd_t — US$280/t, an L4 input whose entire source string
+# was "mid-cycle ammonium nitrate pricing", naming no assessor, series, date or basis —
+# while note 20 discloses the company's OWN realised nitrate price at EGP 20,000/t. The
+# existing nitrate business in the explicit window is already priced off that disclosure
+# and carried on the currency; the new plant's tonne was the only nitrate tonne in this
+# model priced from outside the filings, and it was 31% cheaper. Worth EGP 0.564 a share.
+# THE SWITCH IS KEPT so alternatives.py can still price the retired basis: what changed is
+# what it defaults to, not how the terminal reads it.
+D['anna_price_usd_t'] = _V('an_price_egp_t_FY2425') / _V('usd_egp_avg_FY2425')
 D['anna_cash_margin'] = _V('anna_cash_margin')          # AN cash margin over its own ammonia + conversion
 D['dso'] = _V('dso')
 D['dio'] = _V('dio')
@@ -536,7 +545,15 @@ def build(case="base"):
             # for the opening balance alone -- the one constructed number in the chain -- and
             # it sat about EGP 1bn below the balance the company actually reported at the same
             # date the bridge takes net debt from. It is now the REPORTED position.
-            prev_wc = (_V('bs_receivables_M9FY2526') + _V('bs_inventory_M9FY2526')
+            # LETTERS OF CREDIT ARE NOT STOCK [R-GAP-04]. Note 11 discloses EGP 1,407.4mn
+            # of the 3,378.2mn inventory line as letters of credit for goods and services:
+            # prepayments against goods not yet received. Counting them as inventory
+            # overstates the opening working capital, and every year's change in working
+            # capital is measured from it — so the whole explicit free-cash-flow path
+            # carried the error. It implied 165 days of stock against 114 on the real
+            # figure, which is the tell. Worth EGP 0.604 a share, and OUR defect.
+            prev_wc = (_V('bs_receivables_M9FY2526')
+                       + _V('bs_inventory_M9FY2526') - _V('bs_doc_credits_M9FY2526')
                        - _V('bs_payables_M9FY2526'))
         dwc = wc - prev_wc
         prev_wc = wc
@@ -570,6 +587,15 @@ def terminal(rows, case="base"):
     util = {"base": D['anna_util_base'], "bull": D['anna_util_bull'],
             "bear": 0.0, "halt": 0.0}[case]
     an_t = D['anna_nameplate_an_t'] * util
+    # PRICED AT WHAT THE COMPANY DISCLOSES IT GETS, NOT AT A TYPED MID-CYCLE GUESS
+    # [R-GAP-04]. This leg ran at US$280/t, an L4 input whose whole source was the phrase
+    # "mid-cycle ammonium nitrate pricing", while note 20 discloses the company's OWN
+    # realised nitrate price at EGP 20,000/t. The existing nitrate business in the explicit
+    # window is already priced that way — off the disclosed realisation, carried on the
+    # currency — so the new plant's tonne was the only nitrate tonne in this model priced
+    # from outside the filings. It is now priced the same way as the tonne beside it.
+    # Worth EGP 0.564 a share, and OUR defect: a buyer at 14.41 need believe nothing
+    # exotic about the nitrate market, only the company's own disclosure.
     anna_rev = an_t * D['anna_price_usd_t'] * fx / 1e6
     # BUILT, not assumed. The new complex was valued on a flat 32% cash margin — a whole
     # business line priced by a single ratio in a study whose entire discipline is
@@ -719,7 +745,15 @@ def bridge(rows, T):
     cash = _V('bs_cash_M9FY2526')
     debt = (_V('bs_debt_lt_M9FY2526') + _V('bs_debt_holdco_M9FY2526')
             + _V('bs_debt_cur_M9FY2526'))
-    fvoci = _V('bs_fvoci_M9FY2526')   # remaining ABUK + Delta Sugar stakes, at market
+    # MARKED TO THE STRIKE DATE, NOT TO THE BALANCE-SHEET DATE [R-GAP-04]. The line is
+    # carried at 31-March market prices; this study strikes at 3-September, and the Abu Qir
+    # holding is a LISTED security whose price on that date is in the committed price file.
+    # Holding a marketable stake at a five-month-old price while marking the company itself
+    # to today is two dates in one bridge. Note 8-1 gives the holding and its carrying
+    # price; the uplift is the only part that moves, so the rest of the line is untouched.
+    _abuk_n = _V('abuk_shares_held')
+    _abuk_uplift = _abuk_n * (_V('abuk_spot_strike') - _V('abuk_carrying_price')) / 1e6
+    fvoci = _V('bs_fvoci_M9FY2526') + _abuk_uplift
     inv_prop = _V('bs_invprop_M9FY2526')
     net_debt = debt - cash
     equity = ev - net_debt + fvoci + inv_prop
@@ -958,13 +992,20 @@ _STAR_CASE = dict(
     # the gate refuses on it, and that refusal is CORRECT: this study is held, and it
     # is held for exactly this reason. Recording a hunt that found something and then
     # shipping the answer it contradicts would be worse than never hunting.
+    # THREE OF THE FOUR ARE APPLIED AS OF 10-09-2026 and are removed from this record
+    # because the record is a list of what is STILL WRONG, not a list of what was once
+    # found. Each is applied in the model above, at the line the comment names:
+    #   inventory gross of documentary credits (note 11)  -- prev_wc, netted
+    #   ammonium nitrate at a typed USD 280 (note 20)      -- terminal(), disclosed EGP/t
+    #   listed investments at 31-March (note 8-1)          -- bridge(), marked to strike
+    # AND APPLYING THEM DID NOT CLOSE THE GAP; ONE WIDENED IT. The inventory line was
+    # releasing working capital the company does not hold, so correcting it takes cash OUT
+    # of the explicit path: the carried-through branch rose 5.0224 -> 5.0966 and the
+    # stopped branch FELL 9.1288 -> 8.6284. A hunt for our own error is not a hunt for
+    # reasons the answer should be higher, and this is what that distinction looks like
+    # when it costs something [R-GAP-04].
     hunt_recorded={
         'ANNA nameplate against the KIMA-2 capital-intensity read': 4.874,
-        'inventory gross of documentary credits (note 11)': 0.604,
-        'ammonium nitrate at a typed USD 280 against its own disclosed '
-        'EGP 20,000/t realisation (note 20)': 0.564,
-        'listed investments marked to 31 March rather than to the strike date '
-        '(note 8-1)': 0.064,
     },
     falsifier=(
         "This study is the one that is wrong if the ANNA plant's disclosed capital "

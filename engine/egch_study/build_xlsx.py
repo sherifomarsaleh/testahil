@@ -427,7 +427,13 @@ c = put(ws, f"D{r}", "The construction the study used before the engineering awa
 ws.row_dimensions[r].height = 40
 r += 1
 ANNAU = drv(r, "Project utilisation in the terminal year", V('anna_util_base'), "%", src('anna_util_base'), PC1); r += 1
-ANNAP = drv(r, "Nitrate price", V('an_price_usd_t'), "US$/tonne", src('an_price_usd_t'), N0); r += 1
+# PRICED OFF THE DISCLOSED REALISATION, NOT A TYPED MID-CYCLE GUESS [R-GAP-04]. Note 20
+# gives the company's own realised nitrate price; the model prices the new plant's tonne
+# the same way it prices the tonne beside it, and so does this row now.
+ANNAP = drv(r, "Nitrate price — the company's own disclosed realisation, carried on the "
+               "currency", V('an_price_egp_t_FY2425') / V('usd_egp_avg_FY2425'),
+            "US$/tonne equivalent", "reviewed interims, note 20 — EGP 20,000/t realised",
+            N0); r += 1
 ANNAM = drv(r, "Project cash margin", V('anna_cash_margin'), "% of revenue", src('anna_cash_margin'), PC1); r += 1
 DSO = drv(r, "Days sales outstanding", V('dso'), "days", src('dso'), N1); r += 1
 DIO = drv(r, "Days inventory outstanding", V('dio'), "days", src('dio'), N1); r += 1
@@ -523,9 +529,17 @@ for k, c in enumerate(CO):
     put(ws, f"{c}10", f"={c}7+{c}8-{c}9", fmt=N0, expect=R[k]['wc'])
 # the REPORTED position at 31 March 2026, not a constructed one -- the same date the
 # bridge takes net debt from
-prev_wc0 = (V('bs_receivables_M9FY2526') + V('bs_inventory_M9FY2526')
+# LETTERS OF CREDIT ARE NOT STOCK [R-GAP-04]. Note 11 discloses EGP 1,407.4mn of the
+# inventory line as letters of credit for goods and services — prepayments, not stock —
+# and the opening balance every year's change is measured from carried them. The model
+# nets them; this workbook did not, and published a first-year working-capital change
+# 1,407.4 out.
+prev_wc0 = (V('bs_receivables_M9FY2526')
+            + V('bs_inventory_M9FY2526') - V('bs_doc_credits_M9FY2526')
             - V('bs_payables_M9FY2526'))
-put(ws, "A11", "Opening net working capital, 31 March 2026 as reported"); put(ws, "B11", prev_wc0, fmt=N0)
+put(ws, "A11", "Opening net working capital, 31 March 2026 as reported, net of the "
+               "documentary credits inside the inventory line (note 11)")
+put(ws, "B11", prev_wc0, fmt=N0)
 put(ws, f"{CO[0]}12", f"={CO[0]}10-B11", fmt=N0, expect=R[0]['dwc'])
 for k in range(1, 5):
     put(ws, f"{CO[k]}12", f"={CO[k]}10-{CO[k-1]}10", fmt=N0, expect=R[k]['dwc'])

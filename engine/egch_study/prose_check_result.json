@@ -1,6 +1,9 @@
 {
  "consumed": [
   "abnormal_gas_path",
+  "abuk_carrying_price",
+  "abuk_shares_held",
+  "abuk_spot_strike",
   "aggregator_share_count",
   "ammonia_per_urea",
   "amort_FY2223",
@@ -11,7 +14,6 @@
   "an_gran_nitrogen_pct",
   "an_path",
   "an_price_egp_t_FY2425",
-  "an_price_usd_t",
   "an_t_FY2526E",
   "anna_capex_path",
   "anna_cash_margin",
@@ -51,6 +53,7 @@
   "bs_debt_lt_FY2324",
   "bs_debt_lt_FY2425",
   "bs_debt_lt_M9FY2526",
+  "bs_doc_credits_M9FY2526",
   "bs_dtl_FY2223",
   "bs_dtl_FY2324",
   "bs_dtl_FY2425",
@@ -279,6 +282,7 @@
   "abuqir_market_cap",
   "abuqir_net_FY2025",
   "abuqir_revenue_FY2025",
+  "an_price_usd_t",
   "anna_cwip_FY2425",
   "anna_nameplate",
   "budget_net_9M",

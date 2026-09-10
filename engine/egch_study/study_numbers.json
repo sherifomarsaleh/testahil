@@ -169,7 +169,7 @@
   "anna_nameplate_derived": 189862.7701545895,
   "anna_util_base": 0.5,
   "anna_util_bull": 0.7,
-  "anna_price_usd_t": 280.0,
+  "anna_price_usd_t": 408.16326530612247,
   "anna_cash_margin": 0.32,
   "dso": 26.774695365567133,
   "dio": 165.24752797477882,
@@ -227,8 +227,8 @@
   "anna_ebit_built": 0.0,
   "anna_ebit_assumed": 0.0,
   "anna_margin_built_pct": 0.0,
-  "implied_wacc_base": 0.1300292595239384,
-  "implied_wacc_halt": 0.14264996521794682,
+  "implied_wacc_base": 0.13242012413455367,
+  "implied_wacc_halt": 0.14010234381716036,
   "gates": {
    "standard_version": "2026.09.01",
    "beta": {
@@ -257,7 +257,7 @@
     "index_asof": "2026-09-08",
     "index_dq": [],
     "stock_dq": [
-     "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) — vendor fills, not tradeable prices"
+     "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
     ],
     "week_rule": "W-THU",
     "interim_note": null,
@@ -406,14 +406,14 @@
    2657.15065318495
   ],
   "dnwc": [
-   -788.1816846549382,
+   619.2183153450621,
    219.82394542692145,
    189.66820643635128,
    181.93132457485217,
    183.40388807419822
   ],
   "fcff": [
-   1988.7748401660565,
+   581.3748401660562,
    797.8442154326985,
    874.1540872087753,
    1202.4301424413766,
@@ -427,7 +427,7 @@
    0.37176328502502487
   ],
   "pv": [
-   1583.1022833193026,
+   462.78533816046746,
    514.5656524491314,
    463.71277205129337,
    531.1380544784404,
@@ -442,14 +442,14 @@
   ]
  },
  "dcf": {
-  "pv_explicit": 3881.458296359902,
-  "tv": 33866.97918508371,
-  "pv_tv": 12590.499435720858,
-  "ev": 16471.95773208076,
+  "pv_explicit": 2761.1413512010663,
+  "tv": 36937.57350576734,
+  "pv_tv": 13732.03366735739,
+  "ev": 16493.175018558457,
   "nd": 10032.483,
-  "eq_attr": 9977.421732080758,
-  "ps": 5.022413776196755,
-  "tv_share": 0.7643596250371394,
+  "eq_attr": 10124.865603758457,
+  "ps": 5.096633765309656,
+  "tv_share": 0.8325888527773352,
   "shares": 1986.578999
  },
  "star_case": {
@@ -461,10 +461,7 @@
    "Listed investments marked to the STRIKE date rather than to 31 March: note 8-1 carries 10,262,324 Abu Qir shares at 81.70 and the committed price file has 94.00": 0.064
   },
   "hunt_recorded": {
-   "ANNA nameplate against the KIMA-2 capital-intensity read": 4.874,
-   "inventory gross of documentary credits (note 11)": 0.604,
-   "ammonium nitrate at a typed USD 280 against its own disclosed EGP 20,000/t realisation (note 20)": 0.564,
-   "listed investments marked to 31 March rather than to the strike date (note 8-1)": 0.064
+   "ANNA nameplate against the KIMA-2 capital-intensity read": 4.874
   },
   "falsifier": "This study is the one that is wrong if the ANNA plant's disclosed capital cost buys ammonia capacity rather than only nitrate capacity. The test is specific and it is dated: KIMA's FY2025/26 annual report, due late September 2026, discloses the project's output slate and its commissioning timetable. If it names ammonia, this model's nameplate is wrong by roughly the factor the KIMA-2 capital-intensity comparison implies, the carried-through branch rises toward the stopped one, and the disagreement with the market largely closes without anything in the market's behaviour needing to be a mistake. A SECOND, INDEPENDENT FALSIFIER: the reverse read says a buyer at 14.41 needs a flat urea price of about USD 616/t in perpetuity against USD 530 held and USD 385 realised in FY2024/25. If urea prints above 616 and stays there, the market's number is the one the world agreed with."
  },
@@ -733,7 +730,7 @@
    "index_asof": "2026-09-08",
    "index_dq": [],
    "stock_dq": [
-    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) — vendor fills, not tradeable prices"
+    "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
    ],
    "week_rule": "W-THU",
    "interim_note": null,
@@ -806,10 +803,10 @@
      "nopat": 3039.094585871995,
      "capex": 2729.0924303608767,
      "wc": 2281.242315345062,
-     "dwc": -788.1816846549382,
-     "fcff": 1988.7748401660565,
+     "dwc": 619.2183153450621,
+     "fcff": 581.3748401660562,
      "df": 0.7960188611331781,
-     "pv": 1583.1022833193026,
+     "pv": 462.78533816046746,
      "cpi_cum": 1.1400000000000001
     },
     {
@@ -1001,38 +998,38 @@
     "fx": 72.2890263200224,
     "anna_util": 0.5,
     "an_t": 132000.0,
-    "anna_rev": 2671.8024127880276,
-    "anna_ebit": 51.48088609216893,
+    "anna_rev": 3894.755703772636,
+    "anna_ebit": 442.82593920724366,
     "base_ebit": 5387.284114767242,
-    "ebit_T": 5438.76500085941,
-    "nopat_T": 4215.042875666043,
+    "ebit_T": 5830.110053974486,
+    "nopat_T": 4518.335291830226,
     "anna_dep": 803.4958859999999,
     "anna_dep_in_last": 481.854414946,
     "dna_T": 1822.4440888,
     "wc_T": 3269.9945574474023,
     "maintenance_T": 2463.4375560256885,
     "wc_charge_T": 228.89961902131816,
-    "floor_T": 23340.746571110143,
-    "payout_T": 0.7936217704287171,
+    "floor_T": 25020.224486624647,
+    "payout_T": 0.8074748707073834,
     "growth_capex_T": 0.0,
     "inc_cap": 50811.72101180598,
     "g_real": 0.0,
     "reinv_rate": 0.38888888888888923,
-    "fcff_retired": 2575.859535129247,
-    "tv_retired": 26078.52764496752,
+    "fcff_retired": 2761.204900562914,
+    "tv_retired": 27955.001952051956,
     "terminal_record": {
      "rule": "R-TERM-01",
      "inputs": {
-      "nopat": 3939.292407164526,
+      "nopat": 4222.743263392735,
       "wacc": 0.1687731964855126,
       "inflation": 0.07,
       "real_growth": 0.0,
       "dna_book": 1703.218774579439,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
@@ -1041,10 +1038,10 @@
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
      },
-     "fcff": 3126.3082144103137,
-     "tv": 33866.97918508371,
-     "floor": 23340.746571110143,
-     "tv_vs_floor": 0.4509809736335657,
+     "fcff": 3409.7590706385226,
+     "tv": 36937.57350576734,
+     "floor": 25020.224486624647,
+     "tv_vs_floor": 0.4763086368594929,
      "nominal_growth": 0.07000000000000006,
      "real_growth": 0.0,
      "maintenance": 2302.278089743634,
@@ -1059,30 +1056,30 @@
      "net_capital_charge": 812.984192754212,
      "implied_cycle_years": null,
      "one_over_g": 14.285714285714272,
-     "payout_of_nopat": 0.7936217704287171,
+     "payout_of_nopat": 0.8074748707073834,
      "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
     },
-    "fcff_T": 3345.1497894190356,
-    "tv": 33866.97918508371,
-    "pv_tv": 12590.499435720858,
+    "fcff_T": 3648.442205583219,
+    "tv": 36937.57350576734,
+    "pv_tv": 13732.03366735739,
     "wacc_terminal": 0.1687731964855126,
     "ke_terminal": 0.19993734172554878,
     "rf_star_terminal": 0.10500000000000001,
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 3881.458296359902,
-    "pv_tv": 12590.499435720858,
-    "ev": 16471.95773208076,
-    "tv_pct_ev": 0.7643596250371394,
+    "pv_explicit": 2761.1413512010663,
+    "pv_tv": 13732.03366735739,
+    "ev": 16493.175018558457,
+    "tv_pct_ev": 0.8325888527773352,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
-    "fvoci": 1382.886,
+    "fvoci": 1509.1125852,
     "inv_prop": 2155.061,
-    "equity": 9977.421732080758,
+    "equity": 10124.865603758457,
     "shares": 1986578999,
-    "per_share": 5.022413776196755
+    "per_share": 5.096633765309656
    }
   },
   "bull": {
@@ -1127,10 +1124,10 @@
      "nopat": 3468.0882523011082,
      "capex": 2735.268273151165,
      "wc": 2321.8474403380696,
-     "dwc": -747.5765596619303,
-     "fcff": 2370.9875388118735,
+     "dwc": 659.82344033807,
+     "fcff": 963.5875388118732,
      "df": 0.7960188611331781,
-     "pv": 1887.3508004059845,
+     "pv": 767.0338552471493,
      "cpi_cum": 1.1400000000000001
     },
     {
@@ -1322,38 +1319,38 @@
     "fx": 72.2890263200224,
     "anna_util": 0.7,
     "an_t": 184800.0,
-    "anna_rev": 3740.523377903239,
-    "anna_ebit": 393.47159492903666,
+    "anna_rev": 5452.657985281689,
+    "anna_ebit": 941.3546692901407,
     "base_ebit": 5017.442300410482,
-    "ebit_T": 5410.913895339519,
-    "nopat_T": 4193.458268888127,
+    "ebit_T": 5958.796969700623,
+    "nopat_T": 4618.067651517983,
     "anna_dep": 803.4958859999999,
     "anna_dep_in_last": 481.854414946,
     "dna_T": 1822.4440888,
     "wc_T": 3242.864689193016,
     "maintenance_T": 2463.4375560256885,
     "wc_charge_T": 227.00052824351113,
-    "floor_T": 23221.22208428964,
-    "payout_T": 0.7930123683574074,
+    "floor_T": 25572.49116600994,
+    "payout_T": 0.8120438978013054,
     "growth_capex_T": 0.0,
     "inc_cap": 50811.72101180598,
     "g_real": 0.0,
     "reinv_rate": 0.38888888888888923,
-    "fcff_retired": 2562.6689420982984,
-    "tv_retired": 25944.98338903283,
+    "fcff_retired": 2822.1524537054324,
+    "tv_retired": 28572.047418951042,
     "terminal_record": {
      "rule": "R-TERM-01",
      "inputs": {
-      "nopat": 3919.1198774655395,
+      "nopat": 4315.951076185031,
       "wacc": 0.1687731964855126,
       "inflation": 0.07,
       "real_growth": 0.0,
       "dna_book": 1703.218774579439,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3030.714662797211,
@@ -1362,10 +1359,10 @@
       "floor_exemption": "",
       "floor_exemption_disclosure": ""
      },
-     "fcff": 3107.9105359055397,
-     "tv": 33667.679003449965,
-     "floor": 23221.22208428964,
-     "tv_vs_floor": 0.4498668020675749,
+     "fcff": 3504.741734625031,
+     "tv": 37966.51105240703,
+     "floor": 25572.49116600994,
+     "tv_vs_floor": 0.48466220228363177,
      "nominal_growth": 0.07000000000000006,
      "real_growth": 0.0,
      "maintenance": 2302.278089743634,
@@ -1380,30 +1377,30 @@
      "net_capital_charge": 811.2093415599998,
      "implied_cycle_years": null,
      "one_over_g": 14.285714285714272,
-     "payout_of_nopat": 0.7930123683574074,
+     "payout_of_nopat": 0.8120438978013054,
      "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
     },
-    "fcff_T": 3325.464273418928,
-    "tv": 33667.679003449965,
-    "pv_tv": 12516.406945490615,
+    "fcff_T": 3750.073656048783,
+    "tv": 37966.51105240703,
+    "pv_tv": 14114.554869781752,
     "wacc_terminal": 0.1687731964855126,
     "ke_terminal": 0.19993734172554878,
     "rf_star_terminal": 0.10500000000000001,
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 4194.62049108208,
-    "pv_tv": 12516.406945490615,
-    "ev": 16711.027436572695,
-    "tv_pct_ev": 0.7489908680359174,
+    "pv_explicit": 3074.303545923245,
+    "pv_tv": 14114.554869781752,
+    "ev": 17188.858415705,
+    "tv_pct_ev": 0.8211455658326711,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
-    "fvoci": 1382.886,
+    "fvoci": 1509.1125852,
     "inv_prop": 2155.061,
-    "equity": 10216.491436572695,
+    "equity": 10820.549000904999,
     "shares": 1986578999,
-    "per_share": 5.142756186245526
+    "per_share": 5.446825425191661
    }
   },
   "bear": {
@@ -1448,10 +1445,10 @@
      "nopat": 2356.832477111815,
      "capex": 2729.0924303608767,
      "wc": 2281.242315345062,
-     "dwc": -788.1816846549382,
-     "fcff": 1306.5127314058764,
+     "dwc": 619.2183153450621,
+     "fcff": -100.88726859412395,
      "df": 0.7960188611331781,
-     "pv": 1040.0087765097035,
+     "pv": -80.30816864913159,
      "cpi_cum": 1.1400000000000001
     },
     {
@@ -1672,9 +1669,9 @@
       "dna_book": 1434.142454946,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
@@ -1713,18 +1710,18 @@
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 1739.1893250403868,
+    "pv_explicit": 618.8723798815515,
     "pv_tv": 7755.7243310958,
-    "ev": 9494.913656136187,
-    "tv_pct_ev": 0.8168293690678885,
+    "ev": 8374.596710977352,
+    "tv_pct_ev": 0.9261012319470454,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
-    "fvoci": 1382.886,
+    "fvoci": 1509.1125852,
     "inv_prop": 2155.061,
-    "equity": 3000.3776561361865,
+    "equity": 2006.287296177352,
     "shares": 1986578999,
-    "per_share": 1.5103238570660973
+    "per_share": 1.0099207215959056
    }
   },
   "halt": {
@@ -1769,10 +1766,10 @@
      "nopat": 3039.094585871995,
      "capex": 1130.2464823608766,
      "wc": 2281.242315345062,
-     "dwc": -788.1816846549382,
-     "fcff": 3587.6207881660566,
+     "dwc": 619.2183153450621,
+     "fcff": 2180.220788166056,
      "df": 0.7960188611331781,
-     "pv": 2855.8138139736593,
+     "pv": 1735.496868814824,
      "cpi_cum": 1.1400000000000001
     },
     {
@@ -1993,9 +1990,9 @@
       "dna_book": 952.28804,
       "ic_replacement": null,
       "useful_life_years": 22.070192666196995,
-      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 — read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
+      "useful_life_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 fixed-asset register, cost column at 30 June 2025 \u2014 read by OCR off the rendered page; the cost movement table (opening balance plus additions less disposals) reproduces this figure exactly",
       "average_age_years": 4.454408352548927,
-      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 — read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
+      "average_age_source": "Audited financial statements, year ended 30 June 2025 (Central Auditing Organization, report dated 23 September 2025), note 6 accumulated depreciation at 30 June 2025 \u2014 read by OCR off the rendered page; the accumulated-depreciation movement table reproduces it, and cost less accumulated reproduces the balance-sheet net book value of 13,587.193",
       "maintenance_basis": "book_dna_escalated",
       "maintenance_capex": null,
       "working_capital": 3056.069679857385,
@@ -2034,18 +2031,18 @@
     "kd_terminal": 0.1391376109978745
    },
    "bridge": {
-    "pv_explicit": 11125.594683953657,
+    "pv_explicit": 10005.27773879482,
     "pv_tv": 13504.010862929012,
-    "ev": 24629.605546882667,
-    "tv_pct_ev": 0.5482836839276216,
+    "ev": 23509.288601723834,
+    "tv_pct_ev": 0.574411718351138,
     "cash": 4606.522,
     "debt": 14639.005000000001,
     "net_debt": 10032.483,
-    "fvoci": 1382.886,
+    "fvoci": 1509.1125852,
     "inv_prop": 2155.061,
-    "equity": 18135.069546882667,
+    "equity": 17140.979186923836,
     "shares": 1986578999,
-    "per_share": 9.12879354710357
+    "per_share": 8.62839041163338
    }
   }
  },
@@ -2125,35 +2122,35 @@
  },
  "central": null,
  "fair": {
-  "bear": 1.5103238570660973,
+  "bear": 1.0099207215959056,
   "base": null,
-  "full": 9.12879354710357
+  "full": 8.62839041163338
  },
  "central_two_sided": {
   "branches": [
    {
     "label": "Cash-flow lens, capital programme carried through",
-    "value": 5.022413776196755,
+    "value": 5.096633765309656,
     "condition": "the ANNA programme is completed and commissioned as the company is currently doing"
    },
    {
     "label": "Cash-flow lens, capital programme stopped",
-    "value": 9.12879354710357,
+    "value": 8.62839041163338,
     "condition": "the programme is halted and the remaining spend is not committed"
    }
   ],
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing.",
-  "gap_per_share": 4.106379770906814,
-  "why_not_averaged": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant — a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing.",
+  "gap_per_share": 3.531756646323723,
+  "why_not_averaged": "the judgement is binary and its two answers straddle zero, so an average describes a half-built plant \u2014 a world nobody is proposing and the company is not in. Averaging would also hide the finding: that on the disclosed bank-approved cost and the derived nameplate, the programme does not earn the capital sunk into it, which is why stopping is worth more than finishing.",
   "both_sides_vs_spot": [
    {
     "label": "carried through",
-    "pct": -65.146330491348
+    "pct": -64.63127158008565
    },
    {
     "label": "stopped",
-    "pct": -36.64959370504116
+    "pct": -40.12220394425135
    }
   ]
  },
@@ -2224,24 +2221,24 @@
    "branches": [
     {
      "label": "Cash-flow lens, capital programme carried through",
-     "value": 5.022413776196755,
+     "value": 5.096633765309656,
      "condition": "the ANNA programme is completed and commissioned as the company is currently doing"
     },
     {
      "label": "Cash-flow lens, capital programme stopped",
-     "value": 9.12879354710357,
+     "value": 8.62839041163338,
      "condition": "the programme is halted and the remaining spend is not committed"
     }
    ],
    "range": {
-    "low": 1.5103238570660973,
-    "high": 9.12879354710357
+    "low": 1.0099207215959056,
+    "high": 8.62839041163338
    },
-   "range_note": "the two answers to a BINARY question — whether the capital programme is carried through or stopped — with the dollar export-price sensitivity inside the carried-through branch. Not a spread across methods and not a band invented around a point: every read is the same cash-flow lens on one clock, with the macro path held still across all of them",
+   "range_note": "the two answers to a BINARY question \u2014 whether the capital programme is carried through or stopped \u2014 with the dollar export-price sensitivity inside the carried-through branch. Not a spread across methods and not a band invented around a point: every read is the same cash-flow lens on one clock, with the macro path held still across all of them",
    "range_basis": {
     "driver": "whether the ANNA capital programme is carried through or stopped",
-    "low": 5.022413776196755,
-    "high": 9.12879354710357,
+    "low": 5.096633765309656,
+    "high": 8.62839041163338,
     "units": "EGP per share, the present-value read under each answer",
     "macro_held": true,
     "secondary_basis": {
@@ -2254,12 +2251,12 @@
     },
     "evidence": "both branches re-run the SAME cash-flow lens on the same tonnes, the same disclosed capital cost and the same house macro path; the only thing that changes between them is whether the remaining programme spend is committed. The currency path, the cost of capital and terminal growth are identical in both, so the spread is the decision and nothing else."
    },
-   "note": "the cash-flow lens on the company's own tonnes, dollar prices and disclosed capital programme, discounted on the glide. THE CONTESTED JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens reads 5.02, stopped it reads 9.13, and the two are published side by side and never averaged."
+   "note": "the cash-flow lens on the company's own tonnes, dollar prices and disclosed capital programme, discounted on the glide. THE CONTESTED JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens reads 5.10, stopped it reads 8.63, and the two are published side by side and never averaged."
   },
   "cross_checks": [
    {
     "kind": "relative_multiple",
-    "value": 15.987731068576231,
+    "value": 16.051270744201283,
     "present_value": false,
     "multiple": 7.95,
     "circularity": {
@@ -2274,7 +2271,7 @@
     "kind": "book_value",
     "value": 8.15778582586335,
     "present_value": false,
-    "note": "the DISCLOSED book equity per share, published as a floor and never weighted. The retired blend weighted a JUSTIFIED price-to-book of zero at 15% under this name — a derived valuation wearing the name of a disclosed figure. The justified multiple is 0.00x and is kept as a diagnostic: it says the company does not earn its cost of equity, which is a finding, not a book value."
+    "note": "the DISCLOSED book equity per share, published as a floor and never weighted. The retired blend weighted a JUSTIFIED price-to-book of zero at 15% under this name \u2014 a derived valuation wearing the name of a disclosed figure. The justified multiple is 0.00x and is kept as a diagnostic: it says the company does not earn its cost of equity, which is a finding, not a book value."
    }
   ],
   "retired": {
@@ -2284,15 +2281,15 @@
     "normalised": 0.2,
     "book": 0.15
    },
-   "blend_value": 6.315558537881176,
-   "why": "the weights were typed and had never cleared an out-of-sample test, and here the blend did something worse than average: it mixed a negative cash-flow read with three positive ones and published a positive number, so a reader saw EGP 6.32 and never learned that the study's own primary lens was below zero."
+   "blend_value": 6.374373403232003,
+   "why": "the weights were typed and had never cleared an out-of-sample test, and here the blend did something worse than average: it mixed a negative cash-flow read with three positive ones and published a positive number, so a reader saw EGP 6.37 and never learned that the study's own primary lens was below zero."
   },
   "diagnostics": {
-   "normalised_earnings": 4.289630624386951,
+   "normalised_earnings": 4.353170300012002,
    "justified_price_to_book": 0.0,
    "book_value_floor": 8.15778582586335
   },
-  "below_floor_reason": "Both published branches (EGP 5.0224 carried through, EGP 9.1288 stopped) sit below the disclosed book equity of EGP 8.1578 a share, and that is the finding rather than a contradiction. A book value floors a valuation only where the business earns at least what its capital costs. This one earns a sustainable 6.86% on equity against a cost of equity of 29.08%, so its own justified price-to-book comes out at 0.00x: the assets are worth less in this company's hands than they cost, and a floor built on the assumption that they are not is not a floor. The book figure is published because it is disclosed and a reader is entitled to it; the claim withdrawn is that it bounds the answer from below. The market pays 1.77x book, and that gap is the disagreement this study is publishing."
+  "below_floor_reason": "Both published branches (EGP 5.0966 carried through, EGP 8.6284 stopped) sit below the disclosed book equity of EGP 8.1578 a share, and that is the finding rather than a contradiction. A book value floors a valuation only where the business earns at least what its capital costs. This one earns a sustainable 6.86% on equity against a cost of equity of 29.08%, so its own justified price-to-book comes out at 0.00x: the assets are worth less in this company's hands than they cost, and a floor built on the assumption that they are not is not a floor. The book figure is published because it is disclosed and a reader is entitled to it; the claim withdrawn is that it bounds the answer from below. The market pays 1.77x book, and that gap is the disagreement this study is publishing."
  },
  "bridge_record": {
   "market": "EG",
@@ -2303,7 +2300,7 @@
   "lines": [
    {
     "label": "Enterprise value",
-    "value": 16471.95773208076
+    "value": 16493.175018558457
    },
    {
     "label": "plus cash, 31 March 2026",
@@ -2315,16 +2312,16 @@
    },
    {
     "label": "plus investments at fair value through other comprehensive income",
-    "value": 1382.886
+    "value": 1509.1125852
    },
    {
     "label": "plus investment property",
     "value": 2155.061
    }
   ],
-  "equity_value": 9977.421732080758,
+  "equity_value": 10124.865603758457,
   "shares_mn": 1986.578999,
-  "per_share": 5.022413776196755,
+  "per_share": 5.096633765309656,
   "cash": {
    "treatment": "added_at_face",
    "weights_basis": "gross"
@@ -2499,9 +2496,9 @@
   "beta": 1.01981029917547,
   "erp": 0.0941,
   "erp_terminal": 0.0941,
-  "ke_terminal_construction_note": "The terminal cost of equity is the DERIVED terminal risk-free plus the SAME beta on the mature premium, plus the country premium flat: 0.1050 + 1.019810 x 0.0423 + 0.0518 = 0.199937. No relevering, because this study's terminal debt weight is the explicit window's — the capital structure is not assumed to change — so a relevered beta here would be a second construction doing nothing, and a construction that does nothing is a construction nobody can check.",
+  "ke_terminal_construction_note": "The terminal cost of equity is the DERIVED terminal risk-free plus the SAME beta on the mature premium, plus the country premium flat: 0.1050 + 1.019810 x 0.0423 + 0.0518 = 0.199937. No relevering, because this study's terminal debt weight is the explicit window's \u2014 the capital structure is not assumed to change \u2014 so a relevered beta here would be a second construction doing nothing, and a construction that does nothing is a construction nobody can check.",
   "beta_source": "own_stock_regression",
-  "beta_source_note": "beta_regression.own_stock_beta() against the PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON — EGX30, read from the registered series — replacing this study's earlier 35-name equal-weight composite of covered names. A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted and it shares constituents with the panel it prices, which is why SIGCM calls it a hard fail and not a fallback. The record's own beta_result.json carries the index file, its as-of date and the conforming flag.",
+  "beta_source_note": "beta_regression.own_stock_beta() against the PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON \u2014 EGX30, read from the registered series \u2014 replacing this study's earlier 35-name equal-weight composite of covered names. A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted and it shares constituents with the panel it prices, which is why SIGCM calls it a hard fail and not a fallback. The record's own beta_result.json carries the index file, its as-of date and the conforming flag.",
   "weight_equity": 0.6616480028913871,
   "weight_debt": 0.33835199710861286,
   "weight_debt_terminal": 0.33835199710861286,
@@ -2525,8 +2522,8 @@
   },
   "published_central": null,
   "published_central_branches": [
-   5.022413776196755,
-   9.12879354710357
+   5.096633765309656,
+   8.62839041163338
   ],
   "published_spot": 14.41
  }
