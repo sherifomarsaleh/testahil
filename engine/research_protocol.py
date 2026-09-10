@@ -109,12 +109,20 @@ MODEL_STUDY = {
         "Headline",
         "Valuation summary — every read at a glance",
         "Company overview",
-        "1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall + the "
+        "1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall and THE "
+        "VALUATION ON ONE PAGE [R-DCF-01] — a single table running revenue, EBITDA, cash "
+        "taxes, capital expenditure, working-capital investment, depreciation, free cash "
+        "flow, the per-year discount rate and factor and the present values, then the bridge "
+        "from enterprise value to value per share with every deduction on its own line, so "
+        "the reader can add the printed steps up — plus the terminal-cost-of-capital x "
+        "terminal-growth grid CENTRED ON THE ADOPTED CASE [R-SENS-01]; the "
         "EV-to-equity bridge; 1.2 book value & sustainable return; 1.3 relative multiples; "
         "1.4 normalised earnings power; 1.5 synthesis — the class primary IS the central under [R-LENS-03], the other lenses published beside it as cross-checks and the RANGE of their present-value reads as the envelope; NEVER a weighted blend, and never a set of typed weights; 1.6 drivers — "
         "each disclosed segment grown on its own driver, margins as outputs; 1.7 the crux; "
         "1.8 macro & country — sourced cost of capital, the cost-of-debt evidence table, and "
-        "every contested construction priced, not just named; 1.9 sensitivity)",
+        "every contested construction priced, not just named; 1.9 sensitivity — every grid "
+        "centred on the struck values, and where the central sits BELOW the traded price the "
+        "air-tight case [R-STAR-01] stating what the market is getting wrong)",
         "2 Technical and price structure",
         "3 A probabilistic price map (percentile map + level-touch ladder; calibration evidence "
         "as plain-language sentences with the statistics inline — no calibration appendix)",
