@@ -22,8 +22,8 @@ def main():
                                           'parent, which is the separate covered name ADIBUAE',
                   market='EGX', currency='EGP', asof=C.STUDY_DATE,
                   spot=C.SPOT, spot_date='2026-09-03',
-                  spot_source='engine/prices/SUPPLIED_03-09-2026.json — the latest known '
-                              'price. assets/data.js carries 54.40 at the 23 August close, '
+                  spot_source='the committed price file for 3 September 2026 — the latest known '
+                              'price. The published site carries 54.40 at the 23 August close, '
                               'which is older.',
                   shares_mn=C.SHARES, mktcap=C.SPOT * C.SHARES,
                   klass='bank', sector='Islamic commercial banking — Egypt',
@@ -33,7 +33,7 @@ def main():
         fair=dict(bear=C.BEAR, base=C.CENTRAL, full=C.FULL),
         gap_to_spot=C.CENTRAL / C.SPOT - 1,
         primary=C.PRIMARY,
-        lens_architecture=('[R-LENS-03] one class primary IS the central; the others are '
+        lens_architecture=('One class primary IS the central; the others are '
                            'cross-checks. bank -> ddm primary, with residual income, a '
                            'relative multiple and book value beside it. No typed weights.'),
         lenses=dict(dividend_discount=C.DDM['per_share'],

@@ -2393,7 +2393,7 @@
   },
   "g_terminal": {
    "key": "g_terminal",
-   "value": 0.07,
+   "value": 0.07000000000000006,
    "unit": "ratio",
    "source": "Terminal growth from the house macro path: terminal inflation plus a STATED real growth of zero, so the real assumption is written down rather than inferred from the gap to the discount rate. It was 5% (+/-2) for Q4 2028. CORRECTED 9 August 2026 after external critique: the study previously used the 7% Q4-2026 target, which expires one quarter after the anchor date, as a perpetuity anchor -- and then defended it by calling 5% 'below the target', inverting the central bank's own target structure. A perpetuity takes the longest-horizon target there is.",
    "date": "2026-08-09",

@@ -430,7 +430,7 @@
   },
   "assoc_bv_fy25": {
    "value": 6757.650507,
-   "source": "Equity-accounted investees, carrying value, 31 Dec 2025 — the closing balance used in the valuation bridge (the anchor date is Aug-2026, so the FY2025 close is the most recent audited figure, not FY2024's). Note 20 names every investee and none is listed, so [R-BRIDGE-01] leaves book as the only route; the balance reconciles to the prior year through the disclosed 1,174.475 Senyar dividend and 135.317 of translation",
+   "source": "Equity-accounted investees, carrying value, 31 Dec 2025 — the closing balance used in the valuation bridge (the anchor date is Aug-2026, so the FY2025 close is the most recent audited figure, not FY2024's). Note 20 names every investee and none is listed, so the house rule leaves book as the only route; the balance reconciles to the prior year through the disclosed 1,174.475 Senyar dividend and 135.317 of translation",
    "date": "2026-03-15",
    "ring": "Company"
   },
@@ -918,7 +918,7 @@
     "H1_25": 89636,
     "H1_26": 99239
    },
-   "source": "Cables sales volumes, reviewed half: 99,239 tonnes against 89,636, +10.71% — the Q2-2026 earnings release. The most recent volume disclosure and the anchor for FY2026 [R-ANCHOR-01]",
+   "source": "Cables sales volumes, reviewed half: 99,239 tonnes against 89,636, +10.71% — the Q2-2026 earnings release. The most recent volume disclosure, and the year is anchored on it rather than on a typed rate",
    "date": "2026-08-14",
    "ring": "Company"
   },
@@ -930,7 +930,7 @@
     0.065,
     0.055
    ],
-   "source": "Cables tonnage growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01]: FY2026 is the disclosed +10.71%, tapering toward and below the FY2022-25 compound rate of 8.55%. The company's OWN disclosed volume series, not a residual and not a proxy",
+   "source": "Cables tonnage growth, RE-ANCHORED on the reviewed half on the most recent disclosure: FY2026 is the reported +10.71%, tapering toward and below the FY2022-25 compound rate of 8.55%. The company's OWN disclosed volume series, not a residual and not a proxy",
    "date": "2026-08-14",
    "ring": "Company"
   },
@@ -990,7 +990,7 @@
     0.115,
     0.09
    ],
-   "source": "Constructions segment revenue growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01] and then tapered. FY2026 is the segment's OWN measured like-for-like half growth, H1-2025 34,393 -> H1-2026 43,831 = +27.44%; the taper runs to +9.0%. THE RETIRED PATH OPENED AT +18% while the company's own reviewed interim was running at +27.4% — a forecast contradicting the most recent disclosure this study read, in the direction that lowered the valuation. The margins in this segment were re-anchored on that same half on 11-Aug-2026 and the growth rates were not, so the rule was applied to one half of the segment build and not the other. THE BACKLOG, WHICH THIS DRIVER SAID FOR TWO EDITIONS DID NOT EXIST: no order book is disclosed in any AUDITED filing or in the Q1-2026 interim, but the ISSUER discloses one in its own quarterly earnings releases. Engineering and construction backlog runs EGP 196bn (Dec-24), 261, 276, 293 (Dec-25), 307 and 346bn at 30 June 2026, read off the Q2-2026 release; wires and cables 43.5bn and meters 8.8bn are disclosed beside it. That is +18% over the half against the +27.4% revenue growth this driver is anchored on, so the backlog CORROBORATES the level without being burnt down to produce it — the taper is still a taper on the segment's own revenue record, not a burn rate. Priced across its whole defensible range the taper is worth 0.17% of this study's gap to the market, because at a 9% segment margin against 20% working capital incremental Constructions revenue is very nearly free cash flow neutral. The false sentence was corrected because it was false, not because the number moves [R-GAP-04]",
+   "source": "Constructions segment revenue growth, RE-ANCHORED on the reviewed half on the reviewed half and then tapered. FY2026 is the segment's OWN measured like-for-like half growth, H1-2025 34,393 -> H1-2026 43,831 = +27.44%; the taper runs to +9.0%. THE RETIRED PATH OPENED AT +18% while the company's own reviewed interim was running at +27.4% — a forecast contradicting the most recent disclosure this study read, in the direction that lowered the valuation. The margins in this segment were re-anchored on that same half on 11-Aug-2026 and the growth rates were not, so the rule was applied to one half of the segment build and not the other. THE BACKLOG, WHICH THIS DRIVER SAID FOR TWO EDITIONS DID NOT EXIST: no order book is disclosed in any AUDITED filing or in the Q1-2026 interim, but the ISSUER discloses one in its own quarterly earnings releases. Engineering and construction backlog runs EGP 196bn (Dec-24), 261, 276, 293 (Dec-25), 307 and 346bn at 30 June 2026, read off the Q2-2026 release; wires and cables 43.5bn and meters 8.8bn are disclosed beside it. That is +18% over the half against the +27.4% revenue growth this driver is anchored on, so the backlog CORROBORATES the level without being burnt down to produce it — the taper is still a taper on the segment's own revenue record, not a burn rate. Priced across its whole defensible range the taper is worth 0.17% of this study's gap to the market, because at a 9% segment margin against 20% working capital incremental Constructions revenue is very nearly free cash flow neutral. The false sentence was corrected because it was false, not because the number moves",
    "date": "2026-09-10",
    "ring": "Company/House"
   },
@@ -1014,7 +1014,7 @@
     0.16,
     0.11
    ],
-   "source": "Electrical products and digital solutions segment revenue growth, RE-ANCHORED on the reviewed half [R-ANCHOR-01]. FY2026 is the segment's own measured like-for-like half growth, H1-2025 15,504 -> H1-2026 22,989 = +48.28%; it then tapers to +11%. THE RETIRED PATH OPENED AT +20% — against a disclosed FY2025 of +43.7%, an FY2024 of +46.6% and a reviewed half running at +48.3%. Three consecutive disclosures said the same thing and the forecast halved the rate in year one with no named mechanism. THE MECHANISM FOR THE LEVEL IS NAMED AND DATED: this is the segment that makes transformers, and in August 2026 Elsewedy Electric — the listed company — signed a pre-purchase agreement to manufacture four high-voltage transformers of up to 360 MVA for Datagrid's Southland AI data centre via Transpower New Zealand, commissioning late 2027. The global grid-equipment cycle driving that order is the same one running through this segment's disclosed numbers. It is NOT extrapolated: the path halves the growth rate over four years",
+   "source": "Electrical products and digital solutions segment revenue growth, RE-ANCHORED on the reviewed half. FY2026 is the segment's own measured like-for-like half growth, H1-2025 15,504 -> H1-2026 22,989 = +48.28%; it then tapers to +11%. THE RETIRED PATH OPENED AT +20% — against a disclosed FY2025 of +43.7%, an FY2024 of +46.6% and a reviewed half running at +48.3%. Three consecutive disclosures said the same thing and the forecast halved the rate in year one with no named mechanism. THE MECHANISM FOR THE LEVEL IS NAMED AND DATED: this is the segment that makes transformers, and in August 2026 Elsewedy Electric — the listed company — signed a pre-purchase agreement to manufacture four high-voltage transformers of up to 360 MVA for Datagrid's Southland AI data centre via Transpower New Zealand, commissioning late 2027. The global grid-equipment cycle driving that order is the same one running through this segment's disclosed numbers. It is NOT extrapolated: the path halves the growth rate over four years",
    "date": "2026-09-10",
    "ring": "Company/House"
   },
@@ -1104,7 +1104,7 @@
   },
   "capex_h1_25": {
    "value": 5386.809066,
-   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, same line, comparative column — and independently in the reviewed interim statements for the six months ended 30 June 2025, where it is the current-period figure. Two readings of one fact agreeing [R-ENF-03]",
+   "source": "Reviewed condensed interim consolidated financial statements for the six months ended 30 June 2026, El Sewedy Electric Company, approved for issuance by the board on 11 August 2026 (note 2-1), published on the company's own investor-relations portal at ir.elsewedyelectric.com, same line, comparative column — and independently in the reviewed interim statements for the six months ended 30 June 2025, where it is the current-period figure. Two readings of one fact agreeing",
    "date": "2025-06-30",
    "ring": "Company"
   },
@@ -1320,13 +1320,13 @@
   },
   "g_term_real": {
    "value": 0.02,
-   "source": "STATED real terminal growth: 2.0%, held BELOW the house path's long-run Egyptian real GDP growth of 4.5% [R-MACRO-02] — the gap is the share of the economy this company is assumed to cede in perpetuity. THE RETIRED FIGURE WAS ZERO, and zero was wrong on its own terms rather than merely conservative: an economy growing 4.5% a year in real terms with a company growing 0% means the company shrinks to nothing relative to it, forever, which is not what 'a mature diversified industrial holding its real scale' meant. It is also not what this group has done — Constructions grew 32.6% then 28.3% and Electrical Products 46.6% then 43.7% in nominal terms, neither of them copper-linked. 2.0% is under half the economy's rate and well under the Cables segment's own forward real driver",
+   "source": "STATED real terminal growth: 2.0%, held BELOW the house path's long-run Egyptian real GDP growth of 4.5%% — the gap is the share of the economy this company is assumed to cede in perpetuity. THE RETIRED FIGURE WAS ZERO, and zero was wrong on its own terms rather than merely conservative: an economy growing 4.5% a year in real terms with a company growing 0% means the company shrinks to nothing relative to it, forever, which is not what 'a mature diversified industrial holding its real scale' meant. It is also not what this group has done — Constructions grew 32.6% then 28.3% and Electrical Products 46.6% then 43.7% in nominal terms, neither of them copper-linked. 2.0% is under half the economy's rate and well under the Cables segment's own forward real driver",
    "date": "2026-09-10",
    "ring": "House"
   },
   "g_term": {
    "value": 0.09140000000000015,
-   "source": "Terminal NOMINAL growth, DERIVED and read from the house path rather than chosen: (1 + 2.0% stated real growth) x (1 + 7.0% long-run Egyptian inflation) - 1, read from the house path. It is the only source of an inflation rate in this study, and macro_path refuses a real rate at or above the economy's own [R-MACRO-02]. Two earlier figures are retired: 5.0%, struck against an assumed 5% inflation and therefore a real DECLINE of 1.87% a year; and 7.0%, which fixed the inflation half and left real growth at zero",
+   "source": "Terminal NOMINAL growth, DERIVED and read from the house path rather than chosen: (1 + 2.0% stated real growth) x (1 + 7.0% long-run Egyptian inflation) - 1, read from the house path. It is the only source of an inflation rate in this study, and macro_path refuses a real rate at or above the economy's own. Two earlier figures are retired: 5.0%, struck against an assumed 5% inflation and therefore a real DECLINE of 1.87% a year; and 7.0%, which fixed the inflation half and left real growth at zero",
    "date": "2026-09-10",
    "ring": "House"
   },

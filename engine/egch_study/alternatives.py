@@ -98,7 +98,7 @@ ALTS = [
              "is applied to the UREA export leg alone, and urea is not exempt. "
              "THE DIRECTION IS AGAINST THIS STUDY -- removing the duty RAISES the value "
              "and narrows the gap -- and the search was made for that reason rather than "
-             "despite it [R-GAP-04]. It came back saying the duty is real, so the "
+             "despite it. It came back saying the duty is real, so the "
              "alternative below is priced and NOT adopted; a reader is entitled to see "
              "what the largest line in the study is worth even when it survives. "
              "The input was briefly re-tiered L3 to L4 earlier today on the ground that "
@@ -133,7 +133,7 @@ ALTS = [
              "is not a source this house uses, and what qualitative reporting there is "
              "points UP for 2026 on gas and Hormuz supply risk rather than down. "
              "Replacing an unsourced number with another unsourced number that happens "
-             "to raise the value is not a correction [R-GAP-04], so the conservative "
+             "to raise the value is not a correction, so the conservative "
              "figure stands and the reader is shown what it costs. What would settle it: "
              "an assessed FOB Egypt or Black Sea series with its assessor and date, or a "
              "note 20 splitting nitrate revenue into local and export."),

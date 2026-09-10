@@ -560,7 +560,7 @@ INP = dict(
     # price-approval schedule, or an FY2026 filing carrying domestic revenue per pack.
     dom_price_growth=I(_DOM_PRICE_PATH,
                        "Domestic realised price per pack, annual growth: THE HOUSE CPI "
-                       "LADDER at a real drift of %+.1f%% a year [R-MACRO-01], not a typed "
+                       "LADDER at a real drift of %+.1f%% a year, not a typed "
                        "path. Egyptian medicine prices are set administratively by the "
                        "Egyptian Drug Authority and move in periodic approved adjustments "
                        "rather than continuously; realised price per pack rose 12.59%% in "
@@ -2116,7 +2116,7 @@ DOM_PRICE_CONTESTED = dict(
           'both of its own records. Its own source string said price growth "tracks '
           'domestic inflation ... with no real price gain", and the committed macro record '
           'says the escalator is "the house calendar ladder exactly, at zero real: this '
-          'study carries no inflation rate of its own". [R-MACRO-01] requires the house '
+          'study carries no inflation rate of its own". The house rule requires the house '
           'path and forbids a typed rate; the rule had been applied to the escalators and '
           'not to the price they escalate. A REAL LAG IS REAL — the Egyptian Drug '
           'Authority sets prices in periodic approved adjustments and realised price per '
@@ -2133,7 +2133,7 @@ say(f"\n[The contested price path, computed both ways] the adopted house ladder 
     f"difference is EGP {_now_a - _alt_a:.2f} a share on Frame A — the largest single "
     f"judgement in this study, published both ways and never averaged. It was not a view "
     f"anybody argued for: it contradicted this study's own source string and its own "
-    f"committed macro record, and [R-MACRO-01] forbids a typed rate where the house path "
+    f"committed macro record, and the house rule forbids a typed rate where the house path "
     f"exists")
 
 PROV_READINGS = [

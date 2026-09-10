@@ -342,7 +342,7 @@ INP = dict(
     assoc_bv_fy25=I(6757.650507, "Equity-accounted investees, carrying value, 31 Dec 2025 — the "
                     "closing balance used in the valuation bridge (the anchor date is Aug-2026, so "
                     "the FY2025 close is the most recent audited figure, not FY2024's). Note 20 "
-                    "names every investee and none is listed, so [R-BRIDGE-01] leaves book as the "
+                    "names every investee and none is listed, so the house rule leaves book as the "
                     "only route; the balance reconciles to the prior year through the disclosed "
                     "1,174.475 Senyar dividend and 135.317 of translation",
                     "2026-03-15", "Company"),
@@ -683,7 +683,7 @@ INP = dict(
     cables_tonnage_h1=I(dict(H1_25=89636, H1_26=99239),
                         "Cables sales volumes, reviewed half: 99,239 tonnes against "
                         "89,636, +10.71% — the Q2-2026 earnings release. The most recent "
-                        "volume disclosure and the anchor for FY2026 [R-ANCHOR-01]",
+                        "volume disclosure, and the year is anchored on it rather than on a typed rate",
                         "2026-08-14", "Company"),
     # THE RESIDUAL WAS TWO OPPOSITE THINGS WEARING ONE NUMBER. Cables revenue was
     # built as (1+copper)(1+FX)(1+real), which ASSERTS that price per tonne moves
@@ -696,7 +696,7 @@ INP = dict(
     # now, and the pass-through — the contested half — is carried BOTH WAYS.
     cables_volume_growth=I([0.1071, 0.090, 0.075, 0.065, 0.055],
                            "Cables tonnage growth, RE-ANCHORED on the reviewed half "
-                           "[R-ANCHOR-01]: FY2026 is the disclosed +10.71%, tapering "
+                           "on the most recent disclosure: FY2026 is the reported +10.71%, tapering "
                            "toward and below the FY2022-25 compound rate of 8.55%. The "
                            "company's OWN disclosed volume series, not a residual and "
                            "not a proxy", "2026-08-14", "Company"),
@@ -769,7 +769,7 @@ INP = dict(
 
     construct_growth=I([0.2744, 0.20, 0.15, 0.115, 0.09],
                        "Constructions segment revenue growth, RE-ANCHORED on the reviewed half "
-                       "[R-ANCHOR-01] and then tapered. FY2026 is the segment's OWN measured "
+                       "on the reviewed half and then tapered. FY2026 is the segment's OWN measured "
                        "like-for-like half growth, H1-2025 34,393 -> H1-2026 43,831 = +27.44%; "
                        "the taper runs to +9.0%. THE RETIRED PATH OPENED AT +18% while the "
                        "company's own reviewed interim was running at +27.4% — a forecast "
@@ -791,7 +791,7 @@ INP = dict(
                        "study's gap to the market, because at a 9% segment margin against 20% "
                        "working capital incremental Constructions revenue is very nearly free "
                        "cash flow neutral. The false sentence was corrected because it was "
-                       "false, not because the number moves [R-GAP-04]",
+                       "false, not because the number moves",
                        "2026-09-10", "Company/House"),
     construct_margin=I([0.089871] * 5,
                        "Constructions and infrastructure segment profit margin, RE-ANCHORED and "
@@ -806,7 +806,7 @@ INP = dict(
 
     elecprod_growth=I([0.4828, 0.33, 0.23, 0.16, 0.11],
                       "Electrical products and digital solutions segment revenue growth, "
-                      "RE-ANCHORED on the reviewed half [R-ANCHOR-01]. FY2026 is the segment's "
+                      "RE-ANCHORED on the reviewed half. FY2026 is the segment's "
                       "own measured like-for-like half growth, H1-2025 15,504 -> H1-2026 22,989 "
                       "= +48.28%; it then tapers to +11%. THE RETIRED PATH OPENED AT +20% — "
                       "against a disclosed FY2025 of +43.7%, an FY2024 of +46.6% and a reviewed "
@@ -902,7 +902,7 @@ INP = dict(
     capex_h1_25=I(5386.809066, H126 + ", same line, comparative column — and independently "
                   "in the reviewed interim statements for the six months ended 30 June "
                   "2025, where it is the current-period figure. Two readings of one fact "
-                  "agreeing [R-ENF-03]", "2025-06-30", "Company"),
+                  "agreeing", "2025-06-30", "Company"),
     capex_h1_24=I(4595.530101, "Reviewed condensed interim consolidated financial "
                   "statements for the six months ended 30 June 2024, statement of cash "
                   "flows, same line", "2024-06-30", "Company"),
@@ -1164,7 +1164,7 @@ INP = dict(
         "disclosure behind it", "2026-03-01", "Company"),
     g_term_real=I(0.020,
                   "STATED real terminal growth: 2.0%, held BELOW the house path's long-run "
-                  "Egyptian real GDP growth of 4.5% [R-MACRO-02] — the gap is the share of "
+                  "Egyptian real GDP growth of 4.5%% — the gap is the share of "
                   "the economy this company is assumed to cede in perpetuity. THE RETIRED "
                   "FIGURE WAS ZERO, and zero was wrong on its own terms rather than merely "
                   "conservative: an economy growing 4.5% a year in real terms with a company "
@@ -1180,7 +1180,7 @@ INP = dict(
              "chosen: (1 + 2.0% stated real growth) x (1 + 7.0% long-run Egyptian inflation) "
              "- 1, read from the house path. It is the only source of an inflation "
              "rate in this study, and macro_path refuses a real rate at or above the "
-             "economy's own [R-MACRO-02]. Two earlier figures are retired: 5.0%, struck "
+             "economy's own. Two earlier figures are retired: 5.0%, struck "
              "against an assumed 5% inflation and therefore a real DECLINE of 1.87% a year; "
              "and 7.0%, which fixed the inflation half and left real growth at zero",
              "2026-09-10", "House"),

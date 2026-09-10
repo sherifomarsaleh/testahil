@@ -63,8 +63,8 @@ def reg(name, value, source, date, tier):
 # ---- price -----------------------------------------------------------------------
 SPOT = reg('spot', 52.05,
            'EGP 52.05, the close on 3 September 2026, supplied by the principal and '
-           'committed to engine/prices/SUPPLIED_03-09-2026.json. THIS IS THE LATEST '
-           'KNOWN PRICE and it is the one [R-GAP-01] measures against. assets/data.js '
+           'committed to the house price file for that date. THIS IS THE LATEST '
+           'KNOWN PRICE and it is the one the gap is measured against. The published site '
            'still carries 54.40 at the 23 August close, which is 11 days older; a study '
            'audited against its own past is audited against nothing.',
            '2026-09-03', 'Market')
@@ -112,7 +112,7 @@ reg('latest_reviewed', 'H1-2026',
     'The condensed consolidated interim statements for the six months ended 30 June 2026, '
     'signed 30 July 2026. Attributable profit EGP 7,536.8 million, total assets EGP '
     '414,302.1 million, financing to customers EGP 190,427.1 million, attributable equity '
-    'EGP 43,557.9 million. This is the period [R-ANCHOR-01] anchors the forecast on.',
+    'EGP 43,557.9 million. This is the period the forecast is anchored on.',
     '2026-07-30', 'A')
 
 # ---- observed ratios: OUTPUTS of the base year, computed, never typed -------------
@@ -160,7 +160,7 @@ reg('h1_2026_ecl', 2.176,
     'line on the page plus this one reproduces the printed profit before tax of 10,721,790 '
     'exactly. A half-year at a near-nil loss charge is a release, not a run rate, and the '
     'forecast below normalises it rather than annualising it — which is the conservative '
-    'direction and is named as a mechanism under [R-ANCHOR-01].',
+    'direction and is named as a mechanism rather than assumed.',
     '2026-07-30', 'A')
 
 # ---- macro -----------------------------------------------------------------------
@@ -169,7 +169,7 @@ INFL = reg('inflation_path', [0.16, 0.12, 0.09, 0.075, 0.07],
            'and 12.0% in 2027 (Q1-2026 Monetary Policy Report as reported 11 May 2026); '
            '2028-2030 interpolated on the bank\'s own glide between the published 2027 '
            'baseline and the 7% target-band midpoint, labelled as interpolation and never '
-           'presented as a central-bank forecast. Held in engine/macro_path.py, the house '
+           'presented as a central-bank forecast. Held in the house macroeconomic path, the '
            'path every Egyptian study runs on.', EG.as_of, 'Country')
 POLICY = reg('policy_rate_path', list(EG.raw['policy_rate']['path']),
              'Overnight deposit rate 19.00% now, gliding 19.00 -> 16.50 -> 14.50 -> 13.00 '
@@ -181,7 +181,7 @@ POLICY = reg('policy_rate_path', list(EG.raw['policy_rate']['path']),
 
 RF = reg('rf', 0.2300,
          'Egypt ten-year EGP government bond yield, 23.00%, the quote of 6 August 2026 held '
-         'in engine/macro_path.py and already used by the PHDC, EGCH and PHAR '
+         'in the house macroeconomic path and already used by the PHDC, EGCH and PHAR '
          'cost-of-capital records. IT IS 34 DAYS OLD AGAINST THIS STUDY\'S PRICING DATE AND '
          'THE HOUSE PATH\'S OWN 14-DAY STALENESS RULE FLAGS IT AS STALE. A live re-source '
          'was attempted on 9 September 2026 down four routes and all four failed: the '
@@ -195,7 +195,7 @@ SOV_SPREAD = reg('sov_default_spread', 0.0342,
                  'vintage of the country default-spread dataset, Egypt row, "Sovereign CDS '
                  'net of Swiss CDS". Netted out of the local-currency risk-free rate so '
                  'that sovereign default risk is charged ONCE, inside the equity risk '
-                 'premium, and not twice [L-004]. engine/macro_path.py carries 3.41% for '
+                 'premium, and not twice. The house macroeconomic path carries 3.41% for '
                  'the same field from the same file; the one-basis-point difference is a '
                  'rounding artefact and is immaterial.', '2026-07-02', 'Country')
 ERP = reg('erp', 0.095164,
@@ -250,7 +250,7 @@ reg('ke_construction', 'same_beta',
     'The terminal cost of equity uses the SAME regression beta as the explicit window. '
     'ADIB-Egypt is a deposit-funded bank whose capital structure is its business, so there '
     'is no leverage to relever: the beta already embeds the balance sheet it is measured '
-    'on. [R-COC-02] — the record names the construction from the closed list so that two '
+    'on. The record names the construction from a closed list so that two '
     'right answers a hundred basis points apart are not indistinguishable from a typo.',
     STUDY_DATE, 'House')
 
@@ -378,7 +378,7 @@ CAP_INCREASE_26 = reg('capital_increase_2026', 3000.0,
 # ---- peers -----------------------------------------------------------------------
 PEER_COMI = reg('peer_comi_price', 138.98,
                 'Commercial International Bank (EGX: COMI), EGP 138.98, the close on 3 '
-                'September 2026 from engine/prices/SUPPLIED_03-09-2026.json — the same '
+                'September 2026 from the committed price file — the same '
                 'file, the same date and the same supplier as ADIB\'s own price, so the '
                 'two are struck on one day.', '2026-09-03', 'Market')
 PEER_PB = reg('peer_pb_band', [1.4, 2.2],
@@ -597,8 +597,8 @@ FULL = max(PV_READS.values())
 reg('lens_architecture', 'class primary = dividend discount; no typed blend',
     'The bank class is keyed to a dividend-discount PRIMARY with residual income, a '
     'relative multiple and book value beside it. The central IS the primary. The envelope '
-    'is the range of the three present-value reads and no spread is invented around it '
-    '[R-LENS-03].', STUDY_DATE, 'House')
+    'is the range of the three present-value reads and no spread is invented around '
+    'it.', STUDY_DATE, 'House')
 
 
 # ----------------------------------------------------------------------------------

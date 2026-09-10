@@ -126,8 +126,16 @@ def header_line(ticker, spot=None, currency='', numbers=None, issued=None):
     px = ''
     if spot is not None:
         px = ' of %s%s' % (('%s ' % currency) if currency else '', ('%.2f' % float(spot)))
+    # NO RULE IDENTIFIER IN THE SENTENCE. This line ended '[R-DOC-03]' and this
+    # function is the masthead of every study, so one internal tag reached seven
+    # delivered documents at once. A reader receiving a valuation has no idea what
+    # R-DOC-03 is and no way to look it up; the rule belongs in this comment, where
+    # the people who maintain the code are. The delivered vocabulary gate is right
+    # to treat it as a leak, and the remedy it names is to REWRITE THE SENTENCE
+    # rather than add the token to an allow-list, because the next hole is a
+    # different shape.
     return ('PRICE DATE %s — the latest known close%s, the price this valuation is '
             'measured against.   ISSUE DATE %s — the day this edition was issued. '
-            'A recalibration issues a NEW document carrying its own issue date; the two '
-            'dates are stated separately because they are not the same fact [R-DOC-03].'
+            'A recalibration issues a new document carrying its own issue date; the '
+            'two dates are stated separately because they are not the same fact.'
             % (_human(pd) or 'not recorded', px, _human(idt) or 'not recorded'))

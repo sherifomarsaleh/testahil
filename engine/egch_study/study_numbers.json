@@ -175,7 +175,7 @@
   "dio": 165.24752797477882,
   "dpo": 83.17161071710899,
   "tax_rate": 0.225,
-  "g_terminal": 0.07,
+  "g_terminal": 0.07000000000000006,
   "roc_terminal": 0.18,
   "inflation_lt": 0.07,
   "real_rate_lt": 0.055,
@@ -281,7 +281,7 @@
      "topdown": 0
     },
     "unit_share": 0.7470974569827978,
-    "standard_version": "2026.09.07"
+    "standard_version": "2026.09.10"
    }
   }
  },
@@ -650,7 +650,7 @@
     "topdown": 0
    },
    "unit_share": 0.7470974569827978,
-   "standard_version": "2026.09.07"
+   "standard_version": "2026.09.10"
   }
  },
  "standard_version": "2026.09.01",
@@ -908,8 +908,8 @@
     "growth_capex_T": 0.0,
     "inc_cap": 50811.72101180598,
     "g_real": 0.0,
-    "reinv_rate": 0.38888888888888895,
-    "fcff_retired": 2575.8595351292483,
+    "reinv_rate": 0.38888888888888923,
+    "fcff_retired": 2575.859535129247,
     "tv_retired": 22728.227722452477,
     "terminal_record": {
      "rule": "R-TERM-01",
@@ -1229,8 +1229,8 @@
     "growth_capex_T": 0.0,
     "inc_cap": 50811.72101180598,
     "g_real": 0.0,
-    "reinv_rate": 0.38888888888888895,
-    "fcff_retired": 2562.6689420983,
+    "reinv_rate": 0.38888888888888923,
+    "fcff_retired": 2562.6689420982984,
     "tv_retired": 22611.83985342741,
     "terminal_record": {
      "rule": "R-TERM-01",
@@ -1550,9 +1550,9 @@
     "growth_capex_T": 0.0,
     "inc_cap": 42784.43110157481,
     "g_real": 0.0,
-    "reinv_rate": 0.38888888888888895,
-    "fcff_retired": 1728.9765339769765,
-    "tv_retired": 15255.712454457864,
+    "reinv_rate": 0.38888888888888923,
+    "fcff_retired": 1728.9765339769756,
+    "tv_retired": 15255.712454457862,
     "terminal_record": {
      "rule": "R-TERM-01",
      "inputs": {
@@ -1871,8 +1871,8 @@
     "growth_capex_T": 0.0,
     "inc_cap": 28409.38283063925,
     "g_real": 0.0,
-    "reinv_rate": 0.38888888888888895,
-    "fcff_retired": 2551.4776154661517,
+    "reinv_rate": 0.38888888888888923,
+    "fcff_retired": 2551.4776154661504,
     "tv_retired": 22513.09261323714,
     "terminal_record": {
      "rule": "R-TERM-01",
