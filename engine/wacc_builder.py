@@ -306,9 +306,10 @@ class WaccResult:
         if i.erp_cds is not None:
             L.append(f"  ERP (CDS-based)        = {i.erp_cds*100:6.2f}%   [same source, CDS column]")
         L.append(f"  beta                   = {i.beta:6.2f}    [{i.beta_source}]")
-        L.append(f"  Ke (rating ERP)        = {self.ke_rating*100:6.2f}%   = rf*_rating + beta x ERP_rating")
+        L.append(f"  Ke (rating ERP)        = {self.ke_rating*100:6.2f}%   = rf*_rating + beta x mature ERP + country premium")
         if self.ke_cds is not None:
-            L.append(f"  Ke (CDS ERP)           = {self.ke_cds*100:6.2f}%   = rf*_cds + beta x ERP_cds")
+            L.append(f"  Ke (CDS ERP)           = {self.ke_cds*100:6.2f}%   "
+                     f"= rf*_cds + beta x mature ERP + country premium")
         L.append("")
         L.append("COST OF DEBT  (MARGINAL, forward-looking, cash-flow currency)")
         L.append(f"  Kd local, pre-tax      = {i.kd_pretax_local*100:6.2f}%   [{i.kd_source or 'SOURCE NOT RECORDED'}]")
@@ -367,14 +368,35 @@ def _consistency_checks(i: WaccInputs, kd_pretax_blended: float) -> List[str]:
     return w
 
 
+import cost_of_capital as _coc                                       # noqa: E402
+
+
 def build_wacc(i: WaccInputs) -> WaccResult:
     if i.kd_pretax_local is None:
         raise ValueError("kd_pretax_local is required — source a MARGINAL rate (own latest issue, or sovereign+corp spread)")
     if i.market_cap is None or i.total_debt is None:
         raise ValueError("market_cap and total_debt are required — weights are never assumed in this house method")
 
-    ke_rating = i.rf_star_rating + i.beta * i.erp_rating
-    ke_cds = (i.rf_star_cds + i.beta * i.erp_cds) if i.erp_cds is not None else None
+    # [R-COC-03] BETA PRICES THE EQUITY MARKET; THE COUNTRY PREMIUM IS CHARGED ONCE AND
+    # FLAT. Both lines read rf* + beta x ERP_TOTAL, which multiplies the sovereign's
+    # premium by beta -- so of two companies in one country, the more cyclical one was
+    # charged more for the SAME sovereign, for no reason connected to the sovereign. The
+    # premium separates into the mature-market part, which beta scales, and the country
+    # part, which it does not.
+    #
+    # THIS IS THE SECOND SHARED COST-OF-CAPITAL BUILDER and it was left behind when
+    # engine/cost_of_capital.py moved on 10-09-2026. Two modules doing one job, one of
+    # them updated: the same shape that had ke_reproduction verifying the retired
+    # identity, and the reason the fix belongs in cost_of_equity() rather than being
+    # written out a third time here. Each basis splits on ITS OWN default spread,
+    # because [R-COC-01] requires the spread stripped out and the premium added back to
+    # be on the same basis.
+    ke_rating, _ = _coc.cost_of_equity(i.rf_star_rating, i.beta, i.erp_rating,
+                                       i.sov_default_spread_rating)
+    ke_cds = None
+    if i.erp_cds is not None:
+        ke_cds, _ = _coc.cost_of_equity(i.rf_star_cds, i.beta, i.erp_cds,
+                                        i.sov_default_spread_cds)
 
     if i.kd_pretax_fx_local_equiv is not None:
         kd_pretax = i.pct_debt_local_ccy * i.kd_pretax_local + (1 - i.pct_debt_local_ccy) * i.kd_pretax_fx_local_equiv

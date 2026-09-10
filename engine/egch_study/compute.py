@@ -262,8 +262,23 @@ D['kd_usd_lt'] = _V('kd_usd_lt')                                 # long-run USD 
 D['deprec_lt'] = _V('expected_depreciation')                                 # same wedge used in the Kd build
 D['kd_local_equiv_terminal'] = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
 
+# [R-COC-03] BETA PRICES THE EQUITY MARKET; LAMBDA PRICES THE COUNTRY. This function
+# read rf* + beta x ERP_total, which multiplies Egypt's country premium by beta -- so a
+# company measured at 1.03 was charged 3% more for the same sovereign than the company
+# next door at 1.00, for no reason connected to the sovereign. The premium splits into
+# the part beta scales and the part it does not, and this study is wholly Egyptian, so
+# lambda is one and the country premium is added flat.
+#
+# BUILT THROUGH THE SANCTIONED MODULE, never re-derived here. This function is called
+# for every year of the glide AND for the terminal, so a second implementation of the
+# identity beside engine/cost_of_capital.py would put the whole rate structure of the
+# study one edit away from disagreeing with the house.
+import cost_of_capital as _COC3
+
+
 def _wacc_from(rf_star, kd_pretax):
-    ke = rf_star + D['beta'] * D['erp']
+    ke, _parts = _COC3.cost_of_equity(rf_star, D['beta'], D['erp'],
+                                      D['sov_spread_cds'])
     return D['we'] * ke + D['wd'] * kd_pretax * (1 - D['tax_rate']), ke
 
 def set_glide():
@@ -354,6 +369,16 @@ WACC = dict(
     rf_star_rating=_r0.rf_star_rating, rf_star_cds=_r0.rf_star_cds,
     erp_rating=_V('erp_rating'), erp_cds=_V('erp_cds_damodaran'), beta=_BETA_REC['beta'],
     ke_rating=_r0.ke_rating, ke_cds=_r0.ke_cds,
+    # [R-COC-03] THE SPLIT, PUBLISHED ON BOTH BASES. The workbook draws its cost of
+    # equity as a LIVE FORMULA, so it needs the two legs as cells; without them it
+    # multiplied beta by the whole premium and its answer sat EGP 0.06 a share below
+    # the model's, stably, through every rebuild. Each basis splits on ITS OWN default
+    # spread: the spread stripped out and the premium added back must be the same
+    # reading of the same credit.
+    erp_mature_cds=_COC3.split_erp(_V('erp_cds_damodaran'), _V('sov_spread_cds'))[1],
+    crp_cds=_COC3.split_erp(_V('erp_cds_damodaran'), _V('sov_spread_cds'))[0],
+    erp_mature_rating=_COC3.split_erp(_V('erp_rating'), _V('sov_spread_rating'))[1],
+    crp_rating=_COC3.split_erp(_V('erp_rating'), _V('sov_spread_rating'))[0],
     kd_local=D['kd_local'], kd_usd_nominal=D['kd_usd_nominal'], pct_debt_local=D['pct_debt_local'],
     fx_wedge_path=list(D['fx_wedge_path']), kd_fx_path=[kd_fx_year(k) for k in range(5)],
     kd_fx_local_equiv=kd_fx_year(0), kd_pretax_blended=_r0.kd_pretax_blended, kd_aftertax=_r0.kd_aftertax,
@@ -396,6 +421,10 @@ WACC['years_fx_leg_below_rf_star'] = [YEARS[k] for k in range(5) if kd_fx_year(k
 D['rf_star_spot'] = WACC['rf_star_cds']
 D['erp'] = WACC['erp_cds']
 D['beta'] = WACC['beta']
+# The default spread the risk-free was normalised BY is the same spread the
+# premium splits ON: [R-COC-01] requires one basis end to end, and the split
+# needs it as an input rather than as an assumption.
+D['sov_spread_cds'] = WACC['sov_spread_cds']
 D['we'] = WACC['we']
 D['wd'] = WACC['wd']
 D['wacc_spot'] = WACC['wacc_cds']
@@ -884,7 +913,56 @@ GROUND_UP = _rp.assert_ground_up(DRIVER_LINES, ticker='EGCH')
 _STD_VERSION = "2026.09.01"
 D['gates'] = dict(standard_version=_STD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
 
+# ---- [R-DCF-01] THE VALUATION ON ONE PAGE ----------------------------------------
+# The study carried every line of it and carried none of them in a shape a reader could
+# be handed: the forecast lives as one dict per YEAR, forty-odd keys wide, and the
+# bridge lives inside a case. So the arithmetic that produces the answer was complete
+# and the page that shows it could not be printed -- the same corollary as the
+# probability partition and the terminal beta, one document over. These two blocks are
+# a TRANSPOSITION of cases['base'], not a second calculation: every figure is lifted
+# from the case, and the asserts below say so rather than trusting it.
+_BC = CASES['base']
+_BR = _BC['bridge']
+_TM = _BC['terminal']
+_FCST_BLOCK = dict(
+    years=[_r['year'] for _r in _BC['rows']],
+    rev=[_r['revenue'] for _r in _BC['rows']],
+    ebitda=[_r['ebitda'] for _r in _BC['rows']],
+    # the tax charge, as a POSITIVE number the table subtracts
+    tax=[_r['ebit'] - _r['nopat'] for _r in _BC['rows']],
+    dna=[_r['dep'] for _r in _BC['rows']],
+    capex=[_r['capex'] for _r in _BC['rows']],
+    dnwc=[_r['dwc'] for _r in _BC['rows']],
+    fcff=[_r['fcff'] for _r in _BC['rows']],
+    df=[_r['df'] for _r in _BC['rows']],
+    pv=[_r['pv'] for _r in _BC['rows']],
+    fwd_wacc=list(D['wacc_path']),
+)
+_DCF_BLOCK = dict(
+    pv_explicit=_BR['pv_explicit'], tv=_TM['tv'], pv_tv=_BR['pv_tv'],
+    ev=_BR['ev'], nd=_BR['net_debt'], eq_attr=_BR['equity'],
+    ps=_BR['per_share'], tv_share=_BR['tv_pct_ev'],
+    # IN MILLIONS, like every other figure on the page. The bridge carries the raw
+    # count and the table's own row is labelled '(mn)', so passing it through put
+    # 1,986,578,999 under a heading that said millions -- a number off by a factor
+    # of a million, in the one row a reader uses to check the arithmetic by hand.
+    shares=_BR['shares'] / 1e6,
+)
+# THE TABLE OWNS NO ARITHMETIC. It reproduces the published enterprise value and the
+# published value per share or it does not print, which is the whole of [R-DCF-01]:
+# a page that quietly re-derives what it displays cannot disagree with the study, and
+# a page that cannot disagree is not a check.
+assert abs(sum(_FCST_BLOCK['pv']) - _DCF_BLOCK['pv_explicit']) < 1e-6, (
+    'the discounted forecast does not sum to the published explicit present value: '
+    '%.6f vs %.6f' % (sum(_FCST_BLOCK['pv']), _DCF_BLOCK['pv_explicit']))
+assert abs(_DCF_BLOCK['pv_explicit'] + _DCF_BLOCK['pv_tv'] - _DCF_BLOCK['ev']) < 1e-6, (
+    'explicit plus terminal does not reproduce the published enterprise value')
+assert abs(_DCF_BLOCK['eq_attr'] / _DCF_BLOCK['shares'] - _DCF_BLOCK['ps']) < 1e-6, (
+    'equity over shares does not reproduce the published value per share: the two '
+    'are in different units')
+
 out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
+           fcst=_FCST_BLOCK, dcf=_DCF_BLOCK,
            walkforward=WALKFORWARD, gates=D['gates'], standard_version=_STD_VERSION,
            cases={k: dict(rows=v['rows'], terminal=v['terminal'], bridge=v['bridge'])
                   for k, v in CASES.items()},

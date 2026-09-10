@@ -12,6 +12,9 @@ Three classes of cell carry a pasted number, and READ FIRST names all three:
       where each cell is a complete revaluation or a distribution statistic.
 """
 import json, os
+import sys as _sys3, os as _os3
+_sys3.path.insert(0, _os3.path.dirname(_os3.path.dirname(_os3.path.abspath(__file__))))
+import cost_of_capital as _COC3   # the scaling constant, read not typed
 import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -285,11 +288,44 @@ BETAC = drv(r, "Beta", W['beta'], "x",
 RFS_C = r; put(ws, f"A{r}", "Normalised risk-free rate, CDS basis — THE CENTRAL")
 put(ws, f"B{r}", "%"); put(ws, f"C{r}", f"={RF}-{SPRC}", fmt=PC2, expect=W['rf_star_cds'])
 RFSTAR_C = f"'Assumptions'!C{r}"; r += 1
+# [R-COC-03] THE PREMIUM SPLITS AND THE WORKBOOK SHOWS BOTH LEGS. These two cells read
+# rf* + beta x the WHOLE premium, which multiplies Egypt's country risk by beta -- so a
+# company measured at 1.03 paid 3% more for the same sovereign than one at 1.00. They
+# are live formulas, so the split has to exist as cells: without them the workbook's
+# answer sat EGP 0.06 a share below the model's, stably, through every rebuild, and a
+# reader comparing the two would have found no explanation for the difference.
+# THE SPLIT IS DERIVED IN THE WORKBOOK, NOT PASTED INTO IT. Pasting the two legs made
+# the TOTAL premium a dead cell -- three rows on the sheet where only two drove
+# anything, and the driver test said so. The identity is Damodaran's own: the country
+# premium is the sovereign's default spread scaled to equity volatility, and the mature
+# premium is what is left. Written as formulas, a reader can move the spread and watch
+# the split move, which is what the model does.
+SCAL = drv(r, "Equity-to-bond volatility scaling on the default spread",
+           _COC3.LAMBDA_EQUITY_BOND_SCALING, "x",
+           "the ratio of equity volatility to sovereign-bond volatility. It converts a "
+           "DEBT default spread into the EQUITY country premium, which is the only "
+           "premium a shareholder is exposed to", '0.00'); r += 1
+CRP_R = r; put(ws, f"A{r}", "   of which the country premium, rating basis — charged FLAT")
+put(ws, f"B{r}", "%"); put(ws, f"C{r}", f"={SPR}*{SCAL}", fmt=PC2, expect=W['crp_rating'])
+CRP_R_C = f"'Assumptions'!C{r}"; r += 1
+EM_R = r; put(ws, f"A{r}", "   of which the mature equity premium, rating basis")
+put(ws, f"B{r}", "%"); put(ws, f"C{r}", f"={ERP}-{CRP_R_C}", fmt=PC2,
+                          expect=W['erp_mature_rating'])
+EM_R_C = f"'Assumptions'!C{r}"; r += 1
+CRP_C = r; put(ws, f"A{r}", "   of which the country premium, CDS basis — charged FLAT")
+put(ws, f"B{r}", "%"); put(ws, f"C{r}", f"={SPRC}*{SCAL}", fmt=PC2, expect=W['crp_cds'])
+CRP_C_C = f"'Assumptions'!C{r}"; r += 1
+EM_C = r; put(ws, f"A{r}", "   of which the mature equity premium, CDS basis")
+put(ws, f"B{r}", "%"); put(ws, f"C{r}", f"={ERPC}-{CRP_C_C}", fmt=PC2,
+                          expect=W['erp_mature_cds'])
+EM_C_C = f"'Assumptions'!C{r}"; r += 1
 KE_R = r; put(ws, f"A{r}", "Cost of equity, rating basis — published, not central")
 put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"={RFSTAR}+{BETAC}*{ERP}", fmt=PC2, expect=W['ke_rating']); r += 1
+put(ws, f"C{r}", f"={RFSTAR}+{BETAC}*{EM_R_C}+{CRP_R_C}", fmt=PC2,
+    expect=W['ke_rating']); r += 1
 KE_C = r; put(ws, f"A{r}", "Cost of equity, CDS basis — THE CENTRAL"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"={RFSTAR_C}+{BETAC}*{ERPC}", fmt=PC2, expect=W['ke_cds']); r += 1
+put(ws, f"C{r}", f"={RFSTAR_C}+{BETAC}*{EM_C_C}+{CRP_C_C}", fmt=PC2,
+    expect=W['ke_cds']); r += 1
 KDL = drv(r, "Cost of debt, local currency", V('kd_local'), "%", src('kd_local'), PC2); r += 1
 KDU = drv(r, "Cost of debt, dollar tranche, in dollars", V('kd_usd_nominal'), "%", src('kd_usd_nominal'), PC2); r += 1
 DEP = drv(r, "Terminal currency wedge (the same identity, at the terminal inflation)", V('expected_depreciation'), "%", src('expected_depreciation'), PC2); r += 1
@@ -323,8 +359,11 @@ KDTC_R = r; put(ws, f"A{r}", "Terminal cost of debt, local-equivalent"); put(ws,
 put(ws, f"C{r}", f"={PCTL}*{KDL}+(1-{PCTL})*((1+{KDLT})*(1+{DEP})-1)", fmt=PC2, expect=DR['kd_local_equiv_terminal'])
 KDTC = f"'Assumptions'!C{r}"; r += 1
 WT = r; put(ws, f"A{r}", "TERMINAL COST OF CAPITAL"); put(ws, f"B{r}", "%")
-put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{ERPC})+{WD}*{KDTC}*(1-{TAXR})", fmt=PC2,
-    expect=DR['wacc_terminal'])
+# THE TERMINAL SPLITS THE PREMIUM TOO. A country premium multiplied by beta in
+# perpetuity and charged flat in year five would be two views of one sovereign, and
+# this terminal carries most of the value.
+put(ws, f"C{r}", f"={WE}*({RFTC}+{BETAC}*{EM_C_C}+{CRP_C_C})+{WD}*{KDTC}*(1-{TAXR})",
+    fmt=PC2, expect=DR['wacc_terminal'])
 WTC = f"'Assumptions'!C{r}"; r += 1
 GT = drv(r, "Terminal growth", V('g_terminal'), "%", src('g_terminal'), PC1); r += 1
 AGEC = drv(r, "Average age of the fixed-asset base — MEASURED", V('fa_avg_age_years'),
@@ -599,8 +638,11 @@ for k, c in enumerate(CO):
     put(ws, f"{c}14", f"={c}10+{c}11+{c}12+{c}13", fmt=N0, expect=RW[k]['fcff'])
     # year one reads the Assumptions sheet's own year-one rate; later years glide the risk-free
     # rate and carry the dollar debt on that year's wedge, the same construction the model runs
+    # THE GLIDE SPLITS THE PREMIUM EVERY YEAR. This was the last of seven places in
+    # this study where beta multiplied the WHOLE premium, and it is the one that
+    # discounts every forecast cash flow.
     _rate = (f"='Assumptions'!C{W1}" if k == 0 else
-             f"={WE}*(({RFSTAR_C}+({RFTC}-{RFSTAR_C})*{k}/5)+{BETAC}*{ERPC})"
+             f"={WE}*(({RFSTAR_C}+({RFTC}-{RFSTAR_C})*{k}/5)+{BETAC}*{EM_C_C}+{CRP_C_C})"
              f"+{WD}*({PCTL}*{KDL}+(1-{PCTL})*((1+{KDU})*(1+{WEDGE[k]})-1))*(1-{TAXR})")
     put(ws, f"{c}15", _rate, fmt=PC2, expect=DR['wacc_path'][k], link=True)
     df = "=1/(1+B15)" if k == 0 else f"={CO[k-1]}16/(1+{c}15)"

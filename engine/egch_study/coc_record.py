@@ -100,6 +100,25 @@ HOLDCO_LOAN, HOLDCO_INT = 500.0, 96.896
 EFF_FY2425 = (KIMA2_INT + HOLDCO_INT) / (KIMA2_LOAN + HOLDCO_LOAN)
 EFF_HOLDCO = HOLDCO_INT / HOLDCO_LOAN
 
+# ---- [R-COC-03] THE COMPONENTS, DERIVED THROUGH THE SANCTIONED MODULE ----------
+import os as _os3, sys as _sys3
+_sys3.path.insert(0, _os3.path.dirname(_os3.path.dirname(_os3.path.abspath(__file__))))
+import cost_of_capital as _COC3
+_crp_home, _erp_mature = _COC3.split_erp(float(W['erp_cds']), float(W['sov_spread_cds']))
+_SPLIT = dict(
+    erp_mature=_erp_mature,
+    crp=_crp_home,
+    crp_foreign=0.0,
+    lambda_country=1.0,
+    crp_effective=_crp_home,
+    crp_terminal=_crp_home,
+    crp_effective_terminal=_crp_home,
+)
+_ke_chk = float(W['rf_star_cds']) + float(W['beta']) * _erp_mature + _crp_home
+assert abs(_ke_chk - float(W['ke_cds'])) < 1e-9, (
+    'the published cost of equity does not reproduce from the split this record is '
+    'about to publish: %.12f vs %.12f' % (float(W['ke_cds']), _ke_chk))
+
 record = dict(
     rule='R-COC-01',
     market='EG',
@@ -134,6 +153,29 @@ record = dict(
     glide_fractions=GLIDE,
     ke_exp=float(W['ke_cds']),
     ke_terminal=float(DR['ke_terminal']),
+
+    # ---- [R-COC-03] THE SPLIT, PUBLISHED, so the construction is readable from the
+    # record rather than inferred from a number that reproduces two ways. Derived
+    # THROUGH engine/cost_of_capital.py; a second implementation beside the module that
+    # owns the arithmetic is the shape that lets two readers of one fact disagree.
+    **_SPLIT,
+    ke_construction='split_premium',
+    ke_terminal_construction='split_premium',
+    ke_construction_note=(
+        "Ke = rf* + beta x the mature equity premium + Egypt's country premium, charged "
+        "once and FLAT: {0:.4f} + {1:.6f} x {2:.4f} + {3:.4f} = {4:.6f}. Beta measures "
+        "how much more than the market this company moves; it is not a measure of how "
+        "risky Egypt is. The retired construction multiplied the two, so a company "
+        "measured at {1:.4f} was charged {5:.2f}% more for the same sovereign than an "
+        "identical business next door at a beta of one -- {6:+.1f} basis points on the "
+        "cost of equity here, and the same premium is inside the terminal, which carries "
+        "most of the value. Lambda is one: every plant, every tonne and every pound of "
+        "revenue in this study is Egyptian, so none of the country premium belongs to "
+        "anywhere else."
+        .format(float(W['rf_star_cds']), float(W['beta']), _SPLIT['erp_mature'],
+                _SPLIT['crp_effective'], float(W['ke_cds']),
+                100 * (float(W['beta']) - 1),
+                1e4 * ((float(W['beta']) - 1) * _SPLIT['crp']))),
     glide_note=(
         "One rate per explicit year, rebuilt from the ground up at each: the risk-free "
         "glides from {0:.2%} to the derived terminal {1:.2%} and the cost of debt glides "
@@ -257,16 +299,20 @@ record = dict(
     # tidier would be the wrong trade.
     erp=float(W['erp_cds']),
     erp_terminal=float(W['erp_cds']),
-    ke_terminal_construction='same_beta',
+    # THE LABEL SAID 'same_beta' AND THAT NAMES THE BETA TREATMENT, WHICH IS STILL TRUE
+    # -- the beta is carried unchanged to the terminal. What it does not name is the
+    # PREMIUM treatment, and since 10-09-2026 the terminal premium splits exactly as the
+    # explicit one does. A country premium multiplied by beta in perpetuity and charged
+    # flat in year five would be two views of one sovereign.
     ke_terminal_construction_note=(
         "The terminal cost of equity is the DERIVED terminal risk-free plus the SAME "
-        "beta times the same premium: {0:.4f} + {1:.6f} x {2:.4f} = {3:.6f}. No "
-        "relevering, because this study's terminal debt weight is the explicit "
-        "window's — the capital structure is not assumed to change — so a relevered "
-        "beta here would be a second construction doing nothing, and a construction "
-        "that does nothing is a construction nobody can check."
-        .format(float(DR['rf_star_terminal']), float(W['beta']), float(W['erp_cds']),
-                float(DR['ke_terminal']))),
+        "beta on the mature premium, plus the country premium flat: {0:.4f} + {1:.6f} x "
+        "{2:.4f} + {3:.4f} = {4:.6f}. No relevering, because this study's terminal debt "
+        "weight is the explicit window's — the capital structure is not assumed to "
+        "change — so a relevered beta here would be a second construction doing nothing, "
+        "and a construction that does nothing is a construction nobody can check."
+        .format(float(DR['rf_star_terminal']), float(W['beta']), _erp_mature,
+                _crp_home, float(DR['ke_terminal']))),
     beta_source='own_stock_regression',
     beta_source_note=(
         "beta_regression.own_stock_beta() against the PUBLISHED INDEX OF THE EXCHANGE "
