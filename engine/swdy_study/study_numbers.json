@@ -2191,6 +2191,18 @@
    "delta_vs_withdrawn": 0.21432591261554967
   }
  },
+ "star_case": {
+  "case": "The market is capitalising earnings; this model says the earnings are not yet cash. On the model's own first forecast year free cash flow to the firm is NEGATIVE on NOPAT of about EGP 26bn, because revenue growing by a third absorbs working capital faster than the margin generates it. That single difference \u2014 the reinvestment charge \u2014 is where the whole disagreement lives, and it is why the cross-checks in this study that CAPITALISE earnings rather than discount cash sit at or above the traded price while the cash-flow lens does not. PRICED ALONE ON A FULL RE-RUN, ONE ASSUMPTION REACHES THE MARKET AND NOTHING ELSE COMES CLOSE: all three segment margins permanently about 46% higher, back at FY2023-24 levels. Copper and the currency move the answer by almost nothing, because they pass through to cost as well as to revenue. WHAT ARGUES AGAINST THAT MARGIN RECOVERY IS THE COMPANY'S OWN DISCLOSURE RATHER THAN OUR OPINION: cables revenue per tonne tracked copper and the pound almost exactly in FY2024 (+55.6% against +55.0%) and then failed to in FY2025 (+2.7% against +18.6%) \u2014 a measured pass-through shortfall of 15.9 points, computed from audited segment revenue and the company's own disclosed tonnage. The FY2023-24 margins were earned on inventory bought before a devaluation. A REPEAT REQUIRES THAT PRICING POWER TO RETURN, AND THE MOST RECENT FULL YEAR MEASURES IT LEAVING.",
+  "decomposition": {
+   "all three segment margins permanently back at FY2023-24 levels": 83.84251436096244,
+   "cost of capital two points lower throughout": 24.17545851190289,
+   "terminal growth at the economy cap": 8.610198897082384,
+   "copper a fifth above the escalated path": -2.1316282072803006e-14,
+   "the pound weaker than the house path": -2.1316282072803006e-14
+  },
+  "hunt_recorded": true,
+  "falsifier": "TWO CONSECUTIVE REPORTED HALVES in which cables revenue per tonne grows at or above copper x the pound while volume holds \u2014 that is pricing power returning and this study is wrong about the margin. Equally: a group segment margin at or above 18%% for two consecutive full years. Either one and the market's read is the right one and this one is not."
+ },
  "dcf": {
   "pv_explicit": 22453.119784110444,
   "tv": 350783.77690452785,
@@ -2930,7 +2942,13 @@
   "[Retired blend, published unused] the 45/20/20/15 weights give EGP 70.15, -46% against the price where the cash-flow lens reads -54% \u2014 so the published number was showing about 85% of the disagreement this study actually holds. Normalised earnings power at 103.51 carried a fifth of it.",
   "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 59.28 against the published 59.28, and at the adopted beta 1.225 it returns 59.28 \u2014 asserted, not eyeballed.",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.29x over the forecast.",
-  "[Expert panel] Expert 1 173.71 [127.48-219.94]; Expert 2 67.30 [31.35-50.02]; Expert 3 59.36 [50.01-67.84]; panel median 67.30 (-48% vs spot)"
+  "[Expert panel] Expert 1 173.71 [127.48-219.94]; Expert 2 67.30 [31.35-50.02]; Expert 3 59.36 [50.01-67.84]; panel median 67.30 (-48% vs spot)",
+  "[R-STAR-01] What the market must believe, each priced ALONE on a full re-run, from the central of EGP 59.28 toward the traded 130.00 (a gap of 70.72):",
+  "   all three segment margins permanently back at FY2023-24 levels   +83.84/share  ( 119% of the gap)",
+  "   cost of capital two points lower throughout                  +24.18/share  (  34% of the gap)",
+  "   terminal growth at the economy cap                            +8.61/share  (  12% of the gap)",
+  "   copper a fifth above the escalated path                       -0.00/share  (  -0% of the gap)",
+  "   the pound weaker than the house path                          -0.00/share  (  -0% of the gap)"
  ],
  "macro_record": {
   "path": "EG",

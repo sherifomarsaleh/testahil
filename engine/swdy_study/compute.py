@@ -2432,6 +2432,76 @@ step0 = json.load(open(os.path.join(HERE, 'step0_result.json')))
 strike = json.load(open(os.path.join(HERE, 'strike_result.json')))
 beta_res = json.load(open(os.path.join(HERE, 'beta_result.json')))
 
+
+# ---- [R-STAR-01] THE CASE, PRICED AND RECORDED -----------------------------
+# The gap is decomposed by re-running the WHOLE model at each driver's
+# market-implied level through the study's own scenario engine. Nothing here is a
+# multiplier on a finished answer: dcf_scenario rebuilds revenue, margins, the
+# waterfall, the terminal and the bridge exactly as the base case does. The
+# argument is also written out in the document; it is committed HERE because prose
+# is exactly what nothing downstream can check, and a study disagreeing with the
+# market by this much owes a claim that can be.
+_star_moves = {}
+for _nm, _kw in (
+        ('all three segment margins permanently back at FY2023-24 levels',
+         dict(gp_unit_mult=1.46)),
+        ('cost of capital two points lower throughout', dict(wacc_shift=-0.02)),
+        ('terminal growth at the economy cap', dict(g=_MP_EG.real_gdp_lt + V['pi_term'])),
+        ('copper a fifth above the escalated path', dict(copper_mult=1.20)),
+        ('the pound weaker than the house path', dict(fx_mult=1.08))):
+    try:
+        _star_moves[_nm] = dcf_scenario(**_kw) - dcf_ps
+    except Exception:
+        _star_moves[_nm] = None
+_STAR_GAP = SPOT - dcf_ps
+say("[R-STAR-01] What the market must believe, each priced ALONE on a full re-run, "
+    "from the central of EGP %.2f toward the traded %.2f (a gap of %.2f):"
+    % (dcf_ps, SPOT, _STAR_GAP))
+for _nm, _v in sorted(_star_moves.items(), key=lambda kv: -(kv[1] if kv[1] else 0)):
+    say("   %-58s %s" % (_nm, "not computable" if _v is None
+        else "%+8.2f/share  (%4.0f%% of the gap)" % (_v, 100 * _v / _STAR_GAP)))
+
+_pt24 = ((V['seg_rev_hist']['FY24']['cables'] / V['seg_rev_hist']['FY23']['cables'])
+         / (V['cables_tonnage_hist']['FY24'] / V['cables_tonnage_hist']['FY23'])) - 1
+_pt25 = ((V['seg_rev_hist']['FY25']['cables'] / V['seg_rev_hist']['FY24']['cables'])
+         / (V['cables_tonnage_hist']['FY25'] / V['cables_tonnage_hist']['FY24'])) - 1
+_cx24 = (V['copper_hist']['FY24'] / V['copper_hist']['FY23']) * (
+    V['fx_hist']['FY24'] / V['fx_hist']['FY23']) - 1
+_cx25 = (V['copper_hist']['FY25'] / V['copper_hist']['FY24']) * (
+    V['fx_hist']['FY25'] / V['fx_hist']['FY24']) - 1
+
+STAR_CASE = dict(
+    case=(
+        "The market is capitalising earnings; this model says the earnings are not yet "
+        "cash. On the model's own first forecast year free cash flow to the firm is "
+        "NEGATIVE on NOPAT of about EGP 26bn, because revenue growing by a third "
+        "absorbs working capital faster than the margin generates it. That single "
+        "difference — the reinvestment charge — is where the whole disagreement lives, "
+        "and it is why the cross-checks in this study that CAPITALISE earnings rather "
+        "than discount cash sit at or above the traded price while the cash-flow lens "
+        "does not. PRICED ALONE ON A FULL RE-RUN, ONE ASSUMPTION REACHES THE MARKET "
+        "AND NOTHING ELSE COMES CLOSE: all three segment margins permanently about "
+        "46%% higher, back at FY2023-24 levels. Copper and the currency move the "
+        "answer by almost nothing, because they pass through to cost as well as to "
+        "revenue. WHAT ARGUES AGAINST THAT MARGIN RECOVERY IS THE COMPANY'S OWN "
+        "DISCLOSURE RATHER THAN OUR OPINION: cables revenue per tonne tracked copper "
+        "and the pound almost exactly in FY2024 (%+.1f%% against %+.1f%%) and then "
+        "failed to in FY2025 (%+.1f%% against %+.1f%%) — a measured pass-through "
+        "shortfall of %.1f points, computed from audited segment revenue and the "
+        "company's own disclosed tonnage. The FY2023-24 margins were earned on "
+        "inventory bought before a devaluation. A REPEAT REQUIRES THAT PRICING POWER "
+        "TO RETURN, AND THE MOST RECENT FULL YEAR MEASURES IT LEAVING."
+        % (100 * _pt24, 100 * _cx24, 100 * _pt25, 100 * _cx25, 100 * (_cx25 - _pt25))),
+    decomposition={k: v for k, v in _star_moves.items() if v is not None},
+    hunt_recorded=True,
+    falsifier=(
+        "TWO CONSECUTIVE REPORTED HALVES in which cables revenue per tonne grows at or "
+        "above copper x the pound while volume holds — that is pricing power returning "
+        "and this study is wrong about the margin. Equally: a group segment margin at "
+        "or above 18%% for two consecutive full years. Either one and the market's "
+        "read is the right one and this one is not."),
+)
+
 OUT = dict(
     # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
     # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
@@ -2491,6 +2561,7 @@ OUT = dict(
               wacc_term=wacc_term, glide_frac=glide_frac, kd_path=V['kd_path'],
               kd_eff_fy24=kd_eff_fy25, kd_eff_q1_25=kd_eff_fy25, w_egp_implied=w_egp,
               wacc_usd_alt=WACC_USD, beta=beta_res),
+    star_case=STAR_CASE,
     dcf=dict(pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
              # THE EMPLOYEES' STATUTORY SHARE IS COMMITTED, because the bridge does not
