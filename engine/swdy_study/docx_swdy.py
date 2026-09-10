@@ -286,6 +286,37 @@ caption("Every line is computed, not typed: the waterfall runs EBITDA → deprec
         "value. Working-capital change is the difference in net working capital held at a constant "
         f"{pc(IN['nwc_pct'])} of revenue, the level the audited balance sheets actually show.")
 
+H2('The valuation, on one page')
+# THE ONE TABLE A READER OPENS THE DOCUMENT TO FIND [R-DCF-01]. Built by the shared
+# module from this study's own committed numbers — nothing here is recomputed, and
+# the module refuses to render a table whose present values do not sum to the
+# enterprise value the study published.
+import dcf_table as _DT
+_vt_rows, _vt_rec = _DT.dcf_table(D, currency='EGP', unit='mn')
+table(_vt_rows, [2.10, 0.62, 0.62, 0.62, 0.62, 0.62], size=7.6,
+      band_rows={_i for _i, _r in enumerate(_vt_rows)
+                 if _r[0] in ('Free cash flow to the firm', 'ENTERPRISE VALUE',
+                              'EQUITY VALUE', 'VALUE PER SHARE')})
+caption("Every line is read from this study's own committed numbers, not recomputed for the "
+        "table: the present values sum to the enterprise value above them, and the bridge "
+        "runs to the value per share the rest of this document carries. Free cash flow is "
+        "NEGATIVE in the first forecast year — revenue grows by more than a third and working "
+        "capital absorbs "
+        f"{n0(F['dnwc'][0])} against capital expenditure of {n0(F['capex'][0])} — which is what "
+        "growth costs a working-capital-heavy industrial and is not a distress signal. The "
+        f"terminal value is {pc(DCF['tv_share'])} of enterprise value, so the two lines under "
+        "it deserve the sensitivity that follows.")
+
+H2('The two numbers the answer turns on')
+_sg_rows, _sg_rec = _DT.sensitivity_grid(D, currency='EGP')
+table(_sg_rows, [1.55, 1.03, 1.03, 1.03, 1.03, 1.03], size=7.8, band_rows={0, 3})
+caption(f"Terminal cost of capital down the side, terminal growth across the top, both stepping "
+        f"around the adopted case. THE CENTRE CELL IS THE STUDY'S OWN ANSWER — EGP "
+        f"{p2(_sg_rec['centre_cell'])} — so the reader can locate the struck number on the grid "
+        "and read the cost of being wrong in either direction from it. A one-point move in the "
+        "terminal cost of capital is worth more than a one-point move in terminal growth, which "
+        "is the usual shape when the terminal carries most of the value.")
+
 H2('The bridge from enterprise value to the equity — and to the anchor date')
 _tfcff = F['nopat'][-1] * (1 + DCF['g']) * (1 - DCF['rr_term'])
 rows = [['Step', 'EGP mn', 'Note'],
@@ -961,9 +992,9 @@ caption("Touch probabilities exceed finish probabilities because a path can visi
 # =========================== 4 COMPARISON =====================================
 H1('4  Comparison of the lenses')
 rows = [['Read', 'What it says', 'What it assumes'],
-        ['Fundamental (weighted)', f"EGP {p2(D['central'])} central, "
+        ['Fundamental (the cash-flow lens, unweighted)', f"EGP {p2(D['central'])} central, "
          f"{sgn(D['central']/SPOT-1,0)} against the market",
-         'an Egyptian cost of capital applied to the whole company, and no real terminal growth'],
+         'one lens is the answer and the others are cross-checks published beside it — never a weighted blend'],
         ['Cash flow alone', f"EGP {p2(DCF['ps'])}, {sgn(DCF['ps']/SPOT-1,0)}",
          f"a cost of capital gliding {pc(W['wacc_exp'])} to {pc(W['wacc_term'])}"],
         ['Currency-of-discounting alternative', f"EGP {p2(DCF['ccy_alt_ps'])}, "
@@ -1177,7 +1208,7 @@ def hist_row(key, fmt=n0, neg=False):
         out.append(f"({fmt(abs(v))})" if (neg or v < 0) else fmt(v))
     return out
 rows.append(['Revenue'] + hist_row('rev') + [n0(x) for x in F['rev']])
-rows.append(['Gross profit'] + hist_row('gp') + ['—'] * 5)
+rows.append(['Gross profit'] + hist_row('gp') + [n0(x) for x in F['gp']])
 rows.append(['EBITDA (derived: EBIT + D&A)'] + hist_row('ebitda') + [n0(x) for x in F['ebitda']])
 rows.append(['EBITDA margin'] + [pc(HI[y]['ebitda'] / HI[y]['rev']) for y in ('FY23','FY24','FY25')] +
             [pc(x) for x in F['ebitda_margin']])
@@ -1187,10 +1218,10 @@ rows.append(['EBIT'] + hist_row('ebit') + [n0(x) for x in F['ebit']])
 rows.append(['Net finance costs'] + hist_row('fin') + [f"({n0(x)})" for x in F['interest']])
 rows.append(['Share of equity-accounted investees'] + hist_row('assoc') +
             [n0(x) for x in F['assoc']])
-rows.append(['Profit before tax'] + hist_row('ebt') + ['—'] * 5)
-rows.append(['Income tax'] + hist_row('tax', neg=True) + ['—'] * 5)
-rows.append(['Profit for the year'] + hist_row('pat') + ['—'] * 5)
-rows.append(['Non-controlling interests'] + hist_row('nci', neg=True) + ['—'] * 5)
+rows.append(['Profit before tax'] + hist_row('ebt') + [n0(x) for x in F['pbt']])
+rows.append(['Income tax'] + hist_row('tax', neg=True) + [f"({n0(x)})" for x in F['tax_is']])
+rows.append(['Profit for the year'] + hist_row('pat') + [n0(x) for x in F['pat']])
+rows.append(['Non-controlling interests'] + hist_row('nci', neg=True) + [f"({n0(x)})" for x in F['nci_is']])
 rows.append(['Profit attributable to shareholders'] + hist_row('npa') + [n0(x) for x in F['np_attr']])
 rows.append(['Earnings per share (derived: attributable ÷ shares, EGP)'] +
             [p2(HI[y]['npa'] / SH) for y in ('FY23','FY24','FY25')] +

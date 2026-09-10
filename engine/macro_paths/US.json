@@ -4,7 +4,7 @@
  "currency": "USD",
  "as_of": "2026-09-03",
  "regime": "mature",
- "regime_note": "The policy rate sits near its own published long-run level \u2014 3.75% target upper against an FOMC longer-run median of 3.1% \u2014 so the cost-of-capital glide has essentially nothing to travel and cost_of_capital.py returns a FLAT schedule for any regime other than 'transition'. This is the reference economy the pegged paths import.",
+ "regime_note": "The policy rate sits near its own published long-run level — 3.75% target upper against an FOMC longer-run median of 3.1% — so the cost-of-capital glide has essentially nothing to travel and cost_of_capital.py returns a FLAT schedule for any regime other than 'transition'. This is the reference economy the pegged paths import.",
  "inflation": {
   "latest": {
    "value": 0.027,
@@ -102,7 +102,7 @@
  },
  "us_inflation_lt": {
   "value": 0.022,
-  "source": "Long-run United States CPI inflation 2.2%, the IMF's own published figure for 2029-2031 \u2014 for this path it is the DOMESTIC terminal, and it is carried under this name because every other path measures its own currency against it.",
+  "source": "Long-run United States CPI inflation 2.2%, the IMF's own published figure for 2029-2031 — for this path it is the DOMESTIC terminal, and it is carried under this name because every other path measures its own currency against it.",
   "date": "2026-09-03"
  },
  "cost_of_debt_norm": {
@@ -123,5 +123,10 @@
   "value": 0.0446,
   "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the rating-basis United States ERP of 4.46%; there is no country premium to converge.",
   "date": "2026-01-05"
+ },
+ "real_gdp_lt": {
+  "value": 0.02,
+  "source": "United States long-run real GDP growth, the IMF World Economic Outlook medium-term projection rounded to the nearest half point. USED ONLY AS A CEILING on a terminal real growth rate [R-MACRO-02] — never as a company's growth rate and never inside a discount rate — so it binds in one direction only. A study wanting to sit at or above it re-sources this figure live and argues it here.",
+  "date": "2026-09-10"
  }
 }

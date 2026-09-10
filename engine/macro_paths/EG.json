@@ -60,7 +60,7 @@
    "overnight_lending": 0.2,
    "main_operation": 0.195,
    "discount": 0.195,
-   "source": "Central Bank of Egypt Monetary Policy Committee, 20 August 2026 \u2014 rates held for a fourth consecutive meeting.",
+   "source": "Central Bank of Egypt Monetary Policy Committee, 20 August 2026 — rates held for a fourth consecutive meeting.",
    "date": "2026-08-20"
   },
   "path": [
@@ -116,5 +116,10 @@
   "value": 0.07,
   "source": "Terminal equity risk premium, normalised below the currently elevated crisis-era level toward the rating-class norm; never held flat into perpetuity.",
   "date": "2026-08-06"
+ },
+ "real_gdp_lt": {
+  "value": 0.045,
+  "source": "Egypt's long-run real GDP growth, the ceiling a terminal real growth rate is held below. IMF World Economic Outlook medium-term projection for Egypt, converging to about 4.5% a year once the current stabilisation completes; the World Bank's Egypt Economic Monitor carries the same order. It is a CEILING and never a company's growth rate: a company growing faster than its economy in perpetuity eventually becomes the economy, which is why a terminal real growth is stated BELOW this and the gap is the share of the economy the company is assumed to cede.",
+  "date": "2026-09-10"
  }
 }

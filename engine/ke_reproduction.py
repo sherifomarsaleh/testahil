@@ -51,11 +51,23 @@ from __future__ import annotations
 FLOAT_NOISE = 1e-9
 
 # CLOSED. A construction not on this list is not a construction.
-TERMINAL_CONSTRUCTIONS = ("same_beta", "relevered")
+TERMINAL_CONSTRUCTIONS = ("same_beta", "relevered", "split_premium")
 
 
 class KeError(Exception):
     pass
+
+
+def ke_explicit_split(rf_star, beta, erp_mature, crp_effective):
+    """Ke under [R-COC-03]: beta on the MATURE premium, the country premium added flat.
+
+    THE SANCTIONED EXPLICIT-WINDOW CONSTRUCTION from 10-Sep-2026. `ke_explicit`
+    below reproduces the RETIRED one and is kept only so records struck before that
+    date still verify against what they actually did -- rewriting them to match a
+    later rule would be rewriting history. A record struck after that date and
+    reproducing only under `ke_explicit` is a defect, not an alternative.
+    """
+    return rf_star + beta * erp_mature + crp_effective
 
 
 def ke_explicit(rf_star, beta, erp):
@@ -92,6 +104,16 @@ def ke_terminal(rec, construction, tax_rate=None):
     rf_t, erp_t, beta = rec.get("rf_terminal"), rec.get("erp_terminal"), rec.get("beta")
     if None in (rf_t, erp_t, beta):
         raise KeError("record carries no rf_terminal, erp_terminal or beta")
+    if construction == "split_premium":
+        # [R-COC-03]: the terminal premium is a total and splits the same way. The
+        # record must carry the split it used -- solving for it here would make the
+        # check reproduce whatever it was handed.
+        em, ce = rec.get("erp_mature"), rec.get("crp_effective_terminal")
+        if None in (em, ce):
+            raise KeError("a split_premium terminal must record erp_mature and "
+                          "crp_effective_terminal; neither is derivable from the total "
+                          "without assuming the answer")
+        return rf_t + beta * em + ce
     if construction == "same_beta":
         return rf_t + beta * erp_t
     if tax_rate is None:

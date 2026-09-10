@@ -18,9 +18,9 @@ destroys the only record of what was said. New edition, new file, the old one st
 """
 import datetime as _dt
 
-EDITION = _dt.date(2026, 9, 9)
+EDITION = _dt.date(2026, 9, 10)
 
-SUPERSEDES = (_dt.date(2026, 8, 5),)      # the delivered public edition
+SUPERSEDES = (_dt.date(2026, 8, 5), _dt.date(2026, 9, 9))   # delivered public editions
 
 _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')           # the workbook drops the separators

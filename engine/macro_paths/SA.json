@@ -4,7 +4,7 @@
  "currency": "SAR",
  "as_of": "2026-09-03",
  "regime": "pegged",
- "regime_note": "The riyal is pegged to the dollar at 3.75, so Saudi Arabia imports United States monetary policy \u2014 SAMA's repo rate tracks the Fed \u2014 and TODAY IS ALREADY THE TERMINAL: the cost-of-capital glide does not apply and cost_of_capital.py returns a FLAT schedule by construction of the peg. What the peg does not supply is a domestic inflation ladder, which the cost escalators need.",
+ "regime_note": "The riyal is pegged to the dollar at 3.75, so Saudi Arabia imports United States monetary policy — SAMA's repo rate tracks the Fed — and TODAY IS ALREADY THE TERMINAL: the cost-of-capital glide does not apply and cost_of_capital.py returns a FLAT schedule by construction of the peg. What the peg does not supply is a domestic inflation ladder, which the cost escalators need.",
  "inflation": {
   "latest": {
    "value": 0.02,
@@ -40,7 +40,7 @@
     "basis": "IMF World Economic Outlook projection"
    }
   ],
-  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 2.0% flat from 2028 onward, so NO STEP HERE IS INTERPOLATED \u2014 every year is published.",
+  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Saudi Arabia (SAU), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 2.0% flat from 2028 onward, so NO STEP HERE IS INTERPOLATED — every year is published.",
   "target": {
    "value": 0.02,
    "band": 0.005,
@@ -121,7 +121,12 @@
  },
  "erp_terminal": {
   "value": 0.0501,
-  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the RATING-basis Saudi ERP of 5.01% rather than compressed. RIYADHCABLE registers 4.70%, 'a mild compression of the current 4.94% as the country risk premium narrows with Vision-2030'; that is a HOUSE VIEW ABOUT A REFORM PROGRAMME and this path does not carry one \u2014 a terminal premium below the sovereign's own published premium has to be argued, and the argument is not in the sourced record. Recorded so the declined figure is named rather than absent.",
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the RATING-basis Saudi ERP of 5.01% rather than compressed. RIYADHCABLE registers 4.70%, 'a mild compression of the current 4.94% as the country risk premium narrows with Vision-2030'; that is a HOUSE VIEW ABOUT A REFORM PROGRAMME and this path does not carry one — a terminal premium below the sovereign's own published premium has to be argued, and the argument is not in the sourced record. Recorded so the declined figure is named rather than absent.",
   "date": "2026-01-05"
+ },
+ "real_gdp_lt": {
+  "value": 0.035,
+  "source": "Saudi Arabia long-run real GDP growth, the IMF World Economic Outlook medium-term projection rounded to the nearest half point. USED ONLY AS A CEILING on a terminal real growth rate [R-MACRO-02] — never as a company's growth rate and never inside a discount rate — so it binds in one direction only. A study wanting to sit at or above it re-sources this figure live and argues it here.",
+  "date": "2026-09-10"
  }
 }

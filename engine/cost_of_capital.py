@@ -77,13 +77,96 @@ def normalise_erp_basis(basis):
                          % (", ".join(ERP_BASES), basis))
     return b
 
-# The country premium may be scaled by lambda where a company's exposure to its
-# own sovereign genuinely differs from the market's. DEFAULT 1.0, and any other
-# value is a stated, argued judgement -- never a quiet adjustment. The 1.52
-# equity-to-bond scaling Damodaran publishes is carried as a named alternative
-# and is disclosed beside whatever is adopted.
+# COUNTRY RISK IS CHARGED ONCE, AND IT IS NOT SCALED BY BETA  [R-COC-03]
+#
+# The failure, found 10-Sep-2026 on SWDY and true of every study in the book. A
+# country equity risk premium as published is a TOTAL: the mature-market premium
+# plus the country premium. The construction everything here used was
+#
+#     Ke = rf* + beta x ERP_total
+#
+# which multiplies the COUNTRY component by beta as well. Beta measures a stock's
+# exposure to its own equity market, not its exposure to its sovereign; asserting
+# that a 1.22-beta company bears 22% more Egypt risk than the market is a separate
+# claim and it was never made, argued or written down -- it fell out of the
+# algebra. On SWDY it charged 117bp of cost of equity nobody had decided to charge.
+# Damodaran's own build separates them, and so does this module now:
+#
+#     Ke = rf* + beta x ERP_mature + lambda x CRP
+#
+# rf* already has the sovereign default spread netted out, so the country is in
+# the equation exactly once, at lambda, where a person has to choose it.
+#
+# LAMBDA IS WHERE THE OPERATIONS ARE. The default is 1.0 -- a company that earns
+# what its home market earns. A company earning most of its money elsewhere does
+# not carry its home sovereign's full premium, and Damodaran sets lambda as the
+# ratio of its home-country revenue share to the average local company's. That is
+# not a discount for convenience: the rest of the operations carry the country
+# risk of WHERE THEY ARE, which is `crp_foreign`, and for an Egyptian exporter
+# selling into Africa and the Gulf that is emphatically not zero. Set both or
+# neither; a lambda below 1.0 with crp_foreign left at zero is the flattering
+# half of the argument and the module says so.
+#
+# WHAT THIS IS NOT. It is not a scaling of the mature-market premium. The old
+# code did `erp = erp * lambda_country`, which shrank the equity-market premium
+# too -- saying a company with foreign revenue bears less EQUITY risk, which is
+# not a thing anyone believes. That line is gone.
 LAMBDA_DEFAULT = 1.0
 LAMBDA_EQUITY_BOND_SCALING = 1.52
+
+
+def split_erp(erp_total: float, default_spread: float,
+              equity_bond_scaling: float = LAMBDA_EQUITY_BOND_SCALING):
+    """(crp, erp_mature) from a published TOTAL country premium.
+
+    Derived, never sourced separately, so no new number enters the repository and
+    the two halves cannot disagree with the total they came from. CRP is the
+    sovereign default spread scaled to equity volatility -- Damodaran's own
+    identity -- and the mature-market premium is the remainder.
+    """
+    crp = default_spread * equity_bond_scaling
+    erp_mature = erp_total - crp
+    if erp_mature <= 0:
+        raise CostOfCapitalError(
+            "the derived mature-market premium is not positive (total %.2f%% less a country "
+            "premium of %.2f%% = %.2f%% x %.2f). The total and the default spread are not on "
+            "the same basis -- a rating-basis spread against a market-basis total will do "
+            "exactly this." % (100 * erp_total, 100 * crp, 100 * default_spread,
+                               equity_bond_scaling))
+    return crp, erp_mature
+
+
+def cost_of_equity(rf_star: float, beta: float, erp_total: float, default_spread: float,
+                   lambda_country: float = LAMBDA_DEFAULT, crp_foreign: float = 0.0,
+                   equity_bond_scaling: float = LAMBDA_EQUITY_BOND_SCALING):
+    """Ke = rf* + beta x ERP_mature + [lambda x CRP_home + (1-lambda) x CRP_foreign].
+
+    THE ONE SANCTIONED COST-OF-EQUITY BUILD [R-COC-03]. Returns (ke, parts) so a
+    study publishes the components rather than a single number nobody can take
+    apart. Never hand-roll `rf_star + beta * erp` again: that is the construction
+    this function exists to replace.
+    """
+    crp_home, erp_mature = split_erp(erp_total, default_spread, equity_bond_scaling)
+    if not 0.0 <= lambda_country <= 1.0:
+        raise CostOfCapitalError("lambda must lie in [0, 1], not %.3f" % lambda_country)
+    if lambda_country < 1.0 and crp_foreign <= 0.0:
+        raise CostOfCapitalError(
+            "lambda %.2f says %.0f%% of the operations sit outside the home market, but "
+            "crp_foreign is %.2f%% -- which prices those operations as if they were in a "
+            "mature market. Name the country premium of where the money is actually earned, "
+            "or leave lambda at 1.0. Taking the relief without the offset is the flattering "
+            "half of the argument."
+            % (lambda_country, 100 * (1 - lambda_country), 100 * crp_foreign))
+    crp_eff = lambda_country * crp_home + (1 - lambda_country) * crp_foreign
+    ke = rf_star + beta * erp_mature + crp_eff
+    parts = dict(rf_star=rf_star, beta=beta, erp_total=erp_total, erp_mature=erp_mature,
+                 crp_home=crp_home, crp_foreign=crp_foreign, lambda_country=lambda_country,
+                 crp_effective=crp_eff, beta_leg=beta * erp_mature, ke=ke,
+                 ke_beta_on_country_retired=rf_star + beta * erp_total,
+                 construction="rf* + beta x ERP_mature + lambda-weighted country premium "
+                              "[R-COC-03]; country risk is never multiplied by beta")
+    parts['delta_vs_retired'] = ke - parts['ke_beta_on_country_retired']
+    return ke, parts
 
 # Kd integrity, per the standing three-assert gate.
 KD_TOLERANCE = 0.015          # within 150bp of the independently computed effective rate
@@ -377,6 +460,7 @@ def schedule(market: str,
              years: int = 5,
              erp_basis: str = DEFAULT_ERP_BASIS,
              lambda_country: float = LAMBDA_DEFAULT,
+             crp_foreign: float = 0.0,
              erp_explicit: Optional[float] = None,
              weight_debt_terminal: Optional[float] = None,
              build_date: Optional[str] = None,
@@ -426,10 +510,11 @@ def schedule(market: str,
             "no explicit-window equity risk premium supplied and the %s path carries none. "
             "It comes from the country-risk file's own row for this sovereign, read fresh; "
             "it is never borrowed from a neighbour." % market)
-    if lambda_country != LAMBDA_DEFAULT:
-        erp = erp * lambda_country
-
-    ke_exp = rf_star + beta.beta * erp
+    # [R-COC-03]: beta prices the equity market, lambda prices the country. The
+    # retired line was `erp = erp * lambda_country`, which scaled both.
+    ke_exp, ke_parts = cost_of_equity(rf_star, beta.beta, erp, spread,
+                                      lambda_country=lambda_country,
+                                      crp_foreign=crp_foreign)
     kd_pre = debt.blended_kd()
     kd_at = kd_pre * (1 - tax_rate)
     kd_integrity = _check_kd(debt, rf_observed)
@@ -444,7 +529,14 @@ def schedule(market: str,
     # ---- the terminal, every line derived ---------------------------------
     rf_t = path.terminal_rf
     erp_t = path.erp_terminal
-    ke_t = rf_t + beta.beta * erp_t
+    # the terminal premium is a TOTAL too, and splits the same way [R-COC-03]. The
+    # mature component does not normalise away -- what normalises is the country
+    # premium -- so the split is taken against the SAME derived mature premium as
+    # the explicit window and the remainder is the terminal country premium.
+    _crp_t = max(erp_t - ke_parts['erp_mature'], 0.0)
+    _lam_eff = (lambda_country + (1 - lambda_country) *
+                (crp_foreign / ke_parts['crp_home'] if ke_parts['crp_home'] else 0.0))
+    ke_t = rf_t + beta.beta * ke_parts['erp_mature'] + _lam_eff * _crp_t
     kd_t = path.kd_terminal
     kd_t_at = kd_t * (1 - tax_rate)
     wd_t = weight_debt_terminal if weight_debt_terminal is not None else wd
@@ -512,11 +604,25 @@ def schedule(market: str,
     if beta.shrunk_from is not None:
         disclosures.append("Beta shrunk from %.4f to %.4f: %s"
                            % (beta.shrunk_from, beta.beta, beta.shrinkage_note))
+    disclosures.append(
+        "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free %.2f%% (the local "
+        "yield less the sovereign default spread, so the country is not charged twice) "
+        "+ beta %.3f x the MATURE-MARKET premium %.2f%% = %.2f%% + a country premium of "
+        "%.2f%% -> Ke %.2f%%. The country premium is NOT multiplied by beta: beta prices "
+        "exposure to the equity market, not to the sovereign. The retired construction "
+        "(beta on the whole premium) reads %.2f%%, %+.0fbp."
+        % (100 * rf_star, beta.beta, 100 * ke_parts['erp_mature'], 100 * ke_parts['beta_leg'],
+           100 * ke_parts['crp_effective'], 100 * ke_exp,
+           100 * ke_parts['ke_beta_on_country_retired'], -1e4 * ke_parts['delta_vs_retired']))
     if lambda_country != LAMBDA_DEFAULT:
         disclosures.append(
-            "The country premium is scaled by lambda = %.2f. The default is 1.00 and any "
-            "other value is a stated judgement; Damodaran's equity-to-bond scaling of %.2f "
-            "is the named alternative." % (lambda_country, LAMBDA_EQUITY_BOND_SCALING))
+            "Lambda = %.2f: that share of the operations sits in the home market and carries "
+            "its %.2f%% country premium; the remaining %.0f%% carries %.2f%% for where it is "
+            "actually earned, giving an effective %.2f%%. The default is 1.00 and any other "
+            "value is a stated judgement; Damodaran's equity-to-bond scaling of %.2f is the "
+            "named alternative."
+            % (lambda_country, 100 * ke_parts['crp_home'], 100 * (1 - lambda_country),
+               100 * crp_foreign, 100 * ke_parts['crp_effective'], LAMBDA_EQUITY_BOND_SCALING))
     if age > SOVEREIGN_STALE_DAYS:
         disclosures.append(
             "DISCLOSED STALENESS: the sovereign quote is %d days old (as of %s), beyond the "
