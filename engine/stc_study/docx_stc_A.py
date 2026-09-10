@@ -231,8 +231,12 @@ P('We value stc as a going-concern operator. ONE lens is the answer — a free-c
   'One lens-selection note, considered and set aside: stc does own a captive-finance arm in stc bank, but at SAR 2.0 bn of revenue — 2.5% of the group — and an early-stage loan book it does not yet warrant the split-legs '
   'treatment a bank leg would get; it is carried inside the subsidiaries line and flagged as such, to be revisited '
   'once its regulated financials give it a book worth marking separately. Throughout, the cost of equity is '
-  f"published explicitly as the normalised risk-free rate plus beta times the equity risk premium: "
-  f"{D['coc_record']['rf_star']*100:.2f}% + {D['coc_record']['beta']:.4f} x {D['coc_record']['erp']*100:.2f}% = "
+  f"published explicitly, and the equity premium is SPLIT because country risk is a charge on "
+  f"being here rather than one that scales with a stock's covariance [R-COC-03]: the normalised "
+  f"risk-free rate, plus beta times the MATURE premium, plus the country premium charged flat "
+  f"and once — "
+  f"{D['coc_record']['rf_star']*100:.2f}% + {D['coc_record']['beta']:.4f} x "
+  f"{D['coc_record']['erp_mature']*100:.2f}% + {D['coc_record']['crp_effective']*100:.2f}% = "
   f"{D['coc_record']['ke_exp']*100:.2f}%, on the {D['coc_record']['erp_basis']} basis this study names as central, "
   'with the alternative basis published beside it in §1.8 rather than chosen silently. The beta behind it is a '
   'five-year weekly regression against the published index of the exchange the stock is listed on, not an assumed '

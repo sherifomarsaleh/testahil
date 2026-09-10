@@ -44,12 +44,22 @@ WE, KD_AT = C['weight_equity'], C['kd_aftertax']
 
 
 def beta_to_wacc(b):
-    """The schedule's own arithmetic, not a second copy of it."""
-    return WE * (C['rf_star'] + b * C['erp']) + (1.0 - WE) * KD_AT
+    """The schedule's own arithmetic, not a second copy of it.
+
+    [R-COC-03] AND THE DOCSTRING WAS THE FIRST THING TO GO STALE. This read
+    rf* + beta x the WHOLE premium — which is a second copy, and by the time the
+    schedule split it was a second copy of a retired identity. The assertion below
+    caught it on the first run, which is what it is there for. Beta multiplies the
+    mature leg; the country premium is a flat charge and does not scale with beta,
+    which is why it sits OUTSIDE the multiplication in both directions.
+    """
+    return (WE * (C['rf_star'] + b * C['erp_mature'] + C['crp_effective'])
+            + (1.0 - WE) * KD_AT)
 
 
 def wacc_to_beta(w):
-    return ((w - (1.0 - WE) * KD_AT) / WE - C['rf_star']) / C['erp']
+    return (((w - (1.0 - WE) * KD_AT) / WE - C['rf_star'] - C['crp_effective'])
+            / C['erp_mature'])
 
 
 assert abs(beta_to_wacc(C['beta']) - C['wacc_exp']) < 1e-9, \

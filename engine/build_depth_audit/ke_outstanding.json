@@ -5,10 +5,6 @@
   "FERTIGLOBE": {
    "reason": "UNREADABLE rather than clean: commits a cost-of-capital record carrying no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all.",
    "signature": "record carries no rf_star, beta, erp or ke_exp, so the explicit cost of equity cannot be reproduced at all; record carries no market-value weights; the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']"
-  },
-  "STC": {
-   "reason": "reproduces exactly under 'same_beta'; declare ke_terminal_construction. FOUND BY THE GATE AND NOT BY THE MEASUREMENT THAT PRECEDED IT: the hand-written probe looked for cost_of_capital_record alone and reported six studies; the gate searches three spellings and reads seven. L-355 exactly, caught by the instrument rather than by a person.",
-   "signature": "the record names no beta_source, so nothing distinguishes a measured regression from a priced tier-3 fallback from a number somebody typed. One of ['own_stock_regression', 'peer_relevered', 'tier3_fallback', 'shrunk']; ke_terminal names no construction. The record must declare one of ['same_beta', 'relevered']; it reproduces under 'same_beta'"
   }
  },
  "pruned_on": [
@@ -36,6 +32,11 @@
   {
    "removed": [
     "ARCC"
+   ]
+  },
+  {
+   "removed": [
+    "STC"
    ]
   }
  ]

@@ -1,9 +1,9 @@
 {
- "central": 38.080615910145504,
+ "central": 36.05956459698873,
  "spot": 43.86,
  "spot_date": "2026-09-03",
  "central_range": {
-  "low": 37.303369288705724,
+  "low": 35.29052854996204,
   "high": 48.07526101832944
  },
  "cone_anchor": 44.72,
@@ -22,7 +22,7 @@
    "topdown": 0
   },
   "unit_share": 0,
-  "standard_version": "2026.09.07"
+  "standard_version": "2026.09.10"
  },
  "driver_lines": [
   {
@@ -657,20 +657,31 @@
   "rf_star": 0.045399999999999996,
   "erp": 0.0572,
   "erp_basis": "market",
-  "beta": 0.7078292485042049,
-  "ke_exp": 0.08588783301444051,
+  "beta": 0.7092581337669651,
+  "beta_source": "own_stock_regression",
+  "beta_tier": 1,
+  "ke_exp": 0.0903004560908777,
+  "erp_mature": 0.042304,
+  "crp": 0.014896,
+  "crp_foreign": 0.0,
+  "lambda_country": 1.0,
+  "crp_effective": 0.014896,
+  "ke_construction": "split_premium",
+  "crp_terminal": 0.007795999999999997,
+  "crp_effective_terminal": 0.007795999999999997,
   "kd_pretax": 0.048602896,
   "kd_aftertax": 0.038882316800000004,
   "weight_equity": 0.9029542857827806,
   "weight_debt": 0.09704571421721937,
-  "wacc_exp": 0.08132614912126104,
+  "wacc_exp": 0.08531054603967399,
   "rf_terminal": 0.039751,
   "erp_terminal": 0.0501,
-  "ke_terminal": 0.07521324535006066,
+  "ke_terminal": 0.07755145609087769,
+  "ke_terminal_construction": "split_premium",
   "kd_terminal_pretax": 0.055,
   "kd_terminal_aftertax": 0.044000000000000004,
   "weight_debt_terminal": 0.09704571421721937,
-  "wacc_terminal": 0.08132614912126104,
+  "wacc_terminal": 0.08531054603967399,
   "glide_fractions": [
    0.0,
    0.0,
@@ -679,20 +690,20 @@
    0.0
   ],
   "forward_wacc": [
-   0.08132614912126104,
-   0.08132614912126104,
-   0.08132614912126104,
-   0.08132614912126104,
-   0.08132614912126104
+   0.08531054603967399,
+   0.08531054603967399,
+   0.08531054603967399,
+   0.08531054603967399,
+   0.08531054603967399
   ],
   "discount_factors": [
-   0.9247903611807125,
-   0.8552372121327526,
-   0.7909151303034339,
-   0.7314306890166028,
-   0.6764200510743215
+   0.9213952666810672,
+   0.8489692374622749,
+   0.7822362369555751,
+   0.7207487661572766,
+   0.664094501603534
   ],
-  "terminal_discount_factor": 0.6764200510743215,
+  "terminal_discount_factor": 0.664094501603534,
   "kd_integrity": {
    "adopted_kd": 0.048602896,
    "effective_rates": [
@@ -710,18 +721,19 @@
    "interest_bearing_note": "The denominator is the BORROWINGS total from note 26 (FY2025 filing) and note 27 (FY2024 filing) \u2014 murabaha, sukuk and mudarabah \u2014 and nothing else. Lease liabilities are excluded because their interest is disclosed separately and they are not in the borrowings total; trade payables, contract liabilities and the digital bank's customer balances are excluded because they bear no interest. The numerator is the murabaha and sukuk finance cost from note 39/40, excluding lease interest and the unwinding of discounts on provisions. CLOSING rather than average balances, because the book RE-BASED inside both periods and an average describes a book that existed at no point in either: SAR 2,635 million of loans were repaid in 2024 against SAR 433 million in 2023 while TAWAL left the group, and SAR 7,500 million was drawn in January 2026. Both bases are computed and published below.",
    "pct_local_currency": 0.048697684429556395
   },
-  "disclosures": [
-   "SA runs a pegged regime, so the risk-free rate already sits at its long-run level and the schedule is FLAT by construction. Applying a glide here would manufacture movement the peg forbids and measures nothing (+0.0% where it was tried).",
-   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (0.98%) on the market basis, and the premium added back is on the same basis.",
-   "The terminal is norm-built and no line in it is an observable quote: risk-free 3.98% = the inflation target in force (2.00%) plus the real-rate convention (1.98%); cost of debt 5.50% is the long-run corporate norm; the premium is normalised to 5.01%.",
-   "DISCLOSED STALENESS: the sovereign quote is 36 days old (as of 2026-07-31), beyond the 14-day bound, and was accepted deliberately."
-  ],
   "sensitivity": {
    "note": "the alternative premium basis is published where the study carries it",
    "other_basis": "rating",
    "other_default_spread": 0.0051,
    "rf_star_other_basis": 0.0501
   },
+  "disclosures": [
+   "SA runs a pegged regime, so the risk-free rate already sits at its long-run level and the schedule is FLAT by construction. Applying a glide here would manufacture movement the peg forbids and measures nothing (+0.0% where it was tried).",
+   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (0.98%) on the market basis, and the premium added back is on the same basis.",
+   "The terminal is norm-built and no line in it is an observable quote: risk-free 3.98% = the inflation target in force (2.00%) plus the real-rate convention (1.98%); cost of debt 5.50% is the long-run corporate norm; the premium is normalised to 5.01%.",
+   "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 4.54% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 0.709 x the MATURE-MARKET premium 4.23% = 3.00% + a country premium of 1.49% -> Ke 9.03%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 8.60%, -43bp.",
+   "DISCLOSED STALENESS: the sovereign quote is 36 days old (as of 2026-07-31), beyond the 14-day bound, and was accepted deliberately."
+  ],
   "build_date": "2026-09-05",
   "spot": 43.86,
   "spot_date": "2026-09-03",
@@ -856,7 +868,7 @@
   },
   "nci": {
    "basis": "value_share",
-   "deduction": 3921.206149602089,
+   "deduction": 3713.0961007386113,
    "applied_to": "equity_value",
    "book": 2726.349,
    "profit_share": 0.020206295602669237,
@@ -875,7 +887,7 @@
   "lines": [
    {
     "name": "enterprise value, discounted cash flow",
-    "value": 175847.44832374045
+    "value": 165548.1805630537
    },
    {
     "name": "plus investments in associates and joint ventures, at book",
@@ -895,12 +907,12 @@
    },
    {
     "name": "less the minority at its share of equity value",
-    "value": -3921.206149602089
+    "value": -3713.0961007386113
    }
   ],
-  "equity_value": 190137.42917413835,
+  "equity_value": 180046.27146231505,
   "shares_mn": 4993.024,
-  "per_share": 38.080615910145504,
+  "per_share": 36.05956459698873,
   "net_debt_build": {
    "borrowings": 23536.554,
    "leases": 2258.902,
@@ -917,7 +929,7 @@
   "rule": "R-TERM-01",
   "inputs": {
    "nopat": 15407.077608768886,
-   "wacc": 0.08132614912126104,
+   "wacc": 0.08531054603967399,
    "inflation": 0.02,
    "real_growth": 0.0,
    "dna_book": 11436.603126024089,
@@ -935,9 +947,9 @@
    "floor_exemption_disclosure": ""
   },
   "fcff": 11111.559181263667,
-  "tv": 184811.7080118382,
-  "floor": 189448.016108524,
-  "tv_vs_floor": -0.024472719176061086,
+  "tv": 173536.91022586217,
+  "floor": 180599.91787655148,
+  "tv_vs_floor": -0.03910858727808064,
   "nominal_growth": 0.020000000000000018,
   "real_growth": 0.0,
   "maintenance": 15461.020673529309,
@@ -2943,7 +2955,7 @@
    }
   ],
   "terminal": {
-   "g_nominal": 0.02,
+   "g_nominal": 0.020000000000000018,
    "real": 0.0,
    "rf": 0.039751,
    "inflation_in_rf": 0.02
@@ -3321,8 +3333,8 @@
     "capex": 12080.938286969373,
     "dwc": -7.275957614183426e-12,
     "fcff": 12557.78721056279,
-    "df": 0.9247903611807125,
-    "pv": 11613.320570086895
+    "df": 0.9213952666810672,
+    "pv": 11570.685695800597
    },
    {
     "year": "FY27E",
@@ -3334,8 +3346,8 @@
     "capex": 12417.399092758991,
     "dwc": 394.4193571427567,
     "fcff": 12452.566345170406,
-    "df": 0.8552372121327526,
-    "pv": 10649.898124941677
+    "df": 0.8489692374622749,
+    "pv": 10571.845754507707
    },
    {
     "year": "FY28E",
@@ -3347,8 +3359,8 @@
     "capex": 12727.319532185498,
     "dwc": 363.3071620247956,
     "fcff": 12747.609787079362,
-    "df": 0.7909151303034339,
-    "pv": 10082.277455805202
+    "df": 0.7822362369555751,
+    "pv": 9971.64231002302
    },
    {
     "year": "FY29E",
@@ -3360,8 +3372,8 @@
     "capex": 13015.45914185633,
     "dwc": 337.7743786442552,
     "fcff": 13016.146092196343,
-    "df": 0.7314306890166028,
-    "pv": 9520.408704555934
+    "df": 0.7207487661572766,
+    "pv": 9381.371236073372
    },
    {
     "year": "FY30E",
@@ -3373,58 +3385,58 @@
     "capex": 13275.768324693458,
     "dwc": 305.1498979562348,
     "fcff": 13262.762512143283,
-    "df": 0.6764200510743215,
-    "pv": 8971.198495850555
+    "df": 0.664094501603534,
+    "pv": 8807.727660387827
    }
   ],
-  "pv_sum": 50837.103351240265,
-  "tv": 184811.7080118382,
-  "pv_tv": 125010.34497250018,
-  "ev": 175847.44832374045,
-  "tv_pct": 0.7109022403461458,
+  "pv_sum": 50303.27265679253,
+  "tv": 173536.91022586217,
+  "pv_tv": 115244.90790626116,
+  "ev": 165548.1805630537,
+  "tv_pct": 0.6961411929403046,
   "nopat_term": 15407.077608768886,
   "ic_repl": 182011.2410570005,
   "terminal_maintenance": 15461.020673529309,
   "terminal_fcff": 11111.559181263667,
   "terminal_life_years": 20.862788325368726,
   "terminal_age_years": 15.225406428884998,
-  "wacc": 0.08132614912126104,
-  "wacc_rating_basis": 0.08103215834431124,
-  "tg": 0.02,
+  "wacc": 0.08531054603967399,
+  "wacc_rating_basis": 0.08313190458277175,
+  "tg": 0.020000000000000018,
   "assoc": 12909.648,
   "telefonica": 8513.43,
   "net_debt": 8375.407,
-  "nci": 3921.206149602089,
-  "eq": 190137.42917413835,
-  "ps": 38.080615910145504,
+  "nci": 3713.0961007386113,
+  "eq": 180046.27146231505,
+  "ps": 36.05956459698873,
   "wacc_build": {
    "rf": 0.0552,
    "default_spread": 0.0098,
    "rf_star": 0.045399999999999996,
    "erp_market": 0.0572,
    "erp_rating": 0.0501,
-   "beta": 0.7078292485042049,
+   "beta": 0.7092581337669651,
    "beta_reg": {
-    "beta": 0.7078292485042049,
-    "r2": 0.3017708702514479,
-    "n": 252,
-    "se": 0.10288860144335289,
-    "window_years": 4.91,
+    "beta": 0.7092581337669651,
+    "r2": 0.30302366170467776,
+    "n": 254,
+    "se": 0.10217625542403945,
+    "window_years": 4.94,
     "index_file": "raw_indices/SA/TASI.csv",
-    "index_asof": "2026-08-18",
+    "index_asof": "2026-09-08",
     "conforming": true
    },
-   "ke_rating": 0.08556224535006066,
-   "ke_market": 0.08588783301444051,
+   "ke_rating": 0.08788766344876343,
+   "ke_market": 0.0903004560908777,
    "kd_pretax": 0.048602896,
    "kd_aftertax": 0.038882316800000004,
    "we": 0.9029542857827806,
    "wd": 0.09704571421721937,
-   "wacc_market": 0.08132614912126104,
-   "wacc_rating": 0.08103215834431124,
+   "wacc_market": 0.08531054603967399,
+   "wacc_rating": 0.08313190458277175,
    "tax": 0.08034525861665882,
    "regime": "pegged",
-   "beta_source": "Own-stock weekly regression against the published index of the exchange the stock is listed on, through beta_regression.own_stock_beta(\"STC\",\"SA\",\"TADAWUL\"): 252 weekly observations over 4.91 years to 2026-08-13 against TASI.",
+   "beta_source": "Own-stock weekly regression against the published index of the exchange the stock is listed on, through beta_regression.own_stock_beta(\"STC\",\"SA\",\"TADAWUL\"): 254 weekly observations over 4.94 years to 2026-08-27 against TASI.",
    "kd_source": "The company's OWN latest issue: international sukuk of SAR 7,500 million (USD 2,000 million) completed in the first half of 2026 in two tranches \u2014 SAR 2,812 million for five years at 4.489% and SAR 4,688 million for ten years at 5.083% \u2014 weighting to 4.860%. It is 32% of the current book and is the marginal rate this company actually faces.",
    "debt_currency_evidence": "Note 26 of the FY2025 audited statements gives every facility with its own currency column: dollar 19,401,578, ringgit 1,310,218, riyal 1,105,020, dinar 141,875 and 732,737 of subsidiary borrowings whose currency the note does not state, footing exactly to the stated 15,191,428. The January 2026 issue is dollar sukuk (note 15 of the reviewed 30 June 2026 interim, which names both tranches), so the riyal share of the current book is 4.9%. Every non-riyal leg is in a currency pegged or managed against the dollar, and the riyal itself is pegged at 3.75, so expected depreciation is zero and the local-equivalent cost of a dollar leg is its own coupon.",
    "weights_source": "Market-value equity, never book: the latest known close of SAR 43.86 on 2026-09-03 times 4,993,024 thousand shares outstanding \u2014 issued capital of SAR 50,000,000 thousand in shares of SAR 10 each, which divides to the 5,000,000 thousand shares note 17 of the reviewed 30 June 2026 interim itself states, less 6,976 thousand held in treasury. Debt is the borrowings total from the LATEST DISCLOSED balance sheet, 30 June 2026, SAR 23,536,554 thousand, which reproduces from the same interim's own financing cash flows to twelve basis points.",
@@ -3432,6 +3444,7 @@
     "SA runs a pegged regime, so the risk-free rate already sits at its long-run level and the schedule is FLAT by construction. Applying a glide here would manufacture movement the peg forbids and measures nothing (+0.0% where it was tried).",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (0.98%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 3.98% = the inflation target in force (2.00%) plus the real-rate convention (1.98%); cost of debt 5.50% is the long-run corporate norm; the premium is normalised to 5.01%.",
+    "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 4.54% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 0.709 x the MATURE-MARKET premium 4.23% = 3.00% + a country premium of 1.49% -> Ke 9.03%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 8.60%, -43bp.",
     "DISCLOSED STALENESS: the sovereign quote is 36 days old (as of 2026-07-31), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
@@ -3444,24 +3457,24 @@
    2.4,
    2.55
   ],
-  "pv_div": 9.111030071423325,
-  "tv": 39.67222272685012,
-  "pv_tv": 26.31557599709488,
-  "ps": 35.426606068518204,
-  "tv_pct": 0.7428195618343517,
-  "ke": 0.08556224535006066,
-  "g": 0.02
+  "pv_div": 9.05449081547805,
+  "tv": 38.31329387206031,
+  "pv_tv": 25.143702597817974,
+  "ps": 34.198193413296025,
+  "tv_pct": 0.735234820563424,
+  "ke": 0.08788766344876343,
+  "g": 0.020000000000000018
  },
  "lenses": {
   "dcf": {
-   "bear": 37.303369288705724,
-   "base": 38.080615910145504,
-   "bull": 38.98573419621558
+   "bear": 35.29052854996204,
+   "base": 36.05956459698873,
+   "bull": 36.955121514973776
   },
   "ddm": {
-   "bear": 29.160467565141218,
-   "base": 35.426606068518204,
-   "bull": 49.622266617523856
+   "bear": 28.240048831657514,
+   "base": 34.198193413296025,
+   "bull": 47.30216843737108
   },
   "relative": {
    "bear": 45.812052337824454,
@@ -3498,8 +3511,8 @@
    }
   ],
   "central": {
-   "bear": 37.303369288705724,
-   "base": 38.080615910145504,
+   "bear": 35.29052854996204,
+   "base": 36.05956459698873,
    "bull": 48.07526101832944
   },
   "weights": null
@@ -3508,9 +3521,9 @@
   "class": "telecom operator",
   "primary": {
    "kind": "dcf",
-   "value": 38.080615910145504,
+   "value": 36.05956459698873,
    "range": {
-    "low": 37.303369288705724,
+    "low": 35.29052854996204,
     "high": 48.07526101832944
    },
    "range_basis": {
@@ -3543,10 +3556,10 @@
    }
   ],
   "envelope": {
-   "low": 37.303369288705724,
+   "low": 35.29052854996204,
    "high": 48.07526101832944
   },
-  "central": 38.080615910145504,
+  "central": 36.05956459698873,
   "retired": {
    "blend_weights": {
     "dcf": 0.35,
@@ -3557,6 +3570,14 @@
    "retired_value": null,
    "why": "The four-lens blend at typed weights is retired under [R-LENS-03]. The dividend-discount and normalised-earnings reads are not permitted cross-checks for this class and carried 45% of the answer between them."
   }
+ },
+ "expert2_band": {
+  "turns": 1.5,
+  "implied_x": 15.0,
+  "low_x": 13.5,
+  "high_x": 16.5,
+  "low_ps": 35.77806069315526,
+  "high_ps": 43.72874084718976
  },
  "rel_basis": {
   "ebitda26": 25882.048185542113,
@@ -3572,11 +3593,11 @@
  },
  "sens": {
   "wacc_steps": [
-   0.07132614912126105,
-   0.07632614912126104,
-   0.08132614912126104,
-   0.08632614912126105,
-   0.09132614912126104
+   0.07531054603967399,
+   0.08031054603967398,
+   0.08531054603967399,
+   0.09031054603967399,
+   0.09531054603967398
   ],
   "g_steps": [
    0.015,
@@ -3587,39 +3608,39 @@
   ],
   "table_wg": [
    [
-    43.89746928609277,
-    44.52463877321838,
-    45.26040995921722,
-    46.144201602375496,
-    47.23713515132143
+    41.284565015842084,
+    41.679530413844915,
+    42.12879599961829,
+    42.65033778289415,
+    43.27105053610888
    ],
    [
-    40.6726720471298,
-    41.01834543245054,
-    41.407752598069884,
-    41.85505415774346,
-    42.38126382625633
+    38.45524282993928,
+    38.63816443900662,
+    38.832645432079715,
+    39.042132218982026,
+    39.271592449126324
    ],
    [
-    37.93248054695057,
-    38.0806159101455,
-    38.23402538852858,
-    38.39425033537072,
-    38.563497539468614
+    36.02685642660958,
+    36.05956459698873,
+    36.07841745203098,
+    36.07965748534874,
+    36.05803346540756
    ],
    [
-    35.57502932774326,
-    35.582959933419474,
-    35.57331284329272,
-    35.54140700884202,
-    35.48073734112956
+    33.91959332392135,
+    33.84509021841148,
+    33.74178138408405,
+    33.60250246974963,
+    33.41749853283853
    ],
    [
-    33.52514344457281,
-    33.432913021339346,
-    33.309724767843704,
-    33.14800658864895,
-    32.937497727525304
+    32.073515498862776,
+    31.922293462724838,
+    31.73376823706383,
+    31.499372325866183,
+    31.207697106125806
    ]
   ],
   "margin_steps": [
@@ -3638,68 +3659,68 @@
   ],
   "table_cm": [
    [
-    36.3323351765713,
-    36.00213177489205,
-    35.6719283732128,
-    35.34172497153355,
-    35.0115215698543
+    34.45143878374192,
+    34.12472354080941,
+    33.7980082978769,
+    33.47129305494438,
+    33.144577812011875
    ],
    [
-    37.536678945037636,
-    37.20647554335839,
-    36.876272141679145,
-    36.546068739999896,
-    36.21586533832064
+    35.582216933297836,
+    35.25550169036532,
+    34.928786447432806,
+    34.60207120450029,
+    34.27535596156778
    ],
    [
-    38.741022713503995,
-    38.41081931182475,
-    38.0806159101455,
-    37.75041250846625,
-    37.420209106787
+    36.71299508285375,
+    36.38627983992124,
+    36.05956459698873,
+    35.732849354056206,
+    35.40613411112369
    ],
    [
-    39.94536648197034,
-    39.61516308029109,
-    39.28495967861184,
-    38.954756276932585,
-    38.62455287525334
+    37.84377323240966,
+    37.51705798947715,
+    37.19034274654463,
+    36.863627503612115,
+    36.53691226067961
    ],
    [
-    41.14971025043669,
-    40.81950684875745,
-    40.48930344707819,
-    40.159100045398944,
-    39.8288966437197
+    38.97455138196558,
+    38.64783613903307,
+    38.32112089610056,
+    37.994405653168045,
+    37.66769041023553
    ]
   ],
   "beta_grid": [
    {
     "beta": 0.3,
-    "ke": 0.06255999999999999,
-    "wacc": 0.060262182322846934,
-    "ps": 55.360908620829136,
+    "ke": 0.0729872,
+    "wacc": 0.06967746725156115,
+    "ps": 45.83464427368956,
     "adopted": false
    },
    {
     "beta": 0.5,
-    "ke": 0.074,
-    "wacc": 0.07059197935220196,
-    "ps": 45.097502453477766,
+    "ke": 0.08144799999999999,
+    "wacc": 0.0773171828727121,
+    "ps": 40.39560803481179,
     "adopted": false
    },
    {
-    "beta": 0.7078292485042049,
-    "ke": 0.08588783301444051,
-    "wacc": 0.08132614912126106,
-    "ps": 38.08061591014549,
+    "beta": 0.7092581337669651,
+    "ke": 0.0903004560908777,
+    "wacc": 0.085310546039674,
+    "ps": 36.05956459698872,
     "adopted": true
    },
    {
     "beta": 0.85,
-    "ke": 0.09401999999999999,
-    "wacc": 0.08866912415357323,
-    "ps": 34.536801811771056,
+    "ke": 0.09625439999999999,
+    "wacc": 0.09068668520972627,
+    "ps": 33.69106722562412,
     "adopted": false
    },
    {
@@ -3711,13 +3732,13 @@
    },
    {
     "beta": 1.2,
-    "ke": 0.11403999999999999,
-    "wacc": 0.10674626895494449,
-    "ps": 28.35042315250166,
+    "ke": 0.11106079999999999,
+    "wacc": 0.10405618754674043,
+    "ps": 29.104156817132715,
     "adopted": false
    }
   ],
-  "capex_floor_2pp": 39.40142951686249
+  "capex_floor_2pp": 37.36642556871878
  },
  "cover": [
   {
@@ -3742,10 +3763,10 @@
  "div_bill": 10.984652800000001,
  "experts": {
   "e1": {
-   "base": 36.98496548706956,
+   "base": 35.510895855643334,
    "rng": [
-    34.7509959240561,
-    40.15854959139892
+    33.571408346710285,
+    38.22297934651681
    ],
    "fade_lo": 0.01,
    "fade_hi": 0.04
@@ -3758,11 +3779,11 @@
    ]
   },
   "e3": {
-   "base": 38.12489853142939
+   "base": 36.64126229741656
   },
   "e1_roic": 0.15243239824347235,
   "e1_ic": 93362.21299999999,
-  "e1_ep": 6638.636776178954,
+  "e1_ep": 6266.644662405542,
   "e1_fade": 0.025,
   "e1_fade_lo": 0.01,
   "e1_fade_hi": 0.04
