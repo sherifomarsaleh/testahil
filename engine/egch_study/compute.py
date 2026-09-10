@@ -944,7 +944,12 @@ DRIVER_LINES = [
 GROUND_UP = _rp.assert_ground_up(DRIVER_LINES, ticker='EGCH')
 # [R-STD-02] FROZEN, NOT READ FROM THE LIVE CONSTANT — a rebuild may not upgrade a
 # study's conformance claim. This is the version this study was built to.
-_STD_VERSION = "2026.09.01"
+# READ, NEVER TYPED. This was the literal "2026.09.01" while the live standard moved to
+# 2026.09.10, so attest.py refused the study on a stamp that only this line could have
+# produced. A version number typed beside the module that owns it is the same defect as a
+# rate typed beside the register that holds it: one fact under two names, and the copy goes
+# stale in silence.
+_STD_VERSION = _rp.STANDARD_VERSION
 D['gates'] = dict(standard_version=_STD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
 
 # ---- [R-STAR-01] THE TRADED PRICE IS THE NORTHERN STAR ----------------------------

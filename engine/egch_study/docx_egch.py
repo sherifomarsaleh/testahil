@@ -81,12 +81,19 @@ box([("What this is.  ",
       "Not a rating, and not a price target. It reports a range of fair values, the "
       "reasoning behind each, and the probability map around today's price."),
      ("The one judgement that decides the answer.  ",
-      "This company is building a nitric-acid and ammonium-nitrate complex whose "
-      "bank-approved cost is about three quarters of its own stock-market value, and which "
-      "was 12.9% built against a 37% plan at the last reported date. Whether that programme "
-      "is carried through or stopped is worth more than three pounds a share. Both answers "
-      "are computed and both are published side by side throughout this document. Neither "
-      "is averaged into the other, because the average would be true in neither world."),
+      f"This company is building a nitric-acid and ammonium-nitrate complex whose "
+      f"bank-approved cost is about {PCW(AL['programme']['pct_market_cap'])} of its own "
+      f"stock-market value, and which was {PC(AL['programme']['progress'])} built against a "
+      f"{PC(AL['programme']['plan'])} plan at the last reported date. SO THIS DOCUMENT "
+      f"ANSWERS THE QUESTION TWICE, AND THE TWO ANSWERS HAVE NAMES. Carried through is the "
+      f"world in which the company finishes the plant — which is what management says it is "
+      f"doing. Stopped is the world in which it walks away now, writes off what it has "
+      f"already spent, and carries on as the urea producer it already is. Stopping is worth "
+      f"MORE: EGP {E2(LN['contested']['side_b'])} a share against EGP "
+      f"{E2(LN['contested']['side_a'])}, a difference of EGP {E2(LN['contested']['gap'])}. "
+      f"That is not a quirk of the arithmetic and section 1.7 sets out why. Both are "
+      f"published side by side throughout. Neither is averaged into the other, because the "
+      f"average would be true in neither world."),
      ("How to read the numbers.  ",
       f"The answer is the cash-flow lens, and on this company it has TWO SIDES: EGP "
       f"{E2(LN['central']['base'])} a share if the capital programme is carried through and "
@@ -631,6 +638,70 @@ P(f"Carried through, the programme is worth EGP {E2(LN['cashflow']['carry_throug
   f"decides it is whether the plant, once built, earns a return above the capital sunk into "
   f"it. On the disclosed cost and the derived nameplate it does not.", bold=True)
 PRG = AL['programme']
+
+# THE TWO BRANCHES WERE NAMED AND NEVER DEFINED. A reader met "carried through" and
+# "stopped" in the front matter, in the headline, in four tables and in an expert's range,
+# and nowhere was told what either world assumes, which is worth more, or why. The names
+# were doing the work of an explanation. This is the explanation.
+P("What the two branches actually assume.  Neither is a prediction of what the board "
+  "will do. They are two complete worlds, each priced the whole way through to a value "
+  "per share on identical prices, volumes, currency and rates. The only thing that "
+  "differs between them is the capital programme, which is what makes the distance "
+  "between them a measurement of the programme rather than of anything else.", bold=True)
+rows = [["", "Programme carried through", "Programme stopped"]]
+rows.append(["The money still to spend",
+             f"EGP {E(PRG['remaining'])}m leaves over the five forecast years",
+             "Nothing further is spent"])
+rows.append(["The money already in the ground",
+             f"EGP {E(PRG['spent'])}m becomes part of a working plant",
+             f"EGP {E(PRG['spent'])}m is written off against nothing"])
+rows.append(["The cost of walking away", "None arises",
+             f"EGP {E(V('anna_winddown_cost'))}m, paid once in the first forecast year"])
+rows.append(["What is produced afterwards",
+             "Urea and existing nitrates, plus the new complex's nitric acid and "
+             "ammonium nitrate",
+             "Urea and existing nitrates, exactly as today"])
+rows.append(["When the new plant's earnings arrive",
+             "After the forecast window closes — in the terminal value, at "
+             f"{PCW(DR['anna_util_base'] if 'anna_util_base' in DR else V('anna_util_base'))} "
+             "of nameplate", "They never arrive"])
+rows.append(["Value per share", f"EGP {E2(LN['contested']['side_a'])}",
+             f"EGP {E2(LN['contested']['side_b'])}"])
+table(rows, [1.85, 2.6, 2.55], size=8.6, band_rows={6}, text_cols=(1, 2))
+caption("{T}.  The two worlds, line by line. Every driver outside this table — urea "
+        "prices, the gas bill, the exchange-rate path, the cost of capital — is the same "
+        "in both.")
+
+P(f"Why stopping is worth more, in one line: the money leaves early and the earnings "
+  f"arrive late. The remaining EGP {E1(PRG['remaining']/1000)} billion goes out across the "
+  f"five forecast years, discounted at {PC(DR['wacc_path'][0])} in the first of them; the "
+  f"plant that money buys earns nothing until after the window closes, and that later "
+  f"stream is discounted at {PC(DR['wacc_terminal'])} for every year of the wait. Put the "
+  f"same point without the discounting and it is starker still: on the bank-approved cost "
+  f"and the nameplate this model derives, the finished complex earns "
+  f"{PC2(PRG['return_on_cost'])} after tax on the money sunk into it, against capital that "
+  f"costs {PC(DR['wacc_terminal'])}. A plant returning less than a tenth of what its "
+  f"funding costs subtracts value by being built, however well it is run.")
+
+P("Three things this comparison is NOT, because each has been read into it before.  It is "
+  "not a forecast that the programme will be abandoned; management has said it is "
+  "building, and the carried-through branch is the one that follows the company's own "
+  "stated plan. It is not a judgement that the plant is badly conceived — the arithmetic "
+  "turns on a cost and a nameplate, and a reader who holds a different nameplate gets a "
+  "different answer, which is exactly why section 1.9 reprices it. And it is not a range "
+  "to average: there is no world in which the company half-builds a complex, so the "
+  "midpoint of these two numbers describes nothing that can happen.", italic=True,
+  size=9.6)
+
+P(f"How to use the pair.  If you believe the company will finish the plant and that it "
+  f"will earn what this model assumes, the number is EGP {E2(LN['contested']['side_a'])}. "
+  f"If you believe the money would be better not spent, it is EGP "
+  f"{E2(LN['contested']['side_b'])}. The EGP {E2(LN['contested']['gap'])} between them — "
+  f"EGP {E(LN['contested']['gap_equity'])} million across all the shares — is the size of "
+  f"that single bet, and it is larger than either the multiple lens or the book-value lens "
+  f"moves for any other reason in this study. The falsifier is stated and dated: the "
+  f"nameplate this study derives is tested against KIMA's own annual report for FY2025/26.")
+
 rows = [["The capital programme", "Value", "Where it comes from"]]
 rows.append(["Bank-approved cost", f"EGP {E(PRG['approved_egp'])}m plus US${E1(PRG['approved_usd'])}m",
              "The facility signed on 25 June 2025"])

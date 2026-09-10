@@ -42,6 +42,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # typed the artefact names, so a reissue left every gate reading the superseded
 # edition -- examining something, but not the thing. edition.py owns the names.
 import edition as _EDN
+sys.path.insert(0, HERE)
+from inputs import V                      # the register, for a bump stated as a level
 XLSX = os.path.join(HERE, _EDN.MODEL_XLSX)
 SHEET_A = 'Assumptions'
 HEAD = ('DCF', 'B44')          # value per share, programme carried through
@@ -80,6 +82,16 @@ for row in range(5, 200):
     if isinstance(val, (int, float)) and not isinstance(val, bool):
         LABELS[lab] = (f"C{row}", val)
 
+class ABS(float):
+    """A bump stated as the ABSOLUTE level to set, not as a multiple of the live value.
+
+    Needed the moment a driver legitimately goes to zero: v0 * mult is zero for every mult,
+    so a multiplicative assertion on a zeroed driver tests nothing while printing OK. This
+    keeps the assertion and changes only how the bumped level is reached, and it prints as
+    the level so the reader can see what was actually set."""
+    __slots__ = ()
+
+
 TESTS = [
     ("Export urea price — FY2026/27", 1.10, "up",
      "A higher realised export price lifts revenue with no change in cost."),
@@ -92,25 +104,42 @@ TESTS = [
     ("Egyptian pounds per US dollar — FY2026/27", 1.05, "up",
      "Revenue is dollar-linked and the gas bill is dollar-linked, but the pound cost base "
      "is not, so a weaker pound is net positive at this margin."),
-    ("Export duty", 1.50, "down", "The duty is a direct wedge in the realised export price."),
+    # RE-POINTED 10 September 2026, NOT RELAXED. Ministerial Decision 340 of 2026 repealed
+    # the 10% ad valorem export duty with effect from 1 August 2026, so the rate in force at
+    # this strike is NIL — and a MULTIPLICATIVE bump of zero is zero, which made this
+    # assertion pass through a driver it was no longer touching. The test now sets the duty
+    # to the rate that was actually in force before the repeal, which the register still
+    # carries as the superseded input, and asserts the same direction on the same mechanism.
+    # A driver that has gone to zero has not stopped mattering: it can be reimposed, and the
+    # alternatives grid prices exactly that.
+    ("Export duty", ABS(V('export_duty_2026_superseded')), "down",
+     "The duty is a direct wedge in the realised export price. Bumped to the repealed 10% "
+     "rather than scaled, because the rate in force is nil and nothing scales off zero."),
     ("Project capital expenditure — FY2026/27", 1.20, "down",
      "Cash out with no incremental cash in inside the explicit window."),
     ("Maintenance capital expenditure", 1.30, "down", "Cash out of free cash flow."),
     ("Average age of the fixed-asset base — MEASURED", 1.20, "down",
      "An older base costs more to replace at today's prices, because the book charge it "
      "is escalated from was struck on cost that much further back."),
-    ("Terminal growth", 1.20, "down",
-     "RE-DERIVED 5 September 2026, and the sign flipped, because the construction under it "
-     "changed. The retired terminal reinvested a share of PROFIT, so growth cost a "
-     "proportion of earnings and the two entries fought to a concave response. The "
-     "sanctioned terminal charges what growth actually consumes: real growth times the "
-     "capital a unit of it needs, which on this company is the replacement cost of a plant "
-     "carrying roughly three pounds of capital for every pound of revenue. A point of REAL "
-     "growth then costs about a tenth of terminal profit every year for ever, against a "
-     "terminal cost of capital near nineteen per cent, and it does not pay for itself. "
-     "THAT IS A FINDING ABOUT THIS ASSET IN THIS ECONOMY RATHER THAN A CONSERVATISM, and "
-     "it is inert at the central, where the stated real growth is zero. The assertion "
-     "follows the model rather than the other way round."),
+    ("Terminal growth", 1.20, "up",
+     "RE-MEASURED 10 September 2026, AND THE PRIOR NOTE HERE WAS WRONG. It asserted 'down' "
+     "on the reasoning that a point of real growth costs more in replacement capital than "
+     "it earns, so growth could not pay for itself. That is a claim about the model and it "
+     "was never measured against the model; the response was swept on this date and it does "
+     "not behave that way. Terminal inflation is 7.00%, so bumping terminal growth is "
+     "bumping REAL growth, and the swept curve on the committed-capital headline is: "
+     "-1.87% real -> -0.0575, -0.93% -> -0.0269, zero -> zero, +0.93% -> +0.0217, "
+     "+1.87% -> +0.0363, +2.80% -> +0.0407, +4.67% -> -0.0062. Rising through the central, "
+     "turning over near +2.8% real, negative again beyond about +4.5%. The 1.20x bump lands "
+     "at +1.31% real, on the rising part, so the honest assertion is UP. "
+     "WHAT THE SWEEP ACTUALLY SHOWS IS HOW LITTLE THIS DRIVER MATTERS: the whole span from "
+     "-1.9% to +4.7% real growth moves the answer by less than seven piastres on eight "
+     "pounds, under one per cent, because the capital that real growth has to buy very "
+     "nearly cancels the extra cash it brings in. That near-cancellation IS the finding "
+     "about this asset — a plant carrying roughly three pounds of capital for every pound "
+     "of revenue cannot grow cheaply — but it is a statement about magnitude, not about "
+     "sign, and the earlier note converted one into the other. The assertion follows the "
+     "model rather than the other way round, which is why it moved rather than the model."),
     ("Tax rate", 1.20, "down", "A larger share of operating profit leaves the firm."),
     ("Days inventory outstanding", 1.20, "down", "More cash locked in working capital."),
     ("Days payable outstanding", 1.20, "up", "Supplier financing releases cash."),
@@ -134,9 +163,11 @@ fails = []
 print(f"{'driver':52s} {'bump':>7s} {'new':>9s} {'move':>10s}  expected")
 for lab, mult, want, why in TESTS:
     coord, v0 = LABELS[lab]
-    got = value_with({(SHEET_A, coord): v0 * mult})
+    bumped = float(mult) if isinstance(mult, ABS) else v0 * mult
+    got = value_with({(SHEET_A, coord): bumped})
     move = got - BASE
     if want == "concave":
+        assert not isinstance(mult, ABS), 'a concave test needs both sides and so needs a multiple'
         down = value_with({(SHEET_A, coord): v0 * (2 - mult)}) - BASE
         ok = move < -1e-6 and down < -1e-6
         move = min(move, down)
@@ -144,7 +175,8 @@ for lab, mult, want, why in TESTS:
         ok = (move > 1e-6) if want == "up" else (move < -1e-6)
     if not ok:
         fails.append((lab, want, move, why))
-    print(f"{lab:52s} {mult:6.2f}x {got:9.3f} {move:+10.4f}  {want:5s} {'OK' if ok else 'FAIL'}")
+    shown = (f"={float(mult):5.3f}" if isinstance(mult, ABS) else f"{mult:6.2f}x")
+    print(f"{lab:52s} {shown:>7s} {got:9.3f} {move:+10.4f}  {want:5s} {'OK' if ok else 'FAIL'}")
 
 # ---- dead-input sweep -------------------------------------------------------
 # A CROSS-CHECK IS NOT A DRIVER. Three cells stopped moving the headline the moment the

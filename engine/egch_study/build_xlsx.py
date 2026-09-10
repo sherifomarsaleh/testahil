@@ -432,7 +432,12 @@ ANNAU = drv(r, "Project utilisation in the terminal year", V('anna_util_base'), 
 # the same way it prices the tonne beside it, and so does this row now.
 ANNAP = drv(r, "Nitrate price — the company's own disclosed realisation, carried on the "
                "currency", V('an_price_egp_t_FY2425') / V('usd_egp_avg_FY2425'),
-            "US$/tonne equivalent", "reviewed interims, note 20 — EGP 20,000/t realised",
+            "US$/tonne equivalent",
+            # the realisation is READ, not retyped: a source string that names a figure it
+            # types itself is the same stale-number risk as any other typed numeral, and
+            # the traceability gate is right to refuse it
+            "reviewed interims, note 20 — EGP %s/t realised"
+            % f"{V('an_price_egp_t_FY2425'):,.0f}",
             N0); r += 1
 ANNAM = drv(r, "Project cash margin", V('anna_cash_margin'), "% of revenue", src('anna_cash_margin'), PC1); r += 1
 DSO = drv(r, "Days sales outstanding", V('dso'), "days", src('dso'), N1); r += 1
