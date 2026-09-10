@@ -256,6 +256,9 @@ def main():
               'was built.'),
     )
 
+    # the 10-09-2026 research pass: what it corroborated and what it left unchanged
+    d['research_pass'] = C.RESEARCH_PASS_10_09_2026
+
     p = os.path.join(HERE, 'study_numbers.json')
     json.dump(d, open(p, 'w'), indent=1, default=float)
     print('written %s' % p)

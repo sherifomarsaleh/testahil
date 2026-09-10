@@ -1429,5 +1429,27 @@
   "status": "run",
   "basis": "Sixteen sourceable consolidated fiscal years, FY2010-FY2025, every one from the issuer's own audited consolidated statements on adib.eg and every one footing against its own arithmetic. Sixteen is at or above the eight a FULL scope needs, so the run takes all origins from the first year with a five-year history behind it, at horizons 1 to 5.",
   "note": "Run 09-09-2026. Origins FY2014-FY2024, eleven of them, 45 origin-horizon cells, truncated at FY2025 as the last reported year. Pre-registered in engine/adib_walkforward/PRE_REGISTRATION_09-09-2026.md before any origin was built."
+ },
+ "research_pass": {
+  "reserve_ratio": {
+   "finding": "The Central Bank cut the required reserve ratio for commercial banks from 18% to 16% on 12 February 2026, alongside a 100bp policy cut, stating the purpose as calibrating banking-system liquidity.",
+   "bears_on": "financing_over_assets",
+   "effect": "CORROBORATES AND DOES NOT MOVE. This study rotates the balance sheet from 47.0% of assets in customer financing to 52.0%, against 42.46% actual at FY2025 and 45.96% at 30 June 2026, and argued that rotation from the observed trend alone. A two-point cut in the reserve ratio frees exactly the kind of non-earning balance the rotation assumes can be redeployed, so the path now has a policy reason behind it as well as a trend. The numbers are unchanged: an assumption that gains a second reason does not gain basis points."
+  },
+  "branch_network": {
+   "finding": "75 branches at end-2025 on the bank's own FY2025 results commentary, 79 by 29 July 2026 on the parent's half-year discussion, and management guidance of 9-10 openings in 2026 to a network of 80. Separately, about EGP 1 billion committed to mobile-banking infrastructure with a new application due in the third quarter of 2026, and a client base of 885,000 at end-2025 after adding some 336,000 during the year.",
+   "bears_on": "admin_growth",
+   "effect": "EVIDENCES A DRIVER THAT WAS ARGUED. Administrative expenses run at inflation plus about six points on the reasoning that \"a bank adding branches and systems does not hold headcount flat\". That was a claim about the world with nothing dated behind it. It now has the branch count on three dates, the target, and the systems spend. The rate is unchanged."
+  },
+  "tax_rate": {
+   "finding": "Egypt's Second Tax Facilitation Package (Laws 148-154 of 2026, effective 29 July 2026) and the 30 August 2026 parliamentary amendments were both read for a bank-specific rate and neither contains one; the general corporate rate stays at 22.5%.",
+   "bears_on": "tax_rate",
+   "effect": "CONFIRMS THE RATE THIS STUDY USES. A negative finding on a live search is worth recording: the next pass need not re-read two tax packages."
+  },
+  "policy_path": {
+   "finding": "The Monetary Policy Committee held on 20 August 2026 for a fourth consecutive meeting at 19.00% deposit and 20.00% lending, and now expects the 7% band to be reached in the SECOND HALF OF 2027 rather than the fourth quarter of 2026.",
+   "bears_on": "the house macro path",
+   "effect": "THE HOUSE PATH ALREADY CARRIES IT. engine/macro_paths/EG.json is stamped 20 August 2026 and its terminal note explicitly rejects the 5% Q4-2028 figure on exactly this reasoning. Nothing to change, and the check is that a study and the house path read one economy the same way."
+  }
  }
 }
