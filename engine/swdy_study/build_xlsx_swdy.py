@@ -21,9 +21,12 @@ agree. A formula that computes the right thing the wrong way therefore fails the
 """
 import json, os
 import sys
+import datetime as _dt
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import edition as _ed                      # the edition date, written once
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import cost_of_capital as _coc            # for the equity-to-bond scaling, never retyped
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
@@ -44,6 +47,9 @@ TR_REC = DCF['terminal_record']
 EMP_RATE = D['eps_reconciliation']['charged_at']
 SEG, S0, STK = D['seg_fy25'], D['step0'], D['strike']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
+COC = D['cost_of_capital_record']       # [R-COC-03] the split premium, as the study committed it
+SCALING = _coc.LAMBDA_EQUITY_BOND_SCALING
+ERP_MATURE_TERM = COC['erp_terminal'] - COC['crp_terminal']   # assembled from published parts, solved from nothing
 SPOT, SH = M['spot'], M['shares_mn']
 SEGS = D['bottomup']['subs']
 BU = D['bottomup']
@@ -325,6 +331,16 @@ def a(key, i=None):
     col = get_column_letter(2 + i) if i is not None else 'C'
     return f"Assumptions!${col}${A[key]}"
 
+# [R-DCF-01] THE DIVIDEND IS DEDUCTED AT THE ANCHOR, NOT AT THE START. It left on 4-Jun-2026,
+# so the equity it took compounds from THAT date to the anchor at the cost of equity -- which is
+# what compute.py does. Every per-share cell below subtracted a flat EGP 1.85 instead, crediting
+# the shareholder with three months of accretion on money already gone: 12 piastres a share, on
+# all four lenses, in the workbook's favour and against the study's own number. Generated once
+# and used in all nine formulas, so they cannot drift apart.
+def div_at_anchor(local=False):
+    ref = '$C$39' if local else 'DCF!$C$39'
+    return f'{a("dps_fy25")}*(1+{ref})^({a("div_days")}/365)'
+
 hdr(ws, 3, ['Input', YF[0], YF[1], YF[2], YF[3], YF[4]])
 block('Anchors', [
     ('spot', 'Spot price (EGP)', SPOT, PX),
@@ -362,15 +378,37 @@ block('Capital intensity', [
 block('Cost of capital', [
     ('rf', 'Risk-free rate (10-year local currency)', IN['rf'], PCT),
     ('sov', 'Sovereign default spread (netted out)', IN['sov_spread_cds'], PCT),
-    ('erp', 'Equity risk premium', IN['erp_cds'], PCT),
+    ('erp', 'Equity risk premium, TOTAL (split into the two legs below)', IN['erp_cds'], PCT),
     ('beta', 'Beta', IN['beta'], '0.000'),
     ('kd', 'Cost of debt, blended', IN['kd'], PCT),
     ('kd_path', 'Cost of debt path', IN['kd_path'], PCT),
     ('rf_term', 'Terminal risk-free rate', IN['rf_term'], PCT),
-    ('erp_term', 'Terminal equity risk premium', IN['erp_term'], PCT),
+    ('erp_term', 'Terminal equity risk premium, TOTAL', IN['erp_term'], PCT),
     ('kd_term', 'Terminal cost of debt', IN['kd_term'], PCT),
     ('wd_term', 'Terminal debt weight', IN['wd_term'], PCT),
     ('g_term', 'Terminal growth', IN['g_term'], PCT)])
+# [R-COC-03] THE PREMIUM SPLITS, AND COUNTRY RISK IS CHARGED ONCE AND FLAT. Beta applies to the
+# MATURE leg and to nothing else; multiplying the country premium by beta charges Egypt (beta - 1)
+# times over. This company earns 40.7% of its revenue outside Egypt, so it pays lambda of the
+# Egyptian premium and the foreign premium on the rest -- and until this block existed the
+# workbook showed a reader none of it, published EGP 72.92 a share against a study publishing
+# 87.76, and disagreed with the model on 87 cells. Every figure here is READ FROM THE COMMITTED
+# COST-OF-CAPITAL RECORD, never retyped; the DCF sheet's own cells recompute the rate from them
+# and the build fails if the arithmetic and the record disagree.
+block('The country premium, split — [R-COC-03]', [
+    ('erp_mature', 'of which the MATURE equity premium — beta applies to this leg only',
+     COC['erp_mature'], PCT),
+    ('crp', 'Egypt country premium = sovereign default spread x %.2f' % SCALING, COC['crp'], PCT),
+    ('lambda_country', 'Share of operations in Egypt (lambda)', COC['lambda_country'], PCT),
+    ('crp_foreign', 'Country premium on the operations outside Egypt', COC['crp_foreign'], PCT),
+    ('crp_eff', 'Country premium CHARGED — flat, once, never multiplied by beta',
+     COC['crp_effective'], PCT),
+    ('erp_mature_term', 'Terminal mature equity premium', ERP_MATURE_TERM, PCT),
+    ('crp_term', 'Terminal Egypt country premium', COC['crp_terminal'], PCT),
+    ('crp_eff_term', 'Terminal country premium CHARGED — flat and once',
+     COC['crp_effective_terminal'], PCT),
+    ('beta_term', 'Terminal beta — reverts to the market, not the measured beta',
+     COC['beta_terminal'], '0.00')])
 block('Balance-sheet and bridge anchors', [
     ('nd_fy25', 'Net bank debt at FY2025 (EGP mn, disclosed)', IN['nd_fy25'], NUM0),
     ('assoc_bv', 'Equity-accounted investees at carrying value (EGP mn)', IN['assoc_bv_fy25'], NUM0),
@@ -380,6 +418,8 @@ block('Balance-sheet and bridge anchors', [
     ('dps_fy24', 'FY2024 dividend per share (EGP)', IN['dps_fy24'], PX),
     ('dps_fy25', 'FY2025 dividend per share (EGP, ratified 6 May 2026, paid 4 June 2026)',
      IN['dps_fy25'], PX),
+    ('div_days', 'Days the dividend compounds — 4-Jun-2026 ex-date to the 3-Sep-2026 anchor',
+     (_dt.date(2026, 9, 3) - _dt.date(2026, 6, 4)).days, NUM0),
     ('payout', 'Forecast dividend payout ratio (struck at the actual FY2025 rate)', PAYOUT, PCT),
     ('assoc_g', 'Growth in the share of equity-accounted investees', ASSOC_G, PCT),
     ('cash_yield', 'Yield assumed on surplus cash (blend of EGP deposit and hard-currency rates)',
@@ -390,6 +430,8 @@ block('Terminal construction — the sanctioned one, never g x IC', [
     ('pi_term', 'Terminal inflation (house Egyptian macro path)', IN['pi_term'], PCT),
     ('asset_life', 'DISCLOSED useful life, derived by identity from note 17 (years)',
      IN['asset_life_derived'], '0.0000'),
+    ('real_g_term', 'Terminal REAL growth — the stated one; nominal is derived, never supplied',
+     TR_REC['inputs']['real_growth'], PCT),
     ('wc_term', 'Terminal working-capital base (EGP mn, last explicit year)',
      TR_REC['inputs']['working_capital'], NUM0),
     ('emp_rate', "Employees' statutory share of profit (mean of FY2024, FY2025, H1-2026)",
@@ -567,7 +609,7 @@ rel_rows = [
     ('Implied value per share, rolled to the anchor (EGP)',
      f"=((C10-{a('nd_fy25')}+{a('assoc_bv')})*(1-'SOTP Bridge'!$C$17)"
      f"*(1-'SOTP Bridge'!$C$18)/{a('shares')})"
-     f"*DCF!$C$61-{a('dps_fy25')}", LN['relative']['base'], PX)]
+     f"*DCF!$C$61-{div_at_anchor()}", LN['relative']['base'], PX)]
 r = 5
 for lab, v, xp, fmt in rel_rows:
     put(ws, f'A{r}', lab, fmt=None)
@@ -579,7 +621,7 @@ for cell, mult, xp in (('C12', 5.5, LN['relative']['bear']), ('D12', 8.0, LN['re
     putf(ws, cell,
          f"=(({mult}*C5*C8+C9-{a('nd_fy25')}+{a('assoc_bv')})*(1-'SOTP Bridge'!$C$17)"
          f"*(1-'SOTP Bridge'!$C$18)"
-         f"/{a('shares')})*DCF!$C$61-{a('dps_fy25')}", xp, PX)
+         f"/{a('shares')})*DCF!$C$61-{div_at_anchor()}", xp, PX)
 r = 13
 mktcap_f = f'({a("spot")}*{a("shares")})'
 for lab, v, xp, fmt in [
@@ -609,14 +651,14 @@ for lab, v, xp, fmt in [
         ('Normalised earnings per share (EGP)', f'=C25/{a("shares")}', NRM['eps'], PX),
         ('Justified price / earnings', f'={a("pe_just")}', IN['pe_just'], MULT),
         ('Implied value per share, rolled to the anchor (EGP)',
-         f'=C26*C27*DCF!$C$61-{a("dps_fy25")}', LN['normalized']['base'], PX)]:
+         f'=C26*C27*DCF!$C$61-{div_at_anchor()}', LN['normalized']['base'], PX)]:
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'C{r}', v, xp, fmt, green=('DCF' in v or 'Income Statement' in v))
     r += 1
 band(ws, r - 1, 3)                                 # implied value lands on row 28
 put(ws, 'D28', 'bear 7.0× (E) / bull 11.5× (F):', fmt=None)
-putf(ws, 'E28', f'=C26*7*DCF!$C$61-{a("dps_fy25")}', LN['normalized']['bear'], PX)
-putf(ws, 'F28', f'=C26*11.5*DCF!$C$61-{a("dps_fy25")}', LN['normalized']['bull'], PX)
+putf(ws, 'E28', f'=C26*7*DCF!$C$61-{div_at_anchor()}', LN['normalized']['bear'], PX)
+putf(ws, 'F28', f'=C26*11.5*DCF!$C$61-{div_at_anchor()}', LN['normalized']['bull'], PX)
 r += 1
 hdr(ws, r, ['Book lens', 'Value']); r += 1         # r = 31
 for lab, v, xp, fmt in [
@@ -629,7 +671,7 @@ for lab, v, xp, fmt in [
          '=DCF!C49', BK['ke_blend'], PCT),
         ('Justified price / book', f'=(C32-{a("g_term")})/(C34-{a("g_term")})', BK['pb_just'], MULT),
         ('Implied value per share, rolled to the anchor (EGP)',
-         f'=C31*C35*DCF!$C$61-{a("dps_fy25")}', LN['book']['base'], PX)]:
+         f'=C31*C35*DCF!$C$61-{div_at_anchor()}', LN['book']['base'], PX)]:
     put(ws, f'A{r}', lab, fmt=None)
     putf(ws, f'C{r}', v, xp, fmt,
          green=('DCF' in v or 'Balance Sheet' in v or 'Income Statement' in v))
@@ -637,9 +679,9 @@ for lab, v, xp, fmt in [
 band(ws, r - 1, 3)                                 # implied value lands on row 36
 put(ws, 'D36', 'bear / bull constructions (E / F):', fmt=None)
 putf(ws, 'E36', f"=(({a('roe_sust')}-0.03)/((DCF!C39+DCF!C49)/2-0.03))*C31"
-     f"*DCF!$C$61-{a('dps_fy25')}", LN['book']['bear'], PX)
+     f"*DCF!$C$61-{div_at_anchor()}", LN['book']['bear'], PX)
 putf(ws, 'F36', f"=(({a('roe_sust')}+0.02-{a('g_term')})/(DCF!C49-{a('g_term')}))*C31"
-     f"*DCF!$C$61-{a('dps_fy25')}", LN['book']['bull'], PX)
+     f"*DCF!$C$61-{div_at_anchor()}", LN['book']['bull'], PX)
 
 # ============ 8 DCF =============================================================
 ws = sheet('DCF')
@@ -713,28 +755,73 @@ band(ws, 31, 4)
 
 put(ws, 'A33', 'COST OF CAPITAL — BUILT HERE, NOT ASSUMED', bold=True, fmt=None)
 coc = [
+    # [R-COC-03] TWO FORMULAS HERE READ rf* + beta x the WHOLE premium, which multiplies Egypt's
+    # country risk by beta, and the terminal one used the measured beta of 1.2249 where the model
+    # reverts to the market at 1.00. The rate came out different from the study's and 87 formula
+    # cells downstream disagreed: the delivered model published EGP 72.92 a share against a study
+    # publishing 87.76. The split's components are INPUTS and live on the Assumptions sheet where
+    # a reader can see and change them; these cells recompute the rate from them.
+    #
+    # EVERY REFERENCE BELOW IS BY LABEL, NEVER BY A TYPED ROW NUMBER. The old block wrote C36, C37,
+    # C38, C39, C41...C52 as literals, so inserting one row anywhere in it would have silently
+    # re-pointed every formula at its neighbour.
     ('Risk-free rate, 10-year local currency', f'={a("rf")}', IN['rf'], PCT2),
     ('Less sovereign default spread (removed to avoid double-counting)', f'={a("sov")}',
      IN['sov_spread_cds'], PCT2),
-    ('Risk-free rate net of the sovereign spread', '=C34-C35', W['rf_star'], PCT2),
+    ('Risk-free rate net of the sovereign spread', '={Risk-free rate, 10-year local currency}'
+     '-{Less sovereign default spread (removed to avoid double-counting)}', W['rf_star'], PCT2),
     ('Beta', f'={a("beta")}', IN['beta'], '0.000'),
-    ('Equity risk premium', f'={a("erp")}', IN['erp_cds'], PCT2),
-    ('Cost of equity, explicit window', '=C36+C37*C38', W['ke_exp'], PCT2),
+    ('Mature equity risk premium — beta applies to THIS leg and to nothing else',
+     f'={a("erp_mature")}', COC['erp_mature'], PCT2),
+    ('Cost of equity, explicit window — country risk charged FLAT, once, beside beta not through it',
+     '={Risk-free rate net of the sovereign spread}+{Beta}*'
+     '{Mature equity risk premium — beta applies to THIS leg and to nothing else}'
+     f'+{a("crp_eff")}', W['ke_exp'], PCT2),
     ('Cost of debt, blended', f'={a("kd")}', IN['kd'], PCT2),
-    ('Cost of debt after tax', f'=C40*(1-{a("tax_eff")})', W['kd_at'], PCT2),
+    ('Cost of debt after tax', '={Cost of debt, blended}*(1-' + a('tax_eff') + ')',
+     W['kd_at'], PCT2),
     ('Market capitalisation (EGP mn)', f'={a("spot")}*{a("shares")}', SPOT * SH, NUM0),
     ('Net bank debt (EGP mn)', f'={a("nd_fy25")}', IN['nd_fy25'], NUM0),
-    ('Debt weight (net debt / (net debt + market capitalisation))', '=C43/(C43+C42)',
+    ('Debt weight (net debt / (net debt + market capitalisation))',
+     '={Net bank debt (EGP mn)}/({Net bank debt (EGP mn)}+{Market capitalisation (EGP mn)})',
      W['wd_exp'], PCT2),
-    ('Equity weight', '=1-C44', W['we_exp'], PCT2),
-    ('Cost of capital, explicit window', '=C45*C39+C44*C41', W['wacc_exp'], PCT2),
+    ('Equity weight', '=1-{Debt weight (net debt / (net debt + market capitalisation))}',
+     W['we_exp'], PCT2),
+    ('Cost of capital, explicit window',
+     '={Equity weight}*{Cost of equity, explicit window — country risk charged FLAT, once, beside beta not through it}'
+     '+{Debt weight (net debt / (net debt + market capitalisation))}*{Cost of debt after tax}',
+     W['wacc_exp'], PCT2),
     ('Terminal risk-free rate', f'={a("rf_term")}', IN['rf_term'], PCT2),
-    ('Terminal equity risk premium', f'={a("erp_term")}', IN['erp_term'], PCT2),
-    ('Terminal cost of equity', '=C47+C37*C48', W['ke_term'], PCT2),
+    ('Terminal mature equity risk premium', f'={a("erp_mature_term")}', ERP_MATURE_TERM, PCT2),
+    ('Terminal cost of equity — at a terminal beta of 1.00, not the measured beta',
+     '={Terminal risk-free rate}+' + a('beta_term') + '*{Terminal mature equity risk premium}'
+     f'+{a("crp_eff_term")}', W['ke_term'], PCT2),
     ('Terminal cost of debt', f'={a("kd_term")}', IN['kd_term'], PCT2),
-    ('Terminal cost of debt after tax', f'=C50*(1-{a("tax_eff")})', W['kd_term_at'], PCT2),
+    ('Terminal cost of debt after tax',
+     '={Terminal cost of debt}*(1-' + a('tax_eff') + ')', W['kd_term_at'], PCT2),
     ('Terminal debt weight', f'={a("wd_term")}', IN['wd_term'], PCT2),
-    ('Terminal cost of capital', '=(1-C52)*C49+C52*C51', W['wacc_term'], PCT2)]
+    ('Terminal cost of capital',
+     '=(1-{Terminal debt weight})*{Terminal cost of equity — at a terminal beta of 1.00, not the measured beta}'
+     '+{Terminal debt weight}*{Terminal cost of debt after tax}', W['wacc_term'], PCT2)]
+
+# LABEL -> CELL, resolved after the block is built. A formula naming a row that does not
+# exist raises here rather than addressing a neighbour silently.
+_COC_ROW = {lab: 'C%d' % (34 + i) for i, (lab, *_x) in enumerate(coc)}
+
+
+def _resolve(f):
+    import re as _re
+    def sub(m):
+        k = m.group(1)
+        if k not in _COC_ROW:
+            raise KeyError('cost-of-capital formula names a row that does not exist: %r' % k)
+        return _COC_ROW[k]
+    return _re.sub(r'\{([^{}]+)\}', sub, f)
+
+
+coc = [(lab, _resolve(v) if isinstance(v, str) else v, xp, fmt)
+       for lab, v, xp, fmt in coc]
+
 r = 34
 for lab, v, xp, fmt in coc:
     put(ws, f'A{r}', lab, fmt=None)
@@ -755,7 +842,7 @@ put(ws, 'A60', 'THE ANCHOR ROLL — one date, one price of time', bold=True, fmt
 put(ws, 'A61', 'Anchor accretion factor — (1 + cost of equity)^(days to anchor / 365)', fmt=None)
 putf(ws, 'C61', f'=(1+C39)^({a("anchor_days")}/365)', DCF['roll'], DF4)
 put(ws, 'A62', 'Fair value per share at the 3-Sep-2026 anchor (EGP)', fmt=None)
-putf(ws, 'C62', f'=C31*C61-{a("dps_fy25")}', DCF['ps'], PX, bold=True)
+putf(ws, 'C62', f'=C31*C61-{div_at_anchor(local=True)}', DCF['ps'], PX, bold=True)
 band(ws, 62, 4)
 put(ws, 'A64', "THE TERMINAL'S CAPITAL CHARGE — MAINTENANCE AT CURRENT COST, NEVER g x IC",
     bold=True, fmt=None)
@@ -763,8 +850,17 @@ for _r, _lab, _f, _v in (
         (65, 'Less maintenance capital at current replacement cost — FY2030 book '
              'depreciation escalated over half the DISCLOSED useful life',
          f'=F8*(1+{a("pi_term")})^({a("asset_life")}/2)', -TR_REC['maintenance']),
-        (66, 'Less capital for real growth — zero, because the stated real growth is zero',
-         '=0', -TR_REC['growth_capex']),
+        # [R-DCF-01] A LINE THAT IS COMPUTED AND NOT PUBLISHED IS A LINE NOTHING CAN VERIFY.
+        # This cell held '=0' beside the sentence "because the stated real growth is zero".
+        # The stated real growth is 2%, the model charges EGP 4,553.9mn of growth capital for
+        # it, and the workbook charged nothing -- so its terminal free cash flow ran 16.3% hot,
+        # its terminal value 16.3% hot, and it published EGP 101.80 a share against a study
+        # publishing 87.76. A claim typed rather than computed, and false against the model's
+        # own inputs. It is now the model's own construction, in live cells:
+        # growth capital = stated REAL growth x the invested capital it has to buy.
+        (66, 'Less capital for real growth — the stated REAL growth times the FY2030 invested '
+             'capital it has to buy',
+         f"=-{a('real_g_term')}*'Summary Financials'!I13", -TR_REC['growth_capex']),
         (67, 'Less inflation on the terminal working-capital base',
          f'=-{a("wc_term")}*{a("pi_term")}', -TR_REC['wc_charge'])):
     put(ws, f'A{_r}', _lab, fmt=None)
