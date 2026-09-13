@@ -11,8 +11,8 @@
     "bear": 43.17228883751404,
     "full": 46.01051880646089
    },
-   "report_bytes": 399150,
-   "workbook_bytes": 33871
+   "report_bytes": 399517,
+   "workbook_bytes": 33870
   },
   {
    "ticker": "AMOC",
@@ -23,8 +23,8 @@
     "bear": 1.6639,
     "full": 27.5238
    },
-   "report_bytes": 891563,
-   "workbook_bytes": 134781
+   "report_bytes": 891365,
+   "workbook_bytes": 134764
   },
   {
    "ticker": "ARCC",
@@ -35,8 +35,8 @@
     "bear": 29.834782868495065,
     "full": 77.79484584533901
    },
-   "report_bytes": 1386330,
-   "workbook_bytes": 50317
+   "report_bytes": 1371082,
+   "workbook_bytes": 50321
   },
   {
    "ticker": "EGCH",
@@ -57,7 +57,7 @@
     ],
     "full": 11.6065
    },
-   "report_bytes": 1730020,
+   "report_bytes": 1728320,
    "workbook_bytes": 50651
   },
   {
@@ -113,8 +113,8 @@
     ],
     "full": 102.89147925242756
    },
-   "report_bytes": 1147249,
-   "workbook_bytes": 46550
+   "report_bytes": 1122256,
+   "workbook_bytes": 46546
   },
   {
    "ticker": "PHDC",
@@ -125,8 +125,8 @@
     "bear": 4.9813,
     "full": 55.0663
    },
-   "report_bytes": 1115363,
-   "workbook_bytes": 37462
+   "report_bytes": 1121747,
+   "workbook_bytes": 37652
   },
   {
    "ticker": "SCEM",
@@ -137,20 +137,20 @@
     "bear": 22.2944,
     "full": 122.6685
    },
-   "report_bytes": 945442,
-   "workbook_bytes": 39069
+   "report_bytes": 960338,
+   "workbook_bytes": 39061
   },
   {
    "ticker": "SWDY",
    "report": "engine/swdy_study/SWDY_Valuation_Study_10-09-2026_public.pdf",
    "workbook": "engine/swdy_study/SWDY_Valuation_Model_10092026_public.xlsx",
    "fair": {
-    "base": 87.8244467891,
-    "bear": 28.8051201823,
-    "full": 133.8678939303
+    "base": 87.763271,
+    "bear": 28.56,
+    "full": 137.73
    },
-   "report_bytes": 1067731,
-   "workbook_bytes": 40005
+   "report_bytes": 1066638,
+   "workbook_bytes": 40111
   },
   {
    "ticker": "TMGH",
@@ -161,8 +161,8 @@
     "bear": 77.13,
     "full": 140.74
    },
-   "report_bytes": 788823,
-   "workbook_bytes": 28577
+   "report_bytes": 788827,
+   "workbook_bytes": 28744
   }
  ]
 }
