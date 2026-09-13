@@ -387,7 +387,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 const T=TICKERS.ALINMA;
 document.getElementById("upd").textContent=SITE.updated;
@@ -421,18 +421,7 @@ if(T.files && T.files.biblio){
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:'SAMA / Fed policy-rate path (the NIM driver)', min:-6, max:6, step:0.1, def:0.1, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Oil / geopolitical / credit-event shock — probability', min:0, max:55, step:1, def:45, impact:0.07,
-    lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Dividend declaration surprise — probability', min:0, max:90, step:1, def:30, impact:0.05,
-    lo:'no surprise', hi:'upside surprise', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Non-oil GDP & Vision 2030 credit demand', min:-5, max:8, step:0.5, def:0.3, impact:1,
-    lo:'demand softening', hi:'demand accelerating', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Oil price & fiscal impulse (system liquidity)', min:-6, max:8, step:0.5, def:0.1, impact:1,
-    lo:'weak / low liquidity', hi:'strong / ample liquidity', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["ALINMA"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

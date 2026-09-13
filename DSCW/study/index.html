@@ -136,6 +136,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -253,23 +254,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["DSCW"])||(typeof METALS!=="undefined"&&METALS["DSCW"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:"CBE policy rate", min:0, max:8.53, step:0.25, def:0, impact:4.13,
-    lo:"today\u2019s rate (23.53%)", hi:"full easing (15.0%)",
-    fmt:v=>(23.53-v).toFixed(2)+"% WACC \u2014 easing "+v.toFixed(1)+"pp, the single biggest driver here" },
-  { name:"Cotton / input cost (gross margin)", min:-2, max:2, step:0.25, def:0, impact:8.0,
-    lo:"cotton dearer / margin worse", hi:"cotton cheaper / margin better",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(2)+"pp gross margin vs the 22.5% FY26E base" },
-  { name:"EGP/USD (export translation)", min:-4, max:8, step:0.5, def:0, impact:0.8,
-    lo:"EGP firm / no further slide", hi:"faster depreciation (export tailwind)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"% vs the FY26E path" },
-  { name:"US / EU apparel-import demand", min:-10, max:10, step:1, def:0, impact:2.0,
-    lo:"demand softens", hi:"demand firms",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% export volume vs base" },
-  { name:"Regional geopolitics / shipping lanes", min:0, max:60, step:5, def:15, impact:0.10,
-    lo:"disruption / higher freight", hi:"calm / normal freight",
-    fmt:v=>Math.round(60-v)+"% disruption risk priced in" }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["DSCW"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

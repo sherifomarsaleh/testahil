@@ -386,7 +386,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 const T=TICKERS.MODON;
 document.getElementById("upd").textContent=SITE.updated;
@@ -427,26 +427,7 @@ renderPeers("peers", "MODON");
 renderTrackBadge("track-badge");
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:"Beta \u2014 how much the share moves with the market", min:-0.65, max:0.65, step:0.05, def:0, impact:1.0,
-    lo:"1.09 \u2014 the bottom of the measured 90% range", hi:"2.40 \u2014 the top of it",
-    fmt:v=>(1.75+v).toFixed(2)+" beta \u2014 THE lever in this edition and the one that flipped the verdict. Measured against the exchange's official index at 1.75 (standard error 0.40, 253 weekly readings over 4.9 years), corrected for thin trading because 84.75% of the shares sit with one holder. The two earlier editions used 1.03 from a basket built out of our own coverage, and read the stock as cheap. The range here is wide because the measurement is: this is the honest uncertainty, not a decoration" },
-  { name:"Terminal cost of capital", min:-1.0, max:1.0, step:0.25, def:0, impact:0.55,
-    lo:"10.9% \u2014 a maturing, deleveraging developer", hi:"12.9%",
-    fmt:v=>(11.92+v).toFixed(2)+"% terminal WACC \u2014 68.7% of enterprise value sits in the terminal block. The explicit-period rate is 11.14%; the terminal rate derives its debt weight (8.0%) from the model's own FY2030 balance sheet rather than assuming one. Note that terminal return on capital (8.5%) now sits BELOW this rate, so faster terminal growth SUBTRACTS value" },
-  { name:"The sales machine \u2014 % of the base plan delivered", min:0, max:120, step:10, def:100, impact:0.006,
-    lo:"run-off: nothing new is ever sold (AED 2.64)", hi:"120% of plan",
-    fmt:v=>v.toFixed(0)+"% of the base new-sales path (AED 12\u219230\u219226\u219223\u219221bn) \u2014 THE contested judgement, computed both ways and never averaged. At 0% the DCF reads AED 2.64; the base plan reads 3.54" },
-  { name:"Backlog conversion pace", min:-8, max:8, step:1, def:0, impact:0.025,
-    lo:"24% a year by FY2030 \u2014 handovers slip", hi:"40% \u2014 handovers accelerate",
-    fmt:v=>(32+v).toFixed(0)+"% terminal-year conversion of the opening backlog \u2014 the schedule that turns the AED 65.4bn contracted book into revenue. Faster conversion pulls cash forward but drains the terminal book that feeds the terminal year; the study prices both effects" },
-  { name:"Receivable days", min:-60, max:60, step:10, def:0, impact:0.004,
-    lo:"collections accelerate to ~310 days", hi:"stretch to ~430 days",
-    fmt:v=>(370+v).toFixed(0)+" days of revenue in closing receivables by FY2030 \u2014 the H1-2026 balance sheet carries 440 days, and the study's working-capital build walks it down a disclosed-anchored path rather than assuming it away" },
-  { name:"Development margin", min:-3, max:3, step:0.5, def:0, impact:0.14,
-    lo:"35% \u2014 cost inflation eats the recognised book", hi:"41% \u2014 H1-2026 level holds",
-    fmt:v=>(38+v).toFixed(1)+"% blended development gross margin by FY2030 \u2014 the recognised-revenue margin the model glides from the 41% H1-2026 actual as older, richer land inventory washes through" }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["MODON"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

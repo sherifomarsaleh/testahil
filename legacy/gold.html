@@ -308,7 +308,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 window.GOLDDATA=METALS.GOLD;
 const T=window.GOLDDATA;
@@ -343,18 +343,7 @@ if(T.files && T.files.biblio){
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:'Real rates / Fed path', min:-10, max:6, step:0.5, def:-2.5, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'US dollar (DXY)', min:-9, max:5, step:0.5, def:-1, impact:1,
-    lo:'strong dollar', hi:'weak dollar', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Inflation / debasement', min:-5, max:6, step:0.5, def:0, impact:1,
-    lo:'disinflation', hi:'inflation / debasement', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Central-bank demand', min:0, max:90, step:1, def:30, impact:0.05,
-    lo:'soft', hi:'strong', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Geopolitical / haven bid', min:0, max:90, step:1, def:25, impact:0.05,
-    lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["GOLD"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

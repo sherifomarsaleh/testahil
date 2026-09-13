@@ -136,6 +136,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -253,23 +254,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["ADNOCDIST"])||(typeof METALS!=="undefined"&&METALS["ADNOCDIST"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:"Biosimilar revenue by FY2030", min:0, max:120, step:10, def:0, impact:0.60,
-    lo:"the plant sells nothing (the published case)", hi:"USD 120m a year",
-    fmt:v=>"USD "+v.toFixed(0)+"m a year of revenue from the new plant by FY2030 \u2014 the study charges the plant's depreciation and its interest but credits it with ZERO revenue, so this is the single lever that is not in the published number at all. About USD "+120+"m closes the whole gap to the market price" },
-  { name:"Credit-loss and provision charge", min:-2.75, max:1.5, step:0.25, def:0, impact:0.50,
-    lo:"normalises to 2.5% of revenue", hi:"runs at the three-year mean 6.52%",
-    fmt:v=>(5.25+v).toFixed(2)+"% of revenue \u2014 THE contested judgement, published both ways and never averaged. Frame A carries 5.25% permanently; Frame B decays to 2.5%. The first quarter of 2026 booked NO credit loss at all, which the auditor qualified, so the question is deferred rather than settled" },
-  { name:"Terminal risk-free rate", min:-1.5, max:1.5, step:0.25, def:0, impact:0.85,
-    lo:"9.0% \u2014 real rate at long-run GDP growth", hi:"12.0%",
-    fmt:v=>(10.5+v).toFixed(2)+"% terminal risk-free rate \u2014 the widest single lever in the study and the one input still resting on an unsourced convention: a sourced 5% inflation target plus an asserted 5.5-point real rate, which sits above the United Arab Emirates's own long-run real growth" },
-  { name:"Domestic price per pack \u2014 annual step", min:-3, max:3, step:0.5, def:0, impact:0.45,
-    lo:"the administered price lags inflation", hi:"it keeps pace",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"pp on the forecast domestic price path. The company realised +12.59% on its own preparations in FY2025 \u2014 measured properly, after separating out product it manufactures under contract \u2014 against a domestic price the the United Arab Emiratesian Drug Authority administers" },
-  { name:"Associate contribution", min:-200, max:100, step:25, def:0, impact:0.30,
-    lo:"the quarter's run-rate (AED 52m)", hi:"the best disclosed year",
-    fmt:v=>"AED "+(250+v).toFixed(0)+"m normalised \u2014 worth about AED "+((250+v)*11/168.75575).toFixed(2)+" a share in the bridge at 11x. The three disclosed years average 246; the first quarter of 2026 annualises to 52, but the auditor states two holdings' statements were not received, so that quarter is evidence rather than a run-rate" }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["ADNOCDIST"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
