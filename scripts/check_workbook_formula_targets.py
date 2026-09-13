@@ -75,9 +75,16 @@ RATCHET = os.path.join(ENGINE, 'build_depth_audit',
 HOUSE = '*_Valuation_Model_*.xlsx'
 
 # A range — an empty cell inside one is ordinary and deliberate.
+# A BARE SHEET NAME MAY NOT START MID-EXPRESSION, AND THE HYPHEN IS WHY.
+# The unquoted sheet-name class carried '-', so in "=B11-Assumptions!$B$26*E5" the
+# pattern matched "B11-Assumptions" as ONE sheet name -- which resolves to no sheet, so
+# the reference was dropped AND B11 was lost with it. SWDY's corporate cost load was
+# reported as read by nothing while five formulas read it. The lookbehind requires a real
+# boundary before an unquoted name, and a sheet whose name genuinely contains a hyphen is
+# written quoted, which the first alternative still accepts.
 RANGE = re.compile(r"\$?[A-Z]{1,3}\$?\d+\s*:\s*\$?[A-Z]{1,3}\$?\d+")
 # A single-cell reference, with or without a sheet qualifier.
-REF = re.compile(r"(?:'([^']+)'!|\b([A-Za-z][\w .&-]*)!)?\$?([A-Z]{1,3})\$?(\d+)\b")
+REF = re.compile(r"(?:'([^']+)'!|(?<![\w$.])([A-Za-z][\w .&]*)!)?\$?([A-Z]{1,3})\$?(\d+)\b")
 # A string literal inside a formula — its text is not a reference.
 STRLIT = re.compile(r'"[^"]*"')
 DATE_IN_NAME = re.compile(r'_(\d{2})(\d{2})(\d{4})')

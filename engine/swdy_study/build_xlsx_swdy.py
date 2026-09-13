@@ -360,10 +360,35 @@ block('Anchors', [
     ('tax_eff', 'Effective tax rate', IN['tax_eff'], PCT),
     ('tax_stat', 'Statutory corporate tax rate', IN['tax_stat'], PCT),
     ('fx_fy25', 'FY2025 average USD/EGP', IN['fx_hist']['FY25'], NUM1)])
+# THE MEASURED FIRST YEAR, from the company's own reviewed half against the comparable
+# half. FY2026 is not forecast: it is what the half measured, annualised on the disclosed
+# pair, and the model says so. The workbook showed the answer and not the anchor.
+_SEG_G26 = {k: IN['seg_rev_h1_26'][k] / IN['seg_rev_h1_25'][k] - 1.0
+            for k in IN['seg_rev_h1_26']}
+
+# The assumption key each segment's growth row is filed under.
+_G26KEY = {'cables': 'cab', 'construct': 'con', 'elecprod': 'ele'}
+_GKEY = {'construct': 'con_g', 'elecprod': 'ele_g'}
+_MGNKEY = {'cables': 'cab_mgn', 'construct': 'con_mgn', 'elecprod': 'ele_mgn'}
+
 block('Revenue drivers — the three disclosed segments', [
     ('copper', 'Copper (USD/tonne)', IN['copper_fcst'], NUM0),
     ('fx_path', 'USD/EGP path', IN['fx_path'], NUM1),
-    ('cab_real_g', 'Cables — real (volume) growth over copper x FX', IN['cables_real_growth'], PCT),
+    # THE SHEET PUBLISHED A DRIVER THE MODEL DOES NOT USE AND OMITTED THE TWO IT DOES.
+    # 'cables_real_growth' (3.0%) is read by no line of the model; the retired
+    # construction multiplied copper x FX by that single "real" residual, which was
+    # volume and pass-through wearing one number, in opposite directions, neither
+    # visible. The model splits them and the sheet now shows both.
+    ('cab_pass', 'Cables — pass-through of copper x FX into price per tonne',
+     IN['cables_passthrough'], PCT),
+    ('cab_vol', 'Cables — volume growth, the company\'s own disclosed tonnage',
+     IN['cables_volume_growth'], PCT),
+    ('seg_g26_cab', 'Cables — FY2026 growth, MEASURED on the reviewed half',
+     _SEG_G26['cables'], PCT),
+    ('seg_g26_con', 'Constructions — FY2026 growth, MEASURED on the reviewed half',
+     _SEG_G26['construct'], PCT),
+    ('seg_g26_ele', 'Electrical products — FY2026 growth, MEASURED on the reviewed half',
+     _SEG_G26['elecprod'], PCT),
     ('con_g', 'Constructions and infrastructure — revenue growth', IN['construct_growth'], PCT),
     ('ele_g', 'Electrical products and digital solutions — revenue growth', IN['elecprod_growth'],
      PCT)])
@@ -448,7 +473,13 @@ block('Balance-sheet and bridge anchors', [
     ('intang', 'Intangible assets and goodwill (EGP mn)', IN['intang_fy25'], NUM0),
     ('pat_fy25', 'FY2025 profit after tax (EGP mn, disclosed)', IN['pat_fy25'], NUM0),
     ('npa_fy25', 'FY2025 profit after minority interests (EGP mn, disclosed)', IN['npa_fy25'], NUM0),
-    ('dps_fy24', 'FY2024 dividend per share (EGP)', IN['dps_fy24'], PX),
+    # A DISCLOSED FACT THE SHEET PRINTS AND THE MODEL DOES NOT CONSUME. FY2025 equity is
+    # the audited closing balance now, so this no longer chains into it; it is retained
+    # because it is what the forecast payout ratio was struck against and a reader is
+    # entitled to see it. Labelled so the page says so rather than leaving a reader to
+    # find out by changing it and watching nothing move.
+    ('dps_fy24', 'FY2024 dividend per share (EGP) — disclosed reference, not used in the '
+     'forecast', IN['dps_fy24'], PX),
     ('dps_fy25', 'FY2025 dividend per share (EGP, ratified 6 May 2026, paid 4 June 2026)',
      IN['dps_fy25'], PX),
     ('div_days', 'Days the dividend compounds — 4-Jun-2026 ex-date to the 3-Sep-2026 anchor',
@@ -474,7 +505,12 @@ block('Currency-of-discounting alternative', [
     ('usd_erp', 'Hard-currency-leg equity risk premium', IN['usd_erp'], PCT),
     ('usd_kd', 'US dollar cost of debt', IN['usd_kd'], PCT),
     ('usd_wd', 'Debt weight, USD leg', IN['usd_wd'], PCT),
-    ('usd_g', 'Terminal growth of the USD leg', IN['usd_g_term'], PCT)])
+    # THE WHOLE BLOCK IS AN ALTERNATIVE and this row is the one cell of it no workbook
+    # formula reaches: the dollar leg is computed in the model and published beside the
+    # adopted read, never blended into it. Named on the row, because the gate reads rows
+    # and so does a reader changing one.
+    ('usd_g', 'Terminal growth of the USD leg — alternative currency of discounting, '
+     'not used in the adopted read', IN['usd_g_term'], PCT)])
 block('Lens inputs', [
     ('ev_ebitda_just', 'Justified EV/EBITDA', IN['ev_ebitda_just'], MULT),
     ('pe_just', 'Justified price/earnings', IN['pe_just'], MULT),
@@ -562,8 +598,33 @@ for s in SEGS:
     put(ws, f'B{r}', SEG['rev'][s], BLUE, NUM0)
     putf(ws, f'C{r}', f'=B{r}/$B${_seg_rev_tot_row}', SEG['rev'][s] / IN['rev_fy25'], PCT)
     put(ws, f'D{r}', SEG['gp_margin'][s], BLUE, PCT)
+    # THE FORECAST WAS FIVE PASTED BLUE LITERALS PER SEGMENT, so copper, the currency
+    # path and all three segment growth rates drove nothing in the delivered workbook —
+    # the sheet showed the answer and called the drivers inputs. It is the model's own
+    # chain now, written out:
+    #
+    #   FY2026 is MEASURED, not forecast — the reviewed half against the comparable half.
+    #   Cables then compounds on copper x FX (the metal and the currency), the
+    #   pass-through of that into price per tonne, and the company's own disclosed
+    #   tonnage. The other two compound on their own disclosed growth.
+    #
+    # Each cell carries the committed figure as its expected answer, so a build whose
+    # arithmetic and record disagree fails rather than publishing both.
     for i in range(5):
-        put(ws, f'{get_column_letter(5+i)}{r}', F['seg_rev'][i][s], BLUE, NUM0)
+        col = get_column_letter(5 + i)
+        if i == 0:
+            fml = '=B%d*(1+%s)' % (r, a('seg_g26_%s' % _G26KEY[s]))
+        elif s == 'cables':
+            # copper x FX ratio year on year, times pass-through, times volume
+            fml = ('=%s%d*(%s*%s)/(%s*%s)*(1+%s)*(1+%s)'
+                   % (get_column_letter(4 + i), r,
+                      a('copper', i), a('fx_path', i),
+                      a('copper', i - 1), a('fx_path', i - 1),
+                      a('cab_pass', i), a('cab_vol', i)))
+        else:
+            fml = '=%s%d*(1+%s)' % (get_column_letter(4 + i), r,
+                                    a(_GKEY[s], i))
+        putf(ws, f'{col}{r}', fml, F['seg_rev'][i][s], NUM0)
     r += 1
 _last = r - 1                                   # 11
 band(ws, r, 9); put(ws, f'A{r}', 'Total revenue', bold=True, fmt=None)
@@ -576,10 +637,18 @@ REV_TOT = r                                     # 12
 r += 2
 hdr(ws, r, ['Segment profit by segment (Note 16 basis)'] + YF); r += 1
 first_g = r                                     # 15
-for s in SEGS:
+# SEGMENT PROFIT WAS PASTED TOO, which is why all three segment MARGINS were read by
+# nothing — fifteen cells on a sheet that tells a reader every blue cell is an input.
+# Segment profit is the segment's revenue times its margin, which is what the model does
+# and what the row above this table already says it is.
+_seg_rev_first = 5                              # the revenue table starts at row 5
+for _n, s in enumerate(SEGS):
     put(ws, f'A{r}', SEG['names'][s], fmt=None)
     for i in range(5):
-        put(ws, f'{CD[i]}{r}', F['seg_gp'][i][s], BLUE, NUM0)
+        putf(ws, f'{CD[i]}{r}',
+             '=%s%d*%s' % (get_column_letter(5 + i), _seg_rev_first + _n,
+                           a(_MGNKEY[s], i)),
+             F['seg_gp'][i][s], NUM0)
     r += 1
 band(ws, r, 6); put(ws, f'A{r}', 'Group segment profit', bold=True, fmt=None)
 for i in range(5):

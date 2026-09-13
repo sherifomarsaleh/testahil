@@ -64,9 +64,16 @@ HOUSE = '*_Valuation_Model_*.xlsx'
 # The sheets that tell a reader their cells are inputs.
 INPUT_SHEETS = ('assumptions', 'inputs', 'drivers')
 
-RANGE = re.compile(r'(?:(?:\'([^\']+)\'|([A-Za-z][\w .&-]*))!)?'
+# A BARE SHEET NAME MAY NOT START MID-EXPRESSION, AND THE HYPHEN IS WHY.
+# The unquoted sheet-name class carried '-', so in "=B11-Assumptions!$B$26*E5" the
+# pattern matched "B11-Assumptions" as ONE sheet name -- which resolves to no sheet, so
+# the reference was dropped AND B11 was lost with it. SWDY's corporate cost load was
+# reported as read by nothing while five formulas read it. The lookbehind requires a real
+# boundary before an unquoted name, and a sheet whose name genuinely contains a hyphen is
+# written quoted, which the first alternative still accepts.
+RANGE = re.compile(r'(?:(?:\'([^\']+)\'|(?<![\w$.])([A-Za-z][\w .&]*))!)?'
                    r'\$?([A-Z]{1,3})\$?(\d+)\s*:\s*\$?([A-Z]{1,3})\$?(\d+)')
-REF = re.compile(r'(?:(?:\'([^\']+)\'|([A-Za-z][\w .&-]*))!)?\$?([A-Z]{1,3})\$?(\d+)\b')
+REF = re.compile(r'(?:(?:\'([^\']+)\'|(?<![\w$.])([A-Za-z][\w .&]*))!)?\$?([A-Z]{1,3})\$?(\d+)\b')
 STRLIT = re.compile(r'"[^"]*"')
 
 # A label that tells the reader this figure is not a driver.
