@@ -4,14 +4,7 @@
   "AMOC_Valuation_Model_10092026_public.xlsx",
   "AMOC_Valuation_Study_10-09-2026_public.docx"
  ],
- "hard": [
-  {
-   "file": "AMOC_Bibliography_10-09-2026.docx",
-   "term": "SIGCM",
-   "why": "internal mandate name",
-   "context": "the other three were unflagged rather than verified. Under SIGCM a figure this desk cannot source is a figure it does n"
-  }
- ],
+ "hard": [],
  "soft": [
   {
    "file": "AMOC_Bibliography_10-09-2026.docx",
