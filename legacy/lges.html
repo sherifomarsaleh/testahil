@@ -386,7 +386,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 const T=TICKERS.LGES;
 document.getElementById("upd").textContent=SITE.updated;
@@ -420,18 +420,7 @@ if(T.files && T.files.biblio){
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:'EV-battery demand — volumes', min:-10, max:8, step:0.1, def:-2.2, impact:1,
-    lo:'sharp depreciation', hi:'firm / tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'AMPC / IRA policy cut — probability', min:0, max:55, step:1, def:38, impact:0.15,
-    lo:'no cut', hi:'cut delivered', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Major OEM / ESS supply win — probability', min:0, max:90, step:1, def:28, impact:0.05,
-    lo:'unlikely', hi:'likely', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Energy storage & AI-datacentre demand', min:-5, max:10, step:0.1, def:2.2, impact:1,
-    lo:'demand softening', hi:'demand accelerating', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Korean won — USD translation', min:-6, max:8, step:0.1, def:0.4, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["LGES"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

@@ -23,6 +23,7 @@ on:
       - '**.html'
       - 'assets/data.js'
       - 'scripts/check_page_integrity.py'
+      - 'assets/levers.js'
       - 'scripts/check_lever_directions.py'
       - 'scripts/check_lever_directions_negative_control.py'
       - 'engine/build_depth_audit/lever_outstanding.json'
@@ -41,6 +42,7 @@ on:
       - '**.html'
       - 'assets/data.js'
       - 'scripts/check_page_integrity.py'
+      - 'assets/levers.js'
       - 'scripts/check_lever_directions.py'
       - 'scripts/check_lever_directions_negative_control.py'
       - 'engine/build_depth_audit/lever_outstanding.json'
@@ -68,6 +70,12 @@ jobs:
           python-version: '3.12'
       - name: Install engine deps
         run: pip install numpy pandas
+      # check_lever_directions.py EVALUATES assets/levers.js rather than regexing it
+      # [R-ENF-03], so it needs node and refuses to run without it.
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
       - name: Run page integrity check
         run: python3 scripts/check_page_integrity.py
       # Added 13-Sep-2026. The sensitivity sliders are JavaScript that runs in the

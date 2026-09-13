@@ -136,6 +136,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -253,23 +254,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["ELEC"])||(typeof METALS!=="undefined"&&METALS["ELEC"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:"Working-capital collection (terminal NWC intensity)", min:0, max:36, step:2, def:0, impact:0.030,
-    lo:"stays where it is (112% of revenue)", hi:"collects back to FY24 (76%)",
-    fmt:v=>(112-v).toFixed(0)+"% of revenue \u2014 the crux; every 5pp is worth roughly EGP 0.15\u20130.20/share on the unfloored DCF" },
-  { name:"Conversion EBITDA per tonne", min:-30, max:30, step:5, def:0, impact:0.032,
-    lo:"trough persists (\u221230%)", hi:"windfall partly returns (+30%, \u2248175k EGP/t)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% vs the build\u2019s 135k EGP/t terminal" },
-  { name:"CBE easing / cost of capital", min:0, max:6.53, step:0.25, def:0, impact:0.055,
-    lo:"today\u2019s money (21.53% WACC)", hi:"full glide to the terminal (15.0%)",
-    fmt:v=>(21.53-v).toFixed(2)+"% WACC \u2014 easing "+v.toFixed(1)+"pp" },
-  { name:"LME copper", min:-20, max:20, step:2, def:0, impact:0.012,
-    lo:"copper falls (frees working capital)", hi:"copper rises (traps working capital)",
-    fmt:v=>"$"+Math.round(14000*(1+v/100)).toLocaleString()+"/t vs the $14,000 anchor \u2014 double-edged: higher copper lifts revenue but inflates the capital it must fund" },
-  { name:"Net-debt anchor (triangulated, not disclosed)", min:-685, max:555, step:35, def:0, impact:-0.00030,
-    lo:"low end of the range (9,120)", hi:"high end (10,360)",
-    fmt:v=>"EGP "+Math.round(9805+v).toLocaleString()+" mn net debt" }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["ELEC"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

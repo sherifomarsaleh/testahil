@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """The lever-direction gate must fire on every shape it claims to catch, and on nothing else.
 
-Every FAILING case here is a construction that actually shipped on the live site.
-Every CLEAN case is one a careless version of this gate would have called wrong --
-above all the CBE-EASING family, where the slider runs from today's money to a LOWER
-rate, so a POSITIVE impact is correct. Five pages carry that lever. A gate that
-matched on the lever's NAME instead of reading the rate off its own labels would have
-reported all five as inverted, which is the permanently-red check [R-ENF-02] forbids.
+Every FAILING case here is a construction that actually shipped on the live site, or one
+the 13-Sep-2026 move of the levers into assets/levers.js made newly possible -- a page
+that stops reading that file, or starts carrying a lever of its own again.
+
+Every CLEAN case is one a careless version of this gate would have called wrong, above all
+the CBE-EASING family: those sliders run from today's money to a LOWER rate, so a POSITIVE
+impact is correct. Five pages carry that lever. A gate matching on the lever's NAME rather
+than reading the rate off its own labels would have reported all five as inverted, which is
+the permanently-red check [R-ENF-02] forbids.
 """
 import json
 import os
@@ -18,23 +21,21 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GATE = os.path.join("scripts", "check_lever_directions.py")
 
-PAGE = """<!doctype html><html><head><title>%s</title></head><body>
+PAGE = """<!doctype html><html><head><title>%(tk)s</title></head><body>
 <div id="fl-lever-card"></div>
+%(tags)s
 <script>
-(function(){
-  renderFairLevers("fl-lever-card", T, [
-%s
-]);
-})();
+(function(){ %(call)s })();
 </script>
 </body></html>
 """
+TAGS = '<script src="/assets/data.js"></script>\n<script src="/assets/levers.js"></script>'
+CALL = 'renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["%s"])||[]);'
 
-# name, min, max, def, impact, lo, hi   -- rendered with double quotes
 DQ = ('  {{ name:"{0}", min:{1}, max:{2}, step:0.01, def:{3}, impact:{4},\n'
       '    lo:"{5}", hi:"{6}",\n    fmt:v=>v.toFixed(2) }}')
-# the same, single-quoted: the syntax that made a first cut of this gate blind to
-# 72 of the 93 panels on the book
+# the single-quoted spelling: the syntax a first cut of this gate could not read, which
+# left it blind to 72 of the 93 panels on the book
 SQ = ("  {{ name:'{0}', min:{1}, max:{2}, step:0.01, def:{3}, impact:{4},\n"
       "    lo:'{5}', hi:'{6}',\n    fmt:v=>v.toFixed(2) }}")
 
@@ -60,21 +61,41 @@ INVERTED_WORDED = SQ.format("CBE rate path \\u2014 impact on the discount rate",
                             "tighter / rate headwind", "easier / rate tailwind")
 CLEAN_OPERATING = DQ.format("Panda store cadence (net new stores a year)", 8, 20, 20, 0.924,
                             "8 \\u2014 the observed H1-2026 run-rate", "20 \\u2014 company guidance")
+NO_CAPTION = ('  { name:"Terminal growth", min:1.0, max:2.5, step:0.25, def:2.0, impact:2.72,\n'
+              '    lo:"1.0%", hi:"2.5%" }')
 
 
-def build(root, pages, outstanding=()):
+def build(root, book, outstanding=(), levers_js=None, page_src=None, extra_pages=None):
+    """book: {TICKER: [lever source, ...]}. page_src overrides the page for one ticker.
+
+    extra_pages: {relative path: source} for surfaces that are not TICKER/study/index.html
+    -- the legacy site, which carries its own copy of every one of these pages and on
+    which all four inverted levers were also live.
+    """
     os.makedirs(os.path.join(root, "scripts"), exist_ok=True)
+    os.makedirs(os.path.join(root, "assets"), exist_ok=True)
     os.makedirs(os.path.join(root, "engine", "build_depth_audit"), exist_ok=True)
     shutil.copy(os.path.join(ROOT, GATE), os.path.join(root, GATE))
     json.dump({"why": "negative control", "adopted": "2026-09-13",
                "outstanding": list(outstanding)},
               open(os.path.join(root, "engine", "build_depth_audit", "lever_outstanding.json"),
                    "w", encoding="utf-8"), indent=1)
-    for tk, levers in pages.items():
+    if levers_js is None:
+        body = ",\n".join('"%s": [\n%s\n]' % (tk, ",\n".join(lv)) for tk, lv in book.items())
+        levers_js = "const LEVERS = {\n%s\n};\n" % body
+    if levers_js is not False:
+        open(os.path.join(root, "assets", "levers.js"), "w", encoding="utf-8").write(levers_js)
+    for tk in book:
         d = os.path.join(root, tk, "study")
         os.makedirs(d, exist_ok=True)
-        with open(os.path.join(d, "index.html"), "w", encoding="utf-8") as fh:
-            fh.write(PAGE % (tk, ",\n".join(levers)))
+        src = page_src.get(tk) if page_src else None
+        if src is None:
+            src = PAGE % {"tk": tk, "tags": TAGS, "call": CALL % tk}
+        open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(src)
+    for rel, src in (extra_pages or {}).items():
+        f = os.path.join(root, rel)
+        os.makedirs(os.path.dirname(f), exist_ok=True)
+        open(f, "w", encoding="utf-8").write(src)
 
 
 def run(root):
@@ -84,80 +105,113 @@ def run(root):
 
 CASES = [
     ("an inverted BETA lever FAILS and is named",
-     {"ADNOCLS": [INVERTED_BETA]}, (), True, "Beta"),
+     {"ADNOCLS": [INVERTED_BETA]}, True, "Beta"),
     ("an inverted NUMERIC rate lever FAILS",
-     {"MODON": [INVERTED_TERMINAL]}, (), True, "Terminal cost of capital"),
+     {"MODON": [INVERTED_TERMINAL]}, True, "Terminal cost of capital"),
     ("an inverted WORDED rate lever FAILS",
-     {"FWRY": [INVERTED_WORDED]}, (), True, "CBE rate path"),
+     {"FWRY": [INVERTED_WORDED]}, True, "CBE rate path"),
     ("an inverted EASING lever FAILS (the direction is read, not assumed)",
-     {"ARCC": [INVERTED_EASING]}, (), True, "CBE easing"),
+     {"ARCC": [INVERTED_EASING]}, True, "CBE easing"),
     ("a lever with impact exactly 0 FAILS",
-     {"ELEC": [INERT]}, (), True, "inert lever"),
+     {"ELEC": [INERT]}, True, "inert lever"),
     ("a rate lever whose labels say neither a rate nor a direction FAILS",
-     {"CLHO": [UNREADABLE]}, (), True, "unverifiable"),
+     {"CLHO": [UNREADABLE]}, True, "unverifiable"),
+    ("a lever with no caption at all FAILS",
+     {"SAVOLA": [NO_CAPTION]}, True, "no caption"),
     ("CLEAN: a CBE-easing lever with POSITIVE impact does not fire",
-     {"ARCC": [CLEAN_EASING]}, (), False, None),
+     {"ARCC": [CLEAN_EASING]}, False, None),
     ("CLEAN: a beta lever whose hi label says '90% interval' does not fire",
-     {"ADNOCLS": [CLEAN_BETA]}, (), False, None),
+     {"ADNOCLS": [CLEAN_BETA]}, False, None),
     ("CLEAN: a worded rate lever pointing the right way does not fire",
-     {"FWRY": [CLEAN_WORDED]}, (), False, None),
+     {"FWRY": [CLEAN_WORDED]}, False, None),
     ("CLEAN: an operating lever with positive impact does not fire",
-     {"SAVOLA": [CLEAN_OPERATING]}, (), False, None),
-    ("CLEAN: single-quoted and double-quoted panels are both read",
-     {"FWRY": [CLEAN_WORDED], "ADNOCLS": [CLEAN_BETA, CLEAN_OPERATING]}, (), False, None),
-    ("a listed lever is allowed to fail",
-     {"CLHO": [UNREADABLE]}, ("CLHO/study/index.html::CBE facility-cost path (WACC glide)",),
-     False, None),
-    ("a listed lever does NOT excuse a different one on the same page",
-     {"CLHO": [UNREADABLE, INVERTED_BETA]},
-     ("CLHO/study/index.html::CBE facility-cost path (WACC glide)",), True, "Beta"),
+     {"SAVOLA": [CLEAN_OPERATING]}, False, None),
+    ("CLEAN: single-quoted and double-quoted levers are both read",
+     {"FWRY": [CLEAN_WORDED], "ADNOCLS": [CLEAN_BETA, CLEAN_OPERATING]}, False, None),
 ]
 
 
 def main():
     bad = 0
-    for title, pages, outstanding, want_fail, needle in CASES:
+
+    def case(title, want_fail, needle, **kw):
+        nonlocal bad
         tmp = tempfile.mkdtemp(prefix="nclev")
         try:
-            build(tmp, pages, outstanding)
+            build(tmp, **kw)
             rc, out = run(tmp)
             ok = (rc != 0) == want_fail
             if ok and needle:
                 ok = needle in out
             print("%-4s %s" % ("PASS" if ok else "FAIL", title))
             if not ok:
-                print("       rc=%d\n%s" % (rc, "\n".join("       " + l for l in out.splitlines()[:14])))
+                print("       rc=%d\n%s" % (rc, "\n".join("       " + l
+                                                          for l in out.splitlines()[:12])))
             bad += 0 if ok else 1
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
-    # an empty population is a broken gate, not a clean book [R-ENF-04]
-    tmp = tempfile.mkdtemp(prefix="nclev")
-    try:
-        build(tmp, {})
-        rc, out = run(tmp)
-        ok = rc != 0 and "examined no pages" in out
-        print("%-4s a run that examines no page at all FAILS [R-ENF-04]" % ("PASS" if ok else "FAIL"))
-        bad += 0 if ok else 1
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+    for title, book, want_fail, needle in CASES:
+        case(title, want_fail, needle, book=book)
 
-    # a panel that cannot be parsed must never read as clean
-    tmp = tempfile.mkdtemp(prefix="nclev")
-    try:
-        build(tmp, {"ADNOCLS": [CLEAN_BETA]})
-        p = os.path.join(tmp, "ADNOCLS", "study", "index.html")
-        src = open(p, encoding="utf-8").read().replace("[\n  { name:", "[\n  ( name:")
-        open(p, "w", encoding="utf-8").write(src)
-        rc, out = run(tmp)
-        ok = rc != 0 and "could not be read" in out
-        print("%-4s an unreadable lever panel FAILS rather than being skipped"
-              % ("PASS" if ok else "FAIL"))
-        bad += 0 if ok else 1
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+    case("a listed lever is allowed to fail", False, None,
+         book={"CLHO": [UNREADABLE]},
+         outstanding=("CLHO::CBE facility-cost path (WACC glide)",))
+    case("a listed lever does NOT excuse a different one on the same page", True, "Beta",
+         book={"CLHO": [UNREADABLE, INVERTED_BETA]},
+         outstanding=("CLHO::CBE facility-cost path (WACC glide)",))
 
-    total = len(CASES) + 2
+    # --- the conditions the 13-Sep-2026 move made possible -------------------------
+    case("a page carrying an inline lever array again FAILS", True, "inline lever array",
+         book={"ADNOCLS": [CLEAN_BETA]},
+         page_src={"ADNOCLS": PAGE % {"tk": "ADNOCLS", "tags": TAGS,
+                                      "call": 'renderFairLevers("fl-lever-card", T, [\n'
+                                              + CLEAN_BETA + "\n]);"}})
+    case("a page that never loads assets/levers.js FAILS", True, "never loads",
+         book={"ADNOCLS": [CLEAN_BETA]},
+         page_src={"ADNOCLS": PAGE % {"tk": "ADNOCLS",
+                                      "tags": '<script src="/assets/data.js"></script>',
+                                      "call": CALL % "ADNOCLS"}})
+    case("a page loading levers.js AFTER the call FAILS", True, "AFTER",
+         book={"ADNOCLS": [CLEAN_BETA]},
+         page_src={"ADNOCLS": PAGE % {"tk": "ADNOCLS",
+                                      "tags": '<script src="/assets/data.js"></script>',
+                                      "call": CALL % "ADNOCLS"}
+                   + '<script src="/assets/levers.js"></script>'})
+    case("a page reading a LEVERS key the file does not hold FAILS", True, "does not hold",
+         book={"ADNOCLS": [CLEAN_BETA]},
+         page_src={"ADNOCLS": PAGE % {"tk": "ADNOCLS", "tags": TAGS, "call": CALL % "ADNOCGAS"}})
+    case("assets/levers.js missing FAILS", True, "does not exist",
+         book={"ADNOCLS": [CLEAN_BETA]}, levers_js=False)
+    case("assets/levers.js that does not evaluate FAILS", True, "did not evaluate",
+         book={"ADNOCLS": [CLEAN_BETA]}, levers_js="const LEVERS = { oops:: };\n")
+    case("assets/levers.js holding no lever at all FAILS [R-ENF-04]", True, "no lever at all",
+         book={"ADNOCLS": [CLEAN_BETA]}, levers_js="const LEVERS = {};\n")
+    case("a book with no page to hold it against FAILS [R-ENF-04]", True, "no page to hold",
+         book={}, levers_js='const LEVERS = {"ADNOCLS": [\n%s\n]};\n' % CLEAN_BETA)
+
+    # --- the legacy site carries its own copy of every one of these pages -----------
+    LEGACY_TAGS = ('<script src="assets/data.js"></script>'
+                   '<script src="assets/levers.js"></script>')
+    case("a LEGACY page carrying an inline lever array FAILS", True, "inline lever array",
+         book={"ADNOCLS": [CLEAN_BETA]},
+         extra_pages={"legacy/adnocls.html":
+                      PAGE % {"tk": "ADNOCLS", "tags": LEGACY_TAGS,
+                              "call": 'renderFairLevers("fl-lever-card", T, [\n'
+                                      + CLEAN_BETA + "\n]);"}})
+    case("a LEGACY page that never loads levers.js FAILS", True, "never loads",
+         book={"ADNOCLS": [CLEAN_BETA]},
+         extra_pages={"legacy/adnocls.html":
+                      PAGE % {"tk": "ADNOCLS",
+                              "tags": '<script src="assets/data.js"></script>',
+                              "call": CALL % "ADNOCLS"}})
+    case("CLEAN: a LEGACY page wired the relative way does not fire", False, None,
+         book={"ADNOCLS": [CLEAN_BETA]},
+         extra_pages={"legacy/adnocls.html":
+                      PAGE % {"tk": "ADNOCLS", "tags": LEGACY_TAGS,
+                              "call": CALL % "ADNOCLS"}})
+
+    total = len(CASES) + 13
     print("\n%d/%d conditions behaved as specified" % (total - bad, total))
     return 1 if bad else 0
 

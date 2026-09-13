@@ -386,7 +386,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 const T=TICKERS.ISPH;
 document.getElementById("upd").textContent=SITE.updated;
@@ -420,18 +420,7 @@ if(T.files && T.files.biblio){
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:'Drug re-pricing & EGP path — the top-line driver', min:-6, max:6, step:0.1, def:0.6, impact:1,
-    lo:'sharp depreciation', hi:'firm / tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'CBE rate path — finance-cost leverage', min:-5, max:8, step:0.5, def:0.3, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Pharma demand & market share', min:-6, max:8, step:0.5, def:0.5, impact:1,
-    lo:'demand softening', hi:'demand accelerating', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'EGP devaluation step — probability', min:0, max:55, step:1, def:35, impact:0.03,
-    lo:'unlikely', hi:'likely', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Re-pricing round / supplier deal — probability', min:0, max:90, step:1, def:40, impact:0.05,
-    lo:'unlikely', hi:'lands', fmt:v=>Math.round(v)+'% chance' }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["ISPH"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

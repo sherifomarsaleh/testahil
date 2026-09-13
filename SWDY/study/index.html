@@ -136,6 +136,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -253,23 +254,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["SWDY"])||(typeof METALS!=="undefined"&&METALS["SWDY"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:"Working capital / revenue", min:17, max:23, step:0.5, def:19.9, impact:-1.07,
-    lo:"collects to 17% of revenue", hi:"slips back to 23%",
-    fmt:v=>v.toFixed(1)+"% of revenue \u2014 the cash the growth has to fund before any of it reaches an owner; 19.9% is the audited FY2025 level" },
-  { name:"Segment margins", min:-15, max:15, step:1, def:0, impact:0.78,
-    lo:"compression persists (\u221215%)", hi:"pricing power returns (+15%)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on all three disclosed segment margins together" },
-  { name:"CBE easing \u2014 cost of capital", min:0, max:3, step:0.25, def:0, impact:4.00,
-    lo:"today\u2019s money (26.63% WACC)", hi:"3pp of easing (23.63%)",
-    fmt:v=>(26.63-v).toFixed(2)+"% explicit WACC \u2014 easing "+v.toFixed(2)+"pp across both windows" },
-  { name:"LME copper", min:-15, max:15, step:1, def:0, impact:0.17,
-    lo:"copper falls 15%", hi:"copper rises 15%",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% vs the held-flat curve \u2014 nearly a wash: Cables earns more pounds but the working capital that funds them grows with it" },
-  { name:"EGP / USD path", min:-10, max:30, step:2, def:0, impact:0.17,
-    lo:"pound holds (\u221210%)", hi:"pound weakens 30% faster",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the assumed depreciation path \u2014 it lifts the copper-linked pound revenue, and the honest version of the currency question is the study\u2019s dollar-discounting alternative" }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["SWDY"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

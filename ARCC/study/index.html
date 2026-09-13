@@ -136,6 +136,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -253,23 +254,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["ARCC"])||(typeof METALS!=="undefined"&&METALS["ARCC"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:"Local cement price \u2014 FY2026 step", min:-6, max:10, step:1, def:0, impact:0.55,
-    lo:"prices roll over (\u22126pp)", hi:"the Q4 run-rate extends (+10pp)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"pp on the assumed +8.0% FY2026 local price step \u2014 the single largest lever, and the one the study anchors on a DISCLOSED exit rate: the fourth quarter of 2025 realised EGP 3,118 a tonne, 7.2% above the full-year average, so +8.0% is barely a point above prices simply stopping here" },
-  { name:"Kiln utilisation", min:-6, max:6, step:1, def:0, impact:0.30,
-    lo:"the kiln runs cooler (\u22126pp)", hi:"it runs harder (+6pp)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"pp on the 91.7% disclosed kiln rate \u2014 THE volume driver in this build. The plant has run 92\u201394% in three of the last five years, so there is little room above and the lever is asymmetric" },
-  { name:"Clinker retained rather than exported", min:-10, max:14, step:2, def:0, impact:0.22,
-    lo:"more tonnes ship as raw clinker", hi:"more clinker is ground into cement",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"pp of clinker production diverted from export into domestic cement \u2014 the operating lever the single-product model could not see. Clinker and cement compete for the SAME kiln, and a tonne shipped raw realises about USD 30 against cement several times that" },
-  { name:"CBE easing \u2014 cost of capital", min:0, max:3, step:0.25, def:0, impact:0.58,
-    lo:"today\u2019s money (24.52% WACC)", hi:"3pp of easing (21.52%)",
-    fmt:v=>(24.52-v).toFixed(2)+"% explicit WACC \u2014 easing "+v.toFixed(2)+"pp. The terminal rate matters more still, and the discount-rate axis dominates the growth axis on this name: four points of terminal growth move the value less than one point of rate" },
-  { name:"EBITDA margin", min:-4, max:4, step:1, def:0, impact:0.52,
-    lo:"the 2025 step gives back (\u22124pp)", hi:"it holds (+4pp)",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"pp on every forecast year \u2014 worth about EGP 5.95 a share for two points. The forecast glides the audited 39.3% down through the window; Q1-2026 printed a 42.9% gross margin against 40.6% for FY2025, so the near-term risk is that this is too cautious" }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["ARCC"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
