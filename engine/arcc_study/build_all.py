@@ -35,6 +35,7 @@ STEPS = [
     ('docx_biblio.py', 'the bibliography', 'the standalone source register'),
     ('bake_docs_pdf.py', 'the study and bibliography PDFs', 'rendered FROM those documents, so it follows them — the PDF is the file a reader opens, and a rebuild that leaves it stale has not rebuilt the study'),
     ('build_xlsx_arcc.py', 'the workbook', 'the delivered model'),
+    ('bake_model_pdf.py', 'the workbook PDF', 'rendered FROM the workbook, so it follows it — check_artefact_freshness found this PDF a whole edition behind its own spreadsheet'),
     ('recalc.py', None, 'an independent recalculation of that workbook'),
     ('driver_test.py', None, 'every live driver moves the answer'),
     ('prose_check.py', None, 'every figure in prose reconciled against the model'),

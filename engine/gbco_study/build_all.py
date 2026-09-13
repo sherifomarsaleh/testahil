@@ -33,6 +33,7 @@ STEPS = [
     ('build_xlsx2.py', 'the workbook, part 2', "Segments and DCF — reads part 1's rows"),
     ('build_xlsx3.py', 'the workbook, part 3', 'the statements — reads parts 1-2'),
     ('build_xlsx4.py', 'the workbook, part 4', 'sheets in model-report order — reads parts 1-3'),
+    ('bake_model_pdf.py', 'the workbook PDF', 'rendered FROM the workbook, so it follows it — check_artefact_freshness found this PDF a whole edition behind its own spreadsheet'),
     ('recalc.py', None, 'an independent recalculation of that workbook'),
     ('prose_check.py', None, 'every figure in prose reconciled against the model'),
     ('footing_check.py', None, 'every total reproducible from its rows'),
