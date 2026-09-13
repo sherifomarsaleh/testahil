@@ -189,9 +189,14 @@ table([['Document', 'Publisher', 'Date', 'What was taken from it'],
        # name's own price library on all 35 overlapping sessions after 14 June 2026. The
        # library is the source now, cut at this study's valuation date, and the entry says
        # which file and to when rather than describing a file nothing opens.
+       # A REPOSITORY PATH ON A READER'S PAGE IS INTERNAL MACHINERY, and the delivered
+       # vocabulary gate is right to refuse it. The reader needs to know WHICH series
+       # this is and how far it runs, not where the file sits on a disk they will never
+       # see. Named for the reader; the path lives in price_series.py, where the person
+       # who needs it is already looking.
        ['Daily price history for SWDY on the Egyptian Exchange',
-        'engine/raw_ohlc/EG/SWDY.csv — the repository price library, the same series every '
-        'other name in this book is struck on',
+        "This desk's own daily price library for the Egyptian Exchange — the same series "
+        'every other name in this book is struck on',
         'read to ' + M['asof'] + ', the valuation date',
         'The anchor price, the volatility estimate, the moving-average structure, the beta '
         'regression and the price distributions. A study-local copy of this series was read '
