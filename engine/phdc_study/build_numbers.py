@@ -56,6 +56,41 @@ def _phdc_corrections_applied():
                if v.get("applied"))
 
 
+def _prior_edition():
+    """What the SUPERSEDED edition published, read out of the file a reader received.
+
+    The supersession sentence states what moved, so it quotes the previous edition's
+    rate -- and a figure a document prints must be a figure something committed, or
+    prose_check cannot reconcile it and the study is asserting rather than reporting.
+    Reading it from the delivered workbook makes it evidence rather than memory.
+    """
+    import openpyxl
+    import edition as _ed
+    wb = openpyxl.load_workbook(os.path.join(HERE, _ed.PRIOR_MODEL_XLSX),
+                                data_only=False)
+    S = wb["Summary"]
+
+    def by_label(label, col=2):
+        for row in S.iter_rows(min_col=1, max_col=1):
+            v = row[0].value
+            if isinstance(v, str) and v.strip().lower() == label.lower():
+                return S.cell(row=row[0].row, column=col).value
+        raise SystemExit("the superseded workbook has no row %r" % label)
+
+    return {"edition": _ed.SUPERSEDES[-1].isoformat(),
+            "workbook": _ed.PRIOR_MODEL_XLSX,
+            "wacc_adopted": by_label("Weighted average, swap basis"),
+            "wacc_alternative": by_label("Weighted average, rating basis"),
+            "per_share_bear": by_label("Weighted central", col=2),
+            "per_share_base": by_label("Weighted central", col=3)}
+
+
+def _diag_implied():
+    """The reverse read, from the diagnostic file that owns it."""
+    d = json.load(open(os.path.join(HERE, "diagnostics.json")))
+    return d["implied"]["value"]
+
+
 def main():
     W = json.load(open(os.path.join(HERE, "wacc_result.json")))
     peers = json.load(open(os.path.join(HERE, "peers.json")))
@@ -150,7 +185,12 @@ def main():
             "cfo_lo": CF["lo"], "cfo_mid": CF["mid"], "cfo_hi": CF["hi"],
             "cpi_trailing3": VAL.CPI3,
             "target_backlog_multiple": VAL.TARGET_BACKLOG_MULT,
-            "market_implied_cash_conversion": implied,
+            # REMOVED 13-09-2026. A quantity SOLVED FROM A PRICE must not sit in
+            # the file every builder reads -- that is the reverse-engineered
+            # rate the protocol prohibits, arriving through a side door, and
+            # diagnostics.json says so in its own words while this line put it
+            # back. It lives in diagnostics.json["implied"]["value"], which is
+            # where every consumer now reads it from [R-ENF-05].
             "edition_11jun_wacc": 0.18,      # the 11-Jun-2026 edition's typed rate, kept for the narrative
             # THE IMMEDIATELY SUPERSEDED EDITION -- maintained by each strike, because
             # that is what the document's supersession sentence and the football chart's
@@ -243,6 +283,7 @@ def main():
         },
         "lenses": V2.lenses()["rows"],
         "lens_weighted": V2.lenses()["weighted"],
+        "prior_edition": _prior_edition(),
         "lens_detail": {k: V2.lenses()[k] for k in ("normalised_inputs", "book_reference")},
         # [R-LENS-03] the architecture as a record the outside gate reads
         "lens_record": {
@@ -575,7 +616,7 @@ def main():
                100 * _CONV["FY2025"],
                _CS["low_conversion"]["per_share"], _CS["base"]["per_share"],
                _CS["high_conversion"]["per_share"],
-               100 * out["derived"]["market_implied_cash_conversion"],
+               100 * _diag_implied(),
                abs(out["statements"]["dcf_a"]["per_share"]))))
 
     # [R-LENS-03] the central IS the class primary, not a blend of lenses

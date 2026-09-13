@@ -1,46 +1,64 @@
 {
  "ticker": "PHDC",
- "as_of": "2026-09-02",
+ "as_of": "2026-09-10",
+ "central_adopted": 21.08966329162309,
+ "generated_by": "engine/phdc_study/contested.py \u2014 never hand-edited",
+ "direction_count": {
+  "priced": 3,
+  "alternative_worth_more": 1,
+  "alternative_worth_less": 2,
+  "note": "a study resolving every contested choice the same way is how a lean survives an audit of its steps. This is a flag and not a failure."
+ },
  "judgements": [
   {
    "name": "the central lens",
    "adopted": "the cash-flow lens alone",
    "alternative": "the retired 45/15/20/20 blend of four lenses",
-   "value_adopted": 17.151687534730655,
-   "value_alternative": 10.9412,
-   "why": "three of the four blended lenses value a developer on reported earnings and historical-cost book, which for a company whose worth sits in an undelivered order book measures a floor; and the weights had never cleared any out-of-sample test"
+   "value_alternative": null,
+   "alternative_priced_at": "the edition of 2 September 2026, EGP 10.9412",
+   "why_not_repriced": "three of the four lenses in that blend were retired with it and are not built by this model, so the alternative cannot be run against the current numbers. The figure beside it is what it was worth when it was retired, and it is named as that rather than carried as current.",
+   "why": "three of the four blended lenses value a developer on reported earnings and historical-cost book, which for a company whose worth sits in an undelivered order book measures a floor; and the weights had never cleared any out-of-sample test",
+   "value_adopted": 21.08966329162309
   },
   {
    "name": "the discount rate's shape",
-   "adopted": "a schedule gliding to a norm-built terminal",
-   "alternative": "a flat rate held for the whole window",
-   "value_adopted": 17.151687534730655,
-   "value_alternative": 6.35,
-   "why": "the central bank publishes a disinflation path and this study's own cost-of-debt assumptions already follow it; a flat crisis rate for fifteen years is a forecast that Egypt never normalises, and it was never argued for"
+   "adopted": "a rate that glides with the house Egyptian macro path",
+   "alternative": "a flat rate held for the whole window and the perpetuity",
+   "value_alternative": 7.33812589666521,
+   "why": "holding a crisis-level rate to year fifteen and into perpetuity asserts that Egypt never normalises, while this study's own cost of debt already follows the disinflation path",
+   "value_adopted": 21.08966329162309,
+   "cost_of_the_judgement": -13.751537394957879,
+   "share_of_value": 0.6520510642965102
   },
   {
    "name": "the length of the explicit window",
-   "adopted": "fifteen years, until growth converges",
+   "adopted": "fifteen years, run until growth meets the terminal",
    "alternative": "five years, as the earlier editions carried",
-   "value_adopted": 17.151687534730655,
-   "value_alternative": 26.51,
-   "why": "a window that ends at 44% growth and then capitalises at 7% capitalises a rate the model never reached; it put 74% of value in the terminal"
+   "value_alternative": 5.350896426917972,
+   "why": "a five-year window closes while deliveries are still compounding, so the terminal capitalises a growth rate the model never reached",
+   "value_adopted": 21.08966329162309,
+   "cost_of_the_judgement": -15.738766864705118,
+   "share_of_value": 0.7462787170697328
   },
   {
    "name": "terminal growth",
-   "adopted": "inflation only, zero real",
+   "adopted": "the house Egyptian terminal at zero real growth",
    "alternative": "the 12% the earlier editions carried",
-   "value_adopted": 17.151687534730655,
-   "value_alternative": 21.0,
-   "why": "12% against a terminal rate embedding about 14.6% inflation is a perpetual real decline of two to three points a year that nothing disclosed supports"
+   "value_alternative": 38.83870842305231,
+   "why": "12% nominal in perpetuity is above Egypt's own long-run nominal GDP in the same currency, which makes the company the economy eventually",
+   "value_adopted": 21.08966329162309,
+   "cost_of_the_judgement": 17.74904513142922,
+   "share_of_value": 0.841599265289324
   },
   {
    "name": "the delivery path",
-   "adopted": "the disclosed 15% run, faded to nothing over ten years",
+   "adopted": "the disclosed run of handovers, fading",
    "alternative": "the 15% run held flat across the window",
-   "value_adopted": 17.151687534730655,
-   "value_alternative": 32.588206315988245,
-   "why": "a company cannot hand over 15% more homes every year for ever: it is limited by what it can build, and holding the run flat would have deliveries fourteen times higher in 2040 than in 2026"
+   "value_alternative": null,
+   "alternative_priced_at": "the edition of 2 September 2026, EGP 32.5882",
+   "why_not_repriced": "the fade is built into the model's own delivery ladder rather than exposed as a parameter, so holding it flat is a rebuild and not a re-run. Named as the edition it was priced at.",
+   "why": "the company's own handover record fades; holding the peak year flat for fifteen years is a claim about something it has not done",
+   "value_adopted": 21.08966329162309
   }
  ]
 }

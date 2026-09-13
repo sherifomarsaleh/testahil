@@ -183,10 +183,17 @@ GAPS = {
         "deliveries and construction spend are disclosed, so FY2025 has audited "
         "financials and NO operating drivers. Closed by: the FY2025 release, or the "
         "company confirming the figures directly.",
-    "h1_2026_results": "As at this build date (30-Aug-2026) no 2Q/H1-2026 statements or "
-        "release are posted to the result centre; the newest disclosure of any kind is "
-        "1Q2026 (posted 25-Jun-2026). The study's information set therefore ends at "
-        "1Q2026. Closed by: the H1-2026 filing.",
+    # THIS SAID NO HALF-YEAR DISCLOSURE EXISTED, and the input block forty lines below
+    # names one. A release of 18-Aug-2026 is REPORTED; this study has not obtained the
+    # filing and uses nothing from it, which is a sourcing decision and not an absence.
+    "h1_2026_results": "A half-year 2026 release of 18-Aug-2026 is REPORTED in the "
+        "trade press — an order book of EGP 284bn at 30 June, 40% up on the year, and "
+        "a further EGP 75bn sold at Hacienda Ras El Hekma in the fortnight after. This "
+        "study has NOT obtained the filing itself and uses nothing from it: a report "
+        "of a disclosure is a lead and never a source. The newest disclosure this "
+        "study HOLDS is 1Q2026 (posted 25-Jun-2026) and its information set ends "
+        "there, so if those reported figures hold the order book is ahead of what "
+        "this study carries. Closed by: the H1-2026 filing itself, from the company.",
     "securitisation_pricing": "The EGP 2.015bn securitisation of 4-Feb-2026 discloses "
         "tranche sizes, tenors and national-scale ratings but NO coupon on any tranche, "
         "so the company's own marginal cost of debt cannot be read. Closed by: the "

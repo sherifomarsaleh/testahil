@@ -14,6 +14,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import valuation_v2 as _V2       # the terminal growth this model actually runs
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+# THE REVERSE READ, FROM THE FILE THAT OWNS IT. A quantity solved from a price is a
+# DIAGNOSTIC; it was sitting in study_numbers.json, which every builder reads, and that
+# is the reverse-engineered rate the protocol prohibits arriving through a side door.
+# Reading it here from diagnostics.json keeps it printable and keeps it out of the
+# numbers file, where something could consume it as an input [R-ENF-05].
+_IMPLIED = json.load(open(os.path.join(HERE, "diagnostics.json")))["implied"]["value"]
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 ST = N["statements"]
 M, D, W, REG = N["meta"], N["derived"], N["wacc"], N["registry"]
@@ -163,7 +170,7 @@ def build(path):
     r = row(ws, r, "Book value of equity per share",
             [round(D["book_equity_per_share"], 2)], fmt="#,##0.00")
     r = row(ws, r, "Cash conversion implied by the market price",
-            [round(D["market_implied_cash_conversion"], 4)], fmt="0.00%")
+            [round(_IMPLIED, 4)], fmt="0.00%")
     r += 1
     r = row(ws, r, "Cost of capital", [], bold=True)
     r = row(ws, r, "Weighted average, rating basis", [W["wacc_rating"]], fmt="0.00%")

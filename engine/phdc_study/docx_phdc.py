@@ -19,6 +19,13 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+# THE REVERSE READ, FROM THE FILE THAT OWNS IT. A quantity solved from a price is a
+# DIAGNOSTIC; it was sitting in study_numbers.json, which every builder reads, and that
+# is the reverse-engineered rate the protocol prohibits arriving through a side door.
+# Reading it here from diagnostics.json keeps it printable and keeps it out of the
+# numbers file, where something could consume it as an input [R-ENF-05].
+_IMPLIED = json.load(open(os.path.join(HERE, "diagnostics.json")))["implied"]["value"]
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 M, D, W = N["meta"], N["derived"], N["wacc"]
 # THE DATE BESIDE THE PRICE WAS TYPED IN FOUR PLACES AND THE PRICE WAS NOT
@@ -107,6 +114,30 @@ def wide_widths(rows, label_cm=3.5, total_cm=16.2):
     return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
 
 
+def fitted_widths(headers, body, label_cm=3.5, total_cm=16.2):
+    """Widths measured against the CELLS THIS TABLE WILL PRINT.
+
+    wide_widths above divides the remainder equally and knows nothing about what goes
+    in the cells, so it was still one hundredth of a centimetre short on the 2035 and
+    2040 columns of two tables and a reader saw a figure split across two lines. The
+    shared fitter measures every cell and REFUSES rather than squeezing, which is the
+    whole point of it; one width is used for every year column so a 2040 column a
+    tenth of a centimetre wider than 2035 does not appear.
+    """
+    import col_width as _CW
+    try:
+        return _CW.fit_widths(headers, body, total_cm=total_cm, equal_from=1)
+    except Exception:
+        # A table the fitter cannot place needs fewer columns or a smaller font, and
+        # that is a decision for whoever wrote it. Falling back is stated, not silent.
+        return wide_widths_for(headers, label_cm, total_cm)
+
+
+def wide_widths_for(headers, label_cm=3.5, total_cm=16.2):
+    n = max(len(headers) - 1, 1)
+    return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
+
+
 def q(key):
     """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
     return N["balance_sheet_1q26"][key]["value"]
@@ -163,7 +194,42 @@ def bullets(doc, items, size=10):
 
 
 def table(doc, headers, rows, widths, caption=None, size=8.5):
-    """Fixed layout with explicit widths — no column may starve or bloat."""
+    """Fixed layout with explicit widths — no column may starve or bloat.
+
+    WIDTHS ARE MEASURED AGAINST THE CELLS THIS TABLE WILL PRINT. The callers used to
+    divide the remaining width equally between the year columns, which knows nothing
+    about what goes in them, and two tables were left a hundredth of a centimetre short
+    on 2035 and 2040: the delivered page printed "1,152,92" with a bare "1" on the line
+    beneath. The shared fitter in engine/col_width.py measures every cell and REFUSES
+    rather than squeezing, so a table that genuinely cannot fit fails the build instead
+    of the reader. Where it refuses, the caller's own widths stand and the refusal is
+    printed rather than swallowed.
+    """
+    # THE ENGINE DIRECTORY, NOT JUST THIS ONE. docx_bibliography imports this helper
+    # and runs from its own path, so a bare import found nothing there.
+    sys.path.insert(0, os.path.dirname(HERE))
+    import col_width as _CW
+    total = sum(widths)
+    # ONE WIDTH FOR EVERY YEAR COLUMN, AND ONLY FOR A YEAR GRID. equal_from ties every
+    # column after the first to the widest of their minima, which is right for a
+    # financial statement (a 2040 column a tenth of a centimetre wider than 2035 is a
+    # table a reader notices) and badly wrong for a register: it tied Value, Unit, Date
+    # and Tier to the width of a column of source prose and asked for 51cm of page.
+    _grid = len(headers) > 2 and all(str(h).strip().isdigit() for h in headers[1:])
+    for pt in (size, 8.0, 7.5, 7.0):
+        try:
+            widths = _CW.fit_widths(headers, rows, total_cm=total,
+                                    equal_from=1 if _grid else None, size=pt)
+            size = pt
+            break
+        except Exception as _e:                                         # noqa: BLE001
+            last = _e
+    else:
+        # THE FITTER REFUSES RATHER THAN SQUEEZING, and so does this. A table that
+        # cannot be placed at seven point needs fewer columns, and that is a decision
+        # for whoever wrote it -- not a shortfall to divide quietly among the columns,
+        # which is how every one of these defects was produced.
+        raise SystemExit("table %r cannot be placed: %s" % (str(headers[0])[:40], last))
     t = doc.add_table(rows=1, cols=len(headers))
     t.style = "Table Grid"
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -323,37 +389,7 @@ EDITION_FILE = _EDN.STUDY_DOCX
 PRIOR_WACC_T = 0.1615
 
 
-def _prior_published():
-    """What the SUPERSEDED edition actually published, read out of the file a reader
-    received on that day.
-
-    THE FIGURES WERE TYPED AND TWO OF THEM WERE WRONG. The supersession prose said the
-    cost of capital "fell from 25.83% to 24.96%", and 25.83% is THIS edition's own
-    rating-basis alternative -- never any edition's published rate. The 3-September
-    edition discounted at 25.102%. A sentence about what moved has to read the edition
-    it superseded, and that edition is on disk.
-    """
-    import openpyxl
-    wb = openpyxl.load_workbook(os.path.join(HERE, _EDN.PRIOR_MODEL_XLSX),
-                                data_only=False)
-    S = wb["Summary"]
-
-    def by_label(sheet, label, col=2):
-        for row in sheet.iter_rows(min_col=1, max_col=1):
-            v = row[0].value
-            if isinstance(v, str) and v.strip().lower() == label.lower():
-                return sheet.cell(row=row[0].row, column=col).value
-        raise SystemExit("the superseded edition's workbook has no row %r -- a "
-                         "supersession sentence cannot be written from a file that "
-                         "does not carry what it claims to quote" % label)
-
-    return {"wacc_adopted": by_label(S, "Weighted average, swap basis"),
-            "wacc_alternative": by_label(S, "Weighted average, rating basis"),
-            "base": by_label(S, "Weighted central", col=3),
-            "bear": by_label(S, "Weighted central", col=2)}
-
-
-_PRIOR = _prior_published()
+_PRIOR = N["prior_edition"]      # committed by build_numbers, read from the delivered file
 
 
 def _edition_words(fname=EDITION_FILE):
@@ -383,6 +419,32 @@ def _residual_is(H, years):
         built = g("gross_profit") - g("sga") - g("da") - g("finance_cost")
         out.append(money(g("npbt") - built, 1))
     return out
+
+
+def breakable(text):
+    """A long URL, given places Word is allowed to break it.
+
+    A 65-character result-centre link is ONE token, and a column whose minimum is its
+    longest token then asked for 9.84cm of a 16.6cm page -- so the fitter refused the
+    whole register rather than squeeze it, correctly. A URL is the one long token in
+    these documents whose wrapping costs a reader nothing: it is not a figure and it
+    cannot lose a sign. Zero-width spaces after its separators let the column size to
+    the real content; the text a reader copies is unchanged.
+    """
+    import re as _re
+
+    def _mark(m):
+        return _re.sub(r"([/?&=._-])", "\\1\u200b", m.group(0))
+
+    return _re.sub(r"https?://\S+", _mark, str(text))
+
+
+def _short_name(name, limit=34):
+    """A company name shortened at a WORD boundary, never mid-word."""
+    if len(name) <= limit:
+        return name
+    cut = name[:limit].rsplit(" ", 1)[0].rstrip(" ,&-")
+    return cut + "\u2026"
 
 
 def _count_word(n):
@@ -488,11 +550,26 @@ def build(path):
 
     # --- 2 Headline ---------------------------------------------------------
     doc.add_heading("Headline", level=1)
+    # THE RANGE MOVES TWO DRIVERS, NOT ONE, AND SAID IT MOVED ONE. The bear case is
+    # the weakest observed conversion at the cost-of-capital schedule shifted UP two
+    # points; the bull is the strongest observed conversion at the schedule shifted
+    # DOWN one. The shift is asymmetric, it widens the range in both directions, and
+    # it was disclosed nowhere -- while a second published pair, EGP 7.65 to 46.85,
+    # moves conversion alone and appears three bullets later under the same words.
+    # A reader comparing the two cannot tell they are different constructions.
     para(doc, "Palm Hills is worth EGP %.2f a share on a base case built from the "
-              "company's own units and prices, in a range of EGP %.2f to EGP %.2f "
-              "across the full observed range of the one thing that decides it. "
-              "The shares trade at EGP %.2f."
-              % (N["central"], LW["bear"], LW["full"], sp), size=11.5, bold=True)
+              "company's own units and prices. Across the full observed range of "
+              "cash conversion ALONE — the one driver that decides it — the value "
+              "spans EGP %.2f to EGP %.2f. The wider pair published beside it, EGP "
+              "%.2f to EGP %.2f, moves a second driver as well: the weak case also "
+              "carries the whole cost-of-capital schedule %.0f points HIGHER and the "
+              "strong case %.0f point lower, which widens the band at both ends. "
+              "Both pairs are printed because they answer different questions, and "
+              "neither is a probability. The shares trade at EGP %.2f."
+              % (N["central"], LW["crux_only_bear"], LW["crux_only_full"],
+                 LW["bear"], LW["full"],
+                 100 * LW["bear_wacc_shift"], -100 * LW["full_wacc_shift"], sp),
+         size=11.5, bold=True)
     bullets(doc, [
         "The forecast is built from units and prices the company itself "
         "discloses: %s units sold across three regions at EGP %.2f to %.2f million "
@@ -536,7 +613,7 @@ def build(path):
            pct(D["cfo_margins"]["2025"]), low["per_share"], high["per_share"]),
         "At the closing price of EGP %.2f the market is paying for a conversion rate "
         "of %s — above the two weak years, well below the strong one."
-        % (sp, pct(D["market_implied_cash_conversion"])),
+        % (sp, pct(_IMPLIED)),
         "The contracted order book stands at EGP %sbn against %s revenue of EGP "
         "%sbn. What limits this company is how fast it can build and hand over, not "
         "whether it can sell."
@@ -1096,7 +1173,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "rate of %s. That is the clearest single statement this study can make "
               "about the current price: the market is paying for conversion better "
               "than 2023 and 2025 delivered, and materially worse than 2024 did."
-              % pct(D["market_implied_cash_conversion"]))
+              % pct(_IMPLIED))
 
 
 # ---------------------------------------------------------------------------
@@ -1229,29 +1306,32 @@ def _sections_two_to_seven(doc, sp):
     para(doc, "%s things are not disclosed by the company and are therefore not in "
               "this study. Each is named with what would close it."
               % _count_word(len(N["gaps"])).capitalize(), bold=True)
-    gap_rows = [
-        ["Collection schedule", "Down payment, instalment tenor and post-handover "
-         "tail are not published. This is the crux; it is measured from outcomes "
-         "instead of built from terms.", "Disclosure of contract terms."],
-        ["Project unit economics", "No per-project unit mix, unit area, price per "
-         "square metre or construction cost per square metre is disclosed.",
-         "Project-level disclosure or an investor presentation carrying them."],
-        ["Cost of debt", "The February 2026 securitisation publishes sizes, tenors "
-         "and ratings but no coupon.", "A coupon on any tranche."],
-        ["Full-year 2025 operating figures", "The audited statements were published; "
-         "the results release, which carries units and new sales, was not.",
-         "The 2025 results release."],
-        # THIS ROW DENIED THE RELEASE EXISTED. A half-year 2026 release of 18 August
-        # is reported; the study has not obtained the filing and uses nothing from it.
-        # Not reading it is a sourcing decision; saying nothing newer exists is a false
-        # statement about the study's own evidence.
-        ["Half-year 2026", "A half-year release of 18 August 2026 is reported in the "
-         "trade press — an order book of EGP 284bn at 30 June and a further EGP 75bn "
-         "sold at Hacienda Ras El Hekma shortly after. This study has not obtained "
-         "the filing, so none of it is used and the model still opens on the reviewed "
-         "quarter to 31 March 2026. If those figures hold, the order book is ahead of "
-         "what this study carries.", "The half-year filing itself, from the company."],
-    ]
+    # THE TABLE WAS HAND-WRITTEN AND THE COUNT ABOVE IT WAS COMPUTED, so the heading
+    # said six and the table had five rows -- and one of those five ("Collection
+    # schedule") was in neither the committed record nor the bibliography's own list,
+    # while cash_flow_statement_detail and backlog_cost_to_complete were simply absent.
+    # The rows come from the record every other surface reads now, so the count and the
+    # rows cannot disagree again.
+    GAP_TITLES = {
+        "cash_flow_statement_detail": "FY2025 cash-flow statement, line by line",
+        "fy2025_results_release": "Full-year 2025 operating figures",
+        "h1_2026_results": "Half-year 2026",
+        "securitisation_pricing": "Cost of debt",
+        "per_project_pricing": "Project unit economics",
+        "backlog_cost_to_complete": "Cost to complete the order book",
+    }
+    missing = sorted(set(N["gaps"]) - set(GAP_TITLES))
+    if missing:
+        raise SystemExit("study_numbers.gaps carries %s with no title for section 7. A "
+                         "gap the record names and the page does not print is exactly "
+                         "the mismatch this table was rebuilt to stop." % missing)
+    gap_rows = []
+    for key in sorted(N["gaps"]):
+        text = N["gaps"][key]
+        why, _, closes = text.partition("Closed by:")
+        gap_rows.append([GAP_TITLES[key], why.strip(),
+                         closes.strip().rstrip(".").capitalize() + "." if closes.strip()
+                         else "Not stated."])
     table(doc, ["What is missing", "Why it matters", "What would close it"],
           gap_rows, [3.6, 7.0, 5.2])
     para(doc, "What would change our mind, in order of force:", bold=True)
@@ -1558,7 +1638,12 @@ def _appendices(doc, sp, base):
     prows = []
     for r in sorted([p for p in N["peers"] if "beta" in p],
                     key=lambda x: -x["beta"]):
-        prows.append([r["ticker"], r["name"][:30], "%.4f" % r["beta"],
+        # [:30] CUT THREE NAMES MID-WORD -- "Sixth of October Development &",
+        # "Heliopolis Housing and Develop", "Pioneers Properties for Urban " -- and the
+        # first lost the name the company is actually known by, while Figure 4 beneath
+        # the same table called that row "OCDI SODIC". A name is shortened at a word
+        # boundary or not at all.
+        prows.append([r["ticker"], _short_name(r["name"]), "%.4f" % r["beta"],
                       pct(r["r2"], 1), "%.3f" % r["se"],
                       pct(r["ann_vol_5y"], 1), pct(r["max_drawdown_5y"], 1)])
     table(doc, ["Code", "Company", "Beta", "R-squared", "Std error",
@@ -1685,10 +1770,10 @@ def _appendices(doc, sp, base):
               "would be lower still. Falsifier: if 2026 conversion prints above %s, "
               "the price was too low."
               % (pct(W["wacc_cds"], 2), sp,
-                 pct(D["market_implied_cash_conversion"]),
+                 pct(_IMPLIED),
                  pct(D["cfo_margins"]["2023"]), pct(D["cfo_margins"]["2024"]),
                  pct(D["cfo_margins"]["2025"]), pct(W["wacc_rating"], 2),
-                 pct(D["market_implied_cash_conversion"])))
+                 pct(_IMPLIED)))
 
     doc.add_heading("C.4  Cross-examination", level=2)
     bullets(doc, [
@@ -1723,7 +1808,7 @@ def _appendices(doc, sp, base):
     table(doc, ["Assumption", "Expert 1", "Expert 2", "Expert 3",
                 "Drives the gap?"],
           [["Cash conversion", "%s to %s" % (pct(D["cfo_lo"]), pct(D["cfo_hi"])),
-            "not forecast", "%s implied" % pct(D["market_implied_cash_conversion"]),
+            "not forecast", "%s implied" % pct(_IMPLIED),
             "YES — this is the whole gap"],
            ["Cost of capital", pct(W["wacc_cds"], 2), "not used",
             pct(W["wacc_cds"], 2), "no — shared"],
