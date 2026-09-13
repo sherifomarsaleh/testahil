@@ -235,8 +235,15 @@ INP = dict(
                 "split and nothing downstream", "2026-08-06", "House"),
 
     # ---- BOTTOM-UP PLANT AND COST STACK ----------------------------------
-    cap_cement_mt=I(3.80, "Cement grinding capacity, El Hassana, two lines", "2025-03-23",
-                    "Company"),
+    cap_cement_mt=I(3.80, "Cement grinding capacity, El Hassana, two lines. NOT THE SAME "
+                    "THING AS THE 2.9 MILLION TONNES THE COMPANY'S OWN WEBSITE QUOTES, and "
+                    "the distinction is stated here because a reader who finds that page "
+                    "will otherwise think this study overstated capacity by a third. The "
+                    "website says the plant PRODUCES an average of 2.9 million tonnes of "
+                    "packed and bulk cement: that is output, not nameplate. It sits exactly "
+                    "where it should between the 2.57 million tonnes of kiln clinker below "
+                    "and the 3.80 of grinding, which is 76% of the mills running",
+                    "2025-03-23", "Company"),
     cap_clinker_mt=I(2.57, "Kiln clinker capacity. The PAIR with cement capacity OBSERVES "
                      "the clinker factor rather than assuming it, and settles which base "
                      "a USD-per-tonne benchmark is quoted on", "2025-03-23", "Company"),
@@ -271,6 +278,24 @@ INP = dict(
                            "away", "2026-08-06", "House"),
     domestic_share=I([0.88, 0.87, 0.86, 0.85, 0.84, 0.83], "Domestic share of despatches",
                      "2026-01-01", "Industry"),
+    egy_new_licence_mt=I(3.5, "SECTOR SUPPLY THIS STUDY DID NOT CARRY: two Egyptian cement "
+                         "licences planned from October 2025 at 1.5-2.0 million tonnes a "
+                         "year each, 3.5 at the midpoint, on top of the dormant capacity "
+                         "already returning. Nothing was located awarding either to this "
+                         "company, so it is sector supply and never this company's volume. "
+                         "It bears on the price path rather than on the volume build, and "
+                         "the direction is against this study's answer rather than for it",
+                         "2025-10-19", "Industry"),
+    price_dom_market_forecast_egp_t=I(3600.0, "A FORECAST, LABELLED AS ONE AND FEEDING "
+                         "NOTHING. Industry commentary of 1 February 2026 put the domestic "
+                         "market price easing toward EGP 3,600 a tonne as the returning "
+                         "supply arrives, against roughly EGP 4,000 in March 2026 and a "
+                         "2025 peak near 5,000. THIS STUDY DOES NOT ASSUME IT: the realised "
+                         "ex-works price escalates on the house inflation ladder at zero "
+                         "real growth, so a fall to 3,600 in NOMINAL terms would be a real "
+                         "decline this study has not taken. Registered so the reader can "
+                         "see which way the unmodelled risk runs, and it runs against us",
+                         "2026-02-01", "Industry"),
     price_dom_egp_t=I([3503.0 * c for c in _CUM],
                       "Domestic realised price ex-works. FY2025 is the level the disclosed "
                       "revenue implies given the volume build \u2014 13.9% below the ~EGP "
