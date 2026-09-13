@@ -22,12 +22,18 @@ input to build_numbers comes before it; anything APPENDING to study_numbers.json
 after everything that rebuilds it, which is why the asset-base record is last.
 """
 import os
-import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(HERE))
+from build_all_shared import run                                    # noqa: E402
 
-# (script, what it writes, why it sits here)
+# MOVED TO THE SHARED RUNNER 13-09-2026. This study kept its own copy of the loop, so it
+# did not write the BUILD MANIFEST the artefact-freshness gate reads -- and a figure that
+# regenerates byte-identically is never re-committed, so three of this study's figures
+# read as stale immediately after a full rebuild that produced them. Two runners is the
+# defect this repository keeps finding under other names.
+
 STEPS = [
     ("wacc.py", "wacc_result.json", "the cost-of-capital schedule the model discounts on"),
     ("peers.py", "peers.json", "reads the committed price libraries, so it goes stale by "
@@ -61,34 +67,5 @@ STEPS = [
 ]
 
 
-def main():
-    argv = sys.argv[1:]
-    only = [a for a in argv if not a.startswith('-')]
-    fails = []
-    for i, (script, writes, why) in enumerate(STEPS, 1):
-        if only and script not in only:
-            continue
-        path = os.path.join(HERE, script)
-        if not os.path.exists(path):
-            print('%-24s MISSING -- %s' % (script, why))
-            fails.append(script)
-            continue
-        r = subprocess.run([sys.executable, path], cwd=HERE,
-                           stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        out = r.stdout.decode('utf-8', 'replace').strip().splitlines()
-        tail = out[-1][:110] if out else ''
-        print('%-24s %s' % (script, tail))
-        if r.returncode != 0:
-            fails.append(script)
-            for line in out[-12:]:
-                print('    %s' % line[:150])
-    print()
-    if fails:
-        print('FAILED: %s' % ', '.join(fails))
-        return 1
-    print('all %d steps clean' % len(STEPS))
-    return 0
-
-
 if __name__ == '__main__':
-    raise SystemExit(main())
+    raise SystemExit(run(HERE, STEPS))

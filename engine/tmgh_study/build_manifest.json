@@ -1,0 +1,22 @@
+{
+ "artefacts": {
+  "TMGH_Sources_02-09-2026.docx": "7e2768c12350018aab2bfe3220e8ffb46f0a54ea596a345d213fdb7de676091b",
+  "TMGH_Sources_02-09-2026.pdf": "b1b9b2591fe66455a472577d5ea50dd199d6b6b6de64fb494ac8c9ebfa8ea75e",
+  "TMGH_Sources_10-09-2026.docx": "b9a2f449546401c03a616da65931e4056df107a756927c6680117f039c31c0c9",
+  "TMGH_Sources_10-09-2026.pdf": "6925abd37a20bfe03d31083fde9ca8a6f6bfc55d4594afb56c34d31873a04ba1",
+  "TMGH_Valuation_Model_02092026.pdf": "3250e75cb08ba6e9cc860ef0c2e320ac47cfd2b89c67afacd79e32828ac2e0c3",
+  "TMGH_Valuation_Model_02092026.xlsx": "5ced5ca4bea1a3e98c3fc879aadaf89cd217345a54be948360527e1f87f8391e",
+  "TMGH_Valuation_Model_10092026.pdf": "7272d7be12a65ed565d48f7a64be6e7caf58d5a40e5886fc056e7087617aa8f4",
+  "TMGH_Valuation_Model_10092026.xlsx": "9bde2651dcbfa527020e222d27a0c85def7033e2dd4e73d4ceb9b8ee11fa0f46",
+  "TMGH_Valuation_Study_02-09-2026.docx": "875ef74279a91183eb0320e6111bad2ff1e91f347c177f73751f11203530f12d",
+  "TMGH_Valuation_Study_02-09-2026.pdf": "9412801903a05f5e3b49fb945db9a6b391ae9945c821fa3351e7cb7a774758b1",
+  "TMGH_Valuation_Study_10-09-2026.docx": "270bab44fa7e8708a17e189486fed310f2eea91a056f5a28337aa943a6e40c64",
+  "TMGH_Valuation_Study_10-09-2026.pdf": "55b2e81682faf5a105c22a6b18434ed3a1b0ed746710f7e7505c55e2d52721bf",
+  "fig1_football.png": "86a55d54b758adf188b01a8f4cae7048af9959ec8f9c5daf3efd5a55ddeefe42",
+  "fig2_sensitivity.png": "14d35ec5483f997beb5183b5bb3662a4b32db8a833eb16696bd42518c1bbdb48",
+  "fig3_cone.png": "2e87714860b43a4ef2573094b47d7b6c8e19113100e85f49dc204a33818fced8",
+  "fig4_segments.png": "799f29b673788c406d42a584638b05acd4f3d7a5718743a985f5cc2dfc7a3057"
+ },
+ "numbers_sha256": "b787840e4bd145b9d094b14d1ae68481e58bf618b07239d26d0798856de5e284",
+ "why": "A full build wrote every artefact below FROM the numbers file whose digest is recorded here. An artefact is CURRENT when both digests still match, whatever its commit time says: a deterministic figure that regenerates byte-identically is never re-committed and looks stale to a check that reads git. Written only by a full build; a single-step run cannot claim the set."
+}

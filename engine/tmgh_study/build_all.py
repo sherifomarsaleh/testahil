@@ -20,12 +20,18 @@ THE ORDER IS THE DEPENDENCY ORDER AND IT IS DECLARED, NOT IMPLIED. Anything read
 study_numbers.json comes after build_numbers; anything reading lenses.json comes before it.
 """
 import os
-import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(HERE))
+from build_all_shared import run                                    # noqa: E402
 
-# (script, what it writes, why it sits here)
+# MOVED TO THE SHARED RUNNER 13-09-2026. This study kept its own copy of the loop, so it
+# did not write the BUILD MANIFEST the artefact-freshness gate reads -- and a figure that
+# regenerates byte-identically is never re-committed, so three of this study's figures
+# read as stale immediately after a full rebuild that produced them. Two runners is the
+# defect this repository keeps finding under other names.
+
 STEPS = [
     ("wacc.py", "wacc.json", "the cost-of-capital schedule the model discounts on"),
     ("peers.py", "peers.json", "reads the committed price libraries; goes stale by the "
@@ -56,35 +62,5 @@ STEPS = [
 ]
 
 
-def main():
-    pdf = "--pdf" in sys.argv
-    for script, writes, why in STEPS:
-        p = os.path.join(HERE, script)
-        if not os.path.exists(p):
-            print("MISSING %s — %s" % (script, why))
-            return 1
-        r = subprocess.run([sys.executable, p], cwd=HERE, capture_output=True, text=True)
-        tail = [l for l in (r.stdout or "").strip().splitlines() if l.strip()][-1:]
-        print("%-24s %s" % (script, tail[0][:96] if tail else "ok"))
-        if r.returncode:
-            print((r.stdout or "") + (r.stderr or ""))
-            print("\nSTOPPED at %s — %s" % (script, why))
-            return 1
-    if pdf:
-        # THE PDF IS THE DELIVERABLE AND THE WORD FILE IS THE BUILD ARTEFACT. A document
-        # rebuilt without its PDF ships the old page to the reader, which is the hole
-        # check_edition_date's delivered-PDF clause was written to close.
-        import glob
-        for d in sorted(glob.glob(os.path.join(HERE, "TMGH_*.docx"))):
-            if os.path.basename(d).startswith("~$"):
-                continue
-            subprocess.run(["soffice", "--headless", "--convert-to", "pdf",
-                            "--outdir", HERE, d], capture_output=True, timeout=600)
-            print("%-24s %s" % ("pdf", os.path.basename(d)[:-5] + ".pdf"))
-    print("\nall %d steps clean%s" % (len(STEPS), "; PDFs rebuilt" if pdf else
-                                      " (pass --pdf to rebuild the delivered PDFs)"))
-    return 0
-
-
-if __name__ == "__main__":
-    sys.exit(main())
+if __name__ == '__main__':
+    raise SystemExit(run(HERE, STEPS))

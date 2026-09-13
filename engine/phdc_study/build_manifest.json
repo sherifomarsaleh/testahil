@@ -1,0 +1,28 @@
+{
+ "artefacts": {
+  "PHDC_Bibliography_02-09-2026.docx": "5c9a0f8db9b57d743d37efb787611c95117995766b35e2d409b1c39194316646",
+  "PHDC_Bibliography_02-09-2026.pdf": "31d1a2cb6deb60e9fd0b3504fe4ea640e6e1a102ba8cb888b55b4886cbde296e",
+  "PHDC_Bibliography_03-09-2026.docx": "a6787256d89f1169040e7f944f7759d3f06bc505845d6e4cf4c6f1b43b5a53b6",
+  "PHDC_Bibliography_03-09-2026.pdf": "89c58f398beae5f04576221525f394043ec99cbf9c64d04d9f226fffd55e2a1f",
+  "PHDC_Bibliography_10-09-2026.docx": "6d4cdfcc6bb490825c3b5b92ce677b490af41a3741df11a35ada5f2690094b06",
+  "PHDC_Bibliography_10-09-2026.pdf": "a8906306a37d273f4ece20828df9ff3f740843f8f315f12bd0a62e94437b7281",
+  "PHDC_Valuation_Model_02092026.pdf": "0378777dba2f4640469235928c0ed722f5a2fc56c241bc2e18b2ff865c483f8a",
+  "PHDC_Valuation_Model_02092026.xlsx": "71ccc79f29ba07367099e8c95da8444c9cba6063ce52d0e0b450395d7d9e5f69",
+  "PHDC_Valuation_Model_03092026.pdf": "428e078f14bf812ff584ecf951f10feec77d54c0a2561ea071bfbca20a33f9cf",
+  "PHDC_Valuation_Model_03092026.xlsx": "7d2d551791155f5c5c365ce0891174351b010249e7c1744f578bc1e0e29aa3a6",
+  "PHDC_Valuation_Model_10092026.pdf": "66b35f0179556e6e98c191a23bc0e977bbce6aca94c292b20c8ab571cfb7a444",
+  "PHDC_Valuation_Model_10092026.xlsx": "633e05d50345cdea4082a607b7386b3c40eae443449916774f7950006843b283",
+  "PHDC_Valuation_Study_02-09-2026.docx": "eabfd8d1715ed79d6d6eb778644d33a6ec7af1b7ba2b11bf1d192fc351ce26d7",
+  "PHDC_Valuation_Study_02-09-2026.pdf": "6502d1107ad26da87ad9aee31eb3095322154285d8dea90fc6f56164bac533f7",
+  "PHDC_Valuation_Study_03-09-2026.docx": "4f3f021cdabaa20736dc66fa2d070599fadd4a4731cc8efdf86eac5e1ceba53b",
+  "PHDC_Valuation_Study_03-09-2026.pdf": "c57ae5cf035837ba2c1801b0c0e1cfcf5ba1366466e85e84f24eb2ef1ab97b30",
+  "PHDC_Valuation_Study_10-09-2026.docx": "75739a9b71320edddeae492aefe75ea73461310a518371571dd9bf0dea868636",
+  "PHDC_Valuation_Study_10-09-2026.pdf": "1c3932f94639057f9ddbc24f0e6ca236f84b2edfa9b3d4e90db9bdf6f12401c9",
+  "fig1_football.png": "bd8253b3ce227060913611af43f73a9fb5b8c172dede79699005a4b7e19cd009",
+  "fig2_sensitivity.png": "0bcdf783eecb3479ef5d62cc6835a353d877a124d7a47f7d53feddb8c00306cb",
+  "fig3_cone.png": "e169cf3e98325dbe318236b3e916fc5cc0cf668d83026c818ad53b9c8820d756",
+  "fig4_peers.png": "263ffbd12d4e87f16d9507f086ef06fe0df85e3e84d9456cf85f0a9293a25cdc"
+ },
+ "numbers_sha256": "84b70d54e584b58ddcda1746fb221afafc269eef3feab85e2693e9a26d5e94b2",
+ "why": "A full build wrote every artefact below FROM the numbers file whose digest is recorded here. An artefact is CURRENT when both digests still match, whatever its commit time says: a deterministic figure that regenerates byte-identically is never re-committed and looks stale to a check that reads git. Written only by a full build; a single-step run cannot claim the set."
+}
