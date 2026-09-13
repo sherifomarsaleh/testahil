@@ -16,6 +16,7 @@ BU = D['bottomup']
 AR = D['drivers_as_run']   # what the model RUNS, not what an earlier edition ran
 COC = D['cost_of_capital_record']
 _SL = DCF['scenario_legs']   # how the published range is struck [F10]
+_CT = SN['contested']        # the contested-choice impacts, each a re-run [F23]
 _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -1039,7 +1040,10 @@ rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why
          'the note contradicts'],
         ['Capital weights on net debt',
          f"On gross debt ({pc(W['wd_gross'])} weight, cost of capital {pc(W['wacc_exp_gross'])})",
-         'raises the value',
+         # THIS CELL READ "raises the value" — an adjective in a column headed with a
+         # currency, in a table whose stated purpose is to let a reader take the
+         # alternative number directly. Re-run through the same function as the headline.
+         f"EGP {p2(_CT['gross_weights'])} ({p2(_CT['gross_weights'] - DCF['ps'])})",
          'Net debt is the quantity the bridge subtracts; using it in both places keeps the two '
          'consistent, and it is the more conservative of the two'],
         [f"Cost of debt on currency composition ({pc(IN['kd'])}): the disclosed coupon on each "
@@ -1057,28 +1061,59 @@ rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why
         ['Risk-free rate ' + pc(IN['rf']),
          'External readings of the same instrument on the same date range from about 22.3% to '
          '23.0%, and disagree with each other; the adopted point sits at the low end',
-         'roughly ±1% of value per 100bp',
+         # "roughly +/-1% of value per 100bp" UNDERSTATED IT by nearly a factor of two.
+         f"EGP {p2(_CT['rf_dn100'])} at 100bp lower, {p2(_CT['rf_up100'])} at 100bp higher "
+         f"({p2(_CT['rf_up100'] - DCF['ps'])} / +{p2(_CT['rf_dn100'] - DCF['ps'])}) — about "
+         f"{pc(abs(_CT['rf_dn100'] - DCF['ps']) / DCF['ps'])} of value per 100bp, not the "
+         f"1% an earlier edition of this cell estimated in prose",
          'Because the readings conflict, the rate is carried in the sensitivity grid rather '
          'than presented as precise; the direction of the low-end choice is generous and is '
          'said so here'],
         [f"Forecast effective tax rate {pc(IN['tax_eff'])}",
          f"Egypt's statutory 22.5%, or FY2025's actual effective 22.57%",
-         'roughly +1.8 on the cash-flow lens (+2.5%)',
-         'Audited effective rates ran 31.3% (FY2023), 30.1% (FY2024), 22.6% (FY2025) and 25.75% '
-         '(Q1-2026); no statutory-vs-effective reconciliation is disclosed, and the group pays '
-         'tax in 15+ jurisdictions plus revenue-basis Free-Zone entities. 24.5% sits between the '
-         'FY2025 print and the Q1-2026 print rather than extrapolating the single best year — '
-         'an external review correctly noted this choice was priced in the register but not '
-         'displayed here; it now is']]
+         # AND THIS ONE WAS WRONG BY 2.8x. "roughly +1.8 (+2.5%)" for a move to the
+         # statutory rate, which this model prices at +4.95. The cell also stopped the
+         # disclosed series at the quarter while the half containing it ran five points
+         # higher — see the row's own note, now corrected.
+         f"EGP {p2(_CT['tax_statutory'])} at the statutory rate "
+         f"(+{p2(_CT['tax_statutory'] - DCF['ps'])}); EGP "
+         f"{p2(min(SN['grid_tax']))} at the implied second quarter's "
+         f"{pc(SN['tax_path']['q2_26_implied'])} ({p2(min(SN['grid_tax']) - DCF['ps'])})",
+         f"Audited effective rates ran 31.3% (FY2023), 30.1% (FY2024), 22.6% (FY2025), 25.75% "
+         f"(Q1-2026) and {pc(SN['tax_path']['h1_26'])} (H1-2026) — and since the quarter sits "
+         f"inside the half, the SECOND quarter alone implies "
+         f"{pc(SN['tax_path']['q2_26_implied'])}. The adopted "
+         f"{pc(IN['tax_eff'])} therefore sits BELOW all four of the most recent readings, and "
+         f"earlier editions of this cell stopped at the quarter and called it an uptick. No "
+         f"statutory-vs-effective reconciliation is disclosed, and the group pays "
+         f"tax in 15+ jurisdictions plus revenue-basis Free-Zone entities. One reviewed half "
+         f"is not a five-year forecast and the rate is not raised on it; what was wrong was "
+         f"showing the reader neither the half nor what it costs. Section 1.9 now carries the "
+         f"row and section 1.9b prices the half in full"]]
 table(rows, [1.72, 1.85, 1.28, 2.15], size=8.0)
 caption(f"The rating-basis column is the one most often raised against this study. It is not a "
         f"correction to an error — both bases are published by the same source and both appear in "
         f"this study's input register — but it is a material choice, and at EGP "
         f"{p2(DCF['ps_rating_basis'])} the alternative sits well below the primary. A reader who "
-        f"prefers agency ratings to market spreads should use that number. (A July-2026 refresh "
-        f"of the same file reportedly lifts the rating-basis premium by roughly one point, making "
-        f"that alternative slightly more adverse still; the CDS-basis primary reproduces almost "
-        f"unchanged from the July parameters.)")
+        f"prefers agency ratings to market spreads should use that number. "
+        f"THIS FIGURE HAS MOVED, AND A READER HOLDING AN EARLIER EDITION SHOULD KNOW WHY. "
+        f"It was published at EGP {p2(DCF['ps_rating_retired_identity'])}, on a cost of equity "
+        f"of {pc(W['ke_rating_retired_identity'])} built by multiplying beta through the WHOLE "
+        f"{pc(IN['erp_rating'])} premium — country risk included — which is the construction "
+        f"this study's own cost-of-capital section says it does not use, and which its adopted "
+        f"case is explicitly built to avoid. The terminal leg was worse: it multiplied today's "
+        f"beta through a premium raised by a flat four and a half points that appeared in no "
+        f"register and no source. Rebuilt the way the adopted case is built — the mature premium "
+        f"priced by beta, the country premium charged flat beside it, the terminal on the same "
+        f"converged beta and the same normalisation — the rating basis gives EGP "
+        f"{p2(DCF['ps_rating_basis'])}. The direction is the awkward part and it is stated "
+        f"rather than buried: the mature premium is the same on both bases by arithmetic "
+        f"({pc(IN['erp_rating'])} less {pc(IN['sov_spread_rating'])} scaled, against "
+        f"{pc(IN['erp_cds'])} less {pc(IN['sov_spread_cds'])} scaled), so switching column moves "
+        f"the sovereign spread and the country premium and nothing else — and the spread is "
+        f"netted OUT of the risk-free rate, which is why the rating basis comes out cheaper in "
+        f"the explicit window rather than dearer. The alternative is still well below the "
+        f"primary; it is no longer below it for the wrong reason.")
 
 # ---- 1.9 sensitivity -----------------------------------------------------------
 H2('1.9  Sensitivity — the discount rate, the growth, the currency, the margin and the collection')

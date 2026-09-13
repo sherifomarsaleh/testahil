@@ -1565,7 +1565,27 @@ ke_exp, KE_PARTS = _COC.cost_of_equity(
 ERP_MATURE = KE_PARTS['erp_mature']
 CRP_HOME = KE_PARTS['crp_home']
 CRP_EFF = KE_PARTS['crp_effective']
-ke_rating_alt = (V['rf'] - V['sov_spread_rating']) + V['beta'] * V['erp_rating']
+# THE STUDY'S OWN "SINGLE LARGEST OPEN QUESTION IN THE COST OF CAPITAL" WAS PRICED ON THE
+# CONSTRUCTION THE THREE LINES ABOVE RETIRE [F36]. It read
+# `(rf - sov_spread_rating) + beta * erp_rating` — beta multiplying the WHOLE premium,
+# country risk included, which is exactly `ke_beta_on_country_retired` and exactly what
+# [R-COC-03] exists to stop. The adopted case goes through the sanctioned module; its
+# headline alternative was hand-rolled underneath it on the retired identity.
+#
+# AND IT REVERSES THE SIGN. On the sanctioned construction the mature premium is
+# basis-independent by arithmetic — 13.94% less 6.37% x 1.52 = 4.26%, against the CDS
+# basis's 9.41% less 3.40% x 1.52 = 4.24% — so switching source changes the sovereign
+# spread and the country premium and nothing else. The spread rises, which LOWERS the
+# risk-free rate it is netted out of by more than the country premium rises: the rating
+# basis comes out CHEAPER than the adopted one, and the value goes UP. The retired
+# identity hid that behind beta multiplying a 13.94% premium.
+#
+# Both are published. The retired-identity figure is kept so the change is visible and
+# so a reader who has seen the earlier edition can find it.
+ke_rating_retired_identity = (V['rf'] - V['sov_spread_rating']) + V['beta'] * V['erp_rating']
+ke_rating_alt, KE_RATING_PARTS = _COC.cost_of_equity(
+    V['rf'] - V['sov_spread_rating'], V['beta'], V['erp_rating'], V['sov_spread_rating'],
+    lambda_country=V['lambda_country'], crp_foreign=V['crp_foreign'])
 ke_ops_alt = rf_star + V['beta'] * V['erp_ops_weighted']
 ke_raw_retired = V['rf'] + V['beta'] * V['erp_cds']
 ke_beta_on_country_retired = KE_PARTS['ke_beta_on_country_retired']
@@ -2368,7 +2388,28 @@ say(f"[Currency-of-discounting alternative — UIP-corrected] the hard-currency 
 
 # ---- responses to external challenge, computed rather than asserted ----------
 wacc_exp_rating = we_exp * ke_rating_alt + wd_exp * kd_at
-wacc_term_rating = (1 - V['wd_term']) * (V['rf_term'] + V['beta'] * (V['erp_term'] + 0.045)) \
+# THE TERMINAL LEG OF THE SAME ALTERNATIVE CARRIED THREE DEFECTS IN ONE LINE [F36]. It read
+# `(1 - wd_term) * (rf_term + beta * (erp_term + 0.045)) + wd_term * kd_term_at`:
+#
+#   BETA MULTIPLIED THE WHOLE PREMIUM, country risk included — the retired identity again,
+#   in the leg carrying 89% of enterprise value.
+#   IT USED TODAY'S BETA, 1.225, where the adopted terminal uses 1.0 by construction. So
+#   the alternative and the case it is compared against disagreed about what beta becomes
+#   in perpetuity, which is not what the row is contesting.
+#   AND `+ 0.045` WAS A TYPED CONSTANT. Four and a half points of terminal premium,
+#   registered nowhere, sourced nowhere, driving the largest published alternative in the
+#   study. It is the single most consequential hardcoded digit this edition found.
+#
+# Rebuilt on the same construction as the adopted terminal, with the ONE quantity the row
+# actually contests moved: the country premium read off the rating column instead of the
+# market-spread column. The adopted terminal decays the home country premium from
+# CRP_HOME to CRP_TERM — a normalisation, not a market read — and the SAME decay factor is
+# applied to the rating basis's own home premium, so the two terminals differ in their
+# source and in nothing else.
+_CRP_DECAY = CRP_TERM / CRP_HOME
+CRP_TERM_RATING = KE_RATING_PARTS['crp_home'] * _CRP_DECAY
+ke_term_rating = V['rf_term'] + BETA_TERM * ERP_MATURE + LAM_EFF * CRP_TERM_RATING
+wacc_term_rating = (1 - V['wd_term']) * ke_term_rating \
     + V['wd_term'] * kd_term_at
 def _terminal_at(wt_, g_):
     """The terminal at an arbitrary rate and growth, THROUGH THE SANCTIONED MODULE.
@@ -2404,6 +2445,18 @@ def _val_at(we_, wt_, g_=None):
                       * (1 - emp_rate)) / SH)
 assert abs(_val_at(wacc_exp, wacc_term) - dcf_ps) < 0.01, 'rating-basis helper does not reproduce base'
 dcf_rating_ps = _val_at(wacc_exp_rating, wacc_term_rating)
+# WHAT THE RETIRED CONSTRUCTION GAVE, kept so the change is visible to a reader holding an
+# earlier edition and so this correction can never be mistaken for a re-sourced input.
+_wacc_exp_rating_retired = we_exp * ke_rating_retired_identity + wd_exp * kd_at
+_wacc_term_rating_retired = ((1 - V['wd_term'])
+                             * (V['rf_term'] + V['beta'] * (V['erp_term'] + 0.045))
+                             + V['wd_term'] * kd_term_at)
+dcf_rating_ps_retired = _val_at(_wacc_exp_rating_retired, _wacc_term_rating_retired)
+say(f"[Rating-basis alternative, WHAT THE RETIRED CONSTRUCTION GAVE] Ke "
+    f"{ke_rating_retired_identity:.2%} (beta through the whole {V['erp_rating']:.2%} premium) "
+    f"and a terminal built on today's beta through a premium raised by a typed 4.5 points -> "
+    f"{_wacc_term_rating_retired:.2%}, giving EGP {dcf_rating_ps_retired:.2f}. The published "
+    f"figure was that one. Neither input changed; only the identity did.")
 say(f"[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is "
     f"{ke_rating_alt:.2%} and the cost of capital {wacc_exp_rating:.2%} -> {wacc_term_rating:.2%}, "
     f"giving EGP {dcf_rating_ps:.2f}/share against the CDS-basis {dcf_ps:.2f}.")
@@ -2843,6 +2896,38 @@ grid_tax = [dcf_scenario(tax=t) for t in tax_grid]
 assert abs(dcf_scenario(tax=TAX) - dcf_ps) < 0.01, (
     'the tax row does not reproduce the central at the adopted rate: %.4f against %.4f'
     % (dcf_scenario(tax=TAX), dcf_ps))
+# ---- THE CONTESTED-CHOICE TABLE'S OWN IMPACTS, PRICED [F23] ---------------------
+# Three of the six rows in "Where this construction is contested" carried PROSE where the
+# other three carried a re-run: "raises the value", "roughly +/-1% of value per 100bp",
+# "roughly +1.8 on the cash-flow lens". A table whose whole purpose is to let a reader
+# take the alternative number directly gave them an adjective in half its rows, and where
+# the prose did carry a figure it was wrong by multiples — the tax row said +1.8 for a
+# move to the statutory rate that this model prices at +4.96, understating itself 2.8
+# times over. Every one of the six is now a full re-run through the same function as the
+# headline.
+#
+# Gross-debt weights: the explicit window only, because the terminal weights are a
+# separate adopted assumption (V['wd_term']) and are not what this row contests.
+CONTESTED = dict(
+    gross_weights=_val_at(wacc_exp_gross, wacc_term, V['g_term']),
+    rf_up100=None, rf_dn100=None,
+    tax_statutory=grid_tax[0])
+def _val_at_rf(_rf):
+    _rfs = _rf - V['sov_spread_cds']
+    _ke = _rfs + V['beta'] * ERP_MATURE + CRP_EFF
+    return _val_at(we_exp * _ke + wd_exp * kd_at, wacc_term, V['g_term'])
+CONTESTED['rf_up100'] = _val_at_rf(V['rf'] + 0.01)
+CONTESTED['rf_dn100'] = _val_at_rf(V['rf'] - 0.01)
+assert abs(_val_at_rf(V['rf']) - dcf_ps) < 0.05, (
+    'the risk-free row does not reproduce the central at the adopted rate: %.4f vs %.4f'
+    % (_val_at_rf(V['rf']), dcf_ps))
+say(f"[Contested choices, each now RE-RUN not described] gross-debt weights "
+    f"{CONTESTED['gross_weights']:.2f} ({CONTESTED['gross_weights']-dcf_ps:+.2f}); risk-free "
+    f"+100bp {CONTESTED['rf_up100']:.2f} ({CONTESTED['rf_up100']-dcf_ps:+.2f}) and -100bp "
+    f"{CONTESTED['rf_dn100']:.2f} ({CONTESTED['rf_dn100']-dcf_ps:+.2f}); tax at the statutory "
+    f"{V['tax_stat']:.1%} {CONTESTED['tax_statutory']:.2f} "
+    f"({CONTESTED['tax_statutory']-dcf_ps:+.2f}) against the 'roughly +1.8' the table printed.")
+
 say(f"[Effective tax rate sensitivity, NEW] statutory {V['tax_stat']:.1%} -> "
     f"{grid_tax[0]:.2f}; adopted {TAX:.1%} -> {grid_tax[1]:.2f}; 27.50% -> {grid_tax[2]:.2f}; "
     f"the reviewed half's {TAX_PATH['h1_26']:.2%} -> {grid_tax[3]:.2f} "
@@ -3185,6 +3270,8 @@ OUT = dict(
     wacc=dict(rf=V['rf'], rf_star=rf_star, ke_exp=ke_exp, ke_rating_alt=ke_rating_alt,
               ke_ops_alt=ke_ops_alt, ke_raw_retired=ke_raw_retired, kd=V['kd'], kd_at=kd_at,
               we_exp=we_exp, wd_exp=wd_exp, wacc_exp=wacc_exp, wacc_exp_gross=wacc_exp_gross,
+              ke_rating_retired_identity=ke_rating_retired_identity,
+              ke_term_rating=ke_term_rating, crp_term_rating=CRP_TERM_RATING,
               wd_gross=wd_gross, ke_term=ke_term, kd_term=V['kd_term'], kd_term_at=kd_term_at,
               wacc_term=wacc_term, glide_frac=glide_frac, kd_path=V['kd_path'],
               kd_eff_fy24=kd_eff_fy25, kd_eff_q1_25=kd_eff_fy25, w_egp_implied=w_egp,
@@ -3250,6 +3337,7 @@ OUT = dict(
              # already moved off it [R-ENF-06].
              terminal_record=_terminal.record,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
+             ps_rating_retired_identity=dcf_rating_ps_retired,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=nci_alt_ps, nci_alt=nci_alt,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps,
              ps_kd_egp_equiv=dcf_egp_equiv_ps, kd_egp_equiv=kd_egp_equiv,
@@ -3468,7 +3556,8 @@ OUT = dict(
               fx_grid=fx_grid, grid_fx=grid_fx, mg_grid=mg_grid, grid_margin=grid_margin,
               cu_grid=cu_grid, grid_copper=grid_copper,
               nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic,
-              tax_grid=tax_grid, grid_tax=grid_tax, tax_path=TAX_PATH),
+              tax_grid=tax_grid, grid_tax=grid_tax, tax_path=TAX_PATH,
+              contested=CONTESTED),
     step0=step0, strike=strike,
     assert_log=LOG,
     # THE STALENESS IS DISCLOSED RATHER THAN SWITCHED OFF. Two standing rules govern

@@ -2162,7 +2162,7 @@
   "rf": 0.2231,
   "rf_star": 0.1891,
   "ke_exp": 0.28089916087111483,
-  "ke_rating_alt": 0.33015197642228683,
+  "ke_rating_alt": 0.2781516094966663,
   "ke_ops_alt": 0.2793756145073353,
   "ke_raw_retired": 0.33836370861791387,
   "kd": 0.095,
@@ -2171,6 +2171,9 @@
   "wd_exp": 0.06879450457721753,
   "wacc_exp": 0.26650912810363125,
   "wacc_exp_gross": 0.24253379880432505,
+  "ke_rating_retired_identity": 0.33015197642228683,
+  "ke_term_rating": 0.18725241168497542,
+  "crp_term_rating": 0.051671941176470594,
   "wd_gross": 0.1834134861926328,
   "ke_term": 0.1686806279009288,
   "kd_term": 0.0888,
@@ -2338,9 +2341,10 @@
    "payout_of_nopat": 0.5972437090843712,
    "note": "the nominal growth rate is DERIVED from the house inflation path and the stated real growth; the capital charge is maintenance at current cost plus the capital real growth actually needs, never g x IC"
   },
-  "ps_rating_basis": 33.66962078751242,
-  "wacc_exp_rating": 0.3123736206099273,
-  "wacc_term_rating": 0.21904121761318895,
+  "ps_rating_basis": 68.17536598649635,
+  "wacc_exp_rating": 0.26395059316478836,
+  "ps_rating_retired_identity": 33.66962078751242,
+  "wacc_term_rating": 0.1692211499322291,
   "ps_nci_alt": 99.32936298550855,
   "nci_alt": 21860.79940501007,
   "g": 0.09140000000000015,
@@ -2875,6 +2879,12 @@
    "q2_26_implied": 0.35150858886554115,
    "h1_pbt": 15392.39904051864,
    "adopted": 0.245
+  },
+  "contested": {
+   "gross_weights": 92.17822825446538,
+   "rf_up100": 86.36145557379803,
+   "rf_dn100": 89.55892726020205,
+   "tax_statutory": 92.89559401873474
   }
  },
  "step0": {
@@ -3001,7 +3011,7 @@
   "[Kd integrity] (ii) INDEPENDENT EFFECTIVE RATE \u2014 FY2025 interest expense on loans and credit facilities 5,967 / average balance 60,629 = 9.84%.",
   "[Kd integrity] (iii) BOUNDS \u2014 adopted Kd 9.50%: within 150bp of the FY2025 effective rate (34bp) and does not exceed it by more than 50bp.",
   "[Cost of equity] rf 22.31% less the sovereign default spread 3.40% = 18.91% (country risk out of the risk-free rate); + beta 1.225 x the MATURE-MARKET premium 4.24% = 5.20%; + a country premium of 3.98% (59.3% of operations in Egypt at 5.17%, 40.7% outside at 2.26%) -> Ke 28.09%.",
-  "[Cost of equity, what changed] the RETIRED construction multiplied the country premium by beta as well \u2014 rf* + beta x the TOTAL premium 9.41% = 30.44%, +235bp above this build. Beta measures a stock's exposure to its own equity market, not to its sovereign; charging a 1.22-beta company 22% more Egypt risk than the market is a separate claim and this study never made it. Alternatives still disclosed: rating basis 33.02%; the RETIRED un-netted construction 33.84% (audit trail only).",
+  "[Cost of equity, what changed] the RETIRED construction multiplied the country premium by beta as well \u2014 rf* + beta x the TOTAL premium 9.41% = 30.44%, +235bp above this build. Beta measures a stock's exposure to its own equity market, not to its sovereign; charging a 1.22-beta company 22% more Egypt risk than the market is a separate claim and this study never made it. Alternatives still disclosed: rating basis 27.82%; the RETIRED un-netted construction 33.84% (audit trail only).",
   "[WACC explicit] weights on NET financial debt 6.9% / equity 93.1% -> 26.65%. On gross debt the weights would be 18.3% / 81.7% -> 24.25%; the net-debt basis is used because it is the same quantity the enterprise-to-equity bridge subtracts, and it is the more conservative of the two.",
   "[WACC terminal] Ke 16.87% (rf 10.50% READ FROM THE HOUSE PATH = 7.0% terminal inflation + 3.5% real convention, the SAME inflation the terminal growth of 9.1% is built on; + beta x mature premium 4.24% + country 2.13%); Kd after tax 6.70%; weights 85%/15% -> 15.34%",
   "[Glide] forward WACC 26.65% -> 22.88% -> 19.74% -> 17.23% -> 15.34%; cumulative discount factors 0.7896, 0.6425, 0.5366, 0.4578, 0.3969. The glide fractions are the cost-of-debt path's own cumulative progress, so the shape is inherited rather than being a second free parameter.",
@@ -3030,7 +3040,8 @@
   "[Employees' statutory share of profit] measured at 11.60% (FY2024), 11.96% (FY2025) and 13.01% (H1-2026) of profit attributable to owners; mean 12.19%. It is disclosed only in the earnings-per-share note, below the attributable line, and appears in NO line of the income statement \u2014 which is why the first edition, whose cost stack is built from unit economics, could not have caught it there. Equity attributable 185,519 less 22,620 = 162,899. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered FY2025 attributable profit of 17,330.245 and the reported EPS of 7.13; 17,330.245 / 2,140.777876 = 8.095, and the difference is this charge plus the ESOP adjustment to the weighted-average count.",
   "[Bridge] EV 219,193 - net financial debt 20,560 + associates at carrying value 6,758 = 205,391; less minority interests at their 9.7% share of group profit = 19,872; less the employees' statutory share of profit at 12.19% = 22,620 -> equity attributable to ORDINARY SHAREHOLDERS 162,899 = EGP 76.09/share AT 31-DEC-2025; rolled 246/365 of a year to the 3-Sep-2026 anchor at the 28.1% cost of equity (x1.1816) less the EGP 1.85 dividend paid in the window = EGP 87.94/share against a spot of 130.00 (-32%).",
   "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (51% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 11.34% with 3.5% terminal growth, and only then translated back. Corrected result EGP 77.86/share (-40% vs spot).",
-  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 33.02% and the cost of capital 31.24% -> 21.90%, giving EGP 33.67/share against the CDS-basis 87.94.",
+  "[Rating-basis alternative, WHAT THE RETIRED CONSTRUCTION GAVE] Ke 33.02% (beta through the whole 13.94% premium) and a terminal built on today's beta through a premium raised by a typed 4.5 points -> 21.90%, giving EGP 33.67. The published figure was that one. Neither input changed; only the identity did.",
+  "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 27.82% and the cost of capital 26.40% -> 16.92%, giving EGP 68.18/share against the CDS-basis 87.94.",
   "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 7.6%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 13.25% for that share, and a blended Kd of 15.54% against the currency-composition 9.50%. Cost of capital rises to 26.96% from 26.65%, giving EGP 87.41/share against 87.94. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
   "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (21,861) and deducting net debt afterwards gives EGP 99.33/share, against 87.94 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
   "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 47,221 gives an enterprise value of 306,933 AS AT end-FY2027; discounted back at the year-2 factor 0.6425 plus the present value of the interim FY26-27 free cash flows (3,106) that is 200,325 at 31-Dec-2025 -> EGP 79.68/share at the anchor.",
@@ -3040,6 +3051,7 @@
   "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP 87.94, with its own bear-to-bull range of 46.85 - 133.83 on one clock. The cross-checks are published beside it at their own values (relative 79.68, book floor 66.61) and the span across all of them, 36.88 - 133.83, is a spread between METHODS and not a range around the answer. Spot 130.00 (-32% to the central).",
   "[Retired blend, published unused] the 45/20/20/15 weights give EGP 86.16, -34% against the price where the cash-flow lens reads -32% \u2014 so the published number was showing about 104% of the disagreement this study actually holds. Normalised earnings power at 103.30 carried a fifth of it.",
   "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 87.94 against the published 87.94, and at the adopted beta 1.225 it returns 87.94 \u2014 asserted, not eyeballed.",
+  "[Contested choices, each now RE-RUN not described] gross-debt weights 92.18 (+4.24); risk-free +100bp 86.36 (-1.58) and -100bp 89.56 (+1.62); tax at the statutory 22.5% 92.90 (+4.95) against the 'roughly +1.8' the table printed.",
   "[Effective tax rate sensitivity, NEW] statutory 22.5% -> 92.90; adopted 24.5% -> 87.94; 27.50% -> 80.51; the reviewed half's 30.85% -> 72.22 (-15.73); the implied second quarter's 35.15% -> 61.57 (-26.38).",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.29x over the forecast.",
   "[Expert panel] Expert 1 176.13 [129.26-222.99]; Expert 2 97.72 [69.84-160.97]; Expert 3 89.43 [66.70-112.16]; panel median 97.72 (-25% vs spot)",
@@ -3590,10 +3602,10 @@
     "basis": "rating",
     "erp": 0.1394,
     "default_spread": 0.0637,
-    "ke_exp": 0.33015197642228683,
-    "wacc_exp": 0.3123736206099273,
-    "wacc_terminal": 0.21904121761318895,
-    "per_share": 33.66962078751242,
+    "ke_exp": 0.2781516094966663,
+    "wacc_exp": 0.26395059316478836,
+    "wacc_terminal": 0.1692211499322291,
+    "per_share": 68.17536598649635,
     "note": "The rating-basis premium and its matching rating-basis default spread are published beside the adopted market basis, on the same basis at both ends so country risk is stripped and added back consistently. The market basis is named central because it is the market's own live pricing of this sovereign's credit, against an agency judgement updated in steps."
    },
    "usd_alternative": {
@@ -3603,20 +3615,5 @@
   },
   "published_central": 87.94253027526973,
   "published_spot": 130.0
- },
- "forecast_anchor": {
-  "rate_name": "group segment-profit margin",
-  "latest_reviewed_period": "H1-2026, six months ended 30 June 2026, reviewed condensed interim consolidated statements",
-  "latest_reviewed_date": "2026-06-30",
-  "latest_reviewed_rate": 0.13996645985428263,
-  "first_forecast_rate": 0.12342243167403245,
-  "forecast_path": [
-   0.12342243167403245,
-   0.12511523086392035,
-   0.1264317032104704,
-   0.1271134714855157,
-   0.1272058480477024
-  ],
-  "note": "MEASURED, NOT ASSERTED, AND NO MECHANISM IS NAMED BECAUSE NONE ON THE CLOSED LIST IS SUPPORTED BY THIS COMPANY'S FILINGS. The rate is the group segment-profit margin -- note 16 segment profit, which is gross profit less selling and distribution expenses, over the note 5-3 external revenue the same filings disclose -- and it is the basis the forecast is built on, not the gross-profit row above it. The forecast opens at 12.3422% against a reviewed half of 13.9966%, 1.6544 points and 11.82% relatively below, and it fires. On the wider basis that includes the unallocated column the half runs 13.9221% and the gap is 11.35%; the narrower like-for-like figure is recorded because it is the one the forecast is comparable to and because it makes the breach LARGER rather than smaller. Against the audited FY2025 year of 12.2719% the forecast opens only -0.57% low and nothing would fire -- the stale full-year rate is the flattering comparison, which is why it is not the one this record is struck on. THE PATH DOES NOT DECLINE: 12.3422% -> 12.5115% -> 12.6432% -> 12.7113% -> 12.7206%, so the opening year is the low point of the explicit window and the second clause does not fire. WHERE THE CLAIM ACTUALLY SITS, AND IT IS THE REASON NO MECHANISM FITS. The first forecast year already CONTAINS the filed half, so the only part still in question is the half not yet filed, and every like-for-like comparison this company's own filings permit is inside the tolerance: the filed half against its own filed comparative half, 13.9966% against 14.1369%, -0.99%; the implied second half against the company's own filed second half a year earlier, 11.0362% against 10.8036%, +2.15%; the forecast year against the audited year, +0.57%. What separates them is that THE HALVES ARE NOT ALIKE: on its own filed figures this issuer earned 14.1369% in the first half of FY2025 and 10.8036% in the second, 3.3333 points apart, the second half running at 0.7642x the first, and the forecast carries essentially that same shape at 0.7885x. Both second halves are DERIVED by one identity -- a full year less its own filed first half, on a single basis -- and are labelled derived rather than presented as filed periods. So the 11.82% this record reports is a half measured against a year on an issuer with a 3.3333-point seasonal step, and 'the latest reviewed period is a half' is not on the closed list. THE SIX MECHANISMS, TESTED AND REFUSED ONE BY ONE. (a) MIX. Holding mix constant -- the forecast rates applied to the reviewed half's own revenue mix -- gives 12.4930% against the realised 13.9966%, so mix carries 0.1508 points of the 1.6544-point gap and 10.74% relative survives it. It is refused anyway because the direction is wrong in the filings: the highest-margin segment, Electrical products and digital solutions at 24.9066% in the half, has been GAINING share -- 10.70% of revenue in FY2023, 10.29% in FY2024, 12.20% in FY2025, 14.08% in the reviewed half -- so a disclosed shift toward lower margin is contradicted by the record. (b) INPUT COST OUTPACING PRICE. This is the candidate that would have cleared the check and it is the one worth recording as refused: group cost per unit of revenue rose from 85.8631% to 86.0034% across the two comparable halves, +0.1403 points, so the direction test would pass. It is not claimed, for three reasons that are facts about the model rather than opinions about the company. The model projects no such drift at all -- all three segment margins are held FLAT across the whole explicit window, with a spread of 0.000000, 0.000000 and 0.000000 between their highest and lowest forecast years. The three measured half-on-half directions DISAGREE with each other -- Cables and accessories -2.0558 points, Constructions and infrastructure +2.5348 points, Electrical products and digital solutions +1.4491 points -- so there is no group trend to project and the study's own driver registration says so. And the measured drift is 0.1403 points of revenue against the 1.6544 points the claim would have to carry, 8.5% of it. A mechanism the model does not run, asserted on a measurement a small fraction of the size of the step it is offered to explain, is the assumption wearing one. (c) A ONE-OFF IN THE LATEST REVIEWED PERIOD. One is disclosed and quantified -- EGP 542.976mn of gains on sale and revaluation of equity-accounted investees, note 20-3, on its own line with no comparative -- and it sits on the associate line BELOW operating profit, outside segment profit entirely, so it moves this rate by nothing. The disclosure exists and does not establish the mechanism. (d) CONTRACTED PRICE STEP-DOWN, (e) SUBSIDY OR LEVY WITHDRAWAL, (f) CAPACITY COMMISSIONING DRAG: nothing in this study's own input register -- its record of what the filings disclose, four fields to a figure -- names a contracted or administered price step, a subsidy, levy or quota change, or a capacity programme whose commissioning costs land before its revenue. No order book or backlog figure is disclosed in any of the audited filings or the Q1-2026 interim either, which is the absence the constructions growth driver already records. WHAT THIS RECORD IS THEREFORE SAYING: the forecast is not declining away from what this company has filed -- on the company's own halves it is roughly flat, in both of them -- and it cannot be cleared through this gate, because the arithmetic the gap needs is seasonal and the list is closed. That is reported rather than resolved: the list is not extended from inside a study."
  }
 }
