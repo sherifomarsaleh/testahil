@@ -54,7 +54,15 @@ STEPS = [
     ("figures.py", "*.png", "every figure, from the committed numbers"),
     ("docx_tmgh.py", "the study", "the delivered document"),
     ("docx_bibliography.py", "the sources", "the standalone bibliography"),
+    # THE PDFs ARE THE FILES A READER OPENS. The old private runner rendered them only
+    # when someone remembered --pdf, and its glob never covered the workbook at all, so
+    # the model PDF was a whole edition behind the spreadsheet it is named for. Declared
+    # steps now: they run every time, in order, after what they render.
+    ("bake_docs_pdf.py", "the study and sources PDFs",
+     "rendered FROM those documents, so it follows them"),
     ("build_xlsx_tmgh.py", "the workbook", "the delivered model"),
+    ("bake_model_pdf.py", "the workbook PDF",
+     "rendered FROM the workbook, so it follows it"),
     ("recalc.py", "recalc_result.json", "an independent recalculation of that workbook"),
     ("prose_check.py", None, "every figure in prose reconciled against the model"),
     ("footing_check.py", None, "every total reproducible from the rows printed above it"),
