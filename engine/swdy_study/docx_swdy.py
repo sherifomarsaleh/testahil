@@ -296,7 +296,20 @@ P(f"The primary lens is a five-year free-cash-flow-to-the-firm model. Revenue is
   f"single growth rate applied to a revenue line: it is built from the three segments the company "
   f"itself discloses — Cables and its accessories, Constructions and infrastructure, Electrical "
   f"products and digital solutions — each grown and margined on its own driver, then summed. "
-  f"Margins are therefore OUTPUTS of the build rather than assumptions fed into it, and the "
+  # F6, EXTERNAL AUDIT: THE MARGINS ARE INPUTS AND THIS CALLED THEM OUTPUTS. Each segment
+  # margin is a typed constant held flat for five years — cables 11.4341%, constructions
+  # 8.9871%, electrical 23.6221% — and segment profit is revenue times that constant.
+  # Only the GROUP EBITDA margin is an output, and only of the segment mix. The
+  # distinction matters because the margin row is the LARGEST single sensitivity in this
+  # study, wider than any cost-of-capital row: calling it an output takes the reader's
+  # biggest lever out of view.
+  f"The group EBITDA margin is therefore an OUTPUT of the build — of the segment mix and "
+  f"the corporate cost load — rather than an assumption fed into it. The three SEGMENT "
+  f"margins are inputs and are stated as such: each is FY2025's own level plus the "
+  f"like-for-like change the reviewed half measured, held flat across the window, and the "
+  f"alternative of taking the half's LEVEL instead is priced in section 1.9. The "
+  f"historical version of that build reconciles to the audited income statement EXACTLY on "
+  f"revenue "
   f"historical version of that build reconciles to the audited income statement EXACTLY on revenue "
   f"in all three years (Note 5-3) and to the audited operating profit through an explicit, "
   f"exactly-reconciling corporate cost load (Note 16 less G&A, net impairment on receivables, other "
@@ -626,8 +639,12 @@ P(f"Revenue is not forecast as a single growth rate applied to a revenue line. T
   f"unit model on the disclosed tonnage series times a copper and currency pass-through "
   f"measured out of that segment's own audited revenue per tonne — {pc(_SEG_UNIT_SHARE)} of "
   f"FY2025 revenue. Constructions and Electrical products have no unit in any source, so "
-  f"they taper on their own recent revenue growth and margin path. Margins are outputs of "
-  f"the build in all three, not inputs to it.")
+  f"they taper on their own recent revenue growth and margin path. THE SEGMENT MARGINS ARE "
+  f"INPUTS in all three, not outputs: each is a constant held flat across the window, set "
+  f"at FY2025's level plus the reviewed half's like-for-like change "
+  f"({', '.join('%s %s' % (k[:4], pc(v, 2)) for k, v in AR['seg_margin_adopted'].items())}). "
+  f"Only the group EBITDA margin is an output, and only of the mix. This is the largest "
+  f"single lever in the study and section 1.9 prices both sides of it.")
 
 H2('The three disclosed segments, historically')
 UH = BU['unit_hist']
@@ -837,10 +854,21 @@ P(f"The discount rate is a schedule, not a number. Each forecast year is discoun
 rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
         ['Risk-free rate', pc(IN['rf']), pc(IN['rf_term']),
          'observed 10-year local-currency government yield (readings on the anchor date span '
-         'roughly 22.3-23.0% across sources and disagree; the adopted point sits at the low end '
-         'and the rate is carried in the sensitivity). Terminal = the central bank\'s 5% '
-         'Q4-2028 inflation-target midpoint — deliberately the terminal-state target, not the '
-         'nearer 7% Q4-2026 waypoint — plus a 5.5pp real-rate convention'],
+         # F9, EXTERNAL AUDIT: THIS JUSTIFICATION DESCRIBED A CONSTRUCTION THE MODEL
+         # RETIRED, on the line carrying 89.4% of enterprise value. It said the terminal
+         # risk-free embeds a 5% inflation target plus a 5.5pp real convention. The model
+         # reads 7.00% + 3.50% from the house macro path — the SAME 7% the terminal
+         # growth of 9.14% is built on, which is the whole point: a discount rate and a
+         # growth rate on two different inflations is a free lunch of 2pp in perpetuity.
+         # Read from the record now, so the two can never disagree on the page again.
+         f"roughly 22.3-23.0% across sources and disagree; the adopted point sits at the "
+         f"low end and the rate is carried in the sensitivity). Terminal = "
+         f"{pc(IN['pi_term'])} long-run Egyptian inflation READ FROM THE HOUSE MACRO PATH "
+         f"plus a {pc(IN['rf_term'] - IN['pi_term'], 1)} real-rate convention = "
+         f"{pc(IN['rf_term'], 2)}. It is the same inflation the terminal growth rate of "
+         f"{pc(IN['g_term'], 2)} is derived from, by construction rather than by "
+         f"coincidence — a discount rate and a growth rate built on two different "
+         f"inflations would be a free lunch of two points in perpetuity"],
         ['Less sovereign default spread', f"({pc(IN['sov_spread_cds'])})", '—',
          'the hard-currency CDS spread, netted from the local yield and then re-entering, '
          'volatility-scaled, through the country premium inside the ERP. The NET country charge '
@@ -874,12 +902,38 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          f"relative risk is not a property of the company in perpetuity, and the "
          f"construction is named in the cost-of-capital record as "
          f"{COC['ke_terminal_construction']}"],
-        ['Equity risk premium', pc(IN['erp_cds']), pc(IN['erp_term']),
-         'published country-premium file (January-2026 vintage, both columns confirmed against '
-         'the file), credit-default-swap basis; the rating-basis column is the published '
-         'alternative below. Normalised downward for the terminal rather than held at a '
-         'crisis-era level'],
-        ['Cost of equity', pc(W['ke_exp']), pc(W['ke_term']), ''],
+        # F7, EXTERNAL AUDIT: THIS TABLE DID NOT PRODUCE ITS OWN COST OF EQUITY. It printed
+        # one premium row of 9.41% beside a beta of 1.225, and 18.91% + 1.2249 x 9.41% is
+        # 30.44%, not the 28.09% on the line below. The premium SPLITS — beta multiplies
+        # the mature-market leg only and the country premium is levied flat beside it
+        # [R-COC-03] — and that split was argued in the prose and shown nowhere in the
+        # table a reader reproduces the number from. Priced by the audit: a reader running
+        # the literally printed rows gets EGP 56.97, 35.2% below the answer. The legs are
+        # separate rows now, and the two columns add up on the page.
+        ['Equity risk premium — mature-market leg (beta applies HERE, and only here)',
+         pc(W['erp_mature'], 2), pc(W['erp_mature'], 2),
+         'the mature-market equity risk premium out of the published country-premium file '
+         '(January-2026 vintage). This is the only leg the beta above multiplies'],
+        ['  → beta × the mature leg', pc(W['beta_leg'], 2),
+         pc(W['erp_total_charged_term'] - W['crp_eff_term'], 2),
+         'the product of the two rows above it'],
+        ['Country premium — levied FLAT, never multiplied by beta',
+         pc(W['crp_eff'], 2), pc(W['crp_eff_term'], 2),
+         f"Egypt's home premium of {pc(W['crp_home'], 2)} weighted at "
+         f"{IN['lambda_country']:.4f} for the share of operations inside Egypt, blended with "
+         f"a {pc(IN['crp_foreign'], 2)} premium on the rest. Charging a "
+         f"{IN['beta']:.2f}-beta company {IN['beta']-1:.0%} more country risk than the "
+         f"market is a separate claim and this study does not make it"],
+        ['Total premium charged (the two legs above)',
+         pc(W['erp_total_charged'], 2), pc(W['erp_total_charged_term'], 2),
+         f"for comparison, the undivided published premium is {pc(IN['erp_cds'])} on the "
+         f"credit-default-swap basis; multiplying THAT by beta is the retired construction "
+         f"and gives a cost of equity of {pc(W['ke_raw_retired'])}"],
+        ['Cost of equity', pc(W['ke_exp']), pc(W['ke_term']),
+         'the adjusted risk-free rate plus the two premium legs above — and the rows of '
+         'this table now reach it: ' +
+         pc(W['rf_star'], 2) + ' + ' + pc(W['beta_leg'], 2) + ' + ' + pc(W['crp_eff'], 2) +
+         ' = ' + pc(W['ke_exp'], 2)],
         ['Cost of debt (blended, pre-tax)', pc(IN['kd']), pc(IN['kd_term']),
          f"currency-blended — see the evidence immediately below. 9.5% is the FY2026 forward "
          f"point of the disclosed cost-of-debt path under the central bank's easing cycle; the "
@@ -1051,6 +1105,37 @@ rows.append(['Terminal growth', f"{pc(SN['g_grid'][0],0)} – {pc(SN['g_grid'][-
              span([r[j] for r in [SN['grid_wacc_g'][2]] for j in range(5)]),
              p2(max(SN['grid_wacc_g'][2])-min(SN['grid_wacc_g'][2]))])
 table(rows, [2.20, 1.55, 1.90, 1.35], size=8.5)
+
+# THE FIVE JUDGEMENTS THAT MOVE THE ANSWER, EACH PUBLISHED BOTH WAYS. Every one was found
+# UNPRICED — by an external forensic audit of this edition, or by this house's own blind
+# self-audit run against it — and three of the five move the answer TOWARD the market
+# price, which is precisely why none of them is adopted here. The depth bar requires a
+# study's most consequential contested judgement to be computed both ways and shown side
+# by side; this study did that for the corporate cost load and for the pass-through, and
+# not for the one worth more than both together.
+H2('1.9b  The five judgements that move the answer, priced both ways')
+P("Each row below is a FULL RE-RUN of the model with one input changed — not an elasticity "
+  "and not a multiplier on a finished line. None of them is adopted. Three of the five "
+  "would raise the value toward the traded price, and that is the reason they are shown "
+  "rather than taken: a judgement that happens to close a gap has to be right on its own "
+  "merits before it is right at all.", size=9.5)
+_cr_rows = [['The judgement', 'What this study adopts', 'The alternative', 'EGP/share']]
+for _r in D['contested_rulings']:
+    _v = ('%s   (%s)' % (p2(_r['value']), sgn(_r['value'] / D['central'] - 1, 0))
+          if _r.get('value') is not None else 'not re-run — see note')
+    _cr_rows.append([_r['name'], _r['adopted'], _r['alternative'], _v])
+table(_cr_rows, [1.85, 1.75, 1.75, 1.15], size=8.2)
+for _r in D['contested_rulings']:
+    P('%s — %s' % (_r['name'], _r['note']), size=9.0, color=GREY)
+caption(f"The central of EGP {p2(D['central'])} is the study's answer and none of these "
+        f"alternatives displaces it. They are published because a reader is entitled to see "
+        f"the levers that move the number most, and because this study's own gap to the "
+        f"market — {sgn(D['central']/SPOT-1, 0)} — is mostly ONE of them: read the reviewed "
+        f"half as a level rather than as a change, and apply that consistently to margins, "
+        f"capital expenditure and the minority share, and the answer lands near the traded "
+        f"price. That is a methodological disagreement about a filing we read, not a "
+        f"disagreement about information the market has and we lack, and it is stated here "
+        f"rather than left for an auditor to find.")
 # THE COPPER SENTENCE DESCRIBED A GRID THAT NO LONGER EXISTS. It said the swing "can even
 # run the 'wrong' way"; the repaired grid runs 83.40 to 92.13, monotone upward. The
 # DIRECTION is read off the grid here rather than asserted, and the economics the sentence
@@ -1437,13 +1522,24 @@ for head, body in [
      f"discount rate applied to a business still growing fast — the explicit years are heavily "
      f"discounted, so the perpetuity carries the weight. The terminal assumptions are stressed "
      f"across cost of capital, growth and return on invested capital in section 1.9."),
-    ("The FY2026 forecast is checked against one quarter, not several. ",
-     f"The segment build for FY2026E is cross-checked, not calibrated, against the disclosed "
-     f"Q1-2026 print — the build's {n0(F['rev'][0])} against a {n0(BU['q1_26_implied_fy'])} "
-     f"grossed-up implied full year, a gap of "
-     f"{sgn(F['rev'][0]/BU['q1_26_implied_fy']-1)}. One quarter is a thin check, and it is the "
-     f"reason the half-year 2026 result matters: it will either confirm or contradict the segment "
-     f"growth and margin paths that all three cash-based lenses share."),
+    # F5, THE SECOND SITE AND THE MORE SERIOUS ONE. This caveat told a reader the FY2026
+    # forecast rests on one quarter and that the half-year result was still ahead as a
+    # test of it. The half-year result is the thing the forecast is BUILT ON: every FY2026
+    # segment growth rate is its year-on-year ratio, every margin is FY2025 plus its
+    # like-for-like change, and working capital and capex are re-anchored on it. The
+    # caveat inverted what it was warning about, and section 5 listed the same filing as a
+    # future catalyst. The real caveat is narrower and harder, so it is stated.
+    ("The FY2026 forecast is calibrated on ONE reviewed half, not tested against it. ",
+     f"Every FY2026 segment driver is the H1-2026 half's own measurement: growth rates "
+     f"{', '.join('%s %s' % (k, pc(v, 2)) for k, v in AR['seg_g26'].items())}, margins at "
+     f"FY2025 plus that half's like-for-like change, and working capital and capital "
+     f"expenditure re-anchored on the same half. The Q1-2026 gross-up shown in section 1.6 "
+     f"is therefore NOT an independent check — it covers a quarter of the period the build "
+     f"stands on. THE REAL EXPOSURE IS THIS: a single half sets the base year of a "
+     f"five-year model, and whether that half is read as a LEVEL or as a CHANGE is worth "
+     f"more than any other judgement in this study. Section 1.9 prices both readings. What "
+     f"would settle it is a second half measured the same way — the FY2026 full-year "
+     f"result, not the half already in hand."),
     ("The currency of discounting is unresolved, and it is the biggest single question. ",
      # NOT "THE FULL EGYPTIAN PREMIUM". [R-COC-03] splits it: beta applies to the mature
      # leg and the country premium is charged FLAT beside it, weighted by the share of

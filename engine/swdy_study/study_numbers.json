@@ -2236,6 +2236,8 @@
    },
    "delta_vs_withdrawn": 0.21432591261554967
   },
+  "erp_total_charged": 0.09179916087111484,
+  "erp_total_charged_term": 0.0636806279009288,
   "erp_mature": 0.04242,
   "crp_home": 0.051680000000000004,
   "crp_eff": 0.039838624,
@@ -3008,6 +3010,43 @@
   "   terminal growth at the economy cap                           +30.26/share  (  72% of the gap)",
   "   copper a fifth above the escalated path                       +5.85/share  (  14% of the gap)",
   "   the pound weaker than the house path                          +2.34/share  (   6% of the gap)"
+ ],
+ "contested_rulings": [
+  {
+   "name": "Segment margins: FY2025 plus the half's CHANGE, or the half's LEVEL",
+   "adopted": "FY2025 + the measured like-for-like half change",
+   "alternative": "the reviewed half's own margin level, held flat",
+   "value": 118.3243,
+   "note": "THE LARGEST SINGLE JUDGEMENT IN THIS STUDY and it was priced nowhere until now. The half printed cables 12.4890%, constructions 11.5934%, electrical 24.9066%; the study carries 11.4341%, 8.9871%, 23.6221%. The case for a change rather than a level is seasonality \u2014 H1-2025 ran 14.06% against H2-2025 10.71% \u2014 and it rests on a single year of split."
+  },
+  {
+   "name": "Forecast effective tax rate",
+   "adopted": "24.5%, between the FY2025 print and the Q1-2026 print",
+   "alternative": "the reviewed half's own 30.85%",
+   "value": 73.455,
+   "note": "The half is the most recent and most adverse observation, it is registered, and the register itself calls it \"a material step this re-issue must price rather than average away\". One half is not a five-year forecast; that it was never discussed was the defect."
+  },
+  {
+   "name": "Capital expenditure: flat as a SHARE of revenue, or flat in LEVEL",
+   "adopted": "a flat measured share of a revenue line that grows 2.3x",
+   "alternative": "held flat in level, as the completed programme measures",
+   "value": 94.702,
+   "note": "On the adopted basis capex rises 74% in level and runs 3.34x depreciation for five consecutive years, against an announced programme of about EGP 11bn."
+  },
+  {
+   "name": "Minority interests: the FY2025 profit share or the half's",
+   "adopted": "9.675%, the FY2025 share of group profit",
+   "alternative": "6.81%, the reviewed half's own share",
+   "value": 90.7944,
+   "note": "Both are registered and the half was declined. Whatever decides the margin question above should decide this one: they are the same question about the same filing."
+  },
+  {
+   "name": "The equity bridge: the 31-Dec-2025 sheet or the 30-Jun-2026 sheet",
+   "adopted": "31 December 2025, rolled forward at the cost of equity",
+   "alternative": "the reviewed 30 June 2026 balance sheet",
+   "value": null,
+   "note": "Net debt at 30 June is 28,629.0 against the 20,560.0 the bridge subtracts. The alternative is worth about -3.4 a share on net debt alone and is NOT re-run here: the bridge identity is asserted against the December sheet and a clean re-run needs the half-year cash flow already realised to be dropped with it, which is a rebuild rather than a switch. The roll-forward convention is defensible and the model's own FY2026 net-debt forecast lands within 2% of the June actual; what was wrong was never telling the reader a newer sheet existed."
+  }
  ],
  "drivers_as_run": {
   "seg_g26": {

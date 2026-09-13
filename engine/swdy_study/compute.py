@@ -3013,6 +3013,11 @@ OUT = dict(
               # beside it, weighted for the share of operations inside Egypt. The
               # sentence could say so only by quoting numbers that lived nowhere, so
               # they live here.
+              # THE TWO LEGS AND THEIR SUM, so the delivered table can print a total it
+              # does not compute for itself. A figure a document adds up on the page is a
+              # figure nothing reconciles — prose_check said so the moment it appeared.
+              erp_total_charged=KE_PARTS['beta_leg'] + CRP_EFF,
+              erp_total_charged_term=BETA_TERM * ERP_MATURE + CRP_EFF_TERM,
               erp_mature=ERP_MATURE, crp_home=CRP_HOME, crp_eff=CRP_EFF,
               crp_eff_term=CRP_EFF_TERM, beta_leg=KE_PARTS['beta_leg'],
               beta_terminal=BETA_TERM),
@@ -3303,6 +3308,59 @@ OUT = dict(
     # formula reads: the model grows FY2026 at the measured half-on-half ratio and holds
     # capex at a flat measured share. A page cannot describe the model if the numbers file
     # does not carry what the model does.
+    # THE FIVE JUDGEMENTS THE PRINCIPAL RULED ON, 13-09-2026, EACH PUBLISHED BOTH WAYS.
+    # Every one of them was found UNPRICED by an external forensic audit or by this
+    # house's own blind self-audit, and three of the five move the answer TOWARD the
+    # market price — which is exactly why adopting any of them quietly is the thing the
+    # standing rule forbids. The ruling was: publish the alternative, adopt none. So the
+    # central is unchanged and the study now shows its own biggest levers instead of
+    # carrying them silently. Each figure is a FULL RE-RUN of this model with one input
+    # changed, not an elasticity.
+    contested_rulings=[
+        dict(name="Segment margins: FY2025 plus the half's CHANGE, or the half's LEVEL",
+             adopted='FY2025 + the measured like-for-like half change',
+             alternative="the reviewed half's own margin level, held flat",
+             value=118.3243, note=(
+                 'THE LARGEST SINGLE JUDGEMENT IN THIS STUDY and it was priced nowhere '
+                 'until now. The half printed cables 12.4890%, constructions 11.5934%, '
+                 'electrical 24.9066%; the study carries 11.4341%, 8.9871%, 23.6221%. '
+                 'The case for a change rather than a level is seasonality — H1-2025 ran '
+                 '14.06% against H2-2025 10.71% — and it rests on a single year of split.')),
+        dict(name='Forecast effective tax rate',
+             adopted='24.5%, between the FY2025 print and the Q1-2026 print',
+             alternative="the reviewed half's own 30.85%",
+             value=73.4550, note=(
+                 'The half is the most recent and most adverse observation, it is '
+                 'registered, and the register itself calls it "a material step this '
+                 're-issue must price rather than average away". One half is not a '
+                 'five-year forecast; that it was never discussed was the defect.')),
+        dict(name='Capital expenditure: flat as a SHARE of revenue, or flat in LEVEL',
+             adopted='a flat measured share of a revenue line that grows 2.3x',
+             alternative='held flat in level, as the completed programme measures',
+             value=94.7020, note=(
+                 'On the adopted basis capex rises 74% in level and runs 3.34x '
+                 'depreciation for five consecutive years, against an announced '
+                 'programme of about EGP 11bn.')),
+        dict(name='Minority interests: the FY2025 profit share or the half\'s',
+             adopted='9.675%, the FY2025 share of group profit',
+             alternative="6.81%, the reviewed half's own share",
+             value=90.7944, note=(
+                 'Both are registered and the half was declined. Whatever decides the '
+                 'margin question above should decide this one: they are the same '
+                 'question about the same filing.')),
+        dict(name='The equity bridge: the 31-Dec-2025 sheet or the 30-Jun-2026 sheet',
+             adopted='31 December 2025, rolled forward at the cost of equity',
+             alternative='the reviewed 30 June 2026 balance sheet',
+             value=None, note=(
+                 'Net debt at 30 June is 28,629.0 against the 20,560.0 the bridge '
+                 'subtracts. The alternative is worth about -3.4 a share on net debt '
+                 'alone and is NOT re-run here: the bridge identity is asserted against '
+                 'the December sheet and a clean re-run needs the half-year cash flow '
+                 'already realised to be dropped with it, which is a rebuild rather than '
+                 'a switch. The roll-forward convention is defensible and the model\'s '
+                 'own FY2026 net-debt forecast lands within 2% of the June actual; what '
+                 'was wrong was never telling the reader a newer sheet existed.')),
+    ],
     drivers_as_run=dict(
         seg_g26={k: v for k, v in _SEG_G26.items()},
         capex_pct_measured=_CAPEX_PCT_MEASURED,

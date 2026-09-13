@@ -1,6 +1,6 @@
 {
  "model_study": {
-  "sections": "49 headings, 0 model-study sections missing ",
+  "sections": "50 headings, 0 model-study sections missing ",
   "sheets": "16 sheets, 0 mismatches ",
   "lenses": [
    "book",
@@ -14,7 +14,7 @@
   "experts": "bases inside their own ranges=True",
   "scrub": "43 patterns, 0 hits",
   "figures": "8 figures, 0 transparent",
-  "tables": "53 tables, 0 problems",
+  "tables": "54 tables, 0 problems",
   "typed_numerals": "22 in docx_swdy.py, docx_register.py",
   "workbook": "630 formulas, 2 checked expected values",
   "sweep": "32 findings (8 dated negative searches), 12 drivers, primary access logged"
