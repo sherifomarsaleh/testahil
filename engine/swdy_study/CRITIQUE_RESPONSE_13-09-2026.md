@@ -70,3 +70,35 @@ number below was taken.
 | F39 | unver | The registered USD/EGP annual averages sit 3% below the market averages, and are cited to a note this audit could not read | Valuation impact: nil. Only year-on-year exchange-rate ratios enter the model, and FY2026 Cables revenue is hardcoded, so rebasing the entire path on  | price as the audit states it; not independently re-run in this pass |
 | F40 | partial | The employees' statutory charge is described against the wrong statutory base | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
 | F41 | partial | The company profile understates the operating footprint by a factor of four | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+
+---
+
+## Independently reproduced, second pass
+
+Ten of the audit's findings have now been re-derived here from the study's own model and
+delivered files. Every one matches.
+
+| # | What was re-run | Result | The audit said |
+|---|---|---|---|
+| F1 | corporate cost load on the glide the prose describes | **53.9962** (−33.95, −38.6%) | 54.00, −33.95, −38.6% |
+| F2 | capex on the taper the driver table prints | **87.1387** (−0.80) | 87.14, −0.80 |
+| F3 | capex held at the FY2025 peak of 4.665% | **79.6549** (−8.29) | 79.65, −8.29 |
+| F8 | country premium with the non-Egypt leg removed, both windows | **96.2291** (+8.29) | 96.23, +8.29 |
+| F9 | terminal risk-free on the printed 5.5pp convention | **66.6163** (−21.33, −24.3%) | 66.62, −21.33, −24.3% |
+| F13 | effective tax at the H1-2026 rate of 30.85% | **73.4550** (−14.49, −16.5%) | 73.45, −14.49, −16.5% |
+| F16 | working capital at the FY2025 disclosed 19.873% | **87.1967** (−0.75) | 87.20, −0.75 |
+| F19 | the free-cash-flow table summed on its printed labels | 3,642 / 10,034 / 16,912 / 21,208 / 24,791 against a stated −319 / 5,227 / 11,402 / 15,010 / 17,889 — **the gap is the D&A row to the unit** | identical, row for row |
+| F20 | the normalised lens label | row reads "Less tax at 24.5% and minority interests at 9.7% \| (14,198)"; the model applies a **third** deduction of (1 − 12.193%) the label does not name | identical |
+| F21 | the relative lens's interim cash-flow row | committed `pv_interim` = **+3,106.381** (−252.3 and +3,358.6); the delivered row reads "Plus interim cash flows \| (-3,106) \| … net negative" — labelled Plus, printed bracketed AND signed negative, called negative in prose, **added** by the model | identical |
+
+Two prices are ours rather than theirs. **F4**: we get 81.2480 (−6.69, −7.6%) against their 83.52
+(−4.42, −5.0%); ours applies volume growth times the pass-through, theirs a flat +10.7%. Both clear
+the 5% escalation bar, so the difference changes the paragraph it earns, not the bucket it lands in.
+**F15**: we get 85.2050 (−2.74) against their 85.87 (−2.07), flattening from FY2027 on the house
+US-inflation term.
+
+**F4 is worse than the audit states.** `compute.py` carries an assertion that REFUSES the published
+10.71%: *"FY2026 cables growth is 10.7100% while the reviewed halves measure 30.5683%. The first
+forecast year is the year the half measures and it may not disagree with it."* The model would not
+run on the driver its own table publishes. Those two rows were added on 13-09-2026, in this session,
+as a repair to a different defect.
