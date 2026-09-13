@@ -69,7 +69,9 @@ def build(path):
 
     para(doc, "PALM HILLS DEVELOPMENTS", size=18, bold=True, color=ACCENT,
          space_after=2)
-    para(doc, "Sources, inputs and judgements · edition of 2 September 2026",
+    # TYPED, AND TWO EDITIONS STALE. edition.py is imported in this file already.
+    import edition as _ED0
+    para(doc, "Sources, inputs and judgements · edition of %s" % _ED0.WORDS,
          size=10.5, color=MUTED, space_after=14)
     para(doc, "This document accompanies the valuation study. It lists every "
               "document the study was built on, every input with its value, its "

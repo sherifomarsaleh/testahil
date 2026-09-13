@@ -42,3 +42,13 @@ MODEL_XLSX = 'PHDC_Valuation_Model_%s.xlsx' % _C
 STUDY_PDF = STUDY_DOCX[:-len('.docx')] + '.pdf'
 BIBLIO_PDF = BIBLIO_DOCX[:-len('.docx')] + '.pdf'
 MODEL_PDF = MODEL_XLSX[:-len('.xlsx')] + '.pdf'
+
+
+# THE SUPERSEDED EDITION'S OWN DELIVERED FILES, named here for the same reason the
+# current ones are. A supersession sentence that states what moved has to read the
+# edition it superseded, and typing those figures is how the document came to say the
+# rate "fell from 25.83% to 24.96%" -- 25.83% being this edition's own rating-basis
+# alternative, never any edition's published rate.
+_P = SUPERSEDES[-1]
+PRIOR_STUDY_DOCX = 'PHDC_Valuation_Study_%s.docx' % _P.strftime('%d-%m-%Y')
+PRIOR_MODEL_XLSX = 'PHDC_Valuation_Model_%s.xlsx' % _P.strftime('%d%m%Y')

@@ -1338,31 +1338,49 @@
   "ok": true
  },
  {
-  "check": "assumption B5",
+  "check": "assumption B5 (Cash conversion \u2014 central)",
   "workbook": 0.0871,
   "study": 0.0871,
   "ok": true
  },
  {
-  "check": "assumption B12",
-  "workbook": 0.2609,
+  "check": "assumption B8 (Gross margin)",
+  "workbook": 0.3548,
+  "study": 0.3548,
+  "ok": true
+ },
+ {
+  "check": "assumption B11 (Terminal growth)",
+  "workbook": 0.07,
+  "study": 0.07,
+  "ok": true
+ },
+ {
+  "check": "assumption B12 (Cost of capital \u2014 ADOPTED)",
+  "workbook": 0.2496,
+  "study": 0.2496,
+  "ok": true
+ },
+ {
+  "check": "assumption B13 (Cost of capital \u2014 alternative)",
+  "workbook": 0.2583,
   "study": 0.2583,
   "ok": true
  },
  {
-  "check": "assumption B13",
+  "check": "assumption B14 (Net debt (EGP mn))",
   "workbook": 23244.7187,
   "study": 23244.7187,
   "ok": true
  },
  {
-  "check": "assumption B16",
+  "check": "assumption B17 (Minority interests, share of equit)",
   "workbook": 0.0468,
   "study": 0.0468,
   "ok": true
  },
  {
-  "check": "assumption B17",
+  "check": "assumption B18 (Shares outstanding (mn))",
   "workbook": 2859.92,
   "study": 2859.92,
   "ok": true

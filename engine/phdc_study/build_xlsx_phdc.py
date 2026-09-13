@@ -10,6 +10,9 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import valuation_v2 as _V2       # the terminal growth this model actually runs
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 ST = N["statements"]
@@ -31,6 +34,25 @@ YEARS = [r["year"] for r in N["cases"]["base"]["rows"]]
 # remembered row number: the row moves the moment a driver is added, and a
 # stale address produces a workbook that still computes and is simply wrong.
 ASSUMPTION_AT = {}
+
+# THE BRIDGE SHEETS ARE WRITTEN BEFORE THE ASSUMPTIONS SHEET, so they cannot resolve a
+# label through AT() and five addresses were typed into their formulas instead. Adding
+# one driver row on 13-09-2026 shifted every one of them and the bridge published a
+# value per share of MINUS 2.4 billion. The addresses live here now, in one place, used
+# by the bridge formulas AND asserted against their labels once the Assumptions sheet
+# exists -- so the next inserted row fails the build instead of the bridge.
+BRIDGE_CELLS = {
+    "Net debt (EGP mn)": "B14",
+    "Investments in associates (EGP mn)": "B15",
+    "Investment property (EGP mn)": "B16",
+    "Minority interests, share of equity value": "B17",
+    "Shares outstanding (mn)": "B18",
+}
+_BC = BRIDGE_CELLS
+A_ND, A_ASSOC = _BC["Net debt (EGP mn)"], _BC["Investments in associates (EGP mn)"]
+A_IP = _BC["Investment property (EGP mn)"]
+A_NCI = _BC["Minority interests, share of equity value"]
+A_SH = _BC["Shares outstanding (mn)"]
 
 
 def AT(label):
@@ -76,8 +98,11 @@ def build(path):
     # 1 READ FIRST -----------------------------------------------------------
     ws = wb.active
     ws.title = "READ FIRST"
+    # THE STAMP WAS TYPED AND WAS TWO EDITIONS STALE. This file already imports
+    # edition.py for the filename; it reads it for the words too now.
+    import edition as _ED0
     head(ws, "Palm Hills Developments — valuation workbook",
-         "Edition of 2 September 2026. Supersedes 30 August 2026.", [70])
+         "Edition of %s. Supersedes %s." % (_ED0.WORDS, _ED0.PRIOR_WORDS), [70])
     r = 4
     for line in [
         "This workbook is for information and education. It is not investment "
@@ -159,17 +184,17 @@ def build(path):
     # the bridge stands on the 31 March 2026 reviewed balance sheet; the four
     # Assumptions addresses below are asserted against their labels once that
     # sheet is written (A_NET_DEBT .. A_SHARES)
-    r = row(ws, r, "less net debt, 31 March 2026", ["=-Assumptions!B13"], fmt="#,##0.0")
+    r = row(ws, r, "less net debt, 31 March 2026", ["=-Assumptions!" + A_ND], fmt="#,##0.0")
     r = row(ws, r, "plus investments in associates",
-            ["=Assumptions!B14"], fmt="#,##0.0")
-    r = row(ws, r, "plus investment property", ["=Assumptions!B15"], fmt="#,##0.0")
+            ["=Assumptions!" + A_ASSOC], fmt="#,##0.0")
+    r = row(ws, r, "plus investment property", ["=Assumptions!" + A_IP], fmt="#,##0.0")
     r = row(ws, r, "Equity value before minority interests", ["=B6+B7+B8+B9"],
             fmt="#,##0.0", bold=True)
     r = row(ws, r, "less minority interests at their share of value",
-            ["=-B10*Assumptions!B16"], fmt="#,##0.0")
+            ["=-B10*Assumptions!" + A_NCI], fmt="#,##0.0")
     r = row(ws, r, "Equity value attributable to shareholders", ["=B10+B11"],
             fmt="#,##0.0", bold=True)
-    r = row(ws, r, "Shares outstanding (mn)", ["=Assumptions!B17"], fmt="#,##0.0")
+    r = row(ws, r, "Shares outstanding (mn)", ["=Assumptions!" + A_SH], fmt="#,##0.0")
     r = row(ws, r, "Value per share (EGP)", ["=B12/B13"], fmt="#,##0.00", bold=True)
     r += 1
     r = row(ws, r, "Terminal value as a share of enterprise value",
@@ -191,15 +216,31 @@ def build(path):
          "mean of the three published cash-flow statements"),
         ("Cash conversion — weak", D["cfo_lo"], "0.00%", "2023 and 2025 outcome"),
         ("Cash conversion — strong", D["cfo_hi"], "0.00%", "2024 outcome"),
-        ("Gross margin", (D["gross_margin_fy25"] + D["gross_margin_1q26"]) / 2,
-         "0.00%", "average of FY2025 and 1Q2026 as reported"),
+        # THE SHEET PUBLISHED A MARGIN THE MODEL DOES NOT RUN. This cell carried the
+        # average of FY2025 and 1Q2026 -- the anchor the SUPERSEDED edition used --
+        # on a sheet headed "every blue cell is an input; change one and the whole
+        # workbook recomputes". The model runs the latest disclosure alone.
+        ("Gross margin", N["bottom_up"]["anchors"]["gross_margin_forward"], "0.00%",
+         "the first quarter of 2026 on its own, the latest disclosure; NOT an "
+         "average (FY2025 was %.2f%%, 1Q2026 %.2f%%)"
+         % (100 * D["gross_margin_fy25"], 100 * D["gross_margin_1q26"])),
         ("Overheads as a share of revenue", D["sga_ratio_fy25"], "0.00%",
          "FY2025 as reported"),
         ("Price escalation", D["cpi_trailing3"], "0.00%",
          "Egyptian consumer price inflation, three-year mean"),
-        ("Terminal growth", 0.12, "0.00%", "below nominal growth, stated"),
-        ("Cost of capital", W["wacc_rating"], "0.00%",
-         "built on the Fundamental Valuation and Peer sheets"),
+        # TYPED 0.12 AGAINST A MODEL RUNNING 0.07, and 12% is the alternative the
+        # study's own contested-judgement record marks REJECTED, worth EGP 21.00 a
+        # share. It is read from the model now.
+        ("Terminal growth", _V2.TG, "0.00%",
+         "the terminal growth this model runs, read from the valuation module"),
+        # AND THE COST OF CAPITAL CELL PUBLISHED THE RATING BASIS UNDER A BARE LABEL
+        # while the model discounts on the swap basis and section 1.8 marks that one
+        # ADOPTED. Both are shown, and the adopted one is the one named as adopted.
+        ("Cost of capital — ADOPTED (traded default-swap basis)", W["wacc_cds"],
+         "0.00%", "the rate this model discounts at; section 1.8 marks it adopted"),
+        ("Cost of capital — alternative (credit-rating basis), not used",
+         W["wacc_rating"], "0.00%",
+         "published for comparison only; no cell on this sheet reads it"),
         ("Net debt (EGP mn)", D["net_debt_bridge"], "#,##0.0",
          "gross borrowings less cash, 31 March 2026 reviewed balance sheet"),
         ("Investments in associates (EGP mn)", q("investments_assoc"), "#,##0.0",
@@ -234,12 +275,11 @@ def build(path):
         r += 1
     # the bridge sheets reference these four rows by address; hold the
     # addresses to the labels so an inserted driver cannot silently shift them
-    for lbl, addr in (("Net debt (EGP mn)", "$B$13"),
-                      ("Investments in associates (EGP mn)", "$B$14"),
-                      ("Investment property (EGP mn)", "$B$15"),
-                      ("Minority interests, share of equity value", "$B$16"),
-                      ("Shares outstanding (mn)", "$B$17")):
-        assert ASSUMPTION_AT[lbl] == addr, (lbl, ASSUMPTION_AT[lbl], addr)
+    # THE TRIPWIRE, AGAINST THE ADDRESSES THE BRIDGE ACTUALLY EMITTED. One list, used
+    # by both, so a shift cannot pass the guard and break the formulas.
+    for lbl, addr in BRIDGE_CELLS.items():
+        want = "$%s$%s" % (addr[0], addr[1:])
+        assert ASSUMPTION_AT[lbl] == want, (lbl, ASSUMPTION_AT[lbl], want)
     r += 1
     ws.cell(r, 1, "NOT DISCLOSED — absent by design, never estimated").font = SUB
     r += 1
@@ -282,10 +322,10 @@ def _remaining(wb):
                      ("Gross borrowings, 31 March 2026", -D["gross_debt_bridge"])):
         r = row(ws, r, lbl, [round(val, 1)], fmt="#,##0.0")
     r = row(ws, r, "Minority interests at their share of value",
-            ["=-(B4+B5+B6+B7+B8)*Assumptions!B16"], fmt="#,##0.0")
+            ["=-(B4+B5+B6+B7+B8)*Assumptions!" + A_NCI], fmt="#,##0.0")
     r = row(ws, r, "Equity value attributable to shareholders",
             ["=B4+B5+B6+B7+B8+B9"], fmt="#,##0.0", bold=True)
-    r = row(ws, r, "Per share (EGP)", ["=B10/Assumptions!B17"], fmt="#,##0.00",
+    r = row(ws, r, "Per share (EGP)", ["=B10/Assumptions!" + A_SH], fmt="#,##0.00",
             bold=True)
 
     # 6 Segments -------------------------------------------------------------
@@ -386,7 +426,9 @@ def _remaining(wb):
     A_SGA = AT("Overheads as a share of revenue")
     A_CFO = AT("Cash conversion — central")
     A_CAPEX = AT("Maintenance capital expenditure, share of revenue")
-    A_WACC = AT("Cost of capital")
+    # A_WACC WAS RESOLVED AND NEVER USED -- no cell on any sheet read it, which is
+    # the other half of why the Assumptions sheet could publish the wrong rate
+    # under a bare label without anything going red.
 
     def _path_row(label, values, fmt, note=""):
         """A per-year INPUT row: growth is a path, not a single number.

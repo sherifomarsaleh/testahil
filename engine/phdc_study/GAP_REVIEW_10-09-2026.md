@@ -40,8 +40,16 @@ The most recent disclosure is the **consolidated financial statements for the th
 ended 31 March 2026**, with a limited review report attached, from the company's own result
 centre and registered line by line — accepted only because its own subtotals foot.
 
-**Re-checked in this pass and still true on 10 September: the half-year 2026 filing is not
-out.** The newest sheet in existence is the one the bridge uses.
+**CORRECTED 13 September.** This heading previously read *"re-checked in this pass and still
+true on 10 September: the half-year 2026 filing is not out."* That was false, and the study's own
+`inputs.py` said so at the same edition: **a half-year 2026 release of 18 August 2026 is
+reported** — an order book of EGP 284bn at 30 June, 40% up on the year, and a further EGP 75bn
+sold at Hacienda Ras El Hekma in the fortnight after. The study has **not obtained the filing
+itself**, and uses nothing from it, because a trade-press report of a disclosure is a lead and
+never a source. Those are two different statements and only the second is true of this study.
+The bridge therefore stands on the reviewed sheet to 31 March 2026 — which is the newest sheet
+**this study holds**, not the newest in existence. If the reported figures hold, the order book
+is ahead of what this study carries, and that is recorded in section 7 as an open gap.
 
 ## 2. BASE YEAR
 
