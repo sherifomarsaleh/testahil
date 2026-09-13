@@ -366,18 +366,33 @@ caption(f"Terminal cost of capital down the side, terminal growth across the top
         "is the usual shape when the terminal carries most of the value.")
 
 H2('The bridge from enterprise value to the equity — and to the anchor date')
-_tfcff = F['nopat'][-1] * (1 + DCF['g']) * (1 - DCF['rr_term'])
+# THE BLOCK PRINTED A CASH FLOW THE MODEL DOES NOT USE. It computed the terminal flow as
+# NOPAT x (1+g) x (1 - reinvestment rate) — the identity this study RETIRED — and got
+# 30,397, which capitalises to 490,003 against the 493,872 printed two rows below it. The
+# model's terminal is built by the sanctioned module and its cash flow is 28,072. So the
+# one table a reader uses to follow the largest number in the study could not be added up.
+# Read from the committed terminal record, and described as what it is.
+_TR = DCF['terminal_record']
+_tfcff = _TR['fcff']
 rows = [['Step', 'EGP mn', 'Note'],
         ['Present value of the five forecast years', n0(DCF['pv_explicit']),
          'sum of the present-value row above'],
         ['Terminal-year free cash flow', n0(_tfcff),
-         f"FY2030E NOPAT grown {pc(DCF['g'],0)} × (1 − reinvestment rate {pc(DCF['rr_term'])}); "
-         f"the reinvestment rate is forced to g ÷ terminal return on capital "
-         f"({pc(DCF['roic_term'])}) so growth is paid for — this is why the terminal cash flow "
-         f"sits above year-5 FCFF, disclosed here rather than left implicit"],
+         f"NOT a reinvestment-rate identity. FY2030E NOPAT grown {pc(DCF['g'],2)}, plus book "
+         f"depreciation of {n0(_TR['dna_addback'])} added back, LESS maintenance at "
+         f"replacement cost {n0(_TR['maintenance'])} on the derived "
+         f"{IN['asset_life_derived']:.2f}-year asset life, less growth capital "
+         f"{n0(_TR['growth_capex'])} at the stated real terminal growth, less inflation on "
+         f"working capital {n0(_TR['wc_charge'])} — so the terminal pays for replacing its "
+         f"own assets at what they cost to replace, not at what they cost historically. "
+         f"The retired construction forced reinvestment to g ÷ terminal return on capital "
+         f"({pc(DCF['roic_term'])}) and is published beside the model, unused"],
         ['Present value of the terminal value', n0(DCF['pv_tv']),
-         f"the terminal cash flow capitalised at {pc(W['wacc_term'])} − {pc(DCF['g'],0)} = "
-         f"{n0(DCF['tv'])}, discounted at the year-5 factor {F['df'][-1]:.4f}"],
+         f"the terminal cash flow grown one year and capitalised at "
+         f"{pc(W['wacc_term'],2)} − {pc(DCF['g'],2)}, then discounted at the year-5 factor "
+         f"{F['df'][-1]:.4f}. IT REPRODUCES FROM THE ROW ABOVE: {n0(_tfcff)} × "
+         f"{1+DCF['g']:.4f} ÷ {pc(DCF['terminal_spread'],4)} = {n0(DCF['tv'])}, and "
+         f"{n0(DCF['tv'])} × {F['df'][-1]:.4f} = {n0(DCF['pv_tv'])}"],
         ['Enterprise value', n0(DCF['ev']), 'the two lines above'],
         ['Terminal value as a share of enterprise value', pc(DCF['tv_share'],0),
          'disclosed here and in the summary table; stress-tested in section 1.9'],
@@ -1357,9 +1372,17 @@ for head, body in [
     ("The valuation is dated, and the dating is now explicit. ",
      f"The cash-flow model is constructed at 31 December 2025 (the audited balance-sheet date); "
      f"every lens value is rolled {DCF['anchor_days']:.0f}/365 of a year to the 3-Sep-2026 "
-     f"anchor at the {pc(W['ke_exp'])} cost of equity less the EGP {p2(IN['dps_fy25'])} dividend "
-     f"paid in the window — worth about +{p2(DCF['ps']-DCF['ps_dec']+IN['dps_fy25'])} gross on "
-     f"the primary lens. An earlier revision omitted this roll and compared a 31-Dec-2025 value "
+     # THE THIRD SITE OF THE RAW DIVIDEND, and it survived its own fix this morning: the
+     # bridge row and the roll helper were both moved onto div_at_anchor and this
+     # sentence was not, so it named 1.85 and its gross figure came out 13.70 against
+     # the model's 13.8168. The dividend is deducted AT THE ANCHOR — carried forward
+     # from its ex-date at the same cost of equity the rest of the roll uses — and both
+     # numbers are read from the record now rather than assembled from an input.
+     f"anchor at the {pc(W['ke_exp'])} cost of equity, less the FY2025 dividend carried "
+     f"forward to that anchor at the same rate: EGP {p2(IN['dps_fy25'])} went ex on 4 June "
+     f"and is worth EGP {p2(DCF['div_at_anchor'])} by 3 September. The roll is worth about "
+     f"+{p2(DCF['ps']-DCF['ps_dec']+DCF['div_at_anchor'])} gross on the primary lens, "
+     f"+{p2(DCF['ps']-DCF['ps_dec'])} after the dividend leaves. An earlier revision omitted this roll and compared a 31-Dec-2025 value "
      f"directly to the August price; an external review flagged it, correctly."),
     ("The terminal value is a large share of the answer. ",
      f"{pc(DCF['tv_share'],0)} of the enterprise value comes from the terminal value. This is "

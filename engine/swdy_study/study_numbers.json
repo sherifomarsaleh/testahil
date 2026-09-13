@@ -2258,6 +2258,7 @@
  "dcf": {
   "div_at_anchor": 1.9677812737319353,
   "div_days": 91,
+  "terminal_spread": 0.06203513371578934,
   "pv_explicit": 23195.251240855512,
   "tv": 493871.53180240764,
   "pv_tv": 195997.74048581204,
@@ -2328,7 +2329,7 @@
   "g": 0.09140000000000015,
   "bear": 28.566916442324477,
   "bull": 138.175135007335,
-  "ccy_alt_ps": 79.0924563104741,
+  "ccy_alt_ps": 77.86463479154189,
   "ps_kd_egp_equiv": 87.40605727703493,
   "kd_egp_equiv": 0.15539133333646257,
   "wacc_exp_kd_egp_equiv": 0.2696458449561491,
@@ -2830,11 +2831,11 @@
    0.3
   ],
   "grid_roic": [
-   66.63013824272224,
-   83.24518221853894,
-   99.66193933569537,
-   108.80678833518004,
-   116.47527017017237
+   81.01576402177247,
+   84.499937518341,
+   87.94253027526975,
+   89.86020443613874,
+   91.46828451147806
   ]
  },
  "step0": {
@@ -2988,7 +2989,7 @@
   "[Net debt, and why the June sheet is NOT used] the bridge deducts 20,560 at 31-Dec-2025, the date this valuation is struck at. The reviewed 30-Jun-2026 sheet shows 28,629, +8,069 over the half \u2014 and that deterioration is the same working-capital absorption the model's own FY2026 forecast already carries (a working-capital movement of 16,965 against capex of 13,232, giving free cash flow to the firm of -319 in the first forecast year). Deducting it in the bridge as well would charge one cash outflow twice.",
   "[Employees' statutory share of profit] measured at 11.60% (FY2024), 11.96% (FY2025) and 13.01% (H1-2026) of profit attributable to owners; mean 12.19%. It is disclosed only in the earnings-per-share note, below the attributable line, and appears in NO line of the income statement \u2014 which is why the first edition, whose cost stack is built from unit economics, could not have caught it there. Equity attributable 185,519 less 22,620 = 162,899. THE RECONCILIATION THAT SHOULD HAVE EXPOSED IT: this study registered FY2025 attributable profit of 17,330.245 and the reported EPS of 7.13; 17,330.245 / 2,140.777876 = 8.095, and the difference is this charge plus the ESOP adjustment to the weighted-average count.",
   "[Bridge] EV 219,193 - net financial debt 20,560 + associates at carrying value 6,758 = 205,391; less minority interests at their 9.7% share of group profit = 19,872; less the employees' statutory share of profit at 12.19% = 22,620 -> equity attributable to ORDINARY SHAREHOLDERS 162,899 = EGP 76.09/share AT 31-DEC-2025; rolled 246/365 of a year to the 3-Sep-2026 anchor at the 28.1% cost of equity (x1.1816) less the EGP 1.85 dividend paid in the window = EGP 87.94/share against a spot of 130.00 (-32%).",
-  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (51% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 11.34% with 3.5% terminal growth, and only then translated back. Corrected result EGP 79.09/share (-39% vs spot).",
+  "[Currency-of-discounting alternative \u2014 UIP-corrected] the hard-currency leg (51% of cash flow) is first DEFLATED to dollars at each year's exchange rate, discounted at a USD cost of capital of 11.34% with 3.5% terminal growth, and only then translated back. Corrected result EGP 77.86/share (-40% vs spot).",
   "[Rating-basis alternative, published] on Damodaran's RATING column the cost of equity is 33.02% and the cost of capital 31.24% -> 21.90%, giving EGP 33.67/share against the CDS-basis 87.94.",
   "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 7.6%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 13.25% for that share, and a blended Kd of 15.54% against the currency-composition 9.50%. Cost of capital rises to 26.96% from 26.65%, giving EGP 87.41/share against 87.94. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
   "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (21,861) and deducting net debt afterwards gives EGP 99.33/share, against 87.94 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",

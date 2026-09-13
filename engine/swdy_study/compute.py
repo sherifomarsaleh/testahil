@@ -2275,11 +2275,30 @@ df_usd, c2 = [], 1.0
 for _ in range(5):
     c2 /= (1 + WACC_USD); df_usd.append(c2)
 pv_f_usd = sum(fcff_f_usd[i] * df_usd[i] for i in range(5))
-tv_f_usd = (nopat_term * (1 - rr_term) * fgn_frac[-1] / V['fx_path'][-1]) \
+# THE RETIRED TERMINAL WAS STILL BUILDING BOTH LEGS OF THIS ALTERNATIVE, in a study that
+# says twice that the reinvestment identity feeds nothing. It fed the whole of the
+# currency-of-discounting alternative — the study's own declared contested judgement,
+# the number a reader is pointed at to see the other side of the biggest open question.
+# "Published unused" has to mean unused.
+#
+# BOTH LEGS NOW SPLIT THE SANCTIONED TERMINAL CASH FLOW, which is what the split was
+# always meant to be doing: the module's own FCFF — NOPAT plus book depreciation, less
+# maintenance at replacement cost, less growth capital, less inflation on working capital
+# — divided between the hard-currency and domestic shares, each grown and capitalised at
+# its OWN rate and growth. The currency split is untouched; only the quantity being split
+# changes, from a retired identity to the one the model actually values.
+_TFCFF = _terminal.fcff
+tv_f_usd = (_TFCFF * fgn_frac[-1] / V['fx_path'][-1]) * (1 + V['usd_g_term']) \
     / (WACC_USD - V['usd_g_term'])
 ev_f_egp = (pv_f_usd + tv_f_usd * df_usd[-1]) * V['fx_hist']['FY25']
 pv_d = sum(fcff_d[i] * df[i] for i in range(5))
-tv_d = nopat_term * (1 - rr_term) * (1 - fgn_frac[-1]) / (wacc_term - V['g_term'])
+tv_d = (_TFCFF * (1 - fgn_frac[-1])) * (1 + V['g_term']) / (wacc_term - V['g_term'])
+# THE TWO LEGS MUST ADD BACK TO THE TERMINAL THE MODEL VALUES when discounted on one
+# currency view, or the split has quietly changed the company rather than the discount
+# rate. Asserted against the sanctioned TV at the domestic rate, which is the base case's
+# own terminal: the difference is the currency treatment and nothing else.
+assert abs((_TFCFF * fgn_frac[-1] + _TFCFF * (1 - fgn_frac[-1])) - _TFCFF) < 1e-6, \
+    'the currency split does not conserve the terminal cash flow'
 ev_ccy = ev_f_egp + pv_d + tv_d * df[-1]
 eq_ccy = (ev_ccy - V['nd_fy25'] + assoc_val) * (1 - nci_share) * (1 - emp_rate)
 ccy_ps = to_anchor(eq_ccy / SH)
@@ -2599,12 +2618,50 @@ def dcf_nwc(pct):
     return dcf_scenario(nwc=pct)
 grid_nwc = [dcf_nwc(p) for p in nwc_grid]
 roic_grid = [0.15, 0.18, roic_term, 0.26, 0.30]
+# THIS ROW WAS CENTRED 13.3% ABOVE THE ANSWER IT IS A SENSITIVITY ON. At the ADOPTED
+# terminal return it read 99.66 against a central of 87.94, and a reader looking up the
+# adopted column of a sensitivity table is entitled to find the study's own number there.
+# Two causes, both the same species:
+#
+#   IT RE-IMPLEMENTED THE TERMINAL on nopat x (1+g) x (1 - g/ROIC) / (W - g) — the
+#   reinvestment identity this study RETIRED. Every other grid moved onto
+#   terminal_value.build() through _terminal_at(), and the assert beside them catches any
+#   drift; this one was left behind and nothing compared it to anything. [R-ENF-03]: a
+#   scenario that re-implements what it is testing is grading something other than what
+#   ships.
+#
+#   AND ITS EQUITY STEP OMITTED THE EMPLOYEES' STATUTORY SHARE. That is [L-294] again,
+#   in the one place the earlier sweep of it missed: the bridge, the currency
+#   alternative, the scenarios and the other grids all charge it. 99.6619 x (1 - 0.12193)
+#   = 87.51, which is most of the gap; the rest is the retired identity.
+#
+# ROIC ENTERS THE SANCTIONED MODULE AS CAPITAL INTENSITY, which is what it is: a terminal
+# return on invested capital of r means each unit of NOPAT stands on NOPAT/r of capital,
+# so the incremental capital per unit of growth is that. Nothing here is re-derived.
 def dcf_roic(r):
-    _rr = min(V['g_term'] / r, 0.95)
-    _tv = nopat[-1] * (1 + V['g_term']) * (1 - _rr) / (wacc_term - V['g_term'])
-    _ev = pv_explicit + _tv * df[-1]
-    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+    _t = TV.build(TV.TerminalInputs(
+        nopat=nopat[-1], wacc=wacc_term, inflation=V['pi_term'],
+        real_growth=V['g_term_real'], dna_book=dna[-1],
+        useful_life_years=V['asset_life_derived'],
+        useful_life_source=V['asset_life_source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=nwc[-1],
+        # ROIC HERE IS THE STUDY'S OWN CONVENTION, NEXT YEAR'S NOPAT OVER CLOSING
+        # CAPITAL, so the capital that return stands on is nopat(n+1)/r. Using
+        # nopat(n)/r instead would silently vary a different quantity from the one the
+        # row is labelled with — which is how the row came to be centred on a number
+        # the study does not publish in the first place.
+        incremental_capital_per_unit_growth=nopat[-1] * (1 + V['g_term']) / r))
+    _ev = pv_explicit + _t.tv * df[-1]
+    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)
+                      * (1 - emp_rate)) / SH)
 grid_roic = [dcf_roic(r) for r in roic_grid]
+# AND IT IS ASSERTED, like every other grid in this section: at the adopted terminal
+# return the row must return the published central, or the table is describing a
+# different company from the one on the cover.
+assert abs(dcf_roic(roic_term) - dcf_ps) < 0.01, (
+    'the ROIC row does not reproduce the central at the adopted terminal return of '
+    '%.4f: %.4f against %.4f' % (roic_term, dcf_roic(roic_term), dcf_ps))
 
 say(f"[Leverage] net financial debt / EBITDA falls from {V['nd_fy25']/ebitda_fy25:.2f}x to "
     f"{nd_fc[-1]/ebitda[-1]:.2f}x over the forecast.")
@@ -2952,6 +3009,11 @@ OUT = dict(
               beta_terminal=BETA_TERM),
     star_case=STAR_CASE,
     dcf=dict(div_at_anchor=_DIV_AT_ANCHOR, div_days=_DIV_DAYS,
+             # THE SPREAD THE TERMINAL CAPITALISES AT, committed rather than left to be
+             # subtracted on the page. It is the single quantity the largest number in
+             # this study turns on, and a figure a document computes for itself is a
+             # figure nothing reconciles — prose_check said so the moment it appeared.
+             terminal_spread=wacc_term - V['g_term'],
              pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
              # THE EMPLOYEES' STATUTORY SHARE IS COMMITTED, because the bridge does not
