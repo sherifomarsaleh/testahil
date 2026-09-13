@@ -313,11 +313,23 @@ r = 4
 A = {}          # key -> row on Assumptions
 
 def block(name, items):
+    """A labelled band of assumptions.
+
+    An item is (key, label, value, fmt) for an INPUT, or (key, label, value, fmt,
+    formula_of) for a figure this sheet DERIVES -- where formula_of is called once the
+    earlier rows are placed and returns the formula. A derived figure is written black
+    through putf, against the committed value as its expected answer, so the workbook
+    computes what the record already publishes instead of restating it.
+    """
     global r
     band(ws, r, 8); put(ws, f'A{r}', name, bold=True, fmt=None); r += 1
-    for key, lab, val, fmt in items:
+    for item in items:
+        key, lab, val, fmt = item[:4]
+        derive = item[4] if len(item) > 4 else None
         put(ws, f'A{r}', lab, fmt=None)
-        if isinstance(val, (list, tuple)):
+        if derive is not None:
+            putf(ws, f'C{r}', derive(), val, fmt)
+        elif isinstance(val, (list, tuple)):
             for i, v in enumerate(val):
                 put(ws, f'{get_column_letter(2+i)}{r}', v, BLUE, fmt)
         else:
@@ -395,18 +407,39 @@ block('Cost of capital', [
 # 87.76, and disagreed with the model on 87 cells. Every figure here is READ FROM THE COMMITTED
 # COST-OF-CAPITAL RECORD, never retyped; the DCF sheet's own cells recompute the rate from them
 # and the build fails if the arithmetic and the record disagree.
+# SIX OF THESE WERE DEAD. Every figure in this block was pasted from the record, so the
+# two TOTAL premiums above it, the Egyptian and foreign country premiums and lambda drove
+# NOTHING: bumping any of them left the answer to the last decimal, on a sheet whose own
+# title tells the reader that changing a blue cell reprices the model. The study's driver
+# test could not see it, because it was opening the 5-August workbook.
+#
+# The arithmetic is cost_of_capital.split_erp's and coc_record's, written out rather than
+# re-derived: the Egyptian premium is the sovereign spread scaled; the mature leg is what
+# is left of the total after it; the charged premium is lambda of home and the rest of
+# foreign; and the terminal country premium is the residual of the terminal total over
+# the SAME mature leg, charged at the same effective weight -- expressed as a share of
+# the home premium so a normalising country premium does not silently raise the foreign
+# share. Each cell carries the committed figure as its expected answer, so a build whose
+# arithmetic and record disagree fails rather than publishing both.
 block('The country premium, split — [R-COC-03]', [
+    ('crp', 'Egypt country premium = sovereign default spread x %.2f' % SCALING, COC['crp'],
+     PCT, lambda: f'={a("sov")}*{SCALING}'),
     ('erp_mature', 'of which the MATURE equity premium — beta applies to this leg only',
-     COC['erp_mature'], PCT),
-    ('crp', 'Egypt country premium = sovereign default spread x %.2f' % SCALING, COC['crp'], PCT),
+     COC['erp_mature'], PCT, lambda: f'={a("erp")}-{a("crp")}'),
     ('lambda_country', 'Share of operations in Egypt (lambda)', COC['lambda_country'], PCT),
     ('crp_foreign', 'Country premium on the operations outside Egypt', COC['crp_foreign'], PCT),
     ('crp_eff', 'Country premium CHARGED — flat, once, never multiplied by beta',
-     COC['crp_effective'], PCT),
-    ('erp_mature_term', 'Terminal mature equity premium', ERP_MATURE_TERM, PCT),
-    ('crp_term', 'Terminal Egypt country premium', COC['crp_terminal'], PCT),
+     COC['crp_effective'], PCT,
+     lambda: f'={a("lambda_country")}*{a("crp")}'
+             f'+(1-{a("lambda_country")})*{a("crp_foreign")}'),
+    ('crp_term', 'Terminal Egypt country premium', COC['crp_terminal'], PCT,
+     lambda: f'={a("erp_term")}-{a("erp_mature")}'),
+    ('erp_mature_term', 'Terminal mature equity premium', ERP_MATURE_TERM, PCT,
+     lambda: f'={a("erp_term")}-{a("crp_term")}'),
     ('crp_eff_term', 'Terminal country premium CHARGED — flat and once',
-     COC['crp_effective_terminal'], PCT),
+     COC['crp_effective_terminal'], PCT,
+     lambda: f'=({a("lambda_country")}+(1-{a("lambda_country")})'
+             f'*{a("crp_foreign")}/{a("crp")})*{a("crp_term")}'),
     ('beta_term', 'Terminal beta — reverts to the market, not the measured beta',
      COC['beta_terminal'], '0.00')])
 block('Balance-sheet and bridge anchors', [

@@ -14,7 +14,13 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'SWDY_Valuation_Model_05082026_public.xlsx'))
+import sys
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+# IT OPENED THE 5-AUGUST WORKBOOK. That file answers SAR 43.51; the delivered edition
+# answers 87.82. Every driver below was perturbed on a workbook no reader holds, and the
+# test reported the live model a live driver model on that evidence. L-066/L-067.
+wb = openpyxl.load_workbook(os.path.join(HERE, _ed.MODEL_XLSX))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]

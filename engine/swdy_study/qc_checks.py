@@ -10,8 +10,15 @@ from docx.shared import Inches
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-STUDY = os.path.join(HERE, 'SWDY_Valuation_Study_05-08-2026_public.docx')
-BIB = os.path.join(HERE, 'SWDY_Bibliography_05-08-2026.docx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+# TYPED EDITION NAMES WERE THE DEFECT. This file opened the 5-AUGUST documents and
+# certified them clean while the study published the 10-SEPTEMBER edition beside them --
+# a check pointed at a file nobody receives, reporting on a document no reader holds.
+# L-066/L-067 verbatim, on the study where it was registered. The names come from
+# edition.py now, so a re-issue moves the check with it.
+STUDY = os.path.join(HERE, _ed.STUDY_DOCX)
+BIB = os.path.join(HERE, _ed.BIBLIO_DOCX)
 TEXT_WIDTH = 7.0            # 8.5in page less 0.75in margins each side
 BIB_WIDTH = 7.1             # bibliography uses 0.7in margins
 
