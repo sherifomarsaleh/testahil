@@ -132,9 +132,27 @@ def _m_ke(repo, tk):
     _save(repo, tk, doc)
 
 
+def _ke_constructed(rec):
+    """The cost of equity the record's OWN construction produces.
+
+    THE LANDING CHECK COMPUTED rf* + beta x ERP AND THE EXEMPLAR STOPPED USING THAT.
+    [R-COC-03] splits the premium: beta applies to the MATURE leg and the country premium
+    is charged flat beside it, never through beta. ADNOCLS moved onto the split and this
+    fixture did not, so the mutation it planted was declared "not landed" and the case
+    reported as NOT CAUGHT — a catalogued error going unproven because the harness was
+    measuring a retired identity, not because the framework misses it. That is the same
+    shape as every other checker left on a superseded construction this week, occurring
+    inside the harness that exists to prove the checkers work.
+    """
+    rf, beta = rec["rf_star"], rec["beta"]
+    if rec.get("erp_mature") is not None and rec.get("crp") is not None:
+        return rf + beta * rec["erp_mature"] + rec["crp"]
+    return rf + beta * rec["erp"]
+
+
 def _l_ke(repo, tk):
     rec = _find_parent(_load(repo, tk), "cost_of_capital_record")["cost_of_capital_record"]
-    return abs(rec["ke_exp"] - (rec["rf_star"] + rec["beta"] * rec["erp"]) - 0.03) < 1e-9
+    return abs(rec["ke_exp"] - _ke_constructed(rec) - 0.03) < 1e-9
 
 
 case("ke-inflated-300bp",
