@@ -49,10 +49,36 @@ Nothing was hand-edited in the workbook and no fair value moved: the study publi
 EGP 20.0503 before the repair and EGP 20.0503 after it. `recalc_v5.py` goes from
 1,870 problems to **PASS**, 0 disagreements across all 6,069 formula cells.
 
-## THE GENERAL LESSON, which is about the publish queue
+## THE GENERAL LESSON — AND A CORRECTION TO THIS DOCUMENT'S FIRST DRAFT
 
-The queue checks a study's fair values against the manifest. It does NOT check that the
-workbook beside the study reproduces the study. That is how a file publishing a superseded
-answer reached the staging set with every gate green. A workbook is a delivered artefact
-and it carries its own copy of the model; the copy has to be checked against the original,
-not assumed from the fact that both were built in the same pass.
+**The first draft of this file said the publish queue "does NOT check that the workbook
+reproduces the study", and that this was "how a file publishing a superseded answer
+reached the staging set with every gate green". BOTH HALVES WERE WRONG, and the error was
+mine.**
+
+`scripts/check_workbook_values.py` exists and does exactly that, by running each study's
+own recalculation rather than noting that it has one. **It caught this.** And the ratchet
+entry it wrote on 8 September 2026 names the root cause more precisely than my own first
+diagnosis did, a week before I looked:
+
+> DCF!C33 builds gross profit as revenue less cost plus a flat margin shift, and
+> reproduces a gross margin of 9.68% in year one where the model applies 12.43%.
+> Everything upstream agrees — revenue, cost of sales, the base-year margin, the segment
+> foot, the whole income statement — and everything downstream of row 33 inherits the gap.
+
+So nothing here was green and nothing was undetected. The file staged because the failure
+was a RATCHETED entry — an acknowledged, measured debt — and a ratcheted failure does not
+block staging. That is the mechanism working as designed, not a hole in it.
+
+**What that changes about the lesson.** It is not "the queue needs a check". It is
+narrower and more useful: a workbook carrying a *measured, named, quantified* 35%
+disagreement with its own study sat on the ratchet for five days while the study went on
+being staged for publication. The ratchet is right that a known debt should not stop
+everything else moving. But a delivered artefact that publishes a different answer from
+the document beside it is not the same class of debt as a missing recalculator or a
+thin coverage row — a reader who opens both gets two numbers and no way to tell which
+is the study's. Whether that class should be able to sit on the ratchet at all is a real
+question and it is left open here rather than decided in a study directory.
+
+The entry is now retired, because the defect is fixed rather than re-argued. A ratchet may
+only ever shorten, and this shortens it.
