@@ -194,9 +194,22 @@ def main():
               'result [R-ENF-04].')
         return 1
 
-    held = {}
+    held, held_a = {}, {}
     if os.path.exists(OUTSTANDING):
-        held = json.load(open(OUTSTANDING, encoding='utf-8')).get('stale', {})
+        _o = json.load(open(OUTSTANDING, encoding='utf-8'))
+        held = _o.get('stale', {})
+        # TIER A CARRIES A RATCHET TOO, and it is a SEPARATE list from Tier B's.
+        #
+        # A render older than its own source is the harder failure and it stays hard for
+        # anything not recorded here. What this list holds is the debt that existed when
+        # the gate was first RUN in CI: eight studies outside the recalibration set whose
+        # PDFs predate their documents, several by weeks. Without it the gate could not
+        # enter a workflow at all, and a gate in no workflow is the state this one spent
+        # its first day in -- written, correct, and running nowhere.
+        #
+        # The two lists are not interchangeable: an entry excusing a stale PDF must not
+        # excuse a stale figure or the reverse. Both may only ever SHORTEN.
+        held_a = _o.get('stale_renders', {})
 
     stale, unknown, clean, examined = {}, [], 0, 0
     for sdir in sdirs:
@@ -270,7 +283,10 @@ def main():
                    'seeded': '2026-09-13',
                    'stale': {k: sorted({b[0] for b in v if b[2] == 'B'})
                              for k, v in stale.items()
-                             if any(b[2] == 'B' for b in v)}},
+                             if any(b[2] == 'B' for b in v)},
+                   'stale_renders': {k: sorted({b[0] for b in v if b[2] == 'A'})
+                                     for k, v in stale.items()
+                                     if any(b[2] == 'A' for b in v)}},
                   open(OUTSTANDING, 'w'), indent=1)
         print('seeded %s with %d study/studies' % (OUTSTANDING, len(stale)))
         return 0
@@ -287,11 +303,13 @@ def main():
     hard, soft = {}, {}
     for tk, behind in sorted(stale.items()):
         allowed = set(held.get(tk, []))
-        a_rows = [b for b in behind if b[2] == 'A']
+        allowed_a = set(held_a.get(tk, []))
+        a_rows = [b for b in behind if b[2] == 'A' and b[0] not in allowed_a]
         b_rows = [b for b in behind if b[2] == 'B' and b[0] not in allowed]
         print('\n%s — %d artefact(s) behind their source:' % (tk, len(behind)))
         for name, why, tier in behind:
-            tag = '' if not (tier == 'B' and name in allowed) else '   [ratcheted]'
+            held_here = (name in allowed) if tier == 'B' else (name in allowed_a)
+            tag = '   [ratcheted]' if held_here else ''
             print('   %s  %-50s %s%s' % (tier, name, why, tag))
         if a_rows:
             hard[tk] = a_rows

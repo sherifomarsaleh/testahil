@@ -94,6 +94,8 @@ on:
       - 'scripts/check_workbook_values_negative_control.py'
       - 'scripts/check_workbook_formula_targets.py'
       - 'scripts/check_workbook_formula_targets_negative_control.py'
+      - 'scripts/check_artefact_freshness.py'
+      - 'scripts/check_artefact_freshness_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
       - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
@@ -243,6 +245,8 @@ on:
       - 'scripts/check_workbook_values_negative_control.py'
       - 'scripts/check_workbook_formula_targets.py'
       - 'scripts/check_workbook_formula_targets_negative_control.py'
+      - 'scripts/check_artefact_freshness.py'
+      - 'scripts/check_artefact_freshness_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
       - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
@@ -712,6 +716,28 @@ jobs:
       # on almost every workbook in the book
       - name: Workbook formula-target gate — negative control
         run: python3 scripts/check_workbook_formula_targets_negative_control.py
+
+      # NO DELIVERED FILE MAY PREDATE WHAT IT WAS MADE FROM. Seven studies were audited
+      # from outside on 13-09-2026 and the largest defect class in every one was a step
+      # somebody forgot: AMOC shipped four of five figures at EGP 11.40 beside tables at
+      # 20.05, ARCC shipped four at 66.53 against a published 77.18, SCEM shipped nine at
+      # 111.62 against 122.67, and ARCC, TMGH, PHDC and GBCO each shipped a workbook PDF
+      # older than the spreadsheet it was rendered from. None was a modelling error and
+      # every one reached a reader. TIER A — a render older than its own source — is
+      # hard. TIER B — a figure older than the numbers — is ratcheted and may only
+      # shorten. A study whose numbers file has uncommitted changes is UNKNOWN, not
+      # clean [R-ENF-04].
+      - name: Artefact-freshness gate
+        run: python3 scripts/check_artefact_freshness.py
+
+      # and the proof it can go red, on eight conditions. Three of them test the BUILD
+      # MANIFEST, which exists because a figure that regenerates byte-identically is
+      # never re-committed and git then reads it as stale: the manifest with the figure
+      # edited after it, with the numbers edited after it, and one that will not parse
+      # must each drop back to the commit-time test. An escape hatch nobody tried to
+      # abuse is not known to be safe.
+      - name: Artefact-freshness gate — negative control
+        run: python3 scripts/check_artefact_freshness_negative_control.py
 
       # EVERY STUDY STATES ITS FUNDAMENTAL WALK-FORWARD SCOPE DECISION. [R-FCAL-01] has
       # required one since 31-Aug-2026 — FULL at eight or more sourceable fiscal years,
