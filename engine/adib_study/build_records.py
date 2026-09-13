@@ -256,6 +256,159 @@ def main():
               'was built.'),
     )
 
+    # ================= THE FOUR STANDARD RECORDS THIS STUDY DID NOT COMMIT =========
+    # Added 13-09-2026. ADIB is the newest study in the book and it committed none of
+    # them, so FIVE standing gates were red on this one name: check_bridge,
+    # check_forecast_anchor, check_ground_up, check_lens_design and
+    # check_corrections_applied. Every one of them reported the same underlying fact --
+    # that it could not read a record -- and an absent record reads exactly like a
+    # breaching one [R-ENF-04], which is the point. NOTHING BELOW MOVES A NUMBER: every
+    # figure is read out of this study's own committed arithmetic, above.
+
+    # ---- 1. WHAT THE WALK-FORWARD ADOPTED. Silence and 'none adopted' are the same file
+    # to a reader and different facts about the work.
+    _cl = json.load(open(os.path.join(HERE, '..', 'adib_walkforward',
+                                      'corrections_log.json'), encoding='utf-8'))
+    d['adopted_corrections'] = []
+    d['adopted_corrections_note'] = (
+        'the walk-forward on this name tested %d correction candidates under the two-clause '
+        'test and adopted NONE. Four drivers (%s) carry a watch flag rather than a '
+        'correction, and the aggregates (%s) were refused as aggregates, which corrections '
+        'may not be applied to. Recorded in engine/adib_walkforward/corrections_log.json; '
+        'EMPTY RATHER THAN ABSENT.'
+        % (_cl['candidates'], ', '.join(_cl['watch_flags']),
+           ', '.join(_cl.get('refused_as_aggregates', []))))
+
+    # ---- 2. THE LENS RECORD. The architecture was committed as a SENTENCE and the six
+    # answers as a bare dict, so a gate reading this book could see neither which lens is
+    # primary nor what its range is built from. Both facts already existed in this file;
+    # neither was in a shape anything could read.
+    _L = d['lenses']
+    d['lens_record'] = {
+        # THE CLASS IS THE REGISTERED KEY, NOT A DESCRIPTION OF IT. This said
+        # 'bank - deposit-funded, valued on equity directly', which is true and is
+        # not a class: LENS_REGISTRY keys the lens architecture AND the lesson
+        # taxonomy, so an unregistered string has no primary and carries no lessons.
+        'class': 'bank',
+        'central': d['central'],
+        'primary': dict(
+            kind='ddm',
+            value=_L['dividend_discount'],
+            range=dict(low=d['envelope']['bear'], high=d['envelope']['full']),
+            range_note=('the span of the three PRESENT-VALUE reads on one clock — free cash '
+                        'flow to equity below, residual income above — rather than a driver '
+                        'flexed across a range. On a bank the three are one model entered '
+                        'through three doors, so their spread measures the construction and '
+                        'not the business.'),
+            range_basis=dict(
+                driver='the present-value construction itself, across its three entries',
+                low=d['envelope']['bear'], high=d['envelope']['full'], macro_held=True,
+                evidence=('dividend discount %.4f, free cash flow to equity %.4f, residual '
+                          'income %.4f, all on the same five-year window, the same cost of '
+                          'equity schedule and the same house macro path. The cost of '
+                          'capital and terminal growth do not move between them.'
+                          % (_L['dividend_discount'], _L['free_cash_flow_to_equity'],
+                             _L['residual_income']))),
+        ),
+        'note': ('one class primary IS the central and the others are cross-checks, with no '
+                 'typed weights [R-LENS-03]. The cross-checks are a relative multiple at '
+                 '%.2f, book value and a sustainable return at %.2f, a book floor at %.2f '
+                 'and normalised earning power at %.2f. THE RELATIVE READ IS THE HIGHEST '
+                 'OF ALL SEVEN and is not blended in.'
+                 % (_L['relative_multiples'], _L['book_value_and_sustainable_return'],
+                    _L['book_value_floor'], _L['normalised_earnings_power'])),
+    }
+
+    # ---- 3. THE FORECAST ANCHOR. On a bank the rate that matters is the net interest
+    # margin, and this forecast OPENS BELOW the latest reviewed half — which is the
+    # direction that owes a mechanism, and it has one.
+    _P = d['projection']
+    _nim0 = d['latest_reviewed_annualised']['nim']
+    _path = [x['nim'] for x in _P]
+    d['forecast_anchor'] = dict(
+        rate_name='net interest margin',
+        latest_reviewed_period='H1-2026, reviewed, annualised',
+        latest_reviewed_date='2026-06-30',
+        latest_reviewed_rate=_nim0,
+        first_forecast_rate=_path[0],
+        forecast_path=_path,
+        note=('the forecast opens at %.3f%% against a latest reviewed %.3f%% — %.2f points '
+              'BELOW it, %.1f%% relative — and then falls further, to %.3f%% by FY2030. '
+              'THE MECHANISM IS DISCLOSED MONETARY POLICY AND IT IS NAMED RATHER THAN '
+              'ASSUMED: the reviewed half was earned at the top of an Egyptian tightening '
+              'cycle, and the central bank is easing. A deposit-funded bank re-prices its '
+              'assets faster than its funding on the way down, so a margin struck at the '
+              'peak is not a margin that can be held; carrying %.3f%% flat for five years '
+              'would be forecasting that the easing cycle does not happen. The study says '
+              'in terms that this compression, a normalised loss charge after a half-year '
+              'at almost nothing, and an Egyptian-pound cost of equity near thirty per '
+              'cent are the three swing factors.'
+              % (100 * _path[0], 100 * _nim0, 100 * (_nim0 - _path[0]),
+                 100 * (_path[0] / _nim0 - 1), 100 * _path[-1], 100 * _nim0)))
+
+    # ---- 4. THE DRIVER LINES. The ground-up gate wants the LINES, not the summary an
+    # assertion returns: a top line that is one growth rate on the whole company with no
+    # unit behind it is the defect it exists to catch. A bank's unit is the balance sheet.
+    _y0 = _P[0]
+    _avg = _y0['avg_total_assets']
+    # OPERATING INCOME IS THE BASE, and the shares foot to it. A bank has no tonnes, so
+    # the "unit" is the balance sheet and every income line is a RATE ON A STOCK.
+    _opinc = _y0['net_funds'] + _y0['net_fees'] + _y0['other_nii']
+    d['driver_lines'] = [
+        dict(name='Net funds income', level='unit',
+             share_of_revenue=_y0['net_funds'] / _opinc,
+             unit='average total assets, EGP %.0fmn in the first forecast year' % _avg,
+             unit_source='the reviewed consolidated balance sheet at 30 June 2026, averaged '
+                         'with the audited sheet at 31 December 2025',
+             price_basis='net interest margin, %.3f%% in the first forecast year, struck on '
+                         'average total assets and falling to %.3f%% by FY2030 as the easing '
+                         'cycle repricesncome faster than funding'
+                         % (100 * _y0['nim'], 100 * _P[-1]['nim']),
+             cost_basis='the cost of funds is INSIDE this line, not beside it: the margin is '
+                        'financing income less cost of funds, and both legs are filed '
+                        'separately in the reviewed statements'),
+        dict(name='Net fee income', level='unit',
+             share_of_revenue=_y0['net_fees'] / _opinc,
+             unit='average total assets, the same stock',
+             unit_source='as above',
+             price_basis='fee ratio, %.4f%% of average assets, held at the reviewed '
+                         'half\'s own annualised rate'
+                         % (100 * d['latest_reviewed_annualised']['fee_ratio']),
+             cost_basis='fee EXPENSE is netted here and is filed separately; the gross and '
+                        'the net are both in the reviewed statements'),
+        dict(name='Other operating income — dividends and trading', level='derived',
+             share_of_revenue=_y0['other_nii'] / _opinc,
+             unit=None, unit_source=None,
+             price_basis='carried at the reviewed half\'s annualised level, escalated on '
+                         'nothing',
+             # THE GATE IS RIGHT TO DEMAND THIS AND None WAS THE WRONG ANSWER. A margin is
+             # an output, so a line that says how revenue was built and nothing about cost
+             # is a line whose margin is an assumption. Here the honest cost basis is that
+             # there is no direct cost, and saying so is a fact about the line rather than
+             # a blank.
+             cost_basis='NO DIRECT COST, and that is a statement rather than an omission: '
+                        'dividend and trading income arrive gross in the filed statements '
+                        'and carry no cost of sales. The cost of running the bank sits in '
+                        'administrative expense, which is forecast as one base against the '
+                        'whole institution and is not allocated across income lines -- so '
+                        'this line has no margin of its own, and none is claimed for it.',
+             gap_note='THE GAP IS STATED RATHER THAN DRESSED UP. Dividend and trading income '
+                      'are not a rate on a stock and there is no unit behind them: they are '
+                      'carried at the level the reviewed half earned. At %.1f%% of operating '
+                      'income the line cannot carry the answer, and if it could this would '
+                      'be the wrong way to build it.'
+                      % (100 * _y0['other_nii'] / _opinc)),
+    ]
+    d['ground_up'] = dict(
+        unit='the balance sheet — average total assets for income, financing to customers '
+             'for the loss charge',
+        lines=len(d['driver_lines']),
+        note=('a bank has no tonnes and no units shipped, so the ground-up unit is the '
+              'balance sheet itself and every income line is a RATE ON A STOCK. The top '
+              'line is not one growth rate on the whole company: it is the margin on '
+              'average assets, and the margin and the assets move separately and for '
+              'different reasons.'))
+
     # the 10-09-2026 research pass: what it corroborated and what it left unchanged
     d['research_pass'] = C.RESEARCH_PASS_10_09_2026
 

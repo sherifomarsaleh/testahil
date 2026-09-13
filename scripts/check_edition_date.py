@@ -254,10 +254,35 @@ def audit_masthead_agreement():
             head = ' '.join(p.text for p in docx.Document(f).paragraphs[:6])
         except Exception:                                             # noqa: BLE001
             continue
-        m = _LABEL.search(head)
-        if not m:
-            continue
-        seg = head[m.end():m.end() + 220]
+        # AN EXPLICITLY LABELLED ISSUE DATE OUTRANKS EVERYTHING ELSE IN THE MASTHEAD
+        # [re-pointed 13-09-2026 per R-COC-01, which says re-point a check that fires on
+        # work that is right, never widen it].
+        #
+        # engine/doc_dates.header_line() is the shared masthead of every study in this
+        # book and it prints BOTH dates, each behind its own label: "PRICE DATE 3
+        # September 2026 ... ISSUE DATE 10 September 2026 ... the two dates are stated
+        # separately because they are not the same fact." That is the clearest form a
+        # masthead can take and it is the form this gate exists to encourage.
+        #
+        # This gate failed it. _LABEL matched the words "Valuation Study" in the
+        # DOCUMENT TITLE -- "Independent Valuation Study - Educational Analysis", not a
+        # date label at all -- then took the first date in the next 220 characters, which
+        # is the PRICE date, and reported the document as claiming the wrong edition.
+        # Four delivered studies were red for stating their dates correctly and
+        # unambiguously.
+        #
+        # So an explicit issue-date label is read first. This makes the gate STRICTER,
+        # not looser: where the document names its issue date the gate now checks THAT
+        # date and can no longer be satisfied by a correct date sitting somewhere else,
+        # which is the very confusion the message below already warns about.
+        _iss = re.search(r'issue[d]?\s*date\b', head, re.I)
+        if _iss:
+            seg = head[_iss.end():_iss.end() + 120]
+        else:
+            m = _LABEL.search(head)
+            if not m:
+                continue
+            seg = head[m.end():m.end() + 220]
         # AMOC'S FORM IS BETTER THAN THE RULE REQUIRES AND MUST NOT BE PUNISHED FOR IT.
         # "valuation study as of 6 August 2026, issued 3 September 2026" states two dates
         # on purpose — the price it was struck against and the day it was issued — and the

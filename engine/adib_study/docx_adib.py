@@ -82,6 +82,17 @@ P('Abu Dhabi Islamic Bank – Egypt S.A.E.  (EGX: ADIB)', size=15, bold=True, co
   space_after=2)
 P('Fundamental analysis · technical analysis · Monte Carlo simulation — one integrated read',
   size=10, italic=True, color=GREY)
+# THIS MASTHEAD STATED NO EDITION DATE AT ALL [added 13-09-2026]. It named the close date
+# inside the anchor line, and a reader with the document open had no way to tell which
+# edition of it they were holding -- while the filename, edition.py and the numbers file
+# all knew. check_edition_date was red on it. The shared resolver is used rather than a
+# line typed here, for exactly the reason SCEM's typed masthead went stale three days
+# after it was written: a date typed into a builder is a date that stops being true.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('ADIB'), size=8, color=GREY)
 rich([('Anchor: ', {'bold': True}), (
     '%s (close 3 September 2026) · %s million shares in issue · market capitalisation about '
     '%s billion (roughly US$1.6bn at 50.25 to the dollar) · Egypt\'s largest listed Islamic '

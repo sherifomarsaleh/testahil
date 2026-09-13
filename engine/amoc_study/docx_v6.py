@@ -7,6 +7,7 @@ the adversarial give-back stack.
 
 Every number is read from study_numbers.json or case_adversarial.json. Nothing is typed.
 """
+import datetime as _dt
 import json
 import math
 import os
@@ -114,8 +115,21 @@ assert abs(sum(ZP) - 1.0) < 1e-6, 'published zones do not sum to one: %s' % sum(
 # ============================ FRONT MATTER ===================================
 masthead()
 P('Alexandria Mineral Oils Company S.A.E.', size=19, bold=True, space_after=0)
-rich([('EGX: AMOC  ·  Egyptian Exchange  ·  EGP  ·  Valuation study as of 6 August 2026, '
-       'issued 3 September 2026', dict(size=10, color=GREY))], space_after=10)
+# THE MASTHEAD TYPED BOTH ITS DATES AND BOTH WENT STALE [corrected 13-09-2026].
+# It said "as of 6 August 2026, issued 3 September 2026" on a file this builder names
+# 10-09-2026 from edition.py one screen above. edition.py exists so the date is written
+# ONCE and it was doing that job for the FILENAME while the page a reader actually looks
+# at carried two hand-typed dates from two superseded editions. check_edition_date
+# caught it; nothing inside this study could, because the study is internally consistent
+# with either date.
+#
+# AND THE TWO DATES ARE NOT ONE DATE. "As of" is the market date the answer is struck
+# against, which is the study's own committed spot_date; "issued" is the edition. Both
+# now come from the record rather than from this line.
+_ASOF = _dt.date.fromisoformat(D['spot_date'])
+rich([('EGX: AMOC  \u00b7  Egyptian Exchange  \u00b7  EGP  \u00b7  Valuation study as of %d %s %d, '
+       'issued %s' % (_ASOF.day, _ASOF.strftime('%B'), _ASOF.year, _ed.WORDS),
+       dict(size=10, color=GREY))], space_after=10)
 
 box([
     ('READ FIRST.  ',

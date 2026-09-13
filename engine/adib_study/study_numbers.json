@@ -1430,6 +1430,79 @@
   "basis": "Sixteen sourceable consolidated fiscal years, FY2010-FY2025, every one from the issuer's own audited consolidated statements on adib.eg and every one footing against its own arithmetic. Sixteen is at or above the eight a FULL scope needs, so the run takes all origins from the first year with a five-year history behind it, at horizons 1 to 5.",
   "note": "Run 09-09-2026. Origins FY2014-FY2024, eleven of them, 45 origin-horizon cells, truncated at FY2025 as the last reported year. Pre-registered in engine/adib_walkforward/PRE_REGISTRATION_09-09-2026.md before any origin was built."
  },
+ "adopted_corrections": [],
+ "adopted_corrections_note": "the walk-forward on this name tested 14 correction candidates under the two-clause test and adopted NONE. Four drivers (fin_customers, cust_deposits, total_assets, other_op) carry a watch flag rather than a correction, and the aggregates (fin_income, cost_funds, net_funds, pbt, np, np_parent) were refused as aggregates, which corrections may not be applied to. Recorded in engine/adib_walkforward/corrections_log.json; EMPTY RATHER THAN ABSENT.",
+ "lens_record": {
+  "class": "bank",
+  "central": 44.460978528259474,
+  "primary": {
+   "kind": "ddm",
+   "value": 44.460978528259474,
+   "range": {
+    "low": 43.17228883751404,
+    "high": 46.01051880646089
+   },
+   "range_note": "the span of the three PRESENT-VALUE reads on one clock \u2014 free cash flow to equity below, residual income above \u2014 rather than a driver flexed across a range. On a bank the three are one model entered through three doors, so their spread measures the construction and not the business.",
+   "range_basis": {
+    "driver": "the present-value construction itself, across its three entries",
+    "low": 43.17228883751404,
+    "high": 46.01051880646089,
+    "macro_held": true,
+    "evidence": "dividend discount 44.4610, free cash flow to equity 43.1723, residual income 46.0105, all on the same five-year window, the same cost of equity schedule and the same house macro path. The cost of capital and terminal growth do not move between them."
+   }
+  },
+  "note": "one class primary IS the central and the others are cross-checks, with no typed weights [R-LENS-03]. The cross-checks are a relative multiple at 60.82, book value and a sustainable return at 47.47, a book floor at 29.04 and normalised earning power at 34.59. THE RELATIVE READ IS THE HIGHEST OF ALL SEVEN and is not blended in."
+ },
+ "forecast_anchor": {
+  "rate_name": "net interest margin",
+  "latest_reviewed_period": "H1-2026, reviewed, annualised",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.06440855014164135,
+  "first_forecast_rate": 0.05937,
+  "forecast_path": [
+   0.05937,
+   0.05534000000000001,
+   0.051745,
+   0.049730000000000024,
+   0.048149999999999984
+  ],
+  "note": "the forecast opens at 5.937% against a latest reviewed 6.441% \u2014 0.50 points BELOW it, -7.8% relative \u2014 and then falls further, to 4.815% by FY2030. THE MECHANISM IS DISCLOSED MONETARY POLICY AND IT IS NAMED RATHER THAN ASSUMED: the reviewed half was earned at the top of an Egyptian tightening cycle, and the central bank is easing. A deposit-funded bank re-prices its assets faster than its funding on the way down, so a margin struck at the peak is not a margin that can be held; carrying 6.441% flat for five years would be forecasting that the easing cycle does not happen. The study says in terms that this compression, a normalised loss charge after a half-year at almost nothing, and an Egyptian-pound cost of equity near thirty per cent are the three swing factors."
+ },
+ "driver_lines": [
+  {
+   "name": "Net funds income",
+   "level": "unit",
+   "share_of_revenue": 0.8460880718255666,
+   "unit": "average total assets, EGP 405158mn in the first forecast year",
+   "unit_source": "the reviewed consolidated balance sheet at 30 June 2026, averaged with the audited sheet at 31 December 2025",
+   "price_basis": "net interest margin, 5.937% in the first forecast year, struck on average total assets and falling to 4.815% by FY2030 as the easing cycle repricesncome faster than funding",
+   "cost_basis": "the cost of funds is INSIDE this line, not beside it: the margin is financing income less cost of funds, and both legs are filed separately in the reviewed statements"
+  },
+  {
+   "name": "Net fee income",
+   "level": "unit",
+   "share_of_revenue": 0.11400883568476558,
+   "unit": "average total assets, the same stock",
+   "unit_source": "as above",
+   "price_basis": "fee ratio, 0.7971% of average assets, held at the reviewed half's own annualised rate",
+   "cost_basis": "fee EXPENSE is netted here and is filed separately; the gross and the net are both in the reviewed statements"
+  },
+  {
+   "name": "Other operating income \u2014 dividends and trading",
+   "level": "derived",
+   "share_of_revenue": 0.03990309248966795,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": "carried at the reviewed half's annualised level, escalated on nothing",
+   "cost_basis": "NO DIRECT COST, and that is a statement rather than an omission: dividend and trading income arrive gross in the filed statements and carry no cost of sales. The cost of running the bank sits in administrative expense, which is forecast as one base against the whole institution and is not allocated across income lines -- so this line has no margin of its own, and none is claimed for it.",
+   "gap_note": "THE GAP IS STATED RATHER THAN DRESSED UP. Dividend and trading income are not a rate on a stock and there is no unit behind them: they are carried at the level the reviewed half earned. At 4.0% of operating income the line cannot carry the answer, and if it could this would be the wrong way to build it."
+  }
+ ],
+ "ground_up": {
+  "unit": "the balance sheet \u2014 average total assets for income, financing to customers for the loss charge",
+  "lines": 3,
+  "note": "a bank has no tonnes and no units shipped, so the ground-up unit is the balance sheet itself and every income line is a RATE ON A STOCK. The top line is not one growth rate on the whole company: it is the margin on average assets, and the margin and the assets move separately and for different reasons."
+ },
  "research_pass": {
   "reserve_ratio": {
    "finding": "The Central Bank cut the required reserve ratio for commercial banks from 18% to 16% on 12 February 2026, alongside a 100bp policy cut, stating the purpose as calibrating banking-system liquidity.",
