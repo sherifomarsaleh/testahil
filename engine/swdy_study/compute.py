@@ -1,10 +1,18 @@
-"""RUN ORDER: compute.py THEN forecast_anchor.py. RUNNING THIS FILE ALONE DELETES
-A STANDING-RULE RECORD.
+"""RUN ORDER: compute.py THEN forecast_anchor.py THEN attest.py. RUNNING THIS FILE
+ALONE DELETES TWO STANDING-RULE RECORDS.
 
-study_numbers.json is written whole by this script, and [R-ANCHOR-01]'s
-forecast_anchor block is appended afterwards by forecast_anchor.py in this same
-directory. So a rebuild that runs only this file silently drops that block: it
-reappears as a deletion in the diff and nothing in the code says why. Caught
+study_numbers.json is written whole by this script; [R-ANCHOR-01]'s forecast_anchor
+block is appended afterwards by forecast_anchor.py, and the ground-up driver_lines
+record with its assert_ground_up summary is appended after that by attest.py — both
+in this same directory. So a rebuild that runs only this file silently drops both:
+they reappear as deletions in the diff and nothing in the code says why.
+
+ATTEST.PY JOINED THE ORDER ON 13-09-2026 and this line moved in the same commit,
+one push late: the driver record had been written only to attestation.json, a file
+scripts/check_ground_up.py does not open, so the gate reported SWDY as committing no
+driver-line record at all. Moving it into the numbers file made attest.py a second
+generator, and CI caught the undeclared order before anything was lost — which is
+the rule doing its job on the person who wrote the record. Caught
 06-09-2026 by reading a diffstat that came back at 18 lines when the edit was
 one -- had the diff not been read, a rebuild would have removed the record and
 check_forecast_anchor would have gone red on a study whose forecast had not moved.
