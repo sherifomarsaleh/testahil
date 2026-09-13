@@ -27,13 +27,35 @@ class DCFTableError(RuntimeError):
 
 # The line order a reader expects, and the key each line is read from. NOTHING is
 # computed here that the study did not already publish.
+# THE DEPRECIATION ROW WAS COUNTED TWICE, IN EVERY STUDY THIS MODULE RENDERS. An
+# external forensic audit found it on SWDY on 13-09-2026 and it is a defect of this
+# shared module, not of that study: the waterfall printed
+#
+#     Revenue, EBITDA, less cash taxes, less capex, less working capital, ADD BACK D&A
+#
+# and cash taxes are struck on EBIT. So
+#
+#     EBITDA - t.EBIT - capex - dWC
+#       = (EBIT + D&A) - t.EBIT - capex - dWC
+#       = EBIT(1-t) + D&A - capex - dWC
+#       = NOPAT + D&A - capex - dWC
+#       = FCFF
+#
+# already. The add-back is the same depreciation a second time, and a reader following
+# the printed rows lands one full D&A above the free cash flow printed beneath them —
+# on SWDY, +3,961 / +4,807 / +5,510 / +6,197 / +6,902 across the five forecast years.
+#
+# THE ROW IS REMOVED RATHER THAN RELABELLED, and the identity is ASSERTED below. This
+# module already refused to render a table whose present values did not sum to the
+# published enterprise value; it checked that identity and never checked this one, which
+# is the identity a reader actually adds up. A table nobody can reproduce is worse than
+# no table, because it invites the attempt.
 WATERFALL = (
     ("Revenue",                      "rev",     1),
     ("EBITDA",                       "ebitda",  1),
     ("Less: cash taxes",             "tax",    -1),
     ("Less: capital expenditure",    "capex",  -1),
     ("Less: investment in working capital", "dnwc", -1),
-    ("Add: depreciation & amortisation", "dna", 1),
 )
 
 
@@ -137,6 +159,28 @@ def dcf_table(numbers, currency="EGP", unit="mn", per_share_dp=2, blocks=None,
     fcff = _series(f, "fcff", n)
     if fcff is None:
         raise DCFTableError("no fcff series: a DCF table without free cash flow is not one")
+
+    # THE PRINTED ROWS MUST REACH THE PRINTED TOTAL. This is the check whose absence let a
+    # duplicated depreciation row ship in every study this module renders. It sums the
+    # SIGNED series exactly as the page presents them and refuses where they do not land
+    # on the free cash flow beneath them.
+    _walk = []
+    for _lab, _k, _sg in WATERFALL:
+        if _k == "rev":
+            continue                      # revenue heads the table, it is not a term
+        _s = _series(f, _k, n)
+        if _s is not None:
+            _walk.append((_sg, _s))
+    if _walk:
+        for _i in range(n):
+            _sum = sum(_sg * _s[_i] for _sg, _s in _walk)
+            if abs(_sum - fcff[_i]) > max(1.0, 0.001 * abs(fcff[_i])):
+                raise DCFTableError(
+                    "the waterfall rows do not reach the free cash flow they print: year "
+                    "%d sums to %.1f against a printed %.1f, out by %.1f. A reader adding "
+                    "up the column gets a different answer from the one under it."
+                    % (_i + 1, _sum, fcff[_i], _sum - fcff[_i]))
+
     rows.append(["Free cash flow to the firm"] + [fmt(v) for v in fcff])
 
     fwd = _series(f, "fwd_wacc", n)

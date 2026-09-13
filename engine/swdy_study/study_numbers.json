@@ -2811,16 +2811,16 @@
   ],
   "nwc_grid": [
    0.17,
-   0.185,
-   0.199,
-   0.215,
+   0.18500000000000003,
+   0.1967,
+   0.21500000000000002,
    0.23
   ],
   "grid_nwc": [
    97.75178736220548,
-   92.24096877403932,
-   87.09753809175092,
-   81.21933159770705,
+   92.24096877403929,
+   87.94253027526975,
+   81.21933159770703,
    75.70851300954091
   ],
   "roic_grid": [
@@ -3009,6 +3009,29 @@
   "   copper a fifth above the escalated path                       +5.85/share  (  14% of the gap)",
   "   the pound weaker than the house path                          +2.34/share  (   6% of the gap)"
  ],
+ "drivers_as_run": {
+  "seg_g26": {
+   "cables": 0.3056831252933152,
+   "construct": 0.27443155254992924,
+   "elecprod": 0.4828177529116717
+  },
+  "capex_pct_measured": 0.03574226695658529,
+  "corp_load_adopted": 0.0307,
+  "corp_load_fy25": 0.03163,
+  "seg_margin_adopted": {
+   "cables": 0.114341,
+   "construct": 0.089871,
+   "elecprod": 0.236221
+  },
+  "seg_margin_h1_26_level": {
+   "cables": 0.1248904848003417,
+   "construct": 0.11593411611418625,
+   "elecprod": 0.24906631578452826
+  },
+  "capex_at_fy25_peak_cost": 8.2877,
+  "capex_at_fy25_peak_value": 79.6549,
+  "corp_load_reversion_value": 53.9962
+ },
  "driver_lines": [
   {
    "name": "Cables and accessories",

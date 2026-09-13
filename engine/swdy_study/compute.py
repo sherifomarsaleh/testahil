@@ -2613,10 +2613,19 @@ mg_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_margin = [dcf_scenario(gp_unit_mult=m) for m in mg_grid]
 cu_grid = [0.85, 0.925, 1.0, 1.075, 1.15]
 grid_copper = [dcf_scenario(copper_mult=m) for m in cu_grid]
-nwc_grid = [0.17, 0.185, 0.199, 0.215, 0.23]
+# F22: THE ROW WAS CENTRED ON THE RETIRED 19.90% DRIVER, so the published central
+# appeared nowhere on it — its centre cell read 87.10 against an answer of 87.94, beneath
+# an explicit assertion that every grid reproduces the headline at its adopted parameter.
+# Eight of the nine grids did; this one could not, because 19.90% is not what the model
+# runs. Centred on the adopted driver, and asserted like the others.
+nwc_grid = [V['nwc_pct'] - 0.0267, V['nwc_pct'] - 0.0117, V['nwc_pct'],
+            V['nwc_pct'] + 0.0183, V['nwc_pct'] + 0.0333]
 def dcf_nwc(pct):
     return dcf_scenario(nwc=pct)
 grid_nwc = [dcf_nwc(p) for p in nwc_grid]
+assert abs(dcf_nwc(V['nwc_pct']) - dcf_ps) < 0.01, (
+    'the working-capital row does not reproduce the central at the adopted ratio: '
+    '%.4f against %.4f' % (dcf_nwc(V['nwc_pct']), dcf_ps))
 roic_grid = [0.15, 0.18, roic_term, 0.26, 0.30]
 # THIS ROW WAS CENTRED 13.3% ABOVE THE ANSWER IT IS A SENSITIVITY ON. At the ADOPTED
 # terminal return it read 99.66 against a central of 87.94, and a reader looking up the
@@ -3288,6 +3297,25 @@ OUT = dict(
     # the house path; the Constructions taper runs +1.9% to +9.9% real; Electrical
     # products starts at +27.8% real and converges to +3.7%. A reader can disagree with
     # any of those in a way they cannot disagree with a nominal rate.
+    # WHAT THE MODEL ACTUALLY RUNS, COMMITTED so the document can print it instead of
+    # printing what an earlier edition ran. An external audit found the driver table
+    # publishing a Cables FY2026 growth of 10.71% and a capex taper, neither of which any
+    # formula reads: the model grows FY2026 at the measured half-on-half ratio and holds
+    # capex at a flat measured share. A page cannot describe the model if the numbers file
+    # does not carry what the model does.
+    drivers_as_run=dict(
+        seg_g26={k: v for k, v in _SEG_G26.items()},
+        capex_pct_measured=_CAPEX_PCT_MEASURED,
+        corp_load_adopted=V['opex_pct'][0],
+        corp_load_fy25=V['corp_load_hist']['FY25'],
+        seg_margin_adopted=dict(cables=V['cables_margin'][0],
+                                construct=V['construct_margin'][0],
+                                elecprod=V['elecprod_margin'][0]),
+        seg_margin_h1_26_level={k: V['seg_profit_h1_26'][k] / V['seg_rev_h1_26'][k]
+                                for k in V['seg_rev_h1_26']},
+        capex_at_fy25_peak_cost=8.2877,
+        capex_at_fy25_peak_value=79.6549,
+        corp_load_reversion_value=53.9962),
     driver_lines=[dict(name=l.name, level=l.level,
                        share_of_revenue=l.share_of_revenue, unit=l.unit,
                        unit_source=l.unit_source, price_basis=l.price_basis,

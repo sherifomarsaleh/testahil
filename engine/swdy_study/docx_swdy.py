@@ -13,6 +13,7 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, TR, REL, NRM, BK = D['experts'], D['terminal_recon'], D['rel'], D['norm'], D['book']
 S0, STK, SEG = D['step0'], D['strike'], D['seg_fy25']
 BU = D['bottomup']
+AR = D['drivers_as_run']   # what the model RUNS, not what an earlier edition ran
 COC = D['cost_of_capital_record']
 _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
@@ -501,10 +502,17 @@ rows = [['Measure', 'Value', 'Comment'],
          "SWDY's own trading history, not a peer-derived figure — an earlier draft asserted a "
          '"peers trade at 8–11×" range that was not supported by any calculation, and it has '
          'been withdrawn'],
-        ['Plus interim cash flows', f"({n0(-REL['pv_interim'])})",
-         'the present value of the FY2026-27 free cash flows the forward multiple does not '
-         'capture — net negative, because FY2026 consumes working capital. Added after external '
-         'review; omitting it had overstated this lens slightly'],
+        # F21: THIS ROW WAS WRONG THREE WAYS AT ONCE. It is labelled "Plus", the model
+        # ADDS it, and the committed value is POSITIVE (+3,106.38) — and it printed
+        # "(-3,106)", a bracket and a minus sign on a positive number, under a prose note
+        # calling it "net negative". FY2026's present value is -252 and FY2027's is
+        # +3,359, and the study's own free-cash-flow table prints both two pages earlier.
+        ['Plus interim cash flows', n0(REL['pv_interim']),
+         f"the present value of the FY2026-27 free cash flows the forward multiple does not "
+         f"capture. NET POSITIVE: FY2026 consumes working capital and its present value is "
+         f"{n0(F['fcff'][0] * F['df'][0])}, but FY2027 contributes "
+         f"{n0(F['fcff'][1] * F['df'][1])} and the second outweighs the first. Added after "
+         f"external review; omitting it had UNDERSTATED this lens"],
         ['Implied value per share, at the anchor', p2(LN['relative']['base']),
          f"bear {p2(LN['relative']['bear'])} at 5.5× / bull {p2(LN['relative']['bull'])} at "
          f"8.0×; rolled to the anchor date on the same two lines as the cash-flow bridge"]]
@@ -649,16 +657,25 @@ rows = [['Driver', 'FY2025 base'] + YRS,
         # table in the document headed "How the forecast is driven" named a driver the
         # forecast is not driven by, and a reader reproducing the build from this page
         # could not have arrived at the model's own revenue line.
-        ['Cables — tonnage growth (the disclosed volume driver)', '—'] +
-        [pc(x) for x in IN['cables_volume_growth']],
+        # F4, EXTERNAL AUDIT 13-09-2026: THIS TABLE PUBLISHED A FY2026 DRIVER NO FORMULA
+        # READS. FY2026 is grown at the measured half-on-half ratio — compute.py asserts
+        # it and REFUSES a disagreeing figure — and the tonnage and pass-through drivers
+        # run from FY2027. The rows said otherwise, and the audit priced a reader
+        # following them at EGP 83.52 against the study's 87.94. Both rows now show the
+        # measured ratio in the year the model measures, and the drivers in the years
+        # they drive.
+        ['Cables — FY2026 growth, MEASURED on the reviewed half',
+         '—', pc(AR['seg_g26']['cables'], 2), '—', '—', '—', '—'],
+        ['Cables — tonnage growth (the disclosed volume driver, FY2027-30)', '—', '—'] +
+        [pc(x) for x in IN['cables_volume_growth'][1:]],
         # AN EXACT ZERO IS WRITTEN "nil", NOT "0.0%". The QC gate treats a cell whose whole
         # content is "0.0%" as a leaked unformatted value, and it is right to: that is what
         # an unset rate looks like. These two zeros are real and committed — full
         # pass-through, no measured shortfall, in the first and last forecast years — so
         # they are written the way a financial statement writes a true nil, which tells the
         # reader the difference the gate was trying to protect.
-        ['Cables — copper/FX pass-through to revenue', '—'] +
-        ['nil' if x == 0 else pc(x) for x in IN['cables_passthrough']],
+        ['Cables — copper/FX pass-through to revenue (FY2027-30)', '—', '—'] +
+        ['nil' if x == 0 else pc(x) for x in IN['cables_passthrough'][1:]],
         ['Cables — segment margin', pc(UH['FY25']['margin']['cables'])] +
         [pc(x) for x in IN['cables_margin']],
         ['Constructions and infrastructure — revenue growth', '—'] +
@@ -671,8 +688,13 @@ rows = [['Driver', 'FY2025 base'] + YRS,
          pc(UH['FY25']['margin']['elecprod'])] + [pc(x) for x in IN['elecprod_margin']],
         ['Corporate cost load, segment profit → EBIT basis (% of revenue)',
          pc(IN['corp_load_hist']['FY25'])] + [pc(x) for x in IN['opex_pct']],
+        # F2: THIS ROW PRINTED THE RETIRED TAPER. The model holds capex at a flat measured
+        # share in every year; the taper 4.4 / 4.0 / 3.6 / 3.3 / 3.1 that this row carried
+        # was superseded on 09-09-2026 and is read by no formula. It contradicted the
+        # study's OWN free-cash-flow table two pages earlier, which prints the levels that
+        # go with the flat share.
         ['Capital expenditure (% of revenue)', pc(IN['capex_pct_hist']['FY25'])] +
-        [pc(x) for x in IN['capex_pct']],
+        [pc(AR['capex_pct_measured'], 2)] * 5,
         ['Depreciation and amortisation (% of revenue)', pc(IN['dna_pct_hist']['FY25'])] +
         [pc(IN['dna_pct'])] * 5]
 table(rows, [2.35, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73], size=8.0)
@@ -691,12 +713,27 @@ caption(f"Copper is held near the current market level rather than forecast — 
         f"FY2023-25 revenue CAGR. The corporate cost load — stated on the same segment-profit-to-"
         f"EBIT basis as the audited history ("
         f"{' / '.join(pc(IN['corp_load_hist'][y], 2) for y in ('FY23', 'FY24', 'FY25'))}) — "
-        f"glides UP from FY2025's "
-        f"unusually low level toward the FY2023-24 average, the single most conservative choice "
-        f"in the build. The capex and D&A paths are shown because they are live free-cash-flow "
-        f"drivers, not footnotes: capex tapers from the FY2025 peak of 4.7% as the 2024-25 "
-        f"capacity programme completes (it ran 3.1% in FY2023 and 3.7% in FY2024); holding it at "
-        f"the FY2025 peak instead would cost roughly EGP 1.8 on the cash-flow lens.")
+        # F1, THE LARGEST FINDING OF THE EXTERNAL AUDIT. This said the load "glides UP
+        # from FY2025's unusually low level toward the FY2023-24 average, the single most
+        # conservative choice in the build". The model holds it FLAT at 3.07%, BELOW
+        # FY2025's own 3.16%. A reader running the described glide gets EGP 53.9962 — 33.95
+        # a share, 38.6%, below the answer on the cover. The bibliography said the right
+        # thing all along; the study said the opposite of the bibliography.
+        f"is HELD FLAT at {pc(AR['corp_load_adopted'], 2)} in every forecast year, slightly "
+        f"BELOW FY2025's own {pc(AR['corp_load_fy25'], 2)} — the reviewed half measures the "
+        f"level holding rather than reverting, and the forecast follows the measurement. THIS "
+        f"IS THE STUDY'S MOST CONSEQUENTIAL CONTESTED JUDGEMENT AND IT IS PUBLISHED BOTH WAYS: "
+        f"the retired reversion path ({' / '.join(pc(x, 2) for x in IN['corp_load_reversion'])}) "
+        f"gives EGP {p2(AR['corp_load_reversion_value'])} a share, "
+        f"{sgn(AR['corp_load_reversion_value']/D['central']-1, 0)} against the central. "
+        f"The capex and D&A paths are shown because they are live free-cash-flow "
+        f"drivers, not footnotes: capex is held at a flat "
+        f"{pc(AR['capex_pct_measured'], 2)} of revenue, the rate measured off the completed "
+        f"2024-25 programme (it ran 3.1% in FY2023, 3.7% in FY2024 and peaked at 4.7% in "
+        f"FY2025). Holding it at that FY2025 peak instead would cost EGP "
+        f"{p2(AR['capex_at_fy25_peak_cost'])} on the cash-flow lens, taking it to "
+        f"{p2(AR['capex_at_fy25_peak_value'])} — an earlier edition of this caption put that "
+        f"cost at 1.8 and was wrong by a factor of 4.6.")
 
 H2('What the build produces — margins as outputs')
 rows = [['EGP mn'] + YRS,
@@ -709,12 +746,22 @@ rows = [['EGP mn'] + YRS,
         ['EBITDA'] + [n0(x) for x in F['ebitda']],
         ['EBITDA margin'] + [pc(x) for x in F['ebitda_margin']]]
 table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={5, 7})
-caption(f"The FY2026 build is checked, not calibrated, against the print: the disclosed Q1-2026 "
-        f"revenue of {n0(IN['q1_26_rev'])}, grossed up on the Q1-2025 seasonal share of FY2025, "
-        f"implies a full FY2026 of roughly {n0(BU['q1_26_implied_fy'])}, against the build's "
-        f"{n0(F['rev'][0])} — a "
-        f"{sgn(F['rev'][0]/BU['q1_26_implied_fy']-1)} difference, an independent check that the "
-        f"segment build is not running ahead of the company's own trading. That quarter reported "
+# F5, EXTERNAL AUDIT: THE BUILD IS CALIBRATED ON THE REVIEWED HALF AND THIS SAID IT WAS
+# NOT. All three FY2026 segment growth rates ARE the H1-2026/H1-2025 ratios, all three
+# margins are FY2025 plus the like-for-like half change, and working capital and capex are
+# re-anchored on the same half. So the Q1 gross-up offered here as "an independent check"
+# is not independent — it is a quarter of the period the build is anchored on. The half's
+# own check is tighter and was not shown.
+caption(f"THE FY2026 BUILD IS CALIBRATED ON THE REVIEWED HALF TO 30 JUNE 2026, not merely "
+        f"checked against it: all three segment growth rates are that half's own "
+        f"year-on-year ratios ({', '.join('%s %s' % (k, pc(v, 2)) for k, v in AR['seg_g26'].items())}), "
+        f"all three margins are FY2025 plus its like-for-like change, and working capital and "
+        f"capital expenditure are re-anchored on it. The Q1-2026 gross-up is therefore NOT an "
+        f"independent check — it is a quarter of the period the build stands on — and it is "
+        f"shown for continuity rather than as corroboration: the disclosed Q1-2026 revenue of "
+        f"{n0(IN['q1_26_rev'])}, grossed up on the Q1-2025 seasonal share of FY2025, implies a "
+        f"full FY2026 of roughly {n0(BU['q1_26_implied_fy'])} against the build's "
+        f"{n0(F['rev'][0])}, a {sgn(F['rev'][0]/BU['q1_26_implied_fy']-1)} difference. That quarter reported "
         f"revenue {sgn(IN['q1_26_rev']/IN['q1_25_rev']-1)} and attributable profit "
         f"{sgn(IN['q1_26_npa']/IN['q1_25_npa']-1)} year on year.")
 
