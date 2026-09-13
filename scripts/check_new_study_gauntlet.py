@@ -110,6 +110,14 @@ DIRECTORY_GATES = [
     # cannot find a generator has not proved there is none. An empty directory is exactly
     # that case, and the gate refuses it by name.
     'check_numbers_generators.py',
+    # ADDED 13-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE, on the precedent directly
+    # above. DIRECTORY-scoped: it dates every delivered artefact against the file it was
+    # rendered from, and it resolves that source through the study's committed numbers
+    # file. An empty directory has none, so the gate reports the study as UNKNOWN and
+    # FAILS on it rather than passing it -- whether the artefacts match their source is
+    # not established, and unknown is not clean [R-ENF-04]. It refuses a bare directory
+    # by name, which is what this list is for.
+    'check_artefact_freshness.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
