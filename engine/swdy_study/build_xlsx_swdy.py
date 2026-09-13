@@ -131,9 +131,14 @@ for i, ln in enumerate([
  'bear and bull bounds, and the anchor-date roll — is a live formula. Changing a driver reprices the model',
  'but does NOT redraw the engine outputs.', '',
  'How revenue is built. Not as one growth rate. Each of the three disclosed segments is grown on its own',
- 'driver — Cables on copper-price growth times FX-translation growth times a modest real-volume assumption,',
- 'Constructions and Electrical products on a taper of their own recent revenue CAGR — because none of the',
- 'audited filings discloses a tonnage, order-book or backlog figure to build a literal unit model from.',
+ # THE PANEL DESCRIBED THE DRIVER THE MODEL RETIRED, and repeated a claim the study
+ # withdraws. Cable revenue runs on disclosed tonnage times a measured pass-through; the
+ # flat 3% real-volume assumption is read by nothing.
+ 'driver — Cables on DISCLOSED TONNAGE (185,449 tonnes in FY2025, from the company\'s own quarterly',
+ 'releases) times a copper and currency pass-through measured out of the segment\'s own audited revenue',
+ 'per tonne; Constructions and Electrical products on a taper of their own recent revenue CAGR. The',
+ 'AUDITED filings disclose no tonnage, order-book or backlog figure for any segment — the releases do,',
+ 'they are the issuer\'s own, and they are not audited, which is why they drive a volume and not a value.',
  'Margins come from the same segment build; group EBITDA margin is an OUTPUT of it, not an input.', '',
  'What it is not. It is not investment advice, a recommendation, or a price target. Values are model outputs',
  'shown as ranges.', '',

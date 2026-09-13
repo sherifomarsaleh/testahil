@@ -600,8 +600,22 @@ H2('How the forecast is driven')
 rows = [['Driver', 'FY2025 base'] + YRS,
         ['Copper (USD/tonne)', n0(IN['copper_hist']['FY25'])] + [n0(x) for x in IN['copper_fcst']],
         ['USD/EGP average rate', n1(IN['fx_hist']['FY25'])] + [n1(x) for x in IN['fx_path']],
-        ['Cables — real growth (over copper × FX)', '—'] +
-        [pc(x) for x in IN['cables_real_growth']],
+        # THE TABLE PUBLISHED A RETIRED DRIVER AS THE LIVE ONE. cables_real_growth is a
+        # flat 3.0% and the model does not read it: compute.py runs cable revenue on
+        # disclosed tonnage growth times a measured copper/FX pass-through. So the one
+        # table in the document headed "How the forecast is driven" named a driver the
+        # forecast is not driven by, and a reader reproducing the build from this page
+        # could not have arrived at the model's own revenue line.
+        ['Cables — tonnage growth (the disclosed volume driver)', '—'] +
+        [pc(x) for x in IN['cables_volume_growth']],
+        # AN EXACT ZERO IS WRITTEN "nil", NOT "0.0%". The QC gate treats a cell whose whole
+        # content is "0.0%" as a leaked unformatted value, and it is right to: that is what
+        # an unset rate looks like. These two zeros are real and committed — full
+        # pass-through, no measured shortfall, in the first and last forecast years — so
+        # they are written the way a financial statement writes a true nil, which tells the
+        # reader the difference the gate was trying to protect.
+        ['Cables — copper/FX pass-through to revenue', '—'] +
+        ['nil' if x == 0 else pc(x) for x in IN['cables_passthrough']],
         ['Cables — segment margin', pc(UH['FY25']['margin']['cables'])] +
         [pc(x) for x in IN['cables_margin']],
         ['Constructions and infrastructure — revenue growth', '—'] +
@@ -621,9 +635,16 @@ rows = [['Driver', 'FY2025 base'] + YRS,
 table(rows, [2.35, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73], size=8.0)
 caption(f"Copper is held near the current market level rather than forecast — a directional view "
         f"on the metal would dominate the valuation, and it is carried in the sensitivity instead. "
-        f"Cables grows on copper-price growth × FX-translation growth × a modest real-volume "
-        f"assumption, since no tonnage figure is disclosed in the audited statements to build a "
-        f"literal unit model from. Constructions and Electrical products taper on their own "
+        # AND THE CAPTION DESCRIBED THE RETIRED DRIVER TOO, in the same sentence that
+        # repeated a claim section 7 withdraws. The tonnage exists, it is in the company's
+        # own quarterly releases, and this study's cable revenue is built on it.
+        f"Cables grows on DISCLOSED TONNAGE — {n0(IN['cables_tonnage_hist']['FY25'])} tonnes "
+        f"in FY2025 from the company's own quarterly releases, a "
+        f"{pc(IN['cables_tonnage_cagr'])} three-year compound rate — times a copper and "
+        f"currency pass-through measured out of the segment's own audited revenue per tonne, "
+        f"rather than on a revenue growth assumption. The audited statements disclose no "
+        f"tonnage for any segment; the releases are the issuer's own and are cited as such. "
+        f"Constructions and Electrical products taper on their own "
         f"FY2023-25 revenue CAGR. The corporate cost load — stated on the same segment-profit-to-"
         f"EBIT basis as the audited history ("
         f"{' / '.join(pc(IN['corp_load_hist'][y], 2) for y in ('FY23', 'FY24', 'FY25'))}) — "
@@ -787,7 +808,10 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
 table(rows, [1.60, 0.92, 0.80, 3.68], size=8.2, band_rows={8, 12})
 caption("Discounting is end-of-year discrete (each year's flow at its full-year factor) — the "
         "conservative convention; mid-year discounting would raise the explicit strip about 7%. "
-        "All values are then rolled to the 5-Aug-2026 anchor as shown in the bridge.")
+        # THE ANCHOR MOVED AND FOUR SENTENCES DID NOT. The study is struck at 3 September
+        # 2026 and said so in its masthead; these carried the superseded 5-Aug date. Read
+        # from the numbers file, so they move with it.
+        f"All values are then rolled to the {M['asof']} anchor as shown in the bridge.")
 
 H2('The cost of debt — three pieces of evidence, not an assumption')
 P("A disclosed contractual range is not evidence of what a company pays. Three things are shown "
@@ -883,10 +907,24 @@ caption(f"The rating-basis column is the one most often raised against this stud
 
 # ---- 1.9 sensitivity -----------------------------------------------------------
 H2('1.9  Sensitivity — the discount rate, the growth, the currency, the margin and the collection')
+# THE CAPTION SAID "No cell in the tested range reaches the market price" OVER A GRID
+# WITH FOUR CELLS ABOVE IT. It was true when written and the grid has been re-run since,
+# through the sanctioned terminal module and with the employees' statutory share charged.
+# A claim about a table typed beside the table is a claim nothing compares; it is counted
+# out of the grid now, so it cannot be right once and wrong afterwards.
+_G = [v for r in SN['grid_exp_term'] for v in r]
+_reach = sum(1 for v in _G if v >= SPOT)
 figure(os.path.join(HERE, 'fig2_sens.png'), 5.7,
        f"Figure 3 — discounted-cash-flow fair value per share across the terminal cost of capital "
-       f"and terminal growth. No cell in the tested range reaches the market price of {p2(SPOT)}: "
-       f"even the most generous corner sits well below it.")
+       f"and terminal growth. "
+       + (f"No cell in the tested range reaches the market price of {p2(SPOT)}: even the most "
+          f"generous corner, at {p2(max(_G))}, sits below it."
+          if not _reach else
+          f"{_reach} of the {len(_G)} cells reach the market price of {p2(SPOT)}, all of them in "
+          f"the corner combining the lowest terminal cost of capital with the highest terminal "
+          f"growth; the grid tops out at {p2(max(_G))}. What it takes to get there is the point: "
+          f"a terminal rate {(W['wacc_term'] - min(SN['wt_grid']))*10000:,.0f}bp below the "
+          f"adopted one at the same time as terminal growth at the top of the tested range."))
 P("Each anchor is varied independently around its own base, so the tables show what the valuation "
   "needs the world to do rather than what growth rate the model needs.")
 
@@ -916,12 +954,29 @@ rows.append(['Terminal growth', f"{pc(SN['g_grid'][0],0)} – {pc(SN['g_grid'][-
              span([r[j] for r in [SN['grid_wacc_g'][2]] for j in range(5)]),
              p2(max(SN['grid_wacc_g'][2])-min(SN['grid_wacc_g'][2]))])
 table(rows, [2.20, 1.55, 1.90, 1.35], size=8.5)
+# THE COPPER SENTENCE DESCRIBED A GRID THAT NO LONGER EXISTS. It said the swing "can even
+# run the 'wrong' way"; the repaired grid runs 83.40 to 92.13, monotone upward. The
+# DIRECTION is read off the grid here rather than asserted, and the economics the sentence
+# was reaching for survive: the swing is the smallest of any operating row, because the
+# metal passes through to cost and working capital as well as to revenue.
+_cu = SN['grid_copper']
+_cu_up = all(_cu[i] <= _cu[i + 1] for i in range(len(_cu) - 1))
+_swings = {'the segment-margin row': max(SN['grid_margin']) - min(SN['grid_margin']),
+           'the terminal return-on-capital row': max(SN['grid_roic']) - min(SN['grid_roic']),
+           'the currency row': max(SN['grid_fx']) - min(SN['grid_fx']),
+           'the working-capital row': max(SN['grid_nwc']) - min(SN['grid_nwc']),
+           'the copper row': max(_cu) - min(_cu)}
+_rank = sorted(_swings.items(), key=lambda kv: -kv[1])
 caption("Every row is a full re-run of the segment build, not a multiplier applied to a finished "
         "revenue line: a currency or copper move flows through Cables' revenue, the working "
         "capital and the segment profit exactly as it does in the base case. Note the copper row — "
-        "the swing is small and can even run the 'wrong' way, because a higher metal price raises "
-        "revenue and working capital without raising the profit Cables earns on it. Ranked by "
-        "single-row swing, the segment-margin row is the LARGEST — an earlier caption claimed the "
+        f"it is the SMALLEST swing of any operating driver at EGP {_swings['the copper row']:.2f} "
+        f"a share across a ±15% move, and it runs "
+        + ("upward throughout" if _cu_up else "in both directions") +
+        ": a higher metal price raises Cables' revenue and its working capital together, and "
+        "raises the profit earned on that revenue hardly at all. Ranked by "
+        f"single-row swing, {_rank[0][0]} is the LARGEST at EGP {_rank[0][1]:.2f} a share, ahead "
+        f"of {_rank[1][0]} at EGP {_rank[1][1]:.2f} — an earlier caption claimed the "
         "terminal assumptions dominated every operating driver, which this table itself "
         "contradicts (a review caught it); what remains true is that the two cost-of-capital "
         "grids jointly span the widest surface, and a ±15% margin shock is a far larger "
@@ -1126,9 +1181,16 @@ rows = [['Catalyst', 'Why it matters', 'What to watch'],
          'whether contracts continue to reprice fast enough to protect the cable gross margin '
          'during price spikes'],
         ['Order intake',
-         'no order book or backlog figure is disclosed anywhere in the audited filings, so the '
-         'Constructions and infrastructure forecast tapers on its own revenue growth rather than '
-         'a burn rate',
+         # HALF OF THIS WAS STILL TRUE AND HALF WAS WITHDRAWN. The audited filings disclose
+         # no backlog and that has not changed; the company's own releases do, and this
+         # study reads EGP 346bn at 30 June 2026. Why the taper survives anyway is the
+         # part worth saying: a backlog without a disclosed burn profile cannot be turned
+         # into revenue, so it corroborates the taper instead of replacing it.
+         'no order book or backlog figure is disclosed in any AUDITED filing. The company\'s '
+         'own quarterly releases disclose an engineering backlog of EGP 346bn at 30 June '
+         '2026, which is read; they do not disclose the burn profile that would turn it '
+         'into revenue, so the Constructions and infrastructure forecast tapers on its own '
+         'revenue growth and the backlog corroborates that taper rather than setting it',
          'whether Constructions and infrastructure revenue growth (18% in FY2026E) holds up or '
          'decelerates faster than assumed'],
         ['Dividend policy',
@@ -1285,7 +1347,22 @@ def hist_row(key, fmt=n0, neg=False):
         out.append(f"({fmt(abs(v))})" if (neg or v < 0) else fmt(v))
     return out
 rows.append(['Revenue'] + hist_row('rev') + [n0(x) for x in F['rev']])
-rows.append(['Gross profit'] + hist_row('gp') + [n0(x) for x in F['gp']])
+# ONE ROW, TWO MEASURES, SPLICED AT THE FORECAST BOUNDARY. The FY2023-25 cells were
+# TRUE gross profit off the face of the audited income statement — revenue less cost of
+# sales, 19.1% / 18.9% / 14.5% of revenue. The forecast cells were the sum of the three
+# disclosed segments' Note 16 segment PROFIT, which is struck after depreciation and
+# after segment overhead: 12.3% rising to 12.7%. Read down the row, gross margin appears
+# to fall 2.2 points at the boundary; on either basis consistently it does not. The model
+# builds on segment profit, so that is the row, and it carries its own audited history
+# (17.4% / 17.0% / 12.3%). True gross profit stays, labelled, history-only, because it is
+# what the audited statements actually print and dropping it would hide the difference
+# rather than state it.
+_SEGP_HIST = {y: sum(BU['unit_hist'][y]['profit'].values()) for y in ('FY23', 'FY24', 'FY25')}
+rows.append(['Gross profit (audited face: revenue less cost of sales)']
+            + hist_row('gp') + ['—'] * 5)
+rows.append(['Segment profit, three disclosed segments (Note 16 basis — the forecast build)']
+            + [n0(_SEGP_HIST[y]) for y in ('FY23', 'FY24', 'FY25')]
+            + [n0(x) for x in F['gp']])
 rows.append(['EBITDA (derived: EBIT + D&A)'] + hist_row('ebitda') + [n0(x) for x in F['ebitda']])
 rows.append(['EBITDA margin'] + [pc(HI[y]['ebitda'] / HI[y]['rev']) for y in ('FY23','FY24','FY25')] +
             [pc(x) for x in F['ebitda_margin']])
@@ -1458,7 +1535,7 @@ H1('Appendix C  The expert valuation panel')
 P(f"Three valuation approaches are run against the same disclosed facts by three notional "
   f"experts, each committed to a different method and each required to state what would prove "
   f"them wrong. They are not asked to agree, and they do not. Two dating and independence notes, "
-  f"stated up front: every panel figure is rolled to the 5-Aug-2026 anchor exactly as the four "
+  f"stated up front: every panel figure is rolled to the {M['asof']} anchor exactly as the four "
   f"lenses are; and Expert 1 deliberately runs the SAME kind of earnings-power question as "
   f"section 1.4 with different persona choices — FY2028-scale earnings at 9.5× against the "
   f"lens's current-scale earnings at 9.0× — which is why the two land {p2(EXP['e1']['base'])} and "

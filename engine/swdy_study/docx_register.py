@@ -181,12 +181,22 @@ table([['Document', 'Publisher', 'Date', 'What was taken from it'],
         '5 January 2026', 'Egypt equity risk premium and sovereign default spread, credit-default-'
         'swap basis and rating basis'],
        ['Egypt 10-year local-currency government bond yield', 'Market data, house cost-of-capital '
-        'reference', '21 July 2026, re-verified 5 August 2026', 'The risk-free rate anchor'],
+        'reference', '21 July 2026, re-verified 5 August 2026 — the rate reading is that '
+        'date and is NOT the valuation anchor', 'The risk-free rate anchor'],
        ['Worldwide Tax Summaries — Egypt', 'PwC', '2026', 'Corporate income tax rate'],
-       ['Daily price history for SWDY on the Egyptian Exchange', 'Supplied price series',
-        'to 5 August 2026',
+       # THE SUPPLIED SERIES IS NOT WHAT THIS STUDY READS, AND HAS NOT BEEN SINCE THE
+       # STRIKE WAS REPOINTED. It ended 5 August 2026 at 105.20 and disagreed with this
+       # name's own price library on all 35 overlapping sessions after 14 June 2026. The
+       # library is the source now, cut at this study's valuation date, and the entry says
+       # which file and to when rather than describing a file nothing opens.
+       ['Daily price history for SWDY on the Egyptian Exchange',
+        'engine/raw_ohlc/EG/SWDY.csv — the repository price library, the same series every '
+        'other name in this book is struck on',
+        'read to ' + M['asof'] + ', the valuation date',
         'The anchor price, the volatility estimate, the moving-average structure, the beta '
-        'regression and the price distributions'],
+        'regression and the price distributions. A study-local copy of this series was read '
+        'in earlier editions and is withdrawn: it ended 5 August 2026 at 105.20 against a '
+        'library close of 130.00 on the valuation date'],
        # THE MARKET PROXY IS THE PUBLISHED INDEX AND HAS BEEN SINCE THE BETA WAS
        # RE-DERIVED. This row still credited the withdrawn 31-name composite, which is
        # a source register naming a source the study does not use.
@@ -266,7 +276,7 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         f'{D["dcf"]["anchor_days"]}/365 of a year '
         f'to the {M["asof"]} anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
         'window',
-        'The comparison price is dated 5 August 2026; comparing an end-2025 value to it would '
+        'The comparison price is dated ' + M['asof'] + '; comparing an end-2025 value to it would '
         'leave seven months of accretion out of the comparison — an external review flagged the '
         'omission and it was accepted',
         'A different roll rate (the risk-free rate instead of the cost of equity) would cut the '
@@ -326,10 +336,16 @@ P('This study was rebuilt once the company\'s own audited FY2023, FY2024 and FY2
 table([['What was sought', 'Outcome', 'How the study handled it'],
        ['An order book, backlog or unit-volume (tonnage, MVA, meter-count) disclosure for any '
         'segment, in any of the four filings including the Q1-2026 interim',
-        'Not disclosed. The company reports only segment revenue (Note 5-3) and segment profit '
-        '(Note 16) — no volumes, prices or backlog',
-        'The forecast is built as a taper on each segment\'s own recent revenue CAGR and, for '
-        'Cables, a copper-price and FX-translation driver, rather than a reconstructed unit model'],
+        'Not disclosed IN THE FILINGS. The company reports only segment revenue (Note 5-3) '
+        'and segment profit (Note 16) — no volumes, prices or backlog. Its own quarterly '
+        'earnings releases DO carry cable tonnage and an engineering backlog, and those '
+        'are read; they are the issuer\'s own publications but they are not audited',
+        'Cables is built on the disclosed tonnage series times a copper and currency '
+        'pass-through measured out of the segment\'s own audited revenue per tonne — a unit '
+        'model, on an unaudited issuer disclosure, labelled as such. Constructions and '
+        'Electrical products taper on their own recent revenue CAGR, because the releases '
+        'disclose no burn profile for the backlog and the segment aggregates products that '
+        'no filing splits'],
        ['A facility-by-facility or currency-by-currency breakdown of the debt book finer than the '
         'two-way EGP / hard-currency split disclosed in the FY2025 and Q1-2026 borrowings notes',
         'Not disclosed at finer granularity; the FY2024 filing\'s own three-way EGP/USD/EUR split '
@@ -351,8 +367,8 @@ table([['What was sought', 'Outcome', 'How the study handled it'],
         'catch'],
        ['An explanation for the sharp single-session price move on 4 August 2026',
         'No corresponding company disclosure or news item was found',
-        'Not used. The study\'s anchor is the closing price on 5 August 2026 and no narrative is '
-        'attached to the move']],
+        'Not used. The study\'s anchor is the closing price on ' + M['asof'] + ' and no '
+        'narrative is attached to the move']],
       [1.55, 2.35, 3.10], size=7.8)
 
 H1('A note on aggregator and press data')

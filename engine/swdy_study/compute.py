@@ -2666,28 +2666,63 @@ _cx24 = (V['copper_hist']['FY24'] / V['copper_hist']['FY23']) * (
 _cx25 = (V['copper_hist']['FY25'] / V['copper_hist']['FY24']) * (
     V['fx_hist']['FY25'] / V['fx_hist']['FY24']) - 1
 
+# HOW MANY ASSUMPTIONS REACH THE MARKET IS COUNTED, NOT ASSERTED. The sentence below
+# said "ONE ASSUMPTION REACHES THE MARKET AND NOTHING ELSE COMES CLOSE"; the
+# decomposition it introduces prices the cost-of-capital re-run at 124% of the gap
+# beside the margin re-run's 268%. Two clear it. The count comes off _star_moves now.
+_STAR_GAP = SPOT - dcf_ps
+_STAR_REACH = sorted((k for k, v in _star_moves.items() if v is not None and v >= _STAR_GAP),
+                    key=lambda k: -_star_moves[k])
+_STAR_N = {0: 'NO SINGLE ASSUMPTION REACHES', 1: 'ONE ASSUMPTION REACHES',
+           2: 'TWO ASSUMPTIONS REACH'}.get(len(_STAR_REACH),
+                                           '%d ASSUMPTIONS REACH' % len(_STAR_REACH))
+_STAR_REST = ('AND NOTHING ELSE COMES CLOSE' if len(_STAR_REACH) == 1 else
+              'AND THE REST DO NOT' if _STAR_REACH else
+              'AND THE GAP IS NOT REACHABLE ON ANY ONE OF THEM')
+
 STAR_CASE = dict(
     case=(
         "The market is capitalising earnings; this model says the earnings are not yet "
         "cash. On the model's own first forecast year free cash flow to the firm is "
         "NEGATIVE on NOPAT of about EGP 26bn, because revenue growing by a third "
         "absorbs working capital faster than the margin generates it. That single "
-        "difference — the reinvestment charge — is where the whole disagreement lives, "
-        "and it is why the cross-checks in this study that CAPITALISE earnings rather "
-        "than discount cash sit at or above the traded price while the cash-flow lens "
-        "does not. PRICED ALONE ON A FULL RE-RUN, ONE ASSUMPTION REACHES THE MARKET "
-        "AND NOTHING ELSE COMES CLOSE: all three segment margins permanently about "
-        "46%% higher, back at FY2023-24 levels. Copper and the currency move the "
-        "answer by almost nothing, because they pass through to cost as well as to "
-        "revenue. WHAT ARGUES AGAINST THAT MARGIN RECOVERY IS THE COMPANY'S OWN "
-        "DISCLOSURE RATHER THAN OUR OPINION: cables revenue per tonne tracked copper "
-        "and the pound almost exactly in FY2024 (%+.1f%% against %+.1f%%) and then "
-        "failed to in FY2025 (%+.1f%% against %+.1f%%) — a measured pass-through "
-        "shortfall of %.1f points, computed from audited segment revenue and the "
-        "company's own disclosed tonnage. The FY2023-24 margins were earned on "
-        "inventory bought before a devaluation. A REPEAT REQUIRES THAT PRICING POWER "
-        "TO RETURN, AND THE MOST RECENT FULL YEAR MEASURES IT LEAVING."
-        % (100 * _pt24, 100 * _cx24, 100 * _pt25, 100 * _cx25, 100 * (_cx25 - _pt25))),
+        "difference — the reinvestment charge — is where the whole disagreement "
+        "lives, and it is why the cross-checks in this study that CAPITALISE earnings "
+        "rather than discount cash sit at or above the traded price while the cash-flow "
+        "lens does not. PRICED ALONE ON A FULL RE-RUN, %(n)s THE MARKET %(rest)s. "
+        "The largest is all three segment margins permanently about 46%% higher, back at "
+        "FY2023-24 levels, worth EGP %(mgn).0f a share against a central of %(ps).2f "
+        "— %(mgnpc).0f%% of the gap. "
+        # "ALMOST NOTHING" WAS A WORD WHERE A NUMBER BELONGS, and beside section 1.9's
+        # currency row -- which swings EGP 23 a share across +/-15% -- it read as a flat
+        # contradiction. It is not one, and the reason is that these are two different
+        # tests: this is the [R-STAR-01] single-assumption re-run, each driver moved
+        # ALONE to see which one reaches the market. Both magnitudes are printed and the
+        # tests are named, so the reader is not left to reconcile a word against a table.
+        "Priced the same way and one at a time, copper a fifth above the escalated path "
+        "is worth EGP %(cu).2f a share and a pound weaker than the house path EGP "
+        "%(fx).2f — small beside the margin, because both pass through to cost and to "
+        "working capital as well as to revenue. Section 1.9's currency row swings "
+        "further, EGP %(fxswing).2f across a +/-15%% band; that is a range on the whole "
+        "path rather than this single re-run, and the two are not the same measurement. "
+        "WHAT ARGUES AGAINST THAT MARGIN RECOVERY IS THE COMPANY'S OWN DISCLOSURE RATHER "
+        "THAN OUR OPINION: cables revenue per tonne tracked copper and the pound almost "
+        "exactly in FY2024 (%(pt24)+.1f%% against %(cx24)+.1f%%) and then failed to in "
+        "FY2025 (%(pt25)+.1f%% against %(cx25)+.1f%%) — a measured pass-through "
+        "shortfall of %(short).1f points, computed from audited segment revenue and the "
+        "company's own disclosed tonnage. The FY2023-24 margins were earned on inventory "
+        "bought before a devaluation. A REPEAT REQUIRES THAT PRICING POWER TO RETURN, AND "
+        "THE MOST RECENT FULL YEAR MEASURES IT LEAVING."
+        % dict(n=_STAR_N, rest=_STAR_REST,
+               mgn=_star_moves['all three segment margins permanently back at FY2023-24 levels'],
+               mgnpc=100 * _star_moves['all three segment margins permanently back at '
+                                       'FY2023-24 levels'] / _STAR_GAP,
+               ps=dcf_ps,
+               cu=_star_moves['copper a fifth above the escalated path'],
+               fx=_star_moves['the pound weaker than the house path'],
+               fxswing=max(grid_fx) - min(grid_fx),
+               pt24=100 * _pt24, cx24=100 * _cx24, pt25=100 * _pt25, cx25=100 * _cx25,
+               short=100 * (_cx25 - _pt25))),
     decomposition={k: v for k, v in _star_moves.items() if v is not None},
     hunt_recorded=True,
     falsifier=(
