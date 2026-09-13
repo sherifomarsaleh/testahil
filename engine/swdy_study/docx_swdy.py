@@ -17,6 +17,12 @@ AR = D['drivers_as_run']   # what the model RUNS, not what an earlier edition ra
 COC = D['cost_of_capital_record']
 _SL = DCF['scenario_legs']   # how the published range is struck [F10]
 _CT = SN['contested']        # the contested-choice impacts, each a re-run [F23]
+import datetime as _dt
+def _age_days(iso):
+    """How stale an input is at the anchor date. Computed, never typed — an age in a
+    delivered sentence is the first thing to go wrong when either date moves [F25]."""
+    _d = lambda x: _dt.date(*[int(p) for p in x.split('-')])
+    return (_d(M['asof']) - _d(iso)).days
 _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -582,8 +588,9 @@ P(f"The question this lens asks is what the group earns at its CURRENT scale in 
   f"{pc(HI['FY25']['ebitda']/HI['FY25']['rev'])} — is applied to FY2026E revenue of EGP "
   f"{n0(NRM['rev'])}mn. An earlier revision applied the multiple to FY2028-SCALE earnings with no "
   f"time value, injecting two years of undiscounted growth into a present-day lens; an external "
-  f"review flagged it correctly and the construction was restated, worth about EGP 4.9 per share "
-  f"on the cash-flow lens.")
+  f"review flagged it correctly and the construction was restated. The retired construction "
+  f"is published beside the model rather than described: see the lens record, which carries "
+  f"what it returned and what the restatement cost.")
 rows = [['Step', 'EGP mn'],
         ['Current-scale (FY2026E) revenue', n0(NRM['rev'])],
         [f"Mid-cycle EBITDA margin ({NRM['margin_year']}) at {pc(NRM['margin'])}", n0(NRM['ebitda'])],
@@ -598,12 +605,16 @@ rows = [['Step', 'EGP mn'],
         [f"At a justified {IN['pe_just']}× price/earnings, rolled to the anchor (EGP per share)",
          p2(LN['normalized']['base'])]]
 table(rows, [4.55, 1.35], size=8.6, band_rows={9, 11}, first_col_bold=False)
-caption(f"Bear {p2(LN['normalized']['bear'])} at 7.0× and bull {p2(LN['normalized']['bull'])} at "
-        f"11.5×, both rolled to the anchor date like every other lens. Every input row is the "
+caption(f"Bear {p2(LN['normalized']['bear'])} at {n1(LN['normalized']['pe_bear'])}× and bull "
+        f"{p2(LN['normalized']['bull'])} at {n1(LN['normalized']['pe_bull'])}×, both rolled to "
+        f"the anchor date like every other lens. Every input row is the "
         f"figure the computation actually uses — the associate line is the FY2026E forecast, not "
         f"the FY2025 actual. One disclosed conservatism: equity-method associate income is taxed "
         f"at {pc(IN['tax_eff'])} inside this lens although it arrives already post-tax at the "
-        f"investee — worth about +0.4/share on the central if removed. The justified multiple is "
+        f"investee — worth {p2(LN['normalized']['assoc_tax_ps'])} a share on THIS lens if "
+        f"removed, computed rather than estimated (an earlier edition of this sentence said "
+        f"about +0.4, which understated it roughly fivefold: this is an earnings lens, so the "
+        f"multiple applies to the relieved earnings too). The justified multiple is "
         f"held well below what a comparable industrial franchise would attract in a developed "
         f"market, because an Egyptian cost of equity near {pc(W['ke_exp'],0)} mathematically "
         f"compresses what any stream of earnings is worth.")
@@ -871,7 +882,8 @@ P(f"The model holds this ratio near {pc(IN['nwc_pct'])} of revenue, the FY2025 d
   f"removed from working-capital intensity is worth roughly EGP "
   f"{p2(abs(SN['grid_nwc'][2]-SN['grid_nwc'][1])/1.5)}-"
   f"{p2(abs(SN['grid_nwc'][-1]-SN['grid_nwc'][0])/6.0)} per share (the local slope at the base "
-  f"and the average across the tested 17-23% span). If the group converts working "
+  f"and the average across the tested {pc(SN['nwc_grid'][0], 0)}-{pc(SN['nwc_grid'][-1], 0)} "
+  f"span). If the group converts working "
   f"capital further — collecting faster, or pushing more of the funding onto suppliers and "
   f"customers — the cash-flow model reprices sharply upward. If FY2025's improvement reverses, it "
   f"reprices down just as fast.")
@@ -885,7 +897,17 @@ P(f"The discount rate is a schedule, not a number. Each forecast year is discoun
   f"discount than a cash flow arriving on the same day.")
 rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
         ['Risk-free rate', pc(IN['rf']), pc(IN['rf_term']),
-         'observed 10-year local-currency government yield (readings on the anchor date span '
+         # F25: "readings on the anchor date" WAS NOT TRUE OF THIS RATE. The registry
+         # dates it 21 July 2026, cached, re-verified 5 August; the anchor is 3 September.
+         # The study was describing a live read it had not made. The rate is not changed
+         # here — re-sourcing it is a house act, not a study one, and the study's own
+         # sensitivity already prices the move — but the sentence now says which date the
+         # number carries, read out of the register rather than asserted.
+         f"observed 10-year local-currency government yield, carried at the "
+         f"{D['inputs']['rf']['date']} print (cached, re-verified 05-Aug-2026) and NOT read "
+         f"on the {M['asof']} anchor date, which is {_age_days(D['inputs']['rf']['date'])} "
+         f"days later; "
+         f"the row below prices what a 100bp move is worth. Readings of the same instrument span "
          # F9, EXTERNAL AUDIT: THIS JUSTIFICATION DESCRIBED A CONSTRUCTION THE MODEL
          # RETIRED, on the line carrying 89.4% of enterprise value. It said the terminal
          # risk-free embeds a 5% inflation target plus a 5.5pp real convention. The model
@@ -894,7 +916,7 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          # growth rate on two different inflations is a free lunch of 2pp in perpetuity.
          # Read from the record now, so the two can never disagree on the page again.
          f"roughly 22.3-23.0% across sources and disagree; the adopted point sits at the "
-         f"low end and the rate is carried in the sensitivity). Terminal = "
+         f"low end and the rate is carried in the sensitivity. Terminal = "
          f"{pc(IN['pi_term'])} long-run Egyptian inflation READ FROM THE HOUSE MACRO PATH "
          f"plus a {pc(IN['rf_term'] - IN['pi_term'], 1)} real-rate convention = "
          f"{pc(IN['rf_term'], 2)}. It is the same inflation the terminal growth rate of "
@@ -982,8 +1004,10 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          'worth about -2.4 on the cash-flow lens'],
         ['Cost of capital', pc(W['wacc_exp']), pc(W['wacc_term']), '']]
 table(rows, [1.60, 0.92, 0.80, 3.68], size=8.2, band_rows={8, 12})
-caption("Discounting is end-of-year discrete (each year's flow at its full-year factor) — the "
-        "conservative convention; mid-year discounting would raise the explicit strip about 7%. "
+caption(f"Discounting is end-of-year discrete (each year's flow at its full-year factor) — the "
+        f"conservative convention; mid-year discounting would raise the explicit strip by "
+        f"{pc(DCF['midyear_uplift'])}, computed by re-discounting the same five flows half a "
+        f"year earlier rather than estimated in prose. "
         # THE ANCHOR MOVED AND FOUR SENTENCES DID NOT. The study is struck at 3 September
         # 2026 and said so in its masthead; these carried the superseded 5-Aug date. Read
         # from the numbers file, so they move with it.
@@ -1261,10 +1285,18 @@ P(f"The beta deserves a note. At {IN['beta']:.3f} with an R-squared of {W['beta'
   f"{W['beta']['n']} weekly observations and a standard error of {W['beta']['se']:.3f}, this is a "
   f"well-identified estimate by the standards of this market — the 90% interval spans "
   f"[{W['beta']['ci90'][0]:.2f}, {W['beta']['ci90'][1]:.2f}], comfortably narrower than twice the "
-  f"point estimate, so it is not flagged as a weak instrument. It is also economically sensible: "
-  f"the largest industrial constituent of an index should have a beta near one. A defensive-staple "
+  f"point estimate, so it is not flagged as a weak instrument. A defensive-staple "
   f"prior of 0.6–0.9 and a cyclical prior of 1.0–1.5 bracket it, and a diversified industrial with "
-  f"a contracting arm belongs in the second.", space_after=10)
+  f"a contracting arm belongs in the second. "
+  f"ONE SENTENCE OF THE OLD DEFENCE IS WITHDRAWN. It read that the estimate is "
+  f"economically sensible because 'the largest industrial constituent of an index should have a "
+  f"beta near one'. An external review pointed out that this company is not a constituent of the "
+  f"index it is regressed against, and this study had not checked. The regressor is unchanged and "
+  f"is not wrong: {W['beta']['index_file']} is the registered published index of the exchange the "
+  f"stock is listed on, which is what the standing rule names, and an index a stock is not in is "
+  f"still the market that stock's return is measured against. What was wrong was defending it "
+  f"with a fact about membership. The estimate now stands on what this study can actually check: "
+  f"{W['beta']['n']} weekly observations, the fit above, and the economic prior.", space_after=10)
 
 # =========================== 2 TECHNICAL ======================================
 H1('2  Technical and price structure')
@@ -1321,7 +1353,8 @@ _r = np.diff(np.log(px)); _v50 = float(np.std(_r[-50:]) * np.sqrt(252))
 _rx = np.delete(_r, -2); _v50x = float(np.std(_rx[-50:]) * np.sqrt(252))
 P(f"One caveat on the volatility that sets the width of the price cone in section 3. The "
   f"{pc(H3M['anchor_vol_ann'])} annualised figure is dominated by a single session: the shares "
-  f"rose 14.1% on 4 August 2026 on roughly eleven times normal volume. Realised volatility over "
+  f"rose {pc(float(np.exp(_r[-2]) - 1))} on 4 August 2026 on roughly eleven times normal "
+  f"volume. Realised volatility over "
   f"the last 50 sessions is {pc(_v50)}; strip out that one session and it falls to {pc(_v50x)}. "
   f"The cone in section 3 is therefore wide because of one day's move, and a reader who regards "
   f"that session as a one-off should treat the bands as correspondingly generous.", space_after=10)
@@ -1332,8 +1365,9 @@ P(f"This section answers a different question from the valuation. It does not as
   f"is worth; it asks where the share price could plausibly be in one and three months, given how "
   f"this share has actually moved. The engine simulates 50,000 price paths from a volatility model "
   f"fitted to the daily high-low-open-close range, with a fat-tailed shock distribution and a drift "
-  f"anchored to the cost of carry — an EGP deposit-rate carry, ~18% annualised as implied by the "
-  f"median path, deliberately below the 22.3% bond yield and carrying no directional view.")
+  f"anchored to the cost of carry — an EGP deposit-rate carry of "
+  f"{pc(STK['rf_live'])} annualised, read from the live market profile, deliberately below the "
+  f"{pc(IN['rf'])} bond yield and carrying no directional view.")
 # WHAT A READER IS SHOWN IS THE BAND RECORD [R-CAL-02, R-CAL-03]. The two skill clauses
 # this paragraph used to carry — the model scoring a per cent or so "better than a
 # random-walk benchmark" over five years and again over the full history — were the
@@ -1557,8 +1591,9 @@ P("The bands are wide and they are honest about why: the twelve years they are m
   "to produce a narrow band at five years, and a narrow one would be a claim this record "
   "cannot support. Where nine or more observations exist the band is a tenth-to-ninetieth "
   "percentile; below that it is the SPAN of the observations, which is a smaller claim and is "
-  "labelled as one. Each band multiplies the point: a low of 0.55 and a high of 2.60 means "
-  "the outturn has landed between 0.55 and 2.60 times what this method projected.")
+  "labelled as one. Each band multiplies the point: a low of 0.55 and a high of 2.60 would "
+  "mean the outturn had landed between 0.55 and 2.60 times what this method projected — an "
+  "illustration of how to read the column, not a figure from this table.")
 
 for head, body in [
     ("The audited statements carry no volumes; the company's own releases do, and they are read. ",
@@ -1732,9 +1767,10 @@ table(rows, [1.72, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66, 0.66], size=7.9,
 caption("Every FY2023-25 STATEMENT line is taken directly from the company's audited consolidated "
         "statements. Two rows are house DERIVATIONS and are labelled as such: EBITDA (EBIT plus "
         "D&A — the audited statements contain no EBITDA line, and the company's own separately "
-        "published non-GAAP EBITDA is a different, larger definition) and earnings per share "
-        "(attributable profit over shares outstanding; the company's own reported EPS of "
-        "4.26 / 7.22 / 7.13 is struck after the Egyptian employee and board profit-share "
+        f"published non-GAAP EBITDA is a different, larger definition) and earnings per share "
+        f"(attributable profit over shares outstanding; the company's own reported EPS of "
+        f"{' / '.join(p2(IN['eps_reported'][_y]) for _y in ('FY23', 'FY24', 'FY25'))} "
+        f"is struck after the Egyptian employee and board profit-share "
         "appropriation and is accordingly lower — both bases appear in §1.3). Forecast profit is "
         "struck after net interest on the estimated debt and cash balances and after tax and "
         "minority interests, and therefore differs slightly from the free-cash-flow waterfall in "
@@ -1895,8 +1931,10 @@ P(f"Three valuation approaches are run against the same disclosed facts by three
   f"them wrong. They are not asked to agree, and they do not. Two dating and independence notes, "
   f"stated up front: every panel figure is rolled to the {M['asof']} anchor exactly as the four "
   f"lenses are; and Expert 1 deliberately runs the SAME kind of earnings-power question as "
-  f"section 1.4 with different persona choices — FY2028-scale earnings at 9.5× against the "
-  f"lens's current-scale earnings at 9.0× — which is why the two land {p2(EXP['e1']['base'])} and "
+  f"section 1.4 with different persona choices — FY2028-scale earnings at "
+  f"{n1(EXP['e1']['pe'])}× against the "
+  f"lens's current-scale earnings at {n1(LN['normalized']['pe_base'])}× — which is why the two "
+  f"land {p2(EXP['e1']['base'])} and "
   f"{p2(LN['normalized']['base'])} respectively. The divergence is the persona doing what it "
   f"says (no time-value discipline), it is disclosed, and only the section-1.4 construction "
   f"enters the central.")

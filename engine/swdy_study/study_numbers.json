@@ -194,6 +194,16 @@
    "date": "2024-03-13",
    "ring": "Company"
   },
+  "eps_reported": {
+   "value": {
+    "FY23": 4.26,
+    "FY24": 7.22,
+    "FY25": 7.13
+   },
+   "source": "Basic earnings per share as reported on the face of each year's audited consolidated statement of profit or loss (FY2023 diluted 4.25, FY2024 diluted 7.21, FY2025 basic and diluted both 7.13). Struck AFTER the Egyptian employee and board profit-share appropriation and over the weighted-average share count, so it is lower than attributable profit over shares outstanding; both bases are published",
+   "date": "2026-03-15",
+   "ring": "Company"
+  },
   "npa_fy24": {
    "value": 17461.358714,
    "source": "Profit attributable to owners of the parent, FY2024 audited financial statements. Basic EPS 7.22, diluted 7.21",
@@ -2279,6 +2289,7 @@
    "beta_only_bull": 89.86234841292973
   },
   "terminal_spread": 0.06203513371578934,
+  "midyear_uplift": 0.08636130975420908,
   "pv_explicit": 23195.251240855512,
   "tv": 493871.53180240764,
   "pv_tv": 195997.74048581204,
@@ -2344,6 +2355,7 @@
   "ps_rating_basis": 68.17536598649635,
   "wacc_exp_rating": 0.26395059316478836,
   "ps_rating_retired_identity": 33.66962078751242,
+  "ps_on_eps_share_count": 88.00099102956175,
   "wacc_term_rating": 0.1692211499322291,
   "ps_nci_alt": 99.32936298550855,
   "nci_alt": 21860.79940501007,
@@ -2440,6 +2452,10 @@
    "base": 103.30153482938725,
    "bull": 132.5430115246981,
    "w": null,
+   "pe_bear": 7.0,
+   "pe_bull": 11.5,
+   "pe_base": 9.0,
+   "assoc_tax_ps": 2.062143827986219,
    "note": "RETIRED for this class: a contractor's reported earnings turn on completion timing, so normalising them normalises noise. Removed rather than re-weighted, and computed and shown so the move is visible."
   },
   "book": {
@@ -2873,13 +2889,16 @@
    61.56533878139304
   ],
   "tax_path": {
-   "fy23": 0.313,
+   "fy23": 0.3132499295424122,
+   "fy24": 0.3012572646692873,
+   "fy25": 0.22565218219817912,
    "q1_26": 0.2575,
    "h1_26": 0.3085,
    "q2_26_implied": 0.35150858886554115,
    "h1_pbt": 15392.39904051864,
    "adopted": 0.245
   },
+  "payout_forecast": 0.25,
   "contested": {
    "gross_weights": 92.17822825446538,
    "rf_up100": 86.36145557379803,
@@ -3031,7 +3050,7 @@
   "[Forecast equity] attributable profit 23,375, 28,729, 33,491, 38,331, 43,227; net debt path 28,039, 31,592, 30,193, 26,102, 19,905.",
   "[Terminal return on capital] taken as next year's NOPAT over the closing invested capital (22.4%), the standard convention, rather than the same year's NOPAT over closing capital (20.6%).",
   "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 21.0%; reinvestment rate 20.1% / 30.4% / 51.5%; implied g 4.5% / 7.6% / 10.8%. Check (a): actual NOPAT CAGR FY23-FY25 = +26.9%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 30%) = 7.6%. Adopted terminal g 9.1%.",
-  "[Effective tax rate, the whole disclosed path] FY2023 31.3% / FY2024 30.1% / FY2025 22.6% / Q1-2026 25.75% / H1-2026 30.85%, and the SECOND QUARTER ALONE therefore 35.15% \u2014 the half's tax of 4,749 less the quarter's 1,813, over the half's pre-tax 15,392 less the quarter's 7,042. The adopted forecast rate of 24.5% sits BELOW all four of the most recent readings. It is not raised here \u2014 one half is not a five-year forecast \u2014 but it is priced in section 1.9 and discussed, which earlier editions did not do.",
+  "[Effective tax rate, the whole disclosed path] FY2023 31.32% / FY2024 30.13% / FY2025 22.57% / Q1-2026 25.75% / H1-2026 30.85%, and the SECOND QUARTER ALONE therefore 35.15% \u2014 the half's tax of 4,749 less the quarter's 1,813, over the half's pre-tax 15,392 less the quarter's 7,042. The adopted forecast rate of 24.5% sits BELOW all four of the most recent readings. It is not raised here \u2014 one half is not a five-year forecast \u2014 but it is priced in section 1.9 and discussed, which earlier editions did not do.",
   "[Terminal value, sanctioned construction] FY2030E NOPAT 47,002 \u2014 the LAST EXPLICIT YEAR's, ungrown, because the module grows the finished cash flow itself and handing it an already-grown figure would overstate the terminal by exactly one year of growth \u2014 + book D&A 6,902 - maintenance at replacement cost 12,377 (on the DERIVED 17.26-year life) - growth capital 4,573 (growth capital at the stated real terminal growth) - inflation on working capital 8,882 = FCFF 28,072. TV 493,872 at 15.34% and 9.1% nominal, discounted at the YEAR-5 factor 0.3969 -> PV 195,998, 89% of enterprise value. Implied payout of terminal NOPAT 59.7%; TV against the NOPAT-perpetuity floor +61.2%.",
   "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 490,003 (-0.8%), charging 20,901 a year for ever \u2014 an implied replacement cycle of 10.9 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
   "[Terminal ceiling] the domestic leg is 49% of FY30E revenue; a blended long-run nominal ceiling is 11.2% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 9% sits below it.",
@@ -3045,6 +3064,7 @@
   "[EGP-equivalent cost of debt alternative, published] loading the hard-currency legs (72% of the book) with the pound's own 7.6%/year forecast depreciation under uncovered interest parity gives an EGP-equivalent cost of 13.25% for that share, and a blended Kd of 15.54% against the currency-composition 9.50%. Cost of capital rises to 26.96% from 26.65%, giving EGP 87.41/share against 87.94. CAUTION: adopting the currency-composition Kd as primary means the hard-currency share of the debt book is carried at its coupon rate and NOT compensated for devaluation risk beyond what this forecast's own FX path already assumes.",
   "[Minority-interest sequencing, alternative published] charging minorities 9.7% of UNLEVERED enterprise value plus associates (21,861) and deducting net debt afterwards gives EGP 99.33/share, against 87.94 on the adopted sequencing. The adopted method is retained because the audited borrowings note records facilities granted to 'the Company AND ITS SUBSIDIARIES ... guaranteed by promissory notes FROM SUBSIDIARIES', i.e. debt does sit at subsidiary level.",
   "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 47,221 gives an enterprise value of 306,933 AS AT end-FY2027; discounted back at the year-2 factor 0.6425 plus the present value of the interim FY26-27 free cash flows (3,106) that is 200,325 at 31-Dec-2025 -> EGP 79.68/share at the anchor.",
+  "[Two prose estimates, now computed] removing the tax this lens charges on equity-method associate income is worth +2.06 a share (the page said +0.4); mid-year discounting would raise the explicit strip by 8.64% (the page said about 7%).",
   "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.64% (FY2028E) on FY2026E revenue 370,194 -> normalised EPS 9.90 x 9.0 = EGP 103.30/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
   "[Book lens] justified price-to-book 1.86x = (sustainable return 23.5% - growth 9%) / (PERPETUAL cost of equity 16.87% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 61%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
   "[DCF scenarios] bear 46.85 / base 87.94 / bull 133.83 EGP per share",
@@ -3615,5 +3635,20 @@
   },
   "published_central": 87.94253027526973,
   "published_spot": 130.0
+ },
+ "forecast_anchor": {
+  "rate_name": "group segment-profit margin",
+  "latest_reviewed_period": "H1-2026, six months ended 30 June 2026, reviewed condensed interim consolidated statements",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.13996645985428263,
+  "first_forecast_rate": 0.12342243167403245,
+  "forecast_path": [
+   0.12342243167403245,
+   0.12511523086392035,
+   0.1264317032104704,
+   0.1271134714855157,
+   0.1272058480477024
+  ],
+  "note": "MEASURED, NOT ASSERTED, AND NO MECHANISM IS NAMED BECAUSE NONE ON THE CLOSED LIST IS SUPPORTED BY THIS COMPANY'S FILINGS. The rate is the group segment-profit margin -- note 16 segment profit, which is gross profit less selling and distribution expenses, over the note 5-3 external revenue the same filings disclose -- and it is the basis the forecast is built on, not the gross-profit row above it. The forecast opens at 12.3422% against a reviewed half of 13.9966%, 1.6544 points and 11.82% relatively below, and it fires. On the wider basis that includes the unallocated column the half runs 13.9221% and the gap is 11.35%; the narrower like-for-like figure is recorded because it is the one the forecast is comparable to and because it makes the breach LARGER rather than smaller. Against the audited FY2025 year of 12.2719% the forecast opens only -0.57% low and nothing would fire -- the stale full-year rate is the flattering comparison, which is why it is not the one this record is struck on. THE PATH DOES NOT DECLINE: 12.3422% -> 12.5115% -> 12.6432% -> 12.7113% -> 12.7206%, so the opening year is the low point of the explicit window and the second clause does not fire. WHERE THE CLAIM ACTUALLY SITS, AND IT IS THE REASON NO MECHANISM FITS. The first forecast year already CONTAINS the filed half, so the only part still in question is the half not yet filed, and every like-for-like comparison this company's own filings permit is inside the tolerance: the filed half against its own filed comparative half, 13.9966% against 14.1369%, -0.99%; the implied second half against the company's own filed second half a year earlier, 11.0362% against 10.8036%, +2.15%; the forecast year against the audited year, +0.57%. What separates them is that THE HALVES ARE NOT ALIKE: on its own filed figures this issuer earned 14.1369% in the first half of FY2025 and 10.8036% in the second, 3.3333 points apart, the second half running at 0.7642x the first, and the forecast carries essentially that same shape at 0.7885x. Both second halves are DERIVED by one identity -- a full year less its own filed first half, on a single basis -- and are labelled derived rather than presented as filed periods. So the 11.82% this record reports is a half measured against a year on an issuer with a 3.3333-point seasonal step, and 'the latest reviewed period is a half' is not on the closed list. THE SIX MECHANISMS, TESTED AND REFUSED ONE BY ONE. (a) MIX. Holding mix constant -- the forecast rates applied to the reviewed half's own revenue mix -- gives 12.4930% against the realised 13.9966%, so mix carries 0.1508 points of the 1.6544-point gap and 10.74% relative survives it. It is refused anyway because the direction is wrong in the filings: the highest-margin segment, Electrical products and digital solutions at 24.9066% in the half, has been GAINING share -- 10.70% of revenue in FY2023, 10.29% in FY2024, 12.20% in FY2025, 14.08% in the reviewed half -- so a disclosed shift toward lower margin is contradicted by the record. (b) INPUT COST OUTPACING PRICE. This is the candidate that would have cleared the check and it is the one worth recording as refused: group cost per unit of revenue rose from 85.8631% to 86.0034% across the two comparable halves, +0.1403 points, so the direction test would pass. It is not claimed, for three reasons that are facts about the model rather than opinions about the company. The model projects no such drift at all -- all three segment margins are held FLAT across the whole explicit window, with a spread of 0.000000, 0.000000 and 0.000000 between their highest and lowest forecast years. The three measured half-on-half directions DISAGREE with each other -- Cables and accessories -2.0558 points, Constructions and infrastructure +2.5348 points, Electrical products and digital solutions +1.4491 points -- so there is no group trend to project and the study's own driver registration says so. And the measured drift is 0.1403 points of revenue against the 1.6544 points the claim would have to carry, 8.5% of it. A mechanism the model does not run, asserted on a measurement a small fraction of the size of the step it is offered to explain, is the assumption wearing one. (c) A ONE-OFF IN THE LATEST REVIEWED PERIOD. One is disclosed and quantified -- EGP 542.976mn of gains on sale and revaluation of equity-accounted investees, note 20-3, on its own line with no comparative -- and it sits on the associate line BELOW operating profit, outside segment profit entirely, so it moves this rate by nothing. The disclosure exists and does not establish the mechanism. (d) CONTRACTED PRICE STEP-DOWN, (e) SUBSIDY OR LEVY WITHDRAWAL, (f) CAPACITY COMMISSIONING DRAG: nothing in this study's own input register -- its record of what the filings disclose, four fields to a figure -- names a contracted or administered price step, a subsidy, levy or quota change, or a capacity programme whose commissioning costs land before its revenue. No order book or backlog figure is disclosed in any of the audited filings or the Q1-2026 interim either, which is the absence the constructions growth driver already records. WHAT THIS RECORD IS THEREFORE SAYING: the forecast is not declining away from what this company has filed -- on the company's own halves it is roughly flat, in both of them -- and it cannot be cleared through this gate, because the arithmetic the gap needs is seasonal and the list is closed. That is reported rather than resolved: the list is not extended from inside a study."
  }
 }

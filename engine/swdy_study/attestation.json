@@ -10,12 +10,12 @@
    "relative",
    "retired_blend"
   ],
-  "inputs": "222 inputs, four-field complete=True",
+  "inputs": "223 inputs, four-field complete=True",
   "experts": "bases inside their own ranges=True",
   "scrub": "43 patterns, 0 hits",
   "figures": "8 figures, 0 transparent",
   "tables": "54 tables, 0 problems",
-  "typed_numerals": "22 in docx_swdy.py, docx_register.py",
+  "typed_numerals": "15 in docx_swdy.py, docx_register.py",
   "workbook": "630 formulas, 2 checked expected values",
   "sweep": "32 findings (8 dated negative searches), 12 drivers, primary access logged"
  },

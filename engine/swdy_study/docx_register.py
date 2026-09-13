@@ -28,6 +28,14 @@ from docx.oxml import OxmlElement
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 M = D['meta']                       # the anchor date, read rather than typed
 INP = D['inputs']
+# THE SAME HANDLES THE STUDY USES, so a figure on this page and the same figure in the
+# study come from one place. Three rows of the judgements table below published RETIRED
+# values as adopted [F26] — terminal growth at 5% against a study that strikes 9.14%,
+# working capital at 19.9% against a re-anchored 19.67%, the currency path at 6% against
+# 7.56% — because they were typed here and read there.
+IN = {k: v['value'] for k, v in INP.items()}
+SN, DCF = D['sens'], D['dcf']
+def pc(x, dp=1): return f"{x*100:.{dp}f}%"
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77); WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 F_DARK, F_PANEL, F_CREAM = '1C3A36', 'EAF0EE', 'F6F1E6'
 
@@ -279,12 +287,19 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'Evidence that convertibility is not a binding constraint for this issuer would shift the '
         'primary reading materially higher'],
        ['Exchange-rate path',
-        'About 6% a year of depreciation, far below what the interest-rate differential implies',
+        # F26: "about 6% a year" against a path the model runs at 7.56%.
+        f"About {pc(DCF['fx_dep_avg'])} a year of depreciation, far below what the "
+        f"interest-rate differential implies",
         'The base case assumes the central bank\'s disinflation path closes most of the gap rather '
         'than the currency absorbing it',
         'A disorderly move in the pound; the sensitivity table carries the parity case'],
-       ['Working capital held near the FY2025 share of revenue',
-        'Net working capital stays near 19.9% of revenue, the FY2025 audited level',
+       [f"Working capital held near {pc(IN['nwc_pct'])} of revenue",
+        # F26 AND F16: this row said 19.9%, "the FY2025 audited level". The study
+        # re-anchored on the reviewed 30-Jun-2026 sheet at 19.67% and this row did not
+        # follow. Both the number and the period it belongs to were wrong.
+        f"Net working capital stays near {pc(IN['nwc_pct'])} of revenue — the level measured "
+        f"on the REVIEWED 30 June 2026 balance sheet, not the FY2025 audited "
+        f"level of 19.87% an earlier edition of this row named",
         'All three audited years show working capital absorbing cash rather than converting, '
         'though FY2025 improved (24.1% -> 23.1% -> 19.9% of revenue)',
         'Two consecutive years of operating cash flow above 60% of EBITDA'],
@@ -293,8 +308,8 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         # through two later editions while the model rolled 246 days to 3 September.
         f'Every lens value, dated 31 December 2025 by construction, is rolled '
         f'{D["dcf"]["anchor_days"]}/365 of a year '
-        f'to the {M["asof"]} anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
-        'window',
+        f'to the {M["asof"]} anchor at the cost of equity, less the EGP '
+        f'{IN["dps_fy25"]:.2f} dividend paid in the window',
         'The comparison price is dated ' + M['asof'] + '; comparing an end-2025 value to it would '
         'leave seven months of accretion out of the comparison — an external review flagged the '
         'omission and it was accepted',
@@ -307,14 +322,25 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'FY2030E; 15% splits the difference between today\'s 8.4% and a structurally levered '
         'steady state, and costs about 2.4/share on the weighted central versus 25%',
         'Evidence the group intends to run materially higher structural net leverage'],
-       ['Forecast payout ratio of 25%',
-        'Struck at the actual FY2025 payout (EGP 1.85/share = 22.8% of attributable EPS), '
-        'rounded up for the rising trajectory the +85% step-up implies',
+       [f"Forecast payout ratio of {pc(SN['payout_forecast'], 0)}",
+        f"Struck at the actual FY2025 payout (EGP {IN['dps_fy25']:.2f}/share = "
+        f"{pc(DCF['dps_payout_fy25'])} of attributable EPS), rounded up for the rising "
+        f"trajectory the step-up implies",
         'The FY2025 dividend was ratified 6 May 2026 and paid from 4 June 2026 (EGX '
         'disclosure); an earlier revision wrongly removed it on absence-of-evidence grounds',
         'The distribution proposed on the FY2026 result'],
-       ['Terminal growth of 5%',
-        'The standing centre for established names in this market, sensitised 3–7%',
+       [f"Terminal growth of {pc(IN['g_term'])}",
+        # F26: THIS ROW SAID 5%, "sensitised 3-7%", IN A DOCUMENT DELIVERED BESIDE A STUDY
+        # THAT ADOPTS 9.14% AND TESTS 7.14-11.14%. It is the retired construction, left in
+        # the bibliography when the study moved off it — a reader checking the study
+        # against its own register would have found two different terminal growth rates.
+        # Read from the record now, like every other figure on this page.
+        f"Derived from the house macro path — {pc(IN['pi_term'])} long-run Egyptian "
+        f"inflation compounded with a {pc(IN['g_term_real'], 1)} real rate — and sensitised "
+        f"{pc(SN['g_grid'][0])}-{pc(SN['g_grid'][-1])} around it. NOT a standing centre "
+        f"chosen for the market: an earlier edition of this row published 5% 'sensitised "
+        f"3-7%', which is the construction this study retired, and which does not contain "
+        f"the rate the study actually strikes",
         'It is below the blended long-run nominal growth ceiling of the economies the company '
         'operates in, and is reconciled to the return on capital and reinvestment rate',
         'A demonstrated structural change in the export franchise\'s long-run growth'],
@@ -329,12 +355,17 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'conservative charge',
         'A reader preferring the book convention can add the difference back; the amount is stated '
         'in the study'],
-       ['Effective tax rate of 24.5% for NOPAT',
+       [f"Effective tax rate of {pc(IN['tax_eff'])} for NOPAT",
         'Above the Egyptian statutory rate, between the FY2025 print and the historical average',
-        'Audited effective rates ran 31.3% (FY2023), 30.1% (FY2024) and 22.6% (FY2025); no '
-        'statutory-vs-effective reconciliation is disclosed, and the group pays tax in 15+ '
-        'jurisdictions plus Free-Zone entities on a revenue basis',
-        'A sustained repeat of the FY2025 low or the Q1-2026 print (25.75%) in either direction'],
+        f"Audited effective rates ran {pc(SN['tax_path']['fy23'])} (FY2023), "
+        f"{pc(SN['tax_path']['fy24'])} (FY2024) and {pc(SN['tax_path']['fy25'])} (FY2025), "
+        f"then {pc(SN['tax_path']['q1_26'])} (Q1-2026) and {pc(SN['tax_path']['h1_26'])} "
+        f"(H1-2026) — which implies {pc(SN['tax_path']['q2_26_implied'])} in the second "
+        f"quarter alone, so the adopted rate sits below all four of the most recent "
+        f"readings. No statutory-vs-effective reconciliation is disclosed, and the group "
+        f"pays tax in 15+ jurisdictions plus Free-Zone entities on a revenue basis",
+        f"A sustained repeat of the FY2025 low, or of the "
+        f"{pc(SN['tax_path']['h1_26'])} the reviewed half printed, in either direction"],
        ['Segment margins compressed rather than held at their FY2025 level',
         'Cables and Constructions margins recover PARTIALLY over the forecast; Electrical '
         'products holds closest to its FY2025 level',
@@ -376,12 +407,14 @@ table([['What was sought', 'Outcome', 'How the study handled it'],
         'corrected',
         'Not disclosed in the FY2025 annual filing or the Q1-2026 interim — but the interim '
         'covers a period ending 31 March and carries no subsequent-events note, so its silence '
-        'was never evidence. The dividend exists: EGP 1.85/share, ratified by the general '
-        'assembly 6 May 2026, rights through 1 June, paid from 4 June 2026 (EGX disclosure, '
-        'corroborated by financial-press coverage and the quoted trailing yield)',
-        'An earlier revision removed the dividend on absence-of-evidence grounds — an error, '
-        'flagged by external review and corrected: the model now carries EGP 1.85 and a 25% '
-        'forecast payout. Recorded here because reasoning from the silence of a document that '
+        f"was never evidence. The dividend exists: EGP {IN['dps_fy25']:.2f}/share, ratified "
+        f"by the general assembly 6 May 2026, rights through 1 June, paid from 4 June 2026 "
+        f"(EGX disclosure, corroborated by financial-press coverage and the quoted trailing "
+        f"yield)",
+        f"An earlier revision removed the dividend on absence-of-evidence grounds — an error, "
+        f"flagged by external review and corrected: the model now carries EGP "
+        f"{IN['dps_fy25']:.2f} and a {pc(SN['payout_forecast'], 0)} "
+        f"forecast payout. Recorded here because reasoning from the silence of a document that "
         'could not have contained the fact is exactly the failure mode this register exists to '
         'catch'],
        ['An explanation for the sharp single-session price move on 4 August 2026',

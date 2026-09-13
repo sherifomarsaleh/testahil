@@ -181,6 +181,26 @@ INP = dict(
     # The study divides by the ISSUED count. Effect of the reversion: -0.0665%, EGP 87.8244
     # to 87.7661, 5.8 piastres a share -- small, and the size is not the point. A number
     # this study publishes must be one the company publishes.
+    #
+    # AND ONE HALF OF THE ARGUMENT ABOVE IS WITHDRAWN [F17]. "The assembly is on no filing
+    # this study can point to" is a conclusion drawn from the ABSENCE of a disclosure in an
+    # index -- which is the exact reasoning [R-GAP-04] forbids and which this same file
+    # retires two entries earlier, where a flat cable-volume driver was justified by the
+    # claim that the company discloses no tonnage and the tonnage turned out to be in its
+    # own quarterly releases. An index that does not list a resolution is not evidence the
+    # resolution does not exist. The entry keeps its conclusion and loses that reason.
+    #
+    # WHAT SURVIVES IS INTERNAL AND CHECKABLE, and an external audit supplied it: the
+    # half's declared dividend of EGP 3,957,808,075 is 1.85 x 2,139,355,716 EXACTLY, and
+    # 1.85 x 2,140,777,876 would be 3,960,439,071. So the smaller count is the one the
+    # company actually distributes on. THAT DOES NOT DECIDE IT EITHER, because unvested
+    # scheme shares are excluded from distributions for the same reason they are excluded
+    # from the IAS 33 denominator -- the dividend arithmetic is consistent with both
+    # readings and separates neither. Both are therefore stated: the balance sheet and the
+    # company's investor page carry 2,140,777,876 as issued, paid-up and listed capital,
+    # and 2,139,355,716 is what earns and what receives. The study divides by the issued
+    # count because that is the figure the company publishes as its capital; the
+    # alternative is worth +0.06 a share and is priced below rather than argued about.
     shares_mn=I(2140.777876, "Issued and paid-up capital: 2,140,777,876 shares of EGP 1 par "
                 "value, as stated on the face of the audited FY2025 balance sheet, in the "
                 "Q1-2026 interim, and on the company's own investor page as issued, paid-up "
@@ -289,6 +309,18 @@ INP = dict(
                "2026-03-15", "Company"),
     npa_fy23=I(10115.701777, "Profit attributable to owners of the parent, FY2023 audited financial "
                "statements. Basic EPS 4.26, diluted 4.25", "2024-03-13", "Company"),
+    # THE COMPANY'S OWN REPORTED EPS, REGISTERED RATHER THAN QUOTED IN PROSE. The
+    # delivered document typed "4.26 / 7.22 / 7.13" into a sentence explaining how the
+    # study's derived EPS differs from the company's. A figure used to explain a
+    # difference has to be a figure the study holds, or the explanation cannot be checked.
+    eps_reported=I(dict(FY23=4.26, FY24=7.22, FY25=7.13),
+                   "Basic earnings per share as reported on the face of each year's audited "
+                   "consolidated statement of profit or loss (FY2023 diluted 4.25, FY2024 "
+                   "diluted 7.21, FY2025 basic and diluted both 7.13). Struck AFTER the "
+                   "Egyptian employee and board profit-share appropriation and over the "
+                   "weighted-average share count, so it is lower than attributable profit "
+                   "over shares outstanding; both bases are published",
+                   "2026-03-15", "Company"),
     npa_fy24=I(17461.358714, "Profit attributable to owners of the parent, FY2024 audited financial "
                "statements. Basic EPS 7.22, diluted 7.21", "2025-03-13", "Company"),
     npa_fy25=I(17330.244990, "Profit attributable to owners of the parent, FY2025 audited financial "
@@ -2146,13 +2178,19 @@ _tv_retired = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
 # the series. Derived here so no document retypes it and none of them can disagree.
 _Q1_TAX = V['q1_26_pbt'] * V['q1_26_tax_rate'] if 'q1_26_pbt' in V.keys() else 7041.966803 * 0.2575
 _H1_PBT = abs(V['h1_26_tax']) / 0.3085
+# THE AUDITED YEARS ARE DERIVED FROM THE STATEMENTS, never typed: tax expense over
+# profit before tax, off the same historical income statement every other line reads.
+# Both documents quoted 31.3 / 30.1 / 22.6 as literals and one of them still carried the
+# series without the half that followed it.
 TAX_PATH = dict(
-    fy23=V['tax_eff_hist']['FY23'] if 'tax_eff_hist' in V.keys() else 0.313,
+    **{y.lower(): abs(hist_is[y]['tax']) / hist_is[y]['ebt'] for y in ('FY23', 'FY24', 'FY25')},
     q1_26=0.2575, h1_26=0.3085,
     q2_26_implied=(abs(V['h1_26_tax']) - _Q1_TAX) / (_H1_PBT - 7041.966803),
     h1_pbt=_H1_PBT, adopted=V['tax_eff'])
-say(f"[Effective tax rate, the whole disclosed path] FY2023 31.3% / FY2024 30.1% / FY2025 "
-    f"22.6% / Q1-2026 25.75% / H1-2026 30.85%, and the SECOND QUARTER ALONE therefore "
+say(f"[Effective tax rate, the whole disclosed path] FY2023 {TAX_PATH['fy23']:.2%} / FY2024 "
+    f"{TAX_PATH['fy24']:.2%} / FY2025 {TAX_PATH['fy25']:.2%} / Q1-2026 "
+    f"{TAX_PATH['q1_26']:.2%} / H1-2026 {TAX_PATH['h1_26']:.2%}, and the SECOND QUARTER "
+    f"ALONE therefore "
     f"{TAX_PATH['q2_26_implied']:.2%} — the half's tax of {abs(V['h1_26_tax']):,.0f} less the "
     f"quarter's {_Q1_TAX:,.0f}, over the half's pre-tax {_H1_PBT:,.0f} less the quarter's "
     f"7,042. The adopted forecast rate of {V['tax_eff']:.1%} sits BELOW all four of the most "
@@ -2534,8 +2572,23 @@ norm_np = ((norm_ebit - norm_interest + norm_assoc) * (1 - TAX)
            * (1 - nci_share) * (1 - emp_rate))   # [L-294], as the bridge does
 norm_eps = norm_np / SH
 norm_ps = to_anchor(V['pe_just'] * norm_eps)
-norm_bear = to_anchor(7.0 * norm_eps)
-norm_bull = to_anchor(11.5 * norm_eps)
+# THE BAND MULTIPLES ARE COMMITTED, not typed into the caption that prints them. The
+# delivered caption named 7.0x and 11.5x as literals beside values computed from these,
+# so the two could part company without anything noticing.
+NORM_PE_BEAR, NORM_PE_BULL = 7.0, 11.5
+# TWO FIGURES THE DELIVERED PAGE ESTIMATED IN PROSE, now computed [F24]. The associate
+# conservatism said "+0.4/share if removed" and the discounting convention said mid-year
+# would raise the explicit strip "about 7%"; neither came out of anything.
+NORM_ASSOC_TAX_PS = to_anchor(V['pe_just'] * (norm_np + norm_assoc * TAX) / SH) - to_anchor(
+    V['pe_just'] * norm_np / SH)
+_PV_MIDYEAR = sum(fcff[i] * df[i] * (1 + fwd[i]) ** 0.5 for i in range(5))
+MIDYEAR_UPLIFT = _PV_MIDYEAR / pv_explicit - 1.0
+say(f"[Two prose estimates, now computed] removing the tax this lens charges on equity-method "
+    f"associate income is worth {NORM_ASSOC_TAX_PS:+.2f} a share (the page said +0.4); "
+    f"mid-year discounting would raise the explicit strip by {MIDYEAR_UPLIFT:.2%} (the page "
+    f"said about 7%).")
+norm_bear = to_anchor(NORM_PE_BEAR * norm_eps)
+norm_bull = to_anchor(NORM_PE_BULL * norm_eps)
 say(f"[Normalised lens — current-scale earning power] mid-cycle EBITDA margin "
     f"{norm_margin:.2%} (FY2028E) on FY2026E revenue {norm_rev:,.0f} -> normalised EPS "
     f"{norm_eps:.2f} x {V['pe_just']:.1f} = EGP {norm_ps:.2f}/share at the anchor. Equity-method "
@@ -2642,6 +2695,8 @@ _MARGINS_HALF_LEVEL = dict(
     construct_margin=[_H1_LVL['construct']] * 5,
     elecprod_margin=[_H1_LVL['elecprod']] * 5)
 
+# WHAT THE OTHER SHARE COUNT IS WORTH [F17], re-run rather than asserted.
+PS_ON_EPS_COUNT = dcf_ps * SH / 2139.355716
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk} vs {dcf_ps}'
 
@@ -2730,6 +2785,8 @@ lenses = dict(
                   w=None),
     normalized=dict(name='Normalised earnings power', bear=norm_bear, base=norm_ps,
                     bull=norm_bull, w=None,
+                    pe_bear=NORM_PE_BEAR, pe_bull=NORM_PE_BULL, pe_base=V['pe_just'],
+                    assoc_tax_ps=NORM_ASSOC_TAX_PS,
                     note='RETIRED for this class: a contractor\'s reported earnings turn on '
                          'completion timing, so normalising them normalises noise. Removed '
                          'rather than re-weighted, and computed and shown so the move is '
@@ -3308,7 +3365,7 @@ OUT = dict(
              # subtracted on the page. It is the single quantity the largest number in
              # this study turns on, and a figure a document computes for itself is a
              # figure nothing reconciles — prose_check said so the moment it appeared.
-             terminal_spread=wacc_term - V['g_term'],
+             terminal_spread=wacc_term - V['g_term'], midyear_uplift=MIDYEAR_UPLIFT,
              pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
              # THE EMPLOYEES' STATUTORY SHARE IS COMMITTED, because the bridge does not
@@ -3338,6 +3395,7 @@ OUT = dict(
              terminal_record=_terminal.record,
              ps_rating_basis=dcf_rating_ps, wacc_exp_rating=wacc_exp_rating,
              ps_rating_retired_identity=dcf_rating_ps_retired,
+             ps_on_eps_share_count=PS_ON_EPS_COUNT,
              wacc_term_rating=wacc_term_rating, ps_nci_alt=nci_alt_ps, nci_alt=nci_alt,
              g=V['g_term'], bear=dcf_bear, bull=dcf_bull, ccy_alt_ps=ccy_ps,
              ps_kd_egp_equiv=dcf_egp_equiv_ps, kd_egp_equiv=kd_egp_equiv,
@@ -3557,6 +3615,7 @@ OUT = dict(
               cu_grid=cu_grid, grid_copper=grid_copper,
               nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic,
               tax_grid=tax_grid, grid_tax=grid_tax, tax_path=TAX_PATH,
+              payout_forecast=PAYOUT,
               contested=CONTESTED),
     step0=step0, strike=strike,
     assert_log=LOG,
