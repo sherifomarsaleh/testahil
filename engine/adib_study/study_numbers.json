@@ -1466,7 +1466,43 @@
    0.049730000000000024,
    0.048149999999999984
   ],
-  "note": "the forecast opens at 5.937% against a latest reviewed 6.441% \u2014 0.50 points BELOW it, -7.8% relative \u2014 and then falls further, to 4.815% by FY2030. THE MECHANISM IS DISCLOSED MONETARY POLICY AND IT IS NAMED RATHER THAN ASSUMED: the reviewed half was earned at the top of an Egyptian tightening cycle, and the central bank is easing. A deposit-funded bank re-prices its assets faster than its funding on the way down, so a margin struck at the peak is not a margin that can be held; carrying 6.441% flat for five years would be forecasting that the easing cycle does not happen. The study says in terms that this compression, a normalised loss charge after a half-year at almost nothing, and an Egyptian-pound cost of equity near thirty per cent are the three swing factors."
+  "note": "the forecast opens at 5.937% against a latest reviewed 6.441% \u2014 0.50 points BELOW it, -7.8% relative \u2014 and then falls further, to 4.815% by FY2030. THE MECHANISM IS DISCLOSED MONETARY POLICY AND IT IS NAMED RATHER THAN ASSUMED: the reviewed half was earned at the top of an Egyptian tightening cycle, and the central bank is easing. A deposit-funded bank re-prices its assets faster than its funding on the way down, so a margin struck at the peak is not a margin that can be held; carrying 6.441% flat for five years would be forecasting that the easing cycle does not happen. The study says in terms that this compression, a normalised loss charge after a half-year at almost nothing, and an Egyptian-pound cost of equity near thirty per cent are the three swing factors.",
+  "mechanism": {
+   "name": "administered_rate_cycle_down",
+   "disclosure": "Central Bank of Egypt, Q1-2026 Monetary Policy Report, and the published overnight deposit rate history \u2014 The Central Bank of Egypt's own baseline: average annual headline inflation 16.0% in 2026 and 12.0% in 2027, and an overnight deposit rate of 19.00% gliding to 12.00% at an approximately constant real rate. THIS IS THE SINGLE MOST IMPORTANT EXTERNAL FACT IN THE MODEL: a bank's margin is the spread between two rates that both fall, and how fast each falls decides the answer.. The published overnight deposit rate glides 19.00% to 12.00% over the forecast window and the house Egyptian macro path engine/macro_paths/EG.json carries it; the asset side reprices at a beta of about 0.75 and the deposit side at about 0.80 of a slower clock, which is what compresses the spread. Registered in this study's own sweep as F05, REGULATOR_OFFICIAL, 2026-09-02.",
+   "like_for_like": {
+    "measures": "net interest margin on average total assets \u2014 the realised spread itself, which is what the mechanism claims moves, computed by this study's own code from the bank's own filed statements in both periods",
+    "period_a": "FY2025, audited",
+    "value_a": 0.06638028610346722,
+    "period_b": "H1-2026, reviewed, annualised",
+    "value_b": 0.06440855014164135,
+    "higher_is_worse": false,
+    "note": "the turn has already reached this bank: the spread ran 6.638% across the audited year and 6.441% in the reviewed half, a fall of 0.20 points BEFORE any of the forecast cuts. Had it widened into the latest half the mechanism would be contradicted by the filings and this record would be refused."
+   }
+  }
+ },
+ "equity_direct_declaration": {
+  "declared_on": "2026-09-13",
+  "no_enterprise_value": true,
+  "why": "a bank is valued on what reaches the shareholder [L-111]. Deposits are this business's raw material, not its financing, so there is no enterprise value to bridge from: subtracting a deposit book as though it were debt is meaningless. This study computes no enterprise value, no net debt and no WACC at any point, and its cost-of-capital record says so in terms (no_wacc_reason).",
+  "lenses": [
+   "book_value_and_sustainable_return",
+   "book_value_floor",
+   "dividend_discount",
+   "free_cash_flow_to_equity",
+   "normalised_earnings_power",
+   "relative_multiples",
+   "residual_income"
+  ],
+  "primary_lens": "dividend_discount",
+  "lenses_note": "all seven produce a figure PER SHARE directly: the three present-value reads discount a flow to equity and divide by shares, the relative read multiplies book value and earnings per share, and the book, book-floor and normalised reads are per-share by construction. None of them passes through an enterprise value.",
+  "balance_sheet_date": "2026-06-30",
+  "latest_disclosed_date": "2026-06-30",
+  "latest_disclosed_source": "ADIB-Egypt condensed consolidated interim financial statements, H1-2026 (F16, COMPANY_OFFICIAL, 2026-07-30) \u2014 the latest disclosure in existence at the sweep date, established by this study's own Step 2A register rather than asserted. The condensed consolidated interim statements for the six months ended 30 June 2026, limited review, signed 30 July 2026. Attributable profit EGP 7,536.8 million, total assets EGP 414,302.1 million, financing to customers EGP 190,427.1 million, attributable equity EGP 43,557.9 million.",
+  "equity_value": 66691.46779238922,
+  "shares_mn": 1500.0,
+  "per_share": 44.460978528259474,
+  "arithmetic": "EGP 66691.468 million of equity value over 1500 million shares = EGP 44.4610 a share, which is the figure this study publishes. The sheet, the register and this division are the three parts of [R-BRIDGE-01] that do NOT fall away with the enterprise value."
  },
  "driver_lines": [
   {

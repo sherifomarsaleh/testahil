@@ -346,6 +346,88 @@ def main():
               % (100 * _path[0], 100 * _nim0, 100 * (_nim0 - _path[0]),
                  100 * (_path[0] / _nim0 - 1), 100 * _path[-1], 100 * _nim0)))
 
+    # THE MECHANISM, NAMED FROM THE CLOSED LIST [R-ANCHOR-01 AMENDED 13-09-2026].
+    # The note above has said since 10-09-2026 what is happening and the gate could not
+    # read it: the six mechanisms on the list were all industrial and none of them
+    # describes a policy cycle turning, so this study's forecast was undeclared in the
+    # only sense the rule cares about. NOTHING HERE IS NEW ARITHMETIC — the disclosure is
+    # the sweep's own F05 and the like-for-like is this file's own two committed margins.
+    _F05 = next(f for f in json.load(open(os.path.join(HERE, 'sweep_register.json'),
+                                          encoding='utf-8'))['findings']
+                if f['fid'] == 'F05')
+    _nim_fy25 = d['base_year_observed_ratios']['nim']
+    d['forecast_anchor']['mechanism'] = dict(
+        name='administered_rate_cycle_down',
+        disclosure=('%s — %s. The published overnight deposit rate glides 19.00%% to '
+                    '12.00%% over the forecast window and the house Egyptian macro path '
+                    'engine/macro_paths/EG.json carries it; the asset side reprices at a '
+                    'beta of about 0.75 and the deposit side at about 0.80 of a slower '
+                    'clock, which is what compresses the spread. Registered in this '
+                    "study's own sweep as %s, %s, %s."
+                    % (_F05['source_name'], _F05['headline'], _F05['fid'],
+                       _F05['source_type'], _F05['source_date'])),
+        like_for_like=dict(
+            measures=('net interest margin on average total assets — the realised spread '
+                      'itself, which is what the mechanism claims moves, computed by this '
+                      "study's own code from the bank's own filed statements in both "
+                      'periods'),
+            period_a='FY2025, audited',
+            value_a=_nim_fy25,
+            period_b='H1-2026, reviewed, annualised',
+            value_b=_nim0,
+            # a LOWER margin is the direction that makes the forecast rate fall, so a
+            # higher value is NOT the bad direction here
+            higher_is_worse=False,
+            note=('the turn has already reached this bank: the spread ran %.3f%% across '
+                  'the audited year and %.3f%% in the reviewed half, a fall of %.2f '
+                  'points BEFORE any of the forecast cuts. Had it widened into the latest '
+                  'half the mechanism would be contradicted by the filings and this record '
+                  'would be refused.'
+                  % (100 * _nim_fy25, 100 * _nim0, 100 * (_nim_fy25 - _nim0))),
+        ))
+
+    # ---- 5. THE NO-BRIDGE DECLARATION [R-BRIDGE-01 CLAUSE FIVE, 13-09-2026].
+    # check_bridge.py refused this study for carrying no bridge_record, and it was RIGHT
+    # to refuse it: an absent record and a breaching one read identically [R-ENF-04]. The
+    # study owes no bridge — every lens below lands on equity per share directly and there
+    # is no enterprise value anywhere in this file — but SILENCE IS NOT A DECLARATION, so
+    # the fact is committed in a shape a gate can read and be held to.
+    _F16 = next(f for f in json.load(open(os.path.join(HERE, 'sweep_register.json'),
+                                          encoding='utf-8'))['findings']
+                if f['fid'] == 'F16')
+    d['equity_direct_declaration'] = dict(
+        declared_on='2026-09-13',
+        no_enterprise_value=True,
+        why=('a bank is valued on what reaches the shareholder [L-111]. Deposits are this '
+             'business\'s raw material, not its financing, so there is no enterprise value '
+             'to bridge from: subtracting a deposit book as though it were debt is '
+             'meaningless. This study computes no enterprise value, no net debt and no '
+             'WACC at any point, and its cost-of-capital record says so in terms '
+             '(no_wacc_reason).'),
+        lenses=sorted(d['lenses']),
+        primary_lens='dividend_discount',
+        lenses_note=('all seven produce a figure PER SHARE directly: the three '
+                     'present-value reads discount a flow to equity and divide by shares, '
+                     'the relative read multiplies book value and earnings per share, and '
+                     'the book, book-floor and normalised reads are per-share by '
+                     'construction. None of them passes through an enterprise value.'),
+        balance_sheet_date='2026-06-30',
+        latest_disclosed_date='2026-06-30',
+        latest_disclosed_source=('%s (%s, %s, %s) — the latest disclosure in existence at '
+                                 'the sweep date, established by this study\'s own Step 2A '
+                                 'register rather than asserted. %s'
+                                 % (_F16['source_name'], _F16['fid'], _F16['source_type'],
+                                    _F16['source_date'], _F16['headline'])),
+        equity_value=C.DDM['equity'],
+        shares_mn=C.SHARES,
+        per_share=d['central'],
+        arithmetic=('EGP %.3f million of equity value over %.0f million shares = EGP %.4f '
+                    'a share, which is the figure this study publishes. The sheet, the '
+                    'register and this division are the three parts of [R-BRIDGE-01] that '
+                    'do NOT fall away with the enterprise value.'
+                    % (C.DDM['equity'], C.SHARES, d['central'])),
+    )
+
     # ---- 4. THE DRIVER LINES. The ground-up gate wants the LINES, not the summary an
     # assertion returns: a top line that is one growth rate on the whole company with no
     # unit behind it is the defect it exists to catch. A bank's unit is the balance sheet.
