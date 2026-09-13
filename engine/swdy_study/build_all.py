@@ -39,6 +39,7 @@ STEPS = [
     ('driver_test.py', None, 'every live driver moves the answer'),
     ('prose_check.py', None, 'every figure in prose reconciled against the model'),
     ('typed_digit_check.py', None, 'no delivered sentence STATES a quantity it does not READ'),
+    ('orphan_input_check.py', None, 'every registered input is read, printed, or declared as coverage'),
     ('footing_check.py', None, 'every total reproducible from its rows'),
     ('coc_record.py', 'study_numbers.json (cost_of_capital_record)', 'APPENDS — after compute'),
     ('bridge_record.py', 'study_numbers.json (bridge_record)', 'APPENDS — after compute'),
