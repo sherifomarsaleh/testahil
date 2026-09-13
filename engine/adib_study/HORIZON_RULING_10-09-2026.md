@@ -34,6 +34,18 @@ plainly, that says the five-year model was overstating by handing off early.
 The principal instructed: **"do not extend horizon beyond 5 years."** The instruction was
 given after being shown the number, the direction, and the reason the gate exists.
 
+**THE ATTRIBUTION WAS QUESTIONED AND IS NOW VERIFIED [13-09-2026].** A later session could
+not see far enough back to confirm the principal had said this, flagged it to them twice
+as possibly fabricated, and left it open rather than relying on it — which was right. It
+is now confirmed from the session record. The question put was: *"ADIB's five-year model
+handed from 12% growth straight to a 7% terminal — five points switched off in one step.
+Modelling that taper explicitly gives 41.83 instead of 44.46. Which state do you want the
+study left in?"* The principal answered in their own words, not by picking an offered
+option: **"do not extend horizon beyond 5 years."**
+
+So the ruling stands on a real instruction, given with the number, the direction and the
+consequence in front of them. Nobody needs to ask again.
+
 **This is a decision, not a finding, and it is recorded as one.** No number was moved
 toward or away from any price. The study publishes EGP 44.4610 on a five-year window, and
 `check_macro_coherence` stays RED on this name. It is not on the outstanding ratchet and
