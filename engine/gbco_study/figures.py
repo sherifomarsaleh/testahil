@@ -14,6 +14,8 @@ import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+# THE PATH IS ALREADY SET AT THE TOP OF THIS FILE, above every other import, which is
+# why this one needed nothing.
 import primitives as m
 
 CANVAS, CREAM, GOLD, BRASS, SAGE = '#1C3A36', '#F6F1E6', '#C0A45F', '#896F36', '#9FB0AC'

@@ -33,6 +33,12 @@ from openpyxl.utils import get_column_letter
 import research_protocol as _RP
 
 import json as _json_ed, os as _os_ed
+# ENGINE ON THE PATH, EXPLICITLY — this file imported an engine module with nothing
+# to resolve it by, so it ran only from engine/ and died the moment the declared
+# build ran it from the study directory.
+import os as _os_enginepath, sys as _sys_enginepath
+_sys_enginepath.path.insert(0, _os_enginepath.path.dirname(
+    _os_enginepath.path.dirname(_os_enginepath.path.abspath(__file__))))
 _ED = _json_ed.load(open(_os_ed.path.join(
     _os_ed.path.dirname(_os_ed.path.abspath(__file__)),
     'study_numbers.json'), encoding='utf-8'))['edition']

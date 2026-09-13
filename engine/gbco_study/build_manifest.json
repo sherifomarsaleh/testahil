@@ -1,0 +1,28 @@
+{
+ "artefacts": {
+  "GBCO_Bibliography_07-09-2026.docx": "fb9c66075dee6eaa277add7c276bdae4cf0bffd862c987802fabf44abc0f04b1",
+  "GBCO_Bibliography_07-09-2026.pdf": "8598cc1d1a7298c203884228a9a71d2f3380b140189ba3ac094f76bf24f34a85",
+  "GBCO_Bibliography_10-09-2026.docx": "5e0a2fad33c4bfbc4b59e0dff48f2806249855b6e267ac5ca9a41d56bc32fd09",
+  "GBCO_Bibliography_10-09-2026.pdf": "8eb7a1850a151b297b3f5c8813d69b5ba583c26a78592ade8b75640937734813",
+  "GBCO_Valuation_Model_07092026_public.xlsx": "222bd3a31cd7d7b1f52ba1a3a01a3e89f93e21497d7a3511e4172767d5fa4054",
+  "GBCO_Valuation_Model_08072026_public.xlsx": "4e8026bb512f788737c41c007a96a6cfe523480c498fe67a0bd0ce263b22f888",
+  "GBCO_Valuation_Model_10092026_public.pdf": "9e410e2a2e932e9988a54a7a7f17f021d60ef0423545ad050afdbea27f544120",
+  "GBCO_Valuation_Model_10092026_public.xlsx": "de0cc8f075937bafadabab9b8ffd4317e7dc6b5c6aed7e0337e59e01c4cd04c5",
+  "GBCO_Valuation_Study_07-09-2026_public.docx": "9e0a1f51c9e536f75ca9df45f652af27742aea9430da14863a1a195738f8fee3",
+  "GBCO_Valuation_Study_07-09-2026_public.pdf": "dd565e4d1011a7dcd032b3ea00990cf8a57b3c016a39da52921275e241fac17b",
+  "GBCO_Valuation_Study_08-07-2026_public.docx": "d317358a0c6a69f0743d7d212cd9d5d2d0730a0a5865d91bd445d0c89dfe8366",
+  "GBCO_Valuation_Study_10-09-2026_public.docx": "ce10059df5a33cf4accafd8b04e9b5c918f24feef61a4a89d6102c789e352052",
+  "GBCO_Valuation_Study_10-09-2026_public.pdf": "47d1b4168625e8ca54d99ab0a7f02a91cf3c1bc7707952e8b00e0e3b002bdd8d",
+  "calibration_GBCO.png": "e4f0fb4338cfce55eb79ce623732e73cee12f42eaadfea2d6d599f0796cf3806",
+  "fig1_football.png": "746f7d85caa127fa629d3799c9994d352a33ecd0dc16495e8c528998452e78b5",
+  "fig2_sens.png": "3a29201fdfa9eba5fe7b0115a82e81986f84b6087af57b2645dba5a0557e0418",
+  "fig3_ma.png": "8c3133eabb3762bc03c4eeaa1216b8faf4d9263c76385346d4115ff65f6ba6a1",
+  "fig4_fan.png": "4b01c33f81e391655690fa41e3a4b77e32e0b3001cf76594d46671aea71cd06a",
+  "fig5_dist.png": "816c82e966511752687708b91c57772350fb028a3939b3f6a982779698fa7b30",
+  "fig6_dist.png": "f3a797427943de3f900a5716d4e58a71b9fdab55a62e9cbc471e2b6e0f12e944",
+  "figB1_calibration.png": "e4f0fb4338cfce55eb79ce623732e73cee12f42eaadfea2d6d599f0796cf3806",
+  "figD1_experts.png": "7e54933bd745f38eab0be3069dd9ab7b1f05e4513f5927eb1004f5ee5772fa85"
+ },
+ "numbers_sha256": "ad77c5ff91997b396fac04cd138c33f66c6247372e7c69d2552d4c4a9a8bf7c5",
+ "why": "A full build wrote every artefact below FROM the numbers file whose digest is recorded here. An artefact is CURRENT when both digests still match, whatever its commit time says: a deterministic figure that regenerates byte-identically is never re-committed and looks stale to a check that reads git. Written only by a full build; a single-step run cannot claim the set."
+}

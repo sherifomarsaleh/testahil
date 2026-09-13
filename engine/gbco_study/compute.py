@@ -3,6 +3,15 @@ import json
 import os
 import numpy as np
 import pandas as pd
+import sys
+# ENGINE IS ON THE PATH EXPLICITLY. This imported primitives with nothing to find
+# it by, so the file only ran from engine/ -- and the declared build runs each step
+# from the STUDY directory, where it died on import. A module that resolves only
+# from one working directory is a build that works only when someone remembers
+# where to stand.
+import os as _os_enginepath, sys as _sys_enginepath
+_sys_enginepath.path.insert(0, _os_enginepath.path.dirname(
+    _os_enginepath.path.dirname(_os_enginepath.path.abspath(__file__))))
 import primitives as m
 
 HERE = os.path.dirname(os.path.abspath(__file__))

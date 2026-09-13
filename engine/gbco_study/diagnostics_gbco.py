@@ -48,6 +48,12 @@ import hashlib
 import json
 import os
 import sys
+# ENGINE ON THE PATH, EXPLICITLY — this file imported an engine module with nothing
+# to resolve it by, so it ran only from engine/ and died the moment the declared
+# build ran it from the study directory.
+import os as _os_enginepath, sys as _sys_enginepath
+_sys_enginepath.path.insert(0, _os_enginepath.path.dirname(
+    _os_enginepath.path.dirname(_os_enginepath.path.abspath(__file__))))
 from math import comb
 
 HERE = os.path.dirname(os.path.abspath(__file__))
