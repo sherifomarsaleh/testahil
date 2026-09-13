@@ -1,98 +1,98 @@
 {
  "market": "EG",
  "series": "EGCH",
- "close": 13.98,
- "data_date": "2026-08-06",
- "computed_on": "2026-08-08",
- "sessions": 3755,
- "rows_in": 3756,
+ "close": 14.23,
+ "data_date": "2026-09-06",
+ "computed_on": "2026-09-13",
+ "sessions": 3775,
+ "rows_in": 3776,
  "repairs": [
   "dropped 1 rows carrying a non-positive or non-finite OHLC value (2011-08-03) \u2014 vendor fills, not tradeable prices"
  ],
  "ma": {
-  "20": 13.3375,
-  "50": 13.439000000000004,
-  "200": 12.115350000000001
+  "20": 14.084,
+  "50": 13.484000000000002,
+  "200": 12.390449999999998
  },
  "ma_slope": {
   "20": "rising",
   "50": "rising",
   "200": "rising"
  },
- "rsi": 60.626932688591246,
- "atr": 0.43653249238831765,
+ "rsi": 55.79402969908227,
+ "atr": 0.42441302959694555,
  "macd": {
-  "macd": 0.23088912038900133,
-  "signal": 0.09482408810262866,
-  "hist": 0.13606503228637268
+  "macd": 0.15544443266272623,
+  "signal": 0.14044715460519405,
+  "hist": 0.014997278057532176
  },
  "ma_cross": {
-  "ago": 252,
+  "ago": 272,
   "kind": "golden"
  },
- "atr_pct": 0.03122550017083817,
+ "atr_pct": 0.029825230470621612,
  "hi_52w": 15.37,
- "lo_52w": 9.5,
- "pct_off_high": 0.09043591411841241,
- "pct_off_low": 0.4715789473684211,
+ "lo_52w": 9.77,
+ "pct_off_high": 0.07417046193884183,
+ "pct_off_low": 0.4564994882292734,
  "levels": {
   "res": [
-   14.98,
+   14.92,
    15.37,
    16.0
   ],
   "sup": [
+   13.87,
    12.49,
-   11.13,
-   9.83
+   11.13
   ]
  },
  "level_detail": {
   "res": [
    {
-    "level": 14.98,
-    "score": 1.0452439124576296,
+    "level": 14.918987961655734,
+    "score": 3.694033523510778,
     "kind": "swing",
-    "touches": 1
+    "touches": 2
    },
    {
-    "level": 15.370000000000001,
-    "score": 0.9475957697285228,
+    "level": 15.37,
+    "score": 0.9599749515660071,
     "kind": "swing",
     "touches": 1
    },
    {
     "level": 16.0,
-    "score": 0.16234240212342402,
+    "score": 0.175431489961254,
     "kind": "round",
     "touches": 0
    }
   ],
   "sup": [
    {
+    "level": 13.87153070951723,
+    "score": 3.752573401754516,
+    "kind": "swing",
+    "touches": 2
+   },
+   {
     "level": 12.490400760091607,
-    "score": 3.544010987650145,
+    "score": 3.0729965909064876,
     "kind": "swing",
     "touches": 3
    },
    {
     "level": 11.134943490128313,
-    "score": 9.673965822079294,
+    "score": 8.590940778418243,
     "kind": "swing",
     "touches": 6
-   },
-   {
-    "level": 9.829709075861837,
-    "score": 1.9467844400243337,
-    "kind": "swing",
-    "touches": 3
    }
   ]
  },
  "tech": {
   "trend": "Trading above the whole moving-average stack, on a rising 200-day",
-  "summary": "The price closed 13.98 above a rising 20-day (13.34), a rising 50-day (13.44) and a rising 200-day (12.12). Momentum is firm: RSI(14) is ~61 and the daily ATR near 0.44 (~3.1%) points to a lively tape. MACD (12\u00b726\u00b79) is positive and rising (+0.23 / +0.09 / +0.14). Over the last year it has ranged 9.50\u201315.37; the last close sits 9% below that high and 47% above that low.",
-  "bull": "A daily close back above 14.98 would clear the nearest resistance and open the 16.00 zone.",
-  "bear": "A close below 12.49 would break the nearest support and open the 9.83 zone."
+  "summary": "The price closed 14.23 above a rising 20-day (14.08), a rising 50-day (13.48) and a rising 200-day (12.39). Momentum is neutral: RSI(14) is ~56 and the daily ATR near 0.42 (~3.0%) points to a normal tape. MACD (12\u00b726\u00b79) is positive and rising (+0.16 / +0.14 / +0.01). Over the last year it has ranged 9.77\u201315.37; the last close sits 7% below that high and 46% above that low.",
+  "bull": "A daily close back above 14.92 would clear the nearest resistance; the next charted level above it is 16.00.",
+  "bear": "A close below 13.87 would break the nearest support; the next charted level below it is 11.13."
  }
 }
