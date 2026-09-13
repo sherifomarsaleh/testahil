@@ -26,6 +26,12 @@ STEPS = [
     ('beta_sanctioned.py', 'beta_sanctioned.json', 'the sanctioned beta record', True),
     ('build_records.py', 'study_numbers.json', "the model's records — REBUILDS the numbers file"),
     ('gap_review.py', 'gap_review_numbers.json', "the [R-GAP-01] review's own arithmetic"),
+    # [R-ENF-05] BOTH RECORDS, WHICH THIS STUDY CARRIED NEITHER OF. They read the
+    # committed numbers file and write outside it; nothing reads either back.
+    ('diagnostics_adib.py', 'diagnostics.json',
+     'the reverse read — what the traded price must believe; follows the records'),
+    ('contested.py', 'contested_judgements.json',
+     'every judgement worth more than 5% of value, priced both ways'),
     ('docx_adib.py', 'the study', 'the delivered document'),
     ('docx_biblio.py', 'the bibliography', 'the standalone source register'),
     ('bake_docs_pdf.py', 'the study and bibliography PDFs', 'rendered FROM those documents, so it follows them — the PDF is the file a reader opens, and a rebuild that leaves it stale has not rebuilt the study'),
