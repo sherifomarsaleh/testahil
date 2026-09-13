@@ -177,6 +177,20 @@ table([['Document', 'Publisher', 'Date', 'What was taken from it'],
         'three-segment revenue note reconciling exactly to Q1-2026 revenue; loans and borrowings '
         'note with average rates by currency; cash-flow statement; confirmation that no FY2025 '
         'dividend had been declared, proposed or approved as at the report date'],
+       # THE MOST RECENT FILING THIS STUDY READS WAS NOT IN ITS OWN PRIMARY-DOCUMENTS
+       # TABLE. The reviewed half to 30 June 2026 is where three segment margin paths are
+       # re-anchored [R-ANCHOR-01], where the minority profit and equity shares come from,
+       # and where the employees' statutory share for the half is read — twenty-one
+       # registered inputs cite it and five sweep findings rest on it. A bibliography that
+       # lists four filings while the model reads five is understating its own evidence.
+       ['Condensed interim consolidated financial statements for the six months ended 30 June '
+        '2026 (limited review), KPMG Hazem Hassan', 'Elsewedy Electric Company',
+        '11 August 2026',
+        'H1-2026 income statement with H1-2025 comparatives; balance sheet at 30 June 2026; '
+        'three-segment revenue and segment profit note — the disclosure the three segment '
+        'margin paths and the FY2026 segment growth rates are RE-ANCHORED on; minority share '
+        'of profit and of equity; the employees\' statutory share for the half; capital '
+        'expenditure for the half. The most recent disclosure this study reads'],
        ['Country risk premium and default spread file', 'Damodaran, NYU Stern',
         '5 January 2026', 'Egypt equity risk premium and sovereign default spread, credit-default-'
         'swap basis and rating basis'],

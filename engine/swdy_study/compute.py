@@ -1327,13 +1327,22 @@ INP = dict(
     usd_g_term=I(0.035, "Terminal growth of the USD-denominated leg — real growth plus dollar "
                  "inflation, below the EGP terminal growth by the inflation differential",
                  "2026-08-05", "House"),
+    # THE NUMBER MOVED AND ITS OWN JUSTIFICATION DID NOT. This read "to the anchor date
+    # 5 Aug 2026" beside a value of 246 — and 246 days from 31 December 2025 is 3
+    # September 2026, not 5 August, which is 217. The anchor moved with the strike and
+    # the sentence explaining the count stayed on the superseded date, where it reaches a
+    # reader through the bibliography's input register. [R-ENF-01 EXTENDED 03-Sep] reaches
+    # a register's justification text, not only its value.
     anchor_days=I(246, "Days from the DCF's construction date (31 Dec 2025, the audited "
-                  "balance-sheet date the bridge is built on) to the anchor date 5 Aug 2026. All "
-                  "lens values are rolled to the anchor at the cost of equity, net of the EGP 1.85 "
-                  "FY2025 dividend paid inside the window — added after external critique "
-                  "correctly noted the model was dated 31-Dec-2025 while the comparison price was "
-                  "dated 5-Aug-2026, breaching the study's own one-date rule by ~7 months of "
-                  "accretion", "2026-08-07", "House"),
+                  "balance-sheet date the bridge is built on) to the anchor date of 3 Sep "
+                  "2026 — the study's valuation date, and the close the fair value is "
+                  "measured against. All lens values are rolled to the anchor at the cost "
+                  "of equity, net of the FY2025 dividend paid inside the window, which is "
+                  "itself carried forward to the anchor rather than deducted at its "
+                  "ex-date. Added after external critique correctly noted the model was "
+                  "dated 31-Dec-2025 while the comparison price was seven months later, "
+                  "breaching the study's own one-date rule by that much accretion",
+                  "2026-09-13", "House"),
 
     # ---- lens inputs -------------------------------------------------------
     ev_ebitda_just=I(6.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA. The company's own trailing "
@@ -2858,7 +2867,17 @@ OUT = dict(
               wd_gross=wd_gross, ke_term=ke_term, kd_term=V['kd_term'], kd_term_at=kd_term_at,
               wacc_term=wacc_term, glide_frac=glide_frac, kd_path=V['kd_path'],
               kd_eff_fy24=kd_eff_fy25, kd_eff_q1_25=kd_eff_fy25, w_egp_implied=w_egp,
-              wacc_usd_alt=WACC_USD, beta=beta_res),
+              wacc_usd_alt=WACC_USD, beta=beta_res,
+              # THE SPLIT PREMIUM'S OWN PARTS, COMMITTED [R-COC-03]. The delivered
+              # document described this construction as charging "the full Egyptian
+              # equity risk premium", which is the construction this study RETIRED —
+              # beta applies to the mature leg and the country premium is charged flat
+              # beside it, weighted for the share of operations inside Egypt. The
+              # sentence could say so only by quoting numbers that lived nowhere, so
+              # they live here.
+              erp_mature=ERP_MATURE, crp_home=CRP_HOME, crp_eff=CRP_EFF,
+              crp_eff_term=CRP_EFF_TERM, beta_leg=KE_PARTS['beta_leg'],
+              beta_terminal=BETA_TERM),
     star_case=STAR_CASE,
     dcf=dict(div_at_anchor=_DIV_AT_ANCHOR, div_days=_DIV_DAYS,
              pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,

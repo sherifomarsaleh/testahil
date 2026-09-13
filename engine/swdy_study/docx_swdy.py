@@ -45,7 +45,13 @@ def dirword(x, up="above", down="below", flat="level with"):
     return up if x > 0 else down
 def to_anchor_docx(v):
     """Mirror of the engine's anchor roll, for counterfactual display values only."""
-    return v * DCF['roll'] - IN['dps_fy25']
+    # THE DIVIDEND IS DEDUCTED AT THE ANCHOR, NOT AT ITS EX-DATE. compute.py rolls the
+    # EGP 1.85 forward from 4 June to the 3 September anchor at the explicit-window cost
+    # of equity and deducts 1.9678; this helper deducted the raw 1.85, so every lens
+    # value this document rolled came out 11.8 piastres above the model's — and the
+    # equity bridge's printed steps reached 88.06 under a printed total of 87.94, which
+    # is a reader adding the column up and not getting the answer.
+    return v * DCF['roll'] - DCF['div_at_anchor']
 
 # =========================== MASTHEAD / TITLE ================================
 # ONE literal for the delivered filename: the masthead's edition date is derived
@@ -411,9 +417,13 @@ rows = [['Step', 'EGP mn', 'Note'],
          f"fair value accretes at the {pc(W['ke_exp'])} cost of equity between the valuation "
          f"date and the {M['asof']} anchor — one date, one price of time, applied to the "
          f"comparison itself"],
-        [f"Less the FY2025 dividend paid in the window", f"({p2(IN['dps_fy25'])}/sh)",
-         f"EGP {p2(IN['dps_fy25'])}, ex 1 June 2026 — value that left the share before the "
-         f"anchor date"],
+        [f"Less the FY2025 dividend paid in the window", f"({p2(DCF['div_at_anchor'])}/sh)",
+         f"EGP {p2(IN['dps_fy25'])} went ex on 4 June 2026 — value that left the share before "
+         f"the anchor. It is deducted AT THE ANCHOR, not at its ex-date: carried forward the "
+         f"{DCF['div_days']:.0f} days to {M['asof']} at the {pc(W['ke_exp'])} cost of equity "
+         f"the rest of the roll uses, it is EGP {p2(DCF['div_at_anchor'])}. Deducting the raw "
+         f"1.85 against a value rolled the whole way would credit the share with earning a "
+         f"return on money it had already paid out"],
         ['Fair value per share at the anchor (EGP)', p2(DCF['ps']),
          f"against a spot of {p2(SPOT)} ({sgn(DCF['ps']/SPOT-1,0)})"]]
 table(rows, [2.55, 1.05, 3.40], size=8.4, band_rows={4, 13}, align_right_from=1)
@@ -567,16 +577,28 @@ P(f"The four lenses do not agree, and the disagreement is informative rather tha
 
 # ---- 1.6 drivers -------------------------------------------------------------
 H2('1.6  The drivers — the three disclosed segments, each grown on its own driver')
+# the share of the forecast base year built at unit level, read from the same segment
+# revenue the driver record measures it on — never typed
+_SEG_UNIT_SHARE = (BU['unit_hist']['FY25']['rev']['cables']
+                   / sum(BU['unit_hist']['FY25']['rev'].values()))
 P(f"Revenue is not forecast as a single growth rate applied to a revenue line. The company "
   f"discloses exactly three reportable segments — Cables and its accessories, Constructions and "
   f"infrastructure, and Electrical products and digital solutions — with revenue by segment (Note "
   f"5-3) that reconciles EXACTLY to consolidated revenue in every one of the three audited years, "
   f"and segment profit (Note 16) that reconciles to consolidated operating profit through an "
+  # HALF OF THIS SURVIVED THE REPAIR AND CONTRADICTS THE PAGE BELOW IT. The audited
+  # filings still disclose no unit, and that has not changed. What changed is that the
+  # issuer's own quarterly releases do, and Cables is built on them — so "rather than a
+  # reconstructed unit model" is now true of two segments and false of the largest, and
+  # it sat fifteen lines above a caption saying Cables grows on disclosed tonnage.
   f"explicit corporate cost load. None of the three audited filings, including the Q1-2026 "
-  f"interim, discloses a tonnage, unit-volume or order-book figure for any segment, so the "
-  f"forecast is built as a taper on each segment's own recent revenue growth and margin path "
-  f"rather than a reconstructed unit model. Margins are therefore outputs of the build, not "
-  f"inputs to it.")
+  f"interim, discloses a tonnage, unit-volume or order-book figure for any segment. The "
+  f"company's own quarterly earnings releases DO, and they are read: Cables is built as a "
+  f"unit model on the disclosed tonnage series times a copper and currency pass-through "
+  f"measured out of that segment's own audited revenue per tonne — {pc(_SEG_UNIT_SHARE)} of "
+  f"FY2025 revenue. Constructions and Electrical products have no unit in any source, so "
+  f"they taper on their own recent revenue growth and margin path. Margins are outputs of "
+  f"the build in all three, not inputs to it.")
 
 H2('The three disclosed segments, historically')
 UH = BU['unit_hist']
@@ -912,7 +934,13 @@ H2('1.9  Sensitivity — the discount rate, the growth, the currency, the margin
 # through the sanctioned terminal module and with the employees' statutory share charged.
 # A claim about a table typed beside the table is a claim nothing compares; it is counted
 # out of the grid now, so it cannot be right once and wrong afterwards.
-_G = [v for r in SN['grid_exp_term'] for v in r]
+# AND IT COUNTED THE WRONG GRID. Figure 3 is drawn from sens_wg — terminal cost of
+# capital against terminal growth, topping out at 221.10 — and this caption counted
+# grid_exp_term, the EXPLICIT-window grid, which tops out at 143.24. Both happen to put
+# four cells above the price, so the sentence agreed with the picture by coincidence and
+# would have stopped agreeing the moment either grid moved. The caption reads the array
+# the figure is drawn from.
+_G = [v for r in D['sens_wg']['table'] for v in r]
 _reach = sum(1 for v in _G if v >= SPOT)
 figure(os.path.join(HERE, 'fig2_sens.png'), 5.7,
        f"Figure 3 — discounted-cash-flow fair value per share across the terminal cost of capital "
@@ -923,8 +951,9 @@ figure(os.path.join(HERE, 'fig2_sens.png'), 5.7,
           f"{_reach} of the {len(_G)} cells reach the market price of {p2(SPOT)}, all of them in "
           f"the corner combining the lowest terminal cost of capital with the highest terminal "
           f"growth; the grid tops out at {p2(max(_G))}. What it takes to get there is the point: "
-          f"a terminal rate {(W['wacc_term'] - min(SN['wt_grid']))*10000:,.0f}bp below the "
-          f"adopted one at the same time as terminal growth at the top of the tested range."))
+          f"a terminal cost of capital {(W['wacc_term'] - min(D['sens_wg']['wacc_grid']))*10000:,.0f}bp "
+          f"below the adopted one at the same time as terminal growth at the top of the "
+          f"tested range — the two most favourable assumptions in the grid, together."))
 P("Each anchor is varied independently around its own base, so the tables show what the valuation "
   "needs the world to do rather than what growth rate the model needs.")
 
@@ -1031,8 +1060,19 @@ rows = [['Marker', 'Level (EGP)', 'Reading'],
         ['50-session average', p2(sma[50]), f"price is {sgn(SPOT/sma[50]-1)} against it"],
         ['100-session average', p2(sma[100]), f"price is {sgn(SPOT/sma[100]-1)} against it"],
         ['200-session average', p2(sma[200]), f"price is {sgn(SPOT/sma[200]-1)} against it"],
-        ['52-week high (closing basis)', p2(hi52), f"{sgn(SPOT/hi52-1,1)} from the high — the "
-         f"high IS the +14.1% print of 4 August 2026, one session before the anchor"],
+        # THE DATE WAS TYPED AND THE SERIES MOVED UNDER IT. It said the 52-week closing
+        # high was "the +14.1% print of 4 August 2026, one session before the anchor" —
+        # true of the withdrawn 5-August series, and false of the library this study now
+        # reads, where the high is the anchor's own close. The date is read off the same
+        # frame the level is, so the two cannot disagree again.
+        ['52-week high (closing basis)', p2(hi52),
+         (f"the high IS this study's own anchor close of {p2(SPOT)} on "
+          f"{str(_df['Date'].iloc[-252:].iloc[int(np.argmax(px[-252:]))].date())} — the share "
+          f"is AT its 52-week closing high, which is worth stating plainly rather than as a "
+          f"distance from it"
+          if abs(hi52 - SPOT) < 0.005 else
+          f"{sgn(SPOT/hi52-1,1)} from the high, set on "
+          f"{str(_df['Date'].iloc[-252:].iloc[int(np.argmax(px[-252:]))].date())}")],
         ['52-week high (intraday)', p2(float(np.max(_df['High'].to_numpy()[-252:]))),
          f"{sgn(SPOT/float(np.max(_df['High'].to_numpy()[-252:]))-1)} from the high — the "
          f"conventional basis, and the wider of the two"],
@@ -1099,7 +1139,21 @@ P(f"The widths below are calibrated rather than assumed. Tested by walk-forward 
   f"bands are about "
   f"{(BT5F['width_vs_benchmark']-1)*100:.0f}% wider than a naive carry-anchored band, which is a "
   f"real limitation — a wider band catches more by construction — and is stated here rather "
-  f"than left out.")
+  f"than left out. "
+  # TWO COVERAGE RECORDS FOR ONE NAME, AND THE READER SHOULD BE TOLD, NOT LEFT TO FIND
+  # OUT. This page publishes the five-year window; the per-name calibration record
+  # carries the full history, and a reader who sees both without being told they are
+  # different samples is entitled to think one of them is wrong. They are one method
+  # measured over two windows, and the longer one is the better-covered of the two,
+  # which is worth saying out loud rather than burying.
+  f"THE FULL-HISTORY FIGURES ARE DIFFERENT AND BOTH ARE PUBLISHED: over all "
+  f"{BT5F['windows']} windows the 90% band caught {BT5F['cov90']*100:.0f}% against the "
+  f"{BT5['cov90']*100:.0f}% on the five-year window above, and the 50% band "
+  f"{BT5F['cov50']*100:.0f}% against {BT5['cov50']*100:.0f}%. That is one method measured "
+  f"over two samples and not two answers to one question — the longer window is the "
+  f"better-covered of the two, and a reader comparing this page against a coverage figure "
+  f"quoted elsewhere for this name should check which window it is on before concluding "
+  f"anything from the difference.")
 P(f"This is a map of price dispersion, not a forecast, and it is never blended with the fair-value "
   f"work above.")
 figure(os.path.join(HERE, 'fig4_fan.png'), 7.0,
@@ -1151,9 +1205,19 @@ P(f"The reading we take from this is that the disagreement between the market an
   f"rather than a mistake by one side. A company that earns just over half its money on a "
   f"hard-currency-linked basis, borrows roughly {pc(1-W['w_egp_implied'],0)} of its book in hard "
   f"currency at {pc(IN['kd_hard_note'])}, and holds assets in fifteen countries is only partly an "
-  f"Egyptian risk. Charging it the full Egyptian equity risk premium — which is what our primary "
-  f"construction does — is the conservative choice, not the obviously correct one. Charging it "
-  f"none of that premium, which is roughly what the market price implies, is the aggressive one.")
+  # THE SECOND SITE OF THE SAME CLAIM, and it is the one that matters most because it is
+  # the paragraph explaining the whole disagreement. Our construction does NOT charge the
+  # full Egyptian premium: [R-COC-03] splits it, beta applies to the mature leg only, and
+  # the country premium is levied flat and weighted for the share of operations inside
+  # Egypt. Describing the retired construction here made the study's own reading sound
+  # more conservative than it is, in the one place a reader goes to judge exactly that.
+  f"Egyptian risk. Charging it a country premium of {pc(W['crp_eff'],2)} — weighted at "
+  f"{IN['lambda_country']:.4f} for the Egyptian share of operations, and levied FLAT rather "
+  f"than multiplied by beta, which is what our primary construction does — is the "
+  f"conservative choice, not the obviously correct one. Charging it none of that premium, "
+  f"which is roughly what the market price implies, is the aggressive one. Charging the "
+  f"whole {pc(W['crp_home'],2)} home premium unweighted, which an earlier construction did "
+  f"and this study retired, would be more conservative still.")
 P(f"Our own weighting sits closer to the conservative end because the shares are bought and sold "
   f"in Egyptian pounds on an Egyptian exchange, the dividends are paid in Egyptian pounds, and the "
   f"ability of a foreign shareholder to realise value depends on Egyptian capital-account "
@@ -1305,17 +1369,40 @@ for head, body in [
      f"reason the half-year 2026 result matters: it will either confirm or contradict the segment "
      f"growth and margin paths that all three cash-based lenses share."),
     ("The currency of discounting is unresolved, and it is the biggest single question. ",
-     f"Our primary construction charges the full Egyptian equity risk premium to a company earning "
-     f"just over half its money on a hard-currency-linked basis. The alternative construction "
+     # NOT "THE FULL EGYPTIAN PREMIUM". [R-COC-03] splits it: beta applies to the mature
+     # leg and the country premium is charged FLAT beside it, weighted by the share of
+     # operations in Egypt. The sentence described the construction this study retired.
+     f"Our primary construction charges beta against a mature-market premium of "
+     f"{pc(W['erp_mature'],2)} and an Egyptian country premium of {pc(W['crp_eff'],2)} FLAT "
+     f"beside it [R-COC-03], to a company earning just over half its money on a "
+     f"hard-currency-linked basis. The country charge is weighted at "
+     f"{IN['lambda_country']:.4f} for the share of operations inside Egypt rather than "
+     f"levied whole, and beta is not applied to it: charging a {IN['beta']:.2f}-beta company "
+     f"{IN['beta']-1:.0%} more Egypt risk than the market is a separate claim and this study "
+     f"does not make it. The alternative construction "
      f"gives EGP {p2(DCF['ccy_alt_ps'])}. We have chosen the conservative reading and shown the "
      f"other in full rather than splitting the difference silently."),
-    (f"Terminal growth of {pc(IN['g_term'],0)} is EXACTLY zero in real terms. ",
+    # FOUR FALSE SENTENCES ABOUT THE LEG CARRYING 89% OF ENTERPRISE VALUE. This bullet
+    # said the terminal growth was "EXACTLY zero in real terms", derived "from a stated
+    # real growth of zero", that it "assumes the company stops growing in real terms
+    # forever", and pointed at "the 6% and 7% columns of the growth grid". The committed
+    # real growth is 2.0%, 7% inflation at zero real would be 7.00% and not 9.14%, and the
+    # grid runs 7.14% to 11.14% — there is no 6% column and no 7% column. It was true when
+    # the terminal carried zero real growth; the terminal was rebuilt and the caveat was
+    # not, and it is precisely the caveat a careful reader turns to. Every figure is read
+    # now, and the direction of the judgement is stated on the numbers that are actually
+    # in the model rather than on the ones that used to be.
+    (f"Terminal growth of {pc(IN['g_term'],2)} is {pc(IN['g_term_real'],1)} in real terms. ",
      f"The terminal rate embeds {pc(IN['pi_term'],0)} inflation and the terminal growth rate is "
-     f"DERIVED from it and a stated real growth of zero, so it is not a nominal figure somebody "
-     f"typed beside an inflation assumption. A {pc(IN['g_term'],0)} nominal terminal growth rate "
-     f"assumes the company stops growing in real terms forever. For a business with a growing "
-     f"hard-currency export franchise that is a conservative assumption, and the 6% and 7% columns "
-     f"of the growth grid are not aggressive."),
+     f"DERIVED from it and a STATED real growth of {pc(IN['g_term_real'],1)}: "
+     f"(1+{pc(IN['pi_term'],0)})(1+{pc(IN['g_term_real'],1)})-1 = {pc(IN['g_term'],2)}, so it is "
+     f"not a nominal figure somebody typed beside an inflation assumption. What that assumes is "
+     f"that the company grows {pc(IN['g_term_real'],1)} a year faster than prices for ever, and "
+     f"that is a CLAIM rather than a neutral choice — it is held below Egypt's long-run real "
+     f"growth, so the company is assumed to cede share of the economy, but it is not zero and "
+     f"this study does not pretend it is. The growth grid runs {pc(SN['g_grid'][0],2)} to "
+     f"{pc(SN['g_grid'][-1],2)}; at its bottom, which is {pc(SN['g_grid'][0]-IN['pi_term'],2)} "
+     f"real, the cash-flow lens gives EGP {p2(min(SN['grid_wacc_g'][2]))}."),
     ("Minority interests are charged at their profit share, not at book. ",
      f"Minorities take {pc(DCF['nci_share'])} of group profit but only "
      f"{pc(HB['FY25']['nci']/(HB['FY25']['eqp']+HB['FY25']['nci']))} of book equity. Charging them "
@@ -1504,7 +1591,12 @@ rows = [['Risk', 'Mechanism', 'Rough valuation impact'],
          'projects across Africa and the Gulf carry counterparty, payment and political risk',
          'sits inside the Constructions and infrastructure segment margin assumption'],
         ['No order book or unit-volume disclosure', 'the forecast tapers on segment revenue '
-         'growth rather than a reconstructed unit or backlog-burn model',
+         # THE THIRD SITE OF THE SAME HALF-TRUTH. Cables IS a unit model, on the
+         # issuer's own disclosed tonnage; it is the other two segments that taper.
+         'growth. Cables is the exception and it is the largest segment: it is built '
+         'as a unit model on the tonnage the company discloses in its own quarterly '
+         'releases. The backlog is read and not burnt down, because no source '
+         'discloses the burn profile that would take',
          'stated in full in section 7']]
 table(rows, [1.85, 2.60, 2.55], size=8.3)
 

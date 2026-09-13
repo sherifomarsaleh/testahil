@@ -1402,8 +1402,8 @@
   },
   "anchor_days": {
    "value": 246,
-   "source": "Days from the DCF's construction date (31 Dec 2025, the audited balance-sheet date the bridge is built on) to the anchor date 5 Aug 2026. All lens values are rolled to the anchor at the cost of equity, net of the EGP 1.85 FY2025 dividend paid inside the window \u2014 added after external critique correctly noted the model was dated 31-Dec-2025 while the comparison price was dated 5-Aug-2026, breaching the study's own one-date rule by ~7 months of accretion",
-   "date": "2026-08-07",
+   "source": "Days from the DCF's construction date (31 Dec 2025, the audited balance-sheet date the bridge is built on) to the anchor date of 3 Sep 2026 \u2014 the study's valuation date, and the close the fair value is measured against. All lens values are rolled to the anchor at the cost of equity, net of the FY2025 dividend paid inside the window, which is itself carried forward to the anchor rather than deducted at its ex-date. Added after external critique correctly noted the model was dated 31-Dec-2025 while the comparison price was seven months later, breaching the study's own one-date rule by that much accretion",
+   "date": "2026-09-13",
    "ring": "House"
   },
   "ev_ebitda_just": {
@@ -2235,7 +2235,13 @@
     "why_withdrawn": "A constituent composite is a coverage artefact rather than a market: it changes whenever a stock is posted, it mixes exchanges inside one market code, and it shares constituents with the panel it prices. SIGCM clause 6 calls it a hard fail, not a fallback, and the published index of the exchange the stock is listed on is held in this repository, so there was never a sourcing obstacle \u2014 only an inherited pattern."
    },
    "delta_vs_withdrawn": 0.21432591261554967
-  }
+  },
+  "erp_mature": 0.04242,
+  "crp_home": 0.051680000000000004,
+  "crp_eff": 0.039838624,
+  "crp_eff_term": 0.021260627900928798,
+  "beta_leg": 0.051960536871114835,
+  "beta_terminal": 1.0
  },
  "star_case": {
   "case": "The market is capitalising earnings; this model says the earnings are not yet cash. On the model's own first forecast year free cash flow to the firm is NEGATIVE on NOPAT of about EGP 26bn, because revenue growing by a third absorbs working capital faster than the margin generates it. That single difference \u2014 the reinvestment charge \u2014 is where the whole disagreement lives, and it is why the cross-checks in this study that CAPITALISE earnings rather than discount cash sit at or above the traded price while the cash-flow lens does not. PRICED ALONE ON A FULL RE-RUN, TWO ASSUMPTIONS REACH THE MARKET AND THE REST DO NOT. The largest is all three segment margins permanently about 46% higher, back at FY2023-24 levels, worth EGP 113 a share against a central of 87.94 \u2014 270% of the gap. Priced the same way and one at a time, copper a fifth above the escalated path is worth EGP 5.85 a share and a pound weaker than the house path EGP 2.34 \u2014 small beside the margin, because both pass through to cost and to working capital as well as to revenue. Section 1.9's currency row swings further, EGP 23.41 across a +/-15% band; that is a range on the whole path rather than this single re-run, and the two are not the same measurement. WHAT ARGUES AGAINST THAT MARGIN RECOVERY IS THE COMPANY'S OWN DISCLOSURE RATHER THAN OUR OPINION: cables revenue per tonne tracked copper and the pound almost exactly in FY2024 (+55.6% against +55.0%) and then failed to in FY2025 (+2.7% against +18.6%) \u2014 a measured pass-through shortfall of 15.9 points, computed from audited segment revenue and the company's own disclosed tonnage. The FY2023-24 margins were earned on inventory bought before a devaluation. A REPEAT REQUIRES THAT PRICING POWER TO RETURN, AND THE MOST RECENT FULL YEAR MEASURES IT LEAVING.",
