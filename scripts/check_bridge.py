@@ -219,8 +219,12 @@ def main():
     print("studies examined: %d   conforming: %d   of which declared no bridge: %d   "
           "outstanding (allowed): %d"
           % (len(sdirs), len(ok) + len(fixed), len(declared), len(still)))
+    # the declared studies get their OWN block below rather than being listed twice:
+    # one fact printed in two places is a reader counting it twice
+    _decl = {tk for tk, _ in declared}
     for tk, detail in sorted(ok):
-        print("   %-12s %s" % (tk, detail))
+        if tk not in _decl:
+            print("   %-12s %s" % (tk, detail))
     # PRINTED SEPARATELY AND ALWAYS, whether or not anything fired. A study that owes
     # no bridge is a different fact from one whose bridge passes, and a reader who
     # cannot tell them apart is reading a count with no denominator [R-ENF-04].
