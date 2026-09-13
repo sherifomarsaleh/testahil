@@ -28,6 +28,7 @@ STEPS = [
     ('figures_v5.py', '*.png', 'every figure of the current edition, from the committed numbers'),
     ('docx_v6.py', 'the study', 'the delivered document'),
     ('docx_register.py', 'the bibliography', 'the standalone source register'),
+    ('bake_docs_pdf.py', 'the study and bibliography PDFs', 'rendered FROM those documents, so it follows them — the PDF is the file a reader opens, and a rebuild that leaves it stale has not rebuilt the study'),
     ('build_xlsx_v5.py', 'the workbook', 'the delivered model'),
     ('bake_model_pdf.py', 'the workbook PDF', 'rendered FROM the workbook, so it follows it'),
     ('recalc_v5.py', None, 'an independent recalculation of that workbook'),

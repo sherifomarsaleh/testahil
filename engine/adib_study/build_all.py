@@ -28,6 +28,7 @@ STEPS = [
     ('gap_review.py', 'gap_review_numbers.json', "the [R-GAP-01] review's own arithmetic"),
     ('docx_adib.py', 'the study', 'the delivered document'),
     ('docx_biblio.py', 'the bibliography', 'the standalone source register'),
+    ('bake_docs_pdf.py', 'the study and bibliography PDFs', 'rendered FROM those documents, so it follows them — the PDF is the file a reader opens, and a rebuild that leaves it stale has not rebuilt the study'),
     ('build_xlsx_adib.py', 'the workbook', 'the delivered model'),
     ('bake_model_pdf.py', 'the workbook PDF', 'rendered FROM the workbook'),
     ('recalc.py', None, 'an independent recalculation of that workbook'),

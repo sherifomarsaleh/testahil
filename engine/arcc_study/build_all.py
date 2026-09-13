@@ -33,6 +33,7 @@ STEPS = [
     ('fig_efg_bridge.py', 'fig_efg_bridge.png', 'the bridge figure; follows efg_bridge.py'),
     ('docx_arcc.py', 'the study', 'the delivered document'),
     ('docx_biblio.py', 'the bibliography', 'the standalone source register'),
+    ('bake_docs_pdf.py', 'the study and bibliography PDFs', 'rendered FROM those documents, so it follows them — the PDF is the file a reader opens, and a rebuild that leaves it stale has not rebuilt the study'),
     ('build_xlsx_arcc.py', 'the workbook', 'the delivered model'),
     ('recalc.py', None, 'an independent recalculation of that workbook'),
     ('driver_test.py', None, 'every live driver moves the answer'),

@@ -28,6 +28,7 @@ STEPS = [
     ('figures.py', '*.png', 'every figure, from the committed numbers'),
     ('build_docx.py', 'the study', 'assembles the delivered document from docx_A/B/C'),
     ('docx_biblio.py', 'the bibliography', 'the standalone source register'),
+    ('bake_docs_pdf.py', 'the study and bibliography PDFs', 'rendered FROM those documents, so it follows them — the PDF is the file a reader opens, and a rebuild that leaves it stale has not rebuilt the study'),
     ('build_xlsx.py', 'the workbook, part 1', 'READ FIRST and Assumptions'),
     ('build_xlsx2.py', 'the workbook, part 2', "Segments and DCF — reads part 1's rows"),
     ('build_xlsx3.py', 'the workbook, part 3', 'the statements — reads parts 1-2'),

@@ -31,6 +31,7 @@ STEPS = [
     ('figures.py', '*.png', 'every figure, from the committed numbers'),
     ('docx_scem.py', 'the study', 'the delivered document'),
     ('docx_biblio.py', 'the bibliography', 'the standalone source register'),
+    ('bake_docs_pdf.py', 'the study and bibliography PDFs', 'rendered FROM those documents, so it follows them — the PDF is the file a reader opens, and a rebuild that leaves it stale has not rebuilt the study'),
     ('build_xlsx_scem.py', 'the workbook', 'the delivered model'),
     ('recalc.py', None, 'an independent recalculation of that workbook'),
     ('driver_test.py', None, 'every live driver moves the answer'),
