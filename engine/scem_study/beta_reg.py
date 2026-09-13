@@ -42,7 +42,8 @@ import json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
-from beta_regression import own_stock_beta                      # noqa: E402
+from beta_regression import own_stock_beta
+import research_protocol as _RP                      # noqa: E402
 
 WITHDRAWN = {
     "beta": 0.4852,
@@ -85,6 +86,25 @@ res['tier_reason'] = (
     if not res.get('usable') else "TIER 1: the own-stock regression clears the gate."
 assert str(res.get('index_file', '')).startswith('raw_indices/'), (
     'the regressor is not a registered published index: %r' % res.get('index_file'))
+
+
+# THE ASSERTION IS CALLED, NOT DESCRIBED [added 13-09-2026]. The docstring above has said
+# since this file was written that assert_beta_provenance() "can inspect the record rather
+# than trust a boolean the study set on itself" -- and no code here ever called it. Worse,
+# that sentence was the ONLY match check_study_provenance.py found, and that gate tested
+# for a SUBSTRING, so this study passed it on the strength of a comment describing a check
+# it did not run. Three studies did the same, all on this same sentence.
+#
+# It runs before the record is written, so a record that cannot clear the standing gate is
+# never committed in the first place.
+# TIER 3 IS DECLARED, NOT ASSUMED. This stock's own regression against the published
+# EGX30 clears provenance but FAILS the usability gate -- R^2 = 0.024 against a 0.05
+# floor, the index barely explains the returns -- so the study does not quote it. It
+# falls to beta = 1.0 with the failed diagnostics kept beside it (tier 3, adopted_beta
+# 1.0), which is exactly what the rule prescribes, and the flag below says so rather
+# than letting the assertion be silenced by a number that passed for another reason.
+# The first time this assertion was ever actually called, it found this.
+_RP.assert_beta_provenance(res, tier2_fallback_documented=True)
 
 json.dump(res, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1, default=str)
 

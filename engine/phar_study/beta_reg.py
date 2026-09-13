@@ -40,7 +40,8 @@ import json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
-from beta_regression import own_stock_beta                      # noqa: E402
+from beta_regression import own_stock_beta
+import research_protocol as _RP                      # noqa: E402
 
 WITHDRAWN = {
     "beta": 0.6294840175287311,
@@ -71,6 +72,18 @@ assert res.get('conforming'), (
     % (res.get('interim_note') or res.get('index_file')))
 assert str(res.get('index_file', '')).startswith('raw_indices/'), (
     'the regressor is not a registered published index: %r' % res.get('index_file'))
+
+
+# THE ASSERTION IS CALLED, NOT DESCRIBED [added 13-09-2026]. The docstring above has said
+# since this file was written that assert_beta_provenance() "can inspect the record rather
+# than trust a boolean the study set on itself" -- and no code here ever called it. Worse,
+# that sentence was the ONLY match check_study_provenance.py found, and that gate tested
+# for a SUBSTRING, so this study passed it on the strength of a comment describing a check
+# it did not run. Three studies did the same, all on this same sentence.
+#
+# It runs before the record is written, so a record that cannot clear the standing gate is
+# never committed in the first place.
+_RP.assert_beta_provenance(res)
 
 json.dump(res, open(os.path.join(HERE, 'beta_result.json'), 'w'), indent=1, default=str)
 
