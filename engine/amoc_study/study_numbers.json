@@ -1209,7 +1209,7 @@
     74.5,
     76.0
    ],
-   "source": "Brent crude reference path, USD a barrel, 2026E-2030E. A flat-to-slowly-rising deck. In the previous edition this input drove NOTHING \u2014 it was registered, published in the source register and read by no line of the model. It is now the spine of both sides of the margin: every product realisation is this deck times a crack multiple solved from the disclosed product table, and the feedstock charge is this deck times a differential solved from disclosed cost of sales",
+   "source": "Brent crude reference path, USD a barrel, 2026E-2030E. A flat-to-slowly-rising deck, CARRIED FOR CONTEXT AND DRIVING NOTHING \u2014 corrected 10-09-2026, because this entry said the opposite. It read 'it is now the spine of both sides of the margin: every product realisation is this deck times a crack multiple solved from the disclosed product table, and the feedstock charge is this deck times a differential solved from disclosed cost of sales'. THAT WAS TRUE FOR ONE REVISION AND THEN STOPPED BEING TRUE. The reviewed filing discloses the eight-line product table and the cost stack directly, so both the crack multiple and the solved differential were retired and, in the study's own words about that change, nothing is reconstructed now. The note describing the retired machinery was left behind. MEASURED RATHER THAN ARGUED: rebuilding this study on a flat deck at USD 101.21 \u2014 the Brent settlement Reuters reported for 9 September 2026, above USD 100 since the 3rd on Middle East escalation \u2014 gives a central of EGP 20.0503 against EGP 20.0503 on this deck. Identical to four decimal places, which is what a driver that drives nothing looks like. THE CONSEQUENCE IS WORTH STATING PLAINLY: this valuation carries no forecast of the oil price. Its realisations and its feedstock charge are the company's own filed figures, escalated on the house ladder, so a reader who disagrees with any crude view is not disagreeing with this study",
    "date": "2026-08-06",
    "ring": "Industry"
   },
@@ -2388,6 +2388,7 @@
   "ps_pound_at_inflation": 17.885776656074007,
   "ps_h1_anchor": 20.05029697520137,
   "ps_ttm_base_superseded": 12.849683076529717,
+  "adopted_gm_shift": 0.02743858990883105,
   "gm_ttm_base": 0.09653412625014321,
   "gm_h1_filed": 0.12427806123173553,
   "gm_q1_2025": 0.05053126981775711,
@@ -3539,7 +3540,7 @@
       "levers": [
        [
         "C",
-        -0.01,
+        0.01743858990883105,
         "0.00%"
        ]
       ],
@@ -3556,7 +3557,7 @@
       "levers": [
        [
         "C",
-        -0.005,
+        0.02243858990883105,
         "0.00%"
        ]
       ],
@@ -3573,7 +3574,7 @@
       "levers": [
        [
         "C",
-        0.0,
+        0.02743858990883105,
         "0.00%"
        ]
       ],
@@ -3590,7 +3591,7 @@
       "levers": [
        [
         "C",
-        0.005,
+        0.03243858990883105,
         "0.00%"
        ]
       ],
@@ -3607,7 +3608,7 @@
       "levers": [
        [
         "C",
-        0.01,
+        0.03743858990883105,
         "0.00%"
        ]
       ],

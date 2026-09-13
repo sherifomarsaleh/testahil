@@ -633,10 +633,20 @@ def blockvals(key):
 
 
 BV = D['blocks']['base']
-put(wsF, 'A5', 'Levers for this block — the base case sets them all neutral', bold=True)
+put(wsF, 'A5', 'Levers for this block — neutral except the adopted base-period correction on row 7', bold=True)
 band(wsF, 5)
 put(wsF, 'A6', 'Volume growth added a year'); put(wsF, 'B6', 0.0, color=BLUE, fmt=PCT2, paste=True)
-put(wsF, 'A7', 'Gross-margin shift'); put(wsF, 'B7', 0.0, color=BLUE, fmt=PCT2, paste=True)
+# THE BASE CASE IS NOT NEUTRAL ON THIS ROW, and typing 0.0 here published the
+# SUPERSEDED answer [corrected 13-09-2026]. The study's base-period correction --
+# anchoring the forecast on the reviewed half to 30-Jun-2026 rather than the
+# twelve-month blend -- is carried in compute.py as a gross-margin shift on top of
+# the eight per-line unit builds. This cell is the workbook's only copy of it. At
+# 0.0 the engine rebuilt the twelve-month base and the file beside the study
+# published EGP 12.85 against the study's EGP 20.05, with 1,867 of 6,069 formula
+# cells disagreeing and nothing red, because every one of those cells was
+# internally consistent with the wrong opening margin.
+put(wsF, 'A7', 'Gross-margin shift — the adopted base-period correction')
+put(wsF, 'B7', DCF['adopted_gm_shift'], color=BLUE, fmt=PCT2, paste=True)
 put(wsF, 'A8', 'Realisation-path multiplier'); put(wsF, 'B8', 1.0, color=BLUE, fmt=NUM1, paste=True)
 put(wsF, 'A9', 'Working-capital cycle multiplier'); put(wsF, 'B9', 1.0, color=BLUE, fmt=NUM1,
                                                         paste=True)

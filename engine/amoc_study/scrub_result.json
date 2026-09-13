@@ -10,19 +10,13 @@
    "term": "SIGCM",
    "why": "internal mandate name",
    "context": "the other three were unflagged rather than verified. Under SIGCM a figure this desk cannot source is a figure it does n"
-  },
-  {
-   "file": "AMOC_Bibliography_10-09-2026.docx",
-   "term": "engine/macro_paths/EG.json",
-   "why": "repository path presented as a source",
-   "context": "l real risk-free rate, READ LIVE from the house macro path (engine/macro_paths/EG.json) rather than typed here. The term"
   }
  ],
  "soft": [
   {
    "file": "AMOC_Bibliography_10-09-2026.docx",
    "pattern": "\\bregister\\b",
-   "hits": 5,
+   "hits": 4,
    "note": "ordinary sense: commercial register, input register"
   },
   {
@@ -36,12 +30,6 @@
    "pattern": "\\bstep\\b",
    "hits": 1,
    "note": "ordinary sense: a step-change"
-  },
-  {
-   "file": "AMOC_Bibliography_10-09-2026.docx",
-   "pattern": "\\bengine\\b",
-   "hits": 1,
-   "note": "ordinary sense: the cash-flow engine of the workbook"
   },
   {
    "file": "AMOC_Valuation_Study_10-09-2026_public.docx",

@@ -448,12 +448,27 @@ INP['raw_pass'] = I(1.0, "Pass-through factor on the raw-material line: 1.0 mean
 # --- Ring 3: industry ------------------------------------------------------
 INP['brent_path'] = I([70.0, 71.5, 73.0, 74.5, 76.0],
                       "Brent crude reference path, USD a barrel, 2026E-2030E. A flat-to-slowly-"
-                      "rising deck. In the previous edition this input drove NOTHING — it was "
-                      "registered, published in the source register and read by no line of the "
-                      "model. It is now the spine of both sides of the margin: every product "
-                      "realisation is this deck times a crack multiple solved from the disclosed "
-                      "product table, and the feedstock charge is this deck times a differential "
-                      "solved from disclosed cost of sales",
+                      "rising deck, CARRIED FOR CONTEXT AND DRIVING NOTHING — corrected "
+                      "10-09-2026, because this entry said the opposite. It read 'it is now "
+                      "the spine of both sides of the margin: every product realisation is "
+                      "this deck times a crack multiple solved from the disclosed product "
+                      "table, and the feedstock charge is this deck times a differential "
+                      "solved from disclosed cost of sales'. THAT WAS TRUE FOR ONE REVISION "
+                      "AND THEN STOPPED BEING TRUE. The reviewed filing discloses the "
+                      "eight-line product table and the cost stack directly, so both the "
+                      "crack multiple and the solved differential were retired and, in the "
+                      "study's own words about that change, nothing is reconstructed now. "
+                      "The note describing the retired machinery was left behind. "
+                      "MEASURED RATHER THAN ARGUED: rebuilding this study on a flat deck at "
+                      "USD 101.21 — the Brent settlement Reuters reported for 9 September "
+                      "2026, above USD 100 since the 3rd on Middle East escalation — gives "
+                      "a central of EGP 20.0503 against EGP 20.0503 on this deck. Identical "
+                      "to four decimal places, which is what a driver that drives nothing "
+                      "looks like. THE CONSEQUENCE IS WORTH STATING PLAINLY: this valuation "
+                      "carries no forecast of the oil price. Its realisations and its "
+                      "feedstock charge are the company's own filed figures, escalated on "
+                      "the house ladder, so a reader who disagrees with any crude view is "
+                      "not disagreeing with this study",
                       "2026-08-06", "Industry")
 INP['crude_hist'] = I(dict(fy23=85.0, fy24=84.0, fy25=74.0, cy25=70.0),
                       "Brent averages for the four historical periods, USD a barrel. HOUSE "
@@ -2542,7 +2557,14 @@ def _grid(name, pts):
 
 _PCT2, _NUM1, _NUM3 = '0.00%', '#,##0.0', '#,##0.000'
 _grid('Gross margin, shifted on every forecast year',
-      [(f'{s:+.1%}', [('C', s, _PCT2)], dict(gm_shift=ADOPTED_GM_SHIFT + s), s == 0.0)
+      # THE LEVER IS THE NUMBER THE MODEL RAN, NOT THE INCREMENT [corrected 13-09-2026].
+      # This wrote `s` into the workbook's gross-margin cell while running
+      # ADOPTED_GM_SHIFT + s here, so every margin grid point in the delivered
+      # workbook was short by the adopted base-period correction. The LABEL stays
+      # the increment -- '+0.0%' means the base case -- because that is what a
+      # reader of a sensitivity grid is being offered.
+      [(f'{s:+.1%}', [('C', ADOPTED_GM_SHIFT + s, _PCT2)],
+        dict(gm_shift=ADOPTED_GM_SHIFT + s), s == 0.0)
        for s in gm_grid])
 _grid('Volume growth path, as a multiple of the assumed path',
       [(f'{m:+.1%}', [('B', m, _NUM1)], dict(vol_adj=m), m == 0.0) for m in vol_grid])
@@ -3012,6 +3034,7 @@ OUT = dict(
              # reader comparing editions can see which construction moved.
              ps_h1_anchor=dcf_ps,
              ps_ttm_base_superseded=_PS_TTM_BASE,
+             adopted_gm_shift=ADOPTED_GM_SHIFT,
              # COMMITTED SO THE JUDGEMENT RECORD CAN COMPUTE IT RATHER THAN TYPE
              # IT. The contested-judgement row that names this framing carried the
              # blend as a literal 9.653 multiplied onto a live figure by zero — a
