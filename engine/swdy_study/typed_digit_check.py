@@ -70,7 +70,9 @@ RETIRED_NEAR = re.compile(
 # two consecutive years" is a threshold the analyst states in advance and is bound by; it
 # must NOT move when the model moves, which is the whole point of stating it. Recognised
 # as a class rather than allow-listed number by number.
-COMMITMENT = re.compile(r'Falsifier, stated in advance|would refute|would overturn', re.I)
+COMMITMENT = re.compile(
+    r'Falsifier, stated in advance|would refute|would overturn|'
+    r'What would change our mind|would change our mind', re.I)
 
 # AND AN ILLUSTRATION IS NOT A CLAIM. "a low of 0.55 and a high of 2.60 would mean the
 # outturn had landed between..." teaches a reader how to read a column; the numbers are
@@ -122,15 +124,55 @@ def _literal_parts(node):
     return out
 
 
+def _prose_strings(tree):
+    """Strings that are only there for the AUTHOR: docstrings and bare string statements.
+
+    A module docstring explaining why a check exists is not a delivered sentence, and the
+    numbers in it are quoted evidence. Excluded by position, never by content.
+    """
+    out = set()
+    for n in ast.walk(tree):
+        body = getattr(n, 'body', None)
+        if isinstance(body, list):
+            for st in body:
+                if isinstance(st, ast.Expr) and isinstance(st.value, ast.Constant) \
+                        and isinstance(st.value.value, str):
+                    out.add(id(st.value))
+    return out
+
+
+def _subscript_keys(tree):
+    """Every string used as a lookup — D['dcf'], F['roic'] — so they are not read as prose."""
+    keys = set()
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Subscript) and isinstance(n.slice, ast.Constant) \
+                and isinstance(n.slice.value, str):
+            keys.add(id(n.slice))
+    return keys
+
+
 def scan(path, src_lines):
+    """EVERY string literal in the builder, not only those handed straight to a render call.
+
+    The first version of this check walked P(...)/caption(...)/table(...) arguments, and
+    missed most of the document: these builders assemble `rows = [[...], [...]]` and then
+    pass the NAME to table(), so an entire table's worth of typed prose was invisible to a
+    check whose whole job was to see it. A gate that inspects the shape of the code rather
+    than the text that reaches the page will always have that hole. Every string in the
+    module is now candidate prose, less the lookups and format specs that are plainly not.
+    """
     tree = ast.parse(open(path).read())
+    skip = _subscript_keys(tree) | _prose_strings(tree)
     found = []
     for node in ast.walk(tree):
-        if not isinstance(node, ast.Call):
+        if not isinstance(node, (ast.Constant, ast.JoinedStr)):
             continue
-        fn = node.func
-        name = fn.id if isinstance(fn, ast.Name) else getattr(fn, 'attr', None)
-        if name not in DELIVERED:
+        if isinstance(node, ast.Constant):
+            if not isinstance(node.value, str) or id(node) in skip:
+                continue
+        if isinstance(node, ast.JoinedStr):
+            # its Constant children are walked in their own right; taking them here too
+            # reports every f-string twice
             continue
         for lineno, text in _literal_parts(node):
             masked = LABEL.sub(' ', text)
@@ -141,7 +183,12 @@ def scan(path, src_lines):
                 window = ' '.join(src_lines[max(0, lineno - 4):lineno + 4])
                 if RETIRED_NEAR.search(text) or RETIRED_NEAR.search(window):
                     continue
-                if COMMITMENT.search(text) or ILLUSTRATION.search(text):
+                # A commitment's heading often sits in its own string a line or two above
+                # the threshold it introduces, so this one reads the window like the
+                # retired-figure test does.
+                if COMMITMENT.search(text) or COMMITMENT.search(window):
+                    continue
+                if ILLUSTRATION.search(text):
                     continue
                 snippet = text.strip()
                 if len(snippet) > 110:

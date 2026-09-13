@@ -13,6 +13,7 @@ import market_profiles as MP
 import horizons as HZ
 import adaptive_width as AW
 
+MOVE_THRESHOLD = 0.10   # the move the probability table is struck on, recorded with it
 Q_ANNUAL = 0.0095   # FY24 DPS EGP 1.00 paid 2025; none declared on FY25 profits per available record
 
 prof = MP.PROFILES['EG']
@@ -69,13 +70,24 @@ for short, hz in plan['horizons'].items():
     out['horizons'][short] = dict(
         h=h, target_date=hz['target_date'], grade_date=hz['grade_date'],
         anchor_vol_ann=float(np.sqrt(dvar * 252)), sigma_h=sigma_h,
-        drift_log_h=float(drift),
+        # THE DRIFT THE ENGINE ACTUALLY USES IS drift + alpha, AND ONLY drift WAS RECORDED.
+        # A reader reproducing the median from the published drift could not: at one month
+        # the record said 0.01406 log while the published median of 133.06 implies 0.02328,
+        # two thirds higher again. The whole difference is the signal term, which the
+        # simulator is handed on the line below and which nothing wrote down. Both legs and
+        # their sum are recorded now, so the median is reproducible from the page.
+        drift_log_h=float(drift), alpha_log_h=float(alpha), signal_z=float(z),
+        drift_total_log_h=float(drift + alpha),
         pct={f'p{p}': float(np.percentile(term, p)) for p in (5, 25, 50, 75, 95)},
         p_above=float(np.mean(term > spot)),
-        p_up10=float(np.mean(term >= spot * 1.10)),
-        p_dn10=float(np.mean(term <= spot * 0.90)),
-        touch_up10=float(np.mean(paths.max(axis=1) >= spot * 1.10)),
-        touch_dn10=float(np.mean(paths.min(axis=1) <= spot * 0.90)),
+        # THE THRESHOLD IS RECORDED, not left for the page to name in prose. The four rows
+        # this feeds were labelled "10% or more above spot" as typed text beside numbers
+        # computed here — one threshold, two places, and nothing comparing them.
+        move_threshold=MOVE_THRESHOLD,
+        p_up10=float(np.mean(term >= spot * (1 + MOVE_THRESHOLD))),
+        p_dn10=float(np.mean(term <= spot * (1 - MOVE_THRESHOLD))),
+        touch_up10=float(np.mean(paths.max(axis=1) >= spot * (1 + MOVE_THRESHOLD))),
+        touch_dn10=float(np.mean(paths.min(axis=1) <= spot * (1 - MOVE_THRESHOLD))),
     )
 
 np.save(os.path.join(HERE, 'paths_1M.npy'), paths_store['1M'][:20000])

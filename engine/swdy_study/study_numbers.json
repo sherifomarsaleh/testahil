@@ -432,6 +432,45 @@
    "date": "2026-03-15",
    "ring": "Company"
   },
+  "cash_yield": {
+   "value": 0.1,
+   "source": "Yield assumed on the cash balance inside the net-finance construction. A house judgement, registered because the document described it in prose while three separate formulas carried it as a literal",
+   "date": "2026-08-05",
+   "ring": "House"
+  },
+  "rf_external_span": {
+   "value": [
+    0.223,
+    0.23
+   ],
+   "source": "The span of external readings of Egypt's 10-year local-currency yield around the study's own reading. They disagree with each other, which is why the rate is carried in the sensitivity rather than presented as precise",
+   "date": "2026-08-05",
+   "ring": "Country"
+  },
+  "electra_sold_2025_mn": {
+   "value": 32.1,
+   "source": "Shares sold into the market by Electra Investment Holding over calendar 2025, from the FY2025 shareholder table's movement against the FY2024 stake",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "nd_release_fy25": {
+   "value": 19789.0,
+   "source": "Net debt as the company states it in its own FY2025 earnings release, on a narrower basis than the audited balance sheet (the definitional gap against this study's computed figure is disclosed rather than resolved)",
+   "date": "2026-03-01",
+   "ring": "Company"
+  },
+  "w_egp_implied_fy24": {
+   "value": 0.44,
+   "source": "Pound share of the financial-debt book implied by the FY2024 back-solve of the effective rate against the three-way EGP/USD/EUR disclosure, on the same construction the FY2025 figure uses. INFERRED, not disclosed: the note gives average rates by currency bucket and never the bucket sizes",
+   "date": "2025-03-13",
+   "ring": "House"
+  },
+  "assoc_bv_fy23": {
+   "value": 3802.8,
+   "source": "Investments in associates and joint ventures, carrying value at 31 December 2023, FY2023 audited consolidated balance sheet",
+   "date": "2024-03-13",
+   "ring": "Company"
+  },
   "assoc_bv_fy24": {
    "value": 6474.047538,
    "source": "Equity-accounted investees, carrying value, 31 Dec 2024",
@@ -2290,6 +2329,7 @@
   },
   "terminal_spread": 0.06203513371578934,
   "midyear_uplift": 0.08636130975420908,
+  "roic_term_sameyear": 0.20554397974056893,
   "pv_explicit": 23195.251240855512,
   "tv": 493871.53180240764,
   "pv_tv": 195997.74048581204,
@@ -2444,6 +2484,8 @@
    "bear": 66.40108128046715,
    "base": 79.68309097098108,
    "bull": 99.60610550675199,
+   "mult_bear": 5.5,
+   "mult_bull": 8.0,
    "w": null
   },
   "normalized": {
@@ -2560,36 +2602,42 @@
  "experts": {
   "e1": {
    "method_short": "earnings power",
-   "base": 176.12680879893554,
+   "base": 154.41223558072608,
    "rng": [
-    129.25981141139147,
-    222.99380618647965
+    113.25959956639502,
+    195.56487159505713
    ],
-   "eps": 15.865910395254653,
+   "eps": 13.931424497559874,
    "margin": 0.10643170321047038,
    "rev": 514907.4833467563,
    "ebit": 49292.970376601894,
    "interest": 1055.8529285480008,
-   "pe": 9.5
+   "pe": 9.5,
+   "assoc": 1568.902975,
+   "tax": 0.245,
+   "nci_share": 0.09675033090812221,
+   "emp_rate": 0.12192719166454939,
+   "pe_lo": 7.0,
+   "pe_hi": 12.0
   },
   "e2": {
    "method_short": "owner cash earnings",
-   "base": 97.71822108324348,
+   "base": 85.56378676759184,
    "rng": [
-    69.84198537113525,
-    160.9699206371431
+    61.08642219003997,
+    141.10338422687462
    ],
    "fcff": 14767.063915051434,
-   "fcfe": 12788.81649755663,
+   "fcfe": 11229.512017296292,
    "ke": 0.1686806279009288,
    "int_at": 608.3911414267998
   },
   "e3": {
    "method_short": "cash returns vs cost of capital",
-   "base": 89.4341891885301,
+   "base": 78.2898036174604,
    "rng": [
-    66.70493817011291,
-    112.16344020694727
+    58.33186634435741,
+    98.24774089056336
    ],
    "ic0": 93562.42815899997,
    "pv_ep": 20383.211591661628,
@@ -2611,7 +2659,7 @@
    ]
   }
  },
- "panel_centre": 97.71822108324348,
+ "panel_centre": 85.56378676759184,
  "sens_wg": {
   "g_grid": [
    0.07140000000000014,
@@ -2984,6 +3032,9 @@
     "anchor_vol_ann": 0.5033831589952434,
     "sigma_h": 0.12565618139333443,
     "drift_log_h": 0.014057585551059903,
+    "alpha_log_h": 0.009270661615162035,
+    "signal_z": 1.1899677245204012,
+    "drift_total_log_h": 0.02332824716622194,
     "pct": {
      "p5": 109.50741672655758,
      "p25": 124.05149578437624,
@@ -2992,6 +3043,7 @@
      "p95": 161.6387745143835
     },
     "p_above": 0.5907,
+    "move_threshold": 0.1,
     "p_up10": 0.24454,
     "p_dn10": 0.11996,
     "touch_up10": 0.37802,
@@ -3004,6 +3056,9 @@
     "anchor_vol_ann": 0.49320511279142565,
     "sigma_h": 0.2167672124491606,
     "drift_log_h": 0.04217275665317971,
+    "alpha_log_h": 0.015992651166022998,
+    "signal_z": 1.1899677245204012,
+    "drift_total_log_h": 0.05816540781920271,
     "pct": {
      "p5": 98.48901557567697,
      "p25": 122.22123885787266,
@@ -3012,6 +3067,7 @@
      "p95": 193.00563490560268
     },
     "p_above": 0.6309,
+    "move_threshold": 0.1,
     "p_up10": 0.41946,
     "p_dn10": 0.18412,
     "touch_up10": 0.65432,
@@ -3074,7 +3130,7 @@
   "[Contested choices, each now RE-RUN not described] gross-debt weights 92.18 (+4.24); risk-free +100bp 86.36 (-1.58) and -100bp 89.56 (+1.62); tax at the statutory 22.5% 92.90 (+4.95) against the 'roughly +1.8' the table printed.",
   "[Effective tax rate sensitivity, NEW] statutory 22.5% -> 92.90; adopted 24.5% -> 87.94; 27.50% -> 80.51; the reviewed half's 30.85% -> 72.22 (-15.73); the implied second quarter's 35.15% -> 61.57 (-26.38).",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.29x over the forecast.",
-  "[Expert panel] Expert 1 176.13 [129.26-222.99]; Expert 2 97.72 [69.84-160.97]; Expert 3 89.43 [66.70-112.16]; panel median 97.72 (-25% vs spot)",
+  "[Expert panel] Expert 1 154.41 [113.26-195.56]; Expert 2 85.56 [61.09-141.10]; Expert 3 78.29 [58.33-98.25]; panel median 85.56 (-34% vs spot)",
   "[R-STAR-01] What the market must believe, each priced ALONE on a full re-run, from the central of EGP 87.94 toward the traded 130.00 (a gap of 42.06):",
   "   all three segment margins permanently back at FY2023-24 levels  +113.47/share  ( 270% of the gap)",
   "   cost of capital two points lower throughout                  +52.56/share  ( 125% of the gap)",

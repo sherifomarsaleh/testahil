@@ -402,6 +402,34 @@ INP = dict(
                "(49%) 297.5, Elsewedy Electric Zambia (40%) 453.2, Egyptian Co. for Electrical "
                "Insulators (25.17%) 76.1, Pyramids Zona Franca (5%) 17.9, others 297.7",
                "2026-03-15", "Company"),
+    # THE FY2023 CARRYING VALUE, REGISTERED. The balance-sheet table printed 3,802.8 as a
+    # literal beside two figures it read from this register — one row, two provenances.
+    # TWO FIGURES THE PROFILE PAGE TYPED. The company's own net-debt figure on its narrower
+    # release basis, and the pound share of the debt book a year earlier, both quoted in
+    # prose beside figures the page read from this register.
+    cash_yield=I(0.10, "Yield assumed on the cash balance inside the net-finance construction. "
+                 "A house judgement, registered because the document described it in prose "
+                 "while three separate formulas carried it as a literal",
+                 "2026-08-05", "House"),
+    rf_external_span=I([0.223, 0.230], "The span of external readings of Egypt's 10-year "
+                       "local-currency yield around the study's own reading. They disagree "
+                       "with each other, which is why the rate is carried in the sensitivity "
+                       "rather than presented as precise", "2026-08-05", "Country"),
+    electra_sold_2025_mn=I(32.1, "Shares sold into the market by Electra Investment Holding "
+                           "over calendar 2025, from the FY2025 shareholder table's movement "
+                           "against the FY2024 stake", "2026-03-01", "Company"),
+    nd_release_fy25=I(19789.0, "Net debt as the company states it in its own FY2025 earnings "
+                      "release, on a narrower basis than the audited balance sheet (the "
+                      "definitional gap against this study's computed figure is disclosed "
+                      "rather than resolved)", "2026-03-01", "Company"),
+    w_egp_implied_fy24=I(0.44, "Pound share of the financial-debt book implied by the FY2024 "
+                         "back-solve of the effective rate against the three-way EGP/USD/EUR "
+                         "disclosure, on the same construction the FY2025 figure uses. "
+                         "INFERRED, not disclosed: the note gives average rates by currency "
+                         "bucket and never the bucket sizes", "2025-03-13", "House"),
+    assoc_bv_fy23=I(3802.8, "Investments in associates and joint ventures, carrying value at "
+                    "31 December 2023, FY2023 audited consolidated balance sheet",
+                    "2024-03-13", "Company"),
     assoc_bv_fy24=I(6474.047538, "Equity-accounted investees, carrying value, 31 Dec 2024",
                     "2025-03-13", "Company"),
     # CARRYING THEM AT BOOK IS THE RULE AND WAS CHECKED AGAINST NOTE 20 RATHER THAN
@@ -2086,6 +2114,17 @@ for i in range(5):
 ic = [nwc[i] + ppe[i] + V['intang_fy25'] for i in range(5)]
 roic = [nopat[i] / ic[i] for i in range(5)]
 roic_term = nopat[-1] * (1 + V['g_term']) / ic[-1]   # NOPAT(n+1) / IC(n), the standard convention
+# THE SAME RETURN ON THE FORECAST'S OWN CONVENTION [F33]. An external audit read the
+# terminal's 22.43% against a forecast path running 21.63% down to 20.55% and called it a
+# terminal capitalising a return above every year of its own forecast. It is not a
+# different return — it is the SAME final-year return expressed on the terminal
+# convention, next year's NOPAT over closing capital, which is (1+g) times the same-year
+# figure by arithmetic: 20.55% x 1.0914 = 22.43%. But the document printed the two beside
+# each other on two conventions and said so nowhere near the comparison, which is what
+# made the misreading available. Committed so the page can state both.
+ROIC_TERM_SAMEYEAR = nopat[-1] / ic[-1]
+assert abs(ROIC_TERM_SAMEYEAR * (1 + V['g_term']) - roic_term) < 1e-9, \
+    'the two terminal-return conventions do not differ by exactly one year of growth'
 say(f"[Terminal return on capital] taken as next year's NOPAT over the closing invested capital "
     f"({roic_term:.1%}), the standard convention, rather than the same year's NOPAT over closing "
     f"capital ({roic[-1]:.1%}).")
@@ -2545,7 +2584,9 @@ def _rel(mult):
     return to_anchor((((mult * ebitda_mid) * df_rel + pv[0] + pv[1]
                        - V['nd_fy25'] + assoc_val)
                       * (1 - nci_share) * (1 - emp_rate)) / SH)
-rel_ps, rel_bear, rel_bull = _rel(V['ev_ebitda_just']), _rel(5.5), _rel(8.0)
+REL_MULT_BEAR, REL_MULT_BULL = 5.5, 8.0
+rel_ps, rel_bear, rel_bull = (_rel(V['ev_ebitda_just']),
+                              _rel(REL_MULT_BEAR), _rel(REL_MULT_BULL))
 say(f"[Relative lens — forward EV discounted, interim flows included] {V['ev_ebitda_just']}x on "
     f"FY2027E EBITDA {ebitda_mid:,.0f} gives an enterprise value of {ev_rel_fwd:,.0f} AS AT "
     f"end-FY2027; discounted back at the year-2 factor {df_rel:.4f} plus the present value of "
@@ -2782,6 +2823,7 @@ lenses = dict(
     dcf=dict(name='Discounted cash flow (the answer)', bear=dcf_bear, base=dcf_ps,
              bull=dcf_bull, w=None),
     relative=dict(name='Relative multiples', bear=rel_bear, base=rel_ps, bull=rel_bull,
+                  mult_bear=REL_MULT_BEAR, mult_bull=REL_MULT_BULL,
                   w=None),
     normalized=dict(name='Normalised earnings power', bear=norm_bear, base=norm_ps,
                     bull=norm_bull, w=None,
@@ -3007,16 +3049,30 @@ e1_rev = rev[2]
 e1_ebit = e1_margin * e1_rev - V['dna_pct'] * e1_rev
 # E1's net interest is the FY2028 point of the same static-gross-book construction the
 # forecast uses: kd_path[FY28] x gross debt less 10% on the FY2025 cash balance
-e1_int = V['kd_path'][2] * debt_fy25 - 0.10 * cash_fy25
-e1_eps = ((e1_ebit - e1_int + V['assoc_fy25']) * (1 - TAX) * (1 - nci_share)) / SH
-e1_base, e1_lo, e1_hi = (to_anchor(9.5 * e1_eps), to_anchor(7.0 * e1_eps),
-                         to_anchor(12.0 * e1_eps))
+e1_int = V['kd_path'][2] * debt_fy25 - V['cash_yield'] * cash_fy25
+# [L-294] APPLIES TO EVERY LENS PRODUCING A PER-SHARE EQUITY VALUE, AND THIS APPENDIX WAS
+# THE ONE PLACE THE EARLIER SWEEP OF IT MISSED [F32]. All three experts divided down to a
+# per-share number charging tax and minorities and NOT the employees' statutory share of
+# distributable profits — the same omission the headline bridge, the currency alternative,
+# the scenarios and the sensitivity grids were each corrected for in turn. A panel whose
+# job is to disagree with the central has to disagree about method, not about which claims
+# rank ahead of the ordinary shares.
+#
+# AND EXPERT 1'S EARNINGS PER SHARE NOW REPRODUCES FROM ITS OWN PRINTED ROWS. It carried
+# two terms the table beside it never showed — associate income and the minority share —
+# so a reader could not get from the published rows to the published answer by any
+# combination. Both are published now.
+e1_eps = ((e1_ebit - e1_int + V['assoc_fy25']) * (1 - TAX)
+          * (1 - nci_share) * (1 - emp_rate)) / SH
+E1_PE, E1_PE_LO, E1_PE_HI = 9.5, 7.0, 12.0
+e1_base, e1_lo, e1_hi = (to_anchor(E1_PE * e1_eps), to_anchor(E1_PE_LO * e1_eps),
+                         to_anchor(E1_PE_HI * e1_eps))
 
 e2_fcff = float(np.mean(fcff[2:]))
 # E2's after-tax interest charge: the FY2029 point of the same construction, after tax —
 # shown explicitly because a critique correctly noted it was not reconcilable as displayed
-e2_int_at = (V['kd_path'][3] * debt_fy25 - 0.10 * cash_fy25) * (1 - TAX)
-e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share)
+e2_int_at = (V['kd_path'][3] * debt_fy25 - V['cash_yield'] * cash_fy25) * (1 - TAX)
+e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share) * (1 - emp_rate)   # [L-294], as above
 e2_ke = ke_term
 e2_base = to_anchor(e2_fcfe * (1 + V['g_term']) / (e2_ke - V['g_term']) / SH)
 # THE BASE SAT ABOVE THE TOP OF ITS OWN RANGE, and the cause is a band that did not move
@@ -3042,7 +3098,8 @@ pv_ep = sum(ep_[i] * df[i] for i in range(5))
 ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_fy25 + pv_ep + pv_ep_term
-e3_base = to_anchor(((e3_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+e3_base = to_anchor(((e3_ev - V['nd_fy25'] + assoc_val)
+                     * (1 - nci_share) * (1 - emp_rate)) / SH)   # [L-294], as above
 # THE SAME DEFECT FROM THE OTHER SIDE. e3's low leg haircut the present value of economic
 # profit to 60% and 55%; its high leg was ccy_ps, the HARD-CURRENCY alternative valuation
 # -- a different construction of the whole model, not an upper case of this lens. That
@@ -3053,12 +3110,18 @@ e3_base = to_anchor(((e3_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 # is where a reader can see it for what it is.
 _E3_LO_EXP, _E3_LO_TERM = 0.60, 0.55
 e3_lo = to_anchor(((ic_fy25 + pv_ep * _E3_LO_EXP + pv_ep_term * _E3_LO_TERM
-                    - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+                    - V['nd_fy25'] + assoc_val)
+                   * (1 - nci_share) * (1 - emp_rate)) / SH)
 e3_hi = to_anchor(((ic_fy25 + pv_ep * (2 - _E3_LO_EXP) + pv_ep_term * (2 - _E3_LO_TERM)
-                    - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+                    - V['nd_fy25'] + assoc_val)
+                   * (1 - nci_share) * (1 - emp_rate)) / SH)
 experts = dict(
     e1=dict(method_short='earnings power', base=e1_base, rng=[e1_lo, e1_hi], eps=e1_eps,
-            margin=e1_margin, rev=e1_rev, ebit=e1_ebit, interest=e1_int, pe=9.5),
+            margin=e1_margin, rev=e1_rev, ebit=e1_ebit, interest=e1_int, pe=E1_PE,
+            # THE TWO TERMS THE TABLE NEVER SHOWED, so the printed rows now reach the
+            # printed answer [F32].
+            assoc=V['assoc_fy25'], tax=TAX, nci_share=nci_share, emp_rate=emp_rate,
+            pe_lo=E1_PE_LO, pe_hi=E1_PE_HI),
     e2=dict(method_short='owner cash earnings', base=e2_base, rng=[e2_lo, e2_hi], fcff=e2_fcff,
             fcfe=e2_fcfe, ke=e2_ke, int_at=e2_int_at),
     e3=dict(method_short='cash returns vs cost of capital', base=e3_base, rng=[e3_lo, e3_hi],
@@ -3366,6 +3429,7 @@ OUT = dict(
              # this study turns on, and a figure a document computes for itself is a
              # figure nothing reconciles — prose_check said so the moment it appeared.
              terminal_spread=wacc_term - V['g_term'], midyear_uplift=MIDYEAR_UPLIFT,
+             roic_term_sameyear=ROIC_TERM_SAMEYEAR,
              pv_explicit=pv_explicit, tv=tv, pv_tv=pv_tv, ev=ev, tv_share=tv_share,
              nd=V['nd_fy25'], assoc=assoc_val, nci_share=nci_share, nci_val=nci_val,
              # THE EMPLOYEES' STATUTORY SHARE IS COMMITTED, because the bridge does not

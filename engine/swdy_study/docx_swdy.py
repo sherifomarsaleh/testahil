@@ -242,8 +242,17 @@ rows = [['Item', 'Detail'],
          'civil works); makes transformers, busway and electrical products; supplies meters and '
          'digital grid solutions; and holds infrastructure assets including industrial development, '
          'logistics, utilities and independent power projects'],
-        ['Scale', f"More than 20,000 employees across 31 production facilities in 15 countries; "
-         f"FY2025 revenue EGP {n0(HI['FY25']['rev'])}mn"],
+        ['Scale', f"FY2025 revenue EGP {n0(HI['FY25']['rev'])}mn across 31 production "
+         f"facilities in 15 countries. AN EXTERNAL REVIEW CHALLENGED THE HEADCOUNT THIS ROW "
+         f"USED TO CARRY — 'more than 20,000' — as understating the group several times over, "
+         f"and this study cannot settle it from anything it holds: no audited filing it reads "
+         f"discloses a headcount. What it CAN check points the same way. The same statements "
+         f"disclose a FY2025 wage bill of EGP {n0(D['employees_cap']['wages_fy25'])}mn across "
+         f"the three expense notes, which at 20,000 people would be EGP "
+         f"{n0(D['employees_cap']['wages_fy25'] * 1e6 / 20000)} a head — implausible for a "
+         f"group whose revenue is majority Egyptian. The figure is withdrawn rather than "
+         f"replaced with one this study has not sourced, and it is recorded as an open "
+         f"question. Nothing in the valuation reads it"],
         ['Geographic mix', f"The audited FY2025 geographic note (Note 5-2) shows "
          f"{pc(IN['fgn_egp_share_fy25'],1)} of revenue booked outside Egypt — a statement about "
          f"where the customer sits, not about pricing currency. Separately, this study derives the "
@@ -255,28 +264,37 @@ rows = [['Item', 'Detail'],
         ['Order book and volumes',
          'Not disclosed in any of the audited FY2023-25 statements or the Q1-2026 interim. '
          'THE COMPANY DISCLOSES BOTH IN ITS OWN QUARTERLY EARNINGS RELEASES, and those '
-         'releases are read. Engineering and construction backlog runs EGP 293bn at '
-         'December 2025 and 346bn at 30 June 2026, with wires and cables 43.5bn and meters '
-         '8.8bn beside it; cable volumes run 144,997 / 156,748 / 167,665 / 185,449 tonnes '
-         'over FY2022-25 and 99,239 in the reviewed half against 89,636. The volume series '
+         f"releases are read. Engineering and construction backlog runs EGP 293bn at "
+         f"December 2025 and 346bn at 30 June 2026, with wires and cables 43.5bn and meters "
+         f"8.8bn beside it; cable volumes run "
+         f"{' / '.join(n0(IN['cables_tonnage_hist'][_y]) for _y in ('FY22','FY23','FY24','FY25'))}"
+         f" tonnes over FY2022-25 and {n0(IN['cables_tonnage_h1']['H1_26'])} in the reviewed "
+         f"half against {n0(IN['cables_tonnage_h1']['H1_25'])}. The volume series "
          'sets the Cables segment growth driver directly. The backlog is read and NOT burnt '
          'down: it corroborates the Constructions growth rate without producing it'],
         ['Shares outstanding', f"{n0(SH)}mn"],
         ['Market capitalisation', f"EGP {n0(M['mktcap'])}mn at the anchor price"],
         ['Ownership', f"El Sewedy family ~{pc(own['family'])} · Electra Investment Holding "
          f"{pc(own['electra'])} · free float ~{pc(own_float)}, per the audited FY2025 shareholder "
-         f"table. Electra, an Abu Dhabi holding vehicle, acquired 19.98% in a July-2024 tender "
-         f"offer at USD 1.05 per share (~USD 449mn) and topped up to 20.37% by FY2024-end; over "
-         f"2025 it SOLD roughly 32.1mn shares into the market, taking its stake to "
+         f"table. Electra, an Abu Dhabi holding vehicle, acquired "
+         f"{pc(IN['electra_mto']['stake'])} in a July-2024 tender "
+         f"offer at USD {IN['electra_mto']['price_usd']:.2f} per share (~USD "
+         f"{n0(IN['electra_mto']['value_usdmn'])}mn) and topped up to "
+         f"{pc(IN['sh_electra_fy24'])} by FY2024-end; over "
+         f"2025 it SOLD roughly {n1(IN['electra_sold_2025_mn'])}mn shares into the market, "
+         f"taking its stake to "
          f"{pc(own['electra'])} — a disposal, not dilution: the share count is unchanged. The "
-         f"13.07% 'other shareholders' line is an upper bound on the true free float, since "
+         f"{pc(own['other'])} 'other shareholders' line is an upper bound on the true free "
+         f"float, since "
          f"family-linked vehicles may sit inside it"],
         ['Net bank debt', f"EGP {n0(IN['nd_fy25'])}mn at 31 December 2025 "
          f"({n1(IN['nd_fy25']/HI['FY25']['ebitda'])}× EBITDA), computed from the audited balance "
          f"sheet: loans and borrowings including leases {n0(HB['FY25']['debt'])} less cash "
          f"{n0(HB['FY25']['cash'])}. The company's own FY2025 earnings release quotes EGP "
-         f"19,789mn on its own narrower basis; the audited-statement computation is used, and the "
-         f"~771mn definitional gap is noted rather than resolved"],
+         f"{n0(IN['nd_release_fy25'])}mn on its own narrower basis; the audited-statement "
+         f"computation is used, and the "
+         f"{n0(abs(IN['nd_fy25'] - IN['nd_release_fy25']))}mn definitional gap is noted rather "
+         f"than resolved"],
         ['Last strategic transaction', f"Electra Investment Holding's tender offer concluded "
          f"July 2024: {n0(IN['electra_mto']['shares_mn'])}mn shares "
          f"({pc(IN['electra_mto']['stake'])}) at USD {IN['electra_mto']['price_usd']}, about USD "
@@ -484,7 +502,8 @@ rows = [['Step', 'EGP mn', 'Note'],
          f"the anchor. It is deducted AT THE ANCHOR, not at its ex-date: carried forward the "
          f"{DCF['div_days']:.0f} days to {M['asof']} at the {pc(W['ke_exp'])} cost of equity "
          f"the rest of the roll uses, it is EGP {p2(DCF['div_at_anchor'])}. Deducting the raw "
-         f"1.85 against a value rolled the whole way would credit the share with earning a "
+         f"{p2(IN['dps_fy25'])} against a value rolled the whole way would credit the share "
+         f"with earning a "
          f"return on money it had already paid out"],
         ['Fair value per share at the anchor (EGP)', p2(DCF['ps']),
          f"against a spot of {p2(SPOT)} ({sgn(DCF['ps']/SPOT-1,0)})"]]
@@ -560,8 +579,10 @@ rows = [['Measure', 'Value', 'Comment'],
          f"{n0(F['fcff'][1] * F['df'][1])} and the second outweighs the first. Added after "
          f"external review; omitting it had UNDERSTATED this lens"],
         ['Implied value per share, at the anchor', p2(LN['relative']['base']),
-         f"bear {p2(LN['relative']['bear'])} at 5.5× / bull {p2(LN['relative']['bull'])} at "
-         f"8.0×; rolled to the anchor date on the same two lines as the cash-flow bridge"]]
+         f"bear {p2(LN['relative']['bear'])} at {n1(LN['relative']['mult_bear'])}× / bull "
+         f"{p2(LN['relative']['bull'])} at "
+         f"{n1(LN['relative']['mult_bull'])}×; rolled to the anchor date on the same two "
+         f"lines as the cash-flow bridge"]]
 table(rows, [2.15, 0.90, 3.95], size=8.5, band_rows={6})
 _rel_undisc = to_anchor_docx(((REL['ev_rel_fwd'] + REL['pv_interim'] - IN['nd_fy25']
                                + DCF['assoc'])*(1-DCF['nci_share']))/SH)
@@ -837,8 +858,8 @@ for s_ in SEG['names']:
     rows.append([SEG['names'][s_], n0(SEG['rev'][s_]), pc(SEG['rev'][s_]/IN['rev_fy25']),
                  pc(SEG['gp_margin'][s_]), n0(F['seg_rev'][4][s_]),
                  pc(F['seg_rev'][4][s_]/F['rev'][4])])
-rows.append(['Group', n0(IN['rev_fy25']), '100.0%', pc(sum(SEG['gp'].values())/IN['rev_fy25']),
-             n0(F['rev'][4]), '100.0%'])
+rows.append(['Group', n0(IN['rev_fy25']), pc(1.0), pc(sum(SEG['gp'].values())/IN['rev_fy25']),
+             n0(F['rev'][4]), pc(1.0)])
 table(rows, [1.75, 1.30, 0.68, 1.15, 1.30, 0.82], size=8.3, band_rows={5})
 caption(f"FY2025 figures are the audited Note 5-3 / Note 16 disclosures directly; nothing is "
         f"apportioned or calibrated. By FY2030E Cables' share of revenue rises from "
@@ -915,7 +936,8 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          # growth of 9.14% is built on, which is the whole point: a discount rate and a
          # growth rate on two different inflations is a free lunch of 2pp in perpetuity.
          # Read from the record now, so the two can never disagree on the page again.
-         f"roughly 22.3-23.0% across sources and disagree; the adopted point sits at the "
+         f"roughly {pc(IN['rf_external_span'][0])}-{pc(IN['rf_external_span'][1])} across "
+         f"sources and disagree; the adopted point sits at the "
          f"low end and the rate is carried in the sensitivity. Terminal = "
          f"{pc(IN['pi_term'])} long-run Egyptian inflation READ FROM THE HOUSE MACRO PATH "
          f"plus a {pc(IN['rf_term'] - IN['pi_term'], 1)} real-rate convention = "
@@ -989,7 +1011,8 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
          pc(W['rf_star'], 2) + ' + ' + pc(W['beta_leg'], 2) + ' + ' + pc(W['crp_eff'], 2) +
          ' = ' + pc(W['ke_exp'], 2)],
         ['Cost of debt (blended, pre-tax)', pc(IN['kd']), pc(IN['kd_term']),
-         f"currency-blended — see the evidence immediately below. 9.5% is the FY2026 forward "
+         f"currency-blended — see the evidence immediately below. {pc(IN['kd'])} is the FY2026 "
+         f"forward "
          f"point of the disclosed cost-of-debt path under the central bank's easing cycle; the "
          f"FY2025 trailing effective rate was {pc(W['kd_eff_fy24'])}, and the integrity gate "
          f"bounds the two against each other"],
@@ -1023,7 +1046,8 @@ rows = [['Test', 'Evidence'],
          f"hard-currency book (the note moved from a three-way EGP/USD/EUR split in FY2024 to this "
          f"simpler two-way format in FY2025). Reconciling those against the rate actually paid "
          f"implies roughly {pc(W['w_egp_implied'],0)} of the book is in Egyptian pounds and "
-         f"{pc(1-W['w_egp_implied'],0)} in hard currency — DOWN sharply from the roughly 44% pound "
+         f"{pc(1-W['w_egp_implied'],0)} in hard currency — DOWN sharply from the "
+         f"{pc(IN['w_egp_implied_fy24'],0)} pound "
          f"share implied a year earlier, as hard-currency facilities were drawn down further. "
          f"Treating this company as a domestic borrower would overstate its cost of debt by about "
          f"{(IN['kd_egp_note']-W['kd_eff_fy24'])*10000:,.0f} basis points."],
@@ -1078,13 +1102,14 @@ rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why
          f"EGP {p2(DCF['ps_kd_egp_equiv'])} ({p2(DCF['ps_kd_egp_equiv'] - DCF['ps'])})",
          "Net debt carries only " + pc(W['wd_exp']) + " of the capital structure, so even this "
          f"{(DCF['kd_egp_equiv']-IN['kd'])*10000:,.0f}-basis-point swing in Kd moves the fair value "
-         "by well under 1% — smaller than it "
+         f"by {pc(abs(DCF['ps_kd_egp_equiv'] / DCF['ps'] - 1), 2)} — smaller than it "
          "looks. CAUTION: keeping the currency-composition basis as primary means the "
          "hard-currency debt is carried at its coupon rate, not compensated for devaluation "
          "risk beyond what this forecast's own exchange-rate path already assumes"],
         ['Risk-free rate ' + pc(IN['rf']),
-         'External readings of the same instrument on the same date range from about 22.3% to '
-         '23.0%, and disagree with each other; the adopted point sits at the low end',
+         f"External readings of the same instrument range from about "
+         f"{pc(IN['rf_external_span'][0])} to {pc(IN['rf_external_span'][1])}, and disagree "
+         f"with each other; the adopted point sits at the low end",
          # "roughly +/-1% of value per 100bp" UNDERSTATED IT by nearly a factor of two.
          f"EGP {p2(_CT['rf_dn100'])} at 100bp lower, {p2(_CT['rf_up100'])} at 100bp higher "
          f"({p2(_CT['rf_up100'] - DCF['ps'])} / +{p2(_CT['rf_dn100'] - DCF['ps'])}) — about "
@@ -1094,7 +1119,8 @@ rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why
          'than presented as precise; the direction of the low-end choice is generous and is '
          'said so here'],
         [f"Forecast effective tax rate {pc(IN['tax_eff'])}",
-         f"Egypt's statutory 22.5%, or FY2025's actual effective 22.57%",
+         f"Egypt's statutory {pc(IN['tax_stat'])}, or FY2025's actual effective "
+         f"{pc(SN['tax_path']['fy25'])}",
          # AND THIS ONE WAS WRONG BY 2.8x. "roughly +1.8 (+2.5%)" for a move to the
          # statutory rate, which this model prices at +4.95. The cell also stopped the
          # disclosed series at the quarter while the half containing it ran five points
@@ -1103,7 +1129,9 @@ rows = [['Choice made', 'The alternative', 'Fair value on the alternative', 'Why
          f"(+{p2(_CT['tax_statutory'] - DCF['ps'])}); EGP "
          f"{p2(min(SN['grid_tax']))} at the implied second quarter's "
          f"{pc(SN['tax_path']['q2_26_implied'])} ({p2(min(SN['grid_tax']) - DCF['ps'])})",
-         f"Audited effective rates ran 31.3% (FY2023), 30.1% (FY2024), 22.6% (FY2025), 25.75% "
+         f"Audited effective rates ran {pc(SN['tax_path']['fy23'])} (FY2023), "
+         f"{pc(SN['tax_path']['fy24'])} (FY2024), {pc(SN['tax_path']['fy25'])} (FY2025), "
+         f"{pc(SN['tax_path']['q1_26'])} "
          f"(Q1-2026) and {pc(SN['tax_path']['h1_26'])} (H1-2026) — and since the quarter sits "
          f"inside the half, the SECOND quarter alone implies "
          f"{pc(SN['tax_path']['q2_26_implied'])}. The adopted "
@@ -1180,8 +1208,10 @@ rows = [['Sensitivity', 'Range tested', 'Fair value span (EGP/share)', 'Swing']]
 def span(v): return f"{p2(min(v))} – {p2(max(v))}"
 rows.append(['Beta', f"{SN['beta_grid'][0]} – {SN['beta_grid'][-1]}", span(SN['grid_beta']),
              p2(max(SN['grid_beta'])-min(SN['grid_beta']))])
-rows.append(['Exchange-rate path', 'base −10% to +70% (the deep tail is the interest-parity '
-             'case)', span(SN['grid_fx']), p2(max(SN['grid_fx'])-min(SN['grid_fx']))])
+rows.append(['Exchange-rate path',
+             f"base {sgn(SN['fx_grid'][0] - 1, 0)} to {sgn(SN['fx_grid'][-1] - 1, 0)} "
+             f"(the deep tail is the interest-parity case)",
+             span(SN['grid_fx']), p2(max(SN['grid_fx'])-min(SN['grid_fx']))])
 rows.append(['Segment margins (all three, multiplicative)', '−15% to +15%', span(SN['grid_margin']),
              p2(max(SN['grid_margin'])-min(SN['grid_margin']))])
 rows.append(['Copper price', '−15% to +15%', span(SN['grid_copper']),
@@ -1434,10 +1464,14 @@ figure(os.path.join(HERE, 'fig6_dist.png'), 5.3, "Figure 7 — the three-month p
 
 H2('Level-touch ladder')
 rows = [['Event', '1 month', '3 months'],
-        ['Finishes 10% or more above spot', pc(H1M['p_up10'], 0), pc(H3M['p_up10'], 0)],
-        ['Finishes 10% or more below spot', pc(H1M['p_dn10'], 0), pc(H3M['p_dn10'], 0)],
-        ['Touches 10% above spot at any point', pc(H1M['touch_up10'], 0), pc(H3M['touch_up10'], 0)],
-        ['Touches 10% below spot at any point', pc(H1M['touch_dn10'], 0), pc(H3M['touch_dn10'], 0)]]
+        [f"Finishes {pc(H3M['move_threshold'], 0)} or more above spot",
+         pc(H1M['p_up10'], 0), pc(H3M['p_up10'], 0)],
+        [f"Finishes {pc(H3M['move_threshold'], 0)} or more below spot",
+         pc(H1M['p_dn10'], 0), pc(H3M['p_dn10'], 0)],
+        [f"Touches {pc(H3M['move_threshold'], 0)} above spot at any point",
+         pc(H1M['touch_up10'], 0), pc(H3M['touch_up10'], 0)],
+        [f"Touches {pc(H3M['move_threshold'], 0)} below spot at any point",
+         pc(H1M['touch_dn10'], 0), pc(H3M['touch_dn10'], 0)]]
 table(rows, [3.30, 1.35, 1.35], size=8.6)
 caption("Touch probabilities exceed finish probabilities because a path can visit a level and come "
         "back. This distinction matters for anyone thinking about a level rather than a date.")
@@ -1496,7 +1530,8 @@ rows = [['Catalyst', 'Why it matters', 'What to watch'],
         ['Half-year 2026 results',
          'the first read on whether the first quarter\'s reacceleration is a trend or a comparison '
          'effect, and on whether margins have stopped falling',
-         'gross margin against the 2025 exit rate; whether revenue growth holds above 20%'],
+         f"gross margin against the 2025 exit rate; whether revenue growth holds above the "
+         f"{pc(F['rev'][1] / F['rev'][0] - 1, 0)} the second forecast year assumes"],
         ['Working-capital conversion',
          'the model\'s largest single assumption is that working capital stays near '
          f"{pc(IN['nwc_pct'])} of revenue",
@@ -1505,7 +1540,8 @@ rows = [['Catalyst', 'Why it matters', 'What to watch'],
         ['The exchange rate',
          f'about {pc(D["fgn_share_fy25_derived"],0)} of revenue is hard-currency linked, so both '
          f'the translated result and the working capital move with the pound',
-         'the pace of depreciation against the roughly 6% a year assumed here, and whether the '
+         f"the pace of depreciation against the {pc(DCF['fx_dep_avg'])} a year assumed here, "
+         f"and whether the "
          'gap to interest-rate parity closes through rates or through the currency'],
         ['Central bank policy',
          'the discount rate glide assumes continued disinflation; a stall raises the cost of '
@@ -1526,14 +1562,17 @@ rows = [['Catalyst', 'Why it matters', 'What to watch'],
          '2026, which is read; they do not disclose the burn profile that would turn it '
          'into revenue, so the Constructions and infrastructure forecast tapers on its own '
          'revenue growth and the backlog corroborates that taper rather than setting it',
-         'whether Constructions and infrastructure revenue growth (18% in FY2026E) holds up or '
+         f"whether Constructions and infrastructure revenue growth "
+         f"({pc(AR['seg_g26']['construct'], 0)} in FY2026E) holds up or "
          'decelerates faster than assumed'],
         ['Dividend policy',
-         f"the FY2025 payout ALREADY stepped up +85%, to EGP {p2(IN['dps_fy25'])} (paid June "
-         f"2026, 22.8% of attributable EPS); the forecast assumes {pc(F['payout'],0)} — whether "
+         f"the FY2025 payout ALREADY stepped up sharply, to EGP {p2(IN['dps_fy25'])} (paid June "
+         f"2026, {pc(DCF['dps_payout_fy25'])} of attributable EPS); the forecast assumes "
+         f"{pc(F['payout'],0)} — whether "
          f"the step-up is the start of a trajectory or a plateau moves the equity roll-forward "
          f"and the net-debt path",
-         'the distribution proposed on the FY2026 result, against the 22.8% just paid']]
+         f"the distribution proposed on the FY2026 result, against the "
+         f"{pc(DCF['dps_payout_fy25'])} just paid"]]
 table(rows, [1.50, 2.65, 2.85], size=8.4)
 
 # =========================== 6 PROBABILITY ZONES ==============================
@@ -1546,20 +1585,43 @@ P(f"The three-month distribution in section 3 has a median of {p2(H3M['pct']['p5
   f"uncomfortably wide is reacting to the volatility of the share rather than to the model.")
 rows = [['Zone', 'Three-month range (EGP)', 'How to read it'],
         ['Lower tail', f"below {p2(H3M['pct']['p5'])}",
-         'a 1-in-20 outcome; would require a genuine shock — a currency event, a policy reversal, '
-         'or a material contract failure'],
+         'one outcome in twenty; would require a genuine shock — a currency event, a policy '
+         'reversal, or a material contract failure'],
+        # F29: THE MAP SKIPPED 40% OF WHAT IT MAPS. It ran below the 5th, then the 25th
+        # to the 50th, the 50th to the 75th, then above the 95th — 5 + 25 + 25 + 5 = 60%
+        # of the distribution, with the 5th-to-25th and the 75th-to-95th missing
+        # entirely. Those are the two bands a reader is most likely to land in after the
+        # central ones, and the omission is invisible unless the percentages are added
+        # up. Every band is now present and the column says what each is worth, so the
+        # arithmetic is on the page rather than in the reader's head.
+        ['Lower band', f"{p2(H3M['pct']['p5'])} – {p2(H3M['pct']['p25'])}",
+         'one outcome in five; a drift lower without a shock — the zone the fundamental '
+         'range and the price map come closest to agreeing in'],
         ['Lower half of the central band', f"{p2(H3M['pct']['p25'])} – {p2(H3M['pct']['p50'])}",
-         'ordinary drift lower; this zone overlaps the upper end of the fundamental range'],
+         'one in four; ordinary drift lower, and this zone overlaps the upper end of the '
+         'fundamental range'],
         ['Upper half of the central band', f"{p2(H3M['pct']['p50'])} – {p2(H3M['pct']['p75'])}",
-         'ordinary drift higher; the market continuing to price the hard-currency reading'],
+         'one in four; ordinary drift higher, the market continuing to price the '
+         'hard-currency reading'],
+        ['Upper band', f"{p2(H3M['pct']['p75'])} – {p2(H3M['pct']['p95'])}",
+         'one outcome in five; a drift higher without a step change'],
         ['Upper tail', f"above {p2(H3M['pct']['p95'])}",
-         'a 1-in-20 outcome; would need a step change in the order book, the margin, or the '
-         'perceived country risk'],
+         'one outcome in twenty; would need a step change in the order book, the margin, or '
+         'the perceived country risk'],
         ['Where the fundamental central sits', p2(D['central']),
          f"below even the 5th percentile ({p2(H3M['pct']['p5'])}) of the three-month "
          f"distribution — the price map and the valuation genuinely disagree, and stating the "
          f"gap at its full size is the point"]]
 table(rows, [1.75, 1.75, 3.50], size=8.5)
+caption(f"The six zones above the last row cover the distribution exactly once: "
+        f"5 + 20 + 25 + 25 + 20 + 5 = 100 per cent. An earlier edition of this table "
+        f"published four of them and covered 60 per cent, with the 5th-to-25th and the "
+        f"75th-to-95th absent — which is where two readers in five would have found "
+        f"themselves. The drift behind these percentiles is the carry term "
+        f"{n1(1000 * H3M['drift_log_h'])} plus a signal term "
+        f"{n1(1000 * H3M['alpha_log_h'])}, in thousandths of a log point over the "
+        f"{H3M['h']}-session horizon; the sum is what the engine is handed and what the "
+        f"median reproduces from, and earlier editions recorded only the first of the two.")
 
 # =========================== 7 CAVEATS ========================================
 H1('7  Caveats and what would change our mind')
@@ -1780,7 +1842,8 @@ H2('A.2  Balance sheet — condensed house layout (consolidated, EGP mn)')
 rows = [['EGP mn', 'FY2023', 'FY2024', 'FY2025'],
         ['Property, plant and equipment', n0(HB['FY23']['ppe']), n0(HB['FY24']['ppe']),
          n0(HB['FY25']['ppe'])],
-        ['Equity-accounted investees', '3,802.8', n0(IN['assoc_bv_fy24']), n0(IN['assoc_bv_fy25'])],
+        ['Equity-accounted investees', n0(IN['assoc_bv_fy23']), n0(IN['assoc_bv_fy24']),
+         n0(IN['assoc_bv_fy25'])],
         ['Inventories', n0(HB['FY23']['inv']), n0(HB['FY24']['inv']), n0(HB['FY25']['inv'])],
         ['Contract assets', n0(HB['FY23']['ca']), n0(HB['FY24']['ca']), n0(HB['FY25']['ca'])],
         ['Trade and other receivables', n0(HB['FY23']['recv']), n0(HB['FY24']['recv']),
@@ -1811,13 +1874,23 @@ rows = [['EGP mn'] + YRS,
         ['Property, plant and equipment'] + [n0(x) for x in F['ppe']],
         ['Intangible assets and goodwill'] + [n0(IN['intang_fy25'])] * 5,
         ['Invested capital'] + [n0(x) for x in F['ic']],
-        ['Return on invested capital'] + [pc(x) for x in F['roic']],
+        ['Return on invested capital (NOPAT ÷ closing capital)'] + [pc(x) for x in F['roic']],
         ['Capital expenditure'] + [f"({n0(x)})" for x in F['capex']],
         ['Change in working capital'] + [f"({n0(x)})" for x in F['dnwc']],
         ['Free cash flow to the firm'] + [n0(x) for x in F['fcff']],
         ['Shareholders\' equity'] + [n0(x) for x in F['equity']],
         ['Net debt'] + [n0(x) for x in F['net_debt']]]
 table(rows, [2.05, 0.99, 0.99, 0.99, 0.99, 0.99], size=8.4, band_rows={7})
+caption(f"ONE NOTE ON THE RETURN ROW, because two conventions meet here and an external "
+        f"review read across them. The row above divides each year's NOPAT by that same "
+        f"year's closing capital, and on that basis the path runs {pc(F['roic'][0])} down to "
+        f"{pc(F['roic'][-1])}. The terminal quotes {pc(DCF['roic_term'])}, which looks higher "
+        f"than every year in the forecast and is not: it is the standard terminal convention, "
+        f"NEXT year's NOPAT over closing capital, which is exactly one year of growth above "
+        f"the same-year figure — {pc(DCF['roic_term_sameyear'])} × "
+        f"{1 + DCF['g']:.4f} = {pc(DCF['roic_term'])}. On one convention the terminal does not "
+        f"step up at all; on the other it appears to, and the earlier editions of this page "
+        f"printed the two side by side without saying which was which.")
 P(f"The FY2025 accounts are the reason the free-cash-flow line above should be read carefully. "
   f"That year the group turned EGP {n0(HI['FY25']['ebitda'])}mn of EBITDA into EGP "
   f"{n0(IN['ocf_fy25'])}mn of operating cash after interest of EGP {n0(IN['int_paid_fy25'])}mn and "
@@ -1842,8 +1915,8 @@ rows = [['Company', 'Market', 'Relevance', 'Caution'],
          'developed-market cost of capital and no emerging-market convertibility risk; their '
          'multiples import an assumption rather than test one'],
         ['Regional engineering and construction contractors', 'Gulf and North Africa',
-         'the right frame for the roughly 32% of revenue that is the Constructions and '
-         'infrastructure segment',
+         f"the right frame for the {pc(SEG['rev']['construct'] / IN['rev_fy25'])} of revenue "
+         f"that is the Constructions and infrastructure segment",
          'project accounting differs, and backlog quality is not comparable across disclosure '
          'regimes']]
 table(rows, [1.70, 1.05, 2.10, 2.15], size=8.3)
@@ -1955,7 +2028,8 @@ rows = [['Step', 'Value'],
         ['After tax and minority interests — earnings per share (EGP)', p2(E1['eps'])],
         ['Justified price/earnings multiple', f"{E1['pe']}×"],
         ['Fair value (EGP per share)', p2(E1['base'])],
-        ['Range (7.0× to 12.0×)', f"{p2(E1['rng'][0])} – {p2(E1['rng'][1])}"]]
+        [f"Range ({n1(E1['pe_lo'])}× to {n1(E1['pe_hi'])}×)",
+         f"{p2(E1['rng'][0])} – {p2(E1['rng'][1])}"]]
 table(rows, [4.35, 1.55], size=8.6, band_rows={8})
 P(f"Named sensitivity: each one-turn change in the multiple is worth EGP "
   f"{p2(E1['eps'])} per share, and each percentage point of mid-cycle EBITDA margin is worth "
@@ -1976,7 +2050,8 @@ P("When it works: it is the correct discipline for exactly this kind of company,
 rows = [['Step', 'Value'],
         ['Average free cash flow to the firm, FY2028–FY2030 (EGP mn)', n0(E2['fcff'])],
         ['Less after-tax interest (EGP mn)', f"({n0(E2['int_at'])}) — the FY2029 point of the "
-         f"forecast's net-finance construction (cost-of-debt path × gross book less 10% on the "
+         f"forecast's net-finance construction (cost-of-debt path × gross book less "
+         f"{pc(IN['cash_yield'], 0)} on the "
          f"FY2025 cash balance), after tax; shown because a review correctly noted it was not "
          f"reconcilable as previously displayed"],
         [f"Less minority share ({pc(DCF['nci_share'])})",
