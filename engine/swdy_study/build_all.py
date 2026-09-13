@@ -46,6 +46,11 @@ STEPS = [
     # the evidence attest.py then holds the checklist against, so it runs first; both
     # run LAST, on the delivered artefacts, because that is what a reader receives.
     ('qc_checks.py', 'qc_checks.json', 'the automated document QC, now RECORDING its findings'),
+    # THE GAP REVIEW IS AN ARTEFACT OF THE NUMBERS AND IS REBUILT WITH THEM. It was
+    # typed, and it was stale within the day: a lever moved the central and the review
+    # kept auditing the old one. Named by its AUDIT date, not by the edition, so a
+    # rebuild cannot overwrite what this desk said on an earlier day.
+    ('gap_review.py', 'GAP_REVIEW_{AUDIT_DATE}.md', 'the valuation-gap review [R-GAP-01], generated from the numbers'),
     ('attest.py', 'attestation.json', 'assert_model_study, assert_sigcm, assert_beta_provenance and the ground-up driver record'),
 ]
 
