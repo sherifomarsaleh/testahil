@@ -1,0 +1,196 @@
+{
+ "_": "Seeded once, at this gate's creation, with every artefact already behind its own numbers file. This list may only ever SHORTEN: an entry leaves when the study is rebuilt whole. Nothing may be added.",
+ "seeded": "2026-09-13",
+ "stale": {
+  "ADNOCDIST": [
+   "fig2_volume_price.png",
+   "fig3_margin_bridge.png"
+  ],
+  "ADNOCDRILL": [
+   "fig3_ma.png",
+   "fig7_mix.png"
+  ],
+  "ADNOCLS": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "fig8_tce.png",
+   "figD1_experts.png"
+  ],
+  "AIRARABIA": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_units.png",
+   "figD1_experts.png"
+  ],
+  "AMOC": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig5_spread.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "fig8_waterfall.png",
+   "figD1_experts.png"
+  ],
+  "AMR": [
+   "fig3_price.png",
+   "fig7_build.png"
+  ],
+  "BOROUGE": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_stack.png",
+   "fig8_peers.png",
+   "fig9_framings.png",
+   "figD1_experts.png"
+  ],
+  "DU": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "figD1_experts.png"
+  ],
+  "EGCH": [
+   "fig10_fan.png",
+   "fig12_dist1m.png",
+   "fig13_dist3m.png",
+   "fig14_programme.png",
+   "fig1_range.png",
+   "fig2_bridge.png",
+   "fig3_revenue.png",
+   "fig4_cashflow.png",
+   "fig5_crux.png",
+   "fig6_coststack.png",
+   "fig7_glide.png",
+   "fig8_price.png",
+   "fig9_field.png",
+   "figD1_experts.png"
+  ],
+  "ELEC": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "figD1_experts.png"
+  ],
+  "EMPOWER": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_bridge.png",
+   "fig8_unit.png",
+   "figD1_experts.png"
+  ],
+  "FERTIGLOBE": [
+   "fig3_costpass.png",
+   "fig6_segments.png"
+  ],
+  "GBCO": [
+   "calibration_GBCO.png",
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "figB1_calibration.png",
+   "figD1_experts.png"
+  ],
+  "MODON": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "figD1_experts.png"
+  ],
+  "PHAR": [
+   "fig1_field.png",
+   "fig2_volume_price.png",
+   "fig3_depreciation.png",
+   "fig4_multiple.png",
+   "fig5_cone.png",
+   "fig6_tornado.png",
+   "fig7_crux.png",
+   "fig8_experts.png"
+  ],
+  "PHDC": [
+   "fig1_football.png",
+   "fig2_sensitivity.png",
+   "fig4_peers.png"
+  ],
+  "RIYADHCABLE": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_stack.png",
+   "fig8_margin.png",
+   "figD1_experts.png"
+  ],
+  "SAVOLA": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "figD1_experts.png"
+  ],
+  "SCEM": [
+   "fig3_ma.png",
+   "fig7_bridge.png",
+   "fig8_sector.png",
+   "figD1_experts.png"
+  ],
+  "STC": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "figD1_experts.png"
+  ],
+  "SWDY": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig7_mix.png",
+   "figD1_experts.png"
+  ],
+  "TMGH": [
+   "fig3_cone.png",
+   "fig4_segments.png"
+  ]
+ }
+}

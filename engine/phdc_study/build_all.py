@@ -41,7 +41,15 @@ STEPS = [
     ("build_figures.py", "*.png", "every figure, from the committed numbers"),
     ("docx_phdc.py", "the study", "the delivered document"),
     ("docx_bibliography.py", "the sources", "the standalone bibliography"),
+    # THE PDF IS THE FILE A READER OPENS AND THIS BUILD NEVER RENDERED ONE. Passing
+    # --pdf did nothing here, because there was no step for it: the delivered PDFs sat a
+    # whole edition behind the documents they are rendered from while every rebuild
+    # reported clean. Baking follows the documents and precedes nothing.
+    ("bake_docs_pdf.py", "the study and bibliography PDFs",
+     "rendered FROM those documents, so it follows them"),
     ("build_xlsx_phdc.py", "the workbook", "the delivered model"),
+    ("bake_model_pdf.py", "the workbook PDF",
+     "rendered FROM the workbook, so it follows it"),
     ("recalc.py", None, "an independent recalculation of that workbook"),
     ("prose_check.py", None, "every figure in prose reconciled against the model"),
     ("footing_check.py", None, "every total reproducible from the rows above it"),

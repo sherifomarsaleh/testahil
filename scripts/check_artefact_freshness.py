@@ -62,6 +62,7 @@ and may only ever SHORTEN. Population-anchored [R-ENF-04]: zero studies examined
     python3 scripts/check_artefact_freshness.py --seed    (once, at creation)
 """
 import glob
+import hashlib
 import json
 import os
 import subprocess
@@ -78,6 +79,44 @@ ARTEFACT_GLOBS = ('*Valuation_Study*.docx', '*Valuation_Study*.pdf',
                   '*Sources*.docx', '*Sources*.pdf',
                   '*.png')
 NUMBERS = ('study_numbers.json', 'numbers.json')
+
+
+def build_manifest(sdir):
+    """What the study's last FULL build recorded, if it still describes this tree.
+
+    COMMIT TIME ANSWERS THE WRONG QUESTION for a deterministic artefact. A figure that
+    regenerates byte-identically is never re-committed, so git keeps its old commit and
+    this gate reads a figure produced seconds ago as fourteen thousand minutes stale.
+    ARCC came out of a full rebuild with five such figures reported behind their own
+    numbers file. A check firing on work that is right has found a construction nobody
+    wrote down [R-COC-01], and the construction is the build itself: engine/
+    build_all_shared.py records the numbers file it built from and the digest of every
+    artefact beside it, and an artefact whose digest still matches, against a numbers
+    file whose digest still matches, WAS produced from these numbers.
+
+    THE MANIFEST CANNOT EXCUSE A CHANGED FILE. Both digests are checked against the
+    tree as it stands, so editing either one drops the artefact straight back to the
+    commit-time test. It is evidence, not a flag.
+    """
+    p_ = os.path.join(sdir, 'build_manifest.json')
+    nf = os.path.join(sdir, 'study_numbers.json')
+    if not (os.path.exists(p_) and os.path.exists(nf)):
+        return {}
+    try:
+        man = json.load(open(p_, encoding='utf-8'))
+    except Exception:                                                   # noqa: BLE001
+        return {}
+    if man.get('numbers_sha256') != _sha(nf):
+        return {}
+    return man.get('artefacts') or {}
+
+
+def _sha(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as fh:
+        for chunk in iter(lambda: fh.read(1 << 16), b''):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def commit_time(path):
@@ -181,6 +220,7 @@ def main():
             continue
         examined += 1
         behind = []
+        produced = build_manifest(sdir)
 
         # TIER A — a render against the file it was rendered from.
         by_stem = {}
@@ -204,12 +244,17 @@ def main():
         for a in arts:
             if not a.lower().endswith('.png'):
                 continue
+            base = os.path.basename(a)
+            # PRODUCED BY THE LAST FULL BUILD, FROM THESE NUMBERS, and still byte-for-byte
+            # what that build wrote. Its commit time is then a fact about git and not
+            # about the artefact.
+            if produced.get(base) == _sha(a):
+                continue
             at = commit_time(a)
             if at is None:
-                behind.append((os.path.basename(a), 'never committed', 'B'))
+                behind.append((base, 'never committed', 'B'))
             elif at < nt:
-                behind.append((os.path.basename(a),
-                               'committed %d min before the numbers file'
+                behind.append((base, 'committed %d min before the numbers file'
                                % ((nt - at) // 60), 'B'))
 
         if behind:

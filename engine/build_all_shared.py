@@ -33,6 +33,8 @@ file is the runner they share; it is not the order.
     python3 build_all.py compute.py      one step, for iterating
     python3 build_all.py --list          the declared order, run nothing
 """
+import hashlib
+import json
 import os
 import subprocess
 import sys
@@ -120,5 +122,63 @@ def run(here, steps, argv=None):
     if fails:
         print('FAILED: %s' % ', '.join(fails))
         return 1
+
+    # THE BUILD SAYS WHAT IT PRODUCED, because git cannot.
+    #
+    # A figure that regenerates BYTE-IDENTICALLY is not written, so git keeps its old
+    # commit and the artefact-freshness gate reads it as older than the numbers file it
+    # was just rebuilt from. ARCC came out of a full rebuild with five figures reported
+    # "committed 14,176 minutes before the numbers file" when every one of them had been
+    # regenerated seconds earlier and was current. A check firing on work that is right
+    # has found something nobody wrote down [R-COC-01], and what nobody wrote down is
+    # that the build ran at all: commit time answers "when did the bytes last change",
+    # and the question is "was this produced from the current numbers".
+    #
+    # So a full build records the numbers file it built from and the digest of every
+    # artefact beside it. A partial build (one named step) records nothing, because it
+    # cannot claim the set.
+    if not only:
+        _write_manifest(here, steps)
     print('all %d step(s) clean' % ran)
     return 0
+
+
+MANIFEST = 'build_manifest.json'
+
+
+def _digest(path):
+    h = hashlib.sha256()
+    with open(path, 'rb') as fh:
+        for chunk in iter(lambda: fh.read(1 << 16), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def _write_manifest(here, steps):
+    """What this build produced, and the numbers file it produced it from."""
+    numbers = os.path.join(here, 'study_numbers.json')
+    if not os.path.exists(numbers):
+        return
+    out = {
+        'why': 'A full build wrote every artefact below FROM the numbers file whose '
+               'digest is recorded here. An artefact is CURRENT when both digests still '
+               'match, whatever its commit time says: a deterministic figure that '
+               'regenerates byte-identically is never re-committed and looks stale to a '
+               'check that reads git. Written only by a full build; a single-step run '
+               'cannot claim the set.',
+        'numbers_sha256': _digest(numbers),
+        'artefacts': {},
+    }
+    for name in sorted(os.listdir(here)):
+        if name == MANIFEST or name.startswith('.'):
+            continue
+        p_ = os.path.join(here, name)
+        if not os.path.isfile(p_):
+            continue
+        if os.path.splitext(name)[1].lower() in (
+                '.png', '.pdf', '.docx', '.xlsx', '.svg', '.jpg'):
+            out['artefacts'][name] = _digest(p_)
+    with open(os.path.join(here, MANIFEST), 'w') as fh:
+        json.dump(out, fh, indent=1, sort_keys=True)
+    print('%-26s %d artefact(s) recorded against this numbers file'
+          % (MANIFEST, len(out['artefacts'])))
