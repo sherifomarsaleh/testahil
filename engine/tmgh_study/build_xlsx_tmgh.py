@@ -279,6 +279,9 @@ def build(path):
 
 def add_statements(wb, ws):
     full = ST["capacity"]["full_rows"]
+    # the DCF sheet shows the rating-premium, slower-conversion case; its own
+    # discounted rows carry the forward rate each year was discounted at
+    DCF_ROWS = CASES["rating|capacity"]["rows"]
     yrs = [x["year"] for x in full]
 
     # ------------------------------------------------------------------ DCF
@@ -293,14 +296,28 @@ def add_statements(wb, ws):
         for i, x in enumerate(full):
             s.cell(row=r, column=2 + i, value=x[key]).number_format = NUM
         r += 1
+    # The cost of capital GLIDES — a crisis first year falling to a normalised
+    # terminal — so a single rate raised to the power n is not this model's
+    # discounting and cannot reproduce it. The forward rate for each year is an
+    # input; the factor chains off the year before it.
+    wacc_row = r
+    s.cell(row=r, column=1, value="Cost of capital, this year's forward rate").font = BLACK
+    for i, x in enumerate(DCF_ROWS):
+        s.cell(row=r, column=2 + i,
+               value=x["forward_wacc"]).font = BLUE
+        s.cell(row=r, column=2 + i).number_format = PCT2
+    r += 1
     disc_row = r
     s.cell(row=r, column=1, value="Discount factor").font = BLACK
     for i in range(len(full)):
+        col = get_column_letter(2 + i)
         s.cell(row=r, column=2 + i,
-               value="=1/(1+'Summary'!$B$%d)^%d" % (14, i + 1)).number_format = "0.0000"
+               value=("=1/(1+%s%d)" % (col, wacc_row)) if i == 0 else
+               ("=%s%d/(1+%s%d)" % (get_column_letter(1 + i), disc_row, col, wacc_row))
+               ).number_format = "0.000000"
     r += 1
     s.cell(row=r, column=1, value="Present value").font = BOLD
-    fcff_row = disc_row - 1
+    fcff_row = wacc_row - 1
     for i in range(len(full)):
         col = get_column_letter(2 + i)
         s.cell(row=r, column=2 + i,

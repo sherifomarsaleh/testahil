@@ -118,6 +118,14 @@ DIRECTORY_GATES = [
     # not established, and unknown is not clean [R-ENF-04]. It refuses a bare directory
     # by name, which is what this list is for.
     'check_artefact_freshness.py',
+    # ADDED 13-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07]. DIRECTORY-scoped:
+    # every study directory must yield a delivered workbook -- edition.py's MODEL_XLSX,
+    # else the newest house-named model on disk, else the published copy in files/. An
+    # empty directory yields none, and the gate reports NO DELIVERED WORKBOOK and fails
+    # on it rather than passing it: whether its formulas reach anything is not
+    # established, and unknown is not clean [R-ENF-04]. It refuses a bare directory by
+    # name, which is what this list is for.
+    'check_workbook_formula_targets.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by

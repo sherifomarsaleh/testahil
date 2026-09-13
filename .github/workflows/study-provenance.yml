@@ -92,6 +92,8 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_workbook_values.py'
       - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_workbook_formula_targets.py'
+      - 'scripts/check_workbook_formula_targets_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
       - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
@@ -239,6 +241,8 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_workbook_values.py'
       - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_workbook_formula_targets.py'
+      - 'scripts/check_workbook_formula_targets_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
       - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
@@ -686,6 +690,28 @@ jobs:
       # re-filed as merely unchecked
       - name: Workbook-values gate — negative control
         run: python3 scripts/check_workbook_values_negative_control.py
+
+      # NO FORMULA IN A DELIVERED WORKBOOK MAY POINT AT AN EMPTY CELL. TMGH's workbook
+      # discounted at zero: DCF!B9:K9 read =1/(1+'Summary'!$B$14)^n and Summary!B14 is
+      # blank, so every discount factor evaluated to 1.0000, the explicit years printed
+      # 758,476 against the model's 213,065 and enterprise value printed 818,577 against
+      # the study's 273,166 — three times the answer, in the file a reader opens. Its own
+      # recalc.py reported 85 of 85 clean throughout, because it reads the workbook with
+      # data_only=False and recomputes each relationship from the model; it never
+      # evaluates one of the workbook's own formulas. The workbook-values gate above RUNS
+      # that recalculation and deliberately does not prescribe what it checks. So two
+      # green results stood over a workbook wrong by a factor of three, and it took a
+      # narrative audit to find. This is the cheap structural check that closes the class:
+      # a reference into a RANGE is exempt, a single-cell reference to a blank never is.
+      - name: Workbook formula-target gate
+        run: python3 scripts/check_workbook_formula_targets.py
+
+      # and the proof it can go red, on nine conditions — among them the TMGH defect
+      # verbatim, and its twin that must stay GREEN: an empty cell inside a SUM range is
+      # ordinary and deliberate, and a gate that cannot tell the two apart would be untrue
+      # on almost every workbook in the book
+      - name: Workbook formula-target gate — negative control
+        run: python3 scripts/check_workbook_formula_targets_negative_control.py
 
       # EVERY STUDY STATES ITS FUNDAMENTAL WALK-FORWARD SCOPE DECISION. [R-FCAL-01] has
       # required one since 31-Aug-2026 — FULL at eight or more sourceable fiscal years,
