@@ -199,11 +199,51 @@ def _forward(rundir):
         return None
 
 
+def _registry():
+    """scripts/build_market_registry.py — the repo's existing market/name registry.
+
+    Loaded by path because scripts/ is not a package, exactly as band_record.py
+    loads it. Imported rather than reimplemented [R-ENF-03]: the stem-collision
+    mapping below is the registry's, not a second copy of it.
+    """
+    import importlib.util
+    path = os.path.join(ROOT, "scripts", "build_market_registry.py")
+    spec = importlib.util.spec_from_file_location("_bmr_panel", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def markets_for(ticker):
+    """Every market library holding a file under this exact stem."""
+    return [m for m in (sorted(os.listdir(OHLC)) if os.path.isdir(OHLC) else [])
+            if os.path.exists(os.path.join(OHLC, m, "%s.csv" % ticker))]
+
+
+# A STEM IS NOT A COMPANY. "ADIB" names two different banks -- the Egyptian one
+# (EGP) and the Abu Dhabi one (AED) -- and both libraries hold ADIB.csv, so the
+# old sorted()-first scan returned AE for every caller that meant Egypt and did
+# it silently. That is the failure band_record.py already warns about in full:
+# "keying a record by bare name would silently hand one bank the other's
+# coverage". The registry settled it at scripts/build_market_registry.py:51
+# ("AE/ADIB" -> "ADIBUAE") and REFUSES any unaliased collision outright at its
+# line 97, so the resolution is read from there rather than minted here: a
+# market whose stem is aliased to a DIFFERENT ledger name does not answer to the
+# bare stem. Where that still leaves two, this RAISES rather than picking, the
+# same way wacc_builder.market_index_path('AE') raises rather than composing an
+# index -- a wrong answer delivered silently is worse than no answer.
 def find_market(ticker):
-    for m in sorted(os.listdir(OHLC)) if os.path.isdir(OHLC) else []:
-        if os.path.exists(os.path.join(OHLC, m, "%s.csv" % ticker)):
-            return m
-    return None
+    hits = markets_for(ticker)
+    if len(hits) <= 1:
+        return hits[0] if hits else None
+    alias = _registry().ALIAS
+    owned = [m for m in hits if alias.get("%s/%s" % (m, ticker), ticker) == ticker]
+    if len(owned) == 1:
+        return owned[0]
+    raise ValueError(
+        "ambiguous ticker %r: held by %s and the registry does not resolve it. "
+        "Add an ALIAS to scripts/build_market_registry.py naming the other "
+        "market's distinct ledger name." % (ticker, ", ".join(hits)))
 
 
 def close_at(ticker, year):
