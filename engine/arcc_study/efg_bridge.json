@@ -1,6 +1,6 @@
 {
  "start": 69.7549,
- "end": 77.1858,
+ "end": 77.1781,
  "reviewer": {
   "source": "EFG Hermes, \"Arabian Cement Company \u2014 initiation\", reconciled 02-Sep-2026",
   "basis": "figures produced by a THIRD PARTY's model. This study cannot compute them and does not adopt them; they are registered so that quoting them is checkable.",
@@ -8,7 +8,7 @@
   "year5_discount_factor": 0.4813
  },
  "market": 77.0,
- "published_central": 77.18582322378273,
+ "published_central": 77.17814396333017,
  "published_spot": 77.0,
  "steps": [
   {
@@ -45,7 +45,7 @@
    "driver": "terminal block",
    "off": "EFG",
    "receipt": "They grow FY2030 free cash flow at 2.5% for ever with no charge for keeping the plant standing. A perpetuity has to maintain its own capital: on replacement-cost capital of EGP 45,911 and the 20-year machinery life ARCC's own audited accounting-policies note discloses, that maintenance is EGP 2,296 a year, against book depreciation of EGP 643 already inside terminal profit. CAVEAT: the USD 130 per annual tonne behind that capital base is this model's least-verified single input.",
-   "value": 21.927
+   "value": 21.9209
   },
   {
    "key": "discount_rate",
@@ -53,8 +53,8 @@
    "sub": "their flat 20.06%\nvs our 27.96%->16.74%",
    "driver": "discount rate",
    "off": "OPEN",
-   "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% -- below the risk-free rate, which is hard to defend. Late in the window it runs the other way. On THEIR calendar, which is the only way to compare a rate against a rate, their year-five factor is 0.4813 against ours of 0.4440, so ours discounts the far end harder. The two work against each other and what is LEFT is this bar, -6.12 a share, which is the number to argue with rather than either convention.",
-   "value": -6.1217
+   "receipt": "Their flat 20.06% is applied to FY2026 while the Egyptian 1-year T-bill yields 22.95% -- below the risk-free rate, which is hard to defend. Late in the window it runs the other way. On THEIR calendar, which is the only way to compare a rate against a rate, their year-five factor is 0.4813 against ours of 0.4439, so ours discounts the far end harder. The two work against each other and what is LEFT is this bar, -6.12 a share, which is the number to argue with rather than either convention.",
+   "value": -6.1232
   },
   {
    "key": "valuation_date",
@@ -63,7 +63,7 @@
    "driver": "valuation date",
    "off": "EFG",
    "receipt": "A price is what you pay today. Only the remainder of the current fiscal year sits inside the discounted window, so the rest of that year's free cash flow leaves it -- and arrives in the bridge as cash already earned. This step REMOVES value on net. The +1.37 of accumulated cash is INSIDE the answer; it is not owed on top.",
-   "value": -3.5957
+   "value": -3.5958
   },
   {
    "key": "balance_sheet",

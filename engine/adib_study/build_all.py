@@ -22,8 +22,8 @@ from build_all_shared import run                                    # noqa: E402
 
 STEPS = [
 
-    ('strike_adib.py', 'strike_result.json', 'the price strike'),
-    ('beta_sanctioned.py', 'beta_sanctioned.json', 'the sanctioned beta record'),
+    ('strike_adib.py', 'strike_result.json', 'the price strike', True),
+    ('beta_sanctioned.py', 'beta_sanctioned.json', 'the sanctioned beta record', True),
     ('build_records.py', 'study_numbers.json', "the model's records — REBUILDS the numbers file"),
     ('gap_review.py', 'gap_review_numbers.json', "the [R-GAP-01] review's own arithmetic"),
     ('docx_adib.py', 'the study', 'the delivered document'),

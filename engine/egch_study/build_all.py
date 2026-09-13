@@ -22,9 +22,9 @@ from build_all_shared import run                                    # noqa: E402
 
 STEPS = [
 
-    ('strike_egch.py', 'strike_result.json', 'the price strike'),
-    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study'),
-    ('beta_record.py', 'beta_result.json', 'the sanctioned regression'),
+    ('strike_egch.py', 'strike_result.json', 'the price strike', True),
+    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study', True),
+    ('beta_record.py', 'beta_result.json', 'the sanctioned regression', True),
     ('inputs.py', 'input_register.json', 'the four-field input register the model reads'),
     ('compute.py', 'study_numbers.json', 'the model — REBUILDS the numbers file'),
     ('lenses.py', 'lenses.json', 'the lens set; reads the numbers'),

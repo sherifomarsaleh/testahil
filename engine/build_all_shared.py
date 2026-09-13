@@ -38,6 +38,10 @@ import subprocess
 import sys
 
 
+REBUILD_ONLY = ("TWO DIFFERENT OPERATIONS WEAR THE SAME NAME, and conflating them moved a\n"
+                "published answer. See run().")
+
+
 def run(here, steps, argv=None):
     """Run `steps` from directory `here`. Returns a process exit code.
 
@@ -45,23 +49,52 @@ def run(here, steps, argv=None):
     the order describes a study that no longer exists, and continuing past it would report
     a clean build of something else [R-ENF-04].
     """
+    # REBUILDING A STUDY AND RE-STRIKING IT ARE TWO DIFFERENT OPERATIONS, and this file
+    # conflated them on its first day [corrected 13-09-2026]. Rebuilding ARCC end to end
+    # moved its published central from EGP 77.1781 to 77.1858 and the fair-value register
+    # caught it in CI. Nothing was wrong with the arithmetic: step0.py refreshes the local
+    # price history from the repository library, beta_reg.py then regresses on a slightly
+    # longer series, beta went 0.928 -> 0.927, and the answer followed.
+    #
+    # THAT IS A NEW EDITION, NOT A REBUILD. An edition is a fixed thing in this book --
+    # edition.py exists to say so -- and rebuilding the 10-09-2026 edition must reproduce
+    # the number 10-09-2026 published, or the edition is not reproducible and every
+    # comparison against it is against a moving target. Re-deriving inputs from today's
+    # data is a legitimate and separate act which produces a new answer that must be
+    # registered.
+    #
+    # So the steps that RE-DERIVE AN INPUT are marked, and they run only when asked.
+    # Default: rebuild every artefact from the committed inputs, which is what the stale
+    # figures and stale PDFs needed. --restrike: re-derive the inputs too, and expect the
+    # answer to move.
     argv = sys.argv[1:] if argv is None else argv
+    restrike = '--restrike' in argv
+    steps = [(s_[0], s_[1], s_[2], (len(s_) > 3 and s_[3])) for s_ in steps]
+    if not restrike:
+        skipped = [s_[0] for s_ in steps if s_[3]]
+        steps = [s_ for s_ in steps if not s_[3]]
+        if skipped:
+            print('rebuilding from the COMMITTED inputs; %d input-deriving step(s) held '
+                  'back: %s' % (len(skipped), ', '.join(skipped)))
+            print('   pass --restrike to re-derive them, which makes a NEW EDITION whose '
+                  'answer must be registered.\n')
     if '--list' in argv:
         print('%d declared steps, in order:' % len(steps))
-        for i, (script, writes, why) in enumerate(steps, 1):
-            print('  %2d  %-26s -> %-34s %s'
-                  % (i, script, writes or '(checks only)', why))
+        for i, (script, writes, why, rs) in enumerate(steps, 1):
+            print('  %2d  %-26s -> %-34s %s%s'
+                  % (i, script, writes or '(checks only)', why,
+                     '   [re-derives an input]' if rs else ''))
         return 0
 
     only = [a for a in argv if not a.startswith('-')]
-    unknown = [a for a in only if a not in {s for s, _, _ in steps}]
+    unknown = [a for a in only if a not in {s_[0] for s_ in steps}]
     if unknown:
         print('not a declared step of this study: %s' % ', '.join(unknown))
         print('run with --list to see the order')
         return 2
 
     fails, ran = [], 0
-    for script, writes, why in steps:
+    for script, writes, why, _rs in steps:
         if only and script not in only:
             continue
         path = os.path.join(here, script)

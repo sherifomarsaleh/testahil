@@ -21,9 +21,9 @@ sys.path.insert(0, os.path.dirname(HERE))
 from build_all_shared import run                                    # noqa: E402
 
 STEPS = [
-    ('strike_arcc.py', 'strike_result.json', 'the price strike'),
-    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study'),
-    ('beta_reg.py', 'beta_result.json', 'the sanctioned regression'),
+    ('strike_arcc.py', 'strike_result.json', 'the price strike', True),
+    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study', True),
+    ('beta_reg.py', 'beta_result.json', 'the sanctioned regression', True),
     ('sweep.py', 'sweep_register.json', 'the Step 2A information sweep, read by the model'),
     ('compute.py', 'study_numbers.json', 'the model — REBUILDS the numbers file'),
     ('efg_bridge.py', 'efg_bridge.json', 'the external-estimate bridge the document prints'),

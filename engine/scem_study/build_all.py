@@ -21,9 +21,9 @@ sys.path.insert(0, os.path.dirname(HERE))
 from build_all_shared import run                                    # noqa: E402
 
 STEPS = [
-    ('strike_scem.py', 'strike_result.json', 'the price strike'),
-    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study'),
-    ('beta_reg.py', 'beta_result.json', 'the sanctioned regression, now asserting on its own record'),
+    ('strike_scem.py', 'strike_result.json', 'the price strike', True),
+    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study', True),
+    ('beta_reg.py', 'beta_result.json', 'the sanctioned regression, now asserting on its own record', True),
     ('filings_extract.py', 'filings_extract.json', 'the audited filings the model reads'),
     ('compute_bu.py', 'bottom_up.json', 'the unit build compute reads'),
     ('compute.py', 'study_numbers.json', 'the model — REBUILDS the numbers file'),

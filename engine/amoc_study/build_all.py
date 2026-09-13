@@ -20,9 +20,9 @@ sys.path.insert(0, os.path.dirname(HERE))
 from build_all_shared import run                                    # noqa: E402
 
 STEPS = [
-    ('strike_amoc.py', 'strike_result.json', 'the price strike the cone is anchored on'),
-    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study'),
-    ('beta_record.py', 'beta_result.json', 'the sanctioned regression against the published index'),
+    ('strike_amoc.py', 'strike_result.json', 'the price strike the cone is anchored on', True),
+    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study', True),
+    ('beta_record.py', 'beta_result.json', 'the sanctioned regression against the published index', True),
     ('compute.py', 'study_numbers.json', 'the model — and it REBUILDS the numbers file, so every append follows it'),
     ('diagnostics_amoc.py', 'diagnostics.json', 'the reverse read; it READS the numbers and must follow compute'),
     ('figures_v5.py', '*.png', 'every figure of the current edition, from the committed numbers'),

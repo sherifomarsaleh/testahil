@@ -22,9 +22,9 @@ from build_all_shared import run                                    # noqa: E402
 
 STEPS = [
 
-    ('strike_phar.py', 'strike_result.json', 'the price strike'),
-    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study'),
-    ('beta_reg.py', 'beta_result.json', 'the sanctioned regression, now asserting on its own record'),
+    ('strike_phar.py', 'strike_result.json', 'the price strike', True),
+    ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study', True),
+    ('beta_reg.py', 'beta_result.json', 'the sanctioned regression, now asserting on its own record', True),
     ('compute.py', 'study_numbers.json', 'the model — REBUILDS the numbers file'),
     ('far_year_ranges.py', 'far_year_ranges.json', 'the far-year ranges the document prints'),
     ('figures.py', '*.png', 'every figure, from the committed numbers'),
