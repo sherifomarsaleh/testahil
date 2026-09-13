@@ -29,7 +29,7 @@ Internal record. No rating, no price target, no recommendation — a range and w
 | 33 | EGCH | EGP | full | 3.6400 | 8.0748 / 11.6065 (two-sided) | n/a | n/a | -25.0% | (study carries no stamp) → 2026.09.10 | — |
 | 34 | GBCO | EGP | full | 35.7000 | 45.7826 / 56.7795 (two-sided) | n/a | -17.2% | +11.3% | (study carries no stamp) → 2026.09.10 | — |
 | 35 | PHAR | EGP | full | 61.2100 | 85.2465 / 102.8915 (two-sided) | n/a | +46.9% | +40.9% | (study carries no stamp) → 2026.09.10 | L-386 |
-| 36 | SWDY | EGP | full | 69.7300 | 87.7633 | +25.9% | +44.3% | -3.6% | (study carries no stamp) → 2026.09.10 | — |
+| 36 | SWDY | EGP | full | 69.7300 | 87.7633 | +25.9% | +43.2% | -0.7% | (study carries no stamp) → 2026.09.10 | — |
 | 37 | TMGH | EGP | full | 147.1200 | 108.1943 | -26.5% | -7.7% | -25.8% | (study carries no stamp) → 2026.09.10 | — |
 
 Percentages are the delivered edition against the **frozen pre-campaign baseline**, captured before the run touched `assets/data.js`. Where a name carries more than one edition, `vs_previous_pct` in the JSON holds the edition-on-edition move.

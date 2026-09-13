@@ -1615,9 +1615,29 @@ def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shi
     r_cab, r_con, r_ele = (SRH['FY25']['cables'], SRH['FY25']['construct'], SRH['FY25']['elecprod'])
     R, seg_margin = [], []
     for i in range(5):
+        # THE MULTIPLIERS CANCELLED AND THE GRIDS WERE FLAT TO TWELVE DECIMALS. Cables
+        # revenue compounds on cu_growth, a RATIO of consecutive years, and both legs of
+        # that ratio carried copper_mult and fx_mult -- so a permanently higher copper
+        # price or a weaker pound divided itself out of every year after the first. The
+        # first year does not use cu_growth at all: FY2026 is anchored on the measured
+        # half. So the sensitivity grids ran -10% to +70% on the currency and plus or
+        # minus 15% on copper and returned 87.763271 in every cell, the document printed
+        # "the exchange-rate sensitivity spans 0.00 per share", and the risk the company
+        # is most exposed to was published as costing nothing.
+        #
+        # A LEVEL SHIFT ENTERS ONCE, AT THE TRANSITION. FY2026 is measured and does not
+        # move whatever copper does. The first forecast year after it compares a shifted
+        # price against the UNSHIFTED year that was actually observed, so the shift lands
+        # there and every later year inherits the level -- which is what a permanent
+        # change in a metal price does to a converter's revenue.
         cu_t = V['copper_fcst'][i] * copper_mult * V['fx_path'][i] * fx_mult
-        cu_prev = (V['copper_fcst'][i - 1] * copper_mult * V['fx_path'][i - 1] * fx_mult
-                   if i > 0 else cu_hist)
+        if i == 0:
+            cu_prev = cu_hist
+        elif i == 1:
+            cu_prev = V['copper_fcst'][0] * V['fx_path'][0]      # measured, unshifted
+        else:
+            cu_prev = (V['copper_fcst'][i - 1] * copper_mult
+                       * V['fx_path'][i - 1] * fx_mult)
         cu_growth = cu_t / cu_prev - 1
         if i == 0:
             # FY2026 IS MEASURED, NOT FORECAST [R-ANCHOR-01]. This study registers note
