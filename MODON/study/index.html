@@ -254,10 +254,10 @@
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
     renderFairLevers("fl-lever-card", T, [
-  { name:"Beta \u2014 how much the share moves with the market", min:-0.65, max:0.65, step:0.05, def:0, impact:1.0,
+  { name:"Beta \u2014 how much the share moves with the market", min:-0.65, max:0.65, step:0.05, def:0, impact:-19.05,
     lo:"1.09 \u2014 the bottom of the measured 90% range", hi:"2.40 \u2014 the top of it",
-    fmt:v=>(1.75+v).toFixed(2)+" beta \u2014 THE lever in this edition and the one that flipped the verdict. Measured against the exchange's official index at 1.75 (standard error 0.40, 253 weekly readings over 4.9 years), corrected for thin trading because 84.75% of the shares sit with one holder. The two earlier editions used 1.03 from a basket built out of our own coverage, and read the stock as cheap. The range here is wide because the measurement is: this is the honest uncertainty, not a decoration" },
-  { name:"Terminal cost of capital", min:-1.0, max:1.0, step:0.25, def:0, impact:0.55,
+    fmt:v=>(1.75+v).toFixed(2)+" beta \u2014 THE lever in this edition and the one that flipped the verdict. Measured against the exchange's official index at 1.75 (standard error 0.40, 253 weekly readings over 4.9 years), corrected for thin trading because 84.75% of the shares sit with one holder. The two earlier editions used 1.03 from a basket built out of our own coverage, and read the stock as cheap. The range here is wide because the measurement is: this is the honest uncertainty, not a decoration. Beta and value move in OPPOSITE directions: on the study\u0027s own beta grid the cash-flow lens falls about 21% for every half-point of beta, so the top of the measured range takes the answer DOWN" },
+  { name:"Terminal cost of capital", min:-1.0, max:1.0, step:0.25, def:0, impact:-3.75,
     lo:"10.9% \u2014 a maturing, deleveraging developer", hi:"12.9%",
     fmt:v=>(11.92+v).toFixed(2)+"% terminal WACC \u2014 68.7% of enterprise value sits in the terminal block. The explicit-period rate is 11.14%; the terminal rate derives its debt weight (8.0%) from the model's own FY2030 balance sheet rather than assuming one. Note that terminal return on capital (8.5%) now sits BELOW this rate, so faster terminal growth SUBTRACTS value" },
   { name:"The sales machine \u2014 % of the base plan delivered", min:0, max:120, step:10, def:100, impact:0.006,

@@ -23,6 +23,9 @@ on:
       - '**.html'
       - 'assets/data.js'
       - 'scripts/check_page_integrity.py'
+      - 'scripts/check_lever_directions.py'
+      - 'scripts/check_lever_directions_negative_control.py'
+      - 'engine/build_depth_audit/lever_outstanding.json'
       - 'scripts/check_data_freshness.py'
       - 'scripts/check_technical_read.py'
       - 'scripts/check_prices_block.py'
@@ -38,6 +41,9 @@ on:
       - '**.html'
       - 'assets/data.js'
       - 'scripts/check_page_integrity.py'
+      - 'scripts/check_lever_directions.py'
+      - 'scripts/check_lever_directions_negative_control.py'
+      - 'engine/build_depth_audit/lever_outstanding.json'
       - 'scripts/check_data_freshness.py'
       - 'scripts/check_technical_read.py'
       - 'scripts/check_prices_block.py'
@@ -64,6 +70,17 @@ jobs:
         run: pip install numpy pandas
       - name: Run page integrity check
         run: python3 scripts/check_page_integrity.py
+      # Added 13-Sep-2026. The sensitivity sliders are JavaScript that runs in the
+      # reader's browser, so no gate here had ever read what they compute: the check
+      # above parses these same pages and was green on all 93 the morning a reader
+      # dragged ADNOCLS's beta slider to the top of its measured interval and watched
+      # the fair value go UP. Four levers on three pages were inverted. This reads the
+      # rate off each slider's OWN labels rather than matching on the lever's name,
+      # which is what keeps the five CBE-easing levers green.
+      - name: Run lever-direction check
+        run: python3 scripts/check_lever_directions.py
+      - name: Lever-direction negative control
+        run: python3 scripts/check_lever_directions_negative_control.py
       # [R-ENF-04] A gate must never report clean having examined nothing.
       # Measured 25-Aug-2026: with data.js emptied to a valid file holding zero
       # entries, all three gates below exited 0 and reported clean. This control

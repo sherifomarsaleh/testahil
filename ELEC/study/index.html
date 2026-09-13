@@ -266,7 +266,7 @@
   { name:"LME copper", min:-20, max:20, step:2, def:0, impact:0.012,
     lo:"copper falls (frees working capital)", hi:"copper rises (traps working capital)",
     fmt:v=>"$"+Math.round(14000*(1+v/100)).toLocaleString()+"/t vs the $14,000 anchor \u2014 double-edged: higher copper lifts revenue but inflates the capital it must fund" },
-  { name:"Net-debt anchor (triangulated, not disclosed)", min:-685, max:555, step:35, def:0, impact:0.00030,
+  { name:"Net-debt anchor (triangulated, not disclosed)", min:-685, max:555, step:35, def:0, impact:-0.00030,
     lo:"low end of the range (9,120)", hi:"high end (10,360)",
     fmt:v=>"EGP "+Math.round(9805+v).toLocaleString()+" mn net debt" }
 ]);

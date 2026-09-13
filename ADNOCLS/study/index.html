@@ -254,9 +254,9 @@
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
     renderFairLevers("fl-lever-card", T, [
-  { name:"Beta \u2014 how the market is measured", min:0.70, max:1.62, step:0.01, def:1.10, impact:34.4,
+  { name:"Beta \u2014 how the market is measured", min:0.70, max:1.62, step:0.01, def:1.10, impact:-38.78,
     lo:"0.71 \u2014 equal-weight composite of the exchange", hi:"1.62 \u2014 top of the 90% interval",
-    fmt:v=>"beta "+v.toFixed(2)+" \u2014 the widest lever in the study. The published figure is 1.1032, regressed weekly against the FTSE ADX General Index, the published index of the share\u0027s own exchange, over 159 observations (R\u00b2 0.181, standard error 0.315, 90% interval 0.59 to 1.62). The engine resolves that regressor; it is not an analyst\u0027s pick. Regressing against an equal-weight composite of the same exchange instead gives 0.71 and lifts the cash-flow value from AED 6.40 to 9.37, which is why both centres are published" },
+    fmt:v=>"beta "+v.toFixed(2)+" \u2014 the widest lever in the study. The published figure is 1.1032, regressed weekly against the FTSE ADX General Index, the published index of the share\u0027s own exchange, over 159 observations (R\u00b2 0.181, standard error 0.315, 90% interval 0.59 to 1.62). The engine resolves that regressor; it is not an analyst\u0027s pick. Regressing against an equal-weight composite of the same exchange instead gives 0.71 and lifts the cash-flow value from AED 6.40 to 9.37, which is why both centres are published. A HIGHER beta is a higher cost of equity and a LOWER value, never the reverse" },
   { name:"Mid-cycle tanker rate anchor", min:-20, max:20, step:5, def:0, impact:0.32,
     lo:"20% below the study\u0027s anchor", hi:"20% above it",
     fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(0)+"% on the mid-cycle day-rate anchor the forecast reverts to. The cash-flow value runs AED 5.38 at \u221220% to 7.43 at +20%. The base path reverts from an implied very-large-crude-carrier spot of 199,838 a day toward 47,924 by the terminal year \u2014 corroborated by a one-year time charter fixed at 76,900, well under spot, and an order book near 27% of the trading fleet" },
