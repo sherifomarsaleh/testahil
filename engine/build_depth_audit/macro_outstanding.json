@@ -1,5 +1,5 @@
 {
- "why": "[R-MACRO-01] with the ratchet of [R-ENF-02]. Every study directory on disk at the moment the house macro path was adopted (02-Sep-2026) predates it and carries no macro record; each is allowed to fail while it waits its turn in the rebuild queue. The build breaks on a NEW study with no entry either way, or on a listed study whose record has appeared and is wrong. This list may only ever get SHORTER (--prune).",
+ "why": "[R-MACRO-01] with the ratchet of [R-ENF-02]. Every study directory on disk at the moment the house macro path was adopted (02-Sep-2026) predates it and carries no macro record; each is allowed to fail while it waits its turn in the rebuild queue. The build breaks on a NEW study with no entry either way, or on a listed study whose record has appeared and is wrong. This list may only ever get SHORTER (--prune). TWO LISTS: `outstanding` is the predates-the-path case, no record at all. `declared_open` is a MEASURED breach the study states in its own record and a person has ruled to keep open; each entry names the ruling, its author and its date, and the gate checks the study really does declare it. A name may not sit on both.",
  "adopted": "2026-09-02",
  "outstanding": [
   "ADNOCDIST",
@@ -18,5 +18,16 @@
   "SWDY",
   "XPT"
  ],
- "pruned_on": []
+ "pruned_on": [],
+ "declared_open": {
+  "ADIB": {
+   "breach": "the explicit window ends with financing growth at 12.00% against a terminal of 7.00% -- 5.0pp apart, where [R-MACRO-01] allows 2pp",
+   "ruling": "do not extend horizon beyond 5 years",
+   "ruled_by": "the principal",
+   "ruled_on": "2026-09-10",
+   "shown": "the ruling was given after being shown that closing it by extending the window moves the central from EGP 44.4610 to EGP 41.8291.",
+   "what_would_settle_it": "the TERMINAL, not the horizon. 7.00% is terminal inflation at zero real growth -- the bank stops taking share AND stops participating in credit deepening the moment the window closes, in an economy growing about 4.5% real. A terminal real growth near 3% puts nominal at about 10.2% and clears the window with no extension, and RAISES the answer, which is why it must be argued from evidence about this bank and this credit market or not at all. It is not a route back to 44.46.",
+   "recorded": "2026-09-13, when the study first carried a macro record and the breach became measurable. Before that ADIB sat on the outstanding list for the weaker reason that it carried no record at all."
+  }
+ }
 }

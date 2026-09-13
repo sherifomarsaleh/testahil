@@ -26,6 +26,19 @@ is listed as outstanding and is allowed to fail. The build breaks on a NEW
 violation, a NEW study directory with no entry either way, or a listed study
 whose record has appeared and is wrong. The list may only ever get SHORTER.
 
+TWO LISTS, AND THEY ARE NOT INTERCHANGEABLE — the same lesson the workbook-values
+gate records. `outstanding` excuses a study that PREDATES the house path and
+carries no macro record at all; `declared_open` excuses one that carries a record,
+MEASURES the breach in it, and is held open by a named human ruling. A study able
+to travel between them would escape a real, measured disagreement by being re-filed
+as merely unbuilt, which is the worse of the two states wearing the better one's
+costume [R-ENF-04].
+
+A `declared_open` entry is checked, not taken on trust. It must name a ruling and a
+date; the study must actually HAVE a record (a missing one belongs on the other
+list); and that record's own note must declare the breach in the study's own words.
+The moment the record stops declaring it, the entry stops excusing it.
+
     python3 scripts/check_macro_coherence.py           # the gate
     python3 scripts/check_macro_coherence.py --prune   # drop the now-passing entries
 """
@@ -179,6 +192,33 @@ def audit(sdir):
     return "ok", "coherent against the %s path" % rec.get("market", "?")
 
 
+def _declared_ok(sdir, entry):
+    """What is wrong with this declared_open entry, or None if it holds.
+
+    AN ENTRY IS EVIDENCE, NOT A PROMISE. It must name who ruled and when; and the
+    study's OWN macro record must say, in its own note, that it is declaring a breach
+    rather than clearing one. Otherwise the record a reader opens and the list a gate
+    reads disagree about whether the study knows it is broken -- which is the exact
+    shape that lets a ratchet quietly become a place to put things.
+    """
+    for k in ("ruling", "ruled_by", "ruled_on"):
+        if not str(entry.get(k, "")).strip():
+            return "the entry names no %s" % k
+    try:
+        rec = json.load(open(os.path.join(sdir, "study_numbers.json"),
+                             encoding="utf-8")).get("macro_record") or {}
+    except Exception as e:                                              # noqa: BLE001
+        return "the study's numbers file will not read (%s)" % e
+    note = str(rec.get("note", ""))
+    if not note.strip():
+        return ("the study's own macro record carries no note, so it does not state "
+                "the breach this entry excuses")
+    if "declare" not in note.lower():
+        return ("the study's own macro record does not DECLARE the breach in its note; "
+                "an entry here excuses a stated open item, never a silent one")
+    return None
+
+
 def main():
     prune = "--prune" in sys.argv
     if not os.path.exists(OUTSTANDING_FILE):
@@ -188,6 +228,14 @@ def main():
         return 1
     out = json.load(open(OUTSTANDING_FILE, encoding="utf-8"))
     known = set(out["outstanding"])
+    declared = out.get("declared_open", {})
+    overlap = known & set(declared)
+    if overlap:
+        print("FAIL — %s sit on BOTH lists. The two are not interchangeable: one "
+              "excuses a study with no record, the other a measured breach a person "
+              "has ruled to keep open, and a name on both is excused whichever way it "
+              "turns out." % ", ".join(sorted(overlap)))
+        return 1
 
     sdirs = studies()
     if not sdirs:
@@ -196,7 +244,7 @@ def main():
         return 1
 
     on_disk = {ticker_of(d) for d in sdirs}
-    missing = sorted(known - on_disk)
+    missing = sorted((known | set(declared)) - on_disk)
     if missing:
         print("FAIL — the outstanding list names studies that do not exist on disk: %s. "
               "The list is the population this gate is held against; a name in it that "
@@ -204,25 +252,46 @@ def main():
               % ", ".join(missing))
         return 1
 
-    ok, fixed, still, hard, unreadable = [], [], [], [], []
+    ok, fixed, still, hard, unreadable, open_ = [], [], [], [], [], []
     for d in sdirs:
         tk = ticker_of(d)
         state, detail = audit(d)
         listed = tk in known
         if state == "ok":
-            (fixed if listed else ok).append((tk, detail))
+            (fixed if (listed or tk in declared) else ok).append((tk, detail))
         elif state in ("no_record", "unreadable"):
             if listed:
                 still.append((tk, detail))
             else:
-                hard.append((tk, detail))
+                # A DECLARED-OPEN ENTRY CANNOT COVER A MISSING RECORD. That is the other
+                # list's job, and letting this one reach across would excuse the absence
+                # of the very measurement the entry claims to have made.
+                hard.append((tk, detail + ("  [declared_open cannot excuse this: the "
+                                           "record is absent, which is the other list's "
+                                           "case]" if tk in declared else "")))
             if state == "unreadable":
                 unreadable.append(tk)
+        elif tk in declared:
+            bad = _declared_ok(d, declared[tk])
+            if bad:
+                hard.append((tk, detail + "  [the declared_open entry does not hold: %s]"
+                             % bad))
+            else:
+                open_.append((tk, declared[tk], detail))
         else:
             (still if listed else hard).append((tk, detail))
 
-    print("studies examined: %d   conforming: %d   outstanding (allowed): %d"
-          % (len(sdirs), len(ok) + len(fixed), len(still)))
+    print("studies examined: %d   conforming: %d   outstanding (allowed): %d   "
+          "declared open by ruling: %d"
+          % (len(sdirs), len(ok) + len(fixed), len(still), len(open_)))
+    if open_:
+        print("\nDECLARED OPEN — measured, stated in the study's own record, held open "
+              "by a ruling (%d):" % len(open_))
+        for tk, entry, detail in open_:
+            print("   %-12s %s" % (tk, detail[:160]))
+            print("   %-12s ruled by %s on %s: %s"
+                  % ("", entry.get("ruled_by", "?"), entry.get("ruled_on", "?"),
+                     entry.get("ruling", "")[:180]))
     if fixed:
         print("\nNOW PASSING — remove from the outstanding list (%d):" % len(fixed))
         for tk, detail in fixed:
