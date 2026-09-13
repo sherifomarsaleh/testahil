@@ -149,3 +149,64 @@ F11 (the copper sensitivity is a mathematical no-op because copper enters only a
 F36, F37, F38, F41.
 
 **Neither audit alone was sufficient. Both were necessary.**
+
+---
+
+## Step 7 — the four buckets, plus the fifth
+
+### 5. YOUR DECISION — these move the answer and are judgements, not corrections
+
+Priced both ways. Recommendation given; the call is the principal's.
+
+| Finding | Branch A (as published) | Branch B (the alternative) | Recommendation |
+|---|---|---|---|
+| **Self-audit #2 — margins as a CHANGE or as a LEVEL** | 87.94 | **118.32** (+30.38) | **Publish BOTH, adopt neither silently.** The depth bar already requires this study's most consequential contested judgement to be computed both ways and shown side by side; it does that for the cost load and the pass-through and not for the one worth more than both. The seasonality case for a change is real but rests on a single year's H1/H2 split. |
+| F13 — forecast tax 24.5% or the half's 30.85% | 87.94 | **73.45** (−14.49) | **Price it and discuss it; do not adopt 30.85% outright.** One half's effective rate is not a five-year forecast. The defect is that the most recent, most adverse observation was read, flagged material in our own register, and then discussed nowhere. |
+| F12 / #10 — bridge at 31-Dec-2025 or 30-Jun-2026 | 87.94 | −3.37 (net debt only) to **−10.62** (audit's upper bound) | **Accept the defect, state the alternative in the bridge.** The protocol wants the latest disclosed sheet; the double-count argument against it is sound and is already stated. The audit concedes its own figure is an upper bound. |
+| Self-audit #7 — capex flat in LEVEL or flat as a SHARE | 87.94 | **+6.76** | **Your call.** Capex rises 74% in level and runs 3.34× D&A for five years against an announced programme of about EGP 11bn. |
+| Self-audit #12 — minority at the FY2025 share or the half's | 87.94 | **+2.85** | Same principle as the margin question — whatever is decided there should decide this. |
+
+### 1. ACCEPT AND IMPLEMENT — right finding, clear fix, no effect on the answer
+
+F1, F2, F4, F5, F6, F7, F9, F10, F11, F14, F15, F16, F19, F20, F21, F22, F23, F24, F25, F26,
+F27, F28, F29, F30, F31, F32, F33, F35, F36, F40, F41 — and self-audit #3, #4, #8, #13, #14,
+#15, #16, #17, #18, #19, #20.
+
+Every one is the same class: **the page describes a model the workbook does not run.** None
+changes a number; all change what a reader is told. F1 and F4 are the two I introduced or
+touched in this session.
+
+### 2. ACCEPT THE DEFECT, REJECT THE FIX
+
+- **F18 — the EGX30 constituency.** Premise right: SWDY was dropped from the EGX30 effective
+  1 February 2025 and the regression window straddles that. Fix rejected: the regressor is the
+  registered index for this market and changing it is a house-level act, not a study-level one
+  — and the audit concedes the regressor "still satisfies the protocol's literal rule". What
+  gets fixed is the JUSTIFICATION: the sentence claiming it is economically sensible because
+  the stock is "the largest industrial constituent of an index" is withdrawn.
+- **F17 — the capital reduction.** Premise right, and the arbiter is internal and checkable:
+  H1 dividends of 3,957,808,075 = 1.85 × 2,139,355,716 exactly, not × 2,140,777,876. The
+  register's reasoning — that no filing exists because an index does not list one — is the
+  error it congratulates itself for catching two entries earlier. Worth +0.06 a share. Fix
+  rejected in part: both readings are simultaneously true, and the register must say so rather
+  than swap one wrong account for another.
+
+### 3. UNPROVEN — RESEARCH REQUIRED
+
+F34 (the beta triple's internal consistency), F39 (the registered USD/EGP averages), F37 and
+F38 (the risk-free readings) — each needs a primary source this session has not opened.
+Parked is not a verdict; they move to bucket 1 or 4 once checked.
+
+### 4. REJECT — with receipts
+
+**None.** Not one finding of the 41 was rejected. That is itself a result and it is reported as
+one: a response that rejects nothing is as uncalibrated as one that accepts everything, and I
+looked for grounds. The nearest are F8 and F4, where the audit's PRICE does not reproduce here
+— and in both cases the defect is real and only the magnitude is contested, which is bucket 1
+with a corrected number, not a rejection.
+
+## Count reconciliation, final
+
+**41 findings raised, 41 answered, 0 unaddressed.** Plus one declared-but-unnumbered
+unverifiable flagged back to the auditor. Plus 20 from the blind self-audit, of which 5 are
+ours alone and 1 — the reverse read — governs the answer.
