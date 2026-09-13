@@ -1539,6 +1539,81 @@
   "lines": 3,
   "note": "a bank has no tonnes and no units shipped, so the ground-up unit is the balance sheet itself and every income line is a RATE ON A STOCK. The top line is not one growth rate on the whole company: it is the margin on average assets, and the margin and the assets move separately and for different reasons."
  },
+ "macro_record": {
+  "market": "EG",
+  "path_as_of": "2026-09-02",
+  "explicit_years": [
+   2026,
+   2027,
+   2028,
+   2029,
+   2030
+  ],
+  "inflation_inputs": [
+   {
+    "key": "inflation_path (forecast years)",
+    "mapping": "calendar",
+    "first_year": 2026,
+    "values": [
+     0.16,
+     0.12,
+     0.09,
+     0.075,
+     0.07
+    ],
+    "note": "the house calendar ladder, read live from engine/macro_paths/EG.json rather than typed."
+   }
+  ],
+  "growth_lines": [
+   {
+    "name": "administrative cost growth",
+    "years": [
+     2026,
+     2027,
+     2028,
+     2029,
+     2030
+    ],
+    "nominal": [
+     0.34,
+     0.18,
+     0.15,
+     0.135,
+     0.13
+    ],
+    "real": 0.05607476635513997,
+    "exempt_reason": "an operating-cost path, not a price-linked line. It runs above the house ladder in every year (34.0%, 18.0%, 15.0%, 13.5%, 13.0% against 16.0%, 12.0%, 9.0%, 7.5%, 7.0%) and converges toward it, which is a statement about this bank's build-out and its operating leverage rather than about inflation. Registered so a reader can see the excess and disagree with it, rather than finding it inside a cost line."
+   },
+   {
+    "name": "net financing to customers",
+    "years": [
+     2026,
+     2027,
+     2028,
+     2029,
+     2030
+    ],
+    "nominal": [
+     0.48,
+     0.26,
+     0.19,
+     0.15,
+     0.12
+    ],
+    "real": 0.04672897196261694,
+    "exempt_reason": "a balance-sheet trajectory rather than a price-linked line. Real growth is not constant across the window -- 2026 27.6%, 2027 12.5%, 2028 9.2%, 2029 7.0%, 2030 4.7% -- because it is credit deepening plus share gain, both of which run out; a single stated real rate cannot describe it without asserting something the model does not do. The horizon-to-terminal window is NOT exempted and is declared broken in this record's own note.",
+    "basis": "credit deepening plus share gain, in an economy whose private credit is about a quarter of GDP. The study's own note has share drift reaching zero by FY2030, so what remains at the horizon is deepening: nominal 12.0% against a ladder of 7.0% is 4.67% REAL, and that real growth is precisely what the 7.00% terminal switches off in one step."
+   }
+  ],
+  "growth_at_horizon_end": 0.12,
+  "terminal": {
+   "g_nominal": 0.07,
+   "real": 0.0,
+   "rf": 0.10500000000000001,
+   "inflation_in_rf": 0.07
+  },
+  "note": "THIS RECORD DECLARES A BREACH RATHER THAN CLEARING ONE. Growth at the horizon end is 12.00% against a terminal of 7.00% -- 5.00 points, where the rule allows two. It is open BY THE PRINCIPAL'S RULING of 10-09-2026 (\"do not extend horizon beyond 5 years\"), given after being shown that closing it moves the central from EGP 44.4610 to EGP 41.8291. WHAT WOULD SETTLE IT PROPERLY is the terminal itself: 7.00% is terminal inflation at ZERO real growth, i.e. the bank stops taking share AND stops participating in credit deepening the moment the window closes, in an economy growing about 4.5% real. A terminal real growth near 3% would put nominal growth at about 10.2% and clear the window with no extension at all -- and would RAISE the answer rather than lower it, which is exactly why it must be argued from evidence about this bank and this credit market or not at all. It is NOT a route back to 44.46."
+ },
  "research_pass": {
   "reserve_ratio": {
    "finding": "The Central Bank cut the required reserve ratio for commercial banks from 18% to 16% on 12 February 2026, alongside a 100bp policy cut, stating the purpose as calibrating banking-system liquidity.",

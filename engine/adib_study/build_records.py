@@ -267,6 +267,8 @@ def main():
 
     # ---- 1. WHAT THE WALK-FORWARD ADOPTED. Silence and 'none adopted' are the same file
     # to a reader and different facts about the work.
+    _MP = json.load(open(os.path.join(HERE, '..', 'macro_paths', 'EG.json'),
+                        encoding='utf-8'))
     _cl = json.load(open(os.path.join(HERE, '..', 'adib_walkforward',
                                       'corrections_log.json'), encoding='utf-8'))
     d['adopted_corrections'] = []
@@ -490,6 +492,122 @@ def main():
               'line is not one growth rate on the whole company: it is the margin on '
               'average assets, and the margin and the assets move separately and for '
               'different reasons.'))
+
+    # ---- 5. THE MACRO RECORD, WHICH IS COMMITTED IN ORDER TO FAIL HONESTLY ----------
+    # Added 13-09-2026. check_macro_coherence has been RED on this study reading "ADIB
+    # carries no macro record" -- an ABSENCE, which [R-ENF-04] holds exactly as a breach and
+    # which tells a reader nothing about what is actually wrong. Writing the record does not
+    # make the gate green and is not meant to: it makes it fail for the REASON THE PRINCIPAL
+    # RULED ON rather than for a missing file.
+    #
+    # WHAT THE RECORD SAYS ABOUT ITSELF. The explicit window ends FY2030 with net financing
+    # to customers growing 12.0% and hands to a 7.00% terminal -- five points apart where
+    # [R-MACRO-01] allows two, "or the terminal capitalises a growth rate the model never
+    # reached and takes most of the value with it". That is a real breach and it is declared
+    # here rather than argued away.
+    #
+    # AND IT IS OPEN BY DECISION, NOT BY OVERSIGHT. Modelling the taper explicitly was built,
+    # measured and reverted: it moves the central from EGP 44.4610 to EGP 41.8291 and the gap
+    # to the latest known price from -14.6% to -19.6%. The principal was shown the number, the
+    # direction and the reason the gate exists, and ruled "do not extend horizon beyond 5
+    # years". Recorded in adib_study/HORIZON_RULING_10-09-2026.md; the attribution was later
+    # questioned and has been confirmed from the session record. THE FAILURE STANDS IN THE
+    # OPEN: it cannot go on the outstanding ratchet, because that list may only ever shorten.
+    _infl = d['inputs']['inflation_path']['value']
+    _fin = d['inputs']['financing_growth']['value']
+    _adm = d['inputs']['admin_growth']['value']
+    d['macro_record'] = dict(
+        market='EG',
+        path_as_of=_MP.get('as_of') if isinstance(_MP, dict) else None,
+        explicit_years=[x['year'] for x in _P],
+        inflation_inputs=[
+            dict(key='inflation_path (forecast years)', mapping='calendar',
+                 first_year=_P[0]['year'], values=list(_infl),
+                 note='the house calendar ladder, read live from engine/macro_paths/EG.json '
+                      'rather than typed.'),
+        ],
+        growth_lines=[
+            # ADMIN COST GROWTH IS NOT AN INFLATION VIEW, AND DECLARING IT AS ONE WAS MY
+            # ERROR [corrected 13-09-2026]. It was first written into inflation_inputs on
+            # a 'calendar' mapping, which asserts the array IS the house ladder -- and the
+            # gate correctly refused it: 34.0% against a ladder of 16.0% in year one. The
+            # gate's own words are the right ones: if the mapping is right the array was
+            # typed, and if the array is right the mapping is not what the study does.
+            #
+            # The array is right. This is a cost-to-income path on a bank still adding
+            # branches, systems and people, running ABOVE prices in every forecast year
+            # and converging toward them; it is a business decision about operating
+            # leverage, not a claim about Egyptian inflation.
+            dict(name='administrative cost growth', years=[x['year'] for x in _P],
+                 nominal=list(_adm),
+                 real=float((1.0 + _adm[-1]) / (1.0 + _infl[-1]) - 1.0),
+                 exempt_reason=(
+                     'an operating-cost path, not a price-linked line. It runs above the '
+                     'house ladder in every year (%s against %s) and converges toward it, '
+                     'which is a statement about this bank\'s build-out and its operating '
+                     'leverage rather than about inflation. Registered so a reader can see '
+                     'the excess and disagree with it, rather than finding it inside a '
+                     'cost line.'
+                     % (', '.join('%.1f%%' % (100 * x) for x in _adm),
+                        ', '.join('%.1f%%' % (100 * x) for x in _infl)))),
+            dict(name='net financing to customers', years=[x['year'] for x in _P],
+                 nominal=list(_fin[-len(_P):]) if len(_fin) >= len(_P) else list(_fin),
+                 # THE REAL RATE IS COMPUTED FROM THE LINE'S OWN HORIZON YEAR, not defaulted
+                 # to zero. Zero would be a claim -- that this book grows with prices and
+                 # nothing else -- and it is the opposite of what this study argues.
+                 real=float((1.0 + _fin[-1]) / (1.0 + _infl[-1]) - 1.0),
+                 # EXEMPT BY NAME, AND THE EXEMPTION DOES NOT COVER THE THING THAT IS WRONG.
+                 # GrowthLine stores ONE real rate, and this line's real growth is not one
+                 # number: it falls from 27.6% in 2026 to 4.7% in 2030 as deepening and share
+                 # gain run out. That is a balance-sheet trajectory, not a price-linked line,
+                 # and forcing it to a constant would make the record say something false in
+                 # order to be checkable.
+                 #
+                 # WHAT THIS DOES NOT BUY. The exemption reaches clause 1 only -- whether each
+                 # nominal rate recomputes from inflation and a stated real. It does NOT reach
+                 # the horizon-to-terminal window, which is the clause the principal ruled on
+                 # and which this record still declares broken: 12.0% into 7.00%, five points
+                 # where two are allowed. An exemption used to silence that would be the
+                 # widening this book forbids.
+                 exempt_reason=(
+                     'a balance-sheet trajectory rather than a price-linked line. Real growth '
+                     'is not constant across the window -- %s -- because it is credit '
+                     'deepening plus share gain, both of which run out; a single stated real '
+                     'rate cannot describe it without asserting something the model does not '
+                     'do. The horizon-to-terminal window is NOT exempted and is declared '
+                     'broken in this record\'s own note.'
+                     % ', '.join('%d %.1f%%' % (y, 100 * ((1 + n) / (1 + i) - 1))
+                                 for y, n, i in zip([x['year'] for x in _P], _fin, _infl))),
+                 basis='credit deepening plus share gain, in an economy whose private credit '
+                       'is about a quarter of GDP. The study\'s own note has share drift '
+                       'reaching zero by FY2030, so what remains at the horizon is deepening: '
+                       'nominal %.1f%% against a ladder of %.1f%% is %.2f%% REAL, and that '
+                       'real growth is precisely what the 7.00%% terminal switches off in one '
+                       'step.'
+                       % (100 * _fin[-1], 100 * _infl[-1],
+                          100 * ((1.0 + _fin[-1]) / (1.0 + _infl[-1]) - 1.0))),
+        ],
+        growth_at_horizon_end=float(_fin[-1]),
+        terminal=dict(g_nominal=float(d['inputs']['terminal_growth']['value']),
+                      real=0.0,
+                      rf=float(d['inputs']['rf_terminal']['value']),
+                      inflation_in_rf=float(d['inputs']['terminal_growth']['value'])),
+        note=('THIS RECORD DECLARES A BREACH RATHER THAN CLEARING ONE. Growth at the horizon '
+              'end is %.2f%% against a terminal of %.2f%% -- %.2f points, where the rule '
+              'allows two. It is open BY THE PRINCIPAL\'S RULING of 10-09-2026 ("do not '
+              'extend horizon beyond 5 years"), given after being shown that closing it moves '
+              'the central from EGP 44.4610 to EGP 41.8291. WHAT WOULD SETTLE IT PROPERLY is '
+              'the terminal itself: 7.00%% is terminal inflation at ZERO real growth, i.e. the '
+              'bank stops taking share AND stops participating in credit deepening the moment '
+              'the window closes, in an economy growing about 4.5%% real. A terminal real '
+              'growth near 3%% would put nominal growth at about 10.2%% and clear the window '
+              'with no extension at all -- and would RAISE the answer rather than lower it, '
+              'which is exactly why it must be argued from evidence about this bank and this '
+              'credit market or not at all. It is NOT a route back to 44.46.'
+              % (100 * _fin[-1],
+                 100 * d['inputs']['terminal_growth']['value'],
+                 100 * (_fin[-1] - d['inputs']['terminal_growth']['value']))),
+    )
 
     # the 10-09-2026 research pass: what it corroborated and what it left unchanged
     d['research_pass'] = C.RESEARCH_PASS_10_09_2026
