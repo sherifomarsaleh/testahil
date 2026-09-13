@@ -449,8 +449,42 @@
    "fid": "F27",
    "ring": "COMPANY",
    "category": "announced projects, ventures and capacity (entity verified as the listed issuer)",
+   "klass": "BASE_CHANGER",
+   "headline": "Three plants announced 24 June 2026, all opening in Q1-2028: a copper-recycling complex (US$80mn, 20,000 t/yr of scrap into cathode), a copper-tube plant (US$65mn, 15,000 t/yr) and an aluminium-rod line (US$55mn, 50,000 t/yr, output targeted entirely at export) \u2014 about US$200mn, roughly EGP 11bn at the forecast rate",
+   "source_name": "Company announcement, 24 June 2026",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-06-24",
+   "detail": "",
+   "url": "",
+   "model_impact": "MODELLED BY NOT BEING ADDED, which is a decision and is recorded as one. The spend sits inside the capital-expenditure path, and the output sits inside segment growth rates anchored on the company's own reviewed half, so adding a revenue line for these plants would count the same growth twice. Nothing is added, and that is a finding rather than an omission.",
+   "is_fs_data": false,
+   "fiscal_period": "",
+   "entity": "Elsewedy Electric Company S.A.E.",
+   "entity_is_issuer": true
+  },
+  {
+   "fid": "F28",
+   "ring": "COMPANY",
+   "category": "announced projects, ventures and capacity (entity verified as the listed issuer)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "August 2026: a pre-purchase agreement to manufacture four high-voltage transformers of up to 360 MVA for Datagrid's Southland AI data centre via Transpower New Zealand, commissioning late 2027",
+   "source_name": "Company announcement, August 2026",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-01",
+   "detail": "",
+   "url": "",
+   "model_impact": "NAMES THE MECHANISM behind the Electrical products growth level rather than adding to it: the global grid-equipment cycle driving that order is the same one running through the segment's own disclosed numbers, and the path HALVES the growth rate over four years rather than extrapolating. The order is not modelled as a revenue line.",
+   "is_fs_data": false,
+   "fiscal_period": "",
+   "entity": "Elsewedy Electric Company S.A.E.",
+   "entity_is_issuer": true
+  },
+  {
+   "fid": "F29",
+   "ring": "COMPANY",
+   "category": "announced projects, ventures and capacity (entity verified as the listed issuer)",
    "klass": "NEGATIVE_SEARCH",
-   "headline": "Negative search \u2014 nothing found (An announced plant, line or capacity addition attributable to the LISTED issuer rather than to a family-linked vehicle or an unconsolidated affiliate \u2014 the named-transaction rule. Nothing found that clears the entity test, so no capacity addition is modelled; capex runs as a percentage of revenue and is sensitised)",
+   "headline": "Negative search \u2014 nothing found (A capacity addition attributable to the listed issuer that is NOT already inside the capital-expenditure path or the segment growth anchored on the reviewed half \u2014 the named-transaction rule applied to what would change the model rather than to what was announced. None found: the four announcements above all fall inside one or the other, so no capacity line is added and capex runs as a percentage of revenue and is sensitised. Also searched and NOT found: an 8-12% export cash rebate naming this company as a beneficiary \u2014 the programme is real and dated, neither research pass could name this issuer under it or quantify a rate, and the two disagreed on the budget itself, so nothing enters)",
    "source_name": "negative search",
    "source_type": "SEARCH",
    "source_date": "2026-09-10",
@@ -463,7 +497,7 @@
    "entity_is_issuer": null
   },
   {
-   "fid": "F28",
+   "fid": "F30",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "NEGATIVE_SEARCH",
@@ -480,7 +514,7 @@
    "entity_is_issuer": null
   },
   {
-   "fid": "F29",
+   "fid": "F31",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "NEGATIVE_SEARCH",
@@ -497,7 +531,7 @@
    "entity_is_issuer": null
   },
   {
-   "fid": "F30",
+   "fid": "F32",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -541,7 +575,7 @@
    "mode": "TOP_DOWN",
    "justification": "No unit exists that this business can be built on and no filing supplies one: turnkey engineering revenue is recognised on progress against contracts of differing size, and no filing discloses contract count, megawatts or kilometres. The segment tapers on its own FY2023-25 revenue CAGR; the disclosed backlog corroborates the level without setting it, because the releases disclose no burn profile.",
    "sweep_refs": [
-    "F28",
+    "F30",
     "F11",
     "F17"
    ]
@@ -551,7 +585,7 @@
    "mode": "TOP_DOWN",
    "justification": "The segment aggregates transformers, meters and electrical accessories on one disclosed line and no filing splits it, so there is no unit to build on. It tapers on its own FY2023-25 revenue CAGR.",
    "sweep_refs": [
-    "F28",
+    "F30",
     "F17"
    ]
   },
@@ -592,7 +626,7 @@
    "sweep_refs": [
     "F22",
     "F20",
-    "F29"
+    "F31"
    ]
   },
   {
@@ -600,7 +634,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Beta applies to the mature-market premium only; the country premium is charged flat beside it [R-COC-03]. Beta is an own-stock weekly regression against the published EGX30 index of the exchange this share is listed on.",
    "sweep_refs": [
-    "F30",
+    "F32",
     "F09",
     "F05"
    ]
@@ -616,9 +650,10 @@
   {
    "driver": "Capital expenditure",
    "mode": "TOP_DOWN",
-   "justification": "No capex guidance, maintenance-capex disclosure or investment programme is published by the issuer, and no capacity addition clears the entity test. Capex runs as a percentage of revenue on the disclosed historical rate, and is sensitised.",
+   "justification": "No capex guidance, maintenance-capex disclosure or investment programme is published by the issuer. Three plants ARE announced with dated dollar costs \u2014 about US$200mn, roughly EGP 11bn \u2014 and they are checked against the path rather than added to it: the sum sits inside a capex path running EGP 8.2bn to 14.7bn a year, so the path already carries them. Capex therefore runs as a percentage of revenue on the disclosed historical rate, and is sensitised.",
    "sweep_refs": [
     "F27",
+    "F29",
     "F26"
    ]
   },
@@ -645,5 +680,5 @@
   "Q1-2026",
   "H1-2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [SWDY, 2026-09-10]: PASS \u2014 4/4 rings, 30 findings (1 B \u00b7 5 S \u00b7 14 D \u00b7 2 C \u00b7 8 NEG), driver gate 12 rows (8 bottom-up / 4 top-down) | primary access: attempted (1) | FS years: 3 ['FY2023', 'FY2024', 'FY2025'] | IR findings: 5 | warnings: 1"
+ "qc_line": "QC(m) \u2014 Information Sweep [SWDY, 2026-09-10]: PASS \u2014 4/4 rings, 32 findings (2 B \u00b7 5 S \u00b7 15 D \u00b7 2 C \u00b7 8 NEG), driver gate 12 rows (8 bottom-up / 4 top-down) | primary access: attempted (1) | FS years: 3 ['FY2023', 'FY2024', 'FY2025'] | IR findings: 7 | warnings: 1"
 }

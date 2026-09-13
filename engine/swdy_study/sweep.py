@@ -288,13 +288,57 @@ f_guid = R.add(Ring.COMPANY, "strategic plans & guidance", FindingClass.C,
                  "series, a measured pass-through, a taper on the segment's own audited "
                  "revenue record, or a house macro path.")
 
+# THIS CATEGORY WAS CLOSED BY A NEGATIVE SEARCH SAYING NOTHING WAS FOUND, and the study
+# it records carries four dated announcements and reasons about all of them at length.
+# The negative result was written before those passes and never replaced. A sweep
+# register whose own study knows more than it does is worse than an empty one: it
+# certifies that the looking was done and came back empty.
+#
+# WHAT IS TRUE IS NARROWER AND SURVIVES BELOW: none of them adds a revenue line, and the
+# reason is that the spend is already inside the capex path and the output is already
+# inside segment growth rates anchored on the company's own reviewed half. "Nothing is
+# modelled" and "nothing was found" are different findings that read identically in a
+# register, and only one of them is this study's.
+f_plants = R.add(Ring.COMPANY,
+    "announced projects, ventures and capacity (entity verified as the listed issuer)",
+    FindingClass.B,
+    "Three plants announced 24 June 2026, all opening in Q1-2028: a copper-recycling "
+    "complex (US$80mn, 20,000 t/yr of scrap into cathode), a copper-tube plant (US$65mn, "
+    "15,000 t/yr) and an aluminium-rod line (US$55mn, 50,000 t/yr, output targeted "
+    "entirely at export) — about US$200mn, roughly EGP 11bn at the forecast rate",
+    "Company announcement, 24 June 2026", IR, "2026-06-24",
+    entity="Elsewedy Electric Company S.A.E.", entity_is_issuer=True,
+    model_impact="MODELLED BY NOT BEING ADDED, which is a decision and is recorded as one. "
+                 "The spend sits inside the capital-expenditure path, and the output sits "
+                 "inside segment growth rates anchored on the company's own reviewed half, "
+                 "so adding a revenue line for these plants would count the same growth "
+                 "twice. Nothing is added, and that is a finding rather than an omission.")
+
+f_datagrid = R.add(Ring.COMPANY,
+    "announced projects, ventures and capacity (entity verified as the listed issuer)",
+    FindingClass.D,
+    "August 2026: a pre-purchase agreement to manufacture four high-voltage transformers "
+    "of up to 360 MVA for Datagrid's Southland AI data centre via Transpower New Zealand, "
+    "commissioning late 2027",
+    "Company announcement, August 2026", IR, "2026-08-01",
+    entity="Elsewedy Electric Company S.A.E.", entity_is_issuer=True,
+    model_impact="NAMES THE MECHANISM behind the Electrical products growth level rather "
+                 "than adding to it: the global grid-equipment cycle driving that order is "
+                 "the same one running through the segment's own disclosed numbers, and "
+                 "the path HALVES the growth rate over four years rather than "
+                 "extrapolating. The order is not modelled as a revenue line.")
+
 f_neg_proj = R.add_negative(Ring.COMPANY,
     "announced projects, ventures and capacity (entity verified as the listed issuer)",
-    "An announced plant, line or capacity addition attributable to the LISTED issuer "
-    "rather than to a family-linked vehicle or an unconsolidated affiliate — the "
-    "named-transaction rule. Nothing found that clears the entity test, so no capacity "
-    "addition is modelled; capex runs as a percentage of revenue and is sensitised",
-    SWEEP_DATE)
+    "A capacity addition attributable to the listed issuer that is NOT already inside the "
+    "capital-expenditure path or the segment growth anchored on the reviewed half — the "
+    "named-transaction rule applied to what would change the model rather than to what "
+    "was announced. None found: the four announcements above all fall inside one or the "
+    "other, so no capacity line is added and capex runs as a percentage of revenue and is "
+    "sensitised. Also searched and NOT found: an 8-12% export cash rebate naming this "
+    "company as a beneficiary — the programme is real and dated, neither research pass "
+    "could name this issuer under it or quantify a rate, and the two disagreed on the "
+    "budget itself, so nothing enters", SWEEP_DATE)
 
 f_neg_ob = R.add_negative(Ring.COMPANY, "official financial statements",
     "An order book, backlog or unit-volume (tonnage, MVA, meter-count) disclosure for any "
@@ -397,9 +441,12 @@ R.add_driver("Terminal risk-free rate and terminal growth", DriverMode.BOTTOM_UP
     [f_macro])
 R.add_driver("Capital expenditure", DriverMode.TOP_DOWN,
     "No capex guidance, maintenance-capex disclosure or investment programme is published "
-    "by the issuer, and no capacity addition clears the entity test. Capex runs as a "
-    "percentage of revenue on the disclosed historical rate, and is sensitised.",
-    [f_neg_proj, f_guid])
+    "by the issuer. Three plants ARE announced with dated dollar costs — about US$200mn, "
+    "roughly EGP 11bn — and they are checked against the path rather than added to it: "
+    "the sum sits inside a capex path running EGP 8.2bn to 14.7bn a year, so the path "
+    "already carries them. Capex therefore runs as a percentage of revenue on the "
+    "disclosed historical rate, and is sensitised.",
+    [f_plants, f_neg_proj, f_guid])
 R.add_driver("Minority interests", DriverMode.BOTTOM_UP,
     "Charged at the disclosed profit share rather than at book, from the interim's own "
     "split of profit and of equity.",

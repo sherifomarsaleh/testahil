@@ -17,7 +17,7 @@
   "tables": "53 tables, 0 problems",
   "typed_numerals": "22 in docx_swdy.py, docx_register.py",
   "workbook": "630 formulas, 2 checked expected values",
-  "sweep": "30 findings (8 dated negative searches), 12 drivers, primary access logged"
+  "sweep": "32 findings (8 dated negative searches), 12 drivers, primary access logged"
  },
  "passed": true,
  "sigcm": {

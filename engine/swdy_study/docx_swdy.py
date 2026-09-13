@@ -447,8 +447,9 @@ P(f"A justified price-to-book multiple is (return on equity − growth) ÷ (cost
   f"earlier wording called this figure an 'average' of the two windows, which it never was; the "
   f"actual average, {pc(0.5*(W['ke_exp']+W['ke_term']))}, is the construction behind this lens's "
   f"published bear bound of {p2(LN['book']['bear'])}.) That gives {n1(BK['pb_just'])}× book, "
-  f"or EGP {p2(LN['book']['base'])} per share at the anchor. This is the weakest of the four lenses for this "
-  f"company and carries the lowest weight, for a specific reason: three years of currency "
+  f"or EGP {p2(LN['book']['base'])} per share at the anchor. This is the weakest of the four "
+  f"lenses for this company — it is published as a disclosed FLOOR and is never weighted, "
+  f"because nothing here is weighted — for a specific reason: three years of currency "
   f"translation have moved reported book value in ways that have little to do with the earning "
   f"power of the assets, and a group whose value sits in an order book and a brand is poorly "
   f"described by its balance sheet. It is retained because it is the lens that disagrees most, and "
@@ -551,7 +552,12 @@ figure(os.path.join(HERE, 'fig1_football.png'), 6.9,
        f"{p2(SPOT)}. Each bar is that lens's bear-to-bull span; the brass tick is its base case.")
 rows = [['Lens', 'Bear', 'Base', 'Bull', 'Role', 'vs price']]
 ROLE = {'dcf': 'THE ANSWER', 'relative': 'cross-check',
-        'normalized': 'not published for this class',
+        # "NOT PUBLISHED FOR THIS CLASS" IN THE ROW THAT PUBLISHES IT, with a bear, a
+        # base and a bull beside the words. The lens is RETIRED for this class and it is
+        # computed and shown anyway — deliberately, so the reader can see what was
+        # removed rather than take the removal on trust. The role says that instead of
+        # denying the row it sits in.
+        'normalized': 'RETIRED for this class — computed and shown, never weighted',
         'book': 'a floor, never weighted'}
 for k in ['dcf', 'relative', 'normalized', 'book']:
     l = LN[k]
@@ -1374,7 +1380,11 @@ for head, body in [
      # operations in Egypt. The sentence described the construction this study retired.
      f"Our primary construction charges beta against a mature-market premium of "
      f"{pc(W['erp_mature'],2)} and an Egyptian country premium of {pc(W['crp_eff'],2)} FLAT "
-     f"beside it [R-COC-03], to a company earning just over half its money on a "
+     # NO RULE IDENTIFIER ON A READER'S PAGE. Rewriting this sentence to describe the
+     # split premium correctly, I put the rule's tag in it — internal machinery, and the
+     # delivered-vocabulary gate caught it. The rule is said in words instead.
+     f"beside it rather than multiplied through it, to a company earning just over half "
+     f"its money on a "
      f"hard-currency-linked basis. The country charge is weighted at "
      f"{IN['lambda_country']:.4f} for the share of operations inside Egypt rather than "
      f"levied whole, and beta is not applied to it: charging a {IN['beta']:.2f}-beta company "
@@ -1565,8 +1575,14 @@ P("The absence of a clean comparable is itself a finding. This is a diversified 
   "with a manufacturing business, a contracting business and an infrastructure portfolio, listed "
   "in a frontier market, earning just over half its revenue on a hard-currency-linked basis. Any "
   "single peer multiple applied to it imports assumptions about country risk that the cash-flow "
-  "model tests explicitly. That is why the relative lens carries a fifth of the weight and not "
-  "more.")
+  # THE RETIRED BLEND'S VOCABULARY, SURVIVING IN A SECTION NOBODY RE-READ. The relative
+  # lens carries no weight at all — the central IS the cash-flow lens, and section 1.5
+  # spends a page on exactly that. "A fifth of the weight" is the 45/20/20/15 blend this
+  # study withdrew, quoted here as if it were still the method.
+  "model tests explicitly. That is why the relative lens is published BESIDE the central at "
+  "its own value rather than averaged into it: it carries no weight, because there is no "
+  "weighting. A reader who thinks the imported multiple is the better guide can read it off "
+  "the page unmixed, which is the point of showing it.")
 
 H2('B.2  Risk register')
 rows = [['Risk', 'Mechanism', 'Rough valuation impact'],
