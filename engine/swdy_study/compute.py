@@ -146,19 +146,40 @@ INP = dict(
            "study was originally struck at. A fair value delivered against a month-old "
            "quote is a comparison a reader cannot use",
            "2026-09-03", "Market"),
-    shares_mn=I(2139.355716, "Issued and paid-up capital: 2,139,355,716 shares of EGP 1 par "
-                "value. CORRECTED 10-Sep-2026. The audited FY2025 statements and the Q1-2026 "
-                "interim both show 2,140,777,876, and this study divided by that figure -- but "
-                "the extraordinary general assembly of 19 May 2026 approved reducing the issued "
-                "capital by CANCELLING the 1,422,160 incentive-scheme shares, taking issued "
-                "capital from EGP 2,140,777,876 to EGP 2,139,355,716. Both filings this study "
-                "cited PREDATE that assembly. THE STUDY ALREADY KNEW THE NUMBER: its own "
-                "earnings-per-share reconciliation divides by a weighted-average 2,139,355,716, "
-                "described there as issued less the 1,422,160 shares issued not granted, and its "
-                "FY2024 dividend entry reconciles to EXACTLY EGP 1.00 a share on the same count. "
-                "One fact under two names, and the valuation was dividing by the one that had "
-                "ceased to exist four months before the strike",
-                "2026-05-19", "Company"),
+    # REVERTED 13-09-2026, AND THE REVERSION IS THE CORRECTION. A 10-September pass cut
+    # this count to 2,139,355,716 on the reasoning that an extraordinary general assembly
+    # of 19 May 2026 had cancelled 1,422,160 incentive-scheme shares. Checked against the
+    # company's own record: its investor page publishes issued, paid-up and LISTED capital
+    # of EGP 2,140,777,876, and its regulatory-filings index lists every general-assembly
+    # resolution from 2012 to 2025 with nothing in 2026 at all. The assembly that was said
+    # to have reduced the capital is on no filing this study can point to, and the entry
+    # named no document for it.
+    #
+    # WHAT THE 10-SEPTEMBER PASS ACTUALLY READ was note 39's earnings-per-share
+    # reconciliation, which divides by a weighted-average 2,139,355,716 -- issued capital
+    # less the 1,422,160 shares issued and not granted. That is the IAS 33 DENOMINATOR
+    # CONVENTION: shares held under an unvested scheme are excluded from the weighted
+    # average because they are not yet outstanding for earnings purposes. It is not a
+    # capital reduction, the shares still exist, and the same statements state issued
+    # capital at 2,140,777,876 on the face of the balance sheet. One convention read as
+    # another, in the direction that raises the answer.
+    #
+    # The study divides by the ISSUED count. Effect of the reversion: -0.0665%, EGP 87.8244
+    # to 87.7661, 5.8 piastres a share -- small, and the size is not the point. A number
+    # this study publishes must be one the company publishes.
+    shares_mn=I(2140.777876, "Issued and paid-up capital: 2,140,777,876 shares of EGP 1 par "
+                "value, as stated on the face of the audited FY2025 balance sheet, in the "
+                "Q1-2026 interim, and on the company's own investor page as issued, paid-up "
+                "and listed capital. NOTE 39\'S 2,139,355,716 IS NOT THIS FIGURE AND IS NOT "
+                "A CAPITAL REDUCTION: it is the IAS 33 weighted-average denominator, issued "
+                "capital less the 1,422,160 shares issued under the incentive scheme and not "
+                "granted, which are excluded from earnings per share because they are not yet "
+                "outstanding for that purpose. The shares exist. A 10-September pass read the "
+                "one convention as the other and cut the count, citing an extraordinary "
+                "general assembly of 19 May 2026 that appears on no filing in the company\'s "
+                "own regulatory-filings index -- which lists every general-assembly resolution "
+                "from 2012 to 2025 and nothing in 2026",
+                "2025-12-31", "Company"),
     tax_stat=I(0.225, "Egypt corporate income tax 22.5% (PwC Worldwide Tax Summaries, unchanged "
                "2025-26)", "2026", "Country"),
     tax_eff=I(0.245, "Group effective tax rate used for the forecast. Audited effective rates: "

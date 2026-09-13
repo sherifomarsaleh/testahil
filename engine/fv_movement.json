@@ -1770,6 +1770,28 @@
       "bear": 0.1,
       "full": 0.1
      }
+    },
+    {
+     "delivered": "2026-09-13",
+     "edition": 7,
+     "fair": {
+      "base": 87.763271,
+      "bear": 28.78,
+      "full": 133.78
+     },
+     "lessons": [],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 25.9,
+      "bear": 44.3,
+      "full": -3.6
+     },
+     "vs_previous_pct": {
+      "base": -0.1,
+      "bear": -0.1,
+      "full": -0.1
+     }
     }
    ],
    "exchange": "EGX",

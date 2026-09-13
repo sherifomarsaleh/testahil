@@ -216,9 +216,20 @@ def table(doc, headers, rows, widths, caption=None, size=8.5):
     # table a reader notices) and badly wrong for a register: it tied Value, Unit, Date
     # and Tier to the width of a column of source prose and asked for 51cm of page.
     _grid = len(headers) > 2 and all(str(h).strip().isdigit() for h in headers[1:])
+    # THE SLACK GOES TO THE COLUMN THAT HOLDS THE TEXT, and the fitter's default is
+    # column 0. That is right for a year grid, where column 0 is the long label and the
+    # years are figures, and it was WRONG the first time this ran on a register: section
+    # 7's gaps table gave a 40-character label 10.2cm and a 549-character explanation
+    # 2.9cm, and the table printed one row per page across six pages. The minimum widths
+    # were all correct; every centimetre of slack went to the wrong column. Table
+    # discipline went from zero defects to twenty-four, which is a worse page than the
+    # clipped figure the fix was for [R-COC-01].
+    _gen = 0 if _grid else max(
+        range(len(headers)),
+        key=lambda i: max((len(str(r[i])) for r in rows if i < len(r)), default=0))
     for pt in (size, 8.0, 7.5, 7.0):
         try:
-            widths = _CW.fit_widths(headers, rows, total_cm=total,
+            widths = _CW.fit_widths(headers, rows, total_cm=total, generous=_gen,
                                     equal_from=1 if _grid else None, size=pt)
             size = pt
             break
