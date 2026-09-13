@@ -1,6 +1,7 @@
 # AMOC — the delivered workbook published a superseded answer. Found and repaired.
 
-**Found 10 September 2026, repaired 13 September 2026.** Kept because the failure mode is
+**Measured by `scripts/check_workbook_values.py` and ratcheted on 8 September 2026;
+re-found independently on 10 September; repaired 13 September 2026.** Kept because the failure mode is
 general and the repair is one line in each of two generators.
 
 ## What the reader was handed
@@ -14,7 +15,7 @@ name for **the base the study explicitly superseded**: the twelve-month blend at
 gross margin, replaced by the reviewed half to 30-Jun-2026 at 12.428%. The workbook was
 still running the old base and reproducing it faithfully to six decimal places.
 
-## Why nothing caught it
+## Why it was invisible from inside the study
 
 The base-period correction is carried in `compute.py` as a gross-margin shift laid on top
 of the eight per-line unit builds (`ADOPTED_GM_SHIFT`, 2.744 points). The workbook's
@@ -29,7 +30,9 @@ passed — because it checks the BASE year, which is the twelve-month blend in b
 The divergence opened at the first forecast year and ran through EBIT (2,949 against
 4,407), NOPAT, free cash flow and the present value. **Every one of those 1,867 cells was
 internally consistent with the wrong opening margin**, which is why a checker looking for
-incoherence found none.
+incoherence found none. The gate that DID find it does not look for incoherence:
+it RUNS the study's own recalculation and compares the workbook's answer with the
+study's, which is the one test a self-consistent wrong model cannot pass.
 
 The second copy of the same defect: the sensitivity grid wrote the INCREMENT into its
 margin lever (`-1.0% … +1.0%`) while running `ADOPTED_GM_SHIFT + increment` in the model,
