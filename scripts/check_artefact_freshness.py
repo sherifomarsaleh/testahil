@@ -143,7 +143,14 @@ def numbers_file(sdir):
         p = os.path.join(sdir, n)
         if os.path.exists(p):
             return p
-    return None
+    # A STUDY MAY NAME ITS NUMBERS FILE AFTER ITSELF. XPT writes study_numbers_xpt.json,
+    # so this returned None and the gate reported the whole study UNKNOWN -- which is the
+    # right verdict for a study whose numbers cannot be found and the wrong one for a
+    # study whose numbers are sitting there under a slightly different name. Reported as
+    # unknown only when nothing of the shape exists.
+    import glob as _glob
+    found = sorted(_glob.glob(os.path.join(sdir, 'study_numbers*.json')))
+    return found[0] if found else None
 
 
 def current_edition_artefacts(sdir):
@@ -156,9 +163,30 @@ def current_edition_artefacts(sdir):
     the header.
     """
     import re
+    # A STUDY MAY NOT HOLD ITS OWN DELIVERED FILES. XPT's builders write to the working
+    # directory and its published study, workbook and PDF live in files/, which is where
+    # a reader gets them -- so this reported "no delivered artefact of the current edition
+    # found" for a study with three of them. Searched there too, by ticker prefix, exactly
+    # as the workbook formula-target gate resolves the same case.
+    tk = os.path.basename(sdir)[:-len('_study')].lower()
+    roots = [sdir]
+    if not glob.glob(os.path.join(sdir, '*Valuation_Study*')) \
+            and not glob.glob(os.path.join(sdir, '*Valuation_Model*')):
+        pub = os.path.join(os.path.dirname(ENGINE), 'files')
+        if os.path.isdir(pub):
+            roots.append(pub)
+
+    def _in_roots(pattern):
+        hits = []
+        for root in roots:
+            for f in glob.glob(os.path.join(root, pattern)):
+                if root is sdir or os.path.basename(f).lower().startswith(tk):
+                    hits.append(f)
+        return hits
+
     stamps = set()
     for pat in ('*Valuation_Study*', '*Valuation_Model*'):
-        for f in glob.glob(os.path.join(sdir, pat)):
+        for f in _in_roots(pat):
             m = re.search(r'(\d{2})-(\d{2})-(\d{4})', os.path.basename(f))
             if m:
                 stamps.add('%s-%s-%s' % m.groups())
@@ -175,7 +203,7 @@ def current_edition_artefacts(sdir):
 
     out = []
     for pat in ARTEFACT_GLOBS:
-        for f in sorted(glob.glob(os.path.join(sdir, pat))):
+        for f in sorted(_in_roots(pat)):
             b = os.path.basename(f)
             if b.startswith('~$'):
                 continue
