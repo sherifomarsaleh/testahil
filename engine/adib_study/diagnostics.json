@@ -1,0 +1,18 @@
+{
+ "ticker": "ADIB",
+ "as_of": "2026-09-10",
+ "spot": 52.05,
+ "published_central": 44.460978528259474,
+ "why_this_file": "The reverse read \u2014 what the traded price must believe \u2014 is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits, arriving through a side door. Nothing in this file is an input to anything; it is COMPUTED by diagnostics_adib.py.",
+ "implied": {
+  "quantity": "the single flat cost of equity that reproduces the traded price on this study's own dividend stream",
+  "value": 0.184776059021671,
+  "study_value": 0.20107639066523386,
+  "study_glide_path": {
+   "first_year": 0.2941892545648532,
+   "terminal": 0.1782252545648532
+  },
+  "solved_on": "the published dividend-discount lens through diagnostics_adib.per_share_at, holding every driver at its committed value and varying only the flat discount rate until the model reproduces the traded price. The study's own answer is re-read at a flat rate the same way, so the pair is one quantity measured twice.",
+  "reading": "At EGP 52.05 the price is paying for a flat cost of equity of 18.48%, against the 20.11% that reproduces this study's own EGP 44.4610 on the identical construction \u2014 a disagreement of -163 basis points on ONE number a reader can check. The study's published path runs 29.42% in the first year to 17.82% at the terminal; a flat rate is not that path and is not presented as it, it is the common quantity that lets this name be compared with every other in the book."
+ }
+}

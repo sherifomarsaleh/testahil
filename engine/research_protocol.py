@@ -1726,6 +1726,17 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
         base = _os.path.basename(f)
         if base.startswith(("diagnostic", "gap_review", "recalc", "gate_check")):
             continue
+        # A BUILD ORDER NAMES WHAT EACH STEP WRITES. build_all.py's STEPS list carries
+        # ('diagnostics_scem.py', 'diagnostics.json', 'the reverse read; follows
+        # compute') -- the filename appears there as the step's OUTPUT, which is the
+        # opposite of consuming it, and is in fact the declaration that makes the
+        # ordering checkable at all. Five of the ten studies under recalibration were
+        # failed for declaring their own build order, on the day that order was written.
+        # A check firing on work that is right is re-pointed, never widened
+        # [R-COC-01]: the build runner executes scripts and reads no study data, so it
+        # cannot be the side door this clause exists to close.
+        if base == "build_all.py":
+            continue
         try:
             txt = open(f, encoding="utf-8", errors="ignore").read()
         except OSError:

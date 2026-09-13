@@ -1,0 +1,55 @@
+{
+ "ticker": "ADIB",
+ "as_of": "2026-09-10",
+ "central_adopted": 44.460978528259474,
+ "generated_by": "engine/adib_study/contested.py \u2014 never hand-edited",
+ "direction_count": {
+  "judgements": 4,
+  "material": 4,
+  "alternative_worth_more": 1,
+  "alternative_worth_less": 3,
+  "note": "a study resolving every contested choice the same way is how a lean survives an audit of its steps. This is a flag and not a failure: a company can genuinely deserve a consistent read."
+ },
+ "judgements": [
+  {
+   "name": "the asset yield through the rate cycle",
+   "adopted": "the yield falls with the administered policy path",
+   "alternative": "fifty basis points less of decline than the path implies",
+   "value_alternative": 54.35291860593646,
+   "why": "this is the largest single lever in the study, and it is a claim about how fast a central bank finishing a disinflation lets lending rates fall. The path is the house one; holding the yield higher is a bet on the policy stance persisting",
+   "value_adopted": 44.460978528259474,
+   "cost_of_the_judgement": 9.891940077676985,
+   "share_of_value": 0.2224858832423054
+  },
+  {
+   "name": "the cost of funds through the same cycle",
+   "adopted": "deposit costs fall with the policy path",
+   "alternative": "fifty basis points more of deposit cost than the path implies",
+   "value_alternative": 36.00336976184571,
+   "why": "the other half of the margin, and it moves the answer nearly as far. A bank whose asset yield falls faster than its funding cost is the compression this study forecasts; the alternative is that competition for deposits holds funding costs up",
+   "value_adopted": 44.460978528259474,
+   "cost_of_the_judgement": -8.457608766413763,
+   "share_of_value": 0.1902254301721698
+  },
+  {
+   "name": "the cost of risk",
+   "adopted": "the charge normalises toward the disclosed through-cycle rate",
+   "alternative": "fifty basis points more of provisioning, held",
+   "value_alternative": 39.464665107546324,
+   "why": "the filings disclose the charge but not the vintage behind it, so a normalisation is a judgement rather than a reading",
+   "value_adopted": 44.460978528259474,
+   "cost_of_the_judgement": -4.99631342071315,
+   "share_of_value": 0.11237524647680629
+  },
+  {
+   "name": "the financing growth path",
+   "adopted": "the disclosed run, fading toward the terminal",
+   "alternative": "five points a year less across the whole window",
+   "value_alternative": 38.700419073254764,
+   "why": "credit deepening in an economy whose private credit is about a quarter of GDP is real and it is also finite; the window's own end is the open item this study's macro record declares",
+   "value_adopted": 44.460978528259474,
+   "cost_of_the_judgement": -5.76055945500471,
+   "share_of_value": 0.12956438759761638
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "artefacts": {
+  "ADIB_Bibliography_09-09-2026.docx": "0052fc49c47c971ac6ba79881644af7ff25eed78758d20f7575ba77f65156dcf",
+  "ADIB_Bibliography_10-09-2026.docx": "96f86dc5a70ae6a1938d29696613a23c953c3fe93ac78b74590edfcf72eb47d1",
+  "ADIB_Bibliography_10-09-2026.pdf": "2274775ac64913a1693c3d21e9eee3a6c5c8809ecc27d50eee6409b5b45af495",
+  "ADIB_Valuation_Model_09092026.xlsx": "6da885db7e77f16a01fcd4c7041001502d12b1d07dfa34b3cbad66148a4aba95",
+  "ADIB_Valuation_Model_10092026.pdf": "4db842fa19d73faea144ab17b202e828d0f546c9a3dfae3ee21215396c9d929d",
+  "ADIB_Valuation_Model_10092026.xlsx": "c3187907a791ecd2af412526fcb5f7e0022755311198e211a87986ed2b82b5c1",
+  "ADIB_Valuation_Study_09-09-2026.docx": "7861706715e81fe9eee13e5fb30a8673325e2dceb18afbc008bc5abce1d59c42",
+  "ADIB_Valuation_Study_09-09-2026.pdf": "18d8aa0abf0ea661ea591915e3098631749ab783d8b5a2d79f9d24f842dee335",
+  "ADIB_Valuation_Study_10-09-2026.docx": "febe2fef836c450b754143c0c679f624b25e04e2ebace20a67b2e29d4e5aa873",
+  "ADIB_Valuation_Study_10-09-2026.pdf": "f3bb36b308daafdcc03f16c7a62ddae9eb8f23dfe726afaba115c83dd3917f19"
+ },
+ "numbers_sha256": "754799b8c0abcf0b537d4c56304aa1afb2b484870d537210bed18c97d59e66b5",
+ "why": "A full build wrote every artefact below FROM the numbers file whose digest is recorded here. An artefact is CURRENT when both digests still match, whatever its commit time says: a deterministic figure that regenerates byte-identically is never re-committed and looks stale to a check that reads git. Written only by a full build; a single-step run cannot claim the set."
+}
