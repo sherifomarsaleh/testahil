@@ -102,3 +102,50 @@ US-inflation term.
 forecast year is the year the half measures and it may not disagree with it."* The model would not
 run on the driver its own table publishes. Those two rows were added on 13-09-2026, in this session,
 as a repair to a different defect.
+
+---
+
+## Step 1 — the self-audit, run BLIND to this critique
+
+Launched before the critique was read in detail and given no access to it. 20 findings, every
+one priced by re-running the model. **What matters is not the overlap but the residue.**
+
+### Found by the self-audit and MISSED by the external audit
+
+| Ours | Finding | Price |
+|---|---|---|
+| **#2** | **Segment margins are set at FY2025 PLUS the measured half-on-half CHANGE, not at the half's LEVEL.** Adopted: cables 11.4341%, constructions 8.9871%, electrical 23.6221%. The reviewed half actually printed 12.4890%, 11.5934%, 24.9066%. The choice is in no sensitivity, no scenario and no contested-choices table. | **+30.38 (+34.5%)** → 118.3243, re-run and confirmed |
+| #4 | The terminal FCFF row is described as "FY2030E NOPAT grown 9.14%"; the model hands the module the UNGROWN NOPAT and the next row grows it. Following the printed words double-grows it. | +13.13 (+14.9%) |
+| #7 | Capex is measured flat in LEVEL (+0.91% y/y) and then modelled flat as a SHARE of a revenue line growing 2.3×, so capex rises 74% and runs 3.34× D&A for five years | +6.76 (+7.7%) |
+| #12 | Minority charged at the FY2025 profit share of 9.675% while the reviewed half prints 6.81% of profit and 7.47% of equity — both registered, both declined | +2.85 |
+| #11 | The explicit window ends at 11.37% growth against a terminal of 9.14% — 2.23pp, breaching the 2pp convergence rule, with 89.4% of value in the terminal | ≈+1.8 (estimate) |
+
+### THE REVERSE READ — the finding that governs the answer
+
+Reading the 30 June 2026 reviewed half — the one filing this edition says it re-anchored on — as
+a **LEVEL** rather than as a **CHANGE**, applied consistently to margins, capex and the minority
+share, gives **EGP 129.09 against a spot of 130.00. That is 97.8% of the gap, closed by one
+methodological choice.** The margin leg alone is re-run and confirmed here at 118.3243.
+
+**We do not call this gap genuine [R-GAP-04].** The half is not data the market holds and we
+lack; it is data we read and converted, and the conversion IS the disagreement. The study
+publishes both sides of the corporate cost load (−33.95) and of the pass-through (−5.86). It
+publishes neither side of this, and this one is worth more than both together.
+
+### Direction of the contested calls
+
+Twelve resolved toward the higher value, five toward the lower. **This study is not a stack of
+conservative choices.** It leaned generous on most contested calls and is still 32% below the
+market — which puts the entire gap on the five downward calls, and most of it on one.
+
+### Found by the external audit and MISSED by us
+
+F17 (a capital reduction IS filed — the company's own 23-April release, the EGM of 19 May,
+recorded in the commercial register 16 July, and H1 dividends of 3,957,808,075 = 1.85 ×
+2,139,355,716 exactly); F18 (SWDY was dropped from the EGX30 in February 2025 and the beta's
+stated economic justification depends on a constituency that ended nineteen months before the
+window closed); F5 (the H1 calibration is never named and is listed as a FUTURE catalyst);
+F11 (the copper sensitivity is a mathematical no-op because copper enters only as a ratio);
+F36, F37, F38, F41.
+
+**Neither audit alone was sufficient. Both were necessary.**
