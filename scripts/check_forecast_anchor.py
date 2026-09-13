@@ -120,6 +120,26 @@ MECHANISMS = {
     'one_off_in_the_latest_period':
         'a non-recurring item inside the latest reviewed period, quantified from '
         'the filing that discloses it',
+    # ADDED 13-09-2026, per instruction. THE SIX ABOVE ARE ALL INDUSTRIAL -- input
+    # costs, contracted prices, commissioning, subsidies, mix, one-offs -- because the
+    # three studies this rule was written on were all industrial. ADIB is the book's
+    # first bank and what compresses its forecast margin is none of them: the reviewed
+    # half was earned at the top of an Egyptian tightening cycle and the central bank is
+    # easing, so a deposit-funded bank whose assets reprice faster than its funding
+    # cannot hold a spread struck at the peak. THE LIST WAS CLOSED AND CORRECT AND
+    # POINTED AT ONE KIND OF COMPANY; the answer is to extend the list by rule amendment,
+    # which is what the closed list has always said the answer is, and NOT to widen the
+    # tolerance or re-anchor a forecast that is right [R-COC-01].
+    #
+    # IT CARRIES THE SAME DISCIPLINE AS THE OTHER SIX AND NOT A WEAKER ONE: the rate must
+    # be PUBLISHED by whoever administers it, the disclosure must name that publication,
+    # and the like-for-like measurement below still has to run the declared way in the
+    # company's OWN filings. An administered rate is the easiest thing in this list to
+    # assert and the easiest to be wrong about -- "rates are coming down" is not a
+    # mechanism any more than "the rate looked wrong" was.
+    'administered_rate_cycle_down':
+        'a published policy or administered rate on a disclosed downward path, whose '
+        'move the company\'s own filings already show reaching its realised rate',
 }
 
 # THE MIRROR LIST. A forecast that climbs above everything the company has ever filed
@@ -145,7 +165,33 @@ RISE_MECHANISMS = {
     'one_off_depressing_the_latest_period':
         'a non-recurring charge inside the latest reviewed period, quantified from '
         'the filing that discloses it',
+    # THE MIRROR OF administered_rate_cycle_down, ADDED IN THE SAME AMENDMENT AND ON
+    # PURPOSE. Five of the six fall mechanisms already have their opposite here, and the
+    # general lesson this whole clause was written on is that A RULE WRITTEN ON AN
+    # INCIDENT INHERITS THE INCIDENT'S DIRECTION. Adding a fall-only entry for a policy
+    # cycle would commit that error one level down, in the list instead of in the clause:
+    # a tightening cycle expanding a deposit-funded margin is the identical arithmetic
+    # running the other way, and it would have had no owner.
+    'administered_rate_cycle_up':
+        'a published policy or administered rate on a disclosed upward path, whose move '
+        'the company\'s own filings already show reaching its realised rate',
 }
+
+# THE ONE RISE MECHANISM THAT ALSO OWES A LIKE-FOR-LIKE MEASUREMENT, AND THE REASON IS
+# WRITTEN INTO THE CLAUSE IT EXCEPTS. Clause three excuses the rise side from the
+# measurement on a stated ground: "a rise past the filed record is a claim about something
+# the company has NOT yet done, which by construction has no like-for-like pair in its own
+# history -- demanding one would be demanding evidence that cannot exist", and it recorded
+# the revisit condition in terms: "IF A FUTURE CASE SHOWS A RISE MECHANISM THAT COULD HAVE
+# BEEN MEASURED AND WAS NOT, THAT IS THE EVIDENCE TO TIGHTEN THIS."
+#
+# An administered rate cycle IS that case. Cycles repeat, so a company has filed through
+# previous turns and its realised rate moved then; the evidence is not impossible, it is
+# in the accounts. So the exemption's stated ground does not reach this entry, and the
+# entry carries the measurement while the other five keep the exemption for the reason it
+# was given. It binds FORWARD only -- no study in this book declares this mechanism today,
+# so nothing goes red and no ratchet grows.
+RISE_MEASURED = {'administered_rate_cycle_up'}
 
 REQUIRED = ('latest_reviewed_period', 'latest_reviewed_date', 'latest_reviewed_rate',
             'first_forecast_rate', 'rate_name')
@@ -269,6 +315,43 @@ def check(record, ticker='?'):
                 elif not str(rm.get('disclosure') or '').strip():
                     fails.append('rise mechanism %r carries no disclosure. It must come '
                                  'from the filings, not be asserted.' % rname)
+                elif rname in RISE_MEASURED:
+                    # the mirror of the clause that does the work, and the ONLY rise
+                    # mechanism it applies to: see RISE_MEASURED above for why the
+                    # blanket exemption does not reach here
+                    pair = rm.get('like_for_like') or {}
+                    need = ('period_a', 'period_b', 'value_a', 'value_b', 'measures')
+                    missing = [k for k in need if pair.get(k) in (None, '')]
+                    if missing:
+                        fails.append(
+                            'rise mechanism %r supplies no like-for-like measurement (%s). '
+                            'The blanket exemption for rise mechanisms rests on there being '
+                            'no pair in the company\'s own history to measure; an '
+                            'administered rate cycle has turned before and the accounts '
+                            'carry it, so the exemption does not reach this entry.'
+                            % (rname, ', '.join(missing)))
+                    else:
+                        a, b = _f(pair['value_a']), _f(pair['value_b'])
+                        if a is None or b is None:
+                            fails.append('the rise like-for-like values do not parse as '
+                                         'numbers')
+                        else:
+                            # higher_is_worse keeps ONE meaning across both clauses: a
+                            # higher value of this measure pushes the forecast rate DOWN.
+                            # A rise therefore needs the OPPOSITE move to a decline.
+                            hw = pair.get('higher_is_worse', True)
+                            measured_up = b < a if hw else b > a
+                            if not measured_up:
+                                fails.append(
+                                    'rise mechanism %r says the forecast rate climbs past '
+                                    'the whole filed record, and the like-for-like '
+                                    'measurement in the company\'s own filings runs the '
+                                    'OTHER WAY: %s moved from %.6f (%s) to %.6f (%s). AMOC\'s '
+                                    'lesson does not change direction -- a mechanism '
+                                    'contradicted by the filings is not a mechanism, it is '
+                                    'the assumption wearing one.'
+                                    % (rname, pair['measures'], a, pair['period_a'],
+                                       b, pair['period_b']))
 
     if gap >= -tol:
         if fails:

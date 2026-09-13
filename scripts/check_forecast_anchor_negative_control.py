@@ -15,6 +15,15 @@ a filed peak of 26.23% as at either date -- beside FY2020's recovery out of a
 loss year, which rises and must NOT fire. That pair is the whole argument for
 testing the filed record rather than the forecast's own opening year.
 
+THE POLICY-CYCLE MECHANISM [13-09-2026] carries ADIB's own committed figures: a net
+interest margin forecast to open at 5.937% against a reviewed half annualising to
+6.441% and to fall to 4.815% by FY2030, against a bank whose own filed margin already
+ran 6.638% (FY2025, audited) to 6.441% (H1-2026, reviewed) as the cycle turned. The red
+cases are the mechanism with its like-for-like running the OTHER way -- a margin that
+WIDENED into the latest half while the forecast compresses -- the mechanism with no
+measurement at all, and the mechanism with no disclosure. The mirror entry is controlled
+on both sides too, because it is the one rise mechanism that owes a measurement.
+
     python3 scripts/check_forecast_anchor_negative_control.py
 """
 import json, os, shutil, subprocess, sys, tempfile
@@ -271,7 +280,136 @@ def main():
         put_study(tmp, "NCL", GOOD); put_list(tmp, ["GHOST"])
     case("13 outstanding list names a study not on disk", b_ghost, True, results)
 
+    # ---- THE POLICY-CYCLE MECHANISM [13-09-2026] ---------------------------
+    # ADIB's own numbers, as its study computes them.
+    ADIB_LATEST = 0.06440855            # H1-2026, reviewed, annualised
+    ADIB_FIRST = 0.05937                # FY2026E
+    ADIB_PATH = [0.05937, 0.05534, 0.051745, 0.04973, 0.04815]
+    ADIB_NIM_FY25 = 0.06638029          # FY2025, audited -- the margin BEFORE the turn
+    ADIB_DISCLOSURE = ("Central Bank of Egypt Q1-2026 Monetary Policy Report and the "
+                       "published overnight deposit rate history: 19.00% gliding to "
+                       "12.00% across the forecast window")
+
+    def _adib(r):
+        r["rate_name"] = "net interest margin"
+        r["latest_reviewed_period"] = "H1-2026, reviewed, annualised"
+        r["latest_reviewed_rate"] = ADIB_LATEST
+        r["first_forecast_rate"] = ADIB_FIRST
+        r["forecast_path"] = list(ADIB_PATH)
+
+    def m_policy_no_mechanism(r):
+        # ADIB exactly as it stood on 13-09-2026: the record said what was happening in
+        # prose and the closed list had no entry that could carry it
+        _adib(r)
+
+    def m_policy_contradicted(r):
+        # named, sourced -- and the bank's own filings showing the margin WIDENING into
+        # the latest half. AMOC's lesson, in a bank's costume.
+        _adib(r)
+        r["mechanism"] = {
+            "name": "administered_rate_cycle_down",
+            "disclosure": ADIB_DISCLOSURE,
+            "like_for_like": {
+                "measures": "net interest margin on average total assets",
+                "period_a": "FY2025, audited", "value_a": 0.06200,
+                "period_b": "H1-2026, reviewed, annualised", "value_b": ADIB_LATEST,
+                "higher_is_worse": False},
+        }
+
+    def m_policy_no_measurement(r):
+        _adib(r)
+        r["mechanism"] = {"name": "administered_rate_cycle_down",
+                          "disclosure": ADIB_DISCLOSURE}
+
+    def m_policy_no_disclosure(r):
+        _adib(r)
+        r["mechanism"] = {
+            "name": "administered_rate_cycle_down", "disclosure": "",
+            "like_for_like": {
+                "measures": "net interest margin on average total assets",
+                "period_a": "FY2025, audited", "value_a": ADIB_NIM_FY25,
+                "period_b": "H1-2026, reviewed, annualised", "value_b": ADIB_LATEST,
+                "higher_is_worse": False},
+        }
+
+    # THE MIRROR ENTRY, AND IT IS THE ONLY RISE MECHANISM THAT OWES A MEASUREMENT. A
+    # tightening cycle expanding a deposit-funded margin past everything the company has
+    # ever filed is the identical arithmetic running the other way.
+    def _rise(r):
+        r["rate_name"] = "net interest margin"
+        r["latest_reviewed_period"] = "FY2025, audited"
+        r["latest_reviewed_rate"] = 0.0500
+        r["first_forecast_rate"] = 0.0520
+        r["filed_peak_rate"] = 0.0550
+        r["forecast_path"] = [0.0520, 0.0600, 0.0680, 0.0740, 0.0790]
+
+    def m_rise_policy_no_measurement(r):
+        _rise(r)
+        r["rise_mechanism"] = {"name": "administered_rate_cycle_up",
+                               "disclosure": ADIB_DISCLOSURE}
+
+    def m_rise_policy_contradicted(r):
+        _rise(r)
+        r["rise_mechanism"] = {
+            "name": "administered_rate_cycle_up",
+            "disclosure": ADIB_DISCLOSURE,
+            "like_for_like": {
+                "measures": "net interest margin on average total assets",
+                "period_a": "FY2024, audited", "value_a": 0.0560,
+                "period_b": "FY2025, audited", "value_b": 0.0500,
+                "higher_is_worse": False},
+        }
+
+    for n, m, txt in (
+        ("21 ADIB as it stood -- a policy cycle with no entry on the closed list",
+         m_policy_no_mechanism, "names no mechanism"),
+        ("22 the policy mechanism, contradicted by the bank's own filings",
+         m_policy_contradicted, "runs the OTHER WAY"),
+        ("23 the policy mechanism with no like-for-like measurement",
+         m_policy_no_measurement, "supplies no like-for-like measurement"),
+        ("24 the policy mechanism with no disclosure",
+         m_policy_no_disclosure, "carries no disclosure"),
+        ("25 the RISE policy mechanism with no measurement -- the exemption does not "
+         "reach it", m_rise_policy_no_measurement,
+         "supplies no like-for-like measurement"),
+        ("26 the RISE policy mechanism, contradicted by the filings",
+         m_rise_policy_contradicted, "runs the OTHER WAY")):
+        case(n, broken(m), True, results, expect_text=txt)
+
     # ---- clean -------------------------------------------------------------
+    def c_policy_as_committed(tmp):
+        # ADIB's record exactly as its study now commits it: named, sourced to the
+        # central bank's own publication, and measured in the bank's own two filed
+        # periods running the declared way. It must be GREEN and it must stay green.
+        rec = json.loads(json.dumps(GOOD)); _adib(rec)
+        rec["mechanism"] = {
+            "name": "administered_rate_cycle_down",
+            "disclosure": ADIB_DISCLOSURE,
+            "like_for_like": {
+                "measures": "net interest margin on average total assets",
+                "period_a": "FY2025, audited", "value_a": ADIB_NIM_FY25,
+                "period_b": "H1-2026, reviewed, annualised", "value_b": ADIB_LATEST,
+                "higher_is_worse": False},
+        }
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: ADIB's policy-cycle mechanism as committed",
+         c_policy_as_committed, False, results)
+
+    def c_rise_policy(tmp):
+        rec = json.loads(json.dumps(GOOD)); _rise(rec)
+        rec["rise_mechanism"] = {
+            "name": "administered_rate_cycle_up",
+            "disclosure": ADIB_DISCLOSURE,
+            "like_for_like": {
+                "measures": "net interest margin on average total assets",
+                "period_a": "FY2024, audited", "value_a": 0.0470,
+                "period_b": "FY2025, audited", "value_b": 0.0500,
+                "higher_is_worse": False},
+        }
+        put_study(tmp, "NCL", rec); put_list(tmp, [])
+    case("clean: a tightening cycle, named, sourced and measured",
+         c_rise_policy, False, results)
+
     def c_good(tmp):
         put_study(tmp, "NCL", GOOD); put_list(tmp, [])
     case("clean: forecast at the latest reviewed rate", c_good, False, results)
