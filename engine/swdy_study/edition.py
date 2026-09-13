@@ -18,9 +18,18 @@ destroys the only record of what was said. New edition, new file, the old one st
 """
 import datetime as _dt
 
-EDITION = _dt.date(2026, 9, 10)
+EDITION = _dt.date(2026, 9, 13)
 
-SUPERSEDES = (_dt.date(2026, 8, 5), _dt.date(2026, 9, 9))   # delivered public editions
+# 13-09-2026. The strike, Step 0.0 and the five-year backtest were all re-derived on
+# this date — the price frame moved from a discredited study-local file to the
+# repository library, anchored at the study's own valuation date — and the currency
+# path was derived rather than hand-set, which moved the central from 87.7633 to
+# 87.9425. build_all.py's own rule says re-deriving an input makes a NEW EDITION
+# whose answer must be registered, and it is registered (fv_movement edition 9).
+# Shipping those numbers under the 10-September masthead is the stale-name defect
+# this file exists to prevent, in the one place it would be least excusable.
+SUPERSEDES = (_dt.date(2026, 8, 5), _dt.date(2026, 9, 9),
+              _dt.date(2026, 9, 10))   # delivered public editions
 
 _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')           # the workbook drops the separators

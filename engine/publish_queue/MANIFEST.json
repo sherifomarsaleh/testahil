@@ -142,14 +142,14 @@
   },
   {
    "ticker": "SWDY",
-   "report": "engine/swdy_study/SWDY_Valuation_Study_10-09-2026_public.pdf",
-   "workbook": "engine/swdy_study/SWDY_Valuation_Model_10092026_public.xlsx",
+   "report": "engine/swdy_study/SWDY_Valuation_Study_13-09-2026_public.pdf",
+   "workbook": "engine/swdy_study/SWDY_Valuation_Model_13092026_public.xlsx",
    "fair": {
     "base": 87.94253,
     "bear": 28.566916,
     "full": 138.175135
    },
-   "report_bytes": 1102401,
+   "report_bytes": 1102697,
    "workbook_bytes": 40361
   },
   {
