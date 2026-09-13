@@ -75,6 +75,12 @@ JUDGEMENTS = [
 ]
 
 
+# The study's own published central, read from the committed numbers file rather than
+# typed here, so this artefact cannot drift from the study it describes.
+import json as _json_pc
+_PUBLISHED_CENTRAL = _json_pc.load(
+    open(os.path.join(HERE, "study_numbers.json")))["central"]
+
 def main():
     for j in JUDGEMENTS:
         j["value_adopted"] = ADOPTED
@@ -86,6 +92,12 @@ def main():
         "ticker": "ADIB",
         "as_of": _ed.ISO,
         "central_adopted": ADOPTED,
+        # [R-ENF-06] THE ARTEFACT DECLARES THE ANSWER IT WAS BUILT AGAINST, under the key
+        # the gate reads. `central_adopted` is this file's own adopted figure and is not
+        # that declaration: a file stating a number of its own, with nothing saying which
+        # study central it was current with, cannot be told from a stale one — which is
+        # the whole reason the rule exists. Read live from the numbers file, never typed.
+        "published_central": _PUBLISHED_CENTRAL,
         "generated_by": "engine/adib_study/contested.py — never hand-edited",
         "direction_count": {
             "judgements": len(JUDGEMENTS),

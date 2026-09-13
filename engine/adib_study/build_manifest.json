@@ -1,15 +1,15 @@
 {
  "artefacts": {
   "ADIB_Bibliography_09-09-2026.docx": "0052fc49c47c971ac6ba79881644af7ff25eed78758d20f7575ba77f65156dcf",
-  "ADIB_Bibliography_10-09-2026.docx": "6a83f12ba3b84c0cbceba43d6d230cc1a99aae6ff1931b3bbe8102548ff010e2",
-  "ADIB_Bibliography_10-09-2026.pdf": "58da7d146493513c2ddb2085e3462fe8a425e9e6f490169e93659a6a345f4092",
+  "ADIB_Bibliography_10-09-2026.docx": "52afb9ca769aa1397a0c39721fc8f5c0d08b5b2410e8d10177d3aee10e28132d",
+  "ADIB_Bibliography_10-09-2026.pdf": "ec30e1c154be1e3325c730f79ec9337b913bf8346f6ed5619c25b2987598f60b",
   "ADIB_Valuation_Model_09092026.xlsx": "6da885db7e77f16a01fcd4c7041001502d12b1d07dfa34b3cbad66148a4aba95",
-  "ADIB_Valuation_Model_10092026.pdf": "351b267c7f6a2a72b25e13e8f5a79b1e102cc2951631f3f7c097952f219c8a20",
-  "ADIB_Valuation_Model_10092026.xlsx": "3b669c7f54a0db52006029e87c5dad4821cbaedd1fccce4a635c477390017adc",
+  "ADIB_Valuation_Model_10092026.pdf": "e7b5af381bdbf1720fdf449905bc2c72c6b8e57c264cb20e1a96485d3823e258",
+  "ADIB_Valuation_Model_10092026.xlsx": "0044c9f899643fbe40e4155d27d832f72c12004333e81d1baecbe8570746c5d1",
   "ADIB_Valuation_Study_09-09-2026.docx": "7861706715e81fe9eee13e5fb30a8673325e2dceb18afbc008bc5abce1d59c42",
   "ADIB_Valuation_Study_09-09-2026.pdf": "18d8aa0abf0ea661ea591915e3098631749ab783d8b5a2d79f9d24f842dee335",
-  "ADIB_Valuation_Study_10-09-2026.docx": "aa9c5d50e9713ecd0be998c79552171ff048957b8a1ae046a0c88d5d45d606c9",
-  "ADIB_Valuation_Study_10-09-2026.pdf": "d41d4a70ab99e5b99ab3f3cd2ecb7e597f955ae569e57288cc88ee2a1dc4bcae"
+  "ADIB_Valuation_Study_10-09-2026.docx": "17d99730150212e295a090812dffc1655aa894d16e35a087fd2a6276f09b89e3",
+  "ADIB_Valuation_Study_10-09-2026.pdf": "0c5f52e1c62acc5589e7262b4f2e2e7fb9c684e309f0264b2149947ba5e0a6dc"
  },
  "numbers_sha256": "754799b8c0abcf0b537d4c56304aa1afb2b484870d537210bed18c97d59e66b5",
  "why": "A full build wrote every artefact below FROM the numbers file whose digest is recorded here. An artefact is CURRENT when both digests still match, whatever its commit time says: a deterministic figure that regenerates byte-identically is never re-committed and looks stale to a check that reads git. Written only by a full build; a single-step run cannot claim the set."

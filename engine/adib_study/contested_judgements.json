@@ -2,6 +2,7 @@
  "ticker": "ADIB",
  "as_of": "2026-09-10",
  "central_adopted": 44.460978528259474,
+ "published_central": 44.460978528259474,
  "generated_by": "engine/adib_study/contested.py \u2014 never hand-edited",
  "direction_count": {
   "judgements": 4,
