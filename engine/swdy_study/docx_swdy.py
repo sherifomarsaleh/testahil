@@ -1079,9 +1079,19 @@ P(f"The widths below are calibrated rather than assumed. Tested by walk-forward 
   f"nearly five years — {BT5['windows']} independent non-overlapping quarterly windows with "
   f"origins from {BT5['first_origin']} to {BT5['last_origin']} (the final window runs three "
   f"months past its origin), each one forecast using only data available "
+  # "CLOSE TO THE ADVERTISED RATE" WAS AN EYEBALL. 42% inside a 50% band looks eight
+  # points light; over nineteen windows it is eight outcomes against an expected nine
+  # and a half, which is not a finding. The two-sided exact binomial says so, and it is
+  # printed, because the reader cannot be expected to do small-sample arithmetic in their
+  # head to decide whether a number this study calls close actually is.
   f"before it — outcomes fell inside the stated bands at close to the "
   f"advertised rate ({BT5['cov50']*100:.0f}% inside the 50% band, {BT5['cov80']*100:.0f}% inside "
-  f"the 80%, {BT5['cov90']*100:.0f}% inside the 90%, over those {BT5['windows']} windows), and "
+  f"the 80%, {BT5['cov90']*100:.0f}% inside the 90%, over those {BT5['windows']} windows). "
+  f"Close is tested rather than asserted: a two-sided exact binomial against each band's own "
+  f"rate returns p = {BT5['cov_binom']['50']:.2f}, {BT5['cov_binom']['80']:.2f} and "
+  f"{BT5['cov_binom']['90']:.2f}, so on this sample none of the three departs from its stated "
+  f"rate by more than chance would produce — which is a statement about the sample's size as "
+  f"much as about the calibration, and is worth reading that way. And "
   f"the outcomes were spread evenly across "
   f"the distribution rather than bunching at one end — a uniformity test returns p = "
   f"{BT5['chi2_p']:.2f}, comfortably consistent with a well-calibrated forecast. Over the very "

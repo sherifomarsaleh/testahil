@@ -31,6 +31,9 @@ r_all = backtest_v3(df, EG, horizon_months=3, nu=NU, width_cal=CAL,
 last = pd.Timestamp(df['Date'].iloc[-1])
 cut5 = last - pd.DateOffset(years=5)
 
+from scipy.stats import binomtest as _binomtest
+
+
 def score(r, label):
     r = r.copy()
     r['crps_n'] = r['crps'] / r['spot']
@@ -54,6 +57,18 @@ def score(r, label):
                                    detail[b][2]] for b in (2, 3, 4)},
                cov50=float(r['in50'].mean()), cov80=float(r['in80'].mean()),
                cov90=float(r['in90'].mean()),
+               # "CLOSE TO THE ADVERTISED RATE" IS A CLAIM AND IT NEEDS A TEST. The
+               # delivered study prints 42% inside a 50% band over 19 windows and calls
+               # it close; whether 42 of 100 would be close is a different question from
+               # whether 8 of 19 is, and only the second one is being asked here. A
+               # two-sided exact binomial answers it: under the band's own stated rate,
+               # how likely is a count at least this far from it. The result is published
+               # beside the coverage rather than left to the reader's intuition about
+               # small samples.
+               cov_binom={str(int(100 * q)): round(float(
+                   _binomtest(int(r['in%d' % int(100 * q)].sum()), len(r), q,
+                              alternative='two-sided').pvalue), 3)
+                   for q in (0.50, 0.80, 0.90)},
                pit_mean=float(pit.mean()), pit_hist=hist.tolist(),
                chi2=round(chi2, 2), chi2_p=round(p, 3),
                ks_stat=round(float(ks.statistic), 3), ks_p=round(float(ks.pvalue), 3),
@@ -64,6 +79,8 @@ def score(r, label):
           f"| {verd}")
     for b in (2, 3, 4):
         print(f"    block={b}: 90% CI [{detail[b][0]:+.4f}, {detail[b][1]:+.4f}] {detail[b][2]}")
+    print("  two-sided exact binomial against each band's own rate: "
+          + ", ".join("%s%% p=%.3f" % (k, v) for k, v in out['cov_binom'].items()))
     print(f"  coverage 50/80/90: {out['cov50']:.2f}/{out['cov80']:.2f}/{out['cov90']:.2f} "
           f"| cone width vs benchmark {out['width_vs_benchmark']:.3f}")
     print(f"  PIT mean {out['pit_mean']:.3f} | histogram {out['pit_hist']} | "

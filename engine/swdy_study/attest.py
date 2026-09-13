@@ -37,6 +37,10 @@ def _need(path):
 
 QC = _need('qc_checks.json')
 STRIKE = _need('strike_result.json')
+# THE SWEEP REGISTER IS PART OF THE ATTESTATION, not a file sitting beside it.
+# _need() raises on absence, so a study that stops running its Step 2A sweep stops
+# attesting rather than quietly attesting without it [R-ENF-04].
+SWEEP = _need('sweep_register.json')
 
 wb = openpyxl.load_workbook(EDN.MODEL_XLSX)
 doc = Document(EDN.STUDY_DOCX)
@@ -99,7 +103,12 @@ EVIDENCE = dict(
     figures='%d figures, %d transparent' % (QC['figures'], len(QC['transparent'])),
     tables='%d tables, %d problems' % (QC['tables'], len(QC['table_problems'])),
     typed_numerals='%d in %s' % (len(QC['typed_numerals']), ', '.join(QC['builders'])),
-    workbook='%d formulas, %d checked expected values' % (_fml, len(XP)))
+    workbook='%d formulas, %d checked expected values' % (_fml, len(XP)),
+    sweep='%d findings (%d dated negative searches), %d drivers, primary access %s'
+          % (len(SWEEP['findings']),
+             sum(1 for f in SWEEP['findings'] if f.get('klass') == 'NEGATIVE_SEARCH'),
+             len(SWEEP['drivers']),
+             'logged' if SWEEP.get('primary_access') else 'NOT LOGGED'))
 assert four_lenses, 'the four lenses are not all present'
 assert_model_study(c)
 print('assert_model_study PASSED — every standard attested from evidence')
@@ -142,9 +151,8 @@ sig = SIGCMChecklist(
     flags_raised_before_issue=os.path.exists('rebuild_ledger.json')
                               and bool(json.load(open('rebuild_ledger.json')).get('levers')),
     # clause 9 — where the record could not answer, the study stopped and said so
-    stop_and_inform_honoured=any('negative' in (v.get('source', '').lower()) or
-                                 'not disclosed' in (v.get('source', '').lower())
-                                 for v in INP.values()),
+    stop_and_inform_honoured=sum(1 for f in SWEEP['findings']
+                                 if f.get('klass') == 'NEGATIVE_SEARCH') >= 5,
     na_reasons={'competitors': (
         'No listed comparable exists for this business mix on this exchange: the nearest '
         'regional peer in cables is a Saudi manufacturer with a fraction of the revenue '

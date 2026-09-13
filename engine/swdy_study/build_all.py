@@ -21,6 +21,10 @@ sys.path.insert(0, os.path.dirname(HERE))
 from build_all_shared import run                                    # noqa: E402
 
 STEPS = [
+    # STEP 2A RUNS FIRST BECAUSE THAT IS WHAT IT IS FOR: the information sweep is
+    # the step that happens BEFORE any forecast driver is set, and its validator
+    # fails the build rather than defaulting when the record is incomplete.
+    ('sweep.py', 'sweep_register.json', 'the Step 2A four-ring information sweep and the driver gate table'),
     ('strike_swdy.py', 'strike_result.json', 'the price strike', True),
     ('step0.py', 'step0_result.json', 'Step 0.0, mandatory before any fit or study', True),
     ('beta_reg.py', 'beta_result.json', 'the sanctioned regression, now asserting on its own record', True),
