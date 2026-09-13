@@ -19,6 +19,7 @@ import bottom_up_model as BU
 import valuation_v2 as V2
 import statements as ST
 import research_protocol as RP
+_STD_VERSION = RP.STANDARD_VERSION
 
 IN.assert_balance_sheet_foots()
 BS26_FOOT = IN.assert_balance_sheet_1q26_foots()
@@ -100,7 +101,7 @@ def main():
             # claims to have read). Claiming the newer standard would be the study asserting a
             # conformance the ratchet records it does not have. It moves back to the live constant in
             # the same pass that meets the requirement, and not before.
-            "standard_version": "2026.09.01",
+            "standard_version": _STD_VERSION,
             "spot": 14.40, "spot_date": "close 3 Sep 2026",
         },
         "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
@@ -568,7 +569,10 @@ def main():
 
     # [R-LENS-03] the central IS the class primary, not a blend of lenses
     out["central"] = out["lens_record"]["primary"]["value"]
-    out["standard_version"] = "2026.09.01"   # read by campaign_queue.py; never typed
+    out["standard_version"] = _STD_VERSION   # read by campaign_queue.py, and now
+    # actually never typed: this line carried the literal "2026.09.01" beside a
+    # comment saying it was not typed, which is how a rebuilt study went on
+    # reporting a superseded standard to the campaign queue.
     out["spot"] = 14.40
     out["meta"]["central"] = out["central"]
     out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1

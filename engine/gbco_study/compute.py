@@ -1340,6 +1340,16 @@ res.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
 np.save(os.path.join(HERE, 'fan.npy'), np.array([fan[p] for p in [5, 25, 50, 75, 95]]))
 np.save(os.path.join(HERE, 'pT20.npy'), pT20[:20000])
 np.save(os.path.join(HERE, 'pT60.npy'), pT60[:20000])
+# THE STANDARD STAMP IS READ, NOT TYPED [added 13-09-2026]. engine/campaign_queue.py
+# reads `standard_version` to decide whether a study is built to the LIVE standard, and a
+# study that carries none reads as needing a reissue however recently it was rebuilt.
+# Measured on 13-09-2026: of 24 studies, TWO were stamped at the live 2026.09.10, four at
+# a superseded standard and EIGHTEEN carried no stamp at all -- so the campaign queue
+# listed eight names as outstanding that had just been reissued. Read from the protocol
+# rather than typed, so running a study is what stamps it.
+import research_protocol as _RP_STD
+out['standard_version'] = _RP_STD.STANDARD_VERSION
+
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(out, f, indent=1, default=float)
 print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 3),

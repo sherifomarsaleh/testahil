@@ -92,6 +92,9 @@ def load_register(path=DATA_JS):
     return d['tickers'], d['metals']
 
 
+STAMP_SOURCE = {}
+
+
 def study_standards():
     """ticker -> standard_version stamped by its study, or None if unstamped.
     Absent from the dict means no study directory at all."""
@@ -103,17 +106,44 @@ def study_standards():
             continue
         tk = d[:-len('_study')].upper()
         tk = STUDY_ALIAS.get(tk, tk)
-        version = None
-        for f in sorted(os.listdir(os.path.join(ENGINE, d))):
-            if not f.endswith('.json'):
+        # THE STUDY'S OWN NUMBERS FILE IS THE ANSWER, NOT WHICHEVER JSON SORTS FIRST
+        # [corrected 13-09-2026]. This scanned every .json in the directory in
+        # ALPHABETICAL ORDER and took the first one carrying a standard_version. On AMOC
+        # that is beta_result.json, stamped 2026.09.01 when the beta was last re-derived,
+        # while study_numbers.json beside it says 2026.09.10 -- so a study rebuilt to the
+        # live standard went on being listed as needing a reissue because 'b' sorts before
+        # 's'. The queue's answer depended on filename order, which is not a fact about
+        # any study.
+        #
+        # A SIDE RECORD IS NOT THE STUDY. The numbers file is what every other gate in
+        # this book reads and it is what this one reads now; the fallback scan is kept for
+        # a study that genuinely keeps its record elsewhere, and it now SAYS which file it
+        # took the answer from rather than leaving that to be guessed.
+        version, src = None, None
+        sdir = os.path.join(ENGINE, d)
+        for primary in ('study_numbers.json', 'numbers.json'):
+            fp = os.path.join(sdir, primary)
+            if not os.path.exists(fp):
                 continue
             try:
-                j = json.load(open(os.path.join(ENGINE, d, f), encoding='utf-8'))
+                j = json.load(open(fp, encoding='utf-8'))
             except Exception:
                 continue
             if isinstance(j, dict) and 'standard_version' in j:
-                version = j['standard_version']
-                break
+                version, src = j['standard_version'], primary
+            break
+        if version is None:
+            for f in sorted(os.listdir(sdir)):
+                if not f.endswith('.json'):
+                    continue
+                try:
+                    j = json.load(open(os.path.join(sdir, f), encoding='utf-8'))
+                except Exception:
+                    continue
+                if isinstance(j, dict) and 'standard_version' in j:
+                    version, src = j['standard_version'], f
+                    break
+        STAMP_SOURCE[tk] = src
         out[tk] = version
     return out, STANDARD_VERSION
 

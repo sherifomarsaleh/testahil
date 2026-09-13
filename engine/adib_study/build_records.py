@@ -412,6 +412,16 @@ def main():
     # the 10-09-2026 research pass: what it corroborated and what it left unchanged
     d['research_pass'] = C.RESEARCH_PASS_10_09_2026
 
+    # THE STANDARD STAMP IS READ, NOT TYPED [added 13-09-2026]. engine/campaign_queue.py
+    # reads `standard_version` to decide whether a study is built to the LIVE standard, and a
+    # study that carries none reads as needing a reissue however recently it was rebuilt.
+    # Measured on 13-09-2026: of 24 studies, TWO were stamped at the live 2026.09.10, four at
+    # a superseded standard and EIGHTEEN carried no stamp at all -- so the campaign queue
+    # listed eight names as outstanding that had just been reissued. Read from the protocol
+    # rather than typed, so running a study is what stamps it.
+    import research_protocol as _RP_STD
+    d['standard_version'] = _RP_STD.STANDARD_VERSION
+
     p = os.path.join(HERE, 'study_numbers.json')
     json.dump(d, open(p, 'w'), indent=1, default=float)
     print('written %s' % p)

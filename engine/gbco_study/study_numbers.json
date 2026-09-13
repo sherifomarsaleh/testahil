@@ -1931,5 +1931,6 @@
   "mc_anchor": 29.51,
   "mc_anchor_date": "2026-08-23",
   "price_note": "THIS NOTE WAS STALE AND IS REWRITTEN FROM THE RESOLVER BESIDE IT [07-09-2026]. It stated that no supplied price existed for GBCO and that the study was struck on the exchange library's own last close, and the resolver twelve lines above it had already found one \u2014 so a typed sentence contradicted the committed spot in the same file, which is the defect a computed figure exists to stop. The latest known price is read from the committed engine/prices/SUPPLIED_*.json files and never typed: 28.98 as at 2026-09-03. The cone is a different clock and is anchored on the last real session the exchange library holds, 29.51 on 2026-08-23; both are published with their own dates [R-GAP-01 AMENDED]."
- }
+ },
+ "standard_version": "2026.09.10"
 }

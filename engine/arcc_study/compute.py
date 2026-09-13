@@ -2713,7 +2713,15 @@ import research_protocol as RP
 # study from 2026.09.01 to 2026.09.07 while it is ratcheted against two of that
 # version's requirements. The claim is the version this study was BUILT to, and it
 # moves when the study is brought to a newer standard, not when it is rebuilt.
-STD_VERSION = "2026.09.01"
+# THE STANDARD STAMP IS READ, NOT TYPED [13-09-2026]. campaign_queue.py reads this
+# to decide whether a study is built to the LIVE standard, and a typed literal makes
+# a rebuilt study go on reporting the standard it was written against. Measured on
+# 13-09-2026: of 24 studies only two were stamped at the live 2026.09.10, four were
+# stamped at a superseded standard and eighteen carried no stamp at all, so the
+# campaign queue listed eight names as needing a reissue that had just been reissued.
+# PHDC carried the literal "2026.09.01" on a line whose own comment read "never
+# typed". Read from the protocol, so running a study is what stamps it.
+STD_VERSION = RP.STANDARD_VERSION
 
 _cem_exp_t, _clk_exp_t = 629.5, 1300.5
 _exp_share = V['rev_exp_goods_fy25'] / V['rev_fy25']

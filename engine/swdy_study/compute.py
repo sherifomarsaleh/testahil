@@ -2961,6 +2961,17 @@ OUT = dict(
 # measured. The date is not invented here: it is the spot input's own, surfaced.
 OUT['spot_date'] = INP['spot']['date']
 
+# THE STANDARD STAMP IS READ, NOT TYPED [added 13-09-2026]. engine/campaign_queue.py
+# reads `standard_version` to decide whether a study is built to the LIVE standard, and a
+# study that carries none reads as needing a reissue however recently it was rebuilt.
+# Measured on 13-09-2026: of 24 studies, TWO were stamped at the live 2026.09.10, four at
+# a superseded standard and EIGHTEEN carried no stamp at all -- so the campaign queue
+# listed eight names as outstanding that had just been reissued. Read from the protocol
+# rather than typed, so running a study is what stamps it and a stamp cannot outlive the
+# run that made it.
+import research_protocol as _RP_STD
+OUT['standard_version'] = _RP_STD.STANDARD_VERSION
+
 _carried = write_preserving(os.path.join(HERE, 'study_numbers.json'), OUT)
 if _carried:
     say('[R-REPAIR-01] carried forward downstream-owned record(s): %s' % ', '.join(_carried))

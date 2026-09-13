@@ -1762,5 +1762,16 @@ OUT = dict(
         prior_fy26_margin=0.305, prior_fy25_margin=0.280,
         corrections_applied=69),
 )
+# THE STANDARD STAMP IS READ, NOT TYPED [added 13-09-2026]. engine/campaign_queue.py
+# reads `standard_version` to decide whether a study is built to the LIVE standard, and a
+# study that carries none reads as needing a reissue however recently it was rebuilt.
+# Measured on 13-09-2026: of 24 studies, TWO were stamped at the live 2026.09.10, four at
+# a superseded standard and EIGHTEEN carried no stamp at all -- so the campaign queue
+# listed eight names as outstanding that had just been reissued. Read from the protocol
+# rather than typed, so running a study is what stamps it and a stamp cannot outlive the
+# run that made it.
+import research_protocol as _RP_STD
+OUT['standard_version'] = _RP_STD.STANDARD_VERSION
+
 json.dump(OUT, open(os.path.join(HERE, 'study_numbers.json'), 'w'), indent=1, default=float)
 say("\nwrote study_numbers.json (revision 2)")

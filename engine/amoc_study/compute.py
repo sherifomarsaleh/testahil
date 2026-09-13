@@ -3327,11 +3327,20 @@ _rp.assert_model_study(MODEL_STUDY)
 # claims to have read. Claiming the newer standard would be this study asserting a
 # conformance the ratchet records it does not have. It goes back to the live constant in
 # the same pass that meets the requirement, and not before.
-OUT['gates'] = dict(standard_version="2026.09.01", beta=BETA_REC, ground_up=GROUND_UP,
+# THE STANDARD STAMP IS READ, NOT TYPED [13-09-2026]. campaign_queue.py reads this
+# to decide whether a study is built to the LIVE standard, and a typed literal makes
+# a rebuilt study go on reporting the standard it was written against. Measured on
+# 13-09-2026: of 24 studies only two were stamped at the live 2026.09.10, four were
+# stamped at a superseded standard and eighteen carried no stamp at all, so the
+# campaign queue listed eight names as needing a reissue that had just been reissued.
+# PHDC carried the literal "2026.09.01" on a line whose own comment read "never
+# typed". Read from the protocol, so running a study is what stamps it.
+_STD_VERSION = _rp.STANDARD_VERSION
+OUT['gates'] = dict(standard_version=_STD_VERSION, beta=BETA_REC, ground_up=GROUND_UP,
                     sigcm=[f.name for f in __import__('dataclasses').fields(SIGCM)
                            if f.name != 'na_reasons'],
                     model_study_ok=True)
-OUT['standard_version'] = "2026.09.01"
+OUT['standard_version'] = _STD_VERSION
 say(f"[Gates] beta {BETA_REC['beta']:.4f} vs {BETA_REC['index_file']} (conforming="
     f"{BETA_REC['conforming']}); ground-up record covers "
     f"{sum(GROUND_UP['share_by_level'].values()):.0%} of revenue across {GROUND_UP['lines']} "
