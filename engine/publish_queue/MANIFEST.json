@@ -12,7 +12,7 @@
     "full": 46.01051880646089
    },
    "report_bytes": 399517,
-   "workbook_bytes": 33870
+   "workbook_bytes": 33871
   },
   {
    "ticker": "AMOC",
@@ -145,12 +145,12 @@
    "report": "engine/swdy_study/SWDY_Valuation_Study_10-09-2026_public.pdf",
    "workbook": "engine/swdy_study/SWDY_Valuation_Model_10092026_public.xlsx",
    "fair": {
-    "base": 87.763271,
-    "bear": 28.56,
-    "full": 137.73
+    "base": 87.94253,
+    "bear": 28.566916,
+    "full": 138.175135
    },
-   "report_bytes": 1066638,
-   "workbook_bytes": 40111
+   "report_bytes": 1099258,
+   "workbook_bytes": 40361
   },
   {
    "ticker": "TMGH",
