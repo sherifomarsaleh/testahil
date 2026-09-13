@@ -34,7 +34,7 @@
   },
   "tax_eff": {
    "value": 0.245,
-   "source": "Group effective tax rate used for the forecast. Audited effective rates: FY2023 31.3%, FY2024 30.1%, FY2025 22.6% (all now EXACT \u2014 tax expense / profit before tax, audited statement of profit or loss); Q1-2026 interim 25.75%. No statutory-vs-effective reconciliation is disclosed anywhere in the filings (Egyptian Accounting Standards do not require the IFRS-style table); the group operates in 15+ tax jurisdictions plus Free-Zone entities that pay 1% of revenue to GAFI instead of corporate tax. 24.5% sits between the FY2025 print and the historical average, allowing for the Q1-2026 uptick rather than extrapolating one low year",
+   "source": "Group effective tax rate used for the forecast. Audited effective rates: FY2023 31.3%, FY2024 30.1%, FY2025 22.6% (all now EXACT \u2014 tax expense / profit before tax, audited statement of profit or loss); Q1-2026 interim 25.75%, H1-2026 interim 30.85%, WHICH IMPLIES 35.15% IN THE SECOND QUARTER ALONE. EVERY EARLIER EDITION OF THIS ENTRY STOPPED AT THE QUARTER AND CALLED IT 'the Q1-2026 uptick', while the half that contains it \u2014 registered in this same file as h1_26_tax and flagged there as material \u2014 ran five points higher again. Quoting the quarter as the current observation when the half it sits inside is known and worse is not a neutral choice of period. The adopted 24.5% is therefore BELOW every one of the last four observations and the study prices the alternative explicitly rather than leaving the reader to find it. No statutory-vs-effective reconciliation is disclosed anywhere in the filings (Egyptian Accounting Standards do not require the IFRS-style table); the group operates in 15+ tax jurisdictions plus Free-Zone entities that pay 1% of revenue to GAFI instead of corporate tax. 24.5% sits between the FY2025 print and the historical average, allowing for the Q1-2026 uptick rather than extrapolating one low year",
    "date": "2026-05-13",
    "ring": "Company/House"
   },
@@ -910,7 +910,7 @@
     15076.468749999995,
     15453.380468749994
    ],
-   "source": "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually realised and the current cash price of about 14,000 (early August 2026); thereafter the current level is held flat \u2014 copper is the largest single input into the Cables segment and a directional view on it would dominate the valuation. The -10% column of the sensitivity carries the mean-reversion case",
+   "source": "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually realised and the current cash price of about 14,000 (early August 2026); thereafter that level is ESCALATED AT THE HOUSE'S OWN US LONG-RUN INFLATION of 2.5% a year, reaching about 15,453/t by FY2030E. It is NOT held flat and this note said it was for two editions after the path changed: holding a dollar price flat in nominal terms is a real decline of 2.5% a year, which is a directional view on copper and not the absence of one. The level is still not a forecast \u2014 it is today's price carried forward in real terms. Copper is the largest single input into the Cables segment and a genuine directional view on it would dominate the valuation. The -10% column of the sensitivity carries the mean-reversion case",
    "date": "2026-08-05",
    "ring": "Industry"
   },
@@ -2260,6 +2260,21 @@
  "dcf": {
   "div_at_anchor": 1.9677812737319353,
   "div_days": 91,
+  "scenario_legs": {
+   "beta_bear": 1.5043186425254198,
+   "beta_bull": 0.9454945055705177,
+   "beta_base": 1.2249065740479688,
+   "beta_se": 0.16985536077656596,
+   "beta_n": 256,
+   "gp_bear": 0.88,
+   "gp_bull": 1.12,
+   "fx_bear": 0.94,
+   "fx_bull": 1.08,
+   "opex_bear": 0.005,
+   "opex_bull": -0.005,
+   "beta_only_bear": 86.0723364263391,
+   "beta_only_bull": 89.86234841292973
+  },
   "terminal_spread": 0.06203513371578934,
   "pv_explicit": 23195.251240855512,
   "tv": 493871.53180240764,
@@ -2329,8 +2344,8 @@
   "ps_nci_alt": 99.32936298550855,
   "nci_alt": 21860.79940501007,
   "g": 0.09140000000000015,
-  "bear": 28.566916442324477,
-  "bull": 138.175135007335,
+  "bear": 46.85427404968456,
+  "bull": 133.8340856637828,
   "ccy_alt_ps": 77.86463479154189,
   "ps_kd_egp_equiv": 87.40605727703493,
   "kd_egp_equiv": 0.15539133333646257,
@@ -2403,9 +2418,9 @@
  "lenses": {
   "dcf": {
    "name": "Discounted cash flow (the answer)",
-   "bear": 28.566916442324477,
+   "bear": 46.85427404968456,
    "base": 87.94253027526973,
-   "bull": 138.175135007335,
+   "bull": 133.8340856637828,
    "w": null
   },
   "relative": {
@@ -2433,9 +2448,9 @@
   },
   "central": {
    "name": "Cash-flow lens (the central)",
-   "bear": 28.566916442324477,
+   "bear": 46.85427404968456,
    "base": 87.94253027526973,
-   "bull": 138.175135007335,
+   "bull": 133.8340856637828,
    "w": null
   },
   "retired_blend": {
@@ -2448,8 +2463,8 @@
  },
  "central": 87.94253027526973,
  "span": [
-  28.566916442324477,
-  138.175135007335
+  46.85427404968456,
+  133.8340856637828
  ],
  "spot": 130.0,
  "retired_blend_value": 86.16322311911168,
@@ -2462,14 +2477,14 @@
    "two_sided": false,
    "value": 87.94253027526973,
    "range": {
-    "low": 28.566916442324477,
-    "high": 138.175135007335
+    "low": 46.85427404968456,
+    "high": 133.8340856637828
    },
    "range_note": "the cash-flow lens under its own bear and bull scenarios on one clock, not the widest spread across four methods",
    "range_basis": {
     "driver": "the segment margin paths, the corporate load and the copper and currency path the cables leg is built on",
-    "low": 28.566916442324477,
-    "high": 138.175135007335,
+    "low": 46.85427404968456,
+    "high": 133.8340856637828,
     "units": "EGP per share, the present-value read under each scenario",
     "macro_held": true,
     "evidence": "both scenarios are re-runs of the same three-segment build through dcf_scenario(), which calls the sanctioned terminal module on the scenario's own terminal-year quantities so a scenario cannot run a different construction from the base"
@@ -2838,7 +2853,29 @@
    87.94253027526975,
    89.86020443613874,
    91.46828451147806
-  ]
+  ],
+  "tax_grid": [
+   0.225,
+   0.245,
+   0.275,
+   0.3085,
+   0.35150858886554115
+  ],
+  "grid_tax": [
+   92.89559401873474,
+   87.94253027526975,
+   80.51293466007222,
+   72.2165528897683,
+   61.56533878139304
+  ],
+  "tax_path": {
+   "fy23": 0.313,
+   "q1_26": 0.2575,
+   "h1_26": 0.3085,
+   "q2_26_implied": 0.35150858886554115,
+   "h1_pbt": 15392.39904051864,
+   "adopted": 0.245
+  }
  },
  "step0": {
   "windows_scored": 17,
@@ -2984,7 +3021,8 @@
   "[Forecast equity] attributable profit 23,375, 28,729, 33,491, 38,331, 43,227; net debt path 28,039, 31,592, 30,193, 26,102, 19,905.",
   "[Terminal return on capital] taken as next year's NOPAT over the closing invested capital (22.4%), the standard convention, rather than the same year's NOPAT over closing capital (20.6%).",
   "[Terminal growth reconciliation] historical ROIC 22.3% / 24.9% / 21.0%; reinvestment rate 20.1% / 30.4% / 51.5%; implied g 4.5% / 7.6% / 10.8%. Check (a): actual NOPAT CAGR FY23-FY25 = +26.9%. Check (b): implied g from STABLE years only (FY24 excluded as a debt-funded capacity burst, reinvestment 30%) = 7.6%. Adopted terminal g 9.1%.",
-  "[Terminal value, sanctioned construction] terminal NOPAT 51,298 + book D&A 6,902 - maintenance at replacement cost 12,377 (on the DERIVED 17.26-year life) - growth capital 4,573 (growth capital at the stated real terminal growth) - inflation on working capital 8,882 = FCFF 28,072. TV 493,872 at 15.34% and 9.1% nominal, discounted at the YEAR-5 factor 0.3969 -> PV 195,998, 89% of enterprise value. Implied payout of terminal NOPAT 59.7%; TV against the NOPAT-perpetuity floor +61.2%.",
+  "[Effective tax rate, the whole disclosed path] FY2023 31.3% / FY2024 30.1% / FY2025 22.6% / Q1-2026 25.75% / H1-2026 30.85%, and the SECOND QUARTER ALONE therefore 35.15% \u2014 the half's tax of 4,749 less the quarter's 1,813, over the half's pre-tax 15,392 less the quarter's 7,042. The adopted forecast rate of 24.5% sits BELOW all four of the most recent readings. It is not raised here \u2014 one half is not a five-year forecast \u2014 but it is priced in section 1.9 and discussed, which earlier editions did not do.",
+  "[Terminal value, sanctioned construction] FY2030E NOPAT 47,002 \u2014 the LAST EXPLICIT YEAR's, ungrown, because the module grows the finished cash flow itself and handing it an already-grown figure would overstate the terminal by exactly one year of growth \u2014 + book D&A 6,902 - maintenance at replacement cost 12,377 (on the DERIVED 17.26-year life) - growth capital 4,573 (growth capital at the stated real terminal growth) - inflation on working capital 8,882 = FCFF 28,072. TV 493,872 at 15.34% and 9.1% nominal, discounted at the YEAR-5 factor 0.3969 -> PV 195,998, 89% of enterprise value. Implied payout of terminal NOPAT 59.7%; TV against the NOPAT-perpetuity floor +61.2%.",
   "[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs gives 490,003 (-0.8%), charging 20,901 a year for ever \u2014 an implied replacement cycle of 10.9 years against the 17.26 this company's own note 17 derives. Recorded so the change is visible, and it feeds nothing.",
   "[Terminal ceiling] the domestic leg is 49% of FY30E revenue; a blended long-run nominal ceiling is 11.2% (15% Egyptian nominal on the domestic leg, 7.5% world nominal on the export leg). Adopted g of 9% sits below it.",
   "[Associates] carried at the audited FY2025 carrying value of 6,758 \u2014 the actual closing balance, not the prior year's carrying value scaled by an assumed growth factor. (Reviewed 30-Jun-2026: 7,120.)",
@@ -2998,10 +3036,11 @@
   "[Relative lens \u2014 forward EV discounted, interim flows included] 6.5x on FY2027E EBITDA 47,221 gives an enterprise value of 306,933 AS AT end-FY2027; discounted back at the year-2 factor 0.6425 plus the present value of the interim FY26-27 free cash flows (3,106) that is 200,325 at 31-Dec-2025 -> EGP 79.68/share at the anchor.",
   "[Normalised lens \u2014 current-scale earning power] mid-cycle EBITDA margin 10.64% (FY2028E) on FY2026E revenue 370,194 -> normalised EPS 9.90 x 9.0 = EGP 103.30/share at the anchor. Equity-method associate income is taxed inside this lens although it is already post-tax at the investee \u2014 a disclosed conservatism worth about +0.4/share on the central if removed.",
   "[Book lens] justified price-to-book 1.86x = (sustainable return 23.5% - growth 9%) / (PERPETUAL cost of equity 16.87% - growth). The justified P/B is a steady-state construct whose implied payout is 1 - g/ROE = 61%, deliberately distinct from the five-year forecast payout of 25% \u2014 the two describe different horizons.",
-  "[DCF scenarios] bear 28.57 / base 87.94 / bull 138.18 EGP per share",
-  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP 87.94, with its own bear-to-bull range of 28.57 - 138.18 on one clock. The cross-checks are published beside it at their own values (relative 79.68, book floor 66.61) and the span across all of them, 28.57 - 138.18, is a spread between METHODS and not a range around the answer. Spot 130.00 (-32% to the central).",
+  "[DCF scenarios] bear 46.85 / base 87.94 / bull 133.83 EGP per share",
+  "[Synthesis] THE CENTRAL IS THE CLASS PRIMARY: the cash-flow lens at EGP 87.94, with its own bear-to-bull range of 46.85 - 133.83 on one clock. The cross-checks are published beside it at their own values (relative 79.68, book floor 66.61) and the span across all of them, 36.88 - 133.83, is a spread between METHODS and not a range around the answer. Spot 130.00 (-32% to the central).",
   "[Retired blend, published unused] the 45/20/20/15 weights give EGP 86.16, -34% against the price where the cash-flow lens reads -32% \u2014 so the published number was showing about 104% of the disagreement this study actually holds. Normalised earnings power at 103.30 carried a fifth of it.",
   "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 87.94 against the published 87.94, and at the adopted beta 1.225 it returns 87.94 \u2014 asserted, not eyeballed.",
+  "[Effective tax rate sensitivity, NEW] statutory 22.5% -> 92.90; adopted 24.5% -> 87.94; 27.50% -> 80.51; the reviewed half's 30.85% -> 72.22 (-15.73); the implied second quarter's 35.15% -> 61.57 (-26.38).",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.29x over the forecast.",
   "[Expert panel] Expert 1 176.13 [129.26-222.99]; Expert 2 97.72 [69.84-160.97]; Expert 3 89.43 [66.70-112.16]; panel median 97.72 (-25% vs spot)",
   "[R-STAR-01] What the market must believe, each priced ALONE on a full re-run, from the central of EGP 87.94 toward the traded 130.00 (a gap of 42.06):",
@@ -3016,28 +3055,28 @@
    "name": "Segment margins: FY2025 plus the half's CHANGE, or the half's LEVEL",
    "adopted": "FY2025 + the measured like-for-like half change",
    "alternative": "the reviewed half's own margin level, held flat",
-   "value": 118.3243,
+   "value": 118.32496340676967,
    "note": "THE LARGEST SINGLE JUDGEMENT IN THIS STUDY and it was priced nowhere until now. The half printed cables 12.4890%, constructions 11.5934%, electrical 24.9066%; the study carries 11.4341%, 8.9871%, 23.6221%. The case for a change rather than a level is seasonality \u2014 H1-2025 ran 14.06% against H2-2025 10.71% \u2014 and it rests on a single year of split."
   },
   {
    "name": "Forecast effective tax rate",
    "adopted": "24.5%, between the FY2025 print and the Q1-2026 print",
    "alternative": "the reviewed half's own 30.85%",
-   "value": 73.455,
-   "note": "The half is the most recent and most adverse observation, it is registered, and the register itself calls it \"a material step this re-issue must price rather than average away\". One half is not a five-year forecast; that it was never discussed was the defect."
+   "value": 72.2165528897683,
+   "note": "The half is the most recent and most adverse observation, it is registered, and the register itself calls it \"a material step this re-issue must price rather than average away\". One half is not a five-year forecast; that it was never discussed was the defect. THE HALF IS NOT EVEN THE WORST READING: the quarter inside it printed 25.75%, so the SECOND quarter alone implies 35.15%, which would put the value at 61.57. The whole disclosed series runs 31.3 / 30.1 / 22.6 / 25.75 / 30.85 \u2014 the adopted rate sits below the last four of them."
   },
   {
    "name": "Capital expenditure: flat as a SHARE of revenue, or flat in LEVEL",
    "adopted": "a flat measured share of a revenue line that grows 2.3x",
    "alternative": "held flat in level, as the completed programme measures",
-   "value": 94.702,
+   "value": 94.70203304244312,
    "note": "On the adopted basis capex rises 74% in level and runs 3.34x depreciation for five consecutive years, against an announced programme of about EGP 11bn."
   },
   {
    "name": "Minority interests: the FY2025 profit share or the half's",
    "adopted": "9.675%, the FY2025 share of group profit",
    "alternative": "6.81%, the reviewed half's own share",
-   "value": 90.7944,
+   "value": 90.794410841715,
    "note": "Both are registered and the half was declined. Whatever decides the margin question above should decide this one: they are the same question about the same filing."
   },
   {
@@ -3045,7 +3084,7 @@
    "adopted": "31 December 2025, rolled forward at the cost of equity",
    "alternative": "the reviewed 30 June 2026 balance sheet",
    "value": null,
-   "note": "Net debt at 30 June is 28,629.0 against the 20,560.0 the bridge subtracts. The alternative is worth about -3.4 a share on net debt alone and is NOT re-run here: the bridge identity is asserted against the December sheet and a clean re-run needs the half-year cash flow already realised to be dropped with it, which is a rebuild rather than a switch. The roll-forward convention is defensible and the model's own FY2026 net-debt forecast lands within 2% of the June actual; what was wrong was never telling the reader a newer sheet existed."
+   "note": "Net debt at 30 June is 28,629.0 against the 20,560.0 the bridge subtracts. The alternative is worth -3.53 a share on net debt alone \u2014 re-run through the same function as every other row here, not estimated \u2014 and the FULL switch is NOT re-run: the bridge identity is asserted against the December sheet and a clean re-run needs the half-year cash flow already realised to be dropped with it, which is a rebuild rather than a switch. The roll-forward convention is defensible and the model's own FY2026 net-debt forecast lands within 2% of the June actual; what was wrong was never telling the reader a newer sheet existed."
   }
  ],
  "drivers_as_run": {

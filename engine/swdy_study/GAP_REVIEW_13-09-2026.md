@@ -71,7 +71,7 @@ recent full year measures it leaving.
 
 | Lens | Bear | Base | Bull | Role | vs price |
 |---|---:|---:|---:|---|---:|
-| Discounted cash flow (the answer) | 28.57 | 87.94 | 138.18 | THE ANSWER | -32% |
+| Discounted cash flow (the answer) | 46.85 | 87.94 | 133.83 | THE ANSWER | -32% |
 | Relative multiples | 66.40 | 79.68 | 99.61 | cross-check | -39% |
 | Normalised earnings power | 79.91 | 103.30 | 132.54 | not published for this class | -21% |
 | Book value and sustainable return | 36.88 | 66.61 | 76.17 | a floor, never weighted | -49% |

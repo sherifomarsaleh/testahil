@@ -15,6 +15,7 @@ S0, STK, SEG = D['step0'], D['strike'], D['seg_fy25']
 BU = D['bottomup']
 AR = D['drivers_as_run']   # what the model RUNS, not what an earlier edition ran
 COC = D['cost_of_capital_record']
+_SL = DCF['scenario_legs']   # how the published range is struck [F10]
 _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -26,6 +27,7 @@ H3M = STK['horizons']['3M']; H1M = STK['horizons']['1M']
 
 def n0(x): return f"{x:,.0f}"
 def n1(x): return f"{x:,.1f}"
+def n2(x): return f"{x:,.3f}"
 def p2(x): return f"{x:.2f}"
 def pc(x, dp=1): return f"{x*100:.{dp}f}%"
 def sgn(x, dp=0): return f"{x*100:+.{dp}f}%"
@@ -203,7 +205,20 @@ caption(f"The alternative readings are shown so that each genuinely contested ch
         f"use, how to sequence one line of the bridge — and blending them would hide the "
         f"disagreement instead of showing it. Ranges are bear-to-bull within each lens; "
         f"THE CENTRAL IS THE CASH-FLOW LENS ITSELF and its range is that same lens under its "
-        f"own two scenarios on one clock, not a spread across four methods. Terminal "
+        f"own two scenarios on one clock, not a spread across four methods. Those two "
+        f"scenarios move the cost of capital through the measured beta at its own 90% "
+        f"confidence bounds ({n2(_SL['beta_bear'])} in the bear and {n2(_SL['beta_bull'])} in "
+        f"the bull, around an estimate of {n2(_SL['beta_base'])} with a standard error of "
+        f"{_SL['beta_se']:.4f} on {_SL['beta_n']} weekly observations), not through a round "
+        f"number chosen by hand — so the width of the range is the width the estimate itself "
+        f"supports. Because this study takes the terminal beta to be 1.0, that whole interval "
+        f"reaches the explicit window only and is worth about "
+        f"{p2((_SL['beta_only_bull']-_SL['beta_only_bear'])/2)} a share on its own; the rest of "
+        f"the span is the operating case — segment margins {pc(_SL['gp_bear']-1,0)} to "
+        f"{pc(_SL['gp_bull']-1,0)} against the adopted level, the currency path "
+        f"{pc(_SL['fx_bear']-1,0)} to {pc(_SL['fx_bull']-1,0)}, and the corporate cost load "
+        f"{pc(-_SL['opex_bear'],1)} to {pc(-_SL['opex_bull'],1)} of revenue — which are judged "
+        f"multipliers and are shown here as such. Terminal "
         f"value is {pc(DCF['tv_share'],0)} of the discounted-cash-flow enterprise value — a high "
         f"share, disclosed here and again in the bridge, and the reason the terminal assumptions "
         f"are stress-tested in section 1.9.")
@@ -392,7 +407,10 @@ rows = [['Step', 'EGP mn', 'Note'],
         ['Present value of the five forecast years', n0(DCF['pv_explicit']),
          'sum of the present-value row above'],
         ['Terminal-year free cash flow', n0(_tfcff),
-         f"NOT a reinvestment-rate identity. FY2030E NOPAT grown {pc(DCF['g'],2)}, plus book "
+         f"NOT a reinvestment-rate identity. FY2030E NOPAT of {n0(F['nopat'][-1])} — the last "
+         f"forecast year's, NOT grown, because the capitalisation below grows the finished "
+         f"cash flow one year and growing it here as well would overstate the terminal by a "
+         f"full year — plus book "
          f"depreciation of {n0(_TR['dna_addback'])} added back, LESS maintenance at "
          f"replacement cost {n0(_TR['maintenance'])} on the derived "
          f"{IN['asset_life_derived']:.2f}-year asset life, less growth capital "
@@ -422,9 +440,17 @@ rows = [['Step', 'EGP mn', 'Note'],
         # accounted for the 11,273 difference.
         ["Less the employees' statutory share of distributable profits",
          f"({n0(DCF['emp_charge'])})",
-         f"Egyptian company law gives employees a share of distributable profits; measured "
-         f"at {pc(DCF['emp_rate'])} of profit attributable to owners, the mean of FY2024, "
-         f"FY2025 and H1-2026. It is disclosed only in the earnings-per-share note, below "
+         f"Egyptian company law gives employees a share of DISTRIBUTABLE PROFITS. This "
+         f"study does not compute that statutory base — it is struck at the company level "
+         f"and the filings do not publish it — so the "
+         f"{pc(DCF['emp_rate'])} carried here is not the statutory percentage. It is the "
+         f"OBSERVED RATIO the disclosure itself reports the charge at: the mean of the "
+         f"charge over profit attributable to owners across FY2024, FY2025 and H1-2026, "
+         f"carried forward on the assumption that the relationship between the two bases "
+         f"holds. Stated because the difference matters to a reader checking the law: the "
+         f"base in the statute and the base in this row are not the same quantity, and "
+         f"earlier editions of this table named only the second while citing the first. "
+         f"The charge is disclosed only in the earnings-per-share note, below "
          f"the attributable line, and appears in no line of the income statement. The "
          # THIS CELL SAID "no filing discloses the cap's headroom, so the charge is an
          # UPPER bound" WHILE THE STUDY COMPUTED THE HEADROOM. The wage bill is disclosed
@@ -715,8 +741,13 @@ rows = [['Driver', 'FY2025 base'] + YRS,
         ['Depreciation and amortisation (% of revenue)', pc(IN['dna_pct_hist']['FY25'])] +
         [pc(IN['dna_pct'])] * 5]
 table(rows, [2.35, 0.73, 0.73, 0.73, 0.73, 0.73, 0.73], size=8.0)
-caption(f"Copper is held near the current market level rather than forecast — a directional view "
-        f"on the metal would dominate the valuation, and it is carried in the sensitivity instead. "
+caption(f"Copper is carried forward at the current market level IN REAL TERMS rather than "
+        f"forecast: {n0(IN['copper_fcst'][0])}/t in FY2026 and the level thereafter escalated at "
+        f"the house's own US long-run inflation, reaching {n0(IN['copper_fcst'][-1])}/t by "
+        f"FY2030E. Earlier editions called this 'held flat' and held the dollar price flat in "
+        f"NOMINAL terms, which is a real decline of about a tenth across the window — a "
+        f"directional view on the metal arrived at by leaving a number alone. A directional view "
+        f"would dominate the valuation, and it is carried in the sensitivity instead. "
         # AND THE CAPTION DESCRIBED THE RETIRED DRIVER TOO, in the same sentence that
         # repeated a claim section 7 withdraws. The tonnage exists, it is in the company's
         # own quarterly releases, and this study's cable revenue is built on it.
@@ -1101,6 +1132,14 @@ rows.append(['Working capital / revenue', f"{pc(SN['nwc_grid'][0])} – {pc(SN['
 rows.append(['Terminal return on invested capital',
              f"{pc(SN['roic_grid'][0],0)} – {pc(SN['roic_grid'][-1],0)}", span(SN['grid_roic']),
              p2(max(SN['grid_roic'])-min(SN['grid_roic']))])
+# THE ROW THAT WAS MISSING [F13]. The most adverse observation in this company's whole
+# disclosed tax record was read, registered, flagged material in our own register — and
+# then appeared in no sensitivity, no scenario and no sentence. A reader could not find
+# out what it costs. It costs this.
+rows.append(['Forecast effective tax rate',
+             f"{pc(SN['tax_grid'][0])} (statutory) – {pc(SN['tax_grid'][-1])} (the implied "
+             f"second quarter)", span(SN['grid_tax']),
+             p2(max(SN['grid_tax'])-min(SN['grid_tax']))])
 rows.append(['Terminal growth', f"{pc(SN['g_grid'][0],0)} – {pc(SN['g_grid'][-1],0)}",
              span([r[j] for r in [SN['grid_wacc_g'][2]] for j in range(5)]),
              p2(max(SN['grid_wacc_g'][2])-min(SN['grid_wacc_g'][2]))])

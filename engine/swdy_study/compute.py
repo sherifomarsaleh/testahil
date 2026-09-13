@@ -198,7 +198,15 @@ INP = dict(
                "2025-26)", "2026", "Country"),
     tax_eff=I(0.245, "Group effective tax rate used for the forecast. Audited effective rates: "
               "FY2023 31.3%, FY2024 30.1%, FY2025 22.6% (all now EXACT — tax expense / profit "
-              "before tax, audited statement of profit or loss); Q1-2026 interim 25.75%. No "
+              "before tax, audited statement of profit or loss); Q1-2026 interim 25.75%, "
+              "H1-2026 interim 30.85%, WHICH IMPLIES 35.15% IN THE SECOND QUARTER ALONE. "
+              "EVERY EARLIER EDITION OF THIS ENTRY STOPPED AT THE QUARTER AND CALLED IT 'the "
+              "Q1-2026 uptick', while the half that contains it — registered in this same file "
+              "as h1_26_tax and flagged there as material — ran five points higher again. "
+              "Quoting the quarter as the current observation when the half it sits inside is "
+              "known and worse is not a neutral choice of period. The adopted 24.5% is therefore "
+              "BELOW every one of the last four observations and the study prices the "
+              "alternative explicitly rather than leaving the reader to find it. No "
               "statutory-vs-effective reconciliation is disclosed anywhere in the filings (Egyptian "
               "Accounting Standards do not require the IFRS-style table); the group operates in 15+ "
               "tax jurisdictions plus Free-Zone entities that pay 1% of revenue to GAFI instead of "
@@ -744,9 +752,15 @@ INP = dict(
                                for k in range(1, 5)],
                   "LME copper. FY2026 is set at USD 13,400/t, between the Q1-2026 average actually "
                   "realised and the current cash price of about 14,000 (early August 2026); "
-                  "thereafter the current level is held flat — copper is the largest single input "
-                  "into the Cables segment and a directional view on it would dominate the "
-                  "valuation. The -10% column of the sensitivity carries the mean-reversion case",
+                  "thereafter that level is ESCALATED AT THE HOUSE'S OWN US LONG-RUN INFLATION "
+                  "of 2.5% a year, reaching about 15,453/t by FY2030E. It is NOT held flat and "
+                  "this note said it was for two editions after the path changed: holding a "
+                  "dollar price flat in nominal terms is a real decline of 2.5% a year, which is "
+                  "a directional view on copper and not the absence of one. The level is still "
+                  "not a forecast — it is today's price carried forward in real terms. Copper is "
+                  "the largest single input into the Cables segment and a genuine directional "
+                  "view on it would dominate the valuation. The -10% column of the sensitivity "
+                  "carries the mean-reversion case",
                   "2026-08-05", "Industry"),
     # THE COMPANY DISCLOSES TONNAGE, AND THIS STUDY SAID IT DID NOT [10-Sep-2026].
     # Elsewedy Electric's own quarterly earnings releases carry a table headed
@@ -1684,7 +1698,8 @@ for y, key in (('FY23', 'op_fy23'), ('FY24', 'op_fy24'), ('FY25', 'op_fy25')):
 _PASSTHRU = V['cables_passthrough']
 
 
-def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shift=0.0):
+def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shift=0.0,
+          margins=None):
     """Re-run the whole three-segment build. Scenarios and sensitivity grids call
     THIS, so a currency or copper move flows through Cables' growth rate, and a
     margin shift flows through every segment's margin path, exactly as in the base
@@ -1752,9 +1767,14 @@ def build(fx_mult=1.0, gp_unit_mult=1.0, vol_mult=1.0, copper_mult=1.0, opex_shi
                       * (1 + V['cables_volume_growth'][i]) * (vol_mult ** 0.2))
             r_con *= (1 + V['construct_growth'][i]) * (vol_mult ** 0.2)
             r_ele *= (1 + V['elecprod_growth'][i]) * (vol_mult ** 0.2)
-        m_cab = V['cables_margin'][i] * gp_unit_mult
-        m_con = V['construct_margin'][i] * gp_unit_mult
-        m_ele = V['elecprod_margin'][i] * gp_unit_mult
+        # MARGINS AS A CHANGE OR AS A LEVEL, the largest contested judgement in this
+        # study. The adopted path takes FY2025 and applies the reviewed half's measured
+        # like-for-like CHANGE; the alternative takes the half's own LEVEL. `margins`
+        # supplies the second so section 1.9b re-runs it rather than quoting it.
+        _MB = V if margins is None else margins
+        m_cab = _MB['cables_margin'][i] * gp_unit_mult
+        m_con = _MB['construct_margin'][i] * gp_unit_mult
+        m_ele = _MB['elecprod_margin'][i] * gp_unit_mult
         R.append(dict(cables=r_cab, construct=r_con, elecprod=r_ele))
         seg_margin.append(dict(cables=m_cab, construct=m_con, elecprod=m_ele))
     rev_ = [sum(R[i].values()) for i in range(5)]
@@ -2092,7 +2112,37 @@ pv_tv = tv * df[-1]
 ev = pv_explicit + pv_tv
 tv_share = pv_tv / ev
 _tv_retired = nopat_term * (1 - rr_term) / (wacc_term - V['g_term'])
-say(f"[Terminal value, sanctioned construction] terminal NOPAT {nopat_term:,.0f} + book D&A "
+# THE PRINTED WATERFALL DID NOT ADD UP, and it is the same species as the free-cash-flow
+# table's duplicated depreciation row: the line named the GROWN NOPAT (nopat_term, the
+# first perpetuity year) while the module is handed — and builds the flow on — the LAST
+# EXPLICIT YEAR's, and grows the finished flow itself. A reader adding the five printed
+# numbers got 32,368 against a stated FCFF of 28,072, a discrepancy of exactly the one
+# year of growth. The MODEL is right — terminal_value.py's own contract says the caller
+# supplies the last explicit year and the module grows the free cash flow once, and
+# compute.py passes nopat[-1] — so this is a sentence about the model, not the model.
+# The grown figure keeps its place in the line that uses it: the capitalisation.
+# THE EFFECTIVE-RATE PATH, DERIVED AND COMMITTED. The second quarter's rate is not
+# disclosed anywhere — it is the half net of the quarter, and it is the highest reading in
+# the series. Derived here so no document retypes it and none of them can disagree.
+_Q1_TAX = V['q1_26_pbt'] * V['q1_26_tax_rate'] if 'q1_26_pbt' in V.keys() else 7041.966803 * 0.2575
+_H1_PBT = abs(V['h1_26_tax']) / 0.3085
+TAX_PATH = dict(
+    fy23=V['tax_eff_hist']['FY23'] if 'tax_eff_hist' in V.keys() else 0.313,
+    q1_26=0.2575, h1_26=0.3085,
+    q2_26_implied=(abs(V['h1_26_tax']) - _Q1_TAX) / (_H1_PBT - 7041.966803),
+    h1_pbt=_H1_PBT, adopted=V['tax_eff'])
+say(f"[Effective tax rate, the whole disclosed path] FY2023 31.3% / FY2024 30.1% / FY2025 "
+    f"22.6% / Q1-2026 25.75% / H1-2026 30.85%, and the SECOND QUARTER ALONE therefore "
+    f"{TAX_PATH['q2_26_implied']:.2%} — the half's tax of {abs(V['h1_26_tax']):,.0f} less the "
+    f"quarter's {_Q1_TAX:,.0f}, over the half's pre-tax {_H1_PBT:,.0f} less the quarter's "
+    f"7,042. The adopted forecast rate of {V['tax_eff']:.1%} sits BELOW all four of the most "
+    f"recent readings. It is not raised here — one half is not a five-year forecast — but it "
+    f"is priced in section 1.9 and discussed, which earlier editions did not do.")
+
+say(f"[Terminal value, sanctioned construction] FY2030E NOPAT {nopat[-1]:,.0f} — the LAST "
+    f"EXPLICIT YEAR's, ungrown, because the module grows the finished cash flow itself and "
+    f"handing it an already-grown figure would overstate the terminal by exactly one year of "
+    f"growth — + book D&A "
     f"{_terminal.dna_addback:,.0f} - maintenance at replacement cost {_terminal.maintenance:,.0f} "
     f"(on the DERIVED {V['asset_life_derived']:.2f}-year life) - growth capital "
     f"{_terminal.growth_capex:,.0f} (growth capital at the stated real terminal growth) - inflation on working "
@@ -2101,6 +2151,14 @@ say(f"[Terminal value, sanctioned construction] terminal NOPAT {nopat_term:,.0f}
     f"{df[-1]:.4f} -> PV {pv_tv:,.0f}, {tv_share:.0%} of enterprise value. Implied payout of "
     f"terminal NOPAT {_terminal.record['payout_of_nopat']:.1%}; TV against the NOPAT-perpetuity "
     f"floor {_terminal.record['tv_vs_floor']:+.1%}.")
+# AND IT IS ASSERTED, so the sentence cannot drift off the model again. The five printed
+# quantities must reach the printed free cash flow; nothing else in this study checks that
+# a waterfall a reader adds up actually adds up [R-ENF-03].
+_tw = (nopat[-1] + _terminal.dna_addback - _terminal.maintenance
+       - _terminal.growth_capex - _terminal.wc_charge)
+assert abs(_tw - _terminal.fcff) < 1.0, (
+    'the printed terminal waterfall does not reach the free cash flow it prints: '
+    '%.1f against %.1f' % (_tw, _terminal.fcff))
 say(f"[Terminal value, the RETIRED construction, published unused] g x IC on the same inputs "
     f"gives {_tv_retired:,.0f} ({_tv_retired/tv-1:+.1%}), charging "
     f"{V['g_term']*ic[-1]:,.0f} a year for ever — an implied replacement cycle of "
@@ -2449,23 +2507,54 @@ roe_trailing = V['npa_fy25'] / ((V['eqp_fy24'] + eqp_fy25) / 2)
 
 # ---- scenarios on the DCF -----------------------------------------------------
 def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shift=0.0,
-                 copper_mult=1.0, nwc=None):
+                 copper_mult=1.0, nwc=None, beta=None, tax=None,
+                 capex_level=False, nci=None, nd=None, margins=None):
+    """EVERY CONTESTED JUDGEMENT THIS STUDY PUBLISHES BOTH WAYS IS A RE-RUN THROUGH HERE.
+    Four of the five values in section 1.9b were TYPED LITERALS until this edition —
+    reproductions of an external audit's own model, correct to the decimal on the day they
+    were copied and unable to follow this model anywhere afterwards. A delivered document
+    that prints a number no generator produces is the exact failure this whole edition
+    answers, and it had it in the table whose job is to show the reader what is contested.
+    The levers below exist so that table can be generated instead of transcribed."""
     g = V['g_term'] if g is None else g
+    tax = TAX if tax is None else tax
     nwc = V['nwc_pct'] if nwc is None else nwc
+    nci = nci_share if nci is None else nci
+    nd = V['nd_fy25'] if nd is None else nd
     B = build(fx_mult=fx_mult, gp_unit_mult=gp_unit_mult, copper_mult=copper_mult,
-              opex_shift=opex_shift)
+              opex_shift=opex_shift, margins=margins)
     _rev, _ebitda = B['rev'], B['ebitda']
     _dna = [V['dna_pct'] * r for r in _rev]
     _ebit = [_ebitda[i] - _dna[i] for i in range(5)]
-    _nopat = [e * (1 - TAX) for e in _ebit]
+    _nopat = [e * (1 - tax) for e in _ebit]
     # THE SCENARIO ENGINE READS THE SAME CAPEX CONSTRUCTION AS THE BASE, and the study's
     # own reproduce-the-base assertion is what caught it reading the retired one: two
     # readers of one fact disagreeing [R-ENF-03], found by a gate rather than by eye.
-    _capex = [_CAPEX_PCT_MEASURED * r for r in _rev]
+    # CAPEX FLAT AS A SHARE, or flat in LEVEL. The adopted basis is a flat measured share
+    # of a revenue line that grows 2.3x, which makes capital expenditure rise 74% in level
+    # and run 3.34x depreciation for five consecutive years. Held flat in level instead,
+    # at the measured share of the FIRST forecast year, it matches the announced
+    # programme. Both are defensible and the reader is shown both.
+    if capex_level:
+        _capex = [_CAPEX_PCT_MEASURED * _rev[0]] * 5
+    else:
+        _capex = [_CAPEX_PCT_MEASURED * r for r in _rev]
     _nwc = [nwc * r for r in _rev]
     _dnwc = [_nwc[0] - nwc_fy25] + [_nwc[i] - _nwc[i - 1] for i in range(1, 5)]
     _f = [_nopat[i] + _dna[i] - _capex[i] - _dnwc[i] for i in range(5)]
-    _we, _wt = wacc_exp + wacc_shift, wacc_term + wacc_shift
+    if beta is None:
+        _we, _wt = wacc_exp + wacc_shift, wacc_term + wacc_shift
+    else:
+        # THE COST OF CAPITAL MOVES THROUGH THE BETA, not through a typed shift on the
+        # rate. Rebuilt exactly as the headline builds it, and exactly as the beta
+        # sensitivity row builds it: beta on the MATURE leg, country premium flat beside
+        # it [R-COC-03]. The terminal is NOT touched, because this study adopts a
+        # terminal beta of 1.0 by construction — the company converging on the market —
+        # and that is an assumption about the steady state, not an estimate with an
+        # error around it.
+        _ke = rf_star + beta * ERP_MATURE + CRP_EFF
+        _we = (we_exp * _ke + wd_exp * kd_at) + wacc_shift
+        _wt = wacc_term + wacc_shift
     _fwd = [_we - (_we - _wt) * f for f in glide_frac]
     _df, cc = [], 1.0
     for w in _fwd:
@@ -2488,14 +2577,84 @@ def dcf_scenario(gp_unit_mult=1.0, fx_mult=1.0, wacc_shift=0.0, g=None, opex_shi
         working_capital=_nwc[-1],
         incremental_capital_per_unit_growth=_ic_end)).tv
     _ev = sum(_f[i] * _df[i] for i in range(5)) + _tv * _df[-1]
-    return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)
+    return to_anchor(((_ev - nd + assoc_val) * (1 - nci)
                       * (1 - emp_rate)) / SH)
+
+# ---- the contested judgements, EACH ONE A LIVE RE-RUN ---------------------------
+# The half's own margin LEVELS, derived from the same two registered segment blocks the
+# rest of the study reads, and held flat exactly as the adopted path holds its own.
+_H1_LVL = {k: V['seg_profit_h1_26'][k] / V['seg_rev_h1_26'][k] for k in V['seg_rev_h1_26']}
+_MARGINS_HALF_LEVEL = dict(
+    cables_margin=[_H1_LVL['cables']] * 5,
+    construct_margin=[_H1_LVL['construct']] * 5,
+    elecprod_margin=[_H1_LVL['elecprod']] * 5)
 
 _base_chk = dcf_scenario()
 assert abs(_base_chk - dcf_ps) < 0.02, f'scenario engine does not reproduce base: {_base_chk} vs {dcf_ps}'
 
-dcf_bear = dcf_scenario(gp_unit_mult=0.88, fx_mult=0.94, wacc_shift=+0.02, g=0.03, opex_shift=+0.005)
-dcf_bull = dcf_scenario(gp_unit_mult=1.12, fx_mult=1.08, wacc_shift=-0.02, g=0.06, opex_shift=-0.005)
+# THE PUBLISHED RANGE WAS STRUCK ON TERMINAL GROWTH THE STUDY DOES NOT ADOPT. The bear
+# carried g = 3.0% and the bull g = 6.0%, against an adopted 9.14% and a tested range of
+# 7.14% to 11.14%. BOTH scenarios therefore sat BELOW the base case's own growth rate and
+# outside the grid printed beside them, and the "bull" applied a terminal growth 3.14
+# points BELOW the central's. They are the leftovers of a retired 5% terminal growth
+# "sensitised 3-7%": the growth grid was re-centred on the adopted rate when that
+# construction was withdrawn [R-SENS-01], and the scenarios were not.
+#
+# Re-struck symmetrically around the ADOPTED rate on the same +/-2pp the grid tests, so
+# the range on the cover is a range around the answer on the cover. The bear also had its
+# currency leg pointing the wrong way — a weaker pound RAISES this value, as the study's
+# own currency row shows — so the legs are aligned with the direction the model actually
+# produces rather than with an intuition about which way "bad" runs.
+# AND TERMINAL GROWTH IS NOT A SCENARIO LEVER AT ALL. Re-struck symmetrically around the
+# adopted rate, the bull stacked +2pp of growth ON TOP of -2pp of cost of capital and
+# compressed the terminal spread to 2.2pp, returning EGP 344 — a corner the growth grid
+# never tests and a number no reader should be shown. That is the tell: g_term is DERIVED
+# from the house macro path as inflation compounded with a stated real rate, so moving it
+# inside a company scenario means moving the house's view of Egyptian inflation because
+# this company's margin assumption changed, which is incoherent.
+#
+# NOR IS A TYPED SHIFT ON THE COST OF CAPITAL, AND FOR THE SAME REASON. Dropping the
+# growth lever left a range of 31.28 to 204.86, and the width was almost entirely the
+# +/-2pp on the rate: the terminal is 89% of enterprise value and it is discounted at
+# 15.34% against a growth of 9.14%, so two points off the rate cuts the spread from 6.20
+# to 4.20 and lifts the terminal multiple by 48%. But that rate is three-quarters house
+# macro — a terminal risk-free of 10.50% read off the house path, a mature-market premium
+# of 4.24% and a country premium of 2.13% — and only the beta in it belongs to this
+# company. Moving the whole rate inside a company scenario moves the house's view of
+# Egyptian rates because a margin assumption changed. It is the growth mistake again,
+# wearing the other half of the same formula.
+#
+# THE MODEL REPORT HAD ALREADY RETIRED EXACTLY THIS and its own words are the rule:
+# "the bear and bull cases no longer use round numbers picked by hand. The beta in each
+# is the regression's OWN 90% confidence bound, so the span of the fair-value range is
+# the span the estimate itself supports rather than a judgement about how wrong it might
+# be." SWDY was still on the round numbers. The cost-of-capital leg now moves through
+# the beta at its measured 90% bounds — 0.945 and 1.504 around an estimate of 1.225,
+# standard error 0.1699 on 256 weekly observations, straight out of beta_result.json and
+# not typed here.
+#
+# What that costs, stated rather than buried: the range narrows hard, because this study
+# adopts a terminal beta of 1.0 and the beta leg therefore reaches the explicit window
+# only — the whole 90% interval is worth about EGP 1.9 a share. The width that remains is
+# the operating case, which is where it belongs and where the model report also leaves
+# judged multipliers. The cost of capital keeps its own row in section 1.9, tested on its
+# own across the same +/-2pp, which is the honest place for a stress the estimate cannot
+# size.
+#
+# The scenarios vary what is company-specific — the measured beta at its own error bounds,
+# segment margins, the currency path, the corporate cost load — and the terminal growth
+# and the house rate path both stay where they are derived.
+dcf_bear = dcf_scenario(beta=_BETA['ci90'][1], gp_unit_mult=0.88, fx_mult=0.94, opex_shift=+0.005)
+dcf_bull = dcf_scenario(beta=_BETA['ci90'][0], gp_unit_mult=1.12, fx_mult=1.08, opex_shift=-0.005)
+# THE BETA LEVER REPRODUCES THE HEADLINE AT THE ADOPTED BETA, like every grid in 1.9.
+# Without this a scenario could rebuild the rate on a different construction from the one
+# the cover is struck on and nothing would compare the two [R-ENF-03].
+assert abs(dcf_scenario(beta=V['beta']) - dcf_ps) < 0.05, (
+    'the scenario beta lever does not reproduce the central at the adopted beta: '
+    '%.4f against %.4f' % (dcf_scenario(beta=V['beta']), dcf_ps))
+assert dcf_bear < dcf_ps < dcf_bull, (
+    'the published range must bracket the published answer: %.2f / %.2f / %.2f'
+    % (dcf_bear, dcf_ps, dcf_bull))
 say(f"[DCF scenarios] bear {dcf_bear:.2f} / base {dcf_ps:.2f} / bull {dcf_bull:.2f} EGP per share")
 
 # ---- synthesis: ONE CLASS PRIMARY IS THE CENTRAL [R-LENS-03] -------------------
@@ -2665,6 +2824,30 @@ def dcf_roic(r):
     return to_anchor(((_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)
                       * (1 - emp_rate)) / SH)
 grid_roic = [dcf_roic(r) for r in roic_grid]
+# THE EFFECTIVE TAX RATE GETS ITS OWN ROW [F13]. The most recent, most adverse observation
+# in this company's whole disclosed record — the reviewed half's 30.85%, and the 35.15% it
+# implies for the quarter inside it — was read, registered, and flagged in this study's own
+# register as "a material step this re-issue must price rather than average away". It was
+# then priced nowhere and discussed nowhere. That is the defect: not the rate that was
+# chosen, but that the reader was never shown what the other one costs.
+#
+# The rate is NOT raised. One half is not a five-year forecast and the series it sits in
+# runs 31.3 / 30.1 / 22.6 / 25.75 / 30.85 — too unstable to extrapolate from either end.
+# What changes is that the row exists and the reader can read the cost off it.
+#
+# THE ROW MOVES THE OPERATING TAX ONLY. The debt tax shield stays on the adopted rate,
+# because the shield is a statutory question and this row is about the effective rate the
+# group actually pays across 15-plus jurisdictions and its free-zone entities.
+tax_grid = [V['tax_stat'], TAX, 0.2750, TAX_PATH['h1_26'], TAX_PATH['q2_26_implied']]
+grid_tax = [dcf_scenario(tax=t) for t in tax_grid]
+assert abs(dcf_scenario(tax=TAX) - dcf_ps) < 0.01, (
+    'the tax row does not reproduce the central at the adopted rate: %.4f against %.4f'
+    % (dcf_scenario(tax=TAX), dcf_ps))
+say(f"[Effective tax rate sensitivity, NEW] statutory {V['tax_stat']:.1%} -> "
+    f"{grid_tax[0]:.2f}; adopted {TAX:.1%} -> {grid_tax[1]:.2f}; 27.50% -> {grid_tax[2]:.2f}; "
+    f"the reviewed half's {TAX_PATH['h1_26']:.2%} -> {grid_tax[3]:.2f} "
+    f"({grid_tax[3]-dcf_ps:+.2f}); the implied second quarter's "
+    f"{TAX_PATH['q2_26_implied']:.2%} -> {grid_tax[4]:.2f} ({grid_tax[4]-dcf_ps:+.2f}).")
 # AND IT IS ASSERTED, like every other grid in this section: at the adopted terminal
 # return the row must return the published central, or the table is describing a
 # different company from the one on the cover.
@@ -3023,6 +3206,17 @@ OUT = dict(
               beta_terminal=BETA_TERM),
     star_case=STAR_CASE,
     dcf=dict(div_at_anchor=_DIV_AT_ANCHOR, div_days=_DIV_DAYS,
+             # HOW THE PUBLISHED RANGE IS STRUCK, committed so the document reads it
+             # instead of describing it from memory. The cost-of-capital leg is the beta
+             # regression's own 90% interval; the operating legs are judged multipliers
+             # and are labelled as such.
+             scenario_legs=dict(
+                 beta_bear=_BETA['ci90'][1], beta_bull=_BETA['ci90'][0],
+                 beta_base=V['beta'], beta_se=_BETA['se'], beta_n=_BETA['n'],
+                 gp_bear=0.88, gp_bull=1.12, fx_bear=0.94, fx_bull=1.08,
+                 opex_bear=0.005, opex_bull=-0.005,
+                 beta_only_bear=dcf_scenario(beta=_BETA['ci90'][1]),
+                 beta_only_bull=dcf_scenario(beta=_BETA['ci90'][0])),
              # THE SPREAD THE TERMINAL CAPITALISES AT, committed rather than left to be
              # subtracted on the page. It is the single quantity the largest number in
              # this study turns on, and a figure a document computes for itself is a
@@ -3273,7 +3467,8 @@ OUT = dict(
               grid_exp_term=grid_exp_term, beta_grid=beta_grid, grid_beta=grid_beta,
               fx_grid=fx_grid, grid_fx=grid_fx, mg_grid=mg_grid, grid_margin=grid_margin,
               cu_grid=cu_grid, grid_copper=grid_copper,
-              nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic),
+              nwc_grid=nwc_grid, grid_nwc=grid_nwc, roic_grid=roic_grid, grid_roic=grid_roic,
+              tax_grid=tax_grid, grid_tax=grid_tax, tax_path=TAX_PATH),
     step0=step0, strike=strike,
     assert_log=LOG,
     # THE STALENESS IS DISCLOSED RATHER THAN SWITCHED OFF. Two standing rules govern
@@ -3320,7 +3515,7 @@ OUT = dict(
         dict(name="Segment margins: FY2025 plus the half's CHANGE, or the half's LEVEL",
              adopted='FY2025 + the measured like-for-like half change',
              alternative="the reviewed half's own margin level, held flat",
-             value=118.3243, note=(
+             value=dcf_scenario(margins=_MARGINS_HALF_LEVEL), note=(
                  'THE LARGEST SINGLE JUDGEMENT IN THIS STUDY and it was priced nowhere '
                  'until now. The half printed cables 12.4890%, constructions 11.5934%, '
                  'electrical 24.9066%; the study carries 11.4341%, 8.9871%, 23.6221%. '
@@ -3329,22 +3524,34 @@ OUT = dict(
         dict(name='Forecast effective tax rate',
              adopted='24.5%, between the FY2025 print and the Q1-2026 print',
              alternative="the reviewed half's own 30.85%",
-             value=73.4550, note=(
+             # RE-RUN, NOT TYPED. This cell carried 73.4550 — the external audit's own
+             # reconstruction, reproduced to the decimal and then left sitting in a
+             # delivered document as a literal. A figure a study prints has to come out
+             # of the study's own model or the two can drift apart silently, which is the
+             # failure this whole edition is a response to. The model's own re-run is
+             # 72.22; the 1.2 difference against the audit's figure is the tax shield on
+             # debt, which this row deliberately leaves on the adopted rate.
+             value=grid_tax[3], note=(
                  'The half is the most recent and most adverse observation, it is '
                  'registered, and the register itself calls it "a material step this '
                  're-issue must price rather than average away". One half is not a '
-                 'five-year forecast; that it was never discussed was the defect.')),
+                 'five-year forecast; that it was never discussed was the defect. THE '
+                 'HALF IS NOT EVEN THE WORST READING: the quarter inside it printed '
+                 '25.75%%, so the SECOND quarter alone implies %.2f%%, which would put '
+                 'the value at %.2f. The whole disclosed series runs 31.3 / 30.1 / 22.6 '
+                 '/ 25.75 / 30.85 — the adopted rate sits below the last four of them.'
+                 % (100 * TAX_PATH['q2_26_implied'], grid_tax[4]))),
         dict(name='Capital expenditure: flat as a SHARE of revenue, or flat in LEVEL',
              adopted='a flat measured share of a revenue line that grows 2.3x',
              alternative='held flat in level, as the completed programme measures',
-             value=94.7020, note=(
+             value=dcf_scenario(capex_level=True), note=(
                  'On the adopted basis capex rises 74% in level and runs 3.34x '
                  'depreciation for five consecutive years, against an announced '
                  'programme of about EGP 11bn.')),
         dict(name='Minority interests: the FY2025 profit share or the half\'s',
              adopted='9.675%, the FY2025 share of group profit',
              alternative="6.81%, the reviewed half's own share",
-             value=90.7944, note=(
+             value=dcf_scenario(nci=V['nci_share_h1_26_profit']), note=(
                  'Both are registered and the half was declined. Whatever decides the '
                  'margin question above should decide this one: they are the same '
                  'question about the same filing.')),
@@ -3352,14 +3559,18 @@ OUT = dict(
              adopted='31 December 2025, rolled forward at the cost of equity',
              alternative='the reviewed 30 June 2026 balance sheet',
              value=None, note=(
-                 'Net debt at 30 June is 28,629.0 against the 20,560.0 the bridge '
-                 'subtracts. The alternative is worth about -3.4 a share on net debt '
-                 'alone and is NOT re-run here: the bridge identity is asserted against '
+                 'Net debt at 30 June is %s against the %s the bridge '
+                 'subtracts. The alternative is worth %.2f a share on net debt '
+                 'alone — re-run through the same function as every other row here, not '
+                 'estimated — and the FULL switch is NOT re-run: the bridge identity is '
+                 'asserted against '
                  'the December sheet and a clean re-run needs the half-year cash flow '
                  'already realised to be dropped with it, which is a rebuild rather than '
                  'a switch. The roll-forward convention is defensible and the model\'s '
-                 'own FY2026 net-debt forecast lands within 2% of the June actual; what '
-                 'was wrong was never telling the reader a newer sheet existed.')),
+                 'own FY2026 net-debt forecast lands within 2%% of the June actual; what '
+                 'was wrong was never telling the reader a newer sheet existed.'
+                 % ('{:,.1f}'.format(_nd_jun), '{:,.1f}'.format(V['nd_fy25']),
+                    dcf_scenario(nd=_nd_jun) - dcf_ps))),
     ],
     drivers_as_run=dict(
         seg_g26={k: v for k, v in _SEG_G26.items()},
