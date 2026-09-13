@@ -11,7 +11,23 @@
    "their_words": "Du | Yes | Yes | Yes confirmed by principal | Yes confirmed by principal | No",
    "source": "the principal's own recalibration sheet, supplied 09-09-2026",
    "published": false
+  },
+  "SWDY": {
+   "internal_qc_accepted": true,
+   "internal_qc_gate": "QC_GATE_13-09-2026d.md",
+   "gate_verdict_as_written": "NOT DELIVERABLE",
+   "edition": "2026-09-13",
+   "central_at_acceptance": 87.94253027526973,
+   "confirmed_by": "the principal",
+   "confirmed_on": "2026-09-13",
+   "their_words": "I want you to mark it finsihed for internal QC . That is an order",
+   "what_was_closed": "All four MATERIAL findings of the fourth gate, each verified by reproduction: the ROIC sensitivity row re-centred on the published central (was 99.66 against 87.94, now 87.9425 and asserted); section 1.1's terminal block reading the sanctioned terminal cash flow and stating the arithmetic that reproduces the terminal value (28,072 x 1.0914 / 6.2035% = 493,872, was 30,397 -> 490,003 under a printed 493,872); the currency-of-discounting alternative's two legs moved off the retired reinvestment identity onto the sanctioned terminal (EGP 77.86); and section 7's raw 1.85 dividend moved onto the 1.9678 carried to the anchor.",
+   "what_remains_open": "Seventeen findings from the same gate, accepted by the principal on the stated ground that none of them changes a number a reader would act on -- they are wording that contradicts a figure. They are listed in full in the gate file and are NOT closed, marked closed, or excused: they are open and accepted.",
+   "accepted_on_the_record_that": "630 of 630 workbook formulas evaluate clean, both documents rebuild to zero text differences, the equity bridge foots to 87.94253, the beta is conforming against the published EGX30, and the cost of equity reproduces to the basis point -- the arithmetic was never what the gate was failing on.",
+   "clears": "the external audit. NOT publication.",
+   "published": false
   }
  },
- "_everything_else": "UNCONFIRMED. Not 'no' — unconfirmed. The distinction matters: a name absent from this file has not been ruled either way, and a board must show it blank rather than negative."
+ "_everything_else": "UNCONFIRMED. Not 'no' — unconfirmed. The distinction matters: a name absent from this file has not been ruled either way, and a board must show it blank rather than negative.",
+ "_internal_qc_acceptance": "A THIRD FACT ONLY THE PRINCIPAL CAN ESTABLISH, added 13-09-2026 on his instruction: whether he ACCEPTS a study's open internal-QC findings and clears it to proceed. This is not the QC verdict and does not overwrite one. A gate says what an auditor found; this says what the principal decided to do about it. Keeping the two apart is the whole point -- a verdict edited to say 'nothing found' when the findings are listed two pages below it stops being worth anything the next time anyone relies on one, and the principal is the person it would stop being worth anything to."
 }
