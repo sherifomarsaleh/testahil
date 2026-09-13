@@ -126,6 +126,19 @@ DIRECTORY_GATES = [
     # established, and unknown is not clean [R-ENF-04]. It refuses a bare directory by
     # name, which is what this list is for.
     'check_workbook_formula_targets.py',
+    # ADDED 13-Sep-2026, LATE, AND THE LATENESS IS THE POINT. The gate was written earlier
+    # today and never named in any of these three lists, so this run reported it and went
+    # red — which is exactly the completeness clause working, on its author. A gate nobody
+    # listed is a gate this run never tested, and the run still reporting clean is the
+    # [R-ENF-04] species this whole file exists to close.
+    #
+    # DIRECTORY-scoped, on its sibling's precedent directly above and for the same reason:
+    # it resolves a delivered workbook per study directory, and an empty one yields none.
+    # The gate then reports NO DELIVERED WORKBOOK under its own UNKNOWN heading and FAILS
+    # rather than passing — whether that study publishes an input nothing reads is not
+    # established, and unknown is not clean. Verified against a planted empty directory:
+    # exit 1, naming it.
+    'check_workbook_live_inputs.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by

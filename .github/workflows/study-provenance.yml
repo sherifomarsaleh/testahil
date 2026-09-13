@@ -94,6 +94,8 @@ on:
       - 'scripts/check_workbook_values_negative_control.py'
       - 'scripts/check_workbook_formula_targets.py'
       - 'scripts/check_workbook_formula_targets_negative_control.py'
+      - 'scripts/check_workbook_live_inputs.py'
+      - 'scripts/check_workbook_live_inputs_negative_control.py'
       - 'scripts/check_artefact_freshness.py'
       - 'scripts/check_artefact_freshness_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
@@ -245,6 +247,8 @@ on:
       - 'scripts/check_workbook_values_negative_control.py'
       - 'scripts/check_workbook_formula_targets.py'
       - 'scripts/check_workbook_formula_targets_negative_control.py'
+      - 'scripts/check_workbook_live_inputs.py'
+      - 'scripts/check_workbook_live_inputs_negative_control.py'
       - 'scripts/check_artefact_freshness.py'
       - 'scripts/check_artefact_freshness_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
@@ -716,6 +720,26 @@ jobs:
       # on almost every workbook in the book
       - name: Workbook formula-target gate — negative control
         run: python3 scripts/check_workbook_formula_targets_negative_control.py
+
+      # THE SAME DEFECT FROM THE OTHER END. The gate above catches a formula pointing at
+      # a blank; this one catches a number on an input sheet that no formula points at.
+      # Both are the workbook saying one thing and doing another, and both were found by
+      # narrative audit rather than by a gate: SWDY published 49 declared inputs that
+      # drove nothing, because the forecast block had been pasted rather than built. A
+      # reader changes such a cell, watches the answer not move, and has no way to tell
+      # whether the model is wrong or the cell is decorative.
+      #
+      # The exemption is a LABEL, not a list: a cell whose own label says reference, not
+      # used, alternative, for comparison, memo or superseded is a published comparison
+      # and passes. Everything else is wired or it is red.
+      - name: Workbook live-input gate
+        run: python3 scripts/check_workbook_live_inputs.py
+
+      # and the proof it can go red — including the case that must stay GREEN, a cell
+      # nothing reads whose label declares it a reference, which is most of what an input
+      # sheet legitimately publishes beside its live drivers
+      - name: Workbook live-input gate — negative control
+        run: python3 scripts/check_workbook_live_inputs_negative_control.py
 
       # NO DELIVERED FILE MAY PREDATE WHAT IT WAS MADE FROM. Seven studies were audited
       # from outside on 13-09-2026 and the largest defect class in every one was a step
