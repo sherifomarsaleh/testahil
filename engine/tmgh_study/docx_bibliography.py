@@ -24,7 +24,10 @@ from docx_helpers import (INK, MUTED, ACCENT, money, pct, style, para, bullets,
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 M, W, R = N["meta"], N["wacc"], N["ratios"]
 REG = N["inputs"]
-DATE = "1 September 2026"
+# TYPED, AND A WHOLE EDITION STALE. This is the SOURCES masthead on a 10-09 file, and
+# "10 September" appeared zero times in the delivered document while "1 September
+# 2026" appeared three times. edition.py is imported in this file already.
+DATE = _ed.WORDS
 
 TIER = {"A": "the company's own audited or reviewed statements, or its own "
              "investor documents",

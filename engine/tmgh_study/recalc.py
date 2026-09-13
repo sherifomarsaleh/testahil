@@ -32,6 +32,18 @@ def find_row(ws, label, col=1):
     return None
 
 
+def find_row_startswith(ws, prefix, col=1):
+    """A row resolved by the STABLE PART of its label. A label that gains an explanatory
+    clause is still the same row, and a checker that only matches the whole string reports
+    the row as missing rather than checking it."""
+    for row in ws.iter_rows(min_col=col, max_col=col):
+        c = row[0]
+        if isinstance(c.value, str) and c.value.strip().lower().startswith(
+                prefix.strip().lower()):
+            return c.row
+    return None
+
+
 def cells(ws, row, start, n):
     return [ws.cell(row=row, column=start + i).value for i in range(n)]
 
@@ -108,7 +120,11 @@ def main():
     check("minority deducted at its share of value (adopted basis)",
           None if r is None else ws.cell(row=r, column=2).value,
           -(b["equity_before_minority"] - b["equity_after_nci_value_share"]), results=res)
-    r = find_row(ws, "reference: minority at book")
+    # THE LABEL GAINED A CLAUSE when the row it sits beside was corrected, and this
+    # check resolves by exact match. A check that cannot find its subject has not
+    # passed, it has not run -- it reported "unparseable", which is the right answer
+    # and the wrong outcome. Matched on the stable part of the label.
+    r = find_row_startswith(ws, "  reference: minority at book")
     check("minority at book shown for reference",
           None if r is None else ws.cell(row=r, column=2).value, -b["nci_book"], results=res)
     r = find_row(ws, "Enterprise value")

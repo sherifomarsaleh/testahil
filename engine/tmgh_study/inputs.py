@@ -248,8 +248,9 @@ GAPS = {
                             gap="Finance cost is disclosed as finance expenses plus bank "
                                 "charges, with no split between interest on borrowings and "
                                 "the unwinding of the significant financing component on "
-                                "customer contracts. The implied 44% on opening "
-                                "interest-bearing debt is therefore not a borrowing rate. "
+                                "customer contracts. The implied rate on opening "
+                                "interest-bearing debt -- which section 1.6 computes and "
+                                "prints -- is therefore not a borrowing rate. "
                                 "WHAT WOULD CLOSE IT: the split, or a disclosed weighted "
                                 "average borrowing rate."),
     "segment_capex": I(None, FS25, "2025-12-31", "A", unit="n/a",

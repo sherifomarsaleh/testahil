@@ -235,12 +235,20 @@ def build(path):
     gross_row = r
     r = put(s, r, "Value of the whole group's equity",
             "=B%d+SUM(B%d:B%d)" % (ev_row, ev_row + 1, r - 1), fmt=NUM, bold=True)
+    # THE BRIDGE DEDUCTED THE WRONG MINORITY. The adopted deduction is the minority at
+    # its SHARE OF VALUE; the row beneath it is a REFERENCE showing the same minority at
+    # book, printed so a reader can see the difference. The total below read "r - 1",
+    # which is the reference row, so the delivered workbook deducted the book figure and
+    # published 284,807 and EGP 138.21 where the study publishes 284,849 and 138.23.
+    # Both rows are named here rather than counted backwards from wherever the cursor is.
+    nci_row = r
     r = put(s, r, "Non-controlling interests at their share of value (adopted)",
             -(c["equity_before_minority"] - c["equity_after_nci_value_share"]), fmt=NUM)
-    r = put(s, r, "  reference: minority at book", -c["nci_book"], fmt=NUM)
+    r = put(s, r, "  reference: minority at book — NOT deducted below", -c["nci_book"],
+            fmt=NUM)
     eq_row = r
     r = put(s, r, "Equity attributable to TMG's shareholders",
-            "=B%d+B%d" % (gross_row, r - 1), fmt=NUM, bold=True)
+            "=B%d+B%d" % (gross_row, nci_row), fmt=NUM, bold=True)
     r = put(s, r, "Shares in issue, million", M["shares_mn"], fmt=NUM2)
     r = put(s, r, "Value per share, EGP", "=B%d/B%d" % (eq_row, r - 1), fmt=NUM2,
             bold=True)

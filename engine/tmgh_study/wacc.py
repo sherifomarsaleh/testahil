@@ -8,9 +8,18 @@ and forced a re-issue across the book.
 
 Both ERP bases are published, per the dual-framing rule.
 """
+import datetime as _dt
 import json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed
+
+# THE AGE WAS TYPED AND WENT STALE WITH THE EDITION. 26 days was true of the 1-September
+# edition; this one is dated 10 September and the quote is 6 August, so it is 35. A
+# sentence about a date is a figure and it is computed from the two dates it describes.
+_QUOTE_AGE_DAYS = (_ed.EDITION - _dt.date(2026, 8, 6)).days
+
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, ENGINE)
 sys.path.insert(0, HERE)
@@ -66,7 +75,8 @@ RF_SOURCE = (
     "therefore recorded as a stale second reading rather than a refresh. A 10-year at "
     + _pc(RF_OBSERVED) + " against a " + _pc(CBE_POLICY) + " policy rate implies a term "
     "premium of about " + ("%.0f" % round((RF_OBSERVED - CBE_POLICY) * 100)) + " points, "
-    "which is plausible for this curve. FLAGGED: the adopted quote is 26 days old at "
+    "which is plausible for this curve. FLAGGED: the adopted quote is "
+    + str(_QUOTE_AGE_DAYS) + " days old at "
     "this build date. Section 1.9 prices the sensitivity of fair value to it."
 )
 

@@ -11,6 +11,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from numbers_file import write_preserving          # [R-REPAIR-01]
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, ENGINE)
@@ -54,7 +56,10 @@ def build():
         "meta": {
             "instrument": "Talaat Moustafa Group Holding", "ticker": "TMGH",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition_date": "2026-09-02",
+            # TYPED, AND IT IS WHAT THE WORKBOOK MASTHEAD PRINTS. Being the record's
+            # sole source it could not disagree with anything, so the typed-date gate
+            # had nothing to compare it against and it sat two editions stale.
+            "edition_date": _ed.ISO,
             # THE STAMP WAS FROZEN AND THIS IS THE PASS THAT UNFREEZES IT [R-STD-02].
             # It read a hard 2026.09.01 because this study was listed as not meeting one
             # requirement of the newer standard: an asset-base record whose vintage is at

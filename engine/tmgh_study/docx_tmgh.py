@@ -17,7 +17,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import edition as _ed        # the edition date, written once
+import edition as _ed
+import wacc as _WACC_MOD    # the quote age, computed once        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 ROOT = os.path.dirname(ENGINE)
 sys.path.insert(0, HERE)
@@ -827,8 +828,10 @@ def section1_drivers(doc):
               "gives the same pound arriving on the same day two different values, "
               "and it is not done here."
               % money(SCHED["terminal_discount_factor"], 3), size=9, color=MUTED)
-    para(doc, "One caveat on the risk-free rate. The quote adopted is 26 days "
-              "old at the date of this study. It was cross-checked against three "
+    # TYPED IN TWO PLACES, AND BOTH WERE TRUE OF THE 1-SEPTEMBER EDITION. The quote is
+    # 6 August and this edition is 10 September, which is 35 days, not 26.
+    para(doc, "One caveat on the risk-free rate. The quote adopted is %d days "
+              "old at the date of this study." % _WACC_MOD._QUOTE_AGE_DAYS + " It was cross-checked against three "
               "current central-bank rates rather than accepted alone, and its "
               "effect is priced across the whole plausible range in the next "
               "section. It should be refreshed before this study is relied on.",

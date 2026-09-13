@@ -5,7 +5,7 @@
   "exchange": "EGX",
   "market": "EG",
   "currency": "EGP",
-  "edition_date": "2026-09-02",
+  "edition_date": "2026-09-10",
   "standard_version": "2026.09.10",
   "spot": 96.6,
   "spot_source": "Egyptian Exchange close for 2 September 2026, the latest price this repository holds for this name, read from the committed supplied price file through gap_today.latest_price_per_ticker(). SUPERSEDES the 23 August 2026 close of 97.80 the study was struck at: a fair value put against a price ten days old is a comparison a reader cannot use, however good the fair value is.",
@@ -1018,7 +1018,7 @@
     "date": "2025-12-31",
     "tier": "A",
     "unit": "n/a",
-    "gap": "Finance cost is disclosed as finance expenses plus bank charges, with no split between interest on borrowings and the unwinding of the significant financing component on customer contracts. The implied 44% on opening interest-bearing debt is therefore not a borrowing rate. WHAT WOULD CLOSE IT: the split, or a disclosed weighted average borrowing rate."
+    "gap": "Finance cost is disclosed as finance expenses plus bank charges, with no split between interest on borrowings and the unwinding of the significant financing component on customer contracts. The implied rate on opening interest-bearing debt -- which section 1.6 computes and prints -- is therefore not a borrowing rate. WHAT WOULD CLOSE IT: the split, or a disclosed weighted average borrowing rate."
    },
    "segment_capex": {
     "value": null,
@@ -1085,7 +1085,7 @@
   },
   "inputs": {
    "rf_observed": 0.23,
-   "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026, the same sourced quote this repository's current Egyptian editions carry. CROSS-CHECKS taken 1-Sep-2026: the Central Bank of Egypt held its policy rate at 19.00% at its August 2026 meeting with an overnight lending rate of 20.00% and an interbank rate of 19.51% (Trading Economics, Egypt interest rate); Investing.com's Egypt 10-year page quotes 22.880%, but its own timestamp reads 2-Feb-2026 and it is therefore recorded as a stale second reading rather than a refresh. A 10-year at 23.00% against a 19.00% policy rate implies a term premium of about 4 points, which is plausible for this curve. FLAGGED: the adopted quote is 26 days old at this build date. Section 1.9 prices the sensitivity of fair value to it.",
+   "rf_source": "Egypt 10-year EGP government bond yield 23.00%, market quote dated 6-Aug-2026, the same sourced quote this repository's current Egyptian editions carry. CROSS-CHECKS taken 1-Sep-2026: the Central Bank of Egypt held its policy rate at 19.00% at its August 2026 meeting with an overnight lending rate of 20.00% and an interbank rate of 19.51% (Trading Economics, Egypt interest rate); Investing.com's Egypt 10-year page quotes 22.880%, but its own timestamp reads 2-Feb-2026 and it is therefore recorded as a stale second reading rather than a refresh. A 10-year at 23.00% against a 19.00% policy rate implies a term premium of about 4 points, which is plausible for this curve. FLAGGED: the adopted quote is 35 days old at this build date. Section 1.9 prices the sensitivity of fair value to it.",
    "kd_local": 0.255,
    "kd_source": "Marginal, forward-looking, in the cash-flow currency: Egypt 10-year sovereign 23.00% plus a 250bp corporate spread, giving 25.50%. TMG's own facility pricing is NOT disclosed in any statement or release held (recorded as a GAP in the input register), so the company's own latest issue cannot be used. The result sits ABOVE the local sovereign, as a same-currency corporate must. TMG's borrowings are EGP-denominated bank facilities and loans; no foreign-currency tranche is disclosed separately, so no local-equivalent FX adjustment applies.",
    "spot": 96.6,

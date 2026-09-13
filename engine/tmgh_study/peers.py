@@ -6,6 +6,22 @@ TMG's own reported numbers (SIGCM clause 5).
 """
 import csv, datetime, json, os, sys
 
+# BOTH READ FROM THE COMMITTED RECORD. Each was typed once and each drifted: the implied
+# finance rate to 44% against 33.35%, and the first cash-negative year to FY2030 against
+# FY2035. A risk register that quotes the model has to read it.
+def _committed():
+    import json as _json
+    import os as _os
+    _n = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
+                                       'study_numbers.json')))
+    _rows = _n['statements']['recovery']['full_rows']
+    _neg = next((r['year'] for r in _rows if r.get('cash', 0) < 0), _rows[-1]['year'])
+    return _n['ratios']['implied_finance_rate_fy25'], _neg
+
+
+_IMPLIED_FIN_RATE, _FIRST_CASH_NEGATIVE = _committed()
+
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
@@ -62,8 +78,12 @@ RISKS = [
             "error small",
      "what_would_change_it": "a sustained period of currency stability"},
     {"risk": "Cash strain if handovers accelerate",
+     # FY2030 WAS TYPED AND IS NOT THE YEAR. Recomputed from the faster reading's own
+     # rows, 2030 closes at +149,276 and the first negative year is 2035 -- which
+     # appendix A.3 states correctly, four pages from this sentence.
      "why": "a developer that accelerates handovers builds before it collects; the "
-            "faster reading goes cash-negative from FY2030 and needs funding",
+            "faster reading goes cash-negative from FY%d and needs funding"
+            % _FIRST_CASH_NEGATIVE,
      "priced_at": "the faster-conversion reading's own cash-flow statement, A.3",
      "what_would_change_it": "shorter payment plans, or pre-sales collected earlier"},
     {"risk": "The Saudi leg is recognised on a different clock",
@@ -83,10 +103,13 @@ RISKS = [
     # rate against the marginal borrowing rate the model actually charges. It is read
     # from the record rather than typed, so it cannot drift from the rate in use.
     {"risk": "Finance cost is not what it appears",
-     "why": "the reported charge implies 44%% on interest-bearing debt against the "
+     # THE COMMENT ABOVE SAYS "READ FROM THE RECORD RATHER THAN TYPED" and one side of
+     # the comparison was typed: 44% against a committed 33.35%. The sentence that
+     # described the discipline was the one place it was not followed.
+     "why": "the reported charge implies %.1f%% on interest-bearing debt against the "
             "%.2f%% marginal borrowing rate this model charges; the excess is "
             "contract-financing unwind that the statements do not split out"
-            % (100 * _KD_PRETAX),
+            % (100 * _IMPLIED_FIN_RATE, 100 * _KD_PRETAX),
      "priced_at": "recorded as a gap; a correction for this line was tested and "
                   "deliberately not adopted, for the reason given in section 1.6",
      "what_would_change_it": "the split, or a disclosed average borrowing rate"},

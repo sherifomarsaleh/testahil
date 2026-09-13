@@ -1,6 +1,6 @@
 {
  "ticker": "TMGH",
- "as_of": "2026-09-02",
+ "as_of": "2026-09-10",
  "published_central": 108.19426939740487,
  "published_spot": 96.6,
  "judgements": [
@@ -33,7 +33,7 @@
    "adopted": "inflation only, zero real, on the house macro path",
    "alternative": "the 15% the earlier editions carried",
    "value_adopted": 140.74273696296459,
-   "value_alternative": 98.17,
+   "value_alternative": 172.87898361981343,
    "why": "15% nominal growth in perpetuity against a terminal rate embedding 7% inflation is eight points of real growth a year for ever, which nothing disclosed supports"
   }
  ]

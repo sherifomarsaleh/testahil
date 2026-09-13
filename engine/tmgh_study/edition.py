@@ -28,6 +28,9 @@ _D = EDITION.strftime('%d-%m-%Y')
 _C = EDITION.strftime('%d%m%Y')
 
 ISO = EDITION.isoformat()
+# THE EDITION IN WORDS, for a masthead. Three studies carry it and this one did not,
+# so its SOURCES masthead typed '1 September 2026' onto a 10-09 file.
+WORDS = '%d %s %d' % (EDITION.day, EDITION.strftime('%B'), EDITION.year)
 STUDY_DOCX = 'TMGH_Valuation_Study_%s.docx' % _D
 MODEL_XLSX = 'TMGH_Valuation_Model_%s.xlsx' % _C
 SOURCES_DOCX = 'TMGH_Sources_%s.docx' % _D
