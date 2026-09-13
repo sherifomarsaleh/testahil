@@ -319,7 +319,14 @@ H2('The valuation, on one page')
 # the module refuses to render a table whose present values do not sum to the
 # enterprise value the study published.
 import dcf_table as _DT
-_vt_rows, _vt_bridge, _vt_rec = _DT.dcf_table(D, currency='EGP', unit='mn')
+# THIS STUDY'S OWN NAMES FOR TWO CONTRACT FIELDS. Undeclared, the shared bridge
+# found neither: it read `emp_val` where this study files `emp_charge`, and
+# meta.shares where this study writes shares_mn. The employees' statutory share
+# is EGP 22,575mn -- 10.55 a share -- and the delivered bridge printed an equity
+# value its own printed lines did not reach.
+_vt_rows, _vt_bridge, _vt_rec = _DT.dcf_table(
+    D, currency='EGP', unit='mn',
+    fields={'emp_val': 'emp_charge', 'shares': 'shares_mn'})
 table(_vt_rows, [2.10, 0.62, 0.62, 0.62, 0.62, 0.62], size=7.6,
       band_rows={_i for _i, _r in enumerate(_vt_rows)
                  if _r[0] == 'Free cash flow to the firm'})

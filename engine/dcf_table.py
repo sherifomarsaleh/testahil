@@ -177,16 +177,58 @@ def dcf_table(numbers, currency="EGP", unit="mn", per_share_dp=2, blocks=None,
     if g is not None:
         one("Terminal growth", g, pct=True)
     one("ENTERPRISE VALUE", d["ev"])
-    one("Less: net debt", -d["nd"])
+    # THE BRIDGE MUST FOOT TO THE TOTAL IT PRINTS, and this one did not.
+    #
+    # Each line below is conditional on a key being present, and a study filing the same
+    # value under a DIFFERENT NAME simply loses the line: SWDY stores the employees'
+    # statutory share as `emp_charge` and this read `emp_val`, so a delivered bridge
+    # printed enterprise value, deducted net debt and minorities, and announced an equity
+    # value EGP 22,575 million larger than its own lines reach -- EGP 10.55 a share. Every
+    # printed figure was individually correct. The waterfall did not arrive where it said.
+    #
+    # So the steps are accumulated as they are printed and reconciled against the total
+    # BEFORE the table is returned. A study whose bridge does not foot fails the build; it
+    # does not deliver a page whose own arithmetic a reader can disprove.
+    _walk = [d["ev"]]
+
+    def _step(label, value, dp=0):
+        _walk.append(value)
+        one(label, value, dp=dp)
+
+    _step("Less: net debt", -d["nd"])
     if d.get("assoc"):
-        one("Add: investments in associates", d["assoc"])
+        _step("Add: investments in associates", d["assoc"])
     if d.get("nci_val") is not None:
-        one("Less: minority interests", -d["nci_val"])
+        _step("Less: minority interests", -d["nci_val"])
+    # THE STUDY DECLARES ITS OWN KEY NAME through `fields=`, which is what that parameter
+    # is for. A hardcoded second spelling here would make this module carry a list of
+    # every study's private vocabulary, and the next study with a third name would lose
+    # its line in exactly the same silence.
     emp = d.get("emp_val")
     if emp:
-        one("Less: employees' statutory share of profit", -emp)
+        _step("Less: employees' statutory share of profit", -emp)
     one("EQUITY VALUE", d["eq_attr"])
-    sh = numbers.get("meta", {}).get("shares") or d.get("shares")
+    _reached = sum(_walk)
+    _tol = max(abs(d["eq_attr"]) * 1e-6, 0.51)
+    if abs(_reached - d["eq_attr"]) > _tol:
+        raise SystemExit(
+            "THE BRIDGE DOES NOT FOOT. The lines this table prints run from an enterprise "
+            "value of %s to %s, and the EQUITY VALUE it prints beneath them is %s -- a "
+            "difference of %s. A reader following the instructions in the first column "
+            "arrives somewhere else. Either a deduction the model makes is not printed, "
+            "or it is filed under a name this table does not read; find which, and do not "
+            "widen the tolerance."
+            % (fmt(d["ev"], 0), fmt(_reached, 0), fmt(d["eq_attr"], 0),
+               fmt(d["eq_attr"] - _reached, 0)))
+    # THE SHARE COUNT, UNDER WHICHEVER CONTRACT NAME THE STUDY DECLARED. The lookup read
+    # meta.shares and nothing else, so a study writing meta.shares_mn -- the name most of
+    # this book uses -- simply lost the row, and the table went from an equity value to a
+    # value per share with no divisor printed between them. Declared through `fields`
+    # like every other contract field, so a third spelling is a declaration and not
+    # another branch here.
+    _meta = numbers.get("meta", {}) or {}
+    sh = _meta.get(K("shares")) or _meta.get("shares") or d.get(K("shares")) \
+        or d.get("shares")
     if sh:
         one("Shares in issue (mn)", sh)
     ps_dec = d.get("ps_dec")
