@@ -136,9 +136,10 @@ box([
      'This is an educational valuation study, not investment advice, and it makes no '
      'recommendation to buy, sell or hold. What it publishes is a fair-value RANGE and a '
      'probability distribution for the price — never a target. Three things are worth knowing '
-     'before the numbers: the estimate sits well below the market price, which means the burden '
-     'of proof is on this study and Section 1.14 states exactly what a buyer at the market price '
-     'would have to believe; the forecasting method behind it has been tested against this '
+     f'before the numbers: the estimate sits well {"ABOVE" if GAP > 0 else "BELOW"} the market '
+     f'price, which means the burden of proof is on this study and Section 1.14 states exactly '
+     f'what a buyer at the market price would have to believe; the forecasting method behind it '
+     f'has been tested against this '
      'company’s own past and did NOT beat a simple no-change rule, which is why the range is wide '
      'and why Section 7 leads with that rather than burying it; and the second half of the base '
      'year is reviewed rather than fully audited. Everything here is reproducible from the '
@@ -496,8 +497,14 @@ H2('1.6  The cost of capital, built rather than asserted')
 table([['Component', 'Explicit window', 'Terminal', 'Construction'],
        ['Risk-free rate', pc(IN['rf'], 2), pc(RT['rf_term'], 2),
         'Egypt 10-year local currency. The TERMINAL rate is DERIVED, not typed: the central '
-        'bank’s inflation target IN FORCE for the terminal horizon (7%) plus a 5.5% real '
-        'convention'],
+        # THE CONVENTION IS READ, NOT TYPED. This said "a 5.5% real convention" and the
+        # register carries 3.5% -- the retired figure being a restrictive policy stance
+        # rather than a long-run real rate. Worse, the typed pair did not produce the
+        # number printed beside it: 7% + 5.5% is 12.5%, and the terminal rate is 10.50%.
+        # THE CHANGE FROM 5.5 TO 3.5 IS THE REASON THIS EDITION EXISTS.
+        f'bank’s inflation target IN FORCE for the terminal horizon '
+        f'({pc(IN["cbe_target"], 0)}) plus a {pc(IN["real_rate_term"], 1)} real '
+        f'convention, which is the {pc(RT["rf_term"], 2)} beside it'],
        ['less sovereign default spread', f"−{pc(IN['sov_spread_cds'], 2)}", '—',
         'netted out of the risk-free rate so country risk is not counted in both the rate and '
         'the equity premium'],
@@ -799,12 +806,23 @@ P(f'Two further contested choices are computed rather than conceded. On the RATI
   f'promoted here rather than buried. And discounting the export leg in DOLLARS at a dollar cost '
   f'of capital before translating back — rather than discounting a pound cash flow already '
   f'inflated by the depreciation path at a dollar rate, which would count the currency benefit '
-  f'twice — gives EGP {p2(DCF["ccy_alt_ps"])}. Both are below the market price.')
+  f'twice — gives EGP {p2(DCF["ccy_alt_ps"])}. '
+  # COMPUTED, NOT TYPED, on the principle the Headline already carries: a number stated in
+  # prose must be computed, and so must the word that gives it its sign. This read "Both are
+  # below the market price" through an edition in which both moved above it.
+  + (lambda _a, _b: (
+      'Both are above the market price.' if min(_a, _b) > SPOT else
+      'Both are below the market price.' if max(_a, _b) < SPOT else
+      f'One sits above the market price of EGP {p2(SPOT)} and one below it.'
+    ))(DCF['ps_rating_basis'], DCF['ccy_alt_ps']))
 P('What survives the give-backs is the part of the verdict that cannot be negotiated away by '
   f'accounting choices: a pass-through processor earning a {pc(TTM["gm"])} gross margin, '
   f'discounted at an Egyptian cost of equity of {pc(W["ke_exp"], 1)} falling to '
-  f'{pc(W["ke_term"], 1)}, is worth less than EGP {p2(SPOT)} a share on any internally '
-  'consistent arithmetic this study can construct.')
+  f'{pc(W["ke_term"], 1)}, is worth '
+  # THE VERDICT'S OWN DIRECTION, COMPUTED. This asserted the company is worth LESS than the
+  # market price while the study published a central 48.5% above it.
+  + (f'more than EGP {p2(SPOT)}' if C > SPOT else f'less than EGP {p2(SPOT)}')
+  + ' a share on any internally consistent arithmetic this study can construct.')
 
 H2(f'1.14  What a buyer at EGP {p2(SPOT)} must believe')
 P('The model is inverted at the market price rather than argued with. Every other driver is held '
@@ -1129,10 +1147,17 @@ P(f'READ THE LAST FILED COLUMN AGAINST THE FIRST FORECAST COLUMN. The most recen
   f'weakness is seasonal or a superseded level is this study\u2019s largest contested '
   f'judgement: the same quarter a year apart runs {pc(HIS[PERIODS[1]]["gm"], 2)} against '
   f'{pc(HIS[PERIODS[3]]["gm"], 2)}, which no seasonal pattern produces. Anchoring on the '
-  f'latest half and holding it flat gives EGP {p2(DCF["ps_h1_anchor"])} a share against the '
-  f'published EGP {p2(C)}. It is priced here and NOT taken, because corrections are made one '
-  f'at a time and this study has already made one this edition; taking a second would carry '
-  f'it from below the traded price to well above it in a single step.')
+  # THIS PARAGRAPH DESCRIBED THE EDITION BEFORE THIS ONE. It said anchoring on the latest
+  # half was "priced here and NOT taken". It WAS taken -- ps_h1_anchor IS the published
+  # central -- and the base it describes as adopted is the one this edition superseded.
+  # A paragraph that survives the change it describes is worse than none.
+  f'latest half and holding it flat gives EGP {p2(DCF["ps_h1_anchor"])} a share, and '
+  f'THAT IS THE BASIS THIS EDITION ADOPTS: the published EGP {p2(C)} is struck on the '
+  f'reviewed half at a gross margin of {pc(DCF["gm_h1_filed"], 3)}, not on the '
+  f'twelve-month blend of {pc(DCF["gm_ttm_base"], 3)}. The superseded blend is retained '
+  f'and priced rather than deleted: it gives EGP {p2(DCF["ps_ttm_base_superseded"])} a '
+  f'share. THE CORRECTION CROSSES THE TRADED PRICE, from below it to well above, and it '
+  f'is taken on the filed evidence rather than withheld for where it lands.')
 
 H2('A.2  Balance sheet — as filed at 31 December 2025, and the forecast (EGP mn)')
 table([['', 'Filed 31-Dec-2025', *YRS],
@@ -1357,8 +1382,11 @@ _below = sum(1 for k in ('e1', 'e2', 'e3') if EXP[k]['base'] < SPOT)
 P(f'Put in one room the three methods land between EGP {p2(_lo3)} and EGP {p2(_hi3)}, a spread '
   f'of {pc(_hi3 / _lo3 - 1)} of the lower number, with a median of EGP {p2(D["panel_centre"])} '
   f'against a market price of EGP {p2(SPOT)} — {pc(D["panel_centre"] / SPOT - 1)}. '
-  f'{"All three" if _below == 3 else ("Two of the three" if _below == 2 else "One of the three")} '
-  f'sit below the price.')
+  # THE COUNT WAS COMPUTED AND THE WORD BELOW IT WAS NOT, so a study with none below the
+  # price still printed "One of the three sit below the price".
+  + (f'{["None", "One", "Two", "All three"][_below]} of the three '
+     f'sit below the price of EGP {p2(SPOT)}.' if _below else
+     f'None of the three sits below the price of EGP {p2(SPOT)}.'))
 P('Where they agree is more informative than where they differ, because the agreement is not '
   'built in. All three are struck on the same audited base year and the same house macro path, '
   'and none of them is allowed to set an inflation rate of its own — so the disagreement between '

@@ -19,12 +19,6 @@
    "note": "ordinary sense: a test the study describes to its reader"
   },
   {
-   "file": "AMOC_Bibliography_10-09-2026.docx",
-   "pattern": "\\bstep\\b",
-   "hits": 1,
-   "note": "ordinary sense: a step-change"
-  },
-  {
    "file": "AMOC_Valuation_Study_10-09-2026_public.docx",
    "pattern": "\\bregister\\b",
    "hits": 2,
@@ -39,7 +33,7 @@
   {
    "file": "AMOC_Valuation_Study_10-09-2026_public.docx",
    "pattern": "\\bstep\\b",
-   "hits": 7,
+   "hits": 6,
    "note": "ordinary sense: a step-change"
   }
  ]

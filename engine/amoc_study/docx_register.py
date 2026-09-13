@@ -120,8 +120,11 @@ def fmt(v):
 # ============================================================================
 masthead()
 H1('Alexandria Mineral Oils Company S.A.E. (EGX: AMOC) — Bibliography and Source Register')
-P('Companion document to the valuation study dated 6 August 2026. It records where every number '
-  'in that study came from.', size=9.5, color=GREY)
+# THE DATE IS READ, NOT TYPED. This said "dated 6 August 2026" on a companion to a study of
+# 10 September, which is L-066/L-067 in one line: a document whose masthead agrees with
+# nothing beside it. edition.py has named this study's date since it was written.
+P('Companion document to the valuation study dated %s. It records where every number '
+  'in that study came from.' % _ed.WORDS, size=9.5, color=GREY)
 
 H2('READ FIRST')
 P('This document exists so that a reader can check the study rather than trust it. It lists every '
@@ -136,36 +139,16 @@ P('Three things are worth knowing before reading the tables. First, inputs marke
   'rate. Third, where a source could not be reached, that is recorded as a negative result at the '
   'end of this document rather than quietly filled in.')
 
-H2('What changed in this edition')
-P('The first edition of this study was built WITHOUT the audited financial statements. The '
-  'company\'s investor-relations site, the exchange\'s disclosure pages and the commercial '
-  'financial-data terminals all refused connections under the network policy in force, so every '
-  'company figure came from published reporting of the company\'s releases and from aggregators. '
-  'That edition triangulated each material figure across independent sources, reconstructed the '
-  'base year from two reported halves, and marked every reconstructed line as reconstructed.')
-P('THE FILINGS ARE NOW IN HAND AND THIS EDITION IS BUILT ON THEM. The audited consolidated '
-  'statements for the transition period 1 July 2025 to 31 December 2025 (Crowe — Dr A. M. Hegazy '
-  '& Co, UNQUALIFIED opinion, signed at Giza on 18 February 2026), the limited-review statements '
-  'for the six months to 31 December 2024, and the reviewed statements for the three months to '
-  '31 March 2026. Every figure in the company layer below carries one of those three as its '
-  'source, with the note number where the filing gives one. No company figure in this edition is '
-  'triangulated, reconstructed or inferred.')
-P('The change was not cosmetic. Twelve published assumptions were overturned by the filings, '
-  'including a capital-expenditure line modelled at roughly five times the actual cash spend, a '
-  'depreciation charge modelled at three times the actual, an operating-expense base understated '
-  'by a factor of three, a property-plant-and-equipment balance reconstructed at nearly twice the '
-  'filed figure, a minority interest inferred at 3.0% against a disclosed 4.645%, and a '
-  'tax-disputes provision of EGP 904.6mn that was never carried at all.')
-P('THIS EDITION GOES ONE STEP FURTHER. The half-year results for 1 January to 30 June 2026, '
-  'disclosed to the Egyptian Exchange on 29-30 July 2026 — one week before the anchor date — '
-  'are restored to the record after the previous edition deleted them on a rule that treated '
-  '"is it inside one of the four PDFs?" as the test for use. With them, a clean CONTIGUOUS '
-  'twelve-month base year to 30 June 2026 exists and is the headline base. The disclosure is a '
-  'press release, not a filing, and is flagged REPORTED wherever it is used; its gross-profit '
-  'line is REJECTED on a coherence test recorded below and SOLVED from its own profit line '
-  f"instead. The fair-value estimate is EGP {D['central']:.2f} in this edition, against "
-  'EGP 7.16 in the audited nine-month edition and EGP 9.38 in the pre-filings edition — each '
-  'restatement is itself part of the record and none is silently overwritten.')
+# EDITION HISTORY IS NOT PUT IN FRONT OF A READER [removed 13-09-2026]. The model report is
+# defined as itself MINUS its "What changed in these editions, and why" section, on the
+# ground that edition history is internal QC evidence. This bibliography carried five
+# paragraphs of it -- what the first edition lacked, which twelve assumptions the filings
+# overturned, what each superseded edition published -- and none of it tells a reader where
+# a number in THIS study came from, which is the one thing this document is for.
+#
+# It is DELETED FROM THE DELIVERED DOCUMENT, NOT FROM THE RECORD: the same account lives in
+# the study's own commit history and in its QC gates, where a reader checking our work can
+# find it and a reader checking the company is not made to read it.
 
 H2('The research layers')
 table([['Layer', 'What it covers'],
