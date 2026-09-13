@@ -1048,7 +1048,22 @@ INP = dict(
                              "cement mill, and is therefore NOT in the cement-basis "
                              "utilisation ratio", "2026-03-01", "Company"),
     egy_revival_mt=I(12.6, "Dormant Egyptian capacity under revival from the second half of "
-                     "2026", "2025-10-01", "Industry"),
+                     "2026. CORROBORATED 10-Sep-2026 by an external research pass at exactly "
+                     "this figure: the Ministry of Trade and Industry ordered nine idled lines "
+                     "restarted in July 2025, seven of them due back within a year, and "
+                     "licence-modification fees were halved to EGP 130 a tonne to help them "
+                     "return", "2025-10-01", "Industry"),
+    egy_new_licence_mt=I(3.5, "NEW SUPPLY THIS STUDY DID NOT CARRY: two production licences "
+                         "planned from October 2025, each stated at 1.5-2.0 million tonnes a "
+                         "year, so 3.0 to 4.0 million and 3.5 at the midpoint. It sits ON TOP "
+                         "of the 12.6 million tonnes of revival above, which is dormant "
+                         "capacity coming back rather than capacity being created. Industry "
+                         "reporting of 11 November 2025 puts Egyptian nameplate heading toward "
+                         "82-83 million tonnes on the back of it, against the 76.0 this study "
+                         "registers for 2025. NO WINNER, LOCATION OR COMMISSIONING DATE HAS "
+                         "BEEN ANNOUNCED, and nothing was located awarding either licence to "
+                         "this company, so it enters as sector supply and never as this "
+                         "company's volume", "2025-10-19", "Industry"),
     egy_gdp_egp_bn=I(18000.0, "Egyptian nominal gross domestic product, order of magnitude, "
                      "used only for the terminal-growth crossover arithmetic",
                      "2026-01-01", "Country"),
@@ -2436,6 +2451,8 @@ PEERS = dict(
                 exports_clinker_mt=V['egy_exports_clinker_mt'],
                 cement_sales_mt=_CEM_SALES,
                 revival_mt=V['egy_revival_mt'],
+                new_licence_mt=V['egy_new_licence_mt'],
+                forward_capacity_mt=V['egy_capacity_mt'] + V['egy_new_licence_mt'],
                 share_of_capacity=V['cap_cement_mt'] / V['egy_capacity_mt'],
                 revival_pct_of_consumption=V['egy_revival_mt'] / V['egy_cons_mt'],
                 utilisation=_UTIL_CEMENT,

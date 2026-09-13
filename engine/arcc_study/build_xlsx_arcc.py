@@ -324,10 +324,27 @@ inp('Equity risk premium, TOTAL (split into the two legs below)', 'erp', IN['erp
 # The model moved onto the split identity and the workbook did not, so it published a rate
 # 37bp below the study's and 51 formula cells disagreed. The legs are read from the study's
 # own committed record and never retyped; the DCF cell recomputes the rate from them.
-inp('   of which the MATURE premium — beta applies to this leg only', 'erpm',
+# RELABELLED 10-09-2026. It read "of which the MATURE premium", and the workbook's own
+# convention exempts an "of which" row from the must-move-something sweep on the grounds
+# that it breaks down a total which is itself the driver. THE SPLIT INVERTED THAT: this leg
+# is what beta multiplies and what the cost of equity is built from, while the total above
+# is now derived from it. The label was declaring the live driver inert and leaving the
+# derived row under the assertion — exactly backwards. It is a driver and it says so.
+inp('Mature equity risk premium — beta applies to THIS leg and to nothing else', 'erpm',
     COC['erp_mature'], PCT2)
 inp('Egypt country premium — charged FLAT, once, never multiplied by beta', 'crp',
     COC['crp_effective'], PCT2)
+# THE TOTAL IS DERIVED FROM ITS OWN LEGS, NOT TYPED BESIDE THEM [10-09-2026]. It was written
+# above as a value, and the DCF reads the two legs rather than the total, so the published
+# total was a number NOTHING IN THE WORKBOOK CONSUMED. It agreed with its legs by arithmetic
+# that nothing enforced, and the driver test bumping it moved the valuation by exactly zero
+# -- which is how the test caught it: a driver that moves nothing is either inert or lying
+# about what it drives. Overwritten here, once both legs exist, so the three can never
+# disagree.
+putf(wsA, A['erp'].split('!')[1].replace('$', ''),
+     '=%s+%s' % (A['erpm'].split('!')[1].replace('$', ''),
+                 A['crp'].split('!')[1].replace('$', '')),
+     COC['erp_mature'] + COC['crp_effective'], PCT2)
 inp('Euribor (EBRD and NBE reference rate)', 'eur', IN['euribor'], PCT2)
 inp('EGP marginal borrowing rate (corridor + 0.6%)', 'kdegp', IN['kd_egp_marginal'], PCT2)
 inp('Expected EGP depreciation against the euro', 'dep', IN['egp_dep_vs_eur'], PCT2)

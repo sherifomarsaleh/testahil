@@ -300,7 +300,17 @@ CASES = [
      'a higher risk-free rate must lower the valuation'),
     ('Sovereign default spread (netted out)', 'B', +0.01, 'dcf', +1,
      'the spread is netted OUT of the risk-free rate, so a wider one LOWERS the cost of equity'),
-    ('Equity risk premium', 'B', +0.02, 'dcf', -1, 'a higher premium must lower the valuation'),
+    # RE-POINTED 10-Sep-2026, NOT WIDENED. The cost of equity moved to the split premium
+    # that morning and the row was renamed to say so; this lookup is by EXACT LABEL, so
+    # it stopped finding its row and the whole driver test has raised on this study ever
+    # since. A gate keyed to a string breaks the moment the string is improved, and it
+    # breaks LOUDLY here only because the lookup refuses rather than returning nothing.
+    # Bumping the TOTAL still raises the cost of equity: the mature leg carries beta and
+    # the country leg is charged flat, and the total is what they sum to.
+    ('Mature equity risk premium — beta applies to THIS leg and to nothing else', 'B',
+     +0.02, 'dcf', -1, 'a higher premium must lower the valuation'),
+    ('Egypt country premium — charged FLAT, once, never multiplied by beta', 'B', +0.02,
+     'dcf', -1, 'country risk is charged once and flat, and more of it still costs value'),
     ('Terminal risk-free rate', 'B', +0.02, 'dcf', -1,
      'a higher terminal risk-free rate must lower the valuation'),
     ('Terminal equity risk premium', 'B', +0.02, 'dcf', -1,
