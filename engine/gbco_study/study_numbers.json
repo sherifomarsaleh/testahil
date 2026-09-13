@@ -598,6 +598,51 @@
    "beta_source": "engine/beta_regression.own_stock_beta('GBCO','EG','EGX') \u2014 weekly W-THU, Dimson-corrected, 2021-09-09 to 2026-07-16, regressed on the PUBLISHED EGX30 index of the exchange GBCO is listed on"
   }
  },
+ "mnt_listing": {
+  "event": "application to list on the EGX main market, published by the exchange",
+  "applicant": "MNT Tech Holding for Financial Investments",
+  "shares_bn": 1.6,
+  "par_egp": 0.1,
+  "issued_capital_egp_mn": 160.0,
+  "filed": "2026-09-08",
+  "window": "five working days from 8 September 2026",
+  "status": "APPLICATION ONLY -- documents still being finalised for the EGX Listing Committee; not listing approval and not the start of trading",
+  "source": "the exchange disclosure, reported by Arab Finance 9 September 2026 09:43 (\"MNT-Halan applies to list 1.6B shares on EGX\"). The EGX news page itself is behind a bot wall and could not be read directly on 13-09-2026; that is recorded rather than papered over",
+  "press_valuation_usd_mn": [
+   900.0,
+   1000.0
+  ],
+  "press_valuation_status": "UNATTRIBUTED PRESS REPORT OF SOURCES, June 2026, via Bloomberg -- not a disclosure, not a transaction, and not a price anything has traded at",
+  "perimeter_note": "the reported listing perimeter is the Egyptian operating activities only; the June-2026 round at USD 1.4bn priced the group including Turkey, Pakistan and the UAE. The two are not the same asset and the difference between them is NOT a markdown",
+  "issuer_silence": "GB Corp has published no press release on this. ir.gb-corporation.com news room read live 13-09-2026: latest release 9 June 2026",
+  "consequence": "none -- registered, not priced. Neither branch moves."
+ },
+ "capacity": {
+  "pc_vol_path": [
+   63333.76000000001,
+   72200.48640000002,
+   79420.53504000003,
+   85774.17784320004,
+   90920.62851379205
+  ],
+  "pc_vol_peak": 90920.62851379205,
+  "disclosed": {
+   "bus_bodies": 5000,
+   "two_three_wheelers": 80000
+  },
+  "passenger_disclosed": null,
+  "press": {
+   "prima_pc": [
+    70000,
+    80000
+   ],
+   "sadat_pc": 50000,
+   "group_total": 110000,
+   "status": "press and a government press office, not a company disclosure"
+  },
+  "note": "the passenger-car forecast peaks at 90921 units in FY2030E. GB Corp publishes capacity for its bus plant (5,000) and its two- and three-wheeler plant (80,000) and publishes NONE for passenger cars. Against press figures the peak is 70-76% of nameplate, but it exceeds the Prima complex alone from FY2028E, so from the third forecast year the answer depends on the Sadat City plant running. Stated rather than tested: the disclosure that would test it does not exist.",
+  "source": "gb-corporation.com/gb-auto/manufacturing-facilities, read live 13-09-2026 -- the company publishes bus and two/three-wheeler capacity and publishes none for passenger cars"
+ },
  "sotp": {
   "auto_eq": 31530.985105993914,
   "cap_val": 1935.5425016681145,

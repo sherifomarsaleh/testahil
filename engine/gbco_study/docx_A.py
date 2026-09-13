@@ -415,6 +415,31 @@ caption('Every row recomputes the whole sum of the parts at that mark; the auto 
         'column names, and the top row is the mark the traded price itself implies — which is why it reproduces the '
         'traded price exactly.')
 
+H2('The event that would settle the branch — and why nothing moves on it yet')
+_LST = D['mnt_listing']
+P('This study publishes two answers because the house cannot choose between a private round price and a qualified '
+  'accounting carrying value. There is one event that would take the choice away from everybody, and it has started. '
+  f'On {_LST["filed"]} the Egyptian Exchange published an application by {_LST["applicant"]} to list '
+  f'{_LST["shares_bn"]:.1f} billion ordinary shares on its main market, par value EGP {_LST["par_egp"]:.2f}, issued '
+  f'capital EGP {_LST["issued_capital_egp_mn"]:,.0f} million. The announcement stands for five working days. '
+  'A listing would put a quote on the asset this study values two ways, and one of the two branches would then be '
+  'tested against it.', size=9.8)
+P('IT IS AN APPLICATION. The documents are still being assembled for the exchange\u2019s listing committee; this is not '
+  'approval and it is not the start of trading. So nothing in this study moves on it: both branches stand exactly where '
+  f'they stood, at EGP {V_LO:.2f} and EGP {V_HI:.2f}. It is recorded because a reader deciding between the two bases '
+  'should know that the question may not stay open, not because it changes an answer today.', size=9.8)
+P('TWO THINGS ABOUT IT ARE EASY TO GET WRONG, so this study states both. First, the US$0.9\u20131.0bn figure quoted '
+  'alongside the filing is not a disclosure and is not a transaction: it traces to a press report of unnamed sources in '
+  'June about a prospective offering. Second \u2014 and this is the one that matters \u2014 that range is BELOW the '
+  'US$1.4bn June round this study prices the higher branch on, and it is tempting to read the lower number as the round '
+  'marked down. It is a different perimeter. The reported listing covers the Egyptian operating activities; Turkey, '
+  'Pakistan and the United Arab Emirates stay outside it, and the June round priced the group with them in. A smaller '
+  'number on a smaller business is not a lower valuation of the same business.', size=9.8)
+P('GB Corp itself has said nothing about the filing. Its investor news room, read on 13 September 2026, carries no '
+  'release later than the 9 June 2026 announcement of the round. So the company has not told its own shareholders what '
+  'the listing does to its 41.61%, or whether it would sell into it. That silence is recorded here as a dated negative '
+  'search rather than left as an absence a reader might mistake for a finding.', size=9.8)
+
 H2('1.2  The Auto-leg cash-flow model')
 _cs = DRV['cost_stack']
 P(f'The Auto leg is built bottom-up on disclosed units × average selling price per line of business: volumes and '
@@ -430,6 +455,21 @@ P(f'The Auto leg is built bottom-up on disclosed units × average selling price 
   f'of {pc(COC["wacc_terminal"],2)}. Terminal growth is stored as a REAL rate of '
   f'{pc(MAC["terminal_growth_real"],1)} on the house Egyptian inflation path and recomputes to '
   f'{pc(MAC["terminal_growth_nominal"],2)} nominal; it is not a typed nominal figure. §1.8 carries the whole build.')
+_CAP = D['capacity']
+P('CAN THE PLANT MAKE THEM? The passenger-car line above grows from a filed '
+  f'{_CAP["pc_vol_path"][0]/1.12:,.0f} units in FY2025 to {_CAP["pc_vol_peak"]:,.0f} by FY2030E, and until this edition '
+  'this study carried no capacity figure at all \u2014 the forecast could have run to any number and nothing here would '
+  'have noticed. GB Corp publishes capacity for two of its plants and not for the third that matters: its bus facility at '
+  f'{_CAP["disclosed"]["bus_bodies"]:,} bodies a year and its two- and three-wheeler plant at '
+  f'{_CAP["disclosed"]["two_three_wheelers"]:,} units, while the Prima passenger-car complex is given an area and no '
+  'output. The one number this forecast needs is the one the company does not publish.', size=9.8)
+P('Trade press and a government press office put Prima at 70,000\u201380,000 cars a year, the newer Sadat City plant at '
+  '50,000, and the group at about 110,000 vehicles. None of that is a filing and none of it is on the company\u2019s own '
+  'site, so it is not used as an input. Read against it for orientation only, the FY2030E peak is roughly three quarters '
+  'of nameplate \u2014 but it passes the Prima complex on its own from FY2028E. SO FROM THE THIRD FORECAST YEAR THIS '
+  'VALUATION DEPENDS ON SADAT CITY RUNNING. That dependency was carried silently before this edition. It is now stated, '
+  'and it is stated rather than tested, because the disclosure that would test it does not exist.', size=9.8)
+
 rows = [['EGP mn'] + [r['year'] for r in dcf['rows']]]
 labels = [('rev', 'Auto revenue'), ('ebitda', 'Operating profit before depreciation'),
           ('dna', 'Depreciation & amortisation'), ('ebit', 'Operating profit'),

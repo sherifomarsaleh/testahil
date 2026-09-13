@@ -209,6 +209,56 @@ for i, y in enumerate(yrs):
     fc[y] = dict(pc_vol=pv_, pc_asp=pa_, pc_rev=pv_*pa_/1,  # ASP in mn
                  cv_rev=cvv*cva, lm_rev=lmv*lma, tr_rev=trr)
     fc[y]['auto_rev'] = fc[y]['pc_rev'] + fc[y]['cv_rev'] + fc[y]['lm_rev'] + fc[y]['tr_rev']
+# ---- CAPACITY: THE TEST THIS FORECAST HAD NO WAY TO FAIL [R-ASSET-01], 13-09-2026 ----
+# This study forecasts passenger-car volumes off a FY2025 base of 56,548 units at
+# 12/14/10/8/6% a year and carried NO capacity figure of any kind. An assembler's volume
+# forecast with no asset base behind it could have run to two hundred thousand units and
+# nothing in this file would have noticed. The forecast peak is computed here rather than
+# asserted, and what is and is not disclosed is separated, because the separation is the
+# finding.
+pc_vol_path = []
+_v = pc_vol['FY25']
+for _g in vol_g:
+    _v *= (1 + _g); pc_vol_path.append(_v)
+PC_VOL_PEAK = pc_vol_path[-1]                  # FY2030E, ~90,921 units
+#
+# WHAT GB CORP ITSELF PUBLISHES, read live from gb-corporation.com/gb-auto/
+# manufacturing-facilities on 13-09-2026: GB Bus, 285,000 sqm, 5,000 units a year; the
+# Citi two- and three-wheeler plant, 12,000 sqm, 80,000 units a year; and Prima, "nearly
+# 58,000 square metres", for passenger cars.
+#
+# PRIMA'S CAPACITY IS NOT ON THAT PAGE. The one number this forecast needs is the one the
+# company does not publish. The page lists three plants and a total area "over 350,000
+# square metres", does not mention the Sadat City facility at all, and carries a 2022
+# copyright line -- so it is also stale against a plant the company has since built.
+CAP_DISCLOSED = dict(bus_bodies=5000, two_three_wheelers=80000)
+CAP_PASSENGER_DISCLOSED = None                 # NOT DISCLOSED. Stated, not guessed.
+#
+# WHAT IS IN CIRCULATION AND IS NOT A DISCLOSURE. A market-research primer gives Prima
+# 70,000-80,000 passenger cars a year on a multi-shift setup, Sadat City 50,000, and a
+# group total of about 110,000 vehicles. The 110,000 traces to the State Information
+# Service reporting GB Corp's leadership at an April 2026 meeting with the Minister of
+# Industry -- a government press office reporting a company statement, which is second
+# hand, and the plant-level splits trace to trade press. NONE of it is a filing and none
+# of it is on the company's own site. Registered as press, never as an input.
+CAP_PRESS = dict(prima_pc=(70000, 80000), sadat_pc=50000, group_total=110000,
+                 status='press and a government press office, not a company disclosure')
+#
+# THE CONSEQUENCE, WHICH IS A DEPENDENCY RATHER THAN A BREACH. Against the press figures
+# the FY2030E peak of ~90,900 cars is roughly 70-76% of a 120,000-130,000 passenger-car
+# nameplate, so the forecast does not run past the plant. BUT IT RUNS PAST PRIMA ALONE
+# FROM FY2028E (79,421 units against 70,000-80,000), so from the third forecast year this
+# valuation depends on Sadat City being built, commissioned and running. That dependency
+# was carried silently and is now stated. It is NOT tested, because the number that would
+# test it is the one GB Corp does not publish.
+CAP_NOTE = ('the passenger-car forecast peaks at %.0f units in FY2030E. GB Corp publishes '
+            'capacity for its bus plant (5,000) and its two- and three-wheeler plant '
+            '(80,000) and publishes NONE for passenger cars. Against press figures the '
+            'peak is 70-76%% of nameplate, but it exceeds the Prima complex alone from '
+            'FY2028E, so from the third forecast year the answer depends on the Sadat City '
+            'plant running. Stated rather than tested: the disclosure that would test it '
+            'does not exist.' % PC_VOL_PEAK)
+
 # ---- GROUP-LEVEL FORECAST DRIVERS ------------------------------------------------
 # THESE LIVED ONLY INSIDE THE WORKBOOK BUILDER AND THE DOCUMENT TYPED THE RESULT. The
 # consolidated forecast income statement a reader receives was transcribed by hand from an
@@ -501,6 +551,63 @@ other_assoc = ASSOC_CARRYING - MNT_CARRYING
 #
 # THE HOUSE CANNOT SAY WHICH IS RIGHT, SO IT PUBLISHES BOTH AND SAYS SO. Averaging them
 # would be the blend [R-LENS-03] retired, arriving through a different door.
+# ---- THE EVENT THAT WOULD SETTLE THE BRANCH, REGISTERED RATHER THAN PRICED ----------
+# [13-09-2026, from a market-research primer, TRACED BEFORE IT WAS BELIEVED.] On 8
+# September 2026 the Egyptian Exchange published an application by MNT Tech Holding for
+# Financial Investments to list 1.6 billion ordinary shares on the EGX main market, par
+# value EGP 0.10, issued capital EGP 160 million. The announcement stands for five working
+# days from 8 September. It is AN APPLICATION: the company is still assembling the
+# documents for the EGX Listing Committee, and it is not approval and not the start of
+# trading.
+#
+# WHY IT MATTERS HERE AND NOWHERE ELSE IN THIS STUDY. This study's one contested judgement
+# is the basis on which the MNT-Halan stake is carried, and it is published as two branches
+# because the house cannot choose between a private round price and a qualified accounting
+# carrying value. A LISTING WOULD LET THE MARKET CHOOSE. That is the only thing in this
+# file that could retire the branch, and it has not happened yet.
+#
+# NOTHING MOVES ON IT, AND THE REASON IS A RULE RATHER THAN CAUTION. An application is not
+# a price. Neither branch changes, the two centrals stand at EGP 45.78 and EGP 56.78, and
+# the day this lists is the day one of them is tested against a quote.
+mnt_listing = dict(
+    event='application to list on the EGX main market, published by the exchange',
+    applicant='MNT Tech Holding for Financial Investments',
+    shares_bn=1.6, par_egp=0.10, issued_capital_egp_mn=160.0,
+    filed='2026-09-08', window='five working days from 8 September 2026',
+    status=('APPLICATION ONLY -- documents still being finalised for the EGX Listing '
+            'Committee; not listing approval and not the start of trading'),
+    source=('the exchange disclosure, reported by Arab Finance 9 September 2026 09:43 '
+            '("MNT-Halan applies to list 1.6B shares on EGX"). The EGX news page itself '
+            'is behind a bot wall and could not be read directly on 13-09-2026; that is '
+            'recorded rather than papered over'),
+    # THE VALUATION FIGURE IN CIRCULATION IS NOT A DISCLOSURE AND IS NOT A MARKDOWN.
+    # A market-research primer put "a domestic valuation targeted between $900 million and
+    # $1.0 billion" beside the listing as though the two were one announcement. They are
+    # not. Arab Finance attributes that range to a BLOOMBERG REPORT OF SOURCES in June,
+    # about an IPO, not to any disclosure by anyone.
+    press_valuation_usd_mn=(900.0, 1000.0),
+    press_valuation_status=('UNATTRIBUTED PRESS REPORT OF SOURCES, June 2026, via '
+                            'Bloomberg -- not a disclosure, not a transaction, and not a '
+                            'price anything has traded at'),
+    # AND THE COMPARISON A CARELESS READER WOULD MAKE IS WRONG. $0.9-1.0bn is BELOW the
+    # $1.4bn June round this study prices the stake on, and it is tempting to read the
+    # lower number as the round marked down. IT IS A DIFFERENT PERIMETER: the reported
+    # listing covers the EGYPTIAN operating activities -- microfinance, consumer credit,
+    # merchant payments, nano-lending -- while Turkey, Pakistan and the UAE stay offshore.
+    # The $1.4bn round priced the group WITH those. A smaller number on a smaller business
+    # is not a lower valuation of the same business.
+    perimeter_note=('the reported listing perimeter is the Egyptian operating activities '
+                    'only; the June-2026 round at USD 1.4bn priced the group including '
+                    'Turkey, Pakistan and the UAE. The two are not the same asset and the '
+                    'difference between them is NOT a markdown'),
+    # GB CORP HAS SAID NOTHING. Its investor news room, read live on 13-09-2026, carries
+    # nothing after the 9 June 2026 release on the Al Ahly round. So the company has not
+    # disclosed the listing, has not said what it does to its 41.61%, and has not said
+    # whether it would sell into it. A DATED NEGATIVE SEARCH, not an omission.
+    issuer_silence=('GB Corp has published no press release on this. ir.gb-corporation.com '
+                    'news room read live 13-09-2026: latest release 9 June 2026'),
+    consequence='none -- registered, not priced. Neither branch moves.')
+
 assoc_round    = mnt_halan_value + other_assoc     # branch A
 assoc_carrying = ASSOC_CARRYING                    # branch B
 assoc = assoc_round        # retained for the cross-checks that read one number
@@ -1031,6 +1138,18 @@ out = dict(
                              kd_source=_book.kd_source,
                              debt_currency_evidence=_book.currency_source,
                              beta_source=_beta.source)),
+    # WHAT THE 13-09-2026 PRIMER PASS ADDED, AND WHAT IT DID NOT MOVE. Both records are
+    # developments and tests, not inputs: the two branches stand at EGP 45.78 and EGP 56.78
+    # exactly as they did before the pass, which is what a lead that was traced and found
+    # not to bear on the arithmetic is supposed to look like.
+    mnt_listing=mnt_listing,
+    capacity=dict(pc_vol_path=pc_vol_path, pc_vol_peak=PC_VOL_PEAK,
+                  disclosed=CAP_DISCLOSED,
+                  passenger_disclosed=CAP_PASSENGER_DISCLOSED,
+                  press=CAP_PRESS, note=CAP_NOTE,
+                  source=('gb-corporation.com/gb-auto/manufacturing-facilities, read live '
+                          '13-09-2026 -- the company publishes bus and two/three-wheeler '
+                          'capacity and publishes none for passenger cars')),
     sotp=dict(auto_eq=auto_eq, cap_val=cap_val, assoc=assoc, total=sotp_sum,
               disc=disc, eq=sotp_eq, ps=sotp_ps, prediscount_ps=prediscount_ps,
               bear=sotp_bear, bull=sotp_bull,

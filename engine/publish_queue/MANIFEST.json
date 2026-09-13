@@ -23,8 +23,8 @@
     "bear": 1.6639,
     "full": 27.5238
    },
-   "report_bytes": 891586,
-   "workbook_bytes": 134734
+   "report_bytes": 891563,
+   "workbook_bytes": 134781
   },
   {
    "ticker": "ARCC",
@@ -35,8 +35,8 @@
     "bear": 29.834782868495065,
     "full": 77.79484584533901
    },
-   "report_bytes": 1386323,
-   "workbook_bytes": 50303
+   "report_bytes": 1386330,
+   "workbook_bytes": 50317
   },
   {
    "ticker": "EGCH",
@@ -91,7 +91,7 @@
     ],
     "full": 56.7795
    },
-   "report_bytes": 1011321,
+   "report_bytes": 1016015,
    "workbook_bytes": 45434
   },
   {
@@ -125,8 +125,8 @@
     "bear": 4.9813,
     "full": 55.0663
    },
-   "report_bytes": 1109218,
-   "workbook_bytes": 37460
+   "report_bytes": 1115363,
+   "workbook_bytes": 37462
   },
   {
    "ticker": "SCEM",
@@ -138,7 +138,7 @@
     "full": 122.6685
    },
    "report_bytes": 945442,
-   "workbook_bytes": 39070
+   "workbook_bytes": 39069
   },
   {
    "ticker": "SWDY",
@@ -161,8 +161,8 @@
     "bear": 77.13,
     "full": 140.74
    },
-   "report_bytes": 788694,
-   "workbook_bytes": 28582
+   "report_bytes": 788823,
+   "workbook_bytes": 28577
   }
  ]
 }
