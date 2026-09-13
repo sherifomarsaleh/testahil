@@ -30,7 +30,29 @@ with open(os.path.join(HERE, '..', 'fitted_configs.json')) as f:
 NU, CAL = float(reg['nu']), float(reg['width_cal'])
 assert (NU, CAL) == (float(EG.nu), float(EG.width_cal)), \
     f"registry ({NU},{CAL}) != profile ({EG.nu},{EG.width_cal}) — mirror out of sync"
-assert reg['market_verdict'] in ('PASS', 'PARITY', 'FAIL'), reg['market_verdict']
+# THE SKILL VERDICT WAS RETIRED AND FOUR STUDIES STILL REQUIRED IT [corrected 13-09-2026].
+# This line read `assert reg['market_verdict'] == 'PASS'`. The three-way SKILL verdict was
+# retired on 24-Aug-2026 [R-CAL-02] and replaced by the band record, because the label
+# pointed at the wrong names: measured across the whole book, every name carrying the
+# negative label had 90%-band coverage at or above 97% against a 90% target -- their bands
+# were too WIDE, the opposite failure -- while the five names whose bands genuinely ran
+# narrow carried no flag at all.
+#
+# The EG registry now reads PARITY, so this study COULD NOT BE REBUILT AT ALL: build_all.py
+# stopped here on its first run. Four studies carried the same line (AMOC, ARCC, SWDY,
+# PHAR); SCEM carried `in ('PASS','PARITY','FAIL')`, which is every value the field can
+# take and therefore asserts nothing; EGCH alone had been brought onto the current form.
+# A retired quantity left load-bearing in a study-local assert is a false alarm waiting for
+# the world to move, and a false alarm on a data-quality gate is worse than no gate,
+# because the gate stops being run.
+#
+# What replaces it is the thing that IS the gate and is already asserted above: the fit
+# this study simulates on must be the committed production fit, cell for cell. The verdict
+# is asserted on only for its PRESENCE -- a registry that stopped carrying one would mean
+# the mirror had changed shape -- and recorded for the archive under a name that says what
+# it is.
+assert reg.get('market_verdict'), 'the registry carries no market verdict at all'
+_RETIRED_VERDICT = reg['market_verdict']
 # [R-CAL-03] THE SKILL VERDICT IS RETIRED and cannot gate anything. This line used to
 # demand PASS, which no market has printed on nine of ten fits and which excluded nobody
 # in the whole history of the tally; it is read here only to confirm the registry parses.
