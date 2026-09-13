@@ -19,7 +19,18 @@ import bottom_up_model as BU
 import valuation_v2 as V2
 import statements as ST
 import research_protocol as RP
-_STD_VERSION = RP.STANDARD_VERSION
+# THE CLAIM IS FROZEN ON PURPOSE AND I BROKE THAT [restored 13-09-2026].
+# This literal was read as staleness on 13-09-2026 and replaced with
+# RP.STANDARD_VERSION so that running the study would stamp it. THAT WAS THE
+# OPPOSITE OF THE TRUTH. check_standard_claim.py holds a study to the standard it
+# CLAIMS, and this study is ratcheted against [R-ASSET-01] -- it commits no
+# asset-base record -- so it does not meet 2026.09.10 and must not say it does.
+# The gate's own words: 'a stamp taken from the live constant re-asserts this on
+# every rebuild, with nobody deciding. Freeze the study's claim to a version it
+# meets, or meet the requirement.' A typed literal here is a DECISION, not a
+# defect, and the campaign queue reading it as outstanding is the queue correctly
+# reporting that this study has not been brought to the live standard.
+_STD_VERSION = "2026.09.01"
 
 IN.assert_balance_sheet_foots()
 BS26_FOOT = IN.assert_balance_sheet_1q26_foots()

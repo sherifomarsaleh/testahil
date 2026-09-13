@@ -12096,7 +12096,7 @@
   "what_it_changed": "The volume driver. The previous edition grew every product line and drew its ranking from two disclosed halves; the audited five-year record shows tonnage down 18.5% from its FY2022 peak with six of eight lines shrinking, and the walk-forward measures the flat-volume rule as ALREADY over-forecasting by 7.6% in eight of nine cells. The base path is now flat and the bear leg reverts to the five-year mean."
  },
  "gates": {
-  "standard_version": "2026.09.10",
+  "standard_version": "2026.09.01",
   "beta": {
    "ticker": "AMOC",
    "market": "EG",
@@ -12164,7 +12164,7 @@
   ],
   "model_study_ok": true
  },
- "standard_version": "2026.09.10",
+ "standard_version": "2026.09.01",
  "spot_date": "2026-09-03",
  "asset_base_record": {
   "rule": "R-ASSET-01",
