@@ -700,7 +700,13 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     doc.add_heading("1  Fundamental valuation", level=1)
 
     doc.add_heading("1.1  The cash-flow model", level=2)
-    para(doc, "The model runs five years from the audited 2025 base and then a "
+    # "FIVE YEARS" WAS TYPED AND THE MODEL RUNS FIFTEEN. It was true of an earlier
+    # edition; the window was extended so that growth converges on the terminal rate
+    # before the terminal capitalises it, and this sentence did not follow. The same
+    # document's own bridge says "Present value of the explicit 15 years" four pages
+    # later. The count is read from the model now, in words, so it cannot say one thing
+    # where the bridge says another.
+    para(doc, "The model runs %s years from the audited 2025 base and then a "
               "terminal value. Revenue is limited by how much the company can "
               "build and hand over, not by how much it has sold: the order book "
               "is EGP %sbn against 2025 revenue of EGP %sbn, so sales are not "
@@ -710,7 +716,8 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "company's own disclosed run of handovers, at EGP %.2f million a "
               "unit escalating with inflation. Nothing here is a ratio applied "
               "to last year's revenue."
-              % (money(v("backlog_1q26") / 1000, 0),
+              % (_count_word(len(BU["rows"])),
+                 money(v("backlog_1q26") / 1000, 0),
                  money(v("revenue_fy25") / 1000, 1),
                  "{:,.0f}".format(BU["rows"][0]["units_delivered"]),
                  100 * BU["anchors"]["delivery_growth"],
