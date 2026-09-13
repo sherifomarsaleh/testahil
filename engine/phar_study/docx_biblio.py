@@ -178,6 +178,28 @@ P(f'Total: {len(INP)} inputs, every one carrying a value, a source, a date and a
   size=9, italic=True, color=GREY)
 
 # ------------------------------------------------------------- 3. JUDGEMENTS
+# EVERY FIGURE IN THE JUDGEMENTS TABLE BELOW IS READ FROM THE MODEL. It was a
+# hard-coded literal and SIX OF ITS TWELVE ROWS contradicted the delivered study of the
+# same edition: the withdrawn 22.31% risk-free print, a terminal debt weight of 20%
+# against a model running 25.53%, a terminal growth of 5% against 7%, an associate
+# normalisation of EGP 320m the study's own section 7.1 says was cut to 250m, an FY2025
+# associate contribution of 495.5 against 512.1, and three relative-lens multiples
+# (8.1x / 6.7x / 9.8x) against committed legs of 7.06 / 6.57 / 6.10 -- the third of
+# which the study elsewhere states is NOT a peer median. A judgements table is where a
+# reader goes to disagree with the study; typed, it disagreed with the study itself.
+_W, _I, _MR = D['wacc'], D['inputs'], D['macro_record']
+_L, _SENS, _CE = D['lenses'], D['sensitivity'], D['cost_exposure']
+_G = _SENS['g']
+
+
+def _pc(x, dp=2):
+    return ('%.' + str(dp) + 'f%%') % (100 * x)
+
+
+def _egp(x, dp=1):
+    return 'EGP %s' % ('{:,.%df}' % dp).format(x)
+
+
 H1('3. Judgements, and what would overturn each one')
 rows = [['Judgement', 'What was decided', 'What would overturn it']]
 J = [
@@ -201,40 +223,57 @@ J = [
      'from the December 2025 licence. No revenue is credited, because the company has '
      'published none. The required revenue is solved for and published as the crux instead.',
      'Any disclosure of biosimilar volume, price or utilisation.'),
-    ('The associate contribution is normalised to EGP 320 million',
-     'The disclosed stream is EGP 74.5m, 147.1m and 495.5m across three years and the FY2025 '
-     'print is more than three times FY2024. The three-year average is 239.0; 320 sits '
-     'between that and the latest year.',
-     'A second year near EGP 495 million would make 320 too conservative by roughly EGP 10 a '
-     'share.'),
+    ('The associate contribution is normalised to %s million'
+     % '{:,.0f}'.format(_I['assoc_norm']['value']),
+     'The disclosed stream is EGP %.1fm, %.1fm and %.1fm across three years and the FY2025 '
+     'print is more than three times FY2024. The three-year average is %.1f; the adopted '
+     'figure sits between that and the latest year.'
+     % (_I['assoc_fy23']['value'], _I['assoc_fy24']['value'], _I['assoc_fy25']['value'],
+        (_I['assoc_fy23']['value'] + _I['assoc_fy24']['value']
+         + _I['assoc_fy25']['value']) / 3.0),
+     'A second year near EGP %.0f million would make the adopted figure too conservative.'
+     % _I['assoc_fy25']['value']),
     ('The associates are valued on earnings, not carrying value',
-     'They contributed EGP 495.5 million against a carrying value of EGP 675.9 million. '
-     'Carrying value is therefore not a usable proxy, and an 11 times multiple is applied to '
-     'the normalised stream instead.',
+     'They contributed EGP %.1f million against a carrying value of EGP %.1f million. '
+     'Carrying value is therefore not a usable proxy, and a %.0f times multiple is applied '
+     'to the normalised stream instead.'
+     % (_I['assoc_fy25']['value'], _I['assoc_bv_fy25']['value'],
+        _I['assoc_multiple']['value']),
      'Separate accounts for the Saudi associate, which would allow a real valuation rather '
      'than a multiple.'),
     ('The exchange-rate path depreciates about 4% a year, narrowing to 3%',
      'The pound averaged 47.74 in FY2024 and 49.48 in FY2025 while domestic inflation ran far '
      'above the United States\', so the real rate appreciated. The path assumes a partial '
      'reversal.',
-     'A step devaluation of the kind seen in March 2024. Note this cuts AGAINST the company, '
-     'not for it: imported inputs are 79% of the cash cost stack against a 32% export share.'),
-    ('The terminal debt weight is 20%, below today\'s 25%',
-     'At a 40% payout the model deleverages through the forecast, so a terminal weight at '
-     'today\'s level would contradict the model\'s own trajectory in the direction that '
-     'flatters the valuation.',
-     'A stated policy of maintaining current leverage.'),
-    ('Terminal growth is 5%, which is roughly zero in real terms',
-     'It is a pound-nominal rate struck against a terminal risk-free rate that itself embeds '
-     'the central bank\'s 5% inflation target. Deliberately conservative for a company with a '
-     'third of revenue in hard currency.',
-     'Nothing in the near term; the sensitivity table runs 3% to 7% and the value ranges from '
-     'EGP 78 to EGP 98.'),
+     'A step devaluation of the kind seen in March 2024. Note this cuts AGAINST the '
+     'company, not for it: imported inputs are %s of the full cash cost stack against a '
+     'roughly one-third export share. The %s variant assumes ALL packaging is imported, '
+     'which the group\'s own primary-packaging manufacture rules out.'
+     % (_pc(_CE['fx_cost_share_full_stack'], 1),
+        _pc(_CE['fx_cost_share_full_stack_if_all_packaging'], 1))),
+    ('The terminal debt weight is %s, which is today\'s market weight' % _pc(_W['wd_term']),
+     'An earlier edition carried 20%% here on the argument that the model deleverages '
+     'through the forecast. The market weight is used instead, and both are shown: on the '
+     'book basis the terminal weight is %s and the terminal cost of capital %s, against '
+     '%s on the market basis.'
+     % (_pc(_W['wd_term_book']), _pc(_W['wacc_term_book_basis']), _pc(_W['wacc_term'])),
+     'A stated policy of maintaining leverage away from the current level.'),
+    ('Terminal growth is %s, which is zero in real terms' % _pc(_MR['terminal']['g_nominal']),
+     'It is a pound-nominal rate DERIVED from the house terminal inflation of %s at zero '
+     'real growth, not typed. An earlier edition typed 5%% and called it approximately '
+     'zero real, which against a %s long-run rate is a real DECLINE of about 1.9%% a year '
+     'in perpetuity that nothing in the study argued for.'
+     % (_pc(_MR['terminal']['inflation']), _pc(_MR['terminal']['inflation'])),
+     'Nothing in the near term; the sensitivity table runs %s to %s and the value ranges '
+     'from %s to %s.'
+     % (_pc(_G[0][0], 0), _pc(_G[-1][0], 0), _egp(_G[0][1], 2), _egp(_G[-1][1], 2))),
     ('The risk-free rate is normalised by subtracting the sovereign spread',
-     'The quoted 22.31% ten-year yield contains Egypt\'s own default risk; subtracting the '
-     '3.41% credit-default-swap spread leaves 18.90%, and country risk is then charged once, '
-     'inside the equity premium. Both the swap and the rating construction are published and '
-     'they agree to 11 basis points.',
+     'The quoted %s ten-year yield contains Egypt\'s own default risk; subtracting the '
+     '%s credit-default-swap spread leaves %s, and country risk is then charged once, '
+     'inside the equity premium. Both the swap and the rating construction are published: '
+     'the rating basis leaves %s.'
+     % (_pc(_W['rf']), _pc(_W['sov_spread_cds']), _pc(_W['rf_star']),
+        _pc(_W['rf_star_rating'])),
      'Nothing — this is a construction rule, and charging the raw yield alongside a '
      'country-loaded premium would double-count. The rate itself is a cached print and is '
      'sensitised.'),
@@ -250,10 +289,13 @@ J = [
      'Nothing — a single blended index across physically distinct lines makes the forecast '
      'margin an artefact of the index rather than of the business.'),
     ('The relative lens uses three multiples, averaged on the sheet',
-     'The multiple the model\'s own economics justify (8.1x), the company\'s own four-year '
-     'mean (6.7x), and a regional peer median adjusted for the cost-of-equity gap (9.8x). The '
-     'unadjusted peer median would give EGP 133 a share; the size of that gap is the '
-     'country-risk discount and it is shown rather than hidden.',
+     'The multiple the model\'s own economics justify (%.2fx), the company\'s own '
+     'four-year mean (%.2fx), and a peer-referenced multiple adjusted for the '
+     'cost-of-equity gap (%.2fx) — which is NOT a median of a disclosed peer set and is '
+     'not presented as one. The unadjusted peer read would give %s a share; the size of '
+     'that gap is the country-risk discount and it is shown rather than hidden.'
+     % (_L['just_fwd_pe'], _L['own_pe_mean'], _L['peer_adj_pe'],
+        _egp(_L['rel_peer_unadjusted'], 0)),
      'A peer set facing a comparable cost of equity, which does not currently exist in a '
      'liquid listed form.'),
 ]

@@ -1765,6 +1765,12 @@
    "date": "2026-07-02",
    "layer": "Country"
   },
+  "beta_terminal": {
+   "value": 1.0,
+   "source": "Terminal beta. The measured beta describes how this share has moved against the exchange over the window it was fitted on; in perpetuity a going concern is assumed to revert to the market, so the terminal cost of equity is struck at 1.00 and not at the measured figure. This is a HOUSE CONVENTION rather than an observation, which is why it is stated here rather than derived: no regression produces a perpetual beta. The construction is same_beta in name only -- the explicit window uses the measured beta and the terminal uses 1.00, and both are published. It is the single largest driver in this study and it is sensitised in the terminal table.",
+   "date": "2026-09-10",
+   "layer": "House"
+  },
   "beta": {
    "value": 0.6658188407423365,
    "source": "Own-stock first-tier weekly regression against raw_indices/EG/EGX30.csv as at 2026-09-08 — THE PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() rather than hand-rolled. R-squared 0.143, n = 256, standard error 0.1355, 90% confidence interval [0.443, 0.889], Dimson-corrected and matched to the exchange's own trading week (W-THU). The coefficient is comfortably larger than its own standard error, which is the test applied before any regression beta is used. WITHDRAWN AND KEPT FOR COMPARISON: the previous edition regressed against a 36-name equal-weight basket of the covered library and got 0.6295 at an R-squared of 0.235. THE BASKET FIT BETTER, which is what a basket built out of our own coverage does — it shares members with the very set it is used to price — and a better fit against the wrong regressor is not evidence for the wrong regressor. A beta below one is still what a defensive, price-regulated, domestically-consumed staple should produce.",
@@ -1815,8 +1821,8 @@
   },
   "rf_term": {
    "value": 0.105,
-   "source": "Terminal risk-free rate, DERIVED and never quoted: the long-run inflation this valuation carries throughout, 7.0%, plus the standard 5.5-point emerging-market real-rate convention. The previous edition used 10.5%, built the same way but on a 5% inflation assumption that appears nowhere else in the model — the same valuation escalated costs on one long-run rate and discounted the terminal on another, two points apart. THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most terminal-value-sensitive number in the model cannot be typed, and it cannot disagree with the inflation the rest of the model uses because it is computed from it.",
-   "date": "2026-09-03",
+   "source": "Terminal risk-free rate, DERIVED and never quoted: the long-run inflation this valuation carries throughout, 7.00%, plus the house long-run real-rate convention of 3.50 points, which is 10.50%. That real rate was cut from 5.50 points on 10-09-2026: the retired figure described a central bank still RESTRICTING to finish a disinflation, and a terminal rate is the neutral one held in perpetuity. THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most terminal-value-sensitive number in the model cannot be typed, and it cannot disagree with the inflation the rest of the model uses because it is computed from it — including this sentence, which is interpolated from the same two figures rather than describing them.",
+   "date": "2026-09-10",
    "layer": "House"
   },
   "erp_term": {

@@ -607,8 +607,11 @@ rows += [
      n0(FC['capex'][0]), 'reset upward to the quarter'],
     ['Attributable profit (EGP m)', n0(V['q1_parent']),
      n0(V['q1_parent'] / V['q1_share_of_year_profit']), n0(FC['parent'][0]),
-     f"the study is {pc(FC['parent'][0] / (V['q1_parent'] / V['q1_share_of_year_profit']) - 1, 0)} "
-     f"below the quarter's seasonal read"],
+     # THE NUMBER WAS READ AND THE DIRECTION WAS TYPED. It printed "5% below" where
+     # its own arithmetic gives +5.4%: ABOVE. A word is a figure too.
+     (lambda _d: f"the study is {pc(abs(_d), 0)} "
+                 f"{'above' if _d > 0 else 'below'} the quarter's seasonal read")(
+         FC['parent'][0] / (V['q1_parent'] / V['q1_share_of_year_profit']) - 1)],
     ['Attributable earnings per share (EGP)', n2(V['q1_parent'] / SH),
      n2(V['q1_parent'] / V['q1_share_of_year_profit'] / SH), n2(FC['parent'][0] / SH),
      'the two lines the appendix must reproduce, checked here'],
@@ -968,99 +971,26 @@ bullet(f'the bands here are wide — the three-month 90% band runs from EGP '
        f'moved 44% in two sessions would be a lie.', bold_head='Width is information: ')
 bullet(f'the bands describe where the PRICE may go. The valuation describes what the '
        f'BUSINESS appears to be worth. They are different questions and this study keeps them '
-       f'apart on purpose. BOTH fundamental centres — EGP {n2(LN["centre_A"])} and EGP '
-       f'{n2(LN["centre_B"])} — sit below the entire three-month band, and that is worth '
-       f'noticing rather than reconciling away.',
+       # "BOTH CENTRES SIT BELOW THE ENTIRE BAND" WAS TYPED, and the band's own floor
+       # is printed two bullets above: centre B sits inside it. Computed now.
+       + (lambda lo, a, b: (
+           f'apart on purpose. Both fundamental centres — EGP {n2(a)} and EGP {n2(b)} — '
+           f'sit below the entire three-month band, and that is worth noticing rather '
+           f'than reconciling away.' if max(a, b) < lo else
+           f'apart on purpose. The lower fundamental centre, EGP {n2(min(a, b))}, sits '
+           f'below the entire three-month band, whose floor is EGP {n2(lo)}; the higher, '
+           f'EGP {n2(max(a, b))}, sits inside it. That is worth noticing rather than '
+           f'reconciling away.'))(STRIKE["horizons"]["3M"]["pct"]["p5"], LN["centre_A"], LN["centre_B"]),
        bold_head='These are not a valuation: ')
 
 # ============ 11. SECTION 7 — CAVEATS AND WHAT WOULD CHANGE OUR MIND ===========
 H1('7. Caveats, and what would change our mind')
-H2('7.1 What changed in this edition, and by how much')
-rows = [['Change', 'Effect']]
-rows += [
-    ['FY2026 revenue growth reset from 17.5% to the quarter\'s 10.1%',
-     'the largest single change; it lowers the base every later year compounds from'],
-    ['FY2026 capital expenditure raised to the quarter\'s run-rate',
-     'more cash out of free cash flow in the first forecast year'],
-    ['Finance cost charged to profit reset to the quarter, and separated from the marginal '
-     'cost of debt used in the discount rate',
-     'raises forecast earnings; the two were being conflated and are now distinct rows'],
-    ['Normalised associate contribution cut from EGP 320m to EGP 250m, the like-for-like '
-     'three-year average', 'lowers the bridge; the quarter reported only EGP 13.1m, but the '
-     'auditor states the associates\' statements were not received, so it is not decisive'],
-    ['The active-ingredient company added to the bridge at carrying cost, and the '
-     'non-controlling interest deducted there replaced with the post-deconsolidation figure',
-     'both POSITIVE, and they are two halves of one event: that company left the consolidation '
-     'in the quarter, taking EGP 284.7m of minorities out and adding EGP 228.5m of associate '
-     'carrying value'],
-    ['Dividend-distribution tax given its own line in all three history years, following the '
-     'separately issued statements', 'lifts FY2023 operating profit by EGP 4.1m (0.34%); worth '
-     'about EGP 0.12 a share'],
-    ['THE SINGLE WEIGHTED CENTRE IS WITHDRAWN',
-     'the first edition weighted Frame A and Frame B at a quarter each inside one number. '
-     'Weighting both frames inside one number IS averaging them, which this study says five '
-     'times that it never does. Each frame now carries the cash-flow weight in full, on its '
-     'own, and TWO centres are published'],
-    ['The terminal return on invested capital is now COMPUTED, not assumed',
-     f"it was asserted at 20% against a forecast that reaches "
-     f"{pc(A['roic_term'], 2)} in FY2030E. It now READS the model's own final year, so "
-     f"terminal reinvestment rises from 25.0% to {pc(A['reinvest_rate'], 1)} of terminal "
-     f"operating profit after tax"],
-    ['The terminal year is charged the depreciation the forecast never charged',
-     f"EGP {n0(FC['cip'][-1])} million of construction is still parked at FY2030E and had "
-     f"never entered the depreciable base. A perpetuity cannot capitalise profit on capital it "
-     f"never charges, so EGP {n0(A['term_dep_catchup'])} million a year is now deducted before "
-     f"the terminal value is struck"],
-    ['The terminal debt weight is now DERIVED and published on both bases',
-     f"it was 20%, described as reconciled to the forecast balance sheet. It reconciled to "
-     f"neither reading of that sheet: {pc(W['wd_term_market'], 1)} on today's market values, "
-     f"{pc(W['wd_term_book'], 1)} on the funded forecast book. The market reading is used and "
-     f"both are shown"],
-    ['Free cash flow is taxed at the EFFECTIVE rate, not the statutory rate',
-     f"the model conceded a {pc(W['tax_fcff'], 1)} effective burden in one place and applied "
-     f"{pc(W['tax_stat'], 1)} in the cash-flow engine. One rate now runs both"],
-    ['The forecast balance sheet is FUNDED and now balances',
-     'cash and gross borrowings were frozen at their audited levels for five years while '
-     'equity compounded, so the statement was out by up to 6.6% of total assets and no '
-     'balance check was ever computed. Gross borrowings are now the funding plug, a total '
-     'liabilities-and-equity row and a balance check have been added, and both are zero in '
-     'every forecast column'],
-    ['The trailing multiples are applied to TRAILING earnings',
-     'two of the three legs of the relative lens were labelled trailing and applied to FY2026E '
-     'earnings, which are BELOW trailing because of the depreciation step. Each leg now takes '
-     'the earnings of its own period'],
-    ['The peer anchor is relabelled a struck reference and moved to the midpoint',
-     f"it was called a peer median at 19.5 times. Only two observations are disclosed, "
-     f"{PEER_HI:.1f}x and {PEER_MID:.1f}x, whose midpoint is {V['peer_pe_regional']:.2f}x. It "
-     f"is now that midpoint and it is not called a median"],
-    ['The risk-free rate and the share price are struck on ONE date',
-     'the yield carried a 21 July 2026 print against a 6 August 2026 share price. Both are now '
-     '6 August, and the country-risk dataset moves to its mid-year vintage'],
-    ['The sustainable return and the book lens are live in the workbook',
-     'the book-value lens was a constant multiple typed inside a formula, so that lens did not '
-     'move for any driver. Both the multiple and the return behind it now read the forecast'],
-    ['The appendix income statement prints what the model computes',
-     'its attributable-profit row printed retained earnings and its finance-cost row was a '
-     'first-edition artefact. Both now come from the model rows the valuation uses'],
-    ['The terminal is fed the LAST forecast year\u2019s cash flow, not a year already grown',
-     f"the terminal formula grows the free cash flow one year itself and values the result at "
-     f"the end of the last forecast year, which is where the discount factor lands it. The "
-     f"profit, the depreciation and the working capital handed to it had already been grown "
-     f"once, so the terminal capitalised a flow a year further out than the factor it was "
-     f"discounted at. Correcting it lowers the terminal by "
-     f"{pc(A['tv'] / A['terminal_record']['superseded_grown_basis']['tv'] - 1, 1)} on Frame A "
-     f"and {pc(Bf['tv'] / Bf['terminal_record']['superseded_grown_basis']['tv'] - 1, 1)} on "
-     f"Frame B, and the value per share by "
-     f"{pc(A['per_share'] / A['per_share_superseded_grown_basis'] - 1, 1)} and "
-     f"{pc(Bf['per_share'] / Bf['per_share_superseded_grown_basis'] - 1, 1)} \u2014 the larger "
-     f"share effect is gearing, not a second change"],
-    ['NET EFFECT ON THE CENTRE',
-     f"a single EGP 79.64 becomes a PAIR: EGP {n2(LN['centre_A'])} on Frame A "
-     f"({pc(LN['centre_A'] / 79.64 - 1, 0)}) and EGP {n2(LN['centre_B'])} on Frame B "
-     f"({pc(LN['centre_B'] / 79.64 - 1, 0)})"],
-]
-table(rows, [2.7, 4.2], band_rows={7, len(rows) - 1}, size=8.4)
-caption(f'Table {tnum()} — every change from the first edition, and its direction.')
+# SECTION 7.1 WAS THE EDITION HISTORY, AND THE MODEL REPORT EXISTS TO EXCLUDE IT.
+# Edition history is internal QC evidence: it tells a reader what a superseded
+# document said, which is a fact about this desk's process and not about the
+# company. Removed 13-09-2026; the record of what changed lives in the QC gate
+# and in the commit that made each change.
+
 
 rows = [['Caveat', 'What it costs the study', 'What would settle it']]
 rows += [
@@ -1525,8 +1455,17 @@ P(f'Put together, the disagreement narrows to a single question, which is a good
   f'65% capacity utilisation, a growing export book earned in hard currency, an administered '
   f'domestic price that at least tracks inflation — their own worked values run from EGP '
   f'{n2(min(A["per_share"], LN["book_ps"]))} to EGP '
-  f'{n2(max(A["per_share"], LN["book_ps"]))} a share, and the study\'s own two centres, EGP '
-  f'{n2(LN["centre_A"])} and EGP {n2(LN["centre_B"])}, sit inside that. Those are the numbers; '
+  f'{n2(max(A["per_share"], LN["book_ps"]))} a share. '
+  # "THE STUDY'S OWN TWO CENTRES SIT INSIDE THAT" WAS TYPED, and one of them is outside
+  # the pair of numbers printed in the same sentence. Computed.
+  + (lambda lo, hi, a, b: (
+      f'The study\'s own two centres, EGP {n2(a)} and EGP {n2(b)}, both sit inside that. '
+      if lo <= min(a, b) and max(a, b) <= hi else
+      f'The study\'s own lower centre, EGP {n2(min(a, b))}, sits inside that; the higher, '
+      f'EGP {n2(max(a, b))}, sits above it. '))(
+      min(A["per_share"], LN["book_ps"]), max(A["per_share"], LN["book_ps"]),
+      LN["centre_A"], LN["centre_B"])
+  + f'Those are the numbers; '
   f'no wider claim is made for the business than its own lenses support.')
 P(f'Where they part is what the new plant is worth today. Expert 1 says: nothing until it '
   f'produces cash, so EGP {n2(A["per_share"])}. Expert 2 says: nothing until it produces a '

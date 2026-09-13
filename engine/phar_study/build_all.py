@@ -39,6 +39,13 @@ STEPS = [
     ('footing_check.py', None, 'every total reproducible from its rows'),
     ('qc_checks.py', None, "the study's own delivered-document checks"),
     ('bridge_record.py', 'study_numbers.json (bridge_record)', 'APPENDS — after compute'),
+    # THE THREE STANDING ASSERTIONS, RUN. Until 13-09-2026 this study called NONE of
+    # them: assert_beta_provenance appeared only inside a docstring and the other two
+    # appeared nowhere at all, while the provenance gate tested for the NAME in the
+    # file's text and passed on the sentence. A violation must not issue, so this is
+    # a build step and it raises.
+    ('gates.py', None, 'SIGCM, beta provenance, ground-up and model-report depth — '
+                       'all four asserted, not attested'),
 ]
 
 if __name__ == '__main__':

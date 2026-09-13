@@ -924,6 +924,23 @@ INP = dict(
     crp_cds=I(0.053164, "Egypt COUNTRY risk premium on the sovereign-CDS basis, 5.3164%, "
               "mid-year vintage, disclosure only — see the note above", "2026-07-02",
               "Country"),
+    # THE TERMINAL BETA, REGISTERED. It was a bare module constant -- absent from the
+    # 282-input register, not a single hit for "terminal beta" in the delivered
+    # bibliography, and worth EGP 27.55 a share on Frame A by the gap review's own
+    # arithmetic. The largest driver in the study and the only one a reader could not
+    # check. It is a house convention and it is stated as one.
+    beta_terminal=I(1.0,
+                    "Terminal beta. The measured beta describes how this share has moved "
+                    "against the exchange over the window it was fitted on; in perpetuity "
+                    "a going concern is assumed to revert to the market, so the terminal "
+                    "cost of equity is struck at 1.00 and not at the measured figure. "
+                    "This is a HOUSE CONVENTION rather than an observation, which is why "
+                    "it is stated here rather than derived: no regression produces a "
+                    "perpetual beta. The construction is same_beta in name only -- the "
+                    "explicit window uses the measured beta and the terminal uses 1.00, "
+                    "and both are published. It is the single largest driver in this "
+                    "study and it is sensitised in the terminal table.",
+                    "2026-09-10", "House"),
     beta=I(float(_BETA['beta']),
            "Own-stock first-tier weekly regression against %s as at %s — THE PUBLISHED INDEX OF "
            "THE EXCHANGE THIS STOCK IS LISTED ON, resolved by beta_regression.own_stock_beta() "
@@ -989,16 +1006,29 @@ INP = dict(
               "edition described it as a cost-of-debt path, which it is not"
               % (100 * (_RF_EGY + _KD_CORP_SPREAD)),
               "2026-08-09", "House"),
+    # THE VALUE WAS DERIVED AND ITS OWN DESCRIPTION WAS TYPED, and the description
+    # stopped reproducing: it said "7.0% plus the standard 5.5-point convention", which
+    # is 12.5% and not the 10.5% the row publishes, and called 10.5% the PREVIOUS
+    # edition's number when 10.5% is the current one. The house real-rate convention was
+    # cut from 5.5% to 3.5% on 10-09-2026 and the sentence still described the retired
+    # one. A row whose prose cannot reproduce its own value is the four-field standard's
+    # own failure, on the study's single most terminal-value-sensitive number. The
+    # sentence now interpolates the same two figures the value is built from.
     rf_term=I(_HOUSE_RF_TERM, "Terminal risk-free rate, DERIVED and never quoted: the "
-              "long-run inflation this valuation carries throughout, 7.0%, plus the "
-              "standard 5.5-point emerging-market real-rate convention. The previous "
-              "edition used 10.5%, built the same way but on a 5% inflation assumption "
-              "that appears nowhere else in the model — the same valuation escalated "
-              "costs on one long-run rate and discounted the terminal on another, two "
-              "points apart. THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most "
+              "long-run inflation this valuation carries throughout, %.2f%%, plus the "
+              "house long-run real-rate convention of %.2f points, which is %.2f%%. "
+              "That real rate was cut from 5.50 points on 10-09-2026: the retired "
+              "figure described a central bank still RESTRICTING to finish a "
+              "disinflation, and a terminal rate is the neutral one held in perpetuity. "
+              "THE DERIVATION IS WHAT MAKES IT CHECKABLE: the single most "
               "terminal-value-sensitive number in the model cannot be typed, and it "
               "cannot disagree with the inflation the rest of the model uses because it "
-              "is computed from it.", "2026-09-03", "House"),
+              "is computed from it — including this sentence, which is interpolated "
+              "from the same two figures rather than describing them."
+              % (100 * _EG.terminal_inflation,
+                 100 * _EG.raw['real_rate_convention']['value'],
+                 100 * _HOUSE_RF_TERM),
+              "2026-09-10", "House"),
     erp_term=I(0.070, "Terminal equity risk premium, normalised below today's crisis-era level "
                "toward the rating-class norm; never held flat into perpetuity", "2026-08-09",
                "House"),
@@ -1537,7 +1567,11 @@ wacc0_gross = (1 - wd_gross) * ke + wd_gross * kd_at
 # EVEN THOUGH IT COSTS THIS STUDY VALUE: EIPICO's measured beta is BELOW one, so
 # convergence RAISES its terminal cost of capital and LOWERS the answer. A rule that
 # were only applied where it helped would not be a rule.
-BETA_TERM = 1.0
+# THE SINGLE LARGEST DRIVER IN THE STUDY AND THE ONLY ONE WITH NO PROVENANCE. It was
+# a bare module constant, absent from the 282-input register, and worth EGP 27.55 a
+# share on Frame A by the gap review's own arithmetic. It is read from the register
+# now, so it carries a value, a source, a date and a layer like every other input.
+BETA_TERM = V['beta_terminal']
 ke_term = V['rf_term'] + BETA_TERM * V['erp_term']
 kd_term = (1 - w_fx) * V['kd_term_lc'] + w_fx * ((1 + V['kd_term_fx']) * 1.03 - 1)
 kd_term_at = kd_term * (1 - TAX)
