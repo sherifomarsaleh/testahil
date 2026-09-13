@@ -61,7 +61,7 @@ Nothing in this block is a quote. Each line is an identity on the numbers above,
 
 | | Identity | Value |
 |---|---|---:|
-| Terminal risk-free | terminal inflation + real-rate convention (5.50%) | **12.50%** |
+| Terminal risk-free | terminal inflation + real-rate convention (3.50%) | **10.50%** |
 | Terminal growth, zero real | terminal inflation + stated real growth (0.00%) | **7.00%** |
 
 ### The currency, derived
@@ -90,7 +90,7 @@ Relative purchasing-power parity on this path's own inflation against long-run U
 - **fx.derivation** — The forward currency path is DERIVED from this path's own inflation ladder against long-run United States inflation by relative purchasing-power parity, never set by hand. A study that escalates costs at Egyptian inflation while depreciating the pound at a third of the differential is running two views of one economy [L-048].
 - **us_inflation_lt** — Long-run United States consumer price inflation, the foreign leg of the purchasing-power-parity relation. Registered at 2.5% by AMOC (06-Aug-2026) and at 2.4% by EGCH; 2.5% is adopted for the house path and the 10bp difference is immaterial to any derived figure at this precision.
 - **cost_of_debt_norm** — The long-run Egyptian corporate-borrowing norm, 14-16%, midpoint 15% absent a name-specific reason to deviate [Standing_Research_Protocol 13-Jul r2, clause 4].
-- **real_rate_convention** — The standard emerging-market terminal real risk-free convention (~5.5pp). The terminal NOMINAL risk-free rate is DERIVED as this plus the inflation target in force, so the single most terminal-value-sensitive number in a model cannot be typed.
+- **real_rate_convention** — Egypt's LONG-RUN STRUCTURAL real risk-free rate, 3.5%. REVISED FROM 5.5% on 10-09-2026 by instruction, and the revision is about which rate the terminal is supposed to be. The retired 5.5% matched this path's own policy ladder, which ends 2030 at 12.0% nominal against 7.0% inflation — but that is a central bank still RESTRICTING to finish a disinflation, not a neutral stance, and a terminal rate is the neutral one held in perpetuity. Charging a disinflation-campaign real rate for ever discounted every Egyptian company at crisis settings on the line that carries most of the value. THE CROSS-CHECK IS THE REGION'S LEADING HOUSE: EFG Hermes prices Egyptian terminal cost of capital at 14.2-15.1% in every report read from November 2023 through June 2026 — across a devaluation and a full rate cycle — where ours floated to 17.85%. 3.5% real is above the 1.5-2% a mature market pays and below the restrictive stance, and it is a HOUSE JUDGEMENT rather than a quoted instrument, which is why it is stated here rather than derived.
 - **erp_terminal** — Terminal equity risk premium, normalised below the currently elevated crisis-era level toward the rating-class norm; never held flat into perpetuity.
 
 ---
