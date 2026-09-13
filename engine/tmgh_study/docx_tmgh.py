@@ -719,14 +719,30 @@ def section1_drivers(doc):
     dam = ins["damodaran"]
     CBE = ins["cbe"]
     # EACH COST OF EQUITY REPRODUCES FROM THE ROWS THIS TABLE PRINTS, on its own basis.
-    for _rf, _erp, _ke in ((W["rf_star_rating"], dam["total_erp_rating"], W["ke_rating"]),
-                           (W["rf_star_cds"], dam["total_erp_cds"], W["ke_cds"])):
-        assert abs(_rf + W["beta_record"]["beta"] * _erp - _ke) < 5e-4, (
-            "the cost of equity does not reproduce: %.4f + %.4f x %.4f != %.4f"
-            % (_rf, W["beta_record"]["beta"], _erp, _ke))
-        assert abs((ins["rf_observed"] - _rf)
-                   - (dam["adj_default_spread"] if _erp == dam["total_erp_rating"]
-                      else dam["sovereign_cds"])) < 5e-4, "the spread stripped is not printed"
+    # RE-POINTED 10-09-2026 TO THE SPLIT IDENTITY. This asserted rf* + beta x the WHOLE
+    # premium, which multiplies Egypt's country risk by beta. The model moved to charging
+    # country risk ONCE AND FLAT and this assertion did not move with it, so the delivered
+    # document refused to build: 0.1663 + 1.4687 x 0.1394 came to 0.3711 against the
+    # 0.3257 the study publishes. The assertion was right to refuse -- it was reproducing
+    # an identity this house had retired, and 454 basis points is not a rounding argument.
+    # Beta applies to the MATURE leg and to nothing else; the country leg is added flat.
+    _ERPM = W["erp_mature"] if "erp_mature" in W else \
+        dam["total_erp_cds"] - dam["sovereign_cds"] * 1.52
+    for _rf, _crp, _ke, _spread in (
+            # DERIVED, not read off the rounded country-premium row: the published
+            # 9.71% leaves the identity 1.5bp short, which passes on tolerance rather
+            # than on arithmetic. Both bases now strip the same mature leg from their
+            # own total, which is what the split actually is.
+            (W["rf_star_rating"], dam["total_erp_rating"] - _ERPM, W["ke_rating"],
+             dam["adj_default_spread"]),
+            (W["rf_star_cds"], dam["total_erp_cds"] - _ERPM, W["ke_cds"],
+             dam["sovereign_cds"])):
+        assert abs(_rf + W["beta_record"]["beta"] * _ERPM + _crp - _ke) < 5e-4, (
+            "the cost of equity does not reproduce on the split identity: "
+            "%.4f + %.4f x %.4f + %.4f != %.4f"
+            % (_rf, W["beta_record"]["beta"], _ERPM, _crp, _ke))
+        assert abs((ins["rf_observed"] - _rf) - _spread) < 5e-4, \
+            "the spread stripped is not printed"
     table(doc, ["Input", "Value", "Where it comes from"],
           [["Egyptian ten-year government bond yield", pct(ins["rf_observed"], 2),
             # READ, NOT TYPED [08-09-2026]. These three were typed here and in the
@@ -767,7 +783,10 @@ def section1_drivers(doc):
             % (money(W["beta_record"]["window_years"], 2), W["beta_record"]["n"],
                pct(W["beta_record"]["r2"], 1), money(W["beta_record"]["se"], 3))],
            ["Cost of equity", "%s / %s" % (pct(W["ke_rating"], 2), pct(W["ke_cds"], 2)),
-            "the normalised risk-free rate plus beta times each premium"],
+            "the normalised risk-free rate, plus beta times the MATURE premium, plus "
+            "Egypt's country premium charged once and flat. Beta measures this share's "
+            "exposure to its own equity market, not to its sovereign, so it is not "
+            "applied to the country leg"],
            ["Marginal cost of debt, before tax", pct(ins["kd_local"], 2),
             "the sovereign yield plus a 250 basis-point corporate spread. TMG "
             "does not disclose the rate on any of its own facilities, so its own "

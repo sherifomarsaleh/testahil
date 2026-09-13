@@ -27,6 +27,7 @@
   "d_advances_h1_26": 16316.900000000009,
   "d_pud_h1_26": 18256.5,
   "kd": 0.255,
+  "implied_finance_rate_fy25": 0.3335395095829591,
   "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
  },
  "rating|capacity": {
@@ -624,6 +625,7 @@
    "d_advances_h1_26": 16316.900000000009,
    "d_pud_h1_26": 18256.5,
    "kd": 0.255,
+   "implied_finance_rate_fy25": 0.3335395095829591,
    "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
   },
   "model": {
@@ -1204,6 +1206,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "closing_backlog": 5265316.285040517,
@@ -1825,6 +1828,7 @@
    "d_advances_h1_26": 16316.900000000009,
    "d_pud_h1_26": 18256.5,
    "kd": 0.255,
+   "implied_finance_rate_fy25": 0.3335395095829591,
    "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
   },
   "model": {
@@ -2405,6 +2409,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "closing_backlog": 4648283.224088633,
@@ -3026,6 +3031,7 @@
    "d_advances_h1_26": 16316.900000000009,
    "d_pud_h1_26": 18256.5,
    "kd": 0.255,
+   "implied_finance_rate_fy25": 0.3335395095829591,
    "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
   },
   "model": {
@@ -3606,6 +3612,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "closing_backlog": 5265316.285040517,
@@ -4227,6 +4234,7 @@
    "d_advances_h1_26": 16316.900000000009,
    "d_pud_h1_26": 18256.5,
    "kd": 0.255,
+   "implied_finance_rate_fy25": 0.3335395095829591,
    "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
   },
   "model": {
@@ -4807,6 +4815,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "closing_backlog": 4648283.224088633,

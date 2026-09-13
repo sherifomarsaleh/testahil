@@ -193,7 +193,27 @@ KPI = {
                                "2024-12-31", "A"),
     "landbank_msqm":      I(20.0, ER26H1, "2026-06-30", "A", unit="mn sqm",
                             note="stated as 'c.20 mn sqm' on the release's own "
-                                 "indicator panel"),
+                                 "indicator panel. THIS IS THE REMAINING DEVELOPABLE "
+                                 "LAND AND NOT THE GROUP TOTAL, and the distinction is "
+                                 "worth six times the number, so it is stated here "
+                                 "rather than left for a reader to trip over: the "
+                                 "company reports a TOTAL group land bank of about "
+                                 "115mn sqm, which counts everything it has ever "
+                                 "acquired including communities long since built and "
+                                 "sold. The constraint on how much this company can "
+                                 "still convert is what is LEFT, which is this figure. "
+                                 "A model constrained by the total would be constrained "
+                                 "by land it has already turned into revenue"),
+    "landbank_group_total_msqm": I(128.0, "TMG disclosure of 31 May 2026 on the Baghdad "
+                            "licence, which states the transaction takes the total group "
+                            "land bank from about 115mn sqm to about 128mn sqm and the "
+                            "GCC land bank to about 28mn sqm", "2026-05-31", "A",
+                            unit="mn sqm",
+                            note="REGISTERED FOR CONTEXT AND FEEDS NOTHING. It is the "
+                                 "gross-acquired measure described above; the 12.8mn sqm "
+                                 "Baghdad addition inside it is an Iraqi investment "
+                                 "licence issued on 24 May 2026, outside Egypt and "
+                                 "outside anything this model builds project by project"),
     "hotel_keys_operating": I(3500.0, ER26H1, "2026-06-30", "A", unit="keys",
                               note="stated as 'c.3,500'"),
     "hotel_keys_under_construction": I(1500.0, ER26H1, "2026-06-30", "A", unit="keys"),

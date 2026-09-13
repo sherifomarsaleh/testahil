@@ -917,7 +917,15 @@
     "date": "2026-06-30",
     "tier": "A",
     "unit": "mn sqm",
-    "note": "stated as 'c.20 mn sqm' on the release's own indicator panel"
+    "note": "stated as 'c.20 mn sqm' on the release's own indicator panel. THIS IS THE REMAINING DEVELOPABLE LAND AND NOT THE GROUP TOTAL, and the distinction is worth six times the number, so it is stated here rather than left for a reader to trip over: the company reports a TOTAL group land bank of about 115mn sqm, which counts everything it has ever acquired including communities long since built and sold. The constraint on how much this company can still convert is what is LEFT, which is this figure. A model constrained by the total would be constrained by land it has already turned into revenue"
+   },
+   "landbank_group_total_msqm": {
+    "value": 128.0,
+    "source": "TMG disclosure of 31 May 2026 on the Baghdad licence, which states the transaction takes the total group land bank from about 115mn sqm to about 128mn sqm and the GCC land bank to about 28mn sqm",
+    "date": "2026-05-31",
+    "tier": "A",
+    "unit": "mn sqm",
+    "note": "REGISTERED FOR CONTEXT AND FEEDS NOTHING. It is the gross-acquired measure described above; the 12.8mn sqm Baghdad addition inside it is an Iraqi investment licence issued on 24 May 2026, outside Egypt and outside anything this model builds project by project"
    },
    "hotel_keys_operating": {
     "value": 3500.0,
@@ -1031,16 +1039,16 @@
   }
  },
  "wacc": {
-  "ke_rating": 0.3710320302096666,
-  "ke_cds": 0.33410146372115945,
+  "ke_rating": 0.32565392050363534,
+  "ke_cds": 0.3098095713981506,
   "rf_star_rating": 0.1663,
   "rf_star_cds": 0.19590000000000002,
   "kd_pretax": 0.255,
   "kd_aftertax": 0.19762500000000002,
   "weight_equity": 0.9212884234116279,
   "weight_debt": 0.07871157658837213,
-  "wacc_rating": 0.35738288947035624,
-  "wacc_cds": 0.32335918609446124,
+  "wacc_rating": 0.31557656232188686,
+  "wacc_cds": 0.30097934691451134,
   "warnings": [],
   "beta_record": {
    "ticker": "TMGH",
@@ -1203,7 +1211,7 @@
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
      "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 19.59% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 1.469 x the MATURE-MARKET premium 4.23% = 6.21% + a country premium of 5.18% -> Ke 30.98%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 33.41%, +243bp.",
-     "DISCLOSED STALENESS: the sovereign quote is 35 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 38 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    },
    "rating": {
@@ -1304,7 +1312,7 @@
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
      "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 16.63% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 1.469 x the MATURE-MARKET premium 4.26% = 6.25% + a country premium of 9.68% -> Ke 32.57%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 37.10%, +454bp.",
-     "DISCLOSED STALENESS: the sovereign quote is 35 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+     "DISCLOSED STALENESS: the sovereign quote is 38 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
     ]
    }
   },
@@ -1406,7 +1414,7 @@
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
     "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 19.59% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 1.469 x the MATURE-MARKET premium 4.23% = 6.21% + a country premium of 5.18% -> Ke 30.98%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 33.41%, +243bp.",
-    "DISCLOSED STALENESS: the sovereign quote is 35 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 38 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
  },
@@ -1423,6 +1431,7 @@
   "d_advances_h1_26": 16316.900000000009,
   "d_pud_h1_26": 18256.5,
   "kd": 0.255,
+  "implied_finance_rate_fy25": 0.3335395095829591,
   "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
  },
  "model_parameters": {
@@ -2036,6 +2045,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "model": {
@@ -2616,6 +2626,7 @@
      "d_advances_h1_26": 16316.900000000009,
      "d_pud_h1_26": 18256.5,
      "kd": 0.255,
+     "implied_finance_rate_fy25": 0.3335395095829591,
      "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
     },
     "closing_backlog": 5265316.285040517,
@@ -3237,6 +3248,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "model": {
@@ -3817,6 +3829,7 @@
      "d_advances_h1_26": 16316.900000000009,
      "d_pud_h1_26": 18256.5,
      "kd": 0.255,
+     "implied_finance_rate_fy25": 0.3335395095829591,
      "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
     },
     "closing_backlog": 4648283.224088633,
@@ -4438,6 +4451,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "model": {
@@ -5018,6 +5032,7 @@
      "d_advances_h1_26": 16316.900000000009,
      "d_pud_h1_26": 18256.5,
      "kd": 0.255,
+     "implied_finance_rate_fy25": 0.3335395095829591,
      "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
     },
     "closing_backlog": 5265316.285040517,
@@ -5639,6 +5654,7 @@
     "d_advances_h1_26": 16316.900000000009,
     "d_pud_h1_26": 18256.5,
     "kd": 0.255,
+    "implied_finance_rate_fy25": 0.3335395095829591,
     "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
    },
    "model": {
@@ -6219,6 +6235,7 @@
      "d_advances_h1_26": 16316.900000000009,
      "d_pud_h1_26": 18256.5,
      "kd": 0.255,
+     "implied_finance_rate_fy25": 0.3335395095829591,
      "note": "Collections are the increase in customer advances plus the revenue recognised out of them; build spend is the increase in properties under development plus the cost recognised out of it. Both are identities on disclosed balances, not assumptions."
     },
     "closing_backlog": 4648283.224088633,
@@ -6362,7 +6379,7 @@
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
    "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 19.59% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 1.469 x the MATURE-MARKET premium 4.23% = 6.21% + a country premium of 5.18% -> Ke 30.98%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 33.41%, +243bp.",
-   "DISCLOSED STALENESS: the sovereign quote is 35 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   "DISCLOSED STALENESS: the sovereign quote is 38 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  },
  "macro_record": {
@@ -8431,24 +8448,24 @@
    "book_value_per_share": 44.48631788610003,
    "equity_parent": 91670.9,
    "roe_fy25": 0.16655888049050913,
-   "ke_rating": 0.3710320302096666,
-   "ke_cds": 0.33410146372115945,
+   "ke_rating": 0.32565392050363534,
+   "ke_cds": 0.3098095713981506,
    "cases": {
     "rating|g=10%": {
-     "justified_pb": 0.2455756998131184,
-     "value_per_share": 10.924758646987861
+     "justified_pb": 0.29496000043764736,
+     "value_per_share": 13.121684343153385
     },
     "rating|g=15%": {
-     "justified_pb": 0.07491620320729854,
-     "value_per_share": 3.3327460306995498
+     "justified_pb": 0.09426991690838138,
+     "value_per_share": 4.19372149068249
     },
     "cds|g=10%": {
-     "justified_pb": 0.28431637902865936,
-     "value_per_share": 12.648188817693844
+     "justified_pb": 0.31723471930745206,
+     "value_per_share": 14.112604567619028
     },
     "cds|g=15%": {
-     "justified_pb": 0.08994431742047013,
-     "value_per_share": 4.001291496815319
+     "justified_pb": 0.10361632501506579,
+     "value_per_share": 4.609508772809676
     }
    },
    "note": "ROE below the cost of equity means each retained pound is worth less than a pound, and the justified multiple falls below one. That is what this arithmetic says here, and it is stated rather than softened."
@@ -8518,10 +8535,10 @@
    "average": 7852.372858739989,
    "average_eps": 3.810622074770633,
    "revaluation_note": "FY2024 and FY2025 attributable profit each carry a non-cash investment-property revaluation gain (EGP 4,924.1mn and EGP 3,952.5mn at group level). They are stripped: capitalising a revaluation gain capitalises a valuation opinion.",
-   "cap|rating|g=10%": 15.465641750921721,
-   "cap|rating|g=15%": 19.826155430185143,
-   "cap|cds|g=10%": 17.905416803546572,
-   "cap|cds|g=15%": 23.803262056751173
+   "cap|rating|g=10%": 18.575721055022253,
+   "cap|rating|g=15%": 24.948007840767396,
+   "cap|cds|g=10%": 19.978517921345155,
+   "cap|cds|g=15%": 27.421482628648995
   },
   "sensitivity": {
    "wacc_grid": {

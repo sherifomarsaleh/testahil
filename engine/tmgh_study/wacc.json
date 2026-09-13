@@ -1,14 +1,14 @@
 {
- "ke_rating": 0.3710320302096666,
- "ke_cds": 0.33410146372115945,
+ "ke_rating": 0.32565392050363534,
+ "ke_cds": 0.3098095713981506,
  "rf_star_rating": 0.1663,
  "rf_star_cds": 0.19590000000000002,
  "kd_pretax": 0.255,
  "kd_aftertax": 0.19762500000000002,
  "weight_equity": 0.9212884234116279,
  "weight_debt": 0.07871157658837213,
- "wacc_rating": 0.35738288947035624,
- "wacc_cds": 0.32335918609446124,
+ "wacc_rating": 0.31557656232188686,
+ "wacc_cds": 0.30097934691451134,
  "warnings": [],
  "beta_record": {
   "ticker": "TMGH",
@@ -171,7 +171,7 @@
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
     "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 19.59% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 1.469 x the MATURE-MARKET premium 4.23% = 6.21% + a country premium of 5.18% -> Ke 30.98%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 33.41%, +243bp.",
-    "DISCLOSED STALENESS: the sovereign quote is 35 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 38 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   },
   "rating": {
@@ -272,7 +272,7 @@
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
     "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 16.63% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 1.469 x the MATURE-MARKET premium 4.26% = 6.25% + a country premium of 9.68% -> Ke 32.57%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 37.10%, +454bp.",
-    "DISCLOSED STALENESS: the sovereign quote is 35 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    "DISCLOSED STALENESS: the sovereign quote is 38 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
  },
@@ -374,7 +374,7 @@
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
    "COST OF EQUITY, COMPONENT BY COMPONENT [R-COC-03]: risk-free 19.59% (the local yield less the sovereign default spread, so the country is not charged twice) + beta 1.469 x the MATURE-MARKET premium 4.23% = 6.21% + a country premium of 5.18% -> Ke 30.98%. The country premium is NOT multiplied by beta: beta prices exposure to the equity market, not to the sovereign. The retired construction (beta on the whole premium) reads 33.41%, +243bp.",
-   "DISCLOSED STALENESS: the sovereign quote is 35 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   "DISCLOSED STALENESS: the sovereign quote is 38 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  }
 }

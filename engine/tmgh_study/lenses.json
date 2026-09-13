@@ -170,24 +170,24 @@
   "book_value_per_share": 44.48631788610003,
   "equity_parent": 91670.9,
   "roe_fy25": 0.16655888049050913,
-  "ke_rating": 0.3710320302096666,
-  "ke_cds": 0.33410146372115945,
+  "ke_rating": 0.32565392050363534,
+  "ke_cds": 0.3098095713981506,
   "cases": {
    "rating|g=10%": {
-    "justified_pb": 0.2455756998131184,
-    "value_per_share": 10.924758646987861
+    "justified_pb": 0.29496000043764736,
+    "value_per_share": 13.121684343153385
    },
    "rating|g=15%": {
-    "justified_pb": 0.07491620320729854,
-    "value_per_share": 3.3327460306995498
+    "justified_pb": 0.09426991690838138,
+    "value_per_share": 4.19372149068249
    },
    "cds|g=10%": {
-    "justified_pb": 0.28431637902865936,
-    "value_per_share": 12.648188817693844
+    "justified_pb": 0.31723471930745206,
+    "value_per_share": 14.112604567619028
    },
    "cds|g=15%": {
-    "justified_pb": 0.08994431742047013,
-    "value_per_share": 4.001291496815319
+    "justified_pb": 0.10361632501506579,
+    "value_per_share": 4.609508772809676
    }
   },
   "note": "ROE below the cost of equity means each retained pound is worth less than a pound, and the justified multiple falls below one. That is what this arithmetic says here, and it is stated rather than softened."
@@ -257,10 +257,10 @@
   "average": 7852.372858739989,
   "average_eps": 3.810622074770633,
   "revaluation_note": "FY2024 and FY2025 attributable profit each carry a non-cash investment-property revaluation gain (EGP 4,924.1mn and EGP 3,952.5mn at group level). They are stripped: capitalising a revaluation gain capitalises a valuation opinion.",
-  "cap|rating|g=10%": 15.465641750921721,
-  "cap|rating|g=15%": 19.826155430185143,
-  "cap|cds|g=10%": 17.905416803546572,
-  "cap|cds|g=15%": 23.803262056751173
+  "cap|rating|g=10%": 18.575721055022253,
+  "cap|rating|g=15%": 24.948007840767396,
+  "cap|cds|g=10%": 19.978517921345155,
+  "cap|cds|g=15%": 27.421482628648995
  },
  "sensitivity": {
   "wacc_grid": {
