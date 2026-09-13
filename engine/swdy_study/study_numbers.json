@@ -1524,6 +1524,12 @@
    "date": "2026-05-01",
    "ring": "Company"
   },
+  "kd_hard_q1_26": {
+   "value": 0.0528,
+   "source": "Q1-2026 reviewed interim consolidated statements: the disclosed weighted average interest rate on 'US dollars and foreign currencies' borrowings, the foreign leg of the same note that gives the Egyptian-pound rate above",
+   "date": "2026-05-01",
+   "ring": "Company"
+  },
   "electra_mto": {
    "value": {
     "price_usd": 1.05,
@@ -2514,8 +2520,8 @@
    "method_short": "owner cash earnings",
    "base": 93.77232461390484,
    "rng": [
-    33.879101749816755,
-    64.15244367864858
+    66.99952105349392,
+    154.52031600368693
    ],
    "fcff": 14206.617557619014,
    "fcfe": 12282.593510662047,
@@ -2527,7 +2533,7 @@
    "base": 89.33482995346847,
    "rng": [
     66.64132982804048,
-    81.67504702609115
+    112.02833007889645
    ],
    "ic0": 93562.42815899997,
    "pv_ep": 20023.730006223777,
@@ -2871,9 +2877,9 @@
   "dq_log": [
    "dropped 1 interior stale/no-trade rows"
   ],
-  "clean_rows": 3735,
-  "density_rows_per_yr": 239.58706533192836,
-  "span_years": 15.589322381930184
+  "clean_rows": 3755,
+  "density_rows_per_yr": 239.64944085269963,
+  "span_years": 15.668720054757015
  },
  "strike": {
   "anchor_date": "2026-09-03",
@@ -2976,7 +2982,7 @@
   "[Retired blend, published unused] the 45/20/20/15 weights give EGP 85.93, -34% against the price where the cash-flow lens reads -32% \u2014 so the published number was showing about 104% of the disagreement this study actually holds. Normalised earnings power at 103.51 carried a fifth of it.",
   "[Sensitivity grids] every grid in section 1.9 now runs through the SAME valuation function as the headline: the sanctioned terminal module and the employees' statutory share both. At the adopted rates and growth the helper returns 87.76 against the published 87.76, and at the adopted beta 1.225 it returns 87.76 \u2014 asserted, not eyeballed.",
   "[Leverage] net financial debt / EBITDA falls from 0.72x to 0.29x over the forecast.",
-  "[Expert panel] Expert 1 173.71 [127.48-219.94]; Expert 2 93.77 [33.88-64.15]; Expert 3 89.33 [66.64-81.68]; panel median 93.77 (-28% vs spot)",
+  "[Expert panel] Expert 1 173.71 [127.48-219.94]; Expert 2 93.77 [67.00-154.52]; Expert 3 89.33 [66.64-112.03]; panel median 93.77 (-28% vs spot)",
   "[R-STAR-01] What the market must believe, each priced ALONE on a full re-run, from the central of EGP 87.76 toward the traded 130.00 (a gap of 42.24):",
   "   all three segment margins permanently back at FY2023-24 levels  +113.00/share  ( 268% of the gap)",
   "   cost of capital two points lower throughout                  +52.43/share  ( 124% of the gap)",

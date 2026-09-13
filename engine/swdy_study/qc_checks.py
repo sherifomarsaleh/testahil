@@ -4,7 +4,7 @@
   (h)/(n)  figure canvases are opaque and light (numbers legible on any page)
   general  no placeholder or unformatted values leaked into the documents
 """
-import os, re, sys, json
+import json, os, re, sys, json
 from docx import Document
 from docx.shared import Inches
 from PIL import Image
@@ -49,6 +49,13 @@ def doc_text(path):
     return d, '\n'.join(parts)
 
 fails = []
+# A CHECK THAT PRINTS AND RECORDS NOTHING CANNOT BE ATTESTED FROM OUTSIDE IT, and
+# attest.py needs exactly these results to set a checklist field from evidence rather
+# than from somebody's conviction. So the findings are accumulated and written; an
+# absent qc_checks.json is then a FAILURE to the attestation, not a silent pass
+# [R-ENF-04].
+REC = dict(scrub_hits=[], scrub_patterns=0, table_problems=[], tables=0,
+           figures=0, transparent=[], placeholder_hits=[], builders=[], typed_numerals=[])
 
 # ---- (k)/(m) procedure-reference scrub --------------------------------------
 print('=' * 74)
@@ -66,6 +73,8 @@ for label, path in [('study', STUDY), ('bibliography', BIB)]:
     print(f'  {label}: {len(hits)} hits')
     for h in hits:
         print('     ', h)
+    REC['scrub_hits'] += ['%s: %s' % (label, h) for h in hits]
+    REC['scrub_patterns'] = len(BANNED + CASE_BANNED)
     if hits:
         fails.append(f'procedure vocabulary in {label}')
 
@@ -94,6 +103,8 @@ for label, path, maxw in [('study', STUDY, TEXT_WIDTH), ('bibliography', BIB, BI
           f'bloated {len(wide)}')
     for x in over + narrow + wide:
         print('     ', x)
+    REC['tables'] += len(d.tables)
+    REC['table_problems'] += ['%s: %s' % (label, x) for x in over + narrow + wide]
     if over or narrow or wide:
         fails.append(f'column widths in {label}')
 
@@ -112,7 +123,9 @@ for fn in sorted(f for f in os.listdir(HERE) if f.endswith('.png')):
     ok = (not transparent) and light
     print(f'  {fn}: {"OK " if ok else "FAIL"} '
           f'(transparent={transparent}, corner luminance={[round(sum(c)/3) for c in corners]})')
+    REC['figures'] += 1
     if not ok:
+        REC['transparent'].append(fn)
         fails.append(f'figure canvas {fn}')
 
 # ---- general: no leaked placeholders --------------------------------------------
@@ -128,8 +141,33 @@ for label, path in [('study', STUDY), ('bibliography', BIB)]:
                 if c.text.strip() in ('None', 'nan', 'inf', '-inf', '[]', '{}', '0.0%'):
                     bad.append(f'cell="{c.text.strip()}"')
     print(f'  {label}: {len(bad)} hits {sorted(set(bad))[:8]}')
+    REC['placeholder_hits'] += ['%s: %s' % (label, b) for b in sorted(set(bad))]
     if bad:
         fails.append(f'placeholders in {label}')
+
+# ---- typed numerals in the builders -------------------------------------------
+# A DELIVERED FIGURE MUST COME FROM THE NUMBERS FILE, NOT FROM A KEYBOARD. The scan
+# looks for a decimal literal of three or more significant figures sitting inside a
+# string a document builder emits -- which is what a hand-typed number looks like.
+print('=' * 74)
+print('numeric traceability  typed numerals in the document builders')
+_BUILDERS = ['docx_swdy.py', 'docx_register.py']
+_NUM = re.compile(r'(?<![\w.])\d{1,3}(?:,\d{3})*\.\d{2,}(?![\w])')
+for _b in _BUILDERS:
+    REC['builders'].append(_b)
+    _src = open(os.path.join(HERE, _b), encoding='utf-8').read()
+    for _ln, _line in enumerate(_src.splitlines(), 1):
+        _code = _line.split('#', 1)[0]
+        if not (_code.lstrip().startswith(("'", '"', 'f"', "f'")) or '"' in _code or "'" in _code):
+            continue
+        for _m in _NUM.finditer(_code):
+            REC['typed_numerals'].append('%s:%d %s' % (_b, _ln, _m.group(0)))
+print('  %d builder(s), %d typed numeral(s)' % (len(_BUILDERS), len(REC['typed_numerals'])))
+for _t in REC['typed_numerals'][:12]:
+    print('     ', _t)
+
+json.dump(REC, open(os.path.join(HERE, 'qc_checks.json'), 'w'), indent=1)
+print('  wrote qc_checks.json')
 
 print('=' * 74)
 if fails:

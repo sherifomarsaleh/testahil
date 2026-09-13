@@ -38,6 +38,11 @@ STEPS = [
     ('coc_record.py', 'study_numbers.json (cost_of_capital_record)', 'APPENDS — after compute'),
     ('bridge_record.py', 'study_numbers.json (bridge_record)', 'APPENDS — after compute'),
     ('forecast_anchor.py', 'study_numbers.json (forecast_anchor)', 'APPENDS — after compute'),
+    # THE TWO STANDING HARD GATES, WHICH THIS STUDY CALLED NOWHERE. qc_checks records
+    # the evidence attest.py then holds the checklist against, so it runs first; both
+    # run LAST, on the delivered artefacts, because that is what a reader receives.
+    ('qc_checks.py', 'qc_checks.json', 'the automated document QC, now RECORDING its findings'),
+    ('attest.py', 'attestation.json', 'assert_model_study, assert_sigcm, assert_beta_provenance and the ground-up driver record'),
 ]
 
 if __name__ == '__main__':

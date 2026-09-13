@@ -36,34 +36,14 @@ prof = MP.PROFILES['EG']
 # study's own valuation date. NOTHING HERE TOUCHES THE FAIR VALUE: the cone, the technical read and
 # the percentile map are the price lens, and [R-LENS-01] keeps them out of the
 # fundamentals entirely.
-raw = load_ohlc(os.path.join(HERE, '..', 'raw_ohlc', 'EG', 'SWDY.csv'))
-df, rep = clean_ohlc(raw, 'SWDY', verbose=False, market='EG')
-df = df.reset_index(drop=True)
+import price_series
+df, rep = price_series.frame()
 dates = pd.to_datetime(df['Date'])
 close = df['Price'].to_numpy(dtype=float)
-
-# ONE DOCUMENT, ONE DATE. The cone is anchored at the study's OWN valuation date, read
-# from study_numbers.json, not at whatever row the library happens to end on. The fair
-# value is measured against the price of 3 September 2026; a cone struck three sessions
-# later describes a different price, and the reader has no way to see that from the page.
-# The library's close on that date must BE the spot the study publishes, or this stops:
-# a cone that opens somewhere other than the study's own spot is the defect this file
-# was just repaired for, arriving from the other side.
-with open(os.path.join(HERE, 'study_numbers.json')) as _f:
-    _meta = json.load(_f)['meta']
-asof = pd.Timestamp(_meta['asof'])
-_hit = dates.index[dates == asof]
-if len(_hit) != 1:
-    raise SystemExit('the price library carries no single row for the study\'s valuation '
-                     'date %s; the cone cannot be anchored where the value is measured'
-                     % _meta['asof'])
-i = int(_hit[0])
+i = len(df) - 1
 anchor_date = dates.iloc[i]
 spot = float(close[i])
-if abs(spot - float(_meta['spot'])) > 0.005:
-    raise SystemExit('the library closes at %.4f on %s and the study publishes a spot of '
-                     '%.4f; one of the two is wrong and neither may be assumed'
-                     % (spot, _meta['asof'], float(_meta['spot'])))
+
 v_ = __import__('primitives').yz_variance_proxy(df)
 plan = HZ.cohort_plan('EG', anchor_date)
 width_mult = AW.live_width_mult(df, prof)

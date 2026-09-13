@@ -24,8 +24,8 @@ with open(os.path.join(HERE, '..', 'fitted_configs.json')) as f:
 NU, CAL = float(reg['nu']), float(reg['width_cal'])
 assert (NU, CAL) == (float(EG.nu), float(EG.width_cal))
 
-df, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'SWDY_Stock_Price_History.csv')),
-                   'SWDY', verbose=False, market='EG')
+import price_series
+df, _ = price_series.frame()
 r_all = backtest_v3(df, EG, horizon_months=3, nu=NU, width_cal=CAL,
                     use_signal=EG.signal_active, n_paths=20000, seed=42, min_history=260)
 last = pd.Timestamp(df['Date'].iloc[-1])

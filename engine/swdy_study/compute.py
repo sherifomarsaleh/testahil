@@ -1354,6 +1354,15 @@ INP = dict(
     kd_egp_q1_26=I(0.2032, "Q1-2026 reviewed interim consolidated statements: the "
                    "disclosed weighted average interest rate on Egyptian-pound "
                    "borrowings", "2026-05-01", "Company"),
+    # THE FOREIGN LEG OF THE SAME DISCLOSURE. kd's own source text quoted "foreign 5.28%"
+    # and no input held it, so the figure existed only inside a sentence -- which is how a
+    # disclosed rate comes to be unreconcilable against the register that is supposed to
+    # carry every number this study uses. Its Egyptian-pound sibling two lines above was
+    # registered from the start; this one was not, and nothing compared them.
+    kd_hard_q1_26=I(0.0528, "Q1-2026 reviewed interim consolidated statements: the "
+                    "disclosed weighted average interest rate on 'US dollars and foreign "
+                    "currencies' borrowings, the foreign leg of the same note that gives "
+                    "the Egyptian-pound rate above", "2026-05-01", "Company"),
     electra_mto=I(dict(price_usd=1.05, shares_mn=427.7, value_usdmn=449.1, date='2024-07',
                        stake=0.1998),
                   "Electra Investment Holding's mandatory tender offer, concluded July 2024: "
@@ -2549,8 +2558,22 @@ e2_int_at = (V['kd_path'][3] * debt_fy25 - 0.10 * cash_fy25) * (1 - TAX)
 e2_fcfe = (e2_fcff - e2_int_at) * (1 - nci_share)
 e2_ke = ke_term
 e2_base = to_anchor(e2_fcfe * (1 + V['g_term']) / (e2_ke - V['g_term']) / SH)
-e2_lo = to_anchor(e2_fcfe * 1.03 / (0.5 * (ke_exp + ke_term) - 0.03) / SH)
-e2_hi = to_anchor(e2_fcfe * 1.06 / (e2_ke - 0.06) / SH)
+# THE BASE SAT ABOVE THE TOP OF ITS OWN RANGE, and the cause is a band that did not move
+# when the thing it was drawn around did. These two legs were written as a GROWTH band of
+# 3% and 6% against a terminal growth that has since been re-derived from the house macro
+# path as 7% inflation plus zero real = 9%. So the "high" leg discounted a 6% grower and
+# the base a 9% one at the same rate, and 1.06/(16.87%-6%) = 9.8x came out BELOW the
+# base's 1.09/(16.87%-9%) = 13.9x. Printed, that is a base case above its own bull case.
+#
+# A Gordon value turns on exactly one quantity, the SPREAD between the discount rate and
+# the growth rate, so the band is drawn on the spread: +/-300bp around the base's 7.87pp.
+# It is monotone, the base is inside it BY CONSTRUCTION rather than by luck, and it cannot
+# come apart again when g_term or ke_term is re-derived. The assertion below makes that a
+# checked property of all three experts instead of a claim in a comment.
+_E2_SPREAD = e2_ke - V['g_term']
+E2_SPREAD_BAND = 0.03
+e2_lo = to_anchor(e2_fcfe * (1 + V['g_term']) / (_E2_SPREAD + E2_SPREAD_BAND) / SH)
+e2_hi = to_anchor(e2_fcfe * (1 + V['g_term']) / (_E2_SPREAD - E2_SPREAD_BAND) / SH)
 
 ic_beg = [ic_fy25] + ic[:-1]
 ep_ = [nopat[i] - fwd[i] * ic_beg[i] for i in range(5)]
@@ -2559,9 +2582,19 @@ ep_term = nopat[-1] * (1 + V['g_term']) - wacc_term * ic[-1] * (1 + V['g_term'])
 pv_ep_term = ep_term / (wacc_term - V['g_term']) * df[-1]
 e3_ev = ic_fy25 + pv_ep + pv_ep_term
 e3_base = to_anchor(((e3_ev - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
-e3_lo = to_anchor(((ic_fy25 + pv_ep * 0.6 + pv_ep_term * 0.55 - V['nd_fy25'] + assoc_val)
-                   * (1 - nci_share)) / SH)
-e3_hi = ccy_ps   # already at the anchor
+# THE SAME DEFECT FROM THE OTHER SIDE. e3's low leg haircut the present value of economic
+# profit to 60% and 55%; its high leg was ccy_ps, the HARD-CURRENCY alternative valuation
+# -- a different construction of the whole model, not an upper case of this lens. That
+# alternative used to sit above the primary and no longer does (compute.py already records
+# the inversion where the prose was fixed for it), so the "bull" leg came out at 81.68
+# against a base of 89.33. The band is symmetric about the base now: the same haircuts,
+# mirrored. The currency alternative is published in its own right beside the DCF, which
+# is where a reader can see it for what it is.
+_E3_LO_EXP, _E3_LO_TERM = 0.60, 0.55
+e3_lo = to_anchor(((ic_fy25 + pv_ep * _E3_LO_EXP + pv_ep_term * _E3_LO_TERM
+                    - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
+e3_hi = to_anchor(((ic_fy25 + pv_ep * (2 - _E3_LO_EXP) + pv_ep_term * (2 - _E3_LO_TERM)
+                    - V['nd_fy25'] + assoc_val) * (1 - nci_share)) / SH)
 experts = dict(
     e1=dict(method_short='earnings power', base=e1_base, rng=[e1_lo, e1_hi], eps=e1_eps,
             margin=e1_margin, rev=e1_rev, ebit=e1_ebit, interest=e1_int, pe=9.5),
@@ -2571,6 +2604,15 @@ experts = dict(
             ic0=ic_fy25, pv_ep=pv_ep, pv_ep_term=pv_ep_term, ev=e3_ev, ep=ep_,
             spread=[roic[i] - fwd[i] for i in range(5)]),
 )
+# A BASE OUTSIDE ITS OWN RANGE IS NOT A JUDGEMENT, IT IS AN ARITHMETIC FAILURE, and it
+# shipped twice because nothing compared the three numbers a panel prints side by side.
+for _nm, _b, _lo, _hi in (('Expert 1', e1_base, e1_lo, e1_hi),
+                          ('Expert 2', e2_base, e2_lo, e2_hi),
+                          ('Expert 3', e3_base, e3_lo, e3_hi)):
+    assert _lo <= _b <= _hi, (
+        '%s prints a base of %.2f outside its own published range [%.2f, %.2f]'
+        % (_nm, _b, _lo, _hi))
+
 panel_centre = float(sorted([e1_base, e2_base, e3_base])[1])
 say(f"[Expert panel] Expert 1 {e1_base:.2f} [{e1_lo:.2f}-{e1_hi:.2f}]; Expert 2 {e2_base:.2f} "
     f"[{e2_lo:.2f}-{e2_hi:.2f}]; Expert 3 {e3_base:.2f} [{e3_lo:.2f}-{e3_hi:.2f}]; "

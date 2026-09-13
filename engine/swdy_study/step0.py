@@ -68,8 +68,9 @@ print("Step 0 reconciliation: SWDY is %s the committed EG panel of %d names; the
       % ('INSIDE' if _IN_PANEL else 'NOT YET IN', len(reg['panel_names']), NU, CAL))
 
 # ---- Step 0.0 — data-quality gate ----------------------------------------
-df_raw = raw_load(os.path.join(HERE, 'SWDY_Stock_Price_History.csv'))
-df, dq_log = clean_ohlc(df_raw, 'SWDY', verbose=True, market='EG')
+import price_series
+df_raw = price_series.raw()
+df, dq_log = price_series.frame(verbose=True)
 scr = screen(df)
 span_yr = (df['Date'].iloc[-1] - df['Date'].iloc[0]).days / 365.25
 density = len(df) / span_yr

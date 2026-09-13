@@ -13,6 +13,7 @@ W, DCF, LN, SN = D['wacc'], D['dcf'], D['lenses'], D['sens']
 EXP, TR, REL, NRM, BK = D['experts'], D['terminal_recon'], D['rel'], D['norm'], D['book']
 S0, STK, SEG = D['step0'], D['strike'], D['seg_fy25']
 BU = D['bottomup']
+COC = D['cost_of_capital_record']
 _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -117,7 +118,12 @@ P(f"The balance sheet is not the constraint people assume. Gross borrowings are 
   f"{pc(IN['kd_egp_note'])} on Egyptian-pound liabilities but only {pc(IN['kd_hard_note'])} on the "
   f"blended hard-currency book. The blended rate actually paid works out near "
   f"{pc(W['kd_eff_fy24'])}, less than half what a purely domestic Egyptian borrower pays.")
-P(f"On our primary construction the four lenses centre at EGP {p2(D['central'])} per share against "
+# NOT "THE FOUR LENSES CENTRE AT". Section 1.5 spends a page saying the central is the
+# cash-flow lens itself and is NOT an average of the four; this sentence, four pages
+# earlier and the first place a reader meets the number, said the opposite in five words.
+# The figure it quoted was never a centre of anything -- it is the DCF, to the decimal.
+P(f"On our primary construction the cash-flow lens — which is the answer here, not one vote "
+  f"of four — values the company at EGP {p2(D['central'])} per share against "
   f"a market price of {p2(SPOT)} — the price sits about {sgn(SPOT/D['central']-1,0)} above the "
   f"central estimate. That gap is not mainly an argument about the business; it is an argument "
   f"about the discount rate. Discounted at an Egyptian cost of capital gliding "
@@ -385,8 +391,19 @@ rows = [['Step', 'EGP mn', 'Note'],
          f"at {pc(DCF['emp_rate'])} of profit attributable to owners, the mean of FY2024, "
          f"FY2025 and H1-2026. It is disclosed only in the earnings-per-share note, below "
          f"the attributable line, and appears in no line of the income statement. The "
-         f"statutory share is capped at total annual wages and no filing discloses the "
-         f"cap's headroom, so the charge is an UPPER bound"],
+         # THIS CELL SAID "no filing discloses the cap's headroom, so the charge is an
+         # UPPER bound" WHILE THE STUDY COMPUTED THE HEADROOM. The wage bill is disclosed
+         # in three notes of the same audited statements; study_numbers.employees_cap
+         # carries wages of EGP 18,906mn against a share of EGP 2,073mn -- 9.1x of
+         # headroom -- and records binds=False. A caveat retained after the work that
+         # answers it reads as diligence and is the opposite: it tells the reader to
+         # discount a number this study has actually pinned down.
+         f"statutory share is capped at total annual wages, and that cap does not bind: "
+         f"the wage bill is disclosed in three notes of the same audited statements at "
+         f"EGP {n0(D['employees_cap']['wages_fy25'])}mn against a statutory share of EGP "
+         f"{n0(D['employees_cap']['share_fy25'])}mn, so the charge sits at "
+         f"{n1(D['employees_cap']['headroom_fy25'])}x of headroom. It is the measured "
+         f"charge, not an upper bound"],
         ['Equity attributable, at 31 December 2025', n0(DCF['eq_attr']),
          f"EGP {p2(DCF['ps_dec'])} per share — dated at the audited balance-sheet date the "
          f"bridge subtracts net debt at"],
@@ -395,7 +412,8 @@ rows = [['Step', 'EGP mn', 'Note'],
          f"date and the {M['asof']} anchor — one date, one price of time, applied to the "
          f"comparison itself"],
         [f"Less the FY2025 dividend paid in the window", f"({p2(IN['dps_fy25'])}/sh)",
-         'EGP 1.85, ex 1 June 2026 — value that left the share before the anchor date'],
+         f"EGP {p2(IN['dps_fy25'])}, ex 1 June 2026 — value that left the share before the "
+         f"anchor date"],
         ['Fair value per share at the anchor (EGP)', p2(DCF['ps']),
          f"against a spot of {p2(SPOT)} ({sgn(DCF['ps']/SPOT-1,0)})"]]
 table(rows, [2.55, 1.05, 3.40], size=8.4, band_rows={4, 13}, align_right_from=1)
@@ -439,7 +457,10 @@ rows = [['Measure', 'Value', 'Comment'],
         ['Price / earnings (trailing, attributable basis)', f"{n1(REL['pe_trailing'])}×",
          f"price {p2(SPOT)} over attributable earnings per share of "
          f"{p2(HI['FY25']['npa']/SH)}"],
-        ['Price / earnings (trailing, as-reported basis)', f"{n1(SPOT/7.13)}×",
+        # THE DENOMINATOR WAS TYPED. eps_fy25 is a four-field input read out of note 39
+        # of the audited statements; this cell held its own copy, so a correction to the
+        # register would have left the multiple standing on the old number.
+        ['Price / earnings (trailing, as-reported basis)', f"{n1(SPOT/IN['eps_fy25'])}×",
          "the company's own reported earnings per share is struck after the Egyptian employee and "
          "board profit-share appropriation, so screens and data vendors show this higher multiple. "
          "Both are given because a reader comparing against a screen will see the second"],
@@ -604,7 +625,9 @@ caption(f"Copper is held near the current market level rather than forecast — 
         f"assumption, since no tonnage figure is disclosed in the audited statements to build a "
         f"literal unit model from. Constructions and Electrical products taper on their own "
         f"FY2023-25 revenue CAGR. The corporate cost load — stated on the same segment-profit-to-"
-        f"EBIT basis as the audited history (5.70% / 4.30% / 3.16%) — glides UP from FY2025's "
+        f"EBIT basis as the audited history ("
+        f"{' / '.join(pc(IN['corp_load_hist'][y], 2) for y in ('FY23', 'FY24', 'FY25'))}) — "
+        f"glides UP from FY2025's "
         f"unusually low level toward the FY2023-24 average, the single most conservative choice "
         f"in the build. The capex and D&A paths are shown because they are live free-cash-flow "
         f"drivers, not footnotes: capex tapers from the FY2025 peak of 4.7% as the 2024-25 "
@@ -722,13 +745,24 @@ rows = [['Component', 'Explicit window', 'Terminal', 'Source and construction'],
         # the row attached correct numbers to a false account of where they came from.
         # The same defect was found and fixed on another name today; typed provenance
         # goes stale the moment the record beneath it moves, and nothing compares them.
-        ['Beta', f"{IN['beta']:.3f}", f"{IN['beta']:.3f}",
-         f"own-stock weekly regression against the published "
+        # THE TERMINAL COLUMN PRINTED TODAY'S BETA AND THE TERMINAL DOES NOT USE IT.
+        # compute.py sets BETA_TERM = 1.0 by instruction -- a mature business in a mature
+        # economy converges toward the market -- the cost-of-capital record names the
+        # construction `beta_to_one_split` and publishes beta_terminal = 1.0, and the
+        # workbook prints 1.00. Only this row said 1.225, so the delivered report was the
+        # one artefact of the four that contradicted the model it describes. Both columns
+        # are READ from the record now; neither is typed and neither is the other's copy.
+        ['Beta', f"{COC['beta']:.3f}", f"{COC['beta_terminal']:.3f}",
+         f"explicit window: own-stock weekly regression against the published "
          f"{os.path.basename(W['beta']['index_file']).replace('.csv', '')} index of the "
          f"exchange this share is listed on, over {W['beta']['window_years']:.2f} years: "
          f"R-squared {W['beta']['r2']:.3f}, n = {W['beta']['n']}, standard error "
          f"{W['beta']['se']:.3f}, 90% interval [{W['beta']['ci90'][0]:.2f}, "
-         f"{W['beta']['ci90'][1]:.2f}]"],
+         f"{W['beta']['ci90'][1]:.2f}]. Terminal: beta is carried to "
+         f"{COC['beta_terminal']:.2f} rather than held at the measured figure — today's "
+         f"relative risk is not a property of the company in perpetuity, and the "
+         f"construction is named in the cost-of-capital record as "
+         f"{COC['ke_terminal_construction']}"],
         ['Equity risk premium', pc(IN['erp_cds']), pc(IN['erp_term']),
          'published country-premium file (January-2026 vintage, both columns confirmed against '
          'the file), credit-default-swap basis; the rating-basis column is the published '
@@ -927,10 +961,12 @@ figure(os.path.join(HERE, 'fig3_ma.png'), 7.0,
        "Figure 4 — price against the 20-, 50-, 100- and 200-session moving averages over the last "
        "260 sessions.")
 import numpy as np
-from primitives import load_ohlc
-from data_quality import clean_ohlc
-_df, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'SWDY_Stock_Price_History.csv')), 'SWDY',
-                    verbose=False, market='EG')
+# THE SAME FRAME AS THE CONE AND THE FIGURES -- see price_series.py. This table read the
+# study-local file and printed averages of 93.77 / 90.04 / 86.07 / 81.88 and a 52-week
+# closing high of 109.02 in the row directly below "Last close 130.00", which cannot both
+# be true: 130.00 on that series would BE the 52-week high.
+import price_series
+_df, _ = price_series.frame()
 px = _df['Price'].to_numpy()
 sma = {n: float(np.mean(px[-n:])) for n in (20, 50, 100, 200)}
 hi52, lo52 = float(np.max(px[-252:])), float(np.min(px[-252:]))
@@ -1396,10 +1432,19 @@ P("Research for this study proceeded in four layers: the global and macroeconomi
 for head, body in [
     ("No order book, backlog or unit-volume figure is disclosed in the audited statements. ",
      "Neither the three audited annual statements nor the Q1-2026 interim discloses a tonnage, "
-     "MVA, meter-count or backlog figure for any segment. The company's quarterly earnings "
-     "releases have historically carried such data but were not reachable from this research "
-     "environment. The forecast is built as a taper on each segment's own recent revenue growth "
-     "and margin path instead."),
+     # SECTION 7 WITHDRAWS THIS EXACT CLAIM and this register kept printing it. The
+     # releases were held here the whole time; they carry the tonnage series the Cables
+     # driver is now built on. A negative search that has since been answered is not a
+     # negative search, and leaving it in the register is how a study comes to contradict
+     # itself between two of its own pages.
+     "MVA, meter-count or backlog figure for any segment. THIS NEGATIVE RESULT IS NOW "
+     "PARTLY ANSWERED AND IS RECORDED THAT WAY: the company's own quarterly earnings "
+     "releases carry the data and were read — cable tonnage of 144,997 / 156,748 / "
+     "167,665 / 185,449 over FY2022-25 and 99,239 in the reviewed half, and an "
+     "engineering backlog of EGP 346bn at 30 June 2026. The tonnage series sets the "
+     "Cables growth driver; the backlog corroborates the Constructions taper rather "
+     "than producing it. What remains negative is narrower and is stated as such: the "
+     "AUDITED statements disclose none of it, so none of it is audited."),
     ("A facility-by-facility currency split of the debt book is not disclosed. ",
      "The audited notes give average rates by currency bucket (Egyptian pound and a blended "
      "hard-currency bucket in FY2025) but not the size of each bucket. The pound share used here "

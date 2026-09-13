@@ -207,10 +207,23 @@ P('Every input to the valuation model, in the order the model declares them. The
   'is the research layer defined above. Values are shown as the model holds them: EGP millions '
   'for financial-statement lines, decimals for rates and shares.', size=9.5, color=GREY)
 
-for ring in ['Market', 'Company', 'Country', 'House']:
+# THE HEADING SAID "EVERY INPUT" AND THE LOOP PRINTED 205 OF 220. It walked a TYPED
+# list of four layers -- Market, Company, Country, House -- and the register also holds
+# Company/House (11), Industry (2), Company/derived (1) and Market/Company (1). Fifteen
+# inputs, among them the ones whose layer is compound precisely because they were the
+# hardest to place, vanished from the one document whose entire job is to show all of
+# them. The layers are READ from the register now, in a stable order with the four named
+# ones first, and the count is ASSERTED against the register's own length, so a layer
+# invented tomorrow appears instead of disappearing.
+_RING_FIRST = ['Market', 'Company', 'Country', 'House']
+_rings = ([r for r in _RING_FIRST if any(v['ring'] == r for v in INP.values())]
+          + sorted({v['ring'] for v in INP.values()} - set(_RING_FIRST)))
+_printed = 0
+for ring in _rings:
     items = [(k, v) for k, v in INP.items() if v['ring'] == ring]
     if not items:
         continue
+    _printed += len(items)
     H2(f'{ring} layer — {len(items)} inputs')
     rows = [['Input', 'Value', 'Date', 'Source and construction']]
     for k, v in items:
@@ -220,6 +233,9 @@ for ring in ['Market', 'Company', 'Country', 'House']:
     # nothing else on the page moves. Measured, not nudged: 1.83cm declared against
     # 1.94cm needed.
     table(rows, [1.15, 0.95, 0.78, 4.12], size=7.6)
+
+assert _printed == len(INP), ('the input register prints %d of the %d inputs the model '
+                              'declares' % (_printed, len(INP)))
 
 # ---- judgements ---------------------------------------------------------------
 H1('The judgements, stated separately')

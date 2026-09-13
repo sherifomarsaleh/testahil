@@ -56,7 +56,7 @@
  "dq_log": [
   "dropped 1 interior stale/no-trade rows"
  ],
- "clean_rows": 3735,
- "density_rows_per_yr": 239.58706533192836,
- "span_years": 15.589322381930184
+ "clean_rows": 3755,
+ "density_rows_per_yr": 239.64944085269963,
+ "span_years": 15.668720054757015
 }

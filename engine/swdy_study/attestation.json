@@ -1,0 +1,87 @@
+{
+ "model_study": {
+  "sections": "49 headings, 0 model-study sections missing ",
+  "sheets": "16 sheets, 0 mismatches ",
+  "lenses": [
+   "book",
+   "central",
+   "dcf",
+   "normalized",
+   "relative",
+   "retired_blend"
+  ],
+  "inputs": "221 inputs, four-field complete=True",
+  "experts": "bases inside their own ranges=True",
+  "scrub": "43 patterns, 0 hits",
+  "figures": "8 figures, 0 transparent",
+  "tables": "53 tables, 0 problems",
+  "typed_numerals": "19 in docx_swdy.py, docx_register.py",
+  "workbook": "630 formulas, 2 checked expected values"
+ },
+ "passed": true,
+ "sigcm": {
+  "historicals_official_only": true,
+  "forecast_ground_up": true,
+  "debt_lc_fx_split": true,
+  "asset_conversion_cycle": true,
+  "competitors": false,
+  "beta_own_history_vs_egx30": true,
+  "formula_based_model": true,
+  "flags_raised_before_issue": true,
+  "stop_and_inform_honoured": true
+ },
+ "beta": {
+  "beta": 1.2249065740479688,
+  "index_file": "raw_indices/EG/EGX30.csv",
+  "conforming": true
+ },
+ "ground_up": {
+  "ticker": "SWDY",
+  "lines": 3,
+  "share_by_level": {
+   "unit": 0.5543264143939304,
+   "derived": 0,
+   "segment": 0.44567358560606957,
+   "topdown": 0
+  },
+  "unit_share": 0.5543264143939304,
+  "standard_version": "2026.09.10"
+ },
+ "drivers": [
+  {
+   "name": "Cables and accessories",
+   "level": "unit",
+   "share_of_revenue": 0.5543264143939304,
+   "unit": "tonnes of cable shipped",
+   "unit_source": "the company's own quarterly earnings releases \u2014 144,997 / 156,748 / 167,665 / 185,449 tonnes over FY2022-25 and 99,239 in the reviewed half against 89,636. NOT in the audited statements, which disclose no tonnage for any segment; the releases are the issuer's own and are cited as such",
+   "price_basis": "the LME copper forward path times the house EGP/USD path, applied as a disclosed pass-through rate rather than a revenue growth assumption, plus a separate real volume growth term",
+   "cost_basis": "segment margin on the audited segment-profit-to-revenue basis; the audited statements disclose no cost per tonne",
+   "gap_note": null
+  },
+  {
+   "name": "Constructions and infrastructure",
+   "level": "segment",
+   "share_of_revenue": 0.323639378829007,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": "the segment's own FY2023-25 revenue CAGR, tapered",
+   "cost_basis": "disclosed segment margin",
+   "gap_note": "No unit exists that this business can be built on and no filing supplies one: turnkey engineering revenue is recognised on progress against contracts of differing size, and neither the audited statements nor the interim discloses contract count, megawatts or kilometres. The EGP 346bn engineering backlog at 30 June 2026 is read from the releases and CORROBORATES the taper; it is not burnt down into revenue, because the releases do not disclose the burn profile that would take"
+  },
+  {
+   "name": "Electrical products",
+   "level": "segment",
+   "share_of_revenue": 0.12203420677706257,
+   "unit": null,
+   "unit_source": null,
+   "price_basis": "the segment's own FY2023-25 revenue CAGR, tapered",
+   "cost_basis": "disclosed segment margin",
+   "gap_note": "The segment aggregates transformers, meters and electrical accessories on one disclosed line. No filing splits it, and no meter count, MVA or transformer unit figure appears in the audited statements or the interim, so there is no unit to build on"
+  }
+ ],
+ "anchor": {
+  "date": "2026-09-03",
+  "spot": 130.0
+ },
+ "standard_version": "2026.09.10"
+}

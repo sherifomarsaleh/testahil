@@ -24,35 +24,49 @@ plt.rcParams.update({'figure.facecolor': BG, 'axes.facecolor': BG,
 
 d = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 spot = d['spot']
-df, _ = clean_ohlc(load_ohlc(os.path.join(HERE, 'SWDY_Stock_Price_History.csv')),
-                  'SWDY', verbose=False, market='EG')
+# THE SAME FILE, THE SAME DATE, AS THE STRIKE. Figure 3's moving-average stack was
+# drawn from the study-local SWDY_Stock_Price_History.csv, which this study's own
+# compute.py records as wrong: it ends 5 August 2026 at 105.20 and disagreed with this
+# name's price library on all 35 overlapping sessions after 14 June 2026. So Figure 3
+# ran to a different last price than Figure 4 drew its spot line at, in one document.
+# The library is read here, and CUT at the study's valuation date, so every price
+# picture in this report stops on the day the value is measured.
+import price_series
+df, _ = price_series.frame()
 
 def style(ax):
     for s_ in ['top', 'right']: ax.spines[s_].set_visible(False)
     for s_ in ['left', 'bottom']: ax.spines[s_].set_color(GREY)
 
 # ---- F1 football field ------------------------------------------------------
+# FOUR LENSES, FOUR BARS. This drew a fifth bar labelled "Weighted central" whose
+# bear, base and bull were the DCF bar's to the last decimal -- because the central IS
+# the cash-flow lens and is not a weighted anything. The picture therefore said the
+# opposite of the page beside it: four lenses plus a blend of them. The DCF bar carries
+# the gold now, because it is the answer, and the roles the study assigns each lens are
+# on the bars rather than left for the reader to infer from a colour.
 L = d['lenses']
-names = ['FCFF DCF\n(primary)', 'Relative\n(EV/EBITDA · P/E)', 'Normalised\nearnings power',
-         'Book value /\nsustainable return', 'Weighted central']
-keys = ['dcf', 'relative', 'normalized', 'book', 'central']
+names = ['FCFF DCF — THE ANSWER', 'Relative\n(EV/EBITDA · P/E)\ncross-check',
+         'Normalised\nearnings power\nnot published for this class',
+         'Book value /\nsustainable return\na floor, never weighted']
+keys = ['dcf', 'relative', 'normalized', 'book']
 fig, ax = plt.subplots(figsize=(9.7, 4.2), dpi=110)
 xmax = max(L[k]['bull'] for k in keys); xmin = min(L[k]['bear'] for k in keys)
 for i, k in enumerate(keys):
     y = len(keys) - 1 - i
     b, ba, bu = L[k]['bear'], L[k]['base'], L[k]['bull']
-    col = GOLD if k == 'central' else SAGE
+    col = GOLD if k == 'dcf' else SAGE
     ax.barh(y, bu - b, left=b, height=0.46, color=col,
-            alpha=0.5 if k == 'central' else 0.32, edgecolor=col, linewidth=1.1)
+            alpha=0.5 if k == 'dcf' else 0.32, edgecolor=col, linewidth=1.1)
     ax.plot([ba, ba], [y - 0.23, y + 0.23], color=BRASS, lw=3.4)
     ax.text(bu + 0.02 * (xmax - xmin), y, f'{b:.0f}–{bu:.0f} · base {ba:.0f}',
             va='center', fontsize=8.6, color=INK)
 ax.axvline(spot, color=INK, lw=1.6)
 ax.text(spot + 0.01 * (xmax - xmin), -0.62, f'spot {spot:.2f}', color=INK, fontsize=9,
         ha='left', va='top')
-cB = L['central']
+cB = L['dcf']
 ax.axvspan(cB['base'] * 0.95, cB['base'] * 1.05, color=GOLD, alpha=0.13)
-ax.set_yticks(range(len(keys)), names[::-1], fontsize=8.6)
+ax.set_yticks(range(len(keys)), names[::-1], fontsize=8.0)
 ax.set_xlabel('EGP / share')
 ax.set_xlim(xmin - 0.06 * (xmax - xmin), xmax + 0.30 * (xmax - xmin))
 ax.set_ylim(-1.0, len(keys) - 0.4)
