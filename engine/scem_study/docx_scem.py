@@ -74,8 +74,19 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Sinai Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · SCEM · Egyptian pounds · issued 7 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
-  space_after=10)
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED — AND IN THE MASTHEAD.
+# This line TYPED "issued 7 September 2026" onto a 10-September edition, and the shared
+# two-date header that resolves both correctly sat at paragraph 11, below the masthead
+# and below the summary table. A reader meets the stale date first and the correct one
+# eight paragraphs later. Both are fixed by one move: the resolved header goes where the
+# masthead is, and this line stops typing a date at all.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P('Egyptian Exchange · SCEM · Egyptian pounds', size=11, color=GREY,
+  space_after=4)
+P(_DD.header_line('SCEM'), size=8, color=GREY, space_after=10)
 rich([(f'A single-plant cement producer, sitting on net cash worth '
        f'{pc(D["dcf"]["net_cash"] / (SPOT * SH), 0)} of its market '
        'capitalisation, at the top of the best year the Egyptian cement industry has had '
@@ -136,15 +147,6 @@ figure('fig1_football.png', 6.9,
 
 # ============================== 1 ============================================
 H1('1  Fundamental valuation')
-
-# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. A valuation states a number struck
-# against a price, and those are two facts with two dates that are not the same date.
-# Resolved by engine/doc_dates.py and never from a file's modification time.
-import sys as _sys_dd
-import os as _os_dd
-_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
-import doc_dates as _DD
-P(_DD.header_line('SCEM'), size=8, color=GREY)
 
 P('Sinai Cement is valued as a single operating company, not as a sum of parts, and the '
   'reason is worth stating before any number. Essentially all of its revenue is grey '

@@ -251,7 +251,17 @@ def audit_masthead_agreement():
         rel = os.path.relpath(f, ROOT)
         try:
             import docx
-            head = ' '.join(p.text for p in docx.Document(f).paragraphs[:6])
+            # ONE DEFINITION OF "THE MASTHEAD" IN ONE GATE. This clause sliced the first
+            # SIX paragraphs while the clause above it calls masthead_text(), which reads
+            # further and also reads shaded masthead TABLES -- so the two halves of this
+            # file disagreed about where the masthead ends. ADIB states "PRICE DATE 3
+            # September 2026 ... ISSUE DATE 9 September 2026" in the seventh paragraph,
+            # exactly the labelled form this gate's own comment calls the clearest a
+            # masthead can take; the slice stopped one paragraph short of it, the fallback
+            # took the first date it could see, and a correct document was reported as
+            # claiming the wrong edition. Two readings of one thing is the defect this
+            # repository keeps finding under other names.
+            head = masthead_text(docx.Document(f))
         except Exception:                                             # noqa: BLE001
             continue
         # AN EXPLICITLY LABELLED ISSUE DATE OUTRANKS EVERYTHING ELSE IN THE MASTHEAD
