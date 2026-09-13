@@ -52,6 +52,11 @@ import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import macro_path as _MPmod
 _MP_EG = _MPmod.load('EG')
+# The company's OWN realised FY2025 average USD/EGP rate, off the audited statements.
+# It anchors the derived currency path and is declared to the coherence gate as the
+# base, so the gate derives from the same point the model does rather than from the
+# house path's market average — one number, in one place, read by both.
+_FX_BASE_FY25 = 47.69
 from numbers_file import write_preserving          # [R-REPAIR-01]
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
@@ -675,14 +680,50 @@ INP = dict(
               "note 44-3-1. Revisions to 08-09-2026 typed 49.5 and 45.3 as house averages "
               "while the note sat in a filing this study already reads",
               "2026-03-15", "Company"),
-    fx_path=I([51.0, 54.0, 57.5, 61.0, 64.5],
-              "USD/EGP average-rate path, about 6%/yr of depreciation from the FY2025 average of "
-              "49.5. Used as a genuine driver of the Cables segment's copper-linked growth and of "
-              "the currency-of-discounting alternative — not a translation convenience. "
-              "DELIBERATELY BELOW covered-interest parity, which on the roughly 22% pound rate "
-              "against a ~4-5% dollar rate implies materially faster depreciation; the base case "
-              "assumes disinflation closes most of that gap. The parity case is carried as an "
-              "explicit sensitivity", "2026-08-05", "House"),
+    # THE CURRENCY PATH WAS HAND-SET AND THE MODEL ESCALATED COSTS AT A DIFFERENT VIEW
+    # OF THE SAME ECONOMY [L-048]. The path ran a flat ~6% a year of depreciation while
+    # the cost base was escalated on the house Egyptian inflation ladder, which falls from
+    # 16% to 7%. That is a permanent REAL APPRECIATION of the pound, assumed rather than
+    # argued, with no mechanism named — and assert_macro_coherence could not see it,
+    # because this study's macro record was a stub that the check could not run on at all.
+    #
+    # DERIVED NOW, NOT SET. The base is the company's OWN realised FY2025 average rate off
+    # the audited statements, and the ladder is the house path's relative-purchasing-power
+    # derivation from its own inflation against long-run US inflation. Base from the
+    # filing, shape from the house path, nothing typed.
+    #
+    # IT MOVES THE ANSWER UP, AND TOWARD THE PRICE, AND THAT IS THE OUTCOME AND NOT THE
+    # AIM. The hand-set path was the more conservative of the two — a stronger pound
+    # translates less hard-currency revenue into pounds — so the incoherence had been
+    # depressing the valuation, which is exactly why it survived so long: nobody audits a
+    # number that is already cautious. The rule is not "be conservative", it is "run one
+    # view of one economy". The size of the move is recorded in the rebuild ledger.
+    # THE LADDER IS AN INPUT, NOT A SENTENCE. Quoting it inside another input's source
+    # text put five figures in the delivered bibliography that reconciled against nothing —
+    # prose_check caught it immediately, which is the gate working. Registered, it is one
+    # number in one place and the prose reads it.
+    fx_depreciation_path=I([round(x, 6) for x in _MP_EG.depreciation_path(5)],
+                           "Relative-purchasing-power depreciation ladder for the pound, "
+                           "READ from the house Egyptian macro path: its own inflation "
+                           "ladder against long-run US inflation, never set by hand. This "
+                           "is the shape the currency path below is built on; the base is "
+                           "the company's own realised FY2025 average rate",
+                           "2026-09-13", "House"),
+    fx_path=I([round(x, 4) for x in _MP_EG.fx_path(5, base=_FX_BASE_FY25)],
+              "USD/EGP average-rate path, DERIVED and never set by hand: the company's own "
+              "realised FY2025 average rate of 47.69 from the audited statements, escalated "
+              "on the house Egyptian macro path's relative-purchasing-power depreciation "
+              "ladder, registered as its own input beside this one, which is derived in "
+              "turn from that path's own inflation against long-run US inflation. Used as "
+              "a genuine "
+              "driver of the Cables segment's copper-linked revenue and of the "
+              "currency-of-discounting alternative, not a translation convenience. THE "
+              "RETIRED PATH ran a flat ~6% a year: deliberately below covered-interest "
+              "parity on the view that disinflation would close most of the differential, "
+              "but escalating costs at the full house inflation beside it made the pound "
+              "appreciate in real terms for ever with nothing saying so. The parity case "
+              "is still carried as an explicit sensitivity",
+              "2026-09-13", "House"),
     # HOLDING A DOLLAR PRICE FLAT IS NOT HOLDING IT [10-Sep-2026]. The path held
     # 14,000 nominal USD for four years while this house's own macro path carries US
     # long-run inflation of 2.5%. A flat NOMINAL price is a REAL decline of 2.5% a
@@ -918,9 +959,20 @@ INP = dict(
                "Alias of corp_load (segment-profit-to-EBIT basis), retained for compatibility "
                "with the DCF waterfall and sensitivity-grid code paths that reference a single "
                "operating-load driver", "2026-08-11", "Company/House"),
+    # RETIRED AND LABELLED AS SUCH. Nothing in this study reads it — the segment build
+    # carries margins directly rather than escalating a unit price — and a registered
+    # inflation array that drives nothing is exactly what the macro-coherence check was
+    # extended to catch after EGCH, where an undeclared cpi_path drove the currency path
+    # and every cost escalator while every declared growth line was legitimately exempt.
+    # It is kept because a delivered edition published it, and the label is what stops it
+    # being read as live.
     unit_price_inflation=I([0.08, 0.075, 0.07, 0.07, 0.07],
-                           "Retained input, no longer consumed by the segment build (kept for "
-                           "downstream compatibility)", "2026-08-05", "House"),
+                           "RETIRED — not used, and consumed by no formula in this study. "
+                           "The segment build carries margins directly rather than "
+                           "escalating a unit price, so this array drives nothing. Retained "
+                           "for comparison with the editions that did read it, and declared "
+                           "to the macro-coherence record as retired rather than removed",
+                           "2026-08-05", "House"),
     foreign_share_fy25=I(0.70, "'Over 70% of revenues generated abroad' (company commentary); the "
                          "audited Note 5-2 geographic split gives Outside Egypt 40.7% of FY2025 "
                          "revenue (114,461.030 / 281,049.082) — geography and hard-currency pricing "
@@ -2733,6 +2785,13 @@ STAR_CASE = dict(
         "read is the right one and this one is not."),
 )
 
+# READ, NOT TYPED. The forecast's calendar years, the house inflation ladder over them,
+# and the model's own revenue growth in the last explicit year — the quantity the
+# convergence test compares against terminal growth.
+_MACRO_YEARS = [2026, 2027, 2028, 2029, 2030]
+_MACRO_INF = list(_MP_EG.inflation_path)
+_MACRO_G_END = rev[4] / rev[3] - 1
+
 OUT = dict(
     # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
     # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
@@ -3055,8 +3114,92 @@ OUT = dict(
     # sovereign quote. WHAT IT COSTS: the currency path's first year is derived from a
     # spot four weeks old, and the pound moved little over that window, so the effect is
     # small - but it is an effect and it is not asserted to be zero.
+    # THE RECORD WAS A STUB AND THE GATE SAID SO. It carried `path='EG'` and an accepted
+    # staleness and nothing else, so assert_macro_coherence could not run on it at all —
+    # check_macro_coherence reported "'' is not a covered market" against SWDY, which is
+    # [R-ENF-04]'s case exactly: a check that cannot run is not a check that passed. The
+    # record now carries what the assertion needs, and every number in it is READ from the
+    # inputs above rather than typed, so it cannot come apart from the model it describes.
+    #
+    # WHAT THE RECORD MAKES VISIBLE, and this is the point of it rather than a side
+    # effect: each growth rate in this model is stated as (house inflation) compounded
+    # with a REAL component. The Cables volume line runs about -1 to -4.6% real against
+    # the house path; the Constructions taper runs +1.9% to +9.9% real; Electrical
+    # products starts at +27.8% real and converges to +3.7%. A reader can disagree with
+    # any of those in a way they cannot disagree with a nominal rate.
     macro_record=dict(
+        market='EG',
+        path_as_of=_MP_EG.as_of,
         path='EG',
+        explicit_years=5,
+        # ONE LINE PER YEAR, BECAUSE A GROWTH LINE CARRIES ONE REAL RATE. The rule is
+        # that a nominal rate recomputes as (1 + house inflation)(1 + a STATED real), and
+        # none of this model's drivers holds a constant real rate across the window — a
+        # taper is precisely a real component that changes. Collapsing them into four
+        # lines would have meant four exemptions, and an exemption is how a rate escapes
+        # the check. Twenty lines is the honest shape: every year of every driver states
+        # the real growth it embeds, and the reader can argue with any one of them.
+        growth_lines=[
+            dict(name='%s — FY%d' % (_nm, _MACRO_YEARS[_i]),
+                 years=[_MACRO_YEARS[_i]], nominal=[_v[_i]],
+                 real=round((1 + _v[_i]) / (1 + _MACRO_INF[_i]) - 1, 6), basis=_bs)
+            for _nm, _v, _bs in (
+                ('Cables tonnage growth (the disclosed volume driver)',
+                 V['cables_volume_growth'],
+                 'A VOLUME, NOT A PRICE: tonnes from the issuer\'s own quarterly '
+                 'releases, tapering from the 8.5% three-year compound rate. Its real '
+                 'component against an inflation ladder is an arithmetic statement rather '
+                 'than an economic one, and it is recorded so the line sits inside the '
+                 'coherence check rather than outside it. The PRICE half of Cables revenue '
+                 'is not on the house inflation path at all — it is on copper and the '
+                 'pound, through a measured pass-through'),
+                ('Constructions and infrastructure revenue taper', V['construct_growth'],
+                 'the segment\'s own FY2023-25 revenue CAGR, tapered, re-anchored on the '
+                 'H1-2026 reviewed half [R-ANCHOR-01]. Against the house path it is +9.9% '
+                 'real in the first year converging to +1.9% in the last, and that is the '
+                 'claim a reader can argue with'),
+                ('Electrical products revenue taper', V['elecprod_growth'],
+                 'the segment\'s own FY2023-25 revenue CAGR, tapered, re-anchored on the '
+                 'reviewed half. The first year\'s +27.8% real is the half\'s own measured '
+                 'like-for-like growth rather than a forecast; it converges to +3.7%'),
+            )
+            for _i in range(5)
+        ],
+        # THE BASE IS DECLARED, so the gate derives the path from the same starting
+        # point the model did. The house path's own default base is its average_2025 of
+        # 48.70, a market reading; this study uses 47.69, the rate the company actually
+        # realised on its own FY2025 revenue off the audited statements. The SHAPE is the
+        # house ladder either way — only the anchor differs, and the filing is the better
+        # anchor for translating this issuer's own flows.
+        # EVERY INFLATION-CLASS INPUT THIS STUDY REGISTERS, NAMED. The list is short and
+        # that is the finding rather than an omission: this model escalates NOTHING at an
+        # Egyptian inflation rate. The segment build carries disclosed margins directly,
+        # the corporate load is a percentage of revenue on the audited basis, and capex
+        # and D&A are percentages of revenue — so there is no cost escalator to check. The
+        # only inflation arrays in the register are the retired unit-price path, which no
+        # formula reads, and the copper escalator, which runs on US long-run inflation and
+        # not on Egypt's. Declaring the list is what makes that visible; leaving it out is
+        # how EGCH's undeclared cpi_path drove a whole model past this check.
+        inflation_inputs=[
+            # first_year NAMES THE YEAR OF THE FIRST NON-EXEMPT VALUE, not the first
+            # value in the array — the checker takes the ladder from there, so 2030 is
+            # the year the one unexempted entry belongs to.
+            dict(key='unit_price_inflation', mapping='calendar', first_year=2030,
+                 exempt_head=4, values=list(V['unit_price_inflation']),
+                 exempt_reason=(
+                     'RETIRED AND READ BY NO FORMULA. The array is registered because a '
+                     'delivered edition published it and this house does not delete what '
+                     'it has issued; it drives nothing in this build, which is verifiable '
+                     'by grep across the study directory. Its last year IS the house '
+                     "terminal inflation; the four before it are the retired edition's own "
+                     'and are exempted as such rather than defended'),
+                 note='not used — see the input register entry'),
+        ],
+        fx_base=V['fx_hist']['FY25'],
+        fx_path=list(V['fx_path']),
+        terminal=dict(g_nominal=V['g_term'], real=V['g_term_real'],
+                      rf=V['rf_term'], inflation_in_rf=V['pi_term']),
+        growth_at_horizon_end=_MACRO_G_END,
         # The declaration is a MAPPING carrying a reason, not a bare string: the gate
         # reads `reason` and an empty one has switched the check off rather than
         # declared it.

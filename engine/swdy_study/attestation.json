@@ -10,7 +10,7 @@
    "relative",
    "retired_blend"
   ],
-  "inputs": "221 inputs, four-field complete=True",
+  "inputs": "222 inputs, four-field complete=True",
   "experts": "bases inside their own ranges=True",
   "scrub": "43 patterns, 0 hits",
   "figures": "8 figures, 0 transparent",

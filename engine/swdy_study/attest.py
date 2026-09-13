@@ -226,6 +226,21 @@ assert D.get('standard_version') == STANDARD_VERSION, (
     'study_numbers.json is stamped %r against the live standard %r'
     % (D.get('standard_version'), STANDARD_VERSION))
 
+# THE DRIVER RECORD GOES INTO THE NUMBERS FILE, NOT ONLY INTO THE ATTESTATION.
+# scripts/check_ground_up.py reads study_numbers.json and reports SWDY as committing no
+# driver-line record at all; a record that lives only in a file the gate does not read is
+# a record nobody is held to. Written under `driver_lines`, the key the gate looks for,
+# beside the assert_ground_up summary it was computed from — the INPUT, not just the
+# output, because an output cannot be audited back to the lines that produced it.
+D['driver_lines'] = [dict(name=l.name, level=l.level,
+                          share_of_revenue=l.share_of_revenue, unit=l.unit,
+                          unit_source=l.unit_source, price_basis=l.price_basis,
+                          cost_basis=l.cost_basis, gap_note=l.gap_note) for l in lines]
+D['ground_up'] = GU
+with open('study_numbers.json', 'w') as _f:
+    json.dump(D, _f, indent=1)
+print('committed %d driver lines to study_numbers.json' % len(lines))
+
 json.dump(dict(model_study=EVIDENCE, passed=c.passed(),
                sigcm={k: v for k, v in sig.__dict__.items() if k != 'na_reasons'},
                beta=dict(beta=BETA['beta'], index_file=BETA['index_file'],

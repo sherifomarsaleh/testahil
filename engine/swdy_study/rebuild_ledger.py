@@ -111,6 +111,57 @@ L.apply(
              'moved nothing. It now reads beta_result.json, which asserts the record is '
              'conforming and its regressor registered.')
 
+# THE LEDGER STOPPED BEING FED AND THAT IS RECORDED HERE RATHER THAN QUIETLY CLOSED.
+# The last lever above ends at 43.5108. The study's committed central is 87.9425, and the
+# levers between the two were applied across several editions without being written down
+# — the terminal rebuilt on the house macro path, the segment margins re-anchored on the
+# reviewed half, the employees' statutory share, the minority basis, the share count
+# reverted. Reconstructing them now, from outside the sessions that applied them, would
+# be inventing a history rather than recording one, so the gap is carried as ONE lever
+# that names what it contains and is honest that it is a bundle. What is NOT bundled is
+# the change made on 13-09-2026, which is applied separately below with its own number.
+L.apply(
+    'UNRECORDED: the levers between the beta re-derivation and 13-09-2026',
+    'R-REBUILD-01', 87.763330,
+    why='This ledger records the value after each lever, and between the beta lever '
+        'above and the currency-path lever below it was not written to. The moves it '
+        'contains are known in kind and not in order: the terminal rebuilt so that its '
+        'growth and its discount rate read the same house inflation, the three segment '
+        'margins re-anchored on the H1-2026 reviewed half [R-ANCHOR-01], the employees\' '
+        'statutory share charged in the bridge, minorities charged at their profit share '
+        'rather than at book, and the share count reverted to the issued figure after a '
+        'pass cut it on a capital reduction that appears on no filing. EACH IS DOCUMENTED '
+        'IN compute.py AT ITS OWN SITE; none of them is documented HERE, which is the '
+        'defect. A ledger that stops mid-rebuild is worse than no ledger, because it '
+        'reads as complete.',
+    evidence='compute.py carries the reasoning for every lever named above at the input '
+             'or the construction it changed. The arithmetic of the bundle is the '
+             'difference between the two ends: 43.5108 to 87.7633.')
+
+# THE CURRENCY PATH, AND IT MOVES THE ANSWER TOWARD THE PRICE.
+L.apply(
+    'the currency path derived rather than hand-set', 'R-MACRO-01', 87.942530,
+    why='The model escalated its cost base on the house Egyptian inflation ladder, which '
+        'falls from 16% to 7%, while depreciating the pound at a flat ~6% a year. That '
+        'is two views of one economy [L-048]: a permanent REAL APPRECIATION of the pound, '
+        'assumed rather than argued and with no mechanism named. It survived because '
+        'this study\'s macro record was a stub that assert_macro_coherence could not run '
+        'on at all — the gate reported "\'\' is not a covered market" against SWDY, which '
+        'is an absent result being read as a clean one [R-ENF-04]. THE DIRECTION IS '
+        'UPWARD AND TOWARD THE PRICE, and that is the outcome rather than the aim: the '
+        'hand-set path was the more conservative of the two, because a stronger pound '
+        'translates less hard-currency revenue into pounds, so the incoherence had been '
+        'depressing the valuation. That is exactly why it lasted — nobody audits a number '
+        'that is already cautious. The rule is not "be conservative", it is "one view of '
+        'one economy".',
+    evidence='The path is now macro_path.load("EG").fx_path(5, base=47.69): the '
+             'company\'s own realised FY2025 average rate off the audited statements, '
+             'escalated on the house relative-purchasing-power depreciation ladder, which '
+             'is itself derived from that path\'s inflation against long-run US '
+             'inflation. Retired path 51.00/54.00/57.50/61.00/64.50; derived path '
+             '53.97/58.97/62.71/65.77/68.66. The ladder is registered as its own input '
+             'rather than quoted in a sentence. Central 87.7633 -> 87.9425, +0.20%.')
+
 rec = L.record()
 rec['workbook_answer'] = dict(before=59.313220, after=52.696890,
                               note='the workbook is the artefact a reader receives; its '
