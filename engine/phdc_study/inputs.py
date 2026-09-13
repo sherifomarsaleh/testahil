@@ -110,6 +110,17 @@ DEBT_FY25 = {
 # Operating drivers. These come from the results releases, because no financial
 # statement carries units, prices or backlog.
 OPERATING = {
+    # TESTED AGAINST THE NEWER DISCLOSURE ON 10-09-2026 AND IT IS WORTH NOTHING.
+    # A half-year release of 18 August 2026 puts the backlog at EGP 284bn at 30 June,
+    # 40% up on the year, and a further EGP 75bn was sold at Hacienda Ras El Hekma in
+    # the fortnight after that. Swapping 263,000 for 284,000 and rebuilding moves the
+    # central by ZERO: 21.0897 either way. That is not a defect in the test, it is this
+    # model's central claim arriving as a measurement — revenue here is limited by how
+    # fast this company can DELIVER, never by how much it has sold, and the book is
+    # already further ahead of the build programme than the programme can close.
+    # SO THE ANCHOR STAYS ON THE COMPANY'S OWN QUARTERLY RELEASE rather than moving to
+    # a wire report of a release this study has not read. Swapping a company-sourced
+    # figure for a secondary one buys nothing when the number changes nothing.
     "backlog_1q26":     I(263000.0, ER26Q1 + " — \"the company's backlog of units sold "
                           "and not yet delivered reached EGP263 billion up from EGP190 "
                           "billion in 1Q2025\"", "2026-03-31", "A"),
