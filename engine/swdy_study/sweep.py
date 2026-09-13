@@ -149,10 +149,17 @@ f_neg_taxrec = R.add_negative(Ring.COUNTRY,
 
 # -------------------------------------------------------------- RING 3 INDUSTRY
 f_demand = R.add(Ring.INDUSTRY, "demand drivers & capacity/supply balance", FindingClass.S,
-    "Engineering and construction backlog runs EGP 196bn (Dec-2024), 261, 276, 293 "
-    "(Dec-2025), 307 and 346bn at 30 June 2026; wires and cables 43.5bn and meters 8.8bn "
-    "are disclosed beside it. That is +18% over the half against the +27.4% revenue growth "
-    "the Constructions driver is anchored on",
+    "Engineering and construction backlog: EGP 196bn at Dec-2024, 293bn at Dec-2025 and "
+    "346bn at 30 June 2026 — THE THREE POINTS THIS STUDY CAN DATE. Four intermediate "
+    "readings (261, 276, 307) were carried in an earlier edition of this entry inside the "
+    "same comma-separated run as the dated ones, which reads as a quarterly series and is "
+    "not one: they are undated here and cannot be placed against a quarter from anything "
+    "this study holds, and an external review read the run as mis-sequenced, correctly. "
+    "They are withdrawn from the series rather than given dates they do not have. Wires "
+    "and cables 43.5bn and meters 8.8bn are disclosed beside the total. The dated "
+    "endpoints give +18% over the reviewed half against the +27.4% revenue growth the "
+    "Constructions driver is anchored on, which is the comparison the entry exists for "
+    "and which the withdrawn points do not affect",
     "Company Q2-2026 earnings release, backlog disclosure", IR, "2026-08-12",
     model_impact="CORROBORATES the Constructions taper without being burnt down to produce "
                  "it — the releases disclose no burn profile, so the taper stays a taper on "
@@ -318,8 +325,14 @@ f_datagrid = R.add(Ring.COMPANY,
     "announced projects, ventures and capacity (entity verified as the listed issuer)",
     FindingClass.D,
     "August 2026: a pre-purchase agreement to manufacture four high-voltage transformers "
-    "of up to 360 MVA for Datagrid's Southland AI data centre via Transpower New Zealand, "
-    "commissioning late 2027",
+    "of up to 360 MVA for a New Zealand data-centre grid connection, commissioning late "
+    "2027. AN EXTERNAL REVIEW DISPUTES HOW THIS ENTRY NAMED THE COUNTERPARTIES — an "
+    "earlier edition attributed the order to a specific end-customer and a specific "
+    "network operator — and this study cannot settle the attribution from a primary "
+    "source it has read. The entity that matters to the register IS verified and is "
+    "unchanged: the announcing party is the listed issuer. The counterparty names are "
+    "withdrawn rather than defended, because the entry\'s job is to name a mechanism and "
+    "it does that without them",
     "Company announcement, August 2026", IR, "2026-08-01",
     entity="Elsewedy Electric Company S.A.E.", entity_is_issuer=True,
     model_impact="NAMES THE MECHANISM behind the Electrical products growth level rather "
