@@ -18,11 +18,15 @@ COC = D['cost_of_capital_record']
 _SL = DCF['scenario_legs']   # how the published range is struck [F10]
 _CT = SN['contested']        # the contested-choice impacts, each a re-run [F23]
 import datetime as _dt
+def _d(x): return _dt.date(*[int(p) for p in x.split('-')])
 def _age_days(iso):
-    """How stale an input is at the anchor date. Computed, never typed — an age in a
+    """How stale an input is at the ANCHOR date. Computed, never typed — an age in a
     delivered sentence is the first thing to go wrong when either date moves [F25]."""
-    _d = lambda x: _dt.date(*[int(p) for p in x.split('-')])
     return (_d(M['asof']) - _d(iso)).days
+def _age_at_issue(iso):
+    """How stale something is at the date on the COVER, which is a different question
+    and the one a reader opening the document is actually asking [F30]."""
+    return (_ed.EDITION - _d(iso)).days
 _BT = json.load(open(os.path.join(HERE, 'backtest_5y.json')))
 BT5, BT5F = _BT['five_year'], _BT['full']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
@@ -563,10 +567,16 @@ rows = [['Measure', 'Value', 'Comment'],
          'applied to FY2027E EBITDA and then DISCOUNTED BACK two years, because a forward '
          'multiple produces a forward enterprise value. The multiple is set below the '
          "company's own trailing multiple as an Egyptian-market discount. NOTE: no peer "
-         'multiple is computed anywhere in this study, so this is a judgement anchored on '
-         "SWDY's own trading history, not a peer-derived figure — an earlier draft asserted a "
-         '"peers trade at 8–11×" range that was not supported by any calculation, and it has '
-         'been withdrawn'],
+         f"multiple is computed anywhere in this study, so this is a JUDGEMENT: it is struck "
+         f"below this company's own trailing {n1(REL['ev_ebitda_trailing'])}× — a discount of "
+         f"{pc(1 - IN['ev_ebitda_just'] / REL['ev_ebitda_trailing'], 0)} — and the SIZE of "
+         f"that discount is not derived from anything: not a peer set, not a regression, not "
+         f"an observed emerging-market spread. An earlier draft asserted a 'peers trade at "
+         f"8-11×' range unsupported by any calculation. It was withdrawn here and, until this "
+         f"edition, NOT withdrawn from the bibliography delivered beside this document, which "
+         f"went on telling the reader the multiple rested on peer evidence this study does not "
+         f"have. Section 1.9 prices the whole tested range, and this lens is never weighted "
+         f"into the central"],
         # F21: THIS ROW WAS WRONG THREE WAYS AT ONCE. It is labelled "Plus", the model
         # ADDS it, and the committed value is POSITIVE (+3,106.38) — and it printed
         # "(-3,106)", a bracket and a minus sign on a positive number, under a prose note
@@ -1330,6 +1340,18 @@ P(f"The beta deserves a note. At {IN['beta']:.3f} with an R-squared of {W['beta'
 
 # =========================== 2 TECHNICAL ======================================
 H1('2  Technical and price structure')
+# F30: THE PRICE MAP CARRIES THE ANCHOR'S DATE, NOT THE DOCUMENT'S, and the two are not
+# the same day. Nothing here is wrong — the whole study is struck at one anchor and the
+# price lens has to be struck there too, or the cone and the valuation would be comparing
+# different days — but a reader opening a document dated later is entitled to be told how
+# far back the price read sits, rather than working it out from a masthead.
+P(f"EVERYTHING IN THIS SECTION AND THE NEXT IS STRUCK AT {M['asof']}, the study's anchor "
+  f"date, which is {_age_at_issue(M['asof'])} days before the date on this document. That is "
+  f"deliberate: the valuation, the cone and the technical read share one clock, and a price "
+  f"lens re-struck later would no longer be comparable with the fair value beside it. It does "
+  f"mean these levels are not today's. Every figure here is a CLOSING basis — the moving "
+  f"averages, the 52-week range and the cone's anchor all come from the same closing series "
+  f"the library carries, never an intraday print.", space_after=10)
 figure(os.path.join(HERE, 'fig3_ma.png'), 7.0,
        "Figure 4 — price against the 20-, 50-, 100- and 200-session moving averages over the last "
        "260 sessions.")

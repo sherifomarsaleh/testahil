@@ -1420,11 +1420,31 @@ INP = dict(
                   "2026-09-13", "House"),
 
     # ---- lens inputs -------------------------------------------------------
-    ev_ebitda_just=I(6.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA. The company's own trailing "
-                     "multiple is elevated; listed cable and electrical-equipment peers trade 8-11x "
-                     "and Riyadh Cables ~14x on earnings. 6.5x applies an Egyptian-market discount "
-                     "for sovereign, currency-convertibility and disclosure risk. Bear 5.5x / bull "
-                     "8.0x", "2026-08-05", "House"),
+    # THE REGISTER AND THE STUDY GAVE TWO INCOMPATIBLE ACCOUNTS OF THIS NUMBER [F27], and
+    # the withdrawal was made in one of them only. The study's section 1.3 says plainly
+    # that "no peer multiple is computed anywhere in this study" and that an earlier
+    # draft's "peers trade at 8-11x" was unsupported and withdrawn. THIS ENTRY STILL
+    # CARRIED IT, together with a Riyadh Cables figure on a different metric — so the
+    # bibliography delivered beside the study told the reader the multiple rests on peer
+    # evidence the study says it does not have. A withdrawal that reaches one document is
+    # not a withdrawal.
+    #
+    # WHAT IT ACTUALLY RESTS ON, stated rather than dressed: a judgement. It is set below
+    # this company's own trailing multiple, and the size of the discount is not derived
+    # from anything — no peer set is computed, no regression, no observed emerging-market
+    # spread. That is a legitimate way to strike a cross-check multiple and an illegitimate
+    # way to describe one, and section 1.9 prices the whole tested range so a reader who
+    # disagrees can take their own number off the row.
+    ev_ebitda_just=I(6.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA, applied forward and "
+                     "discounted back two years. A HOUSE JUDGEMENT WITH NO PEER ANCHOR: no peer "
+                     "multiple is computed anywhere in this study, and an earlier edition's "
+                     "claim that 'peers trade 8-11x' was unsupported by any calculation and is "
+                     "withdrawn here as it already was in the study. The figure is struck below "
+                     "this company's own trailing multiple as an Egyptian-market discount for "
+                     "sovereign, currency-convertibility and disclosure risk; the SIZE of that "
+                     "discount is a judgement and is not derived. Sensitised 5.5x to 8.0x, and "
+                     "the lens is a cross-check that is never weighted into the central",
+                     "2026-08-05", "House"),
     pe_just=I(9.0, "Justified through-cycle P/E on normalised earnings. 9.0x reflects a "
               "high-quality franchise held back by an Egyptian cost of equity near 28%. Bear 7.0x / "
               "bull 11.5x", "2026-08-05", "House"),

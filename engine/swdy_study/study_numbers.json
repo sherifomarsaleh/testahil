@@ -1457,7 +1457,7 @@
   },
   "ev_ebitda_just": {
    "value": 6.5,
-   "source": "Justified EV/EBITDA on mid-cycle FY27E EBITDA. The company's own trailing multiple is elevated; listed cable and electrical-equipment peers trade 8-11x and Riyadh Cables ~14x on earnings. 6.5x applies an Egyptian-market discount for sovereign, currency-convertibility and disclosure risk. Bear 5.5x / bull 8.0x",
+   "source": "Justified EV/EBITDA on mid-cycle FY27E EBITDA, applied forward and discounted back two years. A HOUSE JUDGEMENT WITH NO PEER ANCHOR: no peer multiple is computed anywhere in this study, and an earlier edition's claim that 'peers trade 8-11x' was unsupported by any calculation and is withdrawn here as it already was in the study. The figure is struck below this company's own trailing multiple as an Egyptian-market discount for sovereign, currency-convertibility and disclosure risk; the SIZE of that discount is a judgement and is not derived. Sensitised 5.5x to 8.0x, and the lens is a cross-check that is never weighted into the central",
    "date": "2026-08-05",
    "ring": "House"
   },
