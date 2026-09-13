@@ -34,3 +34,10 @@ WORDS = '%d %s %d' % (EDITION.day, EDITION.strftime('%B'), EDITION.year)
 STUDY_DOCX = 'ADIB_Valuation_Study_%s.docx' % _D
 BIBLIO_DOCX = 'ADIB_Bibliography_%s.docx' % _D
 MODEL_XLSX = 'ADIB_Valuation_Model_%s.xlsx' % _C
+# THE DELIVERED PDFs ARE NAMED HERE TOO [10-09-2026]. This module named only the three
+# source documents, so anything reading it for "what this edition delivers" got a partial
+# answer and got it SILENTLY -- the delivery zip dropped two PDFs that exist on disk and
+# said nothing. A single source of names is only single if it carries every name.
+STUDY_PDF = STUDY_DOCX[:-5] + '.pdf'
+BIBLIO_PDF = BIBLIO_DOCX[:-5] + '.pdf'
+MODEL_PDF = MODEL_XLSX[:-5] + '.pdf'
