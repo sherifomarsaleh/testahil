@@ -21,6 +21,8 @@ none and demanding one would be a false claim about what this gate checks.
 import glob
 import json
 import os
+import io
+import re
 import shutil
 import subprocess
 import sys
@@ -30,6 +32,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 TARGET = os.path.join(HERE, "check_terminal_record_shape.py")
 SRC_ENGINE = os.path.join(ROOT, "engine")
+import sys as _sys_nc
+_sys_nc.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import nc_sandbox as _nc          # the sandbox's engine-module list, derived
+
 
 CASES_EXPECTED = 10          # 7 red + 3 clean
 RED_EXPECTED = 7
@@ -41,7 +47,11 @@ def _sandbox():
     tmp = tempfile.mkdtemp(prefix="trs-nc-")
     eng = os.path.join(tmp, "engine")
     os.makedirs(os.path.join(eng, "build_depth_audit"))
-    shutil.copy(os.path.join(SRC_ENGINE, "terminal_value.py"), eng)
+    # EVERY ENGINE MODULE THE GATE IMPORTS, READ OFF THE GATE ITSELF -- see
+    # scripts/nc_sandbox.py. This carried one typed filename until the gate grew
+    # an import of engine/run_state.py and the control died before injecting a
+    # single defect.
+    _nc.copy_engine_modules(TARGET, SRC_ENGINE, eng, required=("terminal_value",))
     rat = os.path.join(SRC_ENGINE, "build_depth_audit",
                        "terminal_record_outstanding.json")
     if os.path.exists(rat):

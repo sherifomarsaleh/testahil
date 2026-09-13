@@ -32,3 +32,13 @@ PRIOR_WORDS = '%d %s %d' % (SUPERSEDES[-1].day, SUPERSEDES[-1].strftime('%B'),
 STUDY_DOCX = 'PHDC_Valuation_Study_%s.docx' % _D
 BIBLIO_DOCX = 'PHDC_Bibliography_%s.docx' % _D
 MODEL_XLSX = 'PHDC_Valuation_Model_%s.xlsx' % _C
+
+
+# THE PDF IS THE FILE A READER ACTUALLY OPENS, so it is named here too rather than
+# spelled out again wherever one is baked or checked. Added 13-09-2026: three of the
+# six delivered artefacts had no name in this module, so every script that touched a
+# PDF typed the edition date itself -- which is the defect this file exists to stop,
+# surviving in the half of the set it did not cover.
+STUDY_PDF = STUDY_DOCX[:-len('.docx')] + '.pdf'
+BIBLIO_PDF = BIBLIO_DOCX[:-len('.docx')] + '.pdf'
+MODEL_PDF = MODEL_XLSX[:-len('.xlsx')] + '.pdf'

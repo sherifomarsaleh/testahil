@@ -22,6 +22,7 @@ import glob
 import json
 import os
 import re
+import io
 import shutil
 import subprocess
 import sys
@@ -32,6 +33,10 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, ROOT)
 TARGET = os.path.join(HERE, "check_forward_ranges.py")
 SRC_ENGINE = os.path.join(ROOT, "engine")
+import sys as _sys_nc
+_sys_nc.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import nc_sandbox as _nc          # the sandbox's engine-module list, derived
+
 
 from engine import range_disclosure as RD          # noqa: E402
 
@@ -89,14 +94,17 @@ def _sandbox():
                        "forward_ranges_outstanding.json")
     if os.path.exists(rat):
         shutil.copy(rat, os.path.join(eng, "build_depth_audit"))
-    shutil.copy(os.path.join(SRC_ENGINE, "range_disclosure.py"), eng)
     # THE SANDBOX MUST REPRODUCE EVERY PIECE OF STATE THE GATE READS. Since
     # [R-FCAL-01 §6 AMENDED 09-09-2026] the gate consults calibration_only.declared(),
     # so the module and each run's declaration are part of the fixture. Without them
     # a declared run reads as no_study in here and three CLEAN cases fire on a
     # condition the book is not in — the control failing for a reason that is about
     # the harness rather than the gate.
-    shutil.copy(os.path.join(SRC_ENGINE, "calibration_only.py"), eng)
+    #
+    # SO THE MODULE LIST IS NO LONGER TYPED [13-09-2026] -- see scripts/nc_sandbox.py
+    # for what went wrong and why a control must never pass by crashing.
+    _nc.copy_engine_modules(TARGET, SRC_ENGINE, eng,
+                            required=("range_disclosure", "calibration_only"))
     open(os.path.join(eng, "__init__.py"), "w").close()
     missing_study = []
     for run in sorted(glob.glob(os.path.join(SRC_ENGINE, "*_walkforward"))):
