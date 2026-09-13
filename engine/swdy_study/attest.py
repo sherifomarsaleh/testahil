@@ -19,7 +19,7 @@ import openpyxl
 from docx import Document
 from research_protocol import (ModelStudyChecklist, assert_model_study, SIGCMChecklist,
                                assert_sigcm, MODEL_STUDY, assert_beta_provenance,
-                               STANDARD_VERSION, DriverLine)
+                               STANDARD_VERSION, DriverLine, assert_ground_up)
 import edition as EDN
 
 D = json.load(open('study_numbers.json'))
@@ -167,57 +167,23 @@ assert_beta_provenance(BETA)
 print('assert_beta_provenance PASSED — %.4f vs %s (conforming=%s)'
       % (BETA['beta'], os.path.basename(BETA['index_file']), BETA['conforming']))
 
-# ---- the ground-up driver record ------------------------------------------------
-# THE STUDY HAD NONE. assert_ground_up() says in its own message that the ground-up
-# clause "is no longer attestable by a flag; build a DriverLine per revenue line" — and
-# SWDY attested the clause with a flag, because nothing called the function. The three
-# disclosed segments are recorded here at the level each was actually built to, with the
-# gap stated wherever that level is below units. The shares are READ from the FY2025
-# segment revenue the forecast bases off, so they cannot drift from the model.
-_SEGREV = D['bottomup']['unit_hist']['FY25']['rev']
-_TOT = sum(_SEGREV.values())
-lines = [
-    DriverLine(
-        name='Cables and accessories', level='unit',
-        share_of_revenue=_SEGREV['cables'] / _TOT,
-        unit='tonnes of cable shipped',
-        unit_source=("the company's own quarterly earnings releases — 144,997 / 156,748 / "
-                     "167,665 / 185,449 tonnes over FY2022-25 and 99,239 in the reviewed "
-                     "half against 89,636. NOT in the audited statements, which disclose "
-                     "no tonnage for any segment; the releases are the issuer's own and "
-                     "are cited as such"),
-        price_basis=('the LME copper forward path times the house EGP/USD path, applied '
-                     'as a disclosed pass-through rate rather than a revenue growth '
-                     'assumption, plus a separate real volume growth term'),
-        cost_basis=('segment margin on the audited segment-profit-to-revenue basis; the '
-                    'audited statements disclose no cost per tonne')),
-    DriverLine(
-        name='Constructions and infrastructure', level='segment',
-        share_of_revenue=_SEGREV['construct'] / _TOT,
-        price_basis="the segment's own FY2023-25 revenue CAGR, tapered",
-        cost_basis='disclosed segment margin',
-        gap_note=('No unit exists that this business can be built on and no filing '
-                  'supplies one: turnkey engineering revenue is recognised on progress '
-                  'against contracts of differing size, and neither the audited '
-                  'statements nor the interim discloses contract count, megawatts or '
-                  'kilometres. The EGP 346bn engineering backlog at 30 June 2026 is read '
-                  'from the releases and CORROBORATES the taper; it is not burnt down '
-                  'into revenue, because the releases do not disclose the burn profile '
-                  'that would take')),
-    DriverLine(
-        name='Electrical products', level='segment',
-        share_of_revenue=_SEGREV['elecprod'] / _TOT,
-        price_basis="the segment's own FY2023-25 revenue CAGR, tapered",
-        cost_basis='disclosed segment margin',
-        gap_note=('The segment aggregates transformers, meters and electrical accessories '
-                  'on one disclosed line. No filing splits it, and no meter count, MVA or '
-                  'transformer unit figure appears in the audited statements or the '
-                  'interim, so there is no unit to build on')),
-]
-from research_protocol import assert_ground_up
+# ---- the ground-up driver record, READ AND ASSERTED, NOT CREATED -----------------
+# IT USED TO BE BUILT HERE and that made it depend on this file running. This file opens
+# the delivered workbook and the delivered study, because attesting them is its job — so
+# in any rebuild without those documents beside it, the record simply never appeared.
+# check_record_survives_rebuild caught exactly that: compute.py -> forecast_anchor.py ->
+# attest.py LOST driver_lines and ground_up. The record is compute.py's now, built where
+# the drivers are and needing no artefact to exist; this file holds it to the assertion,
+# which is what an attestation is for.
+if 'driver_lines' not in D or 'ground_up' not in D:
+    raise SystemExit('the numbers file carries no ground-up driver record; compute.py '
+                     'writes it and nothing here can stand in for it [R-SIGCM-02]')
+lines = [DriverLine(**{k: v for k, v in r.items()}) for r in D['driver_lines']]
 GU = assert_ground_up(lines, 'SWDY')
-print('ground-up record: %d lines, %.1f%% of revenue at unit level'
-      % (GU['lines'], 100 * GU['unit_share']))
+assert GU['share_by_level'] == D['ground_up']['share_by_level'], (
+    'the committed ground-up summary does not reproduce from the committed driver lines')
+print('ground-up record: %d lines, %.1f%% of revenue at unit level (re-asserted from the '
+      'committed lines)' % (GU['lines'], 100 * GU['unit_share']))
 for l in lines:
     print('  %-34s %-8s %5.1f%%  %s' % (l.name, l.level, 100 * l.share_of_revenue,
                                         (l.unit or l.gap_note or '')[:52]))
@@ -232,15 +198,6 @@ assert D.get('standard_version') == STANDARD_VERSION, (
 # a record nobody is held to. Written under `driver_lines`, the key the gate looks for,
 # beside the assert_ground_up summary it was computed from — the INPUT, not just the
 # output, because an output cannot be audited back to the lines that produced it.
-D['driver_lines'] = [dict(name=l.name, level=l.level,
-                          share_of_revenue=l.share_of_revenue, unit=l.unit,
-                          unit_source=l.unit_source, price_basis=l.price_basis,
-                          cost_basis=l.cost_basis, gap_note=l.gap_note) for l in lines]
-D['ground_up'] = GU
-with open('study_numbers.json', 'w') as _f:
-    json.dump(D, _f, indent=1)
-print('committed %d driver lines to study_numbers.json' % len(lines))
-
 json.dump(dict(model_study=EVIDENCE, passed=c.passed(),
                sigcm={k: v for k, v in sig.__dict__.items() if k != 'na_reasons'},
                beta=dict(beta=BETA['beta'], index_file=BETA['index_file'],

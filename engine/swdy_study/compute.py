@@ -1,18 +1,19 @@
-"""RUN ORDER: compute.py THEN forecast_anchor.py THEN attest.py. RUNNING THIS FILE
-ALONE DELETES TWO STANDING-RULE RECORDS.
+"""RUN ORDER: compute.py THEN forecast_anchor.py. RUNNING THIS FILE ALONE DELETES A
+STANDING-RULE RECORD.
 
-study_numbers.json is written whole by this script; [R-ANCHOR-01]'s forecast_anchor
-block is appended afterwards by forecast_anchor.py, and the ground-up driver_lines
-record with its assert_ground_up summary is appended after that by attest.py — both
-in this same directory. So a rebuild that runs only this file silently drops both:
-they reappear as deletions in the diff and nothing in the code says why.
+study_numbers.json is written whole by this script, and [R-ANCHOR-01]'s
+forecast_anchor block is appended afterwards by forecast_anchor.py in this same
+directory. So a rebuild that runs only this file silently drops that block: it
+reappears as a deletion in the diff and nothing in the code says why.
 
-ATTEST.PY JOINED THE ORDER ON 13-09-2026 and this line moved in the same commit,
-one push late: the driver record had been written only to attestation.json, a file
-scripts/check_ground_up.py does not open, so the gate reported SWDY as committing no
-driver-line record at all. Moving it into the numbers file made attest.py a second
-generator, and CI caught the undeclared order before anything was lost — which is
-the rule doing its job on the person who wrote the record. Caught
+ATTEST.PY WAS BRIEFLY A THIRD GENERATOR AND IS NOT ONE ANY MORE. It was writing the
+ground-up driver record into this file, and that made the record depend on it — but
+attest.py opens the DELIVERED workbook and the DELIVERED study, because attesting
+them is its job, so any rebuild without those documents beside it lost the record
+entirely. check_record_survives_rebuild caught it: the chain LOST driver_lines and
+ground_up. The record is built here now, where the drivers are and where nothing
+needs a document to exist; attest.py reads it and holds it to assert_ground_up,
+which is what an attestation is for. Caught
 06-09-2026 by reading a diffstat that came back at 18 lines when the edit was
 one -- had the diff not been read, a rebuild would have removed the record and
 check_forecast_anchor would have gone red on a study whose forecast had not moved.
@@ -2809,6 +2810,77 @@ _MACRO_YEARS = [2026, 2027, 2028, 2029, 2030]
 _MACRO_INF = list(_MP_EG.inflation_path)
 _MACRO_G_END = rev[4] / rev[3] - 1
 
+
+# ================= THE GROUND-UP DRIVER RECORD [R-SIGCM-02] ======================
+# IT LIVED IN attest.py AND DID NOT SURVIVE A REBUILD. check_record_survives_rebuild
+# runs the declared chain in a sandbox stripped of delivered artefacts, and attest.py
+# cannot run there — it opens the delivered workbook and the delivered study, because
+# attesting them is its job. So driver_lines and ground_up vanished from any rebuild
+# that did not already have the documents sitting beside it, which is circular: the
+# numbers file's account of how the forecast was built depended on artefacts built FROM
+# the numbers file.
+#
+# It belongs here, where the drivers are. Every field below comes from the segment
+# revenue and the input register this script has already computed; none of it needs a
+# document to exist. attest.py now READS and asserts it rather than creating it.
+from research_protocol import DriverLine as _DriverLine, assert_ground_up as _assert_ground_up
+# THE STUDY HAD NONE. assert_ground_up() says in its own message that the ground-up
+# clause "is no longer attestable by a flag; build a DriverLine per revenue line" — and
+# SWDY attested the clause with a flag, because nothing called the function. The three
+# disclosed segments are recorded here at the level each was actually built to, with the
+# gap stated wherever that level is below units. The shares are READ from the FY2025
+# segment revenue the forecast bases off, so they cannot drift from the model.
+_SEGREV = unit_hist['FY25']['rev']
+_TOT = sum(_SEGREV.values())
+_DRIVER_LINES = [
+    _DriverLine(
+        name='Cables and accessories', level='unit',
+        share_of_revenue=_SEGREV['cables'] / _TOT,
+        unit='tonnes of cable shipped',
+        unit_source=("the company's own quarterly earnings releases — 144,997 / 156,748 / "
+                     "167,665 / 185,449 tonnes over FY2022-25 and 99,239 in the reviewed "
+                     "half against 89,636. NOT in the audited statements, which disclose "
+                     "no tonnage for any segment; the releases are the issuer's own and "
+                     "are cited as such"),
+        price_basis=('the LME copper forward path times the house EGP/USD path, applied '
+                     'as a disclosed pass-through rate rather than a revenue growth '
+                     'assumption, plus a separate real volume growth term'),
+        cost_basis=('segment margin on the audited segment-profit-to-revenue basis; the '
+                    'audited statements disclose no cost per tonne')),
+    _DriverLine(
+        name='Constructions and infrastructure', level='segment',
+        share_of_revenue=_SEGREV['construct'] / _TOT,
+        price_basis="the segment's own FY2023-25 revenue CAGR, tapered",
+        cost_basis='disclosed segment margin',
+        gap_note=('No unit exists that this business can be built on and no filing '
+                  'supplies one: turnkey engineering revenue is recognised on progress '
+                  'against contracts of differing size, and neither the audited '
+                  'statements nor the interim discloses contract count, megawatts or '
+                  'kilometres. The EGP 346bn engineering backlog at 30 June 2026 is read '
+                  'from the releases and CORROBORATES the taper; it is not burnt down '
+                  'into revenue, because the releases do not disclose the burn profile '
+                  'that would take')),
+    _DriverLine(
+        name='Electrical products', level='segment',
+        share_of_revenue=_SEGREV['elecprod'] / _TOT,
+        price_basis="the segment's own FY2023-25 revenue CAGR, tapered",
+        cost_basis='disclosed segment margin',
+        gap_note=('The segment aggregates transformers, meters and electrical accessories '
+                  'on one disclosed line. No filing splits it, and no meter count, MVA or '
+                  'transformer unit figure appears in the audited statements or the '
+                  'interim, so there is no unit to build on')),
+]
+
+GU = _assert_ground_up(_DRIVER_LINES, 'SWDY')
+print('ground-up record: %d lines, %.1f%% of revenue at unit level'
+      % (GU['lines'], 100 * GU['unit_share']))
+for l in _DRIVER_LINES:
+    print('  %-34s %-8s %5.1f%%  %s' % (l.name, l.level, 100 * l.share_of_revenue,
+                                        (l.unit or l.gap_note or '')[:52]))
+
+
+# =================================================================================
+
 OUT = dict(
     # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
     # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
@@ -3154,6 +3226,12 @@ OUT = dict(
     # the house path; the Constructions taper runs +1.9% to +9.9% real; Electrical
     # products starts at +27.8% real and converges to +3.7%. A reader can disagree with
     # any of those in a way they cannot disagree with a nominal rate.
+    driver_lines=[dict(name=l.name, level=l.level,
+                       share_of_revenue=l.share_of_revenue, unit=l.unit,
+                       unit_source=l.unit_source, price_basis=l.price_basis,
+                       cost_basis=l.cost_basis, gap_note=l.gap_note)
+                  for l in _DRIVER_LINES],
+    ground_up=GU,
     macro_record=dict(
         market='EG',
         path_as_of=_MP_EG.as_of,
