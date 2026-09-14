@@ -962,6 +962,15 @@ jobs:
       - name: Grade-writer layout gate
         run: python3 scripts/check_grade_writer_layout.py
 
+      # THE LESSONS PAGE IS GENERATED FROM THE REGISTER AND MUST NOT DRIFT FROM IT.
+      # method.html carried "Completed on 1 name to date" until it was false by a
+      # factor of eleven, because it was a status sentence a person had to remember
+      # to update [R-DOC-02]. The counts on lessons.html are read from the register
+      # at build time; this step is what stops the generated page going stale the
+      # same way the typed one did.
+      - name: The lessons page is current with the register
+        run: python3 scripts/build_lessons_page.py --check
+
       # [R-GAP-02 CLAUSE SIX] WRITING THE CASE AND PUBLISHING IT ARE DIFFERENT ACTS,
       # and until this line existed only the first was enforced. SWDY published a fair
       # value 35.4% below the market with its MARKET_DISSENT filed and NOTHING on the

@@ -87,7 +87,8 @@ import site_data  # noqa: E402
 NON_TICKER_PAGES = {
     "404.html", "googlef90107a488de289e.html", "thanks.html", "archive.html",
     "news.html", "calculator.html", "compare.html", "egypt.html", "index.html",
-    "ledger.html", "metals.html", "method.html", "other-markets.html",
+    "ledger.html", "lessons.html", "metals.html", "method.html",
+    "other-markets.html",
     "stocks.html", "trade.html", "portfolio.html", "picker.html",
     # New-IA pages at root since the 30-Aug-2026 cutover — app pages, not
     # five-lens ticker templates. Ticker studies now live at /{TICKER}/study/,

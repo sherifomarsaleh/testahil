@@ -76,9 +76,16 @@ RULES: list[tuple[str, list[str], str]] = [
     (r"^engine/escalations\.json$",
      ["check_escalations.py"],
      "the escalation register has its own gate"),
-    (r".*/study/index\.html$|^legacy/.*\.html$",
+    # ROOT-LEVEL PAGES WERE UNCOVERED until this rule was widened. The first change
+    # that touched method.html and lessons.html selected nothing and the preflight
+    # said so, which is the behaviour that makes a hand-maintained table survivable:
+    # it reports the gap rather than passing over it.
+    (r".*/study/index\.html$|^legacy/.*\.html$|^[A-Za-z0-9_-]+\.html$",
      ["check_page_integrity.py"],
      "ticker pages are template plus per-ticker edits, and integrity diffs them"),
+    (r"^lessons\.html$|^scripts/build_lessons_page\.py$|^engine/lessons_register\.py$",
+     ["build_lessons_page.py --check"],
+     "the lessons page is generated and must not drift from the register"),
     # CI HAS NO check_imports.py. It does this INLINE — python3 -c "import
     # wacc_builder, research_protocol, ..." — and the first draft of this table named
     # a script that does not exist, which the completeness report below caught on its
