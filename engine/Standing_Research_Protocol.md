@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-13a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-14a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 13 September 2026 (rev. 23) — TWO STANDING RULES AMENDED IN ONE COMMIT, BOTH BECAUSE THE BOOK ACQUIRED ITS FIRST BANK AND BOTH WERE WRITTEN ON INDUSTRIAL COMPANIES: A BUSINESS VALUED ON EQUITY DIRECTLY OWES NO BRIDGE AND MUST SAY SO [R-BRIDGE-01 CLAUSE FIVE] — a declaration, never an exemption by name, naming the lenses that reach equity per share, still carrying the balance-sheet date, the register that establishes what the latest disclosed sheet is and the arithmetic that equity over shares reaches the published figure, and REFUSED where the study carries an enterprise value anywhere in its own committed numbers · AN ADMINISTERED POLICY RATE IS A MECHANISM AND THE CLOSED LIST HAD NO ENTRY FOR ONE [R-ANCHOR-01 AMENDED], added in BOTH directions, carrying the same named-sourced-and-measured discipline as the six industrial entries, and the rise entry is the first that also owes a like-for-like measurement because clause three’s exemption rests on a ground that does not reach it
+Updated 14 September 2026 (rev. 24) — PHASE 1 ACCEPTANCE RESOLVES PER NAME, NOT ACROSS THE BOOK [R-GAP-02 CLAUSE FIVE, per instruction — "what has ADIB got to do with SWDY?"]: Part E's acceptance criteria 1 and 2, the two resolved from the recorded CI run, are answered AGAINST THE NAME BEING PUBLISHED — a red whose recorded output names a company stands against THAT company, a red naming no company is GLOBAL and stands against everyone, and a run carrying no attribution at all is treated as wholly global rather than guessed at, so an old run gets stricter and never weaker. The pooled shape had let ONE crooked record hold the publication of every other name, which is the identical defect criterion 4 was already amended to remove on 09-09-2026; this is that settled logic carried across and NOT a new principle. The method hold stands, the 10% limit and its one-sidedness stand, the dissent and the principal's authorisation stand, and a name whose OWN record is red is held exactly as hard — what changes is only whose failure counts against whom
+(rev. 23, 13 September 2026 — TWO STANDING RULES AMENDED IN ONE COMMIT, BOTH BECAUSE THE BOOK ACQUIRED ITS FIRST BANK AND BOTH WERE WRITTEN ON INDUSTRIAL COMPANIES: A BUSINESS VALUED ON EQUITY DIRECTLY OWES NO BRIDGE AND MUST SAY SO [R-BRIDGE-01 CLAUSE FIVE] — a declaration, never an exemption by name, naming the lenses that reach equity per share, still carrying the balance-sheet date, the register that establishes what the latest disclosed sheet is and the arithmetic that equity over shares reaches the published figure, and REFUSED where the study carries an enterprise value anywhere in its own committed numbers · AN ADMINISTERED POLICY RATE IS A MECHANISM AND THE CLOSED LIST HAD NO ENTRY FOR ONE [R-ANCHOR-01 AMENDED], added in BOTH directions, carrying the same named-sourced-and-measured discipline as the six industrial entries, and the rise entry is the first that also owes a like-for-like measurement because clause three’s exemption rests on a ground that does not reach it)
 (rev. 22, 10 September 2026 — TWO STANDING RULES IN ONE COMMIT: a RESEARCH PRIMER is requested from the principal and read before a study is built or re-issued, its prompt GENERATED from what the repository already holds about the name rather than typed, and what comes back is a LEAD AND NEVER AN INPUT — traced to the primary source and read there, searched in the LANGUAGE THE SOURCE IS WRITTEN IN, and every claim that did not survive tracing recorded as a dated negative search rather than quietly dropped [R-PRIME-01] · the company's own REPORTED EARNINGS PER SHARE is registered beside the attributable profit the study divides and the count it divides by, and any gap between them is a claim ranking ahead of ordinary shareholders that must be NAMED or the build REFUSES [R-EPS-01].
 (rev. 21, 10 September 2026 — SIX STANDING RULES IN ONE COMMIT, ALL FROM ONE INSTRUCTION reviewing the SWDY study against an EFG Hermes valuation page: country risk is charged ONCE and is never multiplied by beta [R-COC-03] · a terminal real growth is capped by the economy and the Fisher identity is exact in both directions [R-MACRO-02] · every study carries the valuation on ONE PAGE, assembled from its own committed numbers and owning no arithmetic [R-DCF-01] · a sensitivity grid is CENTRED on the adopted case and its centre cell equals the central [R-SENS-01] · the traded price is the northern star and the burden is ASYMMETRIC — a central below it needs an air-tight written case, a central above it does not [R-STAR-01] · scanning what the company says it will do is a STANDARD step, and the entity is verified as the listed issuer before anything it says drives a number [R-NEWS-01]. A seventh, [R-DOC-03], was adopted earlier the same day and already stands in both documents)
 (rev. 20, 9 September 2026 — [R-GAP-04, per instruction] A VALUATION GAP IS NOT GENUINE, DOES NOT STAND, AND IS NOT REFERRED TO THE PRINCIPAL UNTIL AN EXHAUSTIVE, RECORDED HUNT FOR OUR OWN ERROR HAS COME BACK EMPTY: referral is a last resort that must be earned and evidenced, and it carries the search — what was examined, what each candidate is worth in currency per share, and what would falsify each. It does NOT weaken the absolute prohibition on moving a fair value toward the price, which it restates inside itself: closing the gap is the OUTCOME of finding a real defect and never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.)
@@ -3241,7 +3242,7 @@ THE GENERAL LESSON, WHICH IS NOT ABOUT PRICES: A RULE ABOUT SOMEBODY ELSE'S PROC
 
 [R-VCAL-02] PHASE 1 IS THE BACKTEST, AND THE FORWARD RECORD IS PHASE 2b [ADOPTED 07-Sep-2026, per instruction — "we chose backtesting for that particular purpose. We back test and in the future we calibrate and enhance as we go along and compare our predictions now with what the future unfolds. So as far as my rule is concerned. We backtest."]
 
-[R-GAP-02 CLAUSE THREE] holds every study in the book until Phase 1 acceptance closes, and Part E's criterion 3 is the clause that decides when that is. It runs six clauses and FOUR OF THEM SCORE THE METHOD AGAINST HISTORY while TWO SCORE THE LIVE FORWARD RECORD, and it gated Phase 1 on all six. Measured 07-Sep-2026 the practical effect was that the entire book was held on a measurement that cannot exist before 11 June 2027 — 103 vintages held, none matured, the first scoreable at one year.
+[R-GAP-02 CLAUSE THREE] holds every study in the book until Phase 1 acceptance closes, and Part E's criterion 3 is the clause that decides when that is. It runs six clauses and FOUR OF THEM SCORE THE METHOD AGAINST HISTORY while TWO SCORE THE LIVE FORWARD RECORD, and it gated Phase 1 on all six. Measured 07-Sep-2026 the practical effect was that the entire book was held on a measurement that cannot exist before 11 June 2027 — 103 vintages held, none matured, the first scoreable at one year. [AMENDED 14-Sep-2026 — R-GAP-02 CLAUSE FIVE, below] THE HOLD STILL REACHES EVERY STUDY, BUT CRITERIA 1 AND 2 ARE RESOLVED AGAINST THE NAME BEING PUBLISHED: a red on another company's record does not hold this one, while a red naming no company holds everyone.
 
 THE ARGUMENT IS THE PLAN'S OWN AND IT IS STRONGER THAN THE INSTRUCTION THAT PROMPTED IT. Part D separates the two phases in terms: Phase 1 and 2a are the backtest, "finished when its names are also backtested"; Phase 2b is "the live test, going forward — from the day 2a closes, every fair value the house publishes is a dated claim graded against what actually happens". Clauses D and E of criterion 3 score precisely that forward series. And 2b states its own admissibility rule: it "grades ONLY claims struck after 2a closed", for a reason it gives — "no claim inside 2b was made by a method that had not already passed its historical test, so a 2b result cannot be explained away as the old method's residue." EVERY VINTAGE THE ARCHIVE HOLDS WAS STRUCK BEFORE 2a. So clause D read as a Phase 1 gate did not merely arrive early; it demanded evidence the programme's own design declares INADMISSIBLE, and would have been answered by exactly the sample 2b refuses.
 
@@ -5999,3 +6000,101 @@ to its primary source before it moved a number** — a study can always assert t
 The honest backstops are the four-field provenance every input already carries and the
 standing rule that a research pass is cited nowhere, so a number with no primary source
 behind it has nothing to point at.
+
+
+
+## [R-GAP-02 CLAUSE FIVE] PHASE 1 ACCEPTANCE RESOLVES PER NAME, NOT ACROSS THE BOOK (14-Sep-2026, per instruction — "what has ADIB got to do with SWDY?")
+
+*The question was asked more than once, and when it kept coming back without a good answer
+the instruction became "remove that rule". Three options were put to the principal and they
+took the NARROWEST of them: the method hold itself is NOT removed, [R-GAP-02]'s gap
+machinery is NOT touched, and what changes is only which name a failure is allowed to count
+against.*
+
+**THE RULE.** Part E's acceptance criteria 1 and 2 — the two that are resolved from the
+recorded CI run rather than asserted — are answered **against the name being published**.
+Three cases, and the direction of every doubt is strictness:
+
+- a red step whose recorded output **NAMES a company** stands against **that company**, and
+  against no other;
+- a red whose output **names no company is GLOBAL** and stands against every name, because a
+  broken shared gate is not somebody else's problem;
+- a recorded run **carrying no attribution at all** is treated as **wholly global** rather
+  than guessed at — which makes an old run stricter and never weaker.
+
+Criteria 3 to 6 are untouched. The programme-wide view is untouched too: ask the acceptance
+record without naming a company and it answers for the book, exactly as before.
+
+### The defect it removes
+
+Criteria 1 and 2 were **pooled**. They read one recorded CI run and went NOT MET on any red
+anywhere in it, so **one crooked record on any company in the book held the publication of
+every other**. The failing name was never the point of contention — it deserved to be held.
+The other names were being held for a reason that had nothing to do with them, and no reader
+of the block could tell which of the two situations they were in, because the gate reported
+the same sentence for every name in the book.
+
+**THIS IS A CONSISTENCY AMENDMENT AND NOT A NEW PRINCIPLE, AND THAT IS THE HONEST WAY TO
+RECORD IT.** It is the identical defect criterion 4 was already amended to remove on
+09-09-2026, and the reasoning is already written down in `engine/method_reassessment/progress.py`
+beside that criterion: *"A pooled bar held every study hostage to the worst name in the set;
+the principal's rule sends THAT NAME to the principal and lets the rest through."* Criterion
+4 was made per-name and one-sided then; criteria 1 and 2 kept the pooled shape for five more
+days because nobody had asked the same question of them. This clause carries that settled
+logic across, and invents nothing.
+
+### The measured case
+
+**SWDY's republish was held from publication because ADIB's walk-forward record applies
+corrections the pre-registered rule declines** — eight of them, `admin`, `cost_funds`,
+`cust_deposits`, `fin_customers`, `fin_income`, `net_fees`, `other_op` and `total_assets`,
+read on 14-Sep-2026 out of `scripts/check_walkforward_actuation.py` rather than recited from
+here. That is a real failure and it is **ADIB's**: a correction the rule declines and a study
+applies anyway is fitting, and under this clause it is held exactly as hard as it was before.
+What it is not is a fact about SWDY. **Nothing about ADIB touches SWDY's numbers, and ADIB
+does not carry a published fair value at all** — so the block, at the moment the question
+was asked, was protecting a reader of one company's page from an error in another company's
+workings that no reader could ever have seen.
+
+### What this does NOT buy, stated rather than discovered later
+
+- **A name whose OWN record is red is still held, and held exactly as hard.** This is not a
+  softening of any gate; it is an answer to the question of whose gate it is.
+- **A global failure still holds the whole book.** A red naming no company is read as
+  everybody's, and that is the reading the doubt is resolved toward in all three cases above.
+- **It widens nothing about how far a study may sit from the price.** The 10% limit, its
+  one-sidedness, the two-sided branch rule and the unreadable-study branch are all as they
+  were.
+- **It waives no dissent and no authorisation.** `MARKET_DISSENT` with its five headings,
+  `PUBLISH_AUTHORISATION` with the principal's own decision on it [R-GAP-02 CLAUSE FOUR],
+  the staleness tolerances on both — every one of them stands unchanged.
+- **It moves no fair value anywhere**, and it is not a reason to rebuild or re-strike
+  anything.
+
+What changes is only **whose failure counts against whom**.
+
+### Enforcement [R-ENF-01]
+
+Three modules carry it, and the first had to move before attribution was possible at all.
+`scripts/run_ci_gates.py` now records **`red_detail`** — each red step with the tail of its
+own output — **alongside** the existing `red` list of bare labels, additively, so every
+existing reader keeps working. That was the blocker rather than a convenience: a step label
+says WHICH GATE failed and never WHICH NAME, so before this there was nothing in the record
+to attribute. `engine/method_reassessment/progress.py` gains `_known_tickers()`, which reads
+the names off the run and study directories on disk rather than carrying a list that would go
+stale on the next name, and `_reds_against(run, ticker)`, which applies the three cases above
+and returns every red unchanged where the shape of the record cannot be read. `acceptance()`
+and `_ci_verdict()` take an **optional** ticker and keep their programme-wide behaviour when
+it is omitted. `scripts/check_publish_block.py`'s `phase1_proven()` takes a ticker and
+`verdict()` passes it down, while the book-wide summary line calls it with none — so the
+per-name answer and the programme's own view come out of one implementation rather than two
+copies that can drift apart [R-ENF-03]. **Read the answer for a name live with
+`python3 scripts/check_publish_block.py`, and the acceptance record with
+`python3 engine/method_reassessment/progress.py`** — never from this block [R-DOC-02].
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT PUBLISHING: A POOLED GATE CANNOT SAY WHOSE FAULT IT
+IS, AND A GATE THAT CANNOT SAY THAT WILL EVENTUALLY BE IGNORED RATHER THAN OBEYED.** The
+block was right that something was wrong and wrong about who it was wrong about, and it
+reported both with the same confidence and in the same sentence. Where a gate holds more than
+one subject, the record it reads has to carry enough to say which subject it holds — and if
+it does not carry that, the fix is in the record, not in the threshold.
