@@ -173,7 +173,13 @@ function writeIfChanged(path, content, label) {
 
 function main() {
   let changed = false;
-  changed = buildSitemap() || changed;
+  // THE SITEMAP IS NOT WRITTEN WHILE THE SITE IS INVITATION-ONLY (14-09-2026).
+  // A sitemap is a published index of every page; robots.txt disallows the
+  // whole site and every served page carries a noindex, so emitting one would
+  // contradict the three of them. buildSitemap() is kept, not deleted — the
+  // day the site opens again this is one line.
+  // changed = buildSitemap() || changed;
+  void buildSitemap;
   changed = updateFooter('index.html') || changed;
   if (INCLUDE_AR) changed = updateFooter('ar/index.html') || changed;   // no-op unless it carries markers
   console.log(changed ? 'SEO surfaces updated.' : 'SEO surfaces already current.');
