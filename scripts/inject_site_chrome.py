@@ -99,7 +99,7 @@ def inject(relname: str, src: str) -> str:
     for pat in (
         r'<meta name="viewport"[^>]*>',
         r"<meta charset=[^>]*>",
-        r"<head[^>]*>",
+        r"<head\b[^>]*>",
         r"</title>",
     ):
         m2 = re.search(pat, scope)

@@ -1,15 +1,12 @@
 name: Generate RSS feed
 
+# THE FEED IS NOT PUBLISHED WHILE THE SITE IS INVITATION-ONLY (14-09-2026).
+# An RSS feed is an open, machine-readable index of every study — the one thing
+# a rope on the pages cannot cover, because a feed reader never runs the gate.
+# The workflow is left in place and reduced to manual dispatch rather than
+# deleted, so re-opening the feed is one block of YAML rather than a rewrite.
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - 'assets/data.js'
-      - 'scripts/generate_feed.js'
-      - '.github/workflows/generate-feed.yml'
   workflow_dispatch: {}
-  schedule:
-    - cron: '17 5 * * *'   # daily safety net (05:17 UTC)
 
 permissions:
   contents: write
