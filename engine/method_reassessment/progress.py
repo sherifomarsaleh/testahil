@@ -302,8 +302,56 @@ def _recorded_ci_run():
         return "the recorded CI run will not parse (%s)" % type(exc).__name__
 
 
-def _ci_verdict(run, needs_step=None):
-    """(state, waits_on) for a criterion resolved from the recorded run."""
+def _known_tickers():
+    """Every name the gates run over, read off disk rather than listed here."""
+    out = set()
+    for d in glob.glob(os.path.join(ROOT, "engine", "*_walkforward")):
+        out.add(os.path.basename(d)[:-len("_walkforward")].upper())
+    for d in glob.glob(os.path.join(ROOT, "engine", "*_study")):
+        out.add(os.path.basename(d)[:-len("_study")].upper())
+    return {t for t in out if t.isalnum()}
+
+
+def _reds_against(run, ticker):
+    """The reds that stand against `ticker`, or every red when ticker is None.
+
+    A POOLED BAR HOLDS EVERY STUDY HOSTAGE TO THE WORST NAME IN THE SET, which is
+    the defect criterion 4 was already amended to remove — it sends the failing
+    name to the principal and lets the rest through. Criteria 1 and 2 kept the
+    pooled shape until [R-GAP-02 CLAUSE FIVE], so a crooked record on one company
+    blocked publication of every other. This applies criterion 4's settled logic
+    to them.
+
+    A red counts against a name when its recorded output NAMES that name, and a
+    red that names NO known ticker is GLOBAL and counts against everyone — a
+    broken shared gate is not somebody else's problem. A run recorded before
+    `red_detail` existed carries no attribution at all, and is treated as wholly
+    global rather than guessed at: the conservative direction, and it makes an
+    old run stricter rather than weaker.
+    """
+    labels = list(run.get("red") or [])
+    if ticker is None or not labels:
+        return labels
+    detail = run.get("red_detail")
+    if not isinstance(detail, list) or not detail:
+        return labels                      # no attribution recorded — all global
+    known, tk, out = _known_tickers(), ticker.upper(), []
+    for entry in detail:
+        if not isinstance(entry, dict):
+            return labels                  # shape we cannot read — do not soften
+        text = " ".join([str(entry.get("step") or "")] + [str(x) for x in (entry.get("tail") or [])])
+        named = {t for t in known if re.search(r"\b%s\b" % re.escape(t), text, re.I)}
+        if not named or tk in named:
+            out.append(entry.get("step") or "?")
+    return out
+
+
+def _ci_verdict(run, needs_step=None, ticker=None):
+    """(state, waits_on) for a criterion resolved from the recorded run.
+
+    `ticker` narrows the reds to those standing against that name [R-GAP-02
+    CLAUSE FIVE]. Omit it for the programme-wide view.
+    """
     if isinstance(run, str):
         return "NOT MET", run
     try:
@@ -322,10 +370,11 @@ def _ci_verdict(run, needs_step=None):
         return "NOT MET", ("the recorded run was made on a DIRTY tree (%d file(s) "
                            "modified), so it is evidence about a tree nobody else has"
                            % len(dirty))
-    red = run.get("red") or []
+    red = _reds_against(run, ticker)
     if red:
-        return "NOT MET", ("%d step(s) RED in the recorded run: %s"
-                           % (len(red), "; ".join(r[:52] for r in red[:4])))
+        return "NOT MET", ("%d step(s) RED in the recorded run%s: %s"
+                           % (len(red), "" if ticker is None else " against %s" % ticker.upper(),
+                              "; ".join(r[:52] for r in red[:4])))
     if not run.get("green"):
         return "NOT MET", ("the recorded run went green on ZERO steps — an empty "
                            "result is not a clean result [R-ENF-04]")
@@ -338,8 +387,14 @@ def _ci_verdict(run, needs_step=None):
                    % (run["green"], str(run.get("commit"))[:9]))
 
 
-def acceptance() -> list:
-    """Part E's six criteria, each with what it waits on and whether that has a date."""
+def acceptance(ticker=None) -> list:
+    """Part E's six criteria, each with what it waits on and whether that has a date.
+
+    `ticker` resolves criteria 1 and 2 AGAINST THAT NAME [R-GAP-02 CLAUSE FIVE]:
+    a red on another company's record does not hold this one, while a red naming
+    no company holds everyone. Omit it for the programme-wide view — the digest
+    page and any caller asking after the book as a whole.
+    """
     items = [
         # THESE TWO WERE TYPED CONSTANTS AND THAT IS THE WHOLE DEFECT [R-ENF-01].
         # Both read `"state": "MET"` as a literal — the acceptance instrument
@@ -496,8 +551,9 @@ def acceptance() -> list:
     # COMMIT, which is evidence about another tree [R-ENF-06]; a run on a DIRTY tree,
     # which nobody else can reproduce; or a run carrying reds.
     _ci = _recorded_ci_run()
-    items[0]["state"], items[0]["waits_on"] = _ci_verdict(_ci)
-    items[1]["state"], items[1]["waits_on"] = _ci_verdict(_ci, 'check_walkforward_actuation.py')
+    items[0]["state"], items[0]["waits_on"] = _ci_verdict(_ci, ticker=ticker)
+    items[1]["state"], items[1]["waits_on"] = _ci_verdict(
+        _ci, 'check_walkforward_actuation.py', ticker=ticker)
 
     if gaps:
         # PASSES: above the price, or below it by less than 10%. REFERRED: 10% or more

@@ -69,6 +69,15 @@ def _record(workflow, green, red, skipped, started, finished):
         "started": started, "finished": finished,
         "green": green,
         "red": [label for label, _tail in red],
+        # THE TAIL IS KEPT SO A RED CAN BE ATTRIBUTED TO A NAME. `red` stays a list
+        # of labels and every existing reader keeps working; this is additive. A
+        # step label says WHICH GATE failed and never WHICH NAME, and criteria 1
+        # and 2 are resolved per name [R-GAP-02 CLAUSE FIVE], so without the tail
+        # a failure on one company reads as a failure of the whole book. A run
+        # recorded before this field existed has no attribution, and progress.py
+        # treats that as global rather than guessing — the conservative direction.
+        "red_detail": [{"step": label, "tail": list(tail or [])}
+                       for label, tail in red],
         "skipped": [{"step": label, "why": why} for label, why in skipped],
     }
     os.makedirs(os.path.dirname(RESULT), exist_ok=True)

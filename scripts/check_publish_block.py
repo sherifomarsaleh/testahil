@@ -205,7 +205,7 @@ def _gap_rows(sdir, ticker):
     return px, pxdate, pxsrc, rows
 
 
-def phase1_proven():
+def phase1_proven(ticker=None):
     """(proven, why) — has the method itself been shown to work yet?  [R-GAP-02 clause 3]
 
     THE SECOND CONDITION, per instruction 3 September 2026: "do not issue the reports
@@ -241,7 +241,12 @@ def phase1_proven():
     sys.path.insert(0, os.path.join(ROOT, "engine", "method_reassessment"))
     try:
         import progress
-        items = progress.acceptance()
+        # RESOLVED AGAINST THIS NAME [R-GAP-02 CLAUSE FIVE]. Criteria 1 and 2 were
+        # pooled: a crooked record on any company in the book held the publication
+        # of every other, which is the same defect criterion 4 was already amended
+        # to remove. A red naming no company is still global and still holds
+        # everyone.
+        items = progress.acceptance(ticker=ticker)
     except Exception as e:
         # AN UNREADABLE ACCEPTANCE RECORD IS NOT A PASSED ONE [R-ENF-04]. If the
         # programme's own record cannot be read, nothing is proven and nothing issues.
@@ -487,10 +492,13 @@ def verdict(ticker):
     # the side that is blocked. A two-sided study with one branch at or above the
     # price is a study whose answer depends on a decision, not one that is too
     # low: it publishes both branches and the reader sees the decision.
-    # BOTH CONDITIONS BIND, AND THE METHOD ONE IS CHECKED FIRST because it is the
-    # same answer for every name: a book-wide hold is reported once as a book-wide
-    # hold rather than as ninety separate coincidences.
-    proven, why_p = phase1_proven()
+    # BOTH CONDITIONS BIND, AND THE METHOD ONE IS CHECKED FIRST. It used to be the
+    # same answer for every name — a book-wide hold reported once rather than as
+    # ninety separate coincidences — and under [R-GAP-02 CLAUSE FIVE] it is no
+    # longer: criteria 1 and 2 resolve against THIS name, so the answer differs by
+    # name wherever a red names a company. A red that names no company still holds
+    # the whole book, and reports identically for every name, as before.
+    proven, why_p = phase1_proven(ticker)
     # [R-GAP-02 AMENDED 06-Sep-2026] A publish that moves no fair value asserts no
     # output of the method under test, so the method hold does not reach it.
     #
