@@ -962,6 +962,15 @@ jobs:
       - name: Grade-writer layout gate
         run: python3 scripts/check_grade_writer_layout.py
 
+      # [R-GAP-02 CLAUSE SIX] WRITING THE CASE AND PUBLISHING IT ARE DIFFERENT ACTS,
+      # and until this line existed only the first was enforced. SWDY published a fair
+      # value 35.4% below the market with its MARKET_DISSENT filed and NOTHING on the
+      # ticker page pointing at it. The gate that closes that was written, ran green by
+      # hand, and was named in no workflow — so it checked nothing anybody would notice.
+      # A gate that runs only when somebody types its name is a note to self.
+      - name: A filed dissent is reachable from its ticker page
+        run: python3 scripts/check_dissent_published.py
+
       - name: Site-data reader gate
         run: python3 scripts/check_site_data_reader.py
 
