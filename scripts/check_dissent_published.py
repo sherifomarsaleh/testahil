@@ -34,29 +34,25 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = os.path.join(ROOT, "assets", "data.js")
+sys.path.insert(0, os.path.join(ROOT, "engine"))
+import site_data  # noqa: E402
 
 
 def entries() -> dict:
-    """{TICKER: files-dict} read out of data.js without executing it.
+    """{TICKER: files-dict}, read through a REAL PARSE of data.js.
 
-    A TICKER APPEARS AT THIS INDENT IN MORE THAN ONE SECTION of data.js — the
-    TICKERS map carries the files block, and the ledger and band-record sections
-    carry the same name with no files at all. A plain assignment lets the later,
-    empty match overwrite the real one, and the gate then reports every published
-    dissent as missing. It did exactly that on the first run. A populated entry is
-    never replaced by an empty one.
+    THE FIRST VERSION OF THIS READ data.js BY REGULAR EXPRESSION and the site-data
+    reader gate refused it, correctly and with the reason already written down: a
+    regex over a JavaScript object literal returns the FIRST match where the parser
+    takes the LAST. That is not a hypothetical here — it is the exact defect this
+    gate hit on its own first run, where a ticker appearing at the same indent in
+    the ledger section overwrote its real TICKERS entry and every published dissent
+    read as missing. The repository already had engine/site_data.py and a gate
+    pointing at it; the hand-rolled parser was a second implementation of something
+    that existed, which is what [R-ENF-03] forbids.
     """
-    raw = open(DATA, encoding="utf-8").read()
-    out: dict[str, dict] = {}
-    for m in re.finditer(r"\n  ([A-Z0-9_]+)\s*:\s*\{", raw):
-        tk = m.group(1)
-        seg = raw[m.end():m.end() + 12000]
-        f = re.search(r"files\s*:\s*\{(.*?)\}", seg, re.S)
-        files = dict(re.findall(r"(\w+)\s*:\s*\"([^\"]+)\"", f.group(1))) if f else {}
-        if files or tk not in out:
-            out[tk] = files if files else out.get(tk, {})
-    return out
+    return {tk: (row.get("files") or {})
+            for tk, row in site_data.read_object("TICKERS").items()}
 
 
 def main() -> int:

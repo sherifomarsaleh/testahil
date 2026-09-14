@@ -159,6 +159,20 @@
     "first_seen": "2026-08-17",
     "first_seen_commit": "45c38b5d",
     "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 1.2691,
+     "base": 1.8095,
+     "full": 2.6831
+    },
+    "spot": 2.84,
+    "spot_date": "close 08 Sep 2026",
+    "code": "ADX:FERTIGLB",
+    "first_seen": "2026-09-14",
+    "first_seen_commit": "78d6f1e0",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
    }
   ],
   "AMR": [
@@ -370,6 +384,20 @@
     "code": "EGX:SWDY",
     "first_seen": "2026-08-07",
     "first_seen_commit": "f437ca0b",
+    "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
+   },
+   {
+    "source": "reconstructed",
+    "fair": {
+     "bear": 46.85,
+     "base": 87.94,
+     "full": 133.83
+    },
+    "spot": 136.2,
+    "spot_date": "close 06 Sep 2026",
+    "code": "EGX:SWDY",
+    "first_seen": "2026-09-14",
+    "first_seen_commit": "78d6f1e0",
     "date_meaning": "the commit that introduced this value, NOT the date the study was struck"
    }
   ],
@@ -1625,12 +1653,12 @@
   ]
  },
  "reconstruction": {
-  "ref": "d89d1e53a2ab55382e8c64c5004d6e96726200db",
+  "ref": "78d6f1e0572f025149722b56ec952c4390b21843",
   "ref_meaning": "first-parent history of the published line. A branch's fair value is not a vintage: only what main carried ever reached a reader.",
-  "revisions_walked": 310,
+  "revisions_walked": 311,
   "names_seen": 90,
   "earliest": "2026-06-11",
-  "latest": "2026-09-01",
+  "latest": "2026-09-14",
   "parse_failures": [],
   "clone_depth_warning": "The reconstruction can only see as far back as this clone's history. A SHALLOW clone silently yields a shorter archive that looks complete, so the walked-revision count and the earliest date are recorded here and any consumer reads them rather than assuming a span.",
   "shallow_clone": false

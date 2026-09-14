@@ -402,6 +402,18 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
+    'check_dissent_published.py': 'its population is the studies that have FILED A MARKET '
+                                  'DISSENT, which a new empty directory has not. The gate '
+                                  'asks whether a case already written is reachable by a '
+                                  'reader; a study with no case owes no link and is not '
+                                  'held to one. It reaches into study directories, so the '
+                                  'detector is right to see it, but demanding a nonzero '
+                                  'exit would make it claim a new study had argued against '
+                                  'the market and hidden the argument, when it has argued '
+                                  'nothing at all. It reports "nothing to check, nothing '
+                                  'proven" rather than OK when no study carries a dissent, '
+                                  'so the empty case is stated rather than passed '
+                                  '[R-ENF-04]',
     'check_fetch_authenticity.py': 'its population is the TRACKED TREE — git ls-files — '
                                    'because its subject is whether a committed file is the '
                                    'type it claims and whether a stored source is a block '
