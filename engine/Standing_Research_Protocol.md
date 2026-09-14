@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-14a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-14b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 14 September 2026 (rev. 24) — PHASE 1 ACCEPTANCE RESOLVES PER NAME, NOT ACROSS THE BOOK [R-GAP-02 CLAUSE FIVE, per instruction — "what has ADIB got to do with SWDY?"]: Part E's acceptance criteria 1 and 2, the two resolved from the recorded CI run, are answered AGAINST THE NAME BEING PUBLISHED — a red whose recorded output names a company stands against THAT company, a red naming no company is GLOBAL and stands against everyone, and a run carrying no attribution at all is treated as wholly global rather than guessed at, so an old run gets stricter and never weaker. The pooled shape had let ONE crooked record hold the publication of every other name, which is the identical defect criterion 4 was already amended to remove on 09-09-2026; this is that settled logic carried across and NOT a new principle. The method hold stands, the 10% limit and its one-sidedness stand, the dissent and the principal's authorisation stand, and a name whose OWN record is red is held exactly as hard — what changes is only whose failure counts against whom
+Updated 14 September 2026 (rev. 25) — THE PRINCIPAL MAY SET ASIDE ANY RULE, AND THE OVERRIDE IS RECORDED [R-PRIN-01, per instruction — "BUT ALSO HAVE THE RULE THAT I CAN OVERRIDE ANY RILE AS THE PRINCIPAL"]: every rule here is the principal's to set aside, including that one, and an instruction to set one aside takes effect when it is given rather than waiting for the rule to be amended or a gate rewritten. It states what the protocol already half-said — [R-GAP-02 CLAUSE FOUR] makes the principal the DECISION past the publication limit, and the escalation register is built on asking the principal — rather than introducing a new principle. THE PRICE IS ONE LINE in engine/overrides.json naming the rule, who instructed it, the date, the instruction verbatim and what was done: not a review, not an approval, not a delay. AN OVERRIDE CHANGES WHAT THIS DESK DOES AND NOT WHAT THE RECORD SAYS HAPPENED — "publish at this gap", "take that default", "skip that step", "ship it now" are all decisions the principal makes, while marking an escalation resolved when the data never arrived is not an override of a rule but a false entry about the world. It is written down because an unrecorded override cannot be told apart from a gate that quietly broke
+(rev. 24, 14 September 2026 — PHASE 1 ACCEPTANCE RESOLVES PER NAME, NOT ACROSS THE BOOK [R-GAP-02 CLAUSE FIVE, per instruction — "what has ADIB got to do with SWDY?"]: Part E's acceptance criteria 1 and 2, the two resolved from the recorded CI run, are answered AGAINST THE NAME BEING PUBLISHED — a red whose recorded output names a company stands against THAT company, a red naming no company is GLOBAL and stands against everyone, and a run carrying no attribution at all is treated as wholly global rather than guessed at, so an old run gets stricter and never weaker. The pooled shape had let ONE crooked record hold the publication of every other name, which is the identical defect criterion 4 was already amended to remove on 09-09-2026; this is that settled logic carried across and NOT a new principle. The method hold stands, the 10% limit and its one-sidedness stand, the dissent and the principal's authorisation stand, and a name whose OWN record is red is held exactly as hard — what changes is only whose failure counts against whom)
 (rev. 23, 13 September 2026 — TWO STANDING RULES AMENDED IN ONE COMMIT, BOTH BECAUSE THE BOOK ACQUIRED ITS FIRST BANK AND BOTH WERE WRITTEN ON INDUSTRIAL COMPANIES: A BUSINESS VALUED ON EQUITY DIRECTLY OWES NO BRIDGE AND MUST SAY SO [R-BRIDGE-01 CLAUSE FIVE] — a declaration, never an exemption by name, naming the lenses that reach equity per share, still carrying the balance-sheet date, the register that establishes what the latest disclosed sheet is and the arithmetic that equity over shares reaches the published figure, and REFUSED where the study carries an enterprise value anywhere in its own committed numbers · AN ADMINISTERED POLICY RATE IS A MECHANISM AND THE CLOSED LIST HAD NO ENTRY FOR ONE [R-ANCHOR-01 AMENDED], added in BOTH directions, carrying the same named-sourced-and-measured discipline as the six industrial entries, and the rise entry is the first that also owes a like-for-like measurement because clause three’s exemption rests on a ground that does not reach it)
 (rev. 22, 10 September 2026 — TWO STANDING RULES IN ONE COMMIT: a RESEARCH PRIMER is requested from the principal and read before a study is built or re-issued, its prompt GENERATED from what the repository already holds about the name rather than typed, and what comes back is a LEAD AND NEVER AN INPUT — traced to the primary source and read there, searched in the LANGUAGE THE SOURCE IS WRITTEN IN, and every claim that did not survive tracing recorded as a dated negative search rather than quietly dropped [R-PRIME-01] · the company's own REPORTED EARNINGS PER SHARE is registered beside the attributable profit the study divides and the count it divides by, and any gap between them is a claim ranking ahead of ordinary shareholders that must be NAMED or the build REFUSES [R-EPS-01].
 (rev. 21, 10 September 2026 — SIX STANDING RULES IN ONE COMMIT, ALL FROM ONE INSTRUCTION reviewing the SWDY study against an EFG Hermes valuation page: country risk is charged ONCE and is never multiplied by beta [R-COC-03] · a terminal real growth is capped by the economy and the Fisher identity is exact in both directions [R-MACRO-02] · every study carries the valuation on ONE PAGE, assembled from its own committed numbers and owning no arithmetic [R-DCF-01] · a sensitivity grid is CENTRED on the adopted case and its centre cell equals the central [R-SENS-01] · the traded price is the northern star and the burden is ASYMMETRIC — a central below it needs an air-tight written case, a central above it does not [R-STAR-01] · scanning what the company says it will do is a STANDARD step, and the entity is verified as the listed issuer before anything it says drives a number [R-NEWS-01]. A seventh, [R-DOC-03], was adopted earlier the same day and already stands in both documents)
@@ -6098,3 +6099,59 @@ block was right that something was wrong and wrong about who it was wrong about,
 reported both with the same confidence and in the same sentence. Where a gate holds more than
 one subject, the record it reads has to carry enough to say which subject it holds — and if
 it does not carry that, the fix is in the record, not in the threshold.
+
+## [R-PRIN-01] THE PRINCIPAL MAY SET ASIDE ANY RULE, AND THE OVERRIDE IS RECORDED
+
+*Adopted 14-Sep-2026, per instruction — "when the pricipal tells you to do something the do
+it" and "BUT ALSO HAVE THE RULE THAT I CAN OVERRIDE ANY RILE AS THE PRINCIPAL".*
+
+**Every rule in this document is the principal's to set aside, including this one.** The
+rules are this desk's standing practice; they are not a constraint on the person whose
+practice it is. An instruction to set one aside takes effect when it is given. It does not
+wait for the rule to be amended first, and it does not wait for a gate to be rewritten to
+permit it.
+
+**This states a thing the protocol already half-said rather than introducing a new
+principle.** [R-GAP-02 CLAUSE FOUR] already makes the principal the DECISION where a study
+sits past the publication limit — the dissent is the CASE, the principal is the DECISION,
+and a study may not release its own block. The escalation register is built on asking the
+principal, and on defaults that fire when no answer comes. Principal authority has been
+load-bearing here since both were adopted; what was missing was the general statement, and
+a rule that operates everywhere while being written down nowhere is the shape [R-DOC-02]
+exists to close.
+
+### What an override costs
+
+One line in `engine/overrides.json`: the rule set aside, who instructed it, the date, the
+instruction in the principal's own words, and what was done under it. That is the whole
+price. It is not a review, it is not an approval, and it is not a delay — the work proceeds
+in the same turn, and the line is written as it proceeds.
+
+### What an override is not
+
+**It changes what this desk DOES. It does not change what the record SAYS HAPPENED.** A
+rule may be set aside on the word; a record may not be made to say a thing occurred that
+did not.
+
+*Publish at this gap. Take that default. Skip that step. Ship it now.* Every one of those
+is a decision, and every one of them is the principal's to make.
+
+Marking an escalation `resolved` when the data never arrived, or a gate green when it went
+red, is not an override of a rule. It is a false entry about the world, and the rule it
+would be breaking is not a policy of this desk but the difference between a record and a
+story. The reader it misinforms is whoever opens the file next, and that reader is usually
+the principal.
+
+### Why it is written down
+
+An unrecorded override cannot be told apart from a gate that quietly broke. Six weeks later
+the two look identical in the file, and only one of them was somebody's decision. The
+register exists so that a rule set aside deliberately reads as a decision with a name on it,
+rather than as a control that failed and nobody noticed.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT AUTHORITY: A SYSTEM THAT GIVES ITS OWNER NO
+SANCTIONED WAY ROUND IT WILL BE GONE ROUND UNSANCTIONED.** Gates that cannot be overridden
+openly are not obeyed more often; they are deleted, bypassed, or quietly stopped being run,
+and each of those costs the record more than the override would have. A documented override
+with a name and a date is the cheapest of the available outcomes, and it is the only one
+that leaves the next reader able to reconstruct what happened.

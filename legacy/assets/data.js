@@ -669,7 +669,8 @@ const TICKERS = {
       study: "files/SWDY_Valuation_Study_13-09-2026_public.docx?v=1309",
       model: "files/SWDY_Valuation_Model_13092026_public.xlsx?v=1309",
       pdf:   "files/SWDY_Valuation_Study_13-09-2026_public.pdf?v=1309",
-      biblio:"files/SWDY_Bibliography_13-09-2026.pdf?v=1309"
+      biblio:"files/SWDY_Bibliography_13-09-2026.pdf?v=1309",
+      dissent:"files/SWDY_Market_Dissent_14-09-2026.pdf?v=1409"
     }
   },
   ELEC: {
