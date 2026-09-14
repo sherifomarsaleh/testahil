@@ -663,7 +663,7 @@ const TICKERS = {
     },
     asof: {
       mc:   { data:"2026-09-06", computed:"2026-09-06" },
-      tech: { data:"2026-09-06", computed:"2026-09-07" }
+      tech: { data:"2026-09-06", computed:"2026-09-14" }
     },
     files: {
       study: "files/SWDY_Valuation_Study_13-09-2026_public.docx?v=1309",
@@ -8708,7 +8708,7 @@ const PRICES = {
   ADNOCDIST: { px: 4.03, date: "2026-09-07", src: "library" },
   ADNOCDRILL: { px: 5.85, date: "2026-09-07", src: "library" },
   ADNOCGAS: { px: 3.2, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
-  ADNOCLS: { px: 6.8, date: "2026-09-07", src: "library" },
+  ADNOCLS: { px: 6.8, date: "2026-09-07", src: "SUPPLIED_07-09-2026.json" },
   AGTHIA: { px: 3.29, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },
   AIRARABIA: { px: 4.97, date: "2026-09-08", src: "library" },
   ALDAR: { px: 7.6, date: "2026-09-03", src: "SUPPLIED_03-09-2026.json" },

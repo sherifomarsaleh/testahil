@@ -6,7 +6,15 @@
     <atom:link href="https://testahil.com/feed.xml" rel="self" type="application/rss+xml"/>
     <description>دراسات تقييم تعليمية مستقلة لأسهم البورصة المصرية — توزيعات احتمالية، وليست توصيات. Educational EGX valuation studies — distributions, not tips.</description>
     <language>ar</language>
-    <lastBuildDate>Wed, 19 Aug 2026 08:30:00 +0300</lastBuildDate>
+    <lastBuildDate>Sun, 13 Sep 2026 08:30:00 +0300</lastBuildDate>
+
+    <item>
+      <title>Elsewedy Electric (SWDY): Valuation Study — is it worth it?</title>
+      <link>https://testahil.com/swdy.html</link>
+      <guid isPermaLink="true">https://testahil.com/swdy.html</guid>
+      <description>Latest 136.20 · 3-month median 144.55 · range 103.03–202.44 EGP — educational analysis, a distribution not a recommendation.</description>
+      <pubDate>Sun, 13 Sep 2026 08:30:00 +0300</pubDate>
+    </item>
 
     <item>
       <title>Savola Group Company (SAVOLA): Valuation Study — is it worth it?</title>
@@ -142,14 +150,6 @@
       <guid isPermaLink="true">https://testahil.com/scem.html</guid>
       <description>Latest 98.52 · 3-month median 105.42 · range 60.04–184.57 EGP — educational analysis, a distribution not a recommendation.</description>
       <pubDate>Thu, 06 Aug 2026 08:30:00 +0300</pubDate>
-    </item>
-
-    <item>
-      <title>Elsewedy Electric (SWDY): Valuation Study — is it worth it?</title>
-      <link>https://testahil.com/swdy.html</link>
-      <guid isPermaLink="true">https://testahil.com/swdy.html</guid>
-      <description>Latest 136.20 · 3-month median 144.55 · range 103.03–202.44 EGP — educational analysis, a distribution not a recommendation.</description>
-      <pubDate>Wed, 05 Aug 2026 08:30:00 +0300</pubDate>
     </item>
 
     <item>
