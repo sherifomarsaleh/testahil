@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-14b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-14c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 14 September 2026 (rev. 25) — THE PRINCIPAL MAY SET ASIDE ANY RULE, AND THE OVERRIDE IS RECORDED [R-PRIN-01, per instruction — "BUT ALSO HAVE THE RULE THAT I CAN OVERRIDE ANY RILE AS THE PRINCIPAL"]: every rule here is the principal's to set aside, including that one, and an instruction to set one aside takes effect when it is given rather than waiting for the rule to be amended or a gate rewritten. It states what the protocol already half-said — [R-GAP-02 CLAUSE FOUR] makes the principal the DECISION past the publication limit, and the escalation register is built on asking the principal — rather than introducing a new principle. THE PRICE IS ONE LINE in engine/overrides.json naming the rule, who instructed it, the date, the instruction verbatim and what was done: not a review, not an approval, not a delay. AN OVERRIDE CHANGES WHAT THIS DESK DOES AND NOT WHAT THE RECORD SAYS HAPPENED — "publish at this gap", "take that default", "skip that step", "ship it now" are all decisions the principal makes, while marking an escalation resolved when the data never arrived is not an override of a rule but a false entry about the world. It is written down because an unrecorded override cannot be told apart from a gate that quietly broke
+Updated 14 September 2026 (rev. 26) — A MISTAKE MADE ONCE GETS A NOTE, A MISTAKE MADE TWICE GETS A GATE [R-LESSON-02, per instruction — "I want the system to learn but I do not want to make it slow. It is slow as it is."]: there are two kinds of learning and only one is cheap — a CHECKLIST is paid on every study forever by a person (266 lessons bind one SWDY update), a GATE is paid ONCE and runs free, catching the mistake in a second rather than after a twenty-minute recorded run and a failed publish. Lessons are therefore NOT turned into checklists: the ones that actually REPEAT are turned into gates and nothing else is. engine/lessons_register.py carries a `recurred` field filled in ONLY when the mistake happens again, so NOTHING is added to any build and an empty field is the normal case. It answers the question nothing here could answer before — WHICH MISTAKES DO WE ACTUALLY MAKE TWICE — and the entries carrying one are the gate-writing queue, ordered by what has bitten this desk rather than by guess. When a mistake recurs, both the recording and the gate are owed: a repeat recorded and not gated turns the register back into an archive
+(rev. 25, 14 September 2026 — THE PRINCIPAL MAY SET ASIDE ANY RULE, AND THE OVERRIDE IS RECORDED [R-PRIN-01, per instruction — "BUT ALSO HAVE THE RULE THAT I CAN OVERRIDE ANY RILE AS THE PRINCIPAL"]: every rule here is the principal's to set aside, including that one, and an instruction to set one aside takes effect when it is given rather than waiting for the rule to be amended or a gate rewritten. It states what the protocol already half-said — [R-GAP-02 CLAUSE FOUR] makes the principal the DECISION past the publication limit, and the escalation register is built on asking the principal — rather than introducing a new principle. THE PRICE IS ONE LINE in engine/overrides.json naming the rule, who instructed it, the date, the instruction verbatim and what was done: not a review, not an approval, not a delay. AN OVERRIDE CHANGES WHAT THIS DESK DOES AND NOT WHAT THE RECORD SAYS HAPPENED — "publish at this gap", "take that default", "skip that step", "ship it now" are all decisions the principal makes, while marking an escalation resolved when the data never arrived is not an override of a rule but a false entry about the world. It is written down because an unrecorded override cannot be told apart from a gate that quietly broke
 (rev. 24, 14 September 2026 — PHASE 1 ACCEPTANCE RESOLVES PER NAME, NOT ACROSS THE BOOK [R-GAP-02 CLAUSE FIVE, per instruction — "what has ADIB got to do with SWDY?"]: Part E's acceptance criteria 1 and 2, the two resolved from the recorded CI run, are answered AGAINST THE NAME BEING PUBLISHED — a red whose recorded output names a company stands against THAT company, a red naming no company is GLOBAL and stands against everyone, and a run carrying no attribution at all is treated as wholly global rather than guessed at, so an old run gets stricter and never weaker. The pooled shape had let ONE crooked record hold the publication of every other name, which is the identical defect criterion 4 was already amended to remove on 09-09-2026; this is that settled logic carried across and NOT a new principle. The method hold stands, the 10% limit and its one-sidedness stand, the dissent and the principal's authorisation stand, and a name whose OWN record is red is held exactly as hard — what changes is only whose failure counts against whom)
 (rev. 23, 13 September 2026 — TWO STANDING RULES AMENDED IN ONE COMMIT, BOTH BECAUSE THE BOOK ACQUIRED ITS FIRST BANK AND BOTH WERE WRITTEN ON INDUSTRIAL COMPANIES: A BUSINESS VALUED ON EQUITY DIRECTLY OWES NO BRIDGE AND MUST SAY SO [R-BRIDGE-01 CLAUSE FIVE] — a declaration, never an exemption by name, naming the lenses that reach equity per share, still carrying the balance-sheet date, the register that establishes what the latest disclosed sheet is and the arithmetic that equity over shares reaches the published figure, and REFUSED where the study carries an enterprise value anywhere in its own committed numbers · AN ADMINISTERED POLICY RATE IS A MECHANISM AND THE CLOSED LIST HAD NO ENTRY FOR ONE [R-ANCHOR-01 AMENDED], added in BOTH directions, carrying the same named-sourced-and-measured discipline as the six industrial entries, and the rise entry is the first that also owes a like-for-like measurement because clause three’s exemption rests on a ground that does not reach it)
 (rev. 22, 10 September 2026 — TWO STANDING RULES IN ONE COMMIT: a RESEARCH PRIMER is requested from the principal and read before a study is built or re-issued, its prompt GENERATED from what the repository already holds about the name rather than typed, and what comes back is a LEAD AND NEVER AN INPUT — traced to the primary source and read there, searched in the LANGUAGE THE SOURCE IS WRITTEN IN, and every claim that did not survive tracing recorded as a dated negative search rather than quietly dropped [R-PRIME-01] · the company's own REPORTED EARNINGS PER SHARE is registered beside the attributable profit the study divides and the count it divides by, and any gap between them is a claim ranking ahead of ordinary shareholders that must be NAMED or the build REFUSES [R-EPS-01].
@@ -6155,3 +6156,49 @@ openly are not obeyed more often; they are deleted, bypassed, or quietly stopped
 and each of those costs the record more than the override would have. A documented override
 with a name and a date is the cheapest of the available outcomes, and it is the only one
 that leaves the next reader able to reconstruct what happened.
+
+## [R-LESSON-02] A MISTAKE MADE ONCE GETS A NOTE. A MISTAKE MADE TWICE GETS A GATE.
+
+*Adopted 14-Sep-2026, per instruction — "I want the system to learn but I do not want to
+make it slow. It is slow as it is."*
+
+**The bind is real and it has a clean answer: there are two kinds of learning, and only
+one of them is cheap.**
+
+A CHECKLIST is paid on every study, forever, by a person. Two hundred and sixty-six
+lessons bind a single SWDY update; acknowledging them one at a time would tax every build
+for the rest of the project to catch problems that may never occur once. A GATE is paid
+ONCE and runs free forever — it catches the mistake in a second instead of after a
+twenty-minute recorded run and a failed publish.
+
+So lessons are not turned into checklists here, and the register is not a compliance
+exercise. **The lessons that actually repeat are turned into gates, and nothing else is.**
+
+### What this rule costs: nothing, until a mistake repeats
+
+`engine/lessons_register.py` carries a `recurred` field, filled in ONLY when the mistake
+happens again — the date, the study it happened in, and what it cost the second time.
+Nothing is added to any build. No step, no acknowledgement, no reading requirement. An
+empty `recurred` is the normal case and it costs nobody anything.
+
+### What it answers, which nothing here could answer before
+
+**WHICH MISTAKES DO WE ACTUALLY MAKE TWICE.** Enforcing all 305 lessons is neither
+possible nor sensible, and until now the choice of what to automate was a guess. The
+entries carrying a recurrence are the gate-writing queue, ordered by what has bitten this
+desk rather than by what somebody expected would. A lesson that never recurs may need no
+gate at all, and that is a finding rather than a gap.
+
+### The obligation, stated so it is not optional
+
+When a mistake recurs, TWO things happen and neither is discretionary: the recurrence is
+recorded on the lesson, and a gate is written that makes the third occurrence impossible.
+A repeat recorded and not gated is the rule failing — it converts this register from a
+queue back into an archive.
+
+**THE GENERAL LESSON, WHICH IS NOT ABOUT LESSONS: A CONTROL THAT TAXES EVERY CASE TO CATCH
+A RARE ONE WILL BE SWITCHED OFF, AND THEN IT CATCHES NOTHING.** The instinct that made
+this rule was the right one — a system that learns by adding steps gets slower until
+somebody stops running it. Learning that makes the work FASTER survives, because nobody
+has to be talked into it. The twenty-minute recorded run and the preflight built the same
+day are the same argument in a different place.

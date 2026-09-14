@@ -84,6 +84,18 @@ def card(x: dict) -> str:
         bits.append('<p style="margin:0;font-size:var(--fs-small)">'
                     '<b>What would overturn it.</b> '
                     f'{esc(x["overturned_by"])}</p>')
+    if x.get("recurred"):
+        # A MISTAKE MADE ONCE GETS A NOTE. A MISTAKE MADE TWICE GETS A GATE.
+        # This is the only thing on the card that is an ACCUSATION rather than a
+        # record: it says we were told and did it anyway. It is rendered loudly on
+        # purpose — a repeat that reads the same as a first occurrence is a repeat
+        # nobody will act on.
+        n = len(x["recurred"])
+        bits.append('<p style="margin:6px 0 0;font-size:var(--fs-small);'
+                    'border-inline-start:3px solid #C0A45F;padding-inline-start:8px">'
+                    f'<b>MADE AGAIN — {n} time{"s" if n > 1 else ""} since.</b> '
+                    + " · ".join(esc(r) for r in x["recurred"])
+                    + ' <i>Twice earns a gate.</i></p>')
     if x.get("source"):
         bits.append('<p class="muted" style="margin:6px 0 0;font-size:var(--fs-small);'
                     f'opacity:.7">{esc(x["source"])}</p>')
@@ -139,7 +151,17 @@ def build() -> str:
              f'<span>{by.get("STOCK",0)} bind one company</span>',
              f'<span>{st.get("adopted",0)} adopted · {st.get("provisional",0)} '
              f'provisional · {st.get("outstanding",0)} outstanding</span>',
-             "</div></section>"]
+             f'<span style="color:#8a6d2f">{sum(1 for x in L if x.get("recurred"))} '
+             f'made again</span>',
+             "</div>",
+             '<p class="muted" style="max-width:74ch;margin-top:12px">'
+             '<b>A mistake made once gets a note. A mistake made twice gets a gate.</b> '
+             'Enforcing every lesson would tax every study forever to catch problems '
+             'that may never occur, so we do not. We record when one actually happens '
+             'again, and a repeat is what earns it an automatic check. The count above '
+             'is the queue, ordered by what has bitten us rather than by what we '
+             'guessed would.</p>',
+             "</section>"]
 
     for key, title, blurb in SCOPES:
         rows = [x for x in L if x.get("scope") == key]

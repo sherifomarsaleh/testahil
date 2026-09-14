@@ -179,7 +179,33 @@ CLASSES = (
 
 
 def L(id, scope, applies_to, headline, plain, source, origin, evidence,
-      overturned_by, status=None, correction=None):
+      overturned_by, status=None, correction=None, recurred=None):
+    # WHY `recurred` EXISTS, ADDED 14-09-2026 on the principal's instruction —
+    # "I want the system to learn but I do not want to make it slow."
+    #
+    # THE RULE IT SERVES: A MISTAKE MADE ONCE GETS A NOTE. A MISTAKE MADE TWICE
+    # GETS A GATE.
+    #
+    # There are two kinds of learning and only one of them is cheap. A CHECKLIST
+    # is paid on every study, forever, by a person: 266 lessons bind a single
+    # SWDY update, and acknowledging them one by one taxes every build to catch
+    # problems that may never occur. A GATE is paid once and runs free forever —
+    # it catches the mistake in a second instead of after a twenty-minute
+    # recorded run and a failed publish, which is what happened three times on
+    # the day this field was added.
+    #
+    # So lessons are NOT turned into checklists here. The ones that actually
+    # repeat are turned into gates, and this field is how the repeats become
+    # visible. It is filled in ONLY when the mistake happens again: the date, the
+    # study it happened in, and what it cost the second time.
+    #
+    # NOTHING IS ADDED TO ANY BUILD. No step, no acknowledgement, no reading
+    # requirement. An empty `recurred` is the normal case and costs nothing.
+    #
+    # WHAT IT ANSWERS, which nothing in this repository could answer before:
+    # WHICH MISTAKES DO WE ACTUALLY MAKE TWICE. Enforcing all 305 is neither
+    # possible nor sensible — most will never recur. The short list that does is
+    # the gate-writing queue, ordered by evidence rather than by guess.
     # WHY `correction` EXISTS, ADDED 14-09-2026 on the principal's reading.
     #
     # Most entries in this register are not falsifiable claims. They are
@@ -217,7 +243,7 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
             "headline": headline, "plain": plain, "source": source,
             "origin": origin, "evidence": evidence,
             "overturned_by": overturned_by, "status": status,
-            "correction": correction}
+            "correction": correction, "recurred": recurred or []}
 
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
