@@ -71,6 +71,54 @@ def step(n: str, msg: str) -> None:
     print(f"\n[{n}] {msg}")
 
 
+RECORD = os.path.join(ROOT, "engine", "build_depth_audit", "ci_gate_run.json")
+
+
+def record_is_stale() -> str | None:
+    """Why the recorded gate run is not evidence about THIS tree, or None.
+
+    THE RECORD IS EVIDENCE ABOUT THE TREE IT RAN ON [R-ENF-06], so any commit
+    invalidates it — including the two this script makes itself, the origin/main
+    sync at step 1 and the regenerated surfaces at step 5. That is correct and is
+    not what this function is here to change.
+
+    WHAT IT IS HERE FOR: when a publish dies after the sync has already been
+    committed — the render check failing on a broken browser path, say — the NEXT
+    run finds a moved HEAD and reports "Phase 1 is not proven, 2 of 6 acceptance
+    criteria open". That sentence is true and it is badly misleading: it reads as
+    though the acceptance criteria regressed, when all that happened is that the
+    tree moved underneath a still-valid result. One publish lost three twenty-minute
+    recomputes to exactly that, each one starting with a hunt for a regression that
+    had not occurred. A stale record and a red record are different facts and must
+    not share a message.
+    """
+    try:
+        with open(RECORD, encoding="utf-8") as fh:
+            rec = json.load(fh)
+    except Exception as exc:
+        return f"the recorded run will not parse ({type(exc).__name__})"
+    head = run(["git", "rev-parse", "HEAD"]).strip()
+    if rec.get("commit") != head:
+        return (f"it was recorded at {str(rec.get('commit'))[:9]} and HEAD is "
+                f"{head[:9]}")
+    dirty = rec.get("tree_dirty")
+    if isinstance(dirty, list) and dirty:
+        return f"it was recorded on a dirty tree ({len(dirty)} file(s) modified)"
+    return None
+
+
+def rerecord(why: str) -> None:
+    """Re-take the gate record for the current tree, once, and say why."""
+    print(f"    the recorded gate run is STALE — {why}.")
+    print("    This is not a failed gate. Re-recording against the current tree;")
+    print("    it takes about twenty minutes and it is the same work CI does.")
+    # NOT run(): its 900s timeout is shorter than this job. The full gate set takes
+    # roughly 20-25 minutes, so run() would raise TimeoutExpired every time and the
+    # fix would be worse than the defect it replaces.
+    subprocess.run([sys.executable, "scripts/run_ci_gates.py"],
+                   cwd=ROOT, text=True, timeout=3600, check=False)
+
+
 def api(method: str, path: str, token: str, body: dict | None = None) -> dict:
     req = urllib.request.Request(
         f"{API}{path}", method=method,
@@ -577,6 +625,18 @@ def main() -> None:
     # cost nothing to discover, and because a gate placed later is one somebody
     # eventually reaches for --ship past.
     step("0/6", "publication limit [R-GAP-02]")
+    # A STALE RECORD IS NOT A FAILED GATE, and the two must not be reported as one.
+    # Re-take it here, before the verdict is read, so the run either proceeds on
+    # current evidence or dies on a REAL finding — never on evidence about a tree
+    # that a previous attempt of this same script moved.
+    stale = record_is_stale()
+    if stale:
+        rerecord(stale)
+        still = record_is_stale()
+        if still:
+            die(f"the gate record is still not evidence about this tree — {still}.\n"
+                f"  Re-recording did not fix it, so something else is wrong. Run:\n"
+                f"    python3 scripts/run_ci_gates.py")
     ok, why, rows = publish_block.verdict(tk)
     for label, v, g in rows:
         print(f"    {label:<46} {v:10.2f}  {g*100:+7.1f}%")
