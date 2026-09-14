@@ -136,6 +136,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -253,23 +254,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["EGCH"])||(typeof METALS!=="undefined"&&METALS["EGCH"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:"EBITDA margin vs the kiln build", min:-4, max:4, step:0.5, def:0, impact:3.40,
-    lo:"2pp worse than modelled", hi:"2pp better",
-    fmt:v=>(v>=0?"+":"\u2212")+Math.abs(v).toFixed(1)+"pp on the built margin (FY2026E lands at 30.1% as an OUTPUT, not an input)" },
-  { name:"Kiln utilisation, FY2027E", min:61.7, max:81.7, step:0.5, def:71.7, impact:2.00,
-    lo:"62% \u2014 the revived capacity bites", hi:"82% \u2014 exports absorb the surplus",
-    fmt:v=>v.toFixed(1)+"% of the 2.57Mt kiln \u2014 the build runs 71.0% in FY2025A to 79.1% by FY2030E" },
-  { name:"Net cash on the balance sheet", min:3.43, max:6.43, step:0.25, def:4.93, impact:6.00,
-    lo:"EGP 3.4bn", hi:"EGP 6.4bn",
-    fmt:v=>"EGP "+v.toFixed(2)+"bn at the valuation date \u2014 43% of the market capitalisation, and the largest single sensitivity in the study" },
-  { name:"CBE easing \u2014 cost of capital", min:0, max:4, step:0.25, def:0, impact:1.60,
-    lo:"today\u2019s money (28.30% WACC)", hi:"4pp of easing (24.30%)",
-    fmt:v=>(28.30-v).toFixed(2)+"% explicit WACC \u2014 easing "+v.toFixed(2)+"pp" },
-  { name:"Terminal growth \u2014 runs BACKWARDS", min:3, max:7, step:0.25, def:5, impact:-1.75,
-    lo:"3% terminal growth", hi:"7% terminal growth",
-    fmt:v=>v.toFixed(2)+"% \u2014 more growth SUBTRACTS value here, because terminal ROIC of 9.3% sits below the 19.0% terminal cost of capital" }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["EGCH"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

@@ -145,6 +145,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -262,18 +263,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["ELM"])||(typeof METALS!=="undefined"&&METALS["ELM"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:'Discount-rate re-rating (β the market assigns Elm)', min:-6, max:6, step:0.1, def:0, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Registry-exclusivity / margin shock — probability', min:0, max:55, step:1, def:48, impact:0.05,
-    lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Platform-launch / contract-win surprise — probability', min:0, max:90, step:1, def:20, impact:0.05,
-    lo:'unlikely', hi:'likely', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Government digital-spend growth (Vision 2030)', min:-5, max:8, step:0.5, def:0.3, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Broader Tadawul / risk appetite', min:-6, max:8, step:0.5, def:0.1, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["ELM"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

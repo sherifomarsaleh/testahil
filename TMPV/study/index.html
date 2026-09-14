@@ -145,6 +145,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -262,20 +263,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["TMPV"])||(typeof METALS!=="undefined"&&METALS["TMPV"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:'JLR through-cycle operating margin', min:-3, max:3, step:0.25, def:0, impact:9,
-    lo:'margin compresses', hi:'margin expands', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(2)+'pp vs the base case — the biggest single driver' },
-  { name:'Conglomerate discount', min:0, max:35, step:1, def:20, impact:0.9,
-    lo:'wider discount / trust the structure less', hi:'narrower discount / trust it more',
-    fmt:v=>(35-v)+'% discount on the sum-of-the-parts' },
-  { name:'India passenger-vehicle demand & EV traction', min:-6, max:8, step:0.1, def:0, impact:1.5,
-    lo:'demand softens', hi:'demand firms', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / year' },
-  { name:'GBP / INR & USD / INR (JLR earns abroad)', min:-6, max:6, step:0.5, def:0, impact:0.9,
-    lo:'rupee strengthens / translation headwind', hi:'rupee weakens / translation tailwind',
-    fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% vs the base path' },
-  { name:'RBI policy-rate path', min:-4, max:4, step:0.25, def:0, impact:0.5,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(2)+'% vs base' }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["TMPV"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

@@ -145,6 +145,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -262,18 +263,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["STC"])||(typeof METALS!=="undefined"&&METALS["STC"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:'SAMA / Fed policy-rate path (the discount-rate channel)', min:-3, max:3, step:0.1, def:0.1, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Competitive intensity / price-war risk — probability', min:0, max:45, step:1, def:35, impact:0.02,
-    lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Dividend policy step-up — probability', min:0, max:70, step:1, def:25, impact:0.05,
-    lo:'no surprise', hi:'upside surprise', fmt:v=>Math.round(v)+'% chance' },
-  { name:'KSA consumer (CBU) ARPU & data monetization', min:-1, max:2, step:0.1, def:0.3, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'5G/FTTH capex intensity (the dividend-cover swing)', min:-1.5, max:1.5, step:0.1, def:0, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["STC"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
