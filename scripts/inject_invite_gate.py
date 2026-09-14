@@ -42,12 +42,19 @@ from check_page_integrity import (  # noqa: E402  (path set above)
     served_pages,
 )
 
+# The invite door is the one served page that must NOT carry the gate — it is
+# what opens the gate. Everything else in the tree is behind the rope.
+INVITE_DOOR = "privatetest/index.html"
+
 GATE_SRC = "/assets/gate.js"
 GATE_TAG = f'<script src="{GATE_SRC}"></script>'
 NOINDEX = '<meta name="robots" content="noindex,nofollow">'
 
 GATE_RE = re.compile(r'<script[^>]*src="/assets/gate\.js"', re.I)
 ROBOTS_RE = re.compile(r'<meta\s+name="robots"[^>]*>', re.I)
+
+# The chrome gate's exemption (the Google verification file) plus the door.
+GATE_EXEMPT = set(TAB_CHROME_EXEMPT) | {INVITE_DOOR}
 
 
 def head_of(src: str) -> str:
@@ -56,7 +63,7 @@ def head_of(src: str) -> str:
 
 def findings_for(relname: str, src: str) -> list[str]:
     """The pass condition, in one place, used by --write and --check alike."""
-    if relname in TAB_CHROME_EXEMPT:
+    if relname in GATE_EXEMPT:
         return []
     head = head_of(src)
     out = []
@@ -71,7 +78,7 @@ def findings_for(relname: str, src: str) -> list[str]:
 def inject(relname: str, src: str) -> str:
     """Pure text -> text, idempotent. Never rewrites anything but a robots
     meta that asks to be indexed."""
-    if relname in TAB_CHROME_EXEMPT:
+    if relname in GATE_EXEMPT:
         return src
 
     head, sep, tail = src.partition("</head>")
@@ -173,7 +180,7 @@ def run_self_test() -> int:
         fails.append("crlf.html: CRLF was not preserved")
 
     # 5. the exempt file is untouched
-    ex = sorted(TAB_CHROME_EXEMPT)[0]
+    ex = sorted(GATE_EXEMPT)[0]
     if inject(ex, OPEN_PAGE) != OPEN_PAGE:
         fails.append(f"{ex}: the exempt file was rewritten")
 

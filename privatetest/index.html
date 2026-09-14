@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TESTAHIL — welcome</title>
+<link rel="icon" type="image/png" href="/favicon.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<!--
+  THE INVITE DOOR. This page is the link that gets handed out:
+  https://testahil.com/privatetest
+
+  It is the ONE page not behind assets/gate.js — it is what opens the gate.
+  It writes the same hash gate.js checks for into this browser's storage and
+  then walks the visitor into the site, so an invited reader never sees a key
+  or a query string at all. The key itself still works (?k=KEY, or typed into
+  the card) for anyone who prefers to hand out a code rather than a link.
+
+  Exempt in scripts/inject_invite_gate.py, by name, for this reason.
+-->
+<style>
+  html{background:#0d1117}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+       padding:24px;background:#0d1117;color:#e6edf3;
+       font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  .card{width:100%;max-width:400px;text-align:center}
+  .mark{letter-spacing:.34em;font-size:12px;color:#7d8590;margin-bottom:28px}
+  h1{font-size:26px;font-weight:600;margin:0 0 12px}
+  p{color:#9aa4ae;margin:0 0 26px}
+  a.go{display:inline-block;padding:11px 22px;border-radius:8px;background:#e6edf3;
+       color:#0d1117;text-decoration:none;font-weight:600}
+  .small{font-size:13px;color:#6e7681;margin:24px 0 0}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="mark">TESTAHIL</div>
+    <h1>You're in.</h1>
+    <p>This access is tied to your browser. From here on, every page opens
+       straight away — no key, no sign-in.</p>
+    <a class="go" id="go" href="/">Enter the research</a>
+    <p class="small" id="note">Taking you through…</p>
+  </div>
+<script>
+(function () {
+  var HASH = "f8cb1f9f885415a8a684697a59ae8a58f6daeef1bc0207503186ae494ad955cf";
+  var ok = false;
+  try { localStorage.setItem("th_invite", HASH); ok = true; } catch (e) {}
+  var note = document.getElementById("note");
+  if (!ok) {
+    // Private-mode browsing, or storage blocked. Say so rather than sending
+    // them into a gate that will turn them away with no explanation.
+    note.textContent = "This browser is blocking site storage, so the access " +
+      "cannot be remembered. Turn off private browsing, or use the access key " +
+      "you were sent.";
+    note.style.color = "#ff7b72";
+    return;
+  }
+  setTimeout(function () { location.replace("/"); }, 1400);
+})();
+</script>
+</body>
+</html>
