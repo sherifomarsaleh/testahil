@@ -179,7 +179,28 @@ CLASSES = (
 
 
 def L(id, scope, applies_to, headline, plain, source, origin, evidence,
-      overturned_by, status=None):
+      overturned_by, status=None, correction=None):
+    # WHY `correction` EXISTS, ADDED 14-09-2026 on the principal's reading.
+    #
+    # Most entries in this register are not falsifiable claims. They are
+    # CORRECTIONS: we built something wrong, we found it, we fixed it. A
+    # correction has nothing to falsify — it is either applied or it is not —
+    # so `overturned_by` ends up holding a SCOPE CONDITION instead, naming
+    # where the rule does not apply rather than what would show it is wrong.
+    #
+    # L-108 is the clean example. "An issuer that owns its fleet outright" does
+    # not challenge the rule that a lease carries a liability, a rental and a
+    # cash cost. It says an airline with no leases has no lease to record. That
+    # is where the rule is MOOT, not where it is WRONG.
+    #
+    # The register already handles this honestly in 29 places — L-010 answers
+    # "Nothing. This is arithmetic." — and the pattern simply was not applied
+    # to the rest. `correction` gives the fix its own slot so the two stop
+    # competing for one field, and so a reader can tell a thing we learned from
+    # a thing we got wrong.
+    #
+    # It is OPTIONAL and defaults to None: every one of the 305 existing calls
+    # is unaffected, and an entry with no correction renders exactly as before.
     # A walk-forward finding is PROVISIONAL by construction — it cannot be
     # written in as adopted, whatever the caller passes, until the method that
     # produced it has been validated on more than one name.
@@ -195,7 +216,8 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
     return {"id": id, "scope": scope, "applies_to": applies_to,
             "headline": headline, "plain": plain, "source": source,
             "origin": origin, "evidence": evidence,
-            "overturned_by": overturned_by, "status": status}
+            "overturned_by": overturned_by, "status": status,
+            "correction": correction}
 
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
@@ -731,7 +753,11 @@ LESSONS = [
       "AED 300mn a year of leased-fleet additions entered invested capital with "
       "no incremental lease liability in the bridge, no rental in the cost "
       "stack and no cash outflow in free cash flow. Direction: overstates.",
-      "An issuer that owns its fleet outright."),
+      "An issuer that owns its fleet outright.",
+      correction="OUR MODEL, not the issuer's accounts. Leased-fleet additions "
+                 "now enter with all three of their obligations — the lease "
+                 "liability in the bridge, the rental in the cost stack and the "
+                 "cash in free cash flow — or the build refuses."),
 
     L("L-109", "CLASS", "petrochemical",
       "A forecast year must be producible from the disclosed half-year.",

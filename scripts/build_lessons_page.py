@@ -69,9 +69,18 @@ def card(x: dict) -> str:
     if x.get("evidence"):
         bits.append('<p class="muted" style="margin:0 0 6px;font-size:var(--fs-small)">'
                     f'<b>What we measured.</b> {esc(x["evidence"])}</p>')
+    if x.get("correction"):
+        # MOST ENTRIES HERE ARE CORRECTIONS, not falsifiable claims — we built
+        # something wrong, found it, fixed it. Where the fix is recorded, it is
+        # shown, because "what we changed" is the useful half for a reader and it
+        # stops the fix competing with the scope condition for one field.
+        bits.append('<p style="margin:0 0 6px;font-size:var(--fs-small)">'
+                    f'<b>What we changed.</b> {esc(x["correction"])}</p>')
     if x.get("overturned_by"):
-        # THE POINT OF THE WHOLE PAGE. A rule published without the condition that
-        # would kill it is an opinion with a number next to it.
+        # A rule published without the condition that would retire it is an opinion
+        # with a number next to it. The label says "overturn", not "falsify": for a
+        # correction this field names where the rule is MOOT rather than where it is
+        # WRONG, and the stronger word would be overselling it.
         bits.append('<p style="margin:0;font-size:var(--fs-small)">'
                     '<b>What would overturn it.</b> '
                     f'{esc(x["overturned_by"])}</p>')
@@ -105,10 +114,18 @@ def build() -> str:
     parts = [shell, '<main class="wrap">\n',
              '<section class="t-sec" style="margin-top:26px">',
              "<h1>Lessons</h1>",
-             '<p style="max-width:74ch">Every study and every walk-forward leaves '
-             'something behind. This is the register of it — what we learned, what we '
-             'measured to learn it, and <b>the condition that would overturn it</b>. '
-             'The last of those is written when the lesson is adopted, not afterwards.</p>',
+             '<p style="max-width:74ch"><b>This is the register of our own mistakes, '
+             'kept so we do not make them twice.</b> Every study and every '
+             'walk-forward leaves something behind — something we got wrong and '
+             'fixed, or something we measured and learned. Each entry carries what we '
+             'measured, what we changed where a change was needed, and the condition '
+             'that would overturn it, written when the lesson was adopted rather than '
+             'afterwards.</p>',
+             '<p style="max-width:74ch" class="muted">Most of these are CORRECTIONS: '
+             'we built something wrong, found it, and fixed it. A correction is not a '
+             'falsifiable claim — it is either applied or it is not — so where an '
+             'entry says nothing would overturn it, that is the honest answer rather '
+             'than a missing one.</p>',
              '<p style="max-width:74ch" class="muted">A lesson is a RECORD and not a '
              'rule: it binds the studies we build, it is not advice, and nothing here '
              'is a recommendation. Fundamental lessons are marked <b>provisional</b> '
