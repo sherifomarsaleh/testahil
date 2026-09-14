@@ -205,6 +205,7 @@
   if(files.pdf) fl.push('<a class="t-btn" href="/'+files.pdf+'">Open the study (PDF)</a>');
   if(files.study && !files.pdf) fl.push('<a class="t-btn" href="/'+files.study+'">Open the study</a>');
   if(files.model) fl.push('<a class="t-btn ghost" href="/'+files.model+'">Open the model (Excel)</a>');
+  if(files.dissent) fl.push('<a class="t-btn ghost" href="/'+files.dissent+'">Why we differ from the market (PDF)</a>');
   document.getElementById("s-files").innerHTML = fl.join("") || '<span class="muted" style="font-size:var(--fs-small)">Study documents publish with the next edition.</span>';
   var ed = files.study||files.pdf||"";
   var edDate = (ed.match(/(\d{2})-(\d{2})-(\d{4})/)||[])[0];
